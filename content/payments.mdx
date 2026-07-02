@@ -1,0 +1,281 @@
+---
+title: পেমেন্ট সিস্টেম
+description: বাংলাদেশের পেমেন্ট সিস্টেম গাইড — bKash, Nagad, ব্যাংক, পেমেন্ট গেটওয়ে, COD, SaaS export payment।
+---
+
+# পেমেন্ট সিস্টেম (Payment Systems)
+
+> **সারকথা:** বাংলাদেশে পেমেন্ট মানে শুধু "card swipe" নয়। এখানে bKash, Nagad, COD (Cash on Delivery), ব্যাংক ট্রান্সফার — সব মিলিয়ে একটা unique পেমেন্ট ecosystem। আপনার স্টার্টআপের জন্য সঠিক পেমেন্ট method বেছে নেওয়া মানে গ্রাহক পাওয়া।
+
+---
+
+## বাংলাদেশের পেমেন্ট ল্যান্ডস্কেপ
+
+বাংলাদেশের পেমেন্ট সিস্টেম বাকি বিশ্ব থেকে আলাদা। কিছু গুরুত্বপূর্ণ তথ্য:
+
+| তথ্য | সংখ্যা |
+|------|--------|
+| মোবাইল ফোনানুপ্রবেশ (Mobile penetration) | ~১৮ কোটি+ |
+| ইন্টারনেট ব্যবহারকারী | ~১৩ কোটি |
+| ব্যাংক অ্যাকাউন্ট | ~১০ কোটি |
+| ডেবিট/ক্রেডিট কার্ড | ~৪ কোটি (খুব কম!) |
+| MFS (bKash, Nagad ইত্যাদি) অ্যাকাউন্ট | ~১০ কোটি+ |
+| Card penetration | ~৪% (অনেক কম) |
+
+> **মূল কথা:** বাংলাদেশে card-এর চেয়ে **MFS (Mobile Financial Services)** অনেক বেশি জনপ্রিয়। আপনার পেমেন্ট strategy-তে bKash/Nagad রাখা বাধ্যতামূলক।
+
+---
+
+## পেমেন্ট Method গুলো
+
+### ১. মোবাইল ফাইন্যান্সিয়াল সার্ভিস (MFS)
+
+#### bKash
+
+| বিষয় | বিবরণ |
+|-------|--------|
+| **Market share** | সবচেয়ে বড় (~৬০%+ MFS market) |
+| **Users** | ৬ কোটি+ |
+| **ব্যবহার** | Send Money, Payment, Cash Out |
+| **Merchant Account** | bKash Merchant Account |
+| **Charge** | Personal: ফ্রি (নির্দিষ্ট সীমার মধ্যে), Merchant: ~১.৫%-২.৫% |
+| **API/Payment Gateway** | আছে (Developer-দের জন্য) |
+| **Website** | [bkash.com](https://www.bkash.com) |
+
+**কীভাবে Merchant Account খুলবেন:**
+1. bKash-এর website-এ "Merchant" সেকশনে যান
+2. আবেদন ফর্ম পূরণ করুন
+3. প্রয়োজনীয় কাগজপত্র জমা দিন (Trade License, TIN, NID, কোম্পানির কাগজ)
+4. Verification হলে Merchant Account activate হবে
+5. Payment collection শুরু করতে পারবেন
+
+**bKash Payment Gateway (অ্যাপ/ওয়েবসাইটের জন্য):**
+- bKash-এর নিজস্ব payment gateway আছে
+- আপনার website/app-এ bKash payment integrate করতে পারবেন
+- গ্রাহক bKash app বা USSD (*247#) দিয়ে pay করতে পারবে
+
+#### Nagad
+
+| বিষয় | বিবরণ |
+|-------|--------|
+| **Market share** | ২য় বৃহত্তম |
+| **Users** | ৫ কোটি+ |
+| **ব্যবহার** | Send Money, Payment, Cash Out |
+| **Merchant Account** | Nagad Merchant |
+| **Charge** | bKash-এর মতো প্রায় |
+| **Website** | [nagad.com.bd](https://nagad.com.bd) |
+
+#### অন্যান্য MFS
+
+| সেবা | Notes |
+|------|-------|
+| Rocket (DBBL) | Dutch-Bangla Bank-এর MFS |
+| Upay | City Bank-এর MFS |
+| Tap | QR-based payment |
+
+### ২. ব্যাংক ট্রান্সফার
+
+| পদ্ধতি | বিবরণ |
+|--------|--------|
+| **BEFTN** | Electronic Fund Transfer — batch processing, ১-২ দিন |
+| **NPSB** | Instant interbank transfer — তাৎক্ষণিক |
+| **RTGS** | বড় amount-এর জন্য — তাৎক্ষণিক, minimum ৳১,০০,০০০ |
+| **Mobile Banking (App)** | প্রতিটি ব্যাংকের নিজস্ব app |
+
+**কখন ব্যবহার করবেন:**
+- B2B payment — বেশিরভাগ business bank transfer পছন্দ করে
+- বড় amount-এর লেনদেন
+- Salary payment
+
+### ৩. ক্যাশ অন ডেলিভারি (COD)
+
+বাংলাদেশে e-commerce-এর সবচেয়ে জনপ্রিয় পেমেন্ট method!
+
+| বিষয় | বিবরণ |
+|-------|--------|
+| **কী** | পণ্য হাতে পেয়ে টাকা দেওয়া |
+| **জনপ্রিয়তা** | e-commerce orders-এর ~৬০-৭০% |
+| **সমস্যা** | Return rate বেশি (১৫-৩০%), fake orders, cash handling risk |
+| **কাদের জন্য** | Physical product বিক্রি করলে |
+
+**COD-এর ঝুঁকি কমানোর টিপস:**
+- [ ] অর্ডার confirm করতে ফোন করুন
+- [ ] Delivery-র আগে SMS/Call করুন
+- [] Advance payment (আংশিক) নিন — ৳৫০-১০০ হলেও
+- [] Customer-এর order history check করুন
+- [] Delivery partner-এর সাথে COD reconciliation process ঠিক করুন
+- [] Fake address/phone number filter করুন
+
+### ৪. পেমেন্ট গেটওয়ে (অনলাইন পেমেন্ট)
+
+আপনার website/app-এ online payment নিতে চাইলে:
+
+#### SSLCommerz
+
+| বিষয় | বিবরণ |
+|-------|--------|
+| **সবচেয়ে বড়** | বাংলাদেশের সবচেয়ে popular payment gateway |
+| **Support করে** | bKash, Nagad, Cards, Bank Transfer, Rocket, Upay — সব |
+| **Charge** | ~২.৫%-৩.৫% per transaction |
+| **Integration** | API, Plugin (WooCommerce, Shopify) |
+| **Website** | [sslcommerz.com](https://sslcommerz.com) |
+
+#### aamarPay
+
+| বিষয় | বিবরণ |
+|-------|--------|
+| **Alternative** | SSLCommerz-এর বিকল্প |
+| **Charge** | ~২%-৩% |
+| **Integration** | API available |
+| **Website** | [aamarpay.com](https://aamarpay.com) |
+
+#### ShurjoPay
+
+| বিষয় | বিবরণ |
+|-------|--------|
+| **Provider** | ShurjoMukhi Limited |
+| **Charge** | Competitive |
+| **Website** | [shurjopay.com](https://shurjopay.com) |
+
+#### পেমেন্ট গেটওয়ে তুলনা
+
+| গেটওয়ে | Transaction Fee | Settlement Time | Integration |
+|--------|----------------|-----------------|-------------|
+| SSLCommerz | ~২.৫%-৩.৫% | ২-৩ দিন | Easy |
+| aamarPay | ~২%-৩% | ২-৩ দিন | Easy |
+| ShurjoPay | Competitive | ২-৩ দিন | Moderate |
+| PortWallet | ~২.৫% | ২-৩ দিন | Moderate |
+
+### ৫. আন্তর্জাতিক পেমেন্ট (Foreign Payment)
+
+যদি আপনি বিদেশি গ্রাহক থেকে টাকা নেন (SaaS export, freelance, etc.):
+
+| পদ্ধতি | বিবরণ |
+|--------|--------|
+| **PayPal** | বাংলাদেশে সরাসরি নেই, workaround লাগে |
+| **Wise (TransferWise)** | Bangladesh bank account-এ টাকা পাঠানো যায় |
+| **Payoneer** | Freelancer-দের জন্য জনপ্রিয় |
+| **Bank Wire Transfer** | সরাসরি ব্যাংকে — SWIFT |
+| **Stripe** | বাংলাদেশে নেই, কিন্তু Atlas/LLC দিয়ে ব্যবহার করা যায় |
+
+**SaaS Export-এর জন্য:**
+- Bangladeshi company থেকে বিদেশি client-কে invoice পাঠান
+- Client bank wire/Wise দিয়ে pay করবে
+- Bangladesh Bank-এ foreign remittance হিসেবে আসবে
+- **Form C** পূরণ করতে হতে পারে (ব্যাংক থেকে)
+
+---
+
+## আপনার স্টার্টআপের জন্য কী নেবেন?
+
+### E-commerce (Physical Product)
+
+```
+✅ bKash Merchant
+✅ Nagad Merchant  
+✅ Cash on Delivery (COD)
+✅ Bank Transfer
+✅ SSLCommerz/aamarPay (optional)
+```
+
+### SaaS / Digital Service
+
+```
+✅ bKash Merchant
+✅ SSLCommerz/aamarPay (credit/debit card)
+✅ Bank Transfer (B2B)
+✅ Wise/Payoneer (international customers)
+```
+
+### B2B Service
+
+```
+✅ Bank Transfer (NPSB/BEFTN)
+✅ bKash (small payments)
+✅ Cheque (বড় companies)
+```
+
+### Marketplace / Platform
+
+```
+✅ SSLCommerz/aamarPay (all methods)
+✅ bKash + Nagad
+✅ COD (if physical products)
+```
+
+---
+
+## পেমেন্ট ও Trust
+
+বাংলাদেশে **trust** পেমেন্ট-এর চেয়েও বড় বিষয়।
+
+**মানুষ কেন online pay করতে চায় না:**
+- নতুন ব্র্যান্ডের প্রতি অবিশ্বাস
+- টাকা হারানোর ভয়
+- আগে scam-এর অভিজ্ঞতা
+- "দেখে কিনবো" মানসিকতা
+
+**Trust বাড়ানোর উপায়:**
+- [ ] Professional website/landing page
+- [ ] Clear return/refund policy
+- [ ] Customer reviews/testimonials দেখান
+- [ ] Multiple payment options দিন (বিশেষ করে COD)
+- [ ] SSL certificate (https) ব্যবহার করুন
+- [ ] Social media presence রাখুন
+- [ ] Phone number/WhatsApp support দিন
+- [ ] bKash/Nagad merchant verified account ব্যবহার করুন
+
+---
+
+## বাংলাদেশ Bank-এর Basics
+
+### Business Bank Account খোলা
+
+**কী লাগবে:**
+- কোম্পানির Certificate of Incorporation
+- Trade License
+- TIN Certificate
+- Board Resolution (কোম্পানির)
+- Director-দের NID ও ছবি
+- প্রয়োজনীয় ফর্ম
+
+**জনপ্রিয় Business Banking Banks:**
+
+| ব্যাংক | কেন ভালো |
+|-------|---------|
+| Dutch-Bangla Bank (DBBL) | বড় network, digital banking ভালো |
+| BRAC Bank | SME-friendly, ভালো service |
+| City Bank | আমানতকারী বান্ধব |
+| Eastern Bank (EBL) | Corporate banking ভালো |
+| Islami Bank Bangladesh | Islamic banking চাইলে |
+| Standard Chartered | International transactions-এর জন্য |
+| HSBC | বড় business/foreign transactions |
+
+---
+
+## চেকলিস্ট
+
+- [ ] আমার ব্যবসার জন্য সঠিক পেমেন্ট method ঠিক করেছি
+- [ ] bKash/Nagad Merchant Account খুলেছি
+- [ ] Payment gateway integrate করেছি (যদি online sell করি)
+- [ ] Business bank account খুলেছি
+- [ ] COD policy ঠিক করেছি (যদি physical product sell করি)
+- [ ] International payment setup করেছি (যদি বিদেশি customer থাকে)
+- [ ] Refund/return policy তৈরি করেছি
+
+---
+
+## সূত্র ও লিঙ্ক
+
+| সূত্র | লিঙ্ক |
+|-------|-------|
+| Bangladesh Bank | [bb.org.bd](https://bb.org.bd) |
+| bKash | [bkash.com](https://www.bkash.com) |
+| Nagad | [nagad.com.bd](https://nagad.com.bd) |
+| SSLCommerz | [sslcommerz.com](https://sslcommerz.com) |
+| aamarPay | [aamarpay.com](https://aamarpay.com) |
+| BTRC | [btrc.gov.bd](https://btrc.gov.bd) |
+
+---
+
+**পূর্ববর্তী:** [← ট্রেড লাইসেন্স](/trade-license) | **পরবর্তী:** [গ্রাহক খোঁজা →](/customers)

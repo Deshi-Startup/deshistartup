@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --font-bangla: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+}
+
+html {
+  font-family: var(--font-bangla);
+}
+
+body {
+  font-family: var(--font-bangla);
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-bangla);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+code, pre {
+  font-family: 'Noto Sans Bengali', monospace;
+}
+
+.nextra-sidebar-container,
+.nextra-toc {
+  font-family: var(--font-bangla);
+}
