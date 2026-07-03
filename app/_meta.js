@@ -16,6 +16,7 @@ export default {
   'phase-two': 'Phase 2 রোডম্যাপ',
   'phase-three': 'Phase 3 রোডম্যাপ',
   'phase-four': 'Phase 4 রোডম্যাপ',
+  'founder-life': 'Founder Life',
   'start-here': 'শুরু করুন',
   'startup-vs-sme': 'স্টার্টআপ বনাম SME',
   'ecosystem-overview': 'ইকোসিস্টেম ওভারভিউ',
