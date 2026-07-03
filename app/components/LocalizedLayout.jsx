@@ -35,7 +35,19 @@ export default function LocalizedLayout({ children, pageMap }) {
 
   const enSidebar = [
     { name: '--intro', type: 'separator', title: 'Introduction' },
-    ['start-here', 'Start Here']
+    ['start-here', 'Start Here'],
+    ['startup-vs-sme', 'Startup vs SME'],
+    ['ecosystem-overview', 'Ecosystem Overview'],
+    ['founder-life', 'Founder Life'],
+    { name: '--idea', type: 'separator', title: 'Idea & Market' },
+    ['idea-validation', 'Idea Validation'],
+    ['customers', 'Finding Customers'],
+    { name: '--legal', type: 'separator', title: 'Legal & Registration' },
+    ['legal-roadmap', 'Legal Roadmap'],
+    ['rjsc-name-clearance', 'RJSC / Name Clearance'],
+    ['registration', 'Business Registration'],
+    ['trade-license', 'Trade License'],
+    ['payments', 'Payment Systems']
   ]
 
   useEffect(() => {
