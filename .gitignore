@@ -1,0 +1,6 @@
+node_modules/
+out/
+.next/
+_pagefind/
+*.log
+knowledge-bank/

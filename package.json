@@ -2,20 +2,26 @@
   "name": "deshistartup",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind"
+    "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind",
+    "scrape": "node scripts/scrape.js"
   },
   "dependencies": {
-    "next": "^16.2.10",
-    "nextra": "^4.6.1",
-    "nextra-theme-docs": "^4.6.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "next": "^15.1.3",
+    "nextra": "^4.0.0",
+    "nextra-theme-docs": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "pagefind": "^1.5.2"
+    "cheerio": "^1.2.0",
+    "node-fetch": "^3.3.2",
+    "pagefind": "^1.5.2",
+    "robots-parser": "^3.0.1",
+    "turndown": "^7.2.4"
   }
 }
