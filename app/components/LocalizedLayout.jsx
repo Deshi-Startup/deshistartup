@@ -9,6 +9,35 @@ export default function LocalizedLayout({ children, pageMap }) {
   const pathname = usePathname()
   const isEn = pathname.startsWith('/en/') || pathname === '/en'
 
+  const bnSidebar = [
+    { name: '--intro', type: 'separator', title: 'ভূমিকা' },
+    ['start-here', 'শুরু করুন'],
+    ['startup-vs-sme', 'স্টার্টআপ বনাম SME'],
+    ['ecosystem-overview', 'ইকোসিস্টেম ওভারভিউ'],
+    ['founder-life', 'Founder Life'],
+    { name: '--idea', type: 'separator', title: 'আইডিয়া ও মার্কেট' },
+    ['idea-validation', 'আইডিয়া যাচাই'],
+    ['customers', 'গ্রাহক খোঁজা'],
+    { name: '--legal', type: 'separator', title: 'আইন ও নিবন্ধন' },
+    ['legal-roadmap', 'আইনগত রোডম্যাপ'],
+    ['company-types', 'কোম্পানির ধরন'],
+    ['rjsc-name-clearance', 'RJSC / নাম ক্লিয়ারেন্স'],
+    ['registration', 'ব্যবসা নিবন্ধন'],
+    ['trade-license', 'ট্রেড লাইসেন্স'],
+    ['e-tin-vat-bin', 'e-TIN ও VAT/BIN'],
+    ['payments', 'পেমেন্ট সিস্টেম'],
+    { name: '--phases', type: 'separator', title: 'রোডম্যাপ ফেজ' },
+    ['phase-one', 'Phase 1 রোডম্যাপ'],
+    ['phase-two', 'Phase 2 রোডম্যাপ'],
+    ['phase-three', 'Phase 3 রোডম্যাপ'],
+    ['phase-four', 'Phase 4 রোডম্যাপ']
+  ]
+
+  const enSidebar = [
+    { name: '--intro', type: 'separator', title: 'Introduction' },
+    ['start-here', 'Start Here']
+  ]
+
   useEffect(() => {
     document.documentElement.lang = isEn ? 'en' : 'bn'
   }, [isEn])
@@ -72,12 +101,85 @@ export default function LocalizedLayout({ children, pageMap }) {
 
     const visiblePageMap = unwrapRouteGroups(fullPageMap)
 
-    if (isEn) {
-      const enNode = findNode(visiblePageMap, 'en')
-      return enNode ? enNode.children : []
+    const withRoutes = (nodes, baseRoute = '') => {
+      return nodes.map((node) => {
+        if ('data' in node) return node
+        if (node.type === 'separator') return node
+
+        const route = node.route || `${baseRoute}/${node.name}`.replace(/\/+/g, '/')
+        const nextNode = { ...node, route }
+
+        if (node.children) {
+          nextNode.children = withRoutes(node.children, route)
+        }
+
+        if (node.items) {
+          nextNode.items = Object.fromEntries(
+            Object.entries(node.items).map(([key, item]) => {
+              if (item?.type === 'separator') return [key, item]
+
+              return [
+                key,
+                {
+                  ...item,
+                  route: item?.route || `${route}/${key}`.replace(/\/+/g, '/')
+                }
+              ]
+            })
+          )
+        }
+
+        return nextNode
+      })
     }
 
-    return visiblePageMap.filter((node) => node.name !== 'en')
+    const withoutIndex = (nodes) => {
+      return nodes.filter((node) => !['index', 'page'].includes(node.name))
+    }
+
+    const orderPageMap = (nodes, sidebar) => {
+      const nodeByName = new Map(withoutIndex(nodes).map((node) => [node.name, node]))
+      const used = new Set()
+      const ordered = []
+      const data = {}
+
+      for (const item of sidebar) {
+        if (!Array.isArray(item)) {
+          data[item.name] = {
+            type: item.type,
+            title: item.title
+          }
+          ordered.push({ name: item.name })
+          continue
+        }
+
+        const [name, title] = item
+        const node = nodeByName.get(name)
+        if (!node) continue
+
+        used.add(name)
+        data[name] = { title }
+        ordered.push({ ...node, title })
+      }
+
+      for (const node of withoutIndex(nodes)) {
+        if (!used.has(node.name)) ordered.push(node)
+      }
+
+      return [{ data }, ...ordered]
+    }
+
+    if (isEn) {
+      const enNode = findNode(visiblePageMap, 'en')
+      return enNode ? withRoutes(orderPageMap(enNode.children || [], enSidebar), '/en') : []
+    }
+
+    return withRoutes(
+      orderPageMap(
+        visiblePageMap.filter((node) => node.name !== 'en'),
+        bnSidebar
+      )
+    )
   }
 
   const localizedPageMap = getLocalizedPageMap(pageMap)
