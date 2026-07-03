@@ -1,0 +1,21 @@
+<svg width="800" height="420" viewBox="0 0 800 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="420" rx="24" fill="#F8FAFC"/>
+  <rect x="80" y="70" width="640" height="260" rx="24" fill="white" stroke="#DDE7F0" stroke-width="2"/>
+  <path d="M180 290L260 190L340 230L420 150L500 200L620 110" stroke="#2563EB" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="180" cy="290" r="14" fill="#2563EB"/>
+  <circle cx="260" cy="190" r="14" fill="#2563EB"/>
+  <circle cx="340" cy="230" r="14" fill="#2563EB"/>
+  <circle cx="420" cy="150" r="14" fill="#2563EB"/>
+  <circle cx="500" cy="200" r="14" fill="#2563EB"/>
+  <circle cx="620" cy="110" r="14" fill="#2563EB"/>
+  <rect x="120" y="100" width="120" height="54" rx="12" fill="#E0F2FE"/>
+  <rect x="260" y="100" width="140" height="54" rx="12" fill="#DBEAFE"/>
+  <rect x="430" y="100" width="140" height="54" rx="12" fill="#E0E7FF"/>
+  <rect x="590" y="100" width="110" height="54" rx="12" fill="#DCFCE7"/>
+  <text x="148" y="132" font-family="Arial, sans-serif" font-size="20" fill="#0F172A">Find</text>
+  <text x="289" y="132" font-family="Arial, sans-serif" font-size="20" fill="#0F172A">Convert</text>
+  <text x="454" y="132" font-family="Arial, sans-serif" font-size="20" fill="#0F172A">Retain</text>
+  <text x="607" y="132" font-family="Arial, sans-serif" font-size="20" fill="#0F172A">Scale</text>
+  <text x="120" y="350" font-family="Arial, sans-serif" font-size="22" fill="#0F172A">Phase 4 growth loop</text>
+  <text x="120" y="378" font-family="Arial, sans-serif" font-size="16" fill="#475569">Brand + systems + team + finance + resilience</text>
+</svg>
