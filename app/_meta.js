@@ -12,9 +12,16 @@ export default {
     type: 'separator',
     title: 'গাইড'
   },
-  'idea-validation': 'আইডিয়া যাচাই',
+  'start-here': 'শুরু করুন',
+  'startup-vs-sme': 'স্টার্টআপ বনাম SME',
+  'ecosystem-overview': 'ইকোসিস্টেম ওভারভিউ',
+  'legal-roadmap': 'আইনগত রোডম্যাপ',
+  'company-types': 'কোম্পানির ধরন',
+  'rjsc-name-clearance': 'RJSC / নাম ক্লিয়ারেন্স',
   'registration': 'ব্যবসা নিবন্ধন',
   'trade-license': 'ট্রেড লাইসেন্স',
+  'e-tin-vat-bin': 'e-TIN ও VAT/BIN',
   'payments': 'পেমেন্ট সিস্টেম',
+  'idea-validation': 'আইডিয়া যাচাই',
   'customers': 'গ্রাহক খোঁজা'
 }
