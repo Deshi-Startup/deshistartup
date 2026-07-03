@@ -6,6 +6,8 @@
 
 html {
   font-family: var(--font-bangla);
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 ::view-transition-old(root),
@@ -230,6 +232,10 @@ html:not(.dark) .language-switcher[data-language='en'] .language-switcher__optio
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   ::view-transition-old(root),
   ::view-transition-new(root),
   body > div,
