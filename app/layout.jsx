@@ -38,7 +38,7 @@ export default async function RootLayout({ children }) {
           navbar={navbar}
           footer={footer}
           pageMap={await getPageMap()}
-          docsRepositoryBase="https://github.com/deshistartup/deshistartup/tree/main"
+          docsRepositoryBase="https://github.com/Deshi-Startup/deshistartup/tree/main"
         >
           {safeChildren}
         </Layout>
