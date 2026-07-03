@@ -12,9 +12,15 @@ const LOG_FILE = './knowledge-bank/scrape-log.json';
 const DELAY_MS = Number(process.env.SCRAPE_DELAY_MS || 1000);
 const MAX_DEPTH = Number(process.env.SCRAPE_MAX_DEPTH || 2);
 const REQUEST_TIMEOUT_MS = Number(process.env.SCRAPE_TIMEOUT_MS || 25000);
+const MAX_VISITS_PER_SOURCE = Number(process.env.SCRAPE_MAX_VISITS || 28);
 const ALLOW_INSECURE_TLS = process.env.SCRAPE_ALLOW_INSECURE_TLS !== 'false';
 const SOURCE_LIMIT = Number(process.env.SCRAPE_SOURCE_LIMIT || 0);
 const ONLY_PATTERN = process.env.SCRAPE_ONLY ? new RegExp(process.env.SCRAPE_ONLY, 'i') : null;
+const POLISH_CONTENT = process.env.SCRAPE_POLISH === 'true';
+const OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'gemma4:e4b';
+const OLLAMA_URL = process.env.OLLAMA_URL || 'http://127.0.0.1:11434/api/generate';
+const OLLAMA_TIMEOUT_MS = Number(process.env.OLLAMA_TIMEOUT_MS || 120000);
+const POLISH_INPUT_LIMIT = Number(process.env.SCRAPE_POLISH_INPUT_LIMIT || 18000);
 const USER_AGENT = 'Mozilla/5.0 (compatible; DeshiStartupBot/2.0; +https://deshistartup.com)';
 
 const PAGE_LIMITS = {
@@ -33,13 +39,21 @@ const turndownService = new TurndownService({
   bulletListMarker: '-'
 });
 
-turndownService.remove(['script', 'style', 'svg', 'iframe', 'noscript', 'form']);
+turndownService.remove(['script', 'style', 'svg', 'iframe', 'noscript', 'form', 'img', 'picture', 'source']);
+
+const stopwords = new Set([
+  'and', 'for', 'the', 'with', 'from', 'use', 'source', 'resources', 'guidance',
+  'pages', 'current', 'context', 'information', 'official', 'highest', 'high',
+  'medium', 'track', 'needed', 'useful', 'relevant'
+]);
 
 const blocklistPatterns = [
   /\/(login|signin|signup|register|admin|dashboard|account|cart|checkout)(\/|$|\?)/i,
+  /\/cdn-cgi\//i,
+  /\/(officers?|office-heads?|annual-reports?|innovation-corners?|info-officers)(\/|$|\?)/i,
   /\/(tag|tags|author|category|wp-admin|wp-login|privacy-policy|terms|terms-of-service|refund-policy)(\/|$|\?)/i,
   /\/(people|team|portfolio|legal|contact|about-us?)\/?$/i,
-  /\.(pdf|jpg|jpeg|png|gif|svg|webp|zip|rar|doc|docx|xls|xlsx|ppt|pptx)$/i,
+  /\.(pdf|jpg|jpeg|png|gif|svg|webp|zip|rar|doc|docx|xls|xlsx|xlsb|ppt|pptx)$/i,
   /^mailto:/i,
   /^tel:/i,
   /^javascript:/i
@@ -55,6 +69,7 @@ const priorityTerms = [
 
 const boilerplateSelectors = [
   'script', 'style', 'svg', 'iframe', 'noscript', 'form', 'nav', 'footer', 'header',
+  'img', 'picture', 'source',
   '.nav', '.navbar', '.navigation', '.menu', '.footer', '.header', '.sidebar',
   '.breadcrumb', '.breadcrumbs', '.share', '.social', '.cookie', '.popup', '.modal',
   '.advertisement', '.ads', '.related-posts', '.comments', '#comments'
@@ -68,9 +83,11 @@ async function fetchWithTimeout(url, options = {}, timeoutMs = REQUEST_TIMEOUT_M
   const urlObj = new URL(url);
 
   try {
+    const agent = ALLOW_INSECURE_TLS && urlObj.protocol === 'https:' ? insecureHttpsAgent : undefined;
+
     return await fetch(url, {
       ...options,
-      agent: ALLOW_INSECURE_TLS && urlObj.protocol === 'https:' ? insecureHttpsAgent : undefined,
+      agent: options.agent === undefined ? agent : options.agent,
       signal: controller.signal
     });
   } finally {
@@ -124,7 +141,7 @@ function tokenize(text = '') {
       .toLowerCase()
       .replace(/[^a-z0-9\s-]/g, ' ')
       .split(/\s+/)
-      .filter(term => term.length > 2)
+      .filter(term => term.length > 2 && !stopwords.has(term))
   ));
 }
 
@@ -158,8 +175,8 @@ function scoreUrl(url, source, anchorText = '') {
   return score;
 }
 
-async function loadRobotsTxt(sourceUrl) {
-  const urlObj = new URL(sourceUrl);
+async function loadRobotsTxt(url) {
+  const urlObj = new URL(url);
   const robotsUrl = `${urlObj.protocol}//${urlObj.hostname}/robots.txt`;
 
   try {
@@ -175,6 +192,16 @@ async function loadRobotsTxt(sourceUrl) {
   }
 
   return null;
+}
+
+async function getRobotsForUrl(url, robotsCache) {
+  const origin = new URL(url).origin;
+
+  if (!robotsCache.has(origin)) {
+    robotsCache.set(origin, await loadRobotsTxt(url));
+  }
+
+  return robotsCache.get(origin);
 }
 
 async function fetchPage(url) {
@@ -227,7 +254,7 @@ function extractLinks(html, baseUrl, source) {
   });
 
   return [...links.values()]
-    .filter(link => link.score >= 0)
+    .filter(link => link.score >= 2)
     .sort((a, b) => b.score - a.score)
     .map(link => link.url);
 }
@@ -264,9 +291,31 @@ function pickContentRoot($) {
   return best;
 }
 
+function removeLinkHeavyBlocks($) {
+  $('aside, nav, section, div, ul').each((_, element) => {
+    const block = $(element);
+    const links = block.find('a[href]').length;
+    if (links < 8) return;
+
+    const textLength = block.text().replace(/\s+/g, ' ').trim().length;
+    const paragraphCount = block.find('p').length;
+
+    if (paragraphCount < 3 || textLength / links < 80) {
+      block.remove();
+    }
+  });
+}
+
 function htmlToMarkdown(html, url) {
   const $ = cheerio.load(html);
   $(boilerplateSelectors.join(',')).remove();
+  removeLinkHeavyBlocks($);
+  $('a').each((_, element) => {
+    const link = $(element);
+    if (link.text().replace(/\s+/g, '').length === 0) {
+      link.remove();
+    }
+  });
 
   const title = (
     $('meta[property="og:title"]').attr('content') ||
@@ -277,6 +326,7 @@ function htmlToMarkdown(html, url) {
 
   const root = pickContentRoot($);
   root.find(boilerplateSelectors.join(',')).remove();
+  removeLinkHeavyBlocks($);
 
   const markdown = turndownService
     .turndown(root.html() || '')
@@ -286,19 +336,24 @@ function htmlToMarkdown(html, url) {
   return { title, markdown };
 }
 
-function contentQuality(markdown, source) {
+function contentQuality(markdown, source, pageScore) {
   const text = markdown.replace(/[#>*_`[\]()!-]/g, ' ').replace(/\s+/g, ' ').trim();
   const words = text.split(/\s+/).filter(Boolean);
   const focusTerms = getFocusTerms(source);
   const lower = text.toLowerCase();
   const matchedTerms = focusTerms.filter(term => lower.includes(term));
   const priorityMatches = priorityTerms.filter(term => lower.includes(term));
+  const requiresBangladesh = /bangladesh|bd\b/i.test(`${source.source} ${source.research_focus}`);
+  const hasBangladesh = /\bbangladesh\b|\bbd\b/i.test(text);
 
   return {
     words: words.length,
     matched_terms: matchedTerms.slice(0, 20),
     priority_matches: priorityMatches.slice(0, 20),
-    usable: words.length >= 120 && (matchedTerms.length > 0 || priorityMatches.length >= 2)
+    usable: words.length >= 120 &&
+      pageScore >= 2 &&
+      (!requiresBangladesh || hasBangladesh) &&
+      (matchedTerms.length >= 2 || priorityMatches.length >= 3)
   };
 }
 
@@ -306,11 +361,68 @@ function quoteYaml(value) {
   return String(value ?? '').replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 }
 
-function generateFrontmatter(source, url, title, quality) {
-  return `---\nsource: "${quoteYaml(source.source)}"\ntier: ${JSON.stringify(source.tier)}\ncategory: "${quoteYaml(source.category)}"\nurl: "${quoteYaml(url)}"\ntitle: "${quoteYaml(title)}"\nword_count: ${quality.words}\nmatched_terms: ${JSON.stringify(quality.matched_terms)}\nscraped_at: "${new Date().toISOString()}"\n---\n\n`;
+function generateFrontmatter(source, url, title, quality, polished) {
+  return `---\nsource: "${quoteYaml(source.source)}"\ntier: ${JSON.stringify(source.tier)}\ncategory: "${quoteYaml(source.category)}"\nurl: "${quoteYaml(url)}"\ntitle: "${quoteYaml(title)}"\nword_count: ${quality.words}\nmatched_terms: ${JSON.stringify(quality.matched_terms)}\npolished_by: ${polished ? JSON.stringify(OLLAMA_MODEL) : 'null'}\nscraped_at: "${new Date().toISOString()}"\n---\n\n`;
 }
 
-async function savePage(source, url, title, markdown, outputDir, quality, usedFilenames) {
+async function polishMarkdown(source, url, title, markdown) {
+  if (!POLISH_CONTENT) return { markdown, polished: false };
+
+  const prompt = `You are cleaning scraped website text for a Bangladesh startup knowledge bank.
+
+Source: ${source.source}
+Category: ${source.category}
+Research focus: ${source.research_focus}
+URL: ${url}
+Page title: ${title}
+
+Task:
+- Rewrite the scraped markdown into concise, factual Markdown notes.
+- Keep only information useful for founders, startup operators, investors, or business registration/compliance research.
+- Preserve concrete facts, numbers, rules, fees, dates, eligibility, process steps, program names, and official service names.
+- Remove navigation, repeated image alt text, slogans, cookie/form messages, unrelated marketing fluff, and duplicate sections.
+- Do not invent facts. If the scraped text is thin or irrelevant, return exactly: INSUFFICIENT_RELEVANT_CONTENT
+- Start with a short H1 or H2 matching the page topic, then use bullets/tables where helpful.
+- Do not include frontmatter.
+
+Scraped markdown:
+${markdown.slice(0, POLISH_INPUT_LIMIT)}`;
+
+  const response = await fetchWithTimeout(OLLAMA_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: OLLAMA_MODEL,
+      prompt,
+      stream: false,
+      options: {
+        temperature: 0.1,
+        top_p: 0.9,
+        num_predict: 900
+      }
+    }),
+    agent: false
+  }, OLLAMA_TIMEOUT_MS);
+
+  if (!response.ok) {
+    throw new Error(`Ollama HTTP ${response.status}: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  const polished = String(data.response || '').trim();
+
+  if (
+    !polished ||
+    polished === 'INSUFFICIENT_RELEVANT_CONTENT' ||
+    polished.split(/\s+/).length < 80
+  ) {
+    return { markdown, polished: false, rejected: true };
+  }
+
+  return { markdown: polished, polished: true };
+}
+
+async function savePage(source, url, title, markdown, outputDir, quality, usedFilenames, polished) {
   const urlObj = new URL(url);
   const pathParts = urlObj.pathname.split('/').filter(Boolean);
   const baseName = pathParts.length === 0 ? 'index' : slugify(pathParts[pathParts.length - 1].split('.')[0]);
@@ -327,7 +439,7 @@ async function savePage(source, url, title, markdown, outputDir, quality, usedFi
   const filepath = path.join(outputDir, filename);
   await fs.writeFile(
     filepath,
-    generateFrontmatter(source, url, title, quality) + markdown + '\n',
+    generateFrontmatter(source, url, title, quality, polished) + markdown + '\n',
     'utf-8'
   );
 
@@ -361,13 +473,14 @@ async function crawlSource(source, log) {
     base_url: source.url,
     notes: source.notes,
     page_limit: getPageLimit(source),
+    max_visits: MAX_VISITS_PER_SOURCE,
     scraped_at: new Date().toISOString()
   };
   await fs.writeFile(path.join(outputDir, '_meta.json'), JSON.stringify(metaContent, null, 2), 'utf-8');
 
   console.log(`\n[${source.tier}] Scraping: ${source.source} (${domain})`);
 
-  const robots = await loadRobotsTxt(baseUrl);
+  const robotsCache = new Map();
   const visited = new Set();
   const queued = new Set([baseUrl]);
   const queue = [{ url: baseUrl, depth: 0, score: scoreUrl(baseUrl, source) }];
@@ -377,13 +490,14 @@ async function crawlSource(source, log) {
   const usedFilenames = new Set();
   const pageLimit = getPageLimit(source);
 
-  while (queue.length > 0 && saved.length < pageLimit) {
+  while (queue.length > 0 && saved.length < pageLimit && visited.size < MAX_VISITS_PER_SOURCE) {
     queue.sort((a, b) => b.score - a.score || a.depth - b.depth);
-    const { url, depth } = queue.shift();
+    const { url, depth, score } = queue.shift();
 
     if (visited.has(url)) continue;
     visited.add(url);
 
+    const robots = await getRobotsForUrl(url, robotsCache);
     if (robots && !robots.isAllowed(url, USER_AGENT)) {
       skipped.push({ url, reason: 'robots.txt' });
       continue;
@@ -395,13 +509,24 @@ async function crawlSource(source, log) {
 
       const { html, finalUrl } = await fetchPage(url);
       const { title, markdown } = htmlToMarkdown(html, finalUrl);
-      const quality = contentQuality(markdown, source);
+      const quality = contentQuality(markdown, source, score);
 
       if (!quality.usable) {
-        skipped.push({ url: finalUrl, reason: 'low-quality-content', words: quality.words });
+        skipped.push({ url: finalUrl, reason: 'low-quality-content', words: quality.words, score });
       } else {
-        const filepath = await savePage(source, finalUrl, title, markdown, outputDir, quality, usedFilenames);
-        saved.push({ url: finalUrl, title, words: quality.words, file: path.relative(OUTPUT_DIR, filepath) });
+        let content = markdown;
+        let polished = false;
+
+        try {
+          const result = await polishMarkdown(source, finalUrl, title, markdown);
+          content = result.markdown;
+          polished = result.polished;
+        } catch (error) {
+          console.error(`  Polish skipped: ${error.message}`);
+        }
+
+        const filepath = await savePage(source, finalUrl, title, content, outputDir, quality, usedFilenames, polished);
+        saved.push({ url: finalUrl, title, words: quality.words, polished, file: path.relative(OUTPUT_DIR, filepath) });
       }
 
       if (depth < MAX_DEPTH) {
@@ -425,6 +550,7 @@ async function crawlSource(source, log) {
     status: saved.length > 0 ? 'completed' : 'empty',
     pages_scraped: saved.length,
     pages_visited: visited.size,
+    visit_limit_reached: queue.length > 0 && saved.length < pageLimit,
     saved,
     skipped: skipped.slice(0, 30),
     errors: errors.length > 0 ? errors : undefined
