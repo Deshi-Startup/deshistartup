@@ -12,6 +12,8 @@ export default {
     type: 'separator',
     title: 'গাইড'
   },
+  'phase-1': 'Phase 1 রোডম্যাপ',
+  'phase-two': 'Phase 2 রোডম্যাপ',
   'start-here': 'শুরু করুন',
   'startup-vs-sme': 'স্টার্টআপ বনাম SME',
   'ecosystem-overview': 'ইকোসিস্টেম ওভারভিউ',
