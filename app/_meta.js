@@ -2,6 +2,7 @@ export default {
   index: {
     title: 'হোম',
     type: 'page',
+    display: 'hidden',
     theme: {
       layout: 'full',
       sidebar: false,
