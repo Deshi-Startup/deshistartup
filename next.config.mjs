@@ -10,6 +10,7 @@ const withNextra = nextra({
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   output: 'export',
+  basePath: '/deshistartup',
   images: {
     unoptimized: true
   }
