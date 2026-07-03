@@ -46,12 +46,38 @@ export default function LocalizedLayout({ children, pageMap }) {
   // Localize pageMap
   const getLocalizedPageMap = (fullPageMap) => {
     if (!fullPageMap) return []
-    if (isEn) {
-      const enNode = fullPageMap.find((node) => node.name === 'en')
-      return enNode ? enNode.children : []
-    } else {
-      return fullPageMap.filter((node) => node.name !== 'en')
+
+    const unwrapRouteGroups = (nodes) => {
+      return nodes.flatMap((node) => {
+        if (node.name?.startsWith('(') && node.name?.endsWith(')')) {
+          return unwrapRouteGroups(node.children || [])
+        }
+
+        if (node.children) {
+          return { ...node, children: unwrapRouteGroups(node.children) }
+        }
+
+        return node
+      })
     }
+
+    const findNode = (nodes, name) => {
+      for (const node of nodes) {
+        if (node.name === name) return node
+        const found = findNode(node.children || [], name)
+        if (found) return found
+      }
+      return null
+    }
+
+    const visiblePageMap = unwrapRouteGroups(fullPageMap)
+
+    if (isEn) {
+      const enNode = findNode(visiblePageMap, 'en')
+      return enNode ? enNode.children : []
+    }
+
+    return visiblePageMap.filter((node) => node.name !== 'en')
   }
 
   const localizedPageMap = getLocalizedPageMap(pageMap)
