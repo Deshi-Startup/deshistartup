@@ -47,7 +47,12 @@ export default function LocalizedLayout({ children, pageMap }) {
     ['rjsc-name-clearance', 'RJSC / Name Clearance'],
     ['registration', 'Business Registration'],
     ['trade-license', 'Trade License'],
-    ['payments', 'Payment Systems']
+    ['payments', 'Payment Systems'],
+    { name: '--phases', type: 'separator', title: 'Roadmap Phases' },
+    ['phase-one', 'Phase 1 Roadmap'],
+    ['phase-two', 'Phase 2 Roadmap'],
+    ['phase-three', 'Phase 3 Roadmap'],
+    ['phase-four', 'Phase 4 Roadmap']
   ]
 
   useEffect(() => {
