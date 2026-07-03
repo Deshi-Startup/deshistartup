@@ -100,6 +100,26 @@ code, pre {
   font-family: var(--font-bangla);
 }
 
+.site-logo {
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1.25;
+  letter-spacing: 0;
+  white-space: normal;
+}
+
+.github-star-link {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+}
+
+.github-star-badge {
+  display: block;
+  height: 24px;
+  max-width: 120px;
+}
+
 .language-switcher {
   position: relative;
   display: inline-flex;
@@ -229,6 +249,58 @@ html:not(.dark) .language-switcher__option {
 html:not(.dark) .language-switcher[data-language='bn'] .language-switcher__option:first-of-type,
 html:not(.dark) .language-switcher[data-language='en'] .language-switcher__option:last-of-type {
   color: #111827;
+}
+
+@media (max-width: 480px) {
+  .site-logo {
+    max-width: 7rem;
+    font-size: 0.9rem;
+  }
+
+  .github-star-link {
+    display: none !important;
+  }
+
+  .language-switcher {
+    width: 64px;
+    height: 30px;
+    padding: 3px;
+  }
+
+  .language-switcher__thumb {
+    width: 28px;
+    height: 22px;
+  }
+
+  .language-switcher[data-language='en'] .language-switcher__thumb {
+    transform: translateX(30px);
+  }
+
+  .language-switcher__option {
+    width: 28px;
+    height: 22px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .site-logo {
+    max-width: 5.75rem;
+    font-size: 0.84rem;
+  }
+
+  .language-switcher {
+    width: 58px;
+  }
+
+  .language-switcher__thumb,
+  .language-switcher__option {
+    width: 25px;
+  }
+
+  .language-switcher[data-language='en'] .language-switcher__thumb {
+    transform: translateX(27px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

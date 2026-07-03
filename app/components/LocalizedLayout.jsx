@@ -56,19 +56,19 @@ export default function LocalizedLayout({ children, pageMap }) {
 
   // Localize Navbar
   const navbar = (
-    <Navbar logo={isEn ? <b>Deshi Startup</b> : <b>দেশি স্টার্টআপ</b>}>
+    <Navbar logo={isEn ? <b className="site-logo">Deshi Startup</b> : <b className="site-logo">দেশি স্টার্টআপ</b>}>
       <>
         <LanguageSwitcher />
         <a
+          className="github-star-link"
           href="https://github.com/Deshi-Startup/deshistartup"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ display: 'flex', alignItems: 'center' }}
         >
           <img
+            className="github-star-badge"
             src="https://img.shields.io/github/stars/Deshi-Startup/deshistartup?style=for-the-badge&logo=github&color=yellow"
             alt="Star on GitHub"
-            style={{ height: '24px' }}
           />
         </a>
       </>
