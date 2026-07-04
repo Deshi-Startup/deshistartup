@@ -5,16 +5,17 @@ import { useRouter } from 'next/navigation'
 
 let pagefindPromise = null
 
-async function loadPagefind() {
+async function loadPagefind(basePath = '') {
   if (typeof window === 'undefined') {
     return null
   }
 
   if (!window.pagefind) {
     if (!pagefindPromise) {
-      pagefindPromise = import(/* webpackIgnore: true */ '/_pagefind/pagefind.js').then((module) => {
+      const pagefindUrl = `${basePath}/_pagefind/pagefind.js`
+      pagefindPromise = import(/* webpackIgnore: true */ pagefindUrl).then((module) => {
         window.pagefind = module
-        return window.pagefind.options({ baseUrl: '/' })
+        return window.pagefind.options({ baseUrl: basePath || '/' })
       })
     }
 
@@ -121,7 +122,7 @@ export default function SearchBox({ isEn = false }) {
       setError('')
 
       try {
-        const pagefind = await loadPagefind()
+        const pagefind = await loadPagefind(basePath)
 
         if (!pagefind || !isActive) {
           return

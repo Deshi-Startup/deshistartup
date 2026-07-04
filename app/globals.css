@@ -40,29 +40,6 @@ body {
   overflow-x: hidden;
 }
 
-.nextra-nav-container,
-.nextra-sidebar-container,
-.nextra-toc,
-.nextra-breadcrumb,
-.nextra-mobile-nav,
-.nextra-skip-nav {
-  display: none !important;
-}
-
-.nextra-content,
-.nextra-body-typesetting-article {
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.nextra-content > main,
-.nextra-content article {
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
 a {
   color: var(--blue);
   text-decoration: none;
@@ -280,7 +257,12 @@ input {
   margin: 0 auto;
 }
 
+.sidebar-backdrop {
+  display: none;
+}
+
 .sidebar-wrap {
+  grid-column: 1;
   min-width: 0;
 }
 
@@ -316,6 +298,7 @@ input {
 }
 
 .content-canvas {
+  grid-column: 2;
   min-width: 0;
   border-left: 1px solid var(--line);
   border-right: 1px solid var(--line);
@@ -827,6 +810,7 @@ pre code {
   }
 
   .sidebar-backdrop.is-open {
+    display: block;
     position: fixed;
     inset: 0;
     z-index: 8;

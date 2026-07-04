@@ -1,7 +1,4 @@
-import { Head } from 'nextra/components'
-import { getPageMap } from 'nextra/page-map'
 import LocalizedLayout from './components/LocalizedLayout'
-import 'nextra-theme-docs/style.css'
 import './globals.css'
 
 export const metadata = {
@@ -18,19 +15,17 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const safeChildren = children || <></>
-  
+
   return (
     <html lang="bn" dir="ltr" suppressHydrationWarning>
-      <Head>
+      <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
-      </Head>
+      </head>
       <body>
-        <LocalizedLayout pageMap={await getPageMap()}>
-          {safeChildren}
-        </LocalizedLayout>
+        <LocalizedLayout>{safeChildren}</LocalizedLayout>
       </body>
     </html>
   )

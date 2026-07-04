@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { Layout } from 'nextra-theme-docs'
 import LanguageSwitcher from './LanguageSwitcher'
 import SearchBox from './SearchBox'
 
@@ -98,7 +97,7 @@ function Sidebar({ isEn, headings }) {
   )
 }
 
-export default function LocalizedLayout({ children, pageMap }) {
+export default function LocalizedLayout({ children }) {
   const pathname = usePathname()
   const isEn = pathname.startsWith('/en/') || pathname === '/en'
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -154,6 +153,7 @@ export default function LocalizedLayout({ children, pageMap }) {
           <button
             className="nav-toggle"
             type="button"
+            aria-label={isEn ? 'Open navigation' : 'নেভিগেশন খুলুন'}
             aria-expanded={isSidebarOpen}
             aria-controls="sidebar"
             onClick={() => setIsSidebarOpen((value) => !value)}
@@ -209,21 +209,5 @@ export default function LocalizedLayout({ children, pageMap }) {
     </>
   )
 
-  return (
-    <Layout
-      pageMap={pageMap || []}
-      navbar={<></>}
-      footer={<></>}
-      sidebar={{}}
-      toc={{}}
-      search={null}
-      editLink={null}
-      feedback={{ content: null }}
-      navigation={false}
-      lastUpdated={<></>}
-      docsRepositoryBase="https://github.com/Deshi-Startup/deshistartup/tree/main"
-    >
-      {shell}
-    </Layout>
-  )
+  return shell
 }
