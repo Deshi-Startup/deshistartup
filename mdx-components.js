@@ -1,1 +1,5 @@
-export { useMDXComponents } from 'nextra-theme-docs'
+export function useMDXComponents(components) {
+  return {
+    ...components
+  }
+}

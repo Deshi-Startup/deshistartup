@@ -1,20 +1,21 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 let pagefindPromise = null
 
-async function loadPagefind() {
+async function loadPagefind(basePath = '') {
   if (typeof window === 'undefined') {
     return null
   }
 
   if (!window.pagefind) {
     if (!pagefindPromise) {
-      pagefindPromise = import(/* webpackIgnore: true */ '/_pagefind/pagefind.js').then((module) => {
+      const pagefindUrl = `${basePath}/_pagefind/pagefind.js`
+      pagefindPromise = import(/* webpackIgnore: true */ pagefindUrl).then((module) => {
         window.pagefind = module
-        return window.pagefind.options({ baseUrl: '/' })
+        return window.pagefind.options({ baseUrl: basePath || '/' })
       })
     }
 
@@ -39,7 +40,7 @@ function cleanExcerpt(data) {
   return content.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').slice(0, 160)
 }
 
-export default function SearchBox() {
+export default function SearchBox({ isEn = false }) {
   const router = useRouter()
   const inputRef = useRef(null)
   const containerRef = useRef(null)
@@ -50,6 +51,7 @@ export default function SearchBox() {
   const [error, setError] = useState('')
   const [isDark, setIsDark] = useState(false)
   const [containerWidth, setContainerWidth] = useState('100%')
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
   useEffect(() => {
     // detect dark mode (class-based or prefers-color-scheme)
@@ -120,7 +122,7 @@ export default function SearchBox() {
       setError('')
 
       try {
-        const pagefind = await loadPagefind()
+        const pagefind = await loadPagefind(basePath)
 
         if (!pagefind || !isActive) {
           return
@@ -162,20 +164,23 @@ export default function SearchBox() {
     }
   }, [query])
 
-  const placeholderClassName = useMemo(
-    () =>
-      'w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:placeholder-gray-400',
-    []
-  )
-
   return (
-    <div className="x:relative x:w-full x:md:w-64">
+    <form
+      className="search"
+      role="search"
+      aria-label={isEn ? 'Search Deshi Startup' : 'দেশি স্টার্টআপে খুঁজুন'}
+      onSubmit={(event) => {
+        event.preventDefault()
+        const firstResult = containerRef.current?.querySelector('button')
+        firstResult?.click()
+      }}
+    >
       <input
         ref={inputRef}
         type="search"
         value={query}
-        placeholder="Search documentation…"
-        className={placeholderClassName}
+        placeholder={isEn ? 'Search Deshi Startup' : 'দেশি স্টার্টআপে অনুসন্ধান করুন'}
+        aria-label={isEn ? 'Search Deshi Startup' : 'দেশি স্টার্টআপে অনুসন্ধান করুন'}
         onChange={(event) => {
           setQuery(event.target.value)
           setIsOpen(Boolean(event.target.value.trim()))
@@ -189,11 +194,16 @@ export default function SearchBox() {
           window.setTimeout(() => setIsOpen(false), 150)
         }}
       />
+      <button type="submit" aria-label={isEn ? 'Search' : 'অনুসন্ধান'}>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m21 21-4.3-4.3m2.3-5.2a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" />
+        </svg>
+      </button>
 
         {isOpen && (
         <div
           ref={containerRef}
-          className="absolute top-full mt-2 rounded-lg border p-2 shadow-lg z-50"
+          className="search-results"
           style={{
             width: containerWidth && parseInt(containerWidth) > 320 ? containerWidth : '320px',
             minWidth: '320px',
@@ -207,12 +217,12 @@ export default function SearchBox() {
             zIndex: 9999
           }}
         >
-          {isLoading && <p className="px-2 py-1 text-sm text-gray-500">Loading…</p>}
+          {isLoading && <p className="search-status">{isEn ? 'Loading...' : 'লোড হচ্ছে...'}</p>}
 
-          {!isLoading && error && <p className="px-2 py-1 text-sm text-red-500">{error}</p>}
+          {!isLoading && error && <p className="search-status is-error">{isEn ? error : 'সার্চ ইনডেক্স এখন পাওয়া যাচ্ছে না।'}</p>}
 
           {!isLoading && !error && results.length === 0 && query.trim() && (
-            <p className="px-2 py-1 text-sm text-gray-500 dark:text-gray-400">No results found.</p>
+            <p className="search-status">{isEn ? 'No results found.' : 'কোনো মিল পাওয়া যায়নি।'}</p>
           )}
 
           {!isLoading && !error && results.length > 0 && (
@@ -223,7 +233,10 @@ export default function SearchBox() {
                     type="button"
                     onMouseDown={(event) => event.preventDefault()}
                     onClick={() => {
-                      router.push(result.url)
+                      const nextUrl = basePath && result.url.startsWith(basePath)
+                        ? result.url.slice(basePath.length) || '/'
+                        : result.url
+                      router.push(nextUrl)
                       setQuery('')
                       setIsOpen(false)
                     }}
@@ -253,6 +266,6 @@ export default function SearchBox() {
           )}
         </div>
       )}
-    </div>
+    </form>
   )
 }
