@@ -4,6 +4,21 @@ import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { Footer, Layout, Navbar } from 'nextra-theme-docs'
 import LanguageSwitcher from './LanguageSwitcher'
+import SearchBox from './SearchBox'
+
+function SiteLogo({ isEn }) {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
+  return (
+    <span className="site-logo" aria-label={isEn ? 'Deshi Startup home' : 'দেশি স্টার্টআপ হোম'}>
+      <img className="site-logo__mark" src={`${basePath}/deshi-mark.svg`} alt="" />
+      <span className="site-logo__text">
+        <strong>{isEn ? 'Deshi Startup' : 'দেশি স্টার্টআপ'}</strong>
+        <small>{isEn ? 'Open founder playbook' : 'মুক্ত প্রতিষ্ঠাতা গাইড'}</small>
+      </span>
+    </span>
+  )
+}
 
 export default function LocalizedLayout({ children, pageMap }) {
   const pathname = usePathname()
@@ -61,8 +76,9 @@ export default function LocalizedLayout({ children, pageMap }) {
 
   // Localize Navbar
   const navbar = (
-    <Navbar logo={isEn ? <b className="site-logo">Deshi Startup</b> : <b className="site-logo">দেশি স্টার্টআপ</b>}>
+    <Navbar logo={<SiteLogo isEn={isEn} />}>
       <>
+        <SearchBox isEn={isEn} />
         <LanguageSwitcher />
         <a
           className="github-star-link"
@@ -84,8 +100,8 @@ export default function LocalizedLayout({ children, pageMap }) {
   const footer = (
     <Footer>
       {isEn
-        ? 'Deshi Startup Guide — Open knowledge base for Bangladeshi founders'
-        : 'দেশি স্টার্টআপ গাইড — বাংলাদেশের ফাউন্ডারদের জন্য উন্মুক্ত জ্ঞানভাণ্ডার'}
+        ? 'Deshi Startup — an open, Bangladesh-specific founder operating manual.'
+        : 'দেশি স্টার্টআপ — বাংলাদেশের প্রতিষ্ঠাতাদের জন্য উন্মুক্ত, বাস্তবভিত্তিক অপারেটিং ম্যানুয়াল।'}
     </Footer>
   )
 
@@ -207,6 +223,8 @@ export default function LocalizedLayout({ children, pageMap }) {
       footer={footer}
       pageMap={localizedPageMap}
       docsRepositoryBase="https://github.com/Deshi-Startup/deshistartup/tree/main"
+      editLink={isEn ? 'Edit this page' : 'এই পাতাটি উন্নত করুন'}
+      feedback={{ content: isEn ? 'Question? Give feedback' : 'প্রশ্ন বা মতামত দিন' }}
     >
       {children}
     </Layout>

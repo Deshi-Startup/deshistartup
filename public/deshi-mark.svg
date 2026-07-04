@@ -1,0 +1,10 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Deshi Startup mark</title>
+  <desc id="desc">A green Bangladesh-inspired wiki globe with a red center dot.</desc>
+  <circle cx="64" cy="64" r="58" fill="#047857"/>
+  <circle cx="64" cy="64" r="58" stroke="#D1D5DB" stroke-width="5"/>
+  <path d="M64 8V120M8 64H120" stroke="#E5E7EB" stroke-width="2.5" opacity=".68"/>
+  <path d="M26 23C36 33 42 47 42 64C42 81 36 95 26 105M102 23C92 33 86 47 86 64C86 81 92 95 102 105" stroke="#E5E7EB" stroke-width="2.5" opacity=".58"/>
+  <path d="M18 42H110M18 86H110" stroke="#E5E7EB" stroke-width="2.5" opacity=".48"/>
+  <circle cx="64" cy="64" r="15" fill="#E11D48"/>
+</svg>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 let pagefindPromise = null
@@ -39,7 +39,7 @@ function cleanExcerpt(data) {
   return content.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').slice(0, 160)
 }
 
-export default function SearchBox() {
+export default function SearchBox({ isEn = false }) {
   const router = useRouter()
   const inputRef = useRef(null)
   const containerRef = useRef(null)
@@ -162,20 +162,15 @@ export default function SearchBox() {
     }
   }, [query])
 
-  const placeholderClassName = useMemo(
-    () =>
-      'w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:placeholder-gray-400',
-    []
-  )
-
   return (
-    <div className="x:relative x:w-full x:md:w-64">
+    <div className="deshi-search" role="search">
       <input
         ref={inputRef}
         type="search"
         value={query}
-        placeholder="Search documentation…"
-        className={placeholderClassName}
+        placeholder={isEn ? 'Search Deshi Startup' : 'দেশি স্টার্টআপে অনুসন্ধান করুন'}
+        className="deshi-search__input"
+        aria-label={isEn ? 'Search Deshi Startup' : 'দেশি স্টার্টআপে অনুসন্ধান করুন'}
         onChange={(event) => {
           setQuery(event.target.value)
           setIsOpen(Boolean(event.target.value.trim()))
@@ -193,7 +188,7 @@ export default function SearchBox() {
         {isOpen && (
         <div
           ref={containerRef}
-          className="absolute top-full mt-2 rounded-lg border p-2 shadow-lg z-50"
+          className="deshi-search__results"
           style={{
             width: containerWidth && parseInt(containerWidth) > 320 ? containerWidth : '320px',
             minWidth: '320px',
@@ -207,12 +202,12 @@ export default function SearchBox() {
             zIndex: 9999
           }}
         >
-          {isLoading && <p className="px-2 py-1 text-sm text-gray-500">Loading…</p>}
+          {isLoading && <p className="deshi-search__status">{isEn ? 'Loading...' : 'লোড হচ্ছে...'}</p>}
 
-          {!isLoading && error && <p className="px-2 py-1 text-sm text-red-500">{error}</p>}
+          {!isLoading && error && <p className="deshi-search__status is-error">{isEn ? error : 'সার্চ ইনডেক্স এখন পাওয়া যাচ্ছে না।'}</p>}
 
           {!isLoading && !error && results.length === 0 && query.trim() && (
-            <p className="px-2 py-1 text-sm text-gray-500 dark:text-gray-400">No results found.</p>
+            <p className="deshi-search__status">{isEn ? 'No results found.' : 'কোনো মিল পাওয়া যায়নি।'}</p>
           )}
 
           {!isLoading && !error && results.length > 0 && (

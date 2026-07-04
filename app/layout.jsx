@@ -10,7 +10,10 @@ export const metadata = {
     template: '%s | দেশি স্টার্টআপ'
   },
   description: 'বাংলাদেশে স্টার্টআপ শুরু, গড়ে তোলা এবং স্কেল করার সম্পূর্ণ গাইড।',
-  metadataBase: new URL('https://deshistartup.com')
+  metadataBase: new URL('https://deshistartup.com'),
+  icons: {
+    icon: '/deshi-mark.svg'
+  }
 }
 
 export default async function RootLayout({ children }) {

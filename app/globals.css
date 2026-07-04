@@ -1,13 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --font-bangla: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+  --deshi-page: #f5f3ee;
+  --deshi-canvas: #ffffff;
+  --deshi-canvas-soft: #f8faf9;
+  --deshi-ink: #202122;
+  --deshi-muted: #54595d;
+  --deshi-faint: #72777d;
+  --deshi-line: #c8ccd1;
+  --deshi-line-soft: #eaecf0;
+  --deshi-green: #047857;
+  --deshi-green-deep: #065f46;
+  --deshi-green-soft: #eaf4ef;
+  --deshi-red: #e11d48;
+  --deshi-blue: #3366cc;
+  --deshi-blue-hover: #1f4fb2;
+  --deshi-yellow: #f7c948;
+  --deshi-shadow: 0 14px 32px rgb(32 33 34 / 8%);
+  --font-bangla: 'Noto Sans Bengali', 'Hind Siliguri', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 html {
-  font-family: var(--font-bangla);
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 58%), rgb(245 243 238 / 0%) 18rem),
+    var(--deshi-page);
+  color: var(--deshi-ink);
+  font-family: var(--font-bangla);
+  font-size: 16px;
+  line-height: 1.78;
+  letter-spacing: 0;
+}
+
+a {
+  color: var(--deshi-blue);
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--deshi-blue-hover);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--deshi-ink);
+  font-family: var(--font-bangla);
+  font-weight: 750;
+  letter-spacing: 0;
+  line-height: 1.34;
+}
+
+code,
+pre {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', 'Noto Sans Bengali', monospace;
+  letter-spacing: 0;
 }
 
 ::view-transition-old(root),
@@ -62,12 +123,6 @@ html {
   }
 }
 
-body {
-  font-family: var(--font-bangla);
-  line-height: 1.8;
-  letter-spacing: 0.01em;
-}
-
 body > div {
   transition:
     opacity 220ms ease,
@@ -85,27 +140,116 @@ html.language-is-entering body > div {
   animation: language-route-enter 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-bangla);
-  font-weight: 700;
-  line-height: 1.4;
-}
-
-code, pre {
-  font-family: 'Noto Sans Bengali', monospace;
+.nextra-nav-container {
+  border-bottom: 1px solid var(--deshi-line) !important;
+  background: rgb(255 255 255 / 92%) !important;
+  backdrop-filter: blur(14px);
 }
 
 .nextra-sidebar-container,
 .nextra-toc {
+  background: transparent !important;
   font-family: var(--font-bangla);
 }
 
-.site-logo {
-  display: inline-block;
+.nextra-sidebar-container {
+  border-right-color: #d9d5cd !important;
+}
+
+.nextra-sidebar-container a {
+  border-radius: 3px !important;
+}
+
+.nextra-toc {
+  color: var(--deshi-muted);
+}
+
+main {
+  background: var(--deshi-canvas);
+}
+
+main article,
+.nextra-content {
+  border-top: 5px solid var(--deshi-green-deep);
+}
+
+main article {
+  box-shadow: var(--deshi-shadow);
+}
+
+main article p,
+main article li,
+main article td,
+main article th {
   font-size: 1rem;
-  line-height: 1.25;
+}
+
+main article blockquote {
+  border-left-color: var(--deshi-green) !important;
+  background: var(--deshi-green-soft);
+  color: var(--deshi-ink);
+}
+
+main article table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+main article th {
+  background: #f1f5f3;
+  color: var(--deshi-ink);
+  font-weight: 750;
+}
+
+main article th,
+main article td {
+  border: 1px solid var(--deshi-line);
+  padding: 0.72rem 0.85rem;
+  vertical-align: top;
+}
+
+main article hr {
+  border-color: var(--deshi-line-soft);
+}
+
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.72rem;
+  min-width: 0;
+  color: var(--deshi-ink);
   letter-spacing: 0;
-  white-space: normal;
+  line-height: 1.15;
+}
+
+.site-logo__mark {
+  display: block;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+}
+
+.site-logo__text {
+  display: grid;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+.site-logo strong {
+  display: block;
+  color: var(--deshi-ink);
+  font-size: 1.04rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.site-logo small {
+  display: block;
+  color: var(--deshi-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .github-star-link {
@@ -120,6 +264,48 @@ code, pre {
   max-width: 120px;
 }
 
+.deshi-search {
+  position: relative;
+  width: min(36vw, 32rem);
+  min-width: 16rem;
+}
+
+.deshi-search__input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--deshi-line);
+  border-radius: 3px;
+  background: #fff;
+  padding: 0.62rem 0.88rem;
+  color: var(--deshi-ink);
+  font-size: 0.92rem;
+  outline: none;
+}
+
+.deshi-search__input:focus {
+  border-color: var(--deshi-green);
+  box-shadow: inset 0 0 0 1px var(--deshi-green);
+}
+
+.deshi-search__results {
+  position: absolute;
+  top: calc(100% + 0.55rem);
+  left: 0;
+  border-radius: 4px !important;
+  padding: 0.5rem;
+}
+
+.deshi-search__status {
+  margin: 0;
+  padding: 0.35rem 0.5rem;
+  color: var(--deshi-muted);
+  font-size: 0.88rem;
+}
+
+.deshi-search__status.is-error {
+  color: var(--deshi-red);
+}
+
 .language-switcher {
   position: relative;
   display: inline-flex;
@@ -128,15 +314,13 @@ code, pre {
   width: 78px;
   height: 32px;
   padding: 3px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(17, 24, 39, 0.1);
   border-radius: 999px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.03)),
-    rgba(18, 18, 18, 0.82);
-  color: #f8fafc;
+  background: linear-gradient(135deg, #ffffff, #f8fafc), #ffffff;
+  color: #111827;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
-    0 10px 30px rgba(0, 0, 0, 0.18);
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 10px 26px rgba(15, 23, 42, 0.1);
   cursor: pointer;
   font-family: var(--font-bangla);
   isolation: isolate;
@@ -149,13 +333,11 @@ code, pre {
 }
 
 .language-switcher:hover {
-  border-color: rgba(250, 204, 21, 0.5);
-  background:
-    linear-gradient(135deg, rgba(250, 204, 21, 0.16), rgba(255, 255, 255, 0.06)),
-    rgba(18, 18, 18, 0.9);
+  border-color: rgba(234, 179, 8, 0.55);
+  background: linear-gradient(135deg, rgba(254, 249, 195, 0.9), #ffffff), #ffffff;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    0 12px 34px rgba(250, 204, 21, 0.14);
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 12px 30px rgba(234, 179, 8, 0.16);
   transform: translateY(-1px);
 }
 
@@ -165,12 +347,6 @@ code, pre {
 
 .language-switcher.is-switching {
   pointer-events: none;
-}
-
-.language-switcher.is-switching .language-switcher__thumb {
-  box-shadow:
-    0 0 0 6px rgba(250, 204, 21, 0.12),
-    0 6px 18px rgba(250, 204, 21, 0.22);
 }
 
 .language-switcher:focus-visible {
@@ -186,7 +362,7 @@ code, pre {
   width: 35px;
   height: 24px;
   border-radius: 999px;
-  background: #facc15;
+  background: var(--deshi-yellow);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.42),
     0 6px 18px rgba(250, 204, 21, 0.2);
@@ -205,7 +381,7 @@ code, pre {
   width: 35px;
   height: 24px;
   border-radius: 999px;
-  color: rgba(248, 250, 252, 0.62);
+  color: rgba(31, 41, 55, 0.58);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0;
@@ -221,44 +397,351 @@ code, pre {
   transform: scale(1.02);
 }
 
-html:not(.dark) .language-switcher {
-  border-color: rgba(17, 24, 39, 0.1);
-  background:
-    linear-gradient(135deg, #ffffff, #f8fafc),
-    #ffffff;
-  color: #111827;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    0 10px 26px rgba(15, 23, 42, 0.1);
+.wiki-landing {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1rem 0 3rem;
+  color: var(--deshi-ink);
 }
 
-html:not(.dark) .language-switcher:hover {
-  border-color: rgba(234, 179, 8, 0.55);
-  background:
-    linear-gradient(135deg, rgba(254, 249, 195, 0.9), #ffffff),
-    #ffffff;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 12px 30px rgba(234, 179, 8, 0.16);
+.wiki-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 2rem;
+  align-items: flex-start;
 }
 
-html:not(.dark) .language-switcher__option {
-  color: rgba(31, 41, 55, 0.58);
+.wiki-title-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--deshi-line);
+  padding-bottom: 1.1rem;
 }
 
-html:not(.dark) .language-switcher[data-language='bn'] .language-switcher__option:first-of-type,
-html:not(.dark) .language-switcher[data-language='en'] .language-switcher__option:last-of-type {
-  color: #111827;
+.wiki-kicker {
+  margin: 0 0 0.35rem;
+  color: var(--deshi-green-deep);
+  font-size: 0.88rem;
+  font-weight: 750;
 }
 
-@media (max-width: 480px) {
-  .site-logo {
-    max-width: 7rem;
-    font-size: 0.9rem;
+.wiki-title-row h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  line-height: 1.08;
+}
+
+.wiki-subtitle {
+  margin: 0.55rem 0 0;
+  color: var(--deshi-muted);
+  font-size: 1.06rem;
+}
+
+.wiki-language-pill {
+  flex: 0 0 auto;
+  border: 1px solid var(--deshi-line);
+  border-radius: 3px;
+  background: var(--deshi-canvas-soft);
+  padding: 0.42rem 0.72rem;
+  color: var(--deshi-muted);
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.wiki-lead {
+  margin-top: 1.4rem;
+  font-size: 1.08rem;
+}
+
+.wiki-notice {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0.85rem;
+  margin: 1.4rem 0;
+  border: 1px solid #b7d7c8;
+  border-left: 5px solid var(--deshi-green);
+  background: var(--deshi-green-soft);
+  padding: 1rem 1.1rem;
+}
+
+.wiki-notice span {
+  display: grid;
+  place-items: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 50%;
+  background: var(--deshi-green);
+  color: #fff;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.wiki-notice p {
+  margin: 0;
+}
+
+.wiki-toc {
+  width: min(100%, 34rem);
+  margin: 1.5rem 0 0;
+  border: 1px solid var(--deshi-line);
+  background: var(--deshi-canvas-soft);
+  padding: 1rem 1.2rem;
+}
+
+.wiki-toc strong {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.wiki-toc ol {
+  margin: 0;
+  padding-left: 1.35rem;
+}
+
+.wiki-infobox {
+  border: 1px solid var(--deshi-line);
+  background: var(--deshi-canvas-soft);
+  box-shadow: 0 10px 22px rgb(32 33 34 / 6%);
+  text-align: center;
+}
+
+.wiki-infobox h2 {
+  margin: 0;
+  border-bottom: 1px solid var(--deshi-line);
+  background: var(--deshi-green-deep);
+  padding: 0.7rem 1rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.wiki-infobox img {
+  display: block;
+  width: 112px;
+  height: 112px;
+  margin: 1.1rem auto 0.65rem;
+}
+
+.wiki-infobox strong {
+  display: block;
+  padding: 0 1rem;
+  font-size: 1.08rem;
+}
+
+.wiki-infobox p {
+  margin: 0.35rem 0 0;
+  padding: 0 1rem 1rem;
+  color: var(--deshi-muted);
+  font-size: 0.9rem;
+}
+
+.wiki-infobox dl {
+  margin: 0;
+  border-top: 1px solid var(--deshi-line);
+  text-align: left;
+}
+
+.wiki-infobox dl div {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr);
+  border-bottom: 1px solid var(--deshi-line-soft);
+}
+
+.wiki-infobox dt,
+.wiki-infobox dd {
+  margin: 0;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.88rem;
+}
+
+.wiki-infobox dt {
+  background: #edf2ef;
+  font-weight: 750;
+}
+
+.wiki-section {
+  margin-top: 2.4rem;
+  border-top: 1px solid var(--deshi-line);
+  padding-top: 1.3rem;
+}
+
+.wiki-section h2 {
+  margin: 0 0 0.85rem;
+  font-size: 1.65rem;
+}
+
+.wiki-section h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.05rem;
+}
+
+.wiki-table-wrap {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.wiki-table-wrap table {
+  min-width: 640px;
+}
+
+.wiki-plain-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.wiki-plain-list li + li {
+  margin-top: 0.55rem;
+}
+
+.wiki-path-grid,
+.wiki-scope-grid,
+.wiki-source-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.wiki-path-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.wiki-scope-grid,
+.wiki-source-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.wiki-path-card,
+.wiki-scope-card,
+.wiki-source-list article {
+  border: 1px solid var(--deshi-line);
+  border-radius: 4px;
+  background: var(--deshi-canvas-soft);
+  padding: 1rem;
+}
+
+.wiki-path-card,
+.wiki-scope-card {
+  display: block;
+  color: var(--deshi-ink);
+  text-decoration: none;
+}
+
+.wiki-path-card:hover,
+.wiki-scope-card:hover {
+  border-color: #93c5b4;
+  background: #f3faf6;
+  color: var(--deshi-ink);
+  text-decoration: none;
+}
+
+.wiki-path-card strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--deshi-green-deep);
+}
+
+.wiki-path-card span,
+.wiki-scope-card p,
+.wiki-source-list p {
+  display: block;
+  margin: 0;
+  color: var(--deshi-muted);
+  font-size: 0.94rem;
+}
+
+.wiki-link-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.wiki-link-columns ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.wiki-link-columns li + li {
+  margin-top: 0.45rem;
+}
+
+@media (max-width: 1080px) {
+  .deshi-search {
+    width: 24rem;
+    min-width: 14rem;
   }
 
   .github-star-link {
     display: none !important;
+  }
+
+  .wiki-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .wiki-infobox {
+    max-width: 420px;
+  }
+
+  .wiki-path-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    font-size: 15.5px;
+  }
+
+  main article,
+  .nextra-content {
+    border-top-width: 4px;
+  }
+
+  .site-logo {
+    gap: 0.5rem;
+  }
+
+  .site-logo__mark {
+    width: 36px;
+    height: 36px;
+  }
+
+  .site-logo small {
+    display: none;
+  }
+
+  .deshi-search {
+    display: none;
+  }
+
+  .wiki-title-row {
+    display: block;
+  }
+
+  .wiki-language-pill {
+    display: inline-block;
+    margin-top: 0.85rem;
+  }
+
+  .wiki-title-row h1 {
+    font-size: 2.45rem;
+  }
+
+  .wiki-path-grid,
+  .wiki-scope-grid,
+  .wiki-source-list,
+  .wiki-link-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-logo strong {
+    max-width: 7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .language-switcher {
@@ -280,26 +763,6 @@ html:not(.dark) .language-switcher[data-language='en'] .language-switcher__optio
     width: 28px;
     height: 22px;
     font-size: 10px;
-  }
-}
-
-@media (max-width: 360px) {
-  .site-logo {
-    max-width: 5.75rem;
-    font-size: 0.84rem;
-  }
-
-  .language-switcher {
-    width: 58px;
-  }
-
-  .language-switcher__thumb,
-  .language-switcher__option {
-    width: 25px;
-  }
-
-  .language-switcher[data-language='en'] .language-switcher__thumb {
-    transform: translateX(27px);
   }
 }
 
