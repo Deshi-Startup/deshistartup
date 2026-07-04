@@ -8,21 +8,21 @@ import SearchBox from './SearchBox'
 const bnNav = [
   ['/', 'প্রধান পাতা'],
   ['/start-here', 'শুরু করুন'],
-  ['/startup-vs-sme', 'স্টার্টআপ বনাম SME'],
+  ['/startup-vs-sme', 'স্টার্টআপ বনাম এসএমই'],
   ['/idea-validation', 'আইডিয়া যাচাই'],
   ['/customers', 'গ্রাহক খোঁজা'],
-  ['/legal-roadmap', 'আইনগত রোডম্যাপ'],
+  ['/legal-roadmap', 'আইনগত পথনির্দেশনা'],
   ['/company-types', 'কোম্পানির ধরন'],
-  ['/rjsc-name-clearance', 'RJSC / নাম ক্লিয়ারেন্স'],
+  ['/rjsc-name-clearance', 'RJSC / নাম ছাড়পত্র'],
   ['/registration', 'ব্যবসা নিবন্ধন'],
   ['/trade-license', 'ট্রেড লাইসেন্স'],
-  ['/e-tin-vat-bin', 'e-TIN ও VAT/BIN'],
-  ['/payments', 'পেমেন্ট সিস্টেম'],
-  ['/founder-life', 'Founder Life'],
-  ['/phase-one', 'Phase 1 রোডম্যাপ'],
-  ['/phase-two', 'Phase 2 রোডম্যাপ'],
-  ['/phase-three', 'Phase 3 রোডম্যাপ'],
-  ['/phase-four', 'Phase 4 রোডম্যাপ']
+  ['/e-tin-vat-bin', 'e-TIN ও ভ্যাট/বিআইএন'],
+  ['/payments', 'পেমেন্ট ব্যবস্থা'],
+  ['/founder-life', 'উদ্যোক্তার জীবন'],
+  ['/phase-one', 'ধাপ ১ রোডম্যাপ'],
+  ['/phase-two', 'ধাপ ২ রোডম্যাপ'],
+  ['/phase-three', 'ধাপ ৩ রোডম্যাপ'],
+  ['/phase-four', 'ধাপ ৪ রোডম্যাপ']
 ]
 
 const enNav = [
@@ -56,7 +56,7 @@ function SiteLogo({ isEn }) {
       <img src={localHref('/deshi-mark.svg')} alt="" />
       <span>
         <strong>{isEn ? 'Deshi Startup' : 'দেশি স্টার্টআপ'}</strong>
-        <small>{isEn ? 'From the open founder manual' : 'মুক্ত প্রতিষ্ঠাতা গাইড'}</small>
+        <small>{isEn ? 'From the open founder manual' : 'বাংলাদেশি উদ্যোক্তার গাইড'}</small>
       </span>
     </a>
   )
@@ -68,12 +68,12 @@ function Sidebar({ isEn, headings }) {
   return (
     <aside className="sidebar" id="sidebar" aria-label={isEn ? 'Primary navigation' : 'প্রধান নেভিগেশন'}>
       <nav>
-        <p>{isEn ? 'Navigation' : 'পরিভ্রমণ'}</p>
+        <p>{isEn ? 'Navigation' : 'বিষয়সমূহ'}</p>
         {nav.map(([href, label]) => (
           <a href={localHref(href)} key={href}>{label}</a>
         ))}
 
-        <p>{isEn ? 'On This Page' : 'এই নিবন্ধে'}</p>
+        <p>{isEn ? 'On This Page' : 'এই পাতায়'}</p>
         {headings.length > 0 ? (
           headings.map((heading) => (
             <a href={`#${heading.id}`} key={heading.id}>{heading.text}</a>
@@ -82,15 +82,15 @@ function Sidebar({ isEn, headings }) {
           <a href="#main">{isEn ? 'Top' : 'পাতার শুরু'}</a>
         )}
 
-        <p>{isEn ? 'Tools' : 'সরঞ্জাম'}</p>
+        <p>{isEn ? 'Tools' : 'অবদান'}</p>
         <a href="https://github.com/Deshi-Startup/deshistartup" target="_blank" rel="noopener noreferrer">
           GitHub
         </a>
         <a href="https://github.com/Deshi-Startup/deshistartup/issues" target="_blank" rel="noopener noreferrer">
-          {isEn ? 'Report an issue' : 'সমস্যা জানান'}
+          {isEn ? 'Report an issue' : 'ভুল জানান'}
         </a>
         <a href="https://github.com/Deshi-Startup/deshistartup/tree/main" target="_blank" rel="noopener noreferrer">
-          {isEn ? 'Improve this guide' : 'গাইড উন্নত করুন'}
+          {isEn ? 'Improve this guide' : 'গাইডে অবদান রাখুন'}
         </a>
       </nav>
     </aside>
@@ -137,7 +137,7 @@ export default function LocalizedLayout({ children }) {
     () =>
       isEn
         ? { article: 'Article', talk: 'Talk', read: 'Read', edit: 'Edit', history: 'View history' }
-        : { article: 'নিবন্ধ', talk: 'আলাপ', read: 'পড়ুন', edit: 'সম্পাদনা', history: 'ইতিহাস দেখুন' },
+        : { article: 'গাইড', talk: 'আলোচনা', read: 'পড়ুন', edit: 'সংশোধন', history: 'ইতিহাস' },
     [isEn]
   )
 
@@ -184,7 +184,7 @@ export default function LocalizedLayout({ children }) {
 
         <main className="content-canvas" id="main">
           <div className="article-tabs" id="read">
-            <div className="tab-group" role="tablist" aria-label={isEn ? 'Article type' : 'নিবন্ধ ধরন'}>
+            <div className="tab-group" role="tablist" aria-label={isEn ? 'Article type' : 'গাইড ধরন'}>
               <button className="tab active" type="button">{tabs.article}</button>
               <button className="tab" type="button">{tabs.talk}</button>
             </div>
@@ -204,7 +204,7 @@ export default function LocalizedLayout({ children }) {
       <footer className="site-footer">
         {isEn
           ? 'Deshi Startup — an open, Bangladesh-specific founder operating manual.'
-          : 'দেশি স্টার্টআপ — বাংলাদেশের প্রতিষ্ঠাতাদের জন্য উন্মুক্ত, বাস্তবভিত্তিক অপারেটিং ম্যানুয়াল।'}
+          : 'দেশি স্টার্টআপ — বাংলাদেশের উদ্যোক্তাদের জন্য উন্মুক্ত, বাস্তবভিত্তিক গাইড।'}
       </footer>
     </>
   )

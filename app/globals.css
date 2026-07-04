@@ -575,30 +575,25 @@ pre code {
   margin: 0;
 }
 
-.wiki-toc {
-  width: min(460px, 100%);
-  margin: 28px 0 10px;
+.wiki-quickstart {
+  margin: 26px 0 8px;
   border: 1px solid var(--line);
-  background: #f8f9fa;
-  padding: 18px 22px 18px 28px;
+  border-left: 6px solid var(--green);
+  background: #f8fbf7;
+  padding: 18px 22px;
 }
 
-.wiki-toc strong {
-  display: block;
-  margin-bottom: 8px;
-  text-align: center;
-  font-family: var(--serif);
-  font-size: 1.25rem;
+.wiki-quickstart h2 {
+  margin: 0 0 10px;
+  border-bottom: 0;
+  padding-bottom: 0;
+  font-family: var(--sans);
+  font-size: 1.2rem;
 }
 
-.wiki-toc ol {
-  columns: 2;
+.wiki-quickstart ol {
   margin: 0;
   padding-left: 22px;
-}
-
-.wiki-toc li {
-  break-inside: avoid;
 }
 
 .wiki-infobox {
@@ -607,8 +602,9 @@ pre code {
   font-size: .92rem;
 }
 
-.wiki-infobox h2 {
+.wiki-infobox .wiki-infobox-title {
   margin: 0;
+  border-top: 0;
   border-bottom: 1px solid var(--line);
   background: var(--green-deep);
   padding: 14px 16px;
@@ -711,6 +707,12 @@ pre code {
   text-decoration: none;
 }
 
+.wiki-path-card {
+  display: flex;
+  min-height: 178px;
+  flex-direction: column;
+}
+
 .wiki-path-card strong {
   display: block;
   margin-bottom: 8px;
@@ -723,6 +725,15 @@ pre code {
   display: block;
   margin: 0;
   color: var(--muted);
+}
+
+.wiki-path-card em {
+  display: block;
+  margin-top: auto;
+  padding-top: 14px;
+  color: var(--green-deep);
+  font-style: normal;
+  font-weight: 800;
 }
 
 .wiki-scope-card h3,
@@ -874,10 +885,6 @@ pre code {
     margin: 0 0 14px;
   }
 
-  .wiki-toc ol {
-    columns: 1;
-  }
-
   .wiki-scope-grid,
   .wiki-source-list,
   .wiki-link-columns {
@@ -915,6 +922,14 @@ pre code {
 
   .wiki-notice {
     grid-template-columns: 1fr;
+  }
+
+  .wiki-path-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wiki-path-card {
+    min-height: 0;
   }
 
   .wiki-infobox dl div {
