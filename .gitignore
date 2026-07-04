@@ -5,3 +5,6 @@ _pagefind/
 *.log
 knowledge-bank/
 context/
+/dist/
+.vinext/
+.wrangler/
