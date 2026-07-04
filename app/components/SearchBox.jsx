@@ -50,6 +50,7 @@ export default function SearchBox({ isEn = false }) {
   const [error, setError] = useState('')
   const [isDark, setIsDark] = useState(false)
   const [containerWidth, setContainerWidth] = useState('100%')
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
   useEffect(() => {
     // detect dark mode (class-based or prefers-color-scheme)
@@ -163,13 +164,21 @@ export default function SearchBox({ isEn = false }) {
   }, [query])
 
   return (
-    <div className="deshi-search" role="search">
+    <form
+      className="search"
+      role="search"
+      aria-label={isEn ? 'Search Deshi Startup' : 'দেশি স্টার্টআপে খুঁজুন'}
+      onSubmit={(event) => {
+        event.preventDefault()
+        const firstResult = containerRef.current?.querySelector('button')
+        firstResult?.click()
+      }}
+    >
       <input
         ref={inputRef}
         type="search"
         value={query}
         placeholder={isEn ? 'Search Deshi Startup' : 'দেশি স্টার্টআপে অনুসন্ধান করুন'}
-        className="deshi-search__input"
         aria-label={isEn ? 'Search Deshi Startup' : 'দেশি স্টার্টআপে অনুসন্ধান করুন'}
         onChange={(event) => {
           setQuery(event.target.value)
@@ -184,11 +193,16 @@ export default function SearchBox({ isEn = false }) {
           window.setTimeout(() => setIsOpen(false), 150)
         }}
       />
+      <button type="submit" aria-label={isEn ? 'Search' : 'অনুসন্ধান'}>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m21 21-4.3-4.3m2.3-5.2a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" />
+        </svg>
+      </button>
 
         {isOpen && (
         <div
           ref={containerRef}
-          className="deshi-search__results"
+          className="search-results"
           style={{
             width: containerWidth && parseInt(containerWidth) > 320 ? containerWidth : '320px',
             minWidth: '320px',
@@ -202,12 +216,12 @@ export default function SearchBox({ isEn = false }) {
             zIndex: 9999
           }}
         >
-          {isLoading && <p className="deshi-search__status">{isEn ? 'Loading...' : 'লোড হচ্ছে...'}</p>}
+          {isLoading && <p className="search-status">{isEn ? 'Loading...' : 'লোড হচ্ছে...'}</p>}
 
-          {!isLoading && error && <p className="deshi-search__status is-error">{isEn ? error : 'সার্চ ইনডেক্স এখন পাওয়া যাচ্ছে না।'}</p>}
+          {!isLoading && error && <p className="search-status is-error">{isEn ? error : 'সার্চ ইনডেক্স এখন পাওয়া যাচ্ছে না।'}</p>}
 
           {!isLoading && !error && results.length === 0 && query.trim() && (
-            <p className="deshi-search__status">{isEn ? 'No results found.' : 'কোনো মিল পাওয়া যায়নি।'}</p>
+            <p className="search-status">{isEn ? 'No results found.' : 'কোনো মিল পাওয়া যায়নি।'}</p>
           )}
 
           {!isLoading && !error && results.length > 0 && (
@@ -218,7 +232,10 @@ export default function SearchBox({ isEn = false }) {
                     type="button"
                     onMouseDown={(event) => event.preventDefault()}
                     onClick={() => {
-                      router.push(result.url)
+                      const nextUrl = basePath && result.url.startsWith(basePath)
+                        ? result.url.slice(basePath.length) || '/'
+                        : result.url
+                      router.push(nextUrl)
                       setQuery('')
                       setIsOpen(false)
                     }}
@@ -248,6 +265,6 @@ export default function SearchBox({ isEn = false }) {
           )}
         </div>
       )}
-    </div>
+    </form>
   )
 }

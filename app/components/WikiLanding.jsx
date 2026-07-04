@@ -45,9 +45,15 @@ const paths = [
   ['বিক্রি বাড়াতে চাই', 'প্রথম ১০০ গ্রাহক, Facebook commerce, Messenger sales, trust-building।', '/customers']
 ]
 
-export default function WikiLanding() {
+function localHref(href) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+  if (!href.startsWith('/')) return href
+  if (!basePath) return href
+  if (href === '/') return basePath || '/'
+  return `${basePath}${href}`
+}
 
+export default function WikiLanding() {
   return (
     <div className="wiki-landing">
       <section className="wiki-hero" aria-labelledby="wiki-title">
@@ -99,7 +105,7 @@ export default function WikiLanding() {
 
         <aside className="wiki-infobox" aria-label="দেশি স্টার্টআপ তথ্যছক">
           <h2>দেশি স্টার্টআপ</h2>
-          <img src={`${basePath}/deshi-mark.svg`} alt="" />
+          <img src={localHref('/deshi-mark.svg')} alt="" />
           <strong>Deshi Startup</strong>
           <p>বাংলাদেশি প্রতিষ্ঠাতাদের জন্য ওপেন startup playbook</p>
           <dl>
@@ -166,7 +172,7 @@ export default function WikiLanding() {
         <h2>কীভাবে শুরু করবেন</h2>
         <div className="wiki-path-grid">
           {paths.map(([title, body, href]) => (
-            <a className="wiki-path-card" href={href} key={title}>
+            <a className="wiki-path-card" href={localHref(href)} key={title}>
               <strong>{title}</strong>
               <span>{body}</span>
             </a>
@@ -178,7 +184,7 @@ export default function WikiLanding() {
         <h2>বিষয়ভিত্তিক পরিসর</h2>
         <div className="wiki-scope-grid">
           {scopeCards.map((card) => (
-            <a className="wiki-scope-card" href={card.href} key={card.title}>
+            <a className="wiki-scope-card" href={localHref(card.href)} key={card.title}>
               <h3>{card.title}</h3>
               <p>{card.body}</p>
             </a>
@@ -230,28 +236,28 @@ export default function WikiLanding() {
           <div>
             <h3>প্রথমে পড়ুন</h3>
             <ul>
-              <li><a href="/start-here">শুরু করুন: বাংলাদেশে স্টার্টআপ গড়ার রোডম্যাপ</a></li>
-              <li><a href="/startup-vs-sme">স্টার্টআপ বনাম SME</a></li>
-              <li><a href="/ecosystem-overview">বাংলাদেশ startup ecosystem overview</a></li>
-              <li><a href="/idea-validation">আইডিয়া যাচাই</a></li>
+              <li><a href={localHref('/start-here')}>শুরু করুন: বাংলাদেশে স্টার্টআপ গড়ার রোডম্যাপ</a></li>
+              <li><a href={localHref('/startup-vs-sme')}>স্টার্টআপ বনাম SME</a></li>
+              <li><a href={localHref('/ecosystem-overview')}>বাংলাদেশ startup ecosystem overview</a></li>
+              <li><a href={localHref('/idea-validation')}>আইডিয়া যাচাই</a></li>
             </ul>
           </div>
           <div>
             <h3>চালু করার আগে</h3>
             <ul>
-              <li><a href="/legal-roadmap">আইনগত রোডম্যাপ</a></li>
-              <li><a href="/company-types">কোম্পানির ধরন</a></li>
-              <li><a href="/trade-license">ট্রেড লাইসেন্স</a></li>
-              <li><a href="/e-tin-vat-bin">e-TIN ও VAT/BIN</a></li>
+              <li><a href={localHref('/legal-roadmap')}>আইনগত রোডম্যাপ</a></li>
+              <li><a href={localHref('/company-types')}>কোম্পানির ধরন</a></li>
+              <li><a href={localHref('/trade-license')}>ট্রেড লাইসেন্স</a></li>
+              <li><a href={localHref('/e-tin-vat-bin')}>e-TIN ও VAT/BIN</a></li>
             </ul>
           </div>
           <div>
             <h3>বাজারে যাওয়ার সময়</h3>
             <ul>
-              <li><a href="/payments">পেমেন্ট সিস্টেম</a></li>
-              <li><a href="/customers">গ্রাহক খোঁজা</a></li>
-              <li><a href="/phase-three/cod-and-delivery-risk">COD ও delivery risk</a></li>
-              <li><a href="/phase-three/facebook-commerce-playbook">Facebook commerce playbook</a></li>
+              <li><a href={localHref('/payments')}>পেমেন্ট সিস্টেম</a></li>
+              <li><a href={localHref('/customers')}>গ্রাহক খোঁজা</a></li>
+              <li><a href={localHref('/phase-three/cod-and-delivery-risk')}>COD ও delivery risk</a></li>
+              <li><a href={localHref('/phase-three/facebook-commerce-playbook')}>Facebook commerce playbook</a></li>
             </ul>
           </div>
         </div>
