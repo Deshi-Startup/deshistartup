@@ -142,6 +142,14 @@ await withMockedFetch(async (calls) => {
 }
 
 {
+  const response = await worker.fetch(request(validPayload({ currentText: '' })), baseEnv)
+  const body = await response.json()
+
+  assert.equal(response.status, 422)
+  assert.match(body.error, /current text/i)
+}
+
+{
   const response = await worker.fetch(request(validPayload({
     editType: 'factual',
     pageUrl: 'https://deshi-startup.github.io/deshistartup/e-tin-vat-bin',

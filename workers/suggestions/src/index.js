@@ -255,8 +255,14 @@ function validatePayload(payload, review) {
     if (payload.proposedContent.length > MAX_SOURCE_LENGTH) {
       return { ok: false, error: `Draft source is too long. Keep it under ${MAX_SOURCE_LENGTH} characters.` }
     }
-  } else if (!payload.proposedChange) {
-    return { ok: false, error: 'Suggested change is required.' }
+  } else {
+    if (!payload.proposedChange) {
+      return { ok: false, error: 'Suggested change is required.' }
+    }
+
+    if (payload.kind !== 'urgent' && !payload.currentText) {
+      return { ok: false, error: 'Current text is required for focused edits so reviewers can see a diff.' }
+    }
   }
 
   if (review.sourceRequired && !payload.sourceUrl) {

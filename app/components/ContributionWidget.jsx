@@ -76,8 +76,9 @@ function getCopy(isEn, kind) {
       sourceMode: 'Edit source',
       modeHint: 'Focused fixes are best for typos, citations, and small factual corrections. Source edits are for larger page drafts.',
       editType: 'Change type',
-      currentText: 'Current text (optional)',
-      currentTextPlaceholder: 'Paste the sentence or paragraph being replaced when useful.',
+      currentText: 'Current text',
+      currentTextPlaceholder: 'Paste the sentence, paragraph, or link being replaced.',
+      currentTextRequired: 'Please paste the current text so editors can review a clear diff.',
       section: 'Section or heading',
       sectionPlaceholder: 'Example: VAT threshold, registration checklist, sources',
       change: urgent ? 'What is wrong?' : 'What should change?',
@@ -138,8 +139,9 @@ function getCopy(isEn, kind) {
     sourceMode: 'সোর্স সম্পাদনা',
     modeHint: 'বানান, সূত্র, বা ছোট factual correction-এর জন্য ছোট সংশোধন ব্যবহার করুন। বড় page draft-এর জন্য সোর্স সম্পাদনা ব্যবহার করুন।',
     editType: 'পরিবর্তনের ধরন',
-    currentText: 'বর্তমান লেখা (ঐচ্ছিক)',
-    currentTextPlaceholder: 'যে বাক্য বা অনুচ্ছেদ বদলাতে চান, দরকার হলে এখানে পেস্ট করুন।',
+    currentText: 'বর্তমান লেখা',
+    currentTextPlaceholder: 'যে বাক্য, অনুচ্ছেদ, বা link বদলাতে চান সেটি পেস্ট করুন।',
+    currentTextRequired: 'স্পষ্ট diff দেখানোর জন্য বর্তমান লেখাটি পেস্ট করুন।',
     section: 'অংশ বা শিরোনাম',
     sectionPlaceholder: 'যেমন: ভ্যাট সীমা, রেজিস্ট্রেশন চেকলিস্ট, সূত্র',
     change: urgent ? 'কী ভুল আছে?' : 'কী পরিবর্তন দরকার?',
@@ -329,6 +331,11 @@ export default function ContributionWidget({ isEn, pageUrl, sourcePath, adminUrl
       return
     }
 
+    if (!isSourceEdit && kind === 'suggest' && !form.currentText.trim()) {
+      setStatus({ type: 'error', message: copy.currentTextRequired })
+      return
+    }
+
     if (isSourceEdit && loadedSourceText && form.proposedContent.trim() === loadedSourceText.trim()) {
       setStatus({ type: 'error', message: copy.noChanges })
       return
@@ -459,7 +466,14 @@ export default function ContributionWidget({ isEn, pageUrl, sourcePath, adminUrl
 
                   <label>
                     <span>{copy.currentText}</span>
-                    <textarea name="currentText" value={form.currentText} onChange={updateField} placeholder={copy.currentTextPlaceholder} rows={3} />
+                    <textarea
+                      name="currentText"
+                      value={form.currentText}
+                      onChange={updateField}
+                      placeholder={copy.currentTextPlaceholder}
+                      rows={3}
+                      required={kind === 'suggest'}
+                    />
                   </label>
 
                   <label>
