@@ -1,48 +1,56 @@
-const sources = [
-  ['সরকারি ও নিয়ন্ত্রক', 'BIDA, RJSC, NBR, VAT Online, Bangladesh Bank, সিটি কর্পোরেশন'],
-  ['ইকোসিস্টেম ও বাজার', 'Startup Bangladesh, BASIS, e-CAB, LightCastle, World Bank, BBS'],
-  ['অপারেশনাল বাস্তবতা', 'পেমেন্ট গেটওয়ে, MFS, কুরিয়ার, Facebook commerce, B2B procurement'],
-  ['কমিউনিটি আপডেট', 'ফাউন্ডার, আইনজীবী, CA, অপারেটর ও কন্ট্রিবিউটরদের যাচাই করা সংশোধন']
+const officialLinks = [
+  ['RJSC', 'কোম্পানি, অংশীদারি ব্যবসা বা সোসাইটি নিবন্ধন', 'https://roc.gov.bd'],
+  ['NBR e-TIN', 'ব্যক্তি বা প্রতিষ্ঠানের টিআইএন সংক্রান্ত কাজ', 'https://secure.incometax.gov.bd'],
+  ['ভ্যাট অনলাইন', 'বিআইএন/ভ্যাট নিবন্ধন ও ভ্যাট রিটার্ন', 'https://vat.gov.bd'],
+  ['BIDA OSS', 'বিনিয়োগ, অনুমোদন ও কিছু সরকারি সেবা আবেদন', 'https://ossbida.gov.bd'],
+  ['বাংলাদেশ ব্যাংক', 'ব্যাংকিং, পেমেন্ট, বৈদেশিক মুদ্রা ও সার্কুলার', 'https://www.bb.org.bd']
 ]
 
 const scopeCards = [
   {
     title: 'আইডিয়া ও যাচাই',
-    body: 'সমস্যা খোঁজা, গ্রাহকের সাথে কথা বলা, MVP বানানো, প্রি-অর্ডার বা waitlist দিয়ে আগ্রহ মাপা।',
+    body: 'মানুষের আসল সমস্যা বোঝা, সম্ভাব্য গ্রাহকের সঙ্গে কথা বলা, এমভিপি পরীক্ষা করা এবং কেউ টাকা দিতে রাজি কি না দেখা।',
     href: '/idea-validation'
   },
   {
     title: 'আইন, কর ও নিবন্ধন',
-    body: 'একক মালিকানা বনাম কোম্পানি, RJSC, ট্রেড লাইসেন্স, e-TIN, BIN/VAT এবং নিয়মিত কমপ্লায়েন্স।',
+    body: 'কখন ট্রেড লাইসেন্স যথেষ্ট, কখন কোম্পানি দরকার, টিআইএন/বিআইএন কী, আর কোন কাজের আগে চার্টার্ড অ্যাকাউন্ট্যান্ট বা আইনজীবীর সঙ্গে কথা বলা উচিত।',
     href: '/legal-roadmap'
   },
   {
-    title: 'পেমেন্ট ও অপারেশন',
-    body: 'bKash, Nagad, ব্যাংক, পেমেন্ট গেটওয়ে, COD, কুরিয়ার, রিটার্ন, প্রতারণা ও হিসাব রাখা।',
+    title: 'পেমেন্ট ও দৈনন্দিন কাজ',
+    body: 'বিকাশ/নগদ, ব্যাংক ট্রান্সফার, পেমেন্ট গেটওয়ে, ক্যাশ অন ডেলিভারি, কুরিয়ার, রিটার্ন, রিফান্ড, প্রতারণা এবং হিসাব মেলানো।',
     href: '/payments'
   },
   {
     title: 'গ্রাহক ও বিক্রি',
-    body: 'Facebook, WhatsApp, Messenger, marketplace, মাঠে গিয়ে বিক্রি, B2B sales এবং প্রথম ১০০ গ্রাহক।',
+    body: 'ফেসবুক, হোয়াটসঅ্যাপ, মেসেঞ্জার, মার্কেটপ্লেস, দোকান/অফিসে গিয়ে বিক্রি, ব্যবসা-থেকে-ব্যবসা বিক্রি এবং প্রথম ১০০ জন গ্রাহক।',
     href: '/customers'
   },
   {
-    title: 'টিম ও ফাউন্ডার লাইফ',
-    body: 'সহ-প্রতিষ্ঠাতা, প্রথম কর্মী, freelancer/intern, family pressure, burnout এবং নিরাপদ কাজের অভ্যাস।',
+    title: 'দল ও উদ্যোক্তার জীবন',
+    body: 'সহ-প্রতিষ্ঠাতা, প্রথম কর্মী, ফ্রিল্যান্সার, ইন্টার্ন, পারিবারিক চাপ, বার্নআউট এবং নিরাপদভাবে কাজ করার বাস্তব সিদ্ধান্ত।',
     href: '/founder-life'
   },
   {
-    title: 'ফান্ডিং ও গ্রোথ',
-    body: 'angel, grant, VC, Startup Bangladesh, pitch deck, data room, Dhaka-র বাইরে স্কেল এবং regional expansion।',
+    title: 'ফান্ডিং ও বড় হওয়া',
+    body: 'গ্রান্ট, এঞ্জেল বিনিয়োগকারী, ভেঞ্চার ক্যাপিটাল, পিচ ডেক, ডেটা রুম, ঢাকার বাইরে সম্প্রসারণ এবং টেকসই বৃদ্ধি।',
     href: '/phase-three'
   }
 ]
 
 const paths = [
-  ['একদম নতুন', 'স্টার্টআপ কী, SME থেকে পার্থক্য, প্রথম ৩০ দিনের রোডম্যাপ।', '/start-here'],
-  ['আইডিয়া আছে', 'সমস্যা যাচাই, customer interview, MVP test, pricing signal।', '/idea-validation'],
-  ['ব্যবসা চালু করতে চাই', 'কোন entity, কী লাইসেন্স, কর/VAT, ব্যাংক ও পেমেন্ট সেটআপ।', '/legal-roadmap'],
-  ['বিক্রি বাড়াতে চাই', 'প্রথম ১০০ গ্রাহক, Facebook commerce, Messenger sales, trust-building।', '/customers']
+  ['আমি একদম নতুন', 'স্টার্টআপ, এসএমই, এজেন্সি আর ই-কমার্সের পার্থক্য বুঝে নিজের পথ ঠিক করুন।', 'শুরু করুন', '/start-here'],
+  ['আমার একটা আইডিয়া আছে', 'আগে দেখুন মানুষ সমস্যাটা সত্যি অনুভব করে কি না, আর সমাধানের জন্য টাকা দিতে চায় কি না।', 'আইডিয়া যাচাই করুন', '/idea-validation'],
+  ['আমি ব্যবসা চালু করতে চাই', 'ট্রেড লাইসেন্স, কোম্পানি, টিআইএন, ভ্যাট/বিআইএন, ব্যাংক অ্যাকাউন্ট ও পেমেন্ট ব্যবস্থা কোনটার পর কোনটা ভাববেন।', 'আইনগত পথ দেখুন', '/legal-roadmap'],
+  ['আমি গ্রাহক চাই', 'ফেসবুক পেজ, মেসেঞ্জার, হোয়াটসঅ্যাপ, রেফারেল, মাঠে বিক্রি ও আস্থা তৈরি করে প্রথম গ্রাহক খুঁজুন।', 'বিক্রি শুরু করুন', '/customers']
+]
+
+const beginnerQuestions = [
+  ['শুরুতেই কি কোম্পানি খুলতে হবে?', 'সবসময় না। অনেক ক্ষেত্রে আগে গ্রাহকের চাহিদা যাচাই করা, পেমেন্ট নেওয়ার সহজ পথ ঠিক করা এবং প্রাথমিক হিসাব রাখা বেশি জরুরি।'],
+  ['শুধু ফেসবুক পেজ দিয়ে শুরু করা কি ভুল?', 'না। বাংলাদেশে অনেক ব্যবসা ফেসবুক/মেসেঞ্জার থেকেই শুরু হয়। কিন্তু অর্ডার, পেমেন্ট, ডেলিভারি, রিফান্ড ও গ্রাহকের তথ্য গুছিয়ে না রাখলে পরে সমস্যা হয়।'],
+  ['ফান্ডিং ছাড়া স্টার্টআপ করা যায়?', 'অনেক ক্ষেত্রেই যায়। আগে ছোট পরীক্ষা, পেমেন্ট করা গ্রাহক, পুনরায় অর্ডার বা গ্রাহকের আগ্রহের প্রমাণ দেখাতে পারলে ফান্ডিং নিয়ে কথা বলাও বেশি বাস্তব হয়।'],
+  ['আইন/কর না বুঝলে কী করব?', 'ভয় পেয়ে থেমে যাবেন না। কোন কাজ এখন দরকার আর কোনটা পরে করা যায়, সেটা বুঝুন। আইন/কর-সংক্রান্ত সিদ্ধান্তে সরকারি উৎস ও পেশাদার পরামর্শ মিলিয়ে নিন।']
 ]
 
 function localHref(href) {
@@ -60,128 +68,128 @@ export default function WikiLanding() {
         <div className="wiki-hero__main">
           <div className="wiki-title-row">
             <div>
-              <p className="wiki-kicker">বাংলা-প্রথম ওপেন জ্ঞানভান্ডার</p>
+              <p className="wiki-kicker">বাংলাদেশে স্টার্টআপ ও ছোট ব্যবসা শুরু করার বাংলা সহায়িকা</p>
               <h1 id="wiki-title">দেশি স্টার্টআপ</h1>
               <p className="wiki-subtitle">
-                বাংলাদেশে স্টার্টআপ শুরু, গড়া ও বড় করার জন্য বাস্তবভিত্তিক প্রতিষ্ঠাতা ম্যানুয়াল।
+                আইডিয়া থেকে প্রথম গ্রাহক, ট্রেড লাইসেন্স থেকে পেমেন্ট, আর ফান্ডিং থেকে বড় হওয়া পর্যন্ত সহজ ভাষায় ধাপে ধাপে দিকনির্দেশনা।
               </p>
             </div>
             <span className="wiki-language-pill">বাংলা</span>
           </div>
 
           <p className="wiki-lead">
-            <strong>দেশি স্টার্টআপ</strong> কোনো মোটিভেশনাল ব্লগ না। এটি এমন একটি ব্যবহারিক গাইড যেখানে
-            একজন প্রতিষ্ঠাতা আইডিয়া যাচাই থেকে শুরু করে ব্যবসা নিবন্ধন, ট্রেড লাইসেন্স, e-TIN, VAT/BIN,
-            পেমেন্ট, কুরিয়ার, প্রথম গ্রাহক, টিম, ফান্ডিং এবং গ্রোথ পর্যন্ত ধাপে ধাপে কাজের পথ পাবেন।
+            মাথায় একটা ব্যবসার আইডিয়া আছে, কিন্তু বুঝতে পারছেন না আগে গ্রাহক খুঁজবেন, পণ্য বানাবেন,
+            ট্রেড লাইসেন্স করবেন, নাকি কোম্পানি খুলবেন? <strong>দেশি স্টার্টআপ</strong> সেই “এখন কী করব?”
+            প্রশ্নের সহজ বাংলা উত্তর সাজায়।
           </p>
 
           <p>
-            বৈশ্বিক startup content অনেক ভালো, কিন্তু বাংলাদেশের বাজারে একই নিয়ম সরাসরি খাটে না। এখানে
-            trust কম, COD বেশি, card usage সীমিত, Facebook/Messenger এখনো বড় sales channel, সরকারি
-            প্রক্রিয়া আলাদা, এবং Dhaka-র বাইরে distribution পরিকল্পনা আলাদা করে ভাবতে হয়। এই গাইড সেই
-            local বাস্তবতাকে সামনে রেখে লেখা।
+            এখানে শুধু অনুপ্রেরণামূলক গল্প থাকবে না। আপনি কীভাবে আইডিয়া যাচাই করবেন, গ্রাহক সাক্ষাৎকার
+            নেবেন, এমভিপি পরীক্ষা করবেন, পেমেন্ট নেবেন, ডেলিভারি ঝুঁকি সামলাবেন, হিসাব রাখবেন, মানুষ নিয়োগ করবেন
+            এবং দরকার হলে ফান্ডিংয়ের জন্য প্রস্তুতি নেবেন, সেসব বিষয় বাস্তবভাবে ব্যাখ্যা করা হবে।
           </p>
+
+          <p>
+            বাংলাদেশের বাস্তবতা আলাদা। এখানে গ্রাহকের আস্থা তৈরি করতে সময় লাগে, ক্যাশ অন ডেলিভারি এখনো গুরুত্বপূর্ণ,
+            অনেক গ্রাহক কার্ড ব্যবহার করেন না, ফেসবুক/মেসেঞ্জার বড় বিক্রির চ্যানেল, আর সরকারি কাগজপত্র
+            বুঝে করা দরকার। তাই এই সাইট বিদেশি স্টার্টআপ পরামর্শ কপি করে না; বাংলাদেশে কীভাবে কাজ হয় সেটা
+            ধরে ব্যাখ্যা করে।
+          </p>
+
+          <div className="wiki-quickstart" aria-labelledby="quickstart-title">
+            <h2 id="quickstart-title">এখন কোথা থেকে শুরু করবেন?</h2>
+            <ol>
+              <li>আপনার অবস্থার সঙ্গে মেলে এমন ঘর বেছে নিন।</li>
+              <li>প্রথম গাইডটি পড়ে একটি ছোট কাজ ঠিক করুন, যেমন ৫ জন গ্রাহকের সঙ্গে কথা বলা।</li>
+              <li>আইন, কর বা লাইসেন্স নিয়ে বড় সিদ্ধান্তের আগে সরকারি উৎস বা চার্টার্ড অ্যাকাউন্ট্যান্ট/আইনজীবীর পরামর্শ মিলিয়ে নিন।</li>
+            </ol>
+          </div>
 
           <aside className="wiki-notice" role="note">
             <span aria-hidden="true">i</span>
             <p>
-              আইন, কর, VAT, ব্যাংকিং বা লাইসেন্স সংক্রান্ত কোনো লেখা পড়লে সিদ্ধান্ত নেওয়ার আগে সর্বশেষ
-              সরকারি সূত্র এবং প্রয়োজনে CA/আইনজীবীর সাথে মিলিয়ে নিন। এই প্রকল্প গাইড দেয়, আইনি পরামর্শ নয়।
+              আইন, কর, ভ্যাট, ব্যাংকিং বা লাইসেন্স সংক্রান্ত লেখা সিদ্ধান্ত নিতে সাহায্য করবে, কিন্তু এটি
+              আইনি বা কর পরামর্শ নয়। ফি, থ্রেশহোল্ড, ফর্ম ও প্রক্রিয়া বদলাতে পারে; কাজ করার আগে সরকারি
+              উৎস এবং প্রয়োজনে চার্টার্ড অ্যাকাউন্ট্যান্ট/আইনজীবীর সঙ্গে মিলিয়ে নিন।
             </p>
           </aside>
-
-          <nav className="wiki-toc" aria-label="সূচিপত্র">
-            <strong>সূচিপত্র</strong>
-            <ol>
-              <li><a href="#why-this-exists">কেন এই গাইড দরকার</a></li>
-              <li><a href="#who-this-is-for">কাদের জন্য</a></li>
-              <li><a href="#learning-paths">কীভাবে শুরু করবেন</a></li>
-              <li><a href="#guide-scope">বিষয়ভিত্তিক পরিসর</a></li>
-              <li><a href="#quality-standard">কনটেন্ট স্ট্যান্ডার্ড</a></li>
-              <li><a href="#start-reading">শুরু করার পাতা</a></li>
-            </ol>
-          </nav>
         </div>
 
         <aside className="wiki-infobox" aria-label="দেশি স্টার্টআপ তথ্যছক">
-          <h2>দেশি স্টার্টআপ</h2>
+          <p className="wiki-infobox-title">এক নজরে</p>
           <img src={localHref('/deshi-mark.svg')} alt="" />
-          <strong>Deshi Startup</strong>
-          <p>বাংলাদেশি প্রতিষ্ঠাতাদের জন্য ওপেন startup playbook</p>
+          <strong>দেশি স্টার্টআপ</strong>
+          <p>বাংলাদেশি উদ্যোক্তাদের জন্য সহজ বাংলা স্টার্টআপ ও ব্যবসার গাইড</p>
           <dl>
-            <div><dt>ধরন</dt><dd>ওপেন-সোর্স জ্ঞানভান্ডার</dd></div>
-            <div><dt>ভাষা</dt><dd>বাংলা-প্রথম, দরকার হলে ইংরেজি term</dd></div>
-            <div><dt>কেন্দ্র</dt><dd>বাংলাদেশের আইন, বাজার, পেমেন্ট, অপারেশন</dd></div>
-            <div><dt>পাঠক</dt><dd>ছাত্র, প্রথমবারের founder, SME owner, diaspora founder</dd></div>
-            <div><dt>লাইসেন্স</dt><dd>MIT</dd></div>
+            <div><dt>যাদের জন্য</dt><dd>নতুন উদ্যোক্তা, শিক্ষার্থী প্রতিষ্ঠাতা, এসএমই মালিক, প্রবাসী উদ্যোক্তা</dd></div>
+            <div><dt>যা পাবেন</dt><dd>আইডিয়া যাচাই, নিবন্ধন, পেমেন্ট, বিক্রি, নিয়োগ, ফান্ডিং</dd></div>
+            <div><dt>ভাষা</dt><dd>সহজ বাংলা; দরকারি ইংরেজি শব্দ ব্যাখ্যাসহ</dd></div>
+            <div><dt>কেন্দ্র</dt><dd>বাংলাদেশের বাজার, কাগজপত্র, গ্রাহক আচরণ ও দৈনন্দিন কাজ</dd></div>
           </dl>
         </aside>
       </section>
 
-      <section id="why-this-exists" className="wiki-section">
-        <h2>কেন এই গাইড দরকার</h2>
+      <section id="learning-paths" className="wiki-section">
+        <h2>আপনি এখন কোন অবস্থায় আছেন?</h2>
         <p>
-          বাংলাদেশে startup করার তথ্য আছে, কিন্তু সেটি ছড়িয়ে আছে সরকারি portal, PDF, blog, YouTube,
-          Facebook group, পরিচিত মানুষের অভিজ্ঞতা আর পুরনো পোস্টে। একজন নতুন founder-এর জন্য সবচেয়ে
-          কঠিন কাজ হলো কোন তথ্য এখনো valid, কোনটা শুধু opinion, আর কোনটা তার business stage-এর জন্য
-          জরুরি তা বোঝা।
+          সবাই একই জায়গা থেকে শুরু করে না। কেউ আইডিয়া পর্যায়ে, কেউ ফেসবুক পেজ খুলে ফেলেছেন, কেউ নিবন্ধন
+          নিয়ে আটকে আছেন। নিজের অবস্থার সঙ্গে মেলে এমন পথ ধরুন।
+        </p>
+        <div className="wiki-path-grid">
+          {paths.map(([title, body, cta, href]) => (
+            <a className="wiki-path-card" href={localHref(href)} key={title}>
+              <strong>{title}</strong>
+              <span>{body}</span>
+              <em>{cta}</em>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section id="why-this-exists" className="wiki-section">
+        <h2>বাংলাদেশে শুরু করা কেন আলাদা</h2>
+        <p>
+          একটা সাধারণ বিদেশি স্টার্টআপ ব্লগ পড়ে অনেক কিছু শেখা যায়, কিন্তু বাংলাদেশে কাজ করতে গেলে আরও কিছু
+          বাস্তব বিষয় সামনে আসে। গ্রাহক অনেক সময় আগে বিশ্বাস করতে চান, পরে পেমেন্ট করেন। অনলাইন অর্ডার
+          আসলেও ডেলিভারি ব্যর্থ হতে পারে। সরবরাহকারী, কুরিয়ার, ব্যাংক, কর, কাগজপত্র এবং পারিবারিক চাপ একসঙ্গে
+          সামলাতে হয়।
         </p>
         <div className="wiki-table-wrap">
           <table>
             <thead>
               <tr>
-                <th>যেখানে founder আটকে যায়</th>
-                <th>এই গাইড কীভাবে সাহায্য করবে</th>
+                <th>বাস্তব সমস্যা</th>
+                <th>এখানে কীভাবে দিকনির্দেশনা পাবেন</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>আইডিয়া আছে, কিন্তু কেউ কিনবে কিনা বোঝা যাচ্ছে না</td>
-                <td>Interview script, MVP test, pre-order, pricing signal এবং validation checklist</td>
+                <td>কীভাবে গ্রাহকের সঙ্গে কথা বলবেন, কীভাবে ছোট পরীক্ষা চালাবেন, কী সংকেত দেখে এগোবেন</td>
               </tr>
               <tr>
-                <td>কোম্পানি করব, নাকি trade license দিয়েই শুরু করব?</td>
-                <td>Business structure comparison, legal roadmap, cost/timeline expectation</td>
+                <td>কোম্পানি করব, নাকি ট্রেড লাইসেন্স দিয়েই শুরু করব</td>
+                <td>কোন পর্যায়ে কোন আইনগত ভিত্তি যথেষ্ট হতে পারে, আর কখন পেশাদার পরামর্শ দরকার</td>
               </tr>
               <tr>
-                <td>পেমেন্ট, COD, কুরিয়ার, refund ও fraud সামলানো কঠিন</td>
-                <td>অপারেশন playbook, reconciliation template, delivery risk checklist</td>
+                <td>পেমেন্ট, ক্যাশ অন ডেলিভারি, কুরিয়ার, রিফান্ড ও প্রতারণা একসঙ্গে সামলাতে হচ্ছে</td>
+                <td>অর্ডার নেওয়া, টাকা মেলানো, ডেলিভারি ঝুঁকি কমানো এবং রিফান্ড নীতি বানানোর পথ</td>
               </tr>
               <tr>
-                <td>বাংলাদেশে customer acquisition শুধু ads দিয়ে হচ্ছে না</td>
-                <td>Facebook/Messenger sales, trust-building, field sales, community seeding</td>
+                <td>বুস্ট দিলে রিচ হচ্ছে, কিন্তু বিক্রি হচ্ছে না</td>
+                <td>আস্থা তৈরি, অফার, ইনবক্সে উত্তর দেওয়ার লেখা, রেফারেল, মাঠে বিক্রি এবং ফিরে আসা গ্রাহক নিয়ে ভাবনা</td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <section id="who-this-is-for" className="wiki-section">
-        <h2>কাদের জন্য</h2>
-        <ul className="wiki-plain-list">
-          <li><strong>ছাত্র founder:</strong> কম বাজেটে সমস্যা যাচাই করে বাস্তব customer signal দেখতে চান।</li>
-          <li><strong>প্রথমবারের founder:</strong> registration, payment, sales, compliance সব একসাথে বুঝতে চান।</li>
-          <li><strong>Technical founder:</strong> product বানাতে পারেন, কিন্তু বাজার, আইন ও বিক্রির practical পথ চান।</li>
-          <li><strong>SME owner:</strong> নিজের ব্যবসাকে tech-enabled, trackable এবং scalable করতে চান।</li>
-          <li><strong>নারী founder ও ছোট শহরের উদ্যোক্তা:</strong> safety, trust, distribution ও social constraint মাথায় রেখে শুরু করতে চান।</li>
-          <li><strong>Diaspora founder:</strong> বাইরে থেকে Bangladesh market, local operator ও compliance বুঝতে চান।</li>
-        </ul>
-      </section>
-
-      <section id="learning-paths" className="wiki-section">
-        <h2>কীভাবে শুরু করবেন</h2>
-        <div className="wiki-path-grid">
-          {paths.map(([title, body, href]) => (
-            <a className="wiki-path-card" href={localHref(href)} key={title}>
-              <strong>{title}</strong>
-              <span>{body}</span>
-            </a>
-          ))}
-        </div>
-      </section>
-
       <section id="guide-scope" className="wiki-section">
-        <h2>বিষয়ভিত্তিক পরিসর</h2>
+        <h2>এই সাইটে কী পাবেন</h2>
+        <p>
+          দেশি স্টার্টআপকে ভাবুন একটি ব্যবহারিক মানচিত্র হিসেবে। আপনি কোন কাজ করতে চাইছেন, সেই কাজের গাইড খুলে
+          সারকথা, সতর্কতা, পরের ধাপ এবং সম্পর্কিত গাইড দেখতে পারবেন।
+        </p>
         <div className="wiki-scope-grid">
           {scopeCards.map((card) => (
             <a className="wiki-scope-card" href={localHref(card.href)} key={card.title}>
@@ -192,38 +200,55 @@ export default function WikiLanding() {
         </div>
       </section>
 
-      <section id="quality-standard" className="wiki-section">
-        <h2>কনটেন্ট স্ট্যান্ডার্ড</h2>
+      <section id="who-this-is-for" className="wiki-section">
+        <h2>এই সাইট আপনার কাজে লাগবে যদি</h2>
         <p>
-          এই প্রজেক্টের লক্ষ্য হলো এমন guide বানানো যা একজন নতুন মানুষও বুঝবে, আবার serious founder-ও
-          কাজে লাগাতে পারবে। তাই ভালো লেখার মানে শুধু বেশি লেখা নয়; লেখাটি actionable, source-backed,
-          stage-aware এবং Bangladesh-specific হতে হবে।
+          আপনি বড় প্রযুক্তি কোম্পানি বানাতে চান, ছোট অনলাইন ব্যবসা শুরু করতে চান, এজেন্সি থেকে নিজের পণ্যে যেতে চান,
+          বা একটা পারিবারিক ব্যবসা ধীরে ধীরে ডিজিটাল করতে চান, শুরুতে একই ধরনের অনেক প্রশ্ন আসে। সেই প্রশ্নগুলো
+          সহজ করে সাজানোই এই সাইটের কাজ।
+        </p>
+        <ul className="wiki-plain-list">
+          <li><strong>আপনি শিক্ষার্থী উদ্যোক্তা:</strong> কম বাজেটে আইডিয়া পরীক্ষা করতে চান।</li>
+          <li><strong>আপনি প্রথমবার ব্যবসা করছেন:</strong> নিবন্ধন, পেমেন্ট, বিক্রি ও নিয়ম মানার বিষয় একসঙ্গে বুঝতে চান।</li>
+          <li><strong>আপনি প্রযুক্তি-দক্ষ প্রতিষ্ঠাতা:</strong> পণ্য বানাতে পারেন, কিন্তু বাজার ও বিক্রি বুঝতে চান।</li>
+          <li><strong>আপনি এসএমই মালিক:</strong> ব্যবসা ডিজিটাল করতে, হিসাব রাখতে এবং একই কাজ বারবার চালাতে চান।</li>
+          <li><strong>আপনি ঢাকার বাইরে বা প্রবাস থেকে শুরু করছেন:</strong> স্থানীয় দায়িত্বশীল ব্যক্তি, আস্থা, বিতরণ ও কাগজপত্র বুঝতে চান।</li>
+        </ul>
+      </section>
+
+      <section id="beginner-questions" className="wiki-section">
+        <h2>নতুনদের সাধারণ প্রশ্ন</h2>
+        <p>
+          শুরুতে সবকিছু জরুরি মনে হয়। কিন্তু সব কাজ একই দিনে করতে হয় না। নিচের উত্তরগুলো আপনাকে প্রথম
+          সিদ্ধান্তগুলো নিতে সাহায্য করবে।
         </p>
         <div className="wiki-table-wrap">
           <table>
             <thead>
               <tr>
-                <th>স্ট্যান্ডার্ড</th>
-                <th>প্রতিটি গুরুত্বপূর্ণ পাতায় যা থাকা উচিত</th>
+                <th>প্রশ্ন</th>
+                <th>সহজ উত্তর</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>সারকথা</td><td>পাতাটি কাকে সাহায্য করছে এবং কোন সিদ্ধান্তে সাহায্য করবে</td></tr>
-              <tr><td>ধাপে ধাপে কাজ</td><td>কী করবেন, কোন order-এ করবেন, কোন document/লোক/টুল লাগবে</td></tr>
-              <tr><td>বাংলাদেশ context</td><td>payment, trust, family pressure, logistics, regulation, Dhaka vs outside-Dhaka reality</td></tr>
-              <tr><td>সতর্কতা</td><td>আইন/কর/ফি বদলাতে পারে, কোথায় official source যাচাই করতে হবে</td></tr>
-              <tr><td>চেকলিস্ট</td><td>পড়ার পর founder কী action নেবে তার practical list</td></tr>
+              {beginnerQuestions.map(([question, answer]) => (
+                <tr key={question}><td>{question}</td><td>{answer}</td></tr>
+              ))}
             </tbody>
           </table>
         </div>
       </section>
 
       <section className="wiki-section">
-        <h2>তথ্যসূত্রের ধরন</h2>
+        <h2>দরকারি সরকারি লিংক</h2>
+        <p>
+          নিবন্ধন, কর, ভ্যাট বা ব্যাংকিং নিয়ে কাজ করার সময় শেষ সিদ্ধান্ত সরকারি পোর্টাল দেখে নিন।
+          নিচের লিংকগুলো নতুন উদ্যোক্তা হিসেবে বারবার কাজে লাগতে পারে।
+        </p>
         <div className="wiki-source-list">
-          {sources.map(([title, body]) => (
-            <article key={title}>
-              <h3>{title}</h3>
+          {officialLinks.map(([label, body, href]) => (
+            <article key={href}>
+              <h3><a href={href} target="_blank" rel="noopener noreferrer">{label}</a></h3>
               <p>{body}</p>
             </article>
           ))}
@@ -231,33 +256,37 @@ export default function WikiLanding() {
       </section>
 
       <section id="start-reading" className="wiki-section">
-        <h2>শুরু করার পাতা</h2>
+        <h2>প্রথমে যা পড়বেন</h2>
+        <p>
+          প্রথমবার এলে সব পাতা পড়ার দরকার নেই। নিচের কয়েকটি গাইড পড়লেই বুঝতে পারবেন আপনার আইডিয়া,
+          ব্যবসার ধরন, আইনগত ভিত্তি এবং গ্রাহক খোঁজার পথ কোথায় দাঁড়িয়ে আছে।
+        </p>
         <div className="wiki-link-columns">
           <div>
             <h3>প্রথমে পড়ুন</h3>
             <ul>
               <li><a href={localHref('/start-here')}>শুরু করুন: বাংলাদেশে স্টার্টআপ গড়ার রোডম্যাপ</a></li>
-              <li><a href={localHref('/startup-vs-sme')}>স্টার্টআপ বনাম SME</a></li>
-              <li><a href={localHref('/ecosystem-overview')}>বাংলাদেশ startup ecosystem overview</a></li>
+              <li><a href={localHref('/startup-vs-sme')}>স্টার্টআপ বনাম এসএমই</a></li>
+              <li><a href={localHref('/ecosystem-overview')}>বাংলাদেশের স্টার্টআপ পরিবেশ</a></li>
               <li><a href={localHref('/idea-validation')}>আইডিয়া যাচাই</a></li>
             </ul>
           </div>
           <div>
             <h3>চালু করার আগে</h3>
             <ul>
-              <li><a href={localHref('/legal-roadmap')}>আইনগত রোডম্যাপ</a></li>
+              <li><a href={localHref('/legal-roadmap')}>আইনগত পথনির্দেশনা</a></li>
               <li><a href={localHref('/company-types')}>কোম্পানির ধরন</a></li>
               <li><a href={localHref('/trade-license')}>ট্রেড লাইসেন্স</a></li>
-              <li><a href={localHref('/e-tin-vat-bin')}>e-TIN ও VAT/BIN</a></li>
+              <li><a href={localHref('/e-tin-vat-bin')}>e-TIN ও ভ্যাট/বিআইএন</a></li>
             </ul>
           </div>
           <div>
             <h3>বাজারে যাওয়ার সময়</h3>
             <ul>
-              <li><a href={localHref('/payments')}>পেমেন্ট সিস্টেম</a></li>
+              <li><a href={localHref('/payments')}>পেমেন্ট ব্যবস্থা</a></li>
               <li><a href={localHref('/customers')}>গ্রাহক খোঁজা</a></li>
-              <li><a href={localHref('/phase-three/cod-and-delivery-risk')}>COD ও delivery risk</a></li>
-              <li><a href={localHref('/phase-three/facebook-commerce-playbook')}>Facebook commerce playbook</a></li>
+              <li><a href={localHref('/phase-three/cod-and-delivery-risk')}>ক্যাশ অন ডেলিভারি ও ডেলিভারি ঝুঁকি</a></li>
+              <li><a href={localHref('/phase-three/facebook-commerce-playbook')}>ফেসবুক কমার্স গাইড</a></li>
             </ul>
           </div>
         </div>
