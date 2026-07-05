@@ -4,11 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true)",
     "scrape": "node scripts/scrape.js",
     "dev": "vinext dev",
     "build": "vinext build",
     "start": "wrangler dev --config dist/server/wrangler.json",
+    "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true)",
     "deploy": "vinext-cloudflare deploy --config dist/server/wrangler.json --experimental-warm-cdn-cache"
   },
   "dependencies": {
