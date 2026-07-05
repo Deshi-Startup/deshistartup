@@ -1,8 +1,12 @@
 import nextra from "nextra";
+import remarkFrontmatter from "remark-frontmatter";
 
 const withNextra = nextra({
   search: {
     codeblocks: false,
+  },
+  mdxOptions: {
+    remarkPlugins: [remarkFrontmatter],
   },
 });
 
