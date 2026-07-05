@@ -4,27 +4,37 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
+    "dev": "vinext dev",
+    "build": "vinext build",
+    "start": "wrangler dev --config dist/server/wrangler.json",
     "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true)",
     "content:qa": "node scripts/content-qa.mjs",
     "content:qa:all": "node scripts/content-qa.mjs --all --warn-only",
     "worker:test": "node scripts/test-suggestions-worker.mjs",
-    "scrape": "node scripts/scrape.js"
+    "scrape": "node scripts/scrape.js",
+    "deploy": "vinext-cloudflare deploy --config dist/server/wrangler.json --experimental-warm-cdn-cache"
   },
   "dependencies": {
+    "@mdx-js/rollup": "^3.1.1",
+    "@vinext/cloudflare": "1.0.0-beta.0",
     "next": "^15.1.3",
     "nextra": "^4.0.0",
     "nextra-theme-docs": "^4.0.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-server-dom-webpack": "^19.2.7",
+    "vinext": "1.0.0-beta.0"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.43.0",
+    "@vitejs/plugin-react": "^6.0.3",
+    "@vitejs/plugin-rsc": "^0.5.27",
     "cheerio": "^1.2.0",
     "node-fetch": "^3.3.2",
     "pagefind": "^1.5.2",
     "robots-parser": "^3.0.1",
-    "turndown": "^7.2.4"
+    "turndown": "^7.2.4",
+    "vite": "^8.1.3",
+    "wrangler": "^4.107.0"
   }
 }
