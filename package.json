@@ -7,7 +7,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true)",
+    "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind || true && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true)",
     "scrape": "node scripts/scrape.js"
   },
   "dependencies": {
