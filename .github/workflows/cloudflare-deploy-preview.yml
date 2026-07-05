@@ -35,6 +35,16 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Configure custom domain for preview
+        run: |
+          node -e "
+          const fs = require('fs');
+          let content = fs.readFileSync('wrangler.jsonc', 'utf8');
+          const routes = '\"routes\": [ { \"pattern\": \"pr-${{ github.event.pull_request.number }}.startup.anwar.bd\", \"custom_domain\": true } ],';
+          content = content.replace('{', '{\n  ' + routes);
+          fs.writeFileSync('wrangler.jsonc', content);
+          "
+
       - name: Build project
         run: pnpm run build
 
@@ -43,14 +53,7 @@ jobs:
         run: |
           pnpm exec vinext-cloudflare deploy --config dist/server/wrangler.json --name deshistartup-pr-${{ github.event.pull_request.number }} > deploy_output.txt 2>&1 || (cat deploy_output.txt && exit 1)
           cat deploy_output.txt
-          
-          # Extract deployment URL from the output log
-          DEPLOY_URL=$(grep -oE 'https://[a-zA-Z0-9.-]+\.workers\.dev' deploy_output.txt | head -n 1)
-          if [ -z "$DEPLOY_URL" ]; then
-            echo "Failed to extract deploy URL from logs"
-            exit 1
-          fi
-          echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+          echo "DEPLOY_URL=https://pr-${{ github.event.pull_request.number }}.startup.anwar.bd" >> $GITHUB_ENV
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -62,18 +65,18 @@ jobs:
             const prNumber = context.payload.pull_request.number;
             const deployUrl = process.env.DEPLOY_URL;
             const commentBody = `⚡️ **Cloudflare Worker Preview URL:** [${deployUrl}](${deployUrl})`;
-            
+
             // Get existing comments to avoid spamming
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: prNumber,
             });
-            
+
             const botComment = comments.find(comment => 
               comment.user.type === 'Bot' && comment.body.includes('Cloudflare Worker Preview URL')
             );
-            
+
             if (botComment) {
               await github.rest.issues.updateComment({
                 owner: context.repo.owner,
