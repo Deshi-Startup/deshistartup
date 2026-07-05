@@ -7,6 +7,7 @@ import LanguageSwitcher from './LanguageSwitcher'
 import SearchBox from './SearchBox'
 
 const REPO_URL = 'https://github.com/Deshi-Startup/deshistartup'
+const RAW_REPO_URL = 'https://raw.githubusercontent.com/Deshi-Startup/deshistartup/main'
 
 const bnNav = [
   ['/', 'প্রধান পাতা'],
@@ -138,6 +139,7 @@ export default function LocalizedLayout({ children }) {
   const sourcePath = useMemo(() => getContentSourcePath(pathname), [pathname])
   const encodedSourcePath = useMemo(() => encodeGitHubPath(sourcePath), [sourcePath])
   const sourceFileUrl = `${REPO_URL}/blob/main/${encodedSourcePath}`
+  const rawSourceUrl = `${RAW_REPO_URL}/${encodedSourcePath}`
   const historyUrl = `${REPO_URL}/commits/main/${encodedSourcePath}`
   const adminUrl = localHref('/admin/')
 
@@ -189,6 +191,11 @@ export default function LocalizedLayout({ children }) {
     [isEn]
   )
 
+  function openPublicEditor() {
+    document.getElementById('contribution-actions')?.scrollIntoView({ block: 'nearest' })
+    window.dispatchEvent(new CustomEvent('deshi:open-contribution-editor'))
+  }
+
   if (isAdmin) {
     return children
   }
@@ -220,9 +227,9 @@ export default function LocalizedLayout({ children }) {
             <a href={localHref(isEn ? '/en/contribute' : '/contribute')}>
               {tabs.contribute}
             </a>
-            <a href={adminUrl}>
+            <button type="button" onClick={openPublicEditor}>
               {tabs.edit}
-            </a>
+            </button>
             <a href={historyUrl} target="_blank" rel="noopener noreferrer">
               {tabs.history}
             </a>
@@ -250,6 +257,7 @@ export default function LocalizedLayout({ children }) {
               adminUrl={adminUrl}
               historyUrl={historyUrl}
               sourceFileUrl={sourceFileUrl}
+              rawSourceUrl={rawSourceUrl}
             />
           </div>
 

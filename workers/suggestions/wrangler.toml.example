@@ -4,6 +4,7 @@ compatibility_date = "2026-07-05"
 
 [vars]
 GITHUB_REPO = "Deshi-Startup/deshistartup"
+GITHUB_BRANCH = "main"
 ALLOWED_ORIGINS = "https://deshi-startup.github.io,http://localhost:3000"
 REQUIRE_TURNSTILE = "true"
 

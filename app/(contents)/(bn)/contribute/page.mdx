@@ -12,11 +12,19 @@ last_verified: "2026-07-05"
 
 ## দ্রুত অবদান
 
-প্রতিটি পৃষ্ঠার ওপরের **সংশোধন প্রস্তাব** বাটন ব্যবহার করুন। GitHub অ্যাকাউন্ট লাগবে না।
+প্রতিটি পৃষ্ঠার ওপরের **এই পাতা সম্পাদনা** বাটন ব্যবহার করুন। GitHub অ্যাকাউন্ট লাগবে না।
 
-ভালো প্রস্তাবে সাধারণত থাকে:
+আপনি দুইভাবে পরিবর্তন পাঠাতে পারেন:
+
+- বানান, ভাঙা link, citation, বা নির্দিষ্ট correction-এর জন্য ছোট সংশোধন
+- বড় rewrite দরকার হলে পুরো page source draft
+
+এটি public review queue-তে pending revision হিসেবে যাবে। editor approve না করলে live page বদলাবে না।
+
+ভালো pending edit-এ সাধারণত থাকে:
 
 - কোন পৃষ্ঠা ও কোন অংশে পরিবর্তন দরকার
+- নির্দিষ্ট বাক্য/অনুচ্ছেদ replace করলে বর্তমান লেখাটি
 - কী সংশোধন হবে
 - সম্ভব হলে official বা বিশ্বাসযোগ্য সূত্রের deep link
 - এটি গুরুতর ভুল হলে কেন founder-দের জন্য risky
@@ -25,7 +33,13 @@ last_verified: "2026-07-05"
 
 আইন, কর, VAT, RJSC, payment, employment, healthtech, privacy, import/export বা government incentive সম্পর্কিত ভুল দেখলে **গুরুতর ভুল জানান** ব্যবহার করুন।
 
-এই রিপোর্টগুলো `urgent` এবং `risk: high` হিসেবে review queue-তে যাবে। প্রকাশিত পৃষ্ঠায় পরিবর্তন হওয়ার আগে editor বা domain expert যাচাই করবে।
+এই রিপোর্টগুলো `urgent`, `risk: high`, এবং সাধারণত `needs-expert-review` হিসেবে review queue-তে যাবে। প্রকাশিত পৃষ্ঠায় পরিবর্তন হওয়ার আগে editor বা domain expert যাচাই করবে।
+
+## Review queue
+
+Public form পেছনে GitHub issue তৈরি করে, যেখানে page path, review tier, source fields, এবং focused diff বা full-source draft diff থাকে। contributor-দের GitHub ব্যবহার করতে হয় না, কিন্তু maintainers transparent audit trail পান।
+
+বানান, grammar, broken link-এর মতো low-risk edit একজন editor দ্রুত approve করতে পারেন। Protected page এবং high-risk factual edit publish করার আগে citation এবং expert/senior editor approval লাগবে।
 
 ## সম্পাদক হিসেবে কাজ করা
 
@@ -33,7 +47,7 @@ last_verified: "2026-07-05"
 
 সম্পাদকের কাজ:
 
-1. public suggestion triage করা
+1. pending public revision triage করা
 2. source ছাড়া factual claim publish না করা
 3. high-risk page-এ `risk_level: high`, `last_verified`, এবং sources section রাখা
 4. প্রয়োজনে expert review চাওয়া

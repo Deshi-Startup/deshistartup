@@ -181,8 +181,18 @@ textarea {
   white-space: nowrap;
 }
 
-.top-actions a {
+.top-actions a,
+.top-actions button {
+  border: 0;
+  background: transparent;
+  padding: 0;
   color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+}
+
+.top-actions button:hover {
+  color: var(--blue-hover);
 }
 
 .language-switcher {
@@ -428,6 +438,51 @@ textarea {
   padding: 22px 24px 24px;
 }
 
+.edit-mode-field {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 12px;
+}
+
+.edit-mode-field legend {
+  padding: 0 4px;
+  color: var(--muted);
+  font-size: .88rem;
+  font-weight: 800;
+}
+
+.edit-mode-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.mode-option {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.mode-option.is-active {
+  border-color: var(--green-deep);
+  background: var(--green-soft);
+  color: var(--green-deep);
+  box-shadow: inset 0 0 0 1px var(--green-deep);
+}
+
+.field-hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
 .contribution-form label,
 .turnstile-field {
   display: grid;
@@ -455,6 +510,19 @@ textarea {
 
 .contribution-form textarea {
   resize: vertical;
+}
+
+.source-draft-tools {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.source-textarea {
+  min-height: 360px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: .86rem;
+  line-height: 1.55;
+  white-space: pre;
 }
 
 .contribution-form input:focus,
@@ -524,6 +592,12 @@ textarea {
 .secondary-button {
   background: #f8f9fa;
   color: var(--ink);
+}
+
+.secondary-button--compact {
+  min-height: 34px;
+  padding: 6px 10px;
+  font-size: .86rem;
 }
 
 .article {
@@ -1101,6 +1175,10 @@ pre code {
   }
 
   .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-mode-options {
     grid-template-columns: 1fr;
   }
 

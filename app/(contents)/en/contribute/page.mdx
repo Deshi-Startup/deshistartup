@@ -12,11 +12,19 @@ Deshi Startup is an open, source-backed founder manual for Bangladesh. The goal 
 
 ## Quick Contributions
 
-Use the **Suggest edit** button at the top of any page. You do not need a GitHub account.
+Use **Edit this page** at the top of any page. You do not need a GitHub account.
 
-A useful suggestion usually includes:
+You can submit either:
+
+- a focused fix for typos, broken links, missing citations, or a specific correction
+- a full page source draft when a larger rewrite is easier
+
+The edit becomes a pending revision in the public review queue. It does not change the live page until an editor approves it.
+
+A useful pending edit usually includes:
 
 - the page and section that should change
+- the current text when you are replacing a specific sentence or paragraph
 - the proposed correction
 - a deep link to an official or reliable source when possible
 - why the issue is risky if it could mislead founders
@@ -25,7 +33,13 @@ A useful suggestion usually includes:
 
 Use **Report serious issue** for possible misinformation in legal, tax, VAT, RJSC, payment, employment, healthtech, privacy, import/export, or government incentive content.
 
-These reports enter the review queue with `urgent` and `risk: high` labels. A human editor or domain expert should check the issue before the published page changes.
+These reports enter the review queue with `urgent`, `risk: high`, and usually `needs-expert-review` labels. A human editor or domain expert should check the issue before the published page changes.
+
+## Review Queue
+
+The public form creates a GitHub issue behind the scenes with the page path, review tier, source fields, and either a focused diff or a full-source draft diff. Contributors do not need to see GitHub, but maintainers still get a transparent audit trail.
+
+Low-risk typo, grammar, and broken-link edits can be fast-tracked by one editor. Protected pages and high-risk factual edits need a citation and expert or senior editor approval before publishing.
 
 ## Trusted Editors
 
@@ -33,7 +47,7 @@ Trusted editors can use the `/admin/` dashboard to edit pages in the browser. Th
 
 Editor responsibilities:
 
-1. triage public suggestions
+1. triage pending public revisions
 2. avoid publishing factual claims without sources
 3. keep `risk_level: high`, `last_verified`, and a sources section on high-risk pages
 4. request expert review when needed

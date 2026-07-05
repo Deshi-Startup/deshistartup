@@ -25,11 +25,15 @@ function request(body, headers = {}) {
 function validPayload(extra = {}) {
   return {
     kind: 'suggest',
-    pageUrl: 'https://deshi-startup.github.io/deshistartup/trade-license',
-    sourcePath: 'app/(contents)/(bn)/trade-license/page.mdx',
-    section: 'Sources',
-    proposedChange: 'Add the latest official city corporation link.',
-    sourceUrl: 'https://example.gov.bd/service/details',
+    editMode: 'focused',
+    editType: 'copyedit',
+    pageUrl: 'https://deshi-startup.github.io/deshistartup/start-here',
+    sourcePath: 'app/(contents)/(bn)/start-here/page.mdx',
+    section: 'Intro',
+    currentText: 'Old sentence.',
+    proposedChange: 'Better sentence.',
+    proposedContent: '',
+    sourceUrl: '',
     sourceType: 'official',
     contact: '',
     website: '',
@@ -41,9 +45,25 @@ async function withMockedFetch(callback) {
   const originalFetch = globalThis.fetch
   const calls = []
 
-  globalThis.fetch = async (url, init) => {
-    calls.push({ url: String(url), init })
-    return new Response(JSON.stringify({ html_url: 'https://github.com/example/issues/1', number: 1 }), {
+  globalThis.fetch = async (url, init = {}) => {
+    const href = String(url)
+    calls.push({ url: href, init })
+
+    if (href.startsWith('https://raw.githubusercontent.com/')) {
+      return new Response('---\ntitle: Test\n---\n\nOld sentence.\n', {
+        status: 200,
+        headers: { 'Content-Type': 'text/plain' }
+      })
+    }
+
+    if (href.endsWith('/issues')) {
+      return new Response(JSON.stringify({ html_url: 'https://github.com/example/issues/1', number: 1 }), {
+        status: 201,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    }
+
+    return new Response(JSON.stringify({ name: 'label' }), {
       status: 201,
       headers: { 'Content-Type': 'application/json' }
     })
@@ -56,31 +76,82 @@ async function withMockedFetch(callback) {
   }
 }
 
+function createdIssue(calls) {
+  const call = calls.find((entry) => entry.url.endsWith('/issues'))
+  assert.ok(call, 'expected GitHub issue creation call')
+  return JSON.parse(call.init.body)
+}
+
 await withMockedFetch(async (calls) => {
   const response = await worker.fetch(request(validPayload()), baseEnv)
   const body = await response.json()
+  const issue = createdIssue(calls)
 
   assert.equal(response.status, 201)
   assert.equal(body.issueUrl, 'https://github.com/example/issues/1')
-  assert.equal(calls.length, 3)
-
-  const issue = JSON.parse(calls.at(-1).init.body)
-  assert.deepEqual(issue.labels, ['content-suggestion', 'needs-triage'])
+  assert.equal(body.reviewTier, 'low')
+  assert.ok(issue.labels.includes('pending-revision'))
+  assert.ok(issue.labels.includes('risk: low'))
+  assert.ok(issue.labels.includes('fast-track'))
+  assert.ok(!issue.labels.includes('needs-source'))
+  assert.match(issue.body, /## Focused edit diff/)
+  assert.match(issue.body, /-Old sentence\./)
+  assert.match(issue.body, /\+Better sentence\./)
 })
 
 await withMockedFetch(async (calls) => {
-  const response = await worker.fetch(request(validPayload({ kind: 'urgent' })), baseEnv)
+  const response = await worker.fetch(request(validPayload({
+    kind: 'urgent',
+    pageUrl: 'https://deshi-startup.github.io/deshistartup/legal-roadmap',
+    sourcePath: 'app/(contents)/(bn)/legal-roadmap/page.mdx',
+    proposedChange: 'The VAT guidance may be wrong.'
+  })), baseEnv)
+  const issue = createdIssue(calls)
 
   assert.equal(response.status, 201)
-  assert.equal(calls.length, 5)
-  const issue = JSON.parse(calls.at(-1).init.body)
   assert.ok(issue.labels.includes('urgent'))
   assert.ok(issue.labels.includes('risk: high'))
+  assert.ok(issue.labels.includes('protected-page'))
+  assert.ok(issue.labels.includes('needs-expert-review'))
+})
+
+await withMockedFetch(async (calls) => {
+  const sourceDraft = '---\ntitle: Test\n---\n\nBetter source draft.\n'
+  const response = await worker.fetch(request(validPayload({
+    editMode: 'source',
+    editType: 'full_source',
+    pageUrl: 'https://deshi-startup.github.io/deshistartup/start-here',
+    sourcePath: 'app/(contents)/(bn)/start-here/page.mdx',
+    proposedChange: '',
+    proposedContent: sourceDraft,
+    sourceUrl: 'https://example.gov.bd/service/details'
+  })), baseEnv)
+  const issue = createdIssue(calls)
+
+  assert.equal(response.status, 201)
+  assert.ok(issue.labels.includes('pending-revision'))
+  assert.match(issue.body, /## Draft source diff/)
+  assert.match(issue.body, /-Old sentence\./)
+  assert.match(issue.body, /\+Better source draft\./)
+  assert.match(issue.body, /## Full draft source/)
 })
 
 {
   const response = await worker.fetch(request(validPayload({ proposedChange: '' })), baseEnv)
   assert.equal(response.status, 422)
+}
+
+{
+  const response = await worker.fetch(request(validPayload({
+    editType: 'factual',
+    pageUrl: 'https://deshi-startup.github.io/deshistartup/e-tin-vat-bin',
+    sourcePath: 'app/(contents)/(bn)/e-tin-vat-bin/page.mdx',
+    proposedChange: 'VAT threshold is now different.'
+  })), baseEnv)
+  const body = await response.json()
+
+  assert.equal(response.status, 422)
+  assert.match(body.error, /source URL/i)
 }
 
 {
