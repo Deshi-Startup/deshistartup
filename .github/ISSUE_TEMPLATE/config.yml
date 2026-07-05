@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Public no-login suggestion form
+    url: https://deshi-startup.github.io/deshistartup/contribute
+    about: Use the website form if you do not want to use GitHub.

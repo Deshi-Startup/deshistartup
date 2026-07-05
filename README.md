@@ -334,12 +334,12 @@ npm run build
 
 ## How to Contribute
 
-1. Fork the repository.
-2. Clone your fork locally.
-3. Install dependencies with `npm install`.
-4. Run the development server with `npm run dev`.
-5. Make changes in the `app/` directory.
-6. Submit a pull request.
+Most contributors do not need to use GitHub directly:
+
+- Use the page-level **Suggest edit** form for corrections, better wording, and missing sources.
+- Use **Report serious issue** for possible misinformation in legal, tax, VAT, RJSC, employment, payment, privacy, healthtech, import/export, or government incentive content.
+- Trusted editors can use `/admin/` for browser-based editing through Decap CMS.
+- Technical contributors can still fork the repository, edit `app/`, run checks, and submit a pull request.
 
 Good contributions include:
 
@@ -349,6 +349,13 @@ Good contributions include:
 - Expanding a thin page into a practical guide
 - Adding founder scripts, templates, calculators, or examples
 - Flagging legal/tax pages that need professional review
+
+Before opening a pull request, run:
+
+```bash
+npm run content:qa -- --changed --base origin/main
+npm run build
+```
 
 ## Definition of Success
 

@@ -1,0 +1,49 @@
+name: Content suggestion
+description: Suggest a sourced improvement to a guide.
+title: "Content suggestion: "
+labels: ["content-suggestion", "needs-triage"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page URL
+      description: Link to the page that should change.
+    validations:
+      required: true
+  - type: input
+    id: section
+    attributes:
+      label: Section or heading
+      description: Which part of the page is affected?
+  - type: textarea
+    id: change
+    attributes:
+      label: Suggested change
+      description: Write the correction, addition, or clearer wording.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source URL
+      description: Use a deep link to an official or reliable source when the change is factual.
+  - type: dropdown
+    id: source_type
+    attributes:
+      label: Source type
+      options:
+        - Official/government
+        - Ecosystem organization
+        - Research/report
+        - News/media
+        - Founder experience
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: review
+    attributes:
+      label: Review notes
+      options:
+        - label: This may affect legal, tax, regulatory, health, privacy, payment, or personal/company claims.
+        - label: I have included the strongest source I could find.

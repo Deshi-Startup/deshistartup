@@ -8,6 +8,9 @@
     "build": "next build",
     "start": "next start",
     "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true)",
+    "content:qa": "node scripts/content-qa.mjs",
+    "content:qa:all": "node scripts/content-qa.mjs --all --warn-only",
+    "worker:test": "node scripts/test-suggestions-worker.mjs",
     "scrape": "node scripts/scrape.js"
   },
   "dependencies": {

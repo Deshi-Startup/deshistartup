@@ -1,32 +1,103 @@
 ---
 title: "বাংলাদেশের বাজারের তথ্য পরিচ্ছন্নভাবে উদ্ধৃত করার উপায়"
-description: "> **সারকথা:** এই পৃষ্ঠায় বাংলাদেশের বাজারের তথ্য পরিচ্ছন্নভাবে উদ্ধৃত করার উপায় সম্পর্কিত একটি প্রাথমিক গাইড দেওয়া হয়েছে। এই টপিকটি Guide হিসেবে সাজানো হয়েছে। প্রাথমিক অগ্রাধিকার: High."
+description: "বাংলাদেশের market size, internet users, SME data, funding, payment, এবং sector trend লেখার সময় কীভাবে source, date, caveat, এবং citation ব্যবহার করবেন।"
+content_status: "published"
+risk_level: "medium"
+last_verified: "2026-07-05"
 ---
 
 # বাংলাদেশের বাজারের তথ্য পরিচ্ছন্নভাবে উদ্ধৃত করার উপায়
 
-> **সারকথা:** এই পৃষ্ঠায় বাংলাদেশের বাজারের তথ্য পরিচ্ছন্নভাবে উদ্ধৃত করার উপায় সম্পর্কিত একটি প্রাথমিক গাইড দেওয়া হয়েছে। এই টপিকটি Guide হিসেবে সাজানো হয়েছে। প্রাথমিক অগ্রাধিকার: High.
+বাংলাদেশের startup content-এ market data খুব দ্রুত outdated হয়ে যায়। তাই শুধু “বাংলাদেশে X কোটি user আছে” লিখলেই হবে না। কোন source, কোন date, কোন definition, এবং কোন caveat ব্যবহার করা হয়েছে সেটাও দেখাতে হবে।
 
-## এই পৃষ্ঠার উদ্দেশ্য
+## ১. Source hierarchy ব্যবহার করুন
 
-বাংলাদেশের বাজারের তথ্য পরিচ্ছন্নভাবে উদ্ধৃত করার উপায় নিয়ে এই পৃষ্ঠায় একটি প্রাথমিক নির্দেশিকা দেওয়া হয়েছে। এখানে আপনি মূল ধারণা, প্রয়োজনীয় বিবেচনা এবং পরবর্তী ধাপগুলো একসাথে দেখতে পাবেন।
+সব source সমান নয়। একই claim-এর জন্য strongest available source ব্যবহার করুন।
 
-## মূল বিষয়
+| Claim type | আগে কোন source দেখবেন | কখন secondary source ব্যবহার করবেন |
+|---|---|---|
+| GDP, inflation, labour, household data | BBS, Bangladesh Bank, World Bank | ব্যাখ্যা বা comparison দরকার হলে |
+| Mobile, internet, telecom subscriber | BTRC, operator/regulator publication | trend ব্যাখ্যার জন্য research/news |
+| Payment, banking, MFS, remittance | Bangladesh Bank, PSP/MFS circulars, annual reports | market commentary দরকার হলে |
+| Startup funding, ecosystem activity | Startup Bangladesh, BASIS, e-CAB, investor reports | private deal data cross-check করতে |
+| Consumer behaviour, digital adoption | official surveys, DataReportal, reputable research firms | sample/method caveat সহ |
 
-- কন্টেন্ট ধরন: Guide
-- অগ্রাধিকার: High
-- নোট: এই টপিকে আরও বিশদ সংযোজন করা যাবে
+## ২. Claim-এর পাশে citation দিন
 
-## কীভাবে ব্যবহার করবেন
+ভালো citation পাঠককে source খুলে যাচাই করতে সাহায্য করে।
 
-1. প্রথমে এই টপিকের মূল ধারণা বুঝে নিন।
-2. আপনার ক্ষেত্রে প্রযোজ্য অংশগুলো চিহ্নিত করুন।
-3. প্রয়োজনে সংশ্লিষ্ট নিয়ম, লাইসেন্স বা পেমেন্ট বিষয়গুলোও separately যাচাই করুন।
-4. ভবিষ্যতে সম্পূর্ণ লেখা সংস্করণে এই পৃষ্ঠাটি প্রসারিত করা যাবে।
+খারাপ:
+
+> বাংলাদেশের e-commerce market দ্রুত বাড়ছে।
+
+ভালো:
+
+> বাংলাদেশের e-commerce market নিয়ে লিখলে claim-এর পাশে source, period, এবং definition দিন; যেমন B2C order volume, GMV, registered marketplace, বা digital payment volume আলাদা জিনিস।
+
+আরও ভালো:
+
+> “Mobile internet subscriber” লিখলে BTRC যে definition ব্যবহার করেছে সেটি দেখুন, তারপর source link এবং reporting month দিন।
+
+## ৩. Date ছাড়া data লিখবেন না
+
+Market data-তে date claim-এর অংশ। এই format ব্যবহার করুন:
+
+- `Source: Bangladesh Bank, series/page name, checked 2026-07-05`
+- `Source: BTRC subscriber report, reporting month, checked 2026-07-05`
+- `Source: DataReportal Bangladesh report, publication year, checked 2026-07-05`
+
+পৃষ্ঠার frontmatter-এ `last_verified` update করুন যখন page-এর key factual claims যাচাই করা হয়।
+
+## ৪. এক source দিয়ে বড় conclusion টানবেন না
+
+একটি report যদি বলে “internet users increased”, তা থেকে সরাসরি “all founders should build app-first” বলা যাবে না। Data থেকে practical advice বানাতে হলে:
+
+1. source-এর definition পড়ুন
+2. methodology বা sample দেখুন
+3. একই claim official বা independent source দিয়ে cross-check করুন
+4. advice অংশে caveat লিখুন
+
+## ৫. Common mistakes
+
+- homepage link দেওয়া, কিন্তু exact report/notice link না দেওয়া
+- old data-কে current হিসেবে লেখা
+- registered user, active user, subscriber, customer, এবং transaction volume গুলিয়ে ফেলা
+- news article থেকে legal/regulatory truth নেওয়া
+- market size claim-এ currency, year, and methodology না লেখা
+- AI-generated citation যাচাই না করে রাখা
+
+## ৬. Suggested citation format
+
+Markdown-এ:
+
+```md
+Bangladesh Bank-এর economic data page-এ সংশ্লিষ্ট series দেখে claim লিখুন ([Bangladesh Bank Economic Data](https://www.bb.org.bd/en/index.php/econdata/index), checked 2026-07-05)।
+```
+
+Source section-এ:
+
+```md
+## প্রাসঙ্গিক সূত্র
+
+- [Bangladesh Bank Economic Data](https://www.bb.org.bd/en/index.php/econdata/index)
+- [World Bank Data: Bangladesh](https://data.worldbank.org/country/bangladesh)
+```
+
+## Editorial checklist
+
+Publish করার আগে নিশ্চিত করুন:
+
+- factual claim-এর source আছে
+- source link exact বা যতটা সম্ভব deep
+- data-এর year/month আছে
+- source type বুঝতে পারা যায়
+- high-risk content হলে official source ব্যবহার করা হয়েছে
+- AI citation থাকলে manually checked
 
 ## প্রাসঙ্গিক সূত্র
-- [Anchorless Bangladesh](https://www.anchorless.vc)
-- [BASIS](https://www.basis.org.bd)
-- [Business Inspection BD](https://businessinspection.com.bd)
-- [DataReportal](https://datareportal.com/reports/?tag=Bangladesh)
-- [LightCastle Partners](https://www.lightcastlebd.com)
+
+- [Bangladesh Bank Economic Data](https://www.bb.org.bd/en/index.php/econdata/index)
+- [World Bank Data: Bangladesh](https://data.worldbank.org/country/bangladesh)
+- [DataReportal Bangladesh Reports](https://datareportal.com/reports/?tag=Bangladesh)
+- [Wikipedia Verifiability](https://en.wikipedia.org/wiki/Wikipedia:Verifiability)
+- [Wikipedia Citing Sources](https://en.wikipedia.org/wiki/Wikipedia:Citing_sources)

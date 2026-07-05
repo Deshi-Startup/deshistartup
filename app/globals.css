@@ -51,7 +51,9 @@ a:hover {
 }
 
 button,
-input {
+input,
+select,
+textarea {
   font: inherit;
 }
 
@@ -341,6 +343,187 @@ input {
   gap: 28px;
   padding-bottom: 12px;
   font-size: .94rem;
+}
+
+.contribution-actions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 18px;
+}
+
+.link-button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.link-button:hover {
+  color: var(--blue-hover);
+  text-decoration: underline;
+}
+
+.link-button--urgent {
+  color: #b42318;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  background: rgb(32 33 34 / 46%);
+  padding: 24px;
+}
+
+.contribution-modal {
+  width: min(720px, 100%);
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  box-shadow: var(--shadow);
+}
+
+.contribution-modal__header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  border-bottom: 1px solid var(--line);
+  padding: 22px 24px 18px;
+}
+
+.contribution-modal__header h2 {
+  margin: 0 0 8px;
+  border: 0;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 1.28rem;
+}
+
+.contribution-modal__header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.modal-close {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: #f8f9fa;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.contribution-form {
+  display: grid;
+  gap: 16px;
+  padding: 22px 24px 24px;
+}
+
+.contribution-form label,
+.turnstile-field {
+  display: grid;
+  gap: 7px;
+}
+
+.contribution-form span,
+.turnstile-field span {
+  color: var(--muted);
+  font-size: .88rem;
+  font-weight: 800;
+}
+
+.contribution-form input,
+.contribution-form select,
+.contribution-form textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: #fff;
+  padding: 10px 12px;
+  color: var(--ink);
+}
+
+.contribution-form textarea {
+  resize: vertical;
+}
+
+.contribution-form input:focus,
+.contribution-form select:focus,
+.contribution-form textarea:focus {
+  border-color: var(--green);
+  outline: 0;
+  box-shadow: inset 0 0 0 1px var(--green);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 14px;
+}
+
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-status {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--green);
+  background: var(--green-soft);
+  padding: 10px 12px;
+  color: var(--green-deep);
+}
+
+.form-status.is-error {
+  border-left-color: #b42318;
+  background: #fff1f0;
+  color: #912018;
+}
+
+.contribution-form__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.primary-button,
+.secondary-button {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.primary-button {
+  border-color: var(--green-deep);
+  background: var(--green-deep);
+  color: #fff;
+}
+
+.primary-button:disabled {
+  cursor: wait;
+  opacity: .64;
+}
+
+.secondary-button {
+  background: #f8f9fa;
+  color: var(--ink);
 }
 
 .article {
@@ -867,6 +1050,13 @@ pre code {
     display: none;
   }
 
+  .article-actions.contribution-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 14px;
+    padding-bottom: 10px;
+  }
+
   .article {
     width: 100%;
     max-width: 100vw;
@@ -897,6 +1087,30 @@ pre code {
 
   .site-footer {
     padding: 22px 18px 28px;
+  }
+
+  .modal-backdrop {
+    align-items: start;
+    padding: 14px;
+  }
+
+  .contribution-modal__header,
+  .contribution-form {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contribution-form__footer {
+    flex-direction: column-reverse;
+  }
+
+  .primary-button,
+  .secondary-button {
+    width: 100%;
   }
 }
 

@@ -1,0 +1,71 @@
+---
+title: "সম্পাদকীয় নীতি"
+description: "দেশি স্টার্টআপের citation, editing, review, risk-tier, correction, এবং AI ব্যবহারের নীতি।"
+content_status: "published"
+risk_level: "low"
+last_verified: "2026-07-05"
+---
+
+# সম্পাদকীয় নীতি
+
+দেশি স্টার্টআপে বিশ্বাস তৈরি হবে তিন জিনিস দিয়ে: verified sources, transparent history, এবং দ্রুত correction। আমরা Wikipedia-এর verifiability model থেকে শিখি, কিন্তু ছোট দলের জন্য workflow সহজ রাখি।
+
+## মূল নিয়ম
+
+1. **যাচাইযোগ্যতা আগে।** পাঠক যেন claim-এর source খুলে দেখতে পারেন।
+2. **Official source আগে।** আইন, কর, নিবন্ধন, payment, বা government programme-এ official/primary source ব্যবহার করুন।
+3. **No source, no high-risk claim.** high-risk claim source ছাড়া publish করা যাবে না।
+4. **Neutral language.** কোনো প্রতিষ্ঠান, ব্যক্তি, tool বা programme নিয়ে অতিরঞ্জিত promotion নয়।
+5. **Correction fast.** গুরুতর ভুল report হলে আগে triage, তারপর দ্রুত correction বা warning note।
+
+## Risk tiers
+
+| Risk | উদাহরণ | Publish rule |
+|---|---|---|
+| Low | বানান, flow, founder mindset, general checklist | একজন editor review যথেষ্ট |
+| Medium | market data, ecosystem list, funding/programme details | source required; outdated হলে update |
+| High | legal, tax, VAT, RJSC, employment, fintech, healthtech, privacy, import/export, government incentives | official/reputable source, `last_verified`, এবং editor/expert signoff |
+
+## Review workflow
+
+1. **Suggestion:** user website form বা GitHub issue দিয়ে প্রস্তাব পাঠায়।
+2. **Triage:** editor `accept`, `needs source`, `needs expert`, `reject`, বা `duplicate` হিসেবে mark করে।
+3. **Draft:** accepted change Decap CMS বা pull request-এ যায়।
+4. **Checks:** content QA, build, citation review।
+5. **Publish:** reviewer approval ছাড়া `main` branch-এ merge নয়।
+6. **History:** GitHub commit history public audit trail হিসেবে থাকে।
+
+## Citation rules
+
+- factual claim-এর পাশে inline link দিন, অথবা same section/source section-এ clear reference দিন।
+- official portals, gazette/rules, regulator notices, annual reports, recognized research reports, এবং primary data আগে ব্যবহার করুন।
+- blog, news, or founder experience ব্যবহার করা যায়, কিন্তু legal/tax/regulatory truth-এর replacement নয়।
+- source link homepage নয়; সম্ভব হলে exact notice/report/service page দিন।
+- source দেখার date যদি গুরুত্বপূর্ণ হয়, `last_verified` frontmatter update করুন।
+
+## AI ব্যবহার
+
+AI draft, compare, translate, summarize, বা checklist বানাতে সাহায্য করতে পারে। AI কখনো source নয়, reviewer নয়, approval নয়।
+
+AI-assisted change publish করার আগে মানুষকে:
+
+- source খুলে claim মিলাতে হবে
+- high-risk content আলাদা করে review করতে হবে
+- fabricated citation আছে কিনা দেখতে হবে
+
+## Correction policy
+
+গুরুতর ভুল নিশ্চিত হলে:
+
+1. affected claim edit বা remove করুন
+2. source update করুন
+3. দরকার হলে page-এ warning note দিন
+4. issue/PR-এ কী বদলেছে লিখুন
+
+## প্রাসঙ্গিক সূত্র
+
+- [Wikipedia Neutral Point of View](https://en.wikipedia.org/wiki/Wikipedia:Neutral_point_of_view)
+- [Wikipedia No Original Research](https://en.wikipedia.org/wiki/Wikipedia:No_original_research)
+- [Wikipedia Citing Sources](https://en.wikipedia.org/wiki/Wikipedia:Citing_sources)
+- [Wikipedia Recent Changes](https://en.wikipedia.org/wiki/Help:Recent_changes)
+- [GitHub protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)

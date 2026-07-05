@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Deshi Startup Editor</title>
+  </head>
+  <body>
+    <script>
+      window.CMS_MANUAL_INIT = true
+    </script>
+    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+    <script>
+      const basePath = window.location.pathname.replace(/\/admin\/?$/, '')
+      window.CMS.init({
+        config: {
+          load_config_file: basePath + '/admin/config.yml'
+        }
+      })
+    </script>
+  </body>
+</html>

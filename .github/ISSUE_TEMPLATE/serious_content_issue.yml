@@ -1,0 +1,49 @@
+name: Serious content issue
+description: Report possible misinformation or a high-risk error.
+title: "Serious content issue: "
+labels: ["content-suggestion", "needs-triage", "urgent", "risk: high"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page URL
+    validations:
+      required: true
+  - type: input
+    id: section
+    attributes:
+      label: Section or heading
+  - type: textarea
+    id: issue
+    attributes:
+      label: What is wrong?
+      description: Explain the claim, why it is risky, and what should be checked.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Correct source URL
+      description: Official source preferred.
+  - type: dropdown
+    id: risk_area
+    attributes:
+      label: Risk area
+      options:
+        - Legal/RJSC
+        - Tax/VAT/NBR
+        - Employment/labor
+        - Fintech/payment/banking
+        - Healthtech/privacy
+        - Import/export/government incentive
+        - Market data/company/person claim
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: review
+    attributes:
+      label: Review needed
+      options:
+        - label: This should not be published until an editor or domain expert checks it.
+          required: true

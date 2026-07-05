@@ -1,0 +1,39 @@
+name: Expert review
+description: Offer expert review for a high-risk or specialist page.
+title: "Expert review: "
+labels: ["expert-review", "needs-triage"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page URL or topic
+    validations:
+      required: true
+  - type: dropdown
+    id: expertise
+    attributes:
+      label: Expertise area
+      options:
+        - Legal/RJSC
+        - Tax/VAT/NBR
+        - Employment/labor
+        - Fintech/payment/banking
+        - Healthtech/privacy
+        - Import/export/government incentive
+        - Startup funding
+        - Market research
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Review notes
+      description: Mention the claims you checked, sources used, and any caveats.
+    validations:
+      required: true
+  - type: input
+    id: credential
+    attributes:
+      label: Public credential or affiliation
+      description: Optional, but useful for maintainer confidence.

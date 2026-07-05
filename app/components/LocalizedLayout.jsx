@@ -2,8 +2,11 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import ContributionWidget from './ContributionWidget'
 import LanguageSwitcher from './LanguageSwitcher'
 import SearchBox from './SearchBox'
+
+const REPO_URL = 'https://github.com/Deshi-Startup/deshistartup'
 
 const bnNav = [
   ['/', 'প্রধান পাতা'],
@@ -50,6 +53,21 @@ function localHref(href) {
   return `${basePath}${href}`
 }
 
+function encodeGitHubPath(sourcePath) {
+  return sourcePath.split('/').map((part) => encodeURIComponent(part)).join('/')
+}
+
+function getContentSourcePath(pathname) {
+  const cleanPath = (pathname || '/').replace(/\/+$/, '') || '/'
+  const isEn = cleanPath === '/en' || cleanPath.startsWith('/en/')
+  const contentRoot = isEn ? 'app/(contents)/en' : 'app/(contents)/(bn)'
+  const slug = isEn
+    ? cleanPath.replace(/^\/en\/?/, '').replace(/^\/+|\/+$/g, '')
+    : cleanPath.replace(/^\/+|\/+$/g, '')
+
+  return slug ? `${contentRoot}/${slug}/page.mdx` : `${contentRoot}/page.mdx`
+}
+
 function SiteLogo({ isEn }) {
   return (
     <a className="brand" href={localHref(isEn ? '/en' : '/')} aria-label={isEn ? 'Deshi Startup home' : 'দেশি স্টার্টআপ হোম'}>
@@ -62,7 +80,7 @@ function SiteLogo({ isEn }) {
   )
 }
 
-function Sidebar({ isEn, headings }) {
+function Sidebar({ isEn, headings, adminUrl, historyUrl, sourceFileUrl }) {
   const nav = isEn ? enNav : bnNav
 
   return (
@@ -83,14 +101,26 @@ function Sidebar({ isEn, headings }) {
         )}
 
         <p>{isEn ? 'Tools' : 'অবদান'}</p>
+        <a href={localHref(isEn ? '/en/contribute' : '/contribute')}>
+          {isEn ? 'How to contribute' : 'কীভাবে অবদান রাখবেন'}
+        </a>
+        <a href={localHref(isEn ? '/en/editorial-policy' : '/editorial-policy')}>
+          {isEn ? 'Editorial policy' : 'সম্পাদকীয় নীতি'}
+        </a>
+        <a href={adminUrl}>
+          {isEn ? 'Editor dashboard' : 'সম্পাদক ড্যাশবোর্ড'}
+        </a>
+        <a href={historyUrl} target="_blank" rel="noopener noreferrer">
+          {isEn ? 'Page history' : 'পাতার ইতিহাস'}
+        </a>
+        <a href={sourceFileUrl} target="_blank" rel="noopener noreferrer">
+          {isEn ? 'Page source' : 'পাতার সোর্স'}
+        </a>
         <a href="https://github.com/Deshi-Startup/deshistartup" target="_blank" rel="noopener noreferrer">
           GitHub
         </a>
         <a href="https://github.com/Deshi-Startup/deshistartup/issues" target="_blank" rel="noopener noreferrer">
           {isEn ? 'Report an issue' : 'ভুল জানান'}
-        </a>
-        <a href="https://github.com/Deshi-Startup/deshistartup/tree/main" target="_blank" rel="noopener noreferrer">
-          {isEn ? 'Improve this guide' : 'গাইডে অবদান রাখুন'}
         </a>
       </nav>
     </aside>
@@ -100,14 +130,32 @@ function Sidebar({ isEn, headings }) {
 export default function LocalizedLayout({ children }) {
   const pathname = usePathname()
   const isEn = pathname.startsWith('/en/') || pathname === '/en'
+  const isAdmin = pathname === '/admin' || pathname.startsWith('/admin/')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [headings, setHeadings] = useState([])
+  const [pageUrl, setPageUrl] = useState(pathname)
+
+  const sourcePath = useMemo(() => getContentSourcePath(pathname), [pathname])
+  const encodedSourcePath = useMemo(() => encodeGitHubPath(sourcePath), [sourcePath])
+  const sourceFileUrl = `${REPO_URL}/blob/main/${encodedSourcePath}`
+  const historyUrl = `${REPO_URL}/commits/main/${encodedSourcePath}`
+  const adminUrl = localHref('/admin/')
 
   useEffect(() => {
+    if (isAdmin) return
     document.documentElement.lang = isEn ? 'en' : 'bn'
-  }, [isEn])
+  }, [isEn, isAdmin])
 
   useEffect(() => {
+    setPageUrl(window.location.href)
+  }, [pathname])
+
+  useEffect(() => {
+    if (isAdmin) {
+      setHeadings([])
+      return
+    }
+
     setIsSidebarOpen(false)
 
     const slugify = (value) =>
@@ -131,15 +179,19 @@ export default function LocalizedLayout({ children }) {
       })
 
     setHeadings(nextHeadings)
-  }, [pathname, isEn])
+  }, [pathname, isEn, isAdmin])
 
   const tabs = useMemo(
     () =>
       isEn
-        ? { article: 'Article', talk: 'Talk', read: 'Read', edit: 'Edit', history: 'View history' }
-        : { article: 'গাইড', talk: 'আলোচনা', read: 'পড়ুন', edit: 'সংশোধন', history: 'ইতিহাস' },
+        ? { article: 'Article', talk: 'Talk', read: 'Read', edit: 'Edit', history: 'View history', contribute: 'Contribute' }
+        : { article: 'গাইড', talk: 'আলোচনা', read: 'পড়ুন', edit: 'সংশোধন', history: 'ইতিহাস', contribute: 'অবদান' },
     [isEn]
   )
+
+  if (isAdmin) {
+    return children
+  }
 
   const shell = (
     <>
@@ -165,10 +217,13 @@ export default function LocalizedLayout({ children }) {
 
           <nav className="top-actions" aria-label={isEn ? 'Page actions' : 'পৃষ্ঠা কাজ'}>
             <a href="#read">{tabs.read}</a>
-            <a href="https://github.com/Deshi-Startup/deshistartup" target="_blank" rel="noopener noreferrer">
+            <a href={localHref(isEn ? '/en/contribute' : '/contribute')}>
+              {tabs.contribute}
+            </a>
+            <a href={adminUrl}>
               {tabs.edit}
             </a>
-            <a href="https://github.com/Deshi-Startup/deshistartup/commits/main" target="_blank" rel="noopener noreferrer">
+            <a href={historyUrl} target="_blank" rel="noopener noreferrer">
               {tabs.history}
             </a>
             <LanguageSwitcher />
@@ -179,7 +234,7 @@ export default function LocalizedLayout({ children }) {
       <div className="page-shell">
         <div className={isSidebarOpen ? 'sidebar-backdrop is-open' : 'sidebar-backdrop'} onClick={() => setIsSidebarOpen(false)} />
         <div className={isSidebarOpen ? 'sidebar-wrap is-open' : 'sidebar-wrap'}>
-          <Sidebar isEn={isEn} headings={headings} />
+          <Sidebar isEn={isEn} headings={headings} adminUrl={adminUrl} historyUrl={historyUrl} sourceFileUrl={sourceFileUrl} />
         </div>
 
         <main className="content-canvas" id="main">
@@ -188,11 +243,14 @@ export default function LocalizedLayout({ children }) {
               <button className="tab active" type="button">{tabs.article}</button>
               <button className="tab" type="button">{tabs.talk}</button>
             </div>
-            <div className="article-actions">
-              <a href="#read">{tabs.read}</a>
-              <a href="https://github.com/Deshi-Startup/deshistartup" target="_blank" rel="noopener noreferrer">{tabs.edit}</a>
-              <a href="https://github.com/Deshi-Startup/deshistartup/commits/main" target="_blank" rel="noopener noreferrer">{tabs.history}</a>
-            </div>
+            <ContributionWidget
+              isEn={isEn}
+              pageUrl={pageUrl}
+              sourcePath={sourcePath}
+              adminUrl={adminUrl}
+              historyUrl={historyUrl}
+              sourceFileUrl={sourceFileUrl}
+            />
           </div>
 
           <article className="article" data-pagefind-body>

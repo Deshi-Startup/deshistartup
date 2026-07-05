@@ -1,0 +1,106 @@
+backend:
+  name: github
+  repo: Deshi-Startup/deshistartup
+  branch: main
+
+publish_mode: editorial_workflow
+local_backend: true
+media_folder: public/uploads
+public_folder: /uploads
+
+site_url: https://deshi-startup.github.io/deshistartup
+display_url: https://deshi-startup.github.io/deshistartup
+logo_url: /deshistartup/deshi-mark.svg
+
+collections:
+  - name: bangla_guides
+    label: Bangla guides
+    label_singular: Bangla guide
+    folder: "app/(contents)/(bn)"
+    create: true
+    extension: mdx
+    format: frontmatter
+    editor:
+      preview: false
+    nested:
+      depth: 8
+      summary: "{{title}}"
+      subfolders: true
+    meta:
+      path:
+        widget: string
+        label: Route path
+        index_file: page
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text }
+      - label: Content status
+        name: content_status
+        widget: select
+        required: false
+        default: draft
+        options:
+          - { label: Draft, value: draft }
+          - { label: Needs source, value: needs-source }
+          - { label: Needs expert review, value: needs-expert-review }
+          - { label: Reviewed, value: reviewed }
+          - { label: Published, value: published }
+      - label: Risk level
+        name: risk_level
+        widget: select
+        required: false
+        default: low
+        options:
+          - { label: Low, value: low }
+          - { label: Medium, value: medium }
+          - { label: High, value: high }
+      - { label: Last verified, name: last_verified, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false }
+      - { label: Review owner, name: review_owner, widget: string, required: false }
+      - { label: Expert reviewed, name: expert_reviewed, widget: boolean, required: false, default: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: english_guides
+    label: English guides
+    label_singular: English guide
+    folder: "app/(contents)/en"
+    create: true
+    extension: mdx
+    format: frontmatter
+    editor:
+      preview: false
+    nested:
+      depth: 8
+      summary: "{{title}}"
+      subfolders: true
+    meta:
+      path:
+        widget: string
+        label: Route path
+        index_file: page
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text }
+      - label: Content status
+        name: content_status
+        widget: select
+        required: false
+        default: draft
+        options:
+          - { label: Draft, value: draft }
+          - { label: Needs source, value: needs-source }
+          - { label: Needs expert review, value: needs-expert-review }
+          - { label: Reviewed, value: reviewed }
+          - { label: Published, value: published }
+      - label: Risk level
+        name: risk_level
+        widget: select
+        required: false
+        default: low
+        options:
+          - { label: Low, value: low }
+          - { label: Medium, value: medium }
+          - { label: High, value: high }
+      - { label: Last verified, name: last_verified, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false }
+      - { label: Review owner, name: review_owner, widget: string, required: false }
+      - { label: Expert reviewed, name: expert_reviewed, widget: boolean, required: false, default: false }
+      - { label: Body, name: body, widget: markdown }
