@@ -9,6 +9,7 @@
     "start": "wrangler dev --config dist/server/wrangler.json",
     "content:qa": "node scripts/content-qa.mjs",
     "content:qa:all": "node scripts/content-qa.mjs --all --warn-only",
+    "oauth:test": "node scripts/test-decap-oauth-worker.mjs",
     "worker:test": "node scripts/test-suggestions-worker.mjs",
     "scrape": "node scripts/scrape.js",
     "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true) || true",

@@ -3,6 +3,7 @@ out/
 .next/
 _pagefind/
 *.log
+workers/*/wrangler.toml
 knowledge-bank/
 context/
 /dist/

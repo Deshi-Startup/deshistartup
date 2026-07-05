@@ -2,6 +2,10 @@ backend:
   name: github
   repo: Deshi-Startup/deshistartup
   branch: main
+  # Production login requires the OAuth Worker in workers/decap-oauth.
+  # After deployment, uncomment and set:
+  # base_url: https://your-decap-oauth-worker.example.com
+  # auth_endpoint: auth
 
 publish_mode: editorial_workflow
 local_backend: true

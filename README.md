@@ -332,6 +332,18 @@ Build the static site:
 npm run build
 ```
 
+## CMS and Contribution Infrastructure
+
+Decap CMS is available at `/admin/`, but production login needs a deployed OAuth proxy:
+
+1. Create a GitHub OAuth App for `Deshi Startup CMS`.
+2. Deploy `workers/decap-oauth` to Cloudflare Workers.
+3. Set the Worker secrets described in `workers/decap-oauth/README.md`.
+4. Add the deployed Worker URL as `backend.base_url` in `public/admin/config.yml`.
+5. Keep trusted editors on GitHub with branch protection and required checks for `main`.
+
+The public no-login suggestion form uses a separate Cloudflare Worker in `workers/suggestions`. It creates GitHub issues for editor triage and should use its own GitHub token, Turnstile secret, allowed origins, and rate limiting.
+
 ## How to Contribute
 
 Most contributors do not need to use GitHub directly:

@@ -1,0 +1,17 @@
+name = "deshi-startup-decap-oauth"
+main = "src/index.js"
+compatibility_date = "2026-07-05"
+
+[vars]
+# Origin where /admin runs. For GitHub Pages this is the origin only, without /deshistartup.
+SITE_ORIGIN = "https://deshi-startup.github.io"
+ALLOWED_ORIGINS = "https://deshi-startup.github.io"
+ALLOWED_SITE_IDS = "deshi-startup.github.io"
+
+# Optional. Set only if the GitHub OAuth callback URL is not the Worker origin plus /callback.
+# OAUTH_CALLBACK_URL = "https://cms-auth.example.com/callback"
+
+# Set these with Wrangler secrets, not in this file:
+# npx wrangler secret put GITHUB_OAUTH_CLIENT_ID
+# npx wrangler secret put GITHUB_OAUTH_CLIENT_SECRET
+# npx wrangler secret put OAUTH_STATE_SECRET
