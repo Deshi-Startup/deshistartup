@@ -379,6 +379,61 @@ textarea {
   color: #b42318;
 }
 
+.visual-edit-bar {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  left: 24px;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  max-width: 780px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--green);
+  background: #fff;
+  box-shadow: var(--shadow);
+  padding: 12px 14px;
+}
+
+.visual-edit-bar strong {
+  white-space: nowrap;
+}
+
+.visual-edit-bar span {
+  min-width: 0;
+  flex: 1;
+  color: var(--muted);
+  font-size: .9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.article.is-visual-editing a {
+  pointer-events: none;
+}
+
+.visual-edit-block {
+  position: relative;
+  border-radius: 3px;
+  outline: 1px dashed rgb(4 120 87 / 34%);
+  outline-offset: 4px;
+  cursor: text;
+}
+
+.visual-edit-block:focus {
+  outline: 2px solid var(--green);
+  background: #f6fbf8;
+}
+
+.visual-edit-block.is-changed {
+  background: #fff8df;
+  outline-color: #e1b900;
+}
+
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -1189,6 +1244,24 @@ pre code {
   .primary-button,
   .secondary-button {
     width: 100%;
+  }
+
+  .visual-edit-bar {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .visual-edit-bar span {
+    flex-basis: 100%;
+    order: 2;
+  }
+
+  .visual-edit-bar .primary-button,
+  .visual-edit-bar .secondary-button {
+    width: auto;
   }
 }
 

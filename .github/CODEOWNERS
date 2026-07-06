@@ -1,0 +1,27 @@
+# Replace these teams if your GitHub organization uses different names.
+# Branch protection can require CODEOWNER approval before merge.
+
+* @Deshi-Startup/deshistartup-maintainers
+
+app/(contents)/(bn)/** @Deshi-Startup/deshistartup-editors
+app/(contents)/en/** @Deshi-Startup/deshistartup-editors
+public/admin/config.yml @Deshi-Startup/deshistartup-maintainers
+workers/** @Deshi-Startup/deshistartup-maintainers
+scripts/content-qa.mjs @Deshi-Startup/deshistartup-maintainers
+
+# Protected/high-risk editorial areas.
+app/(contents)/**/legal*/** @Deshi-Startup/deshistartup-editors @Deshi-Startup/legal-reviewers
+app/(contents)/**/rjsc*/** @Deshi-Startup/deshistartup-editors @Deshi-Startup/legal-reviewers
+app/(contents)/**/registration/** @Deshi-Startup/deshistartup-editors @Deshi-Startup/legal-reviewers
+app/(contents)/**/trade-license/** @Deshi-Startup/deshistartup-editors @Deshi-Startup/legal-reviewers
+app/(contents)/**/e-tin*/** @Deshi-Startup/deshistartup-editors @Deshi-Startup/tax-reviewers
+app/(contents)/**/vat*/** @Deshi-Startup/deshistartup-editors @Deshi-Startup/tax-reviewers
+app/(contents)/**/tax*/** @Deshi-Startup/deshistartup-editors @Deshi-Startup/tax-reviewers
+app/(contents)/**/payments/** @Deshi-Startup/deshistartup-editors @Deshi-Startup/fintech-reviewers
+app/(contents)/**/payment*/** @Deshi-Startup/deshistartup-editors @Deshi-Startup/fintech-reviewers
+app/(contents)/**/bank*/** @Deshi-Startup/deshistartup-editors @Deshi-Startup/fintech-reviewers
+app/(contents)/**/employment*/** @Deshi-Startup/deshistartup-editors @Deshi-Startup/hr-reviewers
+app/(contents)/**/labor*/** @Deshi-Startup/deshistartup-editors @Deshi-Startup/hr-reviewers
+app/(contents)/**/privacy*/** @Deshi-Startup/deshistartup-editors @Deshi-Startup/legal-reviewers
+app/(contents)/**/import*/** @Deshi-Startup/deshistartup-editors @Deshi-Startup/trade-reviewers
+app/(contents)/**/export*/** @Deshi-Startup/deshistartup-editors @Deshi-Startup/trade-reviewers

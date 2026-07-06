@@ -9,13 +9,18 @@ const warnOnly = args.includes('--warn-only')
 const baseIndex = args.indexOf('--base')
 const baseRef = baseIndex >= 0 ? args[baseIndex + 1] : 'origin/main'
 const maxMessages = 120
+const staleVerificationDays = 180
 
 const contentRoot = 'app/(contents)'
+const validRiskLevels = new Set(['low', 'medium', 'high'])
+const validContentStatuses = new Set(['draft', 'needs-source', 'needs-expert-review', 'reviewed', 'published', 'stale'])
 const englishHighRiskPattern = /\b(?:legal|law|tax|vat|bin|tin|rjsc|labo[u]?r|employment|employee|fintech|healthtech|privacy|imports?|exports?|compliance|regulat\w*|licen[cs]es?|payments?|banks?)\b/i
 const banglaHighRiskPattern = /(?:নিবন্ধন|কর|ভ্যাট|আইন|লাইসেন্স|পেমেন্ট|ব্যাংক|আমদানি|রপ্তানি)/
 const sourceHeadingPattern = /^##\s*(?:প্রাসঙ্গিক সূত্র|Relevant Sources|Sources|সূত্র)\s*$/im
 const markdownLinkPattern = /\[[^\]]+\]\((https?:\/\/[^)\s]+)\)/g
 const reputableDomainPattern = /(?:^|\.)((gov\.bd)|(org\.bd)|(edu\.bd)|(nbr\.gov\.bd)|(rjsc\.gov\.bd)|(bb\.org\.bd)|(bida\.gov\.bd)|(ossbida\.gov\.bd)|(laws\.gov\.bd)|(bangladeshtradeportal\.gov\.bd)|(epb\.gov\.bd)|(btrc\.gov\.bd)|(basis\.org\.bd)|(e-cab\.net)|(startupbangladesh\.vc)|(worldbank\.org)|(unctad\.org)|(imf\.org)|(adb\.org)|(datareportal\.com))$/i
+const citationNeededPattern = /(?:\[citation needed\]|\{\{\s*citation needed\s*\}\}|সূত্র প্রয়োজন|সূত্র দরকার)/i
+const isoDatePattern = /^\d{4}-\d{2}-\d{2}$/
 
 function runGit(argsToRun) {
   try {
@@ -103,6 +108,15 @@ function hasHighRiskTerms(value) {
   return englishHighRiskPattern.test(value) || banglaHighRiskPattern.test(value)
 }
 
+function verificationAgeDays(value) {
+  if (!isoDatePattern.test(value || '')) return null
+
+  const verified = new Date(`${value}T00:00:00Z`)
+  if (Number.isNaN(verified.getTime())) return null
+
+  return Math.floor((Date.now() - verified.getTime()) / 86_400_000)
+}
+
 function checkFile(file) {
   const text = readFileSync(file, 'utf8')
   const { data } = parseFrontmatter(text)
@@ -117,6 +131,16 @@ function checkFile(file) {
     errors.push('missing frontmatter description')
   }
 
+  if (!data.content_status) {
+    warnings.push('content_status is not set')
+  } else if (!validContentStatuses.has(data.content_status)) {
+    errors.push(`content_status must be one of: ${[...validContentStatuses].join(', ')}`)
+  }
+
+  if (data.risk_level && !validRiskLevels.has(data.risk_level)) {
+    errors.push('risk_level must be low, medium, or high')
+  }
+
   const highRisk = isHighRisk(file, data)
 
   if (highRisk) {
@@ -126,6 +150,13 @@ function checkFile(file) {
 
     if (!data.last_verified) {
       errors.push('high-risk page must include last_verified')
+    } else if (!isoDatePattern.test(data.last_verified)) {
+      errors.push('last_verified must use YYYY-MM-DD format')
+    } else {
+      const ageDays = verificationAgeDays(data.last_verified)
+      if (ageDays !== null && ageDays > staleVerificationDays) {
+        warnings.push(`high-risk page last_verified is ${ageDays} days old`)
+      }
     }
 
     if (!sourceHeadingPattern.test(text)) {
@@ -135,6 +166,10 @@ function checkFile(file) {
     if (!hasReputableDeepSource(text)) {
       errors.push('high-risk page must include at least one deep official or reputable source link')
     }
+
+    if (data.expert_reviewed !== 'true') {
+      warnings.push('high-risk page should include expert_reviewed: true after domain review')
+    }
   } else if (!data.risk_level) {
     warnings.push('risk_level is not set')
   } else if (data.risk_level !== 'high' && (hasHighRiskTerms(file) || hasHighRiskTerms(`${data.title || ''} ${data.description || ''}`))) {
@@ -143,6 +178,15 @@ function checkFile(file) {
 
   if (data.risk_level === 'medium' && !sourceHeadingPattern.test(text)) {
     warnings.push('medium-risk page should include a sources section')
+  }
+
+  if (citationNeededPattern.test(text)) {
+    const message = 'page contains a citation-needed marker'
+    if (highRisk) {
+      errors.push(message)
+    } else {
+      warnings.push(message)
+    }
   }
 
   return { file, errors, warnings }

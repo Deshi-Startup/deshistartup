@@ -19,6 +19,37 @@ const initialForm = {
   website: ''
 }
 
+const EDITABLE_BLOCK_SELECTOR = 'h1, h2, h3, p, li, td, th, blockquote'
+const MAX_VISUAL_FIELD_LENGTH = 3800
+
+function normalizeEditableText(value) {
+  return String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim()
+}
+
+function trimForReviewQueue(value) {
+  const text = String(value || '').trim()
+  if (text.length <= MAX_VISUAL_FIELD_LENGTH) return text
+  return `${text.slice(0, MAX_VISUAL_FIELD_LENGTH)}\n\n[trimmed for review queue]`
+}
+
+function closestSectionLabel(element, fallback) {
+  if (!element) return fallback
+  if (/^H[1-3]$/i.test(element.tagName)) {
+    return normalizeEditableText(element.innerText) || fallback
+  }
+
+  let previous = element.previousElementSibling
+  while (previous) {
+    if (/^H[1-3]$/i.test(previous.tagName)) {
+      return normalizeEditableText(previous.innerText) || fallback
+    }
+    previous = previous.previousElementSibling
+  }
+
+  const heading = element.closest('section')?.querySelector('h1, h2, h3')
+  return normalizeEditableText(heading?.innerText) || fallback
+}
+
 function createGitHubIssueUrl({ kind, pageUrl, sourcePath, form }) {
   const urgent = kind === 'urgent'
   const title = urgent
@@ -67,6 +98,12 @@ function getCopy(isEn, kind) {
       edit: 'Editor dashboard',
       history: 'History',
       source: 'Source',
+      visualEditing: 'Editing page',
+      reviewVisual: 'Review edits',
+      cancelVisual: 'Cancel',
+      noVisualChanges: 'No changes yet.',
+      visualReady: 'Select text on the page and type your changes.',
+      changedCount: (count) => `${count} changed`,
       title: urgent ? 'Report a serious issue' : 'Submit a pending edit',
       intro: urgent
         ? 'Use this for possible misinformation, legal/tax errors, outdated rules, or anything that could mislead founders.'
@@ -130,6 +167,12 @@ function getCopy(isEn, kind) {
     edit: 'সম্পাদক ড্যাশবোর্ড',
     history: 'ইতিহাস',
     source: 'সোর্স',
+    visualEditing: 'পাতা সম্পাদনা',
+    reviewVisual: 'রিভিউতে পাঠান',
+    cancelVisual: 'বাতিল',
+    noVisualChanges: 'এখনও কোনো পরিবর্তন নেই।',
+    visualReady: 'পাতার লেখায় ক্লিক করে পরিবর্তন লিখুন।',
+    changedCount: (count) => `${count}টি পরিবর্তন`,
     title: urgent ? 'গুরুতর সমস্যা জানান' : 'রিভিউর জন্য সম্পাদনা পাঠান',
     intro: urgent
       ? 'ভুল তথ্য, আইন/কর বিষয়ক ভুল, পুরোনো নিয়ম, বা উদ্যোক্তাদের বিভ্রান্ত করতে পারে এমন কিছু দেখলে এখানে জানান।'
@@ -196,19 +239,31 @@ export default function ContributionWidget({ isEn, pageUrl, sourcePath, adminUrl
   const [loadedSourceText, setLoadedSourceText] = useState('')
   const [turnstileToken, setTurnstileToken] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isVisualEditing, setIsVisualEditing] = useState(false)
+  const [visualChangeCount, setVisualChangeCount] = useState(0)
+  const [visualStatus, setVisualStatus] = useState('')
   const turnstileRef = useRef(null)
   const turnstileWidgetRef = useRef(null)
+  const visualSessionRef = useRef(null)
 
   const copy = getCopy(isEn, kind)
   const suggestionApiUrl = process.env.NEXT_PUBLIC_SUGGESTION_API_URL || ''
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''
 
   useEffect(() => {
-    const handleOpenEditor = () => openForm('suggest')
+    const handleOpenEditor = () => startVisualEdit()
 
     window.addEventListener('deshi:open-contribution-editor', handleOpenEditor)
     return () => window.removeEventListener('deshi:open-contribution-editor', handleOpenEditor)
+  }, [isEn, sourcePath])
+
+  useEffect(() => () => {
+    clearVisualEdit({ restore: true, updateState: false })
   }, [])
+
+  useEffect(() => {
+    clearVisualEdit({ restore: true })
+  }, [sourcePath])
 
   useEffect(() => {
     if (!isOpen || !turnstileSiteKey || !turnstileRef.current) return undefined
@@ -256,6 +311,7 @@ export default function ContributionWidget({ isEn, pageUrl, sourcePath, adminUrl
   }, [isOpen, turnstileSiteKey])
 
   function openForm(nextKind) {
+    clearVisualEdit({ restore: true })
     setKind(nextKind)
     setForm({ ...initialForm, editType: nextKind === 'urgent' ? 'factual' : 'copyedit' })
     setIsOpen(true)
@@ -272,6 +328,165 @@ export default function ContributionWidget({ isEn, pageUrl, sourcePath, adminUrl
     setLoadedSourceText('')
     setTurnstileToken('')
     setIsSubmitting(false)
+  }
+
+  function getArticleElement() {
+    return document.querySelector('.article')
+  }
+
+  function getVisualEditableBlocks(article) {
+    return [...article.querySelectorAll(EDITABLE_BLOCK_SELECTOR)]
+      .filter((element) => normalizeEditableText(element.innerText).length > 0)
+  }
+
+  function syncVisualChangeCount() {
+    const session = visualSessionRef.current
+    if (!session) {
+      setVisualChangeCount(0)
+      return 0
+    }
+
+    const count = session.elements.reduce((total, element) => {
+      const original = session.originals.get(element)
+      const changed = normalizeEditableText(element.innerText) !== normalizeEditableText(original?.text)
+      element.classList.toggle('is-changed', changed)
+      return changed ? total + 1 : total
+    }, 0)
+
+    setVisualChangeCount(count)
+    return count
+  }
+
+  function clearVisualEdit({ restore = false, updateState = true } = {}) {
+    const session = visualSessionRef.current
+    if (!session) return
+
+    for (const { element, listener } of session.listeners) {
+      element.removeEventListener('input', listener)
+    }
+
+    for (const element of session.elements) {
+      const original = session.originals.get(element)
+      if (restore && original) {
+        element.innerHTML = original.html
+      }
+      element.removeAttribute('contenteditable')
+      element.removeAttribute('spellcheck')
+      element.removeAttribute('data-deshi-edit-index')
+      element.classList.remove('visual-edit-block', 'is-changed')
+    }
+
+    session.article.classList.remove('is-visual-editing')
+    visualSessionRef.current = null
+
+    if (updateState) {
+      setIsVisualEditing(false)
+      setVisualChangeCount(0)
+      setVisualStatus('')
+    }
+  }
+
+  function startVisualEdit() {
+    const article = getArticleElement()
+    if (!article) {
+      openForm('suggest')
+      return
+    }
+
+    clearVisualEdit({ restore: true })
+
+    const elements = getVisualEditableBlocks(article)
+    if (elements.length === 0) {
+      openForm('suggest')
+      return
+    }
+
+    const originals = new Map()
+    const listeners = []
+
+    elements.forEach((element, index) => {
+      originals.set(element, {
+        html: element.innerHTML,
+        text: element.innerText
+      })
+
+      const listener = () => {
+        setVisualStatus('')
+        syncVisualChangeCount()
+      }
+
+      element.setAttribute('contenteditable', 'plaintext-only')
+      element.setAttribute('spellcheck', 'true')
+      element.setAttribute('data-deshi-edit-index', String(index + 1))
+      element.classList.add('visual-edit-block')
+      element.addEventListener('input', listener)
+      listeners.push({ element, listener })
+    })
+
+    article.classList.add('is-visual-editing')
+    visualSessionRef.current = { article, elements, originals, listeners }
+    setIsVisualEditing(true)
+    setVisualChangeCount(0)
+    setVisualStatus(copy.visualReady)
+
+    requestAnimationFrame(() => elements[0]?.focus())
+  }
+
+  function collectVisualChanges() {
+    const session = visualSessionRef.current
+    if (!session) return []
+
+    return session.elements.flatMap((element) => {
+      const original = session.originals.get(element)
+      const currentText = String(original?.text || '').trim()
+      const proposedText = String(element.innerText || '').trim()
+
+      if (normalizeEditableText(currentText) === normalizeEditableText(proposedText)) {
+        return []
+      }
+
+      return [{
+        section: closestSectionLabel(element, isEn ? 'Visual page edit' : 'পাতার লেখা'),
+        currentText,
+        proposedText
+      }]
+    })
+  }
+
+  function formatVisualChanges(changes, key) {
+    if (changes.length === 1) return trimForReviewQueue(changes[0][key])
+
+    return trimForReviewQueue(changes.map((change, index) => [
+      `[${index + 1}] ${change.section}`,
+      change[key]
+    ].join('\n')).join('\n\n'))
+  }
+
+  function reviewVisualEdits() {
+    const changes = collectVisualChanges()
+
+    if (changes.length === 0) {
+      setVisualStatus(copy.noVisualChanges)
+      syncVisualChangeCount()
+      return
+    }
+
+    const sections = [...new Set(changes.map((change) => change.section).filter(Boolean))]
+    const currentText = formatVisualChanges(changes, 'currentText')
+    const proposedChange = formatVisualChanges(changes, 'proposedText')
+
+    clearVisualEdit({ restore: true })
+    setKind('suggest')
+    setForm({
+      ...initialForm,
+      editMode: 'focused',
+      editType: changes.length === 1 ? 'copyedit' : 'rewrite',
+      section: sections.slice(0, 3).join(', '),
+      currentText,
+      proposedChange
+    })
+    setIsOpen(true)
+    setStatus(null)
   }
 
   async function loadSourceDraft() {
@@ -402,12 +617,21 @@ export default function ContributionWidget({ isEn, pageUrl, sourcePath, adminUrl
   return (
     <>
       <div id="contribution-actions" className="article-actions contribution-actions" aria-label={isEn ? 'Contribution actions' : 'অবদান রাখার কাজ'}>
-        <button className="link-button" type="button" onClick={() => openForm('suggest')}>{copy.suggest}</button>
+        <button className="link-button" type="button" onClick={startVisualEdit}>{copy.suggest}</button>
         <button className="link-button link-button--urgent" type="button" onClick={() => openForm('urgent')}>{copy.urgent}</button>
         <a href={adminUrl}>{copy.edit}</a>
         <a href={historyUrl} target="_blank" rel="noopener noreferrer">{copy.history}</a>
         <a href={sourceFileUrl} target="_blank" rel="noopener noreferrer">{copy.source}</a>
       </div>
+
+      {isVisualEditing ? (
+        <div className="visual-edit-bar" role="status" aria-live="polite">
+          <strong>{copy.visualEditing}</strong>
+          <span>{visualChangeCount > 0 ? copy.changedCount(visualChangeCount) : visualStatus}</span>
+          <button className="primary-button" type="button" onClick={reviewVisualEdits}>{copy.reviewVisual}</button>
+          <button className="secondary-button" type="button" onClick={() => clearVisualEdit({ restore: true })}>{copy.cancelVisual}</button>
+        </div>
+      ) : null}
 
       {isOpen ? (
         <div className="modal-backdrop" role="presentation" onMouseDown={(event) => {

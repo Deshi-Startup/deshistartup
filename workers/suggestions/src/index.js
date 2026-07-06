@@ -7,6 +7,7 @@ const DEFAULT_ALLOWED_METHODS = 'POST, OPTIONS'
 const DEFAULT_BRANCH = 'main'
 const VALID_EDIT_TYPES = new Set(['copyedit', 'broken_link', 'source', 'factual', 'rewrite', 'full_source'])
 const HIGH_RISK_EDIT_TYPES = new Set(['source', 'factual', 'full_source'])
+const SUBSTANTIAL_EDIT_TYPES = new Set(['rewrite', 'full_source'])
 const LOW_RISK_EDIT_TYPES = new Set(['copyedit', 'broken_link'])
 const SOURCE_PATH_PATTERN = /^app\/\(contents\)\/(?:\(bn\)|en)(?:\/[a-z0-9-]+)*\/page\.mdx$/
 const ENGLISH_HIGH_RISK_PATTERN = /\b(?:legal|law|tax|vat|bin|tin|rjsc|labou?r|employment|employee|fintech|healthtech|privacy|imports?|exports?|compliance|regulat\w*|licen[cs]es?|payments?|banks?)\b/i
@@ -204,9 +205,10 @@ function classifyReview(payload) {
   const protectedPage = hasHighRiskTerms(payload.sourcePath) || hasHighRiskTerms(payload.pageUrl)
   const highRiskTermsInChange = hasHighRiskTerms(`${payload.section}\n${payload.currentText}\n${proposedText}`)
   const factualOrSourceChange = HIGH_RISK_EDIT_TYPES.has(payload.editType)
+  const substantialChange = SUBSTANTIAL_EDIT_TYPES.has(payload.editType)
   let riskLevel = 'medium'
 
-  if (payload.kind === 'urgent' || (factualOrSourceChange && (protectedPage || highRiskTermsInChange))) {
+  if (payload.kind === 'urgent' || ((factualOrSourceChange || substantialChange) && (protectedPage || highRiskTermsInChange))) {
     riskLevel = 'high'
   } else if (LOW_RISK_EDIT_TYPES.has(payload.editType) && !protectedPage && !highRiskTermsInChange) {
     riskLevel = 'low'
