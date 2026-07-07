@@ -78,7 +78,8 @@ When creating or editing content for this project, agents must adhere to the fol
 - **Language:** For Bengali pages, write in clear, accessible, and natural Bengali. Use common English startup jargon (e.g., MVP, Product-Market Fit, B2B) mixed in where appropriate, as is standard in the BD ecosystem. For English pages, use clear English and do not leave Bengali text behind.
 - **Localization:** Do not replace Bengali content when localizing. Create or update the matching page under `app/(contents)/en/...`. Keep slugs and folder structure aligned across locales whenever possible.
 - **Routing:** Bengali pages should link to clean root URLs such as `/customers`. English pages should link to `/en/...` URLs such as `/en/customers`.
-- **Navigation:** Update `app/components/LocalizedLayout.jsx` when adding an English page that should appear in the sidebar. Avoid `_meta.js` in `app/` unless the validation behavior is intentionally changed.
+- **Navigation:** Section hub pages list their children automatically via the `<SectionIndex section="..." locale="..." />` component (backed by `app/generated/manifest.*.json`, rebuilt by `scripts/build-manifest.mjs` on every dev/build). Only the curated top-level sidebar lives in `app/nav.config.js` – update it when adding a new top-level guide. Avoid `_meta.js` in `app/` unless the validation behavior is intentionally changed.
+- **Stub pages:** Unwritten topics contain a `<StubNotice path="section/slug" locale="bn|en" />` banner plus a sources list – nothing else. Never imitate a finished guide on a stub. When writing the real guide, delete the `StubNotice` line; the manifest then automatically counts the page as written, removes its "লেখা বাকি" badge, and re-ranks it in search. Thematic grouping of hub lists lives in `app/nav-groups.json` (hand-curated) – add the new page's slug to the right group when creating brand-new topics; unlisted pages fall back to an "আরও গাইড" group automatically.
 - **Local Context:** Always tailor advice to the Bangladeshi market. Emphasize Mobile Financial Services (bKash/Nagad), Cash on Delivery (COD), Facebook-first growth strategies, and the realities of a low-trust market dynamic.
 - **Accuracy:** Cross-reference local laws (e.g., RJSC fees, NBR VAT thresholds, Trade License processes) with current realities (e.g., VAT exemption up to 50 Lakh BDT turnover).
 - **Formatting:** Use Nextra standard MDX. Include YAML frontmatter with `title` and `description` for every page.
@@ -86,15 +87,23 @@ When creating or editing content for this project, agents must adhere to the fol
 
 ## Build and Run Commands
 
-- `npm run dev` - Start development server (uses Turbopack)
-- `npm run build` - Build the static site (includes Pagefind indexing in the postbuild step)
+- `npm run dev` - Start development server (uses Turbopack; `predev` regenerates the content manifest first)
+- `npm run build` - Build the static site (`prebuild` regenerates the manifest; postbuild runs Pagefind indexing)
+- `npm run manifest` - Regenerate `app/generated/manifest.*.json`, `sections-lite.json` and `public/page-dates.json` from the content tree + git dates
 - `npm start` - Start the production server
 - `npm run scrape` - Run the scraping utility
 
+## Design System (July 2026 redesign)
+
+- All styling lives in `app/globals.css` as a token-based design system ("national reference work" aesthetic: Bangladesh-green structure, warm paper, serif Bangla display headings, wiki-blue links).
+- Fonts are self-hosted in `app/fonts/` (Noto Sans Bengali variable + Noto Serif Bengali 700, Bengali subset, `local()`-first so most Android devices download nothing). Do not add render-blocking Google Fonts links.
+- Bangla UI text uses Bengali numerals (০-৯); dates render via `toLocaleDateString('bn-BD')`.
+- Per-page chrome (breadcrumbs, last-updated meta bar, edit/history/report links, ToC rail, article footer) is generated in `app/components/LocalizedLayout.jsx` from the pathname – content pages need no extra markup.
+- Performance budget: article critical path (HTML+CSS) under ~150 KB; keep article pages near-zero JS and never add autoplaying/heavy embeds.
+
 ## Notes for Agent Use
 
-- Prefer content in `app/` and `knowledge-bank/` over inferred assumptions about standard startup processes, as Bangladesh has unique constraints.
-- Use `context/` files for editorial planning, backlog details, and source references.
+- Prefer content in `app/` (and `knowledge-bank/`/`context/` if present locally – both are gitignored) over inferred assumptions about standard startup processes, as Bangladesh has unique constraints.
 - The project is a static docs site, so changes should preserve the Nextra page layout and route-group structure.
 - Route groups are used intentionally: `(contents)` and `(bn)` organize files without changing public URLs.
 - Smooth scrolling is enabled globally in `app/globals.css`.

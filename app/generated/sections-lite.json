@@ -1,0 +1,50 @@
+{
+ "bn": {
+  "company-types": "কোম্পানির ধরন",
+  "contribute": "কীভাবে অবদান রাখবেন",
+  "customers": "গ্রাহক খোঁজা",
+  "e-tin-vat-bin": "e-TIN, VAT ও BIN",
+  "ecosystem-overview": "বাংলাদেশের স্টার্টআপ পরিবেশ",
+  "founder-life": "উদ্যোক্তার জীবন",
+  "idea-validation": "আইডিয়া যাচাই",
+  "legal-roadmap": "আইনগত পথনির্দেশনা",
+  "payments": "পেমেন্ট ব্যবস্থা",
+  "phase-four": "ধাপ ৪ রোডম্যাপ",
+  "phase-one": "ধাপ ১ রোডম্যাপ",
+  "phase-three": "ধাপ ৩ রোডম্যাপ",
+  "phase-two": "ধাপ ২ রোডম্যাপ",
+  "registration": "ব্যবসা নিবন্ধন",
+  "rjsc-name-clearance": "RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন",
+  "start-here": "শুরু করুন",
+  "startup-vs-sme": "স্টার্টআপ বনাম এসএমই বনাম এজেন্সি বনাম ই-কমার্স",
+  "trade-license": "ট্রেড লাইসেন্স"
+ },
+ "bnCounts": {
+  "pages": 374,
+  "written": 54,
+  "stubs": 320
+ },
+ "en": {
+  "contribute": "How to Contribute",
+  "customers": "Finding Customers",
+  "ecosystem-overview": "Bangladesh Startup Ecosystem Overview",
+  "founder-life": "Founder Life",
+  "idea-validation": "Idea Validation",
+  "legal-roadmap": "Legal Roadmap",
+  "payments": "Payment Systems",
+  "phase-four": "Phase 4 Roadmap",
+  "phase-one": "Phase 1 Roadmap",
+  "phase-three": "Phase 3 Roadmap",
+  "phase-two": "Phase 2 Roadmap",
+  "registration": "Business Registration",
+  "rjsc-name-clearance": "RJSC / Name Clearance / Company Registration",
+  "start-here": "Start Here",
+  "startup-vs-sme": "Startup vs SME: Which One Are You Building?",
+  "trade-license": "Trade License"
+ },
+ "enCounts": {
+  "pages": 372,
+  "written": 55,
+  "stubs": 317
+ }
+}

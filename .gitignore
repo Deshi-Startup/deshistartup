@@ -5,3 +5,10 @@ _pagefind/
 *.log
 knowledge-bank/
 context/
+# Local experiments and artifacts
+.vinext/
+.wrangler/
+dist/
+workers/
+next-env.d.ts
+.localization-backup/
