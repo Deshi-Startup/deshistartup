@@ -12,3 +12,4 @@ dist/
 workers/
 next-env.d.ts
 .localization-backup/
+CLAUDE.md

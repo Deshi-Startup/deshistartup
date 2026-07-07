@@ -52,7 +52,8 @@
   --warn-border: #e1b900;
   --warn-ink: #5f4b00;
   --shadow: 0 14px 32px rgb(32 33 34 / 8%);
-  --sans: system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans Bengali', 'Noto Sans', 'Segoe UI', sans-serif;
+  --sans: '.SF Bangla', system-ui, -apple-system, BlinkMacSystemFont, 'Nirmala UI', 'Noto Sans Bengali',
+    'Noto Sans', 'Segoe UI', sans-serif;
   --serif: 'Noto Serif Bengali', 'Noto Serif', Georgia, serif;
 }
 

@@ -312,10 +312,13 @@ Future AI rules:
 
 ## Tech Stack
 
-- **Framework:** [Next.js](https://nextjs.org/) App Router
-- **Documentation:** [Nextra](https://nextra.site/) with MDX
+- **Framework:** [Next.js](https://nextjs.org/) App Router, statically exported (`output: 'export'`)
+- **Documentation:** [Nextra](https://nextra.site/) for MDX; page chrome is a custom wiki-style shell (not the stock Nextra theme)
 - **UI shell:** custom wiki-style frontend inspired by the static prototype
-- **Search:** Pagefind static search index
+- **Search:** Pagefind static search index (built automatically on `postbuild`)
+- **Hosting:** GitHub Pages from `main`; navigation, section hubs, and "last updated" dates are generated from the content tree at build time — contributors only add/edit `page.mdx` files
+
+For deeper architecture and editorial conventions, see [`AGENTS.md`](./AGENTS.md).
 
 ## Local Development
 
@@ -340,6 +343,13 @@ npm run build
 4. Run the development server with `npm run dev`.
 5. Make changes in the `app/` directory.
 6. Submit a pull request.
+
+How content is organized:
+
+- **Bengali is the source of truth.** Bengali guides live at `app/(contents)/(bn)/<slug>/page.mdx` (served at `/<slug>`); the English mirror lives at `app/(contents)/en/<slug>/page.mdx` (served at `/en/<slug>`). Keep slugs aligned across the two.
+- **Pages are plain MDX:** YAML frontmatter (`title`, `description`) + one `#` heading + `##` sections. Breadcrumbs, table of contents, and edit/history links are added automatically — don't hand-write them.
+- **Stubs** are unwritten pages that show only a `<StubNotice />` banner and a sources list. To turn a stub into a real guide, write the content and delete the `StubNotice` line; the site then counts it as written and drops the "to be written" badge.
+- Files under `app/generated/` are build artifacts — never edit them by hand.
 
 Good contributions include:
 

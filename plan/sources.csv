@@ -1,0 +1,64 @@
+Tier,Category,Source,Research focus,URL,Trust / Priority,Notes
+Tier 1,Government / regulator,Bangladesh Investment Development Authority (BIDA),"FAQ, OSS, investment handbooks, licensing guidance, investor starter resources, FDI guidance",https://bida.gov.bd,High,Highest-trust source for investment and licensing guidance.
+Tier 1,Business starter,BanglaBiz Business Starter Package,Business starter resources and practical setup guidance,https://banglabiz.gov.bd/business-starter-package,High,Use for founder-friendly starter context.
+Tier 1,Company registrar,Office of the Registrar of Joint Stock Companies and Firms (RJSC),"Name clearance, private company registration, forms, fees, returns filing, certified copies, entity acts, DBID",https://roc.gov.bd,High,Core source for company setup and annual compliance.
+Tier 1,Tax authority,National Board of Revenue (NBR),"e-TIN, eReturn, VAT/BIN, VAT guides, turnover tax thresholds, income tax rules, SROs, Finance Act updates",https://nbr.gov.bd,High,Use official circulars and budget updates for current rules.
+Tier 1,VAT portal,VAT Online,"VAT/BIN registration, VAT return process, compliance portal guidance",https://vat.gov.bd,High,Use with NBR pages.
+Tier 1,Trade portal,Bangladesh Trade Portal,"Startup/business process PDFs, import/export procedures, trade procedures",https://bangladeshtradeportal.gov.bd,High,Useful for import/export guides and process maps.
+Tier 1,Central bank,Bangladesh Bank,"Payment system regulations, PSP/PSO/MFS guidelines, FX rules for startups, foreign shareholders, remittance, SaaS export, payment gateways, startup fund",https://bb.org.bd,High,"Needed for fintech, funding, FX, remittance, and payment content."
+Tier 1,Government VC,Startup Bangladesh Limited,"Investment criteria, portfolio, reports, applications, funding information",https://startupbangladesh.vc,High,Source for government-backed investment and portfolio signals.
+Tier 1,Government grant,iDEA Project,"Government startup grants, accelerator programs, innovation support",https://idea.gov.bd,High,Use for grants and competition calendars.
+Tier 1,Government grant,Bangabandhu Innovation Grant (BIG),"Grant cycles, eligibility, deadlines, winners, application process",https://big.gov.bd,High,Track deadlines in the opportunities calendar.
+Tier 1,ICT policy,ICT Division,"Digital Bangladesh policies, startup and IT/ITES support, public programs",https://ictd.gov.bd,High,Policy and ecosystem support source.
+Tier 1,Innovation program,a2i / Aspire to Innovate,"Innovation programs, public digital services, entrepreneurship initiatives",https://a2i.gov.bd,High,Use for ecosystem and public-sector innovation context.
+Tier 1,IT/ITES,Bangladesh Hi-Tech Park Authority,"Incubation, training, IT/ITES support, one-stop services, park benefits",https://bhtpa.gov.bd,High,Use for tech company incentives and office/support programs.
+Tier 1,City corporation,Dhaka North City Corporation,"Trade license pages, renewal, fees, municipality requirements",https://dncc.gov.bd,High,Trade license source for Dhaka North.
+Tier 1,City corporation,Dhaka South City Corporation,"Trade license pages, renewal, fees, municipality requirements",https://dscc.gov.bd,High,Trade license source for Dhaka South.
+Tier 1,City corporation,Chattogram City Corporation,"Trade license pages, renewal, fees, municipality requirements",https://ccc.gov.bd,High,Trade license source for Chattogram.
+Tier 1,City corporation,Sylhet City Corporation,"Trade license pages, renewal, fees, municipality requirements",https://scc.gov.bd,High,Trade license source for Sylhet.
+Tier 1,City corporation,Rajshahi City Corporation,"Trade license pages, renewal, fees, municipality requirements",https://rajshahi.gov.bd,High,Confirm current city corporation URL before citation.
+Tier 1,City corporation,Khulna City Corporation,"Trade license pages, renewal, fees, municipality requirements",https://kcc.gov.bd,High,Trade license source for Khulna.
+Tier 1,Industry association,BASIS,"Software/IT industry membership, events, policy, IT/ITES export context",https://basis.org.bd,High,"Useful for SaaS, IT/ITES, and community resources."
+Tier 1,Industry association,e-CAB,"E-commerce policy, digital commerce guidance, entrepreneurship resources",https://e-cab.net,High,Key source for online business and digital commerce policy.
+Tier 1,Chamber,Dhaka Chamber of Commerce & Industry (DCCI),"Business resources, events, policy, SME support",https://dhakachamber.com,Medium,Use for SME and chamber context.
+Tier 1,Chamber,FBCCI,"Business federation, policy, sector representation",https://fbcci.org,Medium,Use for broad business and SME context.
+Tier 1,SME / industry,BSCIC,"SME and cottage industry support, industrial services",https://bscic.gov.bd,Medium,Relevant for manufacturing and SME founders.
+Tier 1,Economic zone,BEZA,"Economic zones, investor services, incentives",https://beza.gov.bd,Medium,"Relevant for manufacturing, export, and larger investment guides."
+Tier 1,Export zone,BEPZA,"Export processing zones, investor services, incentives",https://bepza.gov.bd,Medium,Relevant for export-oriented businesses.
+Tier 1,Environment,Department of Environment,"Environmental clearance, sector requirements",https://doe.gov.bd,High,Needed for regulated physical/product businesses.
+Tier 1,Labor,Department of Inspection for Factories and Establishments,"Labor inspection, factory compliance, employment-related obligations",https://dife.gov.bd,High,Use with Bangladesh Labour Act basics.
+Tier 1,IP,Bangladesh Copyright Office,"Copyright registration, creative/IP guidance",https://copyrightoffice.gov.bd,Medium,Use for IP basics.
+Tier 1,IP,"Department of Patents, Designs and Trademarks","Trademark, patent, design registration",https://dpdt.gov.bd,High,Core source for trademark guides.
+Tier 1,Export,Export Promotion Bureau,Export incentives and procedures,https://epb.gov.bd,Medium,Useful for export/SaaS and product export content.
+Tier 1,Import/export,Chief Controller of Imports and Exports,"IRC/ERC, import/export registration basics",https://ccie.gov.bd,High,Core source for import/export setup.
+Tier 2,Ecosystem report,LightCastle Partners,"Startup ecosystem dashboard, funding reports, market research, sector reports",https://lightcastlebd.com/insights,High,Market context and investment trend source.
+Tier 2,Ecosystem report,Startup Bangladesh reports,"Portfolio updates, investment reports, ecosystem context",https://startupbangladesh.vc,High,Government VC and ecosystem signals.
+Tier 2,Investor,Bangladesh Angels Network,"Angel investor landscape, events, portfolio, founder resources",https://bdangels.co,High,Funding and investor directory source.
+Tier 2,Investor,Anchorless Bangladesh,"Investment thesis, portfolio, Bangladesh market context",https://anchorless.vc,High,International investor context.
+Tier 2,Community,BD Startup Founders,"Founder community signals, discussions, events",,Medium,Use carefully; cite public reliable posts only.
+Tier 2,Multilateral,UNESCAP,Bangladesh startup ecosystem assessment,https://unescap.org,High,Use for ecosystem history and diagnosis.
+Tier 2,Multilateral,World Bank / IFC / ADB,"Private sector, digital economy, SMEs, investment climate reports",https://data.worldbank.org,High,Use for market data and policy context.
+Tier 2,Country guide,Digital Cooperation Organization (DCO),Bangladesh country guide,https://dco.org,Medium,Use as supplemental context.
+Tier 2,Mobile data,GSMA,Mobile money and digital Bangladesh context,https://gsma.com,Medium,Use when discussing mobile wallets and telecom behavior.
+Tier 2,Digital data,DataReportal Bangladesh,"Internet, social, mobile, and platform data",https://datareportal.com/reports/digital-2026-bangladesh,High,Refresh annually.
+Tier 2,Telecom regulator,BTRC,Telecom and internet subscriber data,https://btrc.gov.bd,High,Official telecom/internet source.
+Tier 2,Statistics,Bangladesh Bureau of Statistics,"Demographics, labor force, urbanization, income, MSME context",https://bbs.gov.bd,High,Official statistics source.
+Tier 3,Startup media,Future Startup,"Founder interviews, company profiles, ecosystem analysis",https://futurestartup.com,High,Key source for founder lessons and quotes.
+Tier 3,Startup media,Start-Up News,Founder and startup profiles,,Medium,Use when individual stories are relevant.
+Tier 3,Mainstream media,The Daily Star Tech & Startup,Tech/startup reporting and interviews,https://www.thedailystar.net/tech-startup,High,Use for public-company and ecosystem stories.
+Tier 3,Mainstream media,The Business Standard,Startup analysis and business reporting,https://www.tbsnews.net,High,Use for local market and funding coverage.
+Tier 3,Mainstream media,Dhaka Tribune Business,Business and startup reporting,https://www.dhakatribune.com/business,Medium,Supplemental media source.
+Tier 3,Business publication,Business Inspection BD,"Company explainers, startup and market stories",https://businessinspection.com.bd,Medium,Use selectively; verify against primary sources.
+Tier 3,Marketing publication,Markedium / Markopolo / local marketing publications,"Marketing behavior, campaigns, ad practices",,Medium,Useful for acquisition and distribution content.
+Tier 3,International media,TechCrunch Bangladesh coverage,Funding and startup articles,https://techcrunch.com,Medium,Use for international investment narratives.
+Tier 3,International media,Rest of World Bangladesh coverage,Tech/startup stories and social context,https://restofworld.org,Medium,Use for broader social and market nuance.
+Tier 3,Founder content,"Podcasts, YouTube interviews, LinkedIn posts, event talks","Founder lessons, quotes, tactical patterns, mistakes",,Medium,Use credible public sources; avoid private group content unless public and reliable.
+Tier 4,Bangla resource,Prothom Alo business / entrepreneurship,Bangla entrepreneurship and business articles,https://www.prothomalo.com/business,Medium,Useful for Bangla-facing content and search terms.
+Tier 4,Bangla resource,Bangla startup blogs and YouTube interviews,"Founder interviews, practical guides, language patterns",,Medium,Evaluate credibility case by case.
+Tier 4,Bangla legal guides,LawDoors / Justice Corner BD,"RJSC, trade license, VAT, startup registration explainers",,Medium,Use as inspiration; verify legal claims from official sources.
+Tier 4,Existing guide,BDICTCLUB startup guide,Existing Bangla startup guide structure,https://bdictclub.net/startup-business-guide/,Medium,"Structure inspiration, not source of truth."
+Tier 4,Directory,eSheBee ecosystem directory,Startup ecosystem organizations and directory model,https://eshebee.com/startup-ecosystem/,Medium,Directory inspiration and source leads.
+Reference,International model,Y Combinator Startup School,Startup education structure and plain-language model,https://startupschool.org,Low,"Use for structure, not Bangladesh content."
+Reference,International model,Startup India Learning Program,Government ecosystem learning structure,https://startupindia.gov.in,Low,"Use for structure, not Bangladesh content."
+Reference,International model,Stripe Atlas Guides,Legal/business guide clarity and sequencing,https://stripe.com/atlas/guides,Low,"Use for structure, not Bangladesh content."
+Reference,International model,Paul Graham essays / Lean Startup / Stanford How to Start a Startup,"Communication style, philosophy, methodology",,Low,Use sparingly; localize heavily.
