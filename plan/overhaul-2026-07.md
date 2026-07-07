@@ -80,7 +80,7 @@ Converted the Content Map xlsx → `plan/*.csv` + `plan/case-study-format.md` + 
 `README.md`, `agents.md`. First commit should include everything:
 `git add -A && git commit -m "Commit planning brain (plan/), remove iCloud duplicates and git-filter-repo"`.
 
-### ☐ T1 — Rename agents.md → AGENTS.md and rewrite it as map + manual (size M, model: Opus)
+### ✅ T1 — Rename agents.md → AGENTS.md and rewrite it as map + manual (DONE 2026-07-07)
 
 Today agents.md is a good *operations manual* but describes a 13-guide site; the repo is a
 374-page universe with a 393-row backlog. Also `AGENTS.md` uppercase is the cross-tool standard
