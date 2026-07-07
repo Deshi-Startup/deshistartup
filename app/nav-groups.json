@@ -593,5 +593,99 @@
     "investor-board-report-template"
    ]
   }
+ ],
+ "directory": [
+  {
+   "bn": "ফান্ডিং ও সহায়তা",
+   "en": "Funding & Support",
+   "slugs": [
+    "investors",
+    "accelerators"
+   ]
+  }
+ ],
+ "case-studies": [
+  {
+   "bn": "ফিনটেক",
+   "en": "Fintech",
+   "slugs": [
+    "bkash",
+    "apon-wellbeing-case-study"
+   ]
+  },
+  {
+   "bn": "রাইড, লজিস্টিকস ও ভ্রমণ",
+   "en": "Ride, Logistics & Travel",
+   "slugs": [
+    "pathao",
+    "truck-lagbe",
+    "shohoz",
+    "sharetrip",
+    "jatri",
+    "shuttle",
+    "gozayaan",
+    "paperfly"
+   ]
+  },
+  {
+   "bn": "কমার্স ও মার্কেটপ্লেস",
+   "en": "Commerce & Marketplace",
+   "slugs": [
+    "chaldal",
+    "shopup-silq",
+    "shebaxyz",
+    "priyoshop",
+    "shajgoj",
+    "rokomari",
+    "bdjobs",
+    "pickaboo",
+    "khaas-food",
+    "onnorokom-group",
+    "fabrilife-case-study"
+   ]
+  },
+  {
+   "bn": "এডটেক",
+   "en": "Edtech",
+   "slugs": [
+    "10-minute-school",
+    "shikho"
+   ]
+  },
+  {
+   "bn": "এগ্রি, হেলথ ও সামাজিক উদ্যোগ",
+   "en": "Agri, Health & Social Enterprise",
+   "slugs": [
+    "ifarmer",
+    "maya",
+    "praava-health",
+    "arogga",
+    "medeasy",
+    "fashol-case-study",
+    "solshare-case-study",
+    "fashol-vs-ifarmer-agritech-wedge-comparison"
+   ]
+  },
+  {
+   "bn": "SaaS ও টুলস",
+   "en": "SaaS & Tools",
+   "slugs": [
+    "markopolo-ai",
+    "myalice"
+   ]
+  },
+  {
+   "bn": "ব্যর্থতা থেকে শিক্ষা",
+   "en": "Lessons from Failure",
+   "slugs": [
+    "failure-post-mortems-as-a-separate-content-category",
+    "what-success-case-studies-leave-out",
+    "common-reasons-bangladeshi-startups-fail",
+    "what-did-not-work-and-why",
+    "lessons-from-advance-payment-e-commerce-failures-in-bangladesh",
+    "marketplace-trust-collapse-post-mortem-template",
+    "why-holding-customer-money-is-a-risky-business-model"
+   ]
+  }
  ]
 }

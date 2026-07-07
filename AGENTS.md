@@ -76,10 +76,18 @@ in this doc — they drift.** To see the current page inventory, read the manife
   খরচ ও সময় / সাধারণ ভুল) → a checklist → `## প্রাসঙ্গিক সূত্র`. Exemplar: `/start-here`
   (`app/(contents)/(bn)/start-here/page.mdx`) — সারকথা opener, decision tables, checklists, sourced
   links, natural spoken Bangla.
-- **Case study**: follows the 15 fields of `plan/case-study-format.md` (Bengali headings are defined
-  by task T5).
+- **Case study**: follows the 15 fields of `plan/case-study-format.md`. Suggested Bengali headings for
+  the 15 fields (used by the exemplar at `/case-studies/pathao`): এক নজরে · সমস্যা · সমস্যাটি
+  বাংলাদেশ-নির্দিষ্ট কেন · শুরুর ইনসাইট · প্রথম ওয়েজ · প্রথম গ্রাহক · বিশ্বাস তৈরি · স্থানীয় শিক্ষা ·
+  বাধা ও সীমাবদ্ধতা · বিজনেস মডেল · মূলধন ও ফান্ডিং · যা অনুকরণ করতে পারেন · যা অনুকরণ করবেন না ·
+  যা এখনো অজানা · সূত্র. Source-backed only: separate facts from anecdotes, cite every factual claim,
+  never overclaim.
 - **Directory page**: data-backed, not prose. Entries live in `data/directory/*.json` and are
-  rendered by a component — never hand-maintained prose tables (see task T6).
+  rendered by a component — never hand-maintained prose tables. Directory entries must include
+  `name`, `type`, `stage`, `sectors`, `website`, `sourceUrl`, and `lastVerified`; use `null` or
+  "Not publicly stated" for cheque size, cohort timing, deadlines, or equity terms you cannot
+  verify from public sources. Re-check directory entries quarterly against official websites or
+  reliable public profiles before bumping `lastVerified`.
 - **Template / checklist / script pages**: copy-paste-ready blocks with minimal theory.
 - **Calculators**: client components are allowed here — the one sanctioned exception to the
   near-zero-JS budget. Keep them dependency-free (no heavy libraries).
@@ -137,6 +145,18 @@ page's লেখার নিয়মকানুন table):
   (CC BY-SA 4.0).
 - Contributions are accepted under these licenses. See `LICENSE` and `LICENSE-content.md` (added by
   task T3) for the authoritative text and attribution format.
+
+## Keeping content current
+
+- Legal, tax, and fee pages carry an optional `verified: YYYY-MM-DD` frontmatter field, separate
+  from the automatic "last updated" (last-commit) date. Only set or bump `verified:` after actually
+  re-checking the page's claims against official sources — never as a drive-by edit.
+- `plan/maintenance-calendar.md` is the freshness cadence: what to re-check, where, and how often
+  (annual budget-speech mining, monthly RJSC/NBR/VAT-circular checks, quarterly directory
+  re-verification, and ongoing rules for legal pages and source attribution). Treat an overdue item
+  on that calendar as higher-priority than most unwritten stubs.
+- `plan/sources.csv` is the tiered source registry to re-check against; `plan/research-ops.csv` is
+  the raw cadence data the calendar was generated from.
 
 ## Build and Run Commands
 

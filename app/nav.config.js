@@ -50,6 +50,14 @@ export const bnNav = [
     ]
   },
   {
+    label: 'কেস স্টাডি',
+    items: [['/case-studies', 'বাংলাদেশি স্টার্টআপের গল্প']]
+  },
+  {
+    label: 'ডিরেক্টরি',
+    items: [['/directory', 'ইকোসিস্টেম ডিরেক্টরি']]
+  },
+  {
     label: 'অংশ নিন',
     items: [
       ['/contribute', 'কীভাবে অবদান রাখবেন'],
@@ -97,6 +105,14 @@ export const enNav = [
       ['/en/phase-three', 'Phase 3 · Sales & funding'],
       ['/en/phase-four', 'Phase 4 · Scale & govt support']
     ]
+  },
+  {
+    label: 'Case Studies',
+    items: [['/en/case-studies', 'Bangladeshi startup stories']]
+  },
+  {
+    label: 'Directory',
+    items: [['/en/directory', 'Ecosystem directory']]
   },
   {
     label: 'Take Part',

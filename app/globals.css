@@ -904,6 +904,52 @@ a.is-stub-link:hover {
   color: var(--green-deep);
 }
 
+/* --------------------------------------------------------------- directory */
+
+.directory-list {
+  margin: 22px 0;
+}
+
+.directory-list__summary {
+  display: inline-flex;
+  margin-bottom: 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--canvas-soft);
+  padding: 4px 12px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+
+.directory-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.directory-list table {
+  min-width: 860px;
+  margin: 0;
+  font-size: 0.86rem;
+}
+
+.directory-list td:first-child {
+  min-width: 190px;
+}
+
+.directory-list td strong,
+.directory-list td span {
+  display: block;
+}
+
+.directory-list td span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
 /* -------------------------------------------------------------- homepage */
 
 .wiki-landing {

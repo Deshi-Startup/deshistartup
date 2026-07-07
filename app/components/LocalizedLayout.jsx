@@ -134,6 +134,7 @@ export default function LocalizedLayout({ children }) {
   const [headings, setHeadings] = useState([])
   const [pageTitle, setPageTitle] = useState('')
   const [lastUpdated, setLastUpdated] = useState(null)
+  const [lastVerified, setLastVerified] = useState(null)
   const [readMinutes, setReadMinutes] = useState(null)
 
   useEffect(() => {
@@ -186,12 +187,30 @@ export default function LocalizedLayout({ children }) {
     }
   }, [pathname, isLanding])
 
+  // Stronger editorial verification date, separate from last git update.
+  useEffect(() => {
+    setLastVerified(null)
+    if (isLanding) return
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+    let active = true
+    fetch(`${basePath}/page-verified.json`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((dates) => {
+        if (active && dates && dates[pathname]) setLastVerified(dates[pathname])
+      })
+      .catch(() => {})
+    return () => {
+      active = false
+    }
+  }, [pathname, isLanding])
+
   const tabs = isEn
     ? { article: 'Article', talk: 'Talk', read: 'Read', edit: 'Edit', history: 'View history' }
     : { article: 'গাইড', talk: 'আলোচনা', read: 'পড়ুন', edit: 'সম্পাদনা', history: 'ইতিহাস' }
 
   const file = sourceFileFor(pathname)
   const dateLabel = formatDate(lastUpdated, isEn)
+  const verifiedLabel = formatDate(lastVerified, isEn)
   const pageUrl = `https://deshistartup.com${pathname}`
   const issueUrl = `${REPO_URL}/issues/new?title=${encodeURIComponent(
     (isEn ? 'Problem: ' : 'ভুল/পরামর্শ: ') + (pageTitle || pathname)
@@ -273,12 +292,18 @@ export default function LocalizedLayout({ children }) {
           {!isLanding && (
             <div className="article-lede">
               <Breadcrumbs isEn={isEn} pathname={pathname} pageTitle={pageTitle} />
-              {(dateLabel || readMinutes) && (
+              {(dateLabel || verifiedLabel || readMinutes) && (
                 <div className="article-meta">
                   {dateLabel && (
                     <span className="meta-date">
                       {isEn ? 'Last updated: ' : 'সর্বশেষ হালনাগাদ: '}
                       {dateLabel}
+                    </span>
+                  )}
+                  {verifiedLabel && (
+                    <span className="meta-date">
+                      {isEn ? 'Last verified: ' : 'সর্বশেষ যাচাই: '}
+                      {verifiedLabel}
                     </span>
                   )}
                   {readMinutes && (

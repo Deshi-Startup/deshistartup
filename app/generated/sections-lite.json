@@ -1,8 +1,10 @@
 {
  "bn": {
+  "case-studies": "কেস স্টাডি",
   "company-types": "কোম্পানির ধরন",
   "contribute": "কীভাবে অবদান রাখবেন",
   "customers": "গ্রাহক খোঁজা",
+  "directory": "ডিরেক্টরি",
   "e-tin-vat-bin": "e-TIN, VAT ও BIN",
   "ecosystem-overview": "বাংলাদেশের স্টার্টআপ পরিবেশ",
   "founder-life": "উদ্যোক্তার জীবন",
@@ -20,13 +22,15 @@
   "trade-license": "ট্রেড লাইসেন্স"
  },
  "bnCounts": {
-  "pages": 374,
-  "written": 54,
-  "stubs": 320
+  "pages": 418,
+  "written": 59,
+  "stubs": 359
  },
  "en": {
+  "case-studies": "Case Studies",
   "contribute": "How to Contribute",
   "customers": "Finding Customers",
+  "directory": "Directory",
   "ecosystem-overview": "Bangladesh Startup Ecosystem Overview",
   "founder-life": "Founder Life",
   "idea-validation": "Idea Validation",
@@ -43,8 +47,8 @@
   "trade-license": "Trade License"
  },
  "enCounts": {
-  "pages": 372,
-  "written": 55,
-  "stubs": 317
+  "pages": 416,
+  "written": 60,
+  "stubs": 356
  }
 }

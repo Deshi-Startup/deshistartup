@@ -83,6 +83,9 @@ const generatedDir = path.join(root, 'app', 'generated')
 fs.mkdirSync(generatedDir, { recursive: true })
 
 const allDates = {}
+const allVerified = {}
+const llmsPages = {}
+const localeCounts = {}
 
 for (const locale of LOCALES) {
   if (!fs.existsSync(locale.dir)) continue
@@ -98,8 +101,11 @@ for (const locale of LOCALES) {
     const repoPath = path.relative(root, filePath).split(path.sep).join('/')
     const date = gitDates.get(repoPath) || null
     if (date) allDates[route] = date
-    return { route, slug: rel, title: title.split('–')[0].split('|')[0].trim(), fullTitle: title, description: fm.description || '', stub: isStub, date }
+    const verified = fm.verified || null
+    if (verified) allVerified[route] = verified
+    return { route, slug: rel, title: title.split('–')[0].split('|')[0].trim(), fullTitle: title, description: fm.description || '', stub: isStub, date, verified }
   })
+  llmsPages[locale.key] = pages
 
   // Build a tree: sections are the first-level directories.
   const sections = {}
@@ -130,6 +136,7 @@ for (const locale of LOCALES) {
     },
     sections
   }
+  localeCounts[locale.key] = manifest.counts
 
   fs.writeFileSync(path.join(generatedDir, `manifest.${locale.key}.json`), JSON.stringify(manifest, null, 1))
   console.log(`manifest.${locale.key}.json: ${pages.length} pages (${manifest.counts.written} written, ${manifest.counts.stubs} stubs)`)
@@ -138,6 +145,57 @@ for (const locale of LOCALES) {
 fs.mkdirSync(path.join(root, 'public'), { recursive: true })
 fs.writeFileSync(path.join(root, 'public', 'page-dates.json'), JSON.stringify(allDates))
 console.log(`page-dates.json: ${Object.keys(allDates).length} routes`)
+
+fs.writeFileSync(path.join(root, 'public', 'page-verified.json'), JSON.stringify(allVerified))
+console.log(`page-verified.json: ${Object.keys(allVerified).length} routes`)
+
+// llms.txt – legible site map for AI assistants (distribution, not cannibalization).
+// Absolute URLs use the canonical domain plus the GitHub Pages basePath, matching
+// how localHref()/NEXT_PUBLIC_BASE_PATH build links in the deployed production site.
+{
+  const SITE_URL = 'https://deshistartup.com'
+  const BASE_PATH = '/deshistartup'
+  const abs = (route) => `${SITE_URL}${BASE_PATH}${route === '/' ? '' : route}`
+  const oneLine = (value) => value.replace(/\s+/g, ' ').trim()
+
+  const lines = []
+  lines.push('# Deshi Startup')
+  lines.push('')
+  lines.push(
+    '> Deshi Startup is a free, open-source, Bangla-first knowledge base and practical operating ' +
+      'manual for building any business in Bangladesh — startups, SMEs, trade/import-export, family ' +
+      'businesses, and online sellers. Bengali is the source of truth; English mirrors it at /en/...'
+  )
+  lines.push('')
+  lines.push(`Base URL: ${SITE_URL}${BASE_PATH}`)
+
+  const localeSections = [
+    { key: 'bn', heading: '## বাংলা (Bengali)' },
+    { key: 'en', heading: '## English' }
+  ]
+
+  let totalStubs = 0
+  for (const { key, heading } of localeSections) {
+    const pages = (llmsPages[key] || []).filter((p) => !p.stub && p.slug !== '')
+    totalStubs += localeCounts[key]?.stubs || 0
+    lines.push('')
+    lines.push(heading)
+    for (const page of pages) {
+      const desc = page.description ? oneLine(page.description) : ''
+      lines.push(`- [${oneLine(page.title)}](${abs(page.route)})${desc ? `: ${desc}` : ''}`)
+    }
+  }
+
+  lines.push('')
+  lines.push('---')
+  lines.push(
+    `${totalStubs} additional topics are planned but not yet written (stubs) across both languages. ` +
+      `See ${abs('/contribute')} to help write one.`
+  )
+
+  fs.writeFileSync(path.join(root, 'public', 'llms.txt'), lines.join('\n') + '\n')
+  console.log(`llms.txt: ${(llmsPages.bn?.filter((p) => !p.stub).length || 0) + (llmsPages.en?.filter((p) => !p.stub).length || 0)} written pages listed`)
+}
 
 // Tiny client-safe map (section slug -> title) for breadcrumbs.
 const lite = {}

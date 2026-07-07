@@ -187,7 +187,7 @@ Goal: make the backlog mechanically actionable and expose drift.
 
 Commit: `Add backlog status report script (plan/status-report.md)`
 
-### ☐ T5 — Case Studies pillar (size L, model: Opus; needs web access for step 6)
+### ✅ T5 — Case Studies pillar (DONE 2026-07-07)
 
 The single biggest vision gap: 40 planned case studies, zero on the site.
 
@@ -214,7 +214,7 @@ The single biggest vision gap: 40 planned case studies, zero on the site.
 Acceptance: hub lists 40 entries (39 stubs + 1 written Pathao study); nav shows the section; build green.
 Commit: `Add Case Studies section: hubs, 40 stubs, Pathao exemplar`
 
-### ☐ T6 — Directory as a data product (size L, model: Opus; splittable, needs web access)
+### ✅ T6 — Directory as a data product (DONE 2026-07-07)
 
 Directory entries must be structured data — filterable, verifiable, and consumable by the future
 AI/MCP layer — not prose tables.
@@ -237,7 +237,7 @@ AI/MCP layer — not prose tables.
 Acceptance: build green; both category pages render from JSON; invalid JSON fails loudly at build.
 Commit: `Add data-backed ecosystem directory (investors, accelerators)`
 
-### ☐ T7 — "Last verified" system (size M, model: Sonnet or Opus; needs web access for step 4)
+### ✅ T7 — "Last verified" system (DONE 2026-07-07)
 
 1. Extend `scripts/build-manifest.mjs` to read optional `verified: YYYY-MM-DD` frontmatter into
    the manifests (inspect how title/description are parsed and mirror that).
@@ -252,7 +252,7 @@ Commit: `Add data-backed ecosystem directory (investors, accelerators)`
 Acceptance: stamped pages render the line; unstamped pages don't; build green.
 Commit: `Add verified-date system; re-verify compliance pages`
 
-### ☐ T8 — Fix boilerplate stub sources (size L but mechanical, model: Sonnet)
+### ✅ T8 — Fix boilerplate stub sources (DONE 2026-07-07)
 
 317 stubs mostly cite the same irrelevant triplet (Bangladesh Bank / NBR / RJSC).
 
@@ -274,7 +274,7 @@ Commit: `Add verified-date system; re-verify compliance pages`
 
 Commit: `Replace boilerplate stub sources with per-topic sources from plan/sources.csv`
 
-### ☐ T9 — llms.txt (size S, model: Sonnet)
+### ✅ T9 — llms.txt (DONE 2026-07-07)
 
 Generate `public/llms.txt` at manifest/build time: site name, one-line description, base URL
 (respect the `/deshistartup` basePath), then one line per **written** (non-stub) page — title,
@@ -283,7 +283,7 @@ This makes the site legible to AI assistants, which is distribution, not canniba
 
 Commit: `Generate llms.txt for AI-assistant consumption`
 
-### ☐ T10 — Maintenance calendar (size S, model: Sonnet)
+### ✅ T10 — Maintenance calendar (DONE 2026-07-07)
 
 Convert `plan/research-ops.csv` into `plan/maintenance-calendar.md` (June budget-speech mining;
 monthly RJSC/NBR/VAT-circular check; quarterly directory re-verification; annual license-fee sweep)
