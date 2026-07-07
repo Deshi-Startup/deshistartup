@@ -19,18 +19,21 @@
   "registration": "ব্যবসা নিবন্ধন",
   "rjsc-name-clearance": "RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন",
   "start-here": "শুরু করুন",
+  "tools": "টেমপ্লেট ও টুলস",
   "trade-license": "ট্রেড লাইসেন্স"
  },
  "bnCounts": {
-  "pages": 430,
-  "written": 72,
+  "pages": 431,
+  "written": 73,
   "stubs": 358
  },
  "en": {
   "case-studies": "Case Studies",
+  "company-types": "Company Types",
   "contribute": "How to Contribute",
   "customers": "Finding Customers",
   "directory": "Directory",
+  "e-tin-vat-bin": "e-TIN, VAT and BIN",
   "ecosystem-overview": "Bangladesh Startup Ecosystem Overview",
   "founder-life": "Founder Life",
   "idea-validation": "Idea Validation",
@@ -44,11 +47,12 @@
   "registration": "Business Registration",
   "rjsc-name-clearance": "RJSC / Name Clearance / Company Registration",
   "start-here": "Start Here",
+  "tools": "Templates & Tools",
   "trade-license": "Trade License"
  },
  "enCounts": {
-  "pages": 428,
-  "written": 72,
-  "stubs": 356
+  "pages": 431,
+  "written": 73,
+  "stubs": 358
  }
 }

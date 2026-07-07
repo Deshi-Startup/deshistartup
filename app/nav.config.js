@@ -18,6 +18,10 @@ export const bnNav = [
     items: [['/journeys', 'লক্ষ্য অনুযায়ী গাইডেড পথ']]
   },
   {
+    label: 'টেমপ্লেট ও টুলস',
+    items: [['/tools', 'চেকলিস্ট, স্ক্রিপ্ট ও ক্যালকুলেটর']]
+  },
+  {
     label: 'আইডিয়া ও যাচাই',
     items: [
       ['/idea-validation', 'আইডিয়া যাচাই'],
@@ -84,6 +88,10 @@ export const enNav = [
     items: [['/en/journeys', 'Guided paths by goal']]
   },
   {
+    label: 'Templates & Tools',
+    items: [['/en/tools', 'Checklists, scripts & calculators']]
+  },
+  {
     label: 'Idea & Validation',
     items: [['/en/idea-validation', 'Idea validation']]
   },
@@ -91,9 +99,11 @@ export const enNav = [
     label: 'Legal, Registration & Tax',
     items: [
       ['/en/legal-roadmap', 'Legal roadmap'],
+      ['/en/company-types', 'Company types'],
       ['/en/registration', 'Business registration'],
       ['/en/rjsc-name-clearance', 'RJSC & name clearance'],
-      ['/en/trade-license', 'Trade license']
+      ['/en/trade-license', 'Trade license'],
+      ['/en/e-tin-vat-bin', 'e-TIN, VAT & BIN']
     ]
   },
   {

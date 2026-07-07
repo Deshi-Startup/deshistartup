@@ -12,7 +12,7 @@ function localHref(href) {
 }
 
 const bn = {
-  kicker: 'বাংলাদেশে স্টার্টআপ শুরু ও বড় করার বাংলা সহায়িকা',
+  kicker: 'বাংলাদেশে স্টার্টআপ ও ছোট ব্যবসা শুরু করার বাংলা সহায়িকা',
   title: 'দেশি স্টার্টআপ',
   subtitle:
     'আইডিয়া থেকে প্রথম গ্রাহক, ট্রেড লাইসেন্স থেকে পেমেন্ট, আর ফান্ডিং থেকে বড় হওয়া পর্যন্ত সহজ ভাষায় ধাপে ধাপে দিকনির্দেশনা।',
@@ -36,9 +36,9 @@ const bn = {
     'আইন, কর, ভ্যাট, ব্যাংকিং বা লাইসেন্স সংক্রান্ত লেখা সিদ্ধান্ত নিতে সাহায্য করবে, কিন্তু এটি আইনি বা কর পরামর্শ নয়। ফি, ফর্ম ও প্রক্রিয়া বদলাতে পারে; কাজ করার আগে সরকারি উৎস এবং প্রয়োজনে চার্টার্ড অ্যাকাউন্ট্যান্ট/আইনজীবীর সঙ্গে মিলিয়ে নিন।',
   infoboxTitle: 'এক নজরে',
   infoboxName: 'দেশি স্টার্টআপ',
-  infoboxTagline: 'বাংলাদেশি উদ্যোক্তাদের জন্য সহজ বাংলা স্টার্টআপ গাইড',
+  infoboxTagline: 'বাংলাদেশি উদ্যোক্তাদের জন্য সহজ বাংলা স্টার্টআপ ও ব্যবসার গাইড',
   infobox: (written, stubs) => [
-    ['যাদের জন্য', 'নতুন উদ্যোক্তা, শিক্ষার্থী প্রতিষ্ঠাতা, টেকনিক্যাল প্রতিষ্ঠাতা, প্রবাসী উদ্যোক্তা'],
+    ['যাদের জন্য', 'নতুন উদ্যোক্তা, শিক্ষার্থী প্রতিষ্ঠাতা, এসএমই মালিক, অনলাইন বিক্রেতা, প্রবাসী উদ্যোক্তা'],
     ['যা পাবেন', 'আইডিয়া যাচাই, নিবন্ধন, পেমেন্ট, বিক্রি, নিয়োগ, ফান্ডিং'],
     ['ভাষা', 'সহজ বাংলা; দরকারি ইংরেজি শব্দ ব্যাখ্যাসহ'],
     ['মূল্য', 'সম্পূর্ণ ফ্রি; ওপেন সোর্স'],
@@ -51,7 +51,8 @@ const bn = {
     ['আমি একদম নতুন', 'ব্যবসা শুরুর পুরো পথটা আগে এক নজরে বুঝে নিন – কী আগে, কী পরে।', 'শুরু করুন', '/start-here'],
     ['আমার একটা আইডিয়া আছে', 'বানানোর আগে দেখুন মানুষ সমস্যাটা সত্যি অনুভব করে কি না, টাকা দিতে রাজি কি না।', 'আইডিয়া যাচাই করুন', '/idea-validation'],
     ['ব্যবসা চালু করতে চাই', 'ট্রেড লাইসেন্স, কোম্পানি, টিআইএন, ভ্যাট, ব্যাংক – কোন কাগজ কখন লাগে, ধাপে ধাপে।', 'আইনগত পথ দেখুন', '/legal-roadmap'],
-    ['গ্রাহক আর বিক্রি চাই', 'ফেসবুক, মেসেঞ্জার, হোয়াটসঅ্যাপ, রেফারেল – প্রথম ১০০ গ্রাহক পাওয়ার বাস্তব পথ।', 'বিক্রি শুরু করুন', '/customers']
+    ['গ্রাহক আর বিক্রি চাই', 'ফেসবুক, মেসেঞ্জার, হোয়াটসঅ্যাপ, রেফারেল – প্রথম ১০০ গ্রাহক পাওয়ার বাস্তব পথ।', 'বিক্রি শুরু করুন', '/customers'],
+    ['লক্ষ্য জানি, পথ চাই', 'আপনার কাজ বেছে নিয়ে ধাপে ধাপে কোন গাইড পড়বেন তা দেখে নিন।', 'গাইডেড পথ দেখুন', '/journeys']
   ],
   pathTitle: 'একদম নতুন? এই ৫টি গাইড ক্রমে পড়ুন',
   pathSub: 'প্রতিটি গাইডের শেষে পরের ধাপ দেখানো আছে – হারিয়ে যাওয়ার ভয় নেই।',
@@ -81,15 +82,18 @@ const bn = {
     ['পেমেন্ট ও অপারেশন', 'বিকাশ/নগদ · গেটওয়ে · ক্যাশ অন ডেলিভারি · কুরিয়ার · রিফান্ড', '/payments'],
     ['গ্রাহক ও বিক্রি', 'ফেসবুক কমার্স · মেসেঞ্জার/হোয়াটসঅ্যাপ · B2B বিক্রি · প্রথম ১০০ গ্রাহক', '/customers'],
     ['দল ও উদ্যোক্তার জীবন', 'সহ-প্রতিষ্ঠাতা · প্রথম নিয়োগ · পারিবারিক চাপ · বার্নআউট', '/founder-life'],
-    ['ফান্ডিং ও বড় হওয়া', 'গ্রান্ট · এঞ্জেল · ভিসি · পিচ ডেক · সরকারি সুবিধা', '/phase-three']
+    ['ফান্ডিং ও বড় হওয়া', 'গ্রান্ট · এঞ্জেল · ভিসি · পিচ ডেক · সরকারি সুবিধা', '/phase-three'],
+    ['টেমপ্লেট ও টুলস', 'চেকলিস্ট · স্ক্রিপ্ট · ক্যালকুলেটর · ট্র্যাকার', '/tools'],
+    ['ডিরেক্টরি', 'ইনভেস্টর · অ্যাক্সেলারেটর · প্রোগ্রাম · ইকোসিস্টেম', '/directory']
   ],
   whoTitle: 'এই সাইট আপনার কাজে লাগবে যদি',
   whoBody:
-    'আপনি বড় প্রযুক্তি স্টার্টআপ বানাতে চান, কম বাজেটে একটা আইডিয়া পরীক্ষা করতে চান, এজেন্সি বা চাকরি ছেড়ে নিজের পণ্যে যেতে চান, নাকি সবে সহ-প্রতিষ্ঠাতা খুঁজছেন – শুরুতে প্রশ্নগুলো প্রায় একই। সেগুলো সহজ করে সাজানোই এই সাইটের কাজ।',
+    'আপনি বড় প্রযুক্তি স্টার্টআপ বানাতে চান, ছোট অনলাইন ব্যবসা শুরু করতে চান, এজেন্সি থেকে নিজের পণ্যে যেতে চান, বা পারিবারিক ব্যবসা ধীরে ধীরে ডিজিটাল করতে চান – শুরুতে প্রশ্নগুলো প্রায় একই। সেগুলো সহজ করে সাজানোই এই সাইটের কাজ।',
   who: [
     ['আপনি শিক্ষার্থী উদ্যোক্তা:', 'কম বাজেটে আইডিয়া পরীক্ষা করতে চান।'],
-    ['আপনি প্রথমবার স্টার্টআপ করছেন:', 'নিবন্ধন, পেমেন্ট, বিক্রি ও নিয়ম মানার বিষয় একসঙ্গে বুঝতে চান।'],
+    ['আপনি প্রথমবার ব্যবসা করছেন:', 'নিবন্ধন, পেমেন্ট, বিক্রি ও নিয়ম মানার বিষয় একসঙ্গে বুঝতে চান।'],
     ['আপনি প্রযুক্তি-দক্ষ প্রতিষ্ঠাতা:', 'পণ্য বানাতে পারেন, কিন্তু বাজার ও বিক্রি বুঝতে চান।'],
+    ['আপনি এসএমই মালিক বা অনলাইন বিক্রেতা:', 'ব্যবসা ডিজিটাল করতে, হিসাব রাখতে এবং একই কাজ বারবার চালাতে চান।'],
     ['আপনি ঢাকার বাইরে বা প্রবাস থেকে শুরু করছেন:', 'স্থানীয় দায়িত্বশীল ব্যক্তি, আস্থা, বিতরণ ও কাগজপত্র বুঝতে চান।']
   ],
   faqTitle: 'নতুনদের সাধারণ প্রশ্ন',
@@ -147,7 +151,7 @@ const bn = {
 }
 
 const en = {
-  kicker: 'The Bangla-first guide to building a startup in Bangladesh',
+  kicker: 'The Bangla-first guide to starting a startup or small business in Bangladesh',
   title: 'Deshi Startup',
   subtitle:
     'Step-by-step guidance in plain language – from idea to first customer, trade license to payments, funding to scale.',
@@ -171,9 +175,9 @@ const en = {
     'Articles about law, tax, VAT, banking or licensing help you decide, but they are not legal or tax advice. Fees, forms and processes change; confirm with official sources and, where needed, a chartered accountant or lawyer before acting.',
   infoboxTitle: 'At a glance',
   infoboxName: 'Deshi Startup',
-  infoboxTagline: 'A plain-language startup guide for Bangladeshi founders',
+  infoboxTagline: 'A plain-language startup and business guide for Bangladeshi founders',
   infobox: (written, stubs) => [
-    ['For', 'New founders, student founders, technical founders, diaspora founders'],
+    ['For', 'New founders, student founders, SME owners, online sellers, diaspora founders'],
     ['Covers', 'Idea validation, registration, payments, sales, hiring, funding'],
     ['Language', 'Simple Bangla; English terms explained'],
     ['Price', 'Completely free; open source'],
@@ -186,7 +190,8 @@ const en = {
     ['I\'m completely new', 'See the whole journey first – what comes first, what can wait.', 'Start here', '/en/start-here'],
     ['I have an idea', 'Before building, check people truly feel the problem and will pay.', 'Validate your idea', '/en/idea-validation'],
     ['I want to launch', 'Trade license, company, TIN, VAT, bank – which paper when, step by step.', 'See the legal path', '/en/legal-roadmap'],
-    ['I need customers', 'Facebook, Messenger, WhatsApp, referrals – real paths to your first 100 customers.', 'Start selling', '/en/customers']
+    ['I need customers', 'Facebook, Messenger, WhatsApp, referrals – real paths to your first 100 customers.', 'Start selling', '/en/customers'],
+    ['I know the goal', 'Pick the job you are trying to do and follow the guides in order.', 'See guided paths', '/en/journeys']
   ],
   pathTitle: 'Brand new? Read these 5 guides in order',
   pathSub: 'Each guide ends with the next step – you won\'t get lost.',
@@ -216,15 +221,18 @@ const en = {
     ['Payments & operations', 'bKash/Nagad · gateways · cash on delivery · couriers · refunds', '/en/payments'],
     ['Customers & sales', 'Facebook commerce · Messenger/WhatsApp · B2B sales · first 100 customers', '/en/customers'],
     ['Team & founder life', 'Co-founders · first hires · family pressure · burnout', '/en/founder-life'],
-    ['Funding & scale', 'Grants · angels · VC · pitch decks · government support', '/en/phase-three']
+    ['Funding & scale', 'Grants · angels · VC · pitch decks · government support', '/en/phase-three'],
+    ['Templates & tools', 'Checklists · scripts · calculators · trackers', '/en/tools'],
+    ['Directory', 'Investors · accelerators · programs · ecosystem', '/en/directory']
   ],
   whoTitle: 'This site is for you if',
   whoBody:
-    'Whether you want to build a big tech startup, test an idea on a small budget, move from agency work or a job to your own product, or you\'re just looking for a co-founder – the early questions are mostly the same. This site organizes them simply.',
+    'Whether you want to build a big tech startup, start a small online business, move from agency work to your own product, or slowly digitize a family business – the early questions are mostly the same. This site organizes them simply.',
   who: [
     ['You\'re a student founder:', 'you want to test an idea on a small budget.'],
-    ['You\'re starting your first startup:', 'you want registration, payments, sales and compliance explained together.'],
+    ['You\'re starting your first business:', 'you want registration, payments, sales and compliance explained together.'],
     ['You\'re a technical founder:', 'you can build the product but want to understand the market and sales.'],
+    ['You\'re an SME owner or online seller:', 'you want to digitize, keep books and make operations repeatable.'],
     ['You\'re starting from outside Dhaka or abroad:', 'you need trusted local operators, distribution and paperwork explained.']
   ],
   faqTitle: 'Common beginner questions',

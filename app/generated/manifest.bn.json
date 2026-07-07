@@ -2,8 +2,8 @@
  "locale": "bn",
  "generatedAt": null,
  "counts": {
-  "pages": 430,
-  "written": 72,
+  "pages": 431,
+  "written": 73,
   "stubs": 358
  },
  "sections": {
@@ -540,7 +540,7 @@
     "fullTitle": "বাংলাদেশের স্টার্টআপ পরিবেশ – কারা আছে, কীভাবে কাজে লাগাবেন",
     "description": "বাংলাদেশের স্টার্টআপ ও ব্যবসা পরিবেশ নিয়ে সহজ বাংলা ওভারভিউ: উদ্যোক্তা, গ্রাহক, সরকার, বিনিয়োগকারী, ইনকিউবেটর, পেমেন্ট, লজিস্টিকস, ট্যালেন্ট ও বাজার বাস্তবতা।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": null
    },
    "children": [],
@@ -682,21 +682,21 @@
      "verified": null
     },
     {
-     "route": "/founder-life/student-founder-semester-plan",
-     "slug": "founder-life/student-founder-semester-plan",
-     "title": "শিক্ষার্থী প্রতিষ্ঠাতার সেমিস্টার পরিকল্পনা",
-     "fullTitle": "শিক্ষার্থী প্রতিষ্ঠাতার সেমিস্টার পরিকল্পনা",
-     "description": "শিক্ষার্থী প্রতিষ্ঠাতার সেমিস্টার পরিকল্পনা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "route": "/founder-life/founder-life-overview",
+     "slug": "founder-life/founder-life-overview",
+     "title": "ফাউন্ডার লাইফ ওভারভিউ",
+     "fullTitle": "ফাউন্ডার লাইফ ওভারভিউ",
+     "description": "ফাউন্ডার লাইফ ওভারভিউ – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
     },
     {
-     "route": "/founder-life/founder-life-overview",
-     "slug": "founder-life/founder-life-overview",
-     "title": "Founder Life",
-     "fullTitle": "Founder Life",
-     "description": "Founder Life – ফাউন্ডার হিসেবে প্রতিদিনের বাস্তবতা, অগ্রাধিকার, এবং মানসিকতা।",
+     "route": "/founder-life/student-founder-semester-plan",
+     "slug": "founder-life/student-founder-semester-plan",
+     "title": "শিক্ষার্থী প্রতিষ্ঠাতার সেমিস্টার পরিকল্পনা",
+     "fullTitle": "শিক্ষার্থী প্রতিষ্ঠাতার সেমিস্টার পরিকল্পনা",
+     "description": "শিক্ষার্থী প্রতিষ্ঠাতার সেমিস্টার পরিকল্পনা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -715,7 +715,7 @@
     "fullTitle": "আইডিয়া যাচাই – পণ্য বানানোর আগে সত্যিকারের চাহিদা বুঝুন",
     "description": "বাংলাদেশে স্টার্টআপ বা ছোট ব্যবসার আইডিয়া যাচাই করার সহজ বাংলা গাইড: সমস্যা লেখা, গ্রাহক সাক্ষাৎকার, প্রতিযোগী দেখা, এমভিপি পরীক্ষা, পেমেন্ট সংকেত ও বাজার বোঝা।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": null
    },
    "children": [],
@@ -1231,9 +1231,9 @@
     {
      "route": "/phase-four/phase-4-roadmap",
      "slug": "phase-four/phase-4-roadmap",
-     "title": "Phase 4 রোডম্যাপ",
-     "fullTitle": "Phase 4 রোডম্যাপ",
-     "description": "Phase 4 রোডম্যাপ – আপনার ব্যবসার scale, team, brand এবং systems তৈরি করার গাইড।",
+     "title": "ধাপ ৪ রোডম্যাপ",
+     "fullTitle": "ধাপ ৪ রোডম্যাপ",
+     "description": "ধাপ ৪ রোডম্যাপ – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -1252,7 +1252,7 @@
     "fullTitle": "ধাপ ১ রোডম্যাপ – আইডিয়া, যাচাই ও প্রথম আনুষ্ঠানিক ভিত্তি",
     "description": "বাংলাদেশে স্টার্টআপ বা ছোট ব্যবসার প্রথম ধাপ: সমস্যা বাছাই, গ্রাহক যাচাই, ছোট পরীক্ষা, প্রথম পেমেন্ট, ব্যবসার ধরন, ট্রেড লাইসেন্স, টিআইএন, ভ্যাট ও পেমেন্ট।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": null
    },
    "children": [
@@ -4428,6 +4428,23 @@
    "title": "শুরু করুন",
    "total": 11,
    "written": 3
+  },
+  "tools": {
+   "slug": "tools",
+   "index": {
+    "route": "/tools",
+    "slug": "tools",
+    "title": "টেমপ্লেট ও টুলস",
+    "fullTitle": "টেমপ্লেট ও টুলস – চেকলিস্ট, স্ক্রিপ্ট, ক্যালকুলেটর ও ট্র্যাকার",
+    "description": "দেশি স্টার্টআপের ব্যবহারযোগ্য টেমপ্লেট, চেকলিস্ট, স্ক্রিপ্ট, ক্যালকুলেটর ও ট্র্যাকার এক জায়গায় – যাচাই, নিবন্ধন, বিক্রি, ফান্ডিং ও অপারেশনের জন্য।",
+    "stub": false,
+    "date": null,
+    "verified": null
+   },
+   "children": [],
+   "title": "টেমপ্লেট ও টুলস",
+   "total": 0,
+   "written": 0
   },
   "trade-license": {
    "slug": "trade-license",

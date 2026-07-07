@@ -18,8 +18,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const contentRoot = path.join(root, 'app', '(contents)')
 
 const LOCALES = [
-  { key: 'bn', dir: path.join(contentRoot, '(bn)'), routePrefix: '', stubMarkers: ['<StubNotice', 'প্রাথমিক অগ্রাধিকার', 'এই পৃষ্ঠার উদ্দেশ্য'] },
-  { key: 'en', dir: path.join(contentRoot, 'en'), routePrefix: '/en', stubMarkers: ['<StubNotice', 'Initial Priority', 'Purpose of this Page'] }
+  { key: 'bn', dir: path.join(contentRoot, '(bn)'), routePrefix: '' },
+  { key: 'en', dir: path.join(contentRoot, 'en'), routePrefix: '/en' }
 ]
 
 function parseFrontmatter(source) {
@@ -96,7 +96,7 @@ for (const locale of LOCALES) {
     const source = fs.readFileSync(filePath, 'utf8')
     const fm = parseFrontmatter(source)
     const title = fm.title || firstHeading(source) || rel
-    const isStub = locale.stubMarkers.some((marker) => source.includes(marker))
+    const isStub = source.includes('<StubNotice')
     const route = rel === '' ? locale.routePrefix || '/' : `${locale.routePrefix}/${rel}`
     const repoPath = path.relative(root, filePath).split(path.sep).join('/')
     const date = gitDates.get(repoPath) || null

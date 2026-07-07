@@ -75,18 +75,20 @@ Base URL: https://deshistartup.com/deshistartup
 - [শুরু করুন](https://deshistartup.com/deshistartup/start-here): বাংলাদেশে নতুন উদ্যোক্তাদের জন্য সহজ বাংলা গাইড: সমস্যা বাছাই, গ্রাহকের সঙ্গে কথা বলা, এমভিপি পরীক্ষা, প্রথম বিক্রি, আইনগত প্রস্তুতি, পেমেন্ট ও পরের ধাপ।
 - [স্টার্টআপ, এসএমই, এজেন্সি ও ই-কমার্স ব্যবসার পার্থক্য](https://deshistartup.com/deshistartup/start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh): Startup vs SME vs agency vs e-commerce business in Bangladesh
 - [স্টার্টআপ কী?](https://deshistartup.com/deshistartup/start-here/what-is-a-startup): What is a startup?
+- [টেমপ্লেট ও টুলস](https://deshistartup.com/deshistartup/tools): দেশি স্টার্টআপের ব্যবহারযোগ্য টেমপ্লেট, চেকলিস্ট, স্ক্রিপ্ট, ক্যালকুলেটর ও ট্র্যাকার এক জায়গায় – যাচাই, নিবন্ধন, বিক্রি, ফান্ডিং ও অপারেশনের জন্য।
 - [ট্রেড লাইসেন্স](https://deshistartup.com/deshistartup/trade-license): বাংলাদেশে ট্রেড লাইসেন্স কী, কার দরকার, কোথায় আবেদন করবেন, কী কাগজ লাগে, অনলাইন ব্যবসা কীভাবে ভাববে, নবায়ন ও সাধারণ ভুল–সহজ বাংলা গাইড।
 
 ## English
 - [Case Studies](https://deshistartup.com/deshistartup/en/case-studies): Source-backed case studies of Bangladeshi startups, successes and failures alike – how Pathao, bKash, Chaldal and others actually started, what worked, what did not, and why.
 - [Pathao](https://deshistartup.com/deshistartup/en/case-studies/pathao): How Pathao moved from a small delivery experiment to a Bangladeshi super-app, what local realities it used, and what new founders should and should not copy.
+- [Company Types](https://deshistartup.com/deshistartup/en/company-types): A practical guide to choosing a business structure in Bangladesh: liability, cost, funding, banking, payments, tax, compliance and growth plans.
 - [How to Contribute](https://deshistartup.com/deshistartup/en/contribute): Deshi Startup is an open knowledge base written together. From reporting a mistake to writing a new guide – three easy ways to take part.
 - [Finding Customers](https://deshistartup.com/deshistartup/en/customers): >-
 - [Accelerators and Programs Directory](https://deshistartup.com/deshistartup/en/directory/accelerators): A structured list of accelerators, incubators, and startup support programs available to Bangladeshi founders.
 - [Investor Directory](https://deshistartup.com/deshistartup/en/directory/investors): A structured list of Bangladesh-focused angel networks, venture funds, and early-stage investors.
 - [Directory](https://deshistartup.com/deshistartup/en/directory): A structured directory of investors, accelerators, programs, and support organizations, rendered from JSON data.
+- [e-TIN, VAT and BIN](https://deshistartup.com/deshistartup/en/e-tin-vat-bin): A practical English guide to TIN, VAT, BIN, returns, invoices, record keeping and payment reconciliation for businesses in Bangladesh.
 - [Bangladesh Startup Ecosystem Overview](https://deshistartup.com/deshistartup/en/ecosystem-overview): > **In short:** A startup needs more than an idea. It needs an ecosystem: people and institutions that advise you, fund you, understand law and markets, and help you reach customers.
-- [Founder Life](https://deshistartup.com/deshistartup/en/founder-life/founder-life-overview): Founder Life – the daily realities, priorities, and mindset of being a founder.
 - [Founder Life](https://deshistartup.com/deshistartup/en/founder-life): > **In short:** Founder life is not just about being an owner. It is a life of working 7 days a week, 10-12 hours a day, and making new decisions every day.
 - [Idea Validation](https://deshistartup.com/deshistartup/en/idea-validation): > **In short:** Before starting a startup, make sure people truly want your solution and are willing to pay for it. In Bangladesh, the biggest mistake is building the product first and only later checking whether customers exist.
 - [I want to accept digital payments](https://deshistartup.com/deshistartup/en/journeys/accept-digital-payments): The full path to accepting digital payments in Bangladesh – bank account, choosing bKash/Nagad and a gateway, merchant account, integration, reconciliation, and refunds.
@@ -128,7 +130,6 @@ Base URL: https://deshistartup.com/deshistartup
 - [Mentorship Programs](https://deshistartup.com/deshistartup/en/phase-four/mentorship-programs): Mentorship programs
 - [Opening a BIDA OSS Account and Tracking Service Requests](https://deshistartup.com/deshistartup/en/phase-four/opening-a-bida-oss-account-and-tracking-service-requests): Opening a BIDA OSS account and tracking service requests
 - [Phase 4 Roadmap](https://deshistartup.com/deshistartup/en/phase-four): > **Summary:** Phase 4 doesn't mean your business just gets 'big'; it means scaling with multiple growth channels, a strong team, a clear brand, and sustainability.
-- [Phase 4 Roadmap](https://deshistartup.com/deshistartup/en/phase-four/phase-4-roadmap): Phase 4 Roadmap – A guide to building your business's scale, team, brand, and systems.
 - [Guide to RMG and Garment Accessories Business](https://deshistartup.com/deshistartup/en/phase-four/rmg-and-garment-accessories-startup-guide): RMG and garment accessories startup guide
 - [SaaS Export Playbook from Bangladesh](https://deshistartup.com/deshistartup/en/phase-four/saas-export-playbook-from-bangladesh): A comprehensive guide for exporting SaaS products from Bangladesh.
 - [Special Economic Zones](https://deshistartup.com/deshistartup/en/phase-four/special-economic-zones): Special Economic Zones
@@ -145,10 +146,11 @@ Base URL: https://deshistartup.com/deshistartup
 - [Business Registration](https://deshistartup.com/deshistartup/en/registration): > **In short:** To start a business in Bangladesh, you need official registration. This guide covers which business entity fits you, how to register with RJSC, and what it may cost.
 - [RJSC / Name Clearance / Company Registration](https://deshistartup.com/deshistartup/en/rjsc-name-clearance): > **In short:** Before starting company registration, you need to handle name clearance properly. This is where many startups face their first procedural bottleneck.
 - [30-Day Roadmap to Starting a Startup in Bangladesh](https://deshistartup.com/deshistartup/en/start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh): 30-day roadmap to starting a startup in Bangladesh
-- [Start Here](https://deshistartup.com/deshistartup/en/start-here): > **In short:** If you are a new founder, your first job is to understand exactly where you stand. This page gives you a step-by-step roadmap from the beginning.
+- [Start Here](https://deshistartup.com/deshistartup/en/start-here): A beginner-friendly English guide to starting in Bangladesh: choose a problem, validate demand, understand registration, payments, customers, team and funding.
 - [Startup, SME, Agency, and E-commerce: What Is the Difference?](https://deshistartup.com/deshistartup/en/start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh): Startup vs SME vs agency vs e-commerce business in Bangladesh
 - [What Is a Startup?](https://deshistartup.com/deshistartup/en/start-here/what-is-a-startup): What is a startup?
+- [Templates & Tools](https://deshistartup.com/deshistartup/en/tools): Practical Deshi Startup templates, checklists, scripts, calculators and trackers in one place for validation, registration, sales, funding and operations.
 - [Trade License](https://deshistartup.com/deshistartup/en/trade-license): > **In short:** A trade license is mandatory for operating any business in Bangladesh. You obtain it from your local city corporation or municipality. Operating without one is illegal and may lead to penalties.
 
 ---
-714 additional topics are planned but not yet written (stubs) across both languages. See https://deshistartup.com/deshistartup/contribute to help write one.
+716 additional topics are planned but not yet written (stubs) across both languages. See https://deshistartup.com/deshistartup/contribute to help write one.

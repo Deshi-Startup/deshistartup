@@ -2,9 +2,9 @@
  "locale": "en",
  "generatedAt": null,
  "counts": {
-  "pages": 428,
-  "written": 72,
-  "stubs": 356
+  "pages": 431,
+  "written": 73,
+  "stubs": 358
  },
  "sections": {
   "case-studies": {
@@ -425,6 +425,23 @@
    "total": 40,
    "written": 1
   },
+  "company-types": {
+   "slug": "company-types",
+   "index": {
+    "route": "/en/company-types",
+    "slug": "company-types",
+    "title": "Company Types",
+    "fullTitle": "Company Types – Sole Proprietorship, Partnership or Private Limited?",
+    "description": "A practical guide to choosing a business structure in Bangladesh: liability, cost, funding, banking, payments, tax, compliance and growth plans.",
+    "stub": false,
+    "date": null,
+    "verified": "2026-07-07"
+   },
+   "children": [],
+   "title": "Company Types",
+   "total": 0,
+   "written": 0
+  },
   "contribute": {
    "slug": "contribute",
    "index": {
@@ -497,6 +514,23 @@
    "total": 2,
    "written": 2
   },
+  "e-tin-vat-bin": {
+   "slug": "e-tin-vat-bin",
+   "index": {
+    "route": "/en/e-tin-vat-bin",
+    "slug": "e-tin-vat-bin",
+    "title": "e-TIN, VAT and BIN",
+    "fullTitle": "e-TIN, VAT and BIN – A Simple Guide to Tax and VAT Identity",
+    "description": "A practical English guide to TIN, VAT, BIN, returns, invoices, record keeping and payment reconciliation for businesses in Bangladesh.",
+    "stub": false,
+    "date": null,
+    "verified": "2026-07-07"
+   },
+   "children": [],
+   "title": "e-TIN, VAT and BIN",
+   "total": 0,
+   "written": 0
+  },
   "ecosystem-overview": {
    "slug": "ecosystem-overview",
    "index": {
@@ -506,7 +540,7 @@
     "fullTitle": "Bangladesh Startup Ecosystem Overview",
     "description": "> **In short:** A startup needs more than an idea. It needs an ecosystem: people and institutions that advise you, fund you, understand law and markets, and help you reach customers.",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": null
    },
    "children": [],
@@ -527,16 +561,6 @@
     "verified": null
    },
    "children": [
-    {
-     "route": "/en/founder-life/founder-life-overview",
-     "slug": "founder-life/founder-life-overview",
-     "title": "Founder Life",
-     "fullTitle": "Founder Life",
-     "description": "Founder Life – the daily realities, priorities, and mindset of being a founder.",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
     {
      "route": "/en/founder-life/diaspora-co-founder-and-local-operator-relationship",
      "slug": "founder-life/diaspora-co-founder-and-local-operator-relationship",
@@ -583,6 +607,16 @@
      "title": "Family Pressure and Career Risk",
      "fullTitle": "Family Pressure and Career Risk",
      "description": "Family Pressure and Career Risk – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-07",
+     "verified": null
+    },
+    {
+     "route": "/en/founder-life/founder-life-overview",
+     "slug": "founder-life/founder-life-overview",
+     "title": "Founder Life Overview",
+     "fullTitle": "Founder Life Overview",
+     "description": "Founder Life Overview is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -670,7 +704,7 @@
    ],
    "title": "Founder Life",
    "total": 14,
-   "written": 1
+   "written": 0
   },
   "idea-validation": {
    "slug": "idea-validation",
@@ -1115,16 +1149,6 @@
      "verified": null
     },
     {
-     "route": "/en/phase-four/phase-4-roadmap",
-     "slug": "phase-four/phase-4-roadmap",
-     "title": "Phase 4 Roadmap",
-     "fullTitle": "Phase 4 Roadmap",
-     "description": "Phase 4 Roadmap – A guide to building your business's scale, team, brand, and systems.",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/en/phase-four/saas-export-playbook-from-bangladesh",
      "slug": "phase-four/saas-export-playbook-from-bangladesh",
      "title": "SaaS Export Playbook from Bangladesh",
@@ -1203,11 +1227,21 @@
      "stub": false,
      "date": "2026-07-07",
      "verified": null
+    },
+    {
+     "route": "/en/phase-four/phase-4-roadmap",
+     "slug": "phase-four/phase-4-roadmap",
+     "title": "Phase 4 Roadmap",
+     "fullTitle": "Phase 4 Roadmap",
+     "description": "Phase 4 Roadmap is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-07",
+     "verified": null
     }
    ],
    "title": "Phase 4 Roadmap",
    "total": 33,
-   "written": 33
+   "written": 32
   },
   "phase-one": {
    "slug": "phase-one",
@@ -4273,8 +4307,8 @@
     "route": "/en/start-here",
     "slug": "start-here",
     "title": "Start Here",
-    "fullTitle": "Start Here – A Guide to Building a Startup in Bangladesh",
-    "description": "> **In short:** If you are a new founder, your first job is to understand exactly where you stand. This page gives you a step-by-step roadmap from the beginning.",
+    "fullTitle": "Start Here – A Guide to Starting a Startup or Small Business in Bangladesh",
+    "description": "A beginner-friendly English guide to starting in Bangladesh: choose a problem, validate demand, understand registration, payments, customers, team and funding.",
     "stub": false,
     "date": "2026-07-08",
     "verified": null
@@ -4394,6 +4428,23 @@
    "title": "Start Here",
    "total": 11,
    "written": 3
+  },
+  "tools": {
+   "slug": "tools",
+   "index": {
+    "route": "/en/tools",
+    "slug": "tools",
+    "title": "Templates & Tools",
+    "fullTitle": "Templates & Tools – Checklists, Scripts, Calculators and Trackers",
+    "description": "Practical Deshi Startup templates, checklists, scripts, calculators and trackers in one place for validation, registration, sales, funding and operations.",
+    "stub": false,
+    "date": null,
+    "verified": null
+   },
+   "children": [],
+   "title": "Templates & Tools",
+   "total": 0,
+   "written": 0
   },
   "trade-license": {
    "slug": "trade-license",

@@ -4,9 +4,9 @@
  * app/generated/manifest.bn.json (what actually exists on the site) so the backlog
  * stays mechanically actionable instead of drifting silently.
  *
- * Slugify rule below was derived empirically, not guessed: every non-Case-Study
- * backlog row was tested against real site slugs until the rule produced a 100%
- * exact-match rate (353/353). Case Studies (40 rows) have no pages yet — see T5.
+ * Slugify rule below was derived empirically, not guessed: every backlog row is
+ * matched against real site slugs, with fuzzy fallback reported rather than
+ * silently accepted.
  *
  * Output: plan/status-report.md
  */
@@ -200,12 +200,15 @@ for (const section of sectionOrder) {
 }
 
 md += '\n## Backlog rows with no matching page\n\n'
-md += `${missingRows.length} rows. Expected: ~40 planned Case Studies (no pages built yet — see T5) `
-md += 'plus a handful of merged/renamed topics.\n\n'
-md += '| Section | Subsection | Topic (English) | Priority | Slug tried |\n'
-md += '|---|---|---|---|---|\n'
-for (const r of missingRows) {
-  md += `| ${r.Section} | ${r.Subsection} | ${r['Topic (English)']} | ${r.Priority} | \`${r.slug}\` |\n`
+if (missingRows.length === 0) {
+  md += 'No backlog rows are missing a site page.\n'
+} else {
+  md += `${missingRows.length} rows. These usually indicate a missing stub, a renamed page, or a backlog row that needs an explicit slug mapping.\n\n`
+  md += '| Section | Subsection | Topic (English) | Priority | Slug tried |\n'
+  md += '|---|---|---|---|---|\n'
+  for (const r of missingRows) {
+    md += `| ${r.Section} | ${r.Subsection} | ${r['Topic (English)']} | ${r.Priority} | \`${r.slug}\` |\n`
+  }
 }
 
 if (fuzzyRows.length) {
@@ -228,7 +231,7 @@ if (ambiguousRows.length) {
 
 md += '\n## Site pages absent from the backlog\n\n'
 md += `${orphanPages.length} pages exist on the site but no backlog row's slug points at them — `
-md += 'likely legacy hub pages from before the backlog system, or topics that need a backlog row added.\n\n'
+md += 'usually section hubs, directory/tool/journey entrypoints, legacy top-level guides, or pages that need backlog rows.\n\n'
 md += '| Slug | Title | Stub? |\n'
 md += '|---|---|---|\n'
 for (const p of orphanPages.sort((a, b) => a.slug.localeCompare(b.slug))) {
