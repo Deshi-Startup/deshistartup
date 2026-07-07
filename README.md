@@ -2,7 +2,7 @@
 
 [![Star on GitHub](https://img.shields.io/github/stars/Deshi-Startup/deshistartup.svg?style=social)](https://github.com/Deshi-Startup/deshistartup)
 
-Deshi Startup is a free, open-source, Bangla-first startup knowledge base and practical operating manual for founders building in Bangladesh.
+Deshi Startup is a free, open-source, Bangla-first knowledge base and practical operating manual for building a business in Bangladesh — startups first, but equally SMEs, online sellers, importers/exporters, and family businesses. The destination is the country's most trustworthy, practical business-knowledge repository: what to do next, how much it costs, which office to visit, which law applies — in plain Bangla, with sources.
 
 The goal is not to become a shallow motivational blog. The goal is to help a founder understand what to do next: validate an idea, register a business, handle tax/VAT basics, accept payments, manage delivery risk, find customers, hire carefully, raise funding, and grow with Bangladesh-specific constraints in mind.
 
@@ -34,6 +34,9 @@ Deshi Startup should become the Bangladesh-specific equivalent of:
 - A practical founder checklist library
 - A searchable Bangladeshi startup knowledge base
 - Eventually, an AI assistant trained only on verified Bangladesh startup resources
+- A source-backed **Bangladeshi startup case-study library** (bKash, Pathao, Chaldal…), each following `plan/case-study-format.md`
+- A **structured ecosystem directory** (investors, accelerators, payment gateways, couriers) as filterable, machine-readable data — not prose
+- A **freshness system**: a tiered source registry, "last verified" dates on compliance pages, and scheduled re-verification (`plan/research-ops.csv`)
 
 The project should be an operating manual: source-backed, stage-aware, Bangladesh-specific, and practical enough to use while building.
 
@@ -90,26 +93,33 @@ The site is organized as a hybrid documentation wiki:
 - **Team and Founder Life:** co-founders, hiring, contracts, family pressure, burnout
 - **Funding and Scale:** angel, grants, VC, data room, metrics, regional growth
 - **Templates and Checklists:** practical worksheets founders can use immediately
+- **Case Studies:** source-backed Bangladeshi startup case studies, one per company, following `plan/case-study-format.md`
+- **Directory:** a data-backed ecosystem directory (investors, accelerators, payment gateways, couriers)
+- **Industry and city playbooks:** sector- and location-specific guidance layered on top of the core roadmap
 
-## MVP Scope
+## Current Milestone
 
-The first version should focus on being useful, credible, and easy to maintain.
+~57 of 374 planned Bengali pages are written; the rest are honest stubs (see `plan/content-backlog.csv`
+for the full backlog and `AGENTS.md` for how stubs work).
 
-MVP features:
+Milestone targets:
+
+- 100 written pages, including 10 case studies
+- Directory v1 (investors + accelerators)
+- `verified:` dates on all compliance pages
+- `llms.txt` published
+
+Already in place:
 
 - Documentation site
 - Markdown/MDX-based content
 - Bangla and English support
 - Source registry and official links
-- Last verified metadata where relevant
 - Beginner-friendly navigation
 - Search
-- 20-30 high-quality pages
-- 10 practical templates/checklists
-- Small curated directory
 - Contribution guidelines
 
-Not MVP:
+Not yet (deliberately sequenced later):
 
 - Full AI assistant
 - Large-scale scraping
@@ -158,6 +168,10 @@ Should-have pages:
 - Investor data room checklist
 
 ## Source Strategy
+
+`plan/sources.csv` is the living, tiered source registry — agents and contributors should pull
+source links from it rather than inventing or hand-picking new ones. The lists below give the shape
+of it.
 
 Use official sources for legal, tax, policy, registration, and compliance topics:
 
@@ -350,6 +364,7 @@ How content is organized:
 - **Pages are plain MDX:** YAML frontmatter (`title`, `description`) + one `#` heading + `##` sections. Breadcrumbs, table of contents, and edit/history links are added automatically — don't hand-write them.
 - **Stubs** are unwritten pages that show only a `<StubNotice />` banner and a sources list. To turn a stub into a real guide, write the content and delete the `StubNotice` line; the site then counts it as written and drops the "to be written" badge.
 - Files under `app/generated/` are build artifacts — never edit them by hand.
+- Not sure what to work on? Open `plan/content-backlog.csv` and pick any লেখা বাকি (not yet written) topic — priorities are marked.
 
 Good contributions include:
 
@@ -376,4 +391,7 @@ The moat is not content volume. The moat is trust, localization, source quality,
 
 ## License
 
-MIT
+- **Code:** MIT.
+- **Content** (everything under `app/(contents)/`): Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0).
+
+See `LICENSE` and `LICENSE-content.md` for the authoritative text and attribution format.

@@ -127,7 +127,7 @@ Today agents.md is a good *operations manual* but describes a 13-guide site; the
 
 Commit: `Rename agents.md to AGENTS.md; rewrite as project map + operations manual`
 
-### ☐ T2 — Update README.md to match the real destination (size M, model: Opus or Sonnet)
+### ✅ T2 — Update README.md to match the real destination (DONE 2026-07-07)
 
 Keep the existing structure and the moat line ("The moat is not content volume…"). Changes:
 
