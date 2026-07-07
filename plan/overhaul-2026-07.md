@@ -334,11 +334,15 @@ Commit: `Add Founder Journeys section: goal-based guided paths (12 journeys, bn+
 - ~~Name poll → then domains~~ **Done (2026-07-08):** name finalized as **Deshi Startup**;
   **deshistartup.com** purchased. Still open: secure the `.org`, check the DPDT trademark, and claim
   the Facebook page. Custom-domain deployment (dropping the `/deshistartup` basePath) is deferred.
-- **Scope pivot follow-ups (2026-07-08):** the startup-only refocus is documented (README, AGENTS,
-  this plan) but not yet reflected in site copy. Next: rewrite the homepage/`WikiLanding` scope
-  language (kicker "startup or small business", `whoBody` "big tech company / small online business /
-  family business", the "SME owners" audience rows in the infobox and `who` list) and re-examine the
-  pure-SME / family-business / import-export rows in `plan/content-backlog.csv` and the sector guides
-  under `phase-four/` for whether they still fit a startup-only remit.
+- **Scope pivot follow-ups (2026-07-08):**
+  - ✅ **Done:** docs (README, AGENTS, this plan); homepage/`WikiLanding` scope copy in both
+    locales (kicker, `whoBody`, infobox tagline/audience, `who` list — "SME owner" audience removed;
+    "small/family business" language dropped) + homepage `<title>`/description; and the standalone
+    **Startup-vs-SME guide was dropped** (bn+en deleted, inbound links repointed to the surviving
+    "Startup, SME, agency & e-commerce" 4-way comparison, removed from top nav).
+  - ⬜ **Still open:** re-examine the pure-SME / family-business / import-export rows in
+    `plan/content-backlog.csv` and the sector guides under `phase-four/` for whether they still fit a
+    startup-only remit; secure the `.org` domain, check the DPDT trademark, and claim the Facebook
+    page; eventually point the site at the `deshistartup.com` apex domain.
 - Later: MCP server over the knowledge base; grant/partnership conversations (World Bank/UNDP/GIZ-type
   SME-enablement programs; LightCastle for Bangla report distribution).
