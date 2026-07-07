@@ -158,7 +158,7 @@ Keep the existing structure and the moat line ("The moat is not content volume�
 
 Commit: `Broaden README to all-business scope; add case studies, directory, freshness system`
 
-### ☐ T3 — License files (size S, model: Sonnet)
+### ✅ T3 — License files (DONE 2026-07-07)
 
 1. `LICENSE` — standard MIT text, "Copyright (c) 2026 Deshi Startup contributors".
 2. `LICENSE-content.md` — plain-language note: all content under `app/(contents)/` is
