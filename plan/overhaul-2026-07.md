@@ -170,7 +170,7 @@ Commit: `Broaden README to all-business scope; add case studies, directory, fres
 
 Commit: `Add MIT (code) + CC BY-SA 4.0 (content) licensing`
 
-### ☐ T4 — Backlog ↔ site status report (size M, model: Sonnet)
+### ✅ T4 — Backlog ↔ site status report (DONE 2026-07-07)
 
 Goal: make the backlog mechanically actionable and expose drift.
 

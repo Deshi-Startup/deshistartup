@@ -10,6 +10,7 @@
     "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind || true && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true)",
     "scrape": "node scripts/scrape.js",
     "manifest": "node scripts/build-manifest.mjs",
+    "backlog:status": "node scripts/backlog-status.mjs",
     "predev": "node scripts/build-manifest.mjs",
     "prebuild": "node scripts/build-manifest.mjs"
   },
