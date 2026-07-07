@@ -7,11 +7,13 @@ anything. For *what to build and write next*, the planning brain is `plan/` — 
 ## Project Overview
 
 Deshi Startup is a free, open-source, Bangla-first knowledge base and practical operating manual for
-building **any** business in Bangladesh — startups are the wedge and the tone-setter, but SMEs,
-trade/import-export, family businesses, and online sellers are equally in scope. Never narrow a guide
-to venture-backed startups when the underlying process (license, tax, payments, hiring) applies to
-all businesses. The name "Deshi Startup" is provisional (rebrand poll pending) — don't invest in new
-name-dependent assets (logos, paid domains) until it's finalized.
+building a **startup** in Bangladesh. The audience is founders building something new and scalable, and
+the lens, depth, and priorities are theirs. Much of the foundational process (registration, tax,
+payments, hiring) also serves any small business, and it's fine when a guide is useful beyond startups —
+but never dilute the startup focus to chase generic SME, family-business, import/export, or
+online-seller audiences (scope amended 2026-07-08; see `plan/overhaul-2026-07.md`). The name **Deshi
+Startup** is final and the domain **deshistartup.com** is registered — name-dependent assets (logo,
+.com/.org, Facebook page) are now safe to build.
 
 Scale: ~374 Bengali pages are planned (see `plan/content-backlog.csv`), ~57 written so far; the rest
 are honest stubs. Bengali is the source of truth; English mirrors it at `/en/...`.
@@ -180,6 +182,7 @@ page's লেখার নিয়মকানুন table):
 ## Deployment
 
 - **Primary (`main` branch → GitHub Pages):** `.github/workflows/deploy.yml` runs `npm run build` and publishes `out/`. Because it is a GitHub Pages *project* site, production builds set `basePath` and `NEXT_PUBLIC_BASE_PATH` to `/deshistartup` (see `next.config.mjs`). All internal links must go through `localHref()` / `NEXT_PUBLIC_BASE_PATH`, or they break in production.
+- **Production domain:** `deshistartup.com` is registered (2026-07-08). Pointing the site at the custom apex domain (which would drop the `/deshistartup` basePath) is deferred — do **not** re-architect the basePath/`localHref()` mechanism until that migration is explicitly scheduled.
 - **Secondary (`vinext` branch → Cloudflare Workers):** `.github/workflows/deploy-cloudflare.yml` deploys production and per-PR previews using `vinext`-only tooling (not present on `main`).
 - CI uses Node 22. `images.unoptimized` is required for static export. **Pushing `main` deploys the live site — never push unless Shamir asks.**
 

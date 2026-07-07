@@ -14,12 +14,23 @@ Recommended order: T1 → T2 → T3 → T4, then T5–T10 in any order. T11 is o
 
 ## Locked decisions (2026-07-07, by Shamir — do not re-open)
 
-1. **Scope:** ALL business types in Bangladesh — startups are the wedge and tone-setter, but SMEs,
-   trade/import-export, family businesses, and online sellers are equally in scope. Never narrow a
-   guide to venture-backed startups when the process (license, tax, payments, hiring) applies to
-   every business.
-2. **Name:** "Deshi Startup" stays **for now**; it is a working title pending an internal poll.
-   Don't invest in new name-dependent assets (logos, paid domains) until finalized.
+> **Amendment (2026-07-08, by Shamir):** Decisions #1 (scope) and #2 (name/domain) were reopened and
+> changed. The site now focuses **almost exclusively on startups** (not all business types); the name
+> **Deshi Startup** is **final**; and **deshistartup.com** has been purchased. Decisions #3–#6 are
+> unchanged. The updated wording is inline below, with the superseded 2026-07-07 text kept in
+> parentheses for the record.
+
+1. **Scope (amended 2026-07-08):** **Startups in Bangladesh — almost exclusively.** The audience is
+   founders building something new and scalable. Foundational processes (license, tax, payments,
+   hiring) are covered *for founders* and may incidentally help any small business, but do **not**
+   broaden scope to chase generic SME, family-business, import/export, or online-seller audiences.
+   *(Superseded 2026-07-07 wording: "ALL business types in Bangladesh — startups are the wedge and
+   tone-setter, but SMEs, trade/import-export, family businesses, and online sellers are equally in
+   scope.")*
+2. **Name & domain (amended 2026-07-08):** The name **Deshi Startup** is **final**, and
+   **deshistartup.com** is registered. Name-dependent assets (logo, .com/.org, Facebook page) are now
+   safe to build. *(Superseded 2026-07-07 wording: "'Deshi Startup' stays for now; it is a working
+   title pending an internal poll. Don't invest in new name-dependent assets until finalized.")*
 3. **License:** MIT for code, **CC BY-SA 4.0 for content** (T3).
 4. **Planning files** live publicly in `plan/`. The repo stays public for now; a possible future
    move to wiki software is deferred — do **not** architect for it.
@@ -320,6 +331,14 @@ Commit: `Add Founder Journeys section: goal-based guided paths (12 journeys, bn+
 - Deferred from the July 2026 redesign (still valid): dark mode, `<html lang>` fix on /en static
   HTML, OG share images, license/fee infobox component, "দেশি স্টার্টআপ স্কুল" curated course page,
   service-worker offline caching, per-stub GitHub issue templates.
-- Name poll → then domains (.com + .org; check DPDT trademark + Facebook page availability).
+- ~~Name poll → then domains~~ **Done (2026-07-08):** name finalized as **Deshi Startup**;
+  **deshistartup.com** purchased. Still open: secure the `.org`, check the DPDT trademark, and claim
+  the Facebook page. Custom-domain deployment (dropping the `/deshistartup` basePath) is deferred.
+- **Scope pivot follow-ups (2026-07-08):** the startup-only refocus is documented (README, AGENTS,
+  this plan) but not yet reflected in site copy. Next: rewrite the homepage/`WikiLanding` scope
+  language (kicker "startup or small business", `whoBody` "big tech company / small online business /
+  family business", the "SME owners" audience rows in the infobox and `who` list) and re-examine the
+  pure-SME / family-business / import-export rows in `plan/content-backlog.csv` and the sector guides
+  under `phase-four/` for whether they still fit a startup-only remit.
 - Later: MCP server over the knowledge base; grant/partnership conversations (World Bank/UNDP/GIZ-type
   SME-enablement programs; LightCastle for Bangla report distribution).

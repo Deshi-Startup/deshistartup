@@ -2,7 +2,7 @@
 
 [![Star on GitHub](https://img.shields.io/github/stars/Deshi-Startup/deshistartup.svg?style=social)](https://github.com/Deshi-Startup/deshistartup)
 
-Deshi Startup is a free, open-source, Bangla-first knowledge base and practical operating manual for building a business in Bangladesh — startups first, but equally SMEs, online sellers, importers/exporters, and family businesses. The destination is the country's most trustworthy, practical business-knowledge repository: what to do next, how much it costs, which office to visit, which law applies — in plain Bangla, with sources.
+Deshi Startup is a free, open-source, Bangla-first knowledge base and practical operating manual for building a **startup** in Bangladesh. The destination is the country's most trustworthy, practical startup-knowledge repository: what to do next, how much it costs, which office to visit, which law applies, how to validate an idea, and how to raise — in plain Bangla, with sources. The focus is almost exclusively startups; foundational guidance (registration, tax, payments) naturally helps any small business too, but the lens, depth, and priorities are built for founders creating something new and scalable — not generic advice for every business type.
 
 The goal is not to become a shallow motivational blog. The goal is to help a founder understand what to do next: validate an idea, register a business, handle tax/VAT basics, accept payments, manage delivery risk, find customers, hire carefully, raise funding, and grow with Bangladesh-specific constraints in mind.
 
@@ -68,7 +68,7 @@ Primary readers:
 - First-time startup founders
 - Non-technical founders
 - Technical founders who need business/compliance guidance
-- Small business owners becoming tech-enabled
+- Founders moving from freelancing, an agency, or a small business toward a scalable startup
 - Women founders navigating extra safety and social constraints
 - Diaspora founders building for Bangladesh
 
