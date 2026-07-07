@@ -115,28 +115,6 @@ const bn = {
     ['BIDA OSS', 'বিনিয়োগ, অনুমোদন ও সরকারি সেবার আবেদন', 'https://ossbida.gov.bd'],
     ['বাংলাদেশ ব্যাংক', 'ব্যাংকিং, পেমেন্ট ও বৈদেশিক মুদ্রার নিয়ম', 'https://www.bb.org.bd']
   ],
-  readTitle: 'প্রথমে যা পড়বেন',
-  readSub: 'প্রথমবার এলে সব পাতা পড়ার দরকার নেই। নিচের গাইডগুলো পড়লেই বুঝবেন আপনার আইডিয়া, ব্যবসার ধরন, আইনগত ভিত্তি ও গ্রাহক খোঁজার পথ কোথায় দাঁড়িয়ে।',
-  readCols: [
-    ['প্রথমে পড়ুন', [
-      ['/start-here', 'শুরু করুন: স্টার্টআপ গড়ার রোডম্যাপ'],
-      ['/start-here/what-is-a-startup', 'স্টার্টআপ কী?'],
-      ['/ecosystem-overview', 'বাংলাদেশের স্টার্টআপ পরিবেশ'],
-      ['/idea-validation', 'আইডিয়া যাচাই']
-    ]],
-    ['চালু করার আগে', [
-      ['/legal-roadmap', 'আইনগত পথনির্দেশনা'],
-      ['/company-types', 'কোম্পানির ধরন'],
-      ['/trade-license', 'ট্রেড লাইসেন্স'],
-      ['/e-tin-vat-bin', 'e-TIN ও ভ্যাট/BIN']
-    ]],
-    ['বাজারে যাওয়ার সময়', [
-      ['/payments', 'পেমেন্ট ব্যবস্থা'],
-      ['/customers', 'গ্রাহক খোঁজা'],
-      ['/phase-three/cod-and-delivery-risk', 'ক্যাশ অন ডেলিভারি ও ডেলিভারি ঝুঁকি'],
-      ['/phase-three/facebook-commerce-playbook', 'ফেসবুক কমার্স গাইড']
-    ]]
-  ],
   bandTitle: 'এই সহায়িকা সবাই মিলে লিখছি',
   bandBody:
     'নিয়ম বদলায়, ফি বদলায়, নতুন প্রশ্ন আসে – এত বড় জ্ঞানভাণ্ডার হালনাগাদ রাখা যায় শুধু সবার অংশগ্রহণে। আপনি যা জানেন, সেটাই কারও পরের ধাপ। বানান বা ভাষা নিয়ে ভাববেন না – রিভিউয়াররা গুছিয়ে দেবেন।',
@@ -253,28 +231,6 @@ const en = {
     ['VAT Online', 'BIN/VAT registration and VAT returns', 'https://vat.gov.bd'],
     ['BIDA OSS', 'Investment approvals and government services', 'https://ossbida.gov.bd'],
     ['Bangladesh Bank', 'Banking, payments and foreign exchange rules', 'https://www.bb.org.bd']
-  ],
-  readTitle: 'What to read first',
-  readSub: 'You don\'t need to read everything on your first visit. These guides show where your idea, business type, legal footing and customer path stand.',
-  readCols: [
-    ['Read first', [
-      ['/en/start-here', 'Start here: the startup roadmap'],
-      ['/en/start-here/what-is-a-startup', 'What is a startup?'],
-      ['/en/ecosystem-overview', 'Bangladesh startup ecosystem'],
-      ['/en/idea-validation', 'Idea validation']
-    ]],
-    ['Before launching', [
-      ['/en/legal-roadmap', 'Legal roadmap'],
-      ['/en/registration', 'Business registration'],
-      ['/en/trade-license', 'Trade license'],
-      ['/en/rjsc-name-clearance', 'RJSC & name clearance']
-    ]],
-    ['Going to market', [
-      ['/en/payments', 'Payment systems'],
-      ['/en/customers', 'Finding customers'],
-      ['/en/phase-three/cod-and-delivery-risk', 'COD & delivery risk'],
-      ['/en/phase-three/facebook-commerce-playbook', 'Facebook commerce playbook']
-    ]]
   ],
   bandTitle: 'We are writing this manual together',
   bandBody:
@@ -460,25 +416,6 @@ export default function WikiLanding({ locale = 'bn' }) {
               </h3>
               <p>{body}</p>
             </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="start-reading" className="wiki-section">
-        <h2>{t.readTitle}</h2>
-        <p>{t.readSub}</p>
-        <div className="wiki-link-columns">
-          {t.readCols.map(([heading, links]) => (
-            <div key={heading}>
-              <h3>{heading}</h3>
-              <ul>
-                {links.map(([href, label]) => (
-                  <li key={href}>
-                    <a href={localHref(href)}>{label}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
           ))}
         </div>
       </section>

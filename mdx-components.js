@@ -1,6 +1,5 @@
 import StubNotice from './app/components/StubNotice'
 import SectionIndex from './app/components/SectionIndex'
-import DirectoryList from './app/components/DirectoryList'
 
 function BasePathAnchor({ href = '', ...props }) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
@@ -20,7 +19,6 @@ export function useMDXComponents(components) {
     ...components,
     a: BasePathAnchor,
     StubNotice,
-    SectionIndex,
-    DirectoryList
+    SectionIndex
   }
 }
