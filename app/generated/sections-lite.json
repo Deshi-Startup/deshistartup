@@ -19,13 +19,12 @@
   "registration": "ব্যবসা নিবন্ধন",
   "rjsc-name-clearance": "RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন",
   "start-here": "শুরু করুন",
-  "startup-vs-sme": "স্টার্টআপ বনাম এসএমই বনাম এজেন্সি বনাম ই-কমার্স",
   "trade-license": "ট্রেড লাইসেন্স"
  },
  "bnCounts": {
-  "pages": 431,
+  "pages": 430,
   "written": 72,
-  "stubs": 359
+  "stubs": 358
  },
  "en": {
   "case-studies": "Case Studies",
@@ -45,12 +44,11 @@
   "registration": "Business Registration",
   "rjsc-name-clearance": "RJSC / Name Clearance / Company Registration",
   "start-here": "Start Here",
-  "startup-vs-sme": "Startup vs SME: Which One Are You Building?",
   "trade-license": "Trade License"
  },
  "enCounts": {
-  "pages": 429,
-  "written": 73,
+  "pages": 428,
+  "written": 72,
   "stubs": 356
  }
 }

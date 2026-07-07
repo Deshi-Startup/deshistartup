@@ -2,8 +2,8 @@
  "locale": "en",
  "generatedAt": null,
  "counts": {
-  "pages": 429,
-  "written": 73,
+  "pages": 428,
+  "written": 72,
   "stubs": 356
  },
  "sections": {
@@ -698,7 +698,7 @@
     "fullTitle": "Journeys – step-by-step paths by goal",
     "description": "Pick your current goal – validate an idea, start an online business, register a company, take payments, hire, raise funding – and follow an ordered path that tells you which guide to read at each step.",
     "stub": false,
-    "date": null,
+    "date": "2026-07-08",
     "verified": null
    },
    "children": [
@@ -709,7 +709,7 @@
      "fullTitle": "I am a diaspora founder building in Bangladesh",
      "description": "The path for building a business in Bangladesh from abroad – market thesis, local operator/co-founder, foreign-owned company, FDI and FX rules, funding, and trust.",
      "stub": false,
-     "date": null,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -719,7 +719,7 @@
      "fullTitle": "I have an idea but no product – the first validation path",
      "description": "Have an idea but not sure what to do first? Talk to customers, rank the problem, test demand, and run an MVP – a step-by-step path from idea to first validated MVP.",
      "stub": false,
-     "date": null,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -729,7 +729,7 @@
      "fullTitle": "I want to accept digital payments",
      "description": "The full path to accepting digital payments in Bangladesh – bank account, choosing bKash/Nagad and a gateway, merchant account, integration, reconciliation, and refunds.",
      "stub": false,
-     "date": null,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -739,7 +739,7 @@
      "fullTitle": "I want to apply to Startup Bangladesh or an accelerator",
      "description": "The path to applying to Startup Bangladesh, iDEA, or an accelerator – eligibility, program research, application assets, pitch, follow-up, and the event calendar.",
      "stub": false,
-     "date": null,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -749,7 +749,7 @@
      "fullTitle": "I want to hire my first employee",
      "description": "The full path to your first hire – role scorecard, employee vs freelancer/intern, contract, labor law, payroll, and onboarding.",
      "stub": false,
-     "date": null,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -759,7 +759,7 @@
      "fullTitle": "I want to import products",
      "description": "The full path to importing products into Bangladesh – product category, IRC, HS code, LC and bank documents, freight forwarder, landed cost, and VAT/tax.",
      "stub": false,
-     "date": null,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -769,7 +769,7 @@
      "fullTitle": "I want to launch a SaaS from Bangladesh",
      "description": "The path to launching an export-oriented SaaS from Bangladesh – market selection, company setup, foreign exchange, international payments, SaaS metrics, and export incentives.",
      "stub": false,
-     "date": null,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -779,7 +779,7 @@
      "fullTitle": "I want to raise angel or VC funding",
      "description": "The path to raising angel or VC funding in Bangladesh – metrics, pitch deck, investor CRM, data room, outreach, term sheet, and the investor directory.",
      "stub": false,
-     "date": null,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -789,7 +789,7 @@
      "fullTitle": "I want to register a private limited company",
      "description": "The full path from structure decision to RJSC registration – name clearance, MoA/AoA, registration, e-TIN/VAT, bank account, and annual compliance.",
      "stub": false,
-     "date": null,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -799,7 +799,7 @@
      "fullTitle": "I want to sell to SMEs",
      "description": "The path to selling to Bangladesh's small and medium businesses (SMEs) – ICP, trust-building, sales scripts, pilots, paid contracts, and a retention dashboard.",
      "stub": false,
-     "date": null,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -809,7 +809,7 @@
      "fullTitle": "I want to start an online business – license to launch",
      "description": "The full path to selling online on Facebook or a website – business type, trade license, e-TIN/VAT, payments, courier, and launching under the Digital Commerce policy.",
      "stub": false,
-     "date": null,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -819,7 +819,7 @@
      "fullTitle": "I want to test demand – from landing page to pre-orders",
      "description": "Test whether demand exists before you build – landing page, Facebook post, interviews, Facebook-group tests, and pre-orders/waitlists that lead to a clear decision.",
      "stub": false,
-     "date": null,
+     "date": "2026-07-08",
      "verified": null
     }
    ],
@@ -4276,7 +4276,7 @@
     "fullTitle": "Start Here – A Guide to Building a Startup in Bangladesh",
     "description": "> **In short:** If you are a new founder, your first job is to understand exactly where you stand. This page gives you a step-by-step roadmap from the beginning.",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": null
    },
    "children": [
@@ -4394,23 +4394,6 @@
    "title": "Start Here",
    "total": 11,
    "written": 3
-  },
-  "startup-vs-sme": {
-   "slug": "startup-vs-sme",
-   "index": {
-    "route": "/en/startup-vs-sme",
-    "slug": "startup-vs-sme",
-    "title": "Startup vs SME: Which One Are You Building?",
-    "fullTitle": "Startup vs SME: Which One Are You Building?",
-    "description": "> **In short:** Not every business is a startup, and not every startup is an SME. The answer becomes clear when you understand your goal, growth model, and funding strategy.",
-    "stub": false,
-    "date": "2026-07-04",
-    "verified": null
-   },
-   "children": [],
-   "title": "Startup vs SME: Which One Are You Building?",
-   "total": 0,
-   "written": 0
   },
   "trade-license": {
    "slug": "trade-license",

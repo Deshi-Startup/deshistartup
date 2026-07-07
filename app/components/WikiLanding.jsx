@@ -12,7 +12,7 @@ function localHref(href) {
 }
 
 const bn = {
-  kicker: 'বাংলাদেশে স্টার্টআপ ও ছোট ব্যবসা শুরু করার বাংলা সহায়িকা',
+  kicker: 'বাংলাদেশে স্টার্টআপ শুরু ও বড় করার বাংলা সহায়িকা',
   title: 'দেশি স্টার্টআপ',
   subtitle:
     'আইডিয়া থেকে প্রথম গ্রাহক, ট্রেড লাইসেন্স থেকে পেমেন্ট, আর ফান্ডিং থেকে বড় হওয়া পর্যন্ত সহজ ভাষায় ধাপে ধাপে দিকনির্দেশনা।',
@@ -36,9 +36,9 @@ const bn = {
     'আইন, কর, ভ্যাট, ব্যাংকিং বা লাইসেন্স সংক্রান্ত লেখা সিদ্ধান্ত নিতে সাহায্য করবে, কিন্তু এটি আইনি বা কর পরামর্শ নয়। ফি, ফর্ম ও প্রক্রিয়া বদলাতে পারে; কাজ করার আগে সরকারি উৎস এবং প্রয়োজনে চার্টার্ড অ্যাকাউন্ট্যান্ট/আইনজীবীর সঙ্গে মিলিয়ে নিন।',
   infoboxTitle: 'এক নজরে',
   infoboxName: 'দেশি স্টার্টআপ',
-  infoboxTagline: 'বাংলাদেশি উদ্যোক্তাদের জন্য সহজ বাংলা স্টার্টআপ ও ব্যবসার গাইড',
+  infoboxTagline: 'বাংলাদেশি উদ্যোক্তাদের জন্য সহজ বাংলা স্টার্টআপ গাইড',
   infobox: (written, stubs) => [
-    ['যাদের জন্য', 'নতুন উদ্যোক্তা, শিক্ষার্থী প্রতিষ্ঠাতা, এসএমই মালিক, প্রবাসী উদ্যোক্তা'],
+    ['যাদের জন্য', 'নতুন উদ্যোক্তা, শিক্ষার্থী প্রতিষ্ঠাতা, টেকনিক্যাল প্রতিষ্ঠাতা, প্রবাসী উদ্যোক্তা'],
     ['যা পাবেন', 'আইডিয়া যাচাই, নিবন্ধন, পেমেন্ট, বিক্রি, নিয়োগ, ফান্ডিং'],
     ['ভাষা', 'সহজ বাংলা; দরকারি ইংরেজি শব্দ ব্যাখ্যাসহ'],
     ['মূল্য', 'সম্পূর্ণ ফ্রি; ওপেন সোর্স'],
@@ -57,7 +57,7 @@ const bn = {
   pathSub: 'প্রতিটি গাইডের শেষে পরের ধাপ দেখানো আছে – হারিয়ে যাওয়ার ভয় নেই।',
   path: [
     ['শুরু করুন', 'পুরো যাত্রার মানচিত্র – আইডিয়া থেকে বড় হওয়া পর্যন্ত', '/start-here'],
-    ['স্টার্টআপ নাকি এসএমই', 'নিজের ব্যবসার ধরন চিনলে পরের সিদ্ধান্তগুলো সহজ হয়', '/startup-vs-sme'],
+    ['বাংলাদেশের স্টার্টআপ পরিবেশ', 'বাজার, বিনিয়োগকারী ও সুযোগ কোথায় তা চিনে নিন', '/ecosystem-overview'],
     ['আইডিয়া যাচাই', 'পণ্য বানানোর আগে প্রমাণ জোগাড় করুন', '/idea-validation'],
     ['আইনগত রোডম্যাপ', 'কোন কাগজ এখন দরকার, কোনটা পরে করলেও চলে', '/legal-roadmap'],
     ['গ্রাহক খোঁজা', 'প্রথম গ্রাহক থেকে নিয়মিত বিক্রি পর্যন্ত', '/customers']
@@ -85,12 +85,11 @@ const bn = {
   ],
   whoTitle: 'এই সাইট আপনার কাজে লাগবে যদি',
   whoBody:
-    'আপনি বড় প্রযুক্তি কোম্পানি বানাতে চান, ছোট অনলাইন ব্যবসা শুরু করতে চান, এজেন্সি থেকে নিজের পণ্যে যেতে চান, বা পারিবারিক ব্যবসা ধীরে ধীরে ডিজিটাল করতে চান – শুরুতে প্রশ্নগুলো প্রায় একই। সেগুলো সহজ করে সাজানোই এই সাইটের কাজ।',
+    'আপনি বড় প্রযুক্তি স্টার্টআপ বানাতে চান, কম বাজেটে একটা আইডিয়া পরীক্ষা করতে চান, এজেন্সি বা চাকরি ছেড়ে নিজের পণ্যে যেতে চান, নাকি সবে সহ-প্রতিষ্ঠাতা খুঁজছেন – শুরুতে প্রশ্নগুলো প্রায় একই। সেগুলো সহজ করে সাজানোই এই সাইটের কাজ।',
   who: [
     ['আপনি শিক্ষার্থী উদ্যোক্তা:', 'কম বাজেটে আইডিয়া পরীক্ষা করতে চান।'],
-    ['আপনি প্রথমবার ব্যবসা করছেন:', 'নিবন্ধন, পেমেন্ট, বিক্রি ও নিয়ম মানার বিষয় একসঙ্গে বুঝতে চান।'],
+    ['আপনি প্রথমবার স্টার্টআপ করছেন:', 'নিবন্ধন, পেমেন্ট, বিক্রি ও নিয়ম মানার বিষয় একসঙ্গে বুঝতে চান।'],
     ['আপনি প্রযুক্তি-দক্ষ প্রতিষ্ঠাতা:', 'পণ্য বানাতে পারেন, কিন্তু বাজার ও বিক্রি বুঝতে চান।'],
-    ['আপনি এসএমই মালিক:', 'ব্যবসা ডিজিটাল করতে, হিসাব রাখতে এবং একই কাজ বারবার চালাতে চান।'],
     ['আপনি ঢাকার বাইরে বা প্রবাস থেকে শুরু করছেন:', 'স্থানীয় দায়িত্বশীল ব্যক্তি, আস্থা, বিতরণ ও কাগজপত্র বুঝতে চান।']
   ],
   faqTitle: 'নতুনদের সাধারণ প্রশ্ন',
@@ -117,7 +116,7 @@ const bn = {
   readCols: [
     ['প্রথমে পড়ুন', [
       ['/start-here', 'শুরু করুন: স্টার্টআপ গড়ার রোডম্যাপ'],
-      ['/startup-vs-sme', 'স্টার্টআপ বনাম এসএমই'],
+      ['/start-here/what-is-a-startup', 'স্টার্টআপ কী?'],
       ['/ecosystem-overview', 'বাংলাদেশের স্টার্টআপ পরিবেশ'],
       ['/idea-validation', 'আইডিয়া যাচাই']
     ]],
@@ -148,7 +147,7 @@ const bn = {
 }
 
 const en = {
-  kicker: 'The Bangla-first guide to starting a startup or small business in Bangladesh',
+  kicker: 'The Bangla-first guide to building a startup in Bangladesh',
   title: 'Deshi Startup',
   subtitle:
     'Step-by-step guidance in plain language – from idea to first customer, trade license to payments, funding to scale.',
@@ -172,9 +171,9 @@ const en = {
     'Articles about law, tax, VAT, banking or licensing help you decide, but they are not legal or tax advice. Fees, forms and processes change; confirm with official sources and, where needed, a chartered accountant or lawyer before acting.',
   infoboxTitle: 'At a glance',
   infoboxName: 'Deshi Startup',
-  infoboxTagline: 'A plain-language startup and business guide for Bangladeshi founders',
+  infoboxTagline: 'A plain-language startup guide for Bangladeshi founders',
   infobox: (written, stubs) => [
-    ['For', 'New founders, student founders, SME owners, diaspora founders'],
+    ['For', 'New founders, student founders, technical founders, diaspora founders'],
     ['Covers', 'Idea validation, registration, payments, sales, hiring, funding'],
     ['Language', 'Simple Bangla; English terms explained'],
     ['Price', 'Completely free; open source'],
@@ -193,7 +192,7 @@ const en = {
   pathSub: 'Each guide ends with the next step – you won\'t get lost.',
   path: [
     ['Start here', 'The map of the whole journey', '/en/start-here'],
-    ['Startup vs SME', 'Knowing your type makes later decisions easier', '/en/startup-vs-sme'],
+    ['Bangladesh startup ecosystem', 'Know the market, investors and where the openings are', '/en/ecosystem-overview'],
     ['Idea validation', 'Gather proof before you build', '/en/idea-validation'],
     ['Legal roadmap', 'Which paperwork now, which later', '/en/legal-roadmap'],
     ['Finding customers', 'From first customer to steady sales', '/en/customers']
@@ -221,12 +220,11 @@ const en = {
   ],
   whoTitle: 'This site is for you if',
   whoBody:
-    'Whether you want to build a big tech company, start a small online business, move from agency work to your own product, or slowly digitize a family business – the early questions are mostly the same. This site organizes them simply.',
+    'Whether you want to build a big tech startup, test an idea on a small budget, move from agency work or a job to your own product, or you\'re just looking for a co-founder – the early questions are mostly the same. This site organizes them simply.',
   who: [
     ['You\'re a student founder:', 'you want to test an idea on a small budget.'],
-    ['You\'re starting your first business:', 'you want registration, payments, sales and compliance explained together.'],
+    ['You\'re starting your first startup:', 'you want registration, payments, sales and compliance explained together.'],
     ['You\'re a technical founder:', 'you can build the product but want to understand the market and sales.'],
-    ['You\'re an SME owner:', 'you want to digitize, keep books and make operations repeatable.'],
     ['You\'re starting from outside Dhaka or abroad:', 'you need trusted local operators, distribution and paperwork explained.']
   ],
   faqTitle: 'Common beginner questions',
@@ -253,7 +251,7 @@ const en = {
   readCols: [
     ['Read first', [
       ['/en/start-here', 'Start here: the startup roadmap'],
-      ['/en/startup-vs-sme', 'Startup vs SME'],
+      ['/en/start-here/what-is-a-startup', 'What is a startup?'],
       ['/en/ecosystem-overview', 'Bangladesh startup ecosystem'],
       ['/en/idea-validation', 'Idea validation']
     ]],

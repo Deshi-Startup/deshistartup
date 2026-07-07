@@ -10,7 +10,6 @@ export const bnNav = [
     items: [
       ['/start-here', 'শুরুর রোডম্যাপ'],
       ['/start-here/what-is-a-startup', 'স্টার্টআপ আসলে কী'],
-      ['/startup-vs-sme', 'স্টার্টআপ নাকি এসএমই'],
       ['/ecosystem-overview', 'বাংলাদেশের ইকোসিস্টেম']
     ]
   },
@@ -76,7 +75,7 @@ export const enNav = [
     label: 'Start Here',
     items: [
       ['/en/start-here', 'Starter roadmap'],
-      ['/en/startup-vs-sme', 'Startup vs SME'],
+      ['/en/start-here/what-is-a-startup', 'What is a startup?'],
       ['/en/ecosystem-overview', 'Bangladesh ecosystem']
     ]
   },
