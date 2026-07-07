@@ -9,6 +9,7 @@
   "ecosystem-overview": "বাংলাদেশের স্টার্টআপ পরিবেশ",
   "founder-life": "উদ্যোক্তার জীবন",
   "idea-validation": "আইডিয়া যাচাই",
+  "journeys": "কোন পথে যাবেন",
   "legal-roadmap": "আইনগত পথনির্দেশনা",
   "payments": "পেমেন্ট ব্যবস্থা",
   "phase-four": "ধাপ ৪ রোডম্যাপ",
@@ -22,8 +23,8 @@
   "trade-license": "ট্রেড লাইসেন্স"
  },
  "bnCounts": {
-  "pages": 418,
-  "written": 59,
+  "pages": 431,
+  "written": 72,
   "stubs": 359
  },
  "en": {
@@ -34,6 +35,7 @@
   "ecosystem-overview": "Bangladesh Startup Ecosystem Overview",
   "founder-life": "Founder Life",
   "idea-validation": "Idea Validation",
+  "journeys": "Journeys",
   "legal-roadmap": "Legal Roadmap",
   "payments": "Payment Systems",
   "phase-four": "Phase 4 Roadmap",
@@ -47,8 +49,8 @@
   "trade-license": "Trade License"
  },
  "enCounts": {
-  "pages": 416,
-  "written": 60,
+  "pages": 429,
+  "written": 73,
   "stubs": 356
  }
 }

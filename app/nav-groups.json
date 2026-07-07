@@ -1,4 +1,48 @@
 {
+ "journeys": [
+  {
+   "bn": "শুরু ও যাচাই",
+   "en": "Start & Validate",
+   "slugs": [
+    "idea-but-no-product",
+    "test-demand"
+   ]
+  },
+  {
+   "bn": "ব্যবসা দাঁড় করানো",
+   "en": "Set Up the Business",
+   "slugs": [
+    "start-an-online-business",
+    "register-a-private-limited-company",
+    "accept-digital-payments",
+    "import-products"
+   ]
+  },
+  {
+   "bn": "দল ও বৃদ্ধি",
+   "en": "Team & Growth",
+   "slugs": [
+    "hire-first-employee",
+    "sell-to-smes",
+    "launch-a-saas"
+   ]
+  },
+  {
+   "bn": "ফান্ডিং ও প্রোগ্রাম",
+   "en": "Funding & Programs",
+   "slugs": [
+    "raise-angel-vc-funding",
+    "apply-to-an-accelerator"
+   ]
+  },
+  {
+   "bn": "বিশেষ যাত্রা",
+   "en": "Special Journeys",
+   "slugs": [
+    "diaspora-founder-building-in-bangladesh"
+   ]
+  }
+ ],
  "founder-life": [
   {
    "bn": "পরিবার ও সমাজ সামলানো",

@@ -2,8 +2,8 @@
  "locale": "en",
  "generatedAt": null,
  "counts": {
-  "pages": 416,
-  "written": 60,
+  "pages": 429,
+  "written": 73,
   "stubs": 356
  },
  "sections": {
@@ -688,6 +688,144 @@
    "title": "Idea Validation",
    "total": 0,
    "written": 0
+  },
+  "journeys": {
+   "slug": "journeys",
+   "index": {
+    "route": "/en/journeys",
+    "slug": "journeys",
+    "title": "Journeys",
+    "fullTitle": "Journeys – step-by-step paths by goal",
+    "description": "Pick your current goal – validate an idea, start an online business, register a company, take payments, hire, raise funding – and follow an ordered path that tells you which guide to read at each step.",
+    "stub": false,
+    "date": null,
+    "verified": null
+   },
+   "children": [
+    {
+     "route": "/en/journeys/diaspora-founder-building-in-bangladesh",
+     "slug": "journeys/diaspora-founder-building-in-bangladesh",
+     "title": "I am a diaspora founder building in Bangladesh",
+     "fullTitle": "I am a diaspora founder building in Bangladesh",
+     "description": "The path for building a business in Bangladesh from abroad – market thesis, local operator/co-founder, foreign-owned company, FDI and FX rules, funding, and trust.",
+     "stub": false,
+     "date": null,
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/idea-but-no-product",
+     "slug": "journeys/idea-but-no-product",
+     "title": "I have an idea but no product",
+     "fullTitle": "I have an idea but no product – the first validation path",
+     "description": "Have an idea but not sure what to do first? Talk to customers, rank the problem, test demand, and run an MVP – a step-by-step path from idea to first validated MVP.",
+     "stub": false,
+     "date": null,
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/accept-digital-payments",
+     "slug": "journeys/accept-digital-payments",
+     "title": "I want to accept digital payments",
+     "fullTitle": "I want to accept digital payments",
+     "description": "The full path to accepting digital payments in Bangladesh – bank account, choosing bKash/Nagad and a gateway, merchant account, integration, reconciliation, and refunds.",
+     "stub": false,
+     "date": null,
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/apply-to-an-accelerator",
+     "slug": "journeys/apply-to-an-accelerator",
+     "title": "I want to apply to Startup Bangladesh or an accelerator",
+     "fullTitle": "I want to apply to Startup Bangladesh or an accelerator",
+     "description": "The path to applying to Startup Bangladesh, iDEA, or an accelerator – eligibility, program research, application assets, pitch, follow-up, and the event calendar.",
+     "stub": false,
+     "date": null,
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/hire-first-employee",
+     "slug": "journeys/hire-first-employee",
+     "title": "I want to hire my first employee",
+     "fullTitle": "I want to hire my first employee",
+     "description": "The full path to your first hire – role scorecard, employee vs freelancer/intern, contract, labor law, payroll, and onboarding.",
+     "stub": false,
+     "date": null,
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/import-products",
+     "slug": "journeys/import-products",
+     "title": "I want to import products",
+     "fullTitle": "I want to import products",
+     "description": "The full path to importing products into Bangladesh – product category, IRC, HS code, LC and bank documents, freight forwarder, landed cost, and VAT/tax.",
+     "stub": false,
+     "date": null,
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/launch-a-saas",
+     "slug": "journeys/launch-a-saas",
+     "title": "I want to launch a SaaS from Bangladesh",
+     "fullTitle": "I want to launch a SaaS from Bangladesh",
+     "description": "The path to launching an export-oriented SaaS from Bangladesh – market selection, company setup, foreign exchange, international payments, SaaS metrics, and export incentives.",
+     "stub": false,
+     "date": null,
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/raise-angel-vc-funding",
+     "slug": "journeys/raise-angel-vc-funding",
+     "title": "I want to raise angel or VC funding",
+     "fullTitle": "I want to raise angel or VC funding",
+     "description": "The path to raising angel or VC funding in Bangladesh – metrics, pitch deck, investor CRM, data room, outreach, term sheet, and the investor directory.",
+     "stub": false,
+     "date": null,
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/register-a-private-limited-company",
+     "slug": "journeys/register-a-private-limited-company",
+     "title": "I want to register a private limited company",
+     "fullTitle": "I want to register a private limited company",
+     "description": "The full path from structure decision to RJSC registration – name clearance, MoA/AoA, registration, e-TIN/VAT, bank account, and annual compliance.",
+     "stub": false,
+     "date": null,
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/sell-to-smes",
+     "slug": "journeys/sell-to-smes",
+     "title": "I want to sell to SMEs",
+     "fullTitle": "I want to sell to SMEs",
+     "description": "The path to selling to Bangladesh's small and medium businesses (SMEs) – ICP, trust-building, sales scripts, pilots, paid contracts, and a retention dashboard.",
+     "stub": false,
+     "date": null,
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/start-an-online-business",
+     "slug": "journeys/start-an-online-business",
+     "title": "I want to start an online business",
+     "fullTitle": "I want to start an online business – license to launch",
+     "description": "The full path to selling online on Facebook or a website – business type, trade license, e-TIN/VAT, payments, courier, and launching under the Digital Commerce policy.",
+     "stub": false,
+     "date": null,
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/test-demand",
+     "slug": "journeys/test-demand",
+     "title": "I want to test demand",
+     "fullTitle": "I want to test demand – from landing page to pre-orders",
+     "description": "Test whether demand exists before you build – landing page, Facebook post, interviews, Facebook-group tests, and pre-orders/waitlists that lead to a clear decision.",
+     "stub": false,
+     "date": null,
+     "verified": null
+    }
+   ],
+   "title": "Journeys",
+   "total": 12,
+   "written": 12
   },
   "legal-roadmap": {
    "slug": "legal-roadmap",

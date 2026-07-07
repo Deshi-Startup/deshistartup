@@ -50,6 +50,9 @@ The site is organized into section hubs, each of which lists its children automa
 - `start-here` — beginner roadmap and orientation
 - `idea-validation` — customer discovery, market sizing, MVP tests
 - `phase-one` → `phase-four` — the staged founder roadmap (idea → foundation → product/team/rules → sell & fund → scale & policy)
+- `journeys` — goal-based guided paths ("কোন পথে যাবেন") that stitch existing guides into an ordered path (source: `plan/workflow-maps.csv`)
+- `case-studies` — source-backed stories of Bangladeshi startups
+- `directory` — data-backed ecosystem directory (investors, accelerators)
 - `founder-life` — mental health, family constraints, solo-founder realities
 - `contribute` — how to report, edit, and write guides
 
@@ -88,6 +91,14 @@ in this doc — they drift.** To see the current page inventory, read the manife
   "Not publicly stated" for cheque size, cohort timing, deadlines, or equity terms you cannot
   verify from public sources. Re-check directory entries quarterly against official websites or
   reliable public profiles before bumping `lastVerified`.
+- **Journey / guided-path page**: a short, goal-based wayfinding page that stitches existing guides
+  into an ordered path — frontmatter → `#` title → `> **সারকথা:**` → a short intro → an ordered
+  `## ধাপে ধাপে পথ` list where each step links an existing guide → `## এই পথের চেকলিস্ট` →
+  `## এরপর কোন পথে` cross-links to sibling journeys. Lives under the `journeys` section
+  (`/journeys/...`, mirror at `/en/journeys/...`). Because it links internal guides, it needs no
+  external `## প্রাসঙ্গিক সূত্র`. The 12 journeys come from `plan/workflow-maps.csv`; add a new one
+  there first, then register its slug in `app/nav-groups.json` under `journeys`. Never link a route
+  that does not exist — check against `app/generated/manifest.bn.json`.
 - **Template / checklist / script pages**: copy-paste-ready blocks with minimal theory.
 - **Calculators**: client components are allowed here — the one sanctioned exception to the
   near-zero-JS budget. Keep them dependency-free (no heavy libraries).

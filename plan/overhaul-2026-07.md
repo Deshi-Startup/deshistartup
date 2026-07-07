@@ -291,12 +291,25 @@ and add a short "Keeping content current" section to AGENTS.md linking to it.
 
 Commit: `Add maintenance calendar from research-ops`
 
-### ☐ T11 — Founder-journey pages (optional, after T1–T5; size M, model: Opus)
+### ✅ T11 — Founder-journey pages (DONE 2026-07-08)
 
 The 12 journeys in `plan/workflow-maps.csv` ("I have an idea but no product" → step chain) as
 guided-path pages: each = short intro + ordered steps linking existing guides + closing checklist.
-Propose placement to Shamir in-session (a `journeys` section — "কোন পথে যাবেন" — vs. folding into
-start-here) before building.
+
+**Placement decision (Shamir, in-session):** a dedicated `journeys` section — "কোন পথে যাবেন" — not
+folded into start-here (parallel to case-studies/directory; keeps start-here lean; journeys get clean
+`/journeys/<slug>` URLs).
+
+**Done:** Built the `journeys` section hub (`/journeys` + `/en/journeys`) with `<SectionIndex>`, and
+all 12 guided-path pages (bn + en, all written/non-stub). Each page: `> **সারকথা:**` → intro →
+`## ধাপে ধাপে পথ` (ordered steps, every step links a *verified-existing* internal guide) →
+`## এই পথের চেকলিস্ট` → `## এরপর কোন পথে` sibling cross-links. Added "কোন পথে যাবেন"/"Journeys" to
+`app/nav.config.js` (right after Start Here), a 5-group `journeys` block to `app/nav-groups.json`, and
+a cross-link into both start-here hubs. Documented the section hub + a new "Journey / guided-path
+page" content type in AGENTS.md. `npm run manifest` + `npm run build` green (journeys: 12/12 written
+per locale; all 26 pages emit to `out/`).
+
+Commit: `Add Founder Journeys section: goal-based guided paths (12 journeys, bn+en)`
 
 ---
 

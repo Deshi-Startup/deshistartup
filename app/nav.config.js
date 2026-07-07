@@ -15,6 +15,10 @@ export const bnNav = [
     ]
   },
   {
+    label: 'কোন পথে যাবেন',
+    items: [['/journeys', 'লক্ষ্য অনুযায়ী গাইডেড পথ']]
+  },
+  {
     label: 'আইডিয়া ও যাচাই',
     items: [
       ['/idea-validation', 'আইডিয়া যাচাই'],
@@ -75,6 +79,10 @@ export const enNav = [
       ['/en/startup-vs-sme', 'Startup vs SME'],
       ['/en/ecosystem-overview', 'Bangladesh ecosystem']
     ]
+  },
+  {
+    label: 'Journeys',
+    items: [['/en/journeys', 'Guided paths by goal']]
   },
   {
     label: 'Idea & Validation',
