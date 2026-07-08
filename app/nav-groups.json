@@ -36,6 +36,17 @@
    ]
   },
   {
+   "bn": "খাত ধরে শুরু",
+   "en": "Start by Sector",
+   "slugs": [
+    "build-an-edtech-startup",
+    "build-an-agritech-startup",
+    "build-a-fintech-startup",
+    "build-a-travel-tech-startup",
+    "build-a-local-services-startup"
+   ]
+  },
+  {
    "bn": "বিশেষ পথ",
    "en": "Special Journeys",
    "slugs": [
