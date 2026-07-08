@@ -31,7 +31,7 @@ export const bnNav = [
   {
     label: 'আইন, নিবন্ধন ও কর',
     items: [
-      ['/legal-roadmap', 'আইনগত রোডম্যাপ'],
+      ['/legal-roadmap', 'আইনি রোডম্যাপ'],
       ['/company-types', 'কোম্পানির ধরন'],
       ['/registration', 'ব্যবসা নিবন্ধন'],
       ['/rjsc-name-clearance', 'RJSC ও নাম ছাড়পত্র'],

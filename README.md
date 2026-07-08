@@ -99,8 +99,9 @@ The site is organized as a hybrid documentation wiki:
 
 ## Current Milestone
 
-~57 of 374 planned Bengali pages are written; the rest are honest stubs (see `plan/content-backlog.csv`
-for the full backlog and `AGENTS.md` for how stubs work).
+41 of ~430 planned Bengali pages are written; the rest are honest stubs (see `plan/content-backlog.csv`
+for the full backlog and `AGENTS.md` for how stubs work). The count dropped in July 2026 when 32
+boilerplate template pages were demoted back to honest stubs — real guides only.
 
 Milestone targets:
 

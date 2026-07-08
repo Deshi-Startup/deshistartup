@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 431,
-  "written": 73,
-  "stubs": 358
+  "written": 41,
+  "stubs": 390
  },
  "sections": {
   "case-studies": {
@@ -451,7 +451,7 @@
     "fullTitle": "How to Contribute",
     "description": "Deshi Startup is an open knowledge base written together. From reporting a mistake to writing a new guide – three easy ways to take part.",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": null
    },
    "children": [],
@@ -496,7 +496,7 @@
      "fullTitle": "Accelerators and Programs Directory",
      "description": "A structured list of accelerators, incubators, and startup support programs available to Bangladeshi founders.",
      "stub": false,
-     "date": "2026-07-07",
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -506,7 +506,7 @@
      "fullTitle": "Investor Directory",
      "description": "A structured list of Bangladesh-focused angel networks, venture funds, and early-stage investors.",
      "stub": false,
-     "date": "2026-07-07",
+     "date": "2026-07-08",
      "verified": null
     }
    ],
@@ -913,9 +913,9 @@
      "slug": "phase-four/agritech-startup-playbook",
      "title": "Agritech Startup Playbook",
      "fullTitle": "Agritech Startup Playbook",
-     "description": "Agritech startup playbook",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Agritech Startup Playbook is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -923,9 +923,9 @@
      "slug": "phase-four/basis-membership-when-it-matters",
      "title": "BASIS Membership: When It Matters",
      "fullTitle": "BASIS Membership: When It Matters",
-     "description": "BASIS membership: when it matters",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "BASIS Membership: When It Matters is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -933,9 +933,9 @@
      "slug": "phase-four/basis-softexpo",
      "title": "Basis SoftExpo",
      "fullTitle": "Basis SoftExpo",
-     "description": "BASIS SoftExpo",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Basis SoftExpo is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -943,9 +943,9 @@
      "slug": "phase-four/beauty-and-personal-care-product-business-guide",
      "title": "Beauty and Personal Care Product Business Guide",
      "fullTitle": "Beauty and Personal Care Product Business Guide",
-     "description": "A guide to the beauty and personal care product business sector.",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Beauty and Personal Care Product Business Guide is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -953,9 +953,9 @@
      "slug": "phase-four/bida-one-stop-services-and-investment-policy",
      "title": "BIDA One-Stop Service and Investment Policy",
      "fullTitle": "BIDA One-Stop Service and Investment Policy",
-     "description": "BIDA one-stop services and investment policy",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "BIDA One-Stop Service and Investment Policy is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -963,9 +963,9 @@
      "slug": "phase-four/brac-nsu-du-iba-entrepreneurship-clubs",
      "title": "BRAC, NSU, DU, IBA Entrepreneurship Clubs",
      "fullTitle": "BRAC, NSU, DU, IBA Entrepreneurship Clubs",
-     "description": "BRAC, NSU, DU, IBA entrepreneurship clubs",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "BRAC, NSU, DU, IBA Entrepreneurship Clubs is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -973,9 +973,9 @@
      "slug": "phase-four/bscic-support-for-small-manufacturing",
      "title": "BSCIC Support for Small Manufacturing Businesses",
      "fullTitle": "BSCIC Support for Small Manufacturing Businesses",
-     "description": "BSCIC support for small manufacturing",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "BSCIC Support for Small Manufacturing Businesses is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -983,9 +983,9 @@
      "slug": "phase-four/digital-world",
      "title": "Digital World",
      "fullTitle": "Digital World",
-     "description": "Digital World",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Digital World is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -993,9 +993,9 @@
      "slug": "phase-four/e-commerce-marketplace-regulatory-map",
      "title": "E-commerce Marketplace Regulatory Map",
      "fullTitle": "E-commerce Marketplace Regulatory Map",
-     "description": "E-commerce marketplace regulatory map",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "E-commerce Marketplace Regulatory Map is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1003,9 +1003,9 @@
      "slug": "phase-four/edtech-trust-and-parent-acquisition-playbook",
      "title": "Edtech: The Playbook for Building Parent Trust and Acquiring Customers",
      "fullTitle": "Edtech: The Playbook for Building Parent Trust and Acquiring Customers",
-     "description": "Edtech trust and parent acquisition playbook",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Edtech: The Playbook for Building Parent Trust and Acquiring Customers is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1013,9 +1013,9 @@
      "slug": "phase-four/eventopportunity-calendar",
      "title": "Event/Opportunity Calendar",
      "fullTitle": "Event/Opportunity Calendar",
-     "description": "Event/opportunity calendar",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Event/Opportunity Calendar is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1023,9 +1023,9 @@
      "slug": "phase-four/export-incentives-for-itites",
      "title": "Export Incentives for IT/ITES",
      "fullTitle": "Export Incentives for IT/ITES",
-     "description": "Export incentives for IT/ITES",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Export Incentives for IT/ITES is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1033,9 +1033,9 @@
      "slug": "phase-four/fintech-regulatory-map",
      "title": "Fintech Regulatory Map",
      "fullTitle": "Fintech Regulatory Map",
-     "description": "Fintech regulatory map",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Fintech Regulatory Map is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1043,9 +1043,9 @@
      "slug": "phase-four/food-and-agro-processing-business-guide",
      "title": "Food and Agro-Processing Business Guide",
      "fullTitle": "Food and Agro-Processing Business Guide",
-     "description": "A guide for food and agro-processing businesses",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Food and Agro-Processing Business Guide is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1053,9 +1053,9 @@
      "slug": "phase-four/founder-communities",
      "title": "Founder Communities",
      "fullTitle": "Founder Communities",
-     "description": "Founder communities",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Founder Communities is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1063,9 +1063,9 @@
      "slug": "phase-four/government-program-application-guide",
      "title": "Government Program Application Guide",
      "fullTitle": "Government Program Application Guide",
-     "description": "Government program application guide",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Government Program Application Guide is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1073,9 +1073,9 @@
      "slug": "phase-four/rmg-and-garment-accessories-startup-guide",
      "title": "Guide to RMG and Garment Accessories Business",
      "fullTitle": "Guide to RMG and Garment Accessories Business",
-     "description": "RMG and garment accessories startup guide",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Guide to RMG and Garment Accessories Business is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1083,9 +1083,9 @@
      "slug": "phase-four/healthtech-regulatory-map",
      "title": "Healthtech Regulatory Map",
      "fullTitle": "Healthtech Regulatory Map",
-     "description": "Healthtech regulatory map",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Healthtech Regulatory Map is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1093,9 +1093,9 @@
      "slug": "phase-four/hi-tech-park-application-path",
      "title": "Hi-Tech Park Application Roadmap",
      "fullTitle": "Hi-Tech Park Application Roadmap",
-     "description": "Hi-Tech Park application path",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Hi-Tech Park Application Roadmap is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1103,9 +1103,9 @@
      "slug": "phase-four/hi-tech-park-authority-programs",
      "title": "Hi-Tech Park Authority Programs",
      "fullTitle": "Hi-Tech Park Authority Programs",
-     "description": "Hi-Tech Park Authority programs",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Hi-Tech Park Authority Programs is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1113,9 +1113,9 @@
      "slug": "phase-four/light-engineering-and-hardware-manufacturing-guide",
      "title": "Light Engineering and Hardware Manufacturing Guide",
      "fullTitle": "Light Engineering and Hardware Manufacturing Guide",
-     "description": "Light engineering and hardware manufacturing guide",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Light Engineering and Hardware Manufacturing Guide is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1123,9 +1123,9 @@
      "slug": "phase-four/logistics-startup-playbook",
      "title": "Logistics Startup Playbook",
      "fullTitle": "Logistics Startup Playbook",
-     "description": "Logistics startup playbook",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Logistics Startup Playbook is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1133,9 +1133,9 @@
      "slug": "phase-four/mentorship-programs",
      "title": "Mentorship Programs",
      "fullTitle": "Mentorship Programs",
-     "description": "Mentorship programs",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Mentorship Programs is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1143,89 +1143,9 @@
      "slug": "phase-four/opening-a-bida-oss-account-and-tracking-service-requests",
      "title": "Opening a BIDA OSS Account and Tracking Service Requests",
      "fullTitle": "Opening a BIDA OSS Account and Tracking Service Requests",
-     "description": "Opening a BIDA OSS account and tracking service requests",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/en/phase-four/saas-export-playbook-from-bangladesh",
-     "slug": "phase-four/saas-export-playbook-from-bangladesh",
-     "title": "SaaS Export Playbook from Bangladesh",
-     "fullTitle": "SaaS Export Playbook from Bangladesh",
-     "description": "A comprehensive guide for exporting SaaS products from Bangladesh.",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/en/phase-four/special-economic-zones",
-     "slug": "phase-four/special-economic-zones",
-     "title": "Special Economic Zones",
-     "fullTitle": "Special Economic Zones",
-     "description": "Special Economic Zones",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/en/phase-four/tax-holidays-for-tech-companies",
-     "slug": "phase-four/tax-holidays-for-tech-companies",
-     "title": "Tax Holidays for Tech Companies",
-     "fullTitle": "Tax Holidays for Tech Companies",
-     "description": "Tax holidays for tech companies",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/en/phase-four/techstars-affiliated-events",
-     "slug": "phase-four/techstars-affiliated-events",
-     "title": "Techstars-Affiliated Events",
-     "fullTitle": "Techstars-Affiliated Events",
-     "description": "Techstars-affiliated events",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/en/phase-four/tourism-and-travel-startup-guide",
-     "slug": "phase-four/tourism-and-travel-startup-guide",
-     "title": "Tourism and Travel Startup Guide",
-     "fullTitle": "Tourism and Travel Startup Guide",
-     "description": "Tourism and travel startup guide",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/en/phase-four/university-e-cell-outreach-playbook",
-     "slug": "phase-four/university-e-cell-outreach-playbook",
-     "title": "University E-cell Outreach Playbook",
-     "fullTitle": "University E-cell Outreach Playbook",
-     "description": "University E-cell outreach playbook",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/en/phase-four/university-entrepreneurship-ecosystems",
-     "slug": "phase-four/university-entrepreneurship-ecosystems",
-     "title": "University Entrepreneurship Ecosystems",
-     "fullTitle": "University Entrepreneurship Ecosystems",
-     "description": "University entrepreneurship ecosystems",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/en/phase-four/value-of-e-cab-membership-for-online-sellers",
-     "slug": "phase-four/value-of-e-cab-membership-for-online-sellers",
-     "title": "Value of e-CAB Membership for Online Sellers",
-     "fullTitle": "Value of e-CAB Membership for Online Sellers",
-     "description": "Value of e-CAB membership for online sellers",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "Opening a BIDA OSS Account and Tracking Service Requests is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1237,11 +1157,91 @@
      "stub": true,
      "date": "2026-07-08",
      "verified": null
+    },
+    {
+     "route": "/en/phase-four/saas-export-playbook-from-bangladesh",
+     "slug": "phase-four/saas-export-playbook-from-bangladesh",
+     "title": "SaaS Export Playbook from Bangladesh",
+     "fullTitle": "SaaS Export Playbook from Bangladesh",
+     "description": "SaaS Export Playbook from Bangladesh is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-four/special-economic-zones",
+     "slug": "phase-four/special-economic-zones",
+     "title": "Special Economic Zones",
+     "fullTitle": "Special Economic Zones",
+     "description": "Special Economic Zones is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-four/tax-holidays-for-tech-companies",
+     "slug": "phase-four/tax-holidays-for-tech-companies",
+     "title": "Tax Holidays for Tech Companies",
+     "fullTitle": "Tax Holidays for Tech Companies",
+     "description": "Tax Holidays for Tech Companies is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-four/techstars-affiliated-events",
+     "slug": "phase-four/techstars-affiliated-events",
+     "title": "Techstars-Affiliated Events",
+     "fullTitle": "Techstars-Affiliated Events",
+     "description": "Techstars-Affiliated Events is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-four/tourism-and-travel-startup-guide",
+     "slug": "phase-four/tourism-and-travel-startup-guide",
+     "title": "Tourism and Travel Startup Guide",
+     "fullTitle": "Tourism and Travel Startup Guide",
+     "description": "Tourism and Travel Startup Guide is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-four/university-e-cell-outreach-playbook",
+     "slug": "phase-four/university-e-cell-outreach-playbook",
+     "title": "University E-cell Outreach Playbook",
+     "fullTitle": "University E-cell Outreach Playbook",
+     "description": "University E-cell Outreach Playbook is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-four/university-entrepreneurship-ecosystems",
+     "slug": "phase-four/university-entrepreneurship-ecosystems",
+     "title": "University Entrepreneurship Ecosystems",
+     "fullTitle": "University Entrepreneurship Ecosystems",
+     "description": "University Entrepreneurship Ecosystems is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-four/value-of-e-cab-membership-for-online-sellers",
+     "slug": "phase-four/value-of-e-cab-membership-for-online-sellers",
+     "title": "Value of e-CAB Membership for Online Sellers",
+     "fullTitle": "Value of e-CAB Membership for Online Sellers",
+     "description": "Value of e-CAB Membership for Online Sellers is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
     }
    ],
    "title": "Phase 4 Roadmap",
    "total": 33,
-   "written": 32
+   "written": 0
   },
   "phase-one": {
    "slug": "phase-one",

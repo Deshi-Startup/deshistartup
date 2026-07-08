@@ -6,26 +6,26 @@
   "customers": "গ্রাহক খোঁজা",
   "directory": "ডিরেক্টরি",
   "e-tin-vat-bin": "e-TIN, VAT ও BIN",
-  "ecosystem-overview": "বাংলাদেশের স্টার্টআপ পরিবেশ",
+  "ecosystem-overview": "বাংলাদেশের স্টার্টআপ ইকোসিস্টেম",
   "founder-life": "উদ্যোক্তার জীবন",
-  "idea-validation": "আইডিয়া যাচাই",
+  "idea-validation": "আইডিয়া যাচাই",
   "journeys": "কোন পথে যাবেন",
-  "legal-roadmap": "আইনগত পথনির্দেশনা",
+  "legal-roadmap": "আইনি রোডম্যাপ",
   "payments": "পেমেন্ট ব্যবস্থা",
   "phase-four": "ধাপ ৪ রোডম্যাপ",
   "phase-one": "ধাপ ১ রোডম্যাপ",
   "phase-three": "ধাপ ৩ রোডম্যাপ",
   "phase-two": "ধাপ ২ রোডম্যাপ",
   "registration": "ব্যবসা নিবন্ধন",
-  "rjsc-name-clearance": "RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন",
+  "rjsc-name-clearance": "RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন",
   "start-here": "শুরু করুন",
   "tools": "টেমপ্লেট ও টুলস",
   "trade-license": "ট্রেড লাইসেন্স"
  },
  "bnCounts": {
   "pages": 431,
-  "written": 73,
-  "stubs": 358
+  "written": 41,
+  "stubs": 390
  },
  "en": {
   "case-studies": "Case Studies",
@@ -52,7 +52,7 @@
  },
  "enCounts": {
   "pages": 431,
-  "written": 73,
-  "stubs": 358
+  "written": 41,
+  "stubs": 390
  }
 }

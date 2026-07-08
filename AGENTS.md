@@ -15,8 +15,10 @@ online-seller audiences (scope amended 2026-07-08; see `plan/overhaul-2026-07.md
 Startup** is final and the domain **deshistartup.com** is registered — name-dependent assets (logo,
 .com/.org, Facebook page) are now safe to build.
 
-Scale: ~374 Bengali pages are planned (see `plan/content-backlog.csv`), ~57 written so far; the rest
-are honest stubs. Bengali is the source of truth; English mirrors it at `/en/...`.
+Scale: ~430 Bengali pages are planned (see `plan/content-backlog.csv`), 41 written so far; the rest
+are honest stubs (2026-07-08: 64 boilerplate "template guides" were demoted back to stubs — never
+count a page as written unless it is a real guide). Bengali is the source of truth; English mirrors
+it at `/en/...`.
 
 The site is a Next.js documentation app built with Nextra, statically exported, wrapped in a custom
 wiki-style shell (not the stock Nextra theme).

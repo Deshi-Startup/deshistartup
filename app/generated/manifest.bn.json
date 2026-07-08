@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 431,
-  "written": 73,
-  "stubs": 358
+  "written": 41,
+  "stubs": 390
  },
  "sections": {
   "case-studies": {
@@ -13,7 +13,7 @@
     "route": "/case-studies",
     "slug": "case-studies",
     "title": "কেস স্টাডি",
-    "fullTitle": "কেস স্টাডি – বাংলাদেশি স্টার্টআপদের বাস্তব গল্প থেকে শেখা",
+    "fullTitle": "কেস স্টাডি – বাংলাদেশি স্টার্টআপের বাস্তব গল্প থেকে শেখা",
     "description": "বাংলাদেশের সফল ও ব্যর্থ স্টার্টআপগুলোর সোর্স-ভিত্তিক কেস স্টাডি – পাঠাও, বিকাশ, চালডাল ও আরও অনেকে কীভাবে শুরু করেছিল, কী কাজ করেছিল, কী করেনি এবং কেন।",
     "stub": false,
     "date": "2026-07-07",
@@ -25,9 +25,9 @@
      "slug": "case-studies/pathao",
      "title": "পাঠাও",
      "fullTitle": "পাঠাও",
-     "description": "পাঠাও কীভাবে ডেলিভারি এক্সপেরিমেন্ট থেকে বাংলাদেশি সুপার-অ্যাপ হলো, কোন স্থানীয় বাস্তবতা কাজে লাগিয়েছে, এবং নতুন উদ্যোক্তারা কী শিখতে পারেন।",
+     "description": "পাঠাও কীভাবে ডেলিভারি এক্সপেরিমেন্ট থেকে বাংলাদেশি সুপার-অ্যাপ হলো, কোন স্থানীয় বাস্তবতা কাজে লাগিয়েছে, এবং নতুন উদ্যোক্তারা কী শিখতে পারেন।",
      "stub": false,
-     "date": "2026-07-07",
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -432,9 +432,9 @@
     "slug": "company-types",
     "title": "কোম্পানির ধরন",
     "fullTitle": "কোম্পানির ধরন – একক মালিকানা, অংশীদারি না প্রাইভেট লিমিটেড?",
-    "description": "বাংলাদেশে ব্যবসার কাঠামো বাছাইয়ের সহজ গাইড: দায়, খরচ, ফান্ডিং, ব্যাংক, পেমেন্ট, কর, কমপ্লায়েন্স ও বড় হওয়ার পরিকল্পনা।",
+    "description": "বাংলাদেশে ব্যবসার কাঠামো বাছাইয়ের সহজ গাইড: দায়, খরচ, ফান্ডিং, ব্যাংক, পেমেন্ট, কর, কমপ্লায়েন্স ও বড় হওয়ার পরিকল্পনা।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": "2026-07-07"
    },
    "children": [],
@@ -451,7 +451,7 @@
     "fullTitle": "কীভাবে অবদান রাখবেন",
     "description": "দেশি স্টার্টআপ সবাই মিলে লেখা একটি খোলা জ্ঞানভাণ্ডার। ভুল ধরিয়ে দেওয়া থেকে নতুন গাইড লেখা পর্যন্ত – ৩টি সহজ পথে আপনিও অবদান রাখতে পারেন।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": null
    },
    "children": [],
@@ -466,9 +466,9 @@
     "slug": "customers",
     "title": "গ্রাহক খোঁজা",
     "fullTitle": "গ্রাহক খোঁজা – বাংলাদেশে প্রথম বিক্রি ও আস্থা তৈরি",
-    "description": "বাংলাদেশে প্রথম গ্রাহক খোঁজার ব্যবহারিক বাংলা গাইড: ফেসবুক, মেসেঞ্জার, হোয়াটসঅ্যাপ, মাঠে বিক্রি, রেফারেল, আস্থা, পেমেন্ট, ডেলিভারি ও গ্রাহক ধরে রাখা।",
+    "description": "বাংলাদেশে প্রথম গ্রাহক খোঁজার ব্যবহারিক বাংলা গাইড: ফেসবুক, মেসেঞ্জার, হোয়াটসঅ্যাপ, মাঠে বিক্রি, রেফারেল, ভরসা, পেমেন্ট, ডেলিভারি ও গ্রাহক ধরে রাখা।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": null
    },
    "children": [],
@@ -482,10 +482,10 @@
     "route": "/directory",
     "slug": "directory",
     "title": "ডিরেক্টরি",
-    "fullTitle": "ডিরেক্টরি – বাংলাদেশি স্টার্টআপ ইকোসিস্টেমের যাচাইকৃত তালিকা",
-    "description": "ইনভেস্টর, অ্যাক্সেলারেটর, প্রোগ্রাম ও সহায়তা সংস্থার স্ট্রাকচার্ড ডিরেক্টরি – JSON ডেটা থেকে তৈরি।",
+    "fullTitle": "ডিরেক্টরি – বাংলাদেশি স্টার্টআপ ইকোসিস্টেমের যাচাই করা তালিকা",
+    "description": "ইনভেস্টর, অ্যাক্সেলারেটর, প্রোগ্রাম ও সহায়তা সংস্থার স্ট্রাকচার্ড ডিরেক্টরি – JSON ডেটা থেকে তৈরি।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": null
    },
    "children": [
@@ -496,7 +496,7 @@
      "fullTitle": "অ্যাক্সেলারেটর ও প্রোগ্রাম ডিরেক্টরি",
      "description": "বাংলাদেশি উদ্যোক্তাদের জন্য অ্যাক্সেলারেটর, ইনকিউবেটর ও স্টার্টআপ সহায়তা প্রোগ্রামের স্ট্রাকচার্ড তালিকা।",
      "stub": false,
-     "date": "2026-07-07",
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -506,7 +506,7 @@
      "fullTitle": "ইনভেস্টর ডিরেক্টরি",
      "description": "বাংলাদেশ-কেন্দ্রিক অ্যাঞ্জেল নেটওয়ার্ক, ভিসি ও প্রাথমিক ইনভেস্টরদের স্ট্রাকচার্ড তালিকা।",
      "stub": false,
-     "date": "2026-07-07",
+     "date": "2026-07-08",
      "verified": null
     }
    ],
@@ -520,10 +520,10 @@
     "route": "/e-tin-vat-bin",
     "slug": "e-tin-vat-bin",
     "title": "e-TIN, VAT ও BIN",
-    "fullTitle": "e-TIN, VAT ও BIN – কর ও ভ্যাট পরিচয়ের সহজ গাইড",
-    "description": "বাংলাদেশে টিআইএন, ভ্যাট, বিআইএন, রিটার্ন, ইনভয়েস, হিসাব রাখা ও পেমেন্ট মিলানোর ব্যবহারিক বাংলা গাইড।",
+    "fullTitle": "e-TIN, VAT ও BIN – কর ও ভ্যাট পরিচয়ের সহজ গাইড",
+    "description": "বাংলাদেশে টিআইএন, ভ্যাট, বিআইএন, রিটার্ন, ইনভয়েস, হিসাব রাখা ও পেমেন্ট মেলানোর ব্যবহারিক বাংলা গাইড।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": "2026-07-07"
    },
    "children": [],
@@ -536,15 +536,15 @@
    "index": {
     "route": "/ecosystem-overview",
     "slug": "ecosystem-overview",
-    "title": "বাংলাদেশের স্টার্টআপ পরিবেশ",
-    "fullTitle": "বাংলাদেশের স্টার্টআপ পরিবেশ – কারা আছে, কীভাবে কাজে লাগাবেন",
-    "description": "বাংলাদেশের স্টার্টআপ ও ব্যবসা পরিবেশ নিয়ে সহজ বাংলা ওভারভিউ: উদ্যোক্তা, গ্রাহক, সরকার, বিনিয়োগকারী, ইনকিউবেটর, পেমেন্ট, লজিস্টিকস, ট্যালেন্ট ও বাজার বাস্তবতা।",
+    "title": "বাংলাদেশের স্টার্টআপ ইকোসিস্টেম",
+    "fullTitle": "বাংলাদেশের স্টার্টআপ ইকোসিস্টেম – কারা আছে, কীভাবে কাজে লাগাবেন",
+    "description": "বাংলাদেশের স্টার্টআপ ইকোসিস্টেম নিয়ে সহজ বাংলা ওভারভিউ: উদ্যোক্তা, গ্রাহক, সরকার, ইনভেস্টর, ইনকিউবেটর, পেমেন্ট, লজিস্টিকস, ট্যালেন্ট ও বাজারের বাস্তবতা।",
     "stub": false,
     "date": "2026-07-08",
     "verified": null
    },
    "children": [],
-   "title": "বাংলাদেশের স্টার্টআপ পরিবেশ",
+   "title": "বাংলাদেশের স্টার্টআপ ইকোসিস্টেম",
    "total": 0,
    "written": 0
   },
@@ -554,10 +554,10 @@
     "route": "/founder-life",
     "slug": "founder-life",
     "title": "উদ্যোক্তার জীবন",
-    "fullTitle": "উদ্যোক্তার জীবন – কাজ, চাপ, পরিবার, দল ও নিজের যত্ন",
-    "description": "বাংলাদেশে উদ্যোক্তা জীবনের বাস্তবতা নিয়ে সহজ বাংলা গাইড: অগ্রাধিকার, গ্রাহক, টাকা, পরিবার, মানসিক চাপ, সহ-প্রতিষ্ঠাতা, দল ও দৈনন্দিন রুটিন।",
+    "fullTitle": "উদ্যোক্তার জীবন – কাজ, চাপ, পরিবার, টিম ও নিজের যত্ন",
+    "description": "বাংলাদেশে উদ্যোক্তা জীবনের বাস্তবতা নিয়ে সহজ বাংলা গাইড: অগ্রাধিকার, গ্রাহক, টাকা, পরিবার, মানসিক চাপ, কো-ফাউন্ডার, টিম ও দৈনন্দিন রুটিন।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": null
    },
    "children": [
@@ -652,6 +652,16 @@
      "verified": null
     },
     {
+     "route": "/founder-life/diaspora-co-founder-and-local-operator-relationship",
+     "slug": "founder-life/diaspora-co-founder-and-local-operator-relationship",
+     "title": "প্রবাসী কো-ফাউন্ডার ও স্থানীয় অপারেটরের সম্পর্ক",
+     "fullTitle": "প্রবাসী কো-ফাউন্ডার ও স্থানীয় অপারেটরের সম্পর্ক",
+     "description": "প্রবাসী কো-ফাউন্ডার ও স্থানীয় অপারেটরের সম্পর্ক – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
      "route": "/founder-life/diaspora-founder-constraints",
      "slug": "founder-life/diaspora-founder-constraints",
      "title": "প্রবাসী ফাউন্ডারদের সীমাবদ্ধতা",
@@ -667,16 +677,6 @@
      "title": "প্রবাসী ফাউন্ডারদের সুবিধা",
      "fullTitle": "প্রবাসী ফাউন্ডারদের সুবিধা",
      "description": "প্রবাসী ফাউন্ডারদের সুবিধা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/founder-life/diaspora-co-founder-and-local-operator-relationship",
-     "slug": "founder-life/diaspora-co-founder-and-local-operator-relationship",
-     "title": "প্রবাসী সহ-প্রতিষ্ঠাতা ও স্থানীয় অপারেটরের সম্পর্ক",
-     "fullTitle": "প্রবাসী সহ-প্রতিষ্ঠাতা ও স্থানীয় অপারেটরের সম্পর্ক",
-     "description": "প্রবাসী সহ-প্রতিষ্ঠাতা ও স্থানীয় অপারেটরের সম্পর্ক – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -711,15 +711,15 @@
    "index": {
     "route": "/idea-validation",
     "slug": "idea-validation",
-    "title": "আইডিয়া যাচাই",
-    "fullTitle": "আইডিয়া যাচাই – পণ্য বানানোর আগে সত্যিকারের চাহিদা বুঝুন",
-    "description": "বাংলাদেশে স্টার্টআপ বা ছোট ব্যবসার আইডিয়া যাচাই করার সহজ বাংলা গাইড: সমস্যা লেখা, গ্রাহক সাক্ষাৎকার, প্রতিযোগী দেখা, এমভিপি পরীক্ষা, পেমেন্ট সংকেত ও বাজার বোঝা।",
+    "title": "আইডিয়া যাচাই",
+    "fullTitle": "আইডিয়া যাচাই – পণ্য বানানোর আগে সত্যিকারের চাহিদা বুঝুন",
+    "description": "বাংলাদেশে স্টার্টআপ বা ছোট ব্যবসার আইডিয়া যাচাই করার সহজ বাংলা গাইড: সমস্যা লেখা, গ্রাহকের সঙ্গে আলাপ, প্রতিযোগী দেখা, এমভিপি পরীক্ষা, পেমেন্টের প্রমাণ ও বাজার বোঝা।",
     "stub": false,
     "date": "2026-07-08",
     "verified": null
    },
    "children": [],
-   "title": "আইডিয়া যাচাই",
+   "title": "আইডিয়া যাচাই",
    "total": 0,
    "written": 0
   },
@@ -866,15 +866,15 @@
    "index": {
     "route": "/legal-roadmap",
     "slug": "legal-roadmap",
-    "title": "আইনগত পথনির্দেশনা",
-    "fullTitle": "আইনগত পথনির্দেশনা – আইডিয়া থেকে আনুষ্ঠানিক ব্যবসা",
-    "description": "বাংলাদেশে স্টার্টআপ ও ছোট ব্যবসার আইনগত প্রস্তুতি: ব্যবসার ধরন, নাম, নিবন্ধন, ট্রেড লাইসেন্স, টিআইএন, ভ্যাট/বিআইএন, ব্যাংক, চুক্তি ও কমপ্লায়েন্স।",
+    "title": "আইনি রোডম্যাপ",
+    "fullTitle": "আইনি রোডম্যাপ – আইডিয়া থেকে আনুষ্ঠানিক ব্যবসা",
+    "description": "বাংলাদেশে স্টার্টআপ ও ছোট ব্যবসার আইনি প্রস্তুতি: ব্যবসার ধরন, নাম, নিবন্ধন, ট্রেড লাইসেন্স, টিআইএন, ভ্যাট/বিআইএন, ব্যাংক, চুক্তি ও কমপ্লায়েন্স।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": "2026-07-07"
    },
    "children": [],
-   "title": "আইনগত পথনির্দেশনা",
+   "title": "আইনি রোডম্যাপ",
    "total": 0,
    "written": 0
   },
@@ -885,9 +885,9 @@
     "slug": "payments",
     "title": "পেমেন্ট ব্যবস্থা",
     "fullTitle": "পেমেন্ট ব্যবস্থা – বিকাশ, নগদ, ব্যাংক, কার্ড ও ক্যাশ অন ডেলিভারি",
-    "description": "বাংলাদেশে স্টার্টআপ ও ছোট ব্যবসার পেমেন্ট ব্যবস্থা নিয়ে সহজ বাংলা গাইড: বিকাশ, নগদ, ব্যাংক ট্রান্সফার, পেমেন্ট গেটওয়ে, ক্যাশ অন ডেলিভারি, রিফান্ড, হিসাব ও আস্থা।",
+    "description": "বাংলাদেশে স্টার্টআপ ও ছোট ব্যবসার পেমেন্ট ব্যবস্থা নিয়ে সহজ বাংলা গাইড: বিকাশ, নগদ, ব্যাংক ট্রান্সফার, পেমেন্ট গেটওয়ে, ক্যাশ অন ডেলিভারি, রিফান্ড, হিসাব ও ভরসা।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": "2026-07-07"
    },
    "children": [],
@@ -901,31 +901,21 @@
     "route": "/phase-four",
     "slug": "phase-four",
     "title": "ধাপ ৪ রোডম্যাপ",
-    "fullTitle": "ধাপ ৪ রোডম্যাপ – স্কেল, গভর্ন্যান্স ও দীর্ঘমেয়াদি প্রতিষ্ঠান",
-    "description": "ব্যবসা বড় করার পর্যায়ে ব্র্যান্ড, গভর্ন্যান্স, ফান্ডিং, ঋণ, দল, ডেটা, সুরক্ষা, নতুন বাজার ও টেকসই অপারেশন নিয়ে বাংলা রোডম্যাপ।",
+    "fullTitle": "ধাপ ৪ রোডম্যাপ – স্কেল, গভর্ন্যান্স ও দীর্ঘমেয়াদি প্রতিষ্ঠান",
+    "description": "ব্যবসা বড় করার পর্যায়ে ব্র্যান্ড, গভর্ন্যান্স, ফান্ডিং, ঋণ, টিম, ডেটা, সুরক্ষা, নতুন বাজার ও টেকসই অপারেশন নিয়ে বাংলা রোডম্যাপ।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": null
    },
    "children": [
-    {
-     "route": "/phase-four/eventopportunity-calendar",
-     "slug": "phase-four/eventopportunity-calendar",
-     "title": "অনুষ্ঠান/সুযোগ ক্যালেন্ডার",
-     "fullTitle": "অনুষ্ঠান/সুযোগ ক্যালেন্ডার",
-     "description": "Event/opportunity calendar",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
     {
      "route": "/phase-four/agritech-startup-playbook",
      "slug": "phase-four/agritech-startup-playbook",
      "title": "অ্যাগ্রিটেক স্টার্টআপ প্লেবুক",
      "fullTitle": "অ্যাগ্রিটেক স্টার্টআপ প্লেবুক",
-     "description": "Agritech startup playbook",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "অ্যাগ্রিটেক স্টার্টআপ প্লেবুক – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -933,9 +923,9 @@
      "slug": "phase-four/export-incentives-for-itites",
      "title": "আইটি/আইটিইএস-এর জন্য রপ্তানি প্রণোদনা",
      "fullTitle": "আইটি/আইটিইএস-এর জন্য রপ্তানি প্রণোদনা",
-     "description": "Export incentives for IT/ITES",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "আইটি/আইটিইএস-এর জন্য রপ্তানি প্রণোদনা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -943,9 +933,29 @@
      "slug": "phase-four/e-commerce-marketplace-regulatory-map",
      "title": "ই-কমার্স মার্কেটপ্লেস নিয়ন্ত্রক ম্যাপ",
      "fullTitle": "ই-কমার্স মার্কেটপ্লেস নিয়ন্ত্রক ম্যাপ",
-     "description": "E-commerce marketplace regulatory map",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "ই-কমার্স মার্কেটপ্লেস নিয়ন্ত্রক ম্যাপ – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/value-of-e-cab-membership-for-online-sellers",
+     "slug": "phase-four/value-of-e-cab-membership-for-online-sellers",
+     "title": "ই-ক্যাব (e-CAB) সদস্যপদ কখন কাজে লাগে",
+     "fullTitle": "ই-ক্যাব (e-CAB) সদস্যপদ কখন কাজে লাগে",
+     "description": "ই-ক্যাব (e-CAB) সদস্যপদ কখন কাজে লাগে – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/eventopportunity-calendar",
+     "slug": "phase-four/eventopportunity-calendar",
+     "title": "ইভেন্ট ও সুযোগের ক্যালেন্ডার",
+     "fullTitle": "ইভেন্ট ও সুযোগের ক্যালেন্ডার",
+     "description": "ইভেন্ট ও সুযোগের ক্যালেন্ডার – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -953,9 +963,9 @@
      "slug": "phase-four/edtech-trust-and-parent-acquisition-playbook",
      "title": "এডটেক: অভিভাবকের আস্থা ও গ্রাহক আনার প্লেবুক",
      "fullTitle": "এডটেক: অভিভাবকের আস্থা ও গ্রাহক আনার প্লেবুক",
-     "description": "Edtech trust and parent acquisition playbook",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "এডটেক: অভিভাবকের আস্থা ও গ্রাহক আনার প্লেবুক – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -963,9 +973,9 @@
      "slug": "phase-four/food-and-agro-processing-business-guide",
      "title": "খাদ্য ও কৃষিপণ্য প্রক্রিয়াজাতকরণ ব্যবসার গাইড",
      "fullTitle": "খাদ্য ও কৃষিপণ্য প্রক্রিয়াজাতকরণ ব্যবসার গাইড",
-     "description": "Food and agro-processing business guide",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "খাদ্য ও কৃষিপণ্য প্রক্রিয়াজাতকরণ ব্যবসার গাইড – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -973,259 +983,49 @@
      "slug": "phase-four/bscic-support-for-small-manufacturing",
      "title": "ছোট উৎপাদন ব্যবসার জন্য BSCIC সহায়তা",
      "fullTitle": "ছোট উৎপাদন ব্যবসার জন্য BSCIC সহায়তা",
-     "description": "BSCIC support for small manufacturing",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/techstars-affiliated-events",
-     "slug": "phase-four/techstars-affiliated-events",
-     "title": "টেকস্টারস-সংশ্লিষ্ট ইভেন্টগুলি",
-     "fullTitle": "টেকস্টারস-সংশ্লিষ্ট ইভেন্টগুলি",
-     "description": "Techstars-affiliated events",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/digital-world",
-     "slug": "phase-four/digital-world",
-     "title": "ডিজিটাল বিশ্ব",
-     "fullTitle": "ডিজিটাল বিশ্ব",
-     "description": "Digital World",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/mentorship-programs",
-     "slug": "phase-four/mentorship-programs",
-     "title": "পরামর্শদান কর্মসূচি",
-     "fullTitle": "পরামর্শদান কর্মসূচি",
-     "description": "Mentorship programs",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/tourism-and-travel-startup-guide",
-     "slug": "phase-four/tourism-and-travel-startup-guide",
-     "title": "পর্যটন ও ট্রাভেল স্টার্টআপ গাইড",
-     "fullTitle": "পর্যটন ও ট্রাভেল স্টার্টআপ গাইড",
-     "description": "Tourism and travel startup guide",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/founder-communities",
-     "slug": "phase-four/founder-communities",
-     "title": "প্রতিষ্ঠাতা সম্প্রদায়",
-     "fullTitle": "প্রতিষ্ঠাতা সম্প্রদায়",
-     "description": "Founder communities",
-     "stub": false,
-     "date": "2026-07-07",
+     "description": "ছোট উৎপাদন ব্যবসার জন্য BSCIC সহায়তা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
      "route": "/phase-four/tax-holidays-for-tech-companies",
      "slug": "phase-four/tax-holidays-for-tech-companies",
-     "title": "প্রযুক্তি সংস্থাগুলির জন্য কর অবকাশ",
-     "fullTitle": "প্রযুক্তি সংস্থাগুলির জন্য কর অবকাশ",
-     "description": "Tax holidays for tech companies",
-     "stub": false,
-     "date": "2026-07-07",
+     "title": "টেক কোম্পানির জন্য ট্যাক্স হলিডে",
+     "fullTitle": "টেক কোম্পানির জন্য ট্যাক্স হলিডে",
+     "description": "টেক কোম্পানির জন্য ট্যাক্স হলিডে – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
-     "route": "/phase-four/fintech-regulatory-map",
-     "slug": "phase-four/fintech-regulatory-map",
-     "title": "ফিনটেক নিয়ন্ত্রক ম্যাপ",
-     "fullTitle": "ফিনটেক নিয়ন্ত্রক ম্যাপ",
-     "description": "Fintech regulatory map",
-     "stub": false,
-     "date": "2026-07-07",
+     "route": "/phase-four/techstars-affiliated-events",
+     "slug": "phase-four/techstars-affiliated-events",
+     "title": "টেকস্টারসের ইভেন্ট ও প্রোগ্রাম",
+     "fullTitle": "টেকস্টারসের ইভেন্ট ও প্রোগ্রাম",
+     "description": "টেকস্টারসের ইভেন্ট ও প্রোগ্রাম – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
-     "route": "/phase-four/saas-export-playbook-from-bangladesh",
-     "slug": "phase-four/saas-export-playbook-from-bangladesh",
-     "title": "বাংলাদেশ থেকে SaaS রপ্তানির প্লেবুক",
-     "fullTitle": "বাংলাদেশ থেকে SaaS রপ্তানির প্লেবুক",
-     "description": "SaaS export playbook from Bangladesh",
-     "stub": false,
-     "date": "2026-07-07",
+     "route": "/phase-four/tourism-and-travel-startup-guide",
+     "slug": "phase-four/tourism-and-travel-startup-guide",
+     "title": "ট্রাভেল ও ট্যুরিজম স্টার্টআপ গাইড",
+     "fullTitle": "ট্রাভেল ও ট্যুরিজম স্টার্টআপ গাইড",
+     "description": "ট্রাভেল ও ট্যুরিজম স্টার্টআপ গাইড – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
-     "route": "/phase-four/beauty-and-personal-care-product-business-guide",
-     "slug": "phase-four/beauty-and-personal-care-product-business-guide",
-     "title": "বিউটি ও পার্সোনাল কেয়ার পণ্য ব্যবসার গাইড",
-     "fullTitle": "বিউটি ও পার্সোনাল কেয়ার পণ্য ব্যবসার গাইড",
-     "description": "Beauty and personal care product business guide",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/bida-one-stop-services-and-investment-policy",
-     "slug": "phase-four/bida-one-stop-services-and-investment-policy",
-     "title": "বিডা ওয়ান-স্টপ পরিষেবা এবং বিনিয়োগ নীতি",
-     "fullTitle": "বিডা ওয়ান-স্টপ পরিষেবা এবং বিনিয়োগ নীতি",
-     "description": "BIDA one-stop services and investment policy",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/special-economic-zones",
-     "slug": "phase-four/special-economic-zones",
-     "title": "বিশেষ অর্থনৈতিক অঞ্চল",
-     "fullTitle": "বিশেষ অর্থনৈতিক অঞ্চল",
-     "description": "Special Economic Zones",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/university-entrepreneurship-ecosystems",
-     "slug": "phase-four/university-entrepreneurship-ecosystems",
-     "title": "বিশ্ববিদ্যালয় উদ্যোক্তা ইকোসিস্টেম",
-     "fullTitle": "বিশ্ববিদ্যালয় উদ্যোক্তা ইকোসিস্টেম",
-     "description": "University entrepreneurship ecosystems",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/university-e-cell-outreach-playbook",
-     "slug": "phase-four/university-e-cell-outreach-playbook",
-     "title": "বিশ্ববিদ্যালয় E-cell-এর সঙ্গে যোগাযোগ প্লেবুক",
-     "fullTitle": "বিশ্ববিদ্যালয় E-cell-এর সঙ্গে যোগাযোগ প্লেবুক",
-     "description": "University E-cell outreach playbook",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/basis-softexpo",
-     "slug": "phase-four/basis-softexpo",
-     "title": "বেসিস সফটএক্সপো",
-     "fullTitle": "বেসিস সফটএক্সপো",
-     "description": "BASIS SoftExpo",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/brac-nsu-du-iba-entrepreneurship-clubs",
-     "slug": "phase-four/brac-nsu-du-iba-entrepreneurship-clubs",
-     "title": "ব্র্যাক, এনএসইউ, ডিইউ, আইবিএ উদ্যোক্তা ক্লাব",
-     "fullTitle": "ব্র্যাক, এনএসইউ, ডিইউ, আইবিএ উদ্যোক্তা ক্লাব",
-     "description": "BRAC, NSU, DU, IBA entrepreneurship clubs",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/logistics-startup-playbook",
-     "slug": "phase-four/logistics-startup-playbook",
-     "title": "লজিস্টিকস স্টার্টআপ প্লেবুক",
-     "fullTitle": "লজিস্টিকস স্টার্টআপ প্লেবুক",
-     "description": "Logistics startup playbook",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/light-engineering-and-hardware-manufacturing-guide",
-     "slug": "phase-four/light-engineering-and-hardware-manufacturing-guide",
-     "title": "লাইট ইঞ্জিনিয়ারিং ও হার্ডওয়্যার উৎপাদন গাইড",
-     "fullTitle": "লাইট ইঞ্জিনিয়ারিং ও হার্ডওয়্যার উৎপাদন গাইড",
-     "description": "Light engineering and hardware manufacturing guide",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/government-program-application-guide",
-     "slug": "phase-four/government-program-application-guide",
-     "title": "সরকারি কর্মসূচির আবেদন নির্দেশিকা",
-     "fullTitle": "সরকারি কর্মসূচির আবেদন নির্দেশিকা",
-     "description": "Government program application guide",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/hi-tech-park-authority-programs",
-     "slug": "phase-four/hi-tech-park-authority-programs",
-     "title": "হাই-টেক পার্ক কর্তৃপক্ষের প্রোগ্রামগুলি",
-     "fullTitle": "হাই-টেক পার্ক কর্তৃপক্ষের প্রোগ্রামগুলি",
-     "description": "Hi-Tech Park Authority programs",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/healthtech-regulatory-map",
-     "slug": "phase-four/healthtech-regulatory-map",
-     "title": "হেলথটেক নিয়ন্ত্রক ম্যাপ",
-     "fullTitle": "হেলথটেক নিয়ন্ত্রক ম্যাপ",
-     "description": "Healthtech regulatory map",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/basis-membership-when-it-matters",
-     "slug": "phase-four/basis-membership-when-it-matters",
-     "title": "BASIS সদস্যপদ: কখন দরকার",
-     "fullTitle": "BASIS সদস্যপদ: কখন দরকার",
-     "description": "BASIS membership: when it matters",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/opening-a-bida-oss-account-and-tracking-service-requests",
-     "slug": "phase-four/opening-a-bida-oss-account-and-tracking-service-requests",
-     "title": "BIDA OSS অ্যাকাউন্ট খুলে সেবা অনুরোধ ট্র্যাক করা",
-     "fullTitle": "BIDA OSS অ্যাকাউন্ট খুলে সেবা অনুরোধ ট্র্যাক করা",
-     "description": "Opening a BIDA OSS account and tracking service requests",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/value-of-e-cab-membership-for-online-sellers",
-     "slug": "phase-four/value-of-e-cab-membership-for-online-sellers",
-     "title": "e-CAB সদস্যপদ: অনলাইন বিক্রেতাদের জন্য মূল্য",
-     "fullTitle": "e-CAB সদস্যপদ: অনলাইন বিক্রেতাদের জন্য মূল্য",
-     "description": "Value of e-CAB membership for online sellers",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/hi-tech-park-application-path",
-     "slug": "phase-four/hi-tech-park-application-path",
-     "title": "Hi-Tech Park আবেদন পথচিত্র",
-     "fullTitle": "Hi-Tech Park আবেদন পথচিত্র",
-     "description": "Hi-Tech Park application path",
-     "stub": false,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-four/rmg-and-garment-accessories-startup-guide",
-     "slug": "phase-four/rmg-and-garment-accessories-startup-guide",
-     "title": "RMG ও গার্মেন্টস অ্যাকসেসরিজ ব্যবসার গাইড",
-     "fullTitle": "RMG ও গার্মেন্টস অ্যাকসেসরিজ ব্যবসার গাইড",
-     "description": "RMG and garment accessories startup guide",
-     "stub": false,
-     "date": "2026-07-07",
+     "route": "/phase-four/digital-world",
+     "slug": "phase-four/digital-world",
+     "title": "ডিজিটাল ওয়ার্ল্ড",
+     "fullTitle": "ডিজিটাল ওয়ার্ল্ড",
+     "description": "ডিজিটাল ওয়ার্ল্ড – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1237,11 +1037,211 @@
      "stub": true,
      "date": "2026-07-08",
      "verified": null
+    },
+    {
+     "route": "/phase-four/founder-communities",
+     "slug": "phase-four/founder-communities",
+     "title": "ফাউন্ডার কমিউনিটি",
+     "fullTitle": "ফাউন্ডার কমিউনিটি",
+     "description": "ফাউন্ডার কমিউনিটি – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/fintech-regulatory-map",
+     "slug": "phase-four/fintech-regulatory-map",
+     "title": "ফিনটেক নিয়ন্ত্রক ম্যাপ",
+     "fullTitle": "ফিনটেক নিয়ন্ত্রক ম্যাপ",
+     "description": "ফিনটেক নিয়ন্ত্রক ম্যাপ – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/saas-export-playbook-from-bangladesh",
+     "slug": "phase-four/saas-export-playbook-from-bangladesh",
+     "title": "বাংলাদেশ থেকে SaaS রপ্তানির প্লেবুক",
+     "fullTitle": "বাংলাদেশ থেকে SaaS রপ্তানির প্লেবুক",
+     "description": "বাংলাদেশ থেকে SaaS রপ্তানির প্লেবুক – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/beauty-and-personal-care-product-business-guide",
+     "slug": "phase-four/beauty-and-personal-care-product-business-guide",
+     "title": "বিউটি ও পার্সোনাল কেয়ার পণ্য ব্যবসার গাইড",
+     "fullTitle": "বিউটি ও পার্সোনাল কেয়ার পণ্য ব্যবসার গাইড",
+     "description": "বিউটি ও পার্সোনাল কেয়ার পণ্য ব্যবসার গাইড – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/bida-one-stop-services-and-investment-policy",
+     "slug": "phase-four/bida-one-stop-services-and-investment-policy",
+     "title": "বিডা ওয়ান-স্টপ সেবা ও বিনিয়োগ নীতি",
+     "fullTitle": "বিডা ওয়ান-স্টপ সেবা ও বিনিয়োগ নীতি",
+     "description": "বিডা ওয়ান-স্টপ সেবা ও বিনিয়োগ নীতি – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/special-economic-zones",
+     "slug": "phase-four/special-economic-zones",
+     "title": "বিশেষ অর্থনৈতিক অঞ্চল",
+     "fullTitle": "বিশেষ অর্থনৈতিক অঞ্চল",
+     "description": "বিশেষ অর্থনৈতিক অঞ্চল – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/university-entrepreneurship-ecosystems",
+     "slug": "phase-four/university-entrepreneurship-ecosystems",
+     "title": "বিশ্ববিদ্যালয় উদ্যোক্তা ইকোসিস্টেম",
+     "fullTitle": "বিশ্ববিদ্যালয় উদ্যোক্তা ইকোসিস্টেম",
+     "description": "বিশ্ববিদ্যালয় উদ্যোক্তা ইকোসিস্টেম – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/university-e-cell-outreach-playbook",
+     "slug": "phase-four/university-e-cell-outreach-playbook",
+     "title": "বিশ্ববিদ্যালয় E-cell-এর সঙ্গে যোগাযোগ প্লেবুক",
+     "fullTitle": "বিশ্ববিদ্যালয় E-cell-এর সঙ্গে যোগাযোগ প্লেবুক",
+     "description": "বিশ্ববিদ্যালয় E-cell-এর সঙ্গে যোগাযোগ প্লেবুক – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/basis-softexpo",
+     "slug": "phase-four/basis-softexpo",
+     "title": "বেসিস সফটএক্সপো",
+     "fullTitle": "বেসিস সফটএক্সপো",
+     "description": "বেসিস সফটএক্সপো – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/brac-nsu-du-iba-entrepreneurship-clubs",
+     "slug": "phase-four/brac-nsu-du-iba-entrepreneurship-clubs",
+     "title": "ব্র্যাক, এনএসইউ, ডিইউ, আইবিএ উদ্যোক্তা ক্লাব",
+     "fullTitle": "ব্র্যাক, এনএসইউ, ডিইউ, আইবিএ উদ্যোক্তা ক্লাব",
+     "description": "ব্র্যাক, এনএসইউ, ডিইউ, আইবিএ উদ্যোক্তা ক্লাব – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/mentorship-programs",
+     "slug": "phase-four/mentorship-programs",
+     "title": "মেন্টরশিপ প্রোগ্রাম",
+     "fullTitle": "মেন্টরশিপ প্রোগ্রাম",
+     "description": "মেন্টরশিপ প্রোগ্রাম – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/logistics-startup-playbook",
+     "slug": "phase-four/logistics-startup-playbook",
+     "title": "লজিস্টিকস স্টার্টআপ প্লেবুক",
+     "fullTitle": "লজিস্টিকস স্টার্টআপ প্লেবুক",
+     "description": "লজিস্টিকস স্টার্টআপ প্লেবুক – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/light-engineering-and-hardware-manufacturing-guide",
+     "slug": "phase-four/light-engineering-and-hardware-manufacturing-guide",
+     "title": "লাইট ইঞ্জিনিয়ারিং ও হার্ডওয়্যার উৎপাদন গাইড",
+     "fullTitle": "লাইট ইঞ্জিনিয়ারিং ও হার্ডওয়্যার উৎপাদন গাইড",
+     "description": "লাইট ইঞ্জিনিয়ারিং ও হার্ডওয়্যার উৎপাদন গাইড – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/government-program-application-guide",
+     "slug": "phase-four/government-program-application-guide",
+     "title": "সরকারি প্রোগ্রামে আবেদনের গাইড",
+     "fullTitle": "সরকারি প্রোগ্রামে আবেদনের গাইড",
+     "description": "সরকারি প্রোগ্রামে আবেদনের গাইড – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/hi-tech-park-authority-programs",
+     "slug": "phase-four/hi-tech-park-authority-programs",
+     "title": "হাই-টেক পার্ক কর্তৃপক্ষের প্রোগ্রাম",
+     "fullTitle": "হাই-টেক পার্ক কর্তৃপক্ষের প্রোগ্রাম",
+     "description": "হাই-টেক পার্ক কর্তৃপক্ষের প্রোগ্রাম – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/hi-tech-park-application-path",
+     "slug": "phase-four/hi-tech-park-application-path",
+     "title": "হাই-টেক পার্কে আবেদনের ধাপ",
+     "fullTitle": "হাই-টেক পার্কে আবেদনের ধাপ",
+     "description": "হাই-টেক পার্কে আবেদনের ধাপ – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/healthtech-regulatory-map",
+     "slug": "phase-four/healthtech-regulatory-map",
+     "title": "হেলথটেক নিয়ন্ত্রক ম্যাপ",
+     "fullTitle": "হেলথটেক নিয়ন্ত্রক ম্যাপ",
+     "description": "হেলথটেক নিয়ন্ত্রক ম্যাপ – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/basis-membership-when-it-matters",
+     "slug": "phase-four/basis-membership-when-it-matters",
+     "title": "BASIS সদস্যপদ কখন কাজে লাগে",
+     "fullTitle": "BASIS সদস্যপদ কখন কাজে লাগে",
+     "description": "BASIS সদস্যপদ কখন কাজে লাগে – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/opening-a-bida-oss-account-and-tracking-service-requests",
+     "slug": "phase-four/opening-a-bida-oss-account-and-tracking-service-requests",
+     "title": "BIDA OSS অ্যাকাউন্ট খোলা ও সেবার আবেদন ট্র্যাক করা",
+     "fullTitle": "BIDA OSS অ্যাকাউন্ট খোলা ও সেবার আবেদন ট্র্যাক করা",
+     "description": "BIDA OSS অ্যাকাউন্ট খোলা ও সেবার আবেদন ট্র্যাক করা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-four/rmg-and-garment-accessories-startup-guide",
+     "slug": "phase-four/rmg-and-garment-accessories-startup-guide",
+     "title": "RMG ও গার্মেন্টস অ্যাকসেসরিজ ব্যবসার গাইড",
+     "fullTitle": "RMG ও গার্মেন্টস অ্যাকসেসরিজ ব্যবসার গাইড",
+     "description": "RMG ও গার্মেন্টস অ্যাকসেসরিজ ব্যবসার গাইড – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
     }
    ],
    "title": "ধাপ ৪ রোডম্যাপ",
    "total": 33,
-   "written": 32
+   "written": 0
   },
   "phase-one": {
    "slug": "phase-one",
@@ -1249,7 +1249,7 @@
     "route": "/phase-one",
     "slug": "phase-one",
     "title": "ধাপ ১ রোডম্যাপ",
-    "fullTitle": "ধাপ ১ রোডম্যাপ – আইডিয়া, যাচাই ও প্রথম আনুষ্ঠানিক ভিত্তি",
+    "fullTitle": "ধাপ ১ রোডম্যাপ – আইডিয়া, যাচাই ও প্রথম আনুষ্ঠানিক ভিত্তি",
     "description": "বাংলাদেশে স্টার্টআপ বা ছোট ব্যবসার প্রথম ধাপ: সমস্যা বাছাই, গ্রাহক যাচাই, ছোট পরীক্ষা, প্রথম পেমেন্ট, ব্যবসার ধরন, ট্রেড লাইসেন্স, টিআইএন, ভ্যাট ও পেমেন্ট।",
     "stub": false,
     "date": "2026-07-08",
@@ -1259,9 +1259,9 @@
     {
      "route": "/phase-one/how-to-find-startup-ideas-in-bangladesh",
      "slug": "phase-one/how-to-find-startup-ideas-in-bangladesh",
-     "title": "বাংলাদেশে স্টার্টআপ আইডিয়া খুঁজে পাওয়ার বাস্তব উপায়",
-     "fullTitle": "বাংলাদেশে স্টার্টআপ আইডিয়া খুঁজে পাওয়ার বাস্তব উপায়",
-     "description": "How to find startup ideas in Bangladesh",
+     "title": "বাংলাদেশে স্টার্টআপ আইডিয়া খুঁজে পাওয়ার বাস্তব উপায়",
+     "fullTitle": "বাংলাদেশে স্টার্টআপ আইডিয়া খুঁজে পাওয়ার বাস্তব উপায়",
+     "description": "বাংলাদেশে স্টার্টআপ আইডিয়া কোথায় লুকিয়ে থাকে — অগোছালো খাত, লোকাল সংস্করণ, বিটুবি, নিজের সমস্যা আর নীতির ঢেউ — বাস্তব উদাহরণসহ।",
      "stub": false,
      "date": "2026-07-07",
      "verified": null
@@ -1799,11 +1799,11 @@
     {
      "route": "/phase-one/payment-reconciliation-across-gateway-wallet-bank-and-cod",
      "slug": "phase-one/payment-reconciliation-across-gateway-wallet-bank-and-cod",
-     "title": "পেমেন্ট মিলানো: গেটওয়ে, ওয়ালেট, ব্যাংক ও COD",
-     "fullTitle": "পেমেন্ট মিলানো: গেটওয়ে, ওয়ালেট, ব্যাংক ও COD",
-     "description": "পেমেন্ট মিলানো: গেটওয়ে, ওয়ালেট, ব্যাংক ও COD – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "title": "পেমেন্ট মেলানো: গেটওয়ে, ওয়ালেট, ব্যাংক ও COD",
+     "fullTitle": "পেমেন্ট মেলানো: গেটওয়ে, ওয়ালেট, ব্যাংক ও COD",
+     "description": "পেমেন্ট মেলানো: গেটওয়ে, ওয়ালেট, ব্যাংক ও COD – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -1997,6 +1997,16 @@
      "verified": null
     },
     {
+     "route": "/phase-one/solo-founder-vs-team-founder-tradeoffs-in-bangladesh",
+     "slug": "phase-one/solo-founder-vs-team-founder-tradeoffs-in-bangladesh",
+     "title": "বাংলাদেশে একা ফাউন্ডার বনাম টিম ফাউন্ডার: বাস্তব trade-off",
+     "fullTitle": "বাংলাদেশে একা ফাউন্ডার বনাম টিম ফাউন্ডার: বাস্তব trade-off",
+     "description": "বাংলাদেশে একা ফাউন্ডার বনাম টিম ফাউন্ডার: বাস্তব trade-off – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
      "route": "/phase-one/customer-discovery-interviews-in-bangladesh",
      "slug": "phase-one/customer-discovery-interviews-in-bangladesh",
      "title": "বাংলাদেশে কাস্টমার ডিসকভারি ইন্টারভিউ",
@@ -2042,16 +2052,6 @@
      "title": "বাংলাদেশে co-founder equity split ও vesting",
      "fullTitle": "বাংলাদেশে co-founder equity split ও vesting",
      "description": "বাংলাদেশে co-founder equity split ও vesting – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-one/solo-founder-vs-team-founder-tradeoffs-in-bangladesh",
-     "slug": "phase-one/solo-founder-vs-team-founder-tradeoffs-in-bangladesh",
-     "title": "বাংলাদেশে solo founder বনাম team founder: বাস্তব trade-off",
-     "fullTitle": "বাংলাদেশে solo founder বনাম team founder: বাস্তব trade-off",
-     "description": "বাংলাদেশে solo founder বনাম team founder: বাস্তব trade-off – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -2409,11 +2409,11 @@
     {
      "route": "/phase-one/choosing-the-right-trade-license-category-by-city-corporation",
      "slug": "phase-one/choosing-the-right-trade-license-category-by-city-corporation",
-     "title": "সিটি কর্পোরেশনভেদে ট্রেড লাইসেন্স ক্যাটেগরি বাছাই",
-     "fullTitle": "সিটি কর্পোরেশনভেদে ট্রেড লাইসেন্স ক্যাটেগরি বাছাই",
-     "description": "সিটি কর্পোরেশনভেদে ট্রেড লাইসেন্স ক্যাটেগরি বাছাই – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "title": "সিটি করপোরেশনভেদে ট্রেড লাইসেন্স ক্যাটেগরি বাছাই",
+     "fullTitle": "সিটি করপোরেশনভেদে ট্রেড লাইসেন্স ক্যাটেগরি বাছাই",
+     "description": "সিটি করপোরেশনভেদে ট্রেড লাইসেন্স ক্যাটেগরি বাছাই – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -2479,11 +2479,11 @@
     {
      "route": "/phase-one/how-to-use-bida-oss-and-banglabiz-starter-resources",
      "slug": "phase-one/how-to-use-bida-oss-and-banglabiz-starter-resources",
-     "title": "BIDA OSS ও BanglaBiz starter resources কীভাবে ব্যবহার করবেন",
-     "fullTitle": "BIDA OSS ও BanglaBiz starter resources কীভাবে ব্যবহার করবেন",
-     "description": "BIDA OSS ও BanglaBiz starter resources কীভাবে ব্যবহার করবেন – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "title": "BIDA OSS ও BanglaBiz স্টার্টার রিসোর্স কীভাবে ব্যবহার করবেন",
+     "fullTitle": "BIDA OSS ও BanglaBiz স্টার্টার রিসোর্স কীভাবে ব্যবহার করবেন",
+     "description": "BIDA OSS ও BanglaBiz স্টার্টার রিসোর্স কীভাবে ব্যবহার করবেন – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -2539,11 +2539,11 @@
     {
      "route": "/phase-one/cod-cash-reconciliation-template",
      "slug": "phase-one/cod-cash-reconciliation-template",
-     "title": "COD নগদ টাকা মিলানোর টেমপ্লেট",
-     "fullTitle": "COD নগদ টাকা মিলানোর টেমপ্লেট",
-     "description": "COD নগদ টাকা মিলানোর টেমপ্লেট – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "title": "COD নগদ টাকা মেলানোর টেমপ্লেট",
+     "fullTitle": "COD নগদ টাকা মেলানোর টেমপ্লেট",
+     "description": "COD নগদ টাকা মেলানোর টেমপ্লেট – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -2657,10 +2657,10 @@
     "route": "/phase-three",
     "slug": "phase-three",
     "title": "ধাপ ৩ রোডম্যাপ",
-    "fullTitle": "ধাপ ৩ রোডম্যাপ – গ্রোথ, ফান্ডিং ও পুনরাবৃত্ত ব্যবসা",
-    "description": "ব্যবসা চালু হওয়ার পর গ্রোথ, ফান্ডিং, মেট্রিকস, দল, অপারেশন, ক্যাশ ফ্লো ও ঢাকার বাইরে সম্প্রসারণ নিয়ে বাংলা রোডম্যাপ।",
+    "fullTitle": "ধাপ ৩ রোডম্যাপ – গ্রোথ, ফান্ডিং ও নিয়মে চলা ব্যবসা",
+    "description": "ব্যবসা চালু হওয়ার পর গ্রোথ, ফান্ডিং, মেট্রিকস, টিম, অপারেশন, ক্যাশ ফ্লো ও ঢাকার বাইরে সম্প্রসারণ নিয়ে বাংলা রোডম্যাপ।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": null
    },
    "children": [
@@ -3525,21 +3525,21 @@
      "verified": null
     },
     {
+     "route": "/phase-three/cap-table-basics-in-plain-bangla",
+     "slug": "phase-three/cap-table-basics-in-plain-bangla",
+     "title": "সহজ বাংলায় ক্যাপ টেবিল-এর বেসিক",
+     "fullTitle": "সহজ বাংলায় ক্যাপ টেবিল-এর বেসিক",
+     "description": "সহজ বাংলায় ক্যাপ টেবিল-এর বেসিক – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
      "route": "/phase-three/term-sheet-basics-in-plain-bangla",
      "slug": "phase-three/term-sheet-basics-in-plain-bangla",
      "title": "সহজ বাংলায় টার্ম শিটের মূল বিষয়াবলী",
      "fullTitle": "সহজ বাংলায় টার্ম শিটের মূল বিষয়াবলী",
      "description": "সহজ বাংলায় টার্ম শিটের মূল বিষয়াবলী – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-three/cap-table-basics-in-plain-bangla",
-     "slug": "phase-three/cap-table-basics-in-plain-bangla",
-     "title": "সহজ বাংলায় cap table-এর বেসিক",
-     "fullTitle": "সহজ বাংলায় cap table-এর বেসিক",
-     "description": "সহজ বাংলায় cap table-এর বেসিক – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -3677,11 +3677,11 @@
     {
      "route": "/phase-three/safe-convertible-notes-and-priced-rounds-in-plain-bangla",
      "slug": "phase-three/safe-convertible-notes-and-priced-rounds-in-plain-bangla",
-     "title": "SAFE, convertible note ও priced round সহজ বাংলায়",
-     "fullTitle": "SAFE, convertible note ও priced round সহজ বাংলায়",
-     "description": "SAFE, convertible note ও priced round সহজ বাংলায় – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "title": "SAFE, convertible note ও প্রাইসড রাউন্ড সহজ বাংলায়",
+     "fullTitle": "SAFE, convertible note ও প্রাইসড রাউন্ড সহজ বাংলায়",
+     "description": "SAFE, convertible note ও প্রাইসড রাউন্ড সহজ বাংলায় – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -3725,31 +3725,31 @@
     "route": "/phase-two",
     "slug": "phase-two",
     "title": "ধাপ ২ রোডম্যাপ",
-    "fullTitle": "ধাপ ২ রোডম্যাপ – পণ্য, দল, হিসাব ও অপারেশন গুছানো",
-    "description": "ধাপ ১-এর যাচাইয়ের পর ব্যবসাকে স্থিতিশীল করার বাংলা গাইড: পণ্য উন্নয়ন, প্রথম দল, হিসাব, কমপ্লায়েন্স, সাপোর্ট, পেমেন্ট, ডেলিভারি ও গ্রাহক ধরে রাখা।",
+    "fullTitle": "ধাপ ২ রোডম্যাপ – পণ্য, টিম, হিসাব ও অপারেশন গুছানো",
+    "description": "ধাপ ১-এর যাচাইয়ের পর ব্যবসা গুছিয়ে দাঁড় করানোর বাংলা গাইড: পণ্যের উন্নতি, প্রথম টিম, হিসাব, কমপ্লায়েন্স, সাপোর্ট, পেমেন্ট, ডেলিভারি ও গ্রাহক ধরে রাখা।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": null
    },
    "children": [
     {
      "route": "/phase-two/family-involvement-as-informal-co-founders",
      "slug": "phase-two/family-involvement-as-informal-co-founders",
-     "title": "অনানুষ্ঠানিক সহ-প্রতিষ্ঠাতা হিসেবে পরিবারের সম্পৃক্ততা",
-     "fullTitle": "অনানুষ্ঠানিক সহ-প্রতিষ্ঠাতা হিসেবে পরিবারের সম্পৃক্ততা",
-     "description": "অনানুষ্ঠানিক সহ-প্রতিষ্ঠাতা হিসেবে পরিবারের সম্পৃক্ততা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "title": "অনানুষ্ঠানিক কো-ফাউন্ডার হিসেবে পরিবারের সম্পৃক্ততা",
+     "fullTitle": "অনানুষ্ঠানিক কো-ফাউন্ডার হিসেবে পরিবারের সম্পৃক্ততা",
+     "description": "অনানুষ্ঠানিক কো-ফাউন্ডার হিসেবে পরিবারের সম্পৃক্ততা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-08",
      "verified": null
     },
     {
      "route": "/phase-two/offer-letter-probation-and-joining-checklist",
      "slug": "phase-two/offer-letter-probation-and-joining-checklist",
-     "title": "অফার লেটার, probation ও joining চেকলিস্ট",
-     "fullTitle": "অফার লেটার, probation ও joining চেকলিস্ট",
-     "description": "অফার লেটার, probation ও joining চেকলিস্ট – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "title": "অফার লেটার, প্রবেশন ও জয়েনিং চেকলিস্ট",
+     "fullTitle": "অফার লেটার, প্রবেশন ও জয়েনিং চেকলিস্ট",
+     "description": "অফার লেটার, প্রবেশন ও জয়েনিং চেকলিস্ট – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -3820,6 +3820,46 @@
      "description": "কর্মসংস্থান চুক্তি – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07",
+     "verified": null
+    },
+    {
+     "route": "/phase-two/how-to-handle-a-co-founder-breakup",
+     "slug": "phase-two/how-to-handle-a-co-founder-breakup",
+     "title": "কো-ফাউন্ডার আলাদা হলে কীভাবে সামলাবেন",
+     "fullTitle": "কো-ফাউন্ডার আলাদা হলে কীভাবে সামলাবেন",
+     "description": "কো-ফাউন্ডার আলাদা হলে কীভাবে সামলাবেন – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-two/how-to-find-co-founders",
+     "slug": "phase-two/how-to-find-co-founders",
+     "title": "কো-ফাউন্ডার খুঁজে বের করার উপায়",
+     "fullTitle": "কো-ফাউন্ডার খুঁজে বের করার উপায়",
+     "description": "কো-ফাউন্ডার খুঁজে বের করার উপায় – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-two/how-to-structure-co-founder-agreements",
+     "slug": "phase-two/how-to-structure-co-founder-agreements",
+     "title": "কো-ফাউন্ডার চুক্তি কীভাবে গঠন করবেন",
+     "fullTitle": "কো-ফাউন্ডার চুক্তি কীভাবে গঠন করবেন",
+     "description": "কো-ফাউন্ডার চুক্তি কীভাবে গঠন করবেন – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/phase-two/where-to-meet-co-founders-events-communities-universities",
+     "slug": "phase-two/where-to-meet-co-founders-events-communities-universities",
+     "title": "কো-ফাউন্ডারদের সাথে কোথায় দেখা করবেন: অনুষ্ঠান, কমিউনিটি, বিশ্ববিদ্যালয়",
+     "fullTitle": "কো-ফাউন্ডারদের সাথে কোথায় দেখা করবেন: অনুষ্ঠান, কমিউনিটি, বিশ্ববিদ্যালয়",
+     "description": "কো-ফাউন্ডারদের সাথে কোথায় দেখা করবেন: অনুষ্ঠান, কমিউনিটি, বিশ্ববিদ্যালয় – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-08",
      "verified": null
     },
     {
@@ -4193,46 +4233,6 @@
      "verified": null
     },
     {
-     "route": "/phase-two/how-to-handle-a-co-founder-breakup",
-     "slug": "phase-two/how-to-handle-a-co-founder-breakup",
-     "title": "সহ-প্রতিষ্ঠাতা আলাদা হলে কীভাবে সামলাবেন",
-     "fullTitle": "সহ-প্রতিষ্ঠাতা আলাদা হলে কীভাবে সামলাবেন",
-     "description": "সহ-প্রতিষ্ঠাতা আলাদা হলে কীভাবে সামলাবেন – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-two/how-to-find-co-founders",
-     "slug": "phase-two/how-to-find-co-founders",
-     "title": "সহ-প্রতিষ্ঠাতা খুঁজে বের করার উপায়",
-     "fullTitle": "সহ-প্রতিষ্ঠাতা খুঁজে বের করার উপায়",
-     "description": "সহ-প্রতিষ্ঠাতা খুঁজে বের করার উপায় – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-two/how-to-structure-co-founder-agreements",
-     "slug": "phase-two/how-to-structure-co-founder-agreements",
-     "title": "সহ-প্রতিষ্ঠাতা চুক্তি কীভাবে গঠন করবেন",
-     "fullTitle": "সহ-প্রতিষ্ঠাতা চুক্তি কীভাবে গঠন করবেন",
-     "description": "সহ-প্রতিষ্ঠাতা চুক্তি কীভাবে গঠন করবেন – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-two/where-to-meet-co-founders-events-communities-universities",
-     "slug": "phase-two/where-to-meet-co-founders-events-communities-universities",
-     "title": "সহ-প্রতিষ্ঠাতাদের সাথে কোথায় দেখা করবেন: অনুষ্ঠান, কমিউনিটি, বিশ্ববিদ্যালয়",
-     "fullTitle": "সহ-প্রতিষ্ঠাতাদের সাথে কোথায় দেখা করবেন: অনুষ্ঠান, কমিউনিটি, বিশ্ববিদ্যালয়",
-     "description": "সহ-প্রতিষ্ঠাতাদের সাথে কোথায় দেখা করবেন: অনুষ্ঠান, কমিউনিটি, বিশ্ববিদ্যালয় – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/phase-two/building-a-bom-and-costing-sheet",
      "slug": "phase-two/building-a-bom-and-costing-sheet",
      "title": "BOM ও খরচের শিট বানানো",
@@ -4276,7 +4276,7 @@
     "fullTitle": "ব্যবসা নিবন্ধন – কখন, কীভাবে, কোন কাঠামোতে",
     "description": "বাংলাদেশে ব্যবসা নিবন্ধনের সহজ বাংলা গাইড: একক মালিকানা, অংশীদারি, প্রাইভেট লিমিটেড, RJSC, ট্রেড লাইসেন্স, টিআইএন, ভ্যাট/বিআইএন, ব্যাংক ও নিবন্ধনের পরের কাজ।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": "2026-07-07"
    },
    "children": [],
@@ -4289,15 +4289,15 @@
    "index": {
     "route": "/rjsc-name-clearance",
     "slug": "rjsc-name-clearance",
-    "title": "RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন",
-    "fullTitle": "RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন",
-    "description": "বাংলাদেশে প্রাইভেট লিমিটেড কোম্পানি করার আগে RJSC নাম ছাড়পত্র, নাম বাছাই, কাগজপত্র, আবেদন ও সাধারণ ভুল নিয়ে সহজ বাংলা গাইড।",
+    "title": "RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন",
+    "fullTitle": "RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন",
+    "description": "বাংলাদেশে প্রাইভেট লিমিটেড কোম্পানি করার আগে RJSC নাম ছাড়পত্র, নাম বাছাই, কাগজপত্র, আবেদন ও সাধারণ ভুল নিয়ে সহজ বাংলা গাইড।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": "2026-07-07"
    },
    "children": [],
-   "title": "RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন",
+   "title": "RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন",
    "total": 0,
    "written": 0
   },
@@ -4308,7 +4308,7 @@
     "slug": "start-here",
     "title": "শুরু করুন",
     "fullTitle": "শুরু করুন – বাংলাদেশে স্টার্টআপ বা ছোট ব্যবসা শুরু করার পথ",
-    "description": "বাংলাদেশে নতুন উদ্যোক্তাদের জন্য সহজ বাংলা গাইড: সমস্যা বাছাই, গ্রাহকের সঙ্গে কথা বলা, এমভিপি পরীক্ষা, প্রথম বিক্রি, আইনগত প্রস্তুতি, পেমেন্ট ও পরের ধাপ।",
+    "description": "বাংলাদেশে নতুন উদ্যোক্তাদের জন্য সহজ বাংলা গাইড: সমস্যা বাছাই, গ্রাহকের সঙ্গে কথা বলা, এমভিপি পরীক্ষা, প্রথম বিক্রি, আইনি প্রস্তুতি, পেমেন্ট ও পরের ধাপ।",
     "stub": false,
     "date": "2026-07-08",
     "verified": null
@@ -4319,7 +4319,7 @@
      "slug": "start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh",
      "title": "বাংলাদেশে স্টার্টআপ শুরু করার ৩০ দিনের রোডম্যাপ",
      "fullTitle": "বাংলাদেশে স্টার্টআপ শুরু করার ৩০ দিনের রোডম্যাপ",
-     "description": "30-day roadmap to starting a startup in Bangladesh",
+     "description": "৩০ দিনে আইডিয়া থেকে প্রথম পেইড কাস্টমার — বাংলাদেশের বাস্তবতায় সপ্তাহ ধরে ধরে স্টার্টআপ শুরুর রোডম্যাপ।",
      "stub": false,
      "date": "2026-07-04",
      "verified": null
@@ -4329,7 +4329,7 @@
      "slug": "start-here/what-is-a-startup",
      "title": "স্টার্টআপ কী?",
      "fullTitle": "স্টার্টআপ কী?",
-     "description": "What is a startup?",
+     "description": "স্টার্টআপ মানে কী, সাধারণ ব্যবসার সঙ্গে পার্থক্য কোথায়, আর আপনার উদ্যোগটা স্টার্টআপ কি না — সহজ বাংলায়।",
      "stub": false,
      "date": "2026-07-07",
      "verified": null
@@ -4339,7 +4339,7 @@
      "slug": "start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh",
      "title": "স্টার্টআপ, এসএমই, এজেন্সি ও ই-কমার্স ব্যবসার পার্থক্য",
      "fullTitle": "স্টার্টআপ, এসএমই, এজেন্সি ও ই-কমার্স ব্যবসার পার্থক্য",
-     "description": "Startup vs SME vs agency vs e-commerce business in Bangladesh",
+     "description": "স্টার্টআপ, এসএমই, এজেন্সি আর ই-কমার্স — কোনটা কী, পার্থক্য কোথায়, আপনার জন্য কোনটা ঠিক — সহজ বাংলায়।",
      "stub": false,
      "date": "2026-07-04",
      "verified": null
@@ -4436,7 +4436,7 @@
     "slug": "tools",
     "title": "টেমপ্লেট ও টুলস",
     "fullTitle": "টেমপ্লেট ও টুলস – চেকলিস্ট, স্ক্রিপ্ট, ক্যালকুলেটর ও ট্র্যাকার",
-    "description": "দেশি স্টার্টআপের ব্যবহারযোগ্য টেমপ্লেট, চেকলিস্ট, স্ক্রিপ্ট, ক্যালকুলেটর ও ট্র্যাকার এক জায়গায় – যাচাই, নিবন্ধন, বিক্রি, ফান্ডিং ও অপারেশনের জন্য।",
+    "description": "দেশি স্টার্টআপের ব্যবহারযোগ্য টেমপ্লেট, চেকলিস্ট, স্ক্রিপ্ট, ক্যালকুলেটর ও ট্র্যাকার এক জায়গায় – যাচাই, নিবন্ধন, বিক্রি, ফান্ডিং ও অপারেশনের জন্য।",
     "stub": false,
     "date": "2026-07-08",
     "verified": null
@@ -4452,10 +4452,10 @@
     "route": "/trade-license",
     "slug": "trade-license",
     "title": "ট্রেড লাইসেন্স",
-    "fullTitle": "ট্রেড লাইসেন্স – স্থানীয়ভাবে ব্যবসা চালানোর অনুমতি",
-    "description": "বাংলাদেশে ট্রেড লাইসেন্স কী, কার দরকার, কোথায় আবেদন করবেন, কী কাগজ লাগে, অনলাইন ব্যবসা কীভাবে ভাববে, নবায়ন ও সাধারণ ভুল–সহজ বাংলা গাইড।",
+    "fullTitle": "ট্রেড লাইসেন্স – স্থানীয়ভাবে ব্যবসা চালানোর অনুমতি",
+    "description": "বাংলাদেশে ট্রেড লাইসেন্স কী, কার দরকার, কোথায় আবেদন করবেন, কী কাগজ লাগে, অনলাইন ব্যবসা কীভাবে ভাববে, নবায়ন ও সাধারণ ভুল – সহজ বাংলা গাইড।",
     "stub": false,
-    "date": "2026-07-07",
+    "date": "2026-07-08",
     "verified": "2026-07-07"
    },
    "children": [],

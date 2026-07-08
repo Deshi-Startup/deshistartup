@@ -6,17 +6,17 @@ Base URL: https://deshistartup.com/deshistartup
 
 ## বাংলা (Bengali)
 - [কেস স্টাডি](https://deshistartup.com/deshistartup/case-studies): বাংলাদেশের সফল ও ব্যর্থ স্টার্টআপগুলোর সোর্স-ভিত্তিক কেস স্টাডি – পাঠাও, বিকাশ, চালডাল ও আরও অনেকে কীভাবে শুরু করেছিল, কী কাজ করেছিল, কী করেনি এবং কেন।
-- [পাঠাও](https://deshistartup.com/deshistartup/case-studies/pathao): পাঠাও কীভাবে ডেলিভারি এক্সপেরিমেন্ট থেকে বাংলাদেশি সুপার-অ্যাপ হলো, কোন স্থানীয় বাস্তবতা কাজে লাগিয়েছে, এবং নতুন উদ্যোক্তারা কী শিখতে পারেন।
-- [কোম্পানির ধরন](https://deshistartup.com/deshistartup/company-types): বাংলাদেশে ব্যবসার কাঠামো বাছাইয়ের সহজ গাইড: দায়, খরচ, ফান্ডিং, ব্যাংক, পেমেন্ট, কর, কমপ্লায়েন্স ও বড় হওয়ার পরিকল্পনা।
+- [পাঠাও](https://deshistartup.com/deshistartup/case-studies/pathao): পাঠাও কীভাবে ডেলিভারি এক্সপেরিমেন্ট থেকে বাংলাদেশি সুপার-অ্যাপ হলো, কোন স্থানীয় বাস্তবতা কাজে লাগিয়েছে, এবং নতুন উদ্যোক্তারা কী শিখতে পারেন।
+- [কোম্পানির ধরন](https://deshistartup.com/deshistartup/company-types): বাংলাদেশে ব্যবসার কাঠামো বাছাইয়ের সহজ গাইড: দায়, খরচ, ফান্ডিং, ব্যাংক, পেমেন্ট, কর, কমপ্লায়েন্স ও বড় হওয়ার পরিকল্পনা।
 - [কীভাবে অবদান রাখবেন](https://deshistartup.com/deshistartup/contribute): দেশি স্টার্টআপ সবাই মিলে লেখা একটি খোলা জ্ঞানভাণ্ডার। ভুল ধরিয়ে দেওয়া থেকে নতুন গাইড লেখা পর্যন্ত – ৩টি সহজ পথে আপনিও অবদান রাখতে পারেন।
-- [গ্রাহক খোঁজা](https://deshistartup.com/deshistartup/customers): বাংলাদেশে প্রথম গ্রাহক খোঁজার ব্যবহারিক বাংলা গাইড: ফেসবুক, মেসেঞ্জার, হোয়াটসঅ্যাপ, মাঠে বিক্রি, রেফারেল, আস্থা, পেমেন্ট, ডেলিভারি ও গ্রাহক ধরে রাখা।
+- [গ্রাহক খোঁজা](https://deshistartup.com/deshistartup/customers): বাংলাদেশে প্রথম গ্রাহক খোঁজার ব্যবহারিক বাংলা গাইড: ফেসবুক, মেসেঞ্জার, হোয়াটসঅ্যাপ, মাঠে বিক্রি, রেফারেল, ভরসা, পেমেন্ট, ডেলিভারি ও গ্রাহক ধরে রাখা।
 - [অ্যাক্সেলারেটর ও প্রোগ্রাম ডিরেক্টরি](https://deshistartup.com/deshistartup/directory/accelerators): বাংলাদেশি উদ্যোক্তাদের জন্য অ্যাক্সেলারেটর, ইনকিউবেটর ও স্টার্টআপ সহায়তা প্রোগ্রামের স্ট্রাকচার্ড তালিকা।
 - [ইনভেস্টর ডিরেক্টরি](https://deshistartup.com/deshistartup/directory/investors): বাংলাদেশ-কেন্দ্রিক অ্যাঞ্জেল নেটওয়ার্ক, ভিসি ও প্রাথমিক ইনভেস্টরদের স্ট্রাকচার্ড তালিকা।
-- [ডিরেক্টরি](https://deshistartup.com/deshistartup/directory): ইনভেস্টর, অ্যাক্সেলারেটর, প্রোগ্রাম ও সহায়তা সংস্থার স্ট্রাকচার্ড ডিরেক্টরি – JSON ডেটা থেকে তৈরি।
-- [e-TIN, VAT ও BIN](https://deshistartup.com/deshistartup/e-tin-vat-bin): বাংলাদেশে টিআইএন, ভ্যাট, বিআইএন, রিটার্ন, ইনভয়েস, হিসাব রাখা ও পেমেন্ট মিলানোর ব্যবহারিক বাংলা গাইড।
-- [বাংলাদেশের স্টার্টআপ পরিবেশ](https://deshistartup.com/deshistartup/ecosystem-overview): বাংলাদেশের স্টার্টআপ ও ব্যবসা পরিবেশ নিয়ে সহজ বাংলা ওভারভিউ: উদ্যোক্তা, গ্রাহক, সরকার, বিনিয়োগকারী, ইনকিউবেটর, পেমেন্ট, লজিস্টিকস, ট্যালেন্ট ও বাজার বাস্তবতা।
-- [উদ্যোক্তার জীবন](https://deshistartup.com/deshistartup/founder-life): বাংলাদেশে উদ্যোক্তা জীবনের বাস্তবতা নিয়ে সহজ বাংলা গাইড: অগ্রাধিকার, গ্রাহক, টাকা, পরিবার, মানসিক চাপ, সহ-প্রতিষ্ঠাতা, দল ও দৈনন্দিন রুটিন।
-- [আইডিয়া যাচাই](https://deshistartup.com/deshistartup/idea-validation): বাংলাদেশে স্টার্টআপ বা ছোট ব্যবসার আইডিয়া যাচাই করার সহজ বাংলা গাইড: সমস্যা লেখা, গ্রাহক সাক্ষাৎকার, প্রতিযোগী দেখা, এমভিপি পরীক্ষা, পেমেন্ট সংকেত ও বাজার বোঝা।
+- [ডিরেক্টরি](https://deshistartup.com/deshistartup/directory): ইনভেস্টর, অ্যাক্সেলারেটর, প্রোগ্রাম ও সহায়তা সংস্থার স্ট্রাকচার্ড ডিরেক্টরি – JSON ডেটা থেকে তৈরি।
+- [e-TIN, VAT ও BIN](https://deshistartup.com/deshistartup/e-tin-vat-bin): বাংলাদেশে টিআইএন, ভ্যাট, বিআইএন, রিটার্ন, ইনভয়েস, হিসাব রাখা ও পেমেন্ট মেলানোর ব্যবহারিক বাংলা গাইড।
+- [বাংলাদেশের স্টার্টআপ ইকোসিস্টেম](https://deshistartup.com/deshistartup/ecosystem-overview): বাংলাদেশের স্টার্টআপ ইকোসিস্টেম নিয়ে সহজ বাংলা ওভারভিউ: উদ্যোক্তা, গ্রাহক, সরকার, ইনভেস্টর, ইনকিউবেটর, পেমেন্ট, লজিস্টিকস, ট্যালেন্ট ও বাজারের বাস্তবতা।
+- [উদ্যোক্তার জীবন](https://deshistartup.com/deshistartup/founder-life): বাংলাদেশে উদ্যোক্তা জীবনের বাস্তবতা নিয়ে সহজ বাংলা গাইড: অগ্রাধিকার, গ্রাহক, টাকা, পরিবার, মানসিক চাপ, কো-ফাউন্ডার, টিম ও দৈনন্দিন রুটিন।
+- [আইডিয়া যাচাই](https://deshistartup.com/deshistartup/idea-validation): বাংলাদেশে স্টার্টআপ বা ছোট ব্যবসার আইডিয়া যাচাই করার সহজ বাংলা গাইড: সমস্যা লেখা, গ্রাহকের সঙ্গে আলাপ, প্রতিযোগী দেখা, এমভিপি পরীক্ষা, পেমেন্টের প্রমাণ ও বাজার বোঝা।
 - [ডিজিটাল পেমেন্ট নিতে চাই](https://deshistartup.com/deshistartup/journeys/accept-digital-payments): বাংলাদেশে ডিজিটাল পেমেন্ট নেওয়ার পূর্ণ পথ – ব্যাংক অ্যাকাউন্ট, বিকাশ/নগদ ও গেটওয়ে বাছাই, মার্চেন্ট অ্যাকাউন্ট, ইন্টিগ্রেশন, রিকনসিলিয়েশন আর রিফান্ড।
 - [স্টার্টআপ বাংলাদেশ বা অ্যাক্সিলারেটরে আবেদন করতে চাই](https://deshistartup.com/deshistartup/journeys/apply-to-an-accelerator): স্টার্টআপ বাংলাদেশ, iDEA বা অ্যাক্সিলারেটরে আবেদনের পথ – যোগ্যতা যাচাই, প্রোগ্রাম গবেষণা, আবেদন উপকরণ, পিচ, ফলো-আপ আর ইভেন্ট ক্যালেন্ডার।
 - [প্রবাসী উদ্যোক্তা হিসেবে বাংলাদেশে ব্যবসা গড়তে চাই](https://deshistartup.com/deshistartup/journeys/diaspora-founder-building-in-bangladesh): প্রবাস থেকে বাংলাদেশে ব্যবসা গড়ার পথ – বাজার থিসিস, স্থানীয় অপারেটর/কো-ফাউন্ডার, বিদেশি মালিকানার কোম্পানি, FDI ও FX নিয়ম, ফান্ডিং আর আস্থা তৈরি।
@@ -30,53 +30,21 @@ Base URL: https://deshistartup.com/deshistartup
 - [এসএমই-র কাছে বিক্রি করতে চাই](https://deshistartup.com/deshistartup/journeys/sell-to-smes): বাংলাদেশের ছোট-মাঝারি ব্যবসার (এসএমই) কাছে বিক্রির পথ – আইসিপি, আস্থা তৈরি, সেলস স্ক্রিপ্ট, পাইলট, পেইড চুক্তি আর রিটেনশন ড্যাশবোর্ড।
 - [অনলাইন ব্যবসা শুরু করতে চাই](https://deshistartup.com/deshistartup/journeys/start-an-online-business): ফেসবুক বা ওয়েবসাইটে অনলাইন বিক্রি শুরুর পূর্ণ পথ – ব্যবসার ধরন, ট্রেড লাইসেন্স, e-TIN/ভ্যাট, পেমেন্ট, কুরিয়ার আর ডিজিটাল কমার্স নীতিমালা মেনে লঞ্চ।
 - [চাহিদা যাচাই করতে চাই](https://deshistartup.com/deshistartup/journeys/test-demand): পণ্য বানানোর আগে চাহিদা আছে কি না পরীক্ষা করুন – ল্যান্ডিং পেজ, ফেসবুক পোস্ট, ইন্টারভিউ, ফেসবুক গ্রুপ টেস্ট আর প্রি-অর্ডার/ওয়েটলিস্ট দিয়ে সিদ্ধান্ত নেওয়ার পথ।
-- [আইনগত পথনির্দেশনা](https://deshistartup.com/deshistartup/legal-roadmap): বাংলাদেশে স্টার্টআপ ও ছোট ব্যবসার আইনগত প্রস্তুতি: ব্যবসার ধরন, নাম, নিবন্ধন, ট্রেড লাইসেন্স, টিআইএন, ভ্যাট/বিআইএন, ব্যাংক, চুক্তি ও কমপ্লায়েন্স।
-- [পেমেন্ট ব্যবস্থা](https://deshistartup.com/deshistartup/payments): বাংলাদেশে স্টার্টআপ ও ছোট ব্যবসার পেমেন্ট ব্যবস্থা নিয়ে সহজ বাংলা গাইড: বিকাশ, নগদ, ব্যাংক ট্রান্সফার, পেমেন্ট গেটওয়ে, ক্যাশ অন ডেলিভারি, রিফান্ড, হিসাব ও আস্থা।
-- [অ্যাগ্রিটেক স্টার্টআপ প্লেবুক](https://deshistartup.com/deshistartup/phase-four/agritech-startup-playbook): Agritech startup playbook
-- [BASIS সদস্যপদ: কখন দরকার](https://deshistartup.com/deshistartup/phase-four/basis-membership-when-it-matters): BASIS membership: when it matters
-- [বেসিস সফটএক্সপো](https://deshistartup.com/deshistartup/phase-four/basis-softexpo): BASIS SoftExpo
-- [বিউটি ও পার্সোনাল কেয়ার পণ্য ব্যবসার গাইড](https://deshistartup.com/deshistartup/phase-four/beauty-and-personal-care-product-business-guide): Beauty and personal care product business guide
-- [বিডা ওয়ান-স্টপ পরিষেবা এবং বিনিয়োগ নীতি](https://deshistartup.com/deshistartup/phase-four/bida-one-stop-services-and-investment-policy): BIDA one-stop services and investment policy
-- [ব্র্যাক, এনএসইউ, ডিইউ, আইবিএ উদ্যোক্তা ক্লাব](https://deshistartup.com/deshistartup/phase-four/brac-nsu-du-iba-entrepreneurship-clubs): BRAC, NSU, DU, IBA entrepreneurship clubs
-- [ছোট উৎপাদন ব্যবসার জন্য BSCIC সহায়তা](https://deshistartup.com/deshistartup/phase-four/bscic-support-for-small-manufacturing): BSCIC support for small manufacturing
-- [ডিজিটাল বিশ্ব](https://deshistartup.com/deshistartup/phase-four/digital-world): Digital World
-- [ই-কমার্স মার্কেটপ্লেস নিয়ন্ত্রক ম্যাপ](https://deshistartup.com/deshistartup/phase-four/e-commerce-marketplace-regulatory-map): E-commerce marketplace regulatory map
-- [এডটেক: অভিভাবকের আস্থা ও গ্রাহক আনার প্লেবুক](https://deshistartup.com/deshistartup/phase-four/edtech-trust-and-parent-acquisition-playbook): Edtech trust and parent acquisition playbook
-- [অনুষ্ঠান/সুযোগ ক্যালেন্ডার](https://deshistartup.com/deshistartup/phase-four/eventopportunity-calendar): Event/opportunity calendar
-- [আইটি/আইটিইএস-এর জন্য রপ্তানি প্রণোদনা](https://deshistartup.com/deshistartup/phase-four/export-incentives-for-itites): Export incentives for IT/ITES
-- [ফিনটেক নিয়ন্ত্রক ম্যাপ](https://deshistartup.com/deshistartup/phase-four/fintech-regulatory-map): Fintech regulatory map
-- [খাদ্য ও কৃষিপণ্য প্রক্রিয়াজাতকরণ ব্যবসার গাইড](https://deshistartup.com/deshistartup/phase-four/food-and-agro-processing-business-guide): Food and agro-processing business guide
-- [প্রতিষ্ঠাতা সম্প্রদায়](https://deshistartup.com/deshistartup/phase-four/founder-communities): Founder communities
-- [সরকারি কর্মসূচির আবেদন নির্দেশিকা](https://deshistartup.com/deshistartup/phase-four/government-program-application-guide): Government program application guide
-- [হেলথটেক নিয়ন্ত্রক ম্যাপ](https://deshistartup.com/deshistartup/phase-four/healthtech-regulatory-map): Healthtech regulatory map
-- [Hi-Tech Park আবেদন পথচিত্র](https://deshistartup.com/deshistartup/phase-four/hi-tech-park-application-path): Hi-Tech Park application path
-- [হাই-টেক পার্ক কর্তৃপক্ষের প্রোগ্রামগুলি](https://deshistartup.com/deshistartup/phase-four/hi-tech-park-authority-programs): Hi-Tech Park Authority programs
-- [লাইট ইঞ্জিনিয়ারিং ও হার্ডওয়্যার উৎপাদন গাইড](https://deshistartup.com/deshistartup/phase-four/light-engineering-and-hardware-manufacturing-guide): Light engineering and hardware manufacturing guide
-- [লজিস্টিকস স্টার্টআপ প্লেবুক](https://deshistartup.com/deshistartup/phase-four/logistics-startup-playbook): Logistics startup playbook
-- [পরামর্শদান কর্মসূচি](https://deshistartup.com/deshistartup/phase-four/mentorship-programs): Mentorship programs
-- [BIDA OSS অ্যাকাউন্ট খুলে সেবা অনুরোধ ট্র্যাক করা](https://deshistartup.com/deshistartup/phase-four/opening-a-bida-oss-account-and-tracking-service-requests): Opening a BIDA OSS account and tracking service requests
-- [ধাপ ৪ রোডম্যাপ](https://deshistartup.com/deshistartup/phase-four): ব্যবসা বড় করার পর্যায়ে ব্র্যান্ড, গভর্ন্যান্স, ফান্ডিং, ঋণ, দল, ডেটা, সুরক্ষা, নতুন বাজার ও টেকসই অপারেশন নিয়ে বাংলা রোডম্যাপ।
-- [RMG ও গার্মেন্টস অ্যাকসেসরিজ ব্যবসার গাইড](https://deshistartup.com/deshistartup/phase-four/rmg-and-garment-accessories-startup-guide): RMG and garment accessories startup guide
-- [বাংলাদেশ থেকে SaaS রপ্তানির প্লেবুক](https://deshistartup.com/deshistartup/phase-four/saas-export-playbook-from-bangladesh): SaaS export playbook from Bangladesh
-- [বিশেষ অর্থনৈতিক অঞ্চল](https://deshistartup.com/deshistartup/phase-four/special-economic-zones): Special Economic Zones
-- [প্রযুক্তি সংস্থাগুলির জন্য কর অবকাশ](https://deshistartup.com/deshistartup/phase-four/tax-holidays-for-tech-companies): Tax holidays for tech companies
-- [টেকস্টারস-সংশ্লিষ্ট ইভেন্টগুলি](https://deshistartup.com/deshistartup/phase-four/techstars-affiliated-events): Techstars-affiliated events
-- [পর্যটন ও ট্রাভেল স্টার্টআপ গাইড](https://deshistartup.com/deshistartup/phase-four/tourism-and-travel-startup-guide): Tourism and travel startup guide
-- [বিশ্ববিদ্যালয় E-cell-এর সঙ্গে যোগাযোগ প্লেবুক](https://deshistartup.com/deshistartup/phase-four/university-e-cell-outreach-playbook): University E-cell outreach playbook
-- [বিশ্ববিদ্যালয় উদ্যোক্তা ইকোসিস্টেম](https://deshistartup.com/deshistartup/phase-four/university-entrepreneurship-ecosystems): University entrepreneurship ecosystems
-- [e-CAB সদস্যপদ: অনলাইন বিক্রেতাদের জন্য মূল্য](https://deshistartup.com/deshistartup/phase-four/value-of-e-cab-membership-for-online-sellers): Value of e-CAB membership for online sellers
-- [বাংলাদেশে স্টার্টআপ আইডিয়া খুঁজে পাওয়ার বাস্তব উপায়](https://deshistartup.com/deshistartup/phase-one/how-to-find-startup-ideas-in-bangladesh): How to find startup ideas in Bangladesh
+- [আইনি রোডম্যাপ](https://deshistartup.com/deshistartup/legal-roadmap): বাংলাদেশে স্টার্টআপ ও ছোট ব্যবসার আইনি প্রস্তুতি: ব্যবসার ধরন, নাম, নিবন্ধন, ট্রেড লাইসেন্স, টিআইএন, ভ্যাট/বিআইএন, ব্যাংক, চুক্তি ও কমপ্লায়েন্স।
+- [পেমেন্ট ব্যবস্থা](https://deshistartup.com/deshistartup/payments): বাংলাদেশে স্টার্টআপ ও ছোট ব্যবসার পেমেন্ট ব্যবস্থা নিয়ে সহজ বাংলা গাইড: বিকাশ, নগদ, ব্যাংক ট্রান্সফার, পেমেন্ট গেটওয়ে, ক্যাশ অন ডেলিভারি, রিফান্ড, হিসাব ও ভরসা।
+- [ধাপ ৪ রোডম্যাপ](https://deshistartup.com/deshistartup/phase-four): ব্যবসা বড় করার পর্যায়ে ব্র্যান্ড, গভর্ন্যান্স, ফান্ডিং, ঋণ, টিম, ডেটা, সুরক্ষা, নতুন বাজার ও টেকসই অপারেশন নিয়ে বাংলা রোডম্যাপ।
+- [বাংলাদেশে স্টার্টআপ আইডিয়া খুঁজে পাওয়ার বাস্তব উপায়](https://deshistartup.com/deshistartup/phase-one/how-to-find-startup-ideas-in-bangladesh): বাংলাদেশে স্টার্টআপ আইডিয়া কোথায় লুকিয়ে থাকে — অগোছালো খাত, লোকাল সংস্করণ, বিটুবি, নিজের সমস্যা আর নীতির ঢেউ — বাস্তব উদাহরণসহ।
 - [ধাপ ১ রোডম্যাপ](https://deshistartup.com/deshistartup/phase-one): বাংলাদেশে স্টার্টআপ বা ছোট ব্যবসার প্রথম ধাপ: সমস্যা বাছাই, গ্রাহক যাচাই, ছোট পরীক্ষা, প্রথম পেমেন্ট, ব্যবসার ধরন, ট্রেড লাইসেন্স, টিআইএন, ভ্যাট ও পেমেন্ট।
-- [ধাপ ৩ রোডম্যাপ](https://deshistartup.com/deshistartup/phase-three): ব্যবসা চালু হওয়ার পর গ্রোথ, ফান্ডিং, মেট্রিকস, দল, অপারেশন, ক্যাশ ফ্লো ও ঢাকার বাইরে সম্প্রসারণ নিয়ে বাংলা রোডম্যাপ।
-- [ধাপ ২ রোডম্যাপ](https://deshistartup.com/deshistartup/phase-two): ধাপ ১-এর যাচাইয়ের পর ব্যবসাকে স্থিতিশীল করার বাংলা গাইড: পণ্য উন্নয়ন, প্রথম দল, হিসাব, কমপ্লায়েন্স, সাপোর্ট, পেমেন্ট, ডেলিভারি ও গ্রাহক ধরে রাখা।
+- [ধাপ ৩ রোডম্যাপ](https://deshistartup.com/deshistartup/phase-three): ব্যবসা চালু হওয়ার পর গ্রোথ, ফান্ডিং, মেট্রিকস, টিম, অপারেশন, ক্যাশ ফ্লো ও ঢাকার বাইরে সম্প্রসারণ নিয়ে বাংলা রোডম্যাপ।
+- [ধাপ ২ রোডম্যাপ](https://deshistartup.com/deshistartup/phase-two): ধাপ ১-এর যাচাইয়ের পর ব্যবসা গুছিয়ে দাঁড় করানোর বাংলা গাইড: পণ্যের উন্নতি, প্রথম টিম, হিসাব, কমপ্লায়েন্স, সাপোর্ট, পেমেন্ট, ডেলিভারি ও গ্রাহক ধরে রাখা।
 - [ব্যবসা নিবন্ধন](https://deshistartup.com/deshistartup/registration): বাংলাদেশে ব্যবসা নিবন্ধনের সহজ বাংলা গাইড: একক মালিকানা, অংশীদারি, প্রাইভেট লিমিটেড, RJSC, ট্রেড লাইসেন্স, টিআইএন, ভ্যাট/বিআইএন, ব্যাংক ও নিবন্ধনের পরের কাজ।
-- [RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন](https://deshistartup.com/deshistartup/rjsc-name-clearance): বাংলাদেশে প্রাইভেট লিমিটেড কোম্পানি করার আগে RJSC নাম ছাড়পত্র, নাম বাছাই, কাগজপত্র, আবেদন ও সাধারণ ভুল নিয়ে সহজ বাংলা গাইড।
-- [বাংলাদেশে স্টার্টআপ শুরু করার ৩০ দিনের রোডম্যাপ](https://deshistartup.com/deshistartup/start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh): 30-day roadmap to starting a startup in Bangladesh
-- [শুরু করুন](https://deshistartup.com/deshistartup/start-here): বাংলাদেশে নতুন উদ্যোক্তাদের জন্য সহজ বাংলা গাইড: সমস্যা বাছাই, গ্রাহকের সঙ্গে কথা বলা, এমভিপি পরীক্ষা, প্রথম বিক্রি, আইনগত প্রস্তুতি, পেমেন্ট ও পরের ধাপ।
-- [স্টার্টআপ, এসএমই, এজেন্সি ও ই-কমার্স ব্যবসার পার্থক্য](https://deshistartup.com/deshistartup/start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh): Startup vs SME vs agency vs e-commerce business in Bangladesh
-- [স্টার্টআপ কী?](https://deshistartup.com/deshistartup/start-here/what-is-a-startup): What is a startup?
-- [টেমপ্লেট ও টুলস](https://deshistartup.com/deshistartup/tools): দেশি স্টার্টআপের ব্যবহারযোগ্য টেমপ্লেট, চেকলিস্ট, স্ক্রিপ্ট, ক্যালকুলেটর ও ট্র্যাকার এক জায়গায় – যাচাই, নিবন্ধন, বিক্রি, ফান্ডিং ও অপারেশনের জন্য।
-- [ট্রেড লাইসেন্স](https://deshistartup.com/deshistartup/trade-license): বাংলাদেশে ট্রেড লাইসেন্স কী, কার দরকার, কোথায় আবেদন করবেন, কী কাগজ লাগে, অনলাইন ব্যবসা কীভাবে ভাববে, নবায়ন ও সাধারণ ভুল–সহজ বাংলা গাইড।
+- [RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন](https://deshistartup.com/deshistartup/rjsc-name-clearance): বাংলাদেশে প্রাইভেট লিমিটেড কোম্পানি করার আগে RJSC নাম ছাড়পত্র, নাম বাছাই, কাগজপত্র, আবেদন ও সাধারণ ভুল নিয়ে সহজ বাংলা গাইড।
+- [বাংলাদেশে স্টার্টআপ শুরু করার ৩০ দিনের রোডম্যাপ](https://deshistartup.com/deshistartup/start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh): ৩০ দিনে আইডিয়া থেকে প্রথম পেইড কাস্টমার — বাংলাদেশের বাস্তবতায় সপ্তাহ ধরে ধরে স্টার্টআপ শুরুর রোডম্যাপ।
+- [শুরু করুন](https://deshistartup.com/deshistartup/start-here): বাংলাদেশে নতুন উদ্যোক্তাদের জন্য সহজ বাংলা গাইড: সমস্যা বাছাই, গ্রাহকের সঙ্গে কথা বলা, এমভিপি পরীক্ষা, প্রথম বিক্রি, আইনি প্রস্তুতি, পেমেন্ট ও পরের ধাপ।
+- [স্টার্টআপ, এসএমই, এজেন্সি ও ই-কমার্স ব্যবসার পার্থক্য](https://deshistartup.com/deshistartup/start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh): স্টার্টআপ, এসএমই, এজেন্সি আর ই-কমার্স — কোনটা কী, পার্থক্য কোথায়, আপনার জন্য কোনটা ঠিক — সহজ বাংলায়।
+- [স্টার্টআপ কী?](https://deshistartup.com/deshistartup/start-here/what-is-a-startup): স্টার্টআপ মানে কী, সাধারণ ব্যবসার সঙ্গে পার্থক্য কোথায়, আর আপনার উদ্যোগটা স্টার্টআপ কি না — সহজ বাংলায়।
+- [টেমপ্লেট ও টুলস](https://deshistartup.com/deshistartup/tools): দেশি স্টার্টআপের ব্যবহারযোগ্য টেমপ্লেট, চেকলিস্ট, স্ক্রিপ্ট, ক্যালকুলেটর ও ট্র্যাকার এক জায়গায় – যাচাই, নিবন্ধন, বিক্রি, ফান্ডিং ও অপারেশনের জন্য।
+- [ট্রেড লাইসেন্স](https://deshistartup.com/deshistartup/trade-license): বাংলাদেশে ট্রেড লাইসেন্স কী, কার দরকার, কোথায় আবেদন করবেন, কী কাগজ লাগে, অনলাইন ব্যবসা কীভাবে ভাববে, নবায়ন ও সাধারণ ভুল – সহজ বাংলা গাইড।
 
 ## English
 - [Case Studies](https://deshistartup.com/deshistartup/en/case-studies): Source-backed case studies of Bangladeshi startups, successes and failures alike – how Pathao, bKash, Chaldal and others actually started, what worked, what did not, and why.
@@ -106,39 +74,7 @@ Base URL: https://deshistartup.com/deshistartup
 - [I want to test demand](https://deshistartup.com/deshistartup/en/journeys/test-demand): Test whether demand exists before you build – landing page, Facebook post, interviews, Facebook-group tests, and pre-orders/waitlists that lead to a clear decision.
 - [Legal Roadmap](https://deshistartup.com/deshistartup/en/legal-roadmap): > **In short:** Once your idea is validated, the next major task is building the legal foundation. This is what makes your business safer and more durable.
 - [Payment Systems](https://deshistartup.com/deshistartup/en/payments): >-
-- [Agritech Startup Playbook](https://deshistartup.com/deshistartup/en/phase-four/agritech-startup-playbook): Agritech startup playbook
-- [BASIS Membership: When It Matters](https://deshistartup.com/deshistartup/en/phase-four/basis-membership-when-it-matters): BASIS membership: when it matters
-- [Basis SoftExpo](https://deshistartup.com/deshistartup/en/phase-four/basis-softexpo): BASIS SoftExpo
-- [Beauty and Personal Care Product Business Guide](https://deshistartup.com/deshistartup/en/phase-four/beauty-and-personal-care-product-business-guide): A guide to the beauty and personal care product business sector.
-- [BIDA One-Stop Service and Investment Policy](https://deshistartup.com/deshistartup/en/phase-four/bida-one-stop-services-and-investment-policy): BIDA one-stop services and investment policy
-- [BRAC, NSU, DU, IBA Entrepreneurship Clubs](https://deshistartup.com/deshistartup/en/phase-four/brac-nsu-du-iba-entrepreneurship-clubs): BRAC, NSU, DU, IBA entrepreneurship clubs
-- [BSCIC Support for Small Manufacturing Businesses](https://deshistartup.com/deshistartup/en/phase-four/bscic-support-for-small-manufacturing): BSCIC support for small manufacturing
-- [Digital World](https://deshistartup.com/deshistartup/en/phase-four/digital-world): Digital World
-- [E-commerce Marketplace Regulatory Map](https://deshistartup.com/deshistartup/en/phase-four/e-commerce-marketplace-regulatory-map): E-commerce marketplace regulatory map
-- [Edtech: The Playbook for Building Parent Trust and Acquiring Customers](https://deshistartup.com/deshistartup/en/phase-four/edtech-trust-and-parent-acquisition-playbook): Edtech trust and parent acquisition playbook
-- [Event/Opportunity Calendar](https://deshistartup.com/deshistartup/en/phase-four/eventopportunity-calendar): Event/opportunity calendar
-- [Export Incentives for IT/ITES](https://deshistartup.com/deshistartup/en/phase-four/export-incentives-for-itites): Export incentives for IT/ITES
-- [Fintech Regulatory Map](https://deshistartup.com/deshistartup/en/phase-four/fintech-regulatory-map): Fintech regulatory map
-- [Food and Agro-Processing Business Guide](https://deshistartup.com/deshistartup/en/phase-four/food-and-agro-processing-business-guide): A guide for food and agro-processing businesses
-- [Founder Communities](https://deshistartup.com/deshistartup/en/phase-four/founder-communities): Founder communities
-- [Government Program Application Guide](https://deshistartup.com/deshistartup/en/phase-four/government-program-application-guide): Government program application guide
-- [Healthtech Regulatory Map](https://deshistartup.com/deshistartup/en/phase-four/healthtech-regulatory-map): Healthtech regulatory map
-- [Hi-Tech Park Application Roadmap](https://deshistartup.com/deshistartup/en/phase-four/hi-tech-park-application-path): Hi-Tech Park application path
-- [Hi-Tech Park Authority Programs](https://deshistartup.com/deshistartup/en/phase-four/hi-tech-park-authority-programs): Hi-Tech Park Authority programs
-- [Light Engineering and Hardware Manufacturing Guide](https://deshistartup.com/deshistartup/en/phase-four/light-engineering-and-hardware-manufacturing-guide): Light engineering and hardware manufacturing guide
-- [Logistics Startup Playbook](https://deshistartup.com/deshistartup/en/phase-four/logistics-startup-playbook): Logistics startup playbook
-- [Mentorship Programs](https://deshistartup.com/deshistartup/en/phase-four/mentorship-programs): Mentorship programs
-- [Opening a BIDA OSS Account and Tracking Service Requests](https://deshistartup.com/deshistartup/en/phase-four/opening-a-bida-oss-account-and-tracking-service-requests): Opening a BIDA OSS account and tracking service requests
 - [Phase 4 Roadmap](https://deshistartup.com/deshistartup/en/phase-four): > **Summary:** Phase 4 doesn't mean your business just gets 'big'; it means scaling with multiple growth channels, a strong team, a clear brand, and sustainability.
-- [Guide to RMG and Garment Accessories Business](https://deshistartup.com/deshistartup/en/phase-four/rmg-and-garment-accessories-startup-guide): RMG and garment accessories startup guide
-- [SaaS Export Playbook from Bangladesh](https://deshistartup.com/deshistartup/en/phase-four/saas-export-playbook-from-bangladesh): A comprehensive guide for exporting SaaS products from Bangladesh.
-- [Special Economic Zones](https://deshistartup.com/deshistartup/en/phase-four/special-economic-zones): Special Economic Zones
-- [Tax Holidays for Tech Companies](https://deshistartup.com/deshistartup/en/phase-four/tax-holidays-for-tech-companies): Tax holidays for tech companies
-- [Techstars-Affiliated Events](https://deshistartup.com/deshistartup/en/phase-four/techstars-affiliated-events): Techstars-affiliated events
-- [Tourism and Travel Startup Guide](https://deshistartup.com/deshistartup/en/phase-four/tourism-and-travel-startup-guide): Tourism and travel startup guide
-- [University E-cell Outreach Playbook](https://deshistartup.com/deshistartup/en/phase-four/university-e-cell-outreach-playbook): University E-cell outreach playbook
-- [University Entrepreneurship Ecosystems](https://deshistartup.com/deshistartup/en/phase-four/university-entrepreneurship-ecosystems): University entrepreneurship ecosystems
-- [Value of e-CAB Membership for Online Sellers](https://deshistartup.com/deshistartup/en/phase-four/value-of-e-cab-membership-for-online-sellers): Value of e-CAB membership for online sellers
 - [Practical Ways to Find Startup Ideas in Bangladesh](https://deshistartup.com/deshistartup/en/phase-one/how-to-find-startup-ideas-in-bangladesh): How to find startup ideas in Bangladesh
 - [Phase 1 Roadmap](https://deshistartup.com/deshistartup/en/phase-one): This page will clarify your first startup journey for Phase 1.
 - [Phase 3 Roadmap](https://deshistartup.com/deshistartup/en/phase-three): > **Summary:** Phase 3 is the stage where your startup doesn't just want to grow, but must transform into a stable, repeatable, and profitable business.
@@ -153,4 +89,4 @@ Base URL: https://deshistartup.com/deshistartup
 - [Trade License](https://deshistartup.com/deshistartup/en/trade-license): > **In short:** A trade license is mandatory for operating any business in Bangladesh. You obtain it from your local city corporation or municipality. Operating without one is illegal and may lead to penalties.
 
 ---
-716 additional topics are planned but not yet written (stubs) across both languages. See https://deshistartup.com/deshistartup/contribute to help write one.
+780 additional topics are planned but not yet written (stubs) across both languages. See https://deshistartup.com/deshistartup/contribute to help write one.
