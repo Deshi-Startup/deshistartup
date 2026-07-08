@@ -8,6 +8,7 @@
   "e-tin-vat-bin": "e-TIN, VAT ও BIN",
   "ecosystem-overview": "বাংলাদেশের স্টার্টআপ ইকোসিস্টেম",
   "founder-life": "উদ্যোক্তার জীবন",
+  "funding-roadmap": "ফান্ডিং রোডম্যাপ",
   "idea-validation": "আইডিয়া যাচাই",
   "journeys": "কোন পথে যাবেন",
   "legal-roadmap": "আইনি রোডম্যাপ",
@@ -23,9 +24,9 @@
   "trade-license": "ট্রেড লাইসেন্স"
  },
  "bnCounts": {
-  "pages": 431,
-  "written": 41,
-  "stubs": 390
+  "pages": 437,
+  "written": 48,
+  "stubs": 389
  },
  "en": {
   "case-studies": "Case Studies",
@@ -36,6 +37,7 @@
   "e-tin-vat-bin": "e-TIN, VAT and BIN",
   "ecosystem-overview": "Bangladesh Startup Ecosystem Overview",
   "founder-life": "Founder Life",
+  "funding-roadmap": "Funding Roadmap",
   "idea-validation": "Idea Validation",
   "journeys": "Journeys",
   "legal-roadmap": "Legal Roadmap",
@@ -51,8 +53,8 @@
   "trade-license": "Trade License"
  },
  "enCounts": {
-  "pages": 431,
-  "written": 41,
-  "stubs": 390
+  "pages": 437,
+  "written": 48,
+  "stubs": 389
  }
 }

@@ -2,9 +2,9 @@
  "locale": "en",
  "generatedAt": null,
  "counts": {
-  "pages": 431,
-  "written": 41,
-  "stubs": 390
+  "pages": 437,
+  "written": 48,
+  "stubs": 389
  },
  "sections": {
   "case-studies": {
@@ -562,6 +562,16 @@
    },
    "children": [
     {
+     "route": "/en/founder-life/women-founder-constraints-safety-client-meetings-travel-visibility",
+     "slug": "founder-life/women-founder-constraints-safety-client-meetings-travel-visibility",
+     "title": "The Woman Founder's Reality",
+     "fullTitle": "The Woman Founder's Reality – Safety, Client Meetings, Travel and Visibility",
+     "description": "A practical guide for women founders in Bangladesh: getting the family on board, safe client meetings, travel and delivery, handling online harassment, and keeping the business in your own name.",
+     "stub": false,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
      "route": "/en/founder-life/diaspora-co-founder-and-local-operator-relationship",
      "slug": "founder-life/diaspora-co-founder-and-local-operator-relationship",
      "title": "Diaspora Co-Founder and Local Operator Relationship",
@@ -682,16 +692,6 @@
      "verified": null
     },
     {
-     "route": "/en/founder-life/women-founder-constraints-safety-client-meetings-travel-visibility",
-     "slug": "founder-life/women-founder-constraints-safety-client-meetings-travel-visibility",
-     "title": "Women Founder Constraints: Safety, Client Meetings, Travel, Visibility",
-     "fullTitle": "Women Founder Constraints: Safety, Client Meetings, Travel, Visibility",
-     "description": "Women Founder Constraints: Safety, Client Meetings, Travel, Visibility – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/en/founder-life/women-founder-safety-plan-for-client-meetings",
      "slug": "founder-life/women-founder-safety-plan-for-client-meetings",
      "title": "Women Founder Safety Plan for Client Meetings",
@@ -704,6 +704,23 @@
    ],
    "title": "Founder Life",
    "total": 14,
+   "written": 1
+  },
+  "funding-roadmap": {
+   "slug": "funding-roadmap",
+   "index": {
+    "route": "/en/funding-roadmap",
+    "slug": "funding-roadmap",
+    "title": "Funding Roadmap",
+    "fullTitle": "Funding Roadmap – Where Startup Money Actually Comes From in Bangladesh",
+    "description": "Your own money, family, grants, angels, VC, bank loans – every startup funding path in Bangladesh on one page. Which fits which stage, what investors look for, and what to prepare.",
+    "stub": false,
+    "date": "2026-07-08",
+    "verified": null
+   },
+   "children": [],
+   "title": "Funding Roadmap",
+   "total": 0,
    "written": 0
   },
   "idea-validation": {
@@ -772,6 +789,56 @@
      "title": "I want to apply to Startup Bangladesh or an accelerator",
      "fullTitle": "I want to apply to Startup Bangladesh or an accelerator",
      "description": "The path to applying to Startup Bangladesh, iDEA, or an accelerator – eligibility, program research, application assets, pitch, follow-up, and the event calendar.",
+     "stub": false,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/build-a-local-services-startup",
+     "slug": "journeys/build-a-local-services-startup",
+     "title": "I Want to Build a Delivery, Ride or Local Services Startup",
+     "fullTitle": "I Want to Build a Delivery, Ride or Local Services Startup",
+     "description": "A step-by-step path to starting a delivery, ride-sharing or home-services startup in Bangladesh: the Pathao case study, a dense single-area pilot, per-trip economics, riders and agents, and funding.",
+     "stub": false,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/build-a-fintech-startup",
+     "slug": "journeys/build-a-fintech-startup",
+     "title": "I Want to Build a Fintech Startup",
+     "fullTitle": "I Want to Build a Fintech Startup – Rules First, Product Second",
+     "description": "A step-by-step path to starting a fintech startup in Bangladesh: understanding Bangladesh Bank rules, license vs partnership, validating the money pain, company structure and funding.",
+     "stub": false,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/build-a-travel-tech-startup",
+     "slug": "journeys/build-a-travel-tech-startup",
+     "title": "I Want to Build a Travel Tech Startup",
+     "fullTitle": "I Want to Build a Travel Tech Startup – Where Trust Is the Product",
+     "description": "A step-by-step path to starting a travel tech startup in Bangladesh: picking the traveller segment, a one-route pilot, advance payments and refunds, legal basics and funding.",
+     "stub": false,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/build-an-agritech-startup",
+     "slug": "journeys/build-an-agritech-startup",
+     "title": "I Want to Build an Agritech Startup",
+     "fullTitle": "I Want to Build an Agritech Startup – From Field to Market",
+     "description": "A step-by-step path to starting an agritech startup in Bangladesh: field research with farmers, a one-season pilot, the agent model, payments, legal basics and funding.",
+     "stub": false,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/en/journeys/build-an-edtech-startup",
+     "slug": "journeys/build-an-edtech-startup",
+     "title": "I Want to Build an Edtech Startup",
+     "fullTitle": "I Want to Build an Edtech Startup – From Teaching to Earning Trust",
+     "description": "A step-by-step path to starting an edtech startup in Bangladesh: validating with both parents and students, a one-batch pilot, payments, legal basics and funding.",
      "stub": false,
      "date": "2026-07-08",
      "verified": null
@@ -858,8 +925,8 @@
     }
    ],
    "title": "Journeys",
-   "total": 12,
-   "written": 12
+   "total": 17,
+   "written": 17
   },
   "legal-roadmap": {
    "slug": "legal-roadmap",

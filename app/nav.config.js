@@ -48,13 +48,16 @@ export const bnNav = [
     ]
   },
   {
-    label: 'ধাপে ধাপে রোডম্যাপ',
+    label: 'ফান্ডিং',
     items: [
-      ['/phase-one', 'ধাপ ১ · আইডিয়া থেকে ভিত্তি'],
-      ['/phase-two', 'ধাপ ২ · পণ্য, দল ও নিয়ম'],
-      ['/phase-three', 'ধাপ ৩ · বিক্রি ও ফান্ডিং'],
-      ['/phase-four', 'ধাপ ৪ · স্কেল ও সরকারি সুবিধা']
+      ['/funding-roadmap', 'ফান্ডিং রোডম্যাপ'],
+      ['/journeys/raise-angel-vc-funding', 'অ্যাঞ্জেল/ভিসি ফান্ড তুলতে চাই'],
+      ['/directory/investors', 'ইনভেস্টর ডিরেক্টরি']
     ]
+  },
+  {
+    label: 'ধাপে ধাপে রোডম্যাপ',
+    items: [['/phase-one', 'ধাপ ১ থেকে শুরু করুন']]
   },
   {
     label: 'কেস স্টাডি',
@@ -115,13 +118,16 @@ export const enNav = [
     ]
   },
   {
-    label: 'Step-by-step Roadmap',
+    label: 'Funding',
     items: [
-      ['/en/phase-one', 'Phase 1 · Idea to foundation'],
-      ['/en/phase-two', 'Phase 2 · Product, team & rules'],
-      ['/en/phase-three', 'Phase 3 · Sales & funding'],
-      ['/en/phase-four', 'Phase 4 · Scale & govt support']
+      ['/en/funding-roadmap', 'Funding roadmap'],
+      ['/en/journeys/raise-angel-vc-funding', 'Raise angel/VC funding'],
+      ['/en/directory/investors', 'Investor directory']
     ]
+  },
+  {
+    label: 'Step-by-step Roadmap',
+    items: [['/en/phase-one', 'Start from Phase 1']]
   },
   {
     label: 'Case Studies',

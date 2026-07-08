@@ -2,9 +2,9 @@
  "locale": "bn",
  "generatedAt": null,
  "counts": {
-  "pages": 431,
-  "written": 41,
-  "stubs": 390
+  "pages": 437,
+  "written": 48,
+  "stubs": 389
  },
  "sections": {
   "case-studies": {
@@ -562,6 +562,16 @@
    },
    "children": [
     {
+     "route": "/founder-life/women-founder-constraints-safety-client-meetings-travel-visibility",
+     "slug": "founder-life/women-founder-constraints-safety-client-meetings-travel-visibility",
+     "title": "নারী উদ্যোক্তার বাস্তবতা",
+     "fullTitle": "নারী উদ্যোক্তার বাস্তবতা – নিরাপত্তা, ক্লায়েন্ট মিটিং, যাতায়াত ও সামনে আসা",
+     "description": "বাংলাদেশে নারী ফাউন্ডারদের জন্য ব্যবহারিক গাইড: পরিবারের সম্মতি, নিরাপদ ক্লায়েন্ট মিটিং, যাতায়াত ও ডেলিভারি, অনলাইনে হয়রানি সামলানো, আর ব্যবসা নিজের নামে রাখা।",
+     "stub": false,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
      "route": "/founder-life/what-to-say-at-eidwedding-gatherings-when-relatives-ask-if-this-is-a-job",
      "slug": "founder-life/what-to-say-at-eidwedding-gatherings-when-relatives-ask-if-this-is-a-job",
      "title": "ঈদ বা বিয়ের অনুষ্ঠানে আত্মীয়স্বজনরা জিজ্ঞাসা করলে কী বলবেন, এটা কি কোনো চাকরি",
@@ -577,16 +587,6 @@
      "title": "ছাত্র প্রতিষ্ঠাতা সীমাবদ্ধতা",
      "fullTitle": "ছাত্র প্রতিষ্ঠাতা সীমাবদ্ধতা",
      "description": "ছাত্র প্রতিষ্ঠাতা সীমাবদ্ধতা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/founder-life/women-founder-constraints-safety-client-meetings-travel-visibility",
-     "slug": "founder-life/women-founder-constraints-safety-client-meetings-travel-visibility",
-     "title": "নারী উদ্যোক্তাদের সীমাবদ্ধতা: নিরাপত্তা, ক্লায়েন্ট মিটিং, ভ্রমণ, দৃশ্যমানতা",
-     "fullTitle": "নারী উদ্যোক্তাদের সীমাবদ্ধতা: নিরাপত্তা, ক্লায়েন্ট মিটিং, ভ্রমণ, দৃশ্যমানতা",
-     "description": "নারী উদ্যোক্তাদের সীমাবদ্ধতা: নিরাপত্তা, ক্লায়েন্ট মিটিং, ভ্রমণ, দৃশ্যমানতা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -704,6 +704,23 @@
    ],
    "title": "উদ্যোক্তার জীবন",
    "total": 14,
+   "written": 1
+  },
+  "funding-roadmap": {
+   "slug": "funding-roadmap",
+   "index": {
+    "route": "/funding-roadmap",
+    "slug": "funding-roadmap",
+    "title": "ফান্ডিং রোডম্যাপ",
+    "fullTitle": "ফান্ডিং রোডম্যাপ – বাংলাদেশে স্টার্টআপের টাকা কোথা থেকে আসে",
+    "description": "নিজের টাকা, পরিবার, গ্র্যান্ট, অ্যাঞ্জেল, ভিসি, ব্যাংক ঋণ – বাংলাদেশে স্টার্টআপ ফান্ডিংয়ের পথগুলো এক পাতায়। কোন পর্যায়ে কোনটা মানায়, ইনভেস্টর কী দেখে, কী প্রস্তুতি লাগে।",
+    "stub": false,
+    "date": "2026-07-08",
+    "verified": null
+   },
+   "children": [],
+   "title": "ফান্ডিং রোডম্যাপ",
+   "total": 0,
    "written": 0
   },
   "idea-validation": {
@@ -767,6 +784,26 @@
      "verified": null
     },
     {
+     "route": "/journeys/build-an-agritech-startup",
+     "slug": "journeys/build-an-agritech-startup",
+     "title": "এগ্রিটেক স্টার্টআপ বানাতে চাই",
+     "fullTitle": "এগ্রিটেক স্টার্টআপ বানাতে চাই – মাঠ থেকে বাজার পর্যন্ত",
+     "description": "বাংলাদেশে এগ্রিটেক স্টার্টআপ শুরুর ধাপে ধাপে পথ: কৃষকের সঙ্গে মাঠ-গবেষণা, এক মৌসুমের পাইলট, এজেন্ট মডেল, পেমেন্ট, আইনি ভিত্তি ও ফান্ডিং।",
+     "stub": false,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/journeys/build-an-edtech-startup",
+     "slug": "journeys/build-an-edtech-startup",
+     "title": "এডটেক স্টার্টআপ বানাতে চাই",
+     "fullTitle": "এডটেক স্টার্টআপ বানাতে চাই – শেখানো থেকে ভরসা জেতা পর্যন্ত",
+     "description": "বাংলাদেশে এডটেক স্টার্টআপ শুরুর ধাপে ধাপে পথ: অভিভাবক ও শিক্ষার্থী দুজনের সমস্যা যাচাই, এক ব্যাচের পাইলট, পেমেন্ট, আইনি ভিত্তি ও ফান্ডিং।",
+     "stub": false,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
      "route": "/journeys/sell-to-smes",
      "slug": "journeys/sell-to-smes",
      "title": "এসএমই-র কাছে বিক্রি করতে চাই",
@@ -787,11 +824,31 @@
      "verified": null
     },
     {
+     "route": "/journeys/build-a-travel-tech-startup",
+     "slug": "journeys/build-a-travel-tech-startup",
+     "title": "ট্রাভেল টেক স্টার্টআপ বানাতে চাই",
+     "fullTitle": "ট্রাভেল টেক স্টার্টআপ বানাতে চাই – ভরসাই যেখানে পণ্য",
+     "description": "বাংলাদেশে ট্রাভেল টেক স্টার্টআপ শুরুর ধাপে ধাপে পথ: ভ্রমণকারীর ধরন বাছাই, এক রুটের পাইলট, অগ্রিম পেমেন্ট ও রিফান্ড, আইনি ভিত্তি ও ফান্ডিং।",
+     "stub": false,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
      "route": "/journeys/accept-digital-payments",
      "slug": "journeys/accept-digital-payments",
      "title": "ডিজিটাল পেমেন্ট নিতে চাই",
      "fullTitle": "ডিজিটাল পেমেন্ট নিতে চাই",
      "description": "বাংলাদেশে ডিজিটাল পেমেন্ট নেওয়ার পূর্ণ পথ – ব্যাংক অ্যাকাউন্ট, বিকাশ/নগদ ও গেটওয়ে বাছাই, মার্চেন্ট অ্যাকাউন্ট, ইন্টিগ্রেশন, রিকনসিলিয়েশন আর রিফান্ড।",
+     "stub": false,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
+     "route": "/journeys/build-a-local-services-startup",
+     "slug": "journeys/build-a-local-services-startup",
+     "title": "ডেলিভারি, রাইড বা লোকাল সার্ভিস স্টার্টআপ বানাতে চাই",
+     "fullTitle": "ডেলিভারি, রাইড বা লোকাল সার্ভিস স্টার্টআপ বানাতে চাই",
+     "description": "বাংলাদেশে ডেলিভারি, রাইড শেয়ারিং বা বাসার সেবার স্টার্টআপ শুরুর ধাপে ধাপে পথ: পাঠাওয়ের কেস স্টাডি, এক এলাকার পাইলট, ট্রিপের হিসাব, রাইডার-এজেন্ট ও ফান্ডিং।",
      "stub": false,
      "date": "2026-07-08",
      "verified": null
@@ -837,6 +894,16 @@
      "verified": null
     },
     {
+     "route": "/journeys/build-a-fintech-startup",
+     "slug": "journeys/build-a-fintech-startup",
+     "title": "ফিনটেক স্টার্টআপ বানাতে চাই",
+     "fullTitle": "ফিনটেক স্টার্টআপ বানাতে চাই – আগে নিয়ম, পরে প্রোডাক্ট",
+     "description": "বাংলাদেশে ফিনটেক স্টার্টআপ শুরুর ধাপে ধাপে পথ: বাংলাদেশ ব্যাংকের নিয়ম বোঝা, লাইসেন্স নাকি পার্টনারশিপ, সমস্যা যাচাই, কোম্পানি কাঠামো ও ফান্ডিং।",
+     "stub": false,
+     "date": "2026-07-08",
+     "verified": null
+    },
+    {
      "route": "/journeys/launch-a-saas",
      "slug": "journeys/launch-a-saas",
      "title": "বাংলাদেশ থেকে SaaS চালু করতে চাই",
@@ -858,8 +925,8 @@
     }
    ],
    "title": "কোন পথে যাবেন",
-   "total": 12,
-   "written": 12
+   "total": 17,
+   "written": 17
   },
   "legal-roadmap": {
    "slug": "legal-roadmap",

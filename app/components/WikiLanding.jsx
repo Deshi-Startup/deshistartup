@@ -12,7 +12,7 @@ function localHref(href) {
 }
 
 const bn = {
-  kicker: 'বাংলাদেশে স্টার্টআপ বানানোর বাংলা গাইড',
+  kicker: 'বাংলাদেশে স্টার্টআপ গড়ার বাংলা গাইড',
   title: 'দেশি স্টার্টআপ',
   subtitle:
     'আইডিয়া থেকে প্রথম গ্রাহক, ট্রেড লাইসেন্স থেকে পেমেন্ট, ফান্ডিং থেকে স্কেল। কী করবেন, ধাপে ধাপে সহজ বাংলায়।',
@@ -26,19 +26,13 @@ const bn = {
   ),
   lead2:
     'বাংলাদেশের বাস্তবতা আলাদা। গ্রাহকের ভরসা পেতে সময় লাগে, ক্যাশ অন ডেলিভারি এখনো জরুরি, ফেসবুক/মেসেঞ্জার বড় বিক্রির চ্যানেল। সরকারি কাগজপত্রও বুঝে করতে হয়। তাই এই সাইট বিদেশি পরামর্শ কপি করে না। বাংলাদেশে কীভাবে কাজ হয়, সেটা ধরে ব্যাখ্যা করে।',
-  quickTitle: 'এখন কোথা থেকে শুরু করবেন?',
-  quick: [
-    <>নিচ থেকে আপনার অবস্থার সঙ্গে মেলে এমন ঘর বেছে নিন, অথবা ওপরের সার্চে নিজের প্রশ্নটা লিখুন।</>,
-    <>প্রথম গাইডটা পড়ে একটি ছোট কাজ ঠিক করুন। যেমন ৫ জন সম্ভাব্য গ্রাহকের সঙ্গে কথা বলা।</>,
-    <>আইন, কর বা লাইসেন্সের বড় সিদ্ধান্তের আগে সরকারি উৎস বা পেশাদারের পরামর্শ মিলিয়ে নিন।</>
-  ],
   notice:
     'আইন, কর, ভ্যাট, ব্যাংকিং বা লাইসেন্স নিয়ে লেখা সিদ্ধান্ত নিতে সাহায্য করবে। আইনি বা কর পরামর্শ নয়। ফি, ফর্ম ও প্রক্রিয়া বদলাতে পারে। কাজ করার আগে সরকারি উৎস দেখে নিন। দরকার হলে চার্টার্ড অ্যাকাউন্ট্যান্ট বা আইনজীবীর সঙ্গে মিলিয়ে নিন।',
   infoboxTitle: 'এক নজরে',
   infoboxName: 'দেশি স্টার্টআপ',
-  infoboxTagline: 'বাংলাদেশি উদ্যোক্তাদের জন্য সহজ বাংলা স্টার্টআপ ও ব্যবসার গাইড',
+  infoboxTagline: 'বাংলাদেশে স্টার্টআপ গড়ার বাংলা গাইড',
   infobox: (written, stubs) => [
-    ['যাদের জন্য', 'নতুন ফাউন্ডার, শিক্ষার্থী ফাউন্ডার, স্টার্টআপ টিম, প্রবাসী ফাউন্ডার'],
+    ['যাদের জন্য', 'নতুন ফাউন্ডার, শিক্ষার্থী ও নারী উদ্যোক্তা, স্টার্টআপ টিম, প্রবাসী ফাউন্ডার'],
     ['যা পাবেন', 'আইডিয়া যাচাই, নিবন্ধন, পেমেন্ট, বিক্রি, নিয়োগ, ফান্ডিং'],
     ['ভাষা', 'সহজ বাংলা, দরকারি ইংরেজি টার্ম ব্যাখ্যাসহ'],
     ['মূল্য', 'সম্পূর্ণ ফ্রি ও ওপেন সোর্স'],
@@ -46,33 +40,13 @@ const bn = {
   ],
   stageTitle: 'আপনি এখন কোন অবস্থায় আছেন?',
   stageSub:
-    'সবাই একই জায়গা থেকে শুরু করে না। কেউ আইডিয়া পর্যায়ে, কেউ ফেসবুক পেজ খুলে ফেলেছেন, কেউ নিবন্ধন নিয়ে আটকে আছেন। নিজের অবস্থা বেছে নিন। সেখান থেকেই পড়া শুরু করুন।',
+    'সবাই একই জায়গা থেকে শুরু করে না। কেউ আইডিয়া পর্যায়ে, কেউ ফেসবুক পেজ খুলে ফেলেছেন, কেউ নিবন্ধন নিয়ে আটকে আছেন। নিজের অবস্থার ঘরটা বেছে নিন, অথবা ওপরের সার্চে নিজের প্রশ্নটা লিখুন।',
   stages: [
     ['আমি একদম নতুন', 'শুরুর পুরো পথটা আগে এক নজরে বুঝে নিন। কী আগে, কী পরে।', 'শুরু করুন', '/start-here'],
     ['আমার একটা আইডিয়া আছে', 'বানানোর আগে দেখুন মানুষ সমস্যাটা সত্যি অনুভব করে কি না, টাকা দিতে রাজি কি না।', 'আইডিয়া যাচাই করুন', '/idea-validation'],
     ['স্টার্টআপ চালু করতে চাই', 'ট্রেড লাইসেন্স, কোম্পানি, টিআইএন, ভ্যাট, ব্যাংক। কোন কাগজ কখন লাগে, ধাপে ধাপে।', 'আইনি পথ দেখুন', '/legal-roadmap'],
     ['গ্রাহক আর বিক্রি চাই', 'ফেসবুক, মেসেঞ্জার, হোয়াটসঅ্যাপ, রেফারেল – প্রথম ১০০ গ্রাহক পাওয়ার বাস্তব পথ।', 'বিক্রি শুরু করুন', '/customers'],
     ['লক্ষ্য জানি, পথ চাই', 'আপনার কাজ বেছে নিয়ে ধাপে ধাপে কোন গাইড পড়বেন তা দেখে নিন।', 'গাইডেড পথ দেখুন', '/journeys']
-  ],
-  pathTitle: 'একদম নতুন? এই ৫টি গাইড ক্রমে পড়ুন',
-  pathSub: 'প্রতিটি গাইডের শেষে পরের ধাপ দেখানো আছে। তাই হারিয়ে যাওয়ার ভয় নেই।',
-  path: [
-    ['শুরু করুন', 'আইডিয়া থেকে বড় হওয়া পর্যন্ত পুরো রোডম্যাপ', '/start-here'],
-    ['বাংলাদেশের স্টার্টআপ ইকোসিস্টেম', 'বাজার, ইনভেস্টর ও সুযোগ কোথায়, চিনে নিন', '/ecosystem-overview'],
-    ['আইডিয়া যাচাই', 'পণ্য বানানোর আগে প্রমাণ জোগাড় করুন', '/idea-validation'],
-    ['আইনি রোডম্যাপ', 'কোন কাগজ এখন দরকার, কোনটা পরে করলেও চলে', '/legal-roadmap'],
-    ['গ্রাহক খোঁজা', 'প্রথম গ্রাহক থেকে নিয়মিত বিক্রি পর্যন্ত', '/customers']
-  ],
-  goRead: 'পড়ুন →',
-  whyTitle: 'বাংলাদেশে শুরু করা কেন আলাদা',
-  whyBody:
-    'বিদেশি স্টার্টআপ ব্লগ পড়ে অনেক কিছু শেখা যায়, কিন্তু বাংলাদেশে কাজ করতে গেলে আলাদা কিছু বাস্তবতা সামনে আসে। গ্রাহক আগে বিশ্বাস করতে চান, পরে পেমেন্ট করেন। অনলাইন অর্ডার এলেও ডেলিভারি ব্যর্থ হতে পারে। সরবরাহকারী, কুরিয়ার, ব্যাংক, কর, কাগজপত্র আর পারিবারিক চাপ। সব একসঙ্গে সামলাতে হয়।',
-  whyTable: [
-    ['বাস্তব সমস্যা', 'এখানে কী পাবেন'],
-    ['আইডিয়া আছে, কিন্তু কেউ কিনবে কিনা বোঝা যাচ্ছে না', 'গ্রাহকের সঙ্গে কী জিজ্ঞেস করবেন, কীভাবে ছোট পরীক্ষা চালাবেন, কোন লক্ষণ দেখে এগোবেন'],
-    ['কোম্পানি করব, নাকি ট্রেড লাইসেন্স দিয়েই শুরু করব', 'কোন পর্যায়ে কোন আইনি ভিত্তি যথেষ্ট, আর কখন পেশাদার পরামর্শ দরকার'],
-    ['পেমেন্ট, ক্যাশ অন ডেলিভারি, কুরিয়ার, রিফান্ড একসঙ্গে সামলাতে হচ্ছে', 'অর্ডার নেওয়া, টাকা মেলানো, ডেলিভারি ঝুঁকি কমানো ও রিফান্ড নীতি বানানোর পথ'],
-    ['বুস্ট দিলে রিচ হচ্ছে, কিন্তু বিক্রি হচ্ছে না', 'ভরসা তৈরি, অফার, ইনবক্সে উত্তরের লেখা, রেফারেল আর ফিরে আসা গ্রাহক নিয়ে ভাবনা']
   ],
   topicTitle: 'বিষয় ধরে খুঁজুন',
   topicSub: 'যে কাজটা এখন করতে চাইছেন, সেই বিষয়ের গাইডে ঢুকে পড়ুন। প্রতিটি বিভাগের পাতায় সেই বিষয়ের সব গাইডের তালিকা আছে।',
@@ -82,19 +56,9 @@ const bn = {
     ['পেমেন্ট ও অপারেশন', 'বিকাশ/নগদ · গেটওয়ে · ক্যাশ অন ডেলিভারি · কুরিয়ার · রিফান্ড', '/payments'],
     ['গ্রাহক ও বিক্রি', 'ফেসবুক কমার্স · মেসেঞ্জার/হোয়াটসঅ্যাপ · B2B বিক্রি · প্রথম ১০০ গ্রাহক', '/customers'],
     ['টিম ও উদ্যোক্তার জীবন', 'কো-ফাউন্ডার · প্রথম নিয়োগ · পারিবারিক চাপ · বার্নআউট', '/founder-life'],
-    ['ফান্ডিং ও বড় হওয়া', 'গ্র্যান্ট · অ্যাঞ্জেল · ভিসি · পিচ ডেক · সরকারি সুবিধা', '/phase-three'],
+    ['ফান্ডিং ও বড় হওয়া', 'গ্র্যান্ট · অ্যাঞ্জেল · ভিসি · পিচ ডেক · সরকারি সুবিধা', '/funding-roadmap'],
     ['টেমপ্লেট ও টুলস', 'চেকলিস্ট · স্ক্রিপ্ট · ক্যালকুলেটর · ট্র্যাকার', '/tools'],
     ['ডিরেক্টরি', 'ইনভেস্টর · অ্যাক্সেলারেটর · প্রোগ্রাম · ইকোসিস্টেম', '/directory']
-  ],
-  whoTitle: 'এই সাইট আপনার কাজে লাগবে যদি',
-  whoBody:
-    'আপনি স্কেল করা যায় এমন পণ্য বা সেবা বানাতে চান, এজেন্সি থেকে নিজের পণ্যে যেতে চান, বা অনলাইন ব্যবসাকে স্টার্টআপের মতো গুছিয়ে বড় করতে চান। শুরুতে প্রশ্নগুলো প্রায় একই। এই সাইট সেগুলো সহজ করে সাজায়।',
-  who: [
-    ['আপনি শিক্ষার্থী ফাউন্ডার:', 'কম বাজেটে আইডিয়া পরীক্ষা করতে চান।'],
-    ['আপনি প্রথমবার স্টার্টআপ করছেন:', 'নিবন্ধন, পেমেন্ট, বিক্রি ও নিয়ম মানার বিষয় একসঙ্গে বুঝতে চান।'],
-    ['আপনি টেক ফাউন্ডার:', 'পণ্য বানাতে পারেন, কিন্তু বাজার ও বিক্রি বুঝতে চান।'],
-    ['আপনি ছোট ব্যবসা থেকে স্কেল করতে চান:', 'হিসাব, অপারেশন আর একই কাজ বারবার চালানোর সিস্টেম বানাতে চান।'],
-    ['আপনি ঢাকার বাইরে বা প্রবাস থেকে শুরু করছেন:', 'স্থানীয় নির্ভরযোগ্য মানুষ, ভরসা, ডেলিভারি ও কাগজপত্র বুঝতে চান।']
   ],
   faqTitle: 'নতুনদের সাধারণ প্রশ্ন',
   faqSub: 'শুরুতে সবকিছু জরুরি মনে হয়। কিন্তু সব কাজ একই দিনে করতে হয় না। এই উত্তরগুলো প্রথম সিদ্ধান্তগুলো নিতে সাহায্য করবে।',
@@ -143,19 +107,13 @@ const en = {
   ),
   lead2:
     'Bangladesh works differently: customer trust takes time, cash on delivery still matters, Facebook/Messenger are major sales channels, and government paperwork needs care. So this site doesn\'t copy foreign advice; it explains how things actually work in Bangladesh.',
-  quickTitle: 'Where to start right now?',
-  quick: [
-    <>Pick the card below that matches your situation, or type your question in the search above.</>,
-    <>Read the first guide and pick one small task – like talking to 5 potential customers.</>,
-    <>Before big legal, tax or license decisions, confirm with official sources or a professional.</>
-  ],
   notice:
     'Articles about law, tax, VAT, banking or licensing help you decide, but they are not legal or tax advice. Fees, forms and processes change; confirm with official sources and, where needed, a chartered accountant or lawyer before acting.',
   infoboxTitle: 'At a glance',
   infoboxName: 'Deshi Startup',
-  infoboxTagline: 'A plain-language startup and business guide for Bangladeshi founders',
+  infoboxTagline: 'The Bangla-first startup guide for Bangladesh',
   infobox: (written, stubs) => [
-    ['For', 'New founders, student founders, startup teams, diaspora founders'],
+    ['For', 'New and women founders, student founders, startup teams, diaspora founders'],
     ['Covers', 'Idea validation, registration, payments, sales, hiring, funding'],
     ['Language', 'Simple Bangla; English terms explained'],
     ['Price', 'Completely free; open source'],
@@ -163,33 +121,13 @@ const en = {
   ],
   stageTitle: 'Where are you right now?',
   stageSub:
-    'Nobody starts from the same place. Some are at the idea stage, some already run a Facebook page, some are stuck on registration. Pick your situation – start reading from there.',
+    'Nobody starts from the same place. Some are at the idea stage, some already run a Facebook page, some are stuck on registration. Pick the card that matches your situation, or type your question in the search above.',
   stages: [
     ['I\'m completely new', 'See the whole journey first – what comes first, what can wait.', 'Start here', '/en/start-here'],
     ['I have an idea', 'Before building, check people truly feel the problem and will pay.', 'Validate your idea', '/en/idea-validation'],
     ['I want to launch', 'Trade license, company, TIN, VAT, bank – which paper when, step by step.', 'See the legal path', '/en/legal-roadmap'],
     ['I need customers', 'Facebook, Messenger, WhatsApp, referrals – real paths to your first 100 customers.', 'Start selling', '/en/customers'],
     ['I know the goal', 'Pick the job you are trying to do and follow the guides in order.', 'See guided paths', '/en/journeys']
-  ],
-  pathTitle: 'Brand new? Read these 5 guides in order',
-  pathSub: 'Each guide ends with the next step – you won\'t get lost.',
-  path: [
-    ['Start here', 'The map of the whole journey', '/en/start-here'],
-    ['Bangladesh startup ecosystem', 'Know the market, investors and where the openings are', '/en/ecosystem-overview'],
-    ['Idea validation', 'Gather proof before you build', '/en/idea-validation'],
-    ['Legal roadmap', 'Which paperwork now, which later', '/en/legal-roadmap'],
-    ['Finding customers', 'From first customer to steady sales', '/en/customers']
-  ],
-  goRead: 'Read →',
-  whyTitle: 'Why starting in Bangladesh is different',
-  whyBody:
-    'Foreign startup blogs teach a lot, but building in Bangladesh brings its own realities. Customers want to trust first and pay later. Online orders can still fail at delivery. Suppliers, couriers, banks, taxes, paperwork and family pressure all need handling at once.',
-  whyTable: [
-    ['Real problem', 'What guidance you get here'],
-    ['You have an idea but can\'t tell if anyone will buy', 'What to ask customers, how to run small tests, which signals to act on'],
-    ['Company, or start with just a trade license?', 'Which legal footing is enough at which stage, and when to get professional advice'],
-    ['Juggling payments, COD, couriers and refunds at once', 'Taking orders, reconciling money, reducing delivery risk, writing a refund policy'],
-    ['Boosting gets reach but no sales', 'Building trust, offers, inbox reply scripts, referrals and repeat customers']
   ],
   topicTitle: 'Browse by topic',
   topicSub: 'Jump into the guide for the job you\'re doing right now. Every section page lists all of its guides.',
@@ -199,19 +137,9 @@ const en = {
     ['Payments & operations', 'bKash/Nagad · gateways · cash on delivery · couriers · refunds', '/en/payments'],
     ['Customers & sales', 'Facebook commerce · Messenger/WhatsApp · B2B sales · first 100 customers', '/en/customers'],
     ['Team & founder life', 'Co-founders · first hires · family pressure · burnout', '/en/founder-life'],
-    ['Funding & scale', 'Grants · angels · VC · pitch decks · government support', '/en/phase-three'],
+    ['Funding & scale', 'Grants · angels · VC · pitch decks · government support', '/en/funding-roadmap'],
     ['Templates & tools', 'Checklists · scripts · calculators · trackers', '/en/tools'],
     ['Directory', 'Investors · accelerators · programs · ecosystem', '/en/directory']
-  ],
-  whoTitle: 'This site is for you if',
-  whoBody:
-    'Whether you want to build a scalable product, move from agency work to your own product, or turn an online business into a startup-style operation, the early questions are mostly the same. This site organizes them simply.',
-  who: [
-    ['You\'re a student founder:', 'you want to test an idea on a small budget.'],
-    ['You\'re starting your first startup:', 'you want registration, payments, sales and compliance explained together.'],
-    ['You\'re a technical founder:', 'you can build the product but want to understand the market and sales.'],
-    ['You want to scale a small business:', 'you want better books, operations and repeatable systems.'],
-    ['You\'re starting from outside Dhaka or abroad:', 'you need trusted local operators, distribution and paperwork explained.']
   ],
   faqTitle: 'Common beginner questions',
   faqSub: 'Everything feels urgent at the start, but not everything happens on day one – these answers help with the first decisions.',
@@ -281,15 +209,6 @@ export default function WikiLanding({ locale = 'bn' }) {
           <p className="wiki-lead">{t.lead}</p>
           <p>{t.lead2}</p>
 
-          <div className="wiki-quickstart" aria-labelledby="quickstart-title">
-            <h2 id="quickstart-title">{t.quickTitle}</h2>
-            <ol>
-              {t.quick.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ol>
-          </div>
-
           <aside className="wiki-notice" role="note">
             <span aria-hidden="true">i</span>
             <p>{t.notice}</p>
@@ -326,47 +245,6 @@ export default function WikiLanding({ locale = 'bn' }) {
         </div>
       </section>
 
-      <section id="beginner-path" className="wiki-section">
-        <h2>{t.pathTitle}</h2>
-        <p>{t.pathSub}</p>
-        <ol className={isEn ? 'path-list latin' : 'path-list'}>
-          {t.path.map(([title, sub, href]) => (
-            <li key={href}>
-              <a href={localHref(href)}>
-                <span>
-                  <strong>{title}</strong>
-                  <small>{sub}</small>
-                </span>
-                <span className="path-go">{t.goRead}</span>
-              </a>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section id="why-this-exists" className="wiki-section">
-        <h2>{t.whyTitle}</h2>
-        <p>{t.whyBody}</p>
-        <div className="wiki-table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>{t.whyTable[0][0]}</th>
-                <th>{t.whyTable[0][1]}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {t.whyTable.slice(1).map(([problem, guidance]) => (
-                <tr key={problem}>
-                  <td>{problem}</td>
-                  <td>{guidance}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
       <section id="guide-scope" className="wiki-section">
         <h2>{t.topicTitle}</h2>
         <p>{t.topicSub}</p>
@@ -378,18 +256,6 @@ export default function WikiLanding({ locale = 'bn' }) {
             </a>
           ))}
         </div>
-      </section>
-
-      <section id="who-this-is-for" className="wiki-section">
-        <h2>{t.whoTitle}</h2>
-        <p>{t.whoBody}</p>
-        <ul className="wiki-plain-list">
-          {t.who.map(([label, body]) => (
-            <li key={label}>
-              <strong>{label}</strong> {body}
-            </li>
-          ))}
-        </ul>
       </section>
 
       <section id="beginner-questions" className="wiki-section">
