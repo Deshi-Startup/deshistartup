@@ -214,7 +214,9 @@ Founder stories and case studies can use interviews, public talks, profiles, and
 3. Founder interview pages must avoid overclaiming.
 4. Do not copy full articles or interviews.
 5. Summarize insights and cite original sources.
-6. Use plain Bangla where possible.
+6. Use plain, natural Bangla — written the way Bangladeshis actually write, never
+   English-first thinking translated into Bangla. `STYLE.md` is the binding style guide;
+   `npm run lint:bangla` catches the mechanical tells.
 7. Keep jargon only when founders will actually encounter it, and explain it.
 8. Separate facts, anecdotes, and hypotheses.
 9. Mark uncertain or changing information clearly.
@@ -368,7 +370,7 @@ How content is organized:
 
 Good contributions include:
 
-- Fixing unclear Bangla
+- Fixing unclear or translated-sounding Bangla (see `STYLE.md`)
 - Updating outdated official links or policy details
 - Adding source-backed checklists
 - Expanding a thin page into a practical guide

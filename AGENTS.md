@@ -107,29 +107,43 @@ in this doc — they drift.** To see the current page inventory, read the manife
 
 ## Style guide (Bangla)
 
-Write in সহজ, প্রচলিত বাংলা with the "আপনি" register. The core rules (lifted from the `/contribute`
-page's লেখার নিয়মকানুন table):
+**[`STYLE.md`](./STYLE.md) is the binding Bangla style standard — read it before writing or
+editing any Bengali content.** It exists because a 2026-07 language audit found content that was
+thought in English and rendered in Bangla; the guide defines the natural Bangladeshi register
+(the way founders actually write on Facebook/LinkedIn and in good Bangla blogs) and bans the
+translationese patterns found on this site. The essentials:
 
-| নিয়ম | উদাহরণ |
-|---|---|
-| সহজ, প্রচলিত বাংলা; "আপনি" সম্বোধন | "আপনি আবেদন করবেন" – "আবেদন করা হইবে" নয় |
-| প্রচলিত ইংরেজি টার্ম বাংলা হরফে রাখুন | ট্রেড লাইসেন্স, ভ্যাট, ব্যাংক অ্যাকাউন্ট, মার্কেটিং |
-| নতুন টার্মের প্রথম ব্যবহারে ব্যাখ্যা দিন | "ইকুইটি (equity) মানে কোম্পানির মালিকানার ভাগ" |
-| বাংলা বাক্যে বাংলা সংখ্যা | "ফি ৫০০ টাকা", "ধাপ ৩" |
-| আইন, ফি ও নিয়মের দাবিতে সূত্র দিন | সরকারি পোর্টাল (RJSC, NBR, বাংলাদেশ ব্যাংক) সবচেয়ে ভালো |
-| ফি/তারিখ লিখলে সাল উল্লেখ করুন | "২০২৬ সালের হিসাবে ফি ৩,০০০ টাকা" |
-| যা নিশ্চিত নন, লিখবেন না | অনুমান লিখলে "যাচাই প্রয়োজন" বলে দিন |
-
+- **Think in Bangla.** Never draft in English and translate. If a sentence back-translates
+  word-for-word into fluent English, restructure it. Read the page aloud before finishing.
+- সহজ, প্রচলিত বাংলা; "আপনি" register ("আপনি আবেদন করবেন" – "আবেদন করা হইবে" নয়).
+- Natural skeletons: "-লে" conditionals over যদি…তাহলে; verbs over verbal nouns
+  (কনফার্ম করুন, not নিশ্চিতকরণ); আর/ও + short sentences over এবং-chains; drop এটি/আপনার
+  where context carries it; no semicolons in Bangla prose; vary sentence length; direct
+  questions and "ধরুন…" scenarios are encouraged.
+- Banned calques (full table in STYLE.md §3.1): ব্যবসা-থেকে-ব্যবসা → বিটুবি (B2B); ক্রয়াদেশ →
+  পারচেজ অর্ডার (PO); গ্রাহক অর্জন → গ্রাহক পাওয়া; রূপান্তর → কনভার্শন; নিশ্চিতকরণ → কনফার্ম করা।
+- প্রচলিত ইংরেজি টার্ম বাংলা হরফে (ট্রেড লাইসেন্স, ভ্যাট, ফাউন্ডার, এমভিপি); explain each new
+  term at first use ("ইকুইটি (equity) মানে কোম্পানির মালিকানার ভাগ"); Latin script only for
+  metric/document acronyms (MRR, SaaS, e-TIN), portal/form names, and non-Bangla brands.
+  Never leave ordinary English words untransliterated mid-sentence.
+- বাংলা বাক্যে বাংলা সংখ্যা ("ফি ৫০০ টাকা", "ধাপ ৩"); টাকা লাখ/কোটিতে; year-stamp every
+  fee/number ("২০২৬ সালের হিসাবে ফি ৩,০০০ টাকা").
+- আইন, ফি ও নিয়মের দাবিতে সূত্র দিন (সরকারি পোর্টাল সবচেয়ে ভালো); যা নিশ্চিত নন, লিখবেন না —
+  অনুমান লিখলে "যাচাই প্রয়োজন" বলে দিন।
 - **Adapt, don't translate.** Copyrighted third-party work (YC, Stripe, LightCastle and similar) must
   be *adapted* — teach the ideas in our own Bangla and cite the source; never translate or copy it.
   Government/official sources may be used freely with citation.
 - Use `## প্রাসঙ্গিক সূত্র` (Bangla) / `## Relevant Sources` (English) for source lists. Use only
   root/section URLs from `plan/sources.csv` — never invent deep links.
 - `/start-here` is the bar for depth and tone. Match it.
+- Before finishing any Bangla page, run `npm run lint:bangla` (`scripts/bangla-lint.mjs`) and
+  clear the hard (✖) findings; then run the STYLE.md §7 read-aloud checklist — the linter only
+  catches the mechanical tells.
 
 ## Content & Editorial Guidelines
 
-- **Language:** For Bengali pages, write in clear, natural, spoken Bangla; keep common English
+- **Language:** For Bengali pages, write in clear, natural, spoken Bangla per **`STYLE.md`** (the
+  binding style guide — never English-first thinking translated into Bangla); keep common English
   startup/legal terms (MVP, VAT, Product-Market Fit) transliterated where founders will meet them in
   real documents, and explain each on first use. For English pages, use clear English and leave no
   Bengali text behind.

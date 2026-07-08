@@ -11,6 +11,7 @@
     "scrape": "node scripts/scrape.js",
     "manifest": "node scripts/build-manifest.mjs",
     "backlog:status": "node scripts/backlog-status.mjs",
+    "lint:bangla": "node scripts/bangla-lint.mjs",
     "predev": "node scripts/build-manifest.mjs",
     "prebuild": "node scripts/build-manifest.mjs"
   },

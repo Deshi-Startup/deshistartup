@@ -344,5 +344,16 @@ Commit: `Add Founder Journeys section: goal-based guided paths (12 journeys, bn+
     `plan/content-backlog.csv` and the sector guides under `phase-four/` for whether they still fit a
     startup-only remit; secure the `.org` domain, check the DPDT trademark, and claim the Facebook
     page; eventually point the site at the `deshistartup.com` apex domain.
+- **Bangla-first language overhaul (2026-07-08, Fable session):** a language audit found much of
+  the Bangla content was English-skeleton writing (calques like "ব্যবসা-থেকে-ব্যবসা", এবং/কিন্তু
+  overuse, semicolons, "X হলো Y" reflex) plus 32 bn + 32 en `phase-four/` pages that were
+  *identical topic-name-swapped boilerplate* — fake guides violating the honest-stub rule.
+  Done in that session: **`STYLE.md`** created as the binding Bangla style standard
+  (think-in-Bangla workflow, banned-calque table, loanword policy, register definition);
+  **`npm run lint:bangla`** (`scripts/bangla-lint.mjs`) added as the mechanical check;
+  AGENTS.md / README / both contribute pages now point to it; the 64 boilerplate pages were
+  demoted back to honest stubs; the real written pages were rewritten to the new standard.
+  Ongoing rule: every new/edited Bangla page must pass `lint:bangla` hard findings + the
+  STYLE.md §7 read-aloud checklist before commit.
 - Later: MCP server over the knowledge base; grant/partnership conversations (World Bank/UNDP/GIZ-type
   SME-enablement programs; LightCastle for Bangla report distribution).
