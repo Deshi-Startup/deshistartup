@@ -6,8 +6,8 @@ export default function NotFound() {
       <p className="wiki-kicker">৪০৪</p>
       <h1 style={{ fontFamily: 'var(--serif)' }}>পাতাটি পাওয়া যায়নি</h1>
       <p style={{ color: 'var(--muted)' }}>
-        লিংকটি হয়তো বদলে গেছে, অথবা পাতাটি এখনো লেখা হয়নি। ওপরের সার্চ বক্সে খুঁজে দেখুন –
-        অথবা নিচের কোনো পথ ধরুন।
+        লিংকটা হয়তো বদলে গেছে, অথবা পাতাটা এখনো লেখা হয়নি। ওপরের সার্চে খুঁজে দেখুন।
+        না পেলে নিচের কোনো পথ ধরুন।
       </p>
       <div className="contrib-row" style={{ justifyContent: 'center', marginTop: 24 }}>
         <a href={basePath || '/'}>প্রধান পাতা</a>

@@ -50,7 +50,7 @@ function Sidebar({ isEn, pathname, headings, onNavigate }) {
   const nav = isEn ? enNav : bnNav
 
   return (
-    <aside className="sidebar" id="sidebar" aria-label={isEn ? 'Primary navigation' : 'প্রধান নেভিগেশন'}>
+    <aside className="sidebar" id="sidebar" aria-label={isEn ? 'Primary navigation' : 'প্রধান মেনু'}>
       <nav>
         {nav.map((group) => (
           <div className="sidebar-group" key={group.label}>
@@ -89,7 +89,7 @@ function Sidebar({ isEn, pathname, headings, onNavigate }) {
         <p className="sidebar-note">
           {isEn
             ? 'Free & open source. Every guide can be improved by anyone – including you.'
-            : 'সম্পূর্ণ ফ্রি ও ওপেন সোর্স। প্রতিটি গাইড যে কেউ উন্নত করতে পারেন – আপনিও।'}
+            : 'সম্পূর্ণ ফ্রি ও ওপেন সোর্স। প্রতিটি গাইড যে কেউ আরও ভালো করতে পারেন, আপনিও।'}
         </p>
       </nav>
     </aside>
@@ -124,6 +124,20 @@ function Breadcrumbs({ isEn, pathname, pageTitle }) {
       </ol>
     </nav>
   )
+}
+
+const enTabs = { article: 'Article', talk: 'Talk', read: 'Read', edit: 'Edit', history: 'View history' }
+const bnTabs = {
+  article:
+    'গাইড',
+  talk:
+    'আলোচনা',
+  read:
+    'পড়ুন',
+  edit:
+    'সম্পাদনা',
+  history:
+    'ইতিহাস'
 }
 
 export default function LocalizedLayout({ children }) {
@@ -204,9 +218,7 @@ export default function LocalizedLayout({ children }) {
     }
   }, [pathname, isLanding])
 
-  const tabs = isEn
-    ? { article: 'Article', talk: 'Talk', read: 'Read', edit: 'Edit', history: 'View history' }
-    : { article: 'গাইড', talk: 'আলোচনা', read: 'পড়ুন', edit: 'সম্পাদনা', history: 'ইতিহাস' }
+  const tabs = isEn ? enTabs : bnTabs
 
   const file = sourceFileFor(pathname)
   const dateLabel = formatDate(lastUpdated, isEn)
@@ -234,7 +246,7 @@ export default function LocalizedLayout({ children }) {
             <SearchBox isEn={isEn} />
           </div>
 
-          <nav className="top-actions" aria-label={isEn ? 'Site actions' : 'সাইট কাজ'}>
+          <nav className="top-actions" aria-label={isEn ? 'Site actions' : 'সাইটের কাজ'}>
             <a className="gh-link" href={REPO_URL} target="_blank" rel="noopener noreferrer">
               <GitHubIcon />
               <span>GitHub</span>
@@ -243,7 +255,7 @@ export default function LocalizedLayout({ children }) {
             <button
               className="nav-toggle"
               type="button"
-              aria-label={isEn ? 'Toggle navigation' : 'নেভিগেশন খুলুন/বন্ধ করুন'}
+              aria-label={isEn ? 'Toggle navigation' : 'মেনু খুলুন/বন্ধ করুন'}
               aria-expanded={isSidebarOpen}
               aria-controls="sidebar"
               onClick={() => setIsSidebarOpen((value) => !value)}
@@ -337,7 +349,7 @@ export default function LocalizedLayout({ children }) {
 
           {!isLanding && (
             <footer className="article-footer">
-              <h2>{isEn ? 'Help improve this page' : 'এই পাতাটি আরও ভালো করুন'}</h2>
+              <h2>{isEn ? 'Help improve this page' : 'এই পাতা আরও ভালো করুন'}</h2>
               <div className="contrib-row">
                 <a href={`${REPO_URL}/edit/main/${file}`} target="_blank" rel="noopener noreferrer">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /></svg>
@@ -360,7 +372,7 @@ export default function LocalizedLayout({ children }) {
         <div>
           {isEn
             ? 'Deshi Startup – an open, Bangladesh-specific founder operating manual, written together, free for everyone.'
-            : 'দেশি স্টার্টআপ – বাংলাদেশের উদ্যোক্তাদের জন্য উন্মুক্ত, বাস্তবভিত্তিক গাইড। সবাই মিলে লেখা, সবার জন্য ফ্রি।'}
+            : 'দেশি স্টার্টআপ – বাংলাদেশি ফাউন্ডারদের জন্য খোলা, বাস্তব গাইড। সবাই মিলে লেখা, সবার জন্য ফ্রি।'}
         </div>
         <div className="footer-links">
           <a href={localHref(isEn ? '/en/start-here' : '/start-here')}>{isEn ? 'Start here' : 'শুরু করুন'}</a>
@@ -373,7 +385,7 @@ export default function LocalizedLayout({ children }) {
         <p className="footer-legal">
           {isEn
             ? 'This site is general guidance, not legal or tax advice. Fees, forms and rules change – always confirm with official government sources (RJSC, NBR, Bangladesh Bank) before acting.'
-            : 'এই সাইট সাধারণ দিকনির্দেশনা দেয়; এটি আইনি বা কর পরামর্শ নয়। ফি, ফর্ম ও নিয়ম বদলায় – কাজের আগে সরকারি উৎস (RJSC, NBR, বাংলাদেশ ব্যাংক) থেকে যাচাই করে নিন।'}
+            : 'এই সাইট সাধারণ গাইড দেয়। আইনি বা কর পরামর্শ নয়। ফি, ফর্ম ও নিয়ম বদলায়। কাজের আগে সরকারি উৎস (RJSC, NBR, বাংলাদেশ ব্যাংক) থেকে যাচাই করে নিন।'}
         </p>
       </footer>
     </>

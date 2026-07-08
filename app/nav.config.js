@@ -15,7 +15,7 @@ export const bnNav = [
   },
   {
     label: 'কোন পথে যাবেন',
-    items: [['/journeys', 'লক্ষ্য অনুযায়ী গাইডেড পথ']]
+    items: [['/journeys', 'লক্ষ্য ধরে সাজানো পথ']]
   },
   {
     label: 'টেমপ্লেট ও টুলস',
@@ -33,7 +33,7 @@ export const bnNav = [
     items: [
       ['/legal-roadmap', 'আইনি রোডম্যাপ'],
       ['/company-types', 'কোম্পানির ধরন'],
-      ['/registration', 'ব্যবসা নিবন্ধন'],
+      ['/registration', 'ব্যবসা রেজিস্ট্রেশন'],
       ['/rjsc-name-clearance', 'RJSC ও নাম ছাড়পত্র'],
       ['/trade-license', 'ট্রেড লাইসেন্স'],
       ['/e-tin-vat-bin', 'e-TIN ও ভ্যাট/BIN']

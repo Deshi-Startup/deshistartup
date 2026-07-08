@@ -36,7 +36,7 @@
    ]
   },
   {
-   "bn": "বিশেষ যাত্রা",
+   "bn": "বিশেষ পথ",
    "en": "Special Journeys",
    "slugs": [
     "diaspora-founder-building-in-bangladesh"
@@ -100,7 +100,7 @@
    ]
   },
   {
-   "bn": "পরিকল্পনা ও যাত্রা শুরু",
+   "bn": "শুরুর পরিকল্পনা",
    "en": "Plan & Get Started",
    "slugs": [
     "one-page-startup-plan",
@@ -110,7 +110,7 @@
  ],
  "phase-two": [
   {
-   "bn": "সহ-প্রতিষ্ঠাতা ও ইকুইটি",
+   "bn": "কো-ফাউন্ডার ও ইকুইটি",
    "en": "Co-founders & Equity",
    "slugs": [
     "how-to-find-co-founders",
@@ -233,7 +233,7 @@
    ]
   },
   {
-   "bn": "সরকারি সহায়তা ও প্রণোদনা",
+   "bn": "সরকারি সুবিধা ও প্রণোদনা",
    "en": "Government Support & Incentives",
    "slugs": [
     "government-program-application-guide",
@@ -327,7 +327,7 @@
    ]
   },
   {
-   "bn": "ব্যবসার ধরন ও প্রতিষ্ঠাতা চুক্তি",
+   "bn": "ব্যবসার ধরন ও ফাউন্ডার চুক্তি",
    "en": "Business Structure & Founder Agreements",
    "slugs": [
     "solo-founder-vs-team-founder-tradeoffs-in-bangladesh",
@@ -640,7 +640,7 @@
  ],
  "directory": [
   {
-   "bn": "ফান্ডিং ও সহায়তা",
+   "bn": "ফান্ডিং ও সুবিধা",
    "en": "Funding & Support",
    "slugs": [
     "investors",

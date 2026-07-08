@@ -163,8 +163,9 @@ console.log(`page-verified.json: ${Object.keys(allVerified).length} routes`)
   lines.push('')
   lines.push(
     '> Deshi Startup is a free, open-source, Bangla-first knowledge base and practical operating ' +
-      'manual for building any business in Bangladesh — startups, SMEs, trade/import-export, family ' +
-      'businesses, and online sellers. Bengali is the source of truth; English mirrors it at /en/...'
+      'manual for founders building startups in Bangladesh. Some startup basics also help small ' +
+      'businesses, but the focus is scalable new ventures. Bengali is the source of truth; English ' +
+      'mirrors it at /en/...'
   )
   lines.push('')
   lines.push(`Base URL: ${SITE_URL}${BASE_PATH}`)

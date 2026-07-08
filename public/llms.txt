@@ -1,6 +1,6 @@
 # Deshi Startup
 
-> Deshi Startup is a free, open-source, Bangla-first knowledge base and practical operating manual for building any business in Bangladesh — startups, SMEs, trade/import-export, family businesses, and online sellers. Bengali is the source of truth; English mirrors it at /en/...
+> Deshi Startup is a free, open-source, Bangla-first knowledge base and practical operating manual for founders building startups in Bangladesh. Some startup basics also help small businesses, but the focus is scalable new ventures. Bengali is the source of truth; English mirrors it at /en/...
 
 Base URL: https://deshistartup.com/deshistartup
 

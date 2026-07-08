@@ -2,6 +2,22 @@
 
 import { useMemo, useState } from 'react'
 
+const bengaliDigits = (value) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[d])
+
+function formatBanglaDate(value) {
+  if (!value) return value
+  try {
+    return new Date(`${value}T00:00:00Z`).toLocaleDateString('bn-BD', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      timeZone: 'UTC'
+    })
+  } catch {
+    return bengaliDigits(value)
+  }
+}
+
 const LABELS = {
   bn: {
     name: 'নাম',
@@ -9,7 +25,7 @@ const LABELS = {
     stage: 'স্টেজ',
     sectors: 'খাত',
     chequeSize: 'চেক সাইজ',
-    benefits: 'সহায়তা',
+    benefits: 'সুবিধা',
     applicationPath: 'আবেদন/যোগাযোগ',
     source: 'সূত্র',
     notStated: 'প্রকাশ্যে বলা নেই',
@@ -23,7 +39,7 @@ const LABELS = {
     allStages: 'সব স্টেজ',
     allSectors: 'সব খাত',
     reset: 'রিসেট',
-    showing: (shown, total) => `মোট ${shown} / ${total}টি এন্ট্রি দেখানো হচ্ছে।`,
+    showing: (shown, total) => `মোট ${shown}/${total}টি এন্ট্রি দেখানো হচ্ছে।`,
     noResults: 'মিল পাওয়া যায়নি।'
   },
   en: {
@@ -113,6 +129,8 @@ export default function DirectoryFilterTable({ category, locale, rows }) {
     setStage('')
     setSector('')
   }
+  const shownCount = isEn ? String(filteredRows.length) : bengaliDigits(filteredRows.length)
+  const totalCount = isEn ? String(rows.length) : bengaliDigits(rows.length)
 
   return (
     <div className="directory-list">
@@ -157,7 +175,7 @@ export default function DirectoryFilterTable({ category, locale, rows }) {
       </div>
 
       <div className="directory-list__summary" aria-live="polite">
-        {labels.showing(filteredRows.length, rows.length)}
+        {labels.showing(shownCount, totalCount)}
       </div>
       <div className="directory-table-wrap">
         {filteredRows.length > 0 ? (
@@ -190,7 +208,7 @@ export default function DirectoryFilterTable({ category, locale, rows }) {
                       {labels.source}
                     </a>
                     <span>
-                      {labels.verified}: {row.lastVerified}
+                      {labels.verified}: {isEn ? row.lastVerified : formatBanglaDate(row.lastVerified)}
                     </span>
                   </td>
                 </tr>
