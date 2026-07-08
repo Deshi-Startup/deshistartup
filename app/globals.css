@@ -1643,6 +1643,7 @@ a.is-stub-link:hover {
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 1.05rem;
+    line-height: 1.35;
   }
 
   .brand small {
