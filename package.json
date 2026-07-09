@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
+    "dev:turbo": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind || true && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true)",
