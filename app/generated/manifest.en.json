@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 373,
-  "written": 60,
-  "stubs": 313
+  "written": 66,
+  "stubs": 307
  },
  "sections": {
   "contribute": {
@@ -582,6 +582,15 @@
      "date": "2026-07-08"
     },
     {
+     "route": "/en/phase-one/e-tin-guide",
+     "slug": "phase-one/e-tin-guide",
+     "title": "e-TIN Guide",
+     "fullTitle": "e-TIN Guide",
+     "description": "What e-TIN is, who needs one, and the full process for registering an individual's or a company's e-TIN on NBR's online portal",
+     "stub": false,
+     "date": "2026-07-07"
+    },
+    {
      "route": "/en/phase-one/rjsc-name-clearance",
      "slug": "phase-one/rjsc-name-clearance",
      "title": "How to Get RJSC Name Clearance",
@@ -596,6 +605,24 @@
      "title": "Memorandum and Articles of Association Basics",
      "fullTitle": "Memorandum and Articles of Association Basics",
      "description": "What the MoA (Memorandum of Association) and AoA (Articles of Association) are, what clauses they need, and why copy-pasting a template is risky",
+     "stub": false,
+     "date": "2026-07-09"
+    },
+    {
+     "route": "/en/phase-one/mushak-63-invoice-and-vat-documentation-basics",
+     "slug": "phase-one/mushak-63-invoice-and-vat-documentation-basics",
+     "title": "Mushak 6.3 Invoice and VAT Documentation Basics",
+     "fullTitle": "Mushak 6.3 Invoice and VAT Documentation Basics",
+     "description": "What information a Mushak 6.3 VAT invoice must contain, who issues it and when, and how it differs from related Mushak forms (6.1, 6.2, 6.5, 6.6)",
+     "stub": false,
+     "date": "2026-07-07"
+    },
+    {
+     "route": "/en/phase-one/personal-e-tin-vs-company-tin",
+     "slug": "phase-one/personal-e-tin-vs-company-tin",
+     "title": "Personal e-TIN vs Company TIN",
+     "fullTitle": "Personal e-TIN vs Company TIN",
+     "description": "Why a newly registered private limited company needs its own TIN, what a personal e-TIN and a company TIN are each actually used for, and the common mistake of mixing the two up.",
      "stub": false,
      "date": "2026-07-07"
     },
@@ -615,7 +642,7 @@
      "fullTitle": "Share Capital, Directors, and Shareholders Basics",
      "description": "Authorized vs. paid-up capital, director and shareholder count limits, and the rules for allotting and transferring shares",
      "stub": false,
-     "date": "2026-07-07"
+     "date": "2026-07-09"
     },
     {
      "route": "/en/phase-one/private-limited-company-registration-step-by-step",
@@ -623,6 +650,33 @@
      "title": "Step-by-Step Private Limited Company Registration",
      "fullTitle": "Step-by-Step Private Limited Company Registration",
      "description": "Every step of registering a private limited company with RJSC after name clearance: documents, fees, online submission, and the Certificate of Incorporation",
+     "stub": false,
+     "date": "2026-07-09"
+    },
+    {
+     "route": "/en/phase-one/turnover-tax-and-vat-threshold-explainer",
+     "slug": "phase-one/turnover-tax-and-vat-threshold-explainer",
+     "title": "Turnover Tax and VAT Threshold Explainer",
+     "fullTitle": "Turnover Tax and VAT Threshold Explainer",
+     "description": "The annual turnover level above which VAT registration becomes mandatory in Bangladesh, the turnover-tax band below it, the standard VAT rate, and how these figures change with each year's budget",
+     "stub": false,
+     "date": "2026-07-07"
+    },
+    {
+     "route": "/en/phase-one/vatbin-guide",
+     "slug": "phase-one/vatbin-guide",
+     "title": "VAT/BIN Guide",
+     "fullTitle": "VAT/BIN Guide",
+     "description": "What VAT and BIN actually are, how BIN differs from TIN, and the full BIN registration process on NBR's vat.gov.bd portal, from documents to certificate",
+     "stub": false,
+     "date": "2026-07-07"
+    },
+    {
+     "route": "/en/phase-one/when-vat-registration-is-required",
+     "slug": "phase-one/when-vat-registration-is-required",
+     "title": "When VAT Registration is Required",
+     "fullTitle": "When VAT Registration is Required",
+     "description": "Regardless of how small your turnover is, which businesses are legally required to register for VAT (get a BIN), and which ones only have to once turnover crosses a threshold",
      "stub": false,
      "date": "2026-07-07"
     },
@@ -929,15 +983,6 @@
      "title": "Digital Business Identity (DBID)",
      "fullTitle": "Digital Business Identity (DBID)",
      "description": "Digital Business Identity (DBID) – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
-     "route": "/en/phase-one/e-tin-guide",
-     "slug": "phase-one/e-tin-guide",
-     "title": "e-TIN Guide",
-     "fullTitle": "e-TIN Guide",
-     "description": "e-TIN Guide – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
      "date": "2026-07-07"
     },
@@ -1374,15 +1419,6 @@
      "date": "2026-07-07"
     },
     {
-     "route": "/en/phase-one/personal-e-tin-vs-company-tin",
-     "slug": "phase-one/personal-e-tin-vs-company-tin",
-     "title": "Personal e-TIN vs Company TIN",
-     "fullTitle": "Personal e-TIN vs Company TIN",
-     "description": "Personal e-TIN vs Company TIN – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
      "route": "/en/phase-one/pre-orders-vs-waitlists-in-bangladesh",
      "slug": "phase-one/pre-orders-vs-waitlists-in-bangladesh",
      "title": "Pre-order or Waitlist: Which to Use",
@@ -1653,15 +1689,6 @@
      "date": "2026-07-07"
     },
     {
-     "route": "/en/phase-one/turnover-tax-and-vat-threshold-explainer",
-     "slug": "phase-one/turnover-tax-and-vat-threshold-explainer",
-     "title": "Turnover Tax and VAT Threshold Explainer",
-     "fullTitle": "Turnover Tax and VAT Threshold Explainer",
-     "description": "Turnover Tax and VAT Threshold Explainer – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
      "route": "/en/phase-one/understanding-demographics-internet-penetration-mobile-first-behavior-urban-vs-rural-dynamics",
      "slug": "phase-one/understanding-demographics-internet-penetration-mobile-first-behavior-urban-vs-rural-dynamics",
      "title": "Understanding Demographics, Internet Penetration, Mobile-First Behavior, Urban vs. Rural Dynamics",
@@ -1694,24 +1721,6 @@
      "title": "Validating Demand Before Building a Product",
      "fullTitle": "Validating Demand Before Building a Product",
      "description": "Validating Demand Before Building a Product – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
-     "route": "/en/phase-one/mushak-63-invoice-and-vat-documentation-basics",
-     "slug": "phase-one/mushak-63-invoice-and-vat-documentation-basics",
-     "title": "VAT 6.3 Invoice and Documentation Basics",
-     "fullTitle": "VAT 6.3 Invoice and Documentation Basics",
-     "description": "VAT 6.3 Invoice and Documentation Basics – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
-     "route": "/en/phase-one/vatbin-guide",
-     "slug": "phase-one/vatbin-guide",
-     "title": "VAT/BIN Guide",
-     "fullTitle": "VAT/BIN Guide",
-     "description": "VAT/BIN Guide – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
      "date": "2026-07-07"
     },
@@ -1797,15 +1806,6 @@
      "date": "2026-07-07"
     },
     {
-     "route": "/en/phase-one/when-vat-registration-is-required",
-     "slug": "phase-one/when-vat-registration-is-required",
-     "title": "When VAT Registration is Required",
-     "fullTitle": "When VAT Registration is Required",
-     "description": "When VAT Registration is Required – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
      "route": "/en/phase-one/where-to-find-bangladesh-market-data-bbs-world-bank-bida-sector-reports",
      "slug": "phase-one/where-to-find-bangladesh-market-data-bbs-world-bank-bida-sector-reports",
      "title": "Where to Find Market Data in Bangladesh: BBS, World Bank, BIDA, Sectoral Reports",
@@ -1835,7 +1835,7 @@
    ],
    "title": "Phase 1 Roadmap",
    "total": 140,
-   "written": 6
+   "written": 12
   },
   "phase-three": {
    "slug": "phase-three",

@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 375,
-  "written": 59,
-  "stubs": 316
+  "written": 65,
+  "stubs": 310
  },
  "sections": {
   "company-types": {
@@ -605,13 +605,40 @@
    },
    "children": [
     {
+     "route": "/phase-one/e-tin-guide",
+     "slug": "phase-one/e-tin-guide",
+     "title": "ই-টিআইএন গাইড",
+     "fullTitle": "ই-টিআইএন গাইড",
+     "description": "e-TIN কী, কার এটা লাগবে, এবং NBR-এর অনলাইন পোর্টালে ব্যক্তি ও কোম্পানির e-TIN রেজিস্ট্রেশনের পুরো প্রক্রিয়া",
+     "stub": false,
+     "date": "2026-07-07"
+    },
+    {
+     "route": "/phase-one/when-vat-registration-is-required",
+     "slug": "phase-one/when-vat-registration-is-required",
+     "title": "কখন ভ্যাট নিবন্ধন প্রয়োজন",
+     "fullTitle": "কখন ভ্যাট নিবন্ধন প্রয়োজন",
+     "description": "টার্নওভার যতই কম হোক, কোন ব্যবসাগুলোর জন্য ভ্যাট নিবন্ধন (BIN) আইনগতভাবে বাধ্যতামূলক, আর কোনগুলো টার্নওভার একটি সীমা ছাড়ালেই বাধ্যতামূলক হয়",
+     "stub": false,
+     "date": "2026-07-07"
+    },
+    {
+     "route": "/phase-one/turnover-tax-and-vat-threshold-explainer",
+     "slug": "phase-one/turnover-tax-and-vat-threshold-explainer",
+     "title": "টার্নওভার ট্যাক্স এবং ভ্যাট থ্রেশহোল্ড ব্যাখ্যা",
+     "fullTitle": "টার্নওভার ট্যাক্স এবং ভ্যাট থ্রেশহোল্ড ব্যাখ্যা",
+     "description": "বাংলাদেশে কোন টার্নওভারের পর ভ্যাট নিবন্ধন বাধ্যতামূলক হয়, কোন সীমার মধ্যে সহজ টার্নওভার ট্যাক্স প্রযোজ্য, স্ট্যান্ডার্ড ভ্যাট রেট কত, এবং প্রতি বছর বাজেটে এই সংখ্যাগুলো কীভাবে বদলায়",
+     "stub": false,
+     "date": "2026-07-07"
+    },
+    {
      "route": "/phase-one/private-limited-company-registration-step-by-step",
      "slug": "phase-one/private-limited-company-registration-step-by-step",
      "title": "ধাপে ধাপে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধন",
      "fullTitle": "ধাপে ধাপে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধন",
      "description": "নাম ছাড়পত্রের পর RJSC-তে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধনের প্রতিটি ধাপ: কাগজপত্র, ফি, অনলাইন জমা ও সার্টিফিকেট অব ইনকর্পোরেশন",
      "stub": false,
-     "date": "2026-07-07"
+     "date": "2026-07-09"
     },
     {
      "route": "/phase-one/board-meetings-agm-and-minutes-basics",
@@ -632,13 +659,40 @@
      "date": "2026-07-07"
     },
     {
+     "route": "/phase-one/personal-e-tin-vs-company-tin",
+     "slug": "phase-one/personal-e-tin-vs-company-tin",
+     "title": "ব্যক্তিগত e-TIN বনাম কোম্পানি TIN",
+     "fullTitle": "ব্যক্তিগত e-TIN বনাম কোম্পানি TIN",
+     "description": "কেন একটি নতুন প্রাইভেট লিমিটেড কোম্পানির নিজস্ব TIN লাগে, ব্যক্তিগত e-TIN ও কোম্পানি TIN আসলে কোন কোন কাজে ব্যবহৃত হয়, এবং দুটো গুলিয়ে ফেলার সাধারণ ভুল কীভাবে এড়াবেন।",
+     "stub": false,
+     "date": "2026-07-07"
+    },
+    {
+     "route": "/phase-one/vatbin-guide",
+     "slug": "phase-one/vatbin-guide",
+     "title": "ভ্যাট/বিন নির্দেশিকা",
+     "fullTitle": "ভ্যাট/বিন নির্দেশিকা",
+     "description": "VAT ও BIN আসলে কী, TIN থেকে কীভাবে আলাদা, এবং NBR-এর vat.gov.bd পোর্টালে BIN রেজিস্ট্রেশনের পুরো প্রক্রিয়া – কাগজপত্র থেকে সার্টিফিকেট পর্যন্ত",
+     "stub": false,
+     "date": "2026-07-07"
+    },
+    {
+     "route": "/phase-one/mushak-63-invoice-and-vat-documentation-basics",
+     "slug": "phase-one/mushak-63-invoice-and-vat-documentation-basics",
+     "title": "মূসক ৬.৩ চালান ও VAT ডকুমেন্টেশন বেসিক",
+     "fullTitle": "মূসক ৬.৩ চালান ও VAT ডকুমেন্টেশন বেসিক",
+     "description": "মূসক ৬.৩ VAT চালানে কী কী তথ্য থাকতে হবে, কবে ও কাকে ইস্যু করতে হবে, এবং এর সাথে সম্পর্কিত অন্য মূসক ফর্মগুলো (৬.১, ৬.২, ৬.৫, ৬.৬) কীভাবে আলাদা",
+     "stub": false,
+     "date": "2026-07-07"
+    },
+    {
      "route": "/phase-one/share-capital-directors-and-shareholders-basics",
      "slug": "phase-one/share-capital-directors-and-shareholders-basics",
      "title": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার বেসিক",
      "fullTitle": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার বেসিক",
      "description": "অনুমোদিত বনাম পরিশোধিত মূলধন, পরিচালক ও শেয়ারহোল্ডারের সংখ্যাসীমা, শেয়ার বরাদ্দ ও হস্তান্তরের নিয়ম",
      "stub": false,
-     "date": "2026-07-07"
+     "date": "2026-07-09"
     },
     {
      "route": "/phase-one/memorandum-and-articles-of-association-basics",
@@ -647,7 +701,7 @@
      "fullTitle": "স্মারকলিপি এবং সংঘবিধির মূল বিষয়াবলী",
      "description": "MoA (Memorandum of Association) ও AoA (Articles of Association) কী, কোন কোন ক্লজ থাকতে হবে, এবং কেন টেমপ্লেট কপি-পেস্ট করা ঝুঁকিপূর্ণ",
      "stub": false,
-     "date": "2026-07-07"
+     "date": "2026-07-09"
     },
     {
      "route": "/phase-one/rjsc-name-clearance",
@@ -718,15 +772,6 @@
      "title": "আরজেএসসি-এর সাধারণ ভুলগুলো",
      "fullTitle": "আরজেএসসি-এর সাধারণ ভুলগুলো",
      "description": "আরজেএসসি-এর সাধারণ ভুলগুলো – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
-     "route": "/phase-one/e-tin-guide",
-     "slug": "phase-one/e-tin-guide",
-     "title": "ই-টিআইএন গাইড",
-     "fullTitle": "ই-টিআইএন গাইড",
-     "description": "ই-টিআইএন গাইড – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07"
     },
@@ -970,15 +1015,6 @@
      "title": "জনসংখ্যাতত্ত্ব, ইন্টারনেট ব্যবহারের হার, মোবাইল-ফার্স্ট আচরণ, শহুরে বনাম গ্রামীণ গতিশীলতা বোঝা",
      "fullTitle": "জনসংখ্যাতত্ত্ব, ইন্টারনেট ব্যবহারের হার, মোবাইল-ফার্স্ট আচরণ, শহুরে বনাম গ্রামীণ গতিশীলতা বোঝা",
      "description": "জনসংখ্যাতত্ত্ব, ইন্টারনেট ব্যবহারের হার, মোবাইল-ফার্স্ট আচরণ, শহুরে বনাম গ্রামীণ গতিশীলতা বোঝা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
-     "route": "/phase-one/turnover-tax-and-vat-threshold-explainer",
-     "slug": "phase-one/turnover-tax-and-vat-threshold-explainer",
-     "title": "টার্নওভার ট্যাক্স এবং ভ্যাট থ্রেশহোল্ড ব্যাখ্যা",
-     "fullTitle": "টার্নওভার ট্যাক্স এবং ভ্যাট থ্রেশহোল্ড ব্যাখ্যা",
-     "description": "টার্নওভার ট্যাক্স এবং ভ্যাট থ্রেশহোল্ড ব্যাখ্যা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07"
     },
@@ -1442,15 +1478,6 @@
      "date": "2026-07-07"
     },
     {
-     "route": "/phase-one/personal-e-tin-vs-company-tin",
-     "slug": "phase-one/personal-e-tin-vs-company-tin",
-     "title": "ব্যক্তিগত e-TIN বনাম কোম্পানি TIN",
-     "fullTitle": "ব্যক্তিগত e-TIN বনাম কোম্পানি TIN",
-     "description": "ব্যক্তিগত e-TIN বনাম কোম্পানি TIN – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
      "route": "/phase-one/business-bank-account-guide",
      "slug": "phase-one/business-bank-account-guide",
      "title": "ব্যবসায়িক ব্যাংক অ্যাকাউন্ট নির্দেশিকা",
@@ -1487,15 +1514,6 @@
      "date": "2026-07-07"
     },
     {
-     "route": "/phase-one/vatbin-guide",
-     "slug": "phase-one/vatbin-guide",
-     "title": "ভ্যাট/বিন নির্দেশিকা",
-     "fullTitle": "ভ্যাট/বিন নির্দেশিকা",
-     "description": "ভ্যাট/বিন নির্দেশিকা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
      "route": "/phase-one/cultural-considerations-in-validation",
      "slug": "phase-one/cultural-considerations-in-validation",
      "title": "ভ্যালিডেশনে বাংলাদেশি সংস্কৃতি ও সামাজিক বাস্তবতা",
@@ -1514,29 +1532,11 @@
      "date": "2026-07-07"
     },
     {
-     "route": "/phase-one/mushak-63-invoice-and-vat-documentation-basics",
-     "slug": "phase-one/mushak-63-invoice-and-vat-documentation-basics",
-     "title": "মূসক ৬.৩ চালান ও VAT ডকুমেন্টেশন বেসিক",
-     "fullTitle": "মূসক ৬.৩ চালান ও VAT ডকুমেন্টেশন বেসিক",
-     "description": "মূসক ৬.৩ চালান ও VAT ডকুমেন্টেশন বেসিক – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
      "route": "/phase-one/intellectual-property-and-trademark-basics",
      "slug": "phase-one/intellectual-property-and-trademark-basics",
      "title": "মেধাস্বত্ব এবং ট্রেডমার্কের প্রাথমিক বিষয়াবলী",
      "fullTitle": "মেধাস্বত্ব এবং ট্রেডমার্কের প্রাথমিক বিষয়াবলী",
      "description": "মেধাস্বত্ব এবং ট্রেডমার্কের প্রাথমিক বিষয়াবলী – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
-     "route": "/phase-one/when-vat-registration-is-required",
-     "slug": "phase-one/when-vat-registration-is-required",
-     "title": "যখন ভ্যাট নিবন্ধন প্রয়োজন",
-     "fullTitle": "যখন ভ্যাট নিবন্ধন প্রয়োজন",
-     "description": "যখন ভ্যাট নিবন্ধন প্রয়োজন – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07"
     },
@@ -1867,7 +1867,7 @@
    ],
    "title": "ধাপ ১ রোডম্যাপ",
    "total": 140,
-   "written": 6
+   "written": 12
   },
   "phase-three": {
    "slug": "phase-three",
