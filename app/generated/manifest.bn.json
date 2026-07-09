@@ -2,9 +2,9 @@
  "locale": "bn",
  "generatedAt": null,
  "counts": {
-  "pages": 437,
-  "written": 48,
-  "stubs": 389
+  "pages": 438,
+  "written": 59,
+  "stubs": 379
  },
  "sections": {
   "case-studies": {
@@ -1324,11 +1324,121 @@
    },
    "children": [
     {
+     "route": "/phase-one/e-tin-guide",
+     "slug": "phase-one/e-tin-guide",
+     "title": "ই-টিআইএন গাইড",
+     "fullTitle": "ই-টিআইএন গাইড",
+     "description": "e-TIN কী, কার এটা লাগবে, ও NBR-এর অনলাইন পোর্টালে ব্যক্তি ও কোম্পানির e-TIN রেজিস্ট্রেশনের পুরো প্রক্রিয়া",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/phase-one/when-vat-registration-is-required",
+     "slug": "phase-one/when-vat-registration-is-required",
+     "title": "কখন ভ্যাট নিবন্ধন প্রয়োজন",
+     "fullTitle": "কখন ভ্যাট নিবন্ধন প্রয়োজন",
+     "description": "টার্নওভার যতই কম হোক, কোন ব্যবসাগুলোর জন্য ভ্যাট নিবন্ধন (BIN) আইনগতভাবে বাধ্যতামূলক, আর কোনগুলো টার্নওভার একটি সীমা ছাড়ালেই বাধ্যতামূলক হয়",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/phase-one/turnover-tax-and-vat-threshold-explainer",
+     "slug": "phase-one/turnover-tax-and-vat-threshold-explainer",
+     "title": "টার্নওভার ট্যাক্স ও ভ্যাট থ্রেশহোল্ড ব্যাখ্যা",
+     "fullTitle": "টার্নওভার ট্যাক্স ও ভ্যাট থ্রেশহোল্ড ব্যাখ্যা",
+     "description": "বাংলাদেশে কোন টার্নওভারের পর ভ্যাট নিবন্ধন বাধ্যতামূলক হয়, কোন সীমার মধ্যে সহজ টার্নওভার ট্যাক্স প্রযোজ্য, স্ট্যান্ডার্ড ভ্যাট রেট কত, ও প্রতি বছর বাজেটে এই সংখ্যাগুলো কীভাবে বদলায়",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/phase-one/private-limited-company-registration-step-by-step",
+     "slug": "phase-one/private-limited-company-registration-step-by-step",
+     "title": "ধাপে ধাপে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধন",
+     "fullTitle": "ধাপে ধাপে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধন",
+     "description": "নাম ছাড়পত্রের পর RJSC-তে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধনের প্রতিটি ধাপ: কাগজপত্র, ফি, অনলাইন জমা ও সার্টিফিকেট অব ইনকর্পোরেশন",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/phase-one/board-meetings-agm-and-minutes-basics",
+     "slug": "phase-one/board-meetings-agm-and-minutes-basics",
+     "title": "পরিচালনা পর্ষদ সভা, AGM ও মিনিটস বুক বেসিক",
+     "fullTitle": "পরিচালনা পর্ষদ সভা, AGM ও মিনিটস বুক বেসিক",
+     "description": "প্রাইভেট লিমিটেড কোম্পানির জন্য বোর্ড মিটিং, বার্ষিক সাধারণ সভা (AGM), রেজোলিউশন ও RJSC ফাইলিং কীভাবে সঠিকভাবে করবেন",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
      "route": "/phase-one/how-to-find-startup-ideas-in-bangladesh",
      "slug": "phase-one/how-to-find-startup-ideas-in-bangladesh",
      "title": "বাংলাদেশে স্টার্টআপ আইডিয়া খুঁজে পাওয়ার বাস্তব উপায়",
      "fullTitle": "বাংলাদেশে স্টার্টআপ আইডিয়া খুঁজে পাওয়ার বাস্তব উপায়",
      "description": "বাংলাদেশে স্টার্টআপ আইডিয়া কোথায় লুকিয়ে থাকে — অগোছালো খাত, দেশি সংস্করণ, বিটুবি, নিজের সমস্যা আর নীতির ঢেউ — বাস্তব উদাহরণসহ।",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/phase-one/personal-e-tin-vs-company-tin",
+     "slug": "phase-one/personal-e-tin-vs-company-tin",
+     "title": "ব্যক্তিগত e-TIN বনাম কোম্পানি TIN",
+     "fullTitle": "ব্যক্তিগত e-TIN বনাম কোম্পানি TIN",
+     "description": "কেন একটি নতুন প্রাইভেট লিমিটেড কোম্পানির নিজস্ব TIN লাগে, ব্যক্তিগত e-TIN ও কোম্পানি TIN আসলে কোন কোন কাজে ব্যবহৃত হয়, এবং দুটো গুলিয়ে ফেলার সাধারণ ভুল কীভাবে এড়াবেন।",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/phase-one/vatbin-guide",
+     "slug": "phase-one/vatbin-guide",
+     "title": "ভ্যাট/বিন নির্দেশিকা",
+     "fullTitle": "ভ্যাট/বিন নির্দেশিকা",
+     "description": "VAT ও BIN আসলে কী, TIN থেকে কীভাবে আলাদা, ও NBR-এর vat.gov.bd পোর্টালে BIN রেজিস্ট্রেশনের পুরো প্রক্রিয়া – কাগজপত্র থেকে সার্টিফিকেট পর্যন্ত",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/phase-one/mushak-63-invoice-and-vat-documentation-basics",
+     "slug": "phase-one/mushak-63-invoice-and-vat-documentation-basics",
+     "title": "মূসক ৬.৩ চালান ও VAT ডকুমেন্টেশন বেসিক",
+     "fullTitle": "মূসক ৬.৩ চালান ও VAT ডকুমেন্টেশন বেসিক",
+     "description": "মূসক ৬.৩ VAT চালানে কী কী তথ্য থাকতে হবে, কবে ও কাকে ইস্যু করতে হবে, ও এর সাথে সম্পর্কিত অন্য মূসক ফর্মগুলো (৬.১, ৬.২, ৬.৫, ৬.৬) কীভাবে আলাদা",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/phase-one/share-capital-directors-and-shareholders-basics",
+     "slug": "phase-one/share-capital-directors-and-shareholders-basics",
+     "title": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার বেসিক",
+     "fullTitle": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার বেসিক",
+     "description": "অনুমোদিত বনাম পরিশোধিত মূলধন, পরিচালক ও শেয়ারহোল্ডারের সংখ্যাসীমা, শেয়ার বরাদ্দ ও হস্তান্তরের নিয়ম",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/phase-one/memorandum-and-articles-of-association-basics",
+     "slug": "phase-one/memorandum-and-articles-of-association-basics",
+     "title": "স্মারকলিপি ও সংঘবিধির মূল বিষয়াবলী",
+     "fullTitle": "স্মারকলিপি ও সংঘবিধির মূল বিষয়াবলী",
+     "description": "MoA (Memorandum of Association) ও AoA (Articles of Association) কী, কোন কোন ক্লজ থাকতে হবে, ও কেন টেমপ্লেট কপি-পেস্ট করা ঝুঁকিপূর্ণ",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/phase-one/rjsc-name-clearance",
+     "slug": "phase-one/rjsc-name-clearance",
+     "title": "RJSC নাম ছাড়পত্র কীভাবে নেবেন",
+     "fullTitle": "RJSC নাম ছাড়পত্র কীভাবে নেবেন",
+     "description": "কোম্পানি নিবন্ধনের প্রথম ধাপ হিসেবে RJSC থেকে নাম ছাড়পত্র (Name Clearance) নেওয়ার নিয়ম, ফি, সময়সীমা ও সাধারণ ভুল",
      "stub": false,
      "date": "2026-07-09",
      "verified": null
@@ -1384,16 +1494,6 @@
      "verified": null
     },
     {
-     "route": "/phase-one/rjsc-name-clearance",
-     "slug": "phase-one/rjsc-name-clearance",
-     "title": "আরজেএসসি নাম ছাড়পত্র",
-     "fullTitle": "আরজেএসসি নাম ছাড়পত্র",
-     "description": "আরজেএসসি নাম ছাড়পত্র – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/phase-one/rjsc-fees-and-timeline-expectations",
      "slug": "phase-one/rjsc-fees-and-timeline-expectations",
      "title": "আরজেএসসি ফি এবং সময়সীমা সংক্রান্ত প্রত্যাশা",
@@ -1409,16 +1509,6 @@
      "title": "আরজেএসসি-এর সাধারণ ভুলগুলো",
      "fullTitle": "আরজেএসসি-এর সাধারণ ভুলগুলো",
      "description": "আরজেএসসি-এর সাধারণ ভুলগুলো – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-one/e-tin-guide",
-     "slug": "phase-one/e-tin-guide",
-     "title": "ই-টিআইএন গাইড",
-     "fullTitle": "ই-টিআইএন গাইড",
-     "description": "ই-টিআইএন গাইড – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -1694,16 +1784,6 @@
      "verified": null
     },
     {
-     "route": "/phase-one/turnover-tax-and-vat-threshold-explainer",
-     "slug": "phase-one/turnover-tax-and-vat-threshold-explainer",
-     "title": "টার্নওভার ট্যাক্স এবং ভ্যাট থ্রেশহোল্ড ব্যাখ্যা",
-     "fullTitle": "টার্নওভার ট্যাক্স এবং ভ্যাট থ্রেশহোল্ড ব্যাখ্যা",
-     "description": "টার্নওভার ট্যাক্স এবং ভ্যাট থ্রেশহোল্ড ব্যাখ্যা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/phase-one/checklist-for-starting-a-travel-agency-or-tour-operator",
      "slug": "phase-one/checklist-for-starting-a-travel-agency-or-tour-operator",
      "title": "ট্রাভেল এজেন্সি বা tour operator ব্যবসা শুরুর চেকলিস্ট",
@@ -1769,16 +1849,6 @@
      "title": "দোকান, বাজার ও মহল্লা পর্যবেক্ষণের ফিল্ড নোট টেমপ্লেট",
      "fullTitle": "দোকান, বাজার ও মহল্লা পর্যবেক্ষণের ফিল্ড নোট টেমপ্লেট",
      "description": "দোকান, বাজার ও মহল্লা পর্যবেক্ষণের ফিল্ড নোট টেমপ্লেট – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-one/private-limited-company-registration-step-by-step",
-     "slug": "phase-one/private-limited-company-registration-step-by-step",
-     "title": "ধাপে ধাপে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধন",
-     "fullTitle": "ধাপে ধাপে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধন",
-     "description": "ধাপে ধাপে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধন – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -2224,16 +2294,6 @@
      "verified": null
     },
     {
-     "route": "/phase-one/personal-e-tin-vs-company-tin",
-     "slug": "phase-one/personal-e-tin-vs-company-tin",
-     "title": "ব্যক্তিগত e-TIN বনাম কোম্পানি TIN",
-     "fullTitle": "ব্যক্তিগত e-TIN বনাম কোম্পানি TIN",
-     "description": "ব্যক্তিগত e-TIN বনাম কোম্পানি TIN – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/phase-one/business-bank-account-guide",
      "slug": "phase-one/business-bank-account-guide",
      "title": "ব্যবসায়িক ব্যাংক অ্যাকাউন্ট নির্দেশিকা",
@@ -2274,16 +2334,6 @@
      "verified": null
     },
     {
-     "route": "/phase-one/vatbin-guide",
-     "slug": "phase-one/vatbin-guide",
-     "title": "ভ্যাট/বিন নির্দেশিকা",
-     "fullTitle": "ভ্যাট/বিন নির্দেশিকা",
-     "description": "ভ্যাট/বিন নির্দেশিকা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/phase-one/cultural-considerations-in-validation",
      "slug": "phase-one/cultural-considerations-in-validation",
      "title": "ভ্যালিডেশনে বাংলাদেশি সংস্কৃতি ও সামাজিক বাস্তবতা",
@@ -2304,31 +2354,11 @@
      "verified": null
     },
     {
-     "route": "/phase-one/mushak-63-invoice-and-vat-documentation-basics",
-     "slug": "phase-one/mushak-63-invoice-and-vat-documentation-basics",
-     "title": "মূসক ৬.৩ চালান ও VAT ডকুমেন্টেশন বেসিক",
-     "fullTitle": "মূসক ৬.৩ চালান ও VAT ডকুমেন্টেশন বেসিক",
-     "description": "মূসক ৬.৩ চালান ও VAT ডকুমেন্টেশন বেসিক – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/phase-one/intellectual-property-and-trademark-basics",
      "slug": "phase-one/intellectual-property-and-trademark-basics",
      "title": "মেধাস্বত্ব এবং ট্রেডমার্কের প্রাথমিক বিষয়াবলী",
      "fullTitle": "মেধাস্বত্ব এবং ট্রেডমার্কের প্রাথমিক বিষয়াবলী",
      "description": "মেধাস্বত্ব এবং ট্রেডমার্কের প্রাথমিক বিষয়াবলী – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-one/when-vat-registration-is-required",
-     "slug": "phase-one/when-vat-registration-is-required",
-     "title": "যখন ভ্যাট নিবন্ধন প্রয়োজন",
-     "fullTitle": "যখন ভ্যাট নিবন্ধন প্রয়োজন",
-     "description": "যখন ভ্যাট নিবন্ধন প্রয়োজন – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -2389,16 +2419,6 @@
      "title": "শিপমেন্টের আগে গুণমান পরীক্ষা চেকলিস্ট",
      "fullTitle": "শিপমেন্টের আগে গুণমান পরীক্ষা চেকলিস্ট",
      "description": "শিপমেন্টের আগে গুণমান পরীক্ষা চেকলিস্ট – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-one/share-capital-directors-and-shareholders-basics",
-     "slug": "phase-one/share-capital-directors-and-shareholders-basics",
-     "title": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার বেসিক",
-     "fullTitle": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার বেসিক",
-     "description": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার বেসিক – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -2481,16 +2501,6 @@
      "description": "সিটি করপোরেশনভেদে ট্রেড লাইসেন্স ক্যাটেগরি বাছাই – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-08",
-     "verified": null
-    },
-    {
-     "route": "/phase-one/memorandum-and-articles-of-association-basics",
-     "slug": "phase-one/memorandum-and-articles-of-association-basics",
-     "title": "স্মারকলিপি এবং সংঘবিধির মূল বিষয়াবলী",
-     "fullTitle": "স্মারকলিপি এবং সংঘবিধির মূল বিষয়াবলী",
-     "description": "স্মারকলিপি এবং সংঘবিধির মূল বিষয়াবলী – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
      "verified": null
     },
     {
@@ -2715,8 +2725,8 @@
     }
    ],
    "title": "ধাপ ১ রোডম্যাপ",
-   "total": 139,
-   "written": 1
+   "total": 140,
+   "written": 12
   },
   "phase-three": {
    "slug": "phase-three",

@@ -2,9 +2,9 @@
  "locale": "en",
  "generatedAt": null,
  "counts": {
-  "pages": 437,
-  "written": 48,
-  "stubs": 389
+  "pages": 438,
+  "written": 59,
+  "stubs": 379
  },
  "sections": {
   "case-studies": {
@@ -1324,11 +1324,121 @@
    },
    "children": [
     {
+     "route": "/en/phase-one/board-meetings-agm-and-minutes-basics",
+     "slug": "phase-one/board-meetings-agm-and-minutes-basics",
+     "title": "Board Meetings, AGM, and Minutes Book Basics",
+     "fullTitle": "Board Meetings, AGM, and Minutes Book Basics",
+     "description": "How private limited companies in Bangladesh should run board meetings, hold the Annual General Meeting (AGM), pass resolutions, and file with RJSC",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-one/e-tin-guide",
+     "slug": "phase-one/e-tin-guide",
+     "title": "e-TIN Guide",
+     "fullTitle": "e-TIN Guide",
+     "description": "What e-TIN is, who needs one, and the full process for registering an individual's or a company's e-TIN on NBR's online portal",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-one/rjsc-name-clearance",
+     "slug": "phase-one/rjsc-name-clearance",
+     "title": "How to Get RJSC Name Clearance",
+     "fullTitle": "How to Get RJSC Name Clearance",
+     "description": "How to get RJSC Name Clearance, the first step of company registration in Bangladesh: naming rules, fees, timelines, and common mistakes",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-one/memorandum-and-articles-of-association-basics",
+     "slug": "phase-one/memorandum-and-articles-of-association-basics",
+     "title": "Memorandum and Articles of Association Basics",
+     "fullTitle": "Memorandum and Articles of Association Basics",
+     "description": "What the MoA (Memorandum of Association) and AoA (Articles of Association) are, what clauses they need, and why copy-pasting a template is risky",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-one/mushak-63-invoice-and-vat-documentation-basics",
+     "slug": "phase-one/mushak-63-invoice-and-vat-documentation-basics",
+     "title": "Mushak 6.3 Invoice and VAT Documentation Basics",
+     "fullTitle": "Mushak 6.3 Invoice and VAT Documentation Basics",
+     "description": "What information a Mushak 6.3 VAT invoice must contain, who issues it and when, and how it differs from related Mushak forms (6.1, 6.2, 6.5, 6.6)",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-one/personal-e-tin-vs-company-tin",
+     "slug": "phase-one/personal-e-tin-vs-company-tin",
+     "title": "Personal e-TIN vs Company TIN",
+     "fullTitle": "Personal e-TIN vs Company TIN",
+     "description": "Why a newly registered private limited company needs its own TIN, what a personal e-TIN and a company TIN are each actually used for, and the common mistake of mixing the two up.",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
      "route": "/en/phase-one/how-to-find-startup-ideas-in-bangladesh",
      "slug": "phase-one/how-to-find-startup-ideas-in-bangladesh",
      "title": "Practical Ways to Find Startup Ideas in Bangladesh",
      "fullTitle": "Practical Ways to Find Startup Ideas in Bangladesh",
      "description": "Where startup ideas hide in Bangladesh — unorganized sectors, local adaptations, B2B, your own problems, and regulatory or tech waves — with real examples.",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-one/share-capital-directors-and-shareholders-basics",
+     "slug": "phase-one/share-capital-directors-and-shareholders-basics",
+     "title": "Share Capital, Directors, and Shareholders Basics",
+     "fullTitle": "Share Capital, Directors, and Shareholders Basics",
+     "description": "Authorized vs. paid-up capital, director and shareholder count limits, and the rules for allotting and transferring shares",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-one/private-limited-company-registration-step-by-step",
+     "slug": "phase-one/private-limited-company-registration-step-by-step",
+     "title": "Step-by-Step Private Limited Company Registration",
+     "fullTitle": "Step-by-Step Private Limited Company Registration",
+     "description": "Every step of registering a private limited company with RJSC after name clearance: documents, fees, online submission, and the Certificate of Incorporation",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-one/turnover-tax-and-vat-threshold-explainer",
+     "slug": "phase-one/turnover-tax-and-vat-threshold-explainer",
+     "title": "Turnover Tax and VAT Threshold Explainer",
+     "fullTitle": "Turnover Tax and VAT Threshold Explainer",
+     "description": "The annual turnover level above which VAT registration becomes mandatory in Bangladesh, the turnover-tax band below it, the standard VAT rate, and how these figures change with each year's budget",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-one/vatbin-guide",
+     "slug": "phase-one/vatbin-guide",
+     "title": "VAT/BIN Guide",
+     "fullTitle": "VAT/BIN Guide",
+     "description": "What VAT and BIN actually are, how BIN differs from TIN, and the full BIN registration process on NBR's vat.gov.bd portal, from documents to certificate",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/en/phase-one/when-vat-registration-is-required",
+     "slug": "phase-one/when-vat-registration-is-required",
+     "title": "When VAT Registration is Required",
+     "fullTitle": "When VAT Registration is Required",
+     "description": "Regardless of how small your turnover is, which businesses are legally required to register for VAT (get a BIN), and which ones only have to once turnover crosses a threshold",
      "stub": false,
      "date": "2026-07-09",
      "verified": null
@@ -1669,16 +1779,6 @@
      "title": "Digital Business Identity (DBID)",
      "fullTitle": "Digital Business Identity (DBID)",
      "description": "Digital Business Identity (DBID) – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/en/phase-one/e-tin-guide",
-     "slug": "phase-one/e-tin-guide",
-     "title": "e-TIN Guide",
-     "fullTitle": "e-TIN Guide",
-     "description": "e-TIN Guide – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -2054,16 +2154,6 @@
      "verified": null
     },
     {
-     "route": "/en/phase-one/memorandum-and-articles-of-association-basics",
-     "slug": "phase-one/memorandum-and-articles-of-association-basics",
-     "title": "Memorandum and Articles of Association Basics",
-     "fullTitle": "Memorandum and Articles of Association Basics",
-     "description": "Memorandum and Articles of Association Basics – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/en/phase-one/monthly-return-workflow-after-binvat-registration",
      "slug": "phase-one/monthly-return-workflow-after-binvat-registration",
      "title": "Monthly Return Workflow After BIN/VAT Registration",
@@ -2169,16 +2259,6 @@
      "title": "Payroll Tax and Employee Documentation",
      "fullTitle": "Payroll Tax and Employee Documentation",
      "description": "Payroll Tax and Employee Documentation – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/en/phase-one/personal-e-tin-vs-company-tin",
-     "slug": "phase-one/personal-e-tin-vs-company-tin",
-     "title": "Personal e-TIN vs Company TIN",
-     "fullTitle": "Personal e-TIN vs Company TIN",
-     "description": "Personal e-TIN vs Company TIN – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -2324,16 +2404,6 @@
      "verified": null
     },
     {
-     "route": "/en/phase-one/rjsc-name-clearance",
-     "slug": "phase-one/rjsc-name-clearance",
-     "title": "RJSC Name Clearance",
-     "fullTitle": "RJSC Name Clearance",
-     "description": "RJSC Name Clearance – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/en/phase-one/rural-vs-urban-customer-adoption-differences",
      "slug": "phase-one/rural-vs-urban-customer-adoption-differences",
      "title": "Rural vs. Urban Customer Adoption Differences",
@@ -2359,16 +2429,6 @@
      "title": "Selecting Business Opportunities from a List of Problems",
      "fullTitle": "Selecting Business Opportunities from a List of Problems",
      "description": "Selecting Business Opportunities from a List of Problems – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/en/phase-one/share-capital-directors-and-shareholders-basics",
-     "slug": "phase-one/share-capital-directors-and-shareholders-basics",
-     "title": "Share Capital, Directors, and Shareholders Basics",
-     "fullTitle": "Share Capital, Directors, and Shareholders Basics",
-     "description": "Share Capital, Directors, and Shareholders Basics – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -2419,16 +2479,6 @@
      "title": "Step-by-Step Guide to IRC/ERC",
      "fullTitle": "Step-by-Step Guide to IRC/ERC",
      "description": "Step-by-Step Guide to IRC/ERC – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/en/phase-one/private-limited-company-registration-step-by-step",
-     "slug": "phase-one/private-limited-company-registration-step-by-step",
-     "title": "Step-by-Step Private Limited Company Registration",
-     "fullTitle": "Step-by-Step Private Limited Company Registration",
-     "description": "Step-by-Step Private Limited Company Registration – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -2514,16 +2564,6 @@
      "verified": null
     },
     {
-     "route": "/en/phase-one/turnover-tax-and-vat-threshold-explainer",
-     "slug": "phase-one/turnover-tax-and-vat-threshold-explainer",
-     "title": "Turnover Tax and VAT Threshold Explainer",
-     "fullTitle": "Turnover Tax and VAT Threshold Explainer",
-     "description": "Turnover Tax and VAT Threshold Explainer – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/en/phase-one/understanding-demographics-internet-penetration-mobile-first-behavior-urban-vs-rural-dynamics",
      "slug": "phase-one/understanding-demographics-internet-penetration-mobile-first-behavior-urban-vs-rural-dynamics",
      "title": "Understanding Demographics, Internet Penetration, Mobile-First Behavior, Urban vs. Rural Dynamics",
@@ -2559,26 +2599,6 @@
      "title": "Validating Demand Before Building a Product",
      "fullTitle": "Validating Demand Before Building a Product",
      "description": "Validating Demand Before Building a Product – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/en/phase-one/mushak-63-invoice-and-vat-documentation-basics",
-     "slug": "phase-one/mushak-63-invoice-and-vat-documentation-basics",
-     "title": "VAT 6.3 Invoice and Documentation Basics",
-     "fullTitle": "VAT 6.3 Invoice and Documentation Basics",
-     "description": "VAT 6.3 Invoice and Documentation Basics – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/en/phase-one/vatbin-guide",
-     "slug": "phase-one/vatbin-guide",
-     "title": "VAT/BIN Guide",
-     "fullTitle": "VAT/BIN Guide",
-     "description": "VAT/BIN Guide – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -2674,16 +2694,6 @@
      "verified": null
     },
     {
-     "route": "/en/phase-one/when-vat-registration-is-required",
-     "slug": "phase-one/when-vat-registration-is-required",
-     "title": "When VAT Registration is Required",
-     "fullTitle": "When VAT Registration is Required",
-     "description": "When VAT Registration is Required – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/en/phase-one/where-to-find-bangladesh-market-data-bbs-world-bank-bida-sector-reports",
      "slug": "phase-one/where-to-find-bangladesh-market-data-bbs-world-bank-bida-sector-reports",
      "title": "Where to Find Market Data in Bangladesh: BBS, World Bank, BIDA, Sectoral Reports",
@@ -2715,8 +2725,8 @@
     }
    ],
    "title": "Phase 1 Roadmap",
-   "total": 139,
-   "written": 1
+   "total": 140,
+   "written": 12
   },
   "phase-three": {
    "slug": "phase-three",

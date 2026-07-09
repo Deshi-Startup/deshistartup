@@ -144,16 +144,31 @@ translationese patterns found on this site. The essentials:
 
 ## Content & Editorial Guidelines
 
-- **Language:** For Bengali pages, write in clear, natural, spoken Bangla per **`STYLE.md`** (the
-  binding style guide — never English-first thinking translated into Bangla); keep common English
-  startup/legal terms (MVP, VAT, Product-Market Fit) transliterated where founders will meet them in
-  real documents, and explain each on first use. For English pages, use clear English and leave no
-  Bengali text behind.
+- **Language:** Bengali pages follow the Style guide (Bangla) section above — `STYLE.md` is
+  binding, don't restate its rules here. English pages: use clear English, leave no Bengali text
+  behind.
 - **Localization:** Do not replace Bengali content when localizing — create/update the matching page
   under `app/(contents)/en/...`, keeping slugs and folder structure aligned across locales.
 - **Routing:** Bengali pages link to clean root URLs such as `/customers`; English pages link to
   `/en/...` URLs such as `/en/customers`. Internal links must go through `localHref()` /
   `NEXT_PUBLIC_BASE_PATH` so they survive the GitHub Pages `/deshistartup` basePath.
+- **Relative links between sibling guides (same section):** `next.config.mjs` has no
+  `trailingSlash`, so routes render without one (e.g. `/phase-one/e-tin-guide`, not
+  `.../e-tin-guide/`). A bare `../other-slug` link from a same-depth sibling page resolves one
+  level too high (it drops the section, landing on `/other-slug` instead of
+  `/phase-one/other-slug`). Always write the section back in: `../phase-one/other-slug` (the same
+  literal string works for both the `(bn)` and `en` mirrors, since both trees are the same depth).
+  Verify by checking the rendered `href` in `out/**/*.html` after a build if unsure.
+- **Punctuation in page content:** Never use an em dash in page copy, titles, or descriptions
+  under `app/(contents)/` (this doc and other meta files are exempt). Use an en dash (–), a comma,
+  or split into two sentences instead.
+- **Writing a stub into a real guide:** research the topic properly (web search, official portals,
+  the relevant Act/NBR/RJSC text) rather than relying on assumptions. Before publishing, check
+  `app/nav-groups.json` and sibling stub titles in the same section for topic overlap — if two
+  slugs cover the same ground, scope the new guide to its unique angle and cross-link to the other
+  slug instead of duplicating content. Verify the stub's pre-listed sources are actually relevant;
+  drop irrelevant ones. Run `npm run build` after writing to confirm it compiles and is grouped
+  correctly.
 - **Navigation:** Section hub pages list their children automatically via `<SectionIndex ... />`.
   Only the curated top-level sidebar lives in `app/nav.config.js` — update it when adding a new
   top-level guide. Thematic grouping of hub lists lives in `app/nav-groups.json` (hand-curated) —
@@ -164,7 +179,7 @@ translationese patterns found on this site. The essentials:
 - **Local Context:** Always tailor advice to the Bangladeshi market — Mobile Financial Services
   (bKash/Nagad), Cash on Delivery (COD), Facebook-first growth, and low-trust market dynamics.
 - **Accuracy:** Cross-reference local laws and fees (RJSC fees, NBR VAT thresholds, trade license
-  processes) with current realities, and year-stamp every fee/number.
+  processes) with current realities (year-stamping is covered in the Style guide section above).
 - **Formatting:** Standard Nextra MDX with `title`/`description` frontmatter on every page.
 
 ## Licensing
