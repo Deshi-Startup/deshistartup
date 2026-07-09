@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 438,
-  "written": 61,
-  "stubs": 377
+  "written": 62,
+  "stubs": 376
  },
  "sections": {
   "case-studies": {
@@ -4398,6 +4398,16 @@
      "fullTitle": "প্রতিষ্ঠাতা হিসেবে আপনি প্রস্তুত কি না: চেকলিস্ট",
      "description": "ব্যবসায় নামার আগে পাঁচ জায়গায় নিজেকে যাচাই করুন: দক্ষতা, সময়, টাকা, পরিবার আর মন। ২০টা টিকের সৎ চেকলিস্ট, ফাঁকা ঘরগুলো মেটানোর কাজের তালিকাসহ।",
      "stub": false,
+     "date": "2026-07-09",
+     "verified": null
+    },
+    {
+     "route": "/start-here/common-myths-bangladeshi-founders-believe",
+     "slug": "start-here/common-myths-bangladeshi-founders-believe",
+     "title": "বাংলাদেশি ফাউন্ডারদের সাধারণ ভুল ধারণা",
+     "fullTitle": "বাংলাদেশি ফাউন্ডারদের সাধারণ ভুল ধারণা",
+     "description": "আইডিয়া চুরির ভয়, আগে ফান্ডিং তোলার স্বপ্ন, ডিসকাউন্টের বিক্রিকে চাহিদা ভাবা। বাংলাদেশি ফাউন্ডারদের আটটা চেনা ভুল ধারণা, প্রতিটার আসল ছবি আর করণীয়সহ।",
+     "stub": false,
      "date": "2026-07-07",
      "verified": null
     },
@@ -4472,16 +4482,6 @@
      "verified": null
     },
     {
-     "route": "/start-here/common-myths-bangladeshi-founders-believe",
-     "slug": "start-here/common-myths-bangladeshi-founders-believe",
-     "title": "বাংলাদেশি ফাউন্ডারদের সাধারণ ভুল ধারণা",
-     "fullTitle": "বাংলাদেশি ফাউন্ডারদের সাধারণ ভুল ধারণা",
-     "description": "বাংলাদেশি ফাউন্ডারদের সাধারণ ভুল ধারণা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/start-here/bangladesh-startup-ecosystem-overview",
      "slug": "start-here/bangladesh-startup-ecosystem-overview",
      "title": "বাংলাদেশের স্টার্টআপ ইকোসিস্টেম: কোথা থেকে শুরু করবেন",
@@ -4504,7 +4504,7 @@
    ],
    "title": "শুরু করুন",
    "total": 11,
-   "written": 5
+   "written": 6
   },
   "tools": {
    "slug": "tools",
