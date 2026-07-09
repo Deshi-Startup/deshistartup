@@ -3,7 +3,7 @@
  * bangla-lint.mjs — advisory linter for the Bangla style guide (STYLE.md).
  *
  * Scans Bengali content pages for the *mechanical* tells of translated Bangla:
- * banned calques, officialese, semicolons in Bangla prose, raw Latin-script English
+ * banned calques, officialese, em dashes (hard), semicolons in Bangla prose, raw Latin-script English
  * words mid-sentence, stray Devanagari characters, English digits in Bangla prose,
  * and density of filler words (এবং / এটি / গুরুত্বপূর্ণ / -ভাবে).
  *
@@ -141,6 +141,12 @@ function lintFile(file) {
   const lines = preprocess(raw)
   const hard = []
   const soft = []
+
+  // Em dash is banned in all content, both locales — checked on the raw file so
+  // frontmatter titles/descriptions are covered too (STYLE.md §4.3).
+  raw.split('\n').forEach((l, i) => {
+    if (l.includes('—')) hard.push([i + 1, 'এম-ড্যাশ (—) নিষিদ্ধ — স্পেসসহ এন-ড্যাশ ( – ), কমা বা দুই বাক্য (STYLE.md §4.3)'])
+  })
 
   lines.forEach((line, idx) => {
     if (!line) return

@@ -175,7 +175,9 @@ absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass
   Verify by checking the rendered `href` in `out/**/*.html` after a build if unsure.
 - **Punctuation in page content:** Never use an em dash in page copy, titles, or descriptions
   under `app/(contents)/` (this doc and other meta files are exempt). Use an en dash (–), a comma,
-  or split into two sentences instead.
+  or split into two sentences instead. The full dash rule lives in STYLE.md §4.3 and
+  `npm run lint:bangla` enforces it as a hard (✖) finding, both locales (decision confirmed
+  2026-07-10; the whole content tree was swept em-dash-free the same day).
 - **Writing a stub into a real guide:** research the topic properly (web search, official portals,
   the relevant Act/NBR/RJSC text) rather than relying on assumptions. Before publishing, check
   `app/nav-groups.json` and sibling stub titles in the same section for topic overlap — if two
