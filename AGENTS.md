@@ -144,11 +144,9 @@ translationese patterns found on this site. The essentials:
 
 ## Content & Editorial Guidelines
 
-- **Language:** For Bengali pages, write in clear, natural, spoken Bangla per **`STYLE.md`** (the
-  binding style guide — never English-first thinking translated into Bangla); keep common English
-  startup/legal terms (MVP, VAT, Product-Market Fit) transliterated where founders will meet them in
-  real documents, and explain each on first use. For English pages, use clear English and leave no
-  Bengali text behind.
+- **Language:** Bengali pages follow the Style guide (Bangla) section above — `STYLE.md` is
+  binding, don't restate its rules here. English pages: use clear English, leave no Bengali text
+  behind.
 - **Localization:** Do not replace Bengali content when localizing — create/update the matching page
   under `app/(contents)/en/...`, keeping slugs and folder structure aligned across locales.
 - **Routing:** Bengali pages link to clean root URLs such as `/customers`; English pages link to
@@ -181,7 +179,7 @@ translationese patterns found on this site. The essentials:
 - **Local Context:** Always tailor advice to the Bangladeshi market — Mobile Financial Services
   (bKash/Nagad), Cash on Delivery (COD), Facebook-first growth, and low-trust market dynamics.
 - **Accuracy:** Cross-reference local laws and fees (RJSC fees, NBR VAT thresholds, trade license
-  processes) with current realities, and year-stamp every fee/number.
+  processes) with current realities (year-stamping is covered in the Style guide section above).
 - **Formatting:** Standard Nextra MDX with `title`/`description` frontmatter on every page.
 
 ## Licensing
