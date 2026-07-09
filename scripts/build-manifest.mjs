@@ -150,11 +150,13 @@ fs.writeFileSync(path.join(root, 'public', 'page-verified.json'), JSON.stringify
 console.log(`page-verified.json: ${Object.keys(allVerified).length} routes`)
 
 // llms.txt – legible site map for AI assistants (distribution, not cannibalization).
-// Absolute URLs use the canonical domain plus the GitHub Pages basePath, matching
-// how localHref()/NEXT_PUBLIC_BASE_PATH build links in the deployed production site.
+// Absolute URLs use the canonical domain plus the deploy target's basePath, matching
+// how localHref()/NEXT_PUBLIC_BASE_PATH build links in the deployed site: empty on the
+// root-domain Cloudflare build (CF_PAGES=1), /deshistartup on the GitHub Pages mirror.
 {
   const SITE_URL = 'https://deshistartup.com'
-  const BASE_PATH = '/deshistartup'
+  const BASE_PATH =
+    process.env.DEPLOY_BASE_PATH ?? (process.env.CF_PAGES === '1' ? '' : '/deshistartup')
   const abs = (route) => `${SITE_URL}${BASE_PATH}${route === '/' ? '' : route}`
   const oneLine = (value) => value.replace(/\s+/g, ' ').trim()
 
