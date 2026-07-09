@@ -12,7 +12,7 @@ A page must pass **both**. Perfect Bangla wrapped around a dry, clinical list is
 
 Who this is for: every human contributor and every AI agent writing content here. Agents: read
 STYLE.md **and** this file before drafting anything, and run both pre-publish checklists
-(STYLE.md §7 + §11 here) before calling a page done.
+(STYLE.md §7 + §12 here) before calling a page done.
 
 ---
 
@@ -20,6 +20,11 @@ STYLE.md **and** this file before drafting anything, and run both pre-publish ch
 
 **A page succeeds when a non-expert reader finishes it understanding the topic and knowing
 exactly what to do next. Correct-but-unusable is a failure – same as unnatural Bangla.**
+
+Evidence is part of that teaching. When a conclusion depends on scale, change over time,
+comparison, or a calculation, help the reader *see* the evidence and understand how it leads to
+the decision. A chart that looks impressive but leaves the reader asking "এখন আমি কী করব?" is
+decoration, not teaching.
 
 We are not writing an encyclopedia, a law digest, or a listicle farm. Every page is one sitting
 of teaching. The reader arrives confused ("ভ্যাট-বিআইএন এসব কী, আমার কি লাগবে?") and must leave
@@ -116,7 +121,10 @@ page is doing two pages' work – split it, or link the sibling guide and stay i
 
 An abstraction with no example is a claim the reader can't check and won't remember. The rule:
 
-**Every rule, warning, step, or threshold gets a concrete example within two sentences.**
+**Every load-bearing or unfamiliar rule, warning, and threshold gets a concrete example close
+by.** Closely related steps may share one scenario; a new character and টাকা amount under every
+bullet only creates noise. Examples should make the mechanism visible, not make the page longer
+for its own sake.
 
 What "concrete" means here:
 
@@ -208,10 +216,13 @@ reader doesn't need the law recited – they need to know what it means *for the
   reader will face at the counter or on the portal – in quotes, spelled exactly as they'll see
   it: "পোর্টালে এটার নাম 'Name Clearance' – বাংলায় বললে, নামটা ফাঁকা আছে কি না তার ছাড়পত্র।"
   A reader who understands the concept but can't recognize the form name is still stuck.
-- **কাগজে-কলমে বনাম বাস্তবে.** State the official rule *and* the ground reality, honestly:
-  official timeline সাত দিন, বাস্তবে ঠিকঠাক কাগজ নিয়ে গেলে দুই থেকে চার সপ্তাহ ধরে রাখুন। Never
-  advise ঘুষ or speed money – acknowledging hassle is honesty, normalizing bribery is a line we
-  do not cross (standing rule).
+- **কাগজে-কলমে বনাম বাস্তবে.** State the official rule *and*, when there is evidence, the ground
+  reality. A real-world timeline is still a factual claim: cite a dated practitioner source,
+  several documented user reports, or a clearly described observation base. One anecdote does
+  not establish the norm. Without a reliable basis, say "অফিসিয়াল সময় সাত দিন; দেরির ঝুঁকি ধরে
+  হাতে বাড়তি সময় রাখুন" rather than inventing a two-to-four-week range. Never advise ঘুষ or
+  speed money – acknowledging hassle is honesty, normalizing bribery is a line we do not cross
+  (standing rule).
 - **Precision where it matters, ranges where it varies.** Fees differ by city corporation and
   category – give the range and the *why* it varies, never a false-precise single number. Every
   number carries its year stamp (STYLE.md §4.4). When we genuinely don't know: "যাচাই প্রয়োজন" –
@@ -268,12 +279,12 @@ The reader will forget most of the page. Decide what they keep.
 - **Groups of three.** Three signs of a good problem, three things to check after an MVP test –
   the mind holds threes. Seven parallel bullets is a reference list, not teaching.
 - **Tables compare, prose explains.** A table can hold options, fees, do/don't pairs – it cannot
-  hold a "why". Never let a table stand alone doing a paragraph's explanatory job (§10.9).
+  hold a "why". Never let a table stand alone doing a paragraph's explanatory job (§11.9).
 - Paragraphs stay under ~4 sentences; STYLE.md §2.10 owns sentence rhythm.
 
 ---
 
-## 8. Teach with sources, not despite them
+## 8. Teach with evidence and sources, not despite them
 
 Citations aren't academic decoration here – they're part of the teaching, because they show the
 reader *where truth comes from* in a low-trust market.
@@ -285,15 +296,161 @@ reader *where truth comes from* in a low-trust market.
 - **Mark the epistemic status honestly:** নিয়ম (sourced fact) ≠ হিসাব (our worked estimate,
   shown) ≠ পরামর্শ (our judgement, owned as ours) ≠ অজানা ("যাচাই প্রয়োজন"). Blurring these is
   overclaiming.
-- **Link policy is unchanged** (AGENTS.md): `## প্রাসঙ্গিক সূত্র` closes guides; root/section
-  URLs from `plan/sources.csv` only; never invent deep links.
 - **Adapt, don't translate** (locked decision): teach ideas from YC/Stripe/LightCastle in our own
   Bangla with credit – never translate or copy their text. Government sources may be used freely
   with citation.
 
+### 8.1 Every number needs its frame
+
+A number without its frame is another naked abstraction. Near the first use, make clear:
+
+- **What was measured and in what unit:** people, subscriptions, transactions, টাকা, USD,
+  percentage, or percentage points.
+- **Who and where:** all Bangladeshis, urban households, surveyed founders, registered companies,
+  Dhaka customers, or something narrower.
+- **The denominator:** "৪০ শতাংশ" means nothing until the reader knows 40 percent *of whom*.
+- **When:** observation period, whether the period is complete, and the publication date when it
+  matters. "Data through 2025" and "published in 2026" are different facts.
+- **How:** survey sample and method, administrative record, company self-report, third-party
+  estimate, or our own shown calculation.
+- **Currency basis:** nominal or inflation-adjusted টাকা; for conversions, the exchange rate and
+  date. Do not compare money from different years as though its buying power were unchanged.
+
+Do not bury a simple point under a methodology wall. The sentence, caption, or a short data note
+can carry this frame. But the reader must be able to answer "কাদের, কখনকার, কীভাবে মাপা?"
+
+Use distinctions that change the decision: subscriber connections are not necessarily unique
+people; downloads are not active customers; registered sellers are not monthly active sellers;
+percentage change is not percentage-point change. For skewed figures such as funding rounds,
+revenue, or salaries, say whether a mean or median is being used and prefer the median when a few
+large observations would distort the "typical" case.
+
+Round to the precision the evidence can support. "প্রায় ৩২ লাখ" is more honest than
+"৩২,০৭,৪১৮" when the source itself is an estimate.
+
+### 8.2 Compare like with like
+
+- Do not join figures with different definitions, populations, periods, currencies, or collection
+  methods into one apparent trend. If a definition changed, break the series and say so.
+- Do not treat correlation as cause. "যে জেলায় ইন্টারনেট ব্যবহার বেশি, সেখানে অনলাইন বিক্রিও
+  বেশি" does not by itself prove that one caused the other.
+- A partial year is not a full-year decline. Missing data is not zero. An estimate is not an
+  official count.
+- When credible sources disagree, show the useful range and explain the likely reason instead of
+  silently choosing the more dramatic number.
+- Company-reported users, impact, funding, or transaction figures must be labelled
+  **company-reported**. A media article repeating the number does not make it independent.
+
+### 8.3 Make evidence reproducible and maintainable
+
+- Attribute the publisher and exact report, dataset, notice, or table that supports a load-bearing
+  number. `## প্রাসঙ্গিক সূত্র` still closes the guide with approved root/section sources from
+  `plan/sources.csv`; a stable exact report or dataset link is allowed only after it has been
+  verified and recorded in that registry. Never guess or invent a deep link.
+- For derived figures, show the formula and inputs. Keep the underlying values as selectable text,
+  a table, or source-controlled structured data – never only as pixels in an image.
+- Separate **data through** (when observations end) from **last checked** (when we verified the
+  source). Neither automatically replaces the legal/compliance meaning of `verified:`
+  frontmatter.
+- Give changing datasets a re-check cadence. A chart that cannot be maintained should not carry a
+  time-sensitive decision without a visible age warning.
+
 ---
 
-## 9. Tone – the warm expert, never the lecturer
+## 9. Visual teaching – charts, diagrams, and calculators
+
+Most readers meet this page on a small Android screen. A useful visual shortens the explanation;
+it does not make the reader pinch-zoom, decode a legend, or trust an unexplained shape. The visual
+must answer a founder question and the prose must still carry the essential lesson.
+
+### 9.1 Decide whether a visual earns its place
+
+Ask four questions before making one:
+
+1. What founder decision will this visual improve?
+2. Is the underlying evidence reliable and genuinely comparable?
+3. Is the relationship easier to understand visually than in one sentence or a small table?
+4. Can we source, explain, and keep it current?
+
+If any answer is no, use prose, a table, a clearly labelled hypothetical calculation, or say that
+reliable data is unavailable. "Visual expected" never means "invent a chart."
+
+**A visual is normally expected** when the lesson depends on a trend, distribution, funnel,
+multi-part calculation, or comparison across several categories: market sizing and demographics;
+internet, payment, and commerce behaviour; funding trends; city/sector comparisons; unit
+economics; CAC/LTV, churn, retention, runway, and case-study trajectories with reliable data.
+
+**A visual is often helpful** for non-numeric relationships: registration timelines, application
+paths, legal decision trees, money/document flows, inventory cycles, and dilution mechanics.
+Scripts, checklists, founder-life guidance, and a single important number usually do not need one.
+
+### 9.2 Choose the smallest honest form
+
+| The reader needs to… | Prefer… |
+|---|---|
+| Remember one number | A sentence or number callout |
+| Look up exact fees, dates, or requirements | A table |
+| Compare categories | A sorted horizontal bar chart |
+| See change over time | A line chart |
+| See where each টাকা goes | A stacked bar or simple waterfall |
+| See parts of a whole | A stacked bar; rarely a pie/donut |
+| Follow steps or dependencies | A timeline or flow diagram |
+| Choose a path | A small decision tree |
+| Understand uncertainty | A range or scenario chart |
+| Apply the model to their own business | A calculator |
+
+Avoid 3D charts, radar charts, decorative gauges, and dual axes. They add decoding work or make
+comparisons look more certain than they are. Prefer a labelled bar over a pie/donut, and a bar
+funnel over a funnel-shaped picture whose changing width exaggerates the drop.
+
+### 9.3 Run the chart-reading loop
+
+Never drop a chart between paragraphs and move on. Teach it in this order:
+
+1. **Lead with the answer:** a conclusion title ("ফেরত আসা অর্ডারেই মার্জিনের বড় অংশ যায়"),
+   not a topic label ("COD chart").
+2. **Orient the reader:** say who/what, geography, period, unit, and what each axis or stage means.
+3. **Read one or two comparisons aloud:** point to exact values and show the arithmetic when money
+   moves.
+4. **Interpret without overclaiming:** explain the likely mechanism and what the visual does *not*
+   prove.
+5. **Land the decision:** what should the founder test, budget, prioritize, or avoid?
+6. **Name the limitation:** missing data, changed definition, small sample, self-report, estimate,
+   or hypothetical model.
+
+The reusable rhythm is: **দেখুন → বুঝুন → কাজে লাগান।** A reader who skips the graphic must still
+get the conclusion and next action from the surrounding text.
+
+### 9.4 Design for trust, mobile, and access
+
+- One visual teaches one main idea. Use direct labels; keep legends, gridlines, and decoration to
+  the minimum needed to read it.
+- Bar charts normally start at zero. If a line chart uses a narrowed scale, make the scale obvious
+  and explain why. Never crop an axis merely to dramatize a small change.
+- Never use colour as the only carrier of meaning. Check high contrast, grayscale/print, and a
+  width around 360 px. Nothing essential may depend on hover.
+- Every visual gets a useful text summary, a caption with source + data-through date + limitation,
+  and an accessible table or text fallback for its underlying values.
+- Bengali pages use Bengali display numerals and Bangla labels; English mirrors localize the
+  labels and explanation while sharing the same underlying data so the two versions cannot drift.
+- Prefer lightweight, server-rendered HTML/SVG over chart screenshots or a heavy client library.
+  Screenshots are for teaching a portal/interface step: crop to the relevant area, remove personal
+  data, add a checked date, and expect to replace them when the interface changes.
+
+### 9.5 Calculators and dashboards teach a model
+
+A calculator is not an oracle. Its surrounding copy must state the decision it helps with, define
+every input, show the formula, and walk through one complete টাকা example. Label defaults as
+sourced or illustrative; expose assumptions and omitted costs; show useful scenarios rather than
+one false-precise answer; explain the output in founder language; and end with the next action.
+
+For legal, tax, salary, or VAT calculators, say which dated rules the model implements and where
+it stops. Never present an estimate as the official assessment a regulator, bank, investor, or
+accountant will accept.
+
+---
+
+## 10. Tone – the warm expert, never the lecturer
 
 STYLE.md defines the voice (founder-over-tea); this is the attitude behind it:
 
@@ -311,7 +468,7 @@ STYLE.md defines the voice (founder-over-tea); this is the attitude behind it:
 
 ---
 
-## 10. Anti-pattern gallery – page shapes that are banned on sight
+## 11. Anti-pattern gallery – page shapes that are banned on sight
 
 Each of these passed spell-check somewhere and still failed the reader. Recognize and rewrite.
 
@@ -335,14 +492,21 @@ Each of these passed spell-check somewhere and still failed the reader. Recogniz
 10. **Invented reality.** Fabricated statistics, fake founder anecdotes, imaginary "একটি গবেষণায়
     দেখা গেছে"। The unforgivable one (§3). Hypotheticals say ধরুন; facts carry sources; there is
     no third category.
+11. **Chart wallpaper.** A colourful visual with no founder question, takeaway, explanation,
+    limitation, or action. If removing it changes nothing, it never earned its bytes.
+12. **Data laundering.** A citation sits under the chart, but the source does not support the
+    claim, incompatible figures were combined, or a company claim is presented as independent
+    truth. A source label cannot repair dishonest handling.
+13. **The calculator oracle.** A tool returns an exact-looking answer without exposing its formula,
+    assumptions, date, or excluded costs.
 
 ---
 
-## 11. Pre-publish checklist (editorial) – run with STYLE.md §7 on every page
+## 12. Pre-publish checklist (editorial) – run with STYLE.md §7 on every page
 
 - [ ] চা-দোকান টেস্ট: পুরো পাতাটা মুখে মুখে একজন অ-টেকনিক্যাল বন্ধুকে বোঝানো যায়
 - [ ] প্রতিটা নতুন টার্ম প্রথম দেখাতেই সহজ এক লাইনে ব্যাখ্যা করা (§2), পাতাজুড়ে নতুন টার্ম ৫–৭টার বেশি নয়
-- [ ] প্রতিটা বড় সেকশনে নাম-জায়গা-টাকাসহ অন্তত একটা বাস্তব উদাহরণ আছে (§3)
+- [ ] প্রতিটা বড় সেকশনে নাম-জায়গা-টাকাসহ স্পষ্টভাবে কাল্পনিক "ধরুন" উদাহরণ অথবা সূত্রযুক্ত বাস্তব ঘটনা আছে (§3)
 - [ ] টাকার কথা উঠলেই অঙ্কটা কষে দেখানো হয়েছে, শুধু ফল বলা হয়নি (§3)
 - [ ] অন্তত একটা "ধরুন…" দৃশ্য বা ছোট গল্প আছে, আর গল্পের ভেতরেই শিক্ষাটা বসানো (§4)
 - [ ] আইনি/টেকনিক্যাল প্রতিটা নিয়মের পরপরই "আপনার জন্য এর মানে" ভাষায় অনুবাদ আছে (§5)
@@ -351,12 +515,18 @@ Each of these passed spell-check somewhere and still failed the reader. Recogniz
 - [ ] সারকথা একা পড়লেই মূল কথা আর প্রথম কাজটা পাওয়া যায় – কোনো "আলোচনা করব" টিজার নেই (§7)
 - [ ] একটা মনে-রাখার লাইন বা থাম্ব রুল আছে (§7)
 - [ ] জোরালো প্রতিটা দাবির সূত্র লেখার ভেতরেই বলা, অনুমান হলে "যাচাই প্রয়োজন" লেখা (§8)
-- [ ] কোনো বানানো "সত্যি" গল্প, নাম, কোট বা সংখ্যা নেই – কাল্পনিক মানেই "ধরুন" (§3, §10.10)
-- [ ] ভয় দেখানো, হাইপ, মোটিভেশনাল প্যাডিং – নেই (§9)
+- [ ] প্রতিটা load-bearing সংখ্যার একক, কাদের/কোথাকার, সময়কাল, denominator, source type ও সীমাবদ্ধতা বোঝা যায় (§8)
+- [ ] তুলনার সংখ্যাগুলোর সংজ্ঞা, সময়কাল, জনসমষ্টি ও currency basis সত্যিই তুলনাযোগ্য (§8.2)
+- [ ] trend, funnel, distribution বা বহু সংখ্যার তুলনা সিদ্ধান্তের জন্য জরুরি হলে উপযুক্ত visual আছে, না থাকলে কারণ পরিষ্কার (§9.1)
+- [ ] প্রতিটা visual-এর conclusion title, সহজ text explanation, exact source, data-through date, limitation ও text/table fallback আছে (§9.3–§9.4)
+- [ ] chart দেখে পাঠক জানেন কী দেখা যাচ্ছে, কী প্রমাণ হয় না, আর এখন কী করবেন (§9.3)
+- [ ] calculator হলে formula, assumptions, dated rules/defaults, worked example ও result-এর next action আছে (§9.5)
+- [ ] কোনো বানানো "সত্যি" গল্প, নাম, কোট বা সংখ্যা নেই – কাল্পনিক মানেই "ধরুন" (§3, §11.10)
+- [ ] ভয় দেখানো, হাইপ, মোটিভেশনাল প্যাডিং – নেই (§10)
 
 ---
 
-## 12. A worked example – dry versus taught
+## 13. A worked example – dry versus taught
 
 **Before** – the dry pattern (a composite of the failure mode this file bans, not a quote):
 

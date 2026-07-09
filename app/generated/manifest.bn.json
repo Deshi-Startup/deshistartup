@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 438,
-  "written": 64,
-  "stubs": 374
+  "written": 65,
+  "stubs": 373
  },
  "sections": {
   "case-studies": {
@@ -4398,7 +4398,7 @@
      "fullTitle": "এক পৃষ্ঠার স্টার্টআপ পরিকল্পনা",
      "description": "চল্লিশ পাতার বিজনেস প্ল্যান না, বারোটা প্রশ্নের এক পাতার ছক। কপি করে আধা ঘণ্টায় পূরণ করুন। সঙ্গে তানভীরের আচারের ব্যবসা দিয়ে পুরো একটা ভরাট উদাহরণ।",
      "stub": false,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4462,6 +4462,16 @@
      "verified": null
     },
     {
+     "route": "/start-here/glossary-bangla-english-startup-jargon-dictionary",
+     "slug": "start-here/glossary-bangla-english-startup-jargon-dictionary",
+     "title": "স্টার্টআপ শব্দকোষ: বাংলা-ইংরেজি টার্মস",
+     "fullTitle": "স্টার্টআপ শব্দকোষ: বাংলা-ইংরেজি টার্মস",
+     "description": "ইনভেস্টর মিটিং, স্টার্টআপ আড্ডা বা এই সাইট পড়ার সময় যে ইংরেজি টার্মগুলো সামনে পড়বে, তার সহজ বাংলা মানে। পাঁচ ভাগে সাজানো ৪৫টা টার্ম, এক-দুই লাইনে।",
+     "stub": false,
+     "date": "2026-07-07",
+     "verified": null
+    },
+    {
      "route": "/start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh",
      "slug": "start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh",
      "title": "স্টার্টআপ, এসএমই, এজেন্সি ও ই-কমার্স ব্যবসার পার্থক্য",
@@ -4490,21 +4500,11 @@
      "stub": true,
      "date": "2026-07-07",
      "verified": null
-    },
-    {
-     "route": "/start-here/glossary-bangla-english-startup-jargon-dictionary",
-     "slug": "start-here/glossary-bangla-english-startup-jargon-dictionary",
-     "title": "স্টার্টআপ শব্দকোষ: বাংলা-ইংরেজি টার্মস",
-     "fullTitle": "স্টার্টআপ শব্দকোষ: বাংলা-ইংরেজি টার্মস",
-     "description": "স্টার্টআপ শব্দকোষ: বাংলা-ইংরেজি টার্মস – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
     }
    ],
    "title": "শুরু করুন",
    "total": 11,
-   "written": 8
+   "written": 9
   },
   "tools": {
    "slug": "tools",

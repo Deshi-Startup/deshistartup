@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 438,
-  "written": 64,
-  "stubs": 374
+  "written": 65,
+  "stubs": 373
  },
  "sections": {
   "case-studies": {
@@ -4438,7 +4438,7 @@
      "fullTitle": "One-Page Startup Plan",
      "description": "Not a forty-page business plan – a one-page grid of twelve questions. Copy it and fill it in within half an hour, with a fully worked example: Tanvir's pickle business.",
      "stub": false,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4449,6 +4449,16 @@
      "description": "Startup or regular business, which path is yours? A practical five-question scorecard that weighs the shape of your idea, your personal runway, and how much risk your life can absorb.",
      "stub": false,
      "date": "2026-07-10",
+     "verified": null
+    },
+    {
+     "route": "/en/start-here/glossary-bangla-english-startup-jargon-dictionary",
+     "slug": "start-here/glossary-bangla-english-startup-jargon-dictionary",
+     "title": "Startup Glossary: Bangla-English Startup Terms",
+     "fullTitle": "Startup Glossary: Bangla-English Startup Terms",
+     "description": "Plain-language meanings of the English terms you'll meet in investor meetings, startup circles, and on this site. 45 terms in five groups, one or two lines each.",
+     "stub": false,
+     "date": "2026-07-07",
      "verified": null
     },
     {
@@ -4490,21 +4500,11 @@
      "stub": true,
      "date": "2026-07-07",
      "verified": null
-    },
-    {
-     "route": "/en/start-here/glossary-bangla-english-startup-jargon-dictionary",
-     "slug": "start-here/glossary-bangla-english-startup-jargon-dictionary",
-     "title": "Startup Glossary: Bangla-English Startup Terms",
-     "fullTitle": "Startup Glossary: Bangla-English Startup Terms",
-     "description": "Startup Glossary: Bangla-English Startup Terms – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
     }
    ],
    "title": "Start Here",
    "total": 11,
-   "written": 8
+   "written": 9
   },
   "tools": {
    "slug": "tools",
