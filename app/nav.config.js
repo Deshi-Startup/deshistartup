@@ -10,9 +10,16 @@ export const bnNav = [
     items: [
       ['/start-here', 'শুরুর রোডম্যাপ'],
       ['/start-here/what-is-a-startup', 'স্টার্টআপ আসলে কী'],
-      ['/startup-vs-sme', 'স্টার্টআপ নাকি এসএমই'],
       ['/ecosystem-overview', 'বাংলাদেশের ইকোসিস্টেম']
     ]
+  },
+  {
+    label: 'কোন পথে যাবেন',
+    items: [['/journeys', 'লক্ষ্য ধরে সাজানো পথ']]
+  },
+  {
+    label: 'টেমপ্লেট ও টুলস',
+    items: [['/tools', 'চেকলিস্ট, স্ক্রিপ্ট ও ক্যালকুলেটর']]
   },
   {
     label: 'আইডিয়া ও যাচাই',
@@ -24,9 +31,9 @@ export const bnNav = [
   {
     label: 'আইন, নিবন্ধন ও কর',
     items: [
-      ['/legal-roadmap', 'আইনগত রোডম্যাপ'],
+      ['/legal-roadmap', 'আইনি রোডম্যাপ'],
       ['/company-types', 'কোম্পানির ধরন'],
-      ['/registration', 'ব্যবসা নিবন্ধন'],
+      ['/registration', 'ব্যবসা রেজিস্ট্রেশন'],
       ['/rjsc-name-clearance', 'RJSC ও নাম ছাড়পত্র'],
       ['/trade-license', 'ট্রেড লাইসেন্স'],
       ['/e-tin-vat-bin', 'e-TIN ও ভ্যাট/BIN']
@@ -41,13 +48,24 @@ export const bnNav = [
     ]
   },
   {
-    label: 'ধাপে ধাপে রোডম্যাপ',
+    label: 'ফান্ডিং',
     items: [
-      ['/phase-one', 'ধাপ ১ · আইডিয়া থেকে ভিত্তি'],
-      ['/phase-two', 'ধাপ ২ · পণ্য, দল ও নিয়ম'],
-      ['/phase-three', 'ধাপ ৩ · বিক্রি ও ফান্ডিং'],
-      ['/phase-four', 'ধাপ ৪ · স্কেল ও সরকারি সুবিধা']
+      ['/funding-roadmap', 'ফান্ডিং রোডম্যাপ'],
+      ['/journeys/raise-angel-vc-funding', 'অ্যাঞ্জেল/ভিসি ফান্ড তুলতে চাই'],
+      ['/directory/investors', 'ইনভেস্টর ডিরেক্টরি']
     ]
+  },
+  {
+    label: 'ধাপে ধাপে রোডম্যাপ',
+    items: [['/phase-one', 'ধাপ ১ থেকে শুরু করুন']]
+  },
+  {
+    label: 'কেস স্টাডি',
+    items: [['/case-studies', 'বাংলাদেশি স্টার্টআপের গল্প']]
+  },
+  {
+    label: 'ডিরেক্টরি',
+    items: [['/directory', 'ইকোসিস্টেম ডিরেক্টরি']]
   },
   {
     label: 'অংশ নিন',
@@ -64,9 +82,17 @@ export const enNav = [
     label: 'Start Here',
     items: [
       ['/en/start-here', 'Starter roadmap'],
-      ['/en/startup-vs-sme', 'Startup vs SME'],
+      ['/en/start-here/what-is-a-startup', 'What is a startup?'],
       ['/en/ecosystem-overview', 'Bangladesh ecosystem']
     ]
+  },
+  {
+    label: 'Journeys',
+    items: [['/en/journeys', 'Guided paths by goal']]
+  },
+  {
+    label: 'Templates & Tools',
+    items: [['/en/tools', 'Checklists, scripts & calculators']]
   },
   {
     label: 'Idea & Validation',
@@ -76,9 +102,11 @@ export const enNav = [
     label: 'Legal, Registration & Tax',
     items: [
       ['/en/legal-roadmap', 'Legal roadmap'],
+      ['/en/company-types', 'Company types'],
       ['/en/registration', 'Business registration'],
       ['/en/rjsc-name-clearance', 'RJSC & name clearance'],
-      ['/en/trade-license', 'Trade license']
+      ['/en/trade-license', 'Trade license'],
+      ['/en/e-tin-vat-bin', 'e-TIN, VAT & BIN']
     ]
   },
   {
@@ -90,13 +118,24 @@ export const enNav = [
     ]
   },
   {
-    label: 'Step-by-step Roadmap',
+    label: 'Funding',
     items: [
-      ['/en/phase-one', 'Phase 1 · Idea to foundation'],
-      ['/en/phase-two', 'Phase 2 · Product, team & rules'],
-      ['/en/phase-three', 'Phase 3 · Sales & funding'],
-      ['/en/phase-four', 'Phase 4 · Scale & govt support']
+      ['/en/funding-roadmap', 'Funding roadmap'],
+      ['/en/journeys/raise-angel-vc-funding', 'Raise angel/VC funding'],
+      ['/en/directory/investors', 'Investor directory']
     ]
+  },
+  {
+    label: 'Step-by-step Roadmap',
+    items: [['/en/phase-one', 'Start from Phase 1']]
+  },
+  {
+    label: 'Case Studies',
+    items: [['/en/case-studies', 'Bangladeshi startup stories']]
+  },
+  {
+    label: 'Directory',
+    items: [['/en/directory', 'Ecosystem directory']]
   },
   {
     label: 'Take Part',

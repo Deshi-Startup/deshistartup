@@ -1,0 +1,26 @@
+Category,Tool / Template,Format,Priority,Notes
+Validation,Startup idea validation worksheet,Worksheet,High,Use with idea/no product workflow.
+Validation,Customer interview script in Bangla and English,Script,High,"Practical field questions, not generic SaaS discovery only."
+Validation,Problem ranking scorecard,Scorecard,High,"Rank urgency, frequency, willingness to pay, reachability."
+Validation,MVP experiment planner,Template,High,"Hypothesis, method, success threshold, learnings."
+Acquisition,Landing page copy template,Template,High,Include Bangla-first version.
+Acquisition,Facebook ad test planner,Planner,High,"Budget, audience, creatives, signal quality."
+Sales,WhatsApp sales script,Script,High,"Lead qualification, follow-up, objection handling."
+Sales,SME sales call script,Script,High,Owner-led business context.
+Compliance,Trade license checklist,Checklist,High,City-specific variants later.
+Compliance,RJSC registration checklist,Checklist,High,Name clearance through incorporation.
+Compliance,VAT/BIN checklist,Checklist,High,"When required, docs, return cadence."
+Founders,Founder agreement checklist,Checklist,High,"Equity, roles, vesting, exits, IP."
+Hiring,Hiring scorecard,Scorecard,Medium,"Role outcomes, competencies, interview notes."
+Founders,Equity split discussion guide,Guide,High,Plain Bangla explanation recommended.
+Metrics,Monthly KPI dashboard,Dashboard,High,Core monthly founder metrics.
+Finance,CAC/LTV/unit economics calculator,Calculator,High,Keep simple and model-specific.
+Finance,Runway calculator,Calculator,High,"Cash, burn, runway, scenario view."
+Finance,Break-even calculator,Calculator,Medium,Useful for normal businesses and startups.
+Finance,VAT calculator,Calculator,Medium,Requires current official rules.
+Finance,Salary/PF calculator,Calculator,Low,Needs legal/CA review.
+Funding,Pitch deck outline,Template,High,Bangladesh investor context and generic deck basics.
+Funding,Investor CRM,Tracker,High,"Investor, stage, fit, intro, next action."
+Funding,Data room checklist,Checklist,High,"Legal, finance, product, metrics."
+Funding,Monthly investor update template,Template,Medium,"Wins, metrics, asks, risks."
+Operations,Compliance calendar,Calendar,High,RJSC/NBR/VAT renewals and annual filings.

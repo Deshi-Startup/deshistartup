@@ -2,7 +2,7 @@
 
 [![Star on GitHub](https://img.shields.io/github/stars/Deshi-Startup/deshistartup.svg?style=social)](https://github.com/Deshi-Startup/deshistartup)
 
-Deshi Startup is a free, open-source, Bangla-first startup knowledge base and practical operating manual for founders building in Bangladesh.
+Deshi Startup is a free, open-source, Bangla-first knowledge base and practical operating manual for building a **startup** in Bangladesh. The destination is the country's most trustworthy, practical startup-knowledge repository: what to do next, how much it costs, which office to visit, which law applies, how to validate an idea, and how to raise — in plain Bangla, with sources. The focus is almost exclusively startups; foundational guidance (registration, tax, payments) naturally helps any small business too, but the lens, depth, and priorities are built for founders creating something new and scalable — not generic advice for every business type.
 
 The goal is not to become a shallow motivational blog. The goal is to help a founder understand what to do next: validate an idea, register a business, handle tax/VAT basics, accept payments, manage delivery risk, find customers, hire carefully, raise funding, and grow with Bangladesh-specific constraints in mind.
 
@@ -34,6 +34,9 @@ Deshi Startup should become the Bangladesh-specific equivalent of:
 - A practical founder checklist library
 - A searchable Bangladeshi startup knowledge base
 - Eventually, an AI assistant trained only on verified Bangladesh startup resources
+- A source-backed **Bangladeshi startup case-study library** (bKash, Pathao, Chaldal…), each following `plan/case-study-format.md`
+- A **structured ecosystem directory** (investors, accelerators, payment gateways, couriers) as filterable, machine-readable data — not prose
+- A **freshness system**: a tiered source registry, "last verified" dates on compliance pages, and scheduled re-verification (`plan/research-ops.csv`)
 
 The project should be an operating manual: source-backed, stage-aware, Bangladesh-specific, and practical enough to use while building.
 
@@ -65,7 +68,7 @@ Primary readers:
 - First-time startup founders
 - Non-technical founders
 - Technical founders who need business/compliance guidance
-- Small business owners becoming tech-enabled
+- Founders moving from freelancing, an agency, or a small business toward a scalable startup
 - Women founders navigating extra safety and social constraints
 - Diaspora founders building for Bangladesh
 
@@ -90,26 +93,34 @@ The site is organized as a hybrid documentation wiki:
 - **Team and Founder Life:** co-founders, hiring, contracts, family pressure, burnout
 - **Funding and Scale:** angel, grants, VC, data room, metrics, regional growth
 - **Templates and Checklists:** practical worksheets founders can use immediately
+- **Case Studies:** source-backed Bangladeshi startup case studies, one per company, following `plan/case-study-format.md`
+- **Directory:** a data-backed ecosystem directory (investors, accelerators, payment gateways, couriers)
+- **Industry and city playbooks:** sector- and location-specific guidance layered on top of the core roadmap
 
-## MVP Scope
+## Current Milestone
 
-The first version should focus on being useful, credible, and easy to maintain.
+41 of ~430 planned Bengali pages are written; the rest are honest stubs (see `plan/content-backlog.csv`
+for the full backlog and `AGENTS.md` for how stubs work). The count dropped in July 2026 when 32
+boilerplate template pages were demoted back to honest stubs — real guides only.
 
-MVP features:
+Milestone targets:
+
+- 100 written pages, including 10 case studies
+- Directory v1 (investors + accelerators)
+- `verified:` dates on all compliance pages
+- `llms.txt` published
+
+Already in place:
 
 - Documentation site
 - Markdown/MDX-based content
 - Bangla and English support
 - Source registry and official links
-- Last verified metadata where relevant
 - Beginner-friendly navigation
 - Search
-- 20-30 high-quality pages
-- 10 practical templates/checklists
-- Small curated directory
 - Contribution guidelines
 
-Not MVP:
+Not yet (deliberately sequenced later):
 
 - Full AI assistant
 - Large-scale scraping
@@ -159,6 +170,10 @@ Should-have pages:
 
 ## Source Strategy
 
+`plan/sources.csv` is the living, tiered source registry — agents and contributors should pull
+source links from it rather than inventing or hand-picking new ones. The lists below give the shape
+of it.
+
 Use official sources for legal, tax, policy, registration, and compliance topics:
 
 - BIDA and BIDA OSS
@@ -200,7 +215,9 @@ Founder stories and case studies can use interviews, public talks, profiles, and
 3. Founder interview pages must avoid overclaiming.
 4. Do not copy full articles or interviews.
 5. Summarize insights and cite original sources.
-6. Use plain Bangla where possible.
+6. Use plain, natural Bangla — written the way Bangladeshis actually write, never
+   English-first thinking translated into Bangla. `STYLE.md` is the binding style guide;
+   `npm run lint:bangla` catches the mechanical tells.
 7. Keep jargon only when founders will actually encounter it, and explain it.
 8. Separate facts, anecdotes, and hypotheses.
 9. Mark uncertain or changing information clearly.
@@ -312,10 +329,13 @@ Future AI rules:
 
 ## Tech Stack
 
-- **Framework:** [Next.js](https://nextjs.org/) App Router
-- **Documentation:** [Nextra](https://nextra.site/) with MDX
+- **Framework:** [Next.js](https://nextjs.org/) App Router, statically exported (`output: 'export'`)
+- **Documentation:** [Nextra](https://nextra.site/) for MDX; page chrome is a custom wiki-style shell (not the stock Nextra theme)
 - **UI shell:** custom wiki-style frontend inspired by the static prototype
-- **Search:** Pagefind static search index
+- **Search:** Pagefind static search index (built automatically on `postbuild`)
+- **Hosting:** GitHub Pages from `main`; navigation, section hubs, and "last updated" dates are generated from the content tree at build time — contributors only add/edit `page.mdx` files
+
+For deeper architecture and editorial conventions, see [`AGENTS.md`](./AGENTS.md).
 
 ## Local Development
 
@@ -341,9 +361,17 @@ npm run build
 5. Make changes in the `app/` directory.
 6. Submit a pull request.
 
+How content is organized:
+
+- **Bengali is the source of truth.** Bengali guides live at `app/(contents)/(bn)/<slug>/page.mdx` (served at `/<slug>`); the English mirror lives at `app/(contents)/en/<slug>/page.mdx` (served at `/en/<slug>`). Keep slugs aligned across the two.
+- **Pages are plain MDX:** YAML frontmatter (`title`, `description`) + one `#` heading + `##` sections. Breadcrumbs, table of contents, and edit/history links are added automatically — don't hand-write them.
+- **Stubs** are unwritten pages that show only a `<StubNotice />` banner and a sources list. To turn a stub into a real guide, write the content and delete the `StubNotice` line; the site then counts it as written and drops the "to be written" badge.
+- Files under `app/generated/` are build artifacts — never edit them by hand.
+- Not sure what to work on? Open `plan/content-backlog.csv` and pick any লেখা বাকি (not yet written) topic — priorities are marked.
+
 Good contributions include:
 
-- Fixing unclear Bangla
+- Fixing unclear or translated-sounding Bangla (see `STYLE.md`)
 - Updating outdated official links or policy details
 - Adding source-backed checklists
 - Expanding a thin page into a practical guide
@@ -366,4 +394,7 @@ The moat is not content volume. The moat is trust, localization, source quality,
 
 ## License
 
-MIT
+- **Code:** MIT.
+- **Content** (everything under `app/(contents)/`): Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0).
+
+See `LICENSE` and `LICENSE-content.md` for the authoritative text and attribution format.

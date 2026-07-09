@@ -158,7 +158,7 @@ export default function SearchBox({ isEn = false, variant = 'header' }) {
           window.setTimeout(() => setIsOpen(false), 150)
         }}
       />
-      <button type="submit" className="search-submit" aria-label={isEn ? 'Search' : 'অনুসন্ধান'}>
+      <button type="submit" className="search-submit" aria-label={isEn ? 'Search' : 'খুঁজুন'}>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="m21 21-4.3-4.3m2.3-5.2a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" />
         </svg>

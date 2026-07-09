@@ -52,7 +52,8 @@
   --warn-border: #e1b900;
   --warn-ink: #5f4b00;
   --shadow: 0 14px 32px rgb(32 33 34 / 8%);
-  --sans: system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans Bengali', 'Noto Sans', 'Segoe UI', sans-serif;
+  --sans: '.SF Bangla', system-ui, -apple-system, BlinkMacSystemFont, 'Nirmala UI', 'Noto Sans Bengali',
+    'Noto Sans', 'Segoe UI', sans-serif;
   --serif: 'Noto Serif Bengali', 'Noto Serif', Georgia, serif;
 }
 
@@ -903,6 +904,112 @@ a.is-stub-link:hover {
   color: var(--green-deep);
 }
 
+/* --------------------------------------------------------------- directory */
+
+.directory-list {
+  margin: 22px 0;
+}
+
+.directory-controls {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.4fr) repeat(3, minmax(150px, 1fr)) auto;
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+  background: var(--canvas-soft);
+  padding: 12px;
+}
+
+.directory-controls label {
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.directory-controls input,
+.directory-controls select {
+  min-height: 36px;
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 6px 9px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.directory-controls input:focus,
+.directory-controls select:focus {
+  outline: 2px solid color-mix(in srgb, var(--green-deep), transparent 70%);
+  outline-offset: 1px;
+}
+
+.directory-controls button {
+  min-height: 36px;
+  border: 1px solid var(--line-strong);
+  background: #fff;
+  padding: 6px 12px;
+  color: var(--green-deep);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.directory-controls button:hover {
+  border-color: var(--green-deep);
+  background: #f7fbf7;
+}
+
+.directory-list__summary {
+  display: inline-flex;
+  margin-bottom: 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--canvas-soft);
+  padding: 4px 12px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+
+.directory-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.directory-list table {
+  min-width: 860px;
+  margin: 0;
+  font-size: 0.86rem;
+}
+
+.directory-list td:first-child {
+  min-width: 190px;
+}
+
+.directory-list td strong,
+.directory-list td span {
+  display: block;
+}
+
+.directory-list td span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.directory-empty {
+  margin: 0;
+  padding: 22px;
+  color: var(--muted);
+  font-weight: 650;
+}
+
 /* -------------------------------------------------------------- homepage */
 
 .wiki-landing {
@@ -1155,21 +1262,6 @@ a.is-stub-link:hover {
 .wiki-scope-card h3,
 .wiki-source-list h3 {
   margin-top: 0;
-}
-
-.wiki-link-columns {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  margin-top: 18px;
-}
-
-.wiki-link-columns h3 {
-  margin-top: 0;
-}
-
-.wiki-link-columns ul {
-  padding-left: 20px;
 }
 
 /* numbered beginner path (kept from redesign, restyled to the wiki look) */
@@ -1522,9 +1614,9 @@ a.is-stub-link:hover {
     margin: 0 0 14px;
   }
 
+  .directory-controls,
   .wiki-scope-grid,
-  .wiki-source-list,
-  .wiki-link-columns {
+  .wiki-source-list {
     grid-template-columns: 1fr;
   }
 
@@ -1551,6 +1643,7 @@ a.is-stub-link:hover {
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 1.05rem;
+    line-height: 1.35;
   }
 
   .brand small {

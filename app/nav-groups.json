@@ -1,4 +1,59 @@
 {
+ "journeys": [
+  {
+   "bn": "শুরু ও যাচাই",
+   "en": "Start & Validate",
+   "slugs": [
+    "idea-but-no-product",
+    "test-demand"
+   ]
+  },
+  {
+   "bn": "ব্যবসা দাঁড় করানো",
+   "en": "Set Up the Business",
+   "slugs": [
+    "start-an-online-business",
+    "register-a-private-limited-company",
+    "accept-digital-payments",
+    "import-products"
+   ]
+  },
+  {
+   "bn": "দল ও বৃদ্ধি",
+   "en": "Team & Growth",
+   "slugs": [
+    "hire-first-employee",
+    "sell-to-smes",
+    "launch-a-saas"
+   ]
+  },
+  {
+   "bn": "ফান্ডিং ও প্রোগ্রাম",
+   "en": "Funding & Programs",
+   "slugs": [
+    "raise-angel-vc-funding",
+    "apply-to-an-accelerator"
+   ]
+  },
+  {
+   "bn": "খাত ধরে শুরু",
+   "en": "Start by Sector",
+   "slugs": [
+    "build-an-edtech-startup",
+    "build-an-agritech-startup",
+    "build-a-fintech-startup",
+    "build-a-travel-tech-startup",
+    "build-a-local-services-startup"
+   ]
+  },
+  {
+   "bn": "বিশেষ পথ",
+   "en": "Special Journeys",
+   "slugs": [
+    "diaspora-founder-building-in-bangladesh"
+   ]
+  }
+ ],
  "founder-life": [
   {
    "bn": "পরিবার ও সমাজ সামলানো",
@@ -56,7 +111,7 @@
    ]
   },
   {
-   "bn": "পরিকল্পনা ও যাত্রা শুরু",
+   "bn": "শুরুর পরিকল্পনা",
    "en": "Plan & Get Started",
    "slugs": [
     "one-page-startup-plan",
@@ -66,7 +121,7 @@
  ],
  "phase-two": [
   {
-   "bn": "সহ-প্রতিষ্ঠাতা ও ইকুইটি",
+   "bn": "কো-ফাউন্ডার ও ইকুইটি",
    "en": "Co-founders & Equity",
    "slugs": [
     "how-to-find-co-founders",
@@ -189,7 +244,7 @@
    ]
   },
   {
-   "bn": "সরকারি সহায়তা ও প্রণোদনা",
+   "bn": "সরকারি সুবিধা ও প্রণোদনা",
    "en": "Government Support & Incentives",
    "slugs": [
     "government-program-application-guide",
@@ -283,7 +338,7 @@
    ]
   },
   {
-   "bn": "ব্যবসার ধরন ও প্রতিষ্ঠাতা চুক্তি",
+   "bn": "ব্যবসার ধরন ও ফাউন্ডার চুক্তি",
    "en": "Business Structure & Founder Agreements",
    "slugs": [
     "solo-founder-vs-team-founder-tradeoffs-in-bangladesh",
@@ -592,6 +647,100 @@
     "dealing-with-first-investor-board-seat-and-loss-of-control",
     "monthly-investor-update-template",
     "investor-board-report-template"
+   ]
+  }
+ ],
+ "directory": [
+  {
+   "bn": "ফান্ডিং ও সুবিধা",
+   "en": "Funding & Support",
+   "slugs": [
+    "investors",
+    "accelerators"
+   ]
+  }
+ ],
+ "case-studies": [
+  {
+   "bn": "ফিনটেক",
+   "en": "Fintech",
+   "slugs": [
+    "bkash",
+    "apon-wellbeing-case-study"
+   ]
+  },
+  {
+   "bn": "রাইড, লজিস্টিকস ও ভ্রমণ",
+   "en": "Ride, Logistics & Travel",
+   "slugs": [
+    "pathao",
+    "truck-lagbe",
+    "shohoz",
+    "sharetrip",
+    "jatri",
+    "shuttle",
+    "gozayaan",
+    "paperfly"
+   ]
+  },
+  {
+   "bn": "কমার্স ও মার্কেটপ্লেস",
+   "en": "Commerce & Marketplace",
+   "slugs": [
+    "chaldal",
+    "shopup-silq",
+    "shebaxyz",
+    "priyoshop",
+    "shajgoj",
+    "rokomari",
+    "bdjobs",
+    "pickaboo",
+    "khaas-food",
+    "onnorokom-group",
+    "fabrilife-case-study"
+   ]
+  },
+  {
+   "bn": "এডটেক",
+   "en": "Edtech",
+   "slugs": [
+    "10-minute-school",
+    "shikho"
+   ]
+  },
+  {
+   "bn": "এগ্রি, হেলথ ও সামাজিক উদ্যোগ",
+   "en": "Agri, Health & Social Enterprise",
+   "slugs": [
+    "ifarmer",
+    "maya",
+    "praava-health",
+    "arogga",
+    "medeasy",
+    "fashol-case-study",
+    "solshare-case-study",
+    "fashol-vs-ifarmer-agritech-wedge-comparison"
+   ]
+  },
+  {
+   "bn": "SaaS ও টুলস",
+   "en": "SaaS & Tools",
+   "slugs": [
+    "markopolo-ai",
+    "myalice"
+   ]
+  },
+  {
+   "bn": "ব্যর্থতা থেকে শিক্ষা",
+   "en": "Lessons from Failure",
+   "slugs": [
+    "failure-post-mortems-as-a-separate-content-category",
+    "what-success-case-studies-leave-out",
+    "common-reasons-bangladeshi-startups-fail",
+    "what-did-not-work-and-why",
+    "lessons-from-advance-payment-e-commerce-failures-in-bangladesh",
+    "marketplace-trust-collapse-post-mortem-template",
+    "why-holding-customer-money-is-a-risky-business-model"
    ]
   }
  ]

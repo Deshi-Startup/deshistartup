@@ -3,6 +3,16 @@ out/
 .next/
 _pagefind/
 *.log
+
+# macOS / iCloud Drive metadata
+.DS_Store
+._*
+*.icloud
+.TemporaryItems/
+.Trashes/
+.fseventsd/
+Icon?
+
 knowledge-bank/
 context/
 # Local experiments and artifacts
@@ -12,3 +22,4 @@ dist/
 workers/
 next-env.d.ts
 .localization-backup/
+CLAUDE.md

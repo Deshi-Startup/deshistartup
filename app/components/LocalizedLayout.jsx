@@ -50,7 +50,7 @@ function Sidebar({ isEn, pathname, headings, onNavigate }) {
   const nav = isEn ? enNav : bnNav
 
   return (
-    <aside className="sidebar" id="sidebar" aria-label={isEn ? 'Primary navigation' : 'প্রধান নেভিগেশন'}>
+    <aside className="sidebar" id="sidebar" aria-label={isEn ? 'Primary navigation' : 'প্রধান মেনু'}>
       <nav>
         {nav.map((group) => (
           <div className="sidebar-group" key={group.label}>
@@ -89,7 +89,7 @@ function Sidebar({ isEn, pathname, headings, onNavigate }) {
         <p className="sidebar-note">
           {isEn
             ? 'Free & open source. Every guide can be improved by anyone – including you.'
-            : 'সম্পূর্ণ ফ্রি ও ওপেন সোর্স। প্রতিটি গাইড যে কেউ উন্নত করতে পারেন – আপনিও।'}
+            : 'সম্পূর্ণ ফ্রি ও ওপেন সোর্স। প্রতিটি গাইড যে কেউ আরও ভালো করতে পারেন, আপনিও।'}
         </p>
       </nav>
     </aside>
@@ -126,6 +126,20 @@ function Breadcrumbs({ isEn, pathname, pageTitle }) {
   )
 }
 
+const enTabs = { article: 'Article', talk: 'Talk', read: 'Read', edit: 'Edit', history: 'View history' }
+const bnTabs = {
+  article:
+    'গাইড',
+  talk:
+    'আলোচনা',
+  read:
+    'পড়ুন',
+  edit:
+    'সম্পাদনা',
+  history:
+    'ইতিহাস'
+}
+
 export default function LocalizedLayout({ children }) {
   const pathname = usePathname()
   const isEn = pathname.startsWith('/en/') || pathname === '/en'
@@ -134,6 +148,7 @@ export default function LocalizedLayout({ children }) {
   const [headings, setHeadings] = useState([])
   const [pageTitle, setPageTitle] = useState('')
   const [lastUpdated, setLastUpdated] = useState(null)
+  const [lastVerified, setLastVerified] = useState(null)
   const [readMinutes, setReadMinutes] = useState(null)
 
   useEffect(() => {
@@ -186,12 +201,28 @@ export default function LocalizedLayout({ children }) {
     }
   }, [pathname, isLanding])
 
-  const tabs = isEn
-    ? { article: 'Article', talk: 'Talk', read: 'Read', edit: 'Edit', history: 'View history' }
-    : { article: 'গাইড', talk: 'আলোচনা', read: 'পড়ুন', edit: 'সম্পাদনা', history: 'ইতিহাস' }
+  // Stronger editorial verification date, separate from last git update.
+  useEffect(() => {
+    setLastVerified(null)
+    if (isLanding) return
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+    let active = true
+    fetch(`${basePath}/page-verified.json`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((dates) => {
+        if (active && dates && dates[pathname]) setLastVerified(dates[pathname])
+      })
+      .catch(() => {})
+    return () => {
+      active = false
+    }
+  }, [pathname, isLanding])
+
+  const tabs = isEn ? enTabs : bnTabs
 
   const file = sourceFileFor(pathname)
   const dateLabel = formatDate(lastUpdated, isEn)
+  const verifiedLabel = formatDate(lastVerified, isEn)
   const pageUrl = `https://deshistartup.com${pathname}`
   const issueUrl = `${REPO_URL}/issues/new?title=${encodeURIComponent(
     (isEn ? 'Problem: ' : 'ভুল/পরামর্শ: ') + (pageTitle || pathname)
@@ -207,7 +238,7 @@ export default function LocalizedLayout({ children }) {
             <img src={localHref('/deshi-mark.svg')} alt="" width="54" height="54" />
             <span>
               <strong>{isEn ? 'Deshi Startup' : 'দেশি স্টার্টআপ'}</strong>
-              <small>{isEn ? 'From the open founder manual' : 'বাংলাদেশি উদ্যোক্তার গাইড'}</small>
+              <small>{isEn ? 'The Bangla-first startup guide for Bangladesh' : 'বাংলাদেশে স্টার্টআপ গড়ার গাইড'}</small>
             </span>
           </a>
 
@@ -215,7 +246,7 @@ export default function LocalizedLayout({ children }) {
             <SearchBox isEn={isEn} />
           </div>
 
-          <nav className="top-actions" aria-label={isEn ? 'Site actions' : 'সাইট কাজ'}>
+          <nav className="top-actions" aria-label={isEn ? 'Site actions' : 'সাইটের কাজ'}>
             <a className="gh-link" href={REPO_URL} target="_blank" rel="noopener noreferrer">
               <GitHubIcon />
               <span>GitHub</span>
@@ -224,7 +255,7 @@ export default function LocalizedLayout({ children }) {
             <button
               className="nav-toggle"
               type="button"
-              aria-label={isEn ? 'Toggle navigation' : 'নেভিগেশন খুলুন/বন্ধ করুন'}
+              aria-label={isEn ? 'Toggle navigation' : 'মেনু খুলুন/বন্ধ করুন'}
               aria-expanded={isSidebarOpen}
               aria-controls="sidebar"
               onClick={() => setIsSidebarOpen((value) => !value)}
@@ -273,12 +304,18 @@ export default function LocalizedLayout({ children }) {
           {!isLanding && (
             <div className="article-lede">
               <Breadcrumbs isEn={isEn} pathname={pathname} pageTitle={pageTitle} />
-              {(dateLabel || readMinutes) && (
+              {(dateLabel || verifiedLabel || readMinutes) && (
                 <div className="article-meta">
                   {dateLabel && (
                     <span className="meta-date">
                       {isEn ? 'Last updated: ' : 'সর্বশেষ হালনাগাদ: '}
                       {dateLabel}
+                    </span>
+                  )}
+                  {verifiedLabel && (
+                    <span className="meta-date">
+                      {isEn ? 'Last verified: ' : 'সর্বশেষ যাচাই: '}
+                      {verifiedLabel}
                     </span>
                   )}
                   {readMinutes && (
@@ -312,7 +349,7 @@ export default function LocalizedLayout({ children }) {
 
           {!isLanding && (
             <footer className="article-footer">
-              <h2>{isEn ? 'Help improve this page' : 'এই পাতাটি আরও ভালো করুন'}</h2>
+              <h2>{isEn ? 'Help improve this page' : 'এই পাতা আরও ভালো করুন'}</h2>
               <div className="contrib-row">
                 <a href={`${REPO_URL}/edit/main/${file}`} target="_blank" rel="noopener noreferrer">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /></svg>
@@ -335,7 +372,7 @@ export default function LocalizedLayout({ children }) {
         <div>
           {isEn
             ? 'Deshi Startup – an open, Bangladesh-specific founder operating manual, written together, free for everyone.'
-            : 'দেশি স্টার্টআপ – বাংলাদেশের উদ্যোক্তাদের জন্য উন্মুক্ত, বাস্তবভিত্তিক গাইড। সবাই মিলে লেখা, সবার জন্য ফ্রি।'}
+            : 'দেশি স্টার্টআপ – বাংলাদেশি ফাউন্ডারদের জন্য খোলা, বাস্তব গাইড। সবাই মিলে লেখা, সবার জন্য ফ্রি।'}
         </div>
         <div className="footer-links">
           <a href={localHref(isEn ? '/en/start-here' : '/start-here')}>{isEn ? 'Start here' : 'শুরু করুন'}</a>
@@ -348,7 +385,7 @@ export default function LocalizedLayout({ children }) {
         <p className="footer-legal">
           {isEn
             ? 'This site is general guidance, not legal or tax advice. Fees, forms and rules change – always confirm with official government sources (RJSC, NBR, Bangladesh Bank) before acting.'
-            : 'এই সাইট সাধারণ দিকনির্দেশনা দেয়; এটি আইনি বা কর পরামর্শ নয়। ফি, ফর্ম ও নিয়ম বদলায় – কাজের আগে সরকারি উৎস (RJSC, NBR, বাংলাদেশ ব্যাংক) থেকে যাচাই করে নিন।'}
+            : 'এই সাইট সাধারণ গাইড দেয়। আইনি বা কর পরামর্শ নয়। ফি, ফর্ম ও নিয়ম বদলায়। কাজের আগে সরকারি উৎস (RJSC, NBR, বাংলাদেশ ব্যাংক) থেকে যাচাই করে নিন।'}
         </p>
       </footer>
     </>

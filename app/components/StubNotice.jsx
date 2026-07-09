@@ -22,7 +22,7 @@ export default function StubNotice({ path, locale = 'bn' }) {
       <p>
         {isEn
           ? 'The topic is on our list, but the full guide is still to be written. Below you will find sources you can read in the meantime. If you know this subject – even partially – you can write this page. Reviewers will help polish the language.'
-          : 'বিষয়টি আমাদের তালিকায় আছে, কিন্তু পূর্ণ গাইডটি এখনো লেখা বাকি। নিচে কিছু সূত্র দেওয়া আছে, আপাতত সেগুলো দেখতে পারেন। আপনি এই বিষয়ে কিছু জানলে – আংশিক হলেও – পাতাটি লিখতে পারেন। ভাষা বা বানান নিয়ে চিন্তা করবেন না, রিভিউয়াররা গুছিয়ে দেবেন।'}
+          : 'বিষয়টা আমাদের তালিকায় আছে, কিন্তু পুরো গাইডটা এখনো লেখা বাকি। নিচে কয়েকটি সূত্র আছে। আপাতত সেগুলো দেখে নিতে পারেন। এই বিষয়ে কিছু জানলে, আংশিক হলেও, পাতাটা লিখতে পারেন। ভাষা বা বানান নিয়ে চিন্তা করবেন না। রিভিউয়াররা গুছিয়ে দেবেন।'}
       </p>
       <div className="contrib-row">
         <a href={editUrl} target="_blank" rel="noopener noreferrer">
