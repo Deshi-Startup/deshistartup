@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 438,
-  "written": 59,
-  "stubs": 379
+  "written": 60,
+  "stubs": 378
  },
  "sections": {
   "case-studies": {
@@ -4402,6 +4402,16 @@
      "verified": null
     },
     {
+     "route": "/start-here/should-you-build-a-startup-or-a-normal-business",
+     "slug": "start-here/should-you-build-a-startup-or-a-normal-business",
+     "title": "স্টার্টআপ করবেন, নাকি সাধারণ ব্যবসা?",
+     "fullTitle": "স্টার্টআপ করবেন, নাকি সাধারণ ব্যবসা?",
+     "description": "স্টার্টআপ না সাধারণ ব্যবসা, কোন পথ আপনার? আইডিয়ার গড়ন, পকেটের রানওয়ে আর ঝুঁকি সইবার ক্ষমতা মিলিয়ে সিদ্ধান্ত নেওয়ার পাঁচ প্রশ্নের বাস্তব ছক, টাকার হিসাবসহ।",
+     "stub": false,
+     "date": "2026-07-07",
+     "verified": null
+    },
+    {
      "route": "/start-here/what-is-a-startup",
      "slug": "start-here/what-is-a-startup",
      "title": "স্টার্টআপ কী?",
@@ -4482,16 +4492,6 @@
      "verified": null
     },
     {
-     "route": "/start-here/should-you-build-a-startup-or-a-normal-business",
-     "slug": "start-here/should-you-build-a-startup-or-a-normal-business",
-     "title": "স্টার্টআপ করবেন, নাকি সাধারণ ব্যবসা?",
-     "fullTitle": "স্টার্টআপ করবেন, নাকি সাধারণ ব্যবসা?",
-     "description": "স্টার্টআপ করবেন, নাকি সাধারণ ব্যবসা? – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/start-here/glossary-bangla-english-startup-jargon-dictionary",
      "slug": "start-here/glossary-bangla-english-startup-jargon-dictionary",
      "title": "স্টার্টআপ শব্দকোষ: বাংলা-ইংরেজি টার্মস",
@@ -4504,7 +4504,7 @@
    ],
    "title": "শুরু করুন",
    "total": 11,
-   "written": 3
+   "written": 4
   },
   "tools": {
    "slug": "tools",
