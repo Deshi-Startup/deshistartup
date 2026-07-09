@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 438,
-  "written": 63,
-  "stubs": 375
+  "written": 64,
+  "stubs": 374
  },
  "sections": {
   "case-studies": {
@@ -4392,6 +4392,16 @@
    },
    "children": [
     {
+     "route": "/start-here/one-page-startup-plan",
+     "slug": "start-here/one-page-startup-plan",
+     "title": "এক পৃষ্ঠার স্টার্টআপ পরিকল্পনা",
+     "fullTitle": "এক পৃষ্ঠার স্টার্টআপ পরিকল্পনা",
+     "description": "চল্লিশ পাতার বিজনেস প্ল্যান না, বারোটা প্রশ্নের এক পাতার ছক। কপি করে আধা ঘণ্টায় পূরণ করুন। সঙ্গে তানভীরের আচারের ব্যবসা দিয়ে পুরো একটা ভরাট উদাহরণ।",
+     "stub": false,
+     "date": "2026-07-07",
+     "verified": null
+    },
+    {
      "route": "/start-here/founder-readiness-checklist",
      "slug": "start-here/founder-readiness-checklist",
      "title": "প্রতিষ্ঠাতা হিসেবে আপনি প্রস্তুত কি না: চেকলিস্ট",
@@ -4408,7 +4418,7 @@
      "fullTitle": "প্রতিষ্ঠাতা হিসেবে কোন পথে শুরু করবেন",
      "description": "এই সাইটের শত শত পাতার মধ্যে আপনার এখন লাগবে মোটে তিন-চারটা। ছয়টা চেনা পরিস্থিতি থেকে নিজেরটা মিলিয়ে নিন, কোন পাতা কোন ক্রমে পড়বেন তা সাজানো আছে।",
      "stub": false,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4462,16 +4472,6 @@
      "verified": null
     },
     {
-     "route": "/start-here/one-page-startup-plan",
-     "slug": "start-here/one-page-startup-plan",
-     "title": "এক পৃষ্ঠার স্টার্টআপ পরিকল্পনা",
-     "fullTitle": "এক পৃষ্ঠার স্টার্টআপ পরিকল্পনা",
-     "description": "এক পৃষ্ঠার স্টার্টআপ পরিকল্পনা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/start-here/how-to-use-the-bangla-first-startup-knowledge-base",
      "slug": "start-here/how-to-use-the-bangla-first-startup-knowledge-base",
      "title": "বাংলা-প্রথম স্টার্টআপ জ্ঞানভান্ডার কীভাবে ব্যবহার করবেন",
@@ -4504,7 +4504,7 @@
    ],
    "title": "শুরু করুন",
    "total": 11,
-   "written": 7
+   "written": 8
   },
   "tools": {
    "slug": "tools",

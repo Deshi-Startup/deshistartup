@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 438,
-  "written": 63,
-  "stubs": 375
+  "written": 64,
+  "stubs": 374
  },
  "sections": {
   "case-studies": {
@@ -4418,7 +4418,7 @@
      "fullTitle": "Founder Path Chooser",
      "description": "Of the hundreds of pages on this site, you need three or four right now. Match yourself to one of six familiar situations and get a reading order for each.",
      "stub": false,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4429,6 +4429,16 @@
      "description": "Before you start a business, test yourself in five areas: skills, time, money, family, and mindset. An honest 20-tick checklist, with a to-do list for every gap you find.",
      "stub": false,
      "date": "2026-07-10",
+     "verified": null
+    },
+    {
+     "route": "/en/start-here/one-page-startup-plan",
+     "slug": "start-here/one-page-startup-plan",
+     "title": "One-Page Startup Plan",
+     "fullTitle": "One-Page Startup Plan",
+     "description": "Not a forty-page business plan – a one-page grid of twelve questions. Copy it and fill it in within half an hour, with a fully worked example: Tanvir's pickle business.",
+     "stub": false,
+     "date": "2026-07-07",
      "verified": null
     },
     {
@@ -4482,16 +4492,6 @@
      "verified": null
     },
     {
-     "route": "/en/start-here/one-page-startup-plan",
-     "slug": "start-here/one-page-startup-plan",
-     "title": "One-Page Startup Plan",
-     "fullTitle": "One-Page Startup Plan",
-     "description": "One-Page Startup Plan – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/en/start-here/glossary-bangla-english-startup-jargon-dictionary",
      "slug": "start-here/glossary-bangla-english-startup-jargon-dictionary",
      "title": "Startup Glossary: Bangla-English Startup Terms",
@@ -4504,7 +4504,7 @@
    ],
    "title": "Start Here",
    "total": 11,
-   "written": 7
+   "written": 8
   },
   "tools": {
    "slug": "tools",
