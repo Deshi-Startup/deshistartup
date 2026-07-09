@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 438,
-  "written": 62,
-  "stubs": 376
+  "written": 63,
+  "stubs": 375
  },
  "sections": {
   "case-studies": {
@@ -451,7 +451,7 @@
     "fullTitle": "How to Contribute",
     "description": "Deshi Startup is an open knowledge base written together. From reporting a mistake to writing a new guide – three easy ways to take part.",
     "stub": false,
-    "date": "2026-07-08",
+    "date": "2026-07-10",
     "verified": null
    },
    "children": [],
@@ -568,7 +568,7 @@
      "fullTitle": "The Woman Founder's Reality – Safety, Client Meetings, Travel and Visibility",
      "description": "A practical guide for women founders in Bangladesh: getting the family on board, safe client meetings, travel and delivery, handling online harassment, and keeping the business in your own name.",
      "stub": false,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -715,7 +715,7 @@
     "fullTitle": "Funding Roadmap – Where Startup Money Actually Comes From in Bangladesh",
     "description": "Your own money, family, grants, angels, VC, bank loans – every startup funding path in Bangladesh on one page. Which fits which stage, what investors look for, and what to prepare.",
     "stub": false,
-    "date": "2026-07-08",
+    "date": "2026-07-10",
     "verified": null
    },
    "children": [],
@@ -770,7 +770,7 @@
      "fullTitle": "I have an idea but no product – the first validation path",
      "description": "Have an idea but not sure what to do first? Talk to customers, rank the problem, test demand, and run an MVP – a step-by-step path from idea to first validated MVP.",
      "stub": false,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -780,7 +780,7 @@
      "fullTitle": "I want to accept digital payments",
      "description": "The full path to accepting digital payments in Bangladesh – bank account, choosing bKash/Nagad and a gateway, merchant account, integration, reconciliation, and refunds.",
      "stub": false,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -790,7 +790,7 @@
      "fullTitle": "I want to apply to Startup Bangladesh or an accelerator",
      "description": "The path to applying to Startup Bangladesh, iDEA, or an accelerator – eligibility, program research, application assets, pitch, follow-up, and the event calendar.",
      "stub": false,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -800,7 +800,7 @@
      "fullTitle": "I Want to Build a Delivery, Ride or Local Services Startup",
      "description": "A step-by-step path to starting a delivery, ride-sharing or home-services startup in Bangladesh: the Pathao case study, a dense single-area pilot, per-trip economics, riders and agents, and funding.",
      "stub": false,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -810,7 +810,7 @@
      "fullTitle": "I Want to Build a Fintech Startup – Rules First, Product Second",
      "description": "A step-by-step path to starting a fintech startup in Bangladesh: understanding Bangladesh Bank rules, license vs partnership, validating the money pain, company structure and funding.",
      "stub": false,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -820,7 +820,7 @@
      "fullTitle": "I Want to Build a Travel Tech Startup – Where Trust Is the Product",
      "description": "A step-by-step path to starting a travel tech startup in Bangladesh: picking the traveller segment, a one-route pilot, advance payments and refunds, legal basics and funding.",
      "stub": false,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -830,7 +830,7 @@
      "fullTitle": "I Want to Build an Agritech Startup – From Field to Market",
      "description": "A step-by-step path to starting an agritech startup in Bangladesh: field research with farmers, a one-season pilot, the agent model, payments, legal basics and funding.",
      "stub": false,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -840,7 +840,7 @@
      "fullTitle": "I Want to Build an Edtech Startup – From Teaching to Earning Trust",
      "description": "A step-by-step path to starting an edtech startup in Bangladesh: validating with both parents and students, a one-batch pilot, payments, legal basics and funding.",
      "stub": false,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -850,7 +850,7 @@
      "fullTitle": "I want to hire my first employee",
      "description": "The full path to your first hire – role scorecard, employee vs freelancer/intern, contract, labor law, payroll, and onboarding.",
      "stub": false,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -860,7 +860,7 @@
      "fullTitle": "I want to import products",
      "description": "The full path to importing products into Bangladesh – product category, IRC, HS code, LC and bank documents, freight forwarder, landed cost, and VAT/tax.",
      "stub": false,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -870,7 +870,7 @@
      "fullTitle": "I want to launch a SaaS from Bangladesh",
      "description": "The path to launching an export-oriented SaaS from Bangladesh – market selection, company setup, foreign exchange, international payments, SaaS metrics, and export incentives.",
      "stub": false,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -890,7 +890,7 @@
      "fullTitle": "I want to register a private limited company",
      "description": "The full path from structure decision to RJSC registration – name clearance, MoA/AoA, registration, e-TIN/VAT, bank account, and annual compliance.",
      "stub": false,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -900,7 +900,7 @@
      "fullTitle": "I want to sell to SMEs",
      "description": "The path to selling to Bangladesh's small and medium businesses (SMEs) – ICP, trust-building, sales scripts, pilots, paid contracts, and a retention dashboard.",
      "stub": false,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -910,7 +910,7 @@
      "fullTitle": "I want to start an online business – license to launch",
      "description": "The full path to selling online on Facebook or a website – business type, trade license, e-TIN/VAT, payments, courier, and launching under the Digital Commerce policy.",
      "stub": false,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -1390,7 +1390,7 @@
      "fullTitle": "Practical Ways to Find Startup Ideas in Bangladesh",
      "description": "Where startup ideas hide in Bangladesh – unorganized sectors, local adaptations, B2B, your own problems, and regulatory or tech waves – with real examples.",
      "stub": false,
-     "date": "2026-07-09",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4387,7 +4387,7 @@
     "fullTitle": "Start Here – A Guide to Starting a Startup or Small Business in Bangladesh",
     "description": "A beginner-friendly English guide to starting in Bangladesh: choose a problem, validate demand, understand registration, payments, customers, team and funding.",
     "stub": false,
-    "date": "2026-07-08",
+    "date": "2026-07-10",
     "verified": null
    },
    "children": [
@@ -4398,7 +4398,7 @@
      "fullTitle": "30-Day Roadmap to Starting a Startup in Bangladesh",
      "description": "From idea to first paying customer in 30 days – a week-by-week, day-by-day roadmap for starting a startup, built for the realities of Bangladesh.",
      "stub": false,
-     "date": "2026-07-09",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4408,7 +4408,17 @@
      "fullTitle": "Common Myths Bangladeshi Founders Believe",
      "description": "The fear of idea theft, the dream of raising funding first, mistaking discount sales for demand. Eight familiar myths Bangladeshi founders believe, each with the real picture and one action.",
      "stub": false,
-     "date": "2026-07-09",
+     "date": "2026-07-10",
+     "verified": null
+    },
+    {
+     "route": "/en/start-here/founder-path-chooser",
+     "slug": "start-here/founder-path-chooser",
+     "title": "Founder Path Chooser",
+     "fullTitle": "Founder Path Chooser",
+     "description": "Of the hundreds of pages on this site, you need three or four right now. Match yourself to one of six familiar situations and get a reading order for each.",
+     "stub": false,
+     "date": "2026-07-07",
      "verified": null
     },
     {
@@ -4418,7 +4428,7 @@
      "fullTitle": "Founder Readiness Checklist",
      "description": "Before you start a business, test yourself in five areas: skills, time, money, family, and mindset. An honest 20-tick checklist, with a to-do list for every gap you find.",
      "stub": false,
-     "date": "2026-07-09",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4428,7 +4438,7 @@
      "fullTitle": "Should You Build a Startup or a Regular Business?",
      "description": "Startup or regular business, which path is yours? A practical five-question scorecard that weighs the shape of your idea, your personal runway, and how much risk your life can absorb.",
      "stub": false,
-     "date": "2026-07-09",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4438,7 +4448,7 @@
      "fullTitle": "Startup, SME, Agency, and E-commerce: What Is the Difference?",
      "description": "Startup vs SME vs agency vs e-commerce in Bangladesh – what each one is, how they differ, what changes legally and financially for each, and which is right for you. With the official definitions and real examples.",
      "stub": false,
-     "date": "2026-07-09",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4448,7 +4458,7 @@
      "fullTitle": "What Is a Startup?",
      "description": "What a startup actually is, how it differs from a regular business, how the government defines it, and whether your venture is really a startup – in plain language, with real examples.",
      "stub": false,
-     "date": "2026-07-09",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4457,16 +4467,6 @@
      "title": "Bangladesh Startup Ecosystem: Where to Start",
      "fullTitle": "Bangladesh Startup Ecosystem: Where to Start",
      "description": "Bangladesh Startup Ecosystem: Where to Start – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/en/start-here/founder-path-chooser",
-     "slug": "start-here/founder-path-chooser",
-     "title": "Founder Path Chooser",
-     "fullTitle": "Founder Path Chooser",
-     "description": "Founder Path Chooser – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -4504,7 +4504,7 @@
    ],
    "title": "Start Here",
    "total": 11,
-   "written": 6
+   "written": 7
   },
   "tools": {
    "slug": "tools",
