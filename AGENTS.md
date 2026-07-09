@@ -142,11 +142,25 @@ translationese patterns found on this site. The essentials:
   clear the hard (✖) findings; then run the STYLE.md §7 read-aloud checklist — the linter only
   catches the mechanical tells.
 
+## Editorial guide (pedagogy)
+
+**[`EDITORIAL.md`](./EDITORIAL.md) is the binding editorial/teaching standard — read it together
+with STYLE.md before writing any content page (both locales).** STYLE.md governs how the Bangla
+reads; EDITORIAL.md governs what a page teaches and how: write for a non-technical
+first-generation founder, run every hard concept through the five-step teaching loop (name →
+plain definition → one দেশি metaphor → worked টাকা example → so-what), no naked abstractions
+(named people, real cities, worked arithmetic), signalled "ধরুন…" scenarios and micro-stories,
+legal rules translated into "আপনার জন্য এর মানে" decision language, a concrete next action with
+কোথায়/কী লাগবে/খরচ/সময়, one memorable থাম্ব রুল per page, inline source attribution, and an
+absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass the EDITORIAL.md
+§11 checklist alongside STYLE.md §7 before it is done.
+
 ## Content & Editorial Guidelines
 
-- **Language:** Bengali pages follow the Style guide (Bangla) section above — `STYLE.md` is
-  binding, don't restate its rules here. English pages: use clear English, leave no Bengali text
-  behind.
+- **Language & pedagogy:** Bengali pages follow the Style guide (Bangla) section above —
+  `STYLE.md` is binding, don't restate its rules here. `EDITORIAL.md` (Editorial guide section
+  above) is equally binding for *both* locales — it defines how pages teach, not just how they
+  read. English pages: use clear English, leave no Bengali text behind.
 - **Localization:** Do not replace Bengali content when localizing — create/update the matching page
   under `app/(contents)/en/...`, keeping slugs and folder structure aligned across locales.
 - **Routing:** Bengali pages link to clean root URLs such as `/customers`; English pages link to
