@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 438,
-  "written": 60,
-  "stubs": 378
+  "written": 61,
+  "stubs": 377
  },
  "sections": {
   "case-studies": {
@@ -4392,6 +4392,16 @@
    },
    "children": [
     {
+     "route": "/start-here/founder-readiness-checklist",
+     "slug": "start-here/founder-readiness-checklist",
+     "title": "প্রতিষ্ঠাতা হিসেবে আপনি প্রস্তুত কি না: চেকলিস্ট",
+     "fullTitle": "প্রতিষ্ঠাতা হিসেবে আপনি প্রস্তুত কি না: চেকলিস্ট",
+     "description": "ব্যবসায় নামার আগে পাঁচ জায়গায় নিজেকে যাচাই করুন: দক্ষতা, সময়, টাকা, পরিবার আর মন। ২০টা টিকের সৎ চেকলিস্ট, ফাঁকা ঘরগুলো মেটানোর কাজের তালিকাসহ।",
+     "stub": false,
+     "date": "2026-07-07",
+     "verified": null
+    },
+    {
      "route": "/start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh",
      "slug": "start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh",
      "title": "বাংলাদেশে স্টার্টআপ শুরু করার ৩০ দিনের রোডম্যাপ",
@@ -4408,7 +4418,7 @@
      "fullTitle": "স্টার্টআপ করবেন, নাকি সাধারণ ব্যবসা?",
      "description": "স্টার্টআপ না সাধারণ ব্যবসা, কোন পথ আপনার? আইডিয়ার গড়ন, পকেটের রানওয়ে আর ঝুঁকি সইবার ক্ষমতা মিলিয়ে সিদ্ধান্ত নেওয়ার পাঁচ প্রশ্নের বাস্তব ছক, টাকার হিসাবসহ।",
      "stub": false,
-     "date": "2026-07-07",
+     "date": "2026-07-09",
      "verified": null
     },
     {
@@ -4437,16 +4447,6 @@
      "title": "এক পৃষ্ঠার স্টার্টআপ পরিকল্পনা",
      "fullTitle": "এক পৃষ্ঠার স্টার্টআপ পরিকল্পনা",
      "description": "এক পৃষ্ঠার স্টার্টআপ পরিকল্পনা – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/start-here/founder-readiness-checklist",
-     "slug": "start-here/founder-readiness-checklist",
-     "title": "প্রতিষ্ঠাতা হিসেবে আপনি প্রস্তুত কি না: চেকলিস্ট",
-     "fullTitle": "প্রতিষ্ঠাতা হিসেবে আপনি প্রস্তুত কি না: চেকলিস্ট",
-     "description": "প্রতিষ্ঠাতা হিসেবে আপনি প্রস্তুত কি না: চেকলিস্ট – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -4504,7 +4504,7 @@
    ],
    "title": "শুরু করুন",
    "total": 11,
-   "written": 4
+   "written": 5
   },
   "tools": {
    "slug": "tools",

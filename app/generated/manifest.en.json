@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 438,
-  "written": 60,
-  "stubs": 378
+  "written": 61,
+  "stubs": 377
  },
  "sections": {
   "case-studies": {
@@ -4402,13 +4402,23 @@
      "verified": null
     },
     {
+     "route": "/en/start-here/founder-readiness-checklist",
+     "slug": "start-here/founder-readiness-checklist",
+     "title": "Founder Readiness Checklist",
+     "fullTitle": "Founder Readiness Checklist",
+     "description": "Before you start a business, test yourself in five areas: skills, time, money, family, and mindset. An honest 20-tick checklist, with a to-do list for every gap you find.",
+     "stub": false,
+     "date": "2026-07-07",
+     "verified": null
+    },
+    {
      "route": "/en/start-here/should-you-build-a-startup-or-a-normal-business",
      "slug": "start-here/should-you-build-a-startup-or-a-normal-business",
      "title": "Should You Build a Startup or a Regular Business?",
      "fullTitle": "Should You Build a Startup or a Regular Business?",
      "description": "Startup or regular business, which path is yours? A practical five-question scorecard that weighs the shape of your idea, your personal runway, and how much risk your life can absorb.",
      "stub": false,
-     "date": "2026-07-07",
+     "date": "2026-07-09",
      "verified": null
     },
     {
@@ -4462,16 +4472,6 @@
      "verified": null
     },
     {
-     "route": "/en/start-here/founder-readiness-checklist",
-     "slug": "start-here/founder-readiness-checklist",
-     "title": "Founder Readiness Checklist",
-     "fullTitle": "Founder Readiness Checklist",
-     "description": "Founder Readiness Checklist – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
      "route": "/en/start-here/how-to-use-the-bangla-first-startup-knowledge-base",
      "slug": "start-here/how-to-use-the-bangla-first-startup-knowledge-base",
      "title": "How to Use the Bangla-First Startup Knowledge Base",
@@ -4504,7 +4504,7 @@
    ],
    "title": "Start Here",
    "total": 11,
-   "written": 4
+   "written": 5
   },
   "tools": {
    "slug": "tools",
