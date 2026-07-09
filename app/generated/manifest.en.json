@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 373,
-  "written": 57,
-  "stubs": 316
+  "written": 60,
+  "stubs": 313
  },
  "sections": {
   "contribute": {
@@ -579,7 +579,7 @@
      "fullTitle": "Board Meetings, AGM, and Minutes Book Basics",
      "description": "How private limited companies in Bangladesh should run board meetings, hold the Annual General Meeting (AGM), pass resolutions, and file with RJSC",
      "stub": false,
-     "date": null
+     "date": "2026-07-08"
     },
     {
      "route": "/en/phase-one/rjsc-name-clearance",
@@ -587,6 +587,15 @@
      "title": "How to Get RJSC Name Clearance",
      "fullTitle": "How to Get RJSC Name Clearance",
      "description": "How to get RJSC Name Clearance, the first step of company registration in Bangladesh: naming rules, fees, timelines, and common mistakes",
+     "stub": false,
+     "date": "2026-07-08"
+    },
+    {
+     "route": "/en/phase-one/memorandum-and-articles-of-association-basics",
+     "slug": "phase-one/memorandum-and-articles-of-association-basics",
+     "title": "Memorandum and Articles of Association Basics",
+     "fullTitle": "Memorandum and Articles of Association Basics",
+     "description": "What the MoA (Memorandum of Association) and AoA (Articles of Association) are, what clauses they need, and why copy-pasting a template is risky",
      "stub": false,
      "date": "2026-07-07"
     },
@@ -596,6 +605,24 @@
      "title": "Practical Ways to Find Startup Ideas in Bangladesh",
      "fullTitle": "Practical Ways to Find Startup Ideas in Bangladesh",
      "description": "How to find startup ideas in Bangladesh",
+     "stub": false,
+     "date": "2026-07-07"
+    },
+    {
+     "route": "/en/phase-one/share-capital-directors-and-shareholders-basics",
+     "slug": "phase-one/share-capital-directors-and-shareholders-basics",
+     "title": "Share Capital, Directors, and Shareholders Basics",
+     "fullTitle": "Share Capital, Directors, and Shareholders Basics",
+     "description": "Authorized vs. paid-up capital, director and shareholder count limits, and the rules for allotting and transferring shares",
+     "stub": false,
+     "date": "2026-07-07"
+    },
+    {
+     "route": "/en/phase-one/private-limited-company-registration-step-by-step",
+     "slug": "phase-one/private-limited-company-registration-step-by-step",
+     "title": "Step-by-Step Private Limited Company Registration",
+     "fullTitle": "Step-by-Step Private Limited Company Registration",
+     "description": "Every step of registering a private limited company with RJSC after name clearance: documents, fees, online submission, and the Certificate of Incorporation",
      "stub": false,
      "date": "2026-07-07"
     },
@@ -1248,15 +1275,6 @@
      "date": "2026-07-07"
     },
     {
-     "route": "/en/phase-one/memorandum-and-articles-of-association-basics",
-     "slug": "phase-one/memorandum-and-articles-of-association-basics",
-     "title": "Memorandum and Articles of Association Basics",
-     "fullTitle": "Memorandum and Articles of Association Basics",
-     "description": "Memorandum and Articles of Association Basics – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
      "route": "/en/phase-one/monthly-return-workflow-after-binvat-registration",
      "slug": "phase-one/monthly-return-workflow-after-binvat-registration",
      "title": "Monthly Return Workflow After BIN/VAT Registration",
@@ -1518,15 +1536,6 @@
      "date": "2026-07-07"
     },
     {
-     "route": "/en/phase-one/share-capital-directors-and-shareholders-basics",
-     "slug": "phase-one/share-capital-directors-and-shareholders-basics",
-     "title": "Share Capital, Directors, and Shareholders Basics",
-     "fullTitle": "Share Capital, Directors, and Shareholders Basics",
-     "description": "Share Capital, Directors, and Shareholders Basics – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
      "route": "/en/phase-one/should-you-start-as-a-sole-proprietorship",
      "slug": "phase-one/should-you-start-as-a-sole-proprietorship",
      "title": "Should You Start as a Sole Proprietorship",
@@ -1568,15 +1577,6 @@
      "title": "Step-by-Step Guide to IRC/ERC",
      "fullTitle": "Step-by-Step Guide to IRC/ERC",
      "description": "Step-by-Step Guide to IRC/ERC – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
-     "route": "/en/phase-one/private-limited-company-registration-step-by-step",
-     "slug": "phase-one/private-limited-company-registration-step-by-step",
-     "title": "Step-by-Step Private Limited Company Registration",
-     "fullTitle": "Step-by-Step Private Limited Company Registration",
-     "description": "Step-by-Step Private Limited Company Registration – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
      "date": "2026-07-07"
     },
@@ -1835,7 +1835,7 @@
    ],
    "title": "Phase 1 Roadmap",
    "total": 140,
-   "written": 3
+   "written": 6
   },
   "phase-three": {
    "slug": "phase-three",

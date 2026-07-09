@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 375,
-  "written": 56,
-  "stubs": 319
+  "written": 59,
+  "stubs": 316
  },
  "sections": {
   "company-types": {
@@ -605,13 +605,22 @@
    },
    "children": [
     {
+     "route": "/phase-one/private-limited-company-registration-step-by-step",
+     "slug": "phase-one/private-limited-company-registration-step-by-step",
+     "title": "ধাপে ধাপে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধন",
+     "fullTitle": "ধাপে ধাপে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধন",
+     "description": "নাম ছাড়পত্রের পর RJSC-তে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধনের প্রতিটি ধাপ: কাগজপত্র, ফি, অনলাইন জমা ও সার্টিফিকেট অব ইনকর্পোরেশন",
+     "stub": false,
+     "date": "2026-07-07"
+    },
+    {
      "route": "/phase-one/board-meetings-agm-and-minutes-basics",
      "slug": "phase-one/board-meetings-agm-and-minutes-basics",
      "title": "পরিচালনা পর্ষদ সভা, AGM ও মিনিটস বুক বেসিক",
      "fullTitle": "পরিচালনা পর্ষদ সভা, AGM ও মিনিটস বুক বেসিক",
      "description": "প্রাইভেট লিমিটেড কোম্পানির জন্য বোর্ড মিটিং, বার্ষিক সাধারণ সভা (AGM), রেজোলিউশন ও RJSC ফাইলিং কীভাবে সঠিকভাবে করবেন",
      "stub": false,
-     "date": null
+     "date": "2026-07-08"
     },
     {
      "route": "/phase-one/how-to-find-startup-ideas-in-bangladesh",
@@ -623,13 +632,31 @@
      "date": "2026-07-07"
     },
     {
+     "route": "/phase-one/share-capital-directors-and-shareholders-basics",
+     "slug": "phase-one/share-capital-directors-and-shareholders-basics",
+     "title": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার বেসিক",
+     "fullTitle": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার বেসিক",
+     "description": "অনুমোদিত বনাম পরিশোধিত মূলধন, পরিচালক ও শেয়ারহোল্ডারের সংখ্যাসীমা, শেয়ার বরাদ্দ ও হস্তান্তরের নিয়ম",
+     "stub": false,
+     "date": "2026-07-07"
+    },
+    {
+     "route": "/phase-one/memorandum-and-articles-of-association-basics",
+     "slug": "phase-one/memorandum-and-articles-of-association-basics",
+     "title": "স্মারকলিপি এবং সংঘবিধির মূল বিষয়াবলী",
+     "fullTitle": "স্মারকলিপি এবং সংঘবিধির মূল বিষয়াবলী",
+     "description": "MoA (Memorandum of Association) ও AoA (Articles of Association) কী, কোন কোন ক্লজ থাকতে হবে, এবং কেন টেমপ্লেট কপি-পেস্ট করা ঝুঁকিপূর্ণ",
+     "stub": false,
+     "date": "2026-07-07"
+    },
+    {
      "route": "/phase-one/rjsc-name-clearance",
      "slug": "phase-one/rjsc-name-clearance",
      "title": "RJSC নাম ছাড়পত্র কীভাবে নেবেন",
      "fullTitle": "RJSC নাম ছাড়পত্র কীভাবে নেবেন",
      "description": "কোম্পানি নিবন্ধনের প্রথম ধাপ হিসেবে RJSC থেকে নাম ছাড়পত্র (Name Clearance) নেওয়ার নিয়ম, ফি, সময়সীমা ও সাধারণ ভুল",
      "stub": false,
-     "date": "2026-07-07"
+     "date": "2026-07-08"
     },
     {
      "route": "/phase-one/audit-accounts-and-bookkeeping-setup",
@@ -1015,15 +1042,6 @@
      "title": "দোকান, বাজার ও মহল্লা পর্যবেক্ষণের ফিল্ড নোট টেমপ্লেট",
      "fullTitle": "দোকান, বাজার ও মহল্লা পর্যবেক্ষণের ফিল্ড নোট টেমপ্লেট",
      "description": "দোকান, বাজার ও মহল্লা পর্যবেক্ষণের ফিল্ড নোট টেমপ্লেট – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
-     "route": "/phase-one/private-limited-company-registration-step-by-step",
-     "slug": "phase-one/private-limited-company-registration-step-by-step",
-     "title": "ধাপে ধাপে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধন",
-     "fullTitle": "ধাপে ধাপে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধন",
-     "description": "ধাপে ধাপে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধন – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07"
     },
@@ -1577,15 +1595,6 @@
      "date": "2026-07-07"
     },
     {
-     "route": "/phase-one/share-capital-directors-and-shareholders-basics",
-     "slug": "phase-one/share-capital-directors-and-shareholders-basics",
-     "title": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার বেসিক",
-     "fullTitle": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার বেসিক",
-     "description": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার বেসিক – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
      "route": "/phase-one/certified-copies-and-returns-filing-basics",
      "slug": "phase-one/certified-copies-and-returns-filing-basics",
      "title": "সত্যায়িত অনুলিপি এবং রিটার্ন দাখিলের প্রাথমিক বিষয়াবলী",
@@ -1654,15 +1663,6 @@
      "title": "সিটি কর্পোরেশনভেদে ট্রেড লাইসেন্স ক্যাটেগরি বাছাই",
      "fullTitle": "সিটি কর্পোরেশনভেদে ট্রেড লাইসেন্স ক্যাটেগরি বাছাই",
      "description": "সিটি কর্পোরেশনভেদে ট্রেড লাইসেন্স ক্যাটেগরি বাছাই – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07"
-    },
-    {
-     "route": "/phase-one/memorandum-and-articles-of-association-basics",
-     "slug": "phase-one/memorandum-and-articles-of-association-basics",
-     "title": "স্মারকলিপি এবং সংঘবিধির মূল বিষয়াবলী",
-     "fullTitle": "স্মারকলিপি এবং সংঘবিধির মূল বিষয়াবলী",
-     "description": "স্মারকলিপি এবং সংঘবিধির মূল বিষয়াবলী – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07"
     },
@@ -1867,7 +1867,7 @@
    ],
    "title": "ধাপ ১ রোডম্যাপ",
    "total": 140,
-   "written": 3
+   "written": 6
   },
   "phase-three": {
    "slug": "phase-three",
