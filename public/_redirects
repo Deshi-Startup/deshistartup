@@ -1,4 +1,0 @@
-# Cloudflare Pages redirects. https://developers.cloudflare.com/pages/configuration/redirects/
-# Force the canonical apex host: 301 www.deshistartup.com/* -> deshistartup.com/*
-# (query strings are preserved automatically). Apex traffic is unaffected.
-https://www.deshistartup.com/* https://deshistartup.com/:splat 301
