@@ -16,7 +16,7 @@
  * in STYLE.md catches the rest.
  */
 
-import { readFileSync, readdirSync, statSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 
 const args = process.argv.slice(2)
@@ -90,6 +90,14 @@ const LATIN_ALLOW = new Set(
   ].map((w) => w.toLowerCase()),
 )
 
+// Soft: coined collocations — near-idioms nobody says on the phone (STYLE.md §2.14)
+const COINED = [
+  ['উত্তর সাজায়', '"তুলে ধরে" / "দেয়" লিখুন'],
+  ['পর্যন্ত সাজায়', '"পর্যন্ত নিয়ে যাবে" লিখুন'],
+  ['সাজিয়ে দেয়', 'অ্যাবস্ট্রাক্ট অর্থে হলে "নিয়ে যাবে" / "ধরে ধরে দেখাবে" লিখুন'],
+  ['সেটা ধরে ব্যাখ্যা', '"সেটা বুঝিয়ে বলা" / "ভেঙে ব্যাখ্যা করা" লিখুন'],
+]
+
 // Density notices per page (soft)
 const DENSITY = [
   [/এবং/g, 'এবং', 8, 'আর/ও ব্যবহার করুন বা বাক্য ভাঙুন (STYLE.md §2.8)'],
@@ -97,6 +105,7 @@ const DENSITY = [
   [/গুরুত্বপূর্ণ/g, 'গুরুত্বপূর্ণ', 2, 'জরুরি/দরকারি/কারণ বলুন (STYLE.md §3.3)'],
   [/[ঀ-৿]+ভাবে/g, '-ভাবে', 5, 'ক্রিয়া দিয়ে লিখুন (STYLE.md §2.7)'],
   [/ হলো /g, 'হলো', 6, '"X হলো Y" রিফ্লেক্স ভাঙুন (STYLE.md §2.4)'],
+  [/মানে শুধু/g, 'মানে শুধু', 1, 'এক পাতায় একবারই – আর সারকথা-ওপেনার হিসেবে সাইটজুড়ে ছাঁচ বানাবেন না (STYLE.md §2.11)'],
 ]
 
 // ---------------------------------------------------------------------------
@@ -169,6 +178,9 @@ function lintFile(file) {
     for (const [needle, fix] of OFFICIALESE) {
       if (line.includes(needle)) soft.push([no, `"${needle.trim()}" → ${fix}`])
     }
+    for (const [needle, fix] of COINED) {
+      if (line.includes(needle)) soft.push([no, `"${needle}" – বানানো কোলোকেশন, ফোন-টেস্টে ফেল → ${fix} (STYLE.md §2.14)`])
+    }
 
     // semicolon inside Bangla prose
     if (line.includes(';')) soft.push([no, 'বাংলা বাক্যে সেমিকোলন — দুই বাক্যে ভাঙুন (STYLE.md §4.3)'])
@@ -211,7 +223,13 @@ function lintFile(file) {
 // Run
 // ---------------------------------------------------------------------------
 
-const targets = fileArgs.length ? fileArgs : collectPages(BN_ROOT)
+// Bangla UI copy that lives outside app/(contents)/ — the homepage strings escaped every
+// sweep until 2026-07-11 reader feedback caught billboard-Bangla there (STYLE.md §2.12–2.14).
+const EXTRA_BN_SOURCES = ['app/components/WikiLanding.jsx', 'app/nav.config.js']
+
+const targets = fileArgs.length
+  ? fileArgs
+  : [...collectPages(BN_ROOT), ...EXTRA_BN_SOURCES.filter((f) => existsSync(f))]
 let hardTotal = 0
 let softTotal = 0
 let flaggedFiles = 0

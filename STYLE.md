@@ -2,7 +2,9 @@
 
 **Status: binding for every Bengali page, UI string, and description on this site.**
 Created 2026-07-08 after a language audit found that much of the content read like English
-thought translated into Bangla. This guide exists so that never happens again.
+thought translated into Bangla. Amended 2026-07-11 after reader feedback caught the *opposite*
+failure on the homepage – Bangla that reads like translated English ad copy (§2.12–2.14).
+This guide exists so neither happens again.
 
 Who this is for: every human contributor and every AI agent writing Bengali content here.
 Agents: read this file **before** writing or editing any Bangla. The short public version for
@@ -24,6 +26,16 @@ If not, rewrite it. Correct-but-unnatural is a failure.
 
 Our reader should never be able to smell an English original underneath. The moment they can,
 we sound foreign – and this project's entire moat is trust.
+
+There are **two ways to smell the English underneath**, and this file guards against both:
+
+1. **Gazette-Bangla** – translated English *prose*: যদি-chains, verbal nouns, bureaucratic
+   passives, এবং-chains (§2.1–2.9, §3.2).
+2. **Billboard-Bangla** – translated English *ad copy*: verbless mic-drop fragments, a site that
+   narrates itself with coined verbs, machine-confident claims (§2.12–2.14). Fixing the first
+   failure by writing ever-punchier fragments produces the second – that is exactly how the
+   2026-07 rewrite over-corrected. The target is neither register. It is a person, speaking in
+   complete sentences.
 
 **Anchor persona:** an experienced founder explaining things to a younger founder over tea –
 expert, direct, warm, zero pretension. Not a government notice (প্রজ্ঞাপন), not a textbook,
@@ -84,6 +96,10 @@ English stacks "which/that" clauses; Bangla splits into sentences or uses correl
 - ❌ এমন একটি সমস্যা বাছাই করুন যা মানুষ বারবার অনুভব করে এবং যেটি সমাধানের জন্য তারা টাকা দিতে রাজি।
 - ✅ এমন সমস্যা ধরুন, যেটায় মানুষ বারবার পড়ে। আর সমাধানের জন্য টাকা দিতেও রাজি থাকে।
 
+The ban is on *stacking*, not on the construction: a single যা/যেটা clause is native and welcome –
+"এই সাইট ব্যবহারিক জিনিস আপনাকে দেবে, যা আসলেই কাজে লাগবে।" Avoiding relative clauses entirely is
+its own over-correction.
+
 ### 2.4 Kill the "X হলো Y" definition reflex
 
 "The goal is… / The problem is… / The difference is…" produces an endless "…হলো…" drumbeat.
@@ -135,12 +151,25 @@ every sentence mirrors English syntax.
 - ❌ এটি আস্থা তৈরি করতে সাহায্য করে, কিন্তু এটি ব্যবসার জন্য ঝুঁকিও তৈরি করে।
 - ✅ এতে গ্রাহকের ভরসা বাড়ে ঠিকই, তবে ব্যবসার ঝুঁকিও বাড়ে।
 
+Pro-drop is for flow, **not amputation**. Splitting one thought at a দাঁড়ি and letting the second
+sentence dangle without its subject –
+
+- ❌ তাই এই সাইট বিদেশি পরামর্শ কপি করে না। বাংলাদেশে কীভাবে কাজ হয়, সেটা ধরে ব্যাখ্যা করে।
+
+– is an English staccato skeleton with the subject cut off, not pro-drop. Either join the clauses
+the Bangla way (…কপি না করে বরং … ব্যাখ্যা করার চেষ্টা করি) or give the second sentence its own
+subject. See §2.12–2.13 for the full homepage case.
+
 ### 2.10 Rhythm: short sentences, varied length, questions
 
 Translated prose runs at one uniform medium-long sentence length. Human Bangla breathes:
 a short sentence lands a point, a longer one explains it, a question pulls the reader in.
 
 - Most sentences under ~১৫-১৮ words; one idea per sentence.
+- **Short means a short *complete* sentence, never a verbless stub (§2.12).** A well-jointed
+  spoken sentence of ২০ words beats two amputated ones – the limit is breath and parse, not
+  word count. And uniform staccato is as much a tell as uniform length: if every sentence is
+  punchy-short, the page reads like a drum machine, i.e. like ad copy (§2.12).
 - Use direct questions freely – "তাহলে শুরু করবেন কোথা থেকে?" – and answer them.
 - Scenario openers are native style: "ধরুন, আপনি চট্টগ্রামে বসে হোমমেড খাবারের পেজ চালান।"
 - Discourse markers give the human voice – মানে, আসলে, সোজা কথায়, বাস্তবে, দেখা যায়,
@@ -150,6 +179,91 @@ a short sentence lands a point, a longer one explains it, a question pulls the r
 
 "Not only X but also Y" is a fine construction that the current content uses as a crutch.
 Same for "X নয়; বরং Y". Vary the rhetoric or state Y plainly.
+
+The same check applies **across pages**. The 2026-07 content grew one mold – "X মানে শুধু Y নয়…" –
+opening the সারকথা of eight-plus pages (১৪ uses site-wide). Each instance reads fine alone; a
+reader who opens two pages back to back hears a machine. Before publishing, compare your সারকথা's
+first sentence against the sibling pages' – same skeleton, recast it. `lint:bangla` flags
+"মানে শুধু" twice on one page; the cross-page echo only a human can hear.
+
+### 2.12 The ad-fragment trap – every sentence needs a subject and a predicate
+
+§2.1–2.9 catch translated English *prose*. This catches translated English *advertising* – the
+clipped mic-drop rhythm of a billboard, wearing Bangla words. Reader feedback (2026-07-11)
+caught it in the homepage hero:
+
+- ❌ দেশি স্টার্টআপ সেই "এখন কী করব?" প্রশ্নের সহজ বাংলা উত্তর সাজায়। অনুপ্রেরণার গল্প নয়, করার মতো কাজ।
+- ✅ দেশি স্টার্টআপ সেই "এখন কী করব?" প্রশ্নের উত্তর সহজ বাংলায় আপনার জন্য তুলে ধরে। অর্থাৎ শুধু
+  মোটিভেশনাল গল্প নয়, এই সাইট ব্যবহারিক সবকিছু আপনাকে দেবে, যা আসলেই আপনার কাজে লাগবে।
+
+"অনুপ্রেরণার গল্প নয়, করার মতো কাজ।" is "Not inspiration. Action." – a sentence that exists only
+in English advertising. The rules:
+
+1. **Every body sentence needs a subject–predicate pair.** A finite verb, or a natural
+   zero-copula equation – "ফান্ডিং জ্বালানি, ইঞ্জিন না।" is a full Bangla sentence (subject
+   ফান্ডিং, predicate জ্বালানি). What is banned is the *floating fragment with no subject at
+   all*, usually a "X নয়, Y।" contrast whose owner went missing.
+2. **Fragment license exists only in headings, table cells, and card/UI labels** – never in
+   body prose, never in a সারকথা.
+3. **Complete the contrast the Bangla way:** অর্থাৎ / বরং / মানে + a subject + a real verb, and
+   usually say who it's for (আপনাকে, আপনার কাজে লাগবে). The natural version is *longer* than
+   the fragment. That is fine – see §2.10: short means complete-and-short, not amputated.
+4. Note the unpacking in the ✅ above: the adjective pile "সহজ বাংলা উত্তর" ("plain-Bangla-answer")
+   became "উত্তর সহজ বাংলায় তুলে ধরে". When a noun phrase is doing a whole clause's work,
+   unpack it back into a clause – piled-up modifiers are headline compression, another ad habit.
+
+### 2.13 The site speaks as আমরা – self-description needs a human voice
+
+Where the site talks about itself – homepage, about, contribute, hub intros – three tells stack
+up fast, and all three come from English marketing copy:
+
+- ❌ তাই এই সাইট বিদেশি পরামর্শ কপি করে না। বাংলাদেশে কীভাবে কাজ হয়, সেটা ধরে ব্যাখ্যা করে।
+- ✅ তাই এই সাইটে আমরা সরাসরি বিদেশি পরামর্শ কপি না করে বরং বাংলাদেশে কীভাবে কাজ হয়, সেটা
+  ব্যাখ্যা করার চেষ্টা করি।
+
+Everything that changed is a rule:
+
+1. **আমরা exists.** English happily lets an inanimate narrator run a whole page ("this site
+   explains…", and the *English mirror may keep that* – this rule is Bangla-specific). In
+   Bangla, a page where সাইট/গাইড/পথ performs verb after verb reads like a robot introducing
+   itself. People wrote this site; আমরা is the honest, warm register of a Bangla FB/blog post.
+   Site-as-subject is fine *in moderation* with verbs a thing can plausibly do – "এই গাইড
+   আপনাকে পেমেন্ট অপশন মুখস্থ করাবে না" (§2.4), "এই পথ আপনাকে খালি আইডিয়া থেকে প্রথম যাচাই-করা
+   এমভিপি পর্যন্ত নিয়ে যাবে" – the failure is the *whole surface* narrated that way with no
+   আমরা anywhere.
+2. **Two amputated sentences became one flowing chain** (…না করে বরং… – see §2.9's amputation
+   note). Bangla joins contrasting actions with non-finite verbs; English splits them for punch.
+3. **The bald claim softened**: ব্যাখ্যা করে → ব্যাখ্যা করার চেষ্টা করি। About our own work,
+   modest phrasing (চেষ্টা করি, রাখার চেষ্টা করেছি) is how a trustworthy human writes; bald
+   capability statements are machine confidence. Instructions to the *reader* stay direct
+   ("ট্রেড লাইসেন্স করুন") – the hedge is for self-claims only, and one চেষ্টা করি per
+   paragraph is plenty.
+4. **The reader stays in the sentence**: আপনার জন্য, আপনাকে, আপনার কাজে লাগবে। §2.9 bans the
+   mechanical *possessive* আপনার echoing English "your" in every noun phrase – it does not ban
+   the reader as a person you are talking to. Ad-copy compression deletes the reader; spoken
+   Bangla keeps them.
+5. Related: the about page's impersonal passives about ourselves ("সূত্র দেওয়া হয়",
+   "দেখানো হয়") are §2.6's disease in self-description clothing. Prefer আমরা সূত্র দিই,
+   আমরা দেখাই।
+
+### 2.14 Coined collocations – the phone test
+
+Reaching for variety, AI writing coins near-idioms nobody says: উত্তর সাজায়, পথ সাজিয়ে দেয়,
+সেটা ধরে ব্যাখ্যা করে। Every word is Bangla; the *combination* is invented – and a native ear
+trips on it instantly. The test: **would you say this word-pair on the phone?** If you
+hesitate, use the plain verb: তুলে ধরা, দেখানো, বুঝিয়ে বলা, ধরিয়ে দেওয়া, নিয়ে যাওয়া, দেওয়া।
+
+- ❌ এই পথ যোগ্যতা যাচাই থেকে আবেদন ও পিচ পর্যন্ত সাজায়।
+- ✅ এই পথ আপনাকে যোগ্যতা যাচাই থেকে আবেদন ও পিচ পর্যন্ত নিয়ে যাবে।
+
+Two refinements:
+
+- The verb itself is usually innocent – সাজানো is perfect for arranging real things (হিসাব
+  গুগল শিটে সাজানো, টুলগুলো কাজ অনুযায়ী সাজানো). The misfire is the *abstract* object: an
+  answer, a path, a topic being "arranged". Concrete objects, real verbs.
+- Watch for **half-remembered idioms**: ধরে ধরে ব্যাখ্যা করা is a real idiom; "সেটা ধরে
+  ব্যাখ্যা করে" is its broken half. When a phrase feels *almost* right, recall the full idiom
+  or drop it – never publish the fragment of one.
 
 ---
 
@@ -325,13 +439,21 @@ Generic sentences localize nothing. Ground every page in the reader's actual wor
 - [ ] বাংলা সংখ্যা, টাকা লাখ/কোটিতে, ফি-তে সাল-স্ট্যাম্প
 - [ ] উদাহরণ, নাম, জায়গা, সিজন – সব বাংলাদেশি
 - [ ] অন্তত একটা সরাসরি প্রশ্ন বা "ধরুন…" দৃশ্য আছে (গাইড হলে)
+- [ ] প্রতিটি বাক্যে কর্তা-বিধেয় আছে – ভার্বহীন বিজ্ঞাপনী খণ্ডবাক্য শুধু হেডিং/কার্ডে (§2.12)
+- [ ] সাইট নিজের কথা বললে "আমরা" আছে, নিজের দাবি নরম (চেষ্টা করি), পাঠক বাক্যে হাজির (§2.13)
+- [ ] বানানো কোলোকেশন নেই – ফোন-টেস্টে আটকায় এমন শব্দজোড় বদলেছি (§2.14)
+- [ ] সারকথার প্রথম বাক্য পাশের পাতাগুলোর ছাঁচে ফেলা নয় (§2.11)
 
 Mechanical sweep for reviewers and agents – run `npm run lint:bangla`
 (`scripts/bangla-lint.mjs`), which flags: banned calques (§3.1), officialese (§3.2),
 em dashes anywhere in the file (hard ✖, §4.3), semicolons in Bangla text, Latin-script
-English words mid-sentence, Devanagari characters, এবং/এটি/গুরুত্বপূর্ণ/-ভাবে density, and
-English digits in Bangla prose. The linter is advisory – it catches the mechanical tells;
-the read-aloud test catches the rest.
+English words mid-sentence, Devanagari characters, এবং/এটি/গুরুত্বপূর্ণ/-ভাবে density,
+English digits in Bangla prose, known coined collocations (§2.14), and the "মানে শুধু"
+mold when it repeats within a page (§2.11). It also scans the Bangla strings in
+`app/components/WikiLanding.jsx` and `app/nav.config.js` – the homepage copy lives outside
+`app/(contents)/` and used to escape every sweep, which is exactly where the 2026-07-11
+findings hid. The linter is advisory – it catches the mechanical tells; the read-aloud test
+catches the rest.
 
 ---
 
@@ -352,3 +474,8 @@ a technical task; it is tied to…"). Semicolon, এটি, এবং-list – a
 
 Same information. But this one was *thought in Bangla* – the reader hears a person, not a
 translator.
+
+A second worked pair – the 2026-07-11 homepage feedback that reads like translated *ad copy*
+rather than translated prose – is annotated inside §2.12 and §2.13. Between the two examples:
+the first failure sounds like a ministry, the second like a billboard. Both get rewritten the
+same way – say it out loud to a friend, then write down what you said.
