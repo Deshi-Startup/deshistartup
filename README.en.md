@@ -9,7 +9,7 @@
 From idea validation to company registration, payments, first customers, and fundraising –
 practical, source-backed guides for every step, written Bangla-first with a full English mirror.
 
-**[বাংলা README →](./README.md)**
+**[বাংলা সংস্করণ →](./README.md)**
 
 ### 📖 [Read it at deshistartup.com →](https://deshistartup.com/en)
 

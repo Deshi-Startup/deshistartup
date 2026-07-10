@@ -1,13 +1,13 @@
 name: "🔴 ভুল বা পুরোনো তথ্য জানান · Report wrong or outdated info"
-description: "কোনো পাতায় ভুল, পুরোনো ফি, নষ্ট লিংক বা অস্পষ্ট ব্যাখ্যা চোখে পড়েছে? ২ মিনিটে জানান। · Spotted an error, stale fee, broken link, or unclear explanation? Report it in 2 minutes."
+description: "পাতার ভুল, পুরোনো ফি, নষ্ট লিংক বা গোলমেলে ব্যাখ্যা ২ মিনিটে জানান। · Report an error, stale fee, broken link, or unclear explanation in two minutes."
 title: "ভুল: "
 labels: ["ভুল তথ্য"]
 body:
   - type: markdown
     attributes:
       value: |
-        ধন্যবাদ! ভুল ধরিয়ে দেওয়া এই প্রজেক্টের সবচেয়ে মূল্যবান অবদানগুলোর একটি।
-        নিখুঁত করে লেখার দরকার নেই – যা জানেন, তা-ই লিখুন।
+        ধন্যবাদ! ভুল ধরিয়ে দিলে সবার কাজে লাগে।
+        গুছিয়ে লেখার দরকার নেই। যা জানেন, সেটুকুই লিখুন।
         *Thank you! Reporting mistakes is one of the most valuable contributions. Write in Bangla or English, whichever is easier.*
   - type: input
     id: page
@@ -21,13 +21,13 @@ body:
     id: what
     attributes:
       label: "কী ভুল? · What's wrong?"
-      description: "কোন তথ্য, ফি, লিংক বা বাক্যটি ভুল বা পুরোনো? · Which fact, fee, link, or sentence is wrong or outdated?"
+      description: "কোন তথ্য, ফি, লিংক বা বাক্য ভুল বা পুরোনো? · Which fact, fee, link, or sentence is wrong or outdated?"
     validations:
       required: true
   - type: textarea
     id: correct
     attributes:
-      label: "সঠিক তথ্যটা কী, সূত্রসহ? (জানলে) · Correct info + source (if known)"
-      description: "সরকারি পোর্টাল বা নির্ভরযোগ্য সূত্রের লিংক দিলে সবচেয়ে ভালো। না জানলেও সমস্যা নেই। · An official or credible source link helps most, but it's fine if you don't have one."
+      label: "সঠিক তথ্যটা জানা থাকলে লিখুন, সূত্রসহ · Correct info + source (if known)"
+      description: "সরকারি পোর্টাল বা ভরসার সূত্রের লিংক থাকলে দিন। না থাকলেও সমস্যা নেই। · An official or credible source link helps, but it's fine if you don't have one."
     validations:
       required: false

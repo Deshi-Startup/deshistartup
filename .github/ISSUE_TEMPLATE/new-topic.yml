@@ -6,8 +6,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        আগে [ব্যাকলগে](https://github.com/Deshi-Startup/deshistartup/blob/main/plan/content-backlog.csv) একবার খুঁজে দেখুন –
-        ৩৯০+ বিষয় ইতিমধ্যে পরিকল্পনায় আছে। · Please check the backlog first – 390+ topics are already planned.
+        আগে [ব্যাকলগে](https://github.com/Deshi-Startup/deshistartup/blob/main/plan/content-backlog.csv) খুঁজে দেখুন।
+        বিষয়টা আগে থেকেই আছে কি না, একবার মিলিয়ে নিন। · Please check whether the topic is already in the backlog.
   - type: input
     id: topic
     attributes:
@@ -18,7 +18,7 @@ body:
   - type: textarea
     id: why
     attributes:
-      label: "কেন দরকার? কে খুঁজবে এটা? · Why is it needed? Who would look for it?"
-      description: "বাস্তব পরিস্থিতিটা বলুন – কোন ফাউন্ডার, কোন মুহূর্তে এই প্রশ্নে আটকে যান? · Describe the real situation: which founder gets stuck on this, and when?"
+      label: "কার কখন এটা দরকার হবে? · Who needs it, and when?"
+      description: "বাস্তব পরিস্থিতিটা বলুন – কেমন ফাউন্ডার কখন এই প্রশ্নে আটকে পড়েন? · Describe the real situation: which founder gets stuck on this, and when?"
     validations:
       required: true
