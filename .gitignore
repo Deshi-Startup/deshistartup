@@ -15,6 +15,8 @@ Icon?
 
 knowledge-bank/
 context/
+# Generated on demand (npm run backlog:status) — regenerable, do not commit
+plan/status-report.md
 # Local experiments and artifacts
 .firecrawl/
 .vinext/
@@ -22,5 +24,4 @@ context/
 dist/
 workers/
 next-env.d.ts
-.localization-backup/
 CLAUDE.md

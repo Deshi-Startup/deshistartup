@@ -47,7 +47,7 @@ wiki-style shell (not the stock Nextra theme).
 - `app/generated/` - Build artifacts produced by `scripts/build-manifest.mjs` (`manifest.bn.json`, `manifest.en.json`, `sections-lite.json`, `seo-pages.json`). They are committed to git but must never be hand-edited; run `npm run manifest` (or any dev/build) to regenerate after content changes.
 - `app/nav.config.js` - Hand-curated top-level sidebar (`bnNav` / `enNav`). `app/nav-groups.json` - hand-curated thematic grouping of section-hub listings.
 - `public/` - Static assets used by the site, including the built Pagefind search index (`public/_pagefind`) and generated SEO/discovery files (`sitemap.xml`, `robots.txt`, `llms.txt`, IndexNow key, and route date maps). Do not hand-edit generated files; run `npm run manifest`.
-- `scripts/build-manifest.mjs` - regenerates the navigation manifests. `scripts/scrape.js` - scraping utility used to gather external ecosystem data. `scripts/rewrite-stubs.mjs` - one-time stub-migration helper.
+- `scripts/build-manifest.mjs` - regenerates the navigation manifests. `scripts/scrape.js` - scraping utility used to gather external ecosystem data.
 
 ## Site Structure
 
@@ -72,7 +72,7 @@ in this doc — they drift.** To see the current page inventory, read the manife
 
 1. Open `plan/content-backlog.csv` and filter for `Priority=High` rows whose site page is still a
    stub (a page containing a `<StubNotice ... />` line). Cross-check status against the manifests
-   (see also T4's `plan/status-report.md` once it exists).
+   (run `npm run backlog:status` to generate the local, git-ignored `plan/status-report.md`).
 2. Prefer topics whose `Notes` column gives you an angle to write from.
 3. Write the Bengali page first, then create the English mirror at the matching `/en/...` slug.
 4. Delete the `StubNotice` line **only** when the page is a real, finished guide — that single line

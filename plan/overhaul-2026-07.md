@@ -1,14 +1,16 @@
-# Overhaul plan — July 2026
+# Overhaul plan — July 2026 (✅ completed — archived record)
 
-Created 2026-07-07 from a full project audit (Fable session). This file is written so that **any
-capable model (Opus/Sonnet) can execute one task per session with zero extra context**. All
-audit conclusions and decisions are embedded below — do not re-derive or re-litigate them.
+**Status: every task T0–T12 is done** (T0–T11 on 2026-07-07/08, T12 on 2026-07-10). This file is
+kept as the historical record of the July 2026 docs & systems overhaul; **there is no open work in
+T1–T12**. Two parts are still live and referenced elsewhere: the **Locked decisions** below (scope,
+name/domain, license — also stated in `AGENTS.md`) remain binding, and the **"After this plan
+(ongoing)"** section at the very bottom holds the real forward-looking follow-ups (write the
+remaining stubs, secure the `.org`/trademark/Facebook page, deferred redesign polish).
 
-**How to execute:** start a session, say *"Execute task T\<N\> from `plan/overhaul-2026-07.md`,
-then stop."* Finish with a commit (suggested message given per task). **Do not push unless Shamir
-says so — pushing `main` deploys the live site.** Mark the task's checkbox here in the same commit.
-
-Recommended order: T1 → T2 → T3 → T4, then T5–T10 in any order. T11 is optional/later.
+Created 2026-07-07 from a full project audit (Fable session), written so any capable model could
+execute one task per session with zero extra context. *Historical execution note (no longer
+active):* tasks were run one per session ("Execute task T\<N\>…"), each closed with its own commit,
+and `main` was never pushed without Shamir's say-so, since pushing `main` deploys the live site.
 
 ---
 
