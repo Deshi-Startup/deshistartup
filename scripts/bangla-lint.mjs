@@ -84,7 +84,7 @@ const LATIN_ALLOW = new Set(
     // official body names & company suffixes legitimately written in Latin (§3.4 point 3)
     'Registrar', 'Joint', 'Stock', 'Companies', 'Firms', 'and', 'Ltd', 'Limited', 'com',
     'Canva', 'Wix', 'Framer', 'Notion', 'Trello', 'Slack', 'Zoom', 'Figma', 'Shikho',
-    'Shorts', 'Shop', 'Grameenphone', 'Robi', 'Banglalink',
+    'Shorts', 'Shop', 'Grameenphone', 'Robi', 'Banglalink', 'Fashol', 'iFarmer',
   ].map((w) => w.toLowerCase()),
 )
 
@@ -128,6 +128,7 @@ function preprocess(source) {
     if (/^\s*<[A-Za-z]/.test(line) && !BANGLA.test(line)) { keep.push(''); continue }
     line = line
       .replace(/`[^`]*`/g, ' ')             // inline code
+      .replace(/[“"]([A-Za-z][A-Za-z0-9 .&/+()'-]{1,80})[”"]/g, ' ') // quoted official portal/form labels
       .replace(/\]\([^)]*\)/g, '](url)')     // link targets
       .replace(/https?:\/\/\S+/g, ' ')       // bare URLs
       .replace(/\(([A-Za-z][^)ঀ-৿]{0,40})\)/g, ' ') // (english gloss) after a term

@@ -10,7 +10,7 @@ contributors lives on the `/contribute` page; this file is the full standard.
 
 **Companion standard:** [`EDITORIAL.md`](./EDITORIAL.md) governs what a page *teaches* and how
 (reader model, teaching loop, example policy, stories, actionability). This file governs how the
-Bangla *reads*. Both are binding – a page must pass both checklists (§7 here + EDITORIAL.md §11).
+Bangla *reads*. Both are binding – a page must pass both checklists (§7 here + EDITORIAL.md §12).
 
 ---
 

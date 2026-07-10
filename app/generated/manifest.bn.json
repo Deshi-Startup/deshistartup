@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 438,
-  "written": 65,
-  "stubs": 373
+  "written": 66,
+  "stubs": 372
  },
  "sections": {
   "case-studies": {
@@ -14,7 +14,7 @@
     "slug": "case-studies",
     "title": "কেস স্টাডি",
     "fullTitle": "কেস স্টাডি – বাংলাদেশি স্টার্টআপের বাস্তব গল্প থেকে শেখা",
-    "description": "বাংলাদেশের সফল ও ব্যর্থ স্টার্টআপগুলোর সোর্স-ভিত্তিক কেস স্টাডি – পাঠাও, বিকাশ, চালডাল ও আরও অনেকে কীভাবে শুরু করেছিল, কী কাজ করেছিল, কী করেনি এবং কেন।",
+    "description": "বাংলাদেশি স্টার্টআপের প্রকাশ্য সূত্রভিত্তিক কেস স্টাডি। প্রতিষ্ঠাতার বক্তব্য, কোম্পানির দাবি ও স্বাধীন তথ্য আলাদা রেখে কী শেখা যায়, তা দেখুন।",
     "stub": false,
     "date": "2026-07-08",
     "verified": null
@@ -25,7 +25,7 @@
      "slug": "case-studies/pathao",
      "title": "পাঠাও",
      "fullTitle": "পাঠাও",
-     "description": "পাঠাও কীভাবে ডেলিভারি এক্সপেরিমেন্ট থেকে বাংলাদেশি সুপার-অ্যাপ হলো, কোন স্থানীয় বাস্তবতা কাজে লাগিয়েছে, আর নতুন উদ্যোক্তারা কী শিখতে পারেন।",
+     "description": "পাঠাওয়ের ছোট ডেলিভারি পরীক্ষা থেকে বহু সেবার প্ল্যাটফর্ম হওয়ার গল্প, প্রকাশ্য সূত্রের সীমা এবং নতুন ফাউন্ডারের জন্য প্রযোজ্য শিক্ষা।",
      "stub": false,
      "date": "2026-07-10",
      "verified": null
@@ -383,9 +383,9 @@
     {
      "route": "/case-studies/fashol-vs-ifarmer-agritech-wedge-comparison",
      "slug": "case-studies/fashol-vs-ifarmer-agritech-wedge-comparison",
-     "title": "Fashol বনাম iFarmer: অ্যাগ্রিটেকের প্রথম বাজার দখলের তুলনা",
-     "fullTitle": "Fashol বনাম iFarmer: অ্যাগ্রিটেকের প্রথম বাজার দখলের তুলনা",
-     "description": "Fashol বনাম iFarmer: অ্যাগ্রিটেকের প্রথম বাজার দখলের তুলনা – দেশি স্টার্টআপের কেস স্টাডি তালিকায় আছে, কিন্তু লেখাটি এখনো সম্পূর্ণ হয়নি।",
+     "title": "Fashol বনাম iFarmer: শুরুর গ্রাহক ধরার কৌশল",
+     "fullTitle": "Fashol বনাম iFarmer: শুরুর গ্রাহক ধরার কৌশল",
+     "description": "Fashol ও iFarmer শুরুর দিকে কোন গ্রাহকগোষ্ঠী বেছে নিয়েছিল, তা নিয়ে তুলনামূলক কেস স্টাডি। বিষয়টি তালিকায় আছে, তবে লেখাটি এখনো সম্পূর্ণ হয়নি।",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -430,15 +430,15 @@
    "index": {
     "route": "/company-types",
     "slug": "company-types",
-    "title": "কোম্পানির ধরন",
-    "fullTitle": "কোম্পানির ধরন – একক মালিকানা, অংশীদারি না প্রাইভেট লিমিটেড?",
-    "description": "বাংলাদেশে ব্যবসার কাঠামো বাছাইয়ের সহজ গাইড: দায়, খরচ, ফান্ডিং, ব্যাংক, পেমেন্ট, কর, কমপ্লায়েন্স ও বড় হওয়ার পরিকল্পনা।",
+    "title": "ব্যবসা একা চালাবেন, অংশীদার নেবেন, না কোম্পানি খুলবেন?",
+    "fullTitle": "ব্যবসা একা চালাবেন, অংশীদার নেবেন, না কোম্পানি খুলবেন?",
+    "description": "একক মালিকানা, অংশীদারি না প্রাইভেট লিমিটেড? দেনার দায়, মালিকানা আর ভবিষ্যৎ পরিকল্পনা দেখে সিদ্ধান্ত নিন।",
     "stub": false,
     "date": "2026-07-10",
-    "verified": "2026-07-07"
+    "verified": "2026-07-10"
    },
    "children": [],
-   "title": "কোম্পানির ধরন",
+   "title": "ব্যবসা একা চালাবেন, অংশীদার নেবেন, না কোম্পানি খুলবেন?",
    "total": 0,
    "written": 0
   },
@@ -483,7 +483,7 @@
     "slug": "directory",
     "title": "ডিরেক্টরি",
     "fullTitle": "ডিরেক্টরি – বাংলাদেশি স্টার্টআপ ইকোসিস্টেমের যাচাই করা তালিকা",
-    "description": "ইনভেস্টর, অ্যাক্সেলারেটর, প্রোগ্রাম ও সহায়তা সংস্থার স্ট্রাকচার্ড ডিরেক্টরি – JSON ডেটা থেকে তৈরি।",
+    "description": "ইনভেস্টর, অ্যাক্সেলারেটর ও স্টার্টআপ সহায়তা প্রোগ্রামের সূত্র-সহ তালিকা। স্টেজ, খাত ও সর্বশেষ যাচাইয়ের তারিখ দেখে নিজের জন্য প্রাসঙ্গিক এন্ট্রি বাছুন।",
     "stub": false,
     "date": "2026-07-08",
     "verified": null
@@ -519,15 +519,15 @@
    "index": {
     "route": "/e-tin-vat-bin",
     "slug": "e-tin-vat-bin",
-    "title": "e-TIN, VAT ও BIN",
-    "fullTitle": "e-TIN, VAT ও BIN – কর ও ভ্যাট পরিচয়ের সহজ গাইড",
-    "description": "বাংলাদেশে টিআইএন, ভ্যাট, বিআইএন, রিটার্ন, ইনভয়েস, হিসাব রাখা ও পেমেন্ট মেলানোর ব্যবহারিক বাংলা গাইড।",
+    "title": "e-TIN, VAT ও BIN: কোনটা কখন লাগবে",
+    "fullTitle": "e-TIN, VAT ও BIN: কোনটা কখন লাগবে",
+    "description": "টিআইএন, রিটার্ন জমার প্রমাণ, ভ্যাট নিবন্ধন ও বিআইএনের পার্থক্য। নিজের অবস্থার সঙ্গে মিলিয়ে সঠিক বিস্তারিত গাইড বেছে নিন।",
     "stub": false,
     "date": "2026-07-10",
-    "verified": "2026-07-07"
+    "verified": "2026-07-10"
    },
    "children": [],
-   "title": "e-TIN, VAT ও BIN",
+   "title": "e-TIN, VAT ও BIN: কোনটা কখন লাগবে",
    "total": 0,
    "written": 0
   },
@@ -564,12 +564,12 @@
     {
      "route": "/founder-life/women-founder-constraints-safety-client-meetings-travel-visibility",
      "slug": "founder-life/women-founder-constraints-safety-client-meetings-travel-visibility",
-     "title": "নারী উদ্যোক্তার বাস্তবতা",
-     "fullTitle": "নারী উদ্যোক্তার বাস্তবতা – নিরাপত্তা, ক্লায়েন্ট মিটিং, যাতায়াত ও সামনে আসা",
-     "description": "বাংলাদেশে নারী ফাউন্ডারদের জন্য ব্যবহারিক গাইড: পরিবারের সম্মতি, নিরাপদ ক্লায়েন্ট মিটিং, যাতায়াত ও ডেলিভারি, অনলাইনে হয়রানি সামলানো, আর ব্যবসা নিজের নামে রাখা।",
+     "title": "নারী ফাউন্ডারের বাস্তবতা: নিরাপত্তা, মিটিং, যাতায়াত ও মালিকানা",
+     "fullTitle": "নারী ফাউন্ডারের বাস্তবতা: নিরাপত্তা, মিটিং, যাতায়াত ও মালিকানা",
+     "description": "বাংলাদেশে নারী ফাউন্ডারের জন্য ব্যবহারিক গাইড: পরিবারের সঙ্গে আলোচনা, নিরাপদ ক্লায়েন্ট মিটিং, অনলাইন হয়রানির প্রমাণ, জরুরি সহায়তা ও ব্যবসার মালিকানা ঠিক রাখা।",
      "stub": false,
      "date": "2026-07-10",
-     "verified": null
+     "verified": "2026-07-10"
     },
     {
      "route": "/founder-life/what-to-say-at-eidwedding-gatherings-when-relatives-ask-if-this-is-a-job",
@@ -716,7 +716,7 @@
     "description": "নিজের টাকা, পরিবার, গ্র্যান্ট, অ্যাঞ্জেল, ভিসি, ব্যাংক ঋণ – বাংলাদেশে স্টার্টআপ ফান্ডিংয়ের পথগুলো এক পাতায়। কোন পর্যায়ে কোনটা মানায়, ইনভেস্টর কী দেখে, কী প্রস্তুতি লাগে।",
     "stub": false,
     "date": "2026-07-10",
-    "verified": null
+    "verified": "2026-07-10"
    },
    "children": [],
    "title": "ফান্ডিং রোডম্যাপ",
@@ -1178,9 +1178,9 @@
     {
      "route": "/phase-four/university-e-cell-outreach-playbook",
      "slug": "phase-four/university-e-cell-outreach-playbook",
-     "title": "বিশ্ববিদ্যালয় E-cell-এর সঙ্গে যোগাযোগ প্লেবুক",
-     "fullTitle": "বিশ্ববিদ্যালয় E-cell-এর সঙ্গে যোগাযোগ প্লেবুক",
-     "description": "বিশ্ববিদ্যালয় E-cell-এর সঙ্গে যোগাযোগ প্লেবুক – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "title": "বিশ্ববিদ্যালয়ের উদ্যোক্তা ক্লাবের সঙ্গে যোগাযোগের প্লেবুক",
+     "fullTitle": "বিশ্ববিদ্যালয়ের উদ্যোক্তা ক্লাবের সঙ্গে যোগাযোগের প্লেবুক",
+     "description": "বিশ্ববিদ্যালয়ের উদ্যোক্তা ক্লাবের সঙ্গে যোগাযোগের প্লেবুক – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-08",
      "verified": null
@@ -1324,44 +1324,24 @@
    },
    "children": [
     {
-     "route": "/phase-one/e-tin-guide",
-     "slug": "phase-one/e-tin-guide",
-     "title": "ই-টিআইএন গাইড",
-     "fullTitle": "ই-টিআইএন গাইড",
-     "description": "e-TIN কী, কার এটা লাগবে, আর NBR-এর অনলাইন পোর্টালে ব্যক্তি ও কোম্পানির e-TIN রেজিস্ট্রেশনের পুরো প্রক্রিয়া",
+     "route": "/phase-one/turnover-tax-and-vat-threshold-explainer",
+     "slug": "phase-one/turnover-tax-and-vat-threshold-explainer",
+     "title": "৩০ লাখ না ৮০ লাখ: টার্নওভার কর ও ভ্যাটের সীমা",
+     "fullTitle": "৩০ লাখ না ৮০ লাখ: টার্নওভার কর ও ভ্যাটের সীমা",
+     "description": "১২ মাসের বিক্রি থেকে টার্নওভার হিসাব, ৩০ লাখ ও ৮০ লাখ টাকার সীমা, ৩% টার্নওভার কর, এবং বিশেষ খাতের আলাদা নিবন্ধন পরীক্ষা।",
      "stub": false,
      "date": "2026-07-09",
-     "verified": null
+     "verified": "2026-07-10"
     },
     {
      "route": "/phase-one/when-vat-registration-is-required",
      "slug": "phase-one/when-vat-registration-is-required",
-     "title": "কখন ভ্যাট নিবন্ধন প্রয়োজন",
-     "fullTitle": "কখন ভ্যাট নিবন্ধন প্রয়োজন",
-     "description": "টার্নওভার যতই কম হোক, কোন ব্যবসাগুলোর জন্য ভ্যাট নিবন্ধন (BIN) প্রথম দিন থেকেই বাধ্যতামূলক, আর কোনগুলো টার্নওভার একটি সীমা ছাড়ালেই বাধ্যতামূলক হয়",
+     "title": "কখন পূর্ণ ভ্যাট নিবন্ধন, কখন টার্নওভার কর",
+     "fullTitle": "কখন পূর্ণ ভ্যাট নিবন্ধন, কখন টার্নওভার কর",
+     "description": "৮০ লাখ ও ৩০ লাখ টাকার সীমা, টার্নওভার-নির্বিশেষে বিশেষ তালিকা, BIN ব্যবহারের কাজ, এবং স্বেচ্ছা নিবন্ধনের দায় বুঝে সিদ্ধান্ত নিন।",
      "stub": false,
      "date": "2026-07-09",
-     "verified": null
-    },
-    {
-     "route": "/phase-one/turnover-tax-and-vat-threshold-explainer",
-     "slug": "phase-one/turnover-tax-and-vat-threshold-explainer",
-     "title": "টার্নওভার ট্যাক্স ও ভ্যাট থ্রেশহোল্ড ব্যাখ্যা",
-     "fullTitle": "টার্নওভার ট্যাক্স ও ভ্যাট থ্রেশহোল্ড ব্যাখ্যা",
-     "description": "বাংলাদেশে কোন টার্নওভারের পর ভ্যাট নিবন্ধন বাধ্যতামূলক হয়, কোন সীমার মধ্যে সহজ টার্নওভার ট্যাক্স প্রযোজ্য, স্ট্যান্ডার্ড ভ্যাট রেট কত, আর প্রতি বছর বাজেটে এই সংখ্যাগুলো কীভাবে বদলায়",
-     "stub": false,
-     "date": "2026-07-09",
-     "verified": null
-    },
-    {
-     "route": "/phase-one/private-limited-company-registration-step-by-step",
-     "slug": "phase-one/private-limited-company-registration-step-by-step",
-     "title": "ধাপে ধাপে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধন",
-     "fullTitle": "ধাপে ধাপে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধন",
-     "description": "নাম ছাড়পত্রের পর RJSC-তে প্রাইভেট লিমিটেড কোম্পানি নিবন্ধনের প্রতিটি ধাপ: কাগজপত্র, ফি, অনলাইন জমা ও সার্টিফিকেট অব ইনকর্পোরেশন",
-     "stub": false,
-     "date": "2026-07-09",
-     "verified": null
+     "verified": "2026-07-10"
     },
     {
      "route": "/phase-one/board-meetings-agm-and-minutes-basics",
@@ -1371,14 +1351,24 @@
      "description": "প্রাইভেট লিমিটেড কোম্পানির জন্য বোর্ড মিটিং, বার্ষিক সাধারণ সভা (AGM), রেজোলিউশন ও RJSC ফাইলিং নিয়ম মেনে কীভাবে করবেন",
      "stub": false,
      "date": "2026-07-09",
-     "verified": null
+     "verified": "2026-07-10"
+    },
+    {
+     "route": "/phase-one/private-limited-company-registration-step-by-step",
+     "slug": "phase-one/private-limited-company-registration-step-by-step",
+     "title": "প্রাইভেট লিমিটেড কোম্পানি রেজিস্ট্রেশন: ধাপে ধাপে",
+     "fullTitle": "প্রাইভেট লিমিটেড কোম্পানি রেজিস্ট্রেশন: ধাপে ধাপে",
+     "description": "নাম ছাড়পত্রের পর মালিকানা ঠিক করা, MoA/AoA ও RJSC ফর্ম বানানো, বর্তমান সরকারি ফি বোঝা, আবেদন জমা আর সার্টিফিকেট নামানো।",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": "2026-07-10"
     },
     {
      "route": "/phase-one/how-to-find-startup-ideas-in-bangladesh",
      "slug": "phase-one/how-to-find-startup-ideas-in-bangladesh",
      "title": "বাংলাদেশে স্টার্টআপ আইডিয়া খুঁজে পাওয়ার বাস্তব উপায়",
      "fullTitle": "বাংলাদেশে স্টার্টআপ আইডিয়া খুঁজে পাওয়ার বাস্তব উপায়",
-     "description": "বাংলাদেশে স্টার্টআপ আইডিয়া কোথায় লুকিয়ে থাকে – অগোছালো খাত, দেশি সংস্করণ, বিটুবি, নিজের সমস্যা আর নীতির ঢেউ – বাস্তব উদাহরণসহ।",
+     "description": "আইডিয়ার তালিকা নয়, মানুষের বারবার হওয়া সমস্যার খাতা বানান। সাত দিনে সমস্যা খোঁজা, দশটি আলাপ আর প্রথম পরীক্ষার ছক।",
      "stub": false,
      "date": "2026-07-10",
      "verified": null
@@ -1386,62 +1376,72 @@
     {
      "route": "/phase-one/personal-e-tin-vs-company-tin",
      "slug": "phase-one/personal-e-tin-vs-company-tin",
-     "title": "ব্যক্তিগত e-TIN বনাম কোম্পানি TIN",
-     "fullTitle": "ব্যক্তিগত e-TIN বনাম কোম্পানি TIN",
-     "description": "কেন একটি নতুন প্রাইভেট লিমিটেড কোম্পানির নিজস্ব TIN লাগে, ব্যক্তিগত e-TIN ও কোম্পানি TIN আসলে কোন কোন কাজে ব্যবহৃত হয়, এবং দুটো গুলিয়ে ফেলার সাধারণ ভুল কীভাবে এড়াবেন।",
+     "title": "ব্যক্তিগত e-TIN নাকি কোম্পানি TIN: কোন কাজে কোনটি",
+     "fullTitle": "ব্যক্তিগত e-TIN নাকি কোম্পানি TIN: কোন কাজে কোনটি",
+     "description": "ফাউন্ডারের ব্যক্তিগত আয় আর কোম্পানির আয় আলাদা রাখবেন কীভাবে, কোন লেনদেনে কোন TIN, আর রিটার্ন জমার প্রমাণ কোথায় লাগতে পারে।",
      "stub": false,
      "date": "2026-07-09",
-     "verified": null
-    },
-    {
-     "route": "/phase-one/vatbin-guide",
-     "slug": "phase-one/vatbin-guide",
-     "title": "ভ্যাট/বিন নির্দেশিকা",
-     "fullTitle": "ভ্যাট/বিন নির্দেশিকা",
-     "description": "VAT ও BIN আসলে কী, TIN থেকে কীভাবে আলাদা, আর NBR-এর vat.gov.bd পোর্টালে BIN রেজিস্ট্রেশনের পুরো প্রক্রিয়া – কাগজপত্র থেকে সার্টিফিকেট পর্যন্ত",
-     "stub": false,
-     "date": "2026-07-10",
-     "verified": null
+     "verified": "2026-07-10"
     },
     {
      "route": "/phase-one/mushak-63-invoice-and-vat-documentation-basics",
      "slug": "phase-one/mushak-63-invoice-and-vat-documentation-basics",
-     "title": "মূসক ৬.৩ চালান ও VAT ডকুমেন্টেশন বেসিক",
-     "fullTitle": "মূসক ৬.৩ চালান ও VAT ডকুমেন্টেশন বেসিক",
-     "description": "মূসক ৬.৩ VAT চালানে কী কী তথ্য থাকতে হবে, কবে ও কাকে ইস্যু করতে হবে, আর এর সাথে সম্পর্কিত অন্য মূসক ফর্মগুলো (৬.১, ৬.২, ৬.৫, ৬.৬) কীভাবে আলাদা",
+     "title": "মূসক-৬.৩ চালান: কোন ঘরে কী লিখবেন",
+     "fullTitle": "মূসক-৬.৩ চালান: কোন ঘরে কী লিখবেন",
+     "description": "মূসক-৬.৩ কখন দেবেন, ২৫,০০০ টাকার বেশি সরবরাহে ক্রেতার তথ্য, ভ্যাটের অঙ্ক, কপি, সিরিয়াল এবং সম্পর্কিত মূসক ফর্ম।",
      "stub": false,
      "date": "2026-07-09",
-     "verified": null
-    },
-    {
-     "route": "/phase-one/memorandum-and-articles-of-association-basics",
-     "slug": "phase-one/memorandum-and-articles-of-association-basics",
-     "title": "মেমোরান্ডাম ও আর্টিকেলস অব অ্যাসোসিয়েশন (MoA/AoA) বেসিক",
-     "fullTitle": "মেমোরান্ডাম ও আর্টিকেলস অব অ্যাসোসিয়েশন (MoA/AoA) বেসিক",
-     "description": "MoA (Memorandum of Association) ও AoA (Articles of Association) কী, কোন কোন ক্লজ থাকতে হবে, আর কেন টেমপ্লেট কপি-পেস্ট করা ঝুঁকিপূর্ণ",
-     "stub": false,
-     "date": "2026-07-09",
-     "verified": null
+     "verified": "2026-07-10"
     },
     {
      "route": "/phase-one/share-capital-directors-and-shareholders-basics",
      "slug": "phase-one/share-capital-directors-and-shareholders-basics",
-     "title": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার বেসিক",
-     "fullTitle": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার বেসিক",
-     "description": "অনুমোদিত বনাম পরিশোধিত মূলধন, পরিচালক ও শেয়ারহোল্ডারের সংখ্যাসীমা, শেয়ার বরাদ্দ ও হস্তান্তরের নিয়ম",
+     "title": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার: অঙ্কগুলো মিলান",
+     "fullTitle": "শেয়ার ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডার: অঙ্কগুলো মিলান",
+     "description": "অথরাইজড, ইস্যুড ও পেইড-আপ ক্যাপিটাল, পরিচালক ও শেয়ারহোল্ডারের আলাদা ভূমিকা, শেয়ার বরাদ্দ, হস্তান্তর ও মালিকানা কমে যাওয়ার হিসাব।",
      "stub": false,
      "date": "2026-07-09",
-     "verified": null
+     "verified": "2026-07-10"
+    },
+    {
+     "route": "/phase-one/vatbin-guide",
+     "slug": "phase-one/vatbin-guide",
+     "title": "BIN আবেদন: মূসক-২.১ পূরণের আগে যা মিলাবেন",
+     "fullTitle": "BIN আবেদন: মূসক-২.১ পূরণের আগে যা মিলাবেন",
+     "description": "৯ সংখ্যার BIN, পূর্ণ ভ্যাট নিবন্ধন ও টার্নওভার করের তালিকাভুক্তির ফারাক, মূসক-২.১ আবেদন এবং সনদ পাওয়ার পরের কাজ।",
+     "stub": false,
+     "date": "2026-07-10",
+     "verified": "2026-07-10"
+    },
+    {
+     "route": "/phase-one/e-tin-guide",
+     "slug": "phase-one/e-tin-guide",
+     "title": "e-TIN: কার নামে নেবেন, কীভাবে নেবেন",
+     "fullTitle": "e-TIN: কার নামে নেবেন, কীভাবে নেবেন",
+     "description": "ব্যক্তি ও কোম্পানির e-TIN আলাদা কেন, TIN আর রিটার্ন জমার প্রমাণের ফারাক, এবং NBR পোর্টালে আবেদন করার আগে কী মিলিয়ে নেবেন।",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": "2026-07-10"
+    },
+    {
+     "route": "/phase-one/memorandum-and-articles-of-association-basics",
+     "slug": "phase-one/memorandum-and-articles-of-association-basics",
+     "title": "MoA ও AoA: সই করার আগে কী বুঝবেন",
+     "fullTitle": "MoA ও AoA: সই করার আগে কী বুঝবেন",
+     "description": "MoA আর AoA-তে কোন সিদ্ধান্তগুলো থাকে, ৫০:৫০ মালিকানায় কোথায় অচলাবস্থা হয়, আর RJSC-তে দেওয়ার আগে কোন প্রশ্নগুলোর উত্তর মিলিয়ে নেবেন।",
+     "stub": false,
+     "date": "2026-07-09",
+     "verified": "2026-07-10"
     },
     {
      "route": "/phase-one/rjsc-name-clearance",
      "slug": "phase-one/rjsc-name-clearance",
-     "title": "RJSC নাম ছাড়পত্র কীভাবে নেবেন",
-     "fullTitle": "RJSC নাম ছাড়পত্র কীভাবে নেবেন",
-     "description": "কোম্পানি নিবন্ধনের প্রথম ধাপ হিসেবে RJSC থেকে নাম ছাড়পত্র (Name Clearance) নেওয়ার নিয়ম, ফি, সময়সীমা ও সাধারণ ভুল",
+     "title": "RJSC থেকে কোম্পানির নাম ছাড়পত্র কীভাবে নেবেন",
+     "fullTitle": "RJSC থেকে কোম্পানির নাম ছাড়পত্র কীভাবে নেবেন",
+     "description": "নাম খোঁজা, ১–১০টি প্রস্তাব দেওয়া, বর্তমান ফি, ৩০ দিনের মেয়াদ আর ছাড়পত্র পাওয়ার পরের কাজ।",
      "stub": false,
      "date": "2026-07-09",
-     "verified": null
+     "verified": "2026-07-10"
     },
     {
      "route": "/phase-one/audit-accounts-and-bookkeeping-setup",
@@ -1786,9 +1786,9 @@
     {
      "route": "/phase-one/checklist-for-starting-a-travel-agency-or-tour-operator",
      "slug": "phase-one/checklist-for-starting-a-travel-agency-or-tour-operator",
-     "title": "ট্রাভেল এজেন্সি বা tour operator ব্যবসা শুরুর চেকলিস্ট",
-     "fullTitle": "ট্রাভেল এজেন্সি বা tour operator ব্যবসা শুরুর চেকলিস্ট",
-     "description": "ট্রাভেল এজেন্সি বা tour operator ব্যবসা শুরুর চেকলিস্ট – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "title": "ট্রাভেল এজেন্সি বা ট্যুর অপারেটর ব্যবসা শুরুর চেকলিস্ট",
+     "fullTitle": "ট্রাভেল এজেন্সি বা ট্যুর অপারেটর ব্যবসা শুরুর চেকলিস্ট",
+     "description": "ট্রাভেল এজেন্সি বা ট্যুর অপারেটর ব্যবসা শুরুর চেকলিস্ট – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -2154,6 +2154,16 @@
      "verified": null
     },
     {
+     "route": "/phase-one/co-founder-equity-splits-and-vesting-in-bangladesh",
+     "slug": "phase-one/co-founder-equity-splits-and-vesting-in-bangladesh",
+     "title": "বাংলাদেশে কো-ফাউন্ডারদের ইকুইটি ভাগ ও ভেস্টিং",
+     "fullTitle": "বাংলাদেশে কো-ফাউন্ডারদের ইকুইটি ভাগ ও ভেস্টিং",
+     "description": "বাংলাদেশে কো-ফাউন্ডারদের ইকুইটি ভাগ ও ভেস্টিং – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
+     "stub": true,
+     "date": "2026-07-07",
+     "verified": null
+    },
+    {
      "route": "/phase-one/how-to-size-a-market-in-bangladesh",
      "slug": "phase-one/how-to-size-a-market-in-bangladesh",
      "title": "বাংলাদেশে বাজারের আকার কীভাবে নির্ধারণ করবেন",
@@ -2179,16 +2189,6 @@
      "title": "বাংলাদেশে B2C বনাম B2B বনাম B2B2C",
      "fullTitle": "বাংলাদেশে B2C বনাম B2B বনাম B2B2C",
      "description": "বাংলাদেশে B2C বনাম B2B বনাম B2B2C – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
-    },
-    {
-     "route": "/phase-one/co-founder-equity-splits-and-vesting-in-bangladesh",
-     "slug": "phase-one/co-founder-equity-splits-and-vesting-in-bangladesh",
-     "title": "বাংলাদেশে co-founder equity split ও vesting",
-     "fullTitle": "বাংলাদেশে co-founder equity split ও vesting",
-     "description": "বাংলাদেশে co-founder equity split ও vesting – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-07",
      "verified": null
@@ -4354,7 +4354,7 @@
     "description": "বাংলাদেশে ব্যবসা নিবন্ধনের সহজ বাংলা গাইড: একক মালিকানা, অংশীদারি, প্রাইভেট লিমিটেড, RJSC, ট্রেড লাইসেন্স, টিআইএন, ভ্যাট/বিআইএন, ব্যাংক ও নিবন্ধনের পরের কাজ।",
     "stub": false,
     "date": "2026-07-10",
-    "verified": "2026-07-07"
+    "verified": "2026-07-10"
    },
    "children": [],
    "title": "ব্যবসা নিবন্ধন",
@@ -4366,15 +4366,15 @@
    "index": {
     "route": "/rjsc-name-clearance",
     "slug": "rjsc-name-clearance",
-    "title": "RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন",
-    "fullTitle": "RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন",
-    "description": "বাংলাদেশে প্রাইভেট লিমিটেড কোম্পানি করার আগে RJSC নাম ছাড়পত্র, নাম বাছাই, কাগজপত্র, আবেদন ও সাধারণ ভুল নিয়ে সহজ বাংলা গাইড।",
+    "title": "RJSC নাম ছাড়পত্র ও কোম্পানি নিবন্ধন: কোন গাইডে যাবেন",
+    "fullTitle": "RJSC নাম ছাড়পত্র ও কোম্পানি নিবন্ধন: কোন গাইডে যাবেন",
+    "description": "নাম ছাড়পত্র আর কোম্পানি নিবন্ধন এক কাজ নয়। কোন ধাপে কী করবেন এবং বিস্তারিত নির্দেশনা কোথায় পাবেন, তার ছোট পথনির্দেশ।",
     "stub": false,
     "date": "2026-07-10",
-    "verified": "2026-07-07"
+    "verified": "2026-07-10"
    },
    "children": [],
-   "title": "RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন",
+   "title": "RJSC নাম ছাড়পত্র ও কোম্পানি নিবন্ধন: কোন গাইডে যাবেন",
    "total": 0,
    "written": 0
   },
@@ -4404,8 +4404,8 @@
     {
      "route": "/start-here/founder-readiness-checklist",
      "slug": "start-here/founder-readiness-checklist",
-     "title": "প্রতিষ্ঠাতা হিসেবে আপনি প্রস্তুত কি না: চেকলিস্ট",
-     "fullTitle": "প্রতিষ্ঠাতা হিসেবে আপনি প্রস্তুত কি না: চেকলিস্ট",
+     "title": "ফাউন্ডার হিসেবে আপনি প্রস্তুত কি না: চেকলিস্ট",
+     "fullTitle": "ফাউন্ডার হিসেবে আপনি প্রস্তুত কি না: চেকলিস্ট",
      "description": "ব্যবসায় নামার আগে পাঁচ জায়গায় নিজেকে যাচাই করুন: দক্ষতা, সময়, টাকা, পরিবার আর মন। ২০টা টিকের সৎ চেকলিস্ট, ফাঁকা ঘরগুলো মেটানোর কাজের তালিকাসহ।",
      "stub": false,
      "date": "2026-07-10",
@@ -4414,8 +4414,8 @@
     {
      "route": "/start-here/founder-path-chooser",
      "slug": "start-here/founder-path-chooser",
-     "title": "প্রতিষ্ঠাতা হিসেবে কোন পথে শুরু করবেন",
-     "fullTitle": "প্রতিষ্ঠাতা হিসেবে কোন পথে শুরু করবেন",
+     "title": "ফাউন্ডার হিসেবে কোন পথে শুরু করবেন",
+     "fullTitle": "ফাউন্ডার হিসেবে কোন পথে শুরু করবেন",
      "description": "এই সাইটের শত শত পাতার মধ্যে আপনার এখন লাগবে মোটে তিন-চারটা। ছয়টা চেনা পরিস্থিতি থেকে নিজেরটা মিলিয়ে নিন, কোন পাতা কোন ক্রমে পড়বেন তা সাজানো আছে।",
      "stub": false,
      "date": "2026-07-10",
@@ -4434,9 +4434,19 @@
     {
      "route": "/start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh",
      "slug": "start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh",
-     "title": "বাংলাদেশে স্টার্টআপ শুরু করার ৩০ দিনের রোডম্যাপ",
-     "fullTitle": "বাংলাদেশে স্টার্টআপ শুরু করার ৩০ দিনের রোডম্যাপ",
-     "description": "৩০ দিনে আইডিয়া থেকে প্রথম পেইড কাস্টমার – বাংলাদেশের বাস্তবতায় সপ্তাহ ধরে ধরে, দিন ধরে ধরে স্টার্টআপ শুরুর রোডম্যাপ।",
+     "title": "বাংলাদেশে স্টার্টআপ শুরুর ৩০ দিনের রোডম্যাপ",
+     "fullTitle": "বাংলাদেশে স্টার্টআপ শুরুর ৩০ দিনের রোডম্যাপ",
+     "description": "৩০ দিনে বড় পণ্য নয়, সমস্যার প্রমাণ, দামসহ ছোট অফার আর সত্যিকারের গ্রাহকের প্রতিশ্রুতি খুঁজুন। সপ্তাহ ধরে কাজের ছক।",
+     "stub": false,
+     "date": "2026-07-10",
+     "verified": null
+    },
+    {
+     "route": "/start-here/bangladesh-startup-ecosystem-overview",
+     "slug": "start-here/bangladesh-startup-ecosystem-overview",
+     "title": "বাংলাদেশের স্টার্টআপ ইকোসিস্টেম: কোথা থেকে শুরু করবেন",
+     "fullTitle": "বাংলাদেশের স্টার্টআপ ইকোসিস্টেম: কোথা থেকে শুরু করবেন",
+     "description": "ইকোসিস্টেম শব্দটা যত ভারী, ঢোকার দরজা তত সহজ। নতুন ফাউন্ডার কোন দরজায় কখন টোকা দেবেন: কমিউনিটি আজই, প্রোগ্রাম স্টেজ মিললে, ইনভেস্টর প্রমাণ হাতে এলে।",
      "stub": false,
      "date": "2026-07-10",
      "verified": null
@@ -4446,7 +4456,7 @@
      "slug": "start-here/should-you-build-a-startup-or-a-normal-business",
      "title": "স্টার্টআপ করবেন, নাকি সাধারণ ব্যবসা?",
      "fullTitle": "স্টার্টআপ করবেন, নাকি সাধারণ ব্যবসা?",
-     "description": "স্টার্টআপ না সাধারণ ব্যবসা, কোন পথ আপনার? আইডিয়ার গড়ন, পকেটের রানওয়ে আর ঝুঁকি সইবার ক্ষমতা মিলিয়ে সিদ্ধান্ত নেওয়ার পাঁচ প্রশ্নের বাস্তব ছক, টাকার হিসাবসহ।",
+     "description": "আইডিয়ার বড় হওয়ার পথ, সংসারের রানওয়ে, মালিকানা আর ঝুঁকি দেখে ঠিক করুন কোন ধরনের ব্যবসা আপনার জীবনের সঙ্গে মানায়।",
      "stub": false,
      "date": "2026-07-10",
      "verified": null
@@ -4456,27 +4466,27 @@
      "slug": "start-here/what-is-a-startup",
      "title": "স্টার্টআপ কী?",
      "fullTitle": "স্টার্টআপ কী?",
-     "description": "স্টার্টআপ মানে কী, সাধারণ ব্যবসার সঙ্গে পার্থক্য কোথায়, সরকারি খাতায় সংজ্ঞা কী, আর আপনার উদ্যোগটা আসলেই স্টার্টআপ কি না – বাস্তব উদাহরণসহ সহজ বাংলায়।",
+     "description": "নতুন ব্যবসা আর স্টার্টআপ এক জিনিস নয়। কোন মডেল দ্রুত বড় হতে পারে, স্কেল মানে কী, আর নিজের আইডিয়াকে কীভাবে যাচাই করবেন।",
      "stub": false,
      "date": "2026-07-10",
-     "verified": null
+     "verified": "2026-07-10"
     },
     {
      "route": "/start-here/glossary-bangla-english-startup-jargon-dictionary",
      "slug": "start-here/glossary-bangla-english-startup-jargon-dictionary",
      "title": "স্টার্টআপ শব্দকোষ: বাংলা-ইংরেজি টার্মস",
      "fullTitle": "স্টার্টআপ শব্দকোষ: বাংলা-ইংরেজি টার্মস",
-     "description": "ইনভেস্টর মিটিং, স্টার্টআপ আড্ডা বা এই সাইট পড়ার সময় যে ইংরেজি টার্মগুলো সামনে পড়বে, তার সহজ বাংলা মানে। পাঁচ ভাগে সাজানো ৪৫টা টার্ম, এক-দুই লাইনে।",
+     "description": "ইনভেস্টর মিটিং, স্টার্টআপ আড্ডা বা এই সাইট পড়ার সময় যে ইংরেজি টার্মগুলো সামনে পড়বে, তার সহজ বাংলা মানে। পাঁচ ভাগে সাজানো ৫০টি টার্ম।",
      "stub": false,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
      "route": "/start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh",
      "slug": "start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh",
-     "title": "স্টার্টআপ, এসএমই, এজেন্সি ও ই-কমার্স ব্যবসার পার্থক্য",
-     "fullTitle": "স্টার্টআপ, এসএমই, এজেন্সি ও ই-কমার্স ব্যবসার পার্থক্য",
-     "description": "স্টার্টআপ, এসএমই, এজেন্সি আর ই-কমার্স – কোনটা কী, পার্থক্য কোথায়, বাংলাদেশে কোনটায় কী বদলায়, আর আপনার জন্য কোনটা ঠিক। সরকারি সংজ্ঞা আর বাস্তব উদাহরণসহ।",
+     "title": "স্টার্টআপ, এসএমই, এজেন্সি আর ই-কমার্সের পার্থক্য",
+     "fullTitle": "স্টার্টআপ, এসএমই, এজেন্সি আর ই-কমার্সের পার্থক্য",
+     "description": "চারটি নাম একই ধরনের পরিচয় নয়। আপনি কী বেচেন, কোথায় বেচেন আর কীভাবে বড় হবেন, সেই তিন প্রশ্নে নিজের ব্যবসাকে চিনুন।",
      "stub": false,
      "date": "2026-07-10",
      "verified": null
@@ -4490,21 +4500,11 @@
      "stub": true,
      "date": "2026-07-07",
      "verified": null
-    },
-    {
-     "route": "/start-here/bangladesh-startup-ecosystem-overview",
-     "slug": "start-here/bangladesh-startup-ecosystem-overview",
-     "title": "বাংলাদেশের স্টার্টআপ ইকোসিস্টেম: কোথা থেকে শুরু করবেন",
-     "fullTitle": "বাংলাদেশের স্টার্টআপ ইকোসিস্টেম: কোথা থেকে শুরু করবেন",
-     "description": "বাংলাদেশের স্টার্টআপ ইকোসিস্টেম: কোথা থেকে শুরু করবেন – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-07",
-     "verified": null
     }
    ],
    "title": "শুরু করুন",
    "total": 11,
-   "written": 9
+   "written": 10
   },
   "tools": {
    "slug": "tools",
@@ -4513,7 +4513,7 @@
     "slug": "tools",
     "title": "টেমপ্লেট ও টুলস",
     "fullTitle": "টেমপ্লেট ও টুলস – চেকলিস্ট, স্ক্রিপ্ট, ক্যালকুলেটর ও ট্র্যাকার",
-    "description": "দেশি স্টার্টআপের ব্যবহারযোগ্য টেমপ্লেট, চেকলিস্ট, স্ক্রিপ্ট, ক্যালকুলেটর ও ট্র্যাকার এক জায়গায় – যাচাই, নিবন্ধন, বিক্রি, ফান্ডিং ও অপারেশনের জন্য।",
+    "description": "দেশি স্টার্টআপের কাজে লাগার মতো টেমপ্লেট, চেকলিস্ট, স্ক্রিপ্ট, ক্যালকুলেটর ও ট্র্যাকার এক জায়গায় – যাচাই, নিবন্ধন, বিক্রি, ফান্ডিং ও দৈনন্দিন কাজের জন্য।",
     "stub": false,
     "date": "2026-07-08",
     "verified": null

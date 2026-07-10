@@ -71,8 +71,9 @@ Recommended order: T1 → T2 → T3 → T4, then T5–T10 in any order. T11 is o
   `localHref()` / `NEXT_PUBLIC_BASE_PATH` mechanisms; bn pages link `/slug`, en pages `/en/slug`.
 - Bangla style: সহজ প্রচলিত বাংলা, "আপনি" register, Bengali numerals (০-৯) in Bangla prose,
   English business terms transliterated (ট্রেড লাইসেন্স, ভ্যাট), explain each new term at first use,
-  year-stamp every fee/number ("২০২৬ সালের হিসাবে…"), cite sources for legal/fee claims,
-  no invented deep links — root/section URLs from `plan/sources.csv` only.
+  year-stamp every fee/number ("২০২৬ সালের হিসাবে…"), cite sources for legal/fee claims. Source
+  lists use root/section URLs from `plan/sources.csv`; load-bearing data may link an exact stable
+  report/dataset only after that link is verified and recorded in the registry. Never invent one.
 - Article pages stay near-zero JS (~150 KB critical path). Calculators (future) and the directory
   (T6) are the sanctioned exceptions — still no heavy libraries.
 - After content/structural changes: `npm run manifest`; before finishing: `npm run build`

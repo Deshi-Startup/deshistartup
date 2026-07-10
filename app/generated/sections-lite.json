@@ -1,11 +1,11 @@
 {
  "bn": {
   "case-studies": "কেস স্টাডি",
-  "company-types": "কোম্পানির ধরন",
+  "company-types": "ব্যবসা একা চালাবেন, অংশীদার নেবেন, না কোম্পানি খুলবেন?",
   "contribute": "কীভাবে অবদান রাখবেন",
   "customers": "গ্রাহক খোঁজা",
   "directory": "ডিরেক্টরি",
-  "e-tin-vat-bin": "e-TIN, VAT ও BIN",
+  "e-tin-vat-bin": "e-TIN, VAT ও BIN: কোনটা কখন লাগবে",
   "ecosystem-overview": "বাংলাদেশের স্টার্টআপ ইকোসিস্টেম",
   "founder-life": "উদ্যোক্তার জীবন",
   "funding-roadmap": "ফান্ডিং রোডম্যাপ",
@@ -18,43 +18,43 @@
   "phase-three": "ধাপ ৩ রোডম্যাপ",
   "phase-two": "ধাপ ২ রোডম্যাপ",
   "registration": "ব্যবসা নিবন্ধন",
-  "rjsc-name-clearance": "RJSC / নাম ছাড়পত্র / কোম্পানি নিবন্ধন",
+  "rjsc-name-clearance": "RJSC নাম ছাড়পত্র ও কোম্পানি নিবন্ধন: কোন গাইডে যাবেন",
   "start-here": "শুরু করুন",
   "tools": "টেমপ্লেট ও টুলস",
   "trade-license": "ট্রেড লাইসেন্স"
  },
  "bnCounts": {
   "pages": 438,
-  "written": 65,
-  "stubs": 373
+  "written": 66,
+  "stubs": 372
  },
  "en": {
   "case-studies": "Case Studies",
-  "company-types": "Company Types",
+  "company-types": "Should You Trade Alone, Take Partners, or Form a Company?",
   "contribute": "How to Contribute",
-  "customers": "Finding Customers",
+  "customers": "Finding Customers: First Sales and Trust in Bangladesh",
   "directory": "Directory",
-  "e-tin-vat-bin": "e-TIN, VAT and BIN",
-  "ecosystem-overview": "Bangladesh Startup Ecosystem Overview",
-  "founder-life": "Founder Life",
+  "e-tin-vat-bin": "e-TIN, VAT and BIN: What You Need and When",
+  "ecosystem-overview": "Bangladesh Startup Ecosystem: Who Does What",
+  "founder-life": "Founder Life: Work, Pressure, Family, Team and Self-care",
   "funding-roadmap": "Funding Roadmap",
   "idea-validation": "Idea Validation",
   "journeys": "Journeys",
-  "legal-roadmap": "Legal Roadmap",
-  "payments": "Payment Systems",
+  "legal-roadmap": "Legal Roadmap: From Idea to Formal Business",
+  "payments": "Payments: MFS, Bank, Cards and Cash on Delivery",
   "phase-four": "Phase 4 Roadmap",
   "phase-one": "Phase 1 Roadmap",
   "phase-three": "Phase 3 Roadmap",
   "phase-two": "Phase 2 Roadmap",
-  "registration": "Business Registration",
-  "rjsc-name-clearance": "RJSC / Name Clearance / Company Registration",
-  "start-here": "Start Here",
+  "registration": "Business Registration: When, How and Which Structure",
+  "rjsc-name-clearance": "RJSC Name Clearance and Company Registration: Where to Go",
+  "start-here": "Start Here: Building a Startup or Small Business in Bangladesh",
   "tools": "Templates & Tools",
-  "trade-license": "Trade License"
+  "trade-license": "Trade License: Local Permission to Operate"
  },
  "enCounts": {
   "pages": 438,
-  "written": 65,
-  "stubs": 373
+  "written": 66,
+  "stubs": 372
  }
 }

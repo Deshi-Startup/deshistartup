@@ -135,8 +135,10 @@ translationese patterns found on this site. The essentials:
 - **Adapt, don't translate.** Copyrighted third-party work (YC, Stripe, LightCastle and similar) must
   be *adapted* — teach the ideas in our own Bangla and cite the source; never translate or copy it.
   Government/official sources may be used freely with citation.
-- Use `## প্রাসঙ্গিক সূত্র` (Bangla) / `## Relevant Sources` (English) for source lists. Use only
-  root/section URLs from `plan/sources.csv` — never invent deep links.
+- Use `## প্রাসঙ্গিক সূত্র` (Bangla) / `## Relevant Sources` (English) for source lists, with
+  root/section URLs from `plan/sources.csv`. For a load-bearing data claim or figure, a stable exact
+  report/dataset link is allowed only after it has been verified and recorded in that registry.
+  Never guess or invent deep links. See `EDITORIAL.md` §8.3.
 - `/start-here` is the bar for depth and tone. Match it.
 - Before finishing any Bangla page, run `npm run lint:bangla` (`scripts/bangla-lint.mjs`) and
   clear the hard (✖) findings; then run the STYLE.md §7 read-aloud checklist — the linter only
@@ -153,7 +155,7 @@ plain definition → one দেশি metaphor → worked টাকা example �
 legal rules translated into "আপনার জন্য এর মানে" decision language, a concrete next action with
 কোথায়/কী লাগবে/খরচ/সময়, one memorable থাম্ব রুল per page, inline source attribution, and an
 absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass the EDITORIAL.md
-§11 checklist alongside STYLE.md §7 before it is done.
+§12 checklist alongside STYLE.md §7 before it is done.
 
 ## Content & Editorial Guidelines
 

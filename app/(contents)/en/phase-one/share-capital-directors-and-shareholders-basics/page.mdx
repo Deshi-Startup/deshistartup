@@ -1,52 +1,165 @@
 ---
-title: "Share Capital, Directors, and Shareholders Basics"
-description: "Authorized vs. paid-up capital, director and shareholder count limits, and the rules for allotting and transferring shares"
+title: "Share Capital, Directors, and Shareholders: Reconcile the Numbers"
+description: "Understand authorised, issued, and paid-up capital, separate director and shareholder roles, and record allotments, transfers, and dilution."
+verified: 2026-07-10
 ---
 
-# Share Capital, Directors, and Shareholders Basics
+# Share Capital, Directors, and Shareholders: Reconcile the Numbers
 
-> **Key Takeaway:** The numbers you write into the MoA/AoA (authorized capital, number of directors and shareholders) have real consequences later, at the bank, when hiring foreign staff, and when shares change hands. Understanding this mechanics upfront avoids getting stuck later.
+> **Key Takeaway:** Authorised capital is the ceiling for share issues. Issued capital is the shares the company has allotted. Paid-up capital is what the company has actually received against those shares. Directors manage the company, while shareholders own its shares. One person can hold both roles, but the votes and records are different. A new allotment increases total shares. A transfer changes the owner of existing shares.
 
-## 1. Authorized vs. Paid-up Capital
+Suppose Sumiya has 600 shares and Rafi has 400. The company later issues 250 new shares to an investor. Sumiya still has 600 shares, but her ownership falls from 60% to:
 
-- **Authorized Capital:** The maximum value of shares the company is allowed to issue. It's stated in the MoA and doesn't all need to be issued at once.
-- **Paid-up Capital:** The amount shareholders have actually put into the company in exchange for shares.
+```text
+600 ÷ 1,250 = 48%
+```
 
-For a local company, there's no legally mandated minimum for authorized or paid-up capital. But getting work permits for foreign employees usually requires the company's paid-up capital to be at least around USD 100,000, so keep that figure in mind if you're planning to hire foreign staff.
+No shares were taken from her. Her percentage fell because the total increased. This is dilution.
 
-## 2. Directors
+---
 
-A private limited company needs at least 2 directors, who can be local or foreign nationals. Appointing or changing a director requires notifying RJSC via Form XII (see [Board Meetings, AGM, and Minutes Book Basics](../phase-one/board-meetings-agm-and-minutes-basics) for the filing deadline).
+## Four Capital Boxes
 
-Removing a director against their will may require a shareholder resolution or, in some cases, court intervention, so it's worth keeping the director-removal rules clear in the AoA.
+| Term | Plain meaning | What it is not |
+|---|---|---|
+| **Authorised capital** | Maximum nominal value of shares permitted by the MoA | Cash in the bank |
+| **Issued capital** | Nominal value of shares actually allotted | Necessarily equal to the authorised amount |
+| **Called-up capital** | Amount requested so far against issued shares | An uncalled balance |
+| **Paid-up capital** | Amount actually received from shareholders | Every deposit made by a founder |
 
-## 3. Shareholders
+Suppose authorised capital is BDT 1 million and each share has a BDT 10 face value. The ceiling is:
 
-A private limited company can have a minimum of 2 and a maximum of 50 shareholders (excluding employee-shareholders). Cross that limit and the company is no longer "private." If you're bringing in many people through an ESOP or a small angel round, keep count of this number.
+```text
+BDT 1,000,000 ÷ 10 = 100,000 shares
+```
 
-- **Allotment:** After issuing new shares, you must file a return of allotment with RJSC on Form XV within 60 days.
-- **Transfer:** Moving existing shares from one shareholder to another requires filling out Form 117 (Instrument of Transfer), paying stamp duty at a set rate on the share value, and updating the company's share register and share certificates.
+If the company initially issues 20,000 shares and collects the full BDT 10 per share:
+
+```text
+Issued capital = 20,000 × 10 = BDT 200,000
+Paid-up capital = BDT 200,000
+Unused authorised capacity = BDT 800,000
+```
+
+Writing BDT 1 million of authorised capital does not require depositing BDT 1 million. Conversely, a BDT 200,000 founder deposit is not automatically paid-up capital. The allotment, member register, receipt, and filing must classify it consistently. Otherwise, it may be a founder loan.
+
+---
+
+## How Much Authorised Capital?
+
+Leave room for foreseeable share issues, but do not choose a very large figure merely for appearance. Some RJSC registration fees and stamps vary with authorised capital. Increasing it later can require a resolution, MoA change, and RJSC filing.
+
+The Companies Act does not state one general minimum paid-up amount for every ordinary company. A bank, regulated sector, licence, foreign investment, or foreign-employee permission may impose a separate condition. Do not present such a condition as the Companies Act's universal minimum. Check the current policy of the authority that applies.
+
+---
+
+## Directors and Shareholders Have Different Jobs
+
+| Role | Function | Typical vote |
+|---|---|---|
+| **Director** | Manages the company and makes board decisions | Board meeting |
+| **Shareholder** | Holds ownership and makes member decisions | General meeting or written member resolution |
+
+A founder can be both a director and shareholder. Yet “I own 60%, so I decide everything at the board” is not necessarily true. Read the AoA rules for board quorum, voting, reserved matters, and appointments.
+
+A private company needs at least two directors. RJSC's official FAQ says Form XII for a new director or changed particulars is filed within 14 days. Form IX, the director's consent, is filed within 30 days of appointment. Keep the decision date, consent, board or member resolution, and forms together.
+
+---
+
+## The 2-to-50 Member Limit
+
+At least two people form a private company. The Companies Act definition caps members at 50, with exclusions for certain employee members and former employees who remained members. Joint holders of one or more shares count as one member for this purpose.
+
+An ESOP gives employees an option to acquire shares in future. Granting an option is not the same as allotting the shares. Recalculate the member count after an allotment places a name in the register of members.
+
+---
+
+## What Changes in a New Allotment?
+
+In an allotment, the company creates and gives new shares. This can:
+
+- Increase total shares
+- Dilute existing percentages
+- Bring money into the company
+- Use authorised capacity
+- Require approvals under the AoA and earlier agreements
+- Require Form XV at RJSC
+
+RJSC's official FAQ says Form XV is filed within 60 days of the allotment. Do not treat day 60 as the day to begin. Prepare the approval, evidence of funds, share count, member register, and certificates from the allotment date.
+
+### Dilution Table
+
+| Owner | Before | After new issue | New percentage |
+|---|---:|---:|---:|
+| Sumiya | 600 | 600 | 48% |
+| Rafi | 400 | 400 | 32% |
+| Investor | 0 | 250 | 20% |
+| **Total** | **1,000** | **1,250** | **100%** |
+
+Do not derive 250 shares merely from “20%” in a term sheet. The number changes depending on whether the percentage is pre-money or post-money and whether an option pool is created before or after the investment.
+
+---
+
+## What Changes in a Transfer?
+
+A transfer does not create shares. One holder transfers existing shares to another. If Rafi sells 100 shares to Sumiya, the total remains 1,000. The company does not receive the sale price unless there is a separate transaction.
+
+Before a transfer, check:
+
+1. Whether the AoA requires a first offer to other members
+2. Whether board approval is required
+3. Whether Form 117, the instrument of transfer, is complete
+4. Whether current stamp duty has been paid
+5. Whether the member register and share certificates have been updated
+6. Whether the agreement and payment evidence are retained
+
+Saying “I gave away the shares” does not change the register of members.
+
+---
+
+## Maintain a Cap Table
+
+A capitalisation table records who owns how many shares. Keep at least:
+
+| Name | Share class | Shares | Face value | Paid-up | Ownership % | Certificate |
+|---|---|---:|---:|---:|---:|---|
+|  |  |  |  |  |  |  |
+
+After every allotment or transfer, reconcile the cap table, member register, certificates, bank records, and RJSC form on the same day. A 60:40 split in one record and 50:50 in another will surface during the next investment.
 
 ## Common Mistakes
 
-- Keeping paid-up capital too low despite planning to hire foreign staff, which causes problems at work-permit time.
-- Not filing Form XV within 60 days of issuing new shares.
-- Treating a share transfer as done on a verbal agreement, without Form 117, stamp duty, or an updated share register, which causes ownership disputes later.
-- Losing track of the shareholder count through an angel round or ESOP and crossing the 50-shareholder limit.
+- Treating authorised capital as cash in the bank
+- Recording a founder deposit as paid-up capital without an allotment decision
+- Treating director and shareholder votes as the same
+- Failing to calculate dilution before a new issue
+- Missing the 60-day Form XV filing period
+- Increasing total shares during a transfer
+- Omitting Form 117, stamp, member register, or certificate work
+- Treating an ESOP option as an allotted share
 
 ## Checklist
 
-- [ ] Authorized capital matches your actual plans
-- [ ] Paid-up capital requirement known if you're planning to hire foreign staff
-- [ ] Director and shareholder counts within legal limits (2+ directors, 2-50 shareholders)
-- [ ] Plan in place to file Form XV within 60 days of any new share issuance
-- [ ] Correct share transfer process (Form 117, stamp duty, register update) understood
+- [ ] Know the authorised, issued, and paid-up figures separately
+- [ ] Share money reconciles with bank and company records
+- [ ] Separated director and shareholder decision rules
+- [ ] Checked the two-director and 2-to-50-member rules
+- [ ] Prepared a dilution table before a new issue
+- [ ] Calendar Form XV within 60 days of allotment
+- [ ] Reconciled the AoA, Form 117, stamp, and register for a transfer
+- [ ] Cap table and RJSC records show the same figures
+
+Rule of thumb: **Keep the share numbers identical in four places: cap table, member register, bank records, and RJSC filings.**
 
 ## Next Steps
 
-Alongside these basics, read [Memorandum and Articles of Association Basics](../phase-one/memorandum-and-articles-of-association-basics) and [Co-founder Equity Splits and Vesting in Bangladesh](../phase-one/co-founder-equity-splits-and-vesting-in-bangladesh). Always verify your specific situation with a company secretary or corporate lawyer.
+- To reconcile constitutional documents: [MoA and AoA](../phase-one/memorandum-and-articles-of-association-basics)
+- To decide the founder split: [Co-founder Equity and Vesting](../phase-one/co-founder-equity-splits-and-vesting-in-bangladesh)
+- To incorporate: [Private Limited Registration](../phase-one/private-limited-company-registration-step-by-step)
 
 ## Relevant Sources
 
-- [RJSC](https://roc.gov.bd)
-- [Companies Act, 1994 (Laws of Bangladesh)](http://bdlaws.minlaw.gov.bd/act-788.html)
+- [Companies Act, 1994](https://bdlaws.minlaw.gov.bd/act-print-788.html)
+- [RJSC FAQ: forms and filing periods](https://app1.roc.gov.bd/Guidlines/faq.html)
+- [RJSC Form XV](https://app1.roc.gov.bd/Guidlines/Download/FORM_XV.htm)
+- [RJSC current fees](https://app1.roc.gov.bd/psp/RJSC_Fees)
