@@ -10,6 +10,7 @@ for *what to build and write next*. The site content itself lives in `app/(conte
 | File | What it is |
 |---|---|
 | `overhaul-2026-07.md` | **Active task plan** — docs & systems overhaul. Execute tasks in order. |
+| `vision.md` | Long-form vision & content spec: purpose, principles, audiences, quality rules, AI direction (moved out of `README.md` 2026-07-10 when the README became the contributor front door). |
 | `content-backlog.csv` | Canonical content backlog: 393 topics with section, Bangla/English titles, content type, priority, notes. A topic is "written" when its site page exists without a `<StubNotice />`. |
 | `sources.csv` | Tiered source registry (63 sources): who to trust for what, with URLs. Use when adding sources to any page. |
 | `case-study-format.md` | The 15-field format every startup case study must follow. |

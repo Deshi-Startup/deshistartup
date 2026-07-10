@@ -73,7 +73,7 @@ export const bnNav = [
       ['/about', 'পরিচিতি ও সম্পাদকীয় নীতি'],
       ['/contribute', 'কীভাবে অবদান রাখবেন'],
       [REPO_URL, 'GitHub-এ দেখুন'],
-      [`${REPO_URL}/issues/new`, 'ভুল জানান']
+      [`${REPO_URL}/issues/new?template=report-mistake.yml`, 'ভুল জানান']
     ]
   }
 ]
@@ -144,7 +144,7 @@ export const enNav = [
       ['/en/about', 'About & editorial policy'],
       ['/en/contribute', 'How to contribute'],
       [REPO_URL, 'View on GitHub'],
-      [`${REPO_URL}/issues/new`, 'Report a mistake']
+      [`${REPO_URL}/issues/new?template=report-mistake.yml`, 'Report a mistake']
     ]
   }
 ]

@@ -227,9 +227,10 @@ export default function LocalizedLayout({ children }) {
   const dateLabel = formatDate(lastUpdated, isEn)
   const verifiedLabel = formatDate(lastVerified, isEn)
   const pageUrl = `https://deshistartup.com${pathname}`
-  const issueUrl = `${REPO_URL}/issues/new?title=${encodeURIComponent(
-    (isEn ? 'Problem: ' : 'ভুল/পরামর্শ: ') + (pageTitle || pathname)
-  )}&body=${encodeURIComponent((isEn ? 'Page: ' : 'পাতা: ') + pageUrl + '\n\n')}`
+  // Targets the report-mistake issue form; `page` prefills the form field with that id.
+  const issueUrl = `${REPO_URL}/issues/new?template=report-mistake.yml&title=${encodeURIComponent(
+    (isEn ? 'Mistake: ' : 'ভুল: ') + (pageTitle || pathname)
+  )}&page=${encodeURIComponent(pageUrl)}`
 
   return (
     <>
@@ -379,7 +380,7 @@ export default function LocalizedLayout({ children }) {
         <div>
           {isEn
             ? 'Deshi Startup – an open, Bangladesh-specific founder operating manual, written together, free for everyone.'
-            : 'দেশি স্টার্টআপ – বাংলাদেশি ফাউন্ডারদের জন্য খোলা, বাস্তব গাইড। সবাই মিলে লেখা, সবার জন্য ফ্রি।'}
+            : 'দেশি স্টার্টআপ – বাংলাদেশি ফাউন্ডারদের জন্য উন্মুক্ত, বাস্তব গাইড। সবাই মিলে লেখা, সবার জন্য ফ্রি।'}
         </div>
         <div className="footer-links">
           <a href={localHref(isEn ? '/en/start-here' : '/start-here')}>{isEn ? 'Start here' : 'শুরু করুন'}</a>
