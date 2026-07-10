@@ -171,6 +171,7 @@ Same for "X নয়; বরং Y". Vary the rhetoric or state Y plainly.
 | আইনগত পথনির্দেশনা | আইনি রোডম্যাপ / আইনি প্রস্তুতি | Stiff + calque |
 | যাত্রা (journey-এর বাংলা হিসেবে সর্বত্র) | পথ / ধাপ / অভিজ্ঞতা – বা বাদ | Startup-blog cliché |
 | গেম চেঞ্জার-জাতীয় রূপক অনুবাদ | বাংলায় ভাবা বাক্য | Idioms never translate |
+| খোলা জ্ঞানভাণ্ডার / খোলা প্রজেক্ট | উন্মুক্ত জ্ঞানভাণ্ডার / ওপেন-সোর্স প্রজেক্ট | Adjectival "open" calque – nobody says খোলা জ্ঞানভাণ্ডার (reader feedback, 2026-07-10) |
 
 ### 3.2 Formality downshift – same meaning, human word
 
