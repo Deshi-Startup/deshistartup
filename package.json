@@ -17,6 +17,10 @@
     "prebuild": "node scripts/build-manifest.mjs"
   },
   "dependencies": {
+    "@milkdown/crepe": "^7.21.2",
+    "@milkdown/kit": "^7.21.2",
+    "@milkdown/react": "^7.21.2",
+    "jose": "^6.2.3",
     "next": "^15.1.3",
     "nextra": "^4.0.0",
     "nextra-theme-docs": "^4.0.0",

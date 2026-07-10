@@ -1714,3 +1714,417 @@ a.is-stub-link:hover {
     text-decoration: underline;
   }
 }
+
+/* --------------------------------------------------- contribution editor */
+/* Auth + editor shared modal shell. Reuses site CSS variables.            */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgb(32 33 34 / 55%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px 16px;
+  overflow-y: auto;
+}
+
+.modal-card {
+  position: relative;
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  border-radius: 8px;
+  padding: 28px 28px 24px;
+  max-width: 520px;
+  width: 100%;
+  margin: auto;
+}
+
+.modal-card h2 {
+  margin: 0 0 10px;
+  border: 0;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 1.25rem;
+  color: var(--ink);
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: 0;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--faint);
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.modal-close:hover {
+  color: var(--ink);
+}
+
+.modal-lede {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0 0 18px;
+}
+
+.modal-status {
+  color: var(--green-deep);
+  font-size: 0.9rem;
+}
+
+.modal-error {
+  color: #b42318;
+  background: #fef3f2;
+  border: 1px solid #fda29b;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  margin: 12px 0 0;
+}
+
+.modal-note {
+  color: var(--faint);
+  font-size: 0.85rem;
+  margin: 16px 0 0;
+}
+
+.btn-google {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.btn-google:hover:not(:disabled) {
+  background: var(--canvas-soft);
+  border-color: var(--faint);
+}
+
+.btn-google:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--green);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  padding: 9px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--green-deep);
+  color: #fff;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.btn-secondary {
+  display: inline-block;
+  background: var(--canvas);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--canvas-soft);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.tab-action-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.tab-action-btn:hover {
+  color: var(--blue-hover);
+  text-decoration: underline;
+}
+
+/* Editor card — wider than the auth modal. */
+
+.editor-card {
+  max-width: 880px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 48px);
+}
+
+.editor-topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--canvas-soft);
+  border-radius: 8px 8px 0 0;
+}
+
+.editor-topbar strong {
+  font-size: 1rem;
+}
+
+.editor-user {
+  margin-left: auto;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.editor-user {
+  margin-right: 36px;
+}
+
+.editor-loading,
+.editor-error-state,
+.editor-success {
+  padding: 32px 28px;
+  text-align: center;
+}
+
+.editor-success h2 {
+  color: var(--green-deep);
+  font-family: var(--sans);
+}
+
+.editor-success p,
+.editor-error-state p {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+
+.editor-frontmatter {
+  padding: 14px 20px;
+  background: var(--canvas-soft);
+  border-bottom: 1px solid var(--line);
+}
+
+.editor-frontmatter .fm-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--faint);
+  margin: 8px 0 2px;
+}
+
+.editor-frontmatter .fm-label:first-child {
+  margin-top: 0;
+}
+
+.editor-frontmatter .fm-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+.editor-frontmatter .fm-desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.editor-frontmatter .fm-verified {
+  margin: 8px 0 0;
+  font-size: 0.82rem;
+  color: var(--green-deep);
+}
+
+/* The editing surface reuses .article typography (applied via the class on
+   the container). These rules reinforce fonts/colors against Crepe's theme
+   and give the editor a comfortable height. */
+
+.editor-surface {
+  padding: 20px 28px;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 320px;
+  max-height: 58vh;
+}
+
+.editor-surface .ProseMirror {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.72;
+  color: var(--ink);
+  outline: none;
+  min-height: 280px;
+}
+
+.editor-surface .ProseMirror:focus {
+  outline: none;
+}
+
+.editor-surface .ProseMirror h1,
+.editor-surface .ProseMirror h2,
+.editor-surface .ProseMirror h3 {
+  font-family: var(--serif);
+  color: #1f2021;
+}
+
+.editor-surface .ProseMirror h1 {
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  margin: 0 0 14px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 10px;
+}
+
+.editor-surface .ProseMirror h2 {
+  font-size: 1.45rem;
+  margin: 28px 0 10px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 6px;
+}
+
+.editor-surface .ProseMirror h3 {
+  font-size: 1.06rem;
+  margin: 20px 0 8px;
+}
+
+.editor-surface .ProseMirror blockquote {
+  margin: 16px 0;
+  border-left: 5px solid var(--green);
+  background: var(--canvas-soft);
+  padding: 12px 18px;
+  color: #3a3f43;
+}
+
+.editor-surface .ProseMirror a {
+  color: var(--blue);
+}
+
+.editor-surface .ProseMirror table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 0.93rem;
+}
+
+.editor-surface .ProseMirror th,
+.editor-surface .ProseMirror td {
+  border: 1px solid var(--line);
+  padding: 8px 11px;
+}
+
+.editor-surface .ProseMirror th {
+  background: #f1f3f4;
+  font-weight: 700;
+}
+
+/* Locked MDX components are fenced as ```mdx code blocks — flag them. */
+
+.editor-surface pre:has(code.language-mdx) {
+  position: relative;
+  border-left: 3px solid var(--warn-border);
+  background: var(--warn-bg);
+}
+
+.editor-surface pre:has(code.language-mdx)::before {
+  content: '🔒 MDX component — সম্পাদনাযোগ্য নয় / locked';
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--warn-ink);
+  margin-bottom: 4px;
+  font-family: var(--sans);
+}
+
+.editor-footer {
+  padding: 14px 20px 18px;
+  border-top: 1px solid var(--line);
+  background: var(--canvas);
+  border-radius: 0 0 8px 8px;
+}
+
+.editor-summary-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+
+.editor-summary {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 0.92rem;
+  resize: vertical;
+}
+
+.editor-summary:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+.editor-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.editor-note {
+  color: var(--faint);
+  font-size: 0.82rem;
+  margin: 10px 0 0;
+}
+
+@media (max-width: 640px) {
+  .modal-overlay {
+    padding: 0;
+  }
+
+  .modal-card {
+    border-radius: 0;
+    min-height: 100vh;
+  }
+
+  .editor-card {
+    max-height: 100vh;
+  }
+
+  .editor-surface {
+    max-height: none;
+  }
+}

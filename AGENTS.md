@@ -28,8 +28,11 @@ wiki-style shell (not the stock Nextra theme).
 - Next.js `^15.1.3` (using Turbopack for dev)
 - Nextra docs theme (`nextra-theme-docs ^4.0.0`)
 - React `18.3.1`
-- Static export via Next.js (`output: 'export'`)
+- Static export via Next.js (`output: 'export'`) — removed on `feat/contribute` branch to enable
+  the inline editor's API route handlers; will be reconciled during the vinext migration.
 - Pagefind (`pagefind ^1.5.2`) for fast, static client-side search (runs automatically on `postbuild`)
+- Milkdown Crepe (`@milkdown/crepe`) for the inline WYSIWYG contribution editor
+- `jose` for backend verification of Google ID tokens
 
 ## Important Files and Directories
 
@@ -41,7 +44,14 @@ wiki-style shell (not the stock Nextra theme).
 - `_meta.js` files are intentionally not used under `app/` because Nextra validation does not work cleanly with the current route-group localization structure. Sidebar order is controlled programmatically in `LocalizedLayout.jsx`.
 - `plan/` - The committed planning brain: the canonical content backlog, tiered source registry, case-study format, directory schema, founder journeys, and research/freshness cadences. Treat it as the source of truth for *what to build and write next*. Start at [`plan/README.md`](./plan/README.md).
 - `knowledge-bank/` - Optional, local-only scraped source material for legal/business content. It is gitignored for copyright hygiene and may be absent — never rely on it existing, and never commit it.
-- `app/generated/` - Build artifacts produced by `scripts/build-manifest.mjs` (`manifest.bn.json`, `manifest.en.json`, `sections-lite.json`). They are committed to git but must never be hand-edited; run `npm run manifest` (or any dev/build) to regenerate after content changes.
+- `app/generated/` - Build artifacts produced by `scripts/build-manifest.mjs` (`manifest.bn.json`, `manifest.en.json`, `sections-lite.json`, `contributable.json`). They are committed to git but must never be hand-edited; run `npm run manifest` (or any dev/build) to regenerate after content changes.
+- `app/api/content/route.js` - GET endpoint that returns a page's raw MDX (frontmatter + body) for the inline editor. Requires a valid Google ID token (Bearer auth).
+- `app/api/contribute/route.js` - POST endpoint that creates a GitHub PR via the bot App. Requires a valid Google ID token (Bearer auth).
+- `app/lib/google-token.js` - Backend verification of Google ID tokens using `jose` + Google's JWKS. Exports `verifyIdToken(token)` and `requireUser(req)`.
+- `app/lib/github-app.js` - GitHub App helpers: JWT signing, installation token, and `createContributionPR()` (branch → commit → PR).
+- `app/lib/client-auth.js` - Client-side Google ID token storage in localStorage (`getStoredAuth`, `storeAuth`, `decodeIdToken`).
+- `app/components/AuthModal.jsx` - Google Identity Services sign-in modal (client-side only, no server session).
+- `app/components/ContributionEditor.jsx` - Milkdown Crepe WYSIWYG editor modal. Loads page MDX, lets the contributor edit, submits a PR.
 - `app/nav.config.js` - Hand-curated top-level sidebar (`bnNav` / `enNav`). `app/nav-groups.json` - hand-curated thematic grouping of section-hub listings.
 - `public/` - Static assets used by the site, including the built Pagefind search index (`public/_pagefind`) and `page-dates.json` (route → last commit date).
 - `scripts/build-manifest.mjs` - regenerates the navigation manifests. `scripts/scrape.js` - scraping utility used to gather external ecosystem data. `scripts/rewrite-stubs.mjs` - one-time stub-migration helper.
@@ -196,6 +206,34 @@ absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass
   processes) with current realities (year-stamping is covered in the Style guide section above).
 - **Formatting:** Standard Nextra MDX with `title`/`description` frontmatter on every page.
 
+## Public Contribution Feature
+
+The inline editor lets any reader edit a page without touching GitHub. The flow:
+
+1. Reader clicks **"সম্পাদনা" / "Edit"** on any non-landing content page.
+2. If not signed in, `AuthModal` opens with a Google Identity Services button (client-side
+   only — no server session, no OAuth redirect). Google returns a signed ID token to the browser.
+3. The token is stored in `localStorage` (`app/lib/client-auth.js`) and sent as a
+   `Bearer` header on API calls. Tokens expire in ~1 hour; the backend re-verifies on every
+   request via `jose` + Google's JWKS (`app/lib/google-token.js`).
+4. `ContributionEditor` (Milkdown Crepe, dynamically imported) fetches the page's raw MDX from
+   `GET /api/content?path=<url>`, which looks up the repo path in `contributable.json` and
+   fetches from `raw.githubusercontent.com` (5-min in-memory cache).
+5. Locked MDX components (`<StubNotice/>`, `<SectionIndex/>`) are fenced as ` ```mdx ` code
+   blocks so they survive the markdown round-trip unchanged.
+6. On submit, `POST /api/contribute` creates a GitHub PR via the bot App: branch off `main` →
+   commit full MDX (frontmatter + body) → open PR with the contributor's name/email in the body.
+7. A reviewer merges the PR; the next deploy takes the change live.
+
+**Env vars** (see `.env.local.example`): `NEXT_PUBLIC_GOOGLE_CLIENT_ID` (client + server),
+`GITHUB_APP_ID`, `GITHUB_APP_PRIVATE_KEY` (PEM), `GITHUB_INSTALLATION_ID`. The PEM is the only
+secret — everything else is an ID. The GitHub App needs Contents + Pull requests Read & write
+permissions on `Deshi-Startup/deshistartup`.
+
+**Regenerating `contributable.json`:** run `npm run manifest`. The manifest maps every
+non-landing content URL to its repo path, title, locale, and stub status. If a new page is added
+but doesn't appear in the editor, the manifest is stale.
+
 ## Licensing
 
 - **Code:** MIT.
@@ -220,7 +258,7 @@ absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass
 
 - `npm run dev` - Start development server (uses Turbopack; `predev` regenerates the content manifest first)
 - `npm run build` - Build the static site (`prebuild` regenerates the manifest; postbuild runs Pagefind indexing)
-- `npm run manifest` - Regenerate `app/generated/manifest.*.json`, `sections-lite.json` and `public/page-dates.json` from the content tree + git dates
+- `npm run manifest` - Regenerate `app/generated/manifest.*.json`, `sections-lite.json`, `contributable.json`, and `public/page-dates.json` from the content tree + git dates
 - `npm start` - Start the production server
 - `npm run scrape` - Run the scraping utility
 

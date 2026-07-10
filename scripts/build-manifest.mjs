@@ -103,7 +103,7 @@ for (const locale of LOCALES) {
     if (date) allDates[route] = date
     const verified = fm.verified || null
     if (verified) allVerified[route] = verified
-    return { route, slug: rel, title: title.split('–')[0].split('|')[0].trim(), fullTitle: title, description: fm.description || '', stub: isStub, date, verified }
+    return { route, slug: rel, repoPath, title: title.split('–')[0].split('|')[0].trim(), fullTitle: title, description: fm.description || '', stub: isStub, date, verified }
   })
   llmsPages[locale.key] = pages
 
@@ -140,6 +140,26 @@ for (const locale of LOCALES) {
 
   fs.writeFileSync(path.join(generatedDir, `manifest.${locale.key}.json`), JSON.stringify(manifest, null, 1))
   console.log(`manifest.${locale.key}.json: ${pages.length} pages (${manifest.counts.written} written, ${manifest.counts.stubs} stubs)`)
+}
+
+// URL -> repo path map for the inline contribution editor. Lets the
+// /api/content endpoint resolve a public URL to its source MDX file.
+// Landing pages ("/" and "/en") are excluded — they are hubs, not articles.
+{
+  const contributable = {}
+  for (const locale of LOCALES) {
+    for (const page of llmsPages[locale.key] || []) {
+      if (page.route === '/' || page.route === '/en') continue
+      contributable[page.route] = {
+        repoPath: page.repoPath,
+        title: page.fullTitle || page.title,
+        locale: locale.key,
+        stub: !!page.stub
+      }
+    }
+  }
+  fs.writeFileSync(path.join(generatedDir, 'contributable.json'), JSON.stringify(contributable, null, 1))
+  console.log(`contributable.json: ${Object.keys(contributable).length} editable routes`)
 }
 
 fs.mkdirSync(path.join(root, 'public'), { recursive: true })

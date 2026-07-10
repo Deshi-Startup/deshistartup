@@ -3,6 +3,9 @@ out/
 .next/
 _pagefind/
 *.log
+.env
+.env.*
+!.env.local.example
 
 # macOS / iCloud Drive metadata
 .DS_Store

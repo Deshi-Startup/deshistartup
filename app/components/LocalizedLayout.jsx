@@ -1,11 +1,17 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
 import LanguageSwitcher from './LanguageSwitcher'
 import SearchBox from './SearchBox'
+import AuthModal from './AuthModal'
+import { getStoredAuth } from '../lib/client-auth'
 import { bnNav, enNav, REPO_URL } from '../nav.config'
 import sectionsLite from '../generated/sections-lite.json'
+
+// Heavy (Milkdown) — only loads when a contributor opens the editor.
+const ContributionEditor = dynamic(() => import('./ContributionEditor'), { ssr: false })
 
 function localHref(href) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
@@ -150,6 +156,31 @@ export default function LocalizedLayout({ children }) {
   const [lastUpdated, setLastUpdated] = useState(null)
   const [lastVerified, setLastVerified] = useState(null)
   const [readMinutes, setReadMinutes] = useState(null)
+  const [session, setSession] = useState(null)
+  const [authToken, setAuthToken] = useState(null)
+  const [editorOpen, setEditorOpen] = useState(false)
+  const [authOpen, setAuthOpen] = useState(false)
+
+  // Restore a still-valid Google ID token from localStorage on mount.
+  // Auth is fully client-side; the backend just verifies this token.
+  useEffect(() => {
+    const stored = getStoredAuth()
+    if (stored) {
+      setSession(stored.user)
+      setAuthToken(stored.token)
+    }
+  }, [])
+
+  function handleContribute() {
+    if (session && authToken) setEditorOpen(true)
+    else setAuthOpen(true)
+  }
+
+  function handleAuthenticated(user, token) {
+    setSession(user)
+    setAuthToken(token)
+    setEditorOpen(true)
+  }
 
   useEffect(() => {
     document.documentElement.lang = isEn ? 'en' : 'bn'
@@ -292,9 +323,15 @@ export default function LocalizedLayout({ children }) {
             </div>
             <div className="article-actions">
               <a href="#read">{tabs.read}</a>
-              <a href={`${REPO_URL}/edit/main/${file}`} target="_blank" rel="noopener noreferrer">
-                {tabs.edit}
-              </a>
+              {isLanding ? (
+                <a href={`${REPO_URL}/edit/main/${file}`} target="_blank" rel="noopener noreferrer">
+                  {tabs.edit}
+                </a>
+              ) : (
+                <button type="button" className="tab-action-btn" onClick={handleContribute}>
+                  {tabs.edit}
+                </button>
+              )}
               <a href={`${REPO_URL}/commits/main/${file}`} target="_blank" rel="noopener noreferrer">
                 {tabs.history}
               </a>
@@ -388,6 +425,22 @@ export default function LocalizedLayout({ children }) {
             : 'এই সাইট সাধারণ গাইড দেয়। আইনি বা কর পরামর্শ নয়। ফি, ফর্ম ও নিয়ম বদলায়। কাজের আগে সরকারি উৎস (RJSC, NBR, বাংলাদেশ ব্যাংক) থেকে যাচাই করে নিন।'}
         </p>
       </footer>
+
+      <AuthModal
+        open={authOpen}
+        onClose={() => setAuthOpen(false)}
+        onAuthenticated={handleAuthenticated}
+        isEn={isEn}
+      />
+
+      <ContributionEditor
+        open={editorOpen}
+        onClose={() => setEditorOpen(false)}
+        pathname={pathname}
+        isEn={isEn}
+        session={session}
+        authToken={authToken}
+      />
     </>
   )
 }
