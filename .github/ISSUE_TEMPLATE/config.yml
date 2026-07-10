@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: "💬 প্রশ্ন বা আলোচনা · Questions & discussion"
+    url: https://github.com/Deshi-Startup/deshistartup/discussions
+    about: "ভুল-রিপোর্ট নয়, সাধারণ প্রশ্ন বা আইডিয়া হলে এখানে লিখুন। · For general questions and ideas rather than bug reports."
+  - name: "🌐 কীভাবে অবদান রাখবেন (সাইটের গাইড)"
+    url: https://deshistartup.com/contribute
+    about: "৩টি সহজ পথে অবদান রাখার ধাপে ধাপে নির্দেশনা। · Step-by-step contribution guide on the site."

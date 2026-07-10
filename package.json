@@ -8,13 +8,16 @@
     "dev:turbo": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind || true && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true)",
     "scrape": "node scripts/scrape.js",
     "manifest": "node scripts/build-manifest.mjs",
     "backlog:status": "node scripts/backlog-status.mjs",
     "lint:bangla": "node scripts/bangla-lint.mjs",
+    "seo:audit": "node scripts/seo-audit.mjs",
+    "seo:indexnow": "node scripts/submit-indexnow.mjs",
+    "seo:indexnow:dry": "node scripts/submit-indexnow.mjs --dry-run",
     "predev": "node scripts/build-manifest.mjs",
-    "prebuild": "node scripts/build-manifest.mjs"
+    "prebuild": "node scripts/build-manifest.mjs",
+    "postbuild": "node scripts/postbuild-seo.mjs && (pagefind --site out --output-path out/_pagefind || true) && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true) && node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "next": "^15.1.3",

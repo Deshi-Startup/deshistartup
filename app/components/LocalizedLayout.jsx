@@ -153,7 +153,10 @@ export default function LocalizedLayout({ children }) {
 
   useEffect(() => {
     document.documentElement.lang = isEn ? 'en' : 'bn'
-  }, [isEn])
+    if (pathname === '/en') {
+      document.title = 'Deshi Startup – The Bangla-first guide to building a startup in Bangladesh'
+    }
+  }, [isEn, pathname])
 
   useEffect(() => {
     setIsSidebarOpen(false)
@@ -304,8 +307,13 @@ export default function LocalizedLayout({ children }) {
           {!isLanding && (
             <div className="article-lede">
               <Breadcrumbs isEn={isEn} pathname={pathname} pageTitle={pageTitle} />
-              {(dateLabel || verifiedLabel || readMinutes) && (
-                <div className="article-meta">
+              <div className="article-meta">
+                  <span>
+                    {isEn ? 'Maintained by ' : 'রক্ষণাবেক্ষণে '}
+                    <a href={localHref(isEn ? '/en/about' : '/about')}>
+                      {isEn ? 'Deshi Startup contributors' : 'দেশি স্টার্টআপের অবদানকারীরা'}
+                    </a>
+                  </span>
                   {dateLabel && (
                     <span className="meta-date">
                       {isEn ? 'Last updated: ' : 'সর্বশেষ হালনাগাদ: '}
@@ -326,8 +334,7 @@ export default function LocalizedLayout({ children }) {
                   <a href={issueUrl} target="_blank" rel="noopener noreferrer">
                     {isEn ? 'Report a mistake' : 'ভুল জানান'}
                   </a>
-                </div>
-              )}
+              </div>
               {headings.length > 2 && (
                 <details className="page-toc" style={{ marginTop: 12 }}>
                   <summary>{isEn ? 'On this page' : 'এই পাতায়'}</summary>
@@ -376,7 +383,9 @@ export default function LocalizedLayout({ children }) {
         </div>
         <div className="footer-links">
           <a href={localHref(isEn ? '/en/start-here' : '/start-here')}>{isEn ? 'Start here' : 'শুরু করুন'}</a>
+          <a href={localHref(isEn ? '/en/about' : '/about')}>{isEn ? 'About & editorial policy' : 'পরিচিতি ও সম্পাদকীয় নীতি'}</a>
           <a href={localHref(isEn ? '/en/contribute' : '/contribute')}>{isEn ? 'How to contribute' : 'কীভাবে অবদান রাখবেন'}</a>
+          <a href={localHref(isEn ? '/en/sitemap' : '/sitemap')}>{isEn ? 'Sitemap' : 'সাইটম্যাপ'}</a>
           <a href={REPO_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
           <a href={`${REPO_URL}/issues`} target="_blank" rel="noopener noreferrer">
             {isEn ? 'Report a mistake' : 'ভুল জানান'}

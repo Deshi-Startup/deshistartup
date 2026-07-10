@@ -70,6 +70,7 @@ export const bnNav = [
   {
     label: 'অংশ নিন',
     items: [
+      ['/about', 'পরিচিতি ও সম্পাদকীয় নীতি'],
       ['/contribute', 'কীভাবে অবদান রাখবেন'],
       [REPO_URL, 'GitHub-এ দেখুন'],
       [`${REPO_URL}/issues/new`, 'ভুল জানান']
@@ -140,6 +141,7 @@ export const enNav = [
   {
     label: 'Take Part',
     items: [
+      ['/en/about', 'About & editorial policy'],
       ['/en/contribute', 'How to contribute'],
       [REPO_URL, 'View on GitHub'],
       [`${REPO_URL}/issues/new`, 'Report a mistake']

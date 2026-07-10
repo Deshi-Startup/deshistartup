@@ -54,7 +54,7 @@ export default function SectionIndex({ section, locale = 'bn' }) {
           </>
         ) : (
           <>
-            <a href={href(page.route)} className="is-stub-link">{page.title}</a>
+            <a href={href(page.route)} className="is-stub-link" rel="nofollow">{page.title}</a>
             <span className="stub-chip">{isEn ? 'to be written' : 'লেখা বাকি'}</span>
           </>
         )}

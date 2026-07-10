@@ -2,11 +2,28 @@
  "locale": "en",
  "generatedAt": null,
  "counts": {
-  "pages": 438,
-  "written": 66,
+  "pages": 440,
+  "written": 68,
   "stubs": 372
  },
  "sections": {
+  "about": {
+   "slug": "about",
+   "index": {
+    "route": "/en/about",
+    "slug": "about",
+    "title": "About Deshi Startup and Our Editorial Policy",
+    "fullTitle": "About Deshi Startup and Our Editorial Policy",
+    "description": "Who writes Deshi Startup, how information is sourced, reviewed and corrected, and the limits and open licenses of this Bangladesh startup knowledge base.",
+    "stub": false,
+    "date": "2026-07-10",
+    "verified": null
+   },
+   "children": [],
+   "title": "About Deshi Startup and Our Editorial Policy",
+   "total": 0,
+   "written": 0
+  },
   "case-studies": {
    "slug": "case-studies",
    "index": {
@@ -37,7 +54,7 @@
      "fullTitle": "10 Minute School",
      "description": "10 Minute School – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -47,7 +64,7 @@
      "fullTitle": "Apon Wellbeing case study",
      "description": "Apon Wellbeing case study – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -57,7 +74,7 @@
      "fullTitle": "Arogga",
      "description": "Arogga – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -67,7 +84,7 @@
      "fullTitle": "Bdjobs",
      "description": "Bdjobs – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -77,7 +94,7 @@
      "fullTitle": "bKash",
      "description": "bKash – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -87,7 +104,7 @@
      "fullTitle": "Chaldal",
      "description": "Chaldal – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -97,7 +114,7 @@
      "fullTitle": "Common reasons Bangladeshi startups fail",
      "description": "Common reasons Bangladeshi startups fail – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -107,7 +124,7 @@
      "fullTitle": "Fabrilife case study",
      "description": "Fabrilife case study – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -117,7 +134,7 @@
      "fullTitle": "Failure post-mortems as a separate content category",
      "description": "Failure post-mortems as a separate content category – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -127,7 +144,7 @@
      "fullTitle": "Fashol case study",
      "description": "Fashol case study – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -137,7 +154,7 @@
      "fullTitle": "Fashol vs iFarmer: agritech wedge comparison",
      "description": "Fashol vs iFarmer: agritech wedge comparison – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -147,7 +164,7 @@
      "fullTitle": "GoZayaan",
      "description": "GoZayaan – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -157,7 +174,7 @@
      "fullTitle": "iFarmer",
      "description": "iFarmer – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -167,7 +184,7 @@
      "fullTitle": "Jatri",
      "description": "Jatri – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -177,7 +194,7 @@
      "fullTitle": "Khaas Food",
      "description": "Khaas Food – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -187,7 +204,7 @@
      "fullTitle": "Lessons from advance-payment e-commerce failures in Bangladesh",
      "description": "Lessons from advance-payment e-commerce failures in Bangladesh – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -197,7 +214,7 @@
      "fullTitle": "Marketplace trust-collapse post-mortem template",
      "description": "Marketplace trust-collapse post-mortem template – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -207,7 +224,7 @@
      "fullTitle": "Markopolo AI",
      "description": "Markopolo AI – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -217,7 +234,7 @@
      "fullTitle": "Maya",
      "description": "Maya – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -227,7 +244,7 @@
      "fullTitle": "MedEasy",
      "description": "MedEasy – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -237,7 +254,7 @@
      "fullTitle": "MyAlice",
      "description": "MyAlice – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -247,7 +264,7 @@
      "fullTitle": "OnnoRokom Group",
      "description": "OnnoRokom Group – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -257,7 +274,7 @@
      "fullTitle": "Paperfly",
      "description": "Paperfly – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -267,7 +284,7 @@
      "fullTitle": "Pickaboo",
      "description": "Pickaboo – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -277,7 +294,7 @@
      "fullTitle": "Praava Health",
      "description": "Praava Health – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -287,7 +304,7 @@
      "fullTitle": "PriyoShop",
      "description": "PriyoShop – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -297,7 +314,7 @@
      "fullTitle": "Rokomari",
      "description": "Rokomari – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -307,7 +324,7 @@
      "fullTitle": "Shajgoj",
      "description": "Shajgoj – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -317,7 +334,7 @@
      "fullTitle": "ShareTrip",
      "description": "ShareTrip – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -327,7 +344,7 @@
      "fullTitle": "Sheba.xyz",
      "description": "Sheba.xyz – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -337,7 +354,7 @@
      "fullTitle": "Shikho",
      "description": "Shikho – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -347,7 +364,7 @@
      "fullTitle": "Shohoz",
      "description": "Shohoz – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -357,7 +374,7 @@
      "fullTitle": "ShopUp / SILQ",
      "description": "ShopUp / SILQ – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -367,7 +384,7 @@
      "fullTitle": "Shuttle",
      "description": "Shuttle – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -377,7 +394,7 @@
      "fullTitle": "SOLshare case study",
      "description": "SOLshare case study – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -387,7 +404,7 @@
      "fullTitle": "Truck Lagbe",
      "description": "Truck Lagbe – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -397,7 +414,7 @@
      "fullTitle": "What did not work and why",
      "description": "What did not work and why – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -407,7 +424,7 @@
      "fullTitle": "What success case studies leave out",
      "description": "What success case studies leave out – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -417,7 +434,7 @@
      "fullTitle": "Why holding customer money is a risky business model",
      "description": "Why holding customer money is a risky business model – this case study is planned for Deshi Startup, but it has not been written yet.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     }
    ],
@@ -628,7 +645,7 @@
      "fullTitle": "Founder Life Overview",
      "description": "Founder Life Overview is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -688,7 +705,7 @@
      "fullTitle": "What to Say at Eid or Wedding Gatherings When Relatives Ask If This Is a Job",
      "description": "What to Say at Eid or Wedding Gatherings When Relatives Ask If This Is a Job – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -1192,7 +1209,7 @@
      "fullTitle": "Logistics Startup Playbook",
      "description": "Logistics Startup Playbook is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -1222,7 +1239,7 @@
      "fullTitle": "Phase 4 Roadmap",
      "description": "Phase 4 Roadmap is on the Deshi Startup list, but the full guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-08",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -1600,7 +1617,7 @@
      "fullTitle": "Checklist for Starting a Travel Agency or Tour Operator Business",
      "description": "Checklist for Starting a Travel Agency or Tour Operator Business – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -1730,7 +1747,7 @@
      "fullTitle": "Cultural Considerations and Social Realities in Validation",
      "description": "Cultural Considerations and Social Realities in Validation – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -1740,7 +1757,7 @@
      "fullTitle": "Customer Discovery Interviews in Bangladesh",
      "description": "Customer Discovery Interviews in Bangladesh – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -1790,7 +1807,7 @@
      "fullTitle": "Easy Method for Calculating TAM/SAM/SOM in Bangladesh",
      "description": "Easy Method for Calculating TAM/SAM/SOM in Bangladesh – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -1850,7 +1867,7 @@
      "fullTitle": "Field Notes Template for Shops, Markets, and Neighborhoods",
      "description": "Field Notes Template for Shops, Markets, and Neighborhoods – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -1860,7 +1877,7 @@
      "fullTitle": "Field Research Plan: Markets, Shops, and Neighborhoods",
      "description": "Field Research Plan: Markets, Shops, and Neighborhoods – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -1930,7 +1947,7 @@
      "fullTitle": "How to Build Bangladeshi Consumer Personas",
      "description": "How to Build Bangladeshi Consumer Personas – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -1940,7 +1957,7 @@
      "fullTitle": "How to Cite Bangladesh Market Data Cleanly",
      "description": "How to Cite Bangladesh Market Data Cleanly – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -1980,7 +1997,7 @@
      "fullTitle": "How to Size a Market in Bangladesh",
      "description": "How to Size a Market in Bangladesh – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -2080,7 +2097,7 @@
      "fullTitle": "Interviews, Not Surveys: Why They Are More Effective in Bangladesh",
      "description": "Interviews, Not Surveys: Why They Are More Effective in Bangladesh – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -2130,7 +2147,7 @@
      "fullTitle": "Licensing Questions for Courier or Logistics Businesses",
      "description": "Licensing Questions for Courier or Logistics Businesses – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -2150,7 +2167,7 @@
      "fullTitle": "Market Research Checklist for Bangladesh",
      "description": "Market Research Checklist for Bangladesh – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -2320,7 +2337,7 @@
      "fullTitle": "Problem Validation Checklist",
      "description": "Problem Validation Checklist – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -2330,7 +2347,7 @@
      "fullTitle": "Product Labeling and Packaging Compliance",
      "description": "Product Labeling and Packaging Compliance – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -2380,7 +2397,7 @@
      "fullTitle": "Regulatory Checklist for Ride-Sharing or Transport Products",
      "description": "Regulatory Checklist for Ride-Sharing or Transport Products – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -2500,7 +2517,7 @@
      "fullTitle": "Testing Demand in Facebook Groups",
      "description": "Testing Demand in Facebook Groups – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -2580,7 +2597,7 @@
      "fullTitle": "Understanding Market and Competitors with Facebook Ad Library",
      "description": "Understanding Market and Competitors with Facebook Ad Library – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -2590,7 +2607,7 @@
      "fullTitle": "Understanding the Market with BBS, BTRC, World Bank, and DataReportal",
      "description": "Understanding the Market with BBS, BTRC, World Bank, and DataReportal – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -2700,7 +2717,7 @@
      "fullTitle": "Where to Find Market Data in Bangladesh: BBS, World Bank, BIDA, Sectoral Reports",
      "description": "Where to Find Market Data in Bangladesh: BBS, World Bank, BIDA, Sectoral Reports – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -2710,7 +2727,7 @@
      "fullTitle": "Which Banks Are Startup-Friendly?",
      "description": "Which Banks Are Startup-Friendly? – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -2748,7 +2765,7 @@
      "fullTitle": "Accessible and Affordable Tools for Bangladeshi Startups",
      "description": "Accessible and Affordable Tools for Bangladeshi Startups – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -2818,7 +2835,7 @@
      "fullTitle": "Bangladesh Bank Startup Fund",
      "description": "Bangladesh Bank Startup Fund – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -2878,7 +2895,7 @@
      "fullTitle": "Building Trust in Low-Trust Markets",
      "description": "Building Trust in Low-Trust Markets – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3018,7 +3035,7 @@
      "fullTitle": "Courier/Logistics Options",
      "description": "Courier/Logistics Options – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3108,7 +3125,7 @@
      "fullTitle": "Distribution Outside Dhaka",
      "description": "Distribution Outside Dhaka – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3128,7 +3145,7 @@
      "fullTitle": "Expansion Beyond Dhaka",
      "description": "Expansion Beyond Dhaka – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3168,7 +3185,7 @@
      "fullTitle": "Foreign Investment/FDI Rules and Diaspora Funding",
      "description": "Foreign Investment/FDI Rules and Diaspora Funding – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3178,7 +3195,7 @@
      "fullTitle": "Friends and Family Funding",
      "description": "Friends and Family Funding – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3198,7 +3215,7 @@
      "fullTitle": "Going Regional in South Asia",
      "description": "Going Regional in South Asia – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3228,7 +3245,7 @@
      "fullTitle": "How to Get Product Placement on Retail Shelves",
      "description": "How to Get Product Placement on Retail Shelves – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3248,7 +3265,7 @@
      "fullTitle": "How to Reflect Family Money in the Cap Table",
      "description": "How to Reflect Family Money in the Cap Table – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3268,7 +3285,7 @@
      "fullTitle": "Influencer Marketing in Bangladesh",
      "description": "Influencer Marketing in Bangladesh – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3308,7 +3325,7 @@
      "fullTitle": "Investor Board Report Template",
      "description": "Investor Board Report Template – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3338,7 +3355,7 @@
      "fullTitle": "Last-Mile Delivery Constraints",
      "description": "Last-Mile Delivery Constraints – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3348,7 +3365,7 @@
      "fullTitle": "Legality of Crowdfunding in Bangladesh",
      "description": "Legality of Crowdfunding in Bangladesh – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3368,7 +3385,7 @@
      "fullTitle": "Manual Operations Dashboard for Early Teams",
      "description": "Manual Operations Dashboard for Early Teams – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3378,7 +3395,7 @@
      "fullTitle": "Marketplace Metrics",
      "description": "Marketplace Metrics – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3388,7 +3405,7 @@
      "fullTitle": "Marketplace vs. Owned Storefront: Daraz/Facebook Shop vs. Your Own Site",
      "description": "Marketplace vs. Owned Storefront: Daraz/Facebook Shop vs. Your Own Site – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3398,7 +3415,7 @@
      "fullTitle": "Media Pitch: Future Startup, Daily Star, TBS, Prothom Alo",
      "description": "Media Pitch: Future Startup, Daily Star, TBS, Prothom Alo – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3438,7 +3455,7 @@
      "fullTitle": "Offline Marketing and Distribution",
      "description": "Offline Marketing and Distribution – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3448,7 +3465,7 @@
      "fullTitle": "Offline to Online Behavior",
      "description": "Offline to Online Behavior – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3538,7 +3555,7 @@
      "fullTitle": "Rural Market Considerations",
      "description": "Rural Market Considerations – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3588,7 +3605,7 @@
      "fullTitle": "Selling Outside Dhaka",
      "description": "Selling Outside Dhaka – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3638,7 +3655,7 @@
      "fullTitle": "Startup Bangladesh",
      "description": "Startup Bangladesh – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3648,7 +3665,7 @@
      "fullTitle": "Startup Bangladesh Investment Due Diligence Checklist",
      "description": "Startup Bangladesh Investment Due Diligence Checklist – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3658,7 +3675,7 @@
      "fullTitle": "Startup Metrics 101",
      "description": "Startup Metrics 101 – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3668,7 +3685,7 @@
      "fullTitle": "Strategies for Reducing Return-to-Origin and Failed Deliveries",
      "description": "Strategies for Reducing Return-to-Origin and Failed Deliveries – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3688,7 +3705,7 @@
      "fullTitle": "The Path to NRB or Diaspora Investment",
      "description": "The Path to NRB or Diaspora Investment – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3718,7 +3735,7 @@
      "fullTitle": "Valuation Basics",
      "description": "Valuation Basics – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -3803,7 +3820,7 @@
     "slug": "phase-two",
     "title": "Phase 2 Roadmap",
     "fullTitle": "Phase 2 Roadmap – Product, Team, Accounts and Operations",
-    "description": "A roadmap for organising the business after validation: improving the product, forming the first team, keeping accounts, meeting compliance needs, supporting customers, managing payments and delivery, and improving retention.",
+    "description": "A roadmap for organising a validated business: improve the product, form the first team, keep accounts, meet compliance needs, manage payments and delivery, support customers and improve retention.",
     "stub": false,
     "date": "2026-07-10",
     "verified": null
@@ -3886,7 +3903,7 @@
      "fullTitle": "Cultural Mistakes in Bangladeshi Startups",
      "description": "Cultural Mistakes in Bangladeshi Startups – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4006,7 +4023,7 @@
      "fullTitle": "Freelancer Ecosystem and Local vs Offshore Development",
      "description": "Freelancer Ecosystem and Local vs Offshore Development – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4016,7 +4033,7 @@
      "fullTitle": "From Prototype to First Batch",
      "description": "From Prototype to First Batch – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4076,7 +4093,7 @@
      "fullTitle": "How to Plan if Cold Chain is Required",
      "description": "How to Plan if Cold Chain is Required – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4176,7 +4193,7 @@
      "fullTitle": "Offer Letter, Probation, and Joining Checklist",
      "description": "Offer Letter, Probation, and Joining Checklist – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4236,7 +4253,7 @@
      "fullTitle": "Remote Team Working Norms",
      "description": "Remote Team Working Norms – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4256,7 +4273,7 @@
      "fullTitle": "Salary Benchmark Research Plan",
      "description": "Salary Benchmark Research Plan – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
      "stub": true,
-     "date": "2026-07-07",
+     "date": "2026-07-10",
      "verified": null
     },
     {
@@ -4375,6 +4392,23 @@
    },
    "children": [],
    "title": "RJSC Name Clearance and Company Registration: Where to Go",
+   "total": 0,
+   "written": 0
+  },
+  "sitemap": {
+   "slug": "sitemap",
+   "index": {
+    "route": "/en/sitemap",
+    "slug": "sitemap",
+    "title": "Sitemap",
+    "fullTitle": "Sitemap – Published Deshi Startup Guides",
+    "description": "A complete list of Deshi Startup's published guides, templates, case studies, directories and goal-based founder journeys.",
+    "stub": false,
+    "date": "2026-07-10",
+    "verified": null
+   },
+   "children": [],
+   "title": "Sitemap",
    "total": 0,
    "written": 0
   },

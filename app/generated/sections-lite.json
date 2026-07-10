@@ -1,5 +1,6 @@
 {
  "bn": {
+  "about": "দেশি স্টার্টআপ সম্পর্কে ও সম্পাদকীয় নীতি",
   "case-studies": "কেস স্টাডি",
   "company-types": "ব্যবসা একা চালাবেন, অংশীদার নেবেন, না কোম্পানি খুলবেন?",
   "contribute": "কীভাবে অবদান রাখবেন",
@@ -19,16 +20,18 @@
   "phase-two": "ধাপ ২ রোডম্যাপ",
   "registration": "ব্যবসা নিবন্ধন",
   "rjsc-name-clearance": "RJSC নাম ছাড়পত্র ও কোম্পানি নিবন্ধন: কোন গাইডে যাবেন",
+  "sitemap": "সাইটম্যাপ",
   "start-here": "শুরু করুন",
   "tools": "টেমপ্লেট ও টুলস",
   "trade-license": "ট্রেড লাইসেন্স"
  },
  "bnCounts": {
-  "pages": 438,
-  "written": 66,
+  "pages": 440,
+  "written": 68,
   "stubs": 372
  },
  "en": {
+  "about": "About Deshi Startup and Our Editorial Policy",
   "case-studies": "Case Studies",
   "company-types": "Should You Trade Alone, Take Partners, or Form a Company?",
   "contribute": "How to Contribute",
@@ -48,13 +51,14 @@
   "phase-two": "Phase 2 Roadmap",
   "registration": "Business Registration: When, How and Which Structure",
   "rjsc-name-clearance": "RJSC Name Clearance and Company Registration: Where to Go",
+  "sitemap": "Sitemap",
   "start-here": "Start Here: Building a Startup or Small Business in Bangladesh",
   "tools": "Templates & Tools",
   "trade-license": "Trade License: Local Permission to Operate"
  },
  "enCounts": {
-  "pages": 438,
-  "written": 66,
+  "pages": 440,
+  "written": 68,
   "stubs": 372
  }
 }

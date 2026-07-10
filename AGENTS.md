@@ -41,9 +41,9 @@ wiki-style shell (not the stock Nextra theme).
 - `_meta.js` files are intentionally not used under `app/` because Nextra validation does not work cleanly with the current route-group localization structure. Sidebar order is controlled programmatically in `LocalizedLayout.jsx`.
 - `plan/` - The committed planning brain: the canonical content backlog, tiered source registry, case-study format, directory schema, founder journeys, and research/freshness cadences. Treat it as the source of truth for *what to build and write next*. Start at [`plan/README.md`](./plan/README.md).
 - `knowledge-bank/` - Optional, local-only scraped source material for legal/business content. It is gitignored for copyright hygiene and may be absent — never rely on it existing, and never commit it.
-- `app/generated/` - Build artifacts produced by `scripts/build-manifest.mjs` (`manifest.bn.json`, `manifest.en.json`, `sections-lite.json`). They are committed to git but must never be hand-edited; run `npm run manifest` (or any dev/build) to regenerate after content changes.
+- `app/generated/` - Build artifacts produced by `scripts/build-manifest.mjs` (`manifest.bn.json`, `manifest.en.json`, `sections-lite.json`, `seo-pages.json`). They are committed to git but must never be hand-edited; run `npm run manifest` (or any dev/build) to regenerate after content changes.
 - `app/nav.config.js` - Hand-curated top-level sidebar (`bnNav` / `enNav`). `app/nav-groups.json` - hand-curated thematic grouping of section-hub listings.
-- `public/` - Static assets used by the site, including the built Pagefind search index (`public/_pagefind`) and `page-dates.json` (route → last commit date).
+- `public/` - Static assets used by the site, including the built Pagefind search index (`public/_pagefind`) and generated SEO/discovery files (`sitemap.xml`, `robots.txt`, `llms.txt`, IndexNow key, and route date maps). Do not hand-edit generated files; run `npm run manifest`.
 - `scripts/build-manifest.mjs` - regenerates the navigation manifests. `scripts/scrape.js` - scraping utility used to gather external ecosystem data. `scripts/rewrite-stubs.mjs` - one-time stub-migration helper.
 
 ## Site Structure
@@ -225,6 +225,8 @@ absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass
 - `npm run dev` - Start development server (uses Turbopack; `predev` regenerates the content manifest first)
 - `npm run build` - Build the static site (`prebuild` regenerates the manifest; postbuild runs Pagefind indexing)
 - `npm run manifest` - Regenerate `app/generated/manifest.*.json`, `sections-lite.json` and `public/page-dates.json` from the content tree + git dates
+- `npm run seo:audit` - Validate the built HTML, canonicals, hreflang, indexability, metadata, JSON-LD, sitemap, robots, and internal links
+- `npm run seo:indexnow:dry` - Preview the canonical URL batch for IndexNow; use `npm run seo:indexnow` only after a deployment is live
 - `npm start` - Start the production server
 - `npm run scrape` - Run the scraping utility
 

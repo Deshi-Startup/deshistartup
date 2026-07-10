@@ -16,6 +16,7 @@ Icon?
 knowledge-bank/
 context/
 # Local experiments and artifacts
+.firecrawl/
 .vinext/
 .wrangler/
 dist/

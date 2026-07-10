@@ -217,7 +217,7 @@ export default function WikiLanding({ locale = 'bn' }) {
 
         <aside className="wiki-infobox" aria-label={isEn ? 'Deshi Startup infobox' : 'দেশি স্টার্টআপ তথ্যছক'}>
           <p className="wiki-infobox-title">{t.infoboxTitle}</p>
-          <img src={localHref('/deshi-mark.svg')} alt="" />
+          <img src={localHref('/deshi-mark.svg')} alt="" aria-hidden="true" />
           <strong>{t.infoboxName}</strong>
           <p>{t.infoboxTagline}</p>
           <dl>

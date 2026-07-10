@@ -19,6 +19,7 @@ for *what to build and write next*. The site content itself lives in `app/(conte
 | `templates-tools.csv` | Planned templates, checklists, and calculators. |
 | `people-startups.csv` | Founders/startups to research for case studies, and where to look. |
 | `research-ops.csv` | Freshness cadences: what to re-check, where, how often (budget speech, RJSC/NBR notices…). |
+| `seo-operations.md` | Canonical SEO/GEO architecture, crawler policy, generated artifacts, validation and search-console release checklist. |
 
 Conventions:
 

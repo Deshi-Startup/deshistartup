@@ -1,0 +1,42 @@
+name: "✍️ একটি গাইড লিখতে চাই · I want to write a guide"
+description: "একটি 'লেখা বাকি' বিষয় দাবি করুন, যাতে দুজন একই বিষয়ে কাজ না করেন। · Claim an unwritten topic so two people don't duplicate work."
+title: "গাইড: "
+labels: ["নতুন গাইড", "claimed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        দারুণ! লেখার নিয়মকানুন এক নজরে: [CONTRIBUTING.md](https://github.com/Deshi-Startup/deshistartup/blob/main/CONTRIBUTING.md),
+        ভাষার মান: [STYLE.md](https://github.com/Deshi-Startup/deshistartup/blob/main/STYLE.md)।
+        খোলা বিষয়ের তালিকা: [plan/content-backlog.csv](https://github.com/Deshi-Startup/deshistartup/blob/main/plan/content-backlog.csv)
+  - type: input
+    id: topic
+    attributes:
+      label: "কোন বিষয়? · Which topic?"
+      description: "স্টাব পাতার লিংক বা ব্যাকলগের বিষয়ের নাম · Link to the stub page, or the topic name from the backlog"
+      placeholder: "https://deshistartup.com/phase-one/..."
+    validations:
+      required: true
+  - type: textarea
+    id: experience
+    attributes:
+      label: "বিষয়টা আপনি কীভাবে জানেন? · How do you know this topic?"
+      description: "নিজে করেছেন? পেশাগতভাবে করেন? রিসার্চ করে লিখবেন? এক-দুই লাইনই যথেষ্ট। · Did you do it yourself? Do it professionally? Planning to research it? A line or two is enough."
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: "কোন সূত্র ব্যবহার করবেন? (জানলে) · Which sources will you use? (if known)"
+      description: "সরকারি পোর্টাল আগে। plan/sources.csv-এ টায়ার-করা তালিকা আছে। · Official portals first. plan/sources.csv has the tiered registry."
+    validations:
+      required: false
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: "লেখার মূল নিয়ম · Ground rules"
+      options:
+        - label: "বাংলায় ভেবে বাংলায় লিখব – ইংরেজি থেকে অনুবাদ নয় (STYLE.md) · I'll think and write in Bangla, not translate from English"
+          required: true
+        - label: "আইন/ফি/নিয়মের প্রতিটি দাবিতে সূত্র দেব, অনুমান লিখব না · Every legal/fee claim will have a source; no guessing"
+          required: true

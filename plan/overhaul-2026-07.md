@@ -323,6 +323,46 @@ per locale; all 26 pages emit to `out/`).
 
 Commit: `Add Founder Journeys section: goal-based guided paths (12 journeys, bn+en)`
 
+### ✅ T12 — Open-source front door (DONE 2026-07-10)
+
+Goal (decided 2026-07-10): make the repo succeed as an open source project — contributor-acquiring
+front door instead of internal spec. Context: the top Bangla-content repos
+(bangla-programming-resources ~2,000★, system-design-bangla ~1,237★) prove "serious knowledge in
+Bangla" is GitHub's most rewarded BD category, and the startup niche is empty. Realistic targets:
+300–500★ within 90 days of a proper launch; ~1,000★ in 12 months.
+
+Done in this task:
+
+1. **README.md rewritten** as a Bangla-first front door (mission, live-site link, progress badge,
+   3-path contribute table, trust section, contributors wall, star CTA) + full English mirror
+   `README.en.md`. The old spec prose moved intact to `plan/vision.md`.
+2. **CONTRIBUTING.md** (bn + en: 3 paths, guide-writing rules, review SLA, license agreement) and
+   **CODE_OF_CONDUCT.md** (Contributor Covenant 2.1 + বাংলা সারকথা; contact shamirislam@live.com).
+3. **`.github/ISSUE_TEMPLATE/`**: `report-mistake.yml` / `write-guide.yml` / `new-topic.yml`
+   bilingual issue forms + `config.yml` (Discussions + site-contribute contact links), and a
+   bilingual **PR template**.
+4. **PR CI** (`.github/workflows/pr-checks.yml`): `lint:bangla --strict` + `next build` on every PR.
+5. **Progress badges**: `build-manifest.mjs` now emits `public/progress.json` (Bengali digits) and
+   `progress.en.json` (shields.io endpoint schema), consumed by the READMEs via raw.githubusercontent.
+6. **Site links wired to the forms**: per-page "ভুল জানান" (LocalizedLayout `issueUrl`) and both
+   sidebar report links now open the prefilled `report-mistake` form.
+7. **Repo merchandising via API**: description, topics, Discussions enabled, bilingual label set.
+8. **Seeded "নতুন গাইড" issues** from High-priority backlog stubs (spread across sections,
+   template/checklist topics labeled `good first issue`) + a pinned bilingual welcome issue.
+   `scripts/seed-issues.mjs` generates future waves.
+9. **Org profile**: `Deshi-Startup/.github` repo with a bilingual profile README.
+10. **Assets**: `.github/assets/social-preview.png` (Bengali-typography social card; must be
+    uploaded manually in repo Settings → Social preview) and a site screenshot for the README.
+11. Hygiene: removed the stray tracked `git-filter-repo` binary.
+
+Still open (launch phase, not this task): soft launch to personal network → staggered BD community
+posts (LinkedIn, FB dev/startup groups, university E-clubs, BD tech media/YouTubers) → Hacktoberfest
+(October) and একুশে ফেব্রুয়ারি write-a-thon campaigns → recruit 3–5 named expert reviewers
+(lawyers/CAs — review credit on pages is their lead-gen) → promote first repeat contributors to
+co-maintainers. Keep the 48h first-response SLA. Never star-beg; claim-first rule for Hacktoberfest.
+
+Commit: `T12: open-source front door — README rework, contributor surface, PR CI, seeded issues`
+
 ---
 
 ## After this plan (ongoing, not tasks here)
