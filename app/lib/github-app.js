@@ -2,12 +2,14 @@
  * GitHub App auth + PR creation for the inline contribution flow.
  *
  * The contributor never touches GitHub — this module signs an App JWT
- * (RS256 via Web Crypto), mints an installation token, then creates a
- * branch, commits the edited MDX, and opens a pull request.
+ * (RS256), mints an installation token, then creates a branch, commits
+ * the edited MDX, and opens a pull request.
  *
- * Runs in next dev (Node) and on edge/worker runtimes: only uses
- * fetch + crypto.subtle + TextEncoder, no Node-only modules.
+ * Uses Node's crypto module (createPrivateKey auto-detects PKCS#1 vs
+ * PKCS#8 PEM format — GitHub App keys can be either).
  */
+
+import { createPrivateKey, sign as nodeSign } from 'node:crypto'
 
 const API = 'https://api.github.com'
 const REPO = process.env.GITHUB_REPO || 'Deshi-Startup/deshistartup'
@@ -50,43 +52,26 @@ function utf8ToBase64(str) {
 
 // --- GitHub App JWT (RS256) ---
 
-function pemToDer(pem) {
-  const b64 = pem
-    .replace(/-----BEGIN [A-Z ]*PRIVATE KEY-----/g, '')
-    .replace(/-----END [A-Z ]*PRIVATE KEY-----/g, '')
-    .replace(/\s/g, '')
-  const bin = atob(b64)
-  const der = new Uint8Array(bin.length)
-  for (let i = 0; i < bin.length; i++) der[i] = bin.charCodeAt(i)
-  return der
-}
-
 let _cachedKey = null
-async function getAppKey() {
+function getAppKey() {
   if (_cachedKey) return _cachedKey
   const pem = process.env.GITHUB_APP_PRIVATE_KEY
   if (!pem) throw new Error('GITHUB_APP_PRIVATE_KEY is not set')
-  // Support multiline (\n) or literal-newline PEMs from env vars.
+  // Support literal-\n escapes or real-newline PEMs from env vars.
   const normalized = pem.replace(/\\n/g, '\n')
-  _cachedKey = await crypto.subtle.importKey(
-    'pkcs8',
-    pemToDer(normalized),
-    { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
-    false,
-    ['sign']
-  )
+  _cachedKey = createPrivateKey({ key: normalized, format: 'pem' })
   return _cachedKey
 }
 
 export async function appJwt() {
   const appId = process.env.GITHUB_APP_ID
   if (!appId) throw new Error('GITHUB_APP_ID is not set')
-  const key = await getAppKey()
+  const key = getAppKey()
   const now = Math.floor(Date.now() / 1000)
   const header = { alg: 'RS256', typ: 'JWT' }
   const payload = { iat: now - 60, exp: now + 9 * 60, iss: appId }
   const data = b64urlFromStr(JSON.stringify(header)) + '.' + b64urlFromStr(JSON.stringify(payload))
-  const sig = await crypto.subtle.sign('RSASSA-PKCS1-v1_5', key, enc.encode(data))
+  const sig = nodeSign('sha256', Buffer.from(data), key)
   return data + '.' + b64urlFromBytes(sig)
 }
 
@@ -102,7 +87,7 @@ export async function installationToken() {
   const installationId = process.env.GITHUB_INSTALLATION_ID
   if (!installationId) throw new Error('GITHUB_INSTALLATION_ID is not set')
   const jwt = await appJwt()
-  const res = await fetch(`${API}/app/installations/${installationId}/access/tokens`, {
+  const res = await fetch(`${API}/app/installations/${installationId}/access_tokens`, {
     method: 'POST',
     headers: apiHeaders(jwt)
   })
