@@ -5,7 +5,7 @@
 > হয়রানি, ব্যক্তিগত আক্রমণ, কিংবা ধর্ম, লিঙ্গ বা জাতি নিয়ে খোঁচা: এসবের কোনোটাই এখানে চলবে না।
 > সমস্যা দেখলে জানান। নিচের ইংরেজি অংশটিই আনুষ্ঠানিক নীতি (Contributor Covenant 2.1)।
 >
-> **shamirislam@live.com**
+> **conduct@deshistartup.com**
 
 ## Our Pledge
 
@@ -57,7 +57,7 @@ public spaces.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the
-maintainer at **shamirislam@live.com**. All complaints will be reviewed and investigated promptly
+maintainer at **conduct@deshistartup.com**. All complaints will be reviewed and investigated promptly
 and fairly. All community leaders are obligated to respect the privacy and security of the
 reporter of any incident.
 

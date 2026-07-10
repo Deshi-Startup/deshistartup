@@ -337,7 +337,7 @@ Done in this task:
    3-path contribute table, trust section, contributors wall, star CTA) + full English mirror
    `README.en.md`. The old spec prose moved intact to `plan/vision.md`.
 2. **CONTRIBUTING.md** (bn + en: 3 paths, guide-writing rules, review SLA, license agreement) and
-   **CODE_OF_CONDUCT.md** (Contributor Covenant 2.1 + বাংলা সারকথা; contact shamirislam@live.com).
+   **CODE_OF_CONDUCT.md** (Contributor Covenant 2.1 + বাংলা সারকথা; contact conduct@deshistartup.com).
 3. **`.github/ISSUE_TEMPLATE/`**: `report-mistake.yml` / `write-guide.yml` / `new-topic.yml`
    bilingual issue forms + `config.yml` (Discussions + site-contribute contact links), and a
    bilingual **PR template**.
