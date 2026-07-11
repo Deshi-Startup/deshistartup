@@ -36,7 +36,7 @@ wiki-style shell (not the stock Nextra theme).
 ## Important Files and Directories
 
 - `app/` - Shared Next.js app shell, layouts, global CSS, components, and route groups.
-- `app/(contents)/(bn)/` - Bengali content. Route-group folders do not appear in public URLs, so these pages render at clean root paths like `/start-here`, `/phase-one`, and `/e-tin-vat-bin`.
+- `app/(contents)/(bn)/` - Bengali content. Route-group folders do not appear in public URLs, so these pages render at clean root paths like `/start-here`, `/registration/private-limited`, and `/e-tin-vat-bin`.
 - `app/(contents)/en/` - English localized content. These pages render at `/en/...`, for example `/en/start-here`.
 - `app/components/LocalizedLayout.jsx` - Localized Nextra layout, language detection, sidebar ordering, and route-group page-map normalization.
 - `app/components/LanguageSwitcher.jsx` - Switches between clean Bengali URLs and `/en/...` URLs.
@@ -51,22 +51,39 @@ wiki-style shell (not the stock Nextra theme).
 
 ## Site Structure
 
-The site is organized into section hubs, each of which lists its children automatically via
-`<SectionIndex section="..." locale="..." />` (backed by the generated manifests). The main hubs are:
+**Topic-owned URLs (July 2026 migration).** Content lives at one canonical, topic-based URL of at
+most two segments (`/{section}/{slug}`, mirrored at `/en/...`). The former `phase-one`…`phase-four`
+stage sections were dissolved into topic sections; the staged path survives as curated *views* at
+`/roadmap/{validate|build|grow|scale}`. The full old→new mapping is archived in
+`plan/url-map-2026-07.csv`.
+
+Each topic section hub lists its children automatically via
+`<SectionIndex section="..." locale="..." />` (backed by the generated manifests). The sections:
 
 - `start-here` — beginner roadmap and orientation
-- `idea-validation` — customer discovery, market sizing, MVP tests
-- `phase-one` → `phase-four` — the staged founder roadmap (idea → foundation → product/team/rules → sell & fund → scale & policy)
+- `ideas`, `validation` — finding ideas/market research, and customer/demand validation
+- `registration`, `licenses`, `tax`, `ip`, `trade` — paperwork: company setup, approvals, tax/VAT, IP, import-export
+- `payments`, `customers`, `b2b`, `operations`, `metrics`, `funding` — money, sales, delivery, numbers
+- `product`, `manufacturing`, `cofounders`, `team` — building the product and the people
+- `growth`, `industries`, `ecosystem` — expansion, sector playbooks, government support/community
+- `roadmap` — the four staged views; `guides` — the browse-all-topics page
 - `journeys` — goal-based guided paths ("কোন পথে যাবেন") that stitch existing guides into an ordered path (source: `plan/workflow-maps.csv`)
-- `case-studies` — source-backed stories of Bangladeshi startups
-- `directory` — data-backed ecosystem directory (investors, accelerators)
-- `founder-life` — mental health, family constraints, solo-founder realities
-- `contribute` — how to report, edit, and write guides
+- `case-studies`, `directory`, `founder-life`, `tools`, `contribute`
+- Root cornerstones kept as short standalone URLs: `/company-types`, `/trade-license`,
+  `/rjsc-name-clearance`, `/e-tin-vat-bin`, `/legal-roadmap`, `/about`, `/sitemap`
+
+**URL policy (enforced by `npm run lint:routes`, which runs in `prebuild`):** max two semantic
+segments (excluding `/en`); leaf slug normally 2–5 words; target path length under 45 characters,
+warn above 60, hard-fail above 75; lowercase ASCII `a-z0-9-` only; no full-headline slugs, no brand
+lists, no filler (`how-to`, `guide`, `step-by-step`) when context already carries it. Permanent URLs
+are never derived from editable titles — the backlog's `Path` column and the content tree are the
+registry. The bn and en trees must mirror exactly, and a `<StubNotice path>` must equal its page's
+slug (both are lint errors).
 
 **The source of truth for what exists is `app/generated/manifest.bn.json` / `manifest.en.json`; the
-source of truth for what *should* exist is `plan/content-backlog.csv`. Never hand-maintain page lists
-in this doc — they drift.** To see the current page inventory, read the manifests or run
-`npm run manifest` and inspect them.
+source of truth for what *should* exist is `plan/content-backlog.csv` (its `Path` column is the
+canonical route registry). Never hand-maintain page lists in this doc — they drift.** To see the
+current page inventory, read the manifests or run `npm run manifest` and inspect them.
 
 ## Choosing what to work on
 
@@ -168,16 +185,12 @@ absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass
   read. English pages: use clear English, leave no Bengali text behind.
 - **Localization:** Do not replace Bengali content when localizing — create/update the matching page
   under `app/(contents)/en/...`, keeping slugs and folder structure aligned across locales.
-- **Routing:** Bengali pages link to clean root URLs such as `/customers`; English pages link to
-  `/en/...` URLs such as `/en/customers`. Internal links must go through `localHref()` /
-  `NEXT_PUBLIC_BASE_PATH` so they survive the GitHub Pages `/deshistartup` basePath.
-- **Relative links between sibling guides (same section):** `next.config.mjs` has no
-  `trailingSlash`, so routes render without one (e.g. `/phase-one/e-tin-guide`, not
-  `.../e-tin-guide/`). A bare `../other-slug` link from a same-depth sibling page resolves one
-  level too high (it drops the section, landing on `/other-slug` instead of
-  `/phase-one/other-slug`). Always write the section back in: `../phase-one/other-slug` (the same
-  literal string works for both the `(bn)` and `en` mirrors, since both trees are the same depth).
-  Verify by checking the rendered `href` in `out/**/*.html` after a build if unsure.
+- **Routing / internal links:** Always write internal links as **root-relative canonical paths** —
+  `/registration/private-limited` in Bengali pages, `/en/registration/private-limited` in English
+  pages. Never use relative forms (`../section/slug`, `sibling-slug`): they depend on the linking
+  page's depth and broke silently before the July 2026 migration canonicalized all 800+ files. The
+  MDX anchor wrapper (`mdx-components.js`) and `localHref()` add the deployment basePath for the
+  GitHub Pages mirror, so content never hard-codes it.
 - **Punctuation in page content:** Never use an em dash in page copy, titles, or descriptions
   under `app/(contents)/` (this doc and other meta files are exempt). Use an en dash (–), a comma,
   or split into two sentences instead. The full dash rule lives in STYLE.md §4.3 and
@@ -228,6 +241,7 @@ absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass
 - `npm run dev` - Start development server (uses Turbopack; `predev` regenerates the content manifest first)
 - `npm run build` - Build the static site (`prebuild` regenerates the manifest; postbuild runs Pagefind indexing)
 - `npm run manifest` - Regenerate `app/generated/manifest.*.json`, `sections-lite.json` and `public/page-dates.json` from the content tree + git dates
+- `npm run lint:routes` - Enforce the URL policy (segment depth, path length, slug charset, bn/en mirror, StubNotice paths); also runs automatically in `prebuild`
 - `npm run seo:audit` - Validate the built HTML, canonicals, hreflang, indexability, metadata, JSON-LD, sitemap, robots, and internal links
 - `npm run seo:indexnow:dry` - Preview the canonical URL batch for IndexNow; use `npm run seo:indexnow` only after a deployment is live
 - `npm start` - Start the production server
@@ -235,8 +249,14 @@ absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass
 
 ## Deployment
 
-- **Primary (`main` branch → GitHub Pages):** `.github/workflows/deploy.yml` runs `npm run build` and publishes `out/`. Because it is a GitHub Pages *project* site, production builds set `basePath` and `NEXT_PUBLIC_BASE_PATH` to `/deshistartup` (see `next.config.mjs`). All internal links must go through `localHref()` / `NEXT_PUBLIC_BASE_PATH`, or they break in production.
-- **Production domain:** `deshistartup.com` is registered (2026-07-08). Pointing the site at the custom apex domain (which would drop the `/deshistartup` basePath) is deferred — do **not** re-architect the basePath/`localHref()` mechanism until that migration is explicitly scheduled.
+- **Production (`main` branch → Cloudflare Pages → `deshistartup.com`):** the live, canonical site
+  is the apex domain, built by Cloudflare Pages from `main`. Cloudflare's build sets `CF_PAGES=1`,
+  which drops the basePath (see `next.config.mjs`), so canonical URLs are generated at the root.
+  `plan/seo-operations.md` is the operational source of truth for search discovery.
+- **Mirror (`main` branch → GitHub Pages):** `.github/workflows/deploy.yml` runs `npm run build`
+  and publishes `out/` under the `/deshistartup` project basePath. This is why internal links must
+  stay basePath-agnostic (root-relative in content; `localHref()` / `NEXT_PUBLIC_BASE_PATH` in
+  components) — do **not** remove that mechanism while the mirror exists.
 - **Secondary (`vinext` branch → Cloudflare Workers):** `.github/workflows/deploy-cloudflare.yml` deploys production and per-PR previews using `vinext`-only tooling (not present on `main`).
 - CI uses Node 22. `images.unoptimized` is required for static export. **Pushing `main` deploys the live site — never push unless Shamir asks.**
 

@@ -9,10 +9,16 @@
   </url>
   <url>
     <loc>https://deshistartup.com/about</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/about" />
     <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/about" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/about" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/b2b</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/b2b" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/b2b" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/b2b" />
   </url>
   <url>
     <loc>https://deshistartup.com/case-studies</loc>
@@ -29,6 +35,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/case-studies/pathao" />
   </url>
   <url>
+    <loc>https://deshistartup.com/cofounders</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/cofounders" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/cofounders" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/cofounders" />
+  </url>
+  <url>
     <loc>https://deshistartup.com/company-types</loc>
     <lastmod>2026-07-10</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/company-types" />
@@ -37,14 +49,14 @@
   </url>
   <url>
     <loc>https://deshistartup.com/contribute</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/contribute" />
     <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/contribute" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/contribute" />
   </url>
   <url>
     <loc>https://deshistartup.com/customers</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/customers" />
     <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/customers" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/customers" />
@@ -78,11 +90,16 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/e-tin-vat-bin" />
   </url>
   <url>
-    <loc>https://deshistartup.com/ecosystem-overview</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/ecosystem-overview" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/ecosystem-overview" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/ecosystem-overview" />
+    <loc>https://deshistartup.com/ecosystem</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/ecosystem" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/ecosystem" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/ecosystem" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/ecosystem/where-to-start</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/ecosystem/where-to-start" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/ecosystem/where-to-start" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/ecosystem/where-to-start" />
   </url>
   <url>
     <loc>https://deshistartup.com/en</loc>
@@ -99,6 +116,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/about" />
   </url>
   <url>
+    <loc>https://deshistartup.com/en/b2b</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/b2b" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/b2b" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/b2b" />
+  </url>
+  <url>
     <loc>https://deshistartup.com/en/case-studies</loc>
     <lastmod>2026-07-10</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/case-studies" />
@@ -111,6 +134,12 @@
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/case-studies/pathao" />
     <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/case-studies/pathao" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/case-studies/pathao" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/cofounders</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/cofounders" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/cofounders" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/cofounders" />
   </url>
   <url>
     <loc>https://deshistartup.com/en/company-types</loc>
@@ -162,11 +191,16 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/e-tin-vat-bin" />
   </url>
   <url>
-    <loc>https://deshistartup.com/en/ecosystem-overview</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/ecosystem-overview" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/ecosystem-overview" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/ecosystem-overview" />
+    <loc>https://deshistartup.com/en/ecosystem</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/ecosystem" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/ecosystem" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/ecosystem" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/ecosystem/where-to-start</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/ecosystem/where-to-start" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/ecosystem/where-to-start" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/ecosystem/where-to-start" />
   </url>
   <url>
     <loc>https://deshistartup.com/en/founder-life</loc>
@@ -176,25 +210,52 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/founder-life" />
   </url>
   <url>
-    <loc>https://deshistartup.com/en/founder-life/women-founder-constraints-safety-client-meetings-travel-visibility</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/founder-life/women-founder-constraints-safety-client-meetings-travel-visibility" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/founder-life/women-founder-constraints-safety-client-meetings-travel-visibility" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/founder-life/women-founder-constraints-safety-client-meetings-travel-visibility" />
+    <loc>https://deshistartup.com/en/founder-life/women-founders</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/founder-life/women-founders" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/founder-life/women-founders" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/founder-life/women-founders" />
   </url>
   <url>
-    <loc>https://deshistartup.com/en/funding-roadmap</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/funding-roadmap" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/funding-roadmap" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/funding-roadmap" />
+    <loc>https://deshistartup.com/en/funding</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/funding" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/funding" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/funding" />
   </url>
   <url>
-    <loc>https://deshistartup.com/en/idea-validation</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/idea-validation" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/idea-validation" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/idea-validation" />
+    <loc>https://deshistartup.com/en/growth</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/growth" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/growth" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/growth" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/guides</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/guides" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/guides" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/guides" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/ideas</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/ideas" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/ideas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/ideas" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/ideas/finding-ideas</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/ideas/finding-ideas" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/ideas/finding-ideas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/ideas/finding-ideas" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/industries</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/industries" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/industries" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/industries" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/ip</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/ip" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/ip" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/ip" />
   </url>
   <url>
     <loc>https://deshistartup.com/en/journeys</loc>
@@ -330,6 +391,30 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/legal-roadmap" />
   </url>
   <url>
+    <loc>https://deshistartup.com/en/licenses</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/licenses" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/licenses" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/licenses" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/manufacturing</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/manufacturing" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/manufacturing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/manufacturing" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/metrics</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/metrics" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/metrics" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/metrics" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/operations</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/operations" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/operations" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/operations" />
+  </url>
+  <url>
     <loc>https://deshistartup.com/en/payments</loc>
     <lastmod>2026-07-10</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/payments" />
@@ -337,116 +422,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/payments" />
   </url>
   <url>
-    <loc>https://deshistartup.com/en/phase-four</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-four" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-four" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-four" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/phase-one</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/phase-one/board-meetings-agm-and-minutes-basics</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/board-meetings-agm-and-minutes-basics" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/board-meetings-agm-and-minutes-basics" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/board-meetings-agm-and-minutes-basics" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/phase-one/e-tin-guide</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/e-tin-guide" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/e-tin-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/e-tin-guide" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/phase-one/how-to-find-startup-ideas-in-bangladesh</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/how-to-find-startup-ideas-in-bangladesh" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/how-to-find-startup-ideas-in-bangladesh" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/how-to-find-startup-ideas-in-bangladesh" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/phase-one/memorandum-and-articles-of-association-basics</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/memorandum-and-articles-of-association-basics" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/memorandum-and-articles-of-association-basics" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/memorandum-and-articles-of-association-basics" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/phase-one/mushak-63-invoice-and-vat-documentation-basics</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/mushak-63-invoice-and-vat-documentation-basics" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/mushak-63-invoice-and-vat-documentation-basics" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/mushak-63-invoice-and-vat-documentation-basics" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/phase-one/personal-e-tin-vs-company-tin</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/personal-e-tin-vs-company-tin" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/personal-e-tin-vs-company-tin" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/personal-e-tin-vs-company-tin" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/phase-one/private-limited-company-registration-step-by-step</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/private-limited-company-registration-step-by-step" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/private-limited-company-registration-step-by-step" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/private-limited-company-registration-step-by-step" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/phase-one/rjsc-name-clearance</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/rjsc-name-clearance" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/rjsc-name-clearance" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/rjsc-name-clearance" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/phase-one/share-capital-directors-and-shareholders-basics</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/share-capital-directors-and-shareholders-basics" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/share-capital-directors-and-shareholders-basics" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/share-capital-directors-and-shareholders-basics" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/phase-one/turnover-tax-and-vat-threshold-explainer</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/turnover-tax-and-vat-threshold-explainer" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/turnover-tax-and-vat-threshold-explainer" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/turnover-tax-and-vat-threshold-explainer" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/phase-one/vatbin-guide</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/vatbin-guide" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/vatbin-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/vatbin-guide" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/phase-one/when-vat-registration-is-required</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/when-vat-registration-is-required" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/when-vat-registration-is-required" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/when-vat-registration-is-required" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/phase-three</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-three" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-three" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-three" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/phase-two</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-two" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-two" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-two" />
+    <loc>https://deshistartup.com/en/product</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/product" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/product" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/product" />
   </url>
   <url>
     <loc>https://deshistartup.com/en/registration</loc>
@@ -456,11 +435,71 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/registration" />
   </url>
   <url>
+    <loc>https://deshistartup.com/en/registration/board-meetings-agm</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/registration/board-meetings-agm" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/registration/board-meetings-agm" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/registration/board-meetings-agm" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/registration/moa-aoa</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/registration/moa-aoa" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/registration/moa-aoa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/registration/moa-aoa" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/registration/name-clearance</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/registration/name-clearance" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/registration/name-clearance" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/registration/name-clearance" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/registration/private-limited</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/registration/private-limited" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/registration/private-limited" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/registration/private-limited" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/registration/shares-and-directors</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/registration/shares-and-directors" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/registration/shares-and-directors" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/registration/shares-and-directors" />
+  </url>
+  <url>
     <loc>https://deshistartup.com/en/rjsc-name-clearance</loc>
     <lastmod>2026-07-10</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/rjsc-name-clearance" />
     <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/rjsc-name-clearance" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/rjsc-name-clearance" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/roadmap</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/roadmap" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/roadmap" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/roadmap" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/roadmap/build</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/roadmap/build" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/roadmap/build" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/roadmap/build" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/roadmap/grow</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/roadmap/grow" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/roadmap/grow" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/roadmap/grow" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/roadmap/scale</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/roadmap/scale" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/roadmap/scale" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/roadmap/scale" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/roadmap/validate</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/roadmap/validate" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/roadmap/validate" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/roadmap/validate" />
   </url>
   <url>
     <loc>https://deshistartup.com/en/sitemap</loc>
@@ -477,25 +516,16 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here" />
   </url>
   <url>
-    <loc>https://deshistartup.com/en/start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh" />
+    <loc>https://deshistartup.com/en/start-here/30-day-roadmap</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/30-day-roadmap" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/30-day-roadmap" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/30-day-roadmap" />
   </url>
   <url>
-    <loc>https://deshistartup.com/en/start-here/bangladesh-startup-ecosystem-overview</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/bangladesh-startup-ecosystem-overview" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/bangladesh-startup-ecosystem-overview" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/bangladesh-startup-ecosystem-overview" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/en/start-here/common-myths-bangladeshi-founders-believe</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/common-myths-bangladeshi-founders-believe" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/common-myths-bangladeshi-founders-believe" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/common-myths-bangladeshi-founders-believe" />
+    <loc>https://deshistartup.com/en/start-here/common-myths</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/common-myths" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/common-myths" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/common-myths" />
   </url>
   <url>
     <loc>https://deshistartup.com/en/start-here/founder-path-chooser</loc>
@@ -512,11 +542,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/founder-readiness-checklist" />
   </url>
   <url>
-    <loc>https://deshistartup.com/en/start-here/glossary-bangla-english-startup-jargon-dictionary</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/glossary-bangla-english-startup-jargon-dictionary" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/glossary-bangla-english-startup-jargon-dictionary" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/glossary-bangla-english-startup-jargon-dictionary" />
+    <loc>https://deshistartup.com/en/start-here/glossary</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/glossary" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/glossary" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/glossary" />
   </url>
   <url>
     <loc>https://deshistartup.com/en/start-here/one-page-startup-plan</loc>
@@ -526,18 +555,16 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/one-page-startup-plan" />
   </url>
   <url>
-    <loc>https://deshistartup.com/en/start-here/should-you-build-a-startup-or-a-normal-business</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/should-you-build-a-startup-or-a-normal-business" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/should-you-build-a-startup-or-a-normal-business" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/should-you-build-a-startup-or-a-normal-business" />
+    <loc>https://deshistartup.com/en/start-here/startup-or-business</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/startup-or-business" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/startup-or-business" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/startup-or-business" />
   </url>
   <url>
-    <loc>https://deshistartup.com/en/start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh" />
+    <loc>https://deshistartup.com/en/start-here/startup-vs-sme</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/startup-vs-sme" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/startup-vs-sme" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/startup-vs-sme" />
   </url>
   <url>
     <loc>https://deshistartup.com/en/start-here/what-is-a-startup</loc>
@@ -547,11 +574,65 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/what-is-a-startup" />
   </url>
   <url>
+    <loc>https://deshistartup.com/en/tax</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tax" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/tax" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tax" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/tax/e-tin</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tax/e-tin" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/tax/e-tin" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tax/e-tin" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/tax/mushak-63</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tax/mushak-63" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/tax/mushak-63" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tax/mushak-63" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/tax/personal-vs-company-tin</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tax/personal-vs-company-tin" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/tax/personal-vs-company-tin" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tax/personal-vs-company-tin" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/tax/vat-bin</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tax/vat-bin" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/tax/vat-bin" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tax/vat-bin" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/tax/vat-thresholds</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tax/vat-thresholds" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/tax/vat-thresholds" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tax/vat-thresholds" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/tax/when-vat-required</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tax/when-vat-required" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/tax/when-vat-required" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tax/when-vat-required" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/team</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/team" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/team" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/team" />
+  </url>
+  <url>
     <loc>https://deshistartup.com/en/tools</loc>
     <lastmod>2026-07-10</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tools" />
     <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/tools" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tools" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/trade</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/trade" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/trade" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/trade" />
   </url>
   <url>
     <loc>https://deshistartup.com/en/trade-license</loc>
@@ -561,36 +642,69 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/trade-license" />
   </url>
   <url>
+    <loc>https://deshistartup.com/en/validation</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/validation" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/validation" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/validation" />
+  </url>
+  <url>
     <loc>https://deshistartup.com/founder-life</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/founder-life" />
     <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/founder-life" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/founder-life" />
   </url>
   <url>
-    <loc>https://deshistartup.com/founder-life/women-founder-constraints-safety-client-meetings-travel-visibility</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/founder-life/women-founder-constraints-safety-client-meetings-travel-visibility" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/founder-life/women-founder-constraints-safety-client-meetings-travel-visibility" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/founder-life/women-founder-constraints-safety-client-meetings-travel-visibility" />
+    <loc>https://deshistartup.com/founder-life/women-founders</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/founder-life/women-founders" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/founder-life/women-founders" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/founder-life/women-founders" />
   </url>
   <url>
-    <loc>https://deshistartup.com/funding-roadmap</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/funding-roadmap" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/funding-roadmap" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/funding-roadmap" />
+    <loc>https://deshistartup.com/funding</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/funding" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/funding" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/funding" />
   </url>
   <url>
-    <loc>https://deshistartup.com/idea-validation</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/idea-validation" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/idea-validation" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/idea-validation" />
+    <loc>https://deshistartup.com/growth</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/growth" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/growth" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/growth" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/guides</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/guides" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/guides" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/guides" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/ideas</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/ideas" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/ideas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/ideas" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/ideas/finding-ideas</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/ideas/finding-ideas" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/ideas/finding-ideas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/ideas/finding-ideas" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/industries</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/industries" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/industries" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/industries" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/ip</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/ip" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/ip" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/ip" />
   </url>
   <url>
     <loc>https://deshistartup.com/journeys</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/journeys" />
     <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/journeys" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/journeys" />
@@ -702,7 +816,7 @@
   </url>
   <url>
     <loc>https://deshistartup.com/journeys/start-an-online-business</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/journeys/start-an-online-business" />
     <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/journeys/start-an-online-business" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/journeys/start-an-online-business" />
@@ -722,6 +836,30 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/legal-roadmap" />
   </url>
   <url>
+    <loc>https://deshistartup.com/licenses</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/licenses" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/licenses" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/licenses" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/manufacturing</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/manufacturing" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/manufacturing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/manufacturing" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/metrics</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/metrics" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/metrics" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/metrics" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/operations</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/operations" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/operations" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/operations" />
+  </url>
+  <url>
     <loc>https://deshistartup.com/payments</loc>
     <lastmod>2026-07-10</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/payments" />
@@ -729,116 +867,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/payments" />
   </url>
   <url>
-    <loc>https://deshistartup.com/phase-four</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-four" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-four" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-four" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/phase-one</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/phase-one/board-meetings-agm-and-minutes-basics</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/board-meetings-agm-and-minutes-basics" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/board-meetings-agm-and-minutes-basics" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/board-meetings-agm-and-minutes-basics" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/phase-one/e-tin-guide</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/e-tin-guide" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/e-tin-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/e-tin-guide" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/phase-one/how-to-find-startup-ideas-in-bangladesh</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/how-to-find-startup-ideas-in-bangladesh" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/how-to-find-startup-ideas-in-bangladesh" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/how-to-find-startup-ideas-in-bangladesh" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/phase-one/memorandum-and-articles-of-association-basics</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/memorandum-and-articles-of-association-basics" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/memorandum-and-articles-of-association-basics" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/memorandum-and-articles-of-association-basics" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/phase-one/mushak-63-invoice-and-vat-documentation-basics</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/mushak-63-invoice-and-vat-documentation-basics" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/mushak-63-invoice-and-vat-documentation-basics" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/mushak-63-invoice-and-vat-documentation-basics" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/phase-one/personal-e-tin-vs-company-tin</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/personal-e-tin-vs-company-tin" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/personal-e-tin-vs-company-tin" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/personal-e-tin-vs-company-tin" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/phase-one/private-limited-company-registration-step-by-step</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/private-limited-company-registration-step-by-step" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/private-limited-company-registration-step-by-step" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/private-limited-company-registration-step-by-step" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/phase-one/rjsc-name-clearance</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/rjsc-name-clearance" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/rjsc-name-clearance" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/rjsc-name-clearance" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/phase-one/share-capital-directors-and-shareholders-basics</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/share-capital-directors-and-shareholders-basics" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/share-capital-directors-and-shareholders-basics" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/share-capital-directors-and-shareholders-basics" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/phase-one/turnover-tax-and-vat-threshold-explainer</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/turnover-tax-and-vat-threshold-explainer" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/turnover-tax-and-vat-threshold-explainer" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/turnover-tax-and-vat-threshold-explainer" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/phase-one/vatbin-guide</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/vatbin-guide" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/vatbin-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/vatbin-guide" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/phase-one/when-vat-registration-is-required</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-one/when-vat-registration-is-required" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-one/when-vat-registration-is-required" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-one/when-vat-registration-is-required" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/phase-three</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-three" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-three" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-three" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/phase-two</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/phase-two" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/phase-two" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/phase-two" />
+    <loc>https://deshistartup.com/product</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/product" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/product" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/product" />
   </url>
   <url>
     <loc>https://deshistartup.com/registration</loc>
@@ -848,11 +880,71 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/registration" />
   </url>
   <url>
+    <loc>https://deshistartup.com/registration/board-meetings-agm</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/registration/board-meetings-agm" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/registration/board-meetings-agm" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/registration/board-meetings-agm" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/registration/moa-aoa</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/registration/moa-aoa" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/registration/moa-aoa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/registration/moa-aoa" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/registration/name-clearance</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/registration/name-clearance" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/registration/name-clearance" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/registration/name-clearance" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/registration/private-limited</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/registration/private-limited" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/registration/private-limited" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/registration/private-limited" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/registration/shares-and-directors</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/registration/shares-and-directors" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/registration/shares-and-directors" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/registration/shares-and-directors" />
+  </url>
+  <url>
     <loc>https://deshistartup.com/rjsc-name-clearance</loc>
     <lastmod>2026-07-10</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/rjsc-name-clearance" />
     <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/rjsc-name-clearance" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/rjsc-name-clearance" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/roadmap</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/roadmap" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/roadmap" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/roadmap" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/roadmap/build</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/roadmap/build" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/roadmap/build" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/roadmap/build" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/roadmap/grow</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/roadmap/grow" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/roadmap/grow" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/roadmap/grow" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/roadmap/scale</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/roadmap/scale" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/roadmap/scale" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/roadmap/scale" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/roadmap/validate</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/roadmap/validate" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/roadmap/validate" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/roadmap/validate" />
   </url>
   <url>
     <loc>https://deshistartup.com/sitemap</loc>
@@ -869,25 +961,16 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here" />
   </url>
   <url>
-    <loc>https://deshistartup.com/start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/30-day-roadmap-to-starting-a-startup-in-bangladesh" />
+    <loc>https://deshistartup.com/start-here/30-day-roadmap</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/30-day-roadmap" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/30-day-roadmap" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/30-day-roadmap" />
   </url>
   <url>
-    <loc>https://deshistartup.com/start-here/bangladesh-startup-ecosystem-overview</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/bangladesh-startup-ecosystem-overview" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/bangladesh-startup-ecosystem-overview" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/bangladesh-startup-ecosystem-overview" />
-  </url>
-  <url>
-    <loc>https://deshistartup.com/start-here/common-myths-bangladeshi-founders-believe</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/common-myths-bangladeshi-founders-believe" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/common-myths-bangladeshi-founders-believe" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/common-myths-bangladeshi-founders-believe" />
+    <loc>https://deshistartup.com/start-here/common-myths</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/common-myths" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/common-myths" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/common-myths" />
   </url>
   <url>
     <loc>https://deshistartup.com/start-here/founder-path-chooser</loc>
@@ -904,11 +987,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/founder-readiness-checklist" />
   </url>
   <url>
-    <loc>https://deshistartup.com/start-here/glossary-bangla-english-startup-jargon-dictionary</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/glossary-bangla-english-startup-jargon-dictionary" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/glossary-bangla-english-startup-jargon-dictionary" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/glossary-bangla-english-startup-jargon-dictionary" />
+    <loc>https://deshistartup.com/start-here/glossary</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/glossary" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/glossary" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/glossary" />
   </url>
   <url>
     <loc>https://deshistartup.com/start-here/one-page-startup-plan</loc>
@@ -918,18 +1000,16 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/one-page-startup-plan" />
   </url>
   <url>
-    <loc>https://deshistartup.com/start-here/should-you-build-a-startup-or-a-normal-business</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/should-you-build-a-startup-or-a-normal-business" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/should-you-build-a-startup-or-a-normal-business" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/should-you-build-a-startup-or-a-normal-business" />
+    <loc>https://deshistartup.com/start-here/startup-or-business</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/startup-or-business" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/startup-or-business" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/startup-or-business" />
   </url>
   <url>
-    <loc>https://deshistartup.com/start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh</loc>
-    <lastmod>2026-07-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh" />
-    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh" />
+    <loc>https://deshistartup.com/start-here/startup-vs-sme</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/start-here/startup-vs-sme" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/start-here/startup-vs-sme" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/startup-vs-sme" />
   </url>
   <url>
     <loc>https://deshistartup.com/start-here/what-is-a-startup</loc>
@@ -939,6 +1019,54 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/start-here/what-is-a-startup" />
   </url>
   <url>
+    <loc>https://deshistartup.com/tax</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tax" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/tax" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tax" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/tax/e-tin</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tax/e-tin" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/tax/e-tin" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tax/e-tin" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/tax/mushak-63</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tax/mushak-63" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/tax/mushak-63" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tax/mushak-63" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/tax/personal-vs-company-tin</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tax/personal-vs-company-tin" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/tax/personal-vs-company-tin" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tax/personal-vs-company-tin" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/tax/vat-bin</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tax/vat-bin" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/tax/vat-bin" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tax/vat-bin" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/tax/vat-thresholds</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tax/vat-thresholds" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/tax/vat-thresholds" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tax/vat-thresholds" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/tax/when-vat-required</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tax/when-vat-required" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/tax/when-vat-required" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tax/when-vat-required" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/team</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/team" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/team" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/team" />
+  </url>
+  <url>
     <loc>https://deshistartup.com/tools</loc>
     <lastmod>2026-07-10</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/tools" />
@@ -946,10 +1074,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/tools" />
   </url>
   <url>
+    <loc>https://deshistartup.com/trade</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/trade" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/trade" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/trade" />
+  </url>
+  <url>
     <loc>https://deshistartup.com/trade-license</loc>
     <lastmod>2026-07-10</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/trade-license" />
     <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/trade-license" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/trade-license" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/validation</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/validation" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/validation" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/validation" />
   </url>
 </urlset>

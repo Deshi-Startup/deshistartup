@@ -66,8 +66,9 @@ is fine, review will polish it.
 
 - 🧭 **[Start Here](https://deshistartup.com/en/start-here)** – the full roadmap and glossary
 - 🛤️ **[Journeys](https://deshistartup.com/en/journeys)** – 12 goal-based guided paths ("I have an idea but no product"…)
-- ✅ **[Idea Validation](https://deshistartup.com/en/idea-validation)** – customer interviews, market sizing, MVPs
-- 🏛️ **Phases 1–4** – registration & foundations → product & team → selling & funding → scale & ecosystem
+- ✅ **[Idea Validation](https://deshistartup.com/en/validation)** – customer interviews, market sizing, MVPs
+- 🏛️ **[Topic guides](https://deshistartup.com/en/guides)** – registration, tax, payments, customers, team, funding – every topic has its own hub
+- 🪜 **[Step-by-step roadmap](https://deshistartup.com/en/roadmap)** – validate & set up → product & team → selling & funding → scale & ecosystem
 - 📚 **[Case Studies](https://deshistartup.com/en/case-studies)** – Pathao, bKash, Chaldal… source-backed local stories
 - 🗂️ **[Directory](https://deshistartup.com/en/directory)** – investors and accelerators as verified, structured data
 - 🌙 **[Founder Life](https://deshistartup.com/en/founder-life)** – family pressure, mental health, solo-founder reality
