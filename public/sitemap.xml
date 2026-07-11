@@ -428,6 +428,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/metrics" />
   </url>
   <url>
+    <loc>https://deshistartup.com/en/metrics/unit-economics</loc>
+    <lastmod>2026-07-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/metrics/unit-economics" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/metrics/unit-economics" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/metrics/unit-economics" />
+  </url>
+  <url>
     <loc>https://deshistartup.com/en/operations</loc>
     <lastmod>2026-07-11</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/operations" />
@@ -909,6 +916,13 @@
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/metrics" />
     <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/metrics" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/metrics" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/metrics/unit-economics</loc>
+    <lastmod>2026-07-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/metrics/unit-economics" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/metrics/unit-economics" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/metrics/unit-economics" />
   </url>
   <url>
     <loc>https://deshistartup.com/operations</loc>

@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 452,
-  "written": 84,
-  "stubs": 368
+  "written": 85,
+  "stubs": 367
  },
  "sections": {
   "about": {
@@ -2863,6 +2863,16 @@
    },
    "children": [
     {
+     "route": "/en/metrics/unit-economics",
+     "slug": "metrics/unit-economics",
+     "title": "Unit Economics: What One Order Actually Leaves You",
+     "fullTitle": "Unit Economics: What One Order Actually Leaves You",
+     "description": "How to work out what one order or one customer really leaves after every cost. Step by step through Rahim's Facebook clothing page, including returned orders and ad spend, with a template for your own sheet.",
+     "stub": false,
+     "date": "2026-07-11",
+     "verified": null
+    },
+    {
      "route": "/en/metrics/cac-ltv-churn",
      "slug": "metrics/cac-ltv-churn",
      "title": "CAC, LTV, Retention, Churn, Payback",
@@ -2951,21 +2961,11 @@
      "stub": true,
      "date": "2026-07-11",
      "verified": null
-    },
-    {
-     "route": "/en/metrics/unit-economics",
-     "slug": "metrics/unit-economics",
-     "title": "Unit Economics Template",
-     "fullTitle": "Unit Economics Template",
-     "description": "Unit Economics Template – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it.",
-     "stub": true,
-     "date": "2026-07-11",
-     "verified": null
     }
    ],
    "title": "Metrics & Dashboards",
    "total": 10,
-   "written": 0
+   "written": 1
   },
   "operations": {
    "slug": "operations",

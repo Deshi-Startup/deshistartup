@@ -3,8 +3,8 @@
  "generatedAt": null,
  "counts": {
   "pages": 452,
-  "written": 84,
-  "stubs": 368
+  "written": 85,
+  "stubs": 367
  },
  "sections": {
   "about": {
@@ -2863,21 +2863,21 @@
    },
    "children": [
     {
+     "route": "/metrics/unit-economics",
+     "slug": "metrics/unit-economics",
+     "title": "ইউনিট ইকোনমিক্স: এক অর্ডারে আসলে কত থাকে",
+     "fullTitle": "ইউনিট ইকোনমিক্স: এক অর্ডারে আসলে কত থাকে",
+     "description": "এক অর্ডার বা এক গ্রাহকে সব খরচ বাদ দিয়ে হাতে আসলে কত টাকা থাকে, তার হিসাব। রাহিমের কাপড়ের পেজের উদাহরণে ধাপে ধাপে, ফেরত অর্ডার আর বিজ্ঞাপনের খরচসহ, সঙ্গে নিজের শিটের টেমপ্লেট।",
+     "stub": false,
+     "date": "2026-07-11",
+     "verified": null
+    },
+    {
      "route": "/metrics/e-commerce",
      "slug": "metrics/e-commerce",
      "title": "ই-কমার্স মেট্রিক্স",
      "fullTitle": "ই-কমার্স মেট্রিক্স",
      "description": "ই-কমার্স মেট্রিক্স – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
-     "stub": true,
-     "date": "2026-07-11",
-     "verified": null
-    },
-    {
-     "route": "/metrics/unit-economics",
-     "slug": "metrics/unit-economics",
-     "title": "ইউনিট অর্থনীতি টেমপ্লেট",
-     "fullTitle": "ইউনিট অর্থনীতি টেমপ্লেট",
-     "description": "ইউনিট অর্থনীতি টেমপ্লেট – বিষয়টি দেশি স্টার্টআপের তালিকায় আছে, কিন্তু গাইডটি এখনো লেখা হয়নি। আপনি লিখে সাহায্য করতে পারেন।",
      "stub": true,
      "date": "2026-07-11",
      "verified": null
@@ -2965,7 +2965,7 @@
    ],
    "title": "মেট্রিক্স ও ড্যাশবোর্ড",
    "total": 10,
-   "written": 0
+   "written": 1
   },
   "operations": {
    "slug": "operations",

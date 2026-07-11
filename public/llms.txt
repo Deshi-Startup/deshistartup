@@ -55,6 +55,7 @@ Use the Bengali page as the source of truth when the two language versions diffe
 - [লাইসেন্স ও অনুমোদন](https://deshistartup.com/licenses): ট্রেড লাইসেন্স ক্যাটাগরি, ফায়ার লাইসেন্স, পরিবেশ ছাড়পত্র, BSTI, BFSA, DGDA – কোন ব্যবসায় কোন অনুমোদন লাগে, তার গাইড।
 - [উৎপাদন ও সাপ্লাই চেইন](https://deshistartup.com/manufacturing): প্রথম ব্যাচ, BOM ও কস্টিং, সাপ্লায়ার বাছাই, কোয়ালিটি কন্ট্রোল, প্যাকেজিং, ইনভেন্টরি আর কোল্ড চেইনের গাইড।
 - [মেট্রিক্স ও ড্যাশবোর্ড](https://deshistartup.com/metrics): CAC, LTV, রিটেনশন, ইউনিট ইকোনমিক্স, ই-কমার্স/SaaS/মার্কেটপ্লেস মেট্রিক্স আর ফাউন্ডার ড্যাশবোর্ডের গাইড।
+- [ইউনিট ইকোনমিক্স: এক অর্ডারে আসলে কত থাকে](https://deshistartup.com/metrics/unit-economics): এক অর্ডার বা এক গ্রাহকে সব খরচ বাদ দিয়ে হাতে আসলে কত টাকা থাকে, তার হিসাব। রাহিমের কাপড়ের পেজের উদাহরণে ধাপে ধাপে, ফেরত অর্ডার আর বিজ্ঞাপনের খরচসহ, সঙ্গে নিজের শিটের টেমপ্লেট।
 - [ডেলিভারি, কুরিয়ার ও ক্যাশ অন ডেলিভারি](https://deshistartup.com/operations): কুরিয়ার বাছাই, SLA তুলনা, লাস্ট-মাইল ডেলিভারি, সিওডির ঝুঁকি, ভুয়া অর্ডার আর ফেরত কমানোর গাইড।
 - [বাংলাদেশে স্টার্টআপ গড়ার বাংলা গাইড](https://deshistartup.com/): বাংলাদেশে স্টার্টআপ শুরু, চালু ও বড় করার জন্য উন্মুক্ত বাংলা গাইড: আইডিয়া যাচাই, নিবন্ধন, কর/ভ্যাট, পেমেন্ট, গ্রাহক, দল ও ফান্ডিং।
 - [পেমেন্ট ব্যবস্থা](https://deshistartup.com/payments): বাংলাদেশে স্টার্টআপ ও ছোট ব্যবসার পেমেন্ট ব্যবস্থা নিয়ে সহজ বাংলা গাইড: বিকাশ, নগদ, ব্যাংক ট্রান্সফার, পেমেন্ট গেটওয়ে, ক্যাশ অন ডেলিভারি, রিফান্ড, হিসাব ও ভরসা।
@@ -141,6 +142,7 @@ Use the Bengali page as the source of truth when the two language versions diffe
 - [Licenses & Approvals](https://deshistartup.com/en/licenses): Trade license categories, fire license, environmental clearance, BSTI, BFSA, DGDA – which approvals apply to which business.
 - [Manufacturing & Supply Chain](https://deshistartup.com/en/manufacturing): First batch, BOM and costing, supplier sourcing, quality control, packaging, inventory and cold chain guides.
 - [Metrics & Dashboards](https://deshistartup.com/en/metrics): CAC, LTV, retention, unit economics, e-commerce/SaaS/marketplace metrics and founder dashboard guides.
+- [Unit Economics: What One Order Actually Leaves You](https://deshistartup.com/en/metrics/unit-economics): How to work out what one order or one customer really leaves after every cost. Step by step through Rahim's Facebook clothing page, including returned orders and ad spend, with a template for your own sheet.
 - [Delivery, Couriers & Cash on Delivery](https://deshistartup.com/en/operations): Choosing couriers, SLA comparison, last-mile delivery, COD risk, fake orders and reducing returns.
 - [The Bangla-first guide to building a startup in Bangladesh](https://deshistartup.com/en): A free, open-source knowledge base for starting and growing a startup in Bangladesh: idea validation, registration, tax/VAT, payments, customers, teams and funding.
 - [Payments: MFS, Bank, Cards and Cash on Delivery](https://deshistartup.com/en/payments): A practical Bangladesh guide to mobile financial services, bank transfers, payment gateways, cash on delivery, refunds and reconciliation.
@@ -182,4 +184,4 @@ Use the Bengali page as the source of truth when the two language versions diffe
 - [Idea Validation](https://deshistartup.com/en/validation): Turn an idea into testable questions, interview potential customers, map alternatives, run a small MVP and decide whether to continue, change or stop.
 
 ---
-736 additional topics are planned but not yet written (stubs) across both languages. See https://deshistartup.com/contribute to help write one.
+734 additional topics are planned but not yet written (stubs) across both languages. See https://deshistartup.com/contribute to help write one.
