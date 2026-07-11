@@ -39,16 +39,6 @@ const QUOTAS = {
   'Founder Life': 2
 }
 
-const SECTION_DIR = {
-  'Start Here': 'start-here',
-  'Phase 1: Starting': 'phase-one',
-  'Phase 2: Building': 'phase-two',
-  'Phase 3: Launching & Growing': 'phase-three',
-  'Phase 4: Ecosystem & Support': 'phase-four',
-  'Founder Life': 'founder-life',
-  'Case Studies': 'case-studies'
-}
-
 function parseCsv(text) {
   const rows = []
   let row = []
@@ -67,17 +57,6 @@ function parseCsv(text) {
   }
   if (field.length || row.length) { row.push(field); rows.push(row) }
   return rows.filter((r) => !(r.length === 1 && r[0] === ''))
-}
-
-// Same empirically-derived rule as backlog-status.mjs.
-function slugify(topic) {
-  let s = topic.toLowerCase()
-  s = s.replace(/&/g, ' and ')
-  s = s.replace(/[/']/g, '')
-  s = s.replace(/[(),.:?]/g, '')
-  s = s.replace(/[^a-z0-9]+/g, '-')
-  s = s.replace(/-+/g, '-').replace(/^-|-$/g, '')
-  return s
 }
 
 const csvRows = parseCsv(fs.readFileSync(path.join(root, 'plan', 'content-backlog.csv'), 'utf8'))
@@ -111,9 +90,8 @@ for (const row of backlog) {
   if (!quota || row.Priority !== 'High') continue
   if (row.Section === 'Case Studies' && META_TOPIC.test(row['Topic (English)'])) continue
   if ((used[row.Section] || 0) >= quota) continue
-  const dir = SECTION_DIR[row.Section]
-  const base = slugify(row['Topic (English)'])
-  const slug = stubBySlug.has(`${dir}/${base}`) ? `${dir}/${base}` : stubBySlug.has(base) ? base : null
+  // The backlog's Path column is the canonical route registry (July 2026 migration).
+  const slug = row.Path && stubBySlug.has(row.Path.replace(/^\//, '')) ? row.Path.replace(/^\//, '') : null
   if (!slug) continue
   used[row.Section] = (used[row.Section] || 0) + 1
   picked.push({ row, slug })

@@ -51,24 +51,46 @@ function firstHeading(source) {
   return match ? match[1].trim() : null
 }
 
-// One git pass: newest and oldest commit date per content file.
+// One git pass: newest and oldest commit date per content file. Rename detection
+// (--name-status -M) walks history through moves such as the July 2026 URL
+// migration, so a moved guide keeps its original published/updated dates.
 function collectGitDates() {
   const modified = new Map()
   const published = new Map()
+  const alias = new Map() // historical path -> current path
+  const resolve = (file) => {
+    let current = file
+    while (alias.has(current)) current = alias.get(current)
+    return current
+  }
   try {
-    const log = execSync("git log --format='C%cs' --name-only -- 'app/(contents)'", {
+    const log = execSync("git log --format='C%cs' --name-status -M -- 'app/(contents)'", {
       cwd: root,
       encoding: 'utf8',
       maxBuffer: 64 * 1024 * 1024
     })
     let current = null
     for (const line of log.split('\n')) {
-      if (line.startsWith('C')) current = line.slice(1).trim()
-      else if (line.trim() && current) {
-        const file = line.trim()
-        if (!modified.has(file)) modified.set(file, current)
-        published.set(file, current)
+      if (line.startsWith('C')) {
+        current = line.slice(1).trim()
+        continue
       }
+      if (!line.trim() || !current) continue
+      const parts = line.split('\t')
+      const status = parts[0]
+      let file = null
+      if (status.startsWith('R') && parts.length >= 3) {
+        // Log runs newest → oldest: map the pre-rename path onto the file's
+        // current (already-resolved) path for all older commits.
+        const canonical = resolve(parts[2].trim())
+        alias.set(parts[1].trim(), canonical)
+        file = canonical
+      } else if (parts.length >= 2) {
+        file = resolve(parts[1].trim())
+      }
+      if (!file) continue
+      if (!modified.has(file)) modified.set(file, current)
+      published.set(file, current)
     }
   } catch {
     // No git available (fresh tarball) – dates stay empty, UI hides them.

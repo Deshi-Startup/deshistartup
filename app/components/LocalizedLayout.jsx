@@ -120,7 +120,7 @@ function Breadcrumbs({ isEn, pathname, pageTitle }) {
             <a href={localHref(crumb.href)}>{crumb.label}</a>
           </li>
         ))}
-        <li aria-current="page">{pageTitle || '…'}</li>
+        <li aria-current="page" suppressHydrationWarning>{pageTitle || '…'}</li>
       </ol>
     </nav>
   )

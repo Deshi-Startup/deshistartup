@@ -327,6 +327,7 @@ p {
   color: var(--ink);
   cursor: pointer;
   isolation: isolate;
+  text-decoration: none;
 }
 
 .language-switcher__thumb {

@@ -14,7 +14,7 @@ body:
     attributes:
       label: "কোন বিষয়? · Which topic?"
       description: "স্টাব পাতার লিংক বা ব্যাকলগের বিষয়ের নাম · Link to the stub page, or the topic name from the backlog"
-      placeholder: "https://deshistartup.com/phase-one/..."
+      placeholder: "https://deshistartup.com/registration/..."
     validations:
       required: true
   - type: textarea

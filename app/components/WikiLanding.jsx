@@ -44,7 +44,7 @@ const bn = {
     'সবাই একই জায়গা থেকে শুরু করে না। কেউ আইডিয়া পর্যায়ে, কেউ ফেসবুক পেজ খুলে ফেলেছেন, কেউ নিবন্ধন নিয়ে আটকে আছেন। নিজের অবস্থার ঘরটা বেছে নিন, অথবা ওপরের সার্চে নিজের প্রশ্নটা লিখুন।',
   stages: [
     ['আমি একদম নতুন', 'শুরুর পুরো পথটা আগে এক নজরে বুঝে নিন। কী আগে, কী পরে।', 'শুরু করুন', '/start-here'],
-    ['আমার একটা আইডিয়া আছে', 'বানানোর আগে দেখুন মানুষ সমস্যাটা সত্যি অনুভব করে কি না, টাকা দিতে রাজি কি না।', 'আইডিয়া যাচাই করুন', '/idea-validation'],
+    ['আমার একটা আইডিয়া আছে', 'বানানোর আগে দেখুন মানুষ সমস্যাটা সত্যি অনুভব করে কি না, টাকা দিতে রাজি কি না।', 'আইডিয়া যাচাই করুন', '/validation'],
     ['স্টার্টআপ চালু করতে চাই', 'ট্রেড লাইসেন্স, কোম্পানি, টিআইএন, ভ্যাট, ব্যাংক। কোন কাগজ কখন লাগে, ধাপে ধাপে।', 'আইনি পথ দেখুন', '/legal-roadmap'],
     ['গ্রাহক আর বিক্রি চাই', 'ফেসবুক, মেসেঞ্জার, হোয়াটসঅ্যাপ, রেফারেল – প্রথম ১০০ গ্রাহক পাওয়ার বাস্তব পথ।', 'বিক্রি শুরু করুন', '/customers'],
     ['লক্ষ্য জানি, পথ চাই', 'আপনার কাজ বেছে নিয়ে ধাপে ধাপে কোন গাইড পড়বেন তা দেখে নিন।', 'গাইডেড পথ দেখুন', '/journeys']
@@ -52,14 +52,16 @@ const bn = {
   topicTitle: 'বিষয় ধরে খুঁজুন',
   topicSub: 'যে কাজটা এখন করতে চাইছেন, সেই বিষয়ের গাইডে ঢুকে পড়ুন। প্রতিটি বিভাগের পাতায় সেই বিষয়ের সব গাইডের তালিকা আছে।',
   topics: [
-    ['আইডিয়া ও যাচাই', 'গ্রাহকের সঙ্গে আলাপ · এমভিপি পরীক্ষা · বাজার বোঝা · প্রতিযোগী', '/idea-validation'],
+    ['আইডিয়া ও বাজার', 'সমস্যা খোঁজা · বাজার বোঝা · ডেটার উৎস · প্রতিযোগী', '/ideas'],
+    ['আইডিয়া যাচাই', 'গ্রাহকের সঙ্গে আলাপ · চাহিদার পরীক্ষা · এমভিপি', '/validation'],
     ['আইন, কর ও নিবন্ধন', 'ট্রেড লাইসেন্স · কোম্পানি · RJSC · e-TIN · ভ্যাট/BIN', '/legal-roadmap'],
     ['পেমেন্ট ও অপারেশন', 'বিকাশ/নগদ · গেটওয়ে · ক্যাশ অন ডেলিভারি · কুরিয়ার · রিফান্ড', '/payments'],
     ['গ্রাহক ও বিক্রি', 'ফেসবুক কমার্স · মেসেঞ্জার/হোয়াটসঅ্যাপ · B2B বিক্রি · প্রথম ১০০ গ্রাহক', '/customers'],
     ['টিম ও উদ্যোক্তার জীবন', 'কো-ফাউন্ডার · প্রথম নিয়োগ · পারিবারিক চাপ · বার্নআউট', '/founder-life'],
-    ['ফান্ডিং ও বড় হওয়া', 'গ্র্যান্ট · অ্যাঞ্জেল · ভিসি · পিচ ডেক · সরকারি সুবিধা', '/funding-roadmap'],
+    ['ফান্ডিং ও বড় হওয়া', 'গ্র্যান্ট · অ্যাঞ্জেল · ভিসি · পিচ ডেক · সরকারি সুবিধা', '/funding'],
     ['টেমপ্লেট ও টুলস', 'চেকলিস্ট · স্ক্রিপ্ট · ক্যালকুলেটর · ট্র্যাকার', '/tools'],
-    ['ডিরেক্টরি', 'ইনভেস্টর · অ্যাক্সেলারেটর · প্রোগ্রাম · ইকোসিস্টেম', '/directory']
+    ['ডিরেক্টরি', 'ইনভেস্টর · অ্যাক্সেলারেটর · প্রোগ্রাম · ইকোসিস্টেম', '/directory'],
+    ['সব বিষয়', 'নিবন্ধন থেকে খাতভিত্তিক গাইড – প্রতিটি বিভাগের হাব এক পাতায়', '/guides']
   ],
   faqTitle: 'নতুনদের সাধারণ প্রশ্ন',
   faqSub: 'শুরুতে সবকিছু জরুরি মনে হয়। কিন্তু সব কাজ একই দিনে করতে হয় না। এই উত্তরগুলো প্রথম সিদ্ধান্তগুলো নিতে সাহায্য করবে।',
@@ -125,7 +127,7 @@ const en = {
     'Nobody starts from the same place. Some are at the idea stage, some already run a Facebook page, some are stuck on registration. Pick the card that matches your situation, or type your question in the search above.',
   stages: [
     ['I\'m completely new', 'See the whole journey first – what comes first, what can wait.', 'Start here', '/en/start-here'],
-    ['I have an idea', 'Before building, check people truly feel the problem and will pay.', 'Validate your idea', '/en/idea-validation'],
+    ['I have an idea', 'Before building, check people truly feel the problem and will pay.', 'Validate your idea', '/en/validation'],
     ['I want to launch', 'Trade license, company, TIN, VAT, bank – which paper when, step by step.', 'See the legal path', '/en/legal-roadmap'],
     ['I need customers', 'Facebook, Messenger, WhatsApp, referrals – real paths to your first 100 customers.', 'Start selling', '/en/customers'],
     ['I know the goal', 'Pick the job you are trying to do and follow the guides in order.', 'See guided paths', '/en/journeys']
@@ -133,14 +135,16 @@ const en = {
   topicTitle: 'Browse by topic',
   topicSub: 'Jump into the guide for the job you\'re doing right now. Every section page lists all of its guides.',
   topics: [
-    ['Idea & validation', 'Customer interviews · MVP tests · market research · competitors', '/en/idea-validation'],
+    ['Ideas & market', 'Finding problems · market research · data sources · competitors', '/en/ideas'],
+    ['Idea validation', 'Customer interviews · demand tests · MVPs', '/en/validation'],
     ['Legal, tax & registration', 'Trade license · company · RJSC · e-TIN · VAT/BIN', '/en/legal-roadmap'],
     ['Payments & operations', 'bKash/Nagad · gateways · cash on delivery · couriers · refunds', '/en/payments'],
     ['Customers & sales', 'Facebook commerce · Messenger/WhatsApp · B2B sales · first 100 customers', '/en/customers'],
     ['Team & founder life', 'Co-founders · first hires · family pressure · burnout', '/en/founder-life'],
-    ['Funding & scale', 'Grants · angels · VC · pitch decks · government support', '/en/funding-roadmap'],
+    ['Funding & scale', 'Grants · angels · VC · pitch decks · government support', '/en/funding'],
     ['Templates & tools', 'Checklists · scripts · calculators · trackers', '/en/tools'],
-    ['Directory', 'Investors · accelerators · programs · ecosystem', '/en/directory']
+    ['Directory', 'Investors · accelerators · programs · ecosystem', '/en/directory'],
+    ['All topics', 'Every topic hub on one page – registration to sector playbooks', '/en/guides']
   ],
   faqTitle: 'Common beginner questions',
   faqSub: 'Everything feels urgent at the start, but not everything happens on day one – these answers help with the first decisions.',

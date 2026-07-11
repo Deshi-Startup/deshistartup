@@ -63,16 +63,6 @@ function slugify(topic) {
   return s
 }
 
-const SECTION_DIR = {
-  'Start Here': 'start-here',
-  'Phase 1: Starting': 'phase-one',
-  'Phase 2: Building': 'phase-two',
-  'Phase 3: Launching & Growing': 'phase-three',
-  'Phase 4: Ecosystem & Support': 'phase-four',
-  'Founder Life': 'founder-life',
-  'Case Studies': 'case-studies'
-}
-
 function tokenize(slug) {
   return new Set(slug.split('-').filter(Boolean))
 }
@@ -115,12 +105,22 @@ for (const page of sitePages) {
   if (!basenameMap.has(page.basename)) basenameMap.set(page.basename, [])
   basenameMap.get(page.basename).push(page)
 }
+const bySlug = new Map(sitePages.map((page) => [page.slug, page]))
 
 const FUZZY_THRESHOLD = 0.6
 const backlogRows = loadCsv(path.join(root, 'plan', 'content-backlog.csv'))
 const matchedSiteSlugs = new Set()
 
 const results = backlogRows.map((row) => {
+  // The Path column (added with the July 2026 topic-URL migration) is the
+  // canonical registry: an explicit path always wins over title slugification.
+  if (row.Path) {
+    const slug = row.Path.replace(/^\//, '')
+    const match = bySlug.get(slug) || null
+    if (match) matchedSiteSlugs.add(match.slug)
+    return { ...row, slug, match, matchType: match ? 'exact' : 'missing' }
+  }
+
   const topic = row['Topic (English)']
   const slug = slugify(topic)
   const candidates = basenameMap.get(slug) || []
@@ -131,8 +131,7 @@ const results = backlogRows.map((row) => {
     match = candidates[0]
     matchType = 'exact'
   } else if (candidates.length > 1) {
-    const expectedDir = SECTION_DIR[row.Section]
-    match = candidates.find((c) => c.dir === expectedDir) || candidates[0]
+    match = candidates[0]
     matchType = 'exact-ambiguous'
   } else {
     let best = null
