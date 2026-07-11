@@ -153,6 +153,10 @@ p {
   flex: 0 0 auto;
 }
 
+.brand > span {
+  min-width: 0;
+}
+
 .brand strong {
   display: block;
   color: var(--ink);
@@ -167,7 +171,6 @@ p {
   color: var(--muted);
   font-size: 0.82rem;
   line-height: 1.2;
-  white-space: nowrap;
 }
 
 .header-search {

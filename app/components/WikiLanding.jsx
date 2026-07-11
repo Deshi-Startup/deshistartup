@@ -96,7 +96,7 @@ const bn = {
 }
 
 const en = {
-  kicker: 'The Bangla-first startup guide for Bangladesh',
+  kicker: 'The Bangladeshi startup manual',
   title: 'Deshi Startup',
   subtitle:
     'Step-by-step guidance in plain language – from idea to first customer, trade license to payments, funding to scale.',
@@ -114,7 +114,7 @@ const en = {
     'Articles about law, tax, VAT, banking or licensing help you decide, but they are not legal or tax advice. Fees, forms and processes change; confirm with official sources and, where needed, a chartered accountant or lawyer before acting.',
   infoboxTitle: 'At a glance',
   infoboxName: 'Deshi Startup',
-  infoboxTagline: 'The Bangla-first startup guide for Bangladesh',
+  infoboxTagline: 'The Bangladeshi startup manual',
   infobox: (written, stubs) => [
     ['For', 'New and women founders, student founders, startup teams, diaspora founders'],
     ['Covers', 'Idea validation, registration, payments, sales, hiring, funding'],

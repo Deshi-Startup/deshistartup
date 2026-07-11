@@ -242,7 +242,7 @@ export default function LocalizedLayout({ children }) {
             <img src={localHref('/deshi-mark.svg')} alt="" width="54" height="54" />
             <span>
               <strong>{isEn ? 'Deshi Startup' : 'দেশি স্টার্টআপ'}</strong>
-              <small>{isEn ? 'The Bangla-first startup guide for Bangladesh' : 'বাংলাদেশে স্টার্টআপ গড়ার গাইড'}</small>
+              <small>{isEn ? 'The Bangladeshi startup manual' : 'বাংলাদেশে স্টার্টআপ গড়ার গাইড'}</small>
             </span>
           </a>
 
