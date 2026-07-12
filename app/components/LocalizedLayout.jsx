@@ -290,9 +290,15 @@ export default function LocalizedLayout({ children }) {
           <div className="article-tabs" id="read">
             <div className="tab-group" role="tablist" aria-label={isEn ? 'Page type' : 'পাতার ধরন'}>
               <button className="tab active" type="button">{tabs.article}</button>
-              <button className="tab" type="button" title={isEn ? 'Coming soon' : 'শিগগিরই আসছে'}>
+              <a
+                className="tab"
+                href={`${REPO_URL}/discussions`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={isEn ? 'Discuss on GitHub' : 'গিটহাবে আলোচনা করুন'}
+              >
                 {tabs.talk}
-              </button>
+              </a>
             </div>
             <div className="article-actions">
               <a href="#read">{tabs.read}</a>
