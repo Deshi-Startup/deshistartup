@@ -17,6 +17,8 @@ knowledge-bank/
 context/
 # Generated on demand (npm run backlog:status) — regenerable, do not commit
 plan/status-report.md
+# Personal Claude Code settings (permissions allowlist) — machine-local, not shared
+.claude/settings.local.json
 # Local experiments and artifacts
 .firecrawl/
 .vinext/
