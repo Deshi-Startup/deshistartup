@@ -46,7 +46,57 @@ not a news-agency wire, not WhatsApp slang.
 
 ---
 
-## 1. Think in Bangla – the writing workflow
+## 0.1 How to use this guide – read it in this order
+
+This file is mostly a list of things *not* to do (§2, §3.1–3.3). That list is a **checklist for a
+finished draft – not a way to compose one.** If you write while dodging tells, you produce careful,
+hyper-corrected prose, and careful prose is exactly what sounds translated. That is the trap the whole
+site keeps falling into: the linter goes green, the Bangla still smells of English.
+
+So compose in the opposite order:
+
+1. **Soak in the target first** – §1 (the gold standard) and §3.6–§3.10 (the native repertoire:
+   particles, openers, native verbs, idioms). Write *from* these – imitate the exemplars, reach for the
+   phrases. Fluency comes from copying good Bangla, not from avoiding bad Bangla.
+2. **Then draft**, out loud, in Bangla (§1 workflow).
+3. **Only then** run the §2/§3 prohibitions and the §7 checklist over the draft to catch what slipped.
+
+The two gates, in order of authority: **`/bangla-review`** (a native reader – the real test) >
+**read-aloud** (§1, §7) > **`npm run lint:bangla`** (the mechanical floor; passing it proves nothing
+about fluency – the whole 454-page corpus passed it while still reading translated).
+
+---
+
+## 1. Write from Bangla – the gold standard, then the workflow
+
+Before any rule, the target. These are real paragraphs from this site's best page (the unit economics
+guide). Do not study them for rules – study them for *texture*. This is what "thought in Bangla" sounds
+like, and matching this feel is the whole job.
+
+**Gold standard 1 – a guide opening (teaches, and sounds spoken):**
+
+> ধরুন, রাহিম চট্টগ্রামে বসে ফেসবুক পেজে কাপড় বেচেন। ৮০০ টাকায় কেনা একটা জামা ১,২০০ টাকায় বিক্রি হলো।
+> লাভ ৪০০ টাকা, তাই তো? … মাস শেষে অথচ ব্যাংকে কিছু জমে না, বরং কমে। অঙ্কটা কোথায় ফাঁকি দিল?
+
+Why it lands: **তাই তো?** pulls the reader in mid-thought; **অঙ্কটা কোথায় ফাঁকি দিল?** is a question a
+person asks out loud, not a heading; **বরং** turns the sentence the Bangla way; the rhythm goes
+short–long–short. Nothing here reverse-translates into one clean English sentence – the mark of Bangla
+that was thought, not converted.
+
+**Gold standard 2 – a claim rewritten from its English skeleton (STYLE §8):**
+
+> পেমেন্ট কীভাবে নেবেন, এটা শুধু টেকনিক্যাল সিদ্ধান্ত না। গ্রাহক আপনাকে কতটা ভরসা করবে, হাতে ক্যাশ কখন
+> আসবে, হিসাব মিলবে কি না – অনেক কিছু নির্ভর করছে এর ওপর।
+
+Why it lands: the topic is **fronted** ("পেমেন্ট কীভাবে নেবেন,") and the verb trails – English order is
+gone. It leans on native phrases (**ভরসা করা, হিসাব মেলা, হাতে ক্যাশ আসা**), not calques (আস্থা,
+নগদ প্রবাহ). Try to reverse-translate it 1:1 into English – you can't. That failure is the goal.
+
+When a sentence is fighting you, stop editing it and ask: *how would I say this to রাহিম over tea?*
+Say that sentence out loud, write down what you said, clean it up. That is the method – the rules below
+only tell you what went wrong when you skipped it.
+
+### 1.1 The workflow
 
 Translationese is born in the drafting process, so fix the process:
 
@@ -352,6 +402,123 @@ Founders live in a mixed vocabulary; pretending otherwise creates gazette-Bangla
 
 ---
 
+## 3.6 The native repertoire – reach *for* these
+
+§2 and §3.1–3.3 tell you what to avoid. This is the opposite: the bank of native material you compose
+*from*. When a sentence reads flat-but-correct, the fix is almost always to reach into this repertoire,
+not to scrub another tell. Soak in these before drafting (§0.1).
+
+### 3.6 Discourse particles – the fastest route to a spoken voice
+
+These little words carry no information; they carry *voice*. Translationese has none of them. A person
+drops two or three into a paragraph without thinking, and their absence is exactly why correct Bangla
+can still read like a manual.
+
+| শব্দ | কী করে | উদাহরণ |
+|---|---|---|
+| তো | ধরে-নেওয়া বা মৃদু বৈপরীত্য নরম করে | দাম তো বাড়বেই, এতে নতুন কিছু নেই। |
+| আসলে | আসল কথায় ফেরায় ("actually") | আসলে সমস্যাটা দামে না, ভরসায়। |
+| বরং | ভালো পথে মোড় ঘোরায় | ধার করবেন না, বরং আগে বিক্রি বাড়ান। |
+| মানে | খুলে বলে ("so / meaning") | মানে, হাতে থাকল মোটে ১৬০ টাকা। |
+| নাকি | দাবিকে সত্যিকারের প্রশ্নে বদলায় | গ্রাহক সত্যিই কিনবে, নাকি শুধু বলছে? |
+| দেখুন / খেয়াল করুন | মনোযোগ টানে | দেখুন, হিসাবটা আসলে সোজা। |
+| তাই তো? / না? | পাঠকের সায় টানে | লাভ ৪০০ টাকা, তাই তো? |
+| বটে | এক পয়েন্ট মেনে নেয় | কথাটা কঠিন বটে, তবু সত্যি। |
+| কিনা | ভেতরে দুশ্চিন্তা গুঁজে দেয় | পোষাচ্ছে কিনা, সেটাই আসল প্রশ্ন। |
+| এমনকি | বাজি বাড়ায় | এমনকি একটা ফেরত অর্ডারও পুরো মুনাফা খেয়ে ফেলে। |
+
+Register: these belong in body prose, questions, and the সারকথা – never in headings or table cells.
+Two per paragraph is plenty. A page where *every* sentence has a তো has tipped into chat (§2.10), which
+is its own tell. Season, don't drown.
+
+### 3.7 Openers – beyond ধরুন
+
+The ধরুন-opener is native and welcome, but when every section starts with ধরুন the reader hears a
+template. Keep ধরুন for its real job – flagging a *hypothetical* (EDITORIAL §3's honesty rule) – and
+rotate these for ordinary framing:
+
+- **ব্যাপারটা এমন,** … (before an explanation)
+- **কথা হলো,** … (getting to the point)
+- **একটু ভাবুন তো,** … (inviting the reader to reason)
+- **খেয়াল করুন,** … (pointing at a detail)
+- **সমস্যাটা এখানেই।** (naming the crux)
+- **মজার ব্যাপার কী জানেন?** … (setting up a surprise)
+- **হিসাবটা কষে দেখুন,** … (before an arithmetic walk-through)
+- **শুরুতেই একটা কথা,** … (an upfront caveat)
+
+Rule: ধরুন / মনে করুন / ধরা যাক always announce "this is imagined, not a fact." Never spend that signal
+on generic framing – if you open with ধরুন, a hypothetical example must actually follow.
+
+### 3.8 Consequence-pivots – retire "আপনার জন্য এর মানে"
+
+EDITORIAL §5 rightly asks you to turn every rule into "so what does this mean for me?" The *move* is
+essential. The *frozen phrase* "আপনার জন্য এর মানে…" is not – it is a loan-translation of "what this
+means for you," and repeated on every page it becomes a tic (the linter now flags it past once). Keep
+the move, rotate the words:
+
+- **তাহলে দাঁড়াল,** …
+- **এবার আসল কথায় আসি।** …
+- **এতে আপনার লাভ-লোকসান কোথায়?** …
+- **সোজা কথায়,** …
+- **মোদ্দা কথা,** …
+- **এর ফল হাতে-নাতে:** …
+- **মানে, বাস্তবে কী দাঁড়ায়?** …
+- **তাহলে এখন কী?** …
+
+### 3.9 Native commerce vocabulary – the Bangla-first bank
+
+This is where "Bangla-first" bites hardest. Founders have their *own* words for these things; using the
+abstract calque instead is what makes a page sound foreign. Prefer the native phrase whenever both exist.
+
+| ❌ পাণ্ডিত্যের/অনুবাদের শব্দ | ✅ ফাউন্ডারের মুখের শব্দ |
+|---|---|
+| নগদ প্রবাহে সমস্যা | টাকা আটকে যাওয়া |
+| হিসাব সমন্বয় করা | হিসাব মেলানো |
+| বকেয়া জমা হওয়া | বাকি পড়া |
+| ক্ষতি স্বীকার করা | লস গোনা / গচ্চা দেওয়া |
+| মূলধন বিনিয়োগ করা | পুঁজি খাটানো |
+| নিজস্ব তহবিল | গাঁটের পয়সা |
+| দক্ষতা অর্জন করা | হাত পাকানো |
+| প্রক্রিয়াগত ঝামেলা | দৌড়াদৌড়ি / দৌড়ঝাঁপ |
+| মৌখিক প্রচার | মুখে মুখে প্রচার |
+| মুনাফা কমে যাওয়া | লাভের গুড় কমে যাওয়া |
+
+Bangla also *verbs* English nouns and shortens things naturally – use the forms founders actually say,
+kept light for the explainer register: বুস্ট দেওয়া, ইনবক্সে নক করা, পেজ চালানো, অর্ডার কনফার্ম করা,
+ক্যাশে/বাকিতে বেচা, সিওডি-তে পাঠানো। (The very short slang forms – ফেবু, নক দে – read as chat; keep
+the guide to ফেসবুক, বুস্ট, ইনবক্স and save the shortest forms for quoted speech.)
+
+People and places have native words too: শরিক (business partner), মহাজন (wholesaler-financier),
+আড়ত (wholesale depot), ফড়িয়া (middleman-trader), দালাল (broker – carries a negative edge, use knowingly).
+
+### 3.10 The idiom shelf – whole, never coined, never half
+
+One right idiom does a paragraph's work and tells the reader you are one of them. But idioms are the
+most dangerous tool here, because AI writing *coins* them (§2.14): every word Bangla, the combination
+invented, and a native ear trips on the spot. Three iron rules:
+
+1. **Never coin one.** If people don't already say it, it isn't an idiom – it's a mistake in idiom's
+   clothing.
+2. **Use the whole thing.** "ধরে ধরে ব্যাখ্যা করা" is real; "সেটা ধরে ব্যাখ্যা করে" is its broken half.
+   Recall the full idiom or drop it.
+3. **One per section, and only when it fits the point exactly.** An idiom as decoration is worse than none.
+
+A safe, business-relevant shelf (meaning → where it fits):
+
+| প্রবাদ / বাগধারা | মানে → কোথায় খাটে |
+|---|---|
+| লাভের গুড় পিঁপড়ায় খায় | লুকোনো খরচ মুনাফা খেয়ে ফেলে → ইউনিট ইকোনমিক্স, সিওডি, ফি |
+| যত গর্জে তত বর্ষে না | হাঁকডাক বেশি, কাজ কম → ভ্যানিটি মেট্রিক, হাইপ |
+| ঝোপ বুঝে কোপ মারা | সঠিক সময়ে হাত দেওয়া → টাইমিং, দাম, ফান্ডিং |
+| বেশি লোভে তাঁতি নষ্ট | লোভে কারিগর ডোবে → বেহিসেবি স্কেল, বেশি ডিসকাউন্ট |
+| নুন আনতে পান্তা ফুরায় | হাতে জমা নেই → পাতলা ক্যাশ, রানওয়ে নেই |
+| আগে দর্শনধারী, পরে গুণবিচারী | আগে চোখে পড়া, পরে গুণ → ব্র্যান্ডিং, প্যাকেজিং, পিচ |
+| অল্প বিদ্যা ভয়ংকরী | আধা জ্ঞান বিপজ্জনক → আধা-যাচাই, কপি-করা পরামর্শ |
+
+When in doubt, skip the idiom and say it plainly. A clean plain sentence always beats a wrong idiom.
+
+---
+
 ## 4. Grammar, spelling, punctuation, numbers
 
 ### 4.1 Classifiers: let টা breathe
@@ -443,17 +610,26 @@ Generic sentences localize nothing. Ground every page in the reader's actual wor
 - [ ] সাইট নিজের কথা বললে "আমরা" আছে, নিজের দাবি নরম (চেষ্টা করি), পাঠক বাক্যে হাজির (§2.13)
 - [ ] বানানো কোলোকেশন নেই – ফোন-টেস্টে আটকায় এমন শব্দজোড় বদলেছি (§2.14)
 - [ ] সারকথার প্রথম বাক্য পাশের পাতাগুলোর ছাঁচে ফেলা নয় (§2.11)
+- [ ] অন্তত কয়েকটা কথ্য কণা (তো/আসলে/বরং/মানে/নাকি) আর একটা নেটিভ ক্রিয়া-বাগধারা আছে (§3.6, §3.9)
+- [ ] "আপনার জন্য এর মানে" ছাঁচ নয় – পরিণতি-বাক্য রোটেট করেছি (§3.8)
+- [ ] বাক্যের দৈর্ঘ্য বৈচিত্র্যময় – একটানা লম্বা (অনুবাদ) বা একটানা খাটো (বিজ্ঞাপন) নয় (§2.10)
+- [ ] **`/bangla-review` চালিয়েছি** – নেটিভ-রিডারের চোখে ইংরেজি-গন্ধ থাকা বাক্য নেই
+
+The gate, in order: **`/bangla-review`** (a native reader, in Claude Code – catches architecture-level
+translationese regex can't see; `.claude/commands/bangla-review.md`) > **read-aloud** (§1, §7) >
+**`npm run lint:bangla`**. Passing the linter is necessary, never sufficient – the whole 454-page
+corpus passed it while still reading translated.
 
 Mechanical sweep for reviewers and agents – run `npm run lint:bangla`
-(`scripts/bangla-lint.mjs`), which flags: banned calques (§3.1), officialese (§3.2),
-em dashes anywhere in the file (hard ✖, §4.3), semicolons in Bangla text, Latin-script
-English words mid-sentence, Devanagari characters, এবং/এটি/গুরুত্বপূর্ণ/-ভাবে density,
-English digits in Bangla prose, known coined collocations (§2.14), and the "মানে শুধু"
-mold when it repeats within a page (§2.11). It also scans the Bangla strings in
-`app/components/WikiLanding.jsx` and `app/nav.config.js` – the homepage copy lives outside
-`app/(contents)/` and used to escape every sweep, which is exactly where the 2026-07-11
-findings hid. The linter is advisory – it catches the mechanical tells; the read-aloud test
-catches the rest.
+(`scripts/bangla-lint.mjs`), which flags: banned calques (§3.1), officialese incl. রয়েছে/সংশ্লিষ্ট/
+প্রেক্ষিতে (§3.2), formal suffixes -সমূহ / -ীকরণ (§4.1, §2.5), em dashes anywhere in the file
+(hard ✖, §4.3), semicolons in Bangla text, Latin-script English words mid-sentence, Devanagari
+characters, এবং/এটি/গুরুত্বপূর্ণ/-ভাবে/আপনার density, English digits in Bangla prose, known coined
+collocations (§2.14), self-description tics (চেষ্টা করি, "আপনার জন্য এর মানে" mold, §2.13/§3.8),
+sentence-rhythm (over-long or drum-machine-uniform sentences, §2.10), and the "মানে শুধু" mold when it
+repeats within a page (§2.11). It also scans the Bangla strings in `app/components/WikiLanding.jsx` and
+`app/nav.config.js`. The linter is the mechanical floor only; `/bangla-review` and the read-aloud test
+catch the architecture-level translationese it never can.
 
 ---
 

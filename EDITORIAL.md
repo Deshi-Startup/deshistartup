@@ -203,10 +203,13 @@ These pages are why the site exists, and where dry-clinical writing does the mos
 reader doesn't need the law recited – they need to know what it means *for them, this month*.
 
 - **Translate every rule into decision language.** After any legal/technical statement, the very
-  next sentence answers "আপনার জন্য এর মানে কী?" –
+  next sentence answers, in the reader's terms, *so what does this mean for me?* Keep the move, but
+  **rotate the phrasing** – the frozen "আপনার জন্য এর মানে…" on every page is a tic and is itself an
+  English loan-translation. Reach into STYLE.md §3.8's pivots (তাহলে দাঁড়াল / সোজা কথায় / মোদ্দা কথা /
+  এর ফল হাতে-নাতে…); the linter now flags the frozen phrase past one use.
 
-  > নিয়মটা হলো: নিবন্ধিত কোম্পানিকে প্রতি বছর আরজেএসসি-তে রিটার্ন জমা দিতে হয়। আপনার জন্য
-  > এর মানে – কোম্পানি খোলা মানে একবারের কাজ না, প্রতি বছর একটা নির্দিষ্ট খরচ আর একটা ডেডলাইন
+  > নিয়মটা হলো: নিবন্ধিত কোম্পানিকে প্রতি বছর আরজেএসসি-তে রিটার্ন জমা দিতে হয়। তাহলে দাঁড়াল,
+  > কোম্পানি খোলা মানে একবারের কাজ না, প্রতি বছর একটা নির্দিষ্ট খরচ আর একটা ডেডলাইন
   > ঘাড়ে নেওয়া। ব্যবসা এখনো পরীক্ষার পর্যায়ে থাকলে এই ভারটা নেওয়ার আগে দুবার ভাবুন।
 
 - **Standard teaching order** (matches the guide anatomy in AGENTS.md): এটা আসলে কী → কার কখন
@@ -509,7 +512,7 @@ Each of these passed spell-check somewhere and still failed the reader. Recogniz
 - [ ] প্রতিটা বড় সেকশনে নাম-জায়গা-টাকাসহ স্পষ্টভাবে কাল্পনিক "ধরুন" উদাহরণ অথবা সূত্রযুক্ত বাস্তব ঘটনা আছে (§3)
 - [ ] টাকার কথা উঠলেই অঙ্কটা কষে দেখানো হয়েছে, শুধু ফল বলা হয়নি (§3)
 - [ ] অন্তত একটা "ধরুন…" দৃশ্য বা ছোট গল্প আছে, আর গল্পের ভেতরেই শিক্ষাটা বসানো (§4)
-- [ ] আইনি/টেকনিক্যাল প্রতিটা নিয়মের পরপরই "আপনার জন্য এর মানে" ভাষায় অনুবাদ আছে (§5)
+- [ ] আইনি/টেকনিক্যাল প্রতিটা নিয়মের পরপরই "তাহলে আমার জন্য কী দাঁড়াল" ভাষায় অনুবাদ আছে – ছাঁচ-বাক্য নয়, পরিণতি-বাক্য রোটেট করা (§5, STYLE §3.8)
 - [ ] পোর্টাল/ফর্ম/কাউন্টারে পাঠক যে অফিসিয়াল নামটা দেখবে, সেটা হুবহু বানানে দেওয়া আছে (§5)
 - [ ] পাতা শেষ করে পাঠক জানেন আজ ঠিক কী করবেন – কোথায়, কী নিয়ে, কত খরচে, কত সময়ে, আর "হয়ে গেছে" বুঝবেন কীভাবে (§6)
 - [ ] সারকথা একা পড়লেই মূল কথা আর প্রথম কাজটা পাওয়া যায় – কোনো "আলোচনা করব" টিজার নেই (§7)
