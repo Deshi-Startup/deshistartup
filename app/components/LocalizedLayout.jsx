@@ -126,7 +126,7 @@ function Breadcrumbs({ isEn, pathname, pageTitle }) {
             <a href={localHref(crumb.href)}>{crumb.label}</a>
           </li>
         ))}
-        <li aria-current="page">{pageTitle || '…'}</li>
+        <li aria-current="page" suppressHydrationWarning>{pageTitle || '…'}</li>
       </ol>
     </nav>
   )
@@ -184,7 +184,10 @@ export default function LocalizedLayout({ children }) {
 
   useEffect(() => {
     document.documentElement.lang = isEn ? 'en' : 'bn'
-  }, [isEn])
+    if (pathname === '/en') {
+      document.title = 'Deshi Startup – The Bangla-first guide to building a startup in Bangladesh'
+    }
+  }, [isEn, pathname])
 
   useEffect(() => {
     setIsSidebarOpen(false)
@@ -255,9 +258,10 @@ export default function LocalizedLayout({ children }) {
   const dateLabel = formatDate(lastUpdated, isEn)
   const verifiedLabel = formatDate(lastVerified, isEn)
   const pageUrl = `https://deshistartup.com${pathname}`
-  const issueUrl = `${REPO_URL}/issues/new?title=${encodeURIComponent(
-    (isEn ? 'Problem: ' : 'ভুল/পরামর্শ: ') + (pageTitle || pathname)
-  )}&body=${encodeURIComponent((isEn ? 'Page: ' : 'পাতা: ') + pageUrl + '\n\n')}`
+  // Targets the report-mistake issue form; `page` prefills the form field with that id.
+  const issueUrl = `${REPO_URL}/issues/new?template=report-mistake.yml&title=${encodeURIComponent(
+    (isEn ? 'Mistake: ' : 'ভুল: ') + (pageTitle || pathname)
+  )}&page=${encodeURIComponent(pageUrl)}`
 
   return (
     <>
@@ -269,7 +273,7 @@ export default function LocalizedLayout({ children }) {
             <img src={localHref('/deshi-mark.svg')} alt="" width="54" height="54" />
             <span>
               <strong>{isEn ? 'Deshi Startup' : 'দেশি স্টার্টআপ'}</strong>
-              <small>{isEn ? 'The Bangla-first startup guide for Bangladesh' : 'বাংলাদেশে স্টার্টআপ গড়ার গাইড'}</small>
+              <small>{isEn ? 'The Bangladeshi startup manual' : 'বাংলাদেশে স্টার্টআপ গড়ার গাইড'}</small>
             </span>
           </a>
 
@@ -317,9 +321,15 @@ export default function LocalizedLayout({ children }) {
           <div className="article-tabs" id="read">
             <div className="tab-group" role="tablist" aria-label={isEn ? 'Page type' : 'পাতার ধরন'}>
               <button className="tab active" type="button">{tabs.article}</button>
-              <button className="tab" type="button" title={isEn ? 'Coming soon' : 'শিগগিরই আসছে'}>
+              <a
+                className="tab"
+                href={`${REPO_URL}/discussions`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={isEn ? 'Discuss on GitHub' : 'গিটহাবে আলোচনা করুন'}
+              >
                 {tabs.talk}
-              </button>
+              </a>
             </div>
             <div className="article-actions">
               <a href="#read">{tabs.read}</a>
@@ -341,8 +351,13 @@ export default function LocalizedLayout({ children }) {
           {!isLanding && (
             <div className="article-lede">
               <Breadcrumbs isEn={isEn} pathname={pathname} pageTitle={pageTitle} />
-              {(dateLabel || verifiedLabel || readMinutes) && (
-                <div className="article-meta">
+              <div className="article-meta">
+                  <span>
+                    {isEn ? 'Maintained by ' : 'রক্ষণাবেক্ষণে '}
+                    <a href={localHref(isEn ? '/en/about' : '/about')}>
+                      {isEn ? 'Deshi Startup contributors' : 'দেশি স্টার্টআপের অবদানকারীরা'}
+                    </a>
+                  </span>
                   {dateLabel && (
                     <span className="meta-date">
                       {isEn ? 'Last updated: ' : 'সর্বশেষ হালনাগাদ: '}
@@ -363,8 +378,7 @@ export default function LocalizedLayout({ children }) {
                   <a href={issueUrl} target="_blank" rel="noopener noreferrer">
                     {isEn ? 'Report a mistake' : 'ভুল জানান'}
                   </a>
-                </div>
-              )}
+              </div>
               {headings.length > 2 && (
                 <details className="page-toc" style={{ marginTop: 12 }}>
                   <summary>{isEn ? 'On this page' : 'এই পাতায়'}</summary>
@@ -409,11 +423,13 @@ export default function LocalizedLayout({ children }) {
         <div>
           {isEn
             ? 'Deshi Startup – an open, Bangladesh-specific founder operating manual, written together, free for everyone.'
-            : 'দেশি স্টার্টআপ – বাংলাদেশি ফাউন্ডারদের জন্য খোলা, বাস্তব গাইড। সবাই মিলে লেখা, সবার জন্য ফ্রি।'}
+            : 'দেশি স্টার্টআপ – বাংলাদেশি ফাউন্ডারদের জন্য উন্মুক্ত, বাস্তব গাইড। সবাই মিলে লেখা, সবার জন্য ফ্রি।'}
         </div>
         <div className="footer-links">
           <a href={localHref(isEn ? '/en/start-here' : '/start-here')}>{isEn ? 'Start here' : 'শুরু করুন'}</a>
+          <a href={localHref(isEn ? '/en/about' : '/about')}>{isEn ? 'About & editorial policy' : 'পরিচিতি ও সম্পাদকীয় নীতি'}</a>
           <a href={localHref(isEn ? '/en/contribute' : '/contribute')}>{isEn ? 'How to contribute' : 'কীভাবে অবদান রাখবেন'}</a>
+          <a href={localHref(isEn ? '/en/sitemap' : '/sitemap')}>{isEn ? 'Sitemap' : 'সাইটম্যাপ'}</a>
           <a href={REPO_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
           <a href={`${REPO_URL}/issues`} target="_blank" rel="noopener noreferrer">
             {isEn ? 'Report a mistake' : 'ভুল জানান'}

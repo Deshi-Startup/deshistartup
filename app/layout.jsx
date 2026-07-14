@@ -1,8 +1,11 @@
 import LocalizedLayout from './components/LocalizedLayout'
+import { DEFAULT_DESCRIPTIONS, SITE_NAME, SITE_NAME_BN, SITE_URL } from './seo.config.mjs'
 import './globals.css'
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 const googleTagManagerId = 'GTM-TVCFJQJS'
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION
+const bingSiteVerification = process.env.BING_SITE_VERIFICATION
 const googleTagManagerScript = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -11,14 +14,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 export const metadata = {
   title: {
-    default: 'দেশি স্টার্টআপ – বাংলাদেশে স্টার্টআপ বানানোর বাংলা গাইড',
+    default: 'দেশি স্টার্টআপ – বাংলাদেশে স্টার্টআপ গড়ার উন্মুক্ত গাইড',
     template: '%s | দেশি স্টার্টআপ'
   },
-  description:
-    'বাংলাদেশে স্টার্টআপ শুরু, চালু ও বড় করার ফ্রি, ওপেন সোর্স বাংলা গাইড: আইডিয়া যাচাই, রেজিস্ট্রেশন, কর/ভ্যাট, পেমেন্ট, গ্রাহক, টিম ও ফান্ডিং।',
-  metadataBase: new URL('https://deshistartup.com'),
+  description: DEFAULT_DESCRIPTIONS.bn,
+  metadataBase: new URL(SITE_URL),
+  applicationName: SITE_NAME,
+  authors: [{ name: `${SITE_NAME} contributors`, url: SITE_URL }],
+  creator: `${SITE_NAME} contributors`,
+  publisher: SITE_NAME,
+  category: 'education',
   icons: {
     icon: `${basePath}/deshi-mark.svg`
+  },
+  ...(googleSiteVerification || bingSiteVerification
+    ? {
+        verification: {
+          ...(googleSiteVerification ? { google: googleSiteVerification } : {}),
+          ...(bingSiteVerification ? { other: { 'msvalidate.01': bingSiteVerification } } : {})
+        }
+      }
+    : {}),
+  other: {
+    'application-name': SITE_NAME,
+    'apple-mobile-web-app-title': SITE_NAME_BN
   }
 }
 

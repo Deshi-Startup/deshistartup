@@ -1,8 +1,10 @@
 # deshistartup Agent Context
 
 This is the committed operations manual and project map for Deshi Startup. Read it before touching
-anything. For *what to build and write next*, the planning brain is `plan/` — start at
-[`plan/README.md`](./plan/README.md). `README.md` covers project vision and scope.
+anything. For _what to build and write next_, the planning brain is `plan/` — start at
+[`plan/README.md`](./plan/README.md). `README.md` (Bangla, mirrored by `README.en.md`) is the
+public, contributor-facing front door — keep it short and inviting; the long-form vision/spec
+lives in [`plan/vision.md`](./plan/vision.md).
 
 ## Project Overview
 
@@ -11,14 +13,14 @@ building a **startup** in Bangladesh. The audience is founders building somethin
 the lens, depth, and priorities are theirs. Much of the foundational process (registration, tax,
 payments, hiring) also serves any small business, and it's fine when a guide is useful beyond startups —
 but never dilute the startup focus to chase generic SME, family-business, import/export, or
-online-seller audiences (scope amended 2026-07-08; see `plan/overhaul-2026-07.md`). The name **Deshi
+online-seller audiences. The name **Deshi
 Startup** is final and the domain **deshistartup.com** is registered — name-dependent assets (logo,
 .com/.org, Facebook page) are now safe to build.
 
-Scale: ~430 Bengali pages are planned (see `plan/content-backlog.csv`), 41 written so far; the rest
-are honest stubs (2026-07-08: 64 boilerplate "template guides" were demoted back to stubs — never
-count a page as written unless it is a real guide). Bengali is the source of truth; English mirrors
-it at `/en/...`.
+Scale: ~430 Bengali pages are planned (see `plan/content-backlog.csv`); most are still honest
+stubs. Never count a page as written unless it is a real, finished guide — boilerplate template
+pages do not count. Run `npm run backlog:status` for live written/stub counts. Bengali is the
+source of truth; English mirrors it at `/en/...`.
 
 The site is a Next.js documentation app built with Nextra, statically exported, wrapped in a custom
 wiki-style shell (not the stock Nextra theme).
@@ -37,49 +39,59 @@ wiki-style shell (not the stock Nextra theme).
 ## Important Files and Directories
 
 - `app/` - Shared Next.js app shell, layouts, global CSS, components, and route groups.
-- `app/(contents)/(bn)/` - Bengali content. Route-group folders do not appear in public URLs, so these pages render at clean root paths like `/start-here`, `/phase-one`, and `/e-tin-vat-bin`.
+- `app/(contents)/(bn)/` - Bengali content. Route-group folders do not appear in public URLs, so these pages render at clean root paths like `/start-here`, `/registration/private-limited`, and `/e-tin-vat-bin`.
 - `app/(contents)/en/` - English localized content. These pages render at `/en/...`, for example `/en/start-here`.
 - `app/components/LocalizedLayout.jsx` - Localized Nextra layout, language detection, sidebar ordering, and route-group page-map normalization.
 - `app/components/LanguageSwitcher.jsx` - Switches between clean Bengali URLs and `/en/...` URLs.
 - `_meta.js` files are intentionally not used under `app/` because Nextra validation does not work cleanly with the current route-group localization structure. Sidebar order is controlled programmatically in `LocalizedLayout.jsx`.
-- `plan/` - The committed planning brain: the canonical content backlog, tiered source registry, case-study format, directory schema, founder journeys, and research/freshness cadences. Treat it as the source of truth for *what to build and write next*. Start at [`plan/README.md`](./plan/README.md).
+- `plan/` - The committed planning brain: the canonical content backlog, tiered source registry, case-study format, directory schema, founder journeys, and research/freshness cadences. Treat it as the source of truth for _what to build and write next_. Start at [`plan/README.md`](./plan/README.md).
+- `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `.github/ISSUE_TEMPLATE/` - The bilingual contributor surface. The site's per-page "ভুল জানান" links open the `report-mistake.yml` issue form with the page prefilled; `.github/workflows/pr-checks.yml` runs `lint:bangla --strict` + build on every PR. `scripts/seed-issues.mjs` generates "নতুন গাইড" issues from High-priority backlog stubs.
 - `knowledge-bank/` - Optional, local-only scraped source material for legal/business content. It is gitignored for copyright hygiene and may be absent — never rely on it existing, and never commit it.
-- `app/generated/` - Build artifacts produced by `scripts/build-manifest.mjs` (`manifest.bn.json`, `manifest.en.json`, `sections-lite.json`, `contributable.json`). They are committed to git but must never be hand-edited; run `npm run manifest` (or any dev/build) to regenerate after content changes.
-- `app/api/content/route.js` - GET endpoint that returns a page's raw MDX (frontmatter + body) for the inline editor. Requires a valid Google ID token (Bearer auth).
-- `app/api/contribute/route.js` - POST endpoint that creates a GitHub PR via the bot App. Requires a valid Google ID token (Bearer auth).
-- `app/lib/google-token.js` - Backend verification of Google ID tokens using `jose` + Google's JWKS. Exports `verifyIdToken(token)` and `requireUser(req)`.
-- `app/lib/github-app.js` - GitHub App helpers: JWT signing, installation token, and `createContributionPR()` (branch → commit → PR).
-- `app/lib/client-auth.js` - Client-side Google ID token storage in localStorage (`getStoredAuth`, `storeAuth`, `decodeIdToken`).
-- `app/components/AuthModal.jsx` - Google Identity Services sign-in modal (client-side only, no server session).
-- `app/components/ContributionEditor.jsx` - Milkdown Crepe WYSIWYG editor modal. Loads page MDX, lets the contributor edit, submits a PR.
+- `app/generated/` - Build artifacts produced by `scripts/build-manifest.mjs` (`manifest.bn.json`, `manifest.en.json`, `sections-lite.json`, `seo-pages.json`). They are committed to git but must never be hand-edited; run `npm run manifest` (or any dev/build) to regenerate after content changes.
 - `app/nav.config.js` - Hand-curated top-level sidebar (`bnNav` / `enNav`). `app/nav-groups.json` - hand-curated thematic grouping of section-hub listings.
-- `public/` - Static assets used by the site, including the built Pagefind search index (`public/_pagefind`) and `page-dates.json` (route → last commit date).
-- `scripts/build-manifest.mjs` - regenerates the navigation manifests. `scripts/scrape.js` - scraping utility used to gather external ecosystem data. `scripts/rewrite-stubs.mjs` - one-time stub-migration helper.
+- `public/` - Static assets used by the site, including the built Pagefind search index (`public/_pagefind`) and generated SEO/discovery files (`sitemap.xml`, `robots.txt`, `llms.txt`, IndexNow key, and route date maps). Do not hand-edit generated files; run `npm run manifest`.
+- `scripts/build-manifest.mjs` - regenerates the navigation manifests. `scripts/scrape.js` - scraping utility used to gather external ecosystem data.
 
 ## Site Structure
 
-The site is organized into section hubs, each of which lists its children automatically via
-`<SectionIndex section="..." locale="..." />` (backed by the generated manifests). The main hubs are:
+**Topic-owned URLs (July 2026 migration).** Content lives at one canonical, topic-based URL of at
+most two segments (`/{section}/{slug}`, mirrored at `/en/...`). The former `phase-one`…`phase-four`
+stage sections were dissolved into topic sections; the staged path survives as curated _views_ at
+`/roadmap/{validate|build|grow|scale}`.
+
+Each topic section hub lists its children automatically via
+`<SectionIndex section="..." locale="..." />` (backed by the generated manifests). The sections:
 
 - `start-here` — beginner roadmap and orientation
-- `idea-validation` — customer discovery, market sizing, MVP tests
-- `phase-one` → `phase-four` — the staged founder roadmap (idea → foundation → product/team/rules → sell & fund → scale & policy)
+- `ideas`, `validation` — finding ideas/market research, and customer/demand validation
+- `registration`, `licenses`, `tax`, `ip`, `trade` — paperwork: company setup, approvals, tax/VAT, IP, import-export
+- `payments`, `customers`, `b2b`, `operations`, `metrics`, `funding` — money, sales, delivery, numbers
+- `product`, `manufacturing`, `cofounders`, `team` — building the product and the people
+- `growth`, `industries`, `ecosystem` — expansion, sector playbooks, government support/community
+- `roadmap` — the four staged views; `guides` — the browse-all-topics page
 - `journeys` — goal-based guided paths ("কোন পথে যাবেন") that stitch existing guides into an ordered path (source: `plan/workflow-maps.csv`)
-- `case-studies` — source-backed stories of Bangladeshi startups
-- `directory` — data-backed ecosystem directory (investors, accelerators)
-- `founder-life` — mental health, family constraints, solo-founder realities
-- `contribute` — how to report, edit, and write guides
+- `case-studies`, `directory`, `founder-life`, `tools`, `contribute`
+- Root cornerstones kept as short standalone URLs: `/company-types`, `/trade-license`,
+  `/rjsc-name-clearance`, `/e-tin-vat-bin`, `/legal-roadmap`, `/about`, `/sitemap`
+
+**URL policy (enforced by `npm run lint:routes`, which runs in `prebuild`):** max two semantic
+segments (excluding `/en`); leaf slug normally 2–5 words; target path length under 45 characters,
+warn above 60, hard-fail above 75; lowercase ASCII `a-z0-9-` only; no full-headline slugs, no brand
+lists, no filler (`how-to`, `guide`, `step-by-step`) when context already carries it. Permanent URLs
+are never derived from editable titles — the backlog's `Path` column and the content tree are the
+registry. The bn and en trees must mirror exactly, and a `<StubNotice path>` must equal its page's
+slug (both are lint errors).
 
 **The source of truth for what exists is `app/generated/manifest.bn.json` / `manifest.en.json`; the
-source of truth for what *should* exist is `plan/content-backlog.csv`. Never hand-maintain page lists
-in this doc — they drift.** To see the current page inventory, read the manifests or run
-`npm run manifest` and inspect them.
+source of truth for what _should_ exist is `plan/content-backlog.csv` (its `Path` column is the
+canonical route registry). Never hand-maintain page lists in this doc — they drift.** To see the
+current page inventory, read the manifests or run `npm run manifest` and inspect them.
 
 ## Choosing what to work on
 
 1. Open `plan/content-backlog.csv` and filter for `Priority=High` rows whose site page is still a
    stub (a page containing a `<StubNotice ... />` line). Cross-check status against the manifests
-   (see also T4's `plan/status-report.md` once it exists).
+   (run `npm run backlog:status` to generate the local, git-ignored `plan/status-report.md`).
 2. Prefer topics whose `Notes` column gives you an angle to write from.
 3. Write the Bengali page first, then create the English mirror at the matching `/en/...` slug.
 4. Delete the `StubNotice` line **only** when the page is a real, finished guide — that single line
@@ -143,10 +155,12 @@ translationese patterns found on this site. The essentials:
 - আইন, ফি ও নিয়মের দাবিতে সূত্র দিন (সরকারি পোর্টাল সবচেয়ে ভালো); যা নিশ্চিত নন, লিখবেন না —
   অনুমান লিখলে "যাচাই প্রয়োজন" বলে দিন।
 - **Adapt, don't translate.** Copyrighted third-party work (YC, Stripe, LightCastle and similar) must
-  be *adapted* — teach the ideas in our own Bangla and cite the source; never translate or copy it.
+  be _adapted_ — teach the ideas in our own Bangla and cite the source; never translate or copy it.
   Government/official sources may be used freely with citation.
-- Use `## প্রাসঙ্গিক সূত্র` (Bangla) / `## Relevant Sources` (English) for source lists. Use only
-  root/section URLs from `plan/sources.csv` — never invent deep links.
+- Use `## প্রাসঙ্গিক সূত্র` (Bangla) / `## Relevant Sources` (English) for source lists, with
+  root/section URLs from `plan/sources.csv`. For a load-bearing data claim or figure, a stable exact
+  report/dataset link is allowed only after it has been verified and recorded in that registry.
+  Never guess or invent deep links. See `EDITORIAL.md` §8.3.
 - `/start-here` is the bar for depth and tone. Match it.
 - Before finishing any Bangla page, run `npm run lint:bangla` (`scripts/bangla-lint.mjs`) and
   clear the hard (✖) findings; then run the STYLE.md §7 read-aloud checklist — the linter only
@@ -163,29 +177,27 @@ plain definition → one দেশি metaphor → worked টাকা example �
 legal rules translated into "আপনার জন্য এর মানে" decision language, a concrete next action with
 কোথায়/কী লাগবে/খরচ/সময়, one memorable থাম্ব রুল per page, inline source attribution, and an
 absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass the EDITORIAL.md
-§11 checklist alongside STYLE.md §7 before it is done.
+§12 checklist alongside STYLE.md §7 before it is done.
 
 ## Content & Editorial Guidelines
 
 - **Language & pedagogy:** Bengali pages follow the Style guide (Bangla) section above —
   `STYLE.md` is binding, don't restate its rules here. `EDITORIAL.md` (Editorial guide section
-  above) is equally binding for *both* locales — it defines how pages teach, not just how they
+  above) is equally binding for _both_ locales — it defines how pages teach, not just how they
   read. English pages: use clear English, leave no Bengali text behind.
 - **Localization:** Do not replace Bengali content when localizing — create/update the matching page
   under `app/(contents)/en/...`, keeping slugs and folder structure aligned across locales.
-- **Routing:** Bengali pages link to clean root URLs such as `/customers`; English pages link to
-  `/en/...` URLs such as `/en/customers`. Internal links must go through `localHref()` /
-  `NEXT_PUBLIC_BASE_PATH` so they survive the GitHub Pages `/deshistartup` basePath.
-- **Relative links between sibling guides (same section):** `next.config.mjs` has no
-  `trailingSlash`, so routes render without one (e.g. `/phase-one/e-tin-guide`, not
-  `.../e-tin-guide/`). A bare `../other-slug` link from a same-depth sibling page resolves one
-  level too high (it drops the section, landing on `/other-slug` instead of
-  `/phase-one/other-slug`). Always write the section back in: `../phase-one/other-slug` (the same
-  literal string works for both the `(bn)` and `en` mirrors, since both trees are the same depth).
-  Verify by checking the rendered `href` in `out/**/*.html` after a build if unsure.
+- **Routing / internal links:** Always write internal links as **root-relative canonical paths** —
+  `/registration/private-limited` in Bengali pages, `/en/registration/private-limited` in English
+  pages. Never use relative forms (`../section/slug`, `sibling-slug`): they depend on the linking
+  page's depth and broke silently before the July 2026 migration canonicalized all 800+ files. The
+  MDX anchor wrapper (`mdx-components.js`) and `localHref()` add the deployment basePath for the
+  GitHub Pages mirror, so content never hard-codes it.
 - **Punctuation in page content:** Never use an em dash in page copy, titles, or descriptions
   under `app/(contents)/` (this doc and other meta files are exempt). Use an en dash (–), a comma,
-  or split into two sentences instead.
+  or split into two sentences instead. The full dash rule lives in STYLE.md §4.3 and
+  `npm run lint:bangla` enforces it as a hard (✖) finding, both locales; the content tree is
+  already em-dash-free.
 - **Writing a stub into a real guide:** research the topic properly (web search, official portals,
   the relevant Act/NBR/RJSC text) rather than relying on assumptions. Before publishing, check
   `app/nav-groups.json` and sibling stub titles in the same section for topic overlap — if two
@@ -239,8 +251,8 @@ but doesn't appear in the editor, the manifest is stale.
 - **Code:** MIT.
 - **Content** (everything under `app/(contents)/`): Creative Commons Attribution-ShareAlike 4.0
   (CC BY-SA 4.0).
-- Contributions are accepted under these licenses. See `LICENSE` and `LICENSE-content.md` (added by
-  task T3) for the authoritative text and attribution format.
+- Contributions are accepted under these licenses. See `LICENSE` and `LICENSE-content.md` for the
+  authoritative text and attribution format.
 
 ## Keeping content current
 
@@ -258,14 +270,23 @@ but doesn't appear in the editor, the manifest is stale.
 
 - `npm run dev` - Start development server (uses Turbopack; `predev` regenerates the content manifest first)
 - `npm run build` - Build the static site (`prebuild` regenerates the manifest; postbuild runs Pagefind indexing)
-- `npm run manifest` - Regenerate `app/generated/manifest.*.json`, `sections-lite.json`, `contributable.json`, and `public/page-dates.json` from the content tree + git dates
+- `npm run manifest` - Regenerate `app/generated/manifest.*.json`, `sections-lite.json` and `public/page-dates.json` from the content tree + git dates
+- `npm run lint:routes` - Enforce the URL policy (segment depth, path length, slug charset, bn/en mirror, StubNotice paths); also runs automatically in `prebuild`
+- `npm run seo:audit` - Validate the built HTML, canonicals, hreflang, indexability, metadata, JSON-LD, sitemap, robots, and internal links
+- `npm run seo:indexnow:dry` - Preview the canonical URL batch for IndexNow; use `npm run seo:indexnow` only after a deployment is live
 - `npm start` - Start the production server
 - `npm run scrape` - Run the scraping utility
 
 ## Deployment
 
-- **Primary (`main` branch → GitHub Pages):** `.github/workflows/deploy.yml` runs `npm run build` and publishes `out/`. Because it is a GitHub Pages *project* site, production builds set `basePath` and `NEXT_PUBLIC_BASE_PATH` to `/deshistartup` (see `next.config.mjs`). All internal links must go through `localHref()` / `NEXT_PUBLIC_BASE_PATH`, or they break in production.
-- **Production domain:** `deshistartup.com` is registered (2026-07-08). Pointing the site at the custom apex domain (which would drop the `/deshistartup` basePath) is deferred — do **not** re-architect the basePath/`localHref()` mechanism until that migration is explicitly scheduled.
+- **Production (`main` branch → Cloudflare Pages → `deshistartup.com`):** the live, canonical site
+  is the apex domain, built by Cloudflare Pages from `main`. Cloudflare's build sets `CF_PAGES=1`,
+  which drops the basePath (see `next.config.mjs`), so canonical URLs are generated at the root.
+  `plan/seo-operations.md` is the operational source of truth for search discovery.
+- **Mirror (`main` branch → GitHub Pages):** `.github/workflows/deploy.yml` runs `npm run build`
+  and publishes `out/` under the `/deshistartup` project basePath. This is why internal links must
+  stay basePath-agnostic (root-relative in content; `localHref()` / `NEXT_PUBLIC_BASE_PATH` in
+  components) — do **not** remove that mechanism while the mirror exists.
 - **Secondary (`vinext` branch → Cloudflare Workers):** `.github/workflows/deploy-cloudflare.yml` deploys production and per-PR previews using `vinext`-only tooling (not present on `main`).
 - CI uses Node 22. `images.unoptimized` is required for static export. **Pushing `main` deploys the live site — never push unless Shamir asks.**
 

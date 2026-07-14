@@ -1,291 +1,136 @@
 ---
-title: "Payment Systems"
-description: >-
+title: "Payments: MFS, Bank, Cards and Cash on Delivery"
+description: "A practical Bangladesh guide to mobile financial services, bank transfers, payment gateways, cash on delivery, refunds and reconciliation."
 verified: 2026-07-07
-  In Bangladesh, payments are not only about card swipes. bKash, Nagad, COD (Cash on Delivery), bank transfers, and gateways all create a unique payment ecosystem. Choosing the right payment method for your startup can directly affect customer acquisition.
 ---
 
-# Payment Systems
+# Payments: MFS, Bank, Cards and Cash on Delivery
 
-> **In short:** In Bangladesh, payments are not only about card swipes. bKash, Nagad, COD (Cash on Delivery), bank transfers, and gateways all create a unique payment ecosystem. Choosing the right payment method for your startup can directly affect customer acquisition.
+> **TL;DR:** Payments in Bangladesh are not limited to cards. One customer may prefer bKash or Nagad, another may pay on delivery, while a B2B customer may ask for a bank transfer and invoice. Compare customer convenience, settlement time, charges and reconciliation work before choosing a method.
 
----
+Founders often leave payment design until the end. The product and Facebook page are ready, but there is no clean way to connect an order with its payment, refund and accounting record. Set up that connection before volume grows.
 
-## Bangladesh’s Payment Landscape
+## Start with the Customer and the Record
 
-Bangladesh’s payment system is different from much of the world. A few useful signals:
+Bangladesh businesses may handle mobile financial services (MFS), bank transfers, cash on delivery, payment gateways, courier collections and corporate invoices at the same time.
 
-| Data point | Number |
-|------------|--------|
-| Mobile penetration | Around 180 million+ |
-| Internet users | Around 130 million |
-| Bank accounts | Around 100 million |
-| Debit/credit cards | Around 40 million, still relatively low |
-| MFS accounts such as bKash, Nagad | Around 100 million+ |
-| Card penetration | Around 4%, very low |
+| Customer or business | Common options to evaluate |
+|---|---|
+| Small Facebook-led sales | MFS, cash on delivery and written order confirmation |
+| Own e-commerce site | Gateway, MFS, cards and cash on delivery |
+| B2B service | Bank transfer, invoice, purchase order and payment terms |
+| SaaS or digital product | Gateway, bank and foreign-payment rules |
+| Physical products outside Dhaka | Courier, cash on delivery, returns and reconciliation |
 
-> **Key point:** In Bangladesh, **MFS (Mobile Financial Services)** is much more popular than cards. Your payment strategy should almost always include bKash/Nagad.
+Ask two questions: how does the customer want to pay, and how will you identify and reconcile that payment safely?
 
----
+## Mobile Financial Services
 
-## Payment Methods
+bKash, Nagad, Rocket and Upay are familiar MFS options. They may suit small orders, advances, booking money, delivery charges, online classes or service fees.
 
-### 1. Mobile Financial Services (MFS)
+Using a personal account for regular business receipts mixes personal and business money. Provider terms may also distinguish personal and merchant use. Once sales become regular, check the current merchant conditions and apply for a business merchant account if eligible.
 
-#### bKash
+For each payment, record the order ID, payer, amount, transaction reference, date and refund status.
 
-| Topic | Details |
-|-------|---------|
-| **Market share** | Largest player, around 60%+ of the MFS market |
-| **Users** | 60 million+ |
-| **Use cases** | Send Money, Payment, Cash Out |
-| **Merchant account** | bKash Merchant Account |
-| **Charge** | Personal: free within certain limits; merchant: around 1.5%-2.5% |
-| **API/Payment Gateway** | Available for developers |
-| **Website** | [bkash.com](https://www.bkash.com) |
+Official sites:
 
-**How to open a merchant account:**
+- [bKash](https://www.bkash.com)
+- [Nagad](https://nagad.com.bd)
 
-1. Go to the “Merchant” section on the bKash website.
-2. Fill out the application form.
-3. Submit required documents such as trade license, TIN, NID, and company documents.
-4. After verification, the merchant account will be activated.
-5. You can start collecting payments.
+## Bank Transfers
 
-**bKash Payment Gateway for apps/websites:**
+Bank transfers are useful for B2B sales, large orders, salaries, suppliers, corporate pilots and recurring invoices. A corporate customer may request a TIN, trade license, company document or bank details alongside the invoice.
 
-- bKash has its own payment gateway.
-- You can integrate bKash payment into your website or app.
-- Customers can pay through the bKash app or USSD (*247#).
+Do not stop at seeing a deposit. Record which invoice and customer it belongs to, whether it is partial or full, any tax or VAT withheld and bank charges.
 
-#### Nagad
+| Field | Why it matters |
+|---|---|
+| Invoice or order number | Connect the deposit to the sale |
+| Customer | Record and follow-up |
+| Expected amount | Identify a short or excess payment |
+| Received amount | Reconcile with the bank statement |
+| Payment date | Track cash flow |
+| Tax, VAT and charges | Calculate the net receipt |
 
-| Topic | Details |
-|-------|---------|
-| **Market share** | Second largest |
-| **Users** | 50 million+ |
-| **Use cases** | Send Money, Payment, Cash Out |
-| **Merchant account** | Nagad Merchant |
-| **Charge** | Similar to bKash |
-| **Website** | [nagad.com.bd](https://nagad.com.bd) |
+## Cash on Delivery
 
-#### Other MFS Providers
+Some online buyers prefer cash on delivery. It lowers the barrier to paying in advance, but puts failed-delivery and return costs on the seller.
 
-| Service | Notes |
-|---------|-------|
-| Rocket (DBBL) | Dutch-Bangla Bank’s MFS |
-| Upay | City Bank’s MFS |
-| Tap | QR-based payment |
+Common risks include fake orders, unreachable phones, wrong addresses, returns, courier charges, delayed settlements and unmatched collections.
 
-### 2. Bank Transfer
+Consider Rahim, who buys a shirt for BDT 800 and lists it for BDT 1,200. He receives ten orders, but two return. Eight delivered sales produce BDT 9,600 in revenue. The sold inventory costs BDT 6,400. Advertising for ten orders costs BDT 800 and packaging BDT 200. Ten outbound and two return courier trips at BDT 120 cost BDT 1,440. Only BDT 760 remains, or BDT 76 per order received. The apparent BDT 400 gross margin was not the final profit.
 
-| Method | Details |
-|--------|---------|
-| **BEFTN** | Electronic fund transfer, batch processing, 1-2 days |
-| **NPSB** | Instant interbank transfer |
-| **RTGS** | For large amounts, instant, minimum Tk 100,000 |
-| **Mobile Banking App** | Each bank has its own app |
+Confirm the name, phone, address, product, price, delivery charge and expected time in writing. Where appropriate and accepted by the customer, consider a small advance for a high-risk order. Reconcile the courier report with your own order sheet regularly.
 
-**When to use it:**
+Further reading: [Cash on Delivery and Delivery Risk](/en/operations/cod-risk)
 
-- B2B payments, because most businesses prefer bank transfers
-- Large transactions
-- Salary payments
+## Payment Gateways
 
-### 3. Cash on Delivery (COD)
+A payment gateway can combine cards, MFS and bank options for a website or app. Onboarding may require documents, fees, technical integration and a settlement wait.
 
-COD is the most popular payment method for e-commerce in Bangladesh.
+Examples currently operating in Bangladesh include:
 
-| Topic | Details |
-|-------|---------|
-| **What it is** | Customer pays after receiving the product |
-| **Popularity** | Around 60-70% of e-commerce orders |
-| **Problems** | High return rate, fake orders, cash handling risk |
-| **Best for** | Physical product businesses |
+- [SSLCOMMERZ](https://sslcommerz.com)
+- [aamarPay](https://aamarpay.com)
+- [shurjoPay](https://shurjopay.com)
 
-**Tips to reduce COD risk:**
+These are examples, not endorsements. Before signing, verify the provider's current Bangladesh Bank authorisation, your eligibility, settlement terms, charges and complaint process. Ask:
 
-- [ ] Call to confirm the order.
-- [ ] Send SMS/call before delivery.
-- [ ] Take partial advance payment, even Tk 50-100.
-- [ ] Check the customer’s order history.
-- [ ] Set up a COD reconciliation process with your delivery partner.
-- [ ] Filter fake addresses and phone numbers.
-
-### 4. Payment Gateways (Online Payments)
+- Which payment methods are supported?
+- How long does settlement take?
+- Which setup and transaction charges apply?
+- How do refunds and chargebacks work?
+- Which plugins or APIs are maintained?
+- What documents are required?
+- What happens if a settlement is delayed?
 
-If you want to accept online payments on your website or app:
+## Foreign Customer Payments
 
-#### SSLCommerz
+Foreign payments for SaaS, software or services involve banking, foreign-exchange, invoice, tax and export-document rules. Availability of international products changes and a product that lets someone pay may not provide a lawful route for a Bangladesh business to receive export proceeds.
 
-| Topic | Details |
-|-------|---------|
-| **Largest gateway** | One of Bangladesh’s most popular payment gateways |
-| **Supports** | bKash, Nagad, cards, bank transfer, Rocket, Upay, and more |
-| **Charge** | Around 2.5%-3.5% per transaction |
-| **Integration** | API, plugins for WooCommerce, Shopify |
-| **Website** | [sslcommerz.com](https://sslcommerz.com) |
+Talk to the receiving bank before the first invoice. Confirm the payment route, account, purpose description, invoice, declaration or form, conversion and recordkeeping requirements.
 
-#### aamarPay
+Further reading: [SaaS Exports from Bangladesh](/en/ideas/export-saas) and [Foreign Exchange, Remittance and Foreign Shareholders](/en/trade/foreign-exchange)
 
-| Topic | Details |
-|-------|---------|
-| **Alternative** | Alternative to SSLCommerz |
-| **Charge** | Around 2%-3% |
-| **Integration** | API available |
-| **Website** | [aamarpay.com](https://aamarpay.com) |
+## Trust and Refunds
 
-#### ShurjoPay
+The buyer needs to know what happens after payment and after a problem. Publish the return and refund policy, use order numbers, send confirmation, provide courier tracking and keep a working support channel. Show genuine customer reviews only with permission; do not invent or rewrite them.
 
-| Topic | Details |
-|-------|---------|
-| **Provider** | ShurjoMukhi Limited |
-| **Charge** | Competitive |
-| **Website** | [shurjopay.com](https://shurjopay.com) |
+## Minimum Reconciliation Sheet
 
-#### Payment Gateway Comparison
+Give every order one row:
 
-| Gateway | Transaction fee | Settlement time | Integration |
-|---------|-----------------|-----------------|-------------|
-| SSLCommerz | Around 2.5%-3.5% | 2-3 days | Easy |
-| aamarPay | Around 2%-3% | 2-3 days | Easy |
-| ShurjoPay | Competitive | 2-3 days | Moderate |
-| PortWallet | Around 2.5% | 2-3 days | Moderate |
-
-### 5. International Payments
-
-If you receive money from foreign customers, such as SaaS exports or freelance services:
-
-| Method | Details |
-|--------|---------|
-| **PayPal** | Not directly available in Bangladesh; workarounds are needed |
-| **Wise (TransferWise)** | Can send money to a Bangladesh bank account |
-| **Payoneer** | Popular with freelancers |
-| **Bank wire transfer** | Direct bank transfer through SWIFT |
-| **Stripe** | Not available in Bangladesh, but can be used through Atlas/LLC structures |
-
-**For SaaS exports:**
-
-- Send invoices to foreign clients from the Bangladeshi company.
-- The client pays through bank wire or Wise.
-- The payment arrives as foreign remittance through Bangladesh Bank channels.
-- You may need to complete **Form C** through your bank.
-
----
-
-## What Should Your Startup Use?
-
-### E-commerce (Physical Product)
-
-```text
-✅ bKash Merchant
-✅ Nagad Merchant
-✅ Cash on Delivery (COD)
-✅ Bank Transfer
-✅ SSLCommerz/aamarPay (optional)
-```
-
-### SaaS / Digital Service
-
-```text
-✅ bKash Merchant
-✅ SSLCommerz/aamarPay (credit/debit card)
-✅ Bank Transfer (B2B)
-✅ Wise/Payoneer (international customers)
-```
-
-### B2B Service
-
-```text
-✅ Bank Transfer (NPSB/BEFTN)
-✅ bKash (small payments)
-✅ Cheque (large companies)
-```
-
-### Marketplace / Platform
-
-```text
-✅ SSLCommerz/aamarPay (all methods)
-✅ bKash + Nagad
-✅ COD (if physical products)
-```
-
----
-
-## Payments and Trust
-
-In Bangladesh, **trust** can matter even more than the payment method.
-
-**Why people may avoid online payment:**
-
-- Distrust of new brands
-- Fear of losing money
-- Previous scam experiences
-- Preference for “see first, then buy”
-
-**Ways to increase trust:**
-
-- [ ] Professional website/landing page
-- [ ] Clear return/refund policy
-- [ ] Customer reviews/testimonials
-- [ ] Multiple payment options, especially COD
-- [ ] SSL certificate (https)
-- [ ] Active social media presence
-- [ ] Phone number/WhatsApp support
-- [ ] Verified bKash/Nagad merchant account
-
----
-
-## Bangladesh Bank Basics
-
-### Opening a Business Bank Account
-
-**What you need:**
-
-- Certificate of Incorporation
-- Trade License
-- TIN Certificate
-- Board Resolution for companies
-- Directors’ NID and photos
-- Required bank forms
-
-**Popular business banking options:**
-
-| Bank | Why it can be useful |
-|------|----------------------|
-| Dutch-Bangla Bank (DBBL) | Large network, strong digital banking |
-| BRAC Bank | SME-friendly, good service |
-| City Bank | Depositor-friendly |
-| Eastern Bank (EBL) | Strong corporate banking |
-| Islami Bank Bangladesh | For Islamic banking needs |
-| Standard Chartered | International transactions |
-| HSBC | Larger businesses and foreign transactions |
-
----
+| Field | Example |
+|---|---|
+| Order ID | “DS-001” |
+| Customer | Name and phone |
+| Product or service | Item sold |
+| Total | Product plus delivery |
+| Method | MFS, bank, gateway or COD |
+| Payment status | Paid, due, partial or refunded |
+| Delivery status | Sent, delivered or returned |
+| Receipt or transaction ID | Payment evidence |
+| Notes | Problem or follow-up |
+
+Reconcile the sheet with bank, MFS, gateway and courier reports at least weekly. Unmatched money is not a reliable business record.
 
 ## Checklist
 
-- [ ] I selected the right payment methods for my business.
-- [ ] I opened bKash/Nagad merchant accounts.
-- [ ] I integrated a payment gateway if I sell online.
-- [ ] I opened a business bank account.
-- [ ] I created a COD policy if I sell physical products.
-- [ ] I set up international payments if I have foreign customers.
-- [ ] I created a refund/return policy.
+- [ ] Identified the methods customers are comfortable using
+- [ ] Created order IDs and a reconciliation sheet
+- [ ] Planned how to separate personal and business money
+- [ ] Set a courier-report process for cash on delivery
+- [ ] Published return and refund terms
+- [ ] Checked gateway or merchant-account requirements
+- [ ] Kept bank, tax and VAT records
 
----
+## Relevant Sources
 
-## Sources and Links
+- [Bangladesh Bank](https://www.bb.org.bd)
+- [bKash](https://www.bkash.com)
+- [Nagad](https://nagad.com.bd)
+- [SSLCOMMERZ](https://sslcommerz.com)
+- [aamarPay](https://aamarpay.com)
+- [shurjoPay](https://shurjopay.com)
 
-| Source | Link |
-|--------|------|
-| Bangladesh Bank | [bb.org.bd](https://bb.org.bd) |
-| bKash | [bkash.com](https://www.bkash.com) |
-| Nagad | [nagad.com.bd](https://nagad.com.bd) |
-| SSLCommerz | [sslcommerz.com](https://sslcommerz.com) |
-| aamarPay | [aamarpay.com](https://aamarpay.com) |
-| BTRC | [btrc.gov.bd](https://btrc.gov.bd) |
-
----
-
-**Previous:** [Trade License](/en/trade-license) | **Next:** [Finding Customers](/en/customers)
+<SectionIndex section="payments" locale="en" />

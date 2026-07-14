@@ -2,6 +2,7 @@ Tier,Category,Source,Research focus,URL,Trust / Priority,Notes
 Tier 1,Government / regulator,Bangladesh Investment Development Authority (BIDA),"FAQ, OSS, investment handbooks, licensing guidance, investor starter resources, FDI guidance",https://bida.gov.bd,High,Highest-trust source for investment and licensing guidance.
 Tier 1,Business starter,BanglaBiz Business Starter Package,Business starter resources and practical setup guidance,https://banglabiz.gov.bd/business-starter-package,High,Use for founder-friendly starter context.
 Tier 1,Company registrar,Office of the Registrar of Joint Stock Companies and Firms (RJSC),"Name clearance, private company registration, forms, fees, returns filing, certified copies, entity acts, DBID",https://roc.gov.bd,High,Core source for company setup and annual compliance.
+Tier 1,Official law database,Laws of Bangladesh,"Companies Act, Partnership Act, tax and VAT laws, labour law, current amendments",https://bdlaws.minlaw.gov.bd,High,Use the exact Act and section for load-bearing legal claims; check the page amendment date before relying on it.
 Tier 1,Tax authority,National Board of Revenue (NBR),"e-TIN, eReturn, VAT/BIN, VAT guides, turnover tax thresholds, income tax rules, SROs, Finance Act updates",https://nbr.gov.bd,High,Use official circulars and budget updates for current rules.
 Tier 1,VAT portal,VAT Online,"VAT/BIN registration, VAT return process, compliance portal guidance",https://vat.gov.bd,High,Use with NBR pages.
 Tier 1,Trade portal,Bangladesh Trade Portal,"Startup/business process PDFs, import/export procedures, trade procedures",https://bangladeshtradeportal.gov.bd,High,Useful for import/export guides and process maps.
@@ -31,7 +32,7 @@ Tier 1,IP,Bangladesh Copyright Office,"Copyright registration, creative/IP guida
 Tier 1,IP,"Department of Patents, Designs and Trademarks","Trademark, patent, design registration",https://dpdt.gov.bd,High,Core source for trademark guides.
 Tier 1,Export,Export Promotion Bureau,Export incentives and procedures,https://epb.gov.bd,Medium,Useful for export/SaaS and product export content.
 Tier 1,Import/export,Chief Controller of Imports and Exports,"IRC/ERC, import/export registration basics",https://ccie.gov.bd,High,Core source for import/export setup.
-Tier 2,Ecosystem report,LightCastle Partners,"Startup ecosystem dashboard, funding reports, market research, sector reports",https://lightcastlebd.com/insights,High,Market context and investment trend source.
+Tier 2,Ecosystem report,LightCastle Partners,"Startup ecosystem dashboard, funding reports, market research, sector reports",https://lightcastlepartners.com/insights,High,Market context and investment trend source; for load-bearing figures cite the exact dated report and state that disclosed deals may not be exhaustive.
 Tier 2,Ecosystem report,Startup Bangladesh reports,"Portfolio updates, investment reports, ecosystem context",https://startupbangladesh.vc,High,Government VC and ecosystem signals.
 Tier 2,Investor,Bangladesh Angels Network,"Angel investor landscape, events, portfolio, founder resources",https://bdangels.co,High,Funding and investor directory source.
 Tier 2,Investor,Anchorless Bangladesh,"Investment thesis, portfolio, Bangladesh market context",https://anchorless.vc,High,International investor context.

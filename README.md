@@ -1,400 +1,131 @@
-# Deshi Startup
+<div align="center">
 
-[![Star on GitHub](https://img.shields.io/github/stars/Deshi-Startup/deshistartup.svg?style=social)](https://github.com/Deshi-Startup/deshistartup)
+<a href="https://deshistartup.com"><img src=".github/assets/social-preview.png" width="720" alt="দেশি স্টার্টআপ – বাংলাদেশে স্টার্টআপ গড়ার ওপেন-সোর্স ম্যানুয়াল" /></a>
 
-Deshi Startup is a free, open-source, Bangla-first knowledge base and practical operating manual for building a **startup** in Bangladesh. The destination is the country's most trustworthy, practical startup-knowledge repository: what to do next, how much it costs, which office to visit, which law applies, how to validate an idea, and how to raise — in plain Bangla, with sources. The focus is almost exclusively startups; foundational guidance (registration, tax, payments) naturally helps any small business too, but the lens, depth, and priorities are built for founders creating something new and scalable — not generic advice for every business type.
+# দেশি স্টার্টআপ
 
-The goal is not to become a shallow motivational blog. The goal is to help a founder understand what to do next: validate an idea, register a business, handle tax/VAT basics, accept payments, manage delivery risk, find customers, hire carefully, raise funding, and grow with Bangladesh-specific constraints in mind.
+**বাংলাদেশে স্টার্টআপ গড়ার ওপেন-সোর্স ম্যানুয়াল**
 
-The content should be accessible enough that an SSC/HSC student can follow it, but detailed enough that a serious founder can use it as a working checklist.
+আইডিয়া যাচাই থেকে ফান্ডিং পর্যন্ত স্টার্টআপ গড়ার প্রতিটি ধাপের হাতে-কলমে গাইড পাবেন।
+কোম্পানি রেজিস্ট্রেশন, পেমেন্ট আর প্রথম গ্রাহক পাওয়ার মতো বিষয়ও আছে। গাইডগুলো সহজ বাংলায় লেখা, সঙ্গে সোর্সও আছে।
 
-## Purpose
+*The open-source manual for building a startup in Bangladesh.*
+**[ইংরেজি সংস্করণ →](./README.en.md)**
 
-Most startup education is too generic, too Silicon Valley-centric, too English-heavy, or scattered across government portals, blog posts, PDFs, YouTube videos, founder interviews, and Facebook groups.
+### 📖 [deshistartup.com-এ পড়ুন →](https://deshistartup.com)
 
-Bangladeshi founders need practical answers to questions like:
+[![GitHub stars](https://img.shields.io/github/stars/Deshi-Startup/deshistartup?style=social)](https://github.com/Deshi-Startup/deshistartup/stargazers)
+[![অগ্রগতি](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FDeshi-Startup%2Fdeshistartup%2Fmain%2Fpublic%2Fprogress.json&style=flat-square)](https://deshistartup.com/sitemap)
+[![Contributors](https://img.shields.io/github/contributors/Deshi-Startup/deshistartup?style=flat-square&color=047857)](https://github.com/Deshi-Startup/deshistartup/graphs/contributors)
+[![Content: CC BY-SA 4.0](https://img.shields.io/badge/content-CC_BY--SA_4.0-047857?style=flat-square)](./LICENSE-content.md)
+[![Code: MIT](https://img.shields.io/badge/code-MIT-2f6f8f?style=flat-square)](./LICENSE)
 
-- How do I validate an idea before building a product?
-- Should I start as a sole proprietor, partnership, or private limited company?
-- How do I think about trade license, e-TIN, VAT/BIN, and business bank accounts?
-- How do I accept payments through bKash, Nagad, cards, payment gateways, bank transfer, or COD?
-- How do I sell through Facebook, WhatsApp, Messenger, marketplaces, and my own website?
-- How do I handle courier reliability, failed delivery, refunds, fraud, and customer trust?
-- How do I hire my first employee, freelancer, intern, or co-founder?
-- How do I raise money from angels, grants, Startup Bangladesh, local VCs, diaspora investors, or accelerators?
-- How do I build ethically and legally in a difficult operating environment?
+</div>
 
-## Vision
+---
 
-Deshi Startup should become the Bangladesh-specific equivalent of:
+## কেন এই প্রজেক্ট
 
-- YC Startup School, localized for Bangladeshi founders
-- Stripe Atlas-style guides for Bangladesh registration, compliance, payments, and operations
-- A rich startup wiki knowledge base
-- A practical founder checklist library
-- A searchable Bangladeshi startup knowledge base
-- Eventually, an AI assistant trained only on verified Bangladesh startup resources
-- A source-backed **Bangladeshi startup case-study library** (bKash, Pathao, Chaldal…), each following `plan/case-study-format.md`
-- A **structured ecosystem directory** (investors, accelerators, payment gateways, couriers) as filterable, machine-readable data — not prose
-- A **freshness system**: a tiered source registry, "last verified" dates on compliance pages, and scheduled re-verification (`plan/research-ops.csv`)
+বাংলায় বিশ্বকোষ পড়তে চাইলে উইকিপিডিয়া আছে। স্টার্টআপ বানাতে গেলে তেমন কোনো জায়গা নেই।
+বাংলাদেশের ফাউন্ডারদের তাই ভরসা করতে হয় ছড়ানো-ছিটানো ফেসবুক পোস্ট, দামি কনসালট্যান্ট আর
+সিলিকন ভ্যালির পরামর্শের ওপর। শেষেরটা RJSC অফিসে ঢুকলেই আর খাটে না।
 
-The project should be an operating manual: source-backed, stage-aware, Bangladesh-specific, and practical enough to use while building.
+দেশি স্টার্টআপে **কী করবেন, কোথায় যাবেন, খরচ কত, কোন আইন মানবেন** – সব এক জায়গায় পাবেন।
+আইন-নিয়মের কথার সঙ্গে সরকারি সূত্রও দিই। লেখার ভাষা সহজ রাখার চেষ্টা করি। এসএসসি পাস শিক্ষার্থীও
+যেন বুঝতে পারেন, আবার সিরিয়াস ফাউন্ডার যেন গাইডগুলো সরাসরি কাজে লাগাতে পারেন।
 
-## Content Principles
+## অগ্রগতি
 
-1. **Bangladesh-specific over generic**
-   Advice must reflect how Bangladesh actually works: trust, family pressure, mobile wallets, Facebook commerce, low card usage, COD, courier issues, Dhaka vs outside-Dhaka distribution, regulatory friction, and local investor scarcity.
+**কয়টা পাতা লেখা হয়েছে, ওপরের ব্যাজে সেই হিসাব সব সময় দেখা যায়।** বাকি বিষয়গুলোর পাতায় স্পষ্ট করে
+"লেখা বাকি" বলা আছে। লেখা বাকি থাকলে আমরা পাতাটাকে শেষ বলে দেখাই না। এই পাতাগুলো শেষ করতে এমন মানুষ দরকার, যিনি বিষয়টা
+নিয়ে নিজে কাজ করেছেন বা ঠিকমতো রিসার্চ করতে জানেন।
 
-2. **Bangla-first, bilingual when useful**
-   Use clear, casual Bangla. Keep English startup/legal terms when founders are likely to encounter them in real documents, but explain them plainly.
+**পরের গাইডটা কি আপনি লিখবেন?** [কী কী লেখা বাকি, দেখুন →](https://github.com/Deshi-Startup/deshistartup/issues)
 
-3. **Source-backed**
-   Legal, tax, registration, compliance, funding, and policy content should cite official or credible sources. Compliance-heavy pages should show verification notes or direct official links where possible.
+## অবদান রাখুন
 
-4. **Practical, not theoretical**
-   Every guide should help a founder take action: checklist, documents needed, decision framework, common mistakes, next steps, templates, and source links.
-
-5. **Ethical and lawful**
-   Explain real-world constraints without normalizing bribery, tax evasion, fake documentation, or shortcuts that harm founders later.
-
-6. **Maintainable**
-   Regulations, fees, forms, tax rules, and government processes change. Avoid hard-coding unstable numbers unless they are sourced and dated.
-
-## Target Readers
-
-Primary readers:
-
-- Student founders in Bangladesh
-- First-time startup founders
-- Non-technical founders
-- Technical founders who need business/compliance guidance
-- Founders moving from freelancing, an agency, or a small business toward a scalable startup
-- Women founders navigating extra safety and social constraints
-- Diaspora founders building for Bangladesh
-
-Secondary readers:
-
-- Startup employees
-- University entrepreneurship clubs
-- Incubators and accelerators
-- Local investors and angels
-- Journalists and researchers
-- Lawyers, CAs, agencies, and service providers serving startups
-
-## Content Architecture
-
-The site is organized as a hybrid documentation wiki:
-
-- **Start Here:** beginner roadmap and glossary
-- **Idea and Validation:** customer discovery, market sizing, MVP tests
-- **Legal and Registration:** entity choice, RJSC, trade license, e-TIN, VAT/BIN
-- **Payments and Operations:** MFS, gateways, COD, reconciliation, logistics
-- **Customers and Growth:** first customers, Facebook commerce, B2B sales, distribution
-- **Team and Founder Life:** co-founders, hiring, contracts, family pressure, burnout
-- **Funding and Scale:** angel, grants, VC, data room, metrics, regional growth
-- **Templates and Checklists:** practical worksheets founders can use immediately
-- **Case Studies:** source-backed Bangladeshi startup case studies, one per company, following `plan/case-study-format.md`
-- **Directory:** a data-backed ecosystem directory (investors, accelerators, payment gateways, couriers)
-- **Industry and city playbooks:** sector- and location-specific guidance layered on top of the core roadmap
-
-## Current Milestone
-
-41 of ~430 planned Bengali pages are written; the rest are honest stubs (see `plan/content-backlog.csv`
-for the full backlog and `AGENTS.md` for how stubs work). The count dropped in July 2026 when 32
-boilerplate template pages were demoted back to honest stubs — real guides only.
-
-Milestone targets:
-
-- 100 written pages, including 10 case studies
-- Directory v1 (investors + accelerators)
-- `verified:` dates on all compliance pages
-- `llms.txt` published
-
-Already in place:
-
-- Documentation site
-- Markdown/MDX-based content
-- Bangla and English support
-- Source registry and official links
-- Beginner-friendly navigation
-- Search
-- Contribution guidelines
-
-Not yet (deliberately sequenced later):
-
-- Full AI assistant
-- Large-scale scraping
-- User accounts
-- Paid marketplace
-- Complex admin dashboard
-- Full legal automation
-- Crowdsourced editing without review
-
-## First Content Priorities
-
-Must-have pages:
-
-1. Start Here: How to Build a Startup in Bangladesh
-2. Startup vs SME vs Agency vs E-commerce Business
-3. Bangladesh Startup Ecosystem Overview
-4. How to Find Startup Ideas in Bangladesh
-5. How to Validate an Idea Without Building
-6. Customer Interview Script in Bangla and English
-7. MVP Examples for Bangladesh
-8. First 100 Customers in Bangladesh
-9. Legal Setup Roadmap
-10. Sole Proprietorship vs Private Limited Company
-11. RJSC Name Clearance and Company Registration
-12. Trade License Guide
-13. e-TIN Guide
-14. VAT/BIN Guide
-15. Business Bank Account Guide
-16. bKash, Nagad, Cards, and Payment Gateways
-17. Facebook Commerce Playbook
-18. WhatsApp and Messenger Sales Playbook
-19. COD, Courier, and Delivery Risk
-20. How to Find a Co-founder
-
-Should-have pages:
-
-- Founder equity splits and vesting
-- Hiring first employee vs freelancer vs intern
-- Basic bookkeeping for founders
-- Pricing strategy for Bangladesh
-- Bangla SEO basics
-- Marketplace vs owned storefront
-- Selling outside Dhaka
-- Startup funding map
-- Pitch deck basics
-- Investor data room checklist
-
-## Source Strategy
-
-`plan/sources.csv` is the living, tiered source registry — agents and contributors should pull
-source links from it rather than inventing or hand-picking new ones. The lists below give the shape
-of it.
-
-Use official sources for legal, tax, policy, registration, and compliance topics:
-
-- BIDA and BIDA OSS
-- BanglaBiz
-- RJSC
-- NBR and VAT Online
-- Bangladesh Bank
-- Bangladesh Trade Portal
-- Bangladesh Hi-Tech Park Authority
-- Startup Bangladesh
-- ICT Division
-- City corporation websites
-- BASIS and e-CAB
-- DCCI, FBCCI, BSCIC, BEZA, and BEPZA
-- Department of Environment
-- Department of Inspection for Factories and Establishments
-- Department of Patents, Designs and Trademarks
-- Copyright Office
-- Export Promotion Bureau
-- Chief Controller of Imports and Exports
-
-Use credible market and ecosystem sources for broader startup context:
-
-- LightCastle Partners
-- Startup Bangladesh reports
-- Bangladesh Angels Network
-- Anchorless Bangladesh
-- UNESCAP, World Bank, IFC, ADB, and GSMA
-- DataReportal
-- BTRC
-- Bangladesh Bureau of Statistics
-
-Founder stories and case studies can use interviews, public talks, profiles, and articles from credible startup media, newspapers, podcasts, founder posts, and public company materials. Do not copy full articles or interviews. Summarize insights, cite the original source, and separate facts from anecdotes.
-
-## Content Quality Rules
-
-1. Compliance pages must cite official sources.
-2. Tax/legal pages should show last verified date or official source date.
-3. Founder interview pages must avoid overclaiming.
-4. Do not copy full articles or interviews.
-5. Summarize insights and cite original sources.
-6. Use plain, natural Bangla — written the way Bangladeshis actually write, never
-   English-first thinking translated into Bangla. `STYLE.md` is the binding style guide;
-   `npm run lint:bangla` catches the mechanical tells.
-7. Keep jargon only when founders will actually encounter it, and explain it.
-8. Separate facts, anecdotes, and hypotheses.
-9. Mark uncertain or changing information clearly.
-10. Add "not legal/tax advice" disclaimers where needed.
-
-## Contribution Model
-
-Open contribution areas:
-
-- Founder stories
-- Tools and templates
-- Glossary terms
-- Translation improvements
-- Broken links
-- Directory updates
-- Case study suggestions
-
-Maintainer-reviewed areas:
-
-- Legal guides
-- Tax/VAT/TIN guides
-- Company registration guides
-- Investment and fundraising guides
-- Labor law and hiring guides
-- Payment regulation guides
-
-Expert-reviewed areas:
-
-- VAT
-- Income tax
-- RJSC filings
-- FDI
-- Employment law
-- Data privacy
-- Payment regulation
-- Company shutdown
-- Fundraising documents
-
-## Templates and Tools
-
-Prioritize these for the MVP:
-
-1. Customer interview script
-2. Idea validation worksheet
-3. Problem ranking scorecard
-4. MVP experiment planner
-5. Trade license checklist
-6. RJSC registration checklist
-7. e-TIN/VAT/BIN checklist
-8. Founder agreement checklist
-9. First 100 customers tracker
-10. Pitch deck outline
-
-Later tools:
-
-- Runway calculator
-- Break-even calculator
-- VAT calculator
-- Salary/PF calculator
-- CAC/LTV calculator
-- Investor CRM
-- Hiring scorecard
-- Monthly founder dashboard
-- Investor update template
-- Compliance calendar
-
-## UX Direction
-
-Design should be:
-
-- Mobile-first
-- Fast on low bandwidth
-- Bangla-readable
-- Searchable
-- Printable
-- PWA/offline-friendly later
-- Clear enough for beginners
-- Serious enough for professionals
-
-Key flows:
-
-- "I have an idea"
-- "I want to register a business"
-- "I want to launch an online business"
-- "I want to accept payments"
-- "I want to hire someone"
-- "I want to raise funding"
-- "I want to sell outside Dhaka"
-- "I want to understand taxes/VAT"
-
-Every workflow should end with a checklist and next action.
-
-## AI Assistant Direction
-
-Do not build the AI assistant first.
-
-Build the knowledge base first. Add AI search only when the content is structured, source-backed, and reviewed.
-
-Future AI rules:
-
-- Answer only from verified content
-- Cite sources
-- Show last verified date
-- Say "I don't know" when uncertain
-- Avoid legal/tax overconfidence
-- Escalate complex cases to a lawyer/CA
-- Support Bangla, English, and Banglish queries
-- Eventually support Bangla voice input and WhatsApp-based access
-
-## Tech Stack
-
-- **Framework:** [Next.js](https://nextjs.org/) App Router, statically exported (`output: 'export'`)
-- **Documentation:** [Nextra](https://nextra.site/) for MDX; page chrome is a custom wiki-style shell (not the stock Nextra theme)
-- **UI shell:** custom wiki-style frontend inspired by the static prototype
-- **Search:** Pagefind static search index (built automatically on `postbuild`)
-- **Hosting:** GitHub Pages from `main`; navigation, section hubs, and "last updated" dates are generated from the content tree at build time — contributors only add/edit `page.mdx` files
-
-For deeper architecture and editorial conventions, see [`AGENTS.md`](./AGENTS.md).
-
-## Local Development
+কোড জানার দরকার নেই। GitHub অ্যাকাউন্ট আর একটা ব্রাউজার থাকলেই হয়।
+
+| সময় | কী করবেন | কীভাবে |
+|---|---|---|
+| ২ মিনিট | ভুল বা পুরোনো তথ্য জানান | যেকোনো পাতার **"ভুল জানান"** লিংকে ক্লিক করুন বা [এখানে ইস্যু খুলুন](https://github.com/Deshi-Startup/deshistartup/issues/new?template=report-mistake.yml) |
+| ৫–১০ মিনিট | বানান, লিংক বা একটা বাক্য ঠিক করুন | পাতার **"সম্পাদনা"** লিংকে ক্লিক করুন – ব্রাউজারেই হয়ে যাবে |
+| কয়েক ঘণ্টা | একটি "লেখা বাকি" বিষয়ে পূর্ণ গাইড লিখুন | ["নতুন গাইড" ইস্যু থেকে বেছে নিন](https://github.com/Deshi-Startup/deshistartup/issues?q=is%3Aissue+is%3Aopen+label%3A%22নতুন+গাইড%22) বা [ব্যাকলগ দেখুন](./plan/content-backlog.csv) |
+
+কীভাবে অবদান রাখবেন, তা সাইটের [অবদান রাখুন](https://deshistartup.com/contribute) পাতায় ধাপে ধাপে দেখানো আছে।
+আরও বিস্তারিত পাবেন [CONTRIBUTING.md](./CONTRIBUTING.md)-এ।
+
+লেখার সময় দুটো নিয়ম মানতে হবে: [STYLE.md](./STYLE.md) (বাংলা যেন বাংলাই শোনায়) আর
+[EDITORIAL.md](./EDITORIAL.md) (পাতা যেন সত্যিই শেখায়)। `npm run lint:bangla` যান্ত্রিক ভুল
+ধরে দেয়। ভাষা নিখুঁত না হলেও শুরু করুন। রিভিউতে আমরা গুছিয়ে দেব।
+
+ইস্যু বা পুল রিকোয়েস্ট খুললে ৪৮ ঘণ্টার মধ্যে আমাদের প্রথম জবাব পাবেন।
+
+## ভেতরে কী আছে
+
+- 🧭 **[শুরু করুন](https://deshistartup.com/start-here)** – পুরো পথের রোডম্যাপ আর শব্দকোষ
+- 🛤️ **[কোন পথে যাবেন](https://deshistartup.com/journeys)** – আপনার লক্ষ্য অনুযায়ী ১৭টি আলাদা পথ, যেমন "আইডিয়া আছে কিন্তু পণ্য নেই"
+- ✅ **[আইডিয়া যাচাই](https://deshistartup.com/validation)** – কাস্টমার ইন্টারভিউ, মার্কেট সাইজ, এমভিপি
+- 🏛️ **[বিষয়ভিত্তিক গাইড](https://deshistartup.com/guides)** – রেজিস্ট্রেশন, কর, পেমেন্ট, গ্রাহক, টিম আর ফান্ডিংয়ের গাইড আলাদা আলাদা হাবে পাবেন
+- 🪜 **[ধাপে ধাপে রোডম্যাপ](https://deshistartup.com/roadmap)** – যাচাই ও ভিত্তি → প্রোডাক্ট ও টিম → বিক্রি ও ফান্ডিং → স্কেল ও ইকোসিস্টেম
+- 📚 **[কেস স্টাডি](https://deshistartup.com/case-studies)** – সূত্র যাচাই করে লেখা পাঠাও, বিকাশ, চালডালের মতো দেশি স্টার্টআপের গল্প
+- 🗂️ **[ডিরেক্টরি](https://deshistartup.com/directory)** – ইনভেস্টর আর অ্যাক্সেলারেটরের যাচাই করা তালিকা
+- 🌙 **[ফাউন্ডার লাইফ](https://deshistartup.com/founder-life)** – পরিবারের চাপ, মানসিক স্বাস্থ্য, একা ফাউন্ডারের বাস্তবতা
+
+## কেন ভরসা করবেন
+
+এই সাইট মোটিভেশনাল ব্লগ নয়, রেফারেন্স ম্যানুয়াল। মান ধরে রাখতে যা যা আছে:
+
+- আইন, ফি বা নিয়ম নিয়ে প্রতিটি কথার সঙ্গে **সূত্র** দিই। সরকারি পোর্টালকেই আগে রাখি – RJSC, NBR, বাংলাদেশ ব্যাংক
+- ফি বা সংখ্যার সঙ্গে **সাল**ও লিখে দিই ("২০২৬ সালের হিসাবে…")। তথ্য পুরোনো হয়ে গেলে তাই সহজে ধরা পড়ে
+- কমপ্লায়েন্স পাতায় আলাদা **"সর্বশেষ যাচাই"** তারিখ থাকে। [মেইনটেন্যান্স ক্যালেন্ডার](./plan/maintenance-calendar.md) মেনে সময়মতো আবার যাচাই করি
+- **একই নিয়ম সবার জন্য:** [STYLE.md](./STYLE.md), [EDITORIAL.md](./EDITORIAL.md) আর স্বয়ংক্রিয় লিন্টার। রিভিউ ছাড়া আইনি বা করের পাতা প্রকাশ করি না
+- লেখার কাজে AI ব্যবহার করি, তবে শেষ সিদ্ধান্ত নেন মানুষ। কাজের প্রক্রিয়া, ব্যাকলগ আর সোর্স রেজিস্ট্রি সবই প্রকাশ্য ([পরিকল্পনা দেখুন](./plan/))
+
+তবু মনে রাখুন: এই সাইট সাধারণ গাইড, আইনি বা কর পরামর্শ নয়। বড় সিদ্ধান্তের আগে সরকারি সূত্রে
+মিলিয়ে নিন, দরকারে পেশাদার কারও সঙ্গে কথা বলে নিন।
+
+## যাঁরা বানাচ্ছেন
+
+<a href="https://github.com/Deshi-Startup/deshistartup/graphs/contributors"><img src="https://contrib.rocks/image?repo=Deshi-Startup/deshistartup" alt="Contributors" /></a>
+
+আপনিও অবদান রাখলে আপনার ছবি এখানে যোগ হবে। শুরুটা আজই করুন না।
+
+## পরিকল্পনা ও পরিচালনা
+
+আমাদের পুরো পরিকল্পনা প্রকাশ্য। কী লেখা হবে, কোন সূত্রে ভরসা করা যায়, কবে কোন তথ্য আবার যাচাই হবে – সবই সেখানে পাবেন:
+
+- [পরিকল্পনা ফোল্ডার](./plan/) – কনটেন্ট ব্যাকলগ, সোর্স রেজিস্ট্রি আর মেইনটেন্যান্স ক্যালেন্ডার
+- [ভিশন ও নীতিমালা](./plan/vision.md) – বিস্তারিত লক্ষ্য, কনটেন্ট নীতিমালা আর সাফল্যের সংজ্ঞা
+- [এজেন্টদের নির্দেশনা](./AGENTS.md) – সাইটের আর্কিটেকচার ও কনভেনশন (ডেভেলপার ও AI এজেন্টদের জন্য)
+- [Discussions](https://github.com/Deshi-Startup/deshistartup/discussions) – প্রশ্ন, আইডিয়া, আলোচনা
+
+## ডেভেলপারদের জন্য
 
 ```bash
 npm install
 npm run dev
 ```
 
-Then open the local URL printed by Next.js.
+টেক স্ট্যাক:
+[Next.js](https://nextjs.org/) + [Nextra](https://nextra.site/) + [Pagefind](https://pagefind.app/)
 
-Build the static site:
+বিল্ডের সময় পুরো সাইট স্ট্যাটিক ফাইলে এক্সপোর্ট হয়, সার্চ চলে ব্রাউজারেই। আর্কিটেকচার আর কনভেনশনের বিস্তারিত
+[AGENTS.md](./AGENTS.md)-এ পাবেন। তবে কনটেন্টে অবদান রাখতে এই টেক স্ট্যাকের কিছুই জানার দরকার নেই। একটা ব্রাউজার থাকলেই হবে।
 
-```bash
-npm run build
-```
+## লাইসেন্স
 
-## How to Contribute
+- **কনটেন্ট** (সব গাইড, কেস স্টাডি, ডিরেক্টরি): [লাইসেন্সের বিস্তারিত](./LICENSE-content.md)। এই লাইসেন্স উইকিপিডিয়াও ব্যবহার করে। সূত্র দিলে যে কেউ কপি, অনুবাদ বা পুনঃপ্রকাশ করতে পারেন। তবে একই লাইসেন্স রাখতে হবে।
+- **কোড:** [MIT](./LICENSE)।
 
-1. Fork the repository.
-2. Clone your fork locally.
-3. Install dependencies with `npm install`.
-4. Run the development server with `npm run dev`.
-5. Make changes in the `app/` directory.
-6. Submit a pull request.
+সূত্র দেবেন এভাবে: `দেশি স্টার্টআপ – deshistartup.com, CC BY-SA 4.0`
 
-How content is organized:
+---
 
-- **Bengali is the source of truth.** Bengali guides live at `app/(contents)/(bn)/<slug>/page.mdx` (served at `/<slug>`); the English mirror lives at `app/(contents)/en/<slug>/page.mdx` (served at `/en/<slug>`). Keep slugs aligned across the two.
-- **Pages are plain MDX:** YAML frontmatter (`title`, `description`) + one `#` heading + `##` sections. Breadcrumbs, table of contents, and edit/history links are added automatically — don't hand-write them.
-- **Stubs** are unwritten pages that show only a `<StubNotice />` banner and a sources list. To turn a stub into a real guide, write the content and delete the `StubNotice` line; the site then counts it as written and drops the "to be written" badge.
-- Files under `app/generated/` are build artifacts — never edit them by hand.
-- Not sure what to work on? Open `plan/content-backlog.csv` and pick any লেখা বাকি (not yet written) topic — priorities are marked.
+<div align="center">
 
-Good contributions include:
+⭐ **ভালো লাগলে একটা স্টার দিন।** তাতে আরও মানুষ এই জ্ঞানভাণ্ডারের খোঁজ পেতে পারেন।
 
-- Fixing unclear or translated-sounding Bangla (see `STYLE.md`)
-- Updating outdated official links or policy details
-- Adding source-backed checklists
-- Expanding a thin page into a practical guide
-- Adding founder scripts, templates, calculators, or examples
-- Flagging legal/tax pages that need professional review
+*এই বাংলা জ্ঞানভাণ্ডার সবার জন্য আজীবন ফ্রি থাকবে।*
 
-## Definition of Success
-
-The project is working if:
-
-- A student founder can go from idea to first validation experiment using the site.
-- A first-time founder can understand registration and compliance steps without getting lost.
-- A founder can find Bangladesh-specific payment, sales, hiring, and logistics guidance.
-- Compliance pages are source-backed and reviewed.
-- Bangla explanations are actually useful, not awkward translations.
-- Founders bookmark it, share it, and correct it.
-- Experts are willing to review or contribute because the project is credible.
-
-The moat is not content volume. The moat is trust, localization, source quality, and maintenance.
-
-## License
-
-- **Code:** MIT.
-- **Content** (everything under `app/(contents)/`): Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0).
-
-See `LICENSE` and `LICENSE-content.md` for the authoritative text and attribution format.
+</div>

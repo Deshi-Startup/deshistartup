@@ -1,4 +1,642 @@
 {
+ "start-here": [
+  {
+   "bn": "স্টার্টআপের মূল ধারণা",
+   "en": "Startup Basics",
+   "slugs": [
+    "how-to-use",
+    "what-is-a-startup",
+    "startup-vs-sme",
+    "startup-or-business",
+    "glossary"
+   ]
+  },
+  {
+   "bn": "প্রস্তুতি ও বাস্তবতা যাচাই",
+   "en": "Readiness & Reality Check",
+   "slugs": [
+    "founder-readiness-checklist",
+    "founder-path-chooser",
+    "common-myths"
+   ]
+  },
+  {
+   "bn": "শুরুর পরিকল্পনা",
+   "en": "Plan & Get Started",
+   "slugs": [
+    "one-page-startup-plan",
+    "30-day-roadmap"
+   ]
+  }
+ ],
+ "ideas": [
+  {
+   "bn": "আইডিয়া ও সুযোগ খোঁজা",
+   "en": "Finding Ideas & Opportunities",
+   "slugs": [
+    "finding-ideas",
+    "ideation-basics",
+    "copy-vs-localize",
+    "opportunity-sectors",
+    "problem-to-opportunity",
+    "problem-validation-checklist",
+    "problem-ranking-scorecard",
+    "b2c-vs-b2b",
+    "export-saas"
+   ]
+  },
+  {
+   "bn": "বাজার গবেষণা ও প্রতিযোগী বোঝা",
+   "en": "Market Research & Competitors",
+   "slugs": [
+    "market-demographics",
+    "market-research-checklist",
+    "market-sizing",
+    "tam-sam-som",
+    "market-data-sources",
+    "using-market-data",
+    "citing-market-data",
+    "competitor-map",
+    "facebook-ad-library",
+    "rural-vs-urban",
+    "launch-cities"
+   ]
+  }
+ ],
+ "validation": [
+  {
+   "bn": "গ্রাহক ও চাহিদা যাচাই",
+   "en": "Customer & Demand Validation",
+   "slugs": [
+    "customer-interviews",
+    "interviews-vs-surveys",
+    "interview-scripts",
+    "consumer-personas",
+    "customer-language",
+    "field-research-plan",
+    "field-notes-template",
+    "outside-dhaka",
+    "cultural-context",
+    "demand-without-building",
+    "facebook-group-tests",
+    "preorders-vs-waitlists",
+    "trust-signals",
+    "payment-behavior",
+    "pricing-tests",
+    "mvp-examples",
+    "mvp-experiment-planner"
+   ]
+  }
+ ],
+ "registration": [
+  {
+   "bn": "ব্যবসার কাঠামো বাছাই",
+   "en": "Choosing a Structure",
+   "slugs": [
+    "sole-proprietorship",
+    "structure-decision-tree",
+    "structure-comparison",
+    "opc",
+    "partnership-deed",
+    "when-to-register"
+   ]
+  },
+  {
+   "bn": "কোম্পানি নিবন্ধন ও আরজেএসসি",
+   "en": "Company Registration & RJSC",
+   "slugs": [
+    "name-clearance",
+    "private-limited",
+    "moa-aoa",
+    "shares-and-directors",
+    "rjsc-fees",
+    "rjsc-mistakes",
+    "certified-copies",
+    "board-meetings-agm",
+    "annual-returns",
+    "after-registration",
+    "dbid",
+    "bida-banglabiz",
+    "ca-lawyer-secretary",
+    "foreign-owned-company",
+    "branch-liaison-office",
+    "before-closing",
+    "closing-a-company"
+   ]
+  }
+ ],
+ "licenses": [
+  {
+   "bn": "লাইসেন্স ও অনুমোদন",
+   "en": "Licenses & Approvals",
+   "slugs": [
+    "trade-license-category",
+    "trade-license-renewal",
+    "fire-license",
+    "environmental-clearance",
+    "bsti",
+    "product-labeling",
+    "food-safety",
+    "dgda",
+    "btrc",
+    "ride-sharing",
+    "courier-logistics",
+    "travel-agency",
+    "factory-license",
+    "factory-utilities"
+   ]
+  }
+ ],
+ "tax": [
+  {
+   "bn": "কর, ভ্যাট ও হিসাবরক্ষণ",
+   "en": "Tax, VAT & Bookkeeping",
+   "slugs": [
+    "e-tin",
+    "personal-vs-company-tin",
+    "vat-bin",
+    "when-vat-required",
+    "vat-thresholds",
+    "mushak-63",
+    "monthly-vat-return",
+    "filing-returns",
+    "a-chalan",
+    "tax-calendar",
+    "tds-vds",
+    "payroll-tax",
+    "bookkeeping-setup",
+    "annual-compliance",
+    "regulatory-changelog",
+    "budget-changelog",
+    "bookkeeping-basics"
+   ]
+  }
+ ],
+ "ip": [
+  {
+   "bn": "মেধাস্বত্ব ও ট্রেডমার্ক",
+   "en": "Intellectual Property & Trademarks",
+   "slugs": [
+    "basics",
+    "copyright-patent-design",
+    "trademark-conflict-check",
+    "trademark-filing",
+    "patent-design-gi",
+    "copyright",
+    "freelancer-ip-assignment"
+   ]
+  }
+ ],
+ "trade": [
+  {
+   "bn": "আমদানি-রপ্তানি ও শিপিং",
+   "en": "Import, Export & Shipping",
+   "slugs": [
+    "import-export-registration",
+    "irc-erc-checklist",
+    "irc-erc-steps",
+    "hs-codes",
+    "incoterms",
+    "lc-basics",
+    "trade-documents",
+    "certificate-of-origin",
+    "freight-forwarders",
+    "cnf-agents",
+    "customs-delays",
+    "bonded-warehouses",
+    "supplier-verification",
+    "alibaba-imports",
+    "sample-imports",
+    "pre-shipment-inspection",
+    "epb-registration",
+    "export-proceeds",
+    "bepza-beza",
+    "foreign-exchange"
+   ]
+  }
+ ],
+ "payments": [
+  {
+   "bn": "ব্যাংক ও পেমেন্ট",
+   "en": "Banking & Payments",
+   "slugs": [
+    "bank-account",
+    "startup-friendly-banks",
+    "bank-documents",
+    "merchant-account",
+    "mfs-and-gateways",
+    "bkash-merchant",
+    "nagad-rocket-merchant",
+    "gateway-integration",
+    "gateway-comparison",
+    "low-card-penetration",
+    "international-payments",
+    "subscription-payments",
+    "reconciliation",
+    "cod-reconciliation",
+    "refunds-chargebacks",
+    "fraud-risk-checklist"
+   ]
+  }
+ ],
+ "product": [
+  {
+   "bn": "প্রোডাক্ট ও প্রযুক্তি",
+   "en": "Product & Technology",
+   "slugs": [
+    "building-basics",
+    "no-code-mvp",
+    "tech-stack",
+    "bangla-ux",
+    "bangla-ux-writing",
+    "low-end-android",
+    "sms-otp-login",
+    "cybersecurity",
+    "data-privacy",
+    "privacy-notice-template",
+    "ict-act"
+   ]
+  }
+ ],
+ "manufacturing": [
+  {
+   "bn": "উৎপাদন ও সাপ্লাই চেইন",
+   "en": "Manufacturing & Supply Chain",
+   "slugs": [
+    "first-batch",
+    "bom-costing",
+    "supplier-sourcing",
+    "partner-due-diligence",
+    "quality-control",
+    "packaging-labels",
+    "inventory-warehouse",
+    "cold-chain"
+   ]
+  }
+ ],
+ "cofounders": [
+  {
+   "bn": "কো-ফাউন্ডার ও ইকুইটি",
+   "en": "Co-founders & Equity",
+   "slugs": [
+    "finding-cofounders",
+    "where-to-meet",
+    "role-matrix",
+    "agreement-structure",
+    "equity-split",
+    "vesting",
+    "esop",
+    "advisor-equity",
+    "family-cofounders",
+    "family-money-terms",
+    "breakup",
+    "solo-vs-team",
+    "founder-agreement",
+    "equity-and-vesting"
+   ]
+  }
+ ],
+ "team": [
+  {
+   "bn": "নিয়োগ ও টিম গঠন",
+   "en": "Hiring & Team Building",
+   "slugs": [
+    "first-hires",
+    "employee-vs-freelancer",
+    "find-talent",
+    "bangla-job-posts",
+    "hiring-scorecard",
+    "salary-benchmarks",
+    "offer-letter",
+    "interns",
+    "internship-program",
+    "finding-developers",
+    "freelancers-vs-offshore",
+    "remote-outsourced-hiring",
+    "freelancer-contracts"
+   ]
+  },
+  {
+   "bn": "শ্রম আইন ও কাগজপত্র",
+   "en": "Labor Law & Paperwork",
+   "slugs": [
+    "labor-law",
+    "employment-contracts",
+    "nda-non-compete",
+    "payroll",
+    "benefits-gratuity",
+    "leave-policy",
+    "termination"
+   ]
+  },
+  {
+   "bn": "টিম কালচার ও ধরে রাখা",
+   "en": "Team Culture & Retention",
+   "slugs": [
+    "culture-mistakes",
+    "remote-team-norms",
+    "retention"
+   ]
+  }
+ ],
+ "customers": [
+  {
+   "bn": "অনলাইনে বিক্রি শুরু",
+   "en": "Starting to Sell Online",
+   "slugs": [
+    "offline-to-online",
+    "facebook-before-website",
+    "facebook-page-setup",
+    "facebook-commerce",
+    "whatsapp-messenger-sales",
+    "whatsapp-catalog",
+    "marketplace-vs-own-site",
+    "digital-commerce-policy",
+    "return-policy-template",
+    "support-scripts"
+   ]
+  },
+  {
+   "bn": "গ্রাহক পাওয়া ও মার্কেটিং",
+   "en": "Getting Customers & Marketing",
+   "slugs": [
+    "first-100-customers",
+    "trust-building",
+    "willingness-to-pay",
+    "installment-pricing",
+    "landing-page-copy",
+    "landing-page-template",
+    "bangla-seo",
+    "facebook-ad-planner",
+    "tiktok-shorts",
+    "influencer-marketing",
+    "community-seeding",
+    "campus-ambassadors",
+    "referral-programs",
+    "offline-marketing",
+    "media-pitch"
+   ]
+  }
+ ],
+ "b2b": [
+  {
+   "bn": "বি২বি বিক্রি ও পার্টনারশিপ",
+   "en": "B2B Sales & Partnerships",
+   "slugs": [
+    "sme-sales",
+    "sme-digitization",
+    "sme-call-script",
+    "sales-scripts",
+    "corporate-partnerships",
+    "pilot-to-contract",
+    "ngo-partnerships",
+    "agency-to-product",
+    "invoice-collection"
+   ]
+  }
+ ],
+ "operations": [
+  {
+   "bn": "ডেলিভারি, কুরিয়ার ও সিওডি",
+   "en": "Delivery, Courier & COD",
+   "slugs": [
+    "courier-options",
+    "courier-partners",
+    "courier-sla-scorecard",
+    "last-mile-delivery",
+    "cod-risk",
+    "cod-risk-checklist",
+    "cod-fraud-playbook",
+    "reducing-rto",
+    "warehouse-hub-model"
+   ]
+  }
+ ],
+ "growth": [
+  {
+   "bn": "ঢাকা ও দেশের বাইরে",
+   "en": "Expanding Beyond Dhaka & Abroad",
+   "slugs": [
+    "beyond-dhaka",
+    "city-differences",
+    "selling-outside-dhaka",
+    "distribution-outside-dhaka",
+    "delivery-zone-plan",
+    "dealer-distributor-model",
+    "retail-shelf-placement",
+    "city-launch-playbook",
+    "tier-2-partners",
+    "rural-markets",
+    "second-office-compliance",
+    "south-asia-expansion",
+    "regional-export",
+    "cross-border-rules"
+   ]
+  }
+ ],
+ "metrics": [
+  {
+   "bn": "মেট্রিক্স ও ড্যাশবোর্ড",
+   "en": "Metrics & Dashboards",
+   "slugs": [
+    "metrics-101",
+    "cac-ltv-churn",
+    "cohort-retention",
+    "unit-economics",
+    "e-commerce",
+    "marketplace",
+    "saas",
+    "founder-dashboard",
+    "ops-dashboard",
+    "cashflow-vs-profit"
+   ]
+  }
+ ],
+ "funding": [
+  {
+   "bn": "অনুদান, ঋণ ও নিজের টাকা",
+   "en": "Grants, Loans & Bootstrapping",
+   "slugs": [
+    "islamic-finance",
+    "bootstrapping",
+    "friends-family",
+    "loan-or-equity",
+    "grants-competitions",
+    "idea-and-big",
+    "big-application",
+    "grant-calendar",
+    "bb-startup-fund",
+    "startup-bangladesh",
+    "startup-bangladesh-dd",
+    "crowdfunding"
+   ]
+  },
+  {
+   "bn": "বিনিয়োগকারী খোঁজা",
+   "en": "Finding Investors",
+   "slugs": [
+    "angel-investors",
+    "bangladesh-angels",
+    "ban-outreach-tracker",
+    "local-vcs",
+    "international-investors",
+    "diaspora-funding",
+    "fdi-rules",
+    "investor-crm",
+    "pitch-deck",
+    "data-room"
+   ]
+  },
+  {
+   "bn": "ডিল ও ইনভেস্টর সম্পর্ক",
+   "en": "Deals & Investor Relations",
+   "slugs": [
+    "valuation",
+    "term-sheets",
+    "safe-convertible-notes",
+    "cap-table",
+    "family-money-cap-table",
+    "first-board-seat",
+    "investor-updates",
+    "board-report"
+   ]
+  }
+ ],
+ "industries": [
+  {
+   "bn": "খাতভিত্তিক ব্যবসার গাইড",
+   "en": "Industry Business Guides",
+   "slugs": [
+    "agritech",
+    "agro-processing",
+    "rmg-garments",
+    "light-engineering",
+    "beauty-care",
+    "logistics",
+    "travel",
+    "edtech",
+    "saas-export"
+   ]
+  },
+  {
+   "bn": "খাতভিত্তিক নিয়মকানুন",
+   "en": "Sector Regulations",
+   "slugs": [
+    "e-commerce-regulations",
+    "fintech-regulations",
+    "healthtech-regulations"
+   ]
+  }
+ ],
+ "ecosystem": [
+  {
+   "bn": "কোথা থেকে শুরু",
+   "en": "Where to Start",
+   "slugs": [
+    "where-to-start"
+   ]
+  },
+  {
+   "bn": "কমিউনিটি, মেন্টর ও ইভেন্ট",
+   "en": "Community, Mentors & Events",
+   "slugs": [
+    "event-calendar",
+    "founder-communities",
+    "mentorship",
+    "university-ecosystems",
+    "university-clubs",
+    "e-cell-outreach",
+    "basis-softexpo",
+    "digital-world",
+    "techstars-events"
+   ]
+  },
+  {
+   "bn": "সরকারি সুবিধা ও প্রণোদনা",
+   "en": "Government Support & Incentives",
+   "slugs": [
+    "government-programs",
+    "bida-oss",
+    "bida-oss-account",
+    "hi-tech-parks",
+    "hi-tech-park-application",
+    "economic-zones",
+    "bscic",
+    "tax-holidays",
+    "it-export-incentives"
+   ]
+  },
+  {
+   "bn": "সদস্যপদ ও সংগঠন",
+   "en": "Memberships & Associations",
+   "slugs": [
+    "basis-membership",
+    "e-cab-membership"
+   ]
+  }
+ ],
+ "tools": [
+  {
+   "bn": "ক্যালকুলেটর",
+   "en": "Calculators",
+   "slugs": [
+    "landed-cost-calculator",
+    "break-even-calculator",
+    "runway-calculator",
+    "working-capital-calculator",
+    "inventory-turnover-calculator",
+    "vat-calculator",
+    "salary-pf-calculator"
+   ]
+  },
+  {
+   "bn": "টুল বাছাই",
+   "en": "Choosing Tools",
+   "slugs": [
+    "affordable-tools"
+   ]
+  }
+ ],
+ "founder-life": [
+  {
+   "bn": "পরিবার ও সমাজ সামলানো",
+   "en": "Handling Family & Society",
+   "slugs": [
+    "family-pressure",
+    "family-objection-scripts",
+    "negotiating-no",
+    "eid-gathering-scripts"
+   ]
+  },
+  {
+   "bn": "ছাত্র, নারী ও প্রবাসী উদ্যোক্তা",
+   "en": "Student, Women & Diaspora Founders",
+   "slugs": [
+    "student-founders",
+    "student-semester-plan",
+    "women-founders",
+    "women-safety-plan",
+    "diaspora-constraints",
+    "diaspora-advantages",
+    "diaspora-local-operator"
+   ]
+  },
+  {
+   "bn": "মানসিক স্বাস্থ্য ও অবসাদ",
+   "en": "Mental Health & Burnout",
+   "slugs": [
+    "mental-health",
+    "mental-health-support"
+   ]
+  },
+  {
+   "bn": "অভিজ্ঞ ফাউন্ডার",
+   "en": "Experienced Founders",
+   "slugs": [
+    "second-time-founders"
+   ]
+  }
+ ],
  "journeys": [
   {
    "bn": "শুরু ও যাচাই",
@@ -54,619 +692,13 @@
    ]
   }
  ],
- "founder-life": [
-  {
-   "bn": "পরিবার ও সমাজ সামলানো",
-   "en": "Handling Family & Society",
-   "slugs": [
-    "founder-life-overview",
-    "family-pressure-and-career-risk",
-    "family-objection-scripts-job-or-business",
-    "negotiating-no-from-family-scripts",
-    "what-to-say-at-eidwedding-gatherings-when-relatives-ask-if-this-is-a-job"
-   ]
-  },
-  {
-   "bn": "ছাত্র, নারী ও প্রবাসী উদ্যোক্তা",
-   "en": "Student, Women & Diaspora Founders",
-   "slugs": [
-    "student-founder-constraints",
-    "student-founder-semester-plan",
-    "women-founder-constraints-safety-client-meetings-travel-visibility",
-    "women-founder-safety-plan-for-client-meetings",
-    "diaspora-founder-constraints",
-    "diaspora-founder-advantages",
-    "diaspora-co-founder-and-local-operator-relationship"
-   ]
-  },
-  {
-   "bn": "মানসিক স্বাস্থ্য ও অবসাদ",
-   "en": "Mental Health & Burnout",
-   "slugs": [
-    "founder-mental-health-and-burnout",
-    "founder-mental-health-support-map"
-   ]
-  }
- ],
- "start-here": [
-  {
-   "bn": "স্টার্টআপের মূল ধারণা",
-   "en": "Startup Basics",
-   "slugs": [
-    "how-to-use-the-bangla-first-startup-knowledge-base",
-    "what-is-a-startup",
-    "startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh",
-    "should-you-build-a-startup-or-a-normal-business",
-    "glossary-bangla-english-startup-jargon-dictionary"
-   ]
-  },
-  {
-   "bn": "প্রস্তুতি ও বাস্তবতা যাচাই",
-   "en": "Readiness & Reality Check",
-   "slugs": [
-    "founder-readiness-checklist",
-    "founder-path-chooser",
-    "bangladesh-startup-ecosystem-overview",
-    "common-myths-bangladeshi-founders-believe"
-   ]
-  },
-  {
-   "bn": "শুরুর পরিকল্পনা",
-   "en": "Plan & Get Started",
-   "slugs": [
-    "one-page-startup-plan",
-    "30-day-roadmap-to-starting-a-startup-in-bangladesh"
-   ]
-  }
- ],
- "phase-two": [
-  {
-   "bn": "কো-ফাউন্ডার ও ইকুইটি",
-   "en": "Co-founders & Equity",
-   "slugs": [
-    "how-to-find-co-founders",
-    "where-to-meet-co-founders-events-communities-universities",
-    "founder-role-matrix-who-does-what",
-    "how-to-structure-co-founder-agreements",
-    "equity-split-discussion-guide",
-    "vesting-basics-translated-into-plain-bangla",
-    "esop-or-employee-share-plan-basics",
-    "advisor-agreements-and-mentor-equity-basics",
-    "family-involvement-as-informal-co-founders",
-    "written-terms-when-taking-family-money",
-    "how-to-handle-a-co-founder-breakup"
-   ]
-  },
-  {
-   "bn": "প্রোডাক্ট ও প্রযুক্তি",
-   "en": "Product & Technology",
-   "slugs": [
-    "building-your-product-in-bangladesh",
-    "building-a-no-code-mvp-when-it-is-enough",
-    "tech-stack-considerations-mobile-first-low-bandwidth-optimization",
-    "bangla-ux-and-mobile-first-products",
-    "bangla-ux-writing-words-tone-and-flow",
-    "optimizing-products-for-low-end-android-phones",
-    "sms-otp-costs-and-alternative-login-flows",
-    "cybersecurity-basics-for-small-startups",
-    "data-privacyprotection-obligations-for-customer-data",
-    "customer-data-consent-and-privacy-notice-template",
-    "ict-act-and-emerging-regulations-overview"
-   ]
-  },
-  {
-   "bn": "উৎপাদন ও সাপ্লাই চেইন",
-   "en": "Manufacturing & Supply Chain",
-   "slugs": [
-    "from-prototype-to-first-batch",
-    "building-a-bom-and-costing-sheet",
-    "local-supplier-sourcing-checklist",
-    "manufacturing-partner-due-diligence",
-    "quality-control-checklist-for-first-production-run",
-    "packaging-and-label-design-approval-workflow",
-    "inventory-and-warehouse-setup",
-    "how-to-plan-if-cold-chain-is-required"
-   ]
-  },
-  {
-   "bn": "নিয়োগ ও টিম গঠন",
-   "en": "Hiring & Team Building",
-   "slugs": [
-    "hiring-first-employees",
-    "hiring-first-employee-vs-freelancer-vs-intern",
-    "where-to-find-talent-linkedin-facebook-groups-chakricom-bdjobs-university-career-offices",
-    "how-to-write-job-posts-in-bangla",
-    "hiring-scorecard",
-    "salary-benchmarks-research-plan",
-    "offer-letter-probation-and-joining-checklist",
-    "interns-and-student-talent",
-    "how-to-run-your-first-internship-program",
-    "finding-developers-in-bangladesh",
-    "freelancer-ecosystem-and-local-vs-offshore-development",
-    "remoteoutsourced-hiring-as-a-bootstrapping-tactic",
-    "freelancer-contract-and-ip-ownership-checklist"
-   ]
-  },
-  {
-   "bn": "শ্রম আইন ও কাগজপত্র",
-   "en": "Labor Law & Paperwork",
-   "slugs": [
-    "labor-law-basics-bangladesh-labour-act-2006",
-    "employment-contracts",
-    "ip-assignment-nda-non-compete-enforceability-basics",
-    "payroll-process-salary-sheet-bank-transfer-and-tax",
-    "epf-gratuity-and-benefits-basics",
-    "leave-policy-and-office-rules-template",
-    "termination-notice-period-and-gratuity-basics"
-   ]
-  },
-  {
-   "bn": "টিম কালচার ও ধরে রাখা",
-   "en": "Team Culture & Retention",
-   "slugs": [
-    "culture-mistakes-in-bangladeshi-startups",
-    "remote-team-norms",
-    "talent-retention-and-brain-drain"
-   ]
-  }
- ],
- "phase-four": [
-  {
-   "bn": "শুরুর পরিকল্পনা",
-   "en": "Getting Started & Planning",
-   "slugs": [
-    "phase-4-roadmap",
-    "eventopportunity-calendar"
-   ]
-  },
-  {
-   "bn": "খাতভিত্তিক ব্যবসার গাইড",
-   "en": "Industry Business Guides",
-   "slugs": [
-    "agritech-startup-playbook",
-    "food-and-agro-processing-business-guide",
-    "rmg-and-garment-accessories-startup-guide",
-    "light-engineering-and-hardware-manufacturing-guide",
-    "beauty-and-personal-care-product-business-guide",
-    "logistics-startup-playbook",
-    "tourism-and-travel-startup-guide",
-    "edtech-trust-and-parent-acquisition-playbook",
-    "saas-export-playbook-from-bangladesh"
-   ]
-  },
-  {
-   "bn": "খাতভিত্তিক নিয়মকানুন",
-   "en": "Sector Regulations",
-   "slugs": [
-    "e-commerce-marketplace-regulatory-map",
-    "fintech-regulatory-map",
-    "healthtech-regulatory-map"
-   ]
-  },
-  {
-   "bn": "সরকারি সুবিধা ও প্রণোদনা",
-   "en": "Government Support & Incentives",
-   "slugs": [
-    "government-program-application-guide",
-    "bida-one-stop-services-and-investment-policy",
-    "opening-a-bida-oss-account-and-tracking-service-requests",
-    "hi-tech-park-authority-programs",
-    "hi-tech-park-application-path",
-    "special-economic-zones",
-    "bscic-support-for-small-manufacturing",
-    "tax-holidays-for-tech-companies",
-    "export-incentives-for-itites"
-   ]
-  },
-  {
-   "bn": "সদস্যপদ ও সংগঠন",
-   "en": "Memberships & Associations",
-   "slugs": [
-    "basis-membership-when-it-matters",
-    "value-of-e-cab-membership-for-online-sellers"
-   ]
-  },
-  {
-   "bn": "কমিউনিটি, মেন্টর ও ইভেন্ট",
-   "en": "Community, Mentors & Events",
-   "slugs": [
-    "founder-communities",
-    "mentorship-programs",
-    "university-entrepreneurship-ecosystems",
-    "brac-nsu-du-iba-entrepreneurship-clubs",
-    "university-e-cell-outreach-playbook",
-    "basis-softexpo",
-    "digital-world",
-    "techstars-affiliated-events"
-   ]
-  }
- ],
- "phase-one": [
-  {
-   "bn": "আইডিয়া ও সুযোগ খোঁজা",
-   "en": "Finding Ideas & Opportunities",
-   "slugs": [
-    "how-to-find-startup-ideas-in-bangladesh",
-    "ideation-and-problem-validation-in-the-bangladeshi-market",
-    "copied-ideas-vs-localized-ideas",
-    "common-opportunity-sectors-fintech-agritech-edtech-healthtech-logistics-e-commerce",
-    "turning-a-problem-list-into-a-business-opportunity",
-    "problem-validation-checklist",
-    "problem-ranking-scorecard",
-    "b2c-vs-b2b-vs-b2b2c-in-bangladesh",
-    "export-oriented-saas-from-bangladesh"
-   ]
-  },
-  {
-   "bn": "বাজার গবেষণা ও প্রতিযোগী বোঝা",
-   "en": "Market Research & Competitors",
-   "slugs": [
-    "understanding-demographics-internet-penetration-mobile-first-behavior-urban-vs-rural-dynamics",
-    "market-research-checklist-for-bangladesh",
-    "how-to-size-a-market-in-bangladesh",
-    "simple-tamsamsom-sizing-for-bangladesh",
-    "where-to-find-bangladesh-market-data-bbs-world-bank-bida-sector-reports",
-    "using-bbs-btrc-world-bank-and-datareportal-for-market-research",
-    "how-to-cite-bangladesh-market-data-cleanly",
-    "competitor-map-online-offline-and-informal-competitors",
-    "using-facebook-ad-library-for-market-and-competitor-research",
-    "rural-vs-urban-customer-adoption-differences",
-    "choosing-launch-cities-dhaka-chattogram-sylhet-rajshahi-khulna"
-   ]
-  },
-  {
-   "bn": "গ্রাহক ও চাহিদা যাচাই",
-   "en": "Customer & Demand Validation",
-   "slugs": [
-    "customer-discovery-interviews-in-bangladesh",
-    "why-interviews-beat-surveys-in-bangladesh",
-    "customer-interview-scripts-in-bangla-and-english",
-    "how-to-build-bangladeshi-consumer-personas",
-    "collecting-customer-language-for-bangla-copywriting",
-    "field-research-plan-markets-shops-and-neighborhoods",
-    "field-notes-template-for-shops-markets-and-neighborhoods",
-    "how-to-validate-customers-outside-dhaka",
-    "cultural-considerations-in-validation",
-    "how-to-validate-demand-without-building",
-    "testing-demand-in-facebook-groups",
-    "pre-orders-vs-waitlists-in-bangladesh",
-    "how-to-test-early-trust-signals",
-    "how-to-validate-customer-payment-behavior",
-    "pricing-tests-in-low-trust-markets",
-    "mvp-examples-for-bangladesh",
-    "mvp-experiment-planner"
-   ]
-  },
-  {
-   "bn": "ব্যবসার ধরন ও ফাউন্ডার চুক্তি",
-   "en": "Business Structure & Founder Agreements",
-   "slugs": [
-    "solo-founder-vs-team-founder-tradeoffs-in-bangladesh",
-    "founder-agreement-basics",
-    "co-founder-equity-splits-and-vesting-in-bangladesh",
-    "should-you-start-as-a-sole-proprietorship",
-    "sole-proprietorship-vs-partnership-vs-private-limited-company",
-    "private-limited-opc-or-sole-proprietorship-decision-tree",
-    "business-structure-comparison-table-with-costs-and-timelines",
-    "one-person-company-opc-under-companies-act-1994",
-    "partnership-deed-essentials",
-    "when-to-register-a-company"
-   ]
-  },
-  {
-   "bn": "কোম্পানি নিবন্ধন ও আরজেএসসি",
-   "en": "Company Registration & RJSC",
-   "slugs": [
-    "rjsc-name-clearance",
-    "private-limited-company-registration-step-by-step",
-    "memorandum-and-articles-of-association-basics",
-    "share-capital-directors-and-shareholders-basics",
-    "rjsc-fees-and-timeline-expectations",
-    "common-rjsc-mistakes",
-    "certified-copies-and-returns-filing-basics",
-    "board-meetings-agm-and-minutes-basics",
-    "rjsc-annual-returns-and-filing-calendar",
-    "first-10-things-after-company-registration",
-    "digital-business-identity-dbid",
-    "how-to-use-bida-oss-and-banglabiz-starter-resources",
-    "how-to-choose-a-ca-lawyer-and-company-secretary",
-    "basics-of-starting-a-foreign-owned-company-in-bangladesh",
-    "branch-liaison-and-representative-office-differences",
-    "what-to-consider-before-closing-a-company",
-    "closing-down-a-company-legally"
-   ]
-  },
-  {
-   "bn": "লাইসেন্স ও অনুমোদন",
-   "en": "Licenses & Approvals",
-   "slugs": [
-    "trade-license-guide",
-    "choosing-the-right-trade-license-category-by-city-corporation",
-    "trade-license-costs-and-renewal-process",
-    "fire-license-and-safety-clearance-basics",
-    "environmental-clearance-which-businesses-need-it",
-    "when-bsti-certification-is-required",
-    "product-labeling-and-packaging-compliance",
-    "bfsa-and-food-safety-checklist-for-food-businesses",
-    "dgda-pathway-for-medicine-supplements-and-health-products",
-    "btrc-questions-for-sms-telecom-and-isp-products",
-    "regulatory-checklist-for-ride-sharing-or-transport-products",
-    "licensing-questions-for-courier-or-logistics-businesses",
-    "checklist-for-starting-a-travel-agency-or-tour-operator",
-    "factory-license-and-dife-compliance-basics",
-    "factory-utility-setup-electricity-gas-water-and-boiler"
-   ]
-  },
-  {
-   "bn": "কর, ভ্যাট ও হিসাবরক্ষণ",
-   "en": "Tax, VAT & Bookkeeping",
-   "slugs": [
-    "e-tin-guide",
-    "personal-e-tin-vs-company-tin",
-    "vatbin-guide",
-    "when-vat-registration-is-required",
-    "turnover-tax-and-vat-threshold-explainer",
-    "mushak-63-invoice-and-vat-documentation-basics",
-    "monthly-return-workflow-after-binvat-registration",
-    "how-to-file-tax-and-vat-returns",
-    "a-chalan-and-online-tax-payment-workflow",
-    "tax-calendar-income-tax-vat-tds-vds-and-annual-returns",
-    "tdsvds-on-vendor-payments",
-    "payroll-tax-and-employee-documentation",
-    "audit-accounts-and-bookkeeping-setup",
-    "annual-compliance-checklist",
-    "regulatory-changelog-for-budget-nbr-circulars-rjsc-notices",
-    "how-to-update-the-budget-changelog-every-june"
-   ]
-  },
-  {
-   "bn": "ব্যাংক ও পেমেন্ট",
-   "en": "Banking & Payments",
-   "slugs": [
-    "business-bank-account-guide",
-    "which-banks-are-startup-friendly",
-    "corporate-bank-account-documentation-checklist",
-    "what-you-need-to-open-a-merchant-account",
-    "bkashnagadpayment-gateway-basics",
-    "bkash-merchant-account-vs-personal-account",
-    "nagad-and-rocket-merchant-setup-checklist",
-    "payment-gateway-integration-sslcommerz-amarpay-portwallet",
-    "sslcommerz-aamarpay-and-portwallet-comparison-checklist",
-    "low-card-penetration-implications",
-    "international-payment-card-and-payment-link-constraints",
-    "reality-of-taking-subscription-payments-in-bangladesh",
-    "payment-reconciliation-across-gateway-wallet-bank-and-cod",
-    "cod-cash-reconciliation-template",
-    "refunds-chargebacks-and-dispute-handling",
-    "payment-fraud-risk-checklist",
-    "islamic-finance-halal-business-considerations-where-relevant"
-   ]
-  },
-  {
-   "bn": "মেধাস্বত্ব ও ট্রেডমার্ক",
-   "en": "Intellectual Property & Trademarks",
-   "slugs": [
-    "intellectual-property-and-trademark-basics",
-    "copyright-patents-designs-and-trademarks",
-    "trademark-conflict-check-before-choosing-a-brand-name",
-    "trademark-search-and-filing-guide",
-    "patent-design-and-gi-which-one-matters-for-you",
-    "copyright-basics-for-software-courses-and-content",
-    "how-to-get-ip-assignment-from-freelancers"
-   ]
-  },
-  {
-   "bn": "আমদানি-রপ্তানি ও শিপিং",
-   "en": "Import, Export & Shipping",
-   "slugs": [
-    "importexport-registration-basics",
-    "ircerc-checklist",
-    "step-by-step-guide-to-ircerc",
-    "how-to-find-the-right-hs-code",
-    "incoterms-in-plain-bangla",
-    "lc-lcaf-and-bank-documentation-basics",
-    "proforma-invoice-commercial-invoice-and-packing-list",
-    "when-a-certificate-of-origin-is-needed",
-    "landed-cost-calculator-duty-vat-freight-and-clearing",
-    "choosing-a-freight-forwarder-air-sea-and-courier",
-    "c-and-f-agent-selection-checklist",
-    "what-to-do-when-customs-clearance-is-delayed",
-    "what-bonded-warehouses-are-and-who-should-use-them",
-    "foreign-supplier-verification-checklist",
-    "reducing-risk-when-importing-from-alibaba",
-    "sample-imports-and-prototype-shipments",
-    "pre-shipment-quality-inspection-checklist",
-    "epb-registration-and-export-incentive-path",
-    "export-proceeds-repatriation-basics",
-    "when-to-consider-bepza-and-beza-for-export-manufacturing",
-    "foreign-exchange-basics-for-saas-export-remittance-and-foreign-shareholders"
-   ]
-  }
- ],
- "phase-three": [
-  {
-   "bn": "অনলাইনে বিক্রি শুরু",
-   "en": "Starting to Sell Online",
-   "slugs": [
-    "offline-to-online-behavior",
-    "building-on-facebookwhatsapp-before-a-full-website",
-    "facebook-page-shop-and-inbox-ops-setup",
-    "facebook-commerce-playbook",
-    "whatsapp-and-messenger-sales-playbook",
-    "whatsapp-catalog-and-broadcast-workflow",
-    "marketplace-vs-owned-storefront-darazfacebook-shop-vs-your-own-site",
-    "digital-commerce-policy-and-what-it-requires-of-an-online-shop",
-    "return-refund-and-exchange-policy-template",
-    "bangla-customer-support-scripts",
-    "tools-accessible-and-affordable-for-bangladeshi-startups"
-   ]
-  },
-  {
-   "bn": "গ্রাহক পাওয়া ও মার্কেটিং",
-   "en": "Getting Customers & Marketing",
-   "slugs": [
-    "how-to-get-your-first-100-customers-in-bangladesh",
-    "trust-building-in-low-trust-markets",
-    "price-sensitivity-and-willingness-to-pay",
-    "installment-culture-and-pricing-strategy-for-bangladesh",
-    "bangla-landing-page-copywriting",
-    "landing-page-template",
-    "seo-in-bangla",
-    "facebook-ad-test-planner",
-    "creating-demand-with-tiktok-and-youtube-shorts",
-    "influencer-marketing-in-bangladesh",
-    "community-seeding-in-public-groups-campuses-and-niches",
-    "campus-ambassador-model",
-    "referral-programs-for-bangladesh",
-    "offline-marketing-and-distribution",
-    "media-pitch-guide-future-startup-daily-star-tbs-and-prothom-alo"
-   ]
-  },
-  {
-   "bn": "ডেলিভারি, কুরিয়ার ও সিওডি",
-   "en": "Delivery, Courier & COD",
-   "slugs": [
-    "courierlogistics-options",
-    "working-with-pathao-steadfast-redx-paperfly-and-similar-providers",
-    "courier-sla-comparison-scorecard",
-    "last-mile-delivery-constraints",
-    "cod-and-delivery-risk",
-    "cash-on-delivery-risk-checklist",
-    "cod-fraud-and-fake-order-response-playbook",
-    "reducing-return-to-origin-and-failed-delivery",
-    "warehouse-hub-model-for-bangladesh"
-   ]
-  },
-  {
-   "bn": "বি২বি বিক্রি ও পার্টনারশিপ",
-   "en": "B2B Sales & Partnerships",
-   "slugs": [
-    "sme-sales-in-bangladesh",
-    "sme-digitization-barriers",
-    "sme-sales-call-script",
-    "b2b-sales-scripts",
-    "corporate-partnership-dynamics",
-    "from-corporate-pilot-to-paid-contract",
-    "ngo-and-development-sector-partnerships",
-    "agency-to-product-transition"
-   ]
-  },
-  {
-   "bn": "ঢাকা ও দেশের বাইরে",
-   "en": "Expanding Beyond Dhaka & Abroad",
-   "slugs": [
-    "expanding-beyond-dhaka",
-    "dhaka-vs-chattogram-vs-tier-2-city-differences",
-    "selling-outside-dhaka",
-    "distribution-outside-dhaka",
-    "delivery-zone-plan-outside-dhaka",
-    "dealer-and-distributor-model",
-    "how-to-get-retail-shelf-placement",
-    "city-launch-playbook",
-    "tier-2-city-local-partner-checklist",
-    "rural-market-considerations",
-    "compliance-checklist-for-a-second-office-or-factory",
-    "going-regional-in-south-asia",
-    "regional-export-nepal-india-and-the-middle-east",
-    "cross-border-regulatory-considerations",
-    "second-time-founder-topics"
-   ]
-  },
-  {
-   "bn": "মেট্রিক্স ও ড্যাশবোর্ড",
-   "en": "Metrics & Dashboards",
-   "slugs": [
-    "startup-metrics-101",
-    "cac-ltv-retention-churn-payback",
-    "cohort-retention-in-the-bangladesh-context",
-    "unit-economics-template",
-    "e-commerce-metrics",
-    "marketplace-metrics",
-    "saas-metrics",
-    "monthly-founder-dashboard",
-    "manual-ops-dashboard-for-early-teams"
-   ]
-  },
-  {
-   "bn": "হিসাব-নিকাশ ও ক্যালকুলেটর",
-   "en": "Bookkeeping & Calculators",
-   "slugs": [
-    "basic-bookkeepingaccounting-a-non-accountant-founder-needs",
-    "cashflow-vs-profit-in-plain-language-for-founders",
-    "purchase-order-invoice-and-collection-workflow",
-    "break-even-calculator",
-    "runway-calculator",
-    "working-capital-cycle-calculator",
-    "inventory-turnover-calculator",
-    "vat-calculator",
-    "salarypf-calculator"
-   ]
-  },
-  {
-   "bn": "অনুদান, ঋণ ও নিজের টাকা",
-   "en": "Grants, Loans & Bootstrapping",
-   "slugs": [
-    "bootstrapping-in-bangladesh",
-    "friends-and-family-funding",
-    "bank-loan-sme-loan-or-equity",
-    "grants-and-competitions",
-    "idea-project-and-bangabandhu-innovation-grant",
-    "bangabandhu-innovation-grant-application-guide",
-    "grant-application-calendar",
-    "bangladesh-bank-startup-fund",
-    "startup-bangladesh",
-    "startup-bangladesh-due-diligence-checklist",
-    "crowdfunding-legality-in-bangladesh"
-   ]
-  },
-  {
-   "bn": "বিনিয়োগকারী খোঁজা",
-   "en": "Finding Investors",
-   "slugs": [
-    "angel-investors",
-    "bangladesh-angels-network",
-    "bangladesh-angels-network-outreach-tracker",
-    "local-vc-landscape",
-    "international-investors",
-    "nrb-or-diaspora-funding-path",
-    "foreign-investmentfdi-rules-and-diaspora-funding",
-    "investor-crm",
-    "pitch-deck-template",
-    "fundraising-data-room-checklist"
-   ]
-  },
-  {
-   "bn": "ডিল ও ইনভেস্টর সম্পর্ক",
-   "en": "Deals & Investor Relations",
-   "slugs": [
-    "valuation-basics",
-    "term-sheet-basics-in-plain-bangla",
-    "safe-convertible-notes-and-priced-rounds-in-plain-bangla",
-    "cap-table-basics-in-plain-bangla",
-    "how-to-reflect-family-money-in-the-cap-table",
-    "dealing-with-first-investor-board-seat-and-loss-of-control",
-    "monthly-investor-update-template",
-    "investor-board-report-template"
-   ]
-  }
- ],
- "directory": [
-  {
-   "bn": "ফান্ডিং ও সুবিধা",
-   "en": "Funding & Support",
-   "slugs": [
-    "investors",
-    "accelerators"
-   ]
-  }
- ],
  "case-studies": [
   {
    "bn": "ফিনটেক",
    "en": "Fintech",
    "slugs": [
     "bkash",
-    "apon-wellbeing-case-study"
+    "apon-wellbeing"
    ]
   },
   {
@@ -697,7 +729,7 @@
     "pickaboo",
     "khaas-food",
     "onnorokom-group",
-    "fabrilife-case-study"
+    "fabrilife"
    ]
   },
   {
@@ -717,9 +749,9 @@
     "praava-health",
     "arogga",
     "medeasy",
-    "fashol-case-study",
-    "solshare-case-study",
-    "fashol-vs-ifarmer-agritech-wedge-comparison"
+    "fashol",
+    "solshare",
+    "fashol-vs-ifarmer"
    ]
   },
   {
@@ -734,13 +766,23 @@
    "bn": "ব্যর্থতা থেকে শিক্ষা",
    "en": "Lessons from Failure",
    "slugs": [
-    "failure-post-mortems-as-a-separate-content-category",
+    "failure-post-mortems",
     "what-success-case-studies-leave-out",
-    "common-reasons-bangladeshi-startups-fail",
+    "why-startups-fail",
     "what-did-not-work-and-why",
-    "lessons-from-advance-payment-e-commerce-failures-in-bangladesh",
-    "marketplace-trust-collapse-post-mortem-template",
-    "why-holding-customer-money-is-a-risky-business-model"
+    "advance-payment-failures",
+    "marketplace-trust-collapse",
+    "holding-customer-money"
+   ]
+  }
+ ],
+ "directory": [
+  {
+   "bn": "ফান্ডিং ও সুবিধা",
+   "en": "Funding & Support",
+   "slugs": [
+    "investors",
+    "accelerators"
    ]
   }
  ]
