@@ -45,7 +45,8 @@ export async function POST(req) {
       summary: summaryStr,
       contributor: user,
       pageTitle: entry.title,
-      pageUrl
+      pageUrl,
+      pagePath: path
     })
   } catch (err) {
     console.error('[contribute] PR creation failed:', err)

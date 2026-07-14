@@ -1967,6 +1967,19 @@ a.is-stub-link:hover {
   color: var(--green-deep);
 }
 
+.editor-pr-notice {
+  padding: 8px 20px;
+  background: var(--canvas-soft);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.editor-pr-notice a {
+  color: var(--green-deep);
+  font-weight: 500;
+}
+
 /* The editing surface reuses .article typography (applied via the class on
    the container). These rules reinforce fonts/colors against Crepe's theme
    and give the editor a comfortable height. */

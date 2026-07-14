@@ -157,7 +157,7 @@ export default function ContributionEditor({ open, onClose, pathname, isEn, sess
         body: JSON.stringify({ path: pathname, content: fullContent, summary })
       })
       const j = await res.json().catch(() => ({}))
-      if (!res.ok) throw new Error(j.error || 'submit_failed')
+      if (!res.ok) throw new Error(j.detail || j.error || 'submit_failed')
       setResult(j)
     } catch (err) {
       setError(err.message)
@@ -238,7 +238,10 @@ export default function ContributionEditor({ open, onClose, pathname, isEn, sess
 
         {result && (
           <div className="editor-success">
-            <h2>✓ {t(isEn, 'অবদান জমা পড়েছে', 'Your contribution is submitted')}</h2>
+            <h2>✓ {result.updated
+              ? t(isEn, 'আপনার ড্রাফট আপডেট হয়েছে', 'Your draft has been updated')
+              : t(isEn, 'অবদান জমা পড়েছে', 'Your contribution is submitted')
+            }</h2>
             <p>
               {t(
                 isEn,
@@ -273,6 +276,19 @@ export default function ContributionEditor({ open, onClose, pathname, isEn, sess
                 </p>
               )}
             </div>
+
+            {data.existingPR && (
+              <div className="editor-pr-notice">
+                {t(
+                  isEn,
+                  'আপনার একটি অপেক্ষমাণ পুল রিকোয়েস্ট আছে — আপনি আপনার ড্রাফট সম্পাদনা করছেন।',
+                  'You have an open pull request — editing your draft.'
+                )}{' '}
+                <a href={data.existingPR.url} target="_blank" rel="noopener noreferrer">
+                  {t(isEn, 'পুল রিকোয়েস্ট দেখুন →', 'View PR →')}
+                </a>
+              </div>
+            )}
 
             <div className="editor-surface article" ref={containerRef} />
 

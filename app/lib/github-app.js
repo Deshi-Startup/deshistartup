@@ -9,7 +9,8 @@
  * PKCS#8 PEM format — GitHub App keys can be either).
  */
 
-import { createPrivateKey, sign as nodeSign } from 'node:crypto'
+import { createPrivateKey, sign as nodeSign, createHash } from 'node:crypto'
+import { appendFileSync } from 'node:fs'
 
 const API = 'https://api.github.com'
 const REPO = process.env.GITHUB_REPO || 'Deshi-Startup/deshistartup'
@@ -115,10 +116,15 @@ function branchSlugFromPath(path) {
   return slug || 'page'
 }
 
-function randomHash(len = 6) {
-  const bytes = new Uint8Array(len)
-  crypto.getRandomValues(bytes)
-  return Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('').slice(0, len)
+function emailHash(email) {
+  return createHash('sha256').update((email || '').toLowerCase().trim()).digest('hex').slice(0, 8)
+}
+
+/** Deterministic branch name per contributor+page — same user editing the
+ *  same page always lands on the same branch, so a second edit updates the
+ *  existing PR instead of creating a duplicate. */
+function contribBranchName(pagePath, contributorEmail) {
+  return `contrib/${branchSlugFromPath(pagePath || '')}-${emailHash(contributorEmail)}`
 }
 
 async function gh(path, { method = 'GET', body, token } = {}) {
@@ -140,29 +146,105 @@ async function ghJson(path, opts) {
 }
 
 /**
- * Creates a branch off main, commits the new MDX content, and opens a PR.
- * @returns {{ prUrl: string, prNumber: number }}
+ * Check if a contributor has an open PR for a page.
+ * Returns { branchName, prUrl } or null.
  */
-export async function createContributionPR({ repoPath, content, summary, contributor, pageTitle, pageUrl }) {
+export async function findOpenContribution(pagePath, contributorEmail) {
   const token = await installationToken()
-  const branchName = `contrib/${branchSlugFromPath(pageUrl || repoPath)}-${randomHash()}`
+  const branchName = contribBranchName(pagePath, contributorEmail)
+  const owner = REPO.split('/')[0]
 
-  // 1. main SHA
-  const mainRef = await ghJson('/git/refs/heads/main', { token })
-  const mainSha = mainRef.object.sha
-
-  // 2. create branch
-  await ghJson('/git/refs', {
-    method: 'POST',
-    token,
-    body: { ref: `refs/heads/${branchName}`, sha: mainSha }
+  // 1. Does the branch exist?
+  const refRes = await fetch(repoApi(`/git/refs/heads/${branchName}`), {
+    headers: apiHeaders(token)
   })
+  if (!refRes.ok) return null
 
-  // 3. current file sha (required to update an existing file)
-  const fileInfo = await ghJson(`/contents/${repoPath}?ref=main`, { token }).catch(() => null)
-  const fileSha = fileInfo ? fileInfo.sha : undefined
+  // 2. Is there an open PR for it?
+  const params = new URLSearchParams({ state: 'open', head: `${owner}:${branchName}`, per_page: '1' })
+  const prRes = await fetch(repoApi(`/pulls?${params}`), { headers: apiHeaders(token) })
+  if (!prRes.ok) return null
+  const prs = await prRes.json()
+  if (!prs.length) return null
 
-  // 4. commit the new content
+  return { branchName, prUrl: prs[0].html_url }
+}
+
+/**
+ * Creates or updates a contribution PR.
+ *
+ * - Branch name is deterministic (page + contributor email hash), so a
+ *   second edit of the same page by the same person updates the existing
+ *   PR instead of opening a duplicate.
+ * - If the branch exists and has an open PR → commit updates the file,
+ *   PR auto-updates, we return the existing PR URL.
+ * - If the branch exists but the PR was merged/closed → reset the branch
+ *   to main, commit, and open a fresh PR.
+ * - If the branch doesn't exist → create from main, commit, open PR.
+ *
+ * @returns {{ prUrl: string, prNumber: number, updated: boolean }}
+ */
+export async function createContributionPR({ repoPath, content, summary, contributor, pageTitle, pageUrl, pagePath }) {
+  const _dbg = (msg) => { try { appendFileSync('/tmp/contrib-debug.log', `${new Date().toISOString()} ${msg}\n`) } catch {} }
+  _dbg(`createContributionPR: pagePath=${pagePath} email=${contributor?.email} repoPath=${repoPath}`)
+  const token = await installationToken()
+  const branchName = contribBranchName(pagePath, contributor.email)
+  const owner = REPO.split('/')[0]
+  _dbg(`branchName=${branchName}`)
+
+  // 1. Does the branch already exist?
+  const refRes = await fetch(repoApi(`/git/refs/heads/${branchName}`), {
+    headers: apiHeaders(token)
+  })
+  const branchExists = refRes.ok
+  _dbg(`step1 branchExists=${branchExists} (${refRes.status})`)
+
+  // 2. Is there an open PR for it?
+  let existingPR = null
+  if (branchExists) {
+    const params = new URLSearchParams({ state: 'open', head: `${owner}:${branchName}`, per_page: '1' })
+    const prRes = await fetch(repoApi(`/pulls?${params}`), { headers: apiHeaders(token) })
+    _dbg(`step2 prSearch=${prRes.status}`)
+    if (prRes.ok) {
+      const prs = await prRes.json()
+      _dbg(`step2 prs=${prs.length}`)
+      if (prs.length > 0) existingPR = prs[0]
+    }
+  }
+
+  // 3. Prepare the branch
+  if (!branchExists) {
+    _dbg('step3: creating new branch from main')
+    const mainRef = await ghJson('/git/refs/heads/main', { token })
+    await ghJson('/git/refs', {
+      method: 'POST',
+      token,
+      body: { ref: `refs/heads/${branchName}`, sha: mainRef.object.sha }
+    })
+  } else if (!existingPR) {
+    _dbg('step3: resetting stale branch to main')
+    const mainRef = await ghJson('/git/refs/heads/main', { token })
+    await ghJson(`/git/refs/heads/${branchName}`, {
+      method: 'PATCH',
+      token,
+      body: { sha: mainRef.object.sha, force: true }
+    })
+  } else {
+    _dbg('step3: skipping (branch exists with open PR)')
+  }
+
+  // 4. Commit the new content
+  //    File SHA: from the branch if it has an open PR, otherwise from main
+  //    (the branch was either just created from main or reset to main).
+  const fileRef = existingPR ? branchName : 'main'
+  _dbg(`step4: fileRef=${fileRef}`)
+  const fileInfo = await ghJson(`/contents/${repoPath}?ref=${fileRef}`, { token }).catch((e) => {
+    _dbg(`step4: GET file FAILED: ${e.message}`)
+    return null
+  })
+  _dbg(`step4: fileInfo=${fileInfo ? fileInfo.sha?.slice(0, 12) : 'null'}`)
+
+  _dbg('step5: PUTting content')
   await ghJson(`/contents/${repoPath}`, {
     method: 'PUT',
     token,
@@ -170,11 +252,17 @@ export async function createContributionPR({ repoPath, content, summary, contrib
       message: `chore: update "${pageTitle}" via inline editor`,
       content: utf8ToBase64(content),
       branch: branchName,
-      ...(fileSha ? { sha: fileSha } : {})
+      ...(fileInfo?.sha ? { sha: fileInfo.sha } : {})
     }
   })
+  _dbg('step5: PUT success')
 
-  // 5. open a pull request
+  // 5. Return existing PR or create a new one
+  if (existingPR) {
+    _dbg(`step6: returning existing PR #${existingPR.number}`)
+    return { prUrl: existingPR.html_url, prNumber: existingPR.number, updated: true }
+  }
+
   const safeName = contributor.name || contributor.email || 'Anonymous contributor'
   const prBody = [
     summary && summary.trim() ? `## সারসংক্ষেপ / Summary\n\n${summary.trim()}` : '',
@@ -200,5 +288,5 @@ export async function createContributionPR({ repoPath, content, summary, contrib
     }
   })
 
-  return { prUrl: pr.html_url, prNumber: pr.number }
+  return { prUrl: pr.html_url, prNumber: pr.number, updated: false }
 }
