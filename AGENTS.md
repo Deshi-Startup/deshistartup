@@ -13,14 +13,14 @@ building a **startup** in Bangladesh. The audience is founders building somethin
 the lens, depth, and priorities are theirs. Much of the foundational process (registration, tax,
 payments, hiring) also serves any small business, and it's fine when a guide is useful beyond startups —
 but never dilute the startup focus to chase generic SME, family-business, import/export, or
-online-seller audiences (scope amended 2026-07-08; see `plan/overhaul-2026-07.md`). The name **Deshi
+online-seller audiences. The name **Deshi
 Startup** is final and the domain **deshistartup.com** is registered — name-dependent assets (logo,
 .com/.org, Facebook page) are now safe to build.
 
-Scale: ~430 Bengali pages are planned (see `plan/content-backlog.csv`), 41 written so far; the rest
-are honest stubs (2026-07-08: 64 boilerplate "template guides" were demoted back to stubs — never
-count a page as written unless it is a real guide). Bengali is the source of truth; English mirrors
-it at `/en/...`.
+Scale: ~430 Bengali pages are planned (see `plan/content-backlog.csv`); most are still honest
+stubs. Never count a page as written unless it is a real, finished guide — boilerplate template
+pages do not count. Run `npm run backlog:status` for live written/stub counts. Bengali is the
+source of truth; English mirrors it at `/en/...`.
 
 The site is a Next.js documentation app built with Nextra, statically exported, wrapped in a custom
 wiki-style shell (not the stock Nextra theme).
@@ -42,7 +42,7 @@ wiki-style shell (not the stock Nextra theme).
 - `app/components/LanguageSwitcher.jsx` - Switches between clean Bengali URLs and `/en/...` URLs.
 - `_meta.js` files are intentionally not used under `app/` because Nextra validation does not work cleanly with the current route-group localization structure. Sidebar order is controlled programmatically in `LocalizedLayout.jsx`.
 - `plan/` - The committed planning brain: the canonical content backlog, tiered source registry, case-study format, directory schema, founder journeys, and research/freshness cadences. Treat it as the source of truth for *what to build and write next*. Start at [`plan/README.md`](./plan/README.md).
-- `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `.github/ISSUE_TEMPLATE/` - The bilingual contributor surface (added by T12). The site's per-page "ভুল জানান" links open the `report-mistake.yml` issue form with the page prefilled; `.github/workflows/pr-checks.yml` runs `lint:bangla --strict` + build on every PR. `scripts/seed-issues.mjs` generates "নতুন গাইড" issues from High-priority backlog stubs.
+- `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `.github/ISSUE_TEMPLATE/` - The bilingual contributor surface. The site's per-page "ভুল জানান" links open the `report-mistake.yml` issue form with the page prefilled; `.github/workflows/pr-checks.yml` runs `lint:bangla --strict` + build on every PR. `scripts/seed-issues.mjs` generates "নতুন গাইড" issues from High-priority backlog stubs.
 - `knowledge-bank/` - Optional, local-only scraped source material for legal/business content. It is gitignored for copyright hygiene and may be absent — never rely on it existing, and never commit it.
 - `app/generated/` - Build artifacts produced by `scripts/build-manifest.mjs` (`manifest.bn.json`, `manifest.en.json`, `sections-lite.json`, `seo-pages.json`). They are committed to git but must never be hand-edited; run `npm run manifest` (or any dev/build) to regenerate after content changes.
 - `app/nav.config.js` - Hand-curated top-level sidebar (`bnNav` / `enNav`). `app/nav-groups.json` - hand-curated thematic grouping of section-hub listings.
@@ -54,8 +54,7 @@ wiki-style shell (not the stock Nextra theme).
 **Topic-owned URLs (July 2026 migration).** Content lives at one canonical, topic-based URL of at
 most two segments (`/{section}/{slug}`, mirrored at `/en/...`). The former `phase-one`…`phase-four`
 stage sections were dissolved into topic sections; the staged path survives as curated *views* at
-`/roadmap/{validate|build|grow|scale}`. The full old→new mapping is archived in
-`plan/url-map-2026-07.csv`.
+`/roadmap/{validate|build|grow|scale}`.
 
 Each topic section hub lists its children automatically via
 `<SectionIndex section="..." locale="..." />` (backed by the generated manifests). The sections:
@@ -194,8 +193,8 @@ absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass
 - **Punctuation in page content:** Never use an em dash in page copy, titles, or descriptions
   under `app/(contents)/` (this doc and other meta files are exempt). Use an en dash (–), a comma,
   or split into two sentences instead. The full dash rule lives in STYLE.md §4.3 and
-  `npm run lint:bangla` enforces it as a hard (✖) finding, both locales (decision confirmed
-  2026-07-10; the whole content tree was swept em-dash-free the same day).
+  `npm run lint:bangla` enforces it as a hard (✖) finding, both locales; the content tree is
+  already em-dash-free.
 - **Writing a stub into a real guide:** research the topic properly (web search, official portals,
   the relevant Act/NBR/RJSC text) rather than relying on assumptions. Before publishing, check
   `app/nav-groups.json` and sibling stub titles in the same section for topic overlap — if two
@@ -221,8 +220,8 @@ absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass
 - **Code:** MIT.
 - **Content** (everything under `app/(contents)/`): Creative Commons Attribution-ShareAlike 4.0
   (CC BY-SA 4.0).
-- Contributions are accepted under these licenses. See `LICENSE` and `LICENSE-content.md` (added by
-  task T3) for the authoritative text and attribution format.
+- Contributions are accepted under these licenses. See `LICENSE` and `LICENSE-content.md` for the
+  authoritative text and attribution format.
 
 ## Keeping content current
 

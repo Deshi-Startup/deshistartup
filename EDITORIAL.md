@@ -2,7 +2,7 @@
 
 **Status: binding for every content page on this site – guides, case studies, journeys,
 templates, calculators' surrounding copy, both locales.**
-Created 2026-07-09. This is the companion to [`STYLE.md`](./STYLE.md):
+This is the companion to [`STYLE.md`](./STYLE.md):
 
 - **STYLE.md** governs how the Bangla *reads* – register, sentence skeletons, word choice.
 - **EDITORIAL.md** (this file) governs what a page *teaches* and how – who the reader is,
