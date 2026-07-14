@@ -1,0 +1,16 @@
+Directory,Subcategory,Examples / leads,Suggested fields,Priority
+Investors,Angels,"Bangladesh Angels Network, individual angels, founder-investors","Name, type, cheque size, stage, sectors, notable investments, contact URL, last verified",High
+Investors,VCs,"Startup Bangladesh, Anchorless, BD Venture, SBK Tech Ventures, Deco Isho Venture Capital","Stage, thesis, portfolio, cheque size, contact, application path",High
+Programs,Startup Bangladesh programs,Government funding and investment applications,"Eligibility, amount, stage, deadline, source URL",High
+Programs,Accelerators,"Grameenphone Accelerator, BYLC Ventures, NSU Startups Next, Founder Institute Dhaka","Cohort timing, benefits, cost/equity, alumni, URL",Medium
+Programs,Incubators,"Hi-Tech Park, university incubators, Impact Hub Dhaka","Location, eligibility, benefits, contact, URL",Medium
+Universities,University entrepreneurship clubs,"BRAC, NSU, DU, IBA and other E-cells","University, club name, contact, events, URL",Medium
+Workspace,Coworking spaces,Impact Hub Dhaka and other coworking/community spaces,"City, price range, facilities, founder relevance, URL",Low
+Professional services,Legal/accounting providers,"Vetted lawyers, CAs, company secretarial providers","Services, specialty, language, price model, referral/contact",High
+Payments,Payment gateways,"SSLCommerz, AmarPay, PortWallet, banks/wallet options","Fees, settlement, docs, supported methods, URL",High
+Logistics,Courier/logistics providers,"Pathao, Steadfast, RedX, Paperfly and other couriers","Coverage, COD support, return handling, pricing, API, URL",High
+Credits,Cloud/software credits,"Startup credits from cloud, SaaS, dev tools","Eligibility, benefits, deadline, URL",Low
+Government,Government services,"BIDA OSS, RJSC, NBR, VAT Online, CCIE, EPB, DOE","Service, process, official URL, owner ministry",High
+Community,Founder communities,"BD Startup Founders, Facebook groups, LinkedIn communities, mentorship groups","Audience, activity, moderation, public URL",Medium
+Media,Media/publication outlets,"Future Startup, Daily Star, TBS, Prothom Alo, Dhaka Tribune, Business Inspection","Beat, contact, examples, URL",Medium
+Events,Events and competitions,"BASIS SoftExpo, Digital World, BIG, demo days, pitch nights","Date, organizer, deadline, eligibility, URL",Medium

@@ -1,0 +1,11 @@
+Area,Action,Sources,Cadence,Priority
+Legal/compliance pages,"Use official sources first, then have 1-2 practicing CAs/lawyers review.","RJSC, NBR, VAT Online, Bangladesh Bank, BIDA, city corporations",Ongoing,High
+Budget and tax changelog,Mine annual national budget speech every June for startup-relevant tax/VAT changes.,"Finance Act, NBR circulars, budget speech",Annual / monthly,High
+RJSC/NBR notices,"Track fee notices, SROs, circulars, and portal process changes directly.","RJSC, NBR, VAT Online",Monthly,High
+Founder interviews,"Prioritize practical patterns, early wedge, trust-building, and mistakes.","Future Startup, YouTube, podcasts, LinkedIn",Ongoing,High
+University E-cells,Use as source of interviews and distribution channel.,"BRAC, NSU, DU, IBA and others",Quarterly,Medium
+Report translation,"Translate the insight, not the words, from English reports into practical Bangla guidance with attribution.","LightCastle, UNESCAP, World Bank, DataReportal",Ongoing,Medium
+Directory verification,Add last-verified date and source URL for every directory row.,"Official sites, LinkedIn, public profiles",Quarterly,High
+Opportunity calendar,"Track demo days, grant applications, accelerator cycles, pitch nights.","iDEA, BIG, Startup Bangladesh, BASIS, universities",Monthly,Medium
+Bangla resources,"Evaluate public Bangla blogs, Facebook posts, videos, and legal explainers for source leads.","Prothom Alo, LawDoors, Justice Corner, public groups",Ongoing,Medium
+Attribution,Summarize and synthesize; do not scrape long passages from media or reports.,All third-party publications,Always,High

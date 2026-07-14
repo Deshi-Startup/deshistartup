@@ -8,8 +8,18 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "start": "wrangler dev --config dist/server/wrangler.json",
-    "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true) || true",
-    "deploy": "vinext-cloudflare deploy --config dist/server/wrangler.json --experimental-warm-cdn-cache"
+    "deploy": "vinext-cloudflare deploy --config dist/server/wrangler.json --experimental-warm-cdn-cache",
+    "dev:turbo": "vinext dev --turbopack",
+    "manifest": "node scripts/build-manifest.mjs",
+    "backlog:status": "node scripts/backlog-status.mjs",
+    "lint:bangla": "node scripts/bangla-lint.mjs",
+    "lint:routes": "node scripts/route-lint.mjs",
+    "seo:audit": "node scripts/seo-audit.mjs",
+    "seo:indexnow": "node scripts/submit-indexnow.mjs",
+    "seo:indexnow:dry": "node scripts/submit-indexnow.mjs --dry-run",
+    "predev": "node scripts/build-manifest.mjs",
+    "prebuild": "node scripts/route-lint.mjs && node scripts/build-manifest.mjs",
+    "postbuild": "node scripts/postbuild-seo.mjs && (pagefind --site out --output-path out/_pagefind || true) && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true) && node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "@mdx-js/rollup": "^3.1.1",

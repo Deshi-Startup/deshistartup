@@ -1,0 +1,28 @@
+Theme,Question / Insight to investigate,Likely sources,Priority,Notes
+Trust,Why trust matters more than pure UX in Bangladesh,"Founder interviews, customer stories, commerce behavior, payment/delivery patterns",High,Turn into cross-cutting principle across playbooks.
+Payments,bKash/Nagad/mobile wallet behavior,"Bangladesh Bank, GSMA, founder interviews, payment gateways",High,Separate consumer behavior from compliance.
+Payments,Low card penetration implications,"Bangladesh Bank, payment gateway data, founder interviews",High,"Relevant for SaaS, e-commerce, subscriptions."
+Commerce,Cash-on-delivery risks,"Courier providers, e-commerce founders, e-CAB, case studies",High,"Include return fraud, failed delivery, reconciliation."
+Commerce,Facebook-first commerce,"Founder stories, Meta ecosystem behavior, DataReportal",High,Practical channel sequencing article.
+Commerce,WhatsApp/Messenger sales,"Founder/operator interviews, social commerce examples",High,Include scripts and ops workflow.
+Distribution,Distribution outside Dhaka,"Founders, logistics providers, regional data",High,"Compare Dhaka, Chattogram, tier-2 cities."
+Distribution,Dhaka vs Chattogram vs tier-2 city differences,"BBS, founder stories, city-level business data",Medium,Potential pillar article.
+Founder life,Student founder constraints,"University E-cells, student founders, accelerators",Medium,Good Bangla-first practical content.
+Founder life,Family pressure and career risk,"Founder interviews, Bangla resources",Medium,Use scripts and real scenarios.
+Funding,Local investor scarcity,"LightCastle, BAN, Startup Bangladesh, founder stories",High,Explain practical fundraising expectations.
+Funding,Grant/competition culture,"iDEA, BIG, Startup Bangladesh, founder interviews",Medium,Clarify upside and limitations.
+Regulation,Regulatory friction,"BIDA, RJSC, NBR, Bangladesh Bank, founder interviews",High,Keep fact-checked by lawyer/CA where needed.
+Growth,Corporate partnership dynamics,"Founder stories, B2B operators",Medium,"Explain pilots, procurement, trust, payment cycles."
+SME,SME digitization barriers,"World Bank/IFC/ADB, local operators, LightCastle",High,Important for B2B SaaS and fintech.
+Behavior,Offline-to-online behavior,"Founder interviews, commerce case studies, field examples",High,Connect to trust and distribution.
+Pricing,Price sensitivity and willingness to pay,"Customer interviews, founder stories, market data",High,Include installment culture.
+UX,Bangla UX and mobile-first products,"Product case studies, user testing, mobile data",Medium,Make practical with screenshots/examples later.
+Talent,Talent retention,"Founder interviews, salary data, hiring platforms",Medium,Include remote/global competition.
+Talent,Brain drain,"BBS, World Bank, founder interviews",Medium,Context piece.
+Diaspora,Diaspora founder advantages,"Diaspora founder interviews, FDI/FX rules",High,Tie to local operator trust.
+SaaS,Export-oriented SaaS from Bangladesh,"BASIS, Bangladesh Bank, founders",High,High-value niche.
+Business model,Agency-to-product transition,"Founder interviews, SaaS founders",Medium,Useful for developers/agencies.
+Finance,Islamic finance / halal business considerations,"Expert interviews, legal/finance sources",Low,Include only where relevant and reviewed.
+Women founders,Women founder constraints,"Founder interviews, ecosystem groups, safety/travel context",Medium,Handle carefully; cite lived experience.
+Ecosystem,University entrepreneurship ecosystems,"BRAC, NSU, DU, IBA clubs and founders",Medium,Source and distribution channel.
+Economy,Informal economy realities,"BBS, World Bank, founder stories",High,Explains why global advice needs localization.

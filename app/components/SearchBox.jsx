@@ -6,9 +6,7 @@ import { useRouter } from 'next/navigation'
 let pagefindPromise = null
 
 async function loadPagefind(basePath = '') {
-  if (typeof window === 'undefined') {
-    return null
-  }
+  if (typeof window === 'undefined') return null
 
   if (!window.pagefind) {
     if (!pagefindPromise) {
@@ -18,7 +16,6 @@ async function loadPagefind(basePath = '') {
         return window.pagefind.options({ baseUrl: basePath || '/' })
       })
     }
-
     await pagefindPromise
   }
 
@@ -26,21 +23,17 @@ async function loadPagefind(basePath = '') {
 }
 
 function cleanTitle(data) {
-  return data?.meta?.title || data?.title || data?.url || 'Untitled page'
+  return data?.meta?.title || data?.title || data?.url || ''
 }
 
 function cleanExcerpt(data) {
   if (data?.excerpt) {
-    // Remove any HTML tags (e.g. <mark>) coming from Pagefind excerpts
     return data.excerpt.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
   }
-
-  const content = data?.content || ''
-  // strip HTML tags from content as well
-  return content.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').slice(0, 160)
+  return (data?.content || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').slice(0, 160)
 }
 
-export default function SearchBox({ isEn = false }) {
+export default function SearchBox({ isEn = false, variant = 'header' }) {
   const router = useRouter()
   const inputRef = useRef(null)
   const containerRef = useRef(null)
@@ -48,35 +41,15 @@ export default function SearchBox({ isEn = false }) {
   const [results, setResults] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
-  const [error, setError] = useState('')
-  const [isDark, setIsDark] = useState(false)
-  const [containerWidth, setContainerWidth] = useState('100%')
+  const [error, setError] = useState(false)
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
   useEffect(() => {
-    // detect dark mode (class-based or prefers-color-scheme)
-    const el = typeof document !== 'undefined' ? document.documentElement : null
-    const detect = () => {
-      if (!el) return false
-      if (el.classList.contains('dark')) return true
-      try {
-        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      } catch (e) {
-        return false
-      }
-    }
-    setIsDark(detect())
-    // listen for changes to prefers-color-scheme
-    let mq
-    if (typeof window !== 'undefined' && window.matchMedia) {
-      mq = window.matchMedia('(prefers-color-scheme: dark)')
-      const handler = (e) => setIsDark(e.matches)
-      if (mq.addEventListener) mq.addEventListener('change', handler)
-      else if (mq.addListener) mq.addListener(handler)
-    }
+    if (variant !== 'header') return undefined
+
     const handleKeyDown = (event) => {
       const isSearchShortcut =
-        event.key === '/' ||
+        (event.key === '/' && !/^(INPUT|TEXTAREA)$/.test(document.activeElement?.tagName || '')) ||
         (event.key.toLowerCase() === 'k' && (event.ctrlKey || event.metaKey) && !event.shiftKey)
 
       if (isSearchShortcut) {
@@ -87,24 +60,8 @@ export default function SearchBox({ isEn = false }) {
     }
 
     window.addEventListener('keydown', handleKeyDown)
-    const handleResize = () => {
-      try {
-        const w = inputRef.current?.offsetWidth
-        if (w) setContainerWidth(`${w}px`)
-      } catch (e) {}
-    }
-    handleResize()
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown)
-      window.removeEventListener('resize', handleResize)
-      if (mq) {
-        if (mq.removeEventListener) mq.removeEventListener('change', () => {})
-        else if (mq.removeListener) mq.removeListener(() => {})
-      }
-    }
-  }, [])
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [variant])
 
   useEffect(() => {
     const trimmedQuery = query.trim()
@@ -112,49 +69,51 @@ export default function SearchBox({ isEn = false }) {
     if (!trimmedQuery) {
       setResults([])
       setIsOpen(false)
-      setError('')
-      return
+      setError(false)
+      return undefined
     }
 
     let isActive = true
     const timeout = window.setTimeout(async () => {
       setIsLoading(true)
-      setError('')
+      setError(false)
 
       try {
         const pagefind = await loadPagefind(basePath)
-
-        if (!pagefind || !isActive) {
-          return
-        }
+        if (!pagefind || !isActive) return
 
         const response = await pagefind.search(trimmedQuery)
         const searchResults = await Promise.all(
-          response.results.slice(0, 8).map(async (item) => {
+          response.results.slice(0, 10).map(async (item) => {
             const data = await item.data()
             return {
               id: item.id,
               url: data.url,
               title: cleanTitle(data),
-              excerpt: cleanExcerpt(data)
+              excerpt: cleanExcerpt(data),
+              isStub: Boolean(data?.meta?.stub)
             }
           })
         )
 
+        // Finished guides first; unwritten topics follow, clearly badged.
+        const ranked = [
+          ...searchResults.filter((r) => !r.isStub),
+          ...searchResults.filter((r) => r.isStub)
+        ].slice(0, 8)
+
         if (isActive) {
-          setResults(searchResults)
-          setIsOpen(searchResults.length > 0)
+          setResults(ranked)
+          setIsOpen(true)
         }
-      } catch (err) {
+      } catch {
         if (isActive) {
-          setError('Search index is unavailable right now.')
+          setError(true)
           setResults([])
-          setIsOpen(false)
+          setIsOpen(true)
         }
       } finally {
-        if (isActive) {
-          setIsLoading(false)
-        }
+        if (isActive) setIsLoading(false)
       }
     }, 180)
 
@@ -162,102 +121,83 @@ export default function SearchBox({ isEn = false }) {
       isActive = false
       window.clearTimeout(timeout)
     }
-  }, [query])
+  }, [query, basePath])
+
+  const goTo = (url) => {
+    const nextUrl = basePath && url.startsWith(basePath) ? url.slice(basePath.length) || '/' : url
+    router.push(nextUrl)
+    setQuery('')
+    setIsOpen(false)
+  }
+
+  const placeholder = isEn
+    ? 'Search: trade license, bKash, VAT…'
+    : 'খুঁজুন: ট্রেড লাইসেন্স, বিকাশ, ভ্যাট…'
 
   return (
     <form
-      className="search"
+      className={variant === 'hero' ? 'search search--hero' : 'search'}
       role="search"
       aria-label={isEn ? 'Search Deshi Startup' : 'দেশি স্টার্টআপে খুঁজুন'}
       onSubmit={(event) => {
         event.preventDefault()
-        const firstResult = containerRef.current?.querySelector('button')
-        firstResult?.click()
+        if (results.length > 0) goTo(results[0].url)
       }}
     >
       <input
         ref={inputRef}
         type="search"
         value={query}
-        placeholder={isEn ? 'Search Deshi Startup' : 'দেশি স্টার্টআপে অনুসন্ধান করুন'}
-        aria-label={isEn ? 'Search Deshi Startup' : 'দেশি স্টার্টআপে অনুসন্ধান করুন'}
-        onChange={(event) => {
-          setQuery(event.target.value)
-          setIsOpen(Boolean(event.target.value.trim()))
-        }}
+        placeholder={placeholder}
+        aria-label={placeholder}
+        onChange={(event) => setQuery(event.target.value)}
         onFocus={() => {
-          if (query.trim()) {
-            setIsOpen(true)
-          }
+          if (query.trim()) setIsOpen(true)
         }}
         onBlur={() => {
           window.setTimeout(() => setIsOpen(false), 150)
         }}
       />
-      <button type="submit" aria-label={isEn ? 'Search' : 'অনুসন্ধান'}>
+      <button type="submit" className="search-submit" aria-label={isEn ? 'Search' : 'খুঁজুন'}>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="m21 21-4.3-4.3m2.3-5.2a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" />
         </svg>
       </button>
 
-        {isOpen && (
-        <div
-          ref={containerRef}
-          className="search-results"
-          style={{
-            width: containerWidth && parseInt(containerWidth) > 320 ? containerWidth : '320px',
-            minWidth: '320px',
-            maxWidth: '640px',
-            maxHeight: '360px',
-            overflowY: 'auto',
-            backgroundColor: isDark ? '#0f172a' : '#ffffff',
-            color: isDark ? '#e5e7eb' : '#111827',
-            borderColor: isDark ? '#374151' : '#e5e7eb',
-            boxShadow: '0 10px 30px rgba(2,6,23,0.6)',
-            zIndex: 9999
-          }}
-        >
-          {isLoading && <p className="search-status">{isEn ? 'Loading...' : 'লোড হচ্ছে...'}</p>}
+      {isOpen && (
+        <div ref={containerRef} className="search-results">
+          {isLoading && (
+            <p className="search-status">{isEn ? 'Searching…' : 'খোঁজা হচ্ছে…'}</p>
+          )}
 
-          {!isLoading && error && <p className="search-status is-error">{isEn ? error : 'সার্চ ইনডেক্স এখন পাওয়া যাচ্ছে না।'}</p>}
+          {!isLoading && error && (
+            <p className="search-status is-error">
+              {isEn ? 'Search is unavailable right now.' : 'সার্চ এখন কাজ করছে না। একটু পরে চেষ্টা করুন।'}
+            </p>
+          )}
 
           {!isLoading && !error && results.length === 0 && query.trim() && (
-            <p className="search-status">{isEn ? 'No results found.' : 'কোনো মিল পাওয়া যায়নি।'}</p>
+            <p className="search-status">{isEn ? 'No results found.' : 'কোনো মিল পাওয়া যায়নি।'}</p>
           )}
 
           {!isLoading && !error && results.length > 0 && (
-            <ul className="max-h-72 overflow-auto" style={{padding:0, margin:0, listStyle:'none'}}>
+            <ul>
               {results.map((result) => (
-                <li key={result.id} style={{marginBottom:6}}>
+                <li key={result.id}>
                   <button
                     type="button"
+                    className="search-result-btn"
                     onMouseDown={(event) => event.preventDefault()}
-                    onClick={() => {
-                      const nextUrl = basePath && result.url.startsWith(basePath)
-                        ? result.url.slice(basePath.length) || '/'
-                        : result.url
-                      router.push(nextUrl)
-                      setQuery('')
-                      setIsOpen(false)
-                    }}
-                    style={{
-                      display: 'block',
-                      width: '100%',
-                      textAlign: 'left',
-                      padding: '8px 10px',
-                      borderRadius: 6,
-                      border: 'none',
-                      background: 'transparent',
-                      color: isDark ? '#e5e7eb' : '#0f172a',
-                      lineHeight: '1.4',
-                      whiteSpace: 'normal',
-                      wordBreak: 'break-word',
-                      overflowWrap: 'anywhere'
-                    }}
+                    onClick={() => goTo(result.url)}
                   >
-                    <div style={{fontSize:14, fontWeight:600, marginBottom:4}}>{result.title}</div>
-                    {result.excerpt && (
-                      <div style={{fontSize:12, color: isDark ? '#cbd5e1' : '#6b7280'}}>{result.excerpt}</div>
+                    <span className="result-title">
+                      {result.title}
+                      {result.isStub && (
+                        <span className="stub-chip">{isEn ? 'to be written' : 'লেখা বাকি'}</span>
+                      )}
+                    </span>
+                    {result.excerpt && !result.isStub && (
+                      <span className="result-excerpt">{result.excerpt}</span>
                     )}
                   </button>
                 </li>

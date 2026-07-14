@@ -1,0 +1,93 @@
+[
+  {
+    "name": "Bangladesh Angels Network",
+    "type": "Angel network",
+    "stage": ["Pre-seed", "Seed", "Early stage"],
+    "sectors": ["Sector-agnostic", "Technology", "SME digitization"],
+    "chequeSize": "Not publicly stated",
+    "notableInvestments": ["Pathao", "Chaldal", "Shajgoj", "Chhaya", "PulseTech"],
+    "applicationPath": "Submit a pitch through the BAN site or monthly showcase process.",
+    "website": "https://bdangels.co/",
+    "sourceUrl": "https://bdangels.co/",
+    "lastVerified": "2026-07-07",
+    "notes": "BAN describes itself as Bangladesh's first and largest angel investment platform."
+  },
+  {
+    "name": "Bangladesh Women Investors Network",
+    "type": "Angel network",
+    "stage": ["Pre-seed", "Seed"],
+    "sectors": ["Women-led startups", "Technology", "Impact"],
+    "chequeSize": "Not publicly stated",
+    "notableInvestments": [],
+    "applicationPath": "Reach BWIN through Bangladesh Angels Network.",
+    "website": "https://bdangels.co/",
+    "sourceUrl": "https://bdangels.co/",
+    "lastVerified": "2026-07-07",
+    "notes": "BAN describes BWIN as a women-led angel investing network and sister chapter."
+  },
+  {
+    "name": "Startup Bangladesh Limited",
+    "type": "Government-backed venture capital",
+    "stage": ["Seed", "Early stage", "Growth"],
+    "sectors": ["Technology", "Innovation-driven startups", "Bangladesh-focused ventures"],
+    "chequeSize": "Not publicly stated",
+    "notableInvestments": [],
+    "applicationPath": "Apply through Startup Bangladesh's investment application page.",
+    "website": "https://www.startupbangladesh.vc/",
+    "sourceUrl": "https://www.startupbangladesh.vc/",
+    "lastVerified": "2026-07-07",
+    "notes": "Government-sponsored venture capital company with portfolio and fund-of-funds sections."
+  },
+  {
+    "name": "Anchorless Bangladesh",
+    "type": "Venture capital fund",
+    "stage": ["Early stage"],
+    "sectors": ["Bangladesh-linked startups", "Technology", "Export-capable startups"],
+    "chequeSize": "Not publicly stated",
+    "notableInvestments": [],
+    "applicationPath": "Apply for investment through Anchorless Bangladesh's site.",
+    "website": "https://anchorless.vc/",
+    "sourceUrl": "https://anchorless.vc/",
+    "lastVerified": "2026-07-07",
+    "notes": "Anchorless describes itself as an early-stage venture investment fund for Bangladesh."
+  },
+  {
+    "name": "IDLC Venture Capital Fund",
+    "type": "Institutional venture capital",
+    "stage": ["Early stage", "Growth"],
+    "sectors": ["Technology", "SME", "Financial services"],
+    "chequeSize": "Not publicly stated",
+    "notableInvestments": [],
+    "applicationPath": "Contact IDLC through its official site.",
+    "website": "https://www.idlc.com/",
+    "sourceUrl": "https://www.idlc.com/",
+    "lastVerified": "2026-07-07",
+    "notes": "IDLC's official site is active; confirm fund-specific criteria before relying on this entry."
+  },
+  {
+    "name": "YY Ventures",
+    "type": "Impact investor and incubator",
+    "stage": ["Idea", "Pre-seed", "Seed"],
+    "sectors": ["Social business", "Impact", "Youth-led ventures"],
+    "chequeSize": "Not publicly stated",
+    "notableInvestments": [],
+    "applicationPath": "Check YY Ventures programs and funds pages.",
+    "website": "https://yy.ventures/",
+    "sourceUrl": "https://yy.ventures/",
+    "lastVerified": "2026-07-07",
+    "notes": "YY Ventures describes itself as an incubation and investment social business company."
+  },
+  {
+    "name": "Accelerating Asia Ventures",
+    "type": "Regional VC accelerator",
+    "stage": ["Pre-Series A", "Seed"],
+    "sectors": ["Southeast Asia", "South Asia", "Technology"],
+    "chequeSize": "Not publicly stated",
+    "notableInvestments": [],
+    "applicationPath": "Apply through Accelerating Asia's official site.",
+    "website": "https://www.acceleratingasia.com/",
+    "sourceUrl": "https://www.acceleratingasia.com/",
+    "lastVerified": "2026-07-07",
+    "notes": "Regional investor/accelerator with South Asia coverage; not Bangladesh-only."
+  }
+]

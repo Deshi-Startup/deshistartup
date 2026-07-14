@@ -1,18 +1,19 @@
 export default function NotFound() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
   return (
-    <div style={{ padding: '4rem 2rem', textAlign: 'center' }}>
-      <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>পৃষ্ঠা পাওয়া যায়নি</h1>
-      <p style={{ marginBottom: '1.5rem' }}>আপনি যে পৃষ্ঠাটি খুঁজছেন তা বিদ্যমান নেই।</p>
-      <a 
-        href="/" 
-        style={{ 
-          color: '#0070f3', 
-          textDecoration: 'underline',
-          fontSize: '1.1rem'
-        }}
-      >
-        হোম পেজে ফিরে যান
-      </a>
+    <div style={{ maxWidth: '36rem', margin: '0 auto', padding: '56px 20px', textAlign: 'center' }}>
+      <p className="wiki-kicker">৪০৪</p>
+      <h1 style={{ fontFamily: 'var(--serif)' }}>পাতাটি পাওয়া যায়নি</h1>
+      <p style={{ color: 'var(--muted)' }}>
+        লিংকটা হয়তো বদলে গেছে, অথবা পাতাটা এখনো লেখা হয়নি। ওপরের সার্চে খুঁজে দেখুন।
+        না পেলে নিচের কোনো পথ ধরুন।
+      </p>
+      <div className="contrib-row" style={{ justifyContent: 'center', marginTop: 24 }}>
+        <a href={basePath || '/'}>প্রধান পাতা</a>
+        <a href={`${basePath}/start-here`}>শুরু করুন</a>
+        <a href={`${basePath}/contribute`}>অবদান রাখুন</a>
+      </div>
     </div>
   )
 }

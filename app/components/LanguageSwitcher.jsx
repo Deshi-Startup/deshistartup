@@ -1,74 +1,43 @@
 'use client'
 
-import { useEffect, useState, useTransition } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 
+/**
+ * Real, crawlable link between the Bengali and English mirrors. The click
+ * handler only upgrades navigation with a view transition – without JS the
+ * plain <a href> still works for users and crawlers.
+ */
 export default function LanguageSwitcher() {
   const pathname = usePathname()
   const router = useRouter()
-  const [isPending, startTransition] = useTransition()
-  const [isSwitching, setIsSwitching] = useState(false)
-
   const isEn = pathname.startsWith('/en/') || pathname === '/en'
 
-  useEffect(() => {
-    setIsSwitching(false)
+  const targetPath = isEn ? pathname.replace(/^\/en/, '') || '/' : `/en${pathname === '/' ? '' : pathname}`
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+  const href = targetPath === '/' ? basePath || '/' : `${basePath}${targetPath}`
 
-    document.documentElement.classList.remove('language-is-leaving')
-    document.documentElement.classList.add('language-is-entering')
-
-    const timeout = window.setTimeout(() => {
-      document.documentElement.classList.remove('language-is-entering')
-    }, 320)
-
-    return () => {
-      window.clearTimeout(timeout)
-    }
-  }, [pathname])
-
-  const toggleLanguage = () => {
-    let newPath = ''
-    if (isEn) {
-      // Switch to Bengali (remove /en prefix)
-      newPath = pathname.replace(/^\/en/, '')
-      if (newPath === '') newPath = '/'
-    } else {
-      // Switch to English (prepend /en prefix)
-      newPath = `/en${pathname === '/' ? '' : pathname}`
-    }
-
-    setIsSwitching(true)
-    document.documentElement.classList.add('language-is-leaving')
-
-    const navigate = () => {
-      startTransition(() => {
-        router.push(newPath)
-      })
-    }
-
-    window.setTimeout(() => {
-      if (document.startViewTransition) {
-        document.startViewTransition(navigate)
-        return
-      }
-
-      navigate()
-    }, 130)
+  const onClick = (event) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    event.preventDefault()
+    const navigate = () => router.push(targetPath)
+    if (document.startViewTransition) document.startViewTransition(navigate)
+    else navigate()
   }
 
   return (
-    <button
-      onClick={toggleLanguage}
-      className={`language-switcher${isSwitching || isPending ? ' is-switching' : ''}`}
-      title={isEn ? "বাংলায় দেখুন" : "Switch to English"}
-      aria-label={isEn ? "বাংলায় দেখুন" : "Switch to English"}
-      aria-busy={isSwitching || isPending}
-      aria-pressed={isEn}
+    <a
+      href={href}
+      onClick={onClick}
+      className="language-switcher"
+      title={isEn ? 'বাংলায় দেখুন' : 'Switch to English'}
+      aria-label={isEn ? 'বাংলায় দেখুন' : 'Switch to English'}
+      hrefLang={isEn ? 'bn' : 'en'}
+      rel="alternate"
       data-language={isEn ? 'en' : 'bn'}
     >
       <span className="language-switcher__thumb" aria-hidden="true" />
       <span className="language-switcher__option">BN</span>
       <span className="language-switcher__option">EN</span>
-    </button>
+    </a>
   )
 }

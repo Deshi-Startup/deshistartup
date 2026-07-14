@@ -1,0 +1,24 @@
+name: "💡 নতুন বিষয়ের অনুরোধ · Request a new topic"
+description: "সাইটে নেই এমন কোনো প্রশ্ন বা বিষয় যোগ করার প্রস্তাব দিন। · Suggest a question or topic the site doesn't cover yet."
+title: "নতুন বিষয়: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        আগে [ব্যাকলগে](https://github.com/Deshi-Startup/deshistartup/blob/main/plan/content-backlog.csv) খুঁজে দেখুন।
+        বিষয়টা আগে থেকেই আছে কি না, একবার মিলিয়ে নিন। · Please check whether the topic is already in the backlog.
+  - type: input
+    id: topic
+    attributes:
+      label: "বিষয়টা কী? · What's the topic?"
+      placeholder: "যেমন: বিদেশি ক্লায়েন্ট থেকে ডলার আনার নিয়ম"
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: "কার কখন এটা দরকার হবে? · Who needs it, and when?"
+      description: "বাস্তব পরিস্থিতিটা বলুন – কেমন ফাউন্ডার কখন এই প্রশ্নে আটকে পড়েন? · Describe the real situation: which founder gets stuck on this, and when?"
+    validations:
+      required: true

@@ -3,8 +3,30 @@ out/
 .next/
 _pagefind/
 *.log
+
+# macOS / iCloud Drive metadata
+.DS_Store
+._*
+*.icloud
+.TemporaryItems/
+.Trashes/
+.fseventsd/
+Icon?
+
 knowledge-bank/
 context/
 /dist/
 .vinext/
 .wrangler/
+# Generated on demand (npm run backlog:status) — regenerable, do not commit
+plan/status-report.md
+# Personal Claude Code settings (permissions allowlist) — machine-local, not shared
+.claude/settings.local.json
+# Local experiments and artifacts
+.firecrawl/
+.vinext/
+.wrangler/
+dist/
+workers/
+next-env.d.ts
+CLAUDE.md
