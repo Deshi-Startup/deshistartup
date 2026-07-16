@@ -1,10 +1,9 @@
 # Bangla Style Guide – বাংলা লেখার নিয়ম
 
 **Status: binding for every Bengali page, UI string, and description on this site.**
-Created 2026-07-08 after a language audit found that much of the content read like English
-thought translated into Bangla. Amended 2026-07-11 after reader feedback caught the *opposite*
-failure on the homepage – Bangla that reads like translated English ad copy (§2.12–2.14).
-This guide exists so neither happens again.
+It guards against the two ways Bangla can betray an English original: translated English *prose*
+(§2.1–2.9) and translated English *ad copy* – punchy but hollow (§2.12–2.14). Correct-but-foreign
+is a failure either way. This guide exists so neither happens.
 
 Who this is for: every human contributor and every AI agent writing Bengali content here.
 Agents: read this file **before** writing or editing any Bangla. The short public version for
@@ -33,9 +32,8 @@ There are **two ways to smell the English underneath**, and this file guards aga
    passives, এবং-chains (§2.1–2.9, §3.2).
 2. **Billboard-Bangla** – translated English *ad copy*: verbless mic-drop fragments, a site that
    narrates itself with coined verbs, machine-confident claims (§2.12–2.14). Fixing the first
-   failure by writing ever-punchier fragments produces the second – that is exactly how the
-   2026-07 rewrite over-corrected. The target is neither register. It is a person, speaking in
-   complete sentences.
+   failure by writing ever-punchier fragments produces the second – that is the over-correction
+   trap. The target is neither register. It is a person, speaking in complete sentences.
 
 **Anchor persona:** an experienced founder explaining things to a younger founder over tea –
 expert, direct, warm, zero pretension. Not a government notice (প্রজ্ঞাপন), not a textbook,

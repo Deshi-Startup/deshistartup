@@ -294,12 +294,12 @@ for (const page of pages) {
     '<meta property="og:image:width" content="1200"/>',
     '<meta property="og:image:height" content="630"/>',
     '<meta property="og:image:type" content="image/png"/>',
-    `<meta property="og:image:alt" content="${escapeHtml(isEn ? 'Deshi Startup, the Bangla-first startup guide for Bangladesh' : 'দেশি স্টার্টআপ, বাংলাদেশে স্টার্টআপ গড়ার বাংলা গাইড')}"/>`,
+    `<meta property="og:image:alt" content="${escapeHtml(isEn ? 'Deshi Startup, the Bangla-first startup guide for Bangladesh' : 'দেশি স্টার্টআপ, বাংলাদেশে স্টার্টআপ গড়ার উন্মুক্ত গাইড')}"/>`,
     '<meta name="twitter:card" content="summary_large_image"/>',
     `<meta name="twitter:title" content="${escapeHtml(socialTitle)}"/>`,
     `<meta name="twitter:description" content="${escapeHtml(description)}"/>`,
     `<meta name="twitter:image" content="${DEFAULT_OG_IMAGE}"/>`,
-    `<meta name="twitter:image:alt" content="${escapeHtml(isEn ? 'Deshi Startup, the Bangla-first startup guide for Bangladesh' : 'দেশি স্টার্টআপ, বাংলাদেশে স্টার্টআপ গড়ার বাংলা গাইড')}"/>`
+    `<meta name="twitter:image:alt" content="${escapeHtml(isEn ? 'Deshi Startup, the Bangla-first startup guide for Bangladesh' : 'দেশি স্টার্টআপ, বাংলাদেশে স্টার্টআপ গড়ার উন্মুক্ত গাইড')}"/>`
   )
 
   if (ogType === 'article') {

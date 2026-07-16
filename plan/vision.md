@@ -1,9 +1,8 @@
 # Vision & content spec
 
-Moved here from `README.md` on 2026-07-10 (task T12), when the README was rewritten as a
-contributor-facing front door. This file is the durable project spec: purpose, principles,
-audiences, architecture, quality rules, and long-term direction. `plan/overhaul-2026-07.md`
-holds the locked scope/name/license decisions; `plan/content-backlog.csv` holds what to write.
+This is the durable project spec: purpose, principles, audiences, architecture, quality rules,
+and long-term direction. `plan/content-backlog.csv` holds what to write next; the binding scope,
+name, and license decisions and the site architecture live in `AGENTS.md`.
 
 ## Purpose
 
@@ -115,10 +114,10 @@ The site is organized as a hybrid documentation wiki:
 
 ## Current Milestone
 
-See `plan/status-report.md` (regenerate with `npm run backlog:status`) for live counts. As of
-2026-07-10: 41 of ~430 planned Bengali pages are written; the rest are honest stubs. The count
-dropped in July 2026 when 32 boilerplate template pages were demoted back to honest stubs — real
-guides only.
+For live counts, run `npm run backlog:status` (it writes the git-ignored `plan/status-report.md`)
+or read the progress badge on `README.md`. Around 430 Bengali pages are planned; most are still
+honest stubs. A page counts as written only when it is a real, finished guide — never a
+boilerplate template.
 
 Milestone targets:
 
@@ -146,6 +145,28 @@ Not yet (deliberately sequenced later):
 - Complex admin dashboard
 - Full legal automation
 - Crowdsourced editing without review
+
+## Open follow-ups
+
+Beyond writing pages, the live follow-ups are:
+
+- **Content:** write the remaining stubs, High-priority first, using each topic's `Notes` in
+  `plan/content-backlog.csv` and the angles in `plan/bd-insights.csv`. Add the English mirrors for
+  `company-types` and `e-tin-vat-bin`.
+- **Scope hygiene:** re-examine the pure-SME, family-business, and import/export rows in
+  `plan/content-backlog.csv` and the sector guides under `industries` for fit with the
+  startups-only remit; cut or refocus whatever no longer belongs.
+- **Design polish (deferred from the redesign, still valid):** dark mode, the `<html lang>` fix on
+  the English static HTML, OG share images, a license/fee infobox component, a curated
+  "দেশি স্টার্টআপ স্কুল" course page, service-worker offline caching, and per-stub GitHub issue
+  templates.
+- **Brand:** secure the `.org`, check the DPDT trademark, and claim the Facebook page.
+- **Later, bigger bets:** an MCP server over the knowledge base, and grant/partnership
+  conversations (World Bank / UNDP / GIZ-type enablement programs; LightCastle for Bangla report
+  distribution).
+
+The repo stays public and GitHub-backed. A possible future move to dedicated wiki software is
+deferred — do not architect for it.
 
 ## First Content Priorities
 
