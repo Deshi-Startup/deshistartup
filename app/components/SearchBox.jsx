@@ -1,9 +1,11 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 let pagefindPromise = null
+
+const bengaliDigits = (value) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[d])
 
 async function loadPagefind(basePath = '') {
   if (typeof window === 'undefined') return null
@@ -36,13 +38,18 @@ function cleanExcerpt(data) {
 export default function SearchBox({ isEn = false, variant = 'header' }) {
   const router = useRouter()
   const inputRef = useRef(null)
-  const containerRef = useRef(null)
+  const listboxId = `${useId()}listbox`
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
+  const [activeIndex, setActiveIndex] = useState(-1)
   const [isLoading, setIsLoading] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [error, setError] = useState(false)
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+  const optionId = (index) => `${listboxId}-option-${index}`
+  // The popup only counts as a combobox listbox when it actually holds options;
+  // the loading, error, and no-match panels are announced by the status region.
+  const hasListbox = isOpen && !isLoading && !error && results.length > 0
 
   useEffect(() => {
     if (variant !== 'header') return undefined
@@ -65,6 +72,7 @@ export default function SearchBox({ isEn = false, variant = 'header' }) {
 
   useEffect(() => {
     const trimmedQuery = query.trim()
+    setActiveIndex(-1)
 
     if (!trimmedQuery) {
       setResults([])
@@ -104,6 +112,7 @@ export default function SearchBox({ isEn = false, variant = 'header' }) {
 
         if (isActive) {
           setResults(ranked)
+          setActiveIndex(-1)
           setIsOpen(true)
         }
       } catch {
@@ -123,25 +132,98 @@ export default function SearchBox({ isEn = false, variant = 'header' }) {
     }
   }, [query, basePath])
 
+  // Keep the arrow-selected option inside the scrolling popover.
+  useEffect(() => {
+    if (activeIndex < 0) return
+    document
+      .getElementById(optionId(activeIndex))
+      ?.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+  }, [activeIndex]) // eslint-disable-line react-hooks/exhaustive-deps
+
   const goTo = (url) => {
     const nextUrl = basePath && url.startsWith(basePath) ? url.slice(basePath.length) || '/' : url
     router.push(nextUrl)
     setQuery('')
     setIsOpen(false)
+    setActiveIndex(-1)
+  }
+
+  const moveActive = (step) => {
+    if (results.length === 0) return
+    setIsOpen(true)
+    setActiveIndex((current) => {
+      const next = current + step
+      if (next < 0) return results.length - 1
+      if (next > results.length - 1) return 0
+      return next
+    })
+  }
+
+  // Focus stays on the input throughout (aria-activedescendant), so the popover
+  // closes on focusout only when focus actually leaves the whole widget.
+  const handleKeyDown = (event) => {
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault()
+        moveActive(1)
+        break
+      case 'ArrowUp':
+        event.preventDefault()
+        moveActive(-1)
+        break
+      case 'Home':
+        if (!isOpen || results.length === 0) break
+        event.preventDefault()
+        setActiveIndex(0)
+        break
+      case 'End':
+        if (!isOpen || results.length === 0) break
+        event.preventDefault()
+        setActiveIndex(results.length - 1)
+        break
+      case 'Escape':
+        event.preventDefault()
+        if (isOpen) setIsOpen(false)
+        else setQuery('')
+        setActiveIndex(-1)
+        inputRef.current?.focus()
+        break
+      default:
+        break
+    }
   }
 
   const placeholder = isEn
     ? 'Search: trade license, bKash, VAT…'
     : 'খুঁজুন: ট্রেড লাইসেন্স, বিকাশ, ভ্যাট…'
 
+  const sitemapHref = `${basePath}${isEn ? '/en/sitemap' : '/sitemap'}`
+
+  const liveStatus = () => {
+    if (!isOpen) return ''
+    if (isLoading) return isEn ? 'Searching…' : 'খোঁজা হচ্ছে…'
+    if (error) return isEn ? 'Search is unavailable right now.' : 'সার্চ এখন কাজ করছে না।'
+    if (results.length === 0) return isEn ? 'No results found.' : 'কোনো মিল পাওয়া যায়নি।'
+    return isEn
+      ? `${results.length} results. Use the up and down arrow keys to choose.`
+      : `${bengaliDigits(results.length)}টি ফলাফল। উপর-নিচ তীর দিয়ে বেছে নিন।`
+  }
+
   return (
     <form
       className={variant === 'hero' ? 'search search--hero' : 'search'}
       role="search"
       aria-label={isEn ? 'Search Deshi Startup' : 'দেশি স্টার্টআপে খুঁজুন'}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setIsOpen(false)
+          setActiveIndex(-1)
+        }
+      }}
       onSubmit={(event) => {
         event.preventDefault()
-        if (results.length > 0) goTo(results[0].url)
+        const target = results[activeIndex] || results[0]
+        if (target) goTo(target.url)
       }}
     >
       <input
@@ -150,12 +232,16 @@ export default function SearchBox({ isEn = false, variant = 'header' }) {
         value={query}
         placeholder={placeholder}
         aria-label={placeholder}
+        role="combobox"
+        aria-expanded={hasListbox}
+        aria-controls={hasListbox ? listboxId : undefined}
+        aria-autocomplete="list"
+        aria-activedescendant={activeIndex >= 0 ? optionId(activeIndex) : undefined}
+        autoComplete="off"
         onChange={(event) => setQuery(event.target.value)}
+        onKeyDown={handleKeyDown}
         onFocus={() => {
           if (query.trim()) setIsOpen(true)
-        }}
-        onBlur={() => {
-          window.setTimeout(() => setIsOpen(false), 150)
         }}
       />
       <button type="submit" className="search-submit" aria-label={isEn ? 'Search' : 'খুঁজুন'}>
@@ -164,8 +250,12 @@ export default function SearchBox({ isEn = false, variant = 'header' }) {
         </svg>
       </button>
 
+      <span className="sr-only" role="status">
+        {liveStatus()}
+      </span>
+
       {isOpen && (
-        <div ref={containerRef} className="search-results">
+        <div className="search-results">
           {isLoading && (
             <p className="search-status">{isEn ? 'Searching…' : 'খোঁজা হচ্ছে…'}</p>
           )}
@@ -177,32 +267,47 @@ export default function SearchBox({ isEn = false, variant = 'header' }) {
           )}
 
           {!isLoading && !error && results.length === 0 && query.trim() && (
-            <p className="search-status">{isEn ? 'No results found.' : 'কোনো মিল পাওয়া যায়নি।'}</p>
+            <p className="search-status">
+              {isEn ? 'No results found. Try another word, or ' : 'কোনো মিল পাওয়া যায়নি। অন্য শব্দে খুঁজুন, বা '}
+              <a
+                href={sitemapHref}
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={(event) => {
+                  event.preventDefault()
+                  goTo(sitemapHref)
+                }}
+              >
+                {isEn ? 'browse every page' : 'সব পাতার তালিকা দেখুন'}
+              </a>
+              {isEn ? '.' : '।'}
+            </p>
           )}
 
-          {!isLoading && !error && results.length > 0 && (
-            <ul>
-              {results.map((result) => (
-                <li key={result.id}>
-                  <button
-                    type="button"
-                    className="search-result-btn"
-                    onMouseDown={(event) => event.preventDefault()}
-                    onClick={() => goTo(result.url)}
-                  >
-                    <span className="result-title">
-                      {result.title}
-                      {result.isStub && (
-                        <span className="stub-chip">{isEn ? 'to be written' : 'লেখা বাকি'}</span>
-                      )}
-                    </span>
-                    {result.excerpt && !result.isStub && (
-                      <span className="result-excerpt">{result.excerpt}</span>
-                    )}
-                  </button>
-                </li>
-              ))}
-            </ul>
+          {hasListbox && (
+          <ul id={listboxId} role="listbox" aria-label={isEn ? 'Search results' : 'সার্চের ফলাফল'}>
+            {results.map((result, index) => (
+              <li
+                key={result.id}
+                id={optionId(index)}
+                role="option"
+                aria-selected={index === activeIndex}
+                className={index === activeIndex ? 'search-result is-active' : 'search-result'}
+                onMouseDown={(event) => event.preventDefault()}
+                onMouseMove={() => setActiveIndex(index)}
+                onClick={() => goTo(result.url)}
+              >
+                <span className="result-title">
+                  {result.title}
+                  {result.isStub && (
+                    <span className="stub-chip">{isEn ? 'to be written' : 'লেখা বাকি'}</span>
+                  )}
+                </span>
+                {result.excerpt && !result.isStub && (
+                  <span className="result-excerpt">{result.excerpt}</span>
+                )}
+              </li>
+            ))}
+          </ul>
           )}
         </div>
       )}

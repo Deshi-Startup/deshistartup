@@ -20,7 +20,8 @@ export default function LanguageSwitcher() {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
     event.preventDefault()
     const navigate = () => router.push(targetPath)
-    if (document.startViewTransition) document.startViewTransition(navigate)
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (document.startViewTransition && !prefersReducedMotion) document.startViewTransition(navigate)
     else navigate()
   }
 

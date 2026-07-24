@@ -38,7 +38,7 @@
   --canvas-soft: #f8faf9;
   --ink: #202122;
   --muted: #54595d;
-  --faint: #72777d;
+  --faint: #696e74;
   --line: #c8ccd1;
   --line-soft: #eaecf0;
   --green: #047857;
@@ -93,8 +93,25 @@ input {
   font: inherit;
 }
 
+:where(a, button, input, select, summary):focus-visible {
+  outline: 2px solid var(--green-deep);
+  outline-offset: 3px;
+}
+
 p {
   margin: 0 0 1em;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 .skip-link {
@@ -248,31 +265,27 @@ p {
   list-style: none;
 }
 
-.search-result-btn {
-  display: block;
-  width: 100%;
-  text-align: left;
-  border: 0;
+.search-result {
+  margin: 0;
   border-radius: 4px;
-  background: transparent;
   padding: 8px 10px;
   cursor: pointer;
   line-height: 1.45;
 }
 
-.search-result-btn:hover,
-.search-result-btn:focus-visible {
+.search-result.is-active,
+.search-result:hover {
   background: var(--green-soft);
 }
 
-.search-result-btn .result-title {
+.search-result .result-title {
   display: block;
   color: var(--ink);
   font-size: 0.95rem;
   font-weight: 600;
 }
 
-.search-result-btn .result-excerpt {
+.search-result .result-excerpt {
   display: block;
   margin-top: 2px;
   color: var(--muted);
@@ -367,8 +380,8 @@ p {
 
 .nav-toggle {
   display: none;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--line);
   border-radius: 3px;
   background: var(--canvas);
@@ -381,6 +394,10 @@ p {
   height: 2px;
   margin: 4px auto;
   background: var(--ink);
+}
+
+.sidebar-close {
+  display: none;
 }
 
 /* ---------------------------------------------------------------- layout */
@@ -474,11 +491,17 @@ p {
 }
 
 .tab {
+  display: inline-flex;
+  align-items: center;
   border: 1px solid transparent;
   border-bottom: 0;
   background: transparent;
   padding: 13px 22px;
   color: var(--muted);
+  text-decoration: none;
+}
+
+a.tab {
   cursor: pointer;
 }
 
@@ -620,6 +643,16 @@ h3 {
   color: var(--blue-hover);
 }
 
+/* Leaving the site is worth flagging: most external links here are government
+   portals, and a founder should know before the tab changes. */
+.article a[href^='http']::after {
+  content: '↗';
+  margin-left: 3px;
+  font-size: 0.78em;
+  vertical-align: 1px;
+  opacity: 0.8;
+}
+
 blockquote {
   margin: 20px 0;
   border-left: 5px solid var(--green);
@@ -706,7 +739,7 @@ img {
 
 /* mobile "on this page" accordion */
 .page-toc {
-  margin: 0 0 18px;
+  margin: 12px 0 18px;
   border: 1px solid var(--line);
   background: var(--canvas-soft);
   font-size: 0.92rem;
@@ -952,7 +985,7 @@ a.is-stub-link:hover {
 
 .directory-controls button {
   min-height: 36px;
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   background: #fff;
   padding: 6px 12px;
   color: var(--green-deep);
@@ -1506,6 +1539,11 @@ a.is-stub-link:hover {
 }
 
 @media (max-width: 860px) {
+  /* The header stacks to two rows here (~121px), so anchors need to clear it. */
+  html {
+    scroll-padding-top: 132px;
+  }
+
   body {
     font-size: 15px;
   }
@@ -1534,6 +1572,22 @@ a.is-stub-link:hover {
     display: block;
   }
 
+  /* One-handed reach: keep the painted pill at its designed size, widen only
+     the hit area to the 44px ergonomic target. */
+  .language-switcher::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, 44px);
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+
   .page-shell {
     display: block;
     width: 100%;
@@ -1558,16 +1612,48 @@ a.is-stub-link:hover {
     background: #fff;
     box-shadow: 12px 0 40px rgb(32 33 34 / 20%);
     transform: translateX(-104%);
-    transition: transform 200ms ease;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 200ms ease, visibility 0s linear 200ms;
     overflow-y: auto;
   }
 
   .sidebar-wrap.is-open {
     transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
   }
 
   .sidebar {
-    padding: 20px 22px 40px;
+    padding: 16px 22px 40px;
+  }
+
+  .sidebar-close {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin: 0 0 10px auto;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--canvas);
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .sidebar-close:hover {
+    border-color: var(--green);
+    background: var(--green-soft);
+  }
+
+  .sidebar-close svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
   }
 
   .sidebar nav {
@@ -1622,6 +1708,12 @@ a.is-stub-link:hover {
   .wiki-scope-grid,
   .wiki-source-list {
     grid-template-columns: 1fr;
+  }
+
+  .directory-controls input,
+  .directory-controls select,
+  .directory-controls button {
+    min-height: 44px;
   }
 
   .wiki-infobox dl div {
@@ -1688,6 +1780,17 @@ a.is-stub-link:hover {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .language-switcher__thumb,
+  .sidebar-wrap {
+    transition: none;
+  }
+}
+
 /* ---------------------------------------------------------------- print */
 
 @media print {
@@ -1716,5 +1819,9 @@ a.is-stub-link:hover {
   a {
     color: inherit;
     text-decoration: underline;
+  }
+
+  .article a[href^='http']::after {
+    content: none;
   }
 }

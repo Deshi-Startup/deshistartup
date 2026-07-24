@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import LanguageSwitcher from './LanguageSwitcher'
 import SearchBox from './SearchBox'
@@ -46,11 +46,28 @@ function GitHubIcon() {
   )
 }
 
-function Sidebar({ isEn, pathname, headings, onNavigate }) {
+function Sidebar({ isEn, pathname, headings, onNavigate, onClose, closeButtonRef, isOpen }) {
   const nav = isEn ? enNav : bnNav
 
   return (
-    <aside className="sidebar" id="sidebar" aria-label={isEn ? 'Primary navigation' : 'প্রধান মেনু'}>
+    <aside
+      className="sidebar"
+      id="sidebar"
+      role={isOpen ? 'dialog' : undefined}
+      aria-modal={isOpen ? 'true' : undefined}
+      aria-label={isEn ? 'Primary navigation' : 'প্রধান মেনু'}
+    >
+      <button
+        className="sidebar-close"
+        type="button"
+        ref={closeButtonRef}
+        onClick={onClose}
+        aria-label={isEn ? 'Close navigation' : 'মেনু বন্ধ করুন'}
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m6 6 12 12M18 6 6 18" />
+        </svg>
+      </button>
       <nav>
         {nav.map((group) => (
           <div className="sidebar-group" key={group.label}>
@@ -89,7 +106,7 @@ function Sidebar({ isEn, pathname, headings, onNavigate }) {
         <p className="sidebar-note">
           {isEn
             ? 'Free & open source. Every guide can be improved by anyone – including you.'
-            : 'সম্পূর্ণ ফ্রি ও ওপেন সোর্স। প্রতিটি গাইড যে কেউ আরও ভালো করতে পারেন, আপনিও।'}
+            : 'সম্পূর্ণ ফ্রি ও ওপেন সোর্স। প্রতিটি গাইড যে কেউ সংশোধন করতে পারেন, আপনিও।'}
         </p>
       </nav>
     </aside>
@@ -126,18 +143,12 @@ function Breadcrumbs({ isEn, pathname, pageTitle }) {
   )
 }
 
-const enTabs = { article: 'Article', talk: 'Talk', read: 'Read', edit: 'Edit', history: 'View history' }
+const enTabs = { article: 'Article', talk: 'Talk', edit: 'Edit', history: 'View history' }
 const bnTabs = {
-  article:
-    'গাইড',
-  talk:
-    'আলোচনা',
-  read:
-    'পড়ুন',
-  edit:
-    'সম্পাদনা',
-  history:
-    'ইতিহাস'
+  article: 'গাইড',
+  talk: 'আলোচনা',
+  edit: 'সম্পাদনা',
+  history: 'ইতিহাস'
 }
 
 export default function LocalizedLayout({ children }) {
@@ -150,6 +161,79 @@ export default function LocalizedLayout({ children }) {
   const [lastUpdated, setLastUpdated] = useState(null)
   const [lastVerified, setLastVerified] = useState(null)
   const [readMinutes, setReadMinutes] = useState(null)
+  const navToggleRef = useRef(null)
+  const sidebarRef = useRef(null)
+  const sidebarCloseRef = useRef(null)
+
+  const closeSidebar = (restoreFocus = false) => {
+    setIsSidebarOpen(false)
+    if (restoreFocus) window.requestAnimationFrame(() => navToggleRef.current?.focus())
+  }
+
+  useEffect(() => {
+    if (!isSidebarOpen) return undefined
+
+    const mobileQuery = window.matchMedia('(max-width: 860px)')
+    if (!mobileQuery.matches) return undefined
+
+    const backgroundElements = [
+      document.querySelector('.skip-link'),
+      document.querySelector('.site-header'),
+      document.querySelector('.content-canvas'),
+      document.querySelector('.site-footer')
+    ].filter(Boolean)
+    sidebarCloseRef.current?.focus()
+    document.body.classList.add('nav-open')
+    backgroundElements.forEach((element) => {
+      element.inert = true
+      element.setAttribute('aria-hidden', 'true')
+    })
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        setIsSidebarOpen(false)
+        window.requestAnimationFrame(() => navToggleRef.current?.focus())
+        return
+      }
+
+      if (event.key !== 'Tab') return
+
+      const focusable = [
+        ...(sidebarRef.current?.querySelectorAll('a[href], button:not([disabled])') || [])
+      ].filter((element) => element.offsetParent !== null)
+
+      if (focusable.length === 0) return
+
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+
+    const handleViewportChange = (event) => {
+      if (!event.matches) setIsSidebarOpen(false)
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    mobileQuery.addEventListener('change', handleViewportChange)
+
+    return () => {
+      document.body.classList.remove('nav-open')
+      backgroundElements.forEach((element) => {
+        element.inert = false
+        element.removeAttribute('aria-hidden')
+      })
+      window.removeEventListener('keydown', handleKeyDown)
+      mobileQuery.removeEventListener('change', handleViewportChange)
+    }
+  }, [isSidebarOpen])
 
   useEffect(() => {
     document.documentElement.lang = isEn ? 'en' : 'bn'
@@ -259,10 +343,19 @@ export default function LocalizedLayout({ children }) {
             <button
               className="nav-toggle"
               type="button"
-              aria-label={isEn ? 'Toggle navigation' : 'মেনু খুলুন/বন্ধ করুন'}
+              ref={navToggleRef}
+              aria-label={
+                isSidebarOpen
+                  ? isEn
+                    ? 'Close navigation'
+                    : 'মেনু বন্ধ করুন'
+                  : isEn
+                    ? 'Open navigation'
+                    : 'মেনু খুলুন'
+              }
               aria-expanded={isSidebarOpen}
               aria-controls="sidebar"
-              onClick={() => setIsSidebarOpen((value) => !value)}
+              onClick={() => (isSidebarOpen ? closeSidebar() : setIsSidebarOpen(true))}
             >
               <span />
               <span />
@@ -275,21 +368,28 @@ export default function LocalizedLayout({ children }) {
       <div className="page-shell">
         <div
           className={isSidebarOpen ? 'sidebar-backdrop is-open' : 'sidebar-backdrop'}
-          onClick={() => setIsSidebarOpen(false)}
+          aria-hidden="true"
+          onClick={() => closeSidebar(true)}
         />
-        <div className={isSidebarOpen ? 'sidebar-wrap is-open' : 'sidebar-wrap'}>
+        <div
+          ref={sidebarRef}
+          className={isSidebarOpen ? 'sidebar-wrap is-open' : 'sidebar-wrap'}
+        >
           <Sidebar
             isEn={isEn}
             pathname={pathname}
             headings={isLanding ? [] : headings}
-            onNavigate={() => setIsSidebarOpen(false)}
+            onNavigate={() => closeSidebar()}
+            onClose={() => closeSidebar(true)}
+            closeButtonRef={sidebarCloseRef}
+            isOpen={isSidebarOpen}
           />
         </div>
 
         <main className="content-canvas" id="main">
-          <div className="article-tabs" id="read">
-            <div className="tab-group" role="tablist" aria-label={isEn ? 'Page type' : 'পাতার ধরন'}>
-              <button className="tab active" type="button">{tabs.article}</button>
+          <nav className="article-tabs" aria-label={isEn ? 'About this page' : 'এই পাতা নিয়ে'}>
+            <div className="tab-group">
+              <span className="tab active" aria-current="page">{tabs.article}</span>
               <a
                 className="tab"
                 href={`${REPO_URL}/discussions`}
@@ -301,7 +401,6 @@ export default function LocalizedLayout({ children }) {
               </a>
             </div>
             <div className="article-actions">
-              <a href="#read">{tabs.read}</a>
               <a href={`${REPO_URL}/edit/main/${file}`} target="_blank" rel="noopener noreferrer">
                 {tabs.edit}
               </a>
@@ -309,7 +408,7 @@ export default function LocalizedLayout({ children }) {
                 {tabs.history}
               </a>
             </div>
-          </div>
+          </nav>
 
           {!isLanding && (
             <div className="article-lede">
@@ -343,7 +442,7 @@ export default function LocalizedLayout({ children }) {
                   </a>
               </div>
               {headings.length > 2 && (
-                <details className="page-toc" style={{ marginTop: 12 }}>
+                <details className="page-toc">
                   <summary>{isEn ? 'On this page' : 'এই পাতায়'}</summary>
                   <ul>
                     {headings.map((heading) => (
