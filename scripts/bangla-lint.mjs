@@ -12,8 +12,8 @@
  * IMPORTANT: this catches the *mechanical* tells only. A page can score zero here and still read
  * like translated English — the disease (English sentence architecture, non-idiomatic verbs, missing
  * discourse particles, wrong information order) is invisible to regex. The whole 454-page corpus
- * passed this linter while still sounding translated; that is exactly why the read-aloud test and the
- * `bangla-review` native-reader pass (.claude/commands/bangla-review.md) are the real gate, not this.
+ * passed this linter while still sounding translated; that is exactly why the read-aloud test and a
+ * native-reader pass by a person are the real gate, not this.
  *
  * Usage:
  *   node scripts/bangla-lint.mjs             # scan all bn pages
@@ -329,8 +329,8 @@ console.log(
 )
 console.log(
   'A clean pass means the MECHANICAL tells are gone — not that the Bangla reads natural. Architecture-level\n' +
-    'translationese is invisible to regex. Before publishing, run the read-aloud test (STYLE.md §1) and the\n' +
-    'native-reader pass: `/bangla-review <page>` in Claude Code (.claude/commands/bangla-review.md).',
+    'translationese is invisible to regex. Before publishing, run the read-aloud test (STYLE.md §1) and have\n' +
+    'a native reader go through the page sentence by sentence.',
 )
 
 if (strict && hardTotal > 0) process.exit(1)

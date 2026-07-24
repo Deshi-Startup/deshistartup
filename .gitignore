@@ -22,9 +22,7 @@ plan/status-report.md
 # Local experiments and artifacts
 .firecrawl/
 .agents/
-# Vendored agent skills — installed per machine. The shared bits of .claude/
-# (agents/, commands/) stay tracked; lint:bangla points contributors at them.
-.claude/skills/
+.claude/
 .gemini/
 .opencode/
 .codex/
