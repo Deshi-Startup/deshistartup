@@ -21,9 +21,18 @@ plan/status-report.md
 .claude/settings.local.json
 # Local experiments and artifacts
 .firecrawl/
+.agents/
+# Vendored agent skills — installed per machine. The shared bits of .claude/
+# (agents/, commands/) stay tracked; lint:bangla points contributors at them.
+.claude/skills/
+.gemini/
+.opencode/
+.codex/
+.impeccable/
 .vinext/
 .wrangler/
 dist/
 workers/
 next-env.d.ts
 CLAUDE.md
+PRODUCT.md
