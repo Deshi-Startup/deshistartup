@@ -262,7 +262,7 @@ absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass
 ## Design System (July 2026 redesign)
 
 - All styling lives in `app/globals.css` as a token-based design system ("national reference work" aesthetic: Bangladesh-green structure, warm paper, serif Bangla display headings, wiki-blue links).
-- **Do not redesign the shell.** The Wikipedia-clone look (paper background, white canvas, green top rule, no right ToC rail) is a deliberate choice.
+- **The shell is a reasoned default, not a locked one.** The Wikipedia-clone look (paper background, white canvas, green top rule, no right ToC rail) is deliberate: it buys a reference work instant credibility, costs almost no bandwidth, and keeps attention on the content. It is open to challenge like everything else here — bring the reasoning and a rendered before/after, and it changes. What is not a style preference is the goal it serves: a first-time founder on a mid-range Android phone, on patchy bandwidth, has to trust the page and be able to read it fast. Propose against that, not against taste. Do not restyle the shell as an unexamined side effect of some other task.
 - Fonts are self-hosted in `app/fonts/` (Noto Sans Bengali variable + Noto Serif Bengali 700, Bengali subset, `local()`-first so most Android devices download nothing). Do not add render-blocking Google Fonts links.
 - Bangla UI text uses Bengali numerals (০-৯); dates render via `toLocaleDateString('bn-BD')`.
 - Per-page chrome (breadcrumbs, last-updated meta bar, edit/history/report links, ToC rail, article footer) is generated in `app/components/LocalizedLayout.jsx` from the pathname – content pages need no extra markup.

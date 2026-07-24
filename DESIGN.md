@@ -96,6 +96,17 @@ components:
 
 # Design System: Deshi Startup
 
+> **How to read this document.** Everything here is a reasoned default, not a ruling. It exists so
+> contributions cohere and so nobody re-derives settled questions on every PR – not to put the design
+> beyond argument. Nothing in it is permanently off the table. If a choice here is wrong, or was right
+> in July 2026 and is not right now, say so: an issue or PR with the reasoning and a rendered
+> before/after is exactly how this file is meant to change.
+>
+> The one thing that is not a matter of taste is what the design is *for*. A first-time,
+> non-technical founder, on a mid-range Android phone, on patchy bandwidth, has to trust this page and
+> be able to read it fast. Weigh proposals against that. A change that serves it wins, however far it
+> departs from what is written below.
+
 ## Overview
 
 **Creative North Star: "The National Reference Work"**
@@ -332,8 +343,10 @@ existence in the design system reflects that most pages are stubs by design.
   no heavy embeds. The look must not cost the founder bandwidth.
 
 ### Don't:
-- **Don't** redesign the wiki shell – the paper page, bordered white canvas, green top rule, and
-  absent right-hand ToC rail are a deliberate, committed identity (see AGENTS.md).
+- **Don't** restyle the wiki shell as a side effect of another task – the paper page, bordered white
+  canvas, green top rule, and absent right-hand ToC rail carry the reference-work credibility this
+  project runs on. Proposing a change to them on purpose, with reasoning, is welcome and always has
+  been; drifting away from them while fixing something else is what this rule is against.
 - **Don't** fill buttons, cards, or notices with a saturated brand color, or add drop shadows to make
   things "pop." Flat-with-borders is the system.
 - **Don't** introduce a Google-Font display face or a second serif; the Bengali serif/sans pair is the
