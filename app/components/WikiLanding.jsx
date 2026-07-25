@@ -27,6 +27,11 @@ const bn = {
   ),
   lead2:
     'বাংলাদেশের বাস্তবতা অন্যান্য দেশের চেয়ে আলাদা। গ্রাহকের ভরসা পেতে সময় লাগে, ক্যাশ অন ডেলিভারি এখনো জরুরি, ফেসবুক/মেসেঞ্জার বড় বিক্রির চ্যানেল। সরকারি কাগজপত্রও বুঝে করতে হয়। তাই এই সাইটে আমরা সরাসরি বিদেশি পরামর্শ কপি না করে বরং বাংলাদেশে কীভাবে কাজ হয়, সেটা ব্যাখ্যা করার চেষ্টা করি।',
+  start: [
+    ['শুরু করুন', '/start-here'],
+    ['লক্ষ্য ধরে সাজানো পথ', '/journeys']
+  ],
+  noticeLabel: 'দ্রষ্টব্য',
   notice:
     'আইন, কর, ভ্যাট, ব্যাংকিং বা লাইসেন্স নিয়ে লেখাগুলো আপনাকে সিদ্ধান্ত নিতে সাহায্য করবে, তবে এগুলো আইনি বা কর পরামর্শ নয়। ফি, ফর্ম ও প্রক্রিয়া বদলাতে পারে, তাই কাজে নামার আগে সরকারি সোর্স দেখে নিন। দরকার হলে চার্টার্ড অ্যাকাউন্ট্যান্ট বা আইনজীবীর সঙ্গে মিলিয়ে নিন।',
   infoboxTitle: 'এক নজরে',
@@ -110,6 +115,11 @@ const en = {
   ),
   lead2:
     'Bangladesh works differently: customer trust takes time, cash on delivery still matters, Facebook/Messenger are major sales channels, and government paperwork needs care. So this site doesn\'t copy foreign advice; it explains how things actually work in Bangladesh.',
+  start: [
+    ['Start here', '/en/start-here'],
+    ['Guided paths', '/en/journeys']
+  ],
+  noticeLabel: 'Please note',
   notice:
     'Articles about law, tax, VAT, banking or licensing help you decide, but they are not legal or tax advice. Fees, forms and processes change; confirm with official sources and, where needed, a chartered accountant or lawyer before acting.',
   infoboxTitle: 'At a glance',
@@ -214,8 +224,20 @@ export default function WikiLanding({ locale = 'bn' }) {
           <p className="wiki-lead">{t.lead}</p>
           <p>{t.lead2}</p>
 
+          <div className="wiki-start">
+            {t.start.map(([label, href], index) => (
+              <a
+                className={index === 0 ? 'is-primary' : undefined}
+                href={localHref(href)}
+                key={href}
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+
           <aside className="wiki-notice" role="note">
-            <span aria-hidden="true">i</span>
+            <strong>{t.noticeLabel}</strong>
             <p>{t.notice}</p>
           </aside>
         </div>
@@ -244,7 +266,7 @@ export default function WikiLanding({ locale = 'bn' }) {
             <a className="wiki-path-card" href={localHref(href)} key={title}>
               <strong>{title}</strong>
               <span>{body}</span>
-              <em>{cta}</em>
+              <span className="wiki-path-card__go">{cta}</span>
             </a>
           ))}
         </div>

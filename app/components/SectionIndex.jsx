@@ -62,6 +62,8 @@ export default function SectionIndex({ section, locale = 'bn' }) {
     )
   }
 
+  const remaining = data.total - data.written
+
   return (
     <section className="section-index" data-pagefind-ignore>
       <h2 id={isEn ? 'all-guides-in-this-section' : 'এই-বিভাগের-সব-গাইড'}>
@@ -74,14 +76,22 @@ export default function SectionIndex({ section, locale = 'bn' }) {
         <span>
           {isEn ? 'Written' : 'লেখা হয়েছে'} <b>{num(data.written)}</b>
         </span>
-        <span>
-          {isEn ? 'To be written' : 'লেখা বাকি'} <b>{num(data.total - data.written)}</b>
-        </span>
+        {/* A "0 to be written" pill is noise, and the invitation below it would
+            be pointing at nothing. A finished section should just say so. */}
+        {remaining > 0 && (
+          <span>
+            {isEn ? 'To be written' : 'লেখা বাকি'} <b>{num(remaining)}</b>
+          </span>
+        )}
       </div>
-      <p className="index-desc" style={{ color: 'var(--muted)', fontSize: '0.92rem' }}>
-        {isEn
-          ? 'Unwritten topics are marked – click one to see its sources and help write it.'
-          : 'যে বিষয়গুলো এখনো লেখা হয়নি সেগুলো চিহ্নিত করা আছে – চাইলে যেকোনোটিতে ঢুকে সূত্র দেখে লেখায় হাত লাগাতে পারেন।'}
+      <p className="index-desc section-index__note">
+        {remaining > 0
+          ? isEn
+            ? 'Unwritten topics are marked – click one to see its sources and help write it.'
+            : 'যে বিষয়গুলো এখনো লেখা হয়নি সেগুলো চিহ্নিত করা আছে – চাইলে যেকোনোটিতে ঢুকে সূত্র দেখে লেখায় হাত লাগাতে পারেন।'
+          : isEn
+            ? 'Every topic in this section is written. Spotted something out of date? The edit link at the bottom of each guide is open to you.'
+            : 'এই বিভাগের সব বিষয়ই লেখা হয়েছে। কোথাও পুরোনো তথ্য চোখে পড়লে প্রতিটি গাইডের নিচের সম্পাদনা লিংক থেকে আপনিও ঠিক করে দিতে পারেন।'}
       </p>
 
       {groups.map((group) => {

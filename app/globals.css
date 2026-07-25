@@ -38,19 +38,28 @@
   --canvas-soft: #f8faf9;
   --ink: #202122;
   --muted: #54595d;
-  --faint: #72777d;
+  --faint: #696e74;
   --line: #c8ccd1;
   --line-soft: #eaecf0;
   --green: #047857;
   --green-deep: #065f46;
   --green-soft: #eaf4ef;
+  --green-ground: #f8fbf7;
   --blue: #3366cc;
   --blue-hover: #1f4fb2;
   --visited: #6b4ba1;
   --yellow: #f7c948;
   --warn-bg: #fff8df;
   --warn-border: #e1b900;
+  --warn-line-soft: #e5d193;
   --warn-ink: #5f4b00;
+  --error: #b42318;
+  /* The paper page needs a warmer divider than --line, which is tuned for white. */
+  --line-warm: #d9d5cd;
+  --shade: #f1f3f4;
+  /* Longest comfortable prose line. Only bites above ~1500px, where the canvas
+     would otherwise run to 86 Bangla characters a line. */
+  --measure: 65rem;
   --shadow: 0 14px 32px rgb(32 33 34 / 8%);
   --sans: '.SF Bangla', system-ui, -apple-system, BlinkMacSystemFont, 'Nirmala UI', 'Noto Sans Bengali',
     'Noto Sans', 'Segoe UI', sans-serif;
@@ -93,8 +102,25 @@ input {
   font: inherit;
 }
 
+:where(a, button, input, select, summary):focus-visible {
+  outline: 2px solid var(--green-deep);
+  outline-offset: 3px;
+}
+
 p {
   margin: 0 0 1em;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 .skip-link {
@@ -193,7 +219,7 @@ p {
   border: 1px solid var(--line);
   border-right: 0;
   border-radius: 3px 0 0 3px;
-  background: #fff;
+  background: var(--canvas);
   padding: 12px 16px;
   color: var(--ink);
   outline: none;
@@ -237,7 +263,7 @@ p {
   max-height: min(420px, 60vh);
   overflow-y: auto;
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--canvas);
   box-shadow: var(--shadow);
   padding: 8px;
 }
@@ -248,31 +274,27 @@ p {
   list-style: none;
 }
 
-.search-result-btn {
-  display: block;
-  width: 100%;
-  text-align: left;
-  border: 0;
+.search-result {
+  margin: 0;
   border-radius: 4px;
-  background: transparent;
   padding: 8px 10px;
   cursor: pointer;
   line-height: 1.45;
 }
 
-.search-result-btn:hover,
-.search-result-btn:focus-visible {
+.search-result.is-active,
+.search-result:hover {
   background: var(--green-soft);
 }
 
-.search-result-btn .result-title {
+.search-result .result-title {
   display: block;
   color: var(--ink);
   font-size: 0.95rem;
   font-weight: 600;
 }
 
-.search-result-btn .result-excerpt {
+.search-result .result-excerpt {
   display: block;
   margin-top: 2px;
   color: var(--muted);
@@ -288,7 +310,7 @@ p {
 }
 
 .search-status.is-error {
-  color: #b42318;
+  color: var(--error);
 }
 
 /* ---------------------------------------------------------- header actions */
@@ -299,7 +321,7 @@ p {
   justify-content: flex-end;
   align-items: center;
   gap: 20px;
-  font-size: 0.94rem;
+  font-size: 0.95rem;
   white-space: nowrap;
 }
 
@@ -326,7 +348,7 @@ p {
   padding: 3px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: #fff;
+  background: var(--canvas);
   color: var(--ink);
   cursor: pointer;
   isolation: isolate;
@@ -362,13 +384,13 @@ p {
 
 .language-switcher[data-language='bn'] .language-switcher__option:first-of-type,
 .language-switcher[data-language='en'] .language-switcher__option:last-of-type {
-  color: #111827;
+  color: var(--ink);
 }
 
 .nav-toggle {
   display: none;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--line);
   border-radius: 3px;
   background: var(--canvas);
@@ -381,6 +403,10 @@ p {
   height: 2px;
   margin: 4px auto;
   background: var(--ink);
+}
+
+.sidebar-close {
+  display: none;
 }
 
 /* ---------------------------------------------------------------- layout */
@@ -408,7 +434,7 @@ p {
 .sidebar nav {
   position: sticky;
   top: 96px;
-  font-size: 0.93rem;
+  font-size: 0.9rem;
 }
 
 .sidebar-group {
@@ -417,7 +443,7 @@ p {
 
 .sidebar-group > p {
   margin: 22px 0 2px;
-  border-top: 1px solid #d9d5cd;
+  border-top: 1px solid var(--line-warm);
   padding-top: 14px;
   color: var(--muted);
   font-weight: 700;
@@ -442,7 +468,7 @@ p {
 
 .sidebar-note {
   margin: 26px 0 0;
-  border-top: 1px solid #d9d5cd;
+  border-top: 1px solid var(--line-warm);
   padding-top: 14px;
   color: var(--faint);
   font-size: 0.85rem;
@@ -474,11 +500,17 @@ p {
 }
 
 .tab {
+  display: inline-flex;
+  align-items: center;
   border: 1px solid transparent;
   border-bottom: 0;
   background: transparent;
   padding: 13px 22px;
   color: var(--muted);
+  text-decoration: none;
+}
+
+a.tab {
   cursor: pointer;
 }
 
@@ -494,7 +526,7 @@ p {
   display: flex;
   gap: 28px;
   padding-bottom: 12px;
-  font-size: 0.94rem;
+  font-size: 0.95rem;
 }
 
 /* --------------------------------------------------- breadcrumbs and meta */
@@ -566,6 +598,15 @@ p {
   padding: 26px 48px 64px;
 }
 
+/* Cap the prose measure. The canvas has no right-hand rail, so on a wide
+   monitor a paragraph would otherwise run to ~86 Bangla characters a line and
+   the eye loses its place returning. Headings are capped with the text so their
+   hairline underline ends on the same edge; tables, code and the generated
+   indexes keep the full canvas, because they need the room. */
+.article > :is(p, ul, ol, dl, blockquote, h1, h2, h3, h4, .page-toc) {
+  max-width: var(--measure);
+}
+
 .article p,
 .article li,
 .article td,
@@ -620,12 +661,25 @@ h3 {
   color: var(--blue-hover);
 }
 
+/* Leaving the site is worth flagging: most external links here are government
+   portals, and a founder should know before the tab changes. */
+.article a[href^='http']::after {
+  content: '↗';
+  margin-left: 3px;
+  font-size: 0.78em;
+  vertical-align: 1px;
+  opacity: 0.8;
+}
+
+/* Set as a print margin note: hairline rules above and below bound the block and
+   the bold lead-in ("সারকথা:") names it. A reference work marks an aside with
+   rules and a label, not with a colored slab down one edge. */
 blockquote {
-  margin: 20px 0;
-  border-left: 5px solid var(--green);
-  background: var(--canvas-soft);
-  padding: 15px 20px;
-  color: #3a3f43;
+  margin: 26px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+  color: var(--ink);
 }
 
 blockquote p {
@@ -636,12 +690,32 @@ blockquote p + p {
   margin-top: 0.6em;
 }
 
+/* The MDX section separator ("---"). Left to the browser it renders as a 2px
+   inset mid-gray bar that belongs to no palette and overshoots the measure. */
+hr {
+  height: 0;
+  max-width: var(--measure);
+  margin: 32px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+/* Guides separate almost every section with "---" directly above an h2, which
+   drew a second rule a line and a half from the heading's own hairline
+   underline. The heading is the division; the separator becomes the space it
+   was standing in for. */
+.article hr:has(+ h2),
+.article hr:has(+ h3) {
+  margin: 0;
+  border-top: 0;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 18px 0;
-  background: #fff;
-  font-size: 0.93rem;
+  background: var(--canvas);
+  font-size: 0.9rem;
 }
 
 th,
@@ -653,7 +727,7 @@ td {
 }
 
 th {
-  background: #f1f3f4;
+  background: var(--shade);
   font-weight: 700;
 }
 
@@ -688,7 +762,7 @@ pre {
 
 code {
   border-radius: 3px;
-  background: #f1f3f4;
+  background: var(--shade);
   padding: 1px 4px;
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
   font-size: 0.92em;
@@ -706,10 +780,10 @@ img {
 
 /* mobile "on this page" accordion */
 .page-toc {
-  margin: 0 0 18px;
+  margin: 12px 0 18px;
   border: 1px solid var(--line);
   background: var(--canvas-soft);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
 }
 
 .page-toc summary {
@@ -788,10 +862,11 @@ img {
 
 /* ---------------------------------------------------------- stub notice */
 
+/* The cream ground and the gold hairline carry the caution on their own; the
+   bold heading line names the state. No slab needed down the edge. */
 .stub-notice {
   margin: 18px 0 26px;
   border: 1px solid var(--warn-border);
-  border-left: 6px solid var(--warn-border);
   background: var(--warn-bg);
   padding: 16px 18px;
 }
@@ -825,7 +900,7 @@ a.is-stub-link:hover {
 .stub-chip {
   display: inline-block;
   margin-left: 6px;
-  border: 1px solid #e5d193;
+  border: 1px solid var(--warn-line-soft);
   border-radius: 999px;
   background: var(--warn-bg);
   padding: 0 8px;
@@ -885,11 +960,29 @@ a.is-stub-link:hover {
   border-bottom: 0;
 }
 
+/* A genuine encyclopedia affordance, and the reason the violet exists in this
+   palette: coming back to a section, a founder can see which guides they have
+   already read. Free, no JavaScript, no tracking. Stub links keep their own
+   muted-and-dashed treatment – "visited" would falsely read as "finished". */
+.section-index a:not(.is-stub-link):visited,
+.recent-list a:visited {
+  color: var(--visited);
+}
+
+.section-index a:not(.is-stub-link):visited:hover,
+.recent-list a:visited:hover {
+  color: var(--blue-hover);
+}
+
 .section-index .index-desc {
   display: block;
   color: var(--muted);
   font-size: 0.85rem;
   line-height: 1.6;
+}
+
+.section-index .section-index__note {
+  font-size: 0.9rem;
 }
 
 .section-index details {
@@ -929,7 +1022,7 @@ a.is-stub-link:hover {
   display: grid;
   gap: 4px;
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 700;
 }
 
@@ -937,7 +1030,7 @@ a.is-stub-link:hover {
 .directory-controls select {
   min-height: 36px;
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--canvas);
   padding: 6px 9px;
   color: var(--ink);
   font: inherit;
@@ -952,8 +1045,8 @@ a.is-stub-link:hover {
 
 .directory-controls button {
   min-height: 36px;
-  border: 1px solid var(--line-strong);
-  background: #fff;
+  border: 1px solid var(--line);
+  background: var(--canvas);
   padding: 6px 12px;
   color: var(--green-deep);
   font: inherit;
@@ -964,7 +1057,7 @@ a.is-stub-link:hover {
 
 .directory-controls button:hover {
   border-color: var(--green-deep);
-  background: #f7fbf7;
+  background: var(--green-ground);
 }
 
 .directory-list__summary {
@@ -975,20 +1068,20 @@ a.is-stub-link:hover {
   background: var(--canvas-soft);
   padding: 4px 12px;
   color: var(--muted);
-  font-size: 0.86rem;
-  font-weight: 650;
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 .directory-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--canvas);
 }
 
 .directory-list table {
   min-width: 860px;
   margin: 0;
-  font-size: 0.86rem;
+  font-size: 0.85rem;
 }
 
 .directory-list td:first-child {
@@ -1003,7 +1096,7 @@ a.is-stub-link:hover {
 .directory-list td span {
   margin-top: 4px;
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   line-height: 1.45;
 }
 
@@ -1011,7 +1104,7 @@ a.is-stub-link:hover {
   margin: 0;
   padding: 22px;
   color: var(--muted);
-  font-weight: 650;
+  font-weight: 700;
 }
 
 /* -------------------------------------------------------------- homepage */
@@ -1052,6 +1145,51 @@ a.is-stub-link:hover {
   font-weight: 800;
 }
 
+/* The one ranked pair of actions on the site. Kept inside the flat, bordered
+   vocabulary – the primary is distinguished by a green ground, a green rule and
+   the arrow, never by a saturated fill. */
+.wiki-start {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 22px 0 0;
+}
+
+.wiki-start a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--canvas);
+  padding: 10px 18px;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.wiki-start a:hover {
+  border-color: var(--green);
+  background: var(--green-soft);
+  color: var(--green-deep);
+  text-decoration: none;
+}
+
+.wiki-start .is-primary {
+  border-color: var(--green-deep);
+  background: var(--green-ground);
+  color: var(--green-deep);
+  font-weight: 700;
+}
+
+.wiki-start .is-primary::after {
+  content: '→';
+  transition: transform 140ms ease-out;
+}
+
+.wiki-start .is-primary:hover::after {
+  transform: translateX(3px);
+}
+
 .wiki-subtitle {
   margin: 0 0 14px;
   color: var(--muted);
@@ -1064,65 +1202,34 @@ a.is-stub-link:hover {
   align-items: center;
   margin-top: 16px;
   color: var(--ink);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   white-space: nowrap;
 }
 
 .wiki-notice {
-  display: grid;
-  grid-template-columns: 24px 1fr;
-  gap: 14px;
-  align-items: flex-start;
   margin: 28px 0;
   border: 1px solid var(--warn-border);
-  border-left: 6px solid var(--warn-border);
   background: var(--warn-bg);
   padding: 16px 18px;
   color: var(--warn-ink);
 }
 
-.wiki-notice span {
-  display: grid;
-  place-items: center;
-  width: 18px;
-  height: 18px;
-  margin-top: 3px;
-  border-radius: 50%;
-  background: var(--green);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 800;
+/* Labelled the way a printed reference labels a note, rather than with a
+   letter set inside a colored circle. */
+.wiki-notice strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1rem;
 }
 
 .wiki-notice p {
   margin: 0;
 }
 
-.wiki-quickstart {
-  margin: 26px 0 8px;
-  border: 1px solid var(--line);
-  border-left: 6px solid var(--green);
-  background: #f8fbf7;
-  padding: 18px 22px;
-}
-
-.wiki-quickstart h2 {
-  margin: 0 0 10px;
-  border-bottom: 0;
-  padding-bottom: 0;
-  font-family: var(--sans);
-  font-size: 1.2rem;
-}
-
-.wiki-quickstart ol {
-  margin: 0;
-  padding-left: 22px;
-}
-
 .wiki-infobox {
   border: 1px solid var(--line);
   background: var(--canvas);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
 }
 
 .wiki-infobox .wiki-infobox-title {
@@ -1147,7 +1254,7 @@ a.is-stub-link:hover {
   display: block;
   text-align: center;
   font-family: var(--serif);
-  font-size: 1.05rem;
+  font-size: 1.08rem;
 }
 
 .wiki-infobox > p {
@@ -1193,15 +1300,6 @@ a.is-stub-link:hover {
   margin: 0 0 12px;
 }
 
-.wiki-table-wrap {
-  width: 100%;
-  overflow-x: auto;
-}
-
-.wiki-plain-list {
-  padding-left: 22px;
-}
-
 .wiki-path-grid,
 .wiki-scope-grid,
 .wiki-source-list {
@@ -1219,24 +1317,61 @@ a.is-stub-link:hover {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+/* A last row holding one lone card reads as an accident. When the item count
+   leaves a remainder, the final card takes the whole row instead – the row is
+   then deliberate rather than ragged, whatever the content count grows to. */
+.wiki-path-grid > :last-child:nth-child(4n + 1),
+.wiki-scope-grid > :last-child:nth-child(2n + 1),
+.wiki-source-list > :last-child:nth-child(2n + 1) {
+  grid-column: 1 / -1;
+}
+
+/* Given a whole row, the card reads across it rather than leaving the right
+   two thirds empty: title, description and destination sit on one line. */
+.wiki-path-grid > .wiki-path-card:last-child:nth-child(4n + 1),
+.wiki-source-list > article:last-child:nth-child(2n + 1) {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: baseline;
+  gap: 4px 18px;
+}
+
+.wiki-path-grid > .wiki-path-card:last-child:nth-child(4n + 1) > strong,
+.wiki-source-list > article:last-child:nth-child(2n + 1) > h3 {
+  margin-bottom: 0;
+}
+
+.wiki-path-grid > .wiki-path-card:last-child:nth-child(4n + 1) > span:not([class]) {
+  flex: 1 1 16rem;
+}
+
+.wiki-path-grid > .wiki-path-card:last-child:nth-child(4n + 1) .wiki-path-card__go {
+  margin: 0 0 0 auto;
+  padding-top: 0;
+}
+
 .wiki-path-card,
 .wiki-scope-card,
 .wiki-source-list article {
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--canvas);
   padding: 18px;
   color: var(--ink);
 }
 
+/* Hover answers on the whole surface, not just the outline: the ground warms
+   and the title deepens, so the card reads as one target. */
 .wiki-path-card:hover,
-.wiki-scope-card:hover {
+.wiki-scope-card:hover,
+.wiki-path-card:focus-visible,
+.wiki-scope-card:focus-visible {
   border-color: var(--green);
+  background: var(--green-ground);
   text-decoration: none;
 }
 
 .wiki-path-card {
   display: flex;
-  min-height: 178px;
   flex-direction: column;
 }
 
@@ -1246,7 +1381,9 @@ a.is-stub-link:hover {
   color: var(--green-deep);
 }
 
-.wiki-path-card span,
+/* The description span only – :not([class]) keeps this off the destination cue
+   below, which is also a span and needs its own display and colour. */
+.wiki-path-card > span:not([class]),
 .wiki-scope-card p,
 .wiki-source-list p {
   display: block;
@@ -1254,13 +1391,27 @@ a.is-stub-link:hover {
   color: var(--muted);
 }
 
-.wiki-path-card em {
-  display: block;
+/* Where the card leads. Not a button and not emphasis – a destination cue, so
+   it is set as one: a quiet label with an arrow that steps forward on hover. */
+.wiki-path-card__go {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
   margin-top: auto;
   padding-top: 14px;
   color: var(--green-deep);
-  font-style: normal;
+  font-size: 0.9rem;
   font-weight: 700;
+}
+
+.wiki-path-card__go::after {
+  content: '→';
+  transition: transform 140ms ease-out;
+}
+
+.wiki-path-card:hover .wiki-path-card__go::after,
+.wiki-path-card:focus-visible .wiki-path-card__go::after {
+  transform: translateX(3px);
 }
 
 .wiki-scope-card h3,
@@ -1268,78 +1419,11 @@ a.is-stub-link:hover {
   margin-top: 0;
 }
 
-/* numbered beginner path (kept from redesign, restyled to the wiki look) */
-.path-list {
-  counter-reset: step;
-  margin: 18px 0 0;
-  padding: 0;
-  list-style: none;
-  border: 1px solid var(--line);
-  background: #fff;
-}
-
-.path-list li {
-  margin: 0;
-  border-bottom: 1px solid var(--line-soft);
-}
-
-.path-list li:last-child {
-  border-bottom: 0;
-}
-
-.path-list a {
-  display: grid;
-  grid-template-columns: 44px 1fr auto;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 18px 12px 14px;
-  color: var(--ink);
-}
-
-.path-list a:hover {
-  background: var(--green-soft);
-  text-decoration: none;
-}
-
-.path-list a::before {
-  counter-increment: step;
-  content: counter(step, bengali);
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1.5px solid var(--green);
-  color: var(--green-deep);
-  font-weight: 700;
-}
-
-.path-list.latin a::before {
-  content: counter(step);
-}
-
-.path-list strong {
-  display: block;
-  color: var(--green-deep);
-}
-
-.path-list small {
-  display: block;
-  color: var(--muted);
-  font-size: 0.85rem;
-}
-
-.path-list .path-go {
-  color: var(--green-deep);
-  font-weight: 700;
-  font-size: 0.85rem;
-}
-
 /* FAQ accordion (kept from redesign, wiki styling) */
 .home-faq {
   margin-top: 18px;
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--canvas);
 }
 
 .home-faq details {
@@ -1350,14 +1434,40 @@ a.is-stub-link:hover {
   border-bottom: 0;
 }
 
+/* A stated open/closed sign rather than the browser's default triangle: the
+   marker turns to a minus once the answer is showing. */
 .home-faq summary {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
   padding: 13px 18px;
   font-weight: 700;
   cursor: pointer;
+  list-style: none;
+}
+
+.home-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.home-faq summary::before {
+  content: '+';
+  flex: 0 0 auto;
+  width: 0.8em;
+  color: var(--green-deep);
+  font-weight: 700;
+}
+
+.home-faq details[open] > summary::before {
+  content: '–';
 }
 
 .home-faq summary:hover {
   background: var(--green-soft);
+  color: var(--green-deep);
+}
+
+.home-faq details[open] > summary {
   color: var(--green-deep);
 }
 
@@ -1372,31 +1482,36 @@ a.is-stub-link:hover {
 .contrib-section {
   margin-top: 18px;
   border: 1px solid var(--line);
-  border-left: 6px solid var(--green);
-  background: #f8fbf7;
+  background: var(--green-ground);
   padding: 20px 22px;
 }
 
 .contrib-section p {
   margin: 0 0 14px;
-  color: #2e3a35;
+  color: var(--ink);
 }
 
+/* Stated as a running line, not as dashboard tiles: the counts belong in a
+   sentence about the work, and a half-written manual should not lead with a
+   scoreboard. */
 .contrib-section .contrib-stats {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 32px;
+  gap: 4px 24px;
   margin: 0 0 16px;
-  font-size: 0.85rem;
   color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.contrib-section .contrib-stats span {
+  display: inline-flex;
+  gap: 6px;
+  align-items: baseline;
 }
 
 .contrib-section .contrib-stats b {
-  display: block;
-  font-family: var(--serif);
-  font-size: 1.5rem;
   color: var(--green-deep);
-  line-height: 1.3;
+  font-weight: 700;
 }
 
 /* recently updated */
@@ -1506,6 +1621,11 @@ a.is-stub-link:hover {
 }
 
 @media (max-width: 860px) {
+  /* The header stacks to two rows here (~121px), so anchors need to clear it. */
+  html {
+    scroll-padding-top: 132px;
+  }
+
   body {
     font-size: 15px;
   }
@@ -1534,6 +1654,22 @@ a.is-stub-link:hover {
     display: block;
   }
 
+  /* One-handed reach: keep the painted pill at its designed size, widen only
+     the hit area to the 44px ergonomic target. */
+  .language-switcher::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, 44px);
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+
   .page-shell {
     display: block;
     width: 100%;
@@ -1555,19 +1691,51 @@ a.is-stub-link:hover {
     left: 0;
     z-index: 19;
     width: min(320px, 86vw);
-    background: #fff;
+    background: var(--canvas);
     box-shadow: 12px 0 40px rgb(32 33 34 / 20%);
     transform: translateX(-104%);
-    transition: transform 200ms ease;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 200ms ease, visibility 0s linear 200ms;
     overflow-y: auto;
   }
 
   .sidebar-wrap.is-open {
     transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
   }
 
   .sidebar {
-    padding: 20px 22px 40px;
+    padding: 16px 22px 40px;
+  }
+
+  .sidebar-close {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin: 0 0 10px auto;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--canvas);
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .sidebar-close:hover {
+    border-color: var(--green);
+    background: var(--green-soft);
+  }
+
+  .sidebar-close svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
   }
 
   .sidebar nav {
@@ -1624,20 +1792,18 @@ a.is-stub-link:hover {
     grid-template-columns: 1fr;
   }
 
+  .directory-controls input,
+  .directory-controls select,
+  .directory-controls button {
+    min-height: 44px;
+  }
+
   .wiki-infobox dl div {
     grid-template-columns: 104px 1fr;
   }
 
   .site-footer {
     padding: 22px 18px 28px;
-  }
-
-  .path-list a {
-    grid-template-columns: 40px 1fr;
-  }
-
-  .path-list .path-go {
-    display: none;
   }
 }
 
@@ -1646,12 +1812,12 @@ a.is-stub-link:hover {
     max-width: 10rem;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     line-height: 1.35;
   }
 
   .brand small {
-    font-size: 0.76rem;
+    font-size: 0.82rem;
   }
 
   .article-tabs {
@@ -1688,6 +1854,25 @@ a.is-stub-link:hover {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .language-switcher__thumb,
+  .sidebar-wrap,
+  .wiki-start .is-primary::after,
+  .wiki-path-card__go::after {
+    transition: none;
+  }
+
+  .wiki-start .is-primary:hover::after,
+  .wiki-path-card:hover .wiki-path-card__go::after,
+  .wiki-path-card:focus-visible .wiki-path-card__go::after {
+    transform: none;
+  }
+}
+
 /* ---------------------------------------------------------------- print */
 
 @media print {
@@ -1704,7 +1889,7 @@ a.is-stub-link:hover {
   }
 
   body {
-    background: #fff;
+    background: var(--canvas);
     font-size: 11pt;
   }
 
@@ -1716,5 +1901,9 @@ a.is-stub-link:hover {
   a {
     color: inherit;
     text-decoration: underline;
+  }
+
+  .article a[href^='http']::after {
+    content: none;
   }
 }
