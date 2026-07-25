@@ -35,7 +35,7 @@ function cleanExcerpt(data) {
   return (data?.content || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').slice(0, 160)
 }
 
-export default function SearchBox({ isEn = false, variant = 'header' }) {
+export default function SearchBox({ isEn = false }) {
   const router = useRouter()
   const inputRef = useRef(null)
   const listboxId = `${useId()}listbox`
@@ -52,8 +52,6 @@ export default function SearchBox({ isEn = false, variant = 'header' }) {
   const hasListbox = isOpen && !isLoading && !error && results.length > 0
 
   useEffect(() => {
-    if (variant !== 'header') return undefined
-
     const handleKeyDown = (event) => {
       const isSearchShortcut =
         (event.key === '/' && !/^(INPUT|TEXTAREA)$/.test(document.activeElement?.tagName || '')) ||
@@ -68,7 +66,7 @@ export default function SearchBox({ isEn = false, variant = 'header' }) {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [variant])
+  }, [])
 
   useEffect(() => {
     const trimmedQuery = query.trim()
@@ -211,7 +209,7 @@ export default function SearchBox({ isEn = false, variant = 'header' }) {
 
   return (
     <form
-      className={variant === 'hero' ? 'search search--hero' : 'search'}
+      className="search"
       role="search"
       aria-label={isEn ? 'Search Deshi Startup' : 'দেশি স্টার্টআপে খুঁজুন'}
       onBlur={(event) => {

@@ -13,13 +13,18 @@ colors:
   green: "#047857"
   green-deep: "#065f46"
   green-soft: "#eaf4ef"
+  green-ground: "#f8fbf7"
   blue: "#3366cc"
   blue-hover: "#1f4fb2"
   visited: "#6b4ba1"
   yellow: "#f7c948"
   warn-bg: "#fff8df"
   warn-border: "#e1b900"
+  warn-line-soft: "#e5d193"
   warn-ink: "#5f4b00"
+  error: "#b42318"
+  line-warm: "#d9d5cd"
+  shade: "#f1f3f4"
 typography:
   display:
     fontFamily: "Noto Serif Bengali, Noto Serif, Georgia, serif"
@@ -48,6 +53,27 @@ typography:
     fontSize: "0.82rem"
     fontWeight: 700
     lineHeight: 1.2
+  mono:
+    fontFamily: "SFMono-Regular, Consolas, Liberation Mono, monospace"
+    fontSize: "0.92em"
+  # The enumerated ramp. Dense reference UI needs more steps than the five named
+  # roles above, but every step must be distinguishable: nothing sits within
+  # 0.04rem of its neighbour, which is what a hand-set ramp looks like.
+  scale:
+    display: "clamp(2.1rem, 3vw, 3.2rem)"
+    display-narrow: "2.05rem"
+    headline: "1.55rem"
+    wordmark: "1.25rem"
+    infobox-bar: "1.12rem"
+    title: "1.08rem"
+    base: "16px"
+    notice: "1rem"
+    sm: "0.95rem"
+    xs: "0.9rem"
+    meta: "0.85rem"
+    label: "0.82rem"
+    chip: "0.68rem"
+    toggle: "10px"
 rounded:
   sm: "3px"
   md: "4px"
@@ -65,13 +91,18 @@ components:
     rounded: "{rounded.sm}"
     padding: "12px 16px"
   button-directory:
-    backgroundColor: "#ffffff"
+    backgroundColor: "{colors.canvas}"
     textColor: "{colors.green-deep}"
     rounded: "{rounded.sm}"
     padding: "6px 12px"
   button-directory-hover:
-    backgroundColor: "#f7fbf7"
+    backgroundColor: "{colors.green-ground}"
     textColor: "{colors.green-deep}"
+  button-start-primary:
+    backgroundColor: "{colors.green-ground}"
+    textColor: "{colors.green-deep}"
+    rounded: "{rounded.sm}"
+    padding: "10px 18px"
   contrib-link:
     backgroundColor: "{colors.canvas}"
     textColor: "{colors.ink}"
@@ -123,8 +154,8 @@ rule, active navigation, hover washes, the infobox header, section badges. Blue 
 links, and only links. That single discipline is most of why the site reads as calm and
 authoritative instead of busy. Depth is nearly flat: surfaces sit inside 1px rules, and one soft
 shadow lifts only the reading canvas and floating search results off the paper. Corners are square
-or barely eased (3px); the only true curves are pill toggles and the circular step badges of the
-beginner path.
+or barely eased (3px); the only true curves are pill toggles. Asides are bounded by hairline rules and
+named by a label, never by a colored bar down one edge.
 
 It is built for a first-time, non-technical founder reading on a mid-range Android phone on patchy
 bandwidth. So the aesthetic is inseparable from the engineering: self-hosted Bengali fonts that most
@@ -137,7 +168,7 @@ it.
 - Two-accent discipline: green for structure, blue for links, nothing else competing
 - Serif Bangla display headings over a system-sans body; encyclopedic, not editorial-flashy
 - Flat by default: hairline borders do the work; one soft shadow, used twice
-- Square-cornered geometry with pills reserved for toggles and badges
+- Square-cornered geometry with pills reserved for toggles and count chips; no circles
 - Mobile-first and near-zero-JS; the visual language is also a performance budget
 
 ## Colors
@@ -148,8 +179,7 @@ a warm yellow used only for cautions and toggles.
 ### Primary
 - **Bangladesh Emerald** (`#047857`, `--green`): the identity accent and structural green. Top-of-tab
   rules, the green top border of the reading canvas (in its deeper sibling), checkbox accent,
-  blockquote rule, hover-state borders on cards. This is the color that says "Bangladesh" without a
-  flag.
+  hover-state borders on cards. This is the color that says "Bangladesh" without a flag.
 - **Deep Deshi Green** (`#065f46`, `--green-deep`): the darker, higher-contrast structural green. The
   5px canvas top rule, active sidebar links, the infobox title bar, section-stat numerals, and any
   green text that must clear contrast on white.
@@ -160,7 +190,10 @@ a warm yellow used only for cautions and toggles.
 - **Wiki Link Blue** (`#3366cc`, `--blue`): hyperlinks, and nothing but hyperlinks. The most familiar
   "this is clickable" signal on the web, kept exactly where readers expect it.
 - **Deep Link Blue** (`#1f4fb2`, `--blue-hover`): link hover, with underline.
-- **Read-Link Violet** (`#6b4ba1`, `--visited`): visited in-article links, so a founder can see how
+- **Read-Link Violet** (`#6b4ba1`, `--visited`): visited in-article links **and visited guide links in
+  the generated section indexes and "recently updated" list**, so a founder returning to a topic can
+  see which guides they have already read. Stub links are excluded – they keep their muted dashed
+  treatment, because "visited" there would falsely read as "finished". It lets a founder see how
   far they have read through a topic. A genuine encyclopedia affordance.
 
 ### Tertiary
@@ -213,7 +246,8 @@ Bangla.
   hairline-underlined. On the homepage, some h2s switch to sans for a lighter "module" feel.
 - **Title / h3** (sans, 1.08rem, weight 700): sub-sections, no underline.
 - **Body** (sans, 16px, line-height 1.72): the reading measure. Generous leading for dense Bangla
-  conjuncts; drops to 15px under 860px.
+  conjuncts; drops to 15px under 860px. Prose, headings and lists are capped at `--measure` (65rem);
+  see The Measure Rule below.
 - **Label** (sans, ~0.82–0.85rem, weight 700, Slate Gray): sidebar group headers, meta bar, stat
   pills, breadcrumb text. Never uppercased – Bangla has no case, and Latin labels stay sentence-case.
 - **Brand wordmark** (sans, 1.25rem, weight 800): the header lockup title, the one place weight 800
@@ -226,6 +260,13 @@ UI, labels, and h3 are sans. The serif/sans switch is the primary signal of "thi
 **The Hairline-Underline Rule.** h1 and h2 are separated from their content by a `--line`
 `border-bottom`, not by size or space alone. It is the single most Wikipedia-defining type detail and
 must survive any restyle of headings.
+
+**The Measure Rule.** Prose blocks in `.article` (`p`, lists, `dl`, `blockquote`, `h1`–`h4`, the ToC)
+are capped at `--measure` (65rem ≈ 1040px). The canvas has no right-hand rail, so on a wide monitor an
+uncapped paragraph ran to ~86 Bangla characters a line and the eye lost its place on the return sweep;
+the cap holds it near 73. It is a no-op at or below ~1500px. Headings are capped **with** the text so
+their hairline underline ends on the same edge, and tables, `pre` and the generated indexes are
+deliberately exempt – they need the full canvas.
 
 ## Layout
 
@@ -267,18 +308,32 @@ hairline border, never a shadow.
 Squared and orthogonal. Most surfaces – cards, tables, notices, the infobox, inputs, the canvas
 itself – have **no radius**, edged by `--line`. Interactive fields and inline code take a barely-there
 **3px** radius; a few internal buttons/results use **4px**. The only real curves are **999px pills**
-(the language toggle, stat and directory-summary chips, the stub chip) and **50% circles** (the
-beginner-path step badges numbered in Bengali digits, and the homepage notice icon). Structural
-emphasis is carried by a recurring **6px green or gold left border** on quickstart, contribution, and
-notice blocks – a "margin rule" motif borrowed from print.
+(the language toggle, stat and directory-summary chips, the stub chip). There are no circles.
+
+### Named Rules
+**The Rule-and-Label Rule** *(revised 2026-07-25; supersedes the "margin rule" motif)*. An aside is
+bounded by **hairline rules and named by a label**, never by a thick colored bar down one edge. The
+`সারকথা` summary block takes a 1px `--line` rule above and below with no fill, so the bold `সারকথা:`
+lead-in does the naming; the caution family (stub notice, homepage notice) keeps its Notice Cream
+ground and 1px gold hairline and names itself with a bold heading line.
+
+*Why it changed.* The previous motif was a 5–6px green or gold `border-left` on five block types. It
+was reasoned as a print margin rule, but at that weight it is the single most recognizable signature
+of machine-generated UI, and it was doing decorative work the label and ground already did. Rules and
+a label are what a printed reference work actually uses. Colored `border-left` above 1px is now out of
+the vocabulary; if a block needs to announce itself, give it a label.
 
 ## Components
 
 ### Buttons
 The site is link-driven; true buttons are utilitarian and quiet.
 - **Shape:** square to 3px radius; bordered, never filled with a loud color.
-- **Directory action** (`button-directory`): white background, Deep Deshi Green text, `--line` border,
-  `6px 12px`. **Hover:** border → green-deep, background → `#f7fbf7`.
+- **Homepage start pair** (`.wiki-start`): the one ranked pair of actions on the site. The primary is
+  distinguished by a Green Ground fill, a `--green-deep` border, weight 700 and a trailing `→` that
+  steps 3px on hover; the secondary is an ordinary bordered chip. Rank is carried by ground, rule and
+  the arrow – never by a saturated fill.
+- **Directory action** (`.directory-controls button`): white background, Deep Deshi Green text,
+  `--line` border, `6px 12px`. **Hover:** border → green-deep, background → Green Ground.
 - **Search submit:** a square-capped grid cell joined to the input (`3px` outer corners only), light
   `#f8f9fa` fill, Green Wash on hover.
 - **Contribution link** (`contrib-link`): bordered chip-links ("edit", "history", "report a mistake"),
@@ -321,7 +376,7 @@ label/value rows split on hairline `--line-soft` dividers. It is the encyclopedi
 anchors the homepage hero and topic pages.
 
 ### Stub Notice (signature component)
-A first-class content state, not an afterthought: a Notice Cream banner with a 6px gold left border,
+A first-class content state, not an afterthought: a Notice Cream banner with a 1px gold hairline,
 Notice Brown text, telling the reader the page is an honest stub and inviting a contribution. Its
 existence in the design system reflects that most pages are stubs by design.
 
@@ -339,6 +394,11 @@ existence in the design system reflects that most pages are stubs by design.
 - **Do** use Bengali numerals (০–৯) in Bangla UI and render dates via `toLocaleDateString('bn-BD')`.
 - **Do** keep new interactive elements square or 3px, and reserve pills (999px) for toggles and
   count/stat chips.
+- **Do** bound a new aside with hairline rules and a bold label (The Rule-and-Label Rule), and cap new
+  prose at `--measure` (The Measure Rule).
+- **Do** let a grid's last row fill: when the item count leaves a remainder, the final card spans the
+  row (`:last-child:nth-child(4n + 1)`) and lays out across it. A lone card in a four-wide row reads as
+  an accident, and a magic `min-height` to even the rows is not the fix.
 - **Do** respect the near-zero-JS budget: self-hosted Bengali fonts, no render-blocking Google Fonts,
   no heavy embeds. The look must not cost the founder bandwidth.
 
@@ -349,6 +409,14 @@ existence in the design system reflects that most pages are stubs by design.
   been; drifting away from them while fixing something else is what this rule is against.
 - **Don't** fill buttons, cards, or notices with a saturated brand color, or add drop shadows to make
   things "pop." Flat-with-borders is the system.
+- **Don't** put a colored `border-left`/`border-right` above 1px on a card, callout, notice or list row.
+  It is the most recognizable machine-generated-UI signature there is, and the label and ground already
+  do that work – see The Rule-and-Label Rule.
+- **Don't** set a letter or digit inside a colored circle as an icon, and don't reach for `<em>` or
+  `<b>` as a styling hook (an `em` carrying `font-style: normal` is the giveaway). Name the element for
+  what it is and style the class.
+- **Don't** leave a `font-size` off the `typography.scale` ramp, or a raw hex outside the `colors`
+  block. Five sizes inside 0.05rem of each other is drift, not a system.
 - **Don't** introduce a Google-Font display face or a second serif; the Bengali serif/sans pair is the
   whole type system.
 - **Don't** color a link green or a structural element blue.
