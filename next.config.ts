@@ -34,12 +34,6 @@ const withNextra = nextra({
   },
 });
 
-// Deploy targets mount the site at different roots:
-//   - GitHub Pages serves the project under /deshistartup (a repo subpath)
-//   - The custom domain deshistartup.com (Cloudflare Pages) serves from the root
-// Cloudflare's build environment sets CF_PAGES=1, so we detect it and drop the
-// basePath there. DEPLOY_BASE_PATH overrides everything (handy for local testing).
-const isCloudflare = process.env.CF_PAGES === "1";
 const basePath = process.env.DEPLOY_BASE_PATH ?? "";
 
 /** @type {import('next').NextConfig} */
