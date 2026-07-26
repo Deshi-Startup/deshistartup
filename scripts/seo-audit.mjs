@@ -16,7 +16,8 @@ import {
 } from '../app/seo.config.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const outDir = path.join(root, 'out')
+const htmlDir = path.join(root, 'dist', 'server', 'prerendered-routes')
+const staticDir = path.join(root, 'dist', 'client')
 const pages = JSON.parse(fs.readFileSync(path.join(root, 'app', 'generated', 'seo-pages.json'), 'utf8'))
 const pageByLocaleSlug = new Map(pages.map((page) => [`${page.locale}:${page.slug}`, page]))
 const indexable = pages.filter((page) => !page.stub)
@@ -28,7 +29,7 @@ const warnings = []
 const titleOwners = new Map()
 const descriptionOwners = new Map()
 
-const htmlFileFor = (route) => path.join(outDir, route === '/' ? 'index.html' : `${route.slice(1)}.html`)
+const htmlFileFor = (route) => path.join(htmlDir, route === '/' ? 'index.html' : `${route.slice(1)}.html`)
 const record = (collection, message) => collection.push(message)
 
 function normalizeInternalHref(href, sourceRoute) {
@@ -204,7 +205,7 @@ for (const [route, count] of inbound) {
   if (count === 0) record(errors, `${route}: indexable orphan page with no inbound internal link`)
 }
 
-const sitemapPath = path.join(outDir, 'sitemap.xml')
+const sitemapPath = path.join(staticDir, 'sitemap.xml')
 if (!fs.existsSync(sitemapPath)) {
   record(errors, 'sitemap.xml is missing from production output')
 } else {
@@ -243,7 +244,7 @@ if (!fs.existsSync(sitemapPath)) {
   })
 }
 
-const robotsPath = path.join(outDir, 'robots.txt')
+const robotsPath = path.join(staticDir, 'robots.txt')
 if (!fs.existsSync(robotsPath)) {
   record(errors, 'robots.txt is missing from production output')
 } else {
@@ -267,7 +268,7 @@ if (!fs.existsSync(robotsPath)) {
   }
 }
 
-const llmsPath = path.join(outDir, 'llms.txt')
+const llmsPath = path.join(staticDir, 'llms.txt')
 if (!fs.existsSync(llmsPath)) {
   record(errors, 'llms.txt is missing from production output')
 } else {
@@ -279,10 +280,10 @@ if (!fs.existsSync(llmsPath)) {
 }
 
 for (const required of ['og-default.png', `${INDEXNOW_KEY}.txt`]) {
-  if (!fs.existsSync(path.join(outDir, required))) record(errors, `${required} is missing from production output`)
+  if (!fs.existsSync(path.join(staticDir, required))) record(errors, `${required} is missing from production output`)
 }
 
-const notFoundPath = path.join(outDir, '404.html')
+const notFoundPath = path.join(htmlDir, '404.html')
 if (!fs.existsSync(notFoundPath)) {
   record(errors, '404.html is missing from production output')
 } else {

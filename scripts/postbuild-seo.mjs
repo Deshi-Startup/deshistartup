@@ -23,7 +23,7 @@ import {
 } from '../app/seo.config.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const outDir = path.join(root, 'out')
+const outDir = path.join(root, 'dist', 'server', 'prerendered-routes')
 const pages = JSON.parse(fs.readFileSync(path.join(root, 'app', 'generated', 'seo-pages.json'), 'utf8'))
 
 const pageByLocaleSlug = new Map(pages.map((page) => [`${page.locale}:${page.slug}`, page]))
@@ -235,7 +235,11 @@ for (const page of pages) {
 
   const $ = load(html)
   const documentTitle = $('title').first().text().trim() || page.fullTitle
-  const description = $('meta[name="description"]').first().attr('content') || page.description || DEFAULT_DESCRIPTIONS[page.locale]
+  // Prefer the per-page description from seo-pages.json (sourced from MDX
+  // frontmatter) over the prerendered HTML's <meta name="description">: vinext
+  // does not yet propagate MDX frontmatter into the document metadata, so the
+  // HTML tag falls back to the root-layout default for every page.
+  const description = page.description || $('meta[name="description"]').first().attr('content') || DEFAULT_DESCRIPTIONS[page.locale]
   const articleText = $('.article').text().trim()
   const wordCount = articleText ? articleText.split(/\s+/).length : 0
   const isEn = page.locale === 'en'
@@ -314,6 +318,10 @@ for (const page of pages) {
 
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(expectedDocumentTitle)}</title>`)
   html = html.replace(/(<html\b[^>]*\blang=)["'][^"']*["']/i, `$1"${htmlLanguage}"`)
+  // Normalise the description meta tag so the audit (and any crawler) sees the
+  // per-page value rather than the root-layout default that vinext emits.
+  if ($('meta[name="description"]').length === 0) html = html.replace('</head>', `    <meta name="description" content="${escapeHtml(description)}"/>\n</head>`)
+  else html = html.replace(/<meta\s+name=["']description["']\s+content=["'][^"']*["']/i, `<meta name="description" content="${escapeHtml(description)}"/>`)
   html = html.replace('</head>', `${tags.join('')}\n</head>`)
   // The client shell discovers the page title after hydration; give the static
   // HTML the real breadcrumb leaf (the component suppresses the hydration diff).

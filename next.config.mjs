@@ -13,6 +13,21 @@ const turboRootConfig =
     ? { turbopack: { root: projectRoot } }
     : { experimental: { turbo: { root: projectRoot } } };
 
+// Nextra's wrapper aliases the bare specifier `next-mdx-import-source-file`
+// (which every compiled MDX file imports via `providerImportSource`) to
+// `@vercel/turbopack-next/mdx-import-source` — a virtual module that only
+// exists under Next.js's Turbopack. vinext reads `turbopack.resolveAlias`
+// and feeds it to Vite, where that virtual module fails to resolve.
+// Override it here to point at the project's mdx-components module instead.
+// nextra spreads the user's `resolveAlias` last, so this wins.
+const mdxImportSourceAlias = {
+  turbopack: {
+    resolveAlias: {
+      "next-mdx-import-source-file": "./mdx-components.tsx",
+    },
+  },
+};
+
 const withNextra = nextra({
   search: {
     codeblocks: false,
@@ -25,17 +40,14 @@ const withNextra = nextra({
 // Cloudflare's build environment sets CF_PAGES=1, so we detect it and drop the
 // basePath there. DEPLOY_BASE_PATH overrides everything (handy for local testing).
 const isCloudflare = process.env.CF_PAGES === "1";
-const basePath =
-  process.env.DEPLOY_BASE_PATH ??
-  (process.env.NODE_ENV === "production" && !isCloudflare
-    ? "/deshistartup"
-    : "");
+const basePath = process.env.DEPLOY_BASE_PATH ?? "";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   outputFileTracingRoot: projectRoot,
   ...turboRootConfig,
+  ...mdxImportSourceAlias,
   basePath,
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
