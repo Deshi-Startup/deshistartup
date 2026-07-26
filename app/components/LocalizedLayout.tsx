@@ -1,11 +1,17 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import React, { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import LanguageSwitcher from './LanguageSwitcher'
 import SearchBox from './SearchBox'
+import AuthModal from './AuthModal'
+import { getStoredAuth, UserInfo } from '../lib/client-auth'
 import { bnNav, enNav, REPO_URL } from '../nav.config'
 import sectionsLite from '../generated/sections-lite.json'
+
+// Heavy (Milkdown) — only loads when a contributor opens the editor.
+const ContributionEditor = dynamic(() => import('./ContributionEditor'), { ssr: false })
 
 interface SectionsLite {
   en?: Record<string, string>
@@ -171,10 +177,11 @@ function Breadcrumbs({ isEn, pathname, pageTitle }: BreadcrumbsProps) {
   )
 }
 
-const enTabs = { article: 'Article', talk: 'Talk', edit: 'Edit', history: 'View history' }
+const enTabs = { article: 'Article', talk: 'Talk', read: 'Read', edit: 'Edit', history: 'View history' }
 const bnTabs = {
   article: 'গাইড',
   talk: 'আলোচনা',
+  read: 'পড়ুন',
   edit: 'সম্পাদনা',
   history: 'ইতিহাস'
 }
@@ -193,9 +200,34 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   const [lastUpdated, setLastUpdated] = useState<string | null>(null)
   const [lastVerified, setLastVerified] = useState<string | null>(null)
   const [readMinutes, setReadMinutes] = useState<number | null>(null)
-  const navToggleRef = useRef<HTMLButtonElement>(null)
+  const [session, setSession] = useState<UserInfo | null>(null)
+  const [authToken, setAuthToken] = useState<string | null>(null)
+  const [editorOpen, setEditorOpen] = useState(false)
+  const [authOpen, setAuthOpen] = useState(false)
+    const navToggleRef = useRef<HTMLButtonElement>(null)
   const sidebarRef = useRef<HTMLDivElement>(null)
   const sidebarCloseRef = useRef<HTMLButtonElement>(null)
+
+  // Restore a still-valid Google ID token from localStorage on mount.
+  // Auth is fully client-side; the backend just verifies this token.
+  useEffect(() => {
+    const stored = getStoredAuth()
+    if (stored) {
+      setSession(stored.user)
+      setAuthToken(stored.token)
+    }
+  }, [])
+
+  function handleContribute() {
+    if (session && authToken) setEditorOpen(true)
+    else setAuthOpen(true)
+  }
+
+  function handleAuthenticated(user: UserInfo, token: string) {
+    setSession(user)
+    setAuthToken(token)
+    setEditorOpen(true)
+  }
 
   const closeSidebar = (restoreFocus = false) => {
     setIsSidebarOpen(false)
@@ -436,9 +468,16 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
               </a>
             </div>
             <div className="article-actions">
-              <a href={`${REPO_URL}/edit/main/${file}`} target="_blank" rel="noopener noreferrer">
-                {tabs.edit}
-              </a>
+              <a href="#read">{tabs.read}</a>
+              {isLanding ? (
+                <a href={`${REPO_URL}/edit/main/${file}`} target="_blank" rel="noopener noreferrer">
+                  {tabs.edit}
+                </a>
+              ) : (
+                <button type="button" className="tab-action-btn" onClick={handleContribute}>
+                  {tabs.edit}
+                </button>
+              )}
               <a href={`${REPO_URL}/commits/main/${file}`} target="_blank" rel="noopener noreferrer">
                 {tabs.history}
               </a>
@@ -538,6 +577,22 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             : 'এই সাইট সাধারণ গাইড দেয়। আইনি বা কর পরামর্শ নয়। ফি, ফর্ম ও নিয়ম বদলায়। কাজের আগে সরকারি উৎস (RJSC, NBR, বাংলাদেশ ব্যাংক) থেকে যাচাই করে নিন।'}
         </p>
       </footer>
+
+      <AuthModal
+        open={authOpen}
+        onClose={() => setAuthOpen(false)}
+        onAuthenticated={handleAuthenticated}
+        isEn={isEn}
+      />
+
+      <ContributionEditor
+        open={editorOpen}
+        onClose={() => setEditorOpen(false)}
+        pathname={pathname}
+        isEn={isEn}
+        session={session}
+        authToken={authToken}
+      />
     </>
   )
 }

@@ -30,7 +30,11 @@ const basePath =
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
-  output: 'export',
+  // NOTE: `output: 'export'` was removed so the contribution feature's
+  // dynamic route handlers (/api/auth/*, /api/content, /api/contribute)
+  // work. Static export is handled on the vinext/deploy branch. If you need
+  // the GitHub Pages static mirror again, restore `output: 'export'` there
+  // (it is incompatible with server-side API routes).
   outputFileTracingRoot: projectRoot,
   ...turboRootConfig,
   basePath,
