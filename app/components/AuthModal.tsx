@@ -6,6 +6,9 @@ import { decodeIdToken, storeAuth, UserInfo } from '../lib/client-auth'
 
 const GIS_SRC = 'https://accounts.google.com/gsi/client'
 const GIS_SCRIPT_SELECTOR = 'script[data-deshi-gis]'
+/** Long enough for a bad 3G connection, short enough that nobody waits at a
+ *  spinner wondering whether it is them. */
+const GIS_TIMEOUT_MS = 12000
 const FOCUSABLE_SELECTOR =
   'a[href], button:not(:disabled), iframe, input:not(:disabled), [tabindex]:not([tabindex="-1"])'
 
@@ -159,13 +162,33 @@ export default function AuthModal({
     }
 
     let active = true
+    let watchdog = 0
     setError(null)
     setLoading(true)
 
+    /* Google's script is on most content blockers' lists, and it is reachable
+       unevenly from Bangladeshi networks. Both failures look the same from
+       here: either `error` never fires and nothing ever loads, or the request
+       "succeeds" and defines nothing. Without this the modal sits on
+       "সাইন-ইন প্রস্তুত হচ্ছে…" forever, and the GitHub fallback — which only
+       renders beside an error — never appears. Fail loudly instead. */
+    const fail = () => {
+      if (!active) return
+      window.clearTimeout(watchdog)
+      const blocked = document.querySelector(GIS_SCRIPT_SELECTOR) as HTMLScriptElement | null
+      if (blocked) blocked.dataset.loadState = 'error'
+      setLoading(false)
+      setError('script_load_failed')
+    }
+
     const init = () => {
+      if (!active) return
       const googleId = window.google?.accounts?.id
       const container = containerRef.current
-      if (!active || !googleId || !container) return
+      // The script resolved but handed us nothing usable — a blocked or stubbed
+      // response. There is nothing to wait for.
+      if (!googleId || !container) return fail()
+      window.clearTimeout(watchdog)
 
       if (!window.__deshiGoogleAuth || window.__deshiGoogleAuth.clientId !== clientId) {
         window.__deshiGoogleAuth = {
@@ -195,41 +218,40 @@ export default function AuthModal({
     }
 
     const handleLoad = () => init()
-    const handleError = () => {
-      if (!active) return
-      const script = document.querySelector(GIS_SCRIPT_SELECTOR) as HTMLScriptElement | null
-      if (script) script.dataset.loadState = 'error'
-      setLoading(false)
-      setError('script_load_failed')
-    }
+    const handleError = () => fail()
 
     if (window.google?.accounts?.id) {
       init()
-    } else {
-      let script = document.querySelector(GIS_SCRIPT_SELECTOR) as HTMLScriptElement | null
-      if (script?.dataset.loadState === 'error') {
-        script.remove()
-        script = null
-      }
-      if (!script) {
-        script = document.createElement('script')
-        script.src = `${GIS_SRC}?hl=${isEn ? 'en' : 'bn'}`
-        script.async = true
-        script.defer = true
-        script.dataset.deshiGis = 'true'
-        script.dataset.loadState = 'loading'
-        document.head.appendChild(script)
-      }
-      script.addEventListener('load', handleLoad)
-      script.addEventListener('error', handleError)
       return () => {
         active = false
-        script?.removeEventListener('load', handleLoad)
-        script?.removeEventListener('error', handleError)
+        window.clearTimeout(watchdog)
       }
     }
+
+    let script = document.querySelector(GIS_SCRIPT_SELECTOR) as HTMLScriptElement | null
+    if (script?.dataset.loadState === 'error') {
+      script.remove()
+      script = null
+    }
+    if (!script) {
+      script = document.createElement('script')
+      script.src = `${GIS_SRC}?hl=${isEn ? 'en' : 'bn'}`
+      script.async = true
+      script.defer = true
+      script.dataset.deshiGis = 'true'
+      script.dataset.loadState = 'loading'
+      document.head.appendChild(script)
+    }
+    script.addEventListener('load', handleLoad)
+    script.addEventListener('error', handleError)
+    // Covers the case no event reports: a request that never resolves, and a
+    // script tag already in the document whose `load` fired before we listened.
+    watchdog = window.setTimeout(fail, GIS_TIMEOUT_MS)
     return () => {
       active = false
+      window.clearTimeout(watchdog)
+      script?.removeEventListener('load', handleLoad)
+      script?.removeEventListener('error', handleError)
     }
     // `handleCredential` deliberately belongs to the active modal render.
     // eslint-disable-next-line react-hooks/exhaustive-deps

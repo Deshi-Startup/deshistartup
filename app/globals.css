@@ -620,6 +620,17 @@ a.tab {
   color: var(--blue);
 }
 
+/* "ভুল জানান" is the one repair action on every page, and at the meta line's
+   0.85rem it lands at 23px tall – a pixel under WCAG 2.2 SC 2.5.8. Give it the
+   24px on touch only, so the line keeps its weight under a mouse. */
+@media (pointer: coarse) {
+  .article-meta a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+  }
+}
+
 /* --------------------------------------------------------------- article */
 
 .article {

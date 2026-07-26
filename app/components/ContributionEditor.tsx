@@ -363,6 +363,14 @@ export default function ContributionEditor({
       setSubmitError('locked_content_changed')
       return
     }
+    // Select-all then delete is one keystroke away, and the frontmatter alone
+    // is long enough to clear the server's length check. Stop a blanked page
+    // here, where the work is still recoverable, rather than turning it into a
+    // pull request a reviewer has to close.
+    if (!body.trim()) {
+      setSubmitError('content_empty')
+      return
+    }
     if (!authToken) {
       setSubmitError('unauthorized')
       onReauthenticate()
@@ -388,7 +396,9 @@ export default function ContributionEditor({
     } catch (err: unknown) {
       const code = err instanceof Error ? err.message : 'submit_failed'
       const knownCode = [
+        'content_empty',
         'content_too_large',
+        'content_too_short',
         'auth_unavailable',
         'locked_content_changed',
         'not_contributable',
@@ -600,11 +610,17 @@ export default function ContributionEditor({
                             'পরিবর্তনটি একবারে পাঠানোর জন্য খুব বড়। ছোট ভাগে পাঠান, বা GitHub-এ সম্পাদনা করুন।',
                             'This change is too large to send at once. Submit a smaller edit, or edit on GitHub.'
                           )
-                        : t(
-                            isEn,
-                            'রিভিউতে পাঠানো যায়নি। একটু পরে আবার চেষ্টা করুন। আপনার পরিবর্তন এই পাতাতেই আছে।',
-                            'The changes could not be sent for review. Try again in a moment; your work is still here.'
-                          )}
+                        : submitError === 'content_empty' || submitError === 'content_too_short'
+                          ? t(
+                              isEn,
+                              'পাতাটি এখন ফাঁকা, তাই কিছু পাঠানো হয়নি। লেখা ভুলে মুছে গিয়ে থাকলে Ctrl+Z (Mac-এ Cmd+Z) চেপে ফিরিয়ে আনুন, তারপর আবার পাঠান।',
+                              'The page is empty, so nothing was sent. If the text was deleted by accident, press Ctrl+Z (Cmd+Z on a Mac) to bring it back, then send again.'
+                            )
+                          : t(
+                              isEn,
+                              'রিভিউতে পাঠানো যায়নি। একটু পরে আবার চেষ্টা করুন। আপনার পরিবর্তন এই পাতাতেই আছে।',
+                              'The changes could not be sent for review. Try again in a moment; your work is still here.'
+                            )}
                 </p>
                 {submitError === 'unauthorized' && (
                   <button type="button" className="edit-btn" onClick={onReauthenticate}>

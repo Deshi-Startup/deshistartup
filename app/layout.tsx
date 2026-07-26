@@ -1,4 +1,5 @@
 import React from 'react'
+import Script from 'next/script'
 import LocalizedLayout from './components/LocalizedLayout'
 import { DEFAULT_DESCRIPTIONS, SITE_NAME, SITE_NAME_BN, SITE_URL } from './seo.config.mjs'
 import './globals.css'
@@ -51,13 +52,17 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="bn" dir="ltr" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: googleTagManagerScript }} />
-      </head>
       <body>
+        {/* Analytics loads after first-party code, not during head parse. A founder
+            on a mid-range Android on patchy bandwidth gets the article first; the
+            measurement still happens, just not ahead of the thing they came for. */}
+        <Script id="gtm-init" strategy="afterInteractive">
+          {googleTagManagerScript}
+        </Script>
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${googleTagManagerId}`}
+            title="Google Tag Manager"
             height="0"
             width="0"
             style={{ display: 'none', visibility: 'hidden' }}
