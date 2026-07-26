@@ -9,6 +9,12 @@
   ],
   "workers_dev": true,
   "preview_urls": true,
+  "routes": [
+    {
+      "pattern": "deshistartup.com",
+      "custom_domain": true
+    }
+  ],
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
