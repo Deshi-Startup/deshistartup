@@ -9,7 +9,7 @@
  * PKCS#8 PEM format — GitHub App keys can be either).
  */
 
-import { createPrivateKey, sign as nodeSign, createHash } from 'node:crypto'
+import { createPrivateKey, sign as nodeSign, createHash, KeyObject } from 'node:crypto'
 import { appendFileSync } from 'node:fs'
 
 const API = 'https://api.github.com'
@@ -17,11 +17,11 @@ const REPO = process.env.GITHUB_REPO || 'Deshi-Startup/deshistartup'
 
 const enc = new TextEncoder()
 
-function repoApi(path) {
+function repoApi(path: string) {
   return `${API}/repos/${REPO}${path}`
 }
 
-function apiHeaders(token, extra = {}) {
+function apiHeaders(token: string, extra: Record<string, string> = {}) {
   return {
     Authorization: `Bearer ${token}`,
     Accept: 'application/vnd.github+json',
@@ -33,18 +33,18 @@ function apiHeaders(token, extra = {}) {
 
 // --- base64url / base64 helpers (portable) ---
 
-function b64urlFromBytes(bytes) {
+function b64urlFromBytes(bytes: Uint8Array | ArrayBuffer): string {
   const arr = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes)
   let bin = ''
   for (let i = 0; i < arr.length; i++) bin += String.fromCharCode(arr[i])
   return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
 }
 
-function b64urlFromStr(s) {
+function b64urlFromStr(s: string): string {
   return b64urlFromBytes(enc.encode(s))
 }
 
-function utf8ToBase64(str) {
+function utf8ToBase64(str: string): string {
   const bytes = enc.encode(str)
   let bin = ''
   for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i])
@@ -53,8 +53,8 @@ function utf8ToBase64(str) {
 
 // --- GitHub App JWT (RS256) ---
 
-let _cachedKey = null
-function getAppKey() {
+let _cachedKey: KeyObject | null = null
+function getAppKey(): KeyObject {
   if (_cachedKey) return _cachedKey
   const pem = process.env.GITHUB_APP_PRIVATE_KEY
   if (!pem) throw new Error('GITHUB_APP_PRIVATE_KEY is not set')
@@ -64,7 +64,7 @@ function getAppKey() {
   return _cachedKey
 }
 
-export async function appJwt() {
+export async function appJwt(): Promise<string> {
   const appId = process.env.GITHUB_APP_ID
   if (!appId) throw new Error('GITHUB_APP_ID is not set')
   const key = getAppKey()
@@ -78,9 +78,9 @@ export async function appJwt() {
 
 // --- Installation token (cached ~55 min) ---
 
-let _tokenCache = { token: null, expiresAt: 0 }
+let _tokenCache = { token: null as string | null, expiresAt: 0 }
 
-export async function installationToken() {
+export async function installationToken(): Promise<string> {
   const now = Date.now()
   if (_tokenCache.token && _tokenCache.expiresAt - now > 5 * 60 * 1000) {
     return _tokenCache.token
@@ -101,12 +101,12 @@ export async function installationToken() {
     token: data.token,
     expiresAt: data.expires_at ? new Date(data.expires_at).getTime() : now + 50 * 60 * 1000
   }
-  return _tokenCache.token
+  return _tokenCache.token!
 }
 
 // --- PR creation ---
 
-function branchSlugFromPath(path) {
+function branchSlugFromPath(path: string): string {
   const slug = path
     .replace(/^\/en\//, 'en-')
     .replace(/^\//, '')
@@ -116,18 +116,24 @@ function branchSlugFromPath(path) {
   return slug || 'page'
 }
 
-function emailHash(email) {
+function emailHash(email: string): string {
   return createHash('sha256').update((email || '').toLowerCase().trim()).digest('hex').slice(0, 8)
 }
 
 /** Deterministic branch name per contributor+page — same user editing the
  *  same page always lands on the same branch, so a second edit updates the
  *  existing PR instead of creating a duplicate. */
-function contribBranchName(pagePath, contributorEmail) {
+function contribBranchName(pagePath: string, contributorEmail: string): string {
   return `contrib/${branchSlugFromPath(pagePath || '')}-${emailHash(contributorEmail)}`
 }
 
-async function gh(path, { method = 'GET', body, token } = {}) {
+interface GhOptions {
+  method?: string
+  body?: any
+  token: string
+}
+
+async function gh(path: string, { method = 'GET', body, token }: GhOptions) {
   const res = await fetch(repoApi(path), {
     method,
     headers: apiHeaders(token, body ? { 'Content-Type': 'application/json' } : {}),
@@ -136,7 +142,7 @@ async function gh(path, { method = 'GET', body, token } = {}) {
   return res
 }
 
-async function ghJson(path, opts) {
+async function ghJson(path: string, opts: GhOptions): Promise<any> {
   const res = await gh(path, opts)
   if (!res.ok) {
     const text = await res.text()
@@ -149,7 +155,7 @@ async function ghJson(path, opts) {
  * Check if a contributor has an open PR for a page.
  * Returns { branchName, prUrl } or null.
  */
-export async function findOpenContribution(pagePath, contributorEmail) {
+export async function findOpenContribution(pagePath: string, contributorEmail: string): Promise<{ branchName: string, prUrl: string } | null> {
   const token = await installationToken()
   const branchName = contribBranchName(pagePath, contributorEmail)
   const owner = REPO.split('/')[0]
@@ -170,6 +176,19 @@ export async function findOpenContribution(pagePath, contributorEmail) {
   return { branchName, prUrl: prs[0].html_url }
 }
 
+interface CreateContributionPRProps {
+  repoPath: string
+  content: string
+  summary: string
+  contributor: {
+    name: string
+    email: string
+  }
+  pageTitle: string
+  pageUrl?: string
+  pagePath: string
+}
+
 /**
  * Creates or updates a contribution PR.
  *
@@ -184,8 +203,8 @@ export async function findOpenContribution(pagePath, contributorEmail) {
  *
  * @returns {{ prUrl: string, prNumber: number, updated: boolean }}
  */
-export async function createContributionPR({ repoPath, content, summary, contributor, pageTitle, pageUrl, pagePath }) {
-  const _dbg = (msg) => { try { appendFileSync('/tmp/contrib-debug.log', `${new Date().toISOString()} ${msg}\n`) } catch {} }
+export async function createContributionPR({ repoPath, content, summary, contributor, pageTitle, pageUrl, pagePath }: CreateContributionPRProps) {
+  const _dbg = (msg: string) => { try { appendFileSync('/tmp/contrib-debug.log', `${new Date().toISOString()} ${msg}\n`) } catch {} }
   _dbg(`createContributionPR: pagePath=${pagePath} email=${contributor?.email} repoPath=${repoPath}`)
   const token = await installationToken()
   const branchName = contribBranchName(pagePath, contributor.email)
@@ -200,7 +219,7 @@ export async function createContributionPR({ repoPath, content, summary, contrib
   _dbg(`step1 branchExists=${branchExists} (${refRes.status})`)
 
   // 2. Is there an open PR for it?
-  let existingPR = null
+  let existingPR: any = null
   if (branchExists) {
     const params = new URLSearchParams({ state: 'open', head: `${owner}:${branchName}`, per_page: '1' })
     const prRes = await fetch(repoApi(`/pulls?${params}`), { headers: apiHeaders(token) })

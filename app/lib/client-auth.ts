@@ -1,14 +1,14 @@
 /**
  * Client-side Google auth state. The ID token comes straight from Google
  * Identity Services ("Sign in with Google") in the browser; the backend
- * verifies it on each request (see app/lib/google-token.js). No server
+ * verifies it on each request (see app/lib/google-token.ts). No server
  * session exists — the token lives in localStorage and is sent as a
  * Bearer header with API calls. Google ID tokens expire in ~1 hour.
  */
 
 const STORAGE_KEY = 'deshi_auth'
 
-function b64urlToBytes(str) {
+function b64urlToBytes(str: string): Uint8Array {
   let s = str.replace(/-/g, '+').replace(/_/g, '/')
   while (s.length % 4) s += '='
   const bin = atob(s)
@@ -17,8 +17,19 @@ function b64urlToBytes(str) {
   return arr
 }
 
+export interface UserInfo {
+  name: string
+  email: string
+  picture: string
+}
+
+export interface AuthState {
+  token: string
+  user: UserInfo
+}
+
 /** Decode (not verify) a JWT payload — client-side display only. */
-export function decodeIdToken(token) {
+export function decodeIdToken(token: string): any {
   try {
     const payload = token.split('.')[1]
     return JSON.parse(new TextDecoder().decode(b64urlToBytes(payload)))
@@ -27,7 +38,7 @@ export function decodeIdToken(token) {
   }
 }
 
-export function getStoredAuth() {
+export function getStoredAuth(): AuthState | null {
   if (typeof window === 'undefined') return null
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY)
@@ -45,7 +56,7 @@ export function getStoredAuth() {
   }
 }
 
-export function storeAuth(token, user) {
+export function storeAuth(token: string, user: UserInfo): void {
   if (typeof window === 'undefined') return
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ token, user }))
@@ -54,7 +65,7 @@ export function storeAuth(token, user) {
   }
 }
 
-export function clearAuth() {
+export function clearAuth(): void {
   if (typeof window === 'undefined') return
   try {
     window.localStorage.removeItem(STORAGE_KEY)

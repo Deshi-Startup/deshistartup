@@ -1,26 +1,33 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
+import React, { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import LanguageSwitcher from './LanguageSwitcher'
 import SearchBox from './SearchBox'
 import AuthModal from './AuthModal'
-import { getStoredAuth } from '../lib/client-auth'
+import { getStoredAuth, UserInfo } from '../lib/client-auth'
 import { bnNav, enNav, REPO_URL } from '../nav.config'
 import sectionsLite from '../generated/sections-lite.json'
 
 // Heavy (Milkdown) — only loads when a contributor opens the editor.
 const ContributionEditor = dynamic(() => import('./ContributionEditor'), { ssr: false })
 
-function localHref(href) {
+interface SectionsLite {
+  en?: Record<string, string>
+  bn?: Record<string, string>
+}
+
+const typedSectionsLite = sectionsLite as unknown as SectionsLite
+
+function localHref(href: string) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
   if (!href.startsWith('/')) return href
   if (!basePath) return href
   return href === '/' ? basePath || '/' : `${basePath}${href}`
 }
 
-function sourceFileFor(pathname) {
+function sourceFileFor(pathname: string) {
   if (pathname === '/en' || pathname.startsWith('/en/')) {
     const rest = pathname === '/en' ? '' : pathname.slice(3)
     return `app/(contents)/en${rest}/page.mdx`
@@ -28,9 +35,9 @@ function sourceFileFor(pathname) {
   return `app/(contents)/(bn)${pathname === '/' ? '' : pathname}/page.mdx`
 }
 
-const bengaliDigits = (value) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[d])
+const bengaliDigits = (value: number | string) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[Number(d)])
 
-function formatDate(iso, isEn) {
+function formatDate(iso: string | null, isEn: boolean) {
   if (!iso) return null
   try {
     return new Date(`${iso}T00:00:00Z`).toLocaleDateString(isEn ? 'en-GB' : 'bn-BD', {
@@ -52,11 +59,43 @@ function GitHubIcon() {
   )
 }
 
-function Sidebar({ isEn, pathname, headings, onNavigate }) {
+interface HeadingItem {
+  id: string
+  text: string
+}
+
+interface SidebarProps {
+  isEn: boolean
+  pathname: string
+  headings: HeadingItem[]
+  onNavigate: () => void
+  onClose: () => void
+  closeButtonRef: React.RefObject<HTMLButtonElement | null>
+  isOpen: boolean
+}
+
+function Sidebar({ isEn, pathname, headings, onNavigate, onClose, closeButtonRef, isOpen }: SidebarProps) {
   const nav = isEn ? enNav : bnNav
 
   return (
-    <aside className="sidebar" id="sidebar" aria-label={isEn ? 'Primary navigation' : 'প্রধান মেনু'}>
+    <aside
+      className="sidebar"
+      id="sidebar"
+      role={isOpen ? 'dialog' : undefined}
+      aria-modal={isOpen ? 'true' : undefined}
+      aria-label={isEn ? 'Primary navigation' : 'প্রধান মেনু'}
+    >
+      <button
+        className="sidebar-close"
+        type="button"
+        ref={closeButtonRef}
+        onClick={onClose}
+        aria-label={isEn ? 'Close navigation' : 'মেনু বন্ধ করুন'}
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m6 6 12 12M18 6 6 18" />
+        </svg>
+      </button>
       <nav>
         {nav.map((group) => (
           <div className="sidebar-group" key={group.label}>
@@ -95,19 +134,25 @@ function Sidebar({ isEn, pathname, headings, onNavigate }) {
         <p className="sidebar-note">
           {isEn
             ? 'Free & open source. Every guide can be improved by anyone – including you.'
-            : 'সম্পূর্ণ ফ্রি ও ওপেন সোর্স। প্রতিটি গাইড যে কেউ আরও ভালো করতে পারেন, আপনিও।'}
+            : 'সম্পূর্ণ ফ্রি ও ওপেন সোর্স। প্রতিটি গাইড যে কেউ সংশোধন করতে পারেন, আপনিও।'}
         </p>
       </nav>
     </aside>
   )
 }
 
-function Breadcrumbs({ isEn, pathname, pageTitle }) {
+interface BreadcrumbsProps {
+  isEn: boolean
+  pathname: string
+  pageTitle: string
+}
+
+function Breadcrumbs({ isEn, pathname, pageTitle }: BreadcrumbsProps) {
   const segments = pathname.split('/').filter(Boolean)
   const rest = isEn ? segments.slice(1) : segments
   if (rest.length === 0) return null
 
-  const sectionTitles = (isEn ? sectionsLite.en : sectionsLite.bn) || {}
+  const sectionTitles = (isEn ? typedSectionsLite.en : typedSectionsLite.bn) || {}
   const crumbs = [{ href: isEn ? '/en' : '/', label: isEn ? 'Home' : 'প্রধান পাতা' }]
 
   if (rest.length > 1) {
@@ -134,32 +179,34 @@ function Breadcrumbs({ isEn, pathname, pageTitle }) {
 
 const enTabs = { article: 'Article', talk: 'Talk', read: 'Read', edit: 'Edit', history: 'View history' }
 const bnTabs = {
-  article:
-    'গাইড',
-  talk:
-    'আলোচনা',
-  read:
-    'পড়ুন',
-  edit:
-    'সম্পাদনা',
-  history:
-    'ইতিহাস'
+  article: 'গাইড',
+  talk: 'আলোচনা',
+  read: 'পড়ুন',
+  edit: 'সম্পাদনা',
+  history: 'ইতিহাস'
 }
 
-export default function LocalizedLayout({ children }) {
+interface LocalizedLayoutProps {
+  children?: React.ReactNode
+}
+
+export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   const pathname = usePathname()
   const isEn = pathname.startsWith('/en/') || pathname === '/en'
   const isLanding = pathname === '/' || pathname === '/en'
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const [headings, setHeadings] = useState([])
+  const [headings, setHeadings] = useState<HeadingItem[]>([])
   const [pageTitle, setPageTitle] = useState('')
-  const [lastUpdated, setLastUpdated] = useState(null)
-  const [lastVerified, setLastVerified] = useState(null)
-  const [readMinutes, setReadMinutes] = useState(null)
-  const [session, setSession] = useState(null)
-  const [authToken, setAuthToken] = useState(null)
+  const [lastUpdated, setLastUpdated] = useState<string | null>(null)
+  const [lastVerified, setLastVerified] = useState<string | null>(null)
+  const [readMinutes, setReadMinutes] = useState<number | null>(null)
+  const [session, setSession] = useState<UserInfo | null>(null)
+  const [authToken, setAuthToken] = useState<string | null>(null)
   const [editorOpen, setEditorOpen] = useState(false)
   const [authOpen, setAuthOpen] = useState(false)
+    const navToggleRef = useRef<HTMLButtonElement>(null)
+  const sidebarRef = useRef<HTMLDivElement>(null)
+  const sidebarCloseRef = useRef<HTMLButtonElement>(null)
 
   // Restore a still-valid Google ID token from localStorage on mount.
   // Auth is fully client-side; the backend just verifies this token.
@@ -176,11 +223,84 @@ export default function LocalizedLayout({ children }) {
     else setAuthOpen(true)
   }
 
-  function handleAuthenticated(user, token) {
+  function handleAuthenticated(user: UserInfo, token: string) {
     setSession(user)
     setAuthToken(token)
     setEditorOpen(true)
   }
+
+  const closeSidebar = (restoreFocus = false) => {
+    setIsSidebarOpen(false)
+    if (restoreFocus) window.requestAnimationFrame(() => navToggleRef.current?.focus())
+  }
+
+  useEffect(() => {
+    if (!isSidebarOpen) return undefined
+
+    const mobileQuery = window.matchMedia('(max-width: 860px)')
+    if (!mobileQuery.matches) return undefined
+
+    const backgroundElements = [
+      document.querySelector('.skip-link'),
+      document.querySelector('.site-header'),
+      document.querySelector('.content-canvas'),
+      document.querySelector('.site-footer')
+    ].filter((el): el is HTMLElement => !!el)
+    
+    sidebarCloseRef.current?.focus()
+    document.body.classList.add('nav-open')
+    backgroundElements.forEach((element) => {
+      // @ts-ignore
+      element.inert = true
+      element.setAttribute('aria-hidden', 'true')
+    })
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        setIsSidebarOpen(false)
+        window.requestAnimationFrame(() => navToggleRef.current?.focus())
+        return
+      }
+
+      if (event.key !== 'Tab') return
+
+      const focusable = [
+        ...(sidebarRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') || [])
+      ].filter((element) => element.offsetParent !== null)
+
+      if (focusable.length === 0) return
+
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+
+    const handleViewportChange = (event: MediaQueryListEvent) => {
+      if (!event.matches) setIsSidebarOpen(false)
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    mobileQuery.addEventListener('change', handleViewportChange)
+
+    return () => {
+      document.body.classList.remove('nav-open')
+      backgroundElements.forEach((element) => {
+        // @ts-ignore
+        element.inert = false
+        element.removeAttribute('aria-hidden')
+      })
+      window.removeEventListener('keydown', handleKeyDown)
+      mobileQuery.removeEventListener('change', handleViewportChange)
+    }
+  }, [isSidebarOpen])
 
   useEffect(() => {
     document.documentElement.lang = isEn ? 'en' : 'bn'
@@ -197,12 +317,12 @@ export default function LocalizedLayout({ children }) {
 
     const h1 = article.querySelector('h1')
     // Short form for chrome (breadcrumb leaf, issue titles): cut at the em dash.
-    setPageTitle(h1 ? h1.textContent.split('–')[0].trim() : '')
+    setPageTitle(h1 ? h1.textContent?.split('–')[0].trim() || '' : '')
 
-    const slugify = (value) =>
+    const slugify = (value: string) =>
       value.trim().toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-+|-+$/g, '')
 
-    const seen = new Set()
+    const seen = new Set<string>()
     const nextHeadings = [...article.querySelectorAll('h2')].slice(0, 16).map((heading, index) => {
       if (!heading.id) {
         let id = slugify(heading.textContent || '') || `section-${index + 1}`
@@ -290,10 +410,19 @@ export default function LocalizedLayout({ children }) {
             <button
               className="nav-toggle"
               type="button"
-              aria-label={isEn ? 'Toggle navigation' : 'মেনু খুলুন/বন্ধ করুন'}
+              ref={navToggleRef}
+              aria-label={
+                isSidebarOpen
+                  ? isEn
+                    ? 'Close navigation'
+                    : 'মেনু বন্ধ করুন'
+                  : isEn
+                    ? 'Open navigation'
+                    : 'মেনু খুলুন'
+              }
               aria-expanded={isSidebarOpen}
               aria-controls="sidebar"
-              onClick={() => setIsSidebarOpen((value) => !value)}
+              onClick={() => (isSidebarOpen ? closeSidebar() : setIsSidebarOpen(true))}
             >
               <span />
               <span />
@@ -306,21 +435,28 @@ export default function LocalizedLayout({ children }) {
       <div className="page-shell">
         <div
           className={isSidebarOpen ? 'sidebar-backdrop is-open' : 'sidebar-backdrop'}
-          onClick={() => setIsSidebarOpen(false)}
+          aria-hidden="true"
+          onClick={() => closeSidebar(true)}
         />
-        <div className={isSidebarOpen ? 'sidebar-wrap is-open' : 'sidebar-wrap'}>
+        <div
+          ref={sidebarRef}
+          className={isSidebarOpen ? 'sidebar-wrap is-open' : 'sidebar-wrap'}
+        >
           <Sidebar
             isEn={isEn}
             pathname={pathname}
             headings={isLanding ? [] : headings}
-            onNavigate={() => setIsSidebarOpen(false)}
+            onNavigate={() => closeSidebar()}
+            onClose={() => closeSidebar(true)}
+            closeButtonRef={sidebarCloseRef}
+            isOpen={isSidebarOpen}
           />
         </div>
 
         <main className="content-canvas" id="main">
-          <div className="article-tabs" id="read">
-            <div className="tab-group" role="tablist" aria-label={isEn ? 'Page type' : 'পাতার ধরন'}>
-              <button className="tab active" type="button">{tabs.article}</button>
+          <nav className="article-tabs" aria-label={isEn ? 'About this page' : 'এই পাতা নিয়ে'}>
+            <div className="tab-group">
+              <span className="tab active" aria-current="page">{tabs.article}</span>
               <a
                 className="tab"
                 href={`${REPO_URL}/discussions`}
@@ -346,7 +482,7 @@ export default function LocalizedLayout({ children }) {
                 {tabs.history}
               </a>
             </div>
-          </div>
+          </nav>
 
           {!isLanding && (
             <div className="article-lede">
@@ -380,7 +516,7 @@ export default function LocalizedLayout({ children }) {
                   </a>
               </div>
               {headings.length > 2 && (
-                <details className="page-toc" style={{ marginTop: 12 }}>
+                <details className="page-toc">
                   <summary>{isEn ? 'On this page' : 'এই পাতায়'}</summary>
                   <ul>
                     {headings.map((heading) => (

@@ -1,9 +1,23 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { decodeIdToken, storeAuth } from '../lib/client-auth'
+import React, { useEffect, useRef, useState } from 'react'
+import { decodeIdToken, storeAuth, UserInfo } from '../lib/client-auth'
 
 const GIS_SRC = 'https://accounts.google.com/gsi/client'
+
+// Declare global google client library namespace
+declare global {
+  interface Window {
+    google?: any
+  }
+}
+
+interface AuthModalProps {
+  open: boolean
+  onClose?: () => void
+  onAuthenticated?: (user: UserInfo, token: string) => void
+  isEn?: boolean
+}
 
 /**
  * Google sign-in modal. Uses Google Identity Services ("Sign in with
@@ -11,12 +25,12 @@ const GIS_SRC = 'https://accounts.google.com/gsi/client'
  * signed ID token directly from Google, which the backend later verifies.
  * No server session, no popup round-trip, no GitHub account needed.
  */
-export default function AuthModal({ open, onClose, onAuthenticated, isEn }) {
-  const containerRef = useRef(null)
-  const [error, setError] = useState(null)
+export default function AuthModal({ open, onClose, onAuthenticated, isEn = false }: AuthModalProps) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [error, setError] = useState<string | null>(null)
   const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
 
-  const t = (bn, en) => (isEn ? en : bn)
+  const t = (bn: string, en: string) => (isEn ? en : bn)
 
   useEffect(() => {
     if (!open) {
@@ -50,7 +64,7 @@ export default function AuthModal({ open, onClose, onAuthenticated, isEn }) {
     if (window.google?.accounts?.id) {
       init()
     } else {
-      let script = document.querySelector(`script[src="${GIS_SRC}"]`)
+      let script = document.querySelector(`script[src="${GIS_SRC}"]`) as HTMLScriptElement | null
       if (!script) {
         script = document.createElement('script')
         script.src = GIS_SRC
@@ -59,19 +73,19 @@ export default function AuthModal({ open, onClose, onAuthenticated, isEn }) {
         document.head.appendChild(script)
       }
       script.addEventListener('load', init)
-      return () => script.removeEventListener('load', init)
+      return () => script?.removeEventListener('load', init)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, clientId, isEn])
 
-  function handleCredential(response) {
+  function handleCredential(response: any) {
     const token = response?.credential
     if (!token) {
       setError('no_credential')
       return
     }
     const claims = decodeIdToken(token)
-    const user = {
+    const user: UserInfo = {
       name: claims?.name || claims?.email || t('অবদানকারী', 'Contributor'),
       email: claims?.email || '',
       picture: claims?.picture || ''

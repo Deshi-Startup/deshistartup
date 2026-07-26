@@ -24,9 +24,17 @@ plan/status-report.md
 .claude/settings.local.json
 # Local experiments and artifacts
 .firecrawl/
+.agents/
+.claude/
+.gemini/
+.opencode/
+.codex/
+.impeccable/
 .vinext/
 .wrangler/
 dist/
 workers/
 next-env.d.ts
 CLAUDE.md
+PRODUCT.md
+app/generated/*

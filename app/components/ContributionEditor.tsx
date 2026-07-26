@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Crepe } from '@milkdown/crepe'
 import '@milkdown/crepe/theme/classic.css'
 import { REPO_URL } from '../nav.config'
+import { UserInfo } from '../lib/client-auth'
 
 /**
  * Inline WYSIWYG editor for a single content page. Loads the page's MDX
@@ -16,15 +17,15 @@ import { REPO_URL } from '../nav.config'
  */
 
 // Self-closing JSX component tags (capitalized) become fenced code blocks.
-function encodeMdx(body) {
+function encodeMdx(body: string): string {
   return body.replace(/<([A-Z][\w]*)\b[^>]*?\/>/g, (match) => '```mdx\n' + match + '\n```')
 }
 
-function decodeMdx(md) {
+function decodeMdx(md: string): string {
   return md.replace(/```mdx\n([\s\S]*?)\n```/g, (_m, inner) => inner.trim())
 }
 
-function repoFileFor(pathname) {
+function repoFileFor(pathname: string): string {
   if (pathname === '/en' || pathname.startsWith('/en/')) {
     const rest = pathname === '/en' ? '' : pathname.slice(3)
     return `app/(contents)/en${rest}/page.mdx`
@@ -32,17 +33,43 @@ function repoFileFor(pathname) {
   return `app/(contents)/(bn)${pathname === '/' ? '' : pathname}/page.mdx`
 }
 
-const t = (isEn, bn, en) => (isEn ? en : bn)
+const t = (isEn: boolean, bn: string, en: string) => (isEn ? en : bn)
 
-export default function ContributionEditor({ open, onClose, pathname, isEn, session, authToken }) {
-  const [data, setData] = useState(null)
+interface ContributionEditorProps {
+  open: boolean
+  onClose?: () => void
+  pathname: string
+  isEn?: boolean
+  session: UserInfo | null
+  authToken: string | null
+}
+
+interface PageData {
+  content: string
+  frontmatterRaw: string
+  frontmatter: {
+    title?: string
+    description?: string
+    verified?: string
+  }
+  title: string
+  locale: string
+  stub: boolean
+  existingPR?: {
+    url: string
+  }
+}
+
+export default function ContributionEditor({ open, onClose, pathname, isEn = false, session, authToken }: ContributionEditorProps) {
+  const [data, setData] = useState<PageData | null>(null)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null)
   const [summary, setSummary] = useState('')
   const [submitting, setSubmitting] = useState(false)
-  const [result, setResult] = useState(null)
-  const containerRef = useRef(null)
-  const crepeRef = useRef(null)
+  const [result, setResult] = useState<any>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const crepeRef = useRef<Crepe | null>(null)
+  const markdownRef = useRef<string>('')
 
   // Load page content when the editor opens.
   useEffect(() => {
@@ -76,7 +103,7 @@ export default function ContributionEditor({ open, onClose, pathname, isEn, sess
     return () => {
       active = false
     }
-  }, [open, pathname])
+  }, [open, pathname, authToken])
 
   // Initialize the Milkdown/Crepe editor once content is loaded.
   useEffect(() => {
@@ -103,7 +130,7 @@ export default function ContributionEditor({ open, onClose, pathname, isEn, sess
     crepe.on((api) => {
       api.markdownUpdated((_ctx, markdown) => {
         // Keep the latest markdown available for submit; cheap state update.
-        crepeRef.__markdown = markdown
+        markdownRef.current = markdown
       })
     })
 
@@ -115,7 +142,7 @@ export default function ContributionEditor({ open, onClose, pathname, isEn, sess
           return
         }
         crepeRef.current = crepe
-        crepeRef.__markdown = initialValue
+        markdownRef.current = initialValue
       })
       .catch((err) => {
         console.error('[ContributionEditor] Crepe init failed:', err)
@@ -141,10 +168,10 @@ export default function ContributionEditor({ open, onClose, pathname, isEn, sess
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
     let body
     try {
-      const md = crepeRef.current ? crepeRef.current.getMarkdown() : crepeRef.__markdown
+      const md = crepeRef.current ? crepeRef.current.getMarkdown() : markdownRef.current
       body = decodeMdx(md || '')
     } catch {
-      body = decodeMdx(crepeRef.__markdown || '')
+      body = decodeMdx(markdownRef.current || '')
     }
     const fullContent = data.frontmatterRaw + '\n' + body
     try {
@@ -159,7 +186,7 @@ export default function ContributionEditor({ open, onClose, pathname, isEn, sess
       const j = await res.json().catch(() => ({}))
       if (!res.ok) throw new Error(j.detail || j.error || 'submit_failed')
       setResult(j)
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message)
     } finally {
       setSubmitting(false)

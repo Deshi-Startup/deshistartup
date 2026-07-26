@@ -17,17 +17,23 @@ const GOOGLE_JWKS = createRemoteJWKSet(
 
 const VALID_ISSUERS = ['https://accounts.google.com', 'accounts.google.com']
 
+export interface GoogleUser {
+  name: string
+  email: string
+  picture: string
+}
+
 /**
  * Verifies a raw Google ID token and returns {name, email, picture} or null.
  */
-export async function verifyIdToken(token) {
+export async function verifyIdToken(token: string): Promise<GoogleUser | null> {
   const clientId = process.env.GOOGLE_CLIENT_ID || process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
   if (!clientId) {
     throw new Error('GOOGLE_CLIENT_ID is not set. Add it to .env.local.')
   }
   if (!token || typeof token !== 'string') return null
 
-  let payload
+  let payload: any
   try {
     const result = await jwtVerify(token, GOOGLE_JWKS, {
       issuer: VALID_ISSUERS,
@@ -53,7 +59,7 @@ export async function verifyIdToken(token) {
  * Reads + verifies the Bearer token from a request's Authorization header.
  * Returns the user object, or null if absent/invalid.
  */
-export async function requireUser(req) {
+export async function requireUser(req: Request): Promise<GoogleUser | null> {
   const auth = req.headers.get('authorization') || ''
   const match = auth.match(/^Bearer\s+(.+)$/i)
   if (!match) return null

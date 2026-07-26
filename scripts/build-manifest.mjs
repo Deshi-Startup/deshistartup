@@ -159,6 +159,7 @@ for (const locale of LOCALES) {
       date,
       published,
       verified,
+      repoPath,
     };
   });
   llmsPages[locale.key] = pages;
