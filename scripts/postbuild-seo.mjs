@@ -21,9 +21,10 @@ import {
   SITE_URL,
   canonicalUrl
 } from '../app/seo.config.mjs'
+import { resolveBuildOutput } from './build-output.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const outDir = path.join(root, 'out')
+const { htmlDir: outDir } = resolveBuildOutput(root)
 const pages = JSON.parse(fs.readFileSync(path.join(root, 'app', 'generated', 'seo-pages.json'), 'utf8'))
 
 const pageByLocaleSlug = new Map(pages.map((page) => [`${page.locale}:${page.slug}`, page]))
@@ -333,5 +334,7 @@ if (missing.length > 0) {
   for (const route of missing.slice(0, 20)) console.error(`  ${route}`)
   process.exitCode = 1
 } else {
-  console.log(`postbuild SEO: enriched ${enriched} pages; noindexed ${noindexed} stubs`)
+  console.log(
+    `postbuild SEO: enriched ${enriched} pages; noindexed ${noindexed} stubs (${path.relative(root, outDir)})`
+  )
 }

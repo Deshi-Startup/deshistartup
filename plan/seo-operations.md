@@ -1,12 +1,12 @@
 # SEO and AI-discovery operations
 
 This is the operational source of truth for search discovery on `https://deshistartup.com`.
-The canonical domain never includes the GitHub Pages `/deshistartup` mirror path.
+The canonical domain never includes a deployment base path.
 
-Production is the static export from `main`, served at the apex domain by Cloudflare Pages. The
-Cloudflare build environment sets `CF_PAGES=1`, so canonical output is generated at the root and
-`out/` is the deployment directory. The experimental `vinext` branch runs separately and is not a
-production SEO target.
+Production is built from `main` by Cloudflare Workers Builds and served by the `deshistartup`
+Worker at the apex domain. OpenNext packages Next.js' prerendered HTML and the contribution API
+routes for the Worker runtime. `DESHI_DEPLOY_TARGET=cloudflare-worker` keeps canonical output at the
+root; the production HTML is validated before OpenNext creates `.open-next/`.
 
 ## Indexing policy
 
@@ -29,7 +29,7 @@ production SEO target.
 - page modified, published, and editorial-verification date maps
 - the public IndexNow ownership key file
 
-`npm run build` then enriches every exported HTML file with:
+`npm run build` then enriches every prerendered HTML file with:
 
 - the correct `html lang` value
 - one self-referencing canonical URL
@@ -102,8 +102,8 @@ and eligible for a normal Search snippet. For all answer engines, the durable wo
 
 1. Run `npm run manifest`.
 2. Run `npm run lint:bangla`.
-3. Run `npm run build`; the build includes the final SEO audit.
-4. Deploy the generated output to the canonical domain.
+3. Run `npm run build:worker`; the build includes the final SEO audit and OpenNext packaging.
+4. Run `npm run preview:worker` when runtime-facing code changed, then deploy the generated Worker.
 5. Confirm `https://deshistartup.com/robots.txt`, `/sitemap.xml`, `/llms.txt`, the IndexNow key,
    and one Bengali/English page pair all return HTTP 200. The live, Cloudflare-merged robots file
    must retain the canonical `Sitemap:` line and allow every search/answer agent listed above.

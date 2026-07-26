@@ -31,7 +31,9 @@ plan/status-report.md
 .codex/
 .impeccable/
 .vinext/
+.open-next/
 .wrangler/
+cloudflare-env.d.ts
 dist/
 workers/
 next-env.d.ts

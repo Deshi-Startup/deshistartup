@@ -22,16 +22,17 @@ stubs. Never count a page as written unless it is a real, finished guide — boi
 pages do not count. Run `npm run backlog:status` for live written/stub counts. Bengali is the
 source of truth; English mirrors it at `/en/...`.
 
-The site is a Next.js documentation app built with Nextra, statically exported, wrapped in a custom
-wiki-style shell (not the stock Nextra theme).
+The site is a Next.js documentation app built with Nextra, mostly statically prerendered, and
+wrapped in a custom wiki-style shell (not the stock Nextra theme). Two API route handlers power the
+public contribution flow, so production runs on Cloudflare Workers through OpenNext.
 
 ## Key Technologies
 
 - Next.js `^15.1.3` (using Turbopack for dev)
 - Nextra docs theme (`nextra-theme-docs ^4.0.0`)
 - React `18.3.1`
-- Static export via Next.js (`output: 'export'`) — removed on `feat/contribute` branch to enable
-  the inline editor's API route handlers; will be reconciled during the vinext migration.
+- OpenNext for Cloudflare (`@opennextjs/cloudflare 1.20.2`) packages the prerendered pages and the
+  inline editor's API route handlers for Cloudflare Workers.
 - Pagefind (`pagefind ^1.5.2`) for fast, static client-side search (runs automatically on `postbuild`)
 - Milkdown Crepe (`@milkdown/crepe`) for the inline WYSIWYG contribution editor
 - `jose` for backend verification of Google ID tokens
@@ -191,8 +192,8 @@ absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass
   `/registration/private-limited` in Bengali pages, `/en/registration/private-limited` in English
   pages. Never use relative forms (`../section/slug`, `sibling-slug`): they depend on the linking
   page's depth and broke silently before the July 2026 migration canonicalized all 800+ files. The
-  MDX anchor wrapper (`mdx-components.js`) and `localHref()` add the deployment basePath for the
-  GitHub Pages mirror, so content never hard-codes it.
+  MDX anchor wrapper (`mdx-components.js`) and `localHref()` can add a deployment basePath for a
+  subpath mirror, so content never hard-codes it.
 - **Punctuation in page content:** Never use an em dash in page copy, titles, or descriptions
   under `app/(contents)/` (this doc and other meta files are exempt). Use an en dash (–), a comma,
   or split into two sentences instead. The full dash rule lives in STYLE.md §4.3 and
@@ -269,7 +270,10 @@ but doesn't appear in the editor, the manifest is stale.
 ## Build and Run Commands
 
 - `npm run dev` - Start development server (uses Turbopack; `predev` regenerates the content manifest first)
-- `npm run build` - Build the static site (`prebuild` regenerates the manifest; postbuild runs Pagefind indexing)
+- `npm run build` - Build the Next.js site (`prebuild` regenerates the manifest; postbuild runs Pagefind and the SEO audit)
+- `npm run build:worker` - Build and package the production Cloudflare Worker with OpenNext
+- `npm run preview:worker` - Build and run the production Worker locally in `workerd`
+- `npm run deploy:worker` - Deploy the already-built `.open-next` output while preserving dashboard variables
 - `npm run manifest` - Regenerate `app/generated/manifest.*.json`, `sections-lite.json` and `public/page-dates.json` from the content tree + git dates
 - `npm run lint:routes` - Enforce the URL policy (segment depth, path length, slug charset, bn/en mirror, StubNotice paths); also runs automatically in `prebuild`
 - `npm run seo:audit` - Validate the built HTML, canonicals, hreflang, indexability, metadata, JSON-LD, sitemap, robots, and internal links
@@ -279,16 +283,18 @@ but doesn't appear in the editor, the manifest is stale.
 
 ## Deployment
 
-- **Production (`main` branch → Cloudflare Pages → `deshistartup.com`):** the live, canonical site
-  is the apex domain, built by Cloudflare Pages from `main`. Cloudflare's build sets `CF_PAGES=1`,
-  which drops the basePath (see `next.config.mjs`), so canonical URLs are generated at the root.
-  `plan/seo-operations.md` is the operational source of truth for search discovery.
-- **Mirror (`main` branch → GitHub Pages):** `.github/workflows/deploy.yml` runs `npm run build`
-  and publishes `out/` under the `/deshistartup` project basePath. This is why internal links must
-  stay basePath-agnostic (root-relative in content; `localHref()` / `NEXT_PUBLIC_BASE_PATH` in
-  components) — do **not** remove that mechanism while the mirror exists.
-- **Secondary (`vinext` branch → Cloudflare Workers):** `.github/workflows/deploy-cloudflare.yml` deploys production and per-PR previews using `vinext`-only tooling (not present on `main`).
-- CI uses Node 22. `images.unoptimized` is required for static export. **Pushing `main` deploys the live site — never push unless Shamir asks.**
+- **Production (`main` branch → Workers Builds → Cloudflare Worker `deshistartup` →
+  `deshistartup.com`):** Workers Builds runs `npm run build:worker`, then
+  `npm run deploy:worker`. OpenNext keeps the prerendered content on Cloudflare's static-assets
+  cache and runs `/api/content` and `/api/contribute` in the Worker runtime.
+- Runtime variables: `NEXT_PUBLIC_GOOGLE_CLIENT_ID`, `GITHUB_APP_ID`, and
+  `GITHUB_INSTALLATION_ID`; runtime secret: `GITHUB_APP_PRIVATE_KEY`. Workers Builds also needs
+  `NEXT_PUBLIC_GOOGLE_CLIENT_ID` during the build. Keep dashboard variables by deploying with
+  `--keep-vars`.
+- A future subpath mirror can set `DEPLOY_BASE_PATH=/deshistartup`; keep internal content links
+  root-relative and preserve `localHref()` / `NEXT_PUBLIC_BASE_PATH`.
+- CI and Workers Builds use Node 22. `images.unoptimized` avoids an unnecessary image service.
+  **Pushing `main` deploys the live site — never push unless Shamir asks.**
 
 ## Design System (July 2026 redesign)
 

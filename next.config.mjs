@@ -19,22 +19,22 @@ const withNextra = nextra({
 
 // Deploy targets mount the site at different roots:
 //   - GitHub Pages serves the project under /deshistartup (a repo subpath)
-//   - The custom domain deshistartup.com (Cloudflare Pages) serves from the root
-// Cloudflare's build environment sets CF_PAGES=1, so we detect it and drop the
-// basePath there. DEPLOY_BASE_PATH overrides everything (handy for local testing).
-const isCloudflare = process.env.CF_PAGES === '1'
+//   - deshistartup.com (Cloudflare Pages or Workers) serves from the root
+// DEPLOY_BASE_PATH overrides everything. The explicit Worker target is inherited
+// by the nested Next build that OpenNext runs.
+const isRootDeployment =
+  process.env.CF_PAGES === '1' ||
+  process.env.DESHI_DEPLOY_TARGET === 'cloudflare-worker'
 const basePath =
   process.env.DEPLOY_BASE_PATH ??
-  (process.env.NODE_ENV === 'production' && !isCloudflare ? '/deshistartup' : '')
+  (process.env.NODE_ENV === 'production' && !isRootDeployment ? '/deshistartup' : '')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
-  // NOTE: `output: 'export'` was removed so the contribution feature's
-  // dynamic route handlers (/api/auth/*, /api/content, /api/contribute)
-  // work. Static export is handled on the vinext/deploy branch. If you need
-  // the GitHub Pages static mirror again, restore `output: 'export'` there
-  // (it is incompatible with server-side API routes).
+  // `output: 'export'` is intentionally absent: the contribution feature's
+  // dynamic route handlers need a server runtime. OpenNext packages that
+  // runtime for Cloudflare Workers while preserving prerendered content.
   outputFileTracingRoot: projectRoot,
   ...turboRootConfig,
   basePath,

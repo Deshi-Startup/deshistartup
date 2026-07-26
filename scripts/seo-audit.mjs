@@ -14,9 +14,10 @@ import {
   SITE_URL,
   canonicalUrl
 } from '../app/seo.config.mjs'
+import { resolveBuildOutput } from './build-output.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const outDir = path.join(root, 'out')
+const { htmlDir: outDir, staticDir } = resolveBuildOutput(root)
 const pages = JSON.parse(fs.readFileSync(path.join(root, 'app', 'generated', 'seo-pages.json'), 'utf8'))
 const pageByLocaleSlug = new Map(pages.map((page) => [`${page.locale}:${page.slug}`, page]))
 const indexable = pages.filter((page) => !page.stub)
@@ -204,7 +205,7 @@ for (const [route, count] of inbound) {
   if (count === 0) record(errors, `${route}: indexable orphan page with no inbound internal link`)
 }
 
-const sitemapPath = path.join(outDir, 'sitemap.xml')
+const sitemapPath = path.join(staticDir, 'sitemap.xml')
 if (!fs.existsSync(sitemapPath)) {
   record(errors, 'sitemap.xml is missing from production output')
 } else {
@@ -243,7 +244,7 @@ if (!fs.existsSync(sitemapPath)) {
   })
 }
 
-const robotsPath = path.join(outDir, 'robots.txt')
+const robotsPath = path.join(staticDir, 'robots.txt')
 if (!fs.existsSync(robotsPath)) {
   record(errors, 'robots.txt is missing from production output')
 } else {
@@ -267,7 +268,7 @@ if (!fs.existsSync(robotsPath)) {
   }
 }
 
-const llmsPath = path.join(outDir, 'llms.txt')
+const llmsPath = path.join(staticDir, 'llms.txt')
 if (!fs.existsSync(llmsPath)) {
   record(errors, 'llms.txt is missing from production output')
 } else {
@@ -279,11 +280,14 @@ if (!fs.existsSync(llmsPath)) {
 }
 
 for (const required of ['og-default.png', `${INDEXNOW_KEY}.txt`]) {
-  if (!fs.existsSync(path.join(outDir, required))) record(errors, `${required} is missing from production output`)
+  if (!fs.existsSync(path.join(staticDir, required))) record(errors, `${required} is missing from production output`)
 }
 
-const notFoundPath = path.join(outDir, '404.html')
-if (!fs.existsSync(notFoundPath)) {
+const notFoundPath = [
+  path.join(outDir, '404.html'),
+  path.join(outDir, '_not-found.html')
+].find((candidate) => fs.existsSync(candidate))
+if (!notFoundPath) {
   record(errors, '404.html is missing from production output')
 } else {
   const $404 = load(fs.readFileSync(notFoundPath, 'utf8'))
@@ -292,7 +296,9 @@ if (!fs.existsSync(notFoundPath)) {
   }
 }
 
-console.log(`SEO audit: ${pages.length} HTML pages, ${indexable.length} indexable, ${pages.length - indexable.length} noindex stubs`)
+console.log(
+  `SEO audit: ${pages.length} HTML pages, ${indexable.length} indexable, ${pages.length - indexable.length} noindex stubs (${path.relative(root, outDir)})`
+)
 if (warnings.length > 0) {
   console.log(`SEO audit warnings: ${warnings.length}`)
   for (const warning of warnings.slice(0, 40)) console.log(`  WARN ${warning}`)

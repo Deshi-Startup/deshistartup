@@ -7,6 +7,12 @@
     "dev": "next dev",
     "dev:turbo": "next dev --turbopack",
     "build": "NODE_ENV=production next build",
+    "build:worker": "DESHI_DEPLOY_TARGET=cloudflare-worker opennextjs-cloudflare build",
+    "preview:worker": "npm run build:worker && opennextjs-cloudflare preview",
+    "deploy:worker": "opennextjs-cloudflare deploy -- --keep-vars",
+    "upload:worker": "opennextjs-cloudflare upload -- --keep-vars",
+    "check:worker": "OPEN_NEXT_DEPLOY=true wrangler deploy --dry-run --outdir .wrangler/dry-run",
+    "cf:typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "start": "next start",
     "scrape": "node scripts/scrape.js",
     "manifest": "node scripts/build-manifest.mjs",
@@ -19,7 +25,7 @@
     "seo:indexnow:dry": "node scripts/submit-indexnow.mjs --dry-run",
     "predev": "node scripts/build-manifest.mjs",
     "prebuild": "node scripts/route-lint.mjs && node scripts/build-manifest.mjs",
-    "postbuild": "node scripts/postbuild-seo.mjs && (cp public/sitemap.xml public/robots.txt public/llms.txt out/ 2>/dev/null || true) && (pagefind --site out --output-path out/_pagefind || true) && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true) && node scripts/seo-audit.mjs"
+    "postbuild": "node scripts/postbuild-seo.mjs && node scripts/build-pagefind.mjs && node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "@milkdown/crepe": "^7.21.2",
@@ -33,6 +39,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "1.20.2",
     "@types/node": "^26.1.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
@@ -41,6 +48,7 @@
     "pagefind": "^1.5.2",
     "robots-parser": "^3.0.1",
     "turndown": "^7.2.4",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "4.114.0"
   }
 }

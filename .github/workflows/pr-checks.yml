@@ -20,7 +20,10 @@ jobs:
       - name: Bangla style lint (hard findings fail)
         run: npm run lint:bangla -- --strict
 
-      - name: Build static site
-        run: npm run build
+      - name: Build Cloudflare Worker
+        run: npm run build:worker
         env:
           NEXT_TELEMETRY_DISABLED: '1'
+
+      - name: Validate Worker bundle
+        run: npm run check:worker
