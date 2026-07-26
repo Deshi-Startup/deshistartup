@@ -36,8 +36,6 @@ function sourceFileFor(pathname: string) {
   return `app/(contents)/(bn)${pathname === '/' ? '' : pathname}/page.mdx`
 }
 
-const bengaliDigits = (value: number | string) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[Number(d)])
-
 function formatDate(iso: string | null, isEn: boolean) {
   if (!iso) return null
   try {
@@ -210,7 +208,6 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   const [pageTitle, setPageTitle] = useState('')
   const [lastUpdated, setLastUpdated] = useState<string | null>(null)
   const [lastVerified, setLastVerified] = useState<string | null>(null)
-  const [readMinutes, setReadMinutes] = useState<number | null>(null)
   const [session, setSession] = useState<UserInfo | null>(null)
   const [authToken, setAuthToken] = useState<string | null>(null)
   const [isEditing, setIsEditing] = useState(false)
@@ -450,9 +447,6 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
       return { id: heading.id, text: heading.textContent?.trim() || '' }
     })
     setHeadings(nextHeadings)
-
-    const words = (article.textContent || '').trim().split(/\s+/).length
-    setReadMinutes(words > 100 ? Math.max(1, Math.round(words / 200)) : null)
   }, [pathname])
 
   // Last-updated date, fetched lazily from the build manifest.
@@ -672,32 +666,25 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             <div className="article-lede">
               <Breadcrumbs isEn={isEn} pathname={pathname} pageTitle={pageTitle} />
               <div className="article-meta">
-                  <span>
-                    {isEn ? 'Maintained by ' : 'রক্ষণাবেক্ষণে '}
-                    <a href={localHref(isEn ? '/en/about' : '/about')}>
-                      {isEn ? 'Deshi Startup contributors' : 'দেশি স্টার্টআপের অবদানকারীরা'}
-                    </a>
+                {/* One date, not two. "Last updated" is the last commit, so a typo fix bumps it;
+                    `verified:` means someone re-checked the claims against the official source.
+                    Where a page carries the stronger signal, that is the one worth showing. */}
+                {verifiedLabel ? (
+                  <span className="meta-date">
+                    {isEn ? 'Last verified: ' : 'সর্বশেষ যাচাই: '}
+                    {verifiedLabel}
                   </span>
-                  {dateLabel && (
+                ) : (
+                  dateLabel && (
                     <span className="meta-date">
                       {isEn ? 'Last updated: ' : 'সর্বশেষ হালনাগাদ: '}
                       {dateLabel}
                     </span>
-                  )}
-                  {verifiedLabel && (
-                    <span className="meta-date">
-                      {isEn ? 'Last verified: ' : 'সর্বশেষ যাচাই: '}
-                      {verifiedLabel}
-                    </span>
-                  )}
-                  {readMinutes && (
-                    <span>
-                      {isEn ? `~${readMinutes} min read` : `পড়তে ~${bengaliDigits(readMinutes)} মিনিট`}
-                    </span>
-                  )}
-                  <a href={issueUrl} target="_blank" rel="noopener noreferrer">
-                    {isEn ? 'Report a mistake' : 'ভুল জানান'}
-                  </a>
+                  )
+                )}
+                <a href={issueUrl} target="_blank" rel="noopener noreferrer">
+                  {isEn ? 'Report a mistake' : 'ভুল জানান'}
+                </a>
               </div>
               {headings.length > 2 && (
                 <details className="page-toc">

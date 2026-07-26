@@ -699,15 +699,15 @@ h3 {
   opacity: 0.8;
 }
 
-/* Set as a print margin note: hairline rules above and below bound the block and
-   the bold lead-in ("সারকথা:") names it. A reference work marks an aside with
-   rules and a label, not with a colored slab down one edge. */
+/* The সারকথা block at the top of every guide. A tinted panel with a green edge
+   reads as a callout at a glance; the hairline-rules version it replaced was too
+   quiet to separate from body text. */
 blockquote {
-  margin: 26px 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 16px 0;
-  color: var(--ink);
+  margin: 20px 0;
+  border-left: 5px solid var(--green);
+  background: var(--canvas-soft);
+  padding: 15px 20px;
+  color: #3a3f43;
 }
 
 blockquote p {
