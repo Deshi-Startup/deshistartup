@@ -699,15 +699,17 @@ h3 {
   opacity: 0.8;
 }
 
-/* The সারকথা block at the top of every guide. A tinted panel with a green edge
-   reads as a callout at a glance; the hairline-rules version it replaced was too
-   quiet to separate from body text. */
+/* The সারকথা block at the top of every guide. Bounded on all four sides like the
+   stub and homepage notices, in the green family rather than the caution yellow:
+   a summary is not a warning. The rules-above-and-below version it replaced sat
+   in the same register as the "---" separators around it, so it stopped reading
+   as a callout at all. */
 blockquote {
-  margin: 20px 0;
-  border-left: 5px solid var(--green);
-  background: var(--canvas-soft);
-  padding: 15px 20px;
-  color: #3a3f43;
+  margin: 26px 0;
+  border: 1px solid var(--green);
+  background: var(--green-ground);
+  padding: 16px 20px;
+  color: var(--ink);
 }
 
 blockquote p {

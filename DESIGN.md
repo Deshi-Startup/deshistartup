@@ -185,6 +185,9 @@ a warm yellow used only for cautions and toggles.
   green text that must clear contrast on white.
 - **Green Wash** (`#eaf4ef`, `--green-soft`): the hover/selected tint. Search results, sidebar and
   FAQ hover, path-row hover, contribution-link hover. Green's quietest register.
+- **Green Ground** (`#f8fbf7`, `--green-ground`): the resting fill, a whisper of green that tints a
+  surface without claiming it is hovered. The `সারকথা` summary box, the primary homepage action, and
+  card hover grounds. Kept separate from Green Wash precisely so "selected" keeps meaning something.
 
 ### Secondary
 - **Wiki Link Blue** (`#3366cc`, `--blue`): hyperlinks, and nothing but hyperlinks. The most familiar
@@ -206,7 +209,7 @@ a warm yellow used only for cautions and toggles.
 ### Neutral
 - **Warm Paper** (`#f5f3ee`, `--page`): the body/page background. The "book page" the canvas rests on.
 - **Reading White** (`#ffffff`, `--canvas`): the content canvas and every reading surface.
-- **Cool Paper** (`#f8faf9`, `--canvas-soft`): soft insets – blockquotes, TOC, stat pills, card wells.
+- **Cool Paper** (`#f8faf9`, `--canvas-soft`): soft insets – TOC, stat pills, card wells.
 - **Manuscript Ink** (`#202122`, `--ink`): primary body text and headings.
 - **Slate Gray** (`#54595d`, `--muted`): secondary text, captions, sidebar group labels.
 - **Meta Gray** (`#696e74`, `--faint`): tertiary metadata – dates, breadcrumbs, footnote-weight text.
@@ -311,11 +314,16 @@ itself – have **no radius**, edged by `--line`. Interactive fields and inline 
 (the language toggle, stat and directory-summary chips, the stub chip). There are no circles.
 
 ### Named Rules
-**The Rule-and-Label Rule** *(revised 2026-07-25; supersedes the "margin rule" motif)*. An aside is
-bounded by **hairline rules and named by a label**, never by a thick colored bar down one edge. The
-`সারকথা` summary block takes a 1px `--line` rule above and below with no fill, so the bold `সারকথা:`
-lead-in does the naming; the caution family (stub notice, homepage notice) keeps its Notice Cream
-ground and 1px gold hairline and names itself with a bold heading line.
+**The Rule-and-Label Rule** *(revised 2026-07-25; box treatment 2026-07-26)*. An aside is bounded by
+**hairlines and named by a label**, never by a thick colored bar down one edge. The `সারকথা` summary
+block is a 1px `--green` box on a Green Ground fill, with the bold `সারকথা:` lead-in doing the
+naming; the caution family (stub notice, homepage notice) keeps its Notice Cream ground and 1px gold
+hairline and names itself with a bold heading line. Green for a summary, yellow for a caution – a
+summary is not a warning, so the two families never trade grounds.
+
+*Why the box.* Rules above and below only, with no fill, put the summary in the same register as the
+`---` separators that sit a paragraph away on either side of it, so it stopped reading as an aside at
+all. Four hairlines and a ground bound it without reaching past 1px anywhere.
 
 *Why it changed.* The previous motif was a 5–6px green or gold `border-left` on five block types. It
 was reasoned as a print margin rule, but at that weight it is the single most recognizable signature
