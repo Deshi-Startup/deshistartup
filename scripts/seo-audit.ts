@@ -13,7 +13,7 @@ import {
   INDEXNOW_KEY,
   SITE_URL,
   canonicalUrl
-} from '../app/seo.config.mjs'
+} from '../app/seo.config'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const htmlDir = path.join(root, 'dist', 'server', 'prerendered-routes')

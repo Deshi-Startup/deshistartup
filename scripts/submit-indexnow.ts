@@ -4,7 +4,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { load } from 'cheerio'
-import { INDEXNOW_KEY, SITE_URL } from '../app/seo.config.mjs'
+import { INDEXNOW_KEY, SITE_URL } from '../app/seo.config'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const sitemapPath = path.join(root, 'public', 'sitemap.xml')

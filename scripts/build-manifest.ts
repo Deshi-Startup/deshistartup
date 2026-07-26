@@ -19,7 +19,7 @@ import {
   REPOSITORY_URL,
   SITE_URL,
   canonicalUrl,
-} from "../app/seo.config.mjs";
+} from "../app/seo.config";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const contentRoot = path.join(root, "app", "(contents)");

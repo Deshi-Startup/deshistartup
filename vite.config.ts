@@ -3,9 +3,13 @@ import vinext from "vinext";
 import { cloudflare } from "@cloudflare/vite-plugin";
 import { kvDataAdapter } from "@vinext/cloudflare/cache/kv-data-adapter";
 import { imagesOptimizer } from "@vinext/cloudflare/images/images-optimizer";
+import mdx from "@mdx-js/rollup";
 
 export default defineConfig({
   plugins: [
+    mdx({
+      providerImportSource: "next-mdx-import-source-file",
+    }),
     // vinext auto-injects @mdx-js/rollup with plugins from next.config.
     // The Cloudflare CDN adapter is intentionally omitted: it stamps
     // `Cache-Control: no-store` on every response that lacks an explicit

@@ -20,7 +20,7 @@ import {
   SITE_NAME_BN,
   SITE_URL,
   canonicalUrl
-} from '../app/seo.config.mjs'
+} from '../app/seo.config'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const outDir = path.join(root, 'dist', 'server', 'prerendered-routes')
@@ -46,7 +46,7 @@ function jsonLd(value) {
   return JSON.stringify(value).replace(/</g, '\\u003c')
 }
 
-function localHomeRoute(locale) {
+function localHomeRoute(locale: string) {
   return locale === 'en' ? '/en' : '/'
 }
 

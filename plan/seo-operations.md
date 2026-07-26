@@ -83,7 +83,7 @@ without blocking search-specific agents.
 - Do not generate FAQ or HowTo markup unless the visible page genuinely has that structure.
   Structured data describes content; it is never added only to chase a rich result.
 - The shared social card is `public/og-default.png` (1200×630). Replace it only with another
-  crawlable image of the same dimensions and update `app/seo.config.mjs` if the path changes.
+  crawlable image of the same dimensions and update `app/seo.config.ts` if the path changes.
 
 ## AI-search policy
 

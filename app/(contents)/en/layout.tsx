@@ -1,5 +1,5 @@
 import React from 'react'
-import { DEFAULT_DESCRIPTIONS } from '../../seo.config.mjs'
+import { DEFAULT_DESCRIPTIONS } from '../../seo.config'
 
 export const metadata = {
   title: {
