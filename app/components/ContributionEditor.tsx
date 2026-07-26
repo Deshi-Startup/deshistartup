@@ -13,6 +13,13 @@ import {
   lockedMdxBlocks,
   sameLockedMdx
 } from '../lib/contribution-markdown'
+import {
+  ContributionDraft,
+  clearDraft,
+  loadDraft,
+  pruneDrafts,
+  saveDraft
+} from '../lib/contribution-draft'
 
 /**
  * DIRECTION CONTRACT
@@ -64,6 +71,20 @@ function repoFileFor(pathname: string): string {
 }
 
 const t = (isEn: boolean, bn: string, en: string) => (isEn ? en : bn)
+
+/** Date and time of a saved draft, in the reader's own numerals. */
+function formatSavedAt(savedAt: number, isEn: boolean): string {
+  try {
+    return new Date(savedAt).toLocaleString(isEn ? 'en-GB' : 'bn-BD', {
+      day: 'numeric',
+      month: 'long',
+      hour: 'numeric',
+      minute: '2-digit'
+    })
+  } catch {
+    return ''
+  }
+}
 
 function PencilIcon() {
   return (
@@ -134,6 +155,8 @@ export default function ContributionEditor({
   const [ready, setReady] = useState(false)
   const [dirty, setDirty] = useState(false)
   const [confirmingExit, setConfirmingExit] = useState(false)
+  const [draft, setDraft] = useState<ContributionDraft | null>(null)
+  const [draftApplied, setDraftApplied] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const summaryRef = useRef<HTMLTextAreaElement>(null)
   const crepeRef = useRef<Crepe | null>(null)
@@ -142,6 +165,12 @@ export default function ContributionEditor({
   const dirtyRef = useRef(false)
   const lockedBlocksRef = useRef<string[]>([])
   const seenExitSignalRef = useRef(exitSignal)
+  const saveTimerRef = useRef(0)
+
+  const discardDraft = useCallback(() => {
+    clearDraft(pathname)
+    setDraft(null)
+  }, [pathname])
 
   /**
    * Locked MDX components ride through the round-trip as internal fenced blocks,
@@ -223,7 +252,11 @@ export default function ContributionEditor({
   useEffect(() => {
     if (!data || !containerRef.current) return
     let destroyed = false
-    const initialValue = encodeLockedMdx(data.content)
+    // Restoring a draft rebuilds the editor around it. The locked-block list
+    // still comes from the server copy, so a draft that lost a <StubNotice/>
+    // is caught by the submit guard rather than quietly shipping without it.
+    const initialValue =
+      draftApplied && draft ? draft.body : encodeLockedMdx(data.content)
     lockedBlocksRef.current = lockedMdxBlocks(data.content)
 
     const crepe = new Crepe({
@@ -276,6 +309,14 @@ export default function ContributionEditor({
           dirtyRef.current = next
           setDirty(next)
         }
+        // Keep the crash copy in step with the editor, a beat behind the
+        // keystrokes. Back at the server's text there is nothing worth
+        // rescuing, so the draft goes rather than lingering as a false alarm.
+        window.clearTimeout(saveTimerRef.current)
+        saveTimerRef.current = window.setTimeout(() => {
+          if (next) saveDraft(pathname, markdown)
+          else clearDraft(pathname)
+        }, 700)
       })
     })
 
@@ -287,8 +328,11 @@ export default function ContributionEditor({
           return
         }
         crepeRef.current = crepe
-        baselineRef.current = crepe.getMarkdown()
-        markdownRef.current = baselineRef.current
+        // The baseline is the server's text as this editor serializes it, and
+        // it survives a draft restore: otherwise the restored work would
+        // measure as unchanged and the submit button would stay disabled.
+        if (baselineRef.current === null) baselineRef.current = crepe.getMarkdown()
+        markdownRef.current = crepe.getMarkdown()
         setReady(true)
         scheduleMark()
       })
@@ -300,6 +344,7 @@ export default function ContributionEditor({
     return () => {
       destroyed = true
       cancelAnimationFrame(markFrame)
+      window.clearTimeout(saveTimerRef.current)
       try {
         crepe.destroy()
       } catch {
@@ -308,13 +353,28 @@ export default function ContributionEditor({
       crepeRef.current = null
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data])
+  }, [data, draftApplied])
 
   // Once the canvas is actually laid out, re-flag: the first pass runs while it
   // is still hidden and a code block may not have rendered yet.
   useEffect(() => {
     if (ready) markLocked()
   }, [ready, markLocked])
+
+  // Look for work this browser saved and never sent.
+  useEffect(() => {
+    if (!data) return
+    pruneDrafts()
+    setDraft(loadDraft(pathname))
+  }, [data, pathname])
+
+  // A draft identical to the page as it now stands is not a rescue, it is a
+  // false alarm. Once the editor has serialized the server copy we can tell,
+  // so drop it before the contributor is ever asked about it.
+  useEffect(() => {
+    if (!ready || !draft || draftApplied) return
+    if (baselineRef.current !== null && draft.body === baselineRef.current) discardDraft()
+  }, [ready, draft, draftApplied, discardDraft])
 
   useEffect(() => onReadyChange(ready), [ready, onReadyChange])
   useEffect(() => onDirtyChange(dirty), [dirty, onDirtyChange])
@@ -392,6 +452,10 @@ export default function ContributionEditor({
       if (!res.ok) throw new Error(j.error || 'submit_failed')
       dirtyRef.current = false
       setDirty(false)
+      // It is on the branch now. Keeping a copy here would only resurface as a
+      // stale "unsaved changes" prompt the next time they open the page.
+      window.clearTimeout(saveTimerRef.current)
+      clearDraft(pathname)
       onSubmitted(j)
     } catch (err: unknown) {
       const code = err instanceof Error ? err.message : 'submit_failed'
@@ -451,7 +515,17 @@ export default function ContributionEditor({
               <button type="button" className="edit-btn" onClick={() => setConfirmingExit(false)}>
                 {t(isEn, 'সম্পাদনা চালিয়ে যান', 'Keep editing')}
               </button>
-              <button type="button" className="edit-btn" onClick={onExit}>
+              <button
+                type="button"
+                className="edit-btn"
+                onClick={() => {
+                  // They said discard, so discard: leaving the crash copy
+                  // behind would offer this same work back on the next visit.
+                  window.clearTimeout(saveTimerRef.current)
+                  discardDraft()
+                  onExit()
+                }}
+              >
                 {t(isEn, 'পরিবর্তন বাদ দিন', 'Discard changes')}
               </button>
             </>
@@ -541,6 +615,27 @@ export default function ContributionEditor({
             </button>
           </div>
         </div>
+      )}
+
+      {draft && !draftApplied && !error && ready && (
+        <aside className="edit-draft-notice" role="note">
+          <strong>{t(isEn, 'জমা না দেওয়া লেখা পাওয়া গেছে', 'Unsent changes found')}</strong>
+          <p>
+            {t(
+              isEn,
+              `এই পাতায় আপনার কিছু পরিবর্তন এই ব্রাউজারে জমা আছে (${formatSavedAt(draft.savedAt, isEn)}), কিন্তু রিভিউতে পাঠানো হয়নি। নিচে এখন পাতাটির বর্তমান লেখা দেখছেন।`,
+              `Some changes you made on this page are saved in this browser (${formatSavedAt(draft.savedAt, isEn)}) but were never sent for review. What you see below is the page as it stands now.`
+            )}
+          </p>
+          <div className="edit-draft-notice__actions">
+            <button type="button" className="edit-btn" onClick={() => setDraftApplied(true)}>
+              {t(isEn, 'আমার লেখা ফিরিয়ে আনুন', 'Bring my changes back')}
+            </button>
+            <button type="button" className="edit-btn" onClick={discardDraft}>
+              {t(isEn, 'বাদ দিন', 'Discard them')}
+            </button>
+          </div>
+        </aside>
       )}
 
       {data?.existingPR && !error && (

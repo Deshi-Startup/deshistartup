@@ -25,6 +25,7 @@ colors:
   error: "#b42318"
   line-warm: "#d9d5cd"
   shade: "#f1f3f4"
+  ink-channels: "32 33 34"
 typography:
   display:
     fontFamily: "Noto Serif Bengali, Noto Serif, Georgia, serif"
@@ -220,8 +221,16 @@ a warm yellow used only for cautions and toggles.
 - **Hairline Gray** (`#c8ccd1`, `--line`): the primary border and divider. The workhorse of the whole
   flat system.
 - **Whisper Line** (`#eaecf0`, `--line-soft`): the softest divider, between list rows and inside cards.
+- **Ink Channels** (`32 33 34`, `--ink-channels`): Manuscript Ink as bare RGB channels, so the two
+  scrims (sidebar backdrop, modal overlay) and the two shadows can be built at an alpha and still
+  track `--ink` when it moves. Not a color you reach for directly; use `--ink` for anything opaque.
 
 ### Named Rules
+**The One-Ink Rule.** Every neutral in the system derives from this list, and text ink is `--ink`
+everywhere, including headings. Two greys a single 1/255 step apart is not a distinction a reader can
+see; it is drift that outlives whoever introduced it. Same for near-white fills: soft insets are Cool
+Paper (`--canvas-soft`), full stop.
+
 **The Two-Accent Rule.** Green is structure; blue is links. A link is never green and a structural
 element (rule, tab, active state, badge) is never blue. If a new element needs a third color, it
 almost always wants a neutral or a hairline instead.
@@ -285,8 +294,10 @@ right-rail infobox, a 4-up path grid, and 2-up scope/source grids, all collapsin
 
 Responsive behavior is a genuine mobile-first collapse, not a shrink. At ≤860px the shell becomes a
 single column, the header search drops to its own row, and the sidebar becomes a fixed off-canvas
-drawer (`translateX(-104%)` → `0`) over a scrim. Article actions and the right-rail hide; the "on this
-page" TOC becomes a `<details>` accordion that is itself hidden again ≥1024px on desktop.
+drawer (`translateX(-104%)` → `0`) over a scrim. The right-rail hides, and the article actions thin
+rather than disappear: **ইতিহাস** and the GitHub link drop, while **পড়ুন** and **সম্পাদনা** stay and
+grow to a 44px touch target, because a phone is where most readers find the mistake they want to fix.
+The "on this page" TOC becomes a `<details>` accordion that is itself hidden again ≥1024px on desktop.
 
 ## Elevation & Depth
 
@@ -295,7 +306,7 @@ Reading White, not from shadows. This is a defining choice: the encyclopedia fee
 sitting *in* the page, not floating above it.
 
 ### Shadow Vocabulary
-- **Canvas Lift** (`box-shadow: 0 14px 32px rgb(32 33 34 / 8%)`, `--shadow`): a single soft ambient
+- **Canvas Lift** (`box-shadow: 0 14px 32px rgb(var(--ink-channels) / 8%)`, `--shadow`): a single soft ambient
   shadow, used in exactly two places – under the reading canvas (desktop) and under the floating
   search-results popover. Removed on mobile, where the canvas goes edge-to-edge.
 - **Drawer Shadow** (`12px 0 40px rgb(32 33 34 / 20%)`): a heavier shadow reserved for the mobile
@@ -342,8 +353,8 @@ The site is link-driven; true buttons are utilitarian and quiet.
   the arrow – never by a saturated fill.
 - **Directory action** (`.directory-controls button`): white background, Deep Deshi Green text,
   `--line` border, `6px 12px`. **Hover:** border → green-deep, background → Green Ground.
-- **Search submit:** a square-capped grid cell joined to the input (`3px` outer corners only), light
-  `#f8f9fa` fill, Green Wash on hover.
+- **Search submit:** a square-capped grid cell joined to the input (`3px` outer corners only), Cool
+  Paper fill, Green Wash on hover.
 - **Contribution link** (`contrib-link`): bordered chip-links ("edit", "history", "report a mistake"),
   `7px 14px`, 3px radius. **Hover:** Green Wash fill, green-deep border and text.
 

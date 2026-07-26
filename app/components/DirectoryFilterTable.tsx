@@ -227,18 +227,20 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
           <table>
             <thead>
               <tr>
-                <th>{labels.name}</th>
-                <th>{labels.type}</th>
-                <th>{labels.stage}</th>
-                <th>{labels.sectors}</th>
-                <th>{isAccelerators ? labels.benefits : labels.chequeSize}</th>
-                <th>{labels.applicationPath}</th>
-                <th>{labels.source}</th>
+                <th scope="col">{labels.name}</th>
+                <th scope="col">{labels.type}</th>
+                <th scope="col">{labels.stage}</th>
+                <th scope="col">{labels.sectors}</th>
+                <th scope="col">{isAccelerators ? labels.benefits : labels.chequeSize}</th>
+                <th scope="col">{labels.applicationPath}</th>
+                <th scope="col">{labels.source}</th>
               </tr>
             </thead>
             <tbody>
-              {filteredRows.map((row) => (
-                <tr key={row.name}>
+              {filteredRows.map((row, index) => (
+                // Two funds can share a name, and directory data is edited by
+                // hand: index keeps a collision from silently dropping a row.
+                <tr key={`${row.name}-${index}`}>
                   <td>
                     <strong>{row.name}</strong>
                     <span>{row.notes}</span>

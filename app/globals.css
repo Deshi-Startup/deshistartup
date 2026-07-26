@@ -57,13 +57,18 @@
   /* The paper page needs a warmer divider than --line, which is tuned for white. */
   --line-warm: #d9d5cd;
   --shade: #f1f3f4;
+  /* Manuscript Ink as bare channels, for the four places that need it at an
+     alpha: the two scrims and the two shadows. Kept in step with --ink by
+     construction, because a scrim that drifts off the ink it is made from is
+     the kind of thing nobody notices until the palette moves. */
+  --ink-channels: 32 33 34;
   /* Longest comfortable prose line. Only bites above ~1500px, where the canvas
      would otherwise run to 86 Bangla characters a line. */
   --measure: 65rem;
   /* Sticky-header clearance for the edit bar. Measured and overwritten from JS
      while editing, because the header stacks to a second row on phones. */
   --header-h: 84px;
-  --shadow: 0 14px 32px rgb(32 33 34 / 8%);
+  --shadow: 0 14px 32px rgb(var(--ink-channels) / 8%);
   --sans: '.SF Bangla', system-ui, -apple-system, BlinkMacSystemFont, 'Nirmala UI', 'Noto Sans Bengali',
     'Noto Sans', 'Segoe UI', sans-serif;
   --serif: 'Noto Serif Bengali', 'Noto Serif', Georgia, serif;
@@ -238,7 +243,7 @@ p {
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 0 3px 3px 0;
-  background: #f8f9fa;
+  background: var(--canvas-soft);
   color: var(--ink);
   cursor: pointer;
 }
@@ -657,7 +662,7 @@ a.tab {
 h1,
 h2,
 h3 {
-  color: #1f2021;
+  color: var(--ink);
   line-height: 1.25;
   letter-spacing: 0;
 }
@@ -797,7 +802,7 @@ li > input[type='checkbox'] {
 pre {
   overflow-x: auto;
   border: 1px solid var(--line);
-  background: #f8f9fa;
+  background: var(--canvas-soft);
   padding: 16px;
 }
 
@@ -1278,7 +1283,7 @@ a.is-stub-link:hover {
   border-bottom: 1px solid var(--line);
   background: var(--green-deep);
   padding: 14px 16px;
-  color: #fff;
+  color: var(--canvas);
   text-align: center;
   font-family: var(--sans);
   font-size: 1.12rem;
@@ -1722,7 +1727,7 @@ a.is-stub-link:hover {
     position: fixed;
     inset: 0;
     z-index: 18;
-    background: rgb(32 33 34 / 32%);
+    background: rgb(var(--ink-channels) / 32%);
   }
 
   .sidebar-wrap {
@@ -1733,7 +1738,7 @@ a.is-stub-link:hover {
     z-index: 19;
     width: min(320px, 86vw);
     background: var(--canvas);
-    box-shadow: 12px 0 40px rgb(32 33 34 / 20%);
+    box-shadow: 12px 0 40px rgb(var(--ink-channels) / 20%);
     transform: translateX(-104%);
     visibility: hidden;
     pointer-events: none;
@@ -2000,7 +2005,7 @@ body.auth-open {
   place-items: center;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background: rgb(32 33 34 / 55%);
+  background: rgb(var(--ink-channels) / 55%);
   padding: max(24px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
 }
 
@@ -2286,7 +2291,7 @@ body.auth-open {
   --crepe-font-title: var(--serif);
   --crepe-font-default: var(--sans);
   --crepe-font-code: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
-  --crepe-shadow-1: 0 2px 10px rgb(32 33 34 / 10%);
+  --crepe-shadow-1: 0 2px 10px rgb(var(--ink-channels) / 10%);
   --crepe-shadow-2: var(--shadow);
 
   background: transparent;
@@ -2332,7 +2337,7 @@ body.auth-open {
 
 .edit-live .milkdown .ProseMirror :is(h1, h2, h3, h4, h5, h6) {
   padding: 0;
-  color: #1f2021;
+  color: var(--ink);
   font-family: var(--serif);
   font-weight: 700;
   line-height: 1.25;
@@ -2461,7 +2466,7 @@ body.auth-open {
 .edit-live .milkdown .ProseMirror pre {
   border: 1px solid var(--line);
   border-radius: 0;
-  background: #f8f9fa;
+  background: var(--canvas-soft);
   padding: 16px;
 }
 
@@ -2633,6 +2638,16 @@ body.auth-open {
   max-width: var(--measure);
   margin: 0;
   font-size: 0.95rem;
+}
+
+/* The two answers to "we found unsent work". Both are ordinary edit buttons,
+   because neither is the safe one: restoring and discarding each throw
+   something away, and ranking one of them would be picking for the reader. */
+.edit-draft-notice__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
 }
 
 /* Posted where the article was, the way a wiki confirms a save: on the page you
