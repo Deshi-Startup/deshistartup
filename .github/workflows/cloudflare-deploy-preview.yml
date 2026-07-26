@@ -24,12 +24,12 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       - name: Install dependencies
@@ -65,18 +65,18 @@ jobs:
             const prNumber = context.payload.pull_request.number;
             const deployUrl = process.env.DEPLOY_URL;
             const commentBody = `⚡️ **Cloudflare Worker Preview URL:** [${deployUrl}](${deployUrl})`;
-            
+
             // Get existing comments to avoid spamming
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: prNumber,
             });
-            
+
             const botComment = comments.find(comment => 
               comment.user.type === 'Bot' && comment.body.includes('Cloudflare Worker Preview URL')
             );
-            
+
             if (botComment) {
               await github.rest.issues.updateComment({
                 owner: context.repo.owner,
