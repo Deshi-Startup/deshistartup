@@ -10,7 +10,6 @@
  */
 
 import { createPrivateKey, sign as nodeSign, createHash, KeyObject } from 'node:crypto'
-import { appendFileSync } from 'node:fs'
 
 const API = 'https://api.github.com'
 const REPO = process.env.GITHUB_REPO || 'Deshi-Startup/deshistartup'
@@ -152,28 +151,39 @@ async function ghJson(path: string, opts: GhOptions): Promise<any> {
 }
 
 /**
- * Check if a contributor has an open PR for a page.
- * Returns { branchName, prUrl } or null.
+ * Check if a contributor has a branch for a page. A branch without an open PR
+ * is a recoverable draft left by an interrupted PR-creation request.
  */
-export async function findOpenContribution(pagePath: string, contributorEmail: string): Promise<{ branchName: string, prUrl: string } | null> {
+export async function findOpenContribution(
+  pagePath: string,
+  contributorEmail: string
+): Promise<{ branchName: string; prUrl: string | null; headSha: string } | null> {
   const token = await installationToken()
   const branchName = contribBranchName(pagePath, contributorEmail)
   const owner = REPO.split('/')[0]
 
   // 1. Does the branch exist?
-  const refRes = await fetch(repoApi(`/git/refs/heads/${branchName}`), {
+  const refRes = await fetch(repoApi(`/git/ref/heads/${branchName}`), {
     headers: apiHeaders(token)
   })
-  if (!refRes.ok) return null
+  if (refRes.status === 404) return null
+  if (!refRes.ok) {
+    throw new Error(`GitHub API GET branch reference failed (${refRes.status})`)
+  }
+  const ref = await refRes.json()
+  const headSha = ref?.object?.sha
+  if (!headSha) throw new Error('GitHub branch reference is missing its head SHA')
 
   // 2. Is there an open PR for it?
   const params = new URLSearchParams({ state: 'open', head: `${owner}:${branchName}`, per_page: '1' })
   const prRes = await fetch(repoApi(`/pulls?${params}`), { headers: apiHeaders(token) })
-  if (!prRes.ok) return null
+  if (!prRes.ok) {
+    throw new Error(`GitHub API GET pull requests failed (${prRes.status})`)
+  }
   const prs = await prRes.json()
-  if (!prs.length) return null
+  if (!prs.length) return { branchName, prUrl: null, headSha }
 
-  return { branchName, prUrl: prs[0].html_url }
+  return { branchName, prUrl: prs[0].html_url, headSha: prs[0]?.head?.sha || headSha }
 }
 
 interface CreateContributionPRProps {
@@ -197,73 +207,56 @@ interface CreateContributionPRProps {
  *   PR instead of opening a duplicate.
  * - If the branch exists and has an open PR → commit updates the file,
  *   PR auto-updates, we return the existing PR URL.
- * - If the branch exists but the PR was merged/closed → reset the branch
- *   to main, commit, and open a fresh PR.
+ * - If the branch exists without an open PR → preserve its saved draft,
+ *   commit the latest edit, and open a fresh PR.
  * - If the branch doesn't exist → create from main, commit, open PR.
  *
  * @returns {{ prUrl: string, prNumber: number, updated: boolean }}
  */
 export async function createContributionPR({ repoPath, content, summary, contributor, pageTitle, pageUrl, pagePath }: CreateContributionPRProps) {
-  const _dbg = (msg: string) => { try { appendFileSync('/tmp/contrib-debug.log', `${new Date().toISOString()} ${msg}\n`) } catch {} }
-  _dbg(`createContributionPR: pagePath=${pagePath} email=${contributor?.email} repoPath=${repoPath}`)
   const token = await installationToken()
   const branchName = contribBranchName(pagePath, contributor.email)
   const owner = REPO.split('/')[0]
-  _dbg(`branchName=${branchName}`)
 
   // 1. Does the branch already exist?
-  const refRes = await fetch(repoApi(`/git/refs/heads/${branchName}`), {
+  const refRes = await fetch(repoApi(`/git/ref/heads/${branchName}`), {
     headers: apiHeaders(token)
   })
+  if (!refRes.ok && refRes.status !== 404) {
+    throw new Error(`GitHub API GET branch reference failed (${refRes.status})`)
+  }
   const branchExists = refRes.ok
-  _dbg(`step1 branchExists=${branchExists} (${refRes.status})`)
 
   // 2. Is there an open PR for it?
   let existingPR: any = null
   if (branchExists) {
     const params = new URLSearchParams({ state: 'open', head: `${owner}:${branchName}`, per_page: '1' })
     const prRes = await fetch(repoApi(`/pulls?${params}`), { headers: apiHeaders(token) })
-    _dbg(`step2 prSearch=${prRes.status}`)
-    if (prRes.ok) {
-      const prs = await prRes.json()
-      _dbg(`step2 prs=${prs.length}`)
-      if (prs.length > 0) existingPR = prs[0]
+    if (!prRes.ok) {
+      throw new Error(`GitHub API GET pull requests failed (${prRes.status})`)
     }
+    const prs = await prRes.json()
+    if (prs.length > 0) existingPR = prs[0]
   }
 
   // 3. Prepare the branch
   if (!branchExists) {
-    _dbg('step3: creating new branch from main')
-    const mainRef = await ghJson('/git/refs/heads/main', { token })
+    const mainRef = await ghJson('/git/ref/heads/main', { token })
     await ghJson('/git/refs', {
       method: 'POST',
       token,
       body: { ref: `refs/heads/${branchName}`, sha: mainRef.object.sha }
     })
-  } else if (!existingPR) {
-    _dbg('step3: resetting stale branch to main')
-    const mainRef = await ghJson('/git/refs/heads/main', { token })
-    await ghJson(`/git/refs/heads/${branchName}`, {
-      method: 'PATCH',
-      token,
-      body: { sha: mainRef.object.sha, force: true }
-    })
-  } else {
-    _dbg('step3: skipping (branch exists with open PR)')
   }
 
   // 4. Commit the new content
-  //    File SHA: from the branch if it has an open PR, otherwise from main
-  //    (the branch was either just created from main or reset to main).
-  const fileRef = existingPR ? branchName : 'main'
-  _dbg(`step4: fileRef=${fileRef}`)
-  const fileInfo = await ghJson(`/contents/${repoPath}?ref=${fileRef}`, { token }).catch((e) => {
-    _dbg(`step4: GET file FAILED: ${e.message}`)
-    return null
+  //    Existing branches can contain a recoverable draft from an interrupted
+  //    request, so always read their file SHA before updating them.
+  const fileRef = branchExists ? branchName : 'main'
+  const fileInfo = await ghJson(`/contents/${repoPath}?ref=${encodeURIComponent(fileRef)}`, {
+    token
   })
-  _dbg(`step4: fileInfo=${fileInfo ? fileInfo.sha?.slice(0, 12) : 'null'}`)
 
-  _dbg('step5: PUTting content')
   await ghJson(`/contents/${repoPath}`, {
     method: 'PUT',
     token,
@@ -274,17 +267,19 @@ export async function createContributionPR({ repoPath, content, summary, contrib
       ...(fileInfo?.sha ? { sha: fileInfo.sha } : {})
     }
   })
-  _dbg('step5: PUT success')
 
   // 5. Return existing PR or create a new one
   if (existingPR) {
-    _dbg(`step6: returning existing PR #${existingPR.number}`)
     return { prUrl: existingPR.html_url, prNumber: existingPR.number, updated: true }
   }
 
-  const safeName = contributor.name || contributor.email || 'Anonymous contributor'
+  const neutralizeMentions = (text: string) => text.replace(/@/g, '@\u200b')
+  const safeName = neutralizeMentions(
+    contributor.name || contributor.email || 'Anonymous contributor'
+  )
+  const safeSummary = neutralizeMentions(summary.trim())
   const prBody = [
-    summary && summary.trim() ? `## সারসংক্ষেপ / Summary\n\n${summary.trim()}` : '',
+    safeSummary ? `## সারসংক্ষেপ / Summary\n\n${safeSummary}` : '',
     '',
     `**পাতা / Page:** [${pageTitle}](${pageUrl || ''})`,
     `**অবদানকারী / Contributor:** ${safeName}`,

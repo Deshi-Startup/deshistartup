@@ -256,7 +256,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     const url = new URL(window.location.href)
     if (url.searchParams.has('action')) {
       url.searchParams.delete('action')
-      window.history.pushState({}, '', `${url.pathname}${url.search}${url.hash}`)
+      window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`)
     }
     const target = result ? 0 : scrollBeforeEdit.current
     window.requestAnimationFrame(() => window.scrollTo(0, target))
@@ -281,7 +281,15 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   function handleAuthenticated(user: UserInfo, token: string) {
     setSession(user)
     setAuthToken(token)
-    enterEdit()
+    if (!isEditing) enterEdit()
+  }
+
+  function handleRead() {
+    if (isDirty) {
+      setExitSignal((signal) => signal + 1)
+      return
+    }
+    exitEdit()
   }
 
   // Nobody loses an edit to a stray reload, tab close or Android back gesture.
@@ -580,7 +588,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             </div>
             <div className="article-actions">
               {isEditing ? (
-                <button type="button" className="act-read tab-action-btn" onClick={handleExit}>
+                <button type="button" className="act-read tab-action-btn" onClick={handleRead}>
                   {tabs.read}
                 </button>
               ) : (
@@ -657,6 +665,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
               onExit={handleExit}
               onSubmitted={handleSubmitted}
               onSessionExpired={handleSessionExpired}
+              onReauthenticate={() => setAuthOpen(true)}
               onReadyChange={setEditorReady}
               onDirtyChange={setIsDirty}
             />
@@ -759,6 +768,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
         onClose={() => setAuthOpen(false)}
         onAuthenticated={handleAuthenticated}
         isEn={isEn}
+        fallbackHref={`${REPO_URL}/edit/main/${file}`}
       />
     </>
   )

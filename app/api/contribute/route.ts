@@ -14,12 +14,22 @@ const typedContributable = contributable as Record<string, ContributableEntry>
 function json(data: any, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { 'Content-Type': 'application/json' }
+    headers: {
+      'Cache-Control': 'private, no-store',
+      'Content-Type': 'application/json',
+      Vary: 'Authorization'
+    }
   })
 }
 
 export async function POST(req: Request) {
-  const user = await requireUser(req)
+  let user
+  try {
+    user = await requireUser(req)
+  } catch (err) {
+    console.error('[contribute] Google authentication is unavailable:', err)
+    return json({ error: 'auth_unavailable' }, 503)
+  }
   if (!user) return json({ error: 'unauthorized' }, 401)
 
   // Bearer-token auth is not vulnerable to CSRF (the token isn't sent
@@ -43,7 +53,7 @@ export async function POST(req: Request) {
   }
   if (content.length > 200_000) return json({ error: 'content_too_large' }, 413)
 
-  const summaryStr = typeof summary === 'string' ? summary.trim().slice(0, 1000) : ''
+  const summaryStr = typeof summary === 'string' ? summary.trim().slice(0, 280) : ''
 
   const pageUrl = `https://deshistartup.com${path}`
   let result: any
@@ -59,7 +69,7 @@ export async function POST(req: Request) {
     })
   } catch (err: any) {
     console.error('[contribute] PR creation failed:', err)
-    return json({ error: 'pr_creation_failed', detail: err.message }, 502)
+    return json({ error: 'pr_creation_failed' }, 502)
   }
 
   return json(result)

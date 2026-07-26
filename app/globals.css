@@ -1977,34 +1977,42 @@ a.is-stub-link:hover {
 /* --------------------------------------------------- contribution editor */
 /* Auth + editor shared modal shell. Reuses site CSS variables.            */
 
+body.auth-open {
+  overflow: hidden;
+}
+
 .modal-overlay {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgb(32 33 34 / 55%);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 24px 16px;
+  display: grid;
+  place-items: center;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  background: rgb(32 33 34 / 55%);
+  padding: max(24px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
 }
 
 .modal-card {
   position: relative;
-  background: var(--canvas);
+  width: min(100%, 480px);
+  max-height: calc(100vh - 48px);
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
   border: 1px solid var(--line);
-  box-shadow: var(--shadow);
-  border-radius: 8px;
-  padding: 28px 28px 24px;
-  max-width: 520px;
-  width: 100%;
-  margin: auto;
+  border-radius: 3px;
+  background: var(--canvas);
+  padding: 28px;
+}
+
+.modal-card:focus {
+  outline: none;
 }
 
 .modal-card h2 {
   margin: 0 0 10px;
   border: 0;
-  padding: 0;
+  padding: 0 40px 0 0;
   font-family: var(--sans);
   font-size: 1.25rem;
   color: var(--ink);
@@ -2012,115 +2020,77 @@ a.is-stub-link:hover {
 
 .modal-close {
   position: absolute;
-  top: 10px;
-  right: 12px;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid transparent;
+  border-radius: 3px;
   background: none;
-  border: 0;
-  font-size: 1.6rem;
-  line-height: 1;
   color: var(--faint);
+  font: inherit;
+  font-size: 1.55rem;
+  line-height: 1;
   cursor: pointer;
-  padding: 4px 8px;
 }
 
 .modal-close:hover {
+  border-color: var(--line);
+  background: var(--canvas-soft);
   color: var(--ink);
 }
 
 .modal-lede {
+  margin: 0 0 18px;
   color: var(--muted);
   font-size: 0.95rem;
-  margin: 0 0 18px;
+}
+
+.google-btn-wrap {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+}
+
+.google-btn-wrap iframe {
+  max-width: 100%;
 }
 
 .modal-status {
+  min-height: 44px;
+  margin: 0;
   color: var(--green-deep);
   font-size: 0.9rem;
+  line-height: 44px;
 }
 
 .modal-error {
-  color: #b42318;
-  background: #fef3f2;
-  border: 1px solid #fda29b;
-  border-radius: 4px;
-  padding: 8px 10px;
-  font-size: 0.9rem;
   margin: 12px 0 0;
+  border: 1px solid color-mix(in srgb, var(--error), var(--canvas) 58%);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--error), var(--canvas) 94%);
+  padding: 12px;
+  color: var(--error);
+  font-size: 0.9rem;
+}
+
+.modal-error p {
+  margin: 0;
+}
+
+.modal-error__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .modal-note {
+  margin: 16px 0 0;
   color: var(--faint);
   font-size: 0.85rem;
-  margin: 16px 0 0;
-}
-
-.btn-google {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 10px 18px;
-  font-size: 0.98rem;
-  font-weight: 600;
-  color: var(--ink);
-  cursor: pointer;
-}
-
-.btn-google:hover:not(:disabled) {
-  background: var(--canvas-soft);
-  border-color: var(--faint);
-}
-
-.btn-google:disabled {
-  opacity: 0.6;
-  cursor: default;
-}
-
-.btn-primary {
-  display: inline-block;
-  background: var(--green);
-  color: #fff;
-  border: 0;
-  border-radius: 6px;
-  padding: 9px 18px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.btn-primary:hover:not(:disabled) {
-  background: var(--green-deep);
-  color: #fff;
-}
-
-.btn-primary:disabled {
-  opacity: 0.6;
-  cursor: default;
-}
-
-.btn-secondary {
-  display: inline-block;
-  background: var(--canvas);
-  color: var(--ink);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 8px 16px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.btn-secondary:hover:not(:disabled) {
-  background: var(--canvas-soft);
-}
-
-.btn-secondary:disabled {
-  opacity: 0.6;
-  cursor: default;
 }
 
 .tab-action-btn {
@@ -2321,11 +2291,21 @@ a.is-stub-link:hover {
    সম্পাদনা, and the whole point of this mode is that it does not. */
 
 .edit-live .milkdown .ProseMirror {
+  --prosemirror-virtual-cursor-color: var(--green-deep);
+
   min-height: 46vh;
   padding: 0;
   outline: none;
+  caret-color: var(--green-deep);
+  caret-animation: manual;
+  caret-shape: bar;
+  cursor: text;
   font-size: inherit;
   line-height: 1.72;
+}
+
+.edit-live .milkdown .ProseMirror-gapcursor::after {
+  border-top: 2px solid var(--green-deep);
 }
 
 .edit-live .milkdown .ProseMirror > :is(p, ul, ol, dl, blockquote, h1, h2, h3, h4) {
@@ -2375,13 +2355,14 @@ a.is-stub-link:hover {
   font-size: 1rem;
 }
 
-/* Crepe marks a quote with a 4px rounded bar down its left edge. This site marks
-   an aside the way a printed reference does, with rules above and below. */
+/* Keep the summary box pixel-for-pixel with reading mode. The former editor
+   override removed its horizontal padding, which put a line-start caret
+   directly on top of the green border and made it effectively invisible. */
 .edit-live .milkdown .ProseMirror blockquote {
   margin: 26px 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 16px 0;
+  border: 1px solid var(--green);
+  background: var(--green-ground);
+  padding: 16px 20px;
   color: var(--ink);
 }
 
@@ -2474,9 +2455,9 @@ a.is-stub-link:hover {
 }
 
 /* Locked MDX components (<StubNotice/>, <SectionIndex/>, …) ride through the
-   markdown round-trip as fenced ```mdx blocks. Crepe renders those through
-   CodeMirror, which keeps the language in a button label and out of reach of any
-   selector, so the editor tags them with data-locked and this dresses the tag.
+   markdown round-trip as internal fenced blocks. Crepe renders those through
+   CodeMirror, so the editor tags exact protected source blocks with data-locked.
+   This selector dresses that tag.
    Caution family, full hairline, named by a label: the same way every other aside
    on this site is marked. */
 .edit-live .milkdown .milkdown-code-block[data-locked] {
@@ -2485,6 +2466,7 @@ a.is-stub-link:hover {
   border-radius: 0;
   background: var(--warn-bg);
   padding: 10px 12px 4px;
+  cursor: not-allowed;
 }
 
 .edit-live .milkdown .milkdown-code-block[data-locked]::before {
@@ -2499,6 +2481,7 @@ a.is-stub-link:hover {
 
 .edit-live .milkdown .milkdown-code-block[data-locked] .cm-editor {
   background: transparent;
+  pointer-events: none;
 }
 
 /* -------------------------------------------------------- publish panel */
@@ -2564,6 +2547,14 @@ a.is-stub-link:hover {
   font-size: 0.9rem;
 }
 
+.edit-publish__error p {
+  margin: 0;
+}
+
+.edit-publish__error .edit-btn {
+  margin-top: 10px;
+}
+
 .edit-publish__foot {
   display: flex;
   flex-wrap: wrap;
@@ -2605,10 +2596,6 @@ a.is-stub-link:hover {
   max-width: var(--measure);
   margin: 0 0 12px;
   color: var(--muted);
-}
-
-.edit-state__code {
-  font-size: 0.85rem;
 }
 
 .edit-state__actions {
@@ -2725,6 +2712,10 @@ a.is-stub-link:hover {
     flex-basis: 100%;
   }
 
+  .edit-bar__warn {
+    flex-basis: 100%;
+  }
+
   .edit-btn,
   .edit-flash__close {
     min-height: 44px;
@@ -2762,12 +2753,26 @@ a.is-stub-link:hover {
 
 @media (max-width: 640px) {
   .modal-overlay {
-    padding: 0;
+    place-items: end center;
+    padding: max(12px, env(safe-area-inset-top)) 0 0;
   }
 
   .modal-card {
+    width: 100%;
+    max-height: calc(100vh - max(12px, env(safe-area-inset-top)));
+    max-height: calc(100dvh - max(12px, env(safe-area-inset-top)));
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
     border-radius: 0;
-    min-height: 100vh;
+    padding: 24px 20px max(24px, env(safe-area-inset-bottom));
+  }
+}
+
+@media (pointer: coarse) {
+  .edit-btn,
+  .edit-flash__close {
+    min-height: 44px;
   }
 }
 

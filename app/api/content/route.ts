@@ -27,7 +27,11 @@ const CACHE_TTL = 5 * 60 * 1000
 function json(data: any, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { 'Content-Type': 'application/json' }
+    headers: {
+      'Cache-Control': 'private, no-store',
+      'Content-Type': 'application/json',
+      Vary: 'Authorization'
+    }
   })
 }
 
@@ -55,7 +59,10 @@ async function fetchRawMdx(repoPath: string, ref = 'main'): Promise<string> {
   const cached = _cache.get(cacheKey)
   if (cached && Date.now() - cached.t < CACHE_TTL) return cached.source
   const url = `${RAW_BASE}/${REPO}/${ref}/${repoPath.split('/').map(encodeURIComponent).join('/')}`
-  const res = await fetch(url, { headers: { 'User-Agent': 'deshistartup-contributor-bot' } })
+  const res = await fetch(url, {
+    cache: 'no-store',
+    headers: { 'User-Agent': 'deshistartup-contributor-bot' }
+  })
   if (!res.ok) throw new Error(`raw fetch ${res.status}`)
   const source = await res.text()
   _cache.set(cacheKey, { source, t: Date.now() })
@@ -68,7 +75,13 @@ async function fetchRawMdx(repoPath: string, ref = 'main'): Promise<string> {
 }
 
 export async function GET(req: Request) {
-  const user = await requireUser(req)
+  let user
+  try {
+    user = await requireUser(req)
+  } catch (err) {
+    console.error('[content] Google authentication is unavailable:', err)
+    return json({ error: 'auth_unavailable' }, 503)
+  }
   if (!user) return json({ error: 'unauthorized' }, 401)
 
   const url = new URL(req.url)
@@ -78,36 +91,32 @@ export async function GET(req: Request) {
   const entry = typedContributable[path]
   if (!entry) return json({ error: 'not_contributable' }, 404)
 
-  // Check if this contributor has an open PR for this page. If so, fetch
-  // from their branch instead of main so they see their own draft.
+  // Check if this contributor has a branch for this page. It may hold either
+  // an open PR or a draft saved just before PR creation was interrupted.
   let existingPR: { url: string } | null = null
   let ref = 'main'
   try {
     const contrib = await findOpenContribution(path, user.email)
     if (contrib) {
-      existingPR = { url: contrib.prUrl }
-      ref = contrib.branchName
+      if (contrib.prUrl) existingPR = { url: contrib.prUrl }
+      // Cache by immutable commit SHA rather than branch name. When the same
+      // contributor updates a draft, the next editor load sees the new head
+      // immediately instead of a five-minute-old branch response.
+      ref = contrib.headSha
     }
   } catch (err: any) {
-    // Non-fatal — fall back to main
-    console.error('[content] findOpenContribution failed:', err.message)
+    // Loading main here could overwrite a newer draft on the contribution
+    // branch. Fail visibly and let the contributor retry instead.
+    console.error('[content] Contribution lookup failed:', err)
+    return json({ error: 'fetch_failed' }, 502)
   }
 
   let source: string
   try {
     source = await fetchRawMdx(entry.repoPath, ref)
   } catch (err: any) {
-    // If the branch fetch failed (e.g. branch was just deleted), try main
-    if (ref !== 'main') {
-      try {
-        source = await fetchRawMdx(entry.repoPath, 'main')
-        existingPR = null
-      } catch (err2: any) {
-        return json({ error: 'fetch_failed', detail: err2.message }, 502)
-      }
-    } else {
-      return json({ error: 'fetch_failed', detail: err.message }, 502)
-    }
+    console.error('[content] Source fetch failed:', err)
+    return json({ error: 'fetch_failed' }, 502)
   }
 
   const { frontmatterRaw, frontmatter, content } = splitFrontmatter(source)

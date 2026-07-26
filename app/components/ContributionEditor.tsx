@@ -7,6 +7,12 @@ import '@milkdown/crepe/theme/classic.css'
 import { remarkPluginsCtx, remarkStringifyOptionsCtx } from '@milkdown/kit/core'
 import { REPO_URL } from '../nav.config'
 import { UserInfo } from '../lib/client-auth'
+import {
+  decodeLockedMdx,
+  encodeLockedMdx,
+  lockedMdxBlocks,
+  sameLockedMdx
+} from '../lib/contribution-markdown'
 
 /**
  * DIRECTION CONTRACT
@@ -30,17 +36,8 @@ import { UserInfo } from '../lib/client-auth'
  * Mechanically: loads the page's MDX (minus frontmatter) into a Milkdown/Crepe
  * editor and submits a pull request via /api/contribute. The contributor never
  * sees GitHub. Locked MDX components (<StubNotice/>, <SectionIndex/>, …) are
- * fenced as ```mdx code blocks so they survive the markdown round-trip unchanged.
+ * fenced as internal code blocks so they survive the markdown round-trip unchanged.
  */
-
-// Self-closing JSX component tags (capitalized) become fenced code blocks.
-function encodeMdx(body: string): string {
-  return body.replace(/<([A-Z][\w]*)\b[^>]*?\/>/g, (match) => '```mdx\n' + match + '\n```')
-}
-
-function decodeMdx(md: string): string {
-  return md.replace(/```mdx\n([\s\S]*?)\n```/g, (_m, inner) => inner.trim())
-}
 
 // Custom remark plugin to force list and list-items to be tight (spread: false)
 // so that empty lines are not added between list items during serialization.
@@ -93,6 +90,7 @@ interface ContributionEditorProps {
   onExit: () => void
   onSubmitted: (result: SubmitResult) => void
   onSessionExpired: () => void
+  onReauthenticate: () => void
   onReadyChange: (ready: boolean) => void
   onDirtyChange: (dirty: boolean) => void
 }
@@ -123,6 +121,7 @@ export default function ContributionEditor({
   onExit,
   onSubmitted,
   onSessionExpired,
+  onReauthenticate,
   onReadyChange,
   onDirtyChange
 }: ContributionEditorProps) {
@@ -135,19 +134,16 @@ export default function ContributionEditor({
   const [ready, setReady] = useState(false)
   const [dirty, setDirty] = useState(false)
   const [confirmingExit, setConfirmingExit] = useState(false)
-  // Frozen at mount. The shell drops the stored token the moment the server
-  // rejects it, and re-reading that prop here would just fire the same doomed
-  // request a second time.
-  const [sessionToken] = useState(authToken)
   const containerRef = useRef<HTMLDivElement>(null)
   const summaryRef = useRef<HTMLTextAreaElement>(null)
   const crepeRef = useRef<Crepe | null>(null)
   const markdownRef = useRef<string>('')
   const baselineRef = useRef<string | null>(null)
   const dirtyRef = useRef(false)
+  const lockedBlocksRef = useRef<string[]>([])
 
   /**
-   * Locked MDX components ride through the round-trip as fenced ```mdx blocks,
+   * Locked MDX components ride through the round-trip as internal fenced blocks,
    * and Crepe renders those through CodeMirror, which keeps the language in a
    * button's label and nowhere a selector can reach. So flag them here and let
    * the stylesheet dress the flag. `textContent` rather than `innerText`: the
@@ -164,17 +160,35 @@ export default function ContributionEditor({
         block.querySelector('.milkdown-code-block-placeholder code') ||
         block
       const text = (source.textContent || '').trim()
-      block.toggleAttribute('data-locked', /^<[A-Z][\w]*\b[\s\S]*\/>$/.test(text))
+      const isLocked = lockedBlocksRef.current.includes(text)
+      block.toggleAttribute('data-locked', isLocked)
+      if (isLocked) {
+        block.setAttribute('contenteditable', 'false')
+        block.setAttribute('tabindex', '0')
+        block.setAttribute(
+          'aria-label',
+          isEn
+            ? 'Protected site component. It cannot be edited here.'
+            : 'সাইটের সুরক্ষিত অংশ। এখানে এটি সম্পাদনা করা যাবে না।'
+        )
+      } else {
+        block.removeAttribute('contenteditable')
+        block.removeAttribute('tabindex')
+        block.removeAttribute('aria-label')
+      }
     })
-  }, [])
+  }, [isEn])
 
   // Load the page source. Until it lands the shell keeps the rendered article
   // on screen, so the reader never loses their place.
   useEffect(() => {
+    if (data || !authToken) return undefined
     let active = true
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+    setLoading(true)
+    setError(null)
     fetch(`${basePath}/api/content?path=${encodeURIComponent(pathname)}`, {
-      headers: { Authorization: `Bearer ${sessionToken || ''}` }
+      headers: { Authorization: `Bearer ${authToken}` }
     })
       .then(async (res) => {
         const j = await res.json().catch(() => ({}))
@@ -190,7 +204,10 @@ export default function ContributionEditor({
         // The server is the authority on whether a token is still good. If it
         // says no, drop it, so pressing সম্পাদনা again offers a fresh sign-in
         // instead of failing the same way a second time.
-        if (err.message === 'unauthorized') onSessionExpired()
+        if (err.message === 'unauthorized') {
+          onSessionExpired()
+          onReauthenticate()
+        }
       })
       .finally(() => {
         if (active) setLoading(false)
@@ -199,13 +216,14 @@ export default function ContributionEditor({
       active = false
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname])
+  }, [pathname, authToken])
 
   // Initialize the Milkdown/Crepe editor once content is loaded.
   useEffect(() => {
     if (!data || !containerRef.current) return
     let destroyed = false
-    const initialValue = encodeMdx(data.content)
+    const initialValue = encodeLockedMdx(data.content)
+    lockedBlocksRef.current = lockedMdxBlocks(data.content)
 
     const crepe = new Crepe({
       root: containerRef.current,
@@ -325,33 +343,59 @@ export default function ContributionEditor({
 
   async function handleSubmit() {
     if (!data || submitting) return
-    setSubmitting(true)
     setSubmitError(null)
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
     let body
     try {
       const md = crepeRef.current ? crepeRef.current.getMarkdown() : markdownRef.current
-      body = decodeMdx(md || '')
+      body = decodeLockedMdx(md || '')
     } catch {
-      body = decodeMdx(markdownRef.current || '')
+      body = decodeLockedMdx(markdownRef.current || '')
     }
+    if (!sameLockedMdx(lockedBlocksRef.current, lockedMdxBlocks(body))) {
+      setSubmitError('locked_content_changed')
+      return
+    }
+    if (!authToken) {
+      setSubmitError('unauthorized')
+      onReauthenticate()
+      return
+    }
+
+    setSubmitting(true)
     const fullContent = data.frontmatterRaw + '\n' + body
     try {
       const res = await fetch(`${basePath}/api/contribute`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${sessionToken || ''}`
+          Authorization: `Bearer ${authToken}`
         },
         body: JSON.stringify({ path: pathname, content: fullContent, summary })
       })
       const j = await res.json().catch(() => ({}))
-      if (!res.ok) throw new Error(j.detail || j.error || 'submit_failed')
+      if (!res.ok) throw new Error(j.error || 'submit_failed')
       dirtyRef.current = false
       setDirty(false)
       onSubmitted(j)
-    } catch (err: any) {
-      setSubmitError(err.message)
+    } catch (err: unknown) {
+      const code = err instanceof Error ? err.message : 'submit_failed'
+      const knownCode = [
+        'content_too_large',
+        'auth_unavailable',
+        'locked_content_changed',
+        'not_contributable',
+        'pr_creation_failed',
+        'submit_failed',
+        'unauthorized'
+      ].includes(code)
+        ? code
+        : 'network_error'
+      setSubmitError(knownCode)
+      if (knownCode === 'unauthorized') {
+        onSessionExpired()
+        onReauthenticate()
+      }
       setSubmitting(false)
     }
   }
@@ -360,12 +404,12 @@ export default function ContributionEditor({
   const pageTitle = data?.frontmatter.title || data?.title || fallbackTitle
 
   let status = ''
-  if (submitting) status = t(isEn, 'জমা দেওয়া হচ্ছে…', 'Submitting…')
+  if (submitting) status = t(isEn, 'রিভিউতে পাঠানো হচ্ছে…', 'Sending for review…')
   else if (loading) status = t(isEn, 'লেখা আনা হচ্ছে…', 'Loading the page…')
-  else if (dirty) status = t(isEn, 'অসংরক্ষিত পরিবর্তন আছে', 'Unsaved changes')
+  else if (dirty) status = t(isEn, 'পরিবর্তন এখনো জমা হয়নি', 'Changes not submitted')
 
   return (
-    <div className="edit-mode">
+    <div className="edit-mode" aria-busy={submitting || loading}>
       <div className="edit-bar">
         <p className="edit-bar__what">
           <PencilIcon />
@@ -381,13 +425,17 @@ export default function ContributionEditor({
           {confirmingExit ? (
             <>
               <span className="edit-bar__warn">
-                {t(isEn, 'আপনার লেখা মুছে যাবে।', 'Your edit will be lost.')}
+                {t(
+                  isEn,
+                  'এই পাতায় করা পরিবর্তন মুছে যাবে।',
+                  'Your changes to this page will be lost.'
+                )}
               </span>
               <button type="button" className="edit-btn" onClick={() => setConfirmingExit(false)}>
-                {t(isEn, 'সম্পাদনায় ফিরুন', 'Keep editing')}
+                {t(isEn, 'সম্পাদনা চালিয়ে যান', 'Keep editing')}
               </button>
               <button type="button" className="edit-btn" onClick={onExit}>
-                {t(isEn, 'হ্যাঁ, বাদ দিন', 'Discard')}
+                {t(isEn, 'পরিবর্তন বাদ দিন', 'Discard changes')}
               </button>
             </>
           ) : (
@@ -407,7 +455,7 @@ export default function ContributionEditor({
                       : undefined
                   }
                 >
-                  {t(isEn, 'জমা দিন', 'Submit')}
+                  {t(isEn, 'রিভিউতে পাঠান', 'Send for review')}
                 </button>
               )}
             </>
@@ -423,8 +471,8 @@ export default function ContributionEditor({
               <p>
                 {t(
                   isEn,
-                  'আপনার সাইন-ইনের মেয়াদ শেষ হয়ে গেছে। পড়ায় ফিরে গিয়ে আবার “সম্পাদনা” চাপুন, তাহলে নতুন করে সাইন ইন করতে পারবেন।',
-                  'Your sign-in has expired. Go back to reading and press “Edit” again to sign back in.'
+                  'আবার সাইন ইন করলে এখান থেকেই সম্পাদনা চালিয়ে যেতে পারবেন।',
+                  'Sign in again to continue editing from here.'
                 )}
               </p>
             </>
@@ -434,8 +482,19 @@ export default function ContributionEditor({
               <p>
                 {t(
                   isEn,
-                  'পাতাটা এখনো ইনলাইন এডিটরের তালিকায় আসেনি। GitHub-এ গিয়ে সরাসরি সম্পাদনা করতে পারেন, কাজটা একইভাবে রিভিউ হবে।',
-                  'This page is not in the inline editor’s list yet. You can edit it directly on GitHub instead; it goes through the same review.'
+                  'পাতাটি এখন ইনলাইন এডিটরে খোলা যাচ্ছে না। GitHub-এ সরাসরি সম্পাদনা করলে সেটিও একইভাবে রিভিউ হবে।',
+                  'This page is not available in the inline editor. You can edit it on GitHub instead; it goes through the same review.'
+                )}
+              </p>
+            </>
+          ) : error === 'editor_init_failed' ? (
+            <>
+              <strong>{t(isEn, 'এডিটর চালু করা যায়নি', 'The editor could not start')}</strong>
+              <p>
+                {t(
+                  isEn,
+                  'পাতার লেখা ঠিক আছে, কিন্তু এই ব্রাউজারে এডিটর চালু হয়নি। পাতা রিলোড করে আবার চেষ্টা করুন, বা GitHub-এ সম্পাদনা করুন।',
+                  'The page is fine, but the editor did not start in this browser. Reload and try again, or edit on GitHub.'
                 )}
               </p>
             </>
@@ -449,12 +508,14 @@ export default function ContributionEditor({
                   'Something went wrong while fetching the page. Try again in a moment, or edit it directly on GitHub.'
                 )}
               </p>
-              <p className="edit-state__code">
-                <code>{error}</code>
-              </p>
             </>
           )}
           <div className="edit-state__actions">
+            {error === 'unauthorized' && (
+              <button type="button" className="edit-btn is-primary" onClick={onReauthenticate}>
+                {t(isEn, 'আবার সাইন ইন করুন', 'Sign in again')}
+              </button>
+            )}
             <a className="edit-btn" href={ghEditUrl} target="_blank" rel="noopener noreferrer">
               {t(isEn, 'GitHub-এ সম্পাদনা করুন', 'Edit on GitHub')}
             </a>
@@ -490,13 +551,13 @@ export default function ContributionEditor({
 
           <div className="edit-publish">
             <label className="edit-publish__label" htmlFor="contrib-summary">
-              {t(isEn, 'কী বদলালেন, এক লাইনে লিখুন', 'Say what you changed, in one line')}
+              {t(isEn, 'কী বদলালেন? (ঐচ্ছিক)', 'What changed? (optional)')}
             </label>
             <p className="edit-publish__hint">
               {t(
                 isEn,
-                'রিভিউয়ার এই লাইনটাই সবার আগে পড়েন। যেমন: “২০২৬ সালের নতুন ফি বসিয়েছি”।',
-                'Reviewers read this line first. For example: “Updated the fee to the 2026 figure”.'
+                'এক লাইনে লিখলে রিভিউ দ্রুত হয়। যেমন: “২০২৬ সালের নতুন ফি বসিয়েছি”।',
+                'A one-line note helps reviewers. For example: “Updated the fee to the 2026 figure”.'
               )}
             </p>
             <textarea
@@ -507,19 +568,43 @@ export default function ContributionEditor({
               onChange={(e) => setSummary(e.target.value)}
               placeholder={t(isEn, 'যেমন: ভুল ফোন নম্বর ঠিক করেছি', 'e.g. Fixed the wrong phone number')}
               rows={2}
-              maxLength={1000}
+              maxLength={280}
               disabled={submitting}
             />
 
             {submitError && (
-              <p className="edit-publish__error" role="alert">
-                {t(
-                  isEn,
-                  'জমা দেওয়া যায়নি। একটু পরে আবার চেষ্টা করুন। আপনার লেখা এই পাতাতেই আছে, হারায়নি।',
-                  'The submission failed. Try again in a moment; your text is still here.'
-                )}{' '}
-                <code>{submitError}</code>
-              </p>
+              <div className="edit-publish__error" role="alert">
+                <p>
+                  {submitError === 'unauthorized'
+                    ? t(
+                        isEn,
+                        'সাইন-ইনের মেয়াদ শেষ হয়েছে। আপনার পরিবর্তন এই পাতাতেই আছে। আবার সাইন ইন করে রিভিউতে পাঠান।',
+                        'Your sign-in expired. Your changes are still here. Sign in again, then send them for review.'
+                      )
+                    : submitError === 'locked_content_changed'
+                      ? t(
+                          isEn,
+                          'সাইটের নিজস্ব একটি অংশ বদলে গেছে। ওই অংশ আগের অবস্থায় ফিরিয়ে আবার চেষ্টা করুন। আপনার অন্য পরিবর্তন হারায়নি।',
+                          'A protected site component was changed. Restore it, then try again. Your other changes are still here.'
+                        )
+                      : submitError === 'content_too_large'
+                        ? t(
+                            isEn,
+                            'পরিবর্তনটি একবারে পাঠানোর জন্য খুব বড়। ছোট ভাগে পাঠান, বা GitHub-এ সম্পাদনা করুন।',
+                            'This change is too large to send at once. Submit a smaller edit, or edit on GitHub.'
+                          )
+                        : t(
+                            isEn,
+                            'রিভিউতে পাঠানো যায়নি। একটু পরে আবার চেষ্টা করুন। আপনার পরিবর্তন এই পাতাতেই আছে।',
+                            'The changes could not be sent for review. Try again in a moment; your work is still here.'
+                          )}
+                </p>
+                {submitError === 'unauthorized' && (
+                  <button type="button" className="edit-btn" onClick={onReauthenticate}>
+                    {t(isEn, 'আবার সাইন ইন করুন', 'Sign in again')}
+                  </button>
+                )}
+              </div>
             )}
 
             <div className="edit-publish__foot">
@@ -527,13 +612,13 @@ export default function ContributionEditor({
                 {session?.name
                   ? t(
                       isEn,
-                      `আপনি ${session.name} হিসেবে জমা দিচ্ছেন। জমা দিলে একটা পুল রিকোয়েস্ট তৈরি হবে, আর রিভিউ হওয়ার পর পরিবর্তনটা সাইটে আসবে।`,
-                      `Submitting as ${session.name}. This opens a pull request, and your change goes live once a reviewer approves it.`
+                      `আপনি ${session.name} হিসেবে পাঠাচ্ছেন। একটি পুল রিকোয়েস্ট তৈরি হবে, আর রিভিউ হওয়ার পর পরিবর্তনটি সাইটে আসবে।`,
+                      `Sending as ${session.name}. This opens a pull request, and your change goes live once a reviewer approves it.`
                     )
                   : t(
                       isEn,
-                      'জমা দিলে একটা পুল রিকোয়েস্ট তৈরি হবে, আর রিভিউ হওয়ার পর পরিবর্তনটা সাইটে আসবে।',
-                      'Submitting opens a pull request, and your change goes live once a reviewer approves it.'
+                      'রিভিউতে পাঠালে একটি পুল রিকোয়েস্ট তৈরি হবে। অনুমোদনের পর পরিবর্তনটি সাইটে আসবে।',
+                      'Sending for review opens a pull request. The change goes live after approval.'
                     )}
               </p>
               <div className="edit-publish__actions">
@@ -547,8 +632,8 @@ export default function ContributionEditor({
                   disabled={!ready || !dirty || submitting}
                 >
                   {submitting
-                    ? t(isEn, 'জমা দেওয়া হচ্ছে…', 'Submitting…')
-                    : t(isEn, 'জমা দিন', 'Submit')}
+                    ? t(isEn, 'রিভিউতে পাঠানো হচ্ছে…', 'Sending for review…')
+                    : t(isEn, 'রিভিউতে পাঠান', 'Send for review')}
                 </button>
               </div>
             </div>
