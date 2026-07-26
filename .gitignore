@@ -38,3 +38,6 @@ next-env.d.ts
 CLAUDE.md
 PRODUCT.md
 app/generated/*
+# TypeScript incremental build cache
+tsconfig.tsbuildinfo
+*.tsbuildinfo

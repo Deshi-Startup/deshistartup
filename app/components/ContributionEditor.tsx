@@ -141,6 +141,7 @@ export default function ContributionEditor({
   const baselineRef = useRef<string | null>(null)
   const dirtyRef = useRef(false)
   const lockedBlocksRef = useRef<string[]>([])
+  const seenExitSignalRef = useRef(exitSignal)
 
   /**
    * Locked MDX components ride through the round-trip as internal fenced blocks,
@@ -319,8 +320,14 @@ export default function ContributionEditor({
   useEffect(() => onDirtyChange(dirty), [dirty, onDirtyChange])
 
   // The shell asks to leave (browser back). Never drop work silently.
+  // Edge-triggered, not level-triggered: the counter lives in the shell and
+  // keeps climbing across edit sessions, so a fresh editor must react to the
+  // signal *changing*, not to it merely being non-zero. Otherwise every edit
+  // after the first cancelled one opens with the discard prompt already up.
   useEffect(() => {
-    if (exitSignal > 0) setConfirmingExit(true)
+    if (exitSignal === seenExitSignalRef.current) return
+    seenExitSignalRef.current = exitSignal
+    setConfirmingExit(true)
   }, [exitSignal])
 
   // Ctrl/Cmd+S is muscle memory in any editor. Send it to the summary field.
