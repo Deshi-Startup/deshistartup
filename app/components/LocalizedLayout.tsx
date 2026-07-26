@@ -1,12 +1,13 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import LanguageSwitcher from './LanguageSwitcher'
 import SearchBox from './SearchBox'
 import AuthModal from './AuthModal'
-import { getStoredAuth, UserInfo } from '../lib/client-auth'
+import type { SubmitResult } from './ContributionEditor'
+import { clearAuth, getStoredAuth, UserInfo } from '../lib/client-auth'
 import { bnNav, enNav, REPO_URL } from '../nav.config'
 import sectionsLite from '../generated/sections-lite.json'
 
@@ -55,6 +56,16 @@ function GitHubIcon() {
   return (
     <svg viewBox="0 0 16 16" aria-hidden="true">
       <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+    </svg>
+  )
+}
+
+/* Carried by the সম্পাদনা action so it still reads as "edit" on a phone, where
+   the row collapses to that one control and the neighbouring words are gone. */
+function ActionPencil() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="act-pencil">
+      <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
     </svg>
   )
 }
@@ -202,32 +213,138 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   const [readMinutes, setReadMinutes] = useState<number | null>(null)
   const [session, setSession] = useState<UserInfo | null>(null)
   const [authToken, setAuthToken] = useState<string | null>(null)
-  const [editorOpen, setEditorOpen] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
+  const [editorReady, setEditorReady] = useState(false)
+  const [isDirty, setIsDirty] = useState(false)
+  const [exitSignal, setExitSignal] = useState(0)
+  const [flash, setFlash] = useState<SubmitResult | null>(null)
   const [authOpen, setAuthOpen] = useState(false)
-    const navToggleRef = useRef<HTMLButtonElement>(null)
+  const navToggleRef = useRef<HTMLButtonElement>(null)
   const sidebarRef = useRef<HTMLDivElement>(null)
   const sidebarCloseRef = useRef<HTMLButtonElement>(null)
+  const articleRef = useRef<HTMLElement>(null)
+  const scrollBeforeEdit = useRef(0)
 
-  // Restore a still-valid Google ID token from localStorage on mount.
-  // Auth is fully client-side; the backend just verifies this token.
+  // Restore a still-valid Google ID token from localStorage on mount, and honour
+  // a shared ?action=edit link the way a wiki does: land straight in the editor.
   useEffect(() => {
     const stored = getStoredAuth()
     if (stored) {
       setSession(stored.user)
       setAuthToken(stored.token)
     }
+    const wantsEdit = new URLSearchParams(window.location.search).get('action') === 'edit'
+    if (!wantsEdit || pathname === '/' || pathname === '/en') return
+    if (stored) setIsEditing(true)
+    else setAuthOpen(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const enterEdit = useCallback(() => {
+    scrollBeforeEdit.current = window.scrollY
+    setFlash(null)
+    setIsEditing(true)
+    const url = new URL(window.location.href)
+    if (url.searchParams.get('action') !== 'edit') {
+      url.searchParams.set('action', 'edit')
+      window.history.pushState({ editing: true }, '', url)
+    }
+  }, [])
+
+  const exitEdit = useCallback((result?: SubmitResult) => {
+    setIsEditing(false)
+    setEditorReady(false)
+    setIsDirty(false)
+    if (result) setFlash(result)
+    const url = new URL(window.location.href)
+    if (url.searchParams.has('action')) {
+      url.searchParams.delete('action')
+      window.history.pushState({}, '', `${url.pathname}${url.search}${url.hash}`)
+    }
+    const target = result ? 0 : scrollBeforeEdit.current
+    window.requestAnimationFrame(() => window.scrollTo(0, target))
+  }, [])
+
+  const handleExit = useCallback(() => exitEdit(), [exitEdit])
+  const handleSubmitted = useCallback((result: SubmitResult) => exitEdit(result), [exitEdit])
+
+  // The server rejected the stored token. Forget it here so the next press of
+  // সম্পাদনা offers a fresh sign-in rather than the same failure again.
+  const handleSessionExpired = useCallback(() => {
+    clearAuth()
+    setSession(null)
+    setAuthToken(null)
   }, [])
 
   function handleContribute() {
-    if (session && authToken) setEditorOpen(true)
+    if (session && authToken) enterEdit()
     else setAuthOpen(true)
   }
 
   function handleAuthenticated(user: UserInfo, token: string) {
     setSession(user)
     setAuthToken(token)
-    setEditorOpen(true)
+    enterEdit()
   }
+
+  // Nobody loses an edit to a stray reload, tab close or Android back gesture.
+  useEffect(() => {
+    if (!isEditing || !isDirty) return undefined
+    const warn = (event: BeforeUnloadEvent) => {
+      event.preventDefault()
+      event.returnValue = ''
+    }
+    window.addEventListener('beforeunload', warn)
+    return () => window.removeEventListener('beforeunload', warn)
+  }, [isEditing, isDirty])
+
+  // Back button: leaves edit mode when nothing is at stake, otherwise re-asserts
+  // the edit URL and lets the bar ask before anything is thrown away.
+  useEffect(() => {
+    if (!isEditing) return undefined
+    const onPopState = () => {
+      if (isDirty) {
+        const url = new URL(window.location.href)
+        url.searchParams.set('action', 'edit')
+        window.history.pushState({ editing: true }, '', url)
+        setExitSignal((n) => n + 1)
+        return
+      }
+      setIsEditing(false)
+      setEditorReady(false)
+    }
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [isEditing, isDirty])
+
+  // The edit bar pins directly under the header, whose height changes with the
+  // breakpoint (it stacks to two rows on phones). Measure it rather than guess.
+  useEffect(() => {
+    if (!isEditing) return undefined
+    const header = document.querySelector('.site-header')
+    if (!header) return undefined
+    const apply = () =>
+      document.documentElement.style.setProperty(
+        '--header-h',
+        `${Math.round(header.getBoundingClientRect().height)}px`
+      )
+    apply()
+    const observer = new ResizeObserver(apply)
+    observer.observe(header)
+    return () => {
+      observer.disconnect()
+      document.documentElement.style.removeProperty('--header-h')
+    }
+  }, [isEditing])
+
+  // While the source is being fetched the rendered article stays on screen so the
+  // reader keeps their place, but it is no longer a thing you can click or tab into.
+  useEffect(() => {
+    const article = articleRef.current
+    if (!article) return
+    // @ts-ignore — `inert` lands as a DOM property before React 19 types it as a prop.
+    article.inert = isEditing
+  }, [isEditing, editorReady])
 
   const closeSidebar = (restoreFocus = false) => {
     setIsSidebarOpen(false)
@@ -468,23 +585,90 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
               </a>
             </div>
             <div className="article-actions">
-              <a href="#read">{tabs.read}</a>
+              {isEditing ? (
+                <button type="button" className="act-read tab-action-btn" onClick={handleExit}>
+                  {tabs.read}
+                </button>
+              ) : (
+                <span className="act-read is-current" aria-current="page">
+                  {tabs.read}
+                </span>
+              )}
+
               {isLanding ? (
-                <a href={`${REPO_URL}/edit/main/${file}`} target="_blank" rel="noopener noreferrer">
+                <a className="act-edit" href={`${REPO_URL}/edit/main/${file}`} target="_blank" rel="noopener noreferrer">
+                  <ActionPencil />
                   {tabs.edit}
                 </a>
+              ) : isEditing ? (
+                <span className="act-edit is-current" aria-current="page">
+                  <ActionPencil />
+                  {tabs.edit}
+                </span>
               ) : (
-                <button type="button" className="tab-action-btn" onClick={handleContribute}>
+                <button type="button" className="act-edit tab-action-btn" onClick={handleContribute}>
+                  <ActionPencil />
                   {tabs.edit}
                 </button>
               )}
-              <a href={`${REPO_URL}/commits/main/${file}`} target="_blank" rel="noopener noreferrer">
+
+              <a className="act-history" href={`${REPO_URL}/commits/main/${file}`} target="_blank" rel="noopener noreferrer">
                 {tabs.history}
               </a>
             </div>
           </nav>
 
-          {!isLanding && (
+          {flash && !isEditing && (
+            <div className="edit-flash" role="status">
+              <p>
+                <strong>
+                  {flash.updated
+                    ? isEn
+                      ? 'Your draft has been updated.'
+                      : 'আপনার ড্রাফট হালনাগাদ হয়েছে।'
+                    : isEn
+                      ? 'Your contribution has been submitted.'
+                      : 'আপনার অবদান জমা পড়েছে।'}
+                </strong>{' '}
+                {isEn
+                  ? 'A reviewer will take a look, and once it is approved the change appears on this page.'
+                  : 'একজন রিভিউয়ার এটা দেখবেন। অনুমোদন হয়ে গেলে পরিবর্তনটা এই পাতায় যুক্ত হবে।'}
+              </p>
+              <div className="edit-flash__actions">
+                <a className="edit-btn" href={flash.prUrl} target="_blank" rel="noopener noreferrer">
+                  {isEn ? 'View the pull request' : 'পুল রিকোয়েস্টটি দেখুন'}
+                </a>
+                <button
+                  type="button"
+                  className="edit-flash__close"
+                  onClick={() => setFlash(null)}
+                  aria-label={isEn ? 'Dismiss' : 'বার্তাটি সরান'}
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m6 6 12 12M18 6 6 18" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          )}
+
+          {isEditing && (
+            <ContributionEditor
+              pathname={pathname}
+              isEn={isEn}
+              fallbackTitle={pageTitle}
+              session={session}
+              authToken={authToken}
+              exitSignal={exitSignal}
+              onExit={handleExit}
+              onSubmitted={handleSubmitted}
+              onSessionExpired={handleSessionExpired}
+              onReadyChange={setEditorReady}
+              onDirtyChange={setIsDirty}
+            />
+          )}
+
+          {!isLanding && !isEditing && (
             <div className="article-lede">
               <Breadcrumbs isEn={isEn} pathname={pathname} pageTitle={pageTitle} />
               <div className="article-meta">
@@ -530,11 +714,16 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             </div>
           )}
 
-          <article className="article" data-pagefind-body>
+          <article
+            className={isEditing && !editorReady ? 'article is-yielding' : 'article'}
+            data-pagefind-body
+            ref={articleRef}
+            hidden={editorReady}
+          >
             {children}
           </article>
 
-          {!isLanding && (
+          {!isLanding && !isEditing && (
             <footer className="article-footer">
               <h2>{isEn ? 'Help improve this page' : 'এই পাতা আরও ভালো করুন'}</h2>
               <div className="contrib-row">
@@ -583,15 +772,6 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
         onClose={() => setAuthOpen(false)}
         onAuthenticated={handleAuthenticated}
         isEn={isEn}
-      />
-
-      <ContributionEditor
-        open={editorOpen}
-        onClose={() => setEditorOpen(false)}
-        pathname={pathname}
-        isEn={isEn}
-        session={session}
-        authToken={authToken}
       />
     </>
   )

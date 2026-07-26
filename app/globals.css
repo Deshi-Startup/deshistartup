@@ -60,6 +60,9 @@
   /* Longest comfortable prose line. Only bites above ~1500px, where the canvas
      would otherwise run to 86 Bangla characters a line. */
   --measure: 65rem;
+  /* Sticky-header clearance for the edit bar. Measured and overwritten from JS
+     while editing, because the header stacks to a second row on phones. */
+  --header-h: 84px;
   --shadow: 0 14px 32px rgb(32 33 34 / 8%);
   --sans: '.SF Bangla', system-ui, -apple-system, BlinkMacSystemFont, 'Nirmala UI', 'Noto Sans Bengali',
     'Noto Sans', 'Segoe UI', sans-serif;
@@ -527,6 +530,31 @@ a.tab {
   gap: 28px;
   padding-bottom: 12px;
   font-size: 0.95rem;
+}
+
+.article-actions > * {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Read and Edit swap the way they do on a wiki: whichever view you are in is
+   the current one, set in ink, and the other stays a link. */
+.article-actions .is-current {
+  color: var(--ink);
+  font-weight: 700;
+  cursor: default;
+}
+
+.act-pencil {
+  display: none;
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* --------------------------------------------------- breadcrumbs and meta */
@@ -1755,8 +1783,38 @@ a.is-stub-link:hover {
     padding: 14px 18px 0;
   }
 
+  /* The row collapses to the one control a phone reader can act on. "পড়ুন" is
+     the view they are already in, and commit history is a poor thing to open on
+     a phone – but the founder who spots a wrong fee on the bus is exactly the
+     person this editor is for, so সম্পাদনা stays, drawn as something tappable. */
   .article-actions {
+    gap: 12px;
+    padding-bottom: 10px;
+    font-size: 0.9rem;
+  }
+
+  .article-actions .act-history,
+  .article-actions .act-read.is-current {
     display: none;
+  }
+
+  .article-actions .act-pencil {
+    display: inline-block;
+  }
+
+  .article-actions .act-edit {
+    gap: 7px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--canvas);
+    padding: 8px 13px;
+    min-height: 44px;
+  }
+
+  .article-actions .act-edit.is-current {
+    border-color: var(--green);
+    background: var(--green-soft);
+    color: var(--green-deep);
   }
 
   .article-lede {
@@ -1826,6 +1884,12 @@ a.is-stub-link:hover {
 
   .tab {
     padding: 10px 15px;
+  }
+
+  /* At this width the pencil and the page name carry it; the words in front of
+     them are what pushes the title into an ellipsis. */
+  .edit-bar__what > span {
+    display: none;
   }
 
   .wiki-notice {
@@ -2071,249 +2135,627 @@ a.is-stub-link:hover {
   text-decoration: underline;
 }
 
-/* Editor card — wider than the auth modal. */
+/* ------------------------------------------------------ in-canvas editing */
+/* The wiki move: pressing সম্পাদনা does not hand you an editor, it turns the
+   page into one. The text keeps its column, its measure and its faces, so the
+   paragraph a founder was reading is still exactly where they left it, now with
+   a caret in it. Edit mode adds two objects and no new colour: a bar on the
+   panel neutral that pins under the header, and a ruled publish panel that
+   closes the canvas. */
 
-.editor-card {
-  max-width: 880px;
-  padding: 0;
+.edit-bar {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 5;
   display: flex;
-  flex-direction: column;
-  max-height: calc(100vh - 48px);
-}
-
-.editor-topbar {
-  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
+  gap: 8px 18px;
   border-bottom: 1px solid var(--line);
   background: var(--canvas-soft);
-  border-radius: 8px 8px 0 0;
+  padding: 10px 48px;
 }
 
-.editor-topbar strong {
-  font-size: 1rem;
-}
-
-.editor-user {
-  margin-left: auto;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-.editor-user {
-  margin-right: 36px;
-}
-
-.editor-loading,
-.editor-error-state,
-.editor-success {
-  padding: 32px 28px;
-  text-align: center;
-}
-
-.editor-success h2 {
-  color: var(--green-deep);
-  font-family: var(--sans);
-}
-
-.editor-success p,
-.editor-error-state p {
-  color: var(--muted);
-  margin: 0 0 16px;
-}
-
-.editor-frontmatter {
-  padding: 14px 20px;
-  background: var(--canvas-soft);
-  border-bottom: 1px solid var(--line);
-}
-
-.editor-frontmatter .fm-label {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--faint);
-  margin: 8px 0 2px;
-}
-
-.editor-frontmatter .fm-label:first-child {
-  margin-top: 0;
-}
-
-.editor-frontmatter .fm-title {
-  margin: 0;
-  font-weight: 600;
-  font-size: 1.05rem;
-  color: var(--ink);
-}
-
-.editor-frontmatter .fm-desc {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.92rem;
-}
-
-.editor-frontmatter .fm-verified {
-  margin: 8px 0 0;
-  font-size: 0.82rem;
-  color: var(--green-deep);
-}
-
-.editor-pr-notice {
-  padding: 8px 20px;
-  background: var(--canvas-soft);
-  border-bottom: 1px solid var(--line);
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-.editor-pr-notice a {
-  color: var(--green-deep);
-  font-weight: 500;
-}
-
-/* The editing surface reuses .article typography (applied via the class on
-   the container). These rules reinforce fonts/colors against Crepe's theme
-   and give the editor a comfortable height. */
-
-.editor-surface {
-  padding: 20px 28px;
-  overflow-y: auto;
+.edit-bar__what {
+  display: flex;
   flex: 1 1 auto;
-  min-height: 320px;
-  max-height: 58vh;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
 }
 
-.editor-surface .ProseMirror {
-  font-family: var(--sans);
-  font-size: 16px;
-  line-height: 1.72;
+.edit-bar__what strong {
+  min-width: 0;
+  overflow: hidden;
   color: var(--ink);
-  outline: none;
-  min-height: 280px;
+  font-size: 0.95rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.editor-surface .ProseMirror:focus {
-  outline: none;
+.edit-pencil {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: var(--green-deep);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.editor-surface .ProseMirror h1,
-.editor-surface .ProseMirror h2,
-.editor-surface .ProseMirror h3 {
-  font-family: var(--serif);
-  color: #1f2021;
+.edit-bar__status {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--faint);
+  font-size: 0.85rem;
 }
 
-.editor-surface .ProseMirror h1 {
-  font-size: clamp(1.9rem, 3vw, 2.6rem);
-  margin: 0 0 14px;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 10px;
+.edit-bar__status:empty {
+  display: none;
 }
 
-.editor-surface .ProseMirror h2 {
-  font-size: 1.45rem;
-  margin: 28px 0 10px;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 6px;
+.edit-bar__actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
 }
 
-.editor-surface .ProseMirror h3 {
-  font-size: 1.06rem;
-  margin: 20px 0 8px;
+.edit-bar__warn {
+  color: var(--warn-ink);
+  font-size: 0.85rem;
 }
 
-.editor-surface .ProseMirror blockquote {
-  margin: 16px 0;
-  border-left: 5px solid var(--green);
-  background: var(--canvas-soft);
-  padding: 12px 18px;
-  color: #3a3f43;
-}
-
-.editor-surface .ProseMirror a {
-  color: var(--blue);
-}
-
-.editor-surface .ProseMirror table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 14px 0;
-  font-size: 0.93rem;
-}
-
-.editor-surface .ProseMirror th,
-.editor-surface .ProseMirror td {
+/* Same geometry as every other action on the site: hairline, 3px, white ground,
+   green wash on hover. The primary is the homepage's start button. */
+.edit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   border: 1px solid var(--line);
-  padding: 8px 11px;
+  border-radius: 3px;
+  background: var(--canvas);
+  padding: 8px 16px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+  line-height: 1.25;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.editor-surface .ProseMirror th {
-  background: #f1f3f4;
+.edit-btn:hover:not(:disabled) {
+  border-color: var(--green);
+  background: var(--green-soft);
+  color: var(--green-deep);
+  text-decoration: none;
+}
+
+.edit-btn.is-primary {
+  border-color: var(--green-deep);
+  background: var(--green-ground);
+  color: var(--green-deep);
   font-weight: 700;
 }
 
-/* Locked MDX components are fenced as ```mdx code blocks — flag them. */
-
-.editor-surface pre:has(code.language-mdx) {
-  position: relative;
-  border-left: 3px solid var(--warn-border);
-  background: var(--warn-bg);
+.edit-btn.is-primary:hover:not(:disabled) {
+  background: var(--green-soft);
 }
 
-.editor-surface pre:has(code.language-mdx)::before {
-  content: '🔒 MDX component — সম্পাদনাযোগ্য নয় / locked';
-  display: block;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--warn-ink);
-  margin-bottom: 4px;
+.edit-btn:disabled {
+  border-color: var(--line-soft);
+  background: var(--canvas);
+  color: var(--faint);
+  font-weight: 400;
+  cursor: default;
+}
+
+/* Between the press and the editor being ready, the rendered article stays put
+   and visibly hands over rather than blanking. */
+.article.is-yielding {
+  opacity: 0.42;
+  transition: opacity 160ms ease-out;
+  pointer-events: none;
+  user-select: none;
+}
+
+.edit-live {
+  padding-top: 22px;
+  animation: edit-canvas-in 160ms ease-out both;
+}
+
+.edit-live.is-mounting {
+  display: none;
+}
+
+@keyframes edit-canvas-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Crepe's own chrome (slash menu, block handle, link tooltip, selection
+   toolbar) is driven entirely by these custom properties. Pointing them at the
+   site tokens is what stops the editor from arriving in someone else's theme. */
+.edit-live .milkdown {
+  --crepe-color-background: var(--canvas);
+  --crepe-color-on-background: var(--ink);
+  --crepe-color-surface: var(--canvas);
+  --crepe-color-surface-low: var(--canvas-soft);
+  --crepe-color-on-surface: var(--ink);
+  --crepe-color-on-surface-variant: var(--muted);
+  --crepe-color-outline: var(--line);
+  --crepe-color-primary: var(--green-deep);
+  --crepe-color-secondary: var(--green-soft);
+  --crepe-color-on-secondary: var(--green-deep);
+  --crepe-color-inverse: var(--ink);
+  --crepe-color-on-inverse: var(--canvas);
+  --crepe-color-inline-code: var(--green-deep);
+  --crepe-color-error: var(--error);
+  --crepe-color-hover: var(--green-soft);
+  --crepe-color-selected: var(--green-soft);
+  --crepe-color-inline-area: var(--line-soft);
+  --crepe-font-title: var(--serif);
+  --crepe-font-default: var(--sans);
+  --crepe-font-code: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  --crepe-shadow-1: 0 2px 10px rgb(32 33 34 / 10%);
+  --crepe-shadow-2: var(--shadow);
+
+  background: transparent;
+  color: var(--ink);
   font-family: var(--sans);
 }
 
-.editor-footer {
-  padding: 14px 20px 18px;
+/* Crepe ships a full page-editor look of its own: a 120px writing gutter, 36px
+   headings, a 4px quote bar, 24px line-height. All of it is set at
+   `.milkdown .ProseMirror x` and injected after this file, so every rule below
+   carries `.edit-live .milkdown` to outrank it. The values are the article's own,
+   restated deliberately: if one of them drifts, the text jumps when you press
+   সম্পাদনা, and the whole point of this mode is that it does not. */
+
+.edit-live .milkdown .ProseMirror {
+  min-height: 46vh;
+  padding: 0;
+  outline: none;
+  font-size: inherit;
+  line-height: 1.72;
+}
+
+.edit-live .milkdown .ProseMirror > :is(p, ul, ol, dl, blockquote, h1, h2, h3, h4) {
+  max-width: var(--measure);
+}
+
+.edit-live .milkdown .ProseMirror p {
+  margin: 0 0 1em;
+  padding: 0;
+  font-size: inherit;
+  line-height: 1.72;
+}
+
+.edit-live .milkdown .ProseMirror :is(h1, h2, h3, h4, h5, h6) {
+  padding: 0;
+  color: #1f2021;
+  font-family: var(--serif);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.edit-live .milkdown .ProseMirror h1 {
+  margin: 0 0 18px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+  font-size: clamp(2.1rem, 3vw, 3.2rem);
+  line-height: 1.3;
+}
+
+.edit-live .milkdown .ProseMirror h2 {
+  margin: 34px 0 12px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 7px;
+  font-size: 1.55rem;
+}
+
+.edit-live .milkdown .ProseMirror h3 {
+  margin: 24px 0 10px;
+  font-family: var(--sans);
+  font-size: 1.08rem;
+}
+
+.edit-live .milkdown .ProseMirror :is(h4, h5, h6) {
+  margin: 20px 0 8px;
+  font-family: var(--sans);
+  font-size: 1rem;
+}
+
+/* Crepe marks a quote with a 4px rounded bar down its left edge. This site marks
+   an aside the way a printed reference does, with rules above and below. */
+.edit-live .milkdown .ProseMirror blockquote {
+  margin: 26px 0;
   border-top: 1px solid var(--line);
-  background: var(--canvas);
-  border-radius: 0 0 8px 8px;
-}
-
-.editor-summary-label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 600;
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
   color: var(--ink);
-  margin: 0 0 6px;
 }
 
-.editor-summary {
+.edit-live .milkdown .ProseMirror blockquote::before {
+  content: none;
+}
+
+.edit-live .milkdown .ProseMirror blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.edit-live .milkdown .ProseMirror hr {
+  height: 0;
+  max-width: var(--measure);
+  margin: 32px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  background: none;
+  padding: 0;
+}
+
+.edit-live .milkdown .ProseMirror :is(ul, ol) {
+  margin: 0 0 1em;
+  padding-left: 24px;
+}
+
+.edit-live .milkdown .ProseMirror li {
+  margin: 6px 0;
+}
+
+/* Crepe hangs its bullets on a fixed 32px block, which floats the marker above a
+   1.72 Bangla line. Sit it on the first line instead. */
+.edit-live .milkdown .milkdown-list-item-block li .label-wrapper,
+.edit-live .milkdown .milkdown-list-item-block li .label-wrapper .label {
+  height: auto;
+  min-height: 1.72em;
+  padding: 0;
+  line-height: 1.72;
+}
+
+.edit-live .milkdown .ProseMirror table {
   width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+  background: var(--canvas);
+  font-size: 0.9rem;
+}
+
+.edit-live .milkdown .ProseMirror :is(th, td) {
   border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 8px 10px;
+  padding: 11px 13px;
+  vertical-align: top;
+  text-align: left;
+}
+
+.edit-live .milkdown .ProseMirror th {
+  background: var(--shade);
+  font-weight: 700;
+}
+
+/* Blue is this site's link colour and nothing else's; Crepe would paint links in
+   its primary accent, which here is the structural green. */
+.edit-live .milkdown .ProseMirror a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+/* The reading view flags outbound links with an arrow. Inside a contenteditable
+   it would sit between the caret and the text, so it stays off here. */
+.edit-live .milkdown .ProseMirror a[href^='http']::after {
+  content: none;
+}
+
+.edit-live .milkdown .ProseMirror code {
+  display: inline;
+  border-radius: 3px;
+  background: var(--shade);
+  padding: 1px 4px;
+  color: var(--ink);
+  font-family: var(--crepe-font-code);
+  font-size: 0.92em;
+  line-height: inherit;
+}
+
+.edit-live .milkdown .ProseMirror pre {
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: #f8f9fa;
+  padding: 16px;
+}
+
+/* Locked MDX components (<StubNotice/>, <SectionIndex/>, …) ride through the
+   markdown round-trip as fenced ```mdx blocks. Crepe renders those through
+   CodeMirror, which keeps the language in a button label and out of reach of any
+   selector, so the editor tags them with data-locked and this dresses the tag.
+   Caution family, full hairline, named by a label: the same way every other aside
+   on this site is marked. */
+.edit-live .milkdown .milkdown-code-block[data-locked] {
+  margin: 18px 0;
+  border: 1px solid var(--warn-border);
+  border-radius: 0;
+  background: var(--warn-bg);
+  padding: 10px 12px 4px;
+}
+
+.edit-live .milkdown .milkdown-code-block[data-locked]::before {
+  content: 'সাইটের নিজস্ব উপাদান, বদলাবেন না / locked component';
+  display: block;
+  margin-bottom: 6px;
+  color: var(--warn-ink);
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.edit-live .milkdown .milkdown-code-block[data-locked] .cm-editor {
+  background: transparent;
+}
+
+/* -------------------------------------------------------- publish panel */
+
+.edit-publish {
+  border-top: 1px solid var(--line);
+  background: var(--canvas-soft);
+  padding: 20px 48px 30px;
+}
+
+.edit-publish__label {
+  display: block;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.edit-publish__hint {
+  max-width: var(--measure);
+  margin: 2px 0 10px;
+  color: var(--faint);
+  font-size: 0.85rem;
+}
+
+.edit-publish__summary {
+  display: block;
+  width: 100%;
+  max-width: var(--measure);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--canvas);
+  padding: 10px 12px;
+  color: var(--ink);
   font: inherit;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   resize: vertical;
 }
 
-.editor-summary:focus {
-  outline: none;
+.edit-publish__summary:focus {
   border-color: var(--green);
+  box-shadow: inset 0 0 0 1px var(--green);
+  outline: none;
 }
 
-.editor-actions {
+/* The global focus ring covers a, button, input, select and summary but not
+   textarea, and a keyboard contributor lands here every time. */
+.edit-publish__summary:focus-visible {
+  outline: 2px solid var(--green-deep);
+  outline-offset: 2px;
+}
+
+.edit-publish__summary:disabled {
+  color: var(--muted);
+}
+
+.edit-publish__error {
+  max-width: var(--measure);
+  margin: 12px 0 0;
+  border: 1px solid var(--warn-border);
+  background: var(--warn-bg);
+  padding: 10px 12px;
+  color: var(--warn-ink);
+  font-size: 0.9rem;
+}
+
+.edit-publish__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-top: 16px;
+}
+
+.edit-publish__by {
+  flex: 1 1 22rem;
+  max-width: 46rem;
+  margin: 0;
+  color: var(--faint);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.edit-publish__actions {
   display: flex;
   gap: 10px;
-  justify-content: flex-end;
-  margin-top: 12px;
 }
 
-.editor-note {
-  color: var(--faint);
-  font-size: 0.82rem;
-  margin: 10px 0 0;
+/* --------------------------------------------------- notices and states */
+
+.edit-state {
+  border-bottom: 1px solid var(--line);
+  padding: 30px 48px 32px;
+}
+
+.edit-state strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink);
+  font-size: 1.08rem;
+}
+
+.edit-state p {
+  max-width: var(--measure);
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.edit-state__code {
+  font-size: 0.85rem;
+}
+
+.edit-state__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.edit-draft-notice {
+  margin: 18px 48px 0;
+  border: 1px solid var(--warn-border);
+  background: var(--warn-bg);
+  padding: 14px 16px;
+  color: var(--warn-ink);
+}
+
+.edit-draft-notice strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
+.edit-draft-notice p {
+  max-width: var(--measure);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Posted where the article was, the way a wiki confirms a save: on the page you
+   just changed, not in a toast that leaves before it is read. */
+.edit-flash {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 20px;
+  margin: 18px 48px 0;
+  border: 1px solid var(--green);
+  background: var(--green-soft);
+  padding: 14px 16px;
+}
+
+.edit-flash p {
+  max-width: 52rem;
+  margin: 0;
+  color: var(--green-deep);
+  font-size: 0.95rem;
+}
+
+.edit-flash__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.edit-flash__close {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: none;
+  color: var(--green-deep);
+  cursor: pointer;
+}
+
+.edit-flash__close:hover {
+  border-color: var(--green);
+  background: var(--canvas);
+}
+
+.edit-flash__close svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* ------------------------------------------------------------ responsive */
+
+@media (max-width: 1180px) {
+  .edit-bar,
+  .edit-publish,
+  .edit-state {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .edit-draft-notice,
+  .edit-flash {
+    margin-left: 32px;
+    margin-right: 32px;
+  }
+}
+
+@media (max-width: 860px) {
+  .edit-bar {
+    gap: 6px 10px;
+    padding: 10px 18px;
+  }
+
+  /* One row while nothing is at stake: page name on the left, the two actions on
+     the right. The status line only claims a second row once there is something
+     to say, which on a 714px-tall phone is a row worth not spending. */
+  .edit-bar__what {
+    flex: 1 1 8rem;
+  }
+
+  .edit-bar__status {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .edit-btn,
+  .edit-flash__close {
+    min-height: 44px;
+  }
+
+  .edit-flash__close {
+    width: 44px;
+  }
+
+  .edit-live {
+    padding-top: 18px;
+  }
+
+  .edit-publish,
+  .edit-state {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .edit-draft-notice,
+  .edit-flash {
+    margin-left: 18px;
+    margin-right: 18px;
+  }
+
+  .edit-publish__actions {
+    flex: 1 1 100%;
+  }
+
+  .edit-publish__actions .edit-btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 640px) {
@@ -2325,12 +2767,20 @@ a.is-stub-link:hover {
     border-radius: 0;
     min-height: 100vh;
   }
+}
 
-  .editor-card {
-    max-height: 100vh;
+@media (prefers-reduced-motion: reduce) {
+  .article.is-yielding,
+  .edit-live {
+    animation: none;
+    transition: none;
   }
+}
 
-  .editor-surface {
-    max-height: none;
+@media print {
+  .edit-bar,
+  .edit-publish,
+  .edit-flash {
+    display: none !important;
   }
 }
