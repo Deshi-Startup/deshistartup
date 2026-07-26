@@ -2,7 +2,9 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import { Crepe } from '@milkdown/crepe'
+import '@milkdown/crepe/theme/common/style.css'
 import '@milkdown/crepe/theme/classic.css'
+import { remarkPluginsCtx, remarkStringifyOptionsCtx } from '@milkdown/kit/core'
 import { REPO_URL } from '../nav.config'
 import { UserInfo } from '../lib/client-auth'
 
@@ -23,6 +25,22 @@ function encodeMdx(body: string): string {
 
 function decodeMdx(md: string): string {
   return md.replace(/```mdx\n([\s\S]*?)\n```/g, (_m, inner) => inner.trim())
+}
+
+// Custom remark plugin to force list and list-items to be tight (spread: false)
+// so that empty lines are not added between list items during serialization.
+function remarkTightLists() {
+  return (tree: any) => {
+    const visit = (node: any) => {
+      if (node.type === 'list' || node.type === 'listItem') {
+        node.spread = false
+      }
+      if (node.children) {
+        node.children.forEach(visit)
+      }
+    }
+    visit(tree)
+  }
 }
 
 function repoFileFor(pathname: string): string {
@@ -125,6 +143,18 @@ export default function ContributionEditor({ open, onClose, pathname, isEn = fal
           mode: 'doc'
         }
       }
+    })
+
+    // Customize Markdown serializer options to keep bullet list format consistent
+    crepe.editor.config((ctx) => {
+      ctx.update(remarkStringifyOptionsCtx, (prev) => ({
+        ...prev,
+        bullet: '-' as const,
+      }))
+      ctx.update(remarkPluginsCtx, (prev) => [
+        ...prev,
+        remarkTightLists as any
+      ])
     })
 
     crepe.on((api) => {
