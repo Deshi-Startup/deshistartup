@@ -1,10 +1,10 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 
-const bengaliDigits = (value) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[d])
+const bengaliDigits = (value: number | string) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[Number(d)])
 
-function formatBanglaDate(value) {
+function formatBanglaDate(value: string | null | undefined) {
   if (!value) return value
   try {
     return new Date(`${value}T00:00:00Z`).toLocaleDateString('bn-BD', {
@@ -18,7 +18,31 @@ function formatBanglaDate(value) {
   }
 }
 
-const LABELS = {
+interface Labels {
+  name: string
+  type: string
+  stage: string
+  sectors: string
+  chequeSize: string
+  benefits: string
+  applicationPath: string
+  source: string
+  notStated: string
+  verified: string
+  search: string
+  searchPlaceholder: string
+  typeFilter: string
+  stageFilter: string
+  sectorFilter: string
+  allTypes: string
+  allStages: string
+  allSectors: string
+  reset: string
+  showing: (shown: string, total: string) => string
+  noResults: string
+}
+
+const LABELS: Record<'bn' | 'en', Labels> = {
   bn: {
     name: 'নাম',
     type: 'ধরন',
@@ -67,21 +91,36 @@ const LABELS = {
   }
 }
 
-function asText(value, fallback) {
+function asText(value: string | string[] | null | undefined, fallback: string): string {
   if (Array.isArray(value)) return value.length ? value.join(', ') : fallback
   return value || fallback
 }
 
-function asArray(value) {
-  if (Array.isArray(value)) return value.filter(Boolean)
+function asArray(value: string | string[] | null | undefined): string[] {
+  if (Array.isArray(value)) return value.filter((x): x is string => !!x)
   return value ? [value] : []
 }
 
-function uniqueSorted(rows, field) {
-  return Array.from(new Set(rows.flatMap((row) => asArray(row[field])))).sort((a, b) => a.localeCompare(b))
+export interface DirectoryRow {
+  name: string
+  type: string | string[]
+  stage?: string | string[] | null
+  sectors?: string | string[] | null
+  chequeSize?: string | string[] | null
+  benefits?: string | string[] | null
+  applicationPath?: string | string[] | null
+  sourceUrl?: string | null
+  lastVerified?: string | null
+  notes?: string
 }
 
-function searchableText(row, isAccelerators) {
+function uniqueSorted(rows: DirectoryRow[], field: keyof DirectoryRow): string[] {
+  return Array.from(
+    new Set(rows.flatMap((row) => asArray(row[field] as string | string[] | null | undefined)))
+  ).sort((a, b) => a.localeCompare(b))
+}
+
+function searchableText(row: DirectoryRow, isAccelerators: boolean): string {
   return [
     row.name,
     row.type,
@@ -96,7 +135,13 @@ function searchableText(row, isAccelerators) {
     .toLocaleLowerCase()
 }
 
-export default function DirectoryFilterTable({ category, locale, rows }) {
+interface DirectoryFilterTableProps {
+  category: 'investors' | 'accelerators'
+  locale: 'bn' | 'en'
+  rows: DirectoryRow[]
+}
+
+export default function DirectoryFilterTable({ category, locale, rows }: DirectoryFilterTableProps) {
   const isEn = locale === 'en'
   const labels = isEn ? LABELS.en : LABELS.bn
   const fallback = labels.notStated
@@ -204,9 +249,13 @@ export default function DirectoryFilterTable({ category, locale, rows }) {
                   <td>{asText(isAccelerators ? row.benefits : row.chequeSize, fallback)}</td>
                   <td>{asText(row.applicationPath, fallback)}</td>
                   <td>
-                    <a href={row.sourceUrl} target="_blank" rel="noopener noreferrer">
-                      {labels.source}
-                    </a>
+                    {row.sourceUrl ? (
+                      <a href={row.sourceUrl} target="_blank" rel="noopener noreferrer">
+                        {labels.source}
+                      </a>
+                    ) : (
+                      labels.source
+                    )}
                     <span>
                       {labels.verified}: {isEn ? row.lastVerified : formatBanglaDate(row.lastVerified)}
                     </span>

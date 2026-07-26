@@ -12,8 +12,8 @@
  * IMPORTANT: this catches the *mechanical* tells only. A page can score zero here and still read
  * like translated English — the disease (English sentence architecture, non-idiomatic verbs, missing
  * discourse particles, wrong information order) is invisible to regex. The whole 454-page corpus
- * passed this linter while still sounding translated; that is exactly why the read-aloud test and the
- * `bangla-review` native-reader pass (.claude/commands/bangla-review.md) are the real gate, not this.
+ * passed this linter while still sounding translated; that is exactly why the read-aloud test and a
+ * native-reader pass by a person are the real gate, not this.
  *
  * Usage:
  *   node scripts/bangla-lint.mjs             # scan all bn pages
@@ -303,7 +303,7 @@ function lintFile(file) {
 
 // Bangla UI copy that lives outside app/(contents)/ — the homepage strings escaped every
 // sweep until 2026-07-11 reader feedback caught billboard-Bangla there (STYLE.md §2.12–2.14).
-const EXTRA_BN_SOURCES = ['app/components/WikiLanding.jsx', 'app/nav.config.js']
+const EXTRA_BN_SOURCES = ['app/components/WikiLanding.tsx', 'app/nav.config.ts']
 
 const targets = fileArgs.length
   ? fileArgs
@@ -329,8 +329,8 @@ console.log(
 )
 console.log(
   'A clean pass means the MECHANICAL tells are gone — not that the Bangla reads natural. Architecture-level\n' +
-    'translationese is invisible to regex. Before publishing, run the read-aloud test (STYLE.md §1) and the\n' +
-    'native-reader pass: `/bangla-review <page>` in Claude Code (.claude/commands/bangla-review.md).',
+    'translationese is invisible to regex. Before publishing, run the read-aloud test (STYLE.md §1) and have\n' +
+    'a native reader go through the page sentence by sentence.',
 )
 
 if (strict && hardTotal > 0) process.exit(1)

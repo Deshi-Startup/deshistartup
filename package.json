@@ -19,11 +19,15 @@
     "seo:indexnow:dry": "node scripts/submit-indexnow.mjs --dry-run",
     "predev": "node scripts/build-manifest.mjs",
     "prebuild": "node scripts/route-lint.mjs && node scripts/build-manifest.mjs",
-    "postbuild": "node scripts/postbuild-seo.mjs && (pagefind --site out --output-path out/_pagefind || true) && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true) && node scripts/seo-audit.mjs"
+    "postbuild": "node scripts/postbuild-seo.mjs && (cp public/sitemap.xml public/robots.txt public/llms.txt out/ 2>/dev/null || true) && (pagefind --site out --output-path out/_pagefind || true) && (mkdir -p public/_pagefind && cp -r out/_pagefind/* public/_pagefind/ || true) && node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "@mdx-js/rollup": "^3.1.1",
     "@vinext/cloudflare": "1.0.0-beta.0",
+    "@milkdown/crepe": "^7.21.2",
+    "@milkdown/kit": "^7.21.2",
+    "@milkdown/react": "^7.21.2",
+    "jose": "^6.2.3",
     "next": "^15.1.3",
     "nextra": "^4.0.0",
     "nextra-theme-docs": "^4.0.0",
@@ -36,12 +40,16 @@
     "@cloudflare/vite-plugin": "^1.43.0",
     "@vitejs/plugin-react": "^6.0.3",
     "@vitejs/plugin-rsc": "^0.5.27",
+    "@types/node": "^26.1.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
     "cheerio": "^1.2.0",
     "node-fetch": "^3.3.2",
     "pagefind": "^1.5.2",
     "robots-parser": "^3.0.1",
     "turndown": "^7.2.4",
     "vite": "^8.1.3",
-    "wrangler": "^4.107.0"
+    "wrangler": "^4.107.0",
+    "typescript": "^5.9.3"
   }
 }

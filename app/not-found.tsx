@@ -1,3 +1,5 @@
+import React from 'react'
+
 export default function NotFound() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 

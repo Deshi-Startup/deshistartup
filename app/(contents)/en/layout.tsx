@@ -1,3 +1,4 @@
+import React from 'react'
 import { DEFAULT_DESCRIPTIONS } from '../../seo.config.mjs'
 
 export const metadata = {
@@ -8,6 +9,10 @@ export const metadata = {
   description: DEFAULT_DESCRIPTIONS.en
 }
 
-export default function EnglishContentLayout({ children }) {
-  return children
+interface EnglishContentLayoutProps {
+  children?: React.ReactNode
+}
+
+export default function EnglishContentLayout({ children }: EnglishContentLayoutProps) {
+  return <>{children}</>
 }

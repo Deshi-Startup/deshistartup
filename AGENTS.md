@@ -1,7 +1,7 @@
 # deshistartup Agent Context
 
 This is the committed operations manual and project map for Deshi Startup. Read it before touching
-anything. For *what to build and write next*, the planning brain is `plan/` — start at
+anything. For _what to build and write next_, the planning brain is `plan/` — start at
 [`plan/README.md`](./plan/README.md). `README.md` (Bangla, mirrored by `README.en.md`) is the
 public, contributor-facing front door — keep it short and inviting; the long-form vision/spec
 lives in [`plan/vision.md`](./plan/vision.md).
@@ -30,8 +30,11 @@ wiki-style shell (not the stock Nextra theme).
 - Next.js `^15.1.3` (using Turbopack for dev)
 - Nextra docs theme (`nextra-theme-docs ^4.0.0`)
 - React `18.3.1`
-- Static export via Next.js (`output: 'export'`)
+- Static export via Next.js (`output: 'export'`) — removed on `feat/contribute` branch to enable
+  the inline editor's API route handlers; will be reconciled during the vinext migration.
 - Pagefind (`pagefind ^1.5.2`) for fast, static client-side search (runs automatically on `postbuild`)
+- Milkdown Crepe (`@milkdown/crepe`) for the inline WYSIWYG contribution editor
+- `jose` for backend verification of Google ID tokens
 
 ## Important Files and Directories
 
@@ -41,7 +44,7 @@ wiki-style shell (not the stock Nextra theme).
 - `app/components/LocalizedLayout.jsx` - Localized Nextra layout, language detection, sidebar ordering, and route-group page-map normalization.
 - `app/components/LanguageSwitcher.jsx` - Switches between clean Bengali URLs and `/en/...` URLs.
 - `_meta.js` files are intentionally not used under `app/` because Nextra validation does not work cleanly with the current route-group localization structure. Sidebar order is controlled programmatically in `LocalizedLayout.jsx`.
-- `plan/` - The committed planning brain: the canonical content backlog, tiered source registry, case-study format, directory schema, founder journeys, and research/freshness cadences. Treat it as the source of truth for *what to build and write next*. Start at [`plan/README.md`](./plan/README.md).
+- `plan/` - The committed planning brain: the canonical content backlog, tiered source registry, case-study format, directory schema, founder journeys, and research/freshness cadences. Treat it as the source of truth for _what to build and write next_. Start at [`plan/README.md`](./plan/README.md).
 - `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `.github/ISSUE_TEMPLATE/` - The bilingual contributor surface. The site's per-page "ভুল জানান" links open the `report-mistake.yml` issue form with the page prefilled; `.github/workflows/pr-checks.yml` runs `lint:bangla --strict` + build on every PR. `scripts/seed-issues.mjs` generates "নতুন গাইড" issues from High-priority backlog stubs.
 - `knowledge-bank/` - Optional, local-only scraped source material for legal/business content. It is gitignored for copyright hygiene and may be absent — never rely on it existing, and never commit it.
 - `app/generated/` - Build artifacts produced by `scripts/build-manifest.mjs` (`manifest.bn.json`, `manifest.en.json`, `sections-lite.json`, `seo-pages.json`). They are committed to git but must never be hand-edited; run `npm run manifest` (or any dev/build) to regenerate after content changes.
@@ -53,7 +56,7 @@ wiki-style shell (not the stock Nextra theme).
 
 **Topic-owned URLs (July 2026 migration).** Content lives at one canonical, topic-based URL of at
 most two segments (`/{section}/{slug}`, mirrored at `/en/...`). The former `phase-one`…`phase-four`
-stage sections were dissolved into topic sections; the staged path survives as curated *views* at
+stage sections were dissolved into topic sections; the staged path survives as curated _views_ at
 `/roadmap/{validate|build|grow|scale}`.
 
 Each topic section hub lists its children automatically via
@@ -80,7 +83,7 @@ registry. The bn and en trees must mirror exactly, and a `<StubNotice path>` mus
 slug (both are lint errors).
 
 **The source of truth for what exists is `app/generated/manifest.bn.json` / `manifest.en.json`; the
-source of truth for what *should* exist is `plan/content-backlog.csv` (its `Path` column is the
+source of truth for what _should_ exist is `plan/content-backlog.csv` (its `Path` column is the
 canonical route registry). Never hand-maintain page lists in this doc — they drift.** To see the
 current page inventory, read the manifests or run `npm run manifest` and inspect them.
 
@@ -152,7 +155,7 @@ translationese patterns found on this site. The essentials:
 - আইন, ফি ও নিয়মের দাবিতে সূত্র দিন (সরকারি পোর্টাল সবচেয়ে ভালো); যা নিশ্চিত নন, লিখবেন না —
   অনুমান লিখলে "যাচাই প্রয়োজন" বলে দিন।
 - **Adapt, don't translate.** Copyrighted third-party work (YC, Stripe, LightCastle and similar) must
-  be *adapted* — teach the ideas in our own Bangla and cite the source; never translate or copy it.
+  be _adapted_ — teach the ideas in our own Bangla and cite the source; never translate or copy it.
   Government/official sources may be used freely with citation.
 - Use `## প্রাসঙ্গিক সূত্র` (Bangla) / `## Relevant Sources` (English) for source lists, with
   root/section URLs from `plan/sources.csv`. For a load-bearing data claim or figure, a stable exact
@@ -180,7 +183,7 @@ absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass
 
 - **Language & pedagogy:** Bengali pages follow the Style guide (Bangla) section above —
   `STYLE.md` is binding, don't restate its rules here. `EDITORIAL.md` (Editorial guide section
-  above) is equally binding for *both* locales — it defines how pages teach, not just how they
+  above) is equally binding for _both_ locales — it defines how pages teach, not just how they
   read. English pages: use clear English, leave no Bengali text behind.
 - **Localization:** Do not replace Bengali content when localizing — create/update the matching page
   under `app/(contents)/en/...`, keeping slugs and folder structure aligned across locales.
@@ -214,6 +217,34 @@ absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass
 - **Accuracy:** Cross-reference local laws and fees (RJSC fees, NBR VAT thresholds, trade license
   processes) with current realities (year-stamping is covered in the Style guide section above).
 - **Formatting:** Standard Nextra MDX with `title`/`description` frontmatter on every page.
+
+## Public Contribution Feature
+
+The inline editor lets any reader edit a page without touching GitHub. The flow:
+
+1. Reader clicks **"সম্পাদনা" / "Edit"** on any non-landing content page.
+2. If not signed in, `AuthModal` opens with a Google Identity Services button (client-side
+   only — no server session, no OAuth redirect). Google returns a signed ID token to the browser.
+3. The token is stored in `localStorage` (`app/lib/client-auth.js`) and sent as a
+   `Bearer` header on API calls. Tokens expire in ~1 hour; the backend re-verifies on every
+   request via `jose` + Google's JWKS (`app/lib/google-token.js`).
+4. `ContributionEditor` (Milkdown Crepe, dynamically imported) fetches the page's raw MDX from
+   `GET /api/content?path=<url>`, which looks up the repo path in `contributable.json` and
+   fetches from `raw.githubusercontent.com` (5-min in-memory cache).
+5. Locked MDX components (`<StubNotice/>`, `<SectionIndex/>`) are fenced as ` ```mdx ` code
+   blocks so they survive the markdown round-trip unchanged.
+6. On submit, `POST /api/contribute` creates a GitHub PR via the bot App: branch off `main` →
+   commit full MDX (frontmatter + body) → open PR with the contributor's name/email in the body.
+7. A reviewer merges the PR; the next deploy takes the change live.
+
+**Env vars** (see `.env.local.example`): `NEXT_PUBLIC_GOOGLE_CLIENT_ID` (client + server),
+`GITHUB_APP_ID`, `GITHUB_APP_PRIVATE_KEY` (PEM), `GITHUB_INSTALLATION_ID`. The PEM is the only
+secret — everything else is an ID. The GitHub App needs Contents + Pull requests Read & write
+permissions on `Deshi-Startup/deshistartup`.
+
+**Regenerating `contributable.json`:** run `npm run manifest`. The manifest maps every
+non-landing content URL to its repo path, title, locale, and stub status. If a new page is added
+but doesn't appear in the editor, the manifest is stale.
 
 ## Licensing
 
@@ -262,7 +293,7 @@ absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass
 ## Design System (July 2026 redesign)
 
 - All styling lives in `app/globals.css` as a token-based design system ("national reference work" aesthetic: Bangladesh-green structure, warm paper, serif Bangla display headings, wiki-blue links).
-- **Do not redesign the shell.** The Wikipedia-clone look (paper background, white canvas, green top rule, no right ToC rail) is a deliberate choice.
+- **The shell is a reasoned default, not a locked one.** The Wikipedia-clone look (paper background, white canvas, green top rule, no right ToC rail) is deliberate: it buys a reference work instant credibility, costs almost no bandwidth, and keeps attention on the content. It is open to challenge like everything else here — bring the reasoning and a rendered before/after, and it changes. What is not a style preference is the goal it serves: a first-time founder on a mid-range Android phone, on patchy bandwidth, has to trust the page and be able to read it fast. Propose against that, not against taste. Do not restyle the shell as an unexamined side effect of some other task.
 - Fonts are self-hosted in `app/fonts/` (Noto Sans Bengali variable + Noto Serif Bengali 700, Bengali subset, `local()`-first so most Android devices download nothing). Do not add render-blocking Google Fonts links.
 - Bangla UI text uses Bengali numerals (০-৯); dates render via `toLocaleDateString('bn-BD')`.
 - Per-page chrome (breadcrumbs, last-updated meta bar, edit/history/report links, ToC rail, article footer) is generated in `app/components/LocalizedLayout.jsx` from the pathname – content pages need no extra markup.
