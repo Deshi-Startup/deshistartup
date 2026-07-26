@@ -1,17 +1,81 @@
+import React from 'react'
 import { REPO_URL } from '../nav.config'
 import manifestBn from '../generated/manifest.bn.json'
 import manifestEn from '../generated/manifest.en.json'
 
-const bengaliDigits = (value) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[d])
+interface PageInfo {
+  route: string
+  title: string
+  description?: string
+  stub?: boolean
+  date?: string
+}
 
-function localHref(href) {
+interface SectionInfo {
+  slug: string
+  title: string
+  index: PageInfo | null
+  children: PageInfo[]
+}
+
+interface Manifest {
+  counts: {
+    written: number
+    stubs: number
+    total: number
+  }
+  sections: Record<string, SectionInfo>
+}
+
+// Typecast the imported JSON files
+const typedManifestBn = manifestBn as unknown as Manifest
+const typedManifestEn = manifestEn as unknown as Manifest
+
+const bengaliDigits = (value: number | string) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[Number(d)])
+
+function localHref(href: string) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
   if (!href.startsWith('/')) return href
   if (!basePath) return href
   return href === '/' ? basePath || '/' : `${basePath}${href}`
 }
 
-const bn = {
+interface TranslationStrings {
+  kicker: string
+  title: string
+  subtitle: string
+  pill: string
+  lead: React.ReactNode
+  lead2: string
+  start: [string, string][]
+  noticeLabel: string
+  notice: string
+  infoboxTitle: string
+  infoboxName: string
+  infoboxTagline: string
+  infobox: (written: number, stubs: number) => [string, string][]
+  stageTitle: string
+  stageSub: string
+  stages: [string, string, string, string][]
+  topicTitle: string
+  topicSub: string
+  topics: [string, string, string][]
+  faqTitle: string
+  faqSub: string
+  faq: [string, string][]
+  govTitle: string
+  govSub: string
+  gov: [string, string, string][]
+  bandTitle: string
+  bandBody: string
+  bandStats: (written: number, stubs: number) => [string, string][]
+  bandCta: string
+  bandGh: string
+  contribute: string
+  recentTitle: string
+}
+
+const bn: TranslationStrings = {
   kicker: 'বাংলাদেশে স্টার্টআপ গড়ার উন্মুক্ত গাইড',
   title: 'দেশি স্টার্টআপ',
   subtitle:
@@ -26,7 +90,7 @@ const bn = {
     </>
   ),
   lead2:
-    'বাংলাদেশের বাস্তবতা অন্যান্য দেশের চেয়ে আলাদা। গ্রাহকের ভরসা পেতে সময় লাগে, ক্যাশ অন ডেলিভারি এখনো জরুরি, ফেসবুক/মেসেঞ্জার বড় বিক্রির চ্যানেল। সরকারি কাগজপত্রও বুঝে করতে হয়। তাই এই সাইটে আমরা সরাসরি বিদেশি পরামর্শ কপি না করে বরং বাংলাদেশে কীভাবে কাজ হয়, সেটা ব্যাখ্যা করার চেষ্টা করি।',
+    'বাংলাদেশের বাস্তবতা অন্যান্য দেশের চেয়ে আলাদা। গ্রাহকের ভরসা পেতে সময় লাগে, ক্যাশ অন ডেলিভারি এখনো জরুরি, ফেসবুক/মেসেঞ্জার বা মেসেজিং অ্যাপ বড় বিক্রির চ্যানেল। সরকারি কাগজপত্রও বুঝে করতে হয়। তাই এই সাইটে আমরা সরাসরি বিদেশি পরামর্শ কপি না করে বরং বাংলাদেশে কীভাবে কাজ হয়, সেটা ব্যাখ্যা করার চেষ্টা করি।',
   start: [
     ['শুরু করুন', '/start-here'],
     ['লক্ষ্য ধরে সাজানো পথ', '/journeys']
@@ -100,7 +164,7 @@ const bn = {
   recentTitle: 'সম্প্রতি হালনাগাদ হয়েছে'
 }
 
-const en = {
+const en: TranslationStrings = {
   kicker: 'The Bangladeshi startup manual',
   title: 'Deshi Startup',
   subtitle:
@@ -188,19 +252,23 @@ const en = {
   recentTitle: 'Recently updated'
 }
 
-export default function WikiLanding({ locale = 'bn' }) {
+interface WikiLandingProps {
+  locale?: 'bn' | 'en'
+}
+
+export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
   const isEn = locale === 'en'
   const t = isEn ? en : bn
-  const manifest = isEn ? manifestEn : manifestBn
+  const manifest = isEn ? typedManifestEn : typedManifestBn
   const { written, stubs } = manifest.counts
 
   const recent = Object.values(manifest.sections)
     .flatMap((section) => [section.index, ...section.children])
-    .filter((page) => page && !page.stub && page.date)
-    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .filter((page): page is PageInfo => !!page && !page.stub && !!page.date)
+    .sort((a, b) => ((a.date || '') < (b.date || '') ? 1 : -1))
     .slice(0, 5)
 
-  const formatDate = (iso) =>
+  const formatDate = (iso: string) =>
     new Date(`${iso}T00:00:00Z`).toLocaleDateString(isEn ? 'en-GB' : 'bn-BD', {
       day: 'numeric',
       month: 'long',
@@ -339,7 +407,7 @@ export default function WikiLanding({ locale = 'bn' }) {
             {recent.map((page) => (
               <li key={page.route}>
                 <a href={localHref(page.route)}>{page.title}</a>
-                <time dateTime={page.date}>{formatDate(page.date)}</time>
+                <time dateTime={page.date}>{formatDate(page.date!)}</time>
               </li>
             ))}
           </ul>

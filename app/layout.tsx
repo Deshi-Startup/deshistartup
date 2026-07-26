@@ -1,3 +1,4 @@
+import React from 'react'
 import LocalizedLayout from './components/LocalizedLayout'
 import { DEFAULT_DESCRIPTIONS, SITE_NAME, SITE_NAME_BN, SITE_URL } from './seo.config.mjs'
 import './globals.css'
@@ -41,7 +42,11 @@ export const metadata = {
   }
 }
 
-export default async function RootLayout({ children }) {
+interface RootLayoutProps {
+  children?: React.ReactNode
+}
+
+export default async function RootLayout({ children }: RootLayoutProps) {
   const safeChildren = children || <></>
 
   return (

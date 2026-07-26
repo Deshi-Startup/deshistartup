@@ -1,13 +1,45 @@
+import React from 'react'
 import manifestBn from '../generated/manifest.bn.json'
 import manifestEn from '../generated/manifest.en.json'
 
-const bengaliDigits = (value) => String(value).replace(/\d/g, (digit) => '০১২৩৪৫৬৭৮৯'[digit])
+interface PageInfo {
+  route: string
+  title: string
+  description?: string
+  stub?: boolean
+}
 
-export default function SiteMap({ locale = 'bn' }) {
+interface SectionInfo {
+  slug: string
+  title: string
+  index: PageInfo | null
+  children: PageInfo[]
+}
+
+interface Manifest {
+  counts: {
+    written: number
+    stubs: number
+    total: number
+  }
+  sections: Record<string, SectionInfo>
+}
+
+// Typecast the imported JSON files
+const typedManifestBn = manifestBn as unknown as Manifest
+const typedManifestEn = manifestEn as unknown as Manifest
+
+const bengaliDigits = (value: number) => String(value).replace(/\d/g, (digit) => '০১২৩৪৫৬৭৮৯'[Number(digit)])
+
+interface SiteMapProps {
+  locale?: 'bn' | 'en'
+}
+
+export default function SiteMap({ locale = 'bn' }: SiteMapProps) {
   const isEn = locale === 'en'
-  const manifest = isEn ? manifestEn : manifestBn
+  const manifest = isEn ? typedManifestEn : typedManifestBn
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
-  const href = (route) => `${basePath}${route}`
+  const href = (route: string) => `${basePath}${route}`
   const currentRoute = isEn ? '/en/sitemap' : '/sitemap'
 
   const sections = Object.values(manifest.sections)
@@ -20,7 +52,7 @@ export default function SiteMap({ locale = 'bn' }) {
 
   const standalone = sections
     .filter((section) => section.index && section.children.length === 0 && section.index.route !== currentRoute)
-    .map((section) => section.index)
+    .map((section) => section.index as PageInfo)
   const clusters = sections.filter((section) => section.children.length > 0)
   const total = manifest.counts.written
 

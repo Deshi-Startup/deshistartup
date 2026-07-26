@@ -7,7 +7,12 @@
  */
 export const REPO_URL = 'https://github.com/Deshi-Startup/deshistartup'
 
-export const bnNav = [
+export interface NavSection {
+  label: string
+  items: [string, string][]
+}
+
+export const bnNav: NavSection[] = [
   {
     label: 'শুরু করুন',
     items: [
@@ -58,7 +63,7 @@ export const bnNav = [
   }
 ]
 
-export const enNav = [
+export const enNav: NavSection[] = [
   {
     label: 'Start Here',
     items: [

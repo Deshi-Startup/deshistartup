@@ -1,38 +1,82 @@
+import React from 'react'
 import manifestBn from '../generated/manifest.bn.json'
 import manifestEn from '../generated/manifest.en.json'
 import groupsConfig from '../nav-groups.json'
 
-const bengaliDigits = (value) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[d])
+interface PageInfo {
+  slug: string
+  route: string
+  title: string
+  description?: string
+  stub?: boolean
+}
+
+interface SectionInfo {
+  slug: string
+  title: string
+  total: number
+  written: number
+  children: PageInfo[]
+}
+
+interface Manifest {
+  counts: {
+    written: number
+    stubs: number
+    total: number
+  }
+  sections: Record<string, SectionInfo>
+}
+
+// Typecast the imported JSON files
+const typedManifestBn = manifestBn as unknown as Manifest
+const typedManifestEn = manifestEn as unknown as Manifest
+
+interface GroupConfigItem {
+  bn: string
+  en: string
+  slugs: string[]
+}
+
+const typedGroupsConfig = groupsConfig as Record<string, GroupConfigItem[]>
+
+const bengaliDigits = (value: number) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[Number(d)])
+
+interface SectionIndexProps {
+  section: string
+  locale?: 'bn' | 'en'
+}
 
 /**
  * Auto-generated hub listing for a content section. Reads the build-time
  * manifest, so it never needs hand-maintenance: adding a page.mdx under the
  * section automatically lists it here after the next build.
  */
-export default function SectionIndex({ section, locale = 'bn' }) {
+export default function SectionIndex({ section, locale = 'bn' }: SectionIndexProps) {
   const isEn = locale === 'en'
-  const manifest = isEn ? manifestEn : manifestBn
+  const manifest = isEn ? typedManifestEn : typedManifestBn
   const data = manifest.sections[section]
   if (!data) return null
 
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
-  const href = (route) => `${basePath}${route}`
-  const num = (n) => (isEn ? String(n) : bengaliDigits(n))
+  const href = (route: string) => `${basePath}${route}`
+  const num = (n: number) => (isEn ? String(n) : bengaliDigits(n))
 
-  const byChildSlug = new Map(
+  const byChildSlug = new Map<string, PageInfo>(
     data.children.map((child) => [child.slug.split('/').slice(1).join('/'), child])
   )
 
-  const groups = (groupsConfig[section] || [])
+  const rawGroups = typedGroupsConfig[section] || []
+  const groups = rawGroups
     .map((group) => ({
       title: isEn ? group.en : group.bn,
-      items: group.slugs.map((slug) => byChildSlug.get(slug)).filter(Boolean)
+      items: group.slugs.map((slug) => byChildSlug.get(slug)).filter((x): x is PageInfo => !!x)
     }))
     .filter((group) => group.items.length > 0)
 
   // Fallback: pages not covered by the curated grouping (e.g. added later).
-  const grouped = new Set(
-    (groupsConfig[section] || []).flatMap((group) => group.slugs)
+  const grouped = new Set<string>(
+    rawGroups.flatMap((group) => group.slugs)
   )
   const leftovers = data.children.filter(
     (child) => !grouped.has(child.slug.split('/').slice(1).join('/'))
@@ -41,7 +85,7 @@ export default function SectionIndex({ section, locale = 'bn' }) {
     groups.push({ title: isEn ? 'More guides' : 'আরও গাইড', items: leftovers })
   }
 
-  const renderItem = (page) => {
+  const renderItem = (page: PageInfo) => {
     const written = !page.stub
     return (
       <li key={page.route}>

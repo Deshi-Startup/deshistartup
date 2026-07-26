@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 
 /**
@@ -16,13 +17,16 @@ export default function LanguageSwitcher() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
   const href = targetPath === '/' ? basePath || '/' : `${basePath}${targetPath}`
 
-  const onClick = (event) => {
+  const onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
     event.preventDefault()
     const navigate = () => router.push(targetPath)
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (document.startViewTransition && !prefersReducedMotion) document.startViewTransition(navigate)
-    else navigate()
+    if ('startViewTransition' in document && !prefersReducedMotion) {
+      (document as any).startViewTransition(navigate)
+    } else {
+      navigate()
+    }
   }
 
   return (

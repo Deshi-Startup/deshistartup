@@ -303,7 +303,7 @@ function lintFile(file) {
 
 // Bangla UI copy that lives outside app/(contents)/ — the homepage strings escaped every
 // sweep until 2026-07-11 reader feedback caught billboard-Bangla there (STYLE.md §2.12–2.14).
-const EXTRA_BN_SOURCES = ['app/components/WikiLanding.jsx', 'app/nav.config.js']
+const EXTRA_BN_SOURCES = ['app/components/WikiLanding.tsx', 'app/nav.config.ts']
 
 const targets = fileArgs.length
   ? fileArgs

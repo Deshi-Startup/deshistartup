@@ -1,10 +1,16 @@
+import React from 'react'
 import { REPO_URL } from '../nav.config'
+
+interface StubNoticeProps {
+  path: string
+  locale?: 'bn' | 'en'
+}
 
 /**
  * Honest Wikipedia-style stub banner. Rendered on pages that are planned
  * but not yet written. Server-safe, no client JS.
  */
-export default function StubNotice({ path, locale = 'bn' }) {
+export default function StubNotice({ path, locale = 'bn' }: StubNoticeProps) {
   const isEn = locale === 'en'
   const file = isEn
     ? `app/(contents)/en/${path}/page.mdx`

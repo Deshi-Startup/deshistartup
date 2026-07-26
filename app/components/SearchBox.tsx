@@ -1,58 +1,99 @@
 'use client'
 
-import { useEffect, useId, useRef, useState } from 'react'
+import React, { useEffect, useId, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-let pagefindPromise = null
+interface PagefindItem {
+  id: string
+  data: () => Promise<{
+    url: string
+    meta?: {
+      title?: string
+      stub?: boolean | string | number
+    }
+    title?: string
+    excerpt?: string
+    content?: string
+  }>
+}
 
-const bengaliDigits = (value) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[d])
+interface Pagefind {
+  search: (query: string) => Promise<{
+    results: PagefindItem[]
+  }>
+  options: (opts: { baseUrl: string }) => Promise<void>
+}
 
-async function loadPagefind(basePath = '') {
+// Extend global window interface
+declare global {
+  interface Window {
+    pagefind?: Pagefind
+  }
+}
+
+let pagefindPromise: Promise<Pagefind> | null = null
+
+const bengaliDigits = (value: number | string) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[Number(d)])
+
+async function loadPagefind(basePath = ''): Promise<Pagefind | null> {
   if (typeof window === 'undefined') return null
 
   if (!window.pagefind) {
     if (!pagefindPromise) {
       const pagefindUrl = `${basePath}/_pagefind/pagefind.js`
+      // @ts-ignore
       pagefindPromise = import(/* webpackIgnore: true */ pagefindUrl).then((module) => {
         window.pagefind = module
-        return window.pagefind.options({ baseUrl: basePath || '/' })
+        return window.pagefind!.options({ baseUrl: basePath || '/' }).then(() => window.pagefind!)
       })
     }
     await pagefindPromise
   }
 
-  return window.pagefind
+  return window.pagefind || null
 }
 
-function cleanTitle(data) {
+function cleanTitle(data: any) {
   return data?.meta?.title || data?.title || data?.url || ''
 }
 
-function cleanExcerpt(data) {
+function cleanExcerpt(data: any) {
   if (data?.excerpt) {
     return data.excerpt.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
   }
   return (data?.content || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').slice(0, 160)
 }
 
-export default function SearchBox({ isEn = false }) {
+interface SearchResult {
+  id: string
+  url: string
+  title: string
+  excerpt: string
+  isStub: boolean
+}
+
+interface SearchBoxProps {
+  isEn?: boolean
+}
+
+export default function SearchBox({ isEn = false }: SearchBoxProps) {
   const router = useRouter()
-  const inputRef = useRef(null)
+  const inputRef = useRef<HTMLInputElement>(null)
   const listboxId = `${useId()}listbox`
   const [query, setQuery] = useState('')
-  const [results, setResults] = useState([])
+  const [results, setResults] = useState<SearchResult[]>([])
   const [activeIndex, setActiveIndex] = useState(-1)
   const [isLoading, setIsLoading] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [error, setError] = useState(false)
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
-  const optionId = (index) => `${listboxId}-option-${index}`
+  const optionId = (index: number) => `${listboxId}-option-${index}`
   // The popup only counts as a combobox listbox when it actually holds options;
   // the loading, error, and no-match panels are announced by the status region.
   const hasListbox = isOpen && !isLoading && !error && results.length > 0
 
   useEffect(() => {
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       const isSearchShortcut =
         (event.key === '/' && !/^(INPUT|TEXTAREA)$/.test(document.activeElement?.tagName || '')) ||
         (event.key.toLowerCase() === 'k' && (event.ctrlKey || event.metaKey) && !event.shiftKey)
@@ -138,7 +179,7 @@ export default function SearchBox({ isEn = false }) {
       ?.scrollIntoView({ block: 'nearest', inline: 'nearest' })
   }, [activeIndex]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const goTo = (url) => {
+  const goTo = (url: string) => {
     const nextUrl = basePath && url.startsWith(basePath) ? url.slice(basePath.length) || '/' : url
     router.push(nextUrl)
     setQuery('')
@@ -146,7 +187,7 @@ export default function SearchBox({ isEn = false }) {
     setActiveIndex(-1)
   }
 
-  const moveActive = (step) => {
+  const moveActive = (step: number) => {
     if (results.length === 0) return
     setIsOpen(true)
     setActiveIndex((current) => {
@@ -159,7 +200,7 @@ export default function SearchBox({ isEn = false }) {
 
   // Focus stays on the input throughout (aria-activedescendant), so the popover
   // closes on focusout only when focus actually leaves the whole widget.
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     switch (event.key) {
       case 'ArrowDown':
         event.preventDefault()
@@ -213,7 +254,7 @@ export default function SearchBox({ isEn = false }) {
       role="search"
       aria-label={isEn ? 'Search Deshi Startup' : 'দেশি স্টার্টআপে খুঁজুন'}
       onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) {
+        if (!event.currentTarget.contains(event.relatedTarget as Node)) {
           setIsOpen(false)
           setActiveIndex(-1)
         }
