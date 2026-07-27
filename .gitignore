@@ -43,3 +43,6 @@ app/generated/*
 # TypeScript incremental build cache
 tsconfig.tsbuildinfo
 *.tsbuildinfo
+
+# Media staging. Bytes live in R2, never in git — see AGENTS.md "Media".
+/media/

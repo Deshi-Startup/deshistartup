@@ -1,4 +1,5 @@
 import nextra from 'nextra'
+import { MEDIA_URL } from './app/seo.config.mjs'
 import { createRequire } from 'node:module'
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -36,6 +37,10 @@ const basePath =
   process.env.DEPLOY_BASE_PATH ??
   (process.env.NODE_ENV === 'production' && !isRootDeployment ? '/deshistartup' : '')
 
+// Images live in R2, not in the repo. An explicit empty value opts out and
+// serves them from public/media instead.
+const mediaBaseUrl = (process.env.DESHI_MEDIA_BASE_URL ?? MEDIA_URL).replace(/\/+$/, '')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
@@ -47,16 +52,16 @@ const nextConfig = {
   basePath,
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
-    // Edge image resizing (/cdn-cgi/image/...) exists only on the Cloudflare
-    // zone, and only once Transformations are switched on for it. Off by
-    // default so a fork, the static mirror, and dev all serve the original
-    // file; set DESHI_MEDIA_TRANSFORM=1 in Workers Builds to turn it on.
+    // Edge image resizing (/cdn-cgi/image/...), on wherever there is a
+    // Cloudflare zone to serve it: the media bucket's host, or the site itself.
+    // A subpath mirror that is also self-hosting its media has neither, so it
+    // gets the original file. DESHI_MEDIA_TRANSFORM=0 turns it off everywhere.
     NEXT_PUBLIC_MEDIA_TRANSFORM:
-      process.env.DESHI_MEDIA_TRANSFORM === '1' && isRootDeployment ? '1' : '',
-    // Set to a bucket host (e.g. https://media.deshistartup.com) if the media
-    // library ever outgrows the repo. Objects keep their /media/... key, so
-    // no content changes.
-    NEXT_PUBLIC_MEDIA_BASE_URL: process.env.DESHI_MEDIA_BASE_URL ?? ''
+      process.env.DESHI_MEDIA_TRANSFORM !== '0' && (mediaBaseUrl || isRootDeployment) ? '1' : '',
+    // Where /media/... actually resolves. Defaults to the R2 bucket's public
+    // host; set DESHI_MEDIA_BASE_URL to an empty string to self-host the files
+    // from public/media instead (a fork with no bucket of its own).
+    NEXT_PUBLIC_MEDIA_BASE_URL: mediaBaseUrl
   },
   images: {
     unoptimized: true

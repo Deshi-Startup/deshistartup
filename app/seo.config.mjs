@@ -1,4 +1,7 @@
 export const SITE_URL = 'https://deshistartup.com'
+// Public host for the R2 media bucket. Images are never committed to the repo,
+// so this is where every /media/... path actually resolves.
+export const MEDIA_URL = 'https://media.deshistartup.com'
 export const SITE_NAME = 'Deshi Startup'
 export const SITE_NAME_BN = 'দেশি স্টার্টআপ'
 export const REPOSITORY_URL = 'https://github.com/Deshi-Startup/deshistartup'

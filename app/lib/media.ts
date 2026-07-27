@@ -1,16 +1,21 @@
 /**
  * The one place that decides where a media file lives and how it is delivered.
  *
- * Content never writes a storage URL. Pages reference `/media/...` and nothing
- * else, so the library can move without touching a single MDX file:
+ * Images live in an R2 bucket served from media.deshistartup.com, never in the
+ * repository: git cannot forget a binary once it is committed, and a reference
+ * work accumulates screenshots for years. What the repo keeps is the registry
+ * in app/generated/media.json — a few lines of text per image.
  *
- *   in-repo (today)  ->  /media/x.webp            served by Workers assets
- *   bucket (later)   ->  NEXT_PUBLIC_MEDIA_BASE_URL + /media/x.webp
+ * Content never writes a storage URL. Pages reference `/media/...` and nothing
+ * else, so where the bytes actually sit stays a deployment concern:
+ *
+ *   bucket (default)  ->  https://media.deshistartup.com/x.webp
+ *   self-hosted       ->  /media/x.webp from public/, if the base URL is unset
  *
  * Resizing is done at the edge by Cloudflare's /cdn-cgi/image/ transformations
- * rather than by committing derivative files or running an image service. That
- * path only exists on the Cloudflare zone, so it is opt-in per deploy target:
- * dev, the static mirror, and any fork fall back to the original file.
+ * rather than by storing derivatives or running an image service. That path
+ * only exists on a Cloudflare zone with Transformations enabled, so it is
+ * opt-in per deploy target; everywhere else serves the original file.
  */
 import mediaManifest from '../generated/media.json'
 
@@ -20,7 +25,11 @@ export interface MediaEntry {
   /** Intrinsic height in pixels. */
   h?: number
   bytes?: number
-  /** Set when the file has moved to a bucket and is no longer in the repo. */
+  /** Content-addressed object key in the bucket, e.g. "a/b.4a5afeaff848.png". */
+  key?: string
+  /** Short content hash, so re-uploads only send what actually changed. */
+  sha?: string
+  /** True once the object is in the bucket. */
   remote?: boolean
 }
 
@@ -36,8 +45,19 @@ export const DEFAULT_WIDTHS = [480, 800, 1200]
 export const DEFAULT_SIZES = '(max-width: 860px) 100vw, 800px'
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+// Empty means "serve /media/... from public/" — the self-hosting escape hatch
+// for a fork. next.config.mjs fills it with MEDIA_URL by default.
 const remoteBase = (process.env.NEXT_PUBLIC_MEDIA_BASE_URL || '').replace(/\/+$/, '')
 const transformsEnabled = process.env.NEXT_PUBLIC_MEDIA_TRANSFORM === '1'
+
+/**
+ * The object's key in the bucket. Uploads content-address it
+ * ("a/b.4a5afeaff848.png") so it can be cached forever and still be replaced;
+ * the plain path is the fallback for anything not recorded that way.
+ */
+function objectKey(src: string): string {
+  return entries[src]?.key || src.slice(MEDIA_PREFIX.length)
+}
 
 // SVG needs no resizing and GIF would lose its animation, so neither is sent
 // through the transformer.
@@ -59,7 +79,7 @@ export function mediaEntry(src: string): MediaEntry | undefined {
 export function mediaSource(src: string): string {
   if (isExternalMedia(src)) return src
   if (!src.startsWith('/')) return src
-  if (remoteBase && isOwnMedia(src)) return `${remoteBase}${src}`
+  if (remoteBase && isOwnMedia(src)) return `${remoteBase}/${objectKey(src)}`
   return `${basePath}${src}`
 }
 
@@ -67,16 +87,19 @@ export function mediaSource(src: string): string {
  * Delivery URL at a given width. Without transformations — or for a file we do
  * not own, or a format that should not be re-encoded — this is just the source.
  *
- * `onerror=redirect` is the safety valve: if the account ever exceeds its free
- * monthly transformations, readers get the original file instead of a broken
- * image. It only works for same-domain sources, which is what we have.
+ * The transformation is always requested from the host that serves the original
+ * (the bucket's custom domain, or the site itself when self-hosting), so the
+ * source is same-origin. That keeps it inside the zone's default source
+ * restriction, and it is what makes `onerror=redirect` legal: if the account
+ * ever exceeds its free monthly transformations, readers get the original file
+ * instead of a broken image.
  */
 export function mediaUrl(src: string, width?: number): string {
   const source = mediaSource(src)
   if (!width || !transformsEnabled || !isOwnMedia(src) || !TRANSFORMABLE.test(src)) return source
   const options = `width=${width},format=auto,onerror=redirect`
-  const target = source.startsWith('/') ? source : `/${source}`
-  return `${basePath}/cdn-cgi/image/${options}${target}`
+  if (remoteBase) return `${remoteBase}/cdn-cgi/image/${options}/${objectKey(src)}`
+  return `${basePath}/cdn-cgi/image/${options}${src}`
 }
 
 /**

@@ -133,32 +133,50 @@ current page inventory, read the manifests or run `npm run manifest` and inspect
 
 ## Media (images, screenshots, video)
 
-Pages are not text-only. Images live **in the repo** under `public/media/{section}/{slug}/`, so an
-image arrives inside the same PR as the prose that explains it and is reviewed with it.
+Pages are not text-only. **Image bytes live in an R2 bucket served from `media.deshistartup.com`
+and are never committed to this repository** — git cannot forget a binary once it is in history,
+and a reference work accumulates screenshots for years. What git keeps is
+`app/generated/media.json`, a text registry naming every uploaded object with its dimensions.
 
-- **Addressing:** content only ever writes root-relative `/media/...` paths. `app/lib/media.ts` is
-  the single place that turns one into a delivery URL. That indirection is the point: if the
-  library outgrows the repo, `DESHI_MEDIA_BASE_URL` points `/media/...` at a bucket
-  (R2 via `media.deshistartup.com`) and **no content file changes**.
+**Adding an image:**
+
+1. Put the file in `media/` (repo root, gitignored) at the path you want it addressed by:
+   `media/registration/rjsc-search.png`.
+2. `npm run media:upload` — reads its dimensions, uploads it to the bucket, records it in the
+   registry. Re-running only sends what changed (content-hashed).
+3. Reference it as `/media/registration/rjsc-search.png` and commit the registry change with the
+   page. Uploads use the maintainer's own `wrangler login`; there is no R2 key to keep secret.
+
+Three paths for one file: `media/a/b.png` (staging) → `a/b.<hash>.png` (object key) →
+`/media/a/b.png` (what content writes, and the registry key). The object key is
+**content-addressed**, so objects are cached forever (`immutable`) and a corrected screenshot still
+reaches every reader at once: new bytes mint a new key, and the registry points at it. Re-uploading
+unchanged files is a no-op. Superseded objects stay in the bucket until someone prunes them; at
+these sizes that is cheaper than the alternatives.
+
+- **Addressing:** content only ever writes root-relative `/media/...`. `app/lib/media.ts` is the
+  single place that turns one into a delivery URL, so where the bytes sit stays a deployment
+  concern. `DESHI_MEDIA_BASE_URL` moves the whole library; an empty value falls back to serving
+  `public/media` from the site itself.
 - **Rendering:** `<Figure src alt caption source checked credit />`, or plain markdown
   `![alt](/media/x.png "caption")` — both render through `app/components/Figure.tsx`, because
   `img` is mapped to it in `mdx-components.tsx`. Nextra's `staticImage` is deliberately off
   (`next.config.mjs`): it would rewrite markdown images into hashed webpack imports and drop the
-  caption. Output is a plain `<img>` with srcset, lazy loading, and intrinsic width/height — no
-  client JS, no `next/image`.
-- **Sizes:** `app/generated/media.json` (from `npm run media`) holds each file's intrinsic
-  dimensions, read straight from the file header by `scripts/build-media-manifest.mjs`. Those go
-  into the HTML so articles do not reflow as images arrive. Never hand-edit it.
+  caption. Output is a plain `<img>` with srcset, lazy loading, and intrinsic width/height from
+  the registry, so articles do not reflow as images arrive — no client JS, no `next/image`.
 - **Resizing** is done at the edge by Cloudflare's `/cdn-cgi/image/` transformations rather than by
-  committing derivatives. Off by default; set `DESHI_MEDIA_TRANSFORM=1` on the Worker build once
-  Transformations are enabled for the zone. Every URL carries `onerror=redirect`, so exceeding the
-  free monthly quota degrades to the original file instead of a broken image.
-- **Video:** `<YouTube id title caption date />` renders a facade — a self-hosted poster, a play
-  button, and a link. Nothing contacts Google until the reader clicks. Fetch posters with
-  `npm run media:posters` and commit them. Never hand-place a raw YouTube `<iframe>`: it costs
+  storing derivatives, and is on by default (`DESHI_MEDIA_TRANSFORM=0` disables it). It is always
+  requested from the host that serves the original, so the source is same-origin. `format=auto`
+  hands AVIF to phones that take it and PNG/JPEG to those that do not, and counts as one billable
+  transformation either way. Every URL carries `onerror=redirect`, so exceeding the free 5,000
+  monthly transformations degrades to the original file instead of a broken image.
+- **Video:** `<YouTube id title caption date />` renders a facade — our own poster, a play button,
+  and a link. Nothing contacts Google until the reader clicks. `npm run media:posters` fetches and
+  uploads posters for every embed in the tree. Never hand-place a raw YouTube `<iframe>`: it costs
   ~2 MB on load and breaks the performance budget.
-- **`npm run lint:media`** runs in `prebuild`: a missing file, a `<Figure>` without alt text, an
-  invalid video id, or a file over 300 KB fails the build.
+- **`npm run lint:media`** runs in `prebuild`. Errors: a referenced file that was never uploaded, a
+  `<Figure>` without alt text, an invalid video id, a file over 300 KB, or **any image committed
+  under `public/media`** — that last one is what keeps binaries out of git.
 
 ## Style guide (Bangla)
 
@@ -305,8 +323,8 @@ but doesn't appear in the editor, the manifest is stale.
 - `npm run preview:worker` - Build and run the production Worker locally in `workerd`
 - `npm run deploy:worker` - Deploy the already-built `.open-next` output while preserving dashboard variables
 - `npm run manifest` - Regenerate `app/generated/manifest.*.json`, `sections-lite.json` and `public/page-dates.json` from the content tree + git dates
-- `npm run media` - Regenerate `app/generated/media.json` (intrinsic sizes for everything in `public/media`)
-- `npm run media:posters` - Download and commit a poster for every `<YouTube>` embed (`-- --force` to re-fetch)
+- `npm run media:upload` - Upload everything staged in `media/` to the R2 bucket and record it in `app/generated/media.json` (`-- --force` to re-upload; accepts explicit paths)
+- `npm run media:posters` - Fetch and upload a poster for every `<YouTube>` embed (`-- --force` to re-fetch)
 - `npm run lint:media` - Check embedded media: missing files, missing alt text, invalid video ids, oversized files; also runs in `prebuild`
 - `npm run lint:routes` - Enforce the URL policy (segment depth, path length, slug charset, bn/en mirror, StubNotice paths); also runs automatically in `prebuild`
 - `npm run seo:audit` - Validate the built HTML, canonicals, hreflang, indexability, metadata, JSON-LD, sitemap, robots, and internal links
