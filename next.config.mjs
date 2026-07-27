@@ -14,7 +14,14 @@ const turboRootConfig =
 const withNextra = nextra({
   search: {
     codeblocks: false
-  }
+  },
+  // Nextra would otherwise rewrite every markdown image into a webpack static
+  // import: the src becomes an object pointing at a hashed /_next/static/media
+  // URL, and the markdown title (our caption) is dropped on the floor. Both
+  // fight the media pipeline, which addresses everything as /media/... so the
+  // library can move to a bucket without touching content. Sizes come from
+  // app/generated/media.json instead.
+  staticImage: false
 })
 
 // Deploy targets mount the site at different roots:
@@ -39,7 +46,17 @@ const nextConfig = {
   ...turboRootConfig,
   basePath,
   env: {
-    NEXT_PUBLIC_BASE_PATH: basePath
+    NEXT_PUBLIC_BASE_PATH: basePath,
+    // Edge image resizing (/cdn-cgi/image/...) exists only on the Cloudflare
+    // zone, and only once Transformations are switched on for it. Off by
+    // default so a fork, the static mirror, and dev all serve the original
+    // file; set DESHI_MEDIA_TRANSFORM=1 in Workers Builds to turn it on.
+    NEXT_PUBLIC_MEDIA_TRANSFORM:
+      process.env.DESHI_MEDIA_TRANSFORM === '1' && isRootDeployment ? '1' : '',
+    // Set to a bucket host (e.g. https://media.deshistartup.com) if the media
+    // library ever outgrows the repo. Objects keep their /media/... key, so
+    // no content changes.
+    NEXT_PUBLIC_MEDIA_BASE_URL: process.env.DESHI_MEDIA_BASE_URL ?? ''
   },
   images: {
     unoptimized: true

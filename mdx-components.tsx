@@ -2,6 +2,8 @@ import React from 'react'
 import StubNotice from './app/components/StubNotice'
 import SectionIndex from './app/components/SectionIndex'
 import SiteMap from './app/components/SiteMap'
+import Figure, { MarkdownImage } from './app/components/Figure'
+import YouTube from './app/components/YouTube'
 
 interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href?: string
@@ -24,8 +26,13 @@ export function useMDXComponents(components: Record<string, any>): Record<string
   return {
     ...components,
     a: BasePathAnchor,
+    // Plain markdown images get the same responsive, size-locked rendering as
+    // an explicit <Figure>, so nobody has to remember which one to reach for.
+    img: MarkdownImage,
     StubNotice,
     SectionIndex,
-    SiteMap
+    SiteMap,
+    Figure,
+    YouTube
   }
 }

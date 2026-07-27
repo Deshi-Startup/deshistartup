@@ -17,6 +17,9 @@
     "start": "next start",
     "scrape": "node scripts/scrape.js",
     "manifest": "node scripts/build-manifest.mjs",
+    "media": "node scripts/build-media-manifest.mjs",
+    "media:posters": "node scripts/fetch-youtube-posters.mjs",
+    "lint:media": "node scripts/build-media-manifest.mjs && node scripts/media-lint.mjs",
     "backlog:status": "node scripts/backlog-status.mjs",
     "lint:bangla": "node scripts/bangla-lint.mjs",
     "lint:routes": "node scripts/route-lint.mjs",
@@ -24,8 +27,8 @@
     "seo:audit": "node scripts/seo-audit.mjs",
     "seo:indexnow": "node scripts/submit-indexnow.mjs",
     "seo:indexnow:dry": "node scripts/submit-indexnow.mjs --dry-run",
-    "predev": "node scripts/build-manifest.mjs",
-    "prebuild": "node scripts/route-lint.mjs && node scripts/build-manifest.mjs",
+    "predev": "node scripts/build-media-manifest.mjs && node scripts/build-manifest.mjs",
+    "prebuild": "node scripts/route-lint.mjs && node scripts/build-media-manifest.mjs && node scripts/media-lint.mjs && node scripts/build-manifest.mjs",
     "postbuild": "node scripts/postbuild-seo.mjs && node scripts/build-pagefind.mjs && node scripts/seo-audit.mjs"
   },
   "dependencies": {

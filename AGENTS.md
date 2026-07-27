@@ -50,6 +50,7 @@ public contribution flow, so production runs on Cloudflare Workers through OpenN
 - `knowledge-bank/` - Optional, local-only scraped source material for legal/business content. It is gitignored for copyright hygiene and may be absent — never rely on it existing, and never commit it.
 - `app/generated/` - Build artifacts produced by `scripts/build-manifest.mjs` (`manifest.bn.json`, `manifest.en.json`, `sections-lite.json`, `seo-pages.json`). They are committed to git but must never be hand-edited; run `npm run manifest` (or any dev/build) to regenerate after content changes.
 - `app/nav.config.js` - Hand-curated top-level sidebar (`bnNav` / `enNav`). `app/nav-groups.json` - hand-curated thematic grouping of section-hub listings.
+- `public/media/` - Every image, screenshot, and video poster a content page embeds. See "Media" below; `app/lib/media.ts` is the only module that decides how a `/media/...` path is delivered.
 - `public/` - Static assets used by the site, including the built Pagefind search index (`public/_pagefind`) and generated SEO/discovery files (`sitemap.xml`, `robots.txt`, `llms.txt`, IndexNow key, and route date maps). Do not hand-edit generated files; run `npm run manifest`.
 - `scripts/build-manifest.mjs` - regenerates the navigation manifests. `scripts/scrape.js` - scraping utility used to gather external ecosystem data.
 
@@ -129,6 +130,35 @@ current page inventory, read the manifests or run `npm run manifest` and inspect
 - **Template / checklist / script pages**: copy-paste-ready blocks with minimal theory.
 - **Calculators**: client components are allowed here — the one sanctioned exception to the
   near-zero-JS budget. Keep them dependency-free (no heavy libraries).
+
+## Media (images, screenshots, video)
+
+Pages are not text-only. Images live **in the repo** under `public/media/{section}/{slug}/`, so an
+image arrives inside the same PR as the prose that explains it and is reviewed with it.
+
+- **Addressing:** content only ever writes root-relative `/media/...` paths. `app/lib/media.ts` is
+  the single place that turns one into a delivery URL. That indirection is the point: if the
+  library outgrows the repo, `DESHI_MEDIA_BASE_URL` points `/media/...` at a bucket
+  (R2 via `media.deshistartup.com`) and **no content file changes**.
+- **Rendering:** `<Figure src alt caption source checked credit />`, or plain markdown
+  `![alt](/media/x.png "caption")` — both render through `app/components/Figure.tsx`, because
+  `img` is mapped to it in `mdx-components.tsx`. Nextra's `staticImage` is deliberately off
+  (`next.config.mjs`): it would rewrite markdown images into hashed webpack imports and drop the
+  caption. Output is a plain `<img>` with srcset, lazy loading, and intrinsic width/height — no
+  client JS, no `next/image`.
+- **Sizes:** `app/generated/media.json` (from `npm run media`) holds each file's intrinsic
+  dimensions, read straight from the file header by `scripts/build-media-manifest.mjs`. Those go
+  into the HTML so articles do not reflow as images arrive. Never hand-edit it.
+- **Resizing** is done at the edge by Cloudflare's `/cdn-cgi/image/` transformations rather than by
+  committing derivatives. Off by default; set `DESHI_MEDIA_TRANSFORM=1` on the Worker build once
+  Transformations are enabled for the zone. Every URL carries `onerror=redirect`, so exceeding the
+  free monthly quota degrades to the original file instead of a broken image.
+- **Video:** `<YouTube id title caption date />` renders a facade — a self-hosted poster, a play
+  button, and a link. Nothing contacts Google until the reader clicks. Fetch posters with
+  `npm run media:posters` and commit them. Never hand-place a raw YouTube `<iframe>`: it costs
+  ~2 MB on load and breaks the performance budget.
+- **`npm run lint:media`** runs in `prebuild`: a missing file, a `<Figure>` without alt text, an
+  invalid video id, or a file over 300 KB fails the build.
 
 ## Style guide (Bangla)
 
@@ -275,6 +305,9 @@ but doesn't appear in the editor, the manifest is stale.
 - `npm run preview:worker` - Build and run the production Worker locally in `workerd`
 - `npm run deploy:worker` - Deploy the already-built `.open-next` output while preserving dashboard variables
 - `npm run manifest` - Regenerate `app/generated/manifest.*.json`, `sections-lite.json` and `public/page-dates.json` from the content tree + git dates
+- `npm run media` - Regenerate `app/generated/media.json` (intrinsic sizes for everything in `public/media`)
+- `npm run media:posters` - Download and commit a poster for every `<YouTube>` embed (`-- --force` to re-fetch)
+- `npm run lint:media` - Check embedded media: missing files, missing alt text, invalid video ids, oversized files; also runs in `prebuild`
 - `npm run lint:routes` - Enforce the URL policy (segment depth, path length, slug charset, bn/en mirror, StubNotice paths); also runs automatically in `prebuild`
 - `npm run seo:audit` - Validate the built HTML, canonicals, hreflang, indexability, metadata, JSON-LD, sitemap, robots, and internal links
 - `npm run seo:indexnow:dry` - Preview the canonical URL batch for IndexNow; use `npm run seo:indexnow` only after a deployment is live
@@ -291,6 +324,9 @@ but doesn't appear in the editor, the manifest is stale.
   `GITHUB_INSTALLATION_ID`; runtime secret: `GITHUB_APP_PRIVATE_KEY`. Workers Builds also needs
   `NEXT_PUBLIC_GOOGLE_CLIENT_ID` during the build. Keep dashboard variables by deploying with
   `--keep-vars`.
+- Media build flags (both optional, both build-time only): `DESHI_MEDIA_TRANSFORM=1` turns on edge
+  image resizing, and requires Transformations to be enabled for the zone first;
+  `DESHI_MEDIA_BASE_URL=https://media.deshistartup.com` moves `/media/...` to a bucket.
 - A future subpath mirror can set `DEPLOY_BASE_PATH=/deshistartup`; keep internal content links
   root-relative and preserve `localHref()` / `NEXT_PUBLIC_BASE_PATH`.
 - CI and Workers Builds use Node 22. `images.unoptimized` avoids an unnecessary image service.

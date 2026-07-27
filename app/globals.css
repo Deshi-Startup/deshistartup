@@ -824,6 +824,144 @@ img {
   height: auto;
 }
 
+/* ----------------------------------------------------------------- media */
+
+/* Figures and video posters are spans, not <figure>, because a markdown image
+   arrives inside a paragraph and <figure> is not allowed there. These two
+   rules make the paragraph disappear around them so the spacing is the
+   figure's own. */
+p:has(> .figure),
+p:has(> .yt) {
+  margin: 0;
+}
+
+.figure,
+.yt {
+  display: block;
+  margin: 22px auto;
+  max-width: 100%;
+}
+
+/* A hairline and a hint of the paper behind it, so a screenshot of a white
+   government portal still reads as a picture of something and not as a hole
+   in the page. */
+.figure__img {
+  display: block;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  background: var(--canvas-soft);
+  max-width: 100%;
+  height: auto;
+}
+
+.figure__caption,
+.yt__caption {
+  display: block;
+  margin: 8px auto 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* Source and checked-date sit under the caption in the quieter grey: they are
+   the provenance, not the teaching. */
+.figure__meta,
+.yt__meta {
+  display: block;
+  color: var(--faint);
+  font-size: 0.82rem;
+}
+
+/* --- YouTube facade --- */
+
+/* Nothing here talks to Google until the reader clicks, so the box has to look
+   like a player on its own: a locked 16/9 frame, the poster we host, and one
+   unmistakable target. */
+.yt__frame {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #16181a;
+  text-decoration: none;
+}
+
+.yt__frame:hover {
+  text-decoration: none;
+}
+
+.yt__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+}
+
+.yt__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 48px;
+  transition: opacity 0.12s ease;
+}
+
+.yt__play svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.yt__play-bg {
+  fill: rgb(var(--ink-channels) / 72%);
+  transition: fill 0.12s ease;
+}
+
+/* The red only appears on intent. At rest the button is the site's own ink, so
+   an unplayed video does not shout louder than the guide around it. */
+.yt__frame:hover .yt__play-bg,
+.yt__frame:focus-visible .yt__play-bg {
+  fill: #e62117;
+}
+
+/* The title rides on the poster the way it does on YouTube, so the reader can
+   tell what they are about to play before they play it. */
+.yt__title {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 28px 14px 10px;
+  background: linear-gradient(to top, rgb(var(--ink-channels) / 82%), transparent);
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.yt__frame:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.yt__iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yt__play,
+  .yt__play-bg {
+    transition: none;
+  }
+}
+
 /* mobile "on this page" accordion */
 .page-toc {
   margin: 12px 0 18px;
