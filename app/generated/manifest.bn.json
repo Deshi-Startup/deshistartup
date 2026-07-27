@@ -2,8 +2,8 @@
  "locale": "bn",
  "generatedAt": null,
  "counts": {
-  "pages": 452,
-  "written": 93,
+  "pages": 454,
+  "written": 95,
   "stubs": 359
  },
  "sections": {
@@ -3253,6 +3253,23 @@
    "total": 16,
    "written": 0
   },
+  "privacy": {
+   "slug": "privacy",
+   "index": {
+    "route": "/privacy",
+    "slug": "privacy",
+    "title": "গোপনীয়তা নীতি",
+    "fullTitle": "গোপনীয়তা নীতি",
+    "description": "দেশি স্টার্টআপ ব্যবহার করলে কোন তথ্য প্রক্রিয়া হয়, অবদান পাঠালে কী তথ্য লাগে এবং নিজের তথ্য নিয়ে কীভাবে যোগাযোগ করবেন।",
+    "stub": false,
+    "date": null,
+    "verified": null
+   },
+   "children": [],
+   "title": "গোপনীয়তা নীতি",
+   "total": 0,
+   "written": 0
+  },
   "product": {
    "slug": "product",
    "index": {
@@ -4273,6 +4290,23 @@
    ],
    "title": "টিম, নিয়োগ ও শ্রম আইন",
    "total": 23,
+   "written": 0
+  },
+  "terms": {
+   "slug": "terms",
+   "index": {
+    "route": "/terms",
+    "slug": "terms",
+    "title": "ব্যবহারের শর্ত",
+    "fullTitle": "ব্যবহারের শর্ত",
+    "description": "দেশি স্টার্টআপের গাইড, ওপেন লাইসেন্স, অবদান, দায়বদ্ধতার সীমা ও গ্রহণযোগ্য ব্যবহারের সহজ শর্ত।",
+    "stub": false,
+    "date": null,
+    "verified": null
+   },
+   "children": [],
+   "title": "ব্যবহারের শর্ত",
+   "total": 0,
    "written": 0
   },
   "tools": {

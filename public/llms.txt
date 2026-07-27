@@ -67,6 +67,7 @@ Use the Bengali page as the source of truth when the two language versions diffe
 - [ডেলিভারি, কুরিয়ার ও ক্যাশ অন ডেলিভারি](https://deshistartup.com/operations): কুরিয়ার বাছাই, SLA তুলনা, লাস্ট-মাইল ডেলিভারি, সিওডির ঝুঁকি, ভুয়া অর্ডার আর ফেরত কমানোর গাইড।
 - [বাংলাদেশে স্টার্টআপ গড়ার উন্মুক্ত গাইড](https://deshistartup.com/): বাংলাদেশে স্টার্টআপ শুরু, চালু ও বড় করার জন্য উন্মুক্ত বাংলা গাইড: আইডিয়া যাচাই, নিবন্ধন, কর/ভ্যাট, পেমেন্ট, গ্রাহক, দল ও ফান্ডিং।
 - [পেমেন্ট ব্যবস্থা](https://deshistartup.com/payments): বাংলাদেশে স্টার্টআপ ও ছোট ব্যবসার পেমেন্ট ব্যবস্থা নিয়ে সহজ বাংলা গাইড: বিকাশ, নগদ, ব্যাংক ট্রান্সফার, পেমেন্ট গেটওয়ে, ক্যাশ অন ডেলিভারি, রিফান্ড, হিসাব ও ভরসা।
+- [গোপনীয়তা নীতি](https://deshistartup.com/privacy): দেশি স্টার্টআপ ব্যবহার করলে কোন তথ্য প্রক্রিয়া হয়, অবদান পাঠালে কী তথ্য লাগে এবং নিজের তথ্য নিয়ে কীভাবে যোগাযোগ করবেন।
 - [প্রোডাক্ট ও প্রযুক্তি](https://deshistartup.com/product): নো-কোড এমভিপি, টেক স্ট্যাক, বাংলা UX, কম দামের অ্যান্ড্রয়েড, এসএমএস/ওটিপি খরচ, সাইবার নিরাপত্তা ও ডেটা সুরক্ষার গাইড।
 - [পরিচালনা পর্ষদ সভা, AGM ও মিনিটস বুক বেসিক](https://deshistartup.com/registration/board-meetings-agm): প্রাইভেট লিমিটেড কোম্পানির জন্য বোর্ড মিটিং, বার্ষিক সাধারণ সভা (AGM), রেজোলিউশন ও RJSC ফাইলিং নিয়ম মেনে কীভাবে করবেন
 - [MoA ও AoA: সই করার আগে কী বুঝবেন](https://deshistartup.com/registration/moa-aoa): MoA আর AoA-তে কোন সিদ্ধান্তগুলো থাকে, ৫০:৫০ মালিকানায় কোথায় অচলাবস্থা হয়, আর RJSC-তে দেওয়ার আগে কোন প্রশ্নগুলোর উত্তর মিলিয়ে নেবেন।
@@ -99,6 +100,7 @@ Use the Bengali page as the source of truth when the two language versions diffe
 - [৩০ লাখ না ৮০ লাখ: টার্নওভার কর ও ভ্যাটের সীমা](https://deshistartup.com/tax/vat-thresholds): ১২ মাসের বিক্রি থেকে টার্নওভার হিসাব, ৩০ লাখ ও ৮০ লাখ টাকার সীমা, ৩% টার্নওভার কর, এবং বিশেষ খাতের আলাদা নিবন্ধন পরীক্ষা।
 - [কখন পূর্ণ ভ্যাট নিবন্ধন, কখন টার্নওভার কর](https://deshistartup.com/tax/when-vat-required): ৮০ লাখ ও ৩০ লাখ টাকার সীমা, টার্নওভার-নির্বিশেষে বিশেষ তালিকা, BIN ব্যবহারের কাজ, এবং স্বেচ্ছা নিবন্ধনের দায় বুঝে সিদ্ধান্ত নিন।
 - [টিম, নিয়োগ ও শ্রম আইন](https://deshistartup.com/team): প্রথম নিয়োগ, ট্যালেন্ট খোঁজা, অফার লেটার, পেরোল, শ্রম আইন, ছুটি-নীতি আর টিম কালচারের সব গাইড এক বিভাগে।
+- [ব্যবহারের শর্ত](https://deshistartup.com/terms): দেশি স্টার্টআপের গাইড, ওপেন লাইসেন্স, অবদান, দায়বদ্ধতার সীমা ও গ্রহণযোগ্য ব্যবহারের সহজ শর্ত।
 - [টেমপ্লেট ও টুলস](https://deshistartup.com/tools): দেশি স্টার্টআপের কাজে লাগার মতো টেমপ্লেট, চেকলিস্ট, স্ক্রিপ্ট, ক্যালকুলেটর ও ট্র্যাকার এক জায়গায় – যাচাই, নিবন্ধন, বিক্রি, ফান্ডিং ও দৈনন্দিন কাজের জন্য।
 - [আমদানি-রপ্তানি ও শিপিং](https://deshistartup.com/trade): IRC/ERC, এইচএস কোড, এলসি, ফ্রেইট ফরোয়ার্ডার, কাস্টমস, বন্ডেড ওয়্যারহাউস ও রপ্তানি প্রণোদনার গাইড এক বিভাগে।
 - [ট্রেড লাইসেন্স](https://deshistartup.com/trade-license): বাংলাদেশে ট্রেড লাইসেন্স কী, কার দরকার, কোথায় আবেদন করবেন, কী কাগজ লাগে, অনলাইন ব্যবসা কীভাবে ভাববে, নবায়ন ও সাধারণ ভুল – সহজ বাংলা গাইড।
@@ -162,6 +164,7 @@ Use the Bengali page as the source of truth when the two language versions diffe
 - [Delivery, Couriers & Cash on Delivery](https://deshistartup.com/en/operations): Choosing couriers, SLA comparison, last-mile delivery, COD risk, fake orders and reducing returns.
 - [The Bangla-first guide to building a startup in Bangladesh](https://deshistartup.com/en): A free, open-source knowledge base for starting and growing a startup in Bangladesh: idea validation, registration, tax/VAT, payments, customers, teams and funding.
 - [Payments: MFS, Bank, Cards and Cash on Delivery](https://deshistartup.com/en/payments): A practical Bangladesh guide to mobile financial services, bank transfers, payment gateways, cash on delivery, refunds and reconciliation.
+- [Privacy Policy](https://deshistartup.com/en/privacy): What information Deshi Startup processes when you read the site or submit a contribution, and how to contact us about your information.
 - [Product & Technology](https://deshistartup.com/en/product): No-code MVPs, tech stack, Bangla UX, low-end Android, SMS/OTP costs, cybersecurity and data protection guides.
 - [Board Meetings, AGM, and Minutes Book Basics](https://deshistartup.com/en/registration/board-meetings-agm): How private limited companies in Bangladesh should run board meetings, hold the Annual General Meeting (AGM), pass resolutions, and file with RJSC
 - [MoA and AoA: What to Understand Before Signing](https://deshistartup.com/en/registration/moa-aoa): Understand which decisions belong in the MoA and AoA, how 50:50 ownership can deadlock, and what to reconcile before filing with RJSC.
@@ -194,6 +197,7 @@ Use the Bengali page as the source of truth when the two language versions diffe
 - [BDT 3 Million or 8 Million: Turnover Tax and VAT Thresholds](https://deshistartup.com/en/tax/vat-thresholds): Calculate turnover over a rolling 12 months, apply the BDT 3 million and 8 million thresholds, understand 3% turnover tax, and check special registration categories.
 - [When Full VAT Registration or Turnover Tax Applies](https://deshistartup.com/en/tax/when-vat-required): Use the BDT 8 million and BDT 3 million thresholds, special mandatory classes, BIN-use cases, and voluntary-registration obligations to decide.
 - [Team, Hiring & Labor Law](https://deshistartup.com/en/team): First hires, finding talent, offer letters, payroll, labor law, leave policy and team culture guides in one section.
+- [Terms of Service](https://deshistartup.com/en/terms): Simple terms covering Deshi Startup's guides, open licences, contributions, acceptable use and limits of responsibility.
 - [Templates & Tools](https://deshistartup.com/en/tools): Practical Deshi Startup templates, checklists, scripts, calculators and trackers in one place for validation, registration, sales, funding and operations.
 - [Import, Export & Shipping](https://deshistartup.com/en/trade): IRC/ERC, HS codes, LCs, freight forwarders, customs, bonded warehouses and export incentives in one section.
 - [Trade License: Local Permission to Operate](https://deshistartup.com/en/trade-license): What a trade license does in Bangladesh, where to apply, which documents may be requested, and how to handle categories, renewals and regulated sectors.

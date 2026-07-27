@@ -750,6 +750,8 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
           <a href={localHref(isEn ? '/en/start-here' : '/start-here')}>{isEn ? 'Start here' : 'শুরু করুন'}</a>
           <a href={localHref(isEn ? '/en/about' : '/about')}>{isEn ? 'About & editorial policy' : 'পরিচিতি ও সম্পাদকীয় নীতি'}</a>
           <a href={localHref(isEn ? '/en/contribute' : '/contribute')}>{isEn ? 'How to contribute' : 'কীভাবে অবদান রাখবেন'}</a>
+          <a href={localHref(isEn ? '/en/privacy' : '/privacy')}>{isEn ? 'Privacy' : 'গোপনীয়তা'}</a>
+          <a href={localHref(isEn ? '/en/terms' : '/terms')}>{isEn ? 'Terms' : 'ব্যবহারের শর্ত'}</a>
           <a href={localHref(isEn ? '/en/sitemap' : '/sitemap')}>{isEn ? 'Sitemap' : 'সাইটম্যাপ'}</a>
           <a href={REPO_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
           <a href={`${REPO_URL}/issues`} target="_blank" rel="noopener noreferrer">

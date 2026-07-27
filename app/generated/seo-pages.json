@@ -3991,6 +3991,19 @@
   "repoPath": "app/(contents)/(bn)/payments/subscription-payments/page.mdx"
  },
  {
+  "route": "/privacy",
+  "slug": "privacy",
+  "locale": "bn",
+  "title": "গোপনীয়তা নীতি",
+  "fullTitle": "গোপনীয়তা নীতি",
+  "description": "দেশি স্টার্টআপ ব্যবহার করলে কোন তথ্য প্রক্রিয়া হয়, অবদান পাঠালে কী তথ্য লাগে এবং নিজের তথ্য নিয়ে কীভাবে যোগাযোগ করবেন।",
+  "stub": false,
+  "date": null,
+  "published": null,
+  "verified": null,
+  "repoPath": "app/(contents)/(bn)/privacy/page.mdx"
+ },
+ {
   "route": "/product/bangla-ux",
   "slug": "product/bangla-ux",
   "locale": "bn",
@@ -5237,6 +5250,19 @@
   "published": "2026-07-04",
   "verified": null,
   "repoPath": "app/(contents)/(bn)/team/termination/page.mdx"
+ },
+ {
+  "route": "/terms",
+  "slug": "terms",
+  "locale": "bn",
+  "title": "ব্যবহারের শর্ত",
+  "fullTitle": "ব্যবহারের শর্ত",
+  "description": "দেশি স্টার্টআপের গাইড, ওপেন লাইসেন্স, অবদান, দায়বদ্ধতার সীমা ও গ্রহণযোগ্য ব্যবহারের সহজ শর্ত।",
+  "stub": false,
+  "date": null,
+  "published": null,
+  "verified": null,
+  "repoPath": "app/(contents)/(bn)/terms/page.mdx"
  },
  {
   "route": "/tools/affordable-tools",
@@ -9867,6 +9893,19 @@
   "repoPath": "app/(contents)/en/payments/subscription-payments/page.mdx"
  },
  {
+  "route": "/en/privacy",
+  "slug": "privacy",
+  "locale": "en",
+  "title": "Privacy Policy",
+  "fullTitle": "Privacy Policy",
+  "description": "What information Deshi Startup processes when you read the site or submit a contribution, and how to contact us about your information.",
+  "stub": false,
+  "date": null,
+  "published": null,
+  "verified": null,
+  "repoPath": "app/(contents)/en/privacy/page.mdx"
+ },
+ {
   "route": "/en/product/bangla-ux",
   "slug": "product/bangla-ux",
   "locale": "en",
@@ -11113,6 +11152,19 @@
   "published": "2026-07-04",
   "verified": null,
   "repoPath": "app/(contents)/en/team/termination/page.mdx"
+ },
+ {
+  "route": "/en/terms",
+  "slug": "terms",
+  "locale": "en",
+  "title": "Terms of Service",
+  "fullTitle": "Terms of Service",
+  "description": "Simple terms covering Deshi Startup's guides, open licences, contributions, acceptable use and limits of responsibility.",
+  "stub": false,
+  "date": null,
+  "published": null,
+  "verified": null,
+  "repoPath": "app/(contents)/en/terms/page.mdx"
  },
  {
   "route": "/en/tools/affordable-tools",

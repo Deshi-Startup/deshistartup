@@ -505,6 +505,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/payments" />
   </url>
   <url>
+    <loc>https://deshistartup.com/en/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/privacy" />
+  </url>
+  <url>
     <loc>https://deshistartup.com/en/product</loc>
     <lastmod>2026-07-11</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/product" />
@@ -727,6 +733,12 @@
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/team" />
     <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/team" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/team" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/en/terms</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/terms" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/terms" />
   </url>
   <url>
     <loc>https://deshistartup.com/en/tools</loc>
@@ -1051,6 +1063,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/payments" />
   </url>
   <url>
+    <loc>https://deshistartup.com/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/privacy" />
+  </url>
+  <url>
     <loc>https://deshistartup.com/product</loc>
     <lastmod>2026-07-11</lastmod>
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/product" />
@@ -1273,6 +1291,12 @@
     <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/team" />
     <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/team" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/team" />
+  </url>
+  <url>
+    <loc>https://deshistartup.com/terms</loc>
+    <xhtml:link rel="alternate" hreflang="bn-BD" href="https://deshistartup.com/terms" />
+    <xhtml:link rel="alternate" hreflang="en-BD" href="https://deshistartup.com/en/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deshistartup.com/terms" />
   </url>
   <url>
     <loc>https://deshistartup.com/tools</loc>

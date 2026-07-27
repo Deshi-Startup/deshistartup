@@ -1835,6 +1835,12 @@
   "locale": "bn",
   "stub": true
  },
+ "/privacy": {
+  "repoPath": "app/(contents)/(bn)/privacy/page.mdx",
+  "title": "গোপনীয়তা নীতি",
+  "locale": "bn",
+  "stub": false
+ },
  "/product/bangla-ux": {
   "repoPath": "app/(contents)/(bn)/product/bangla-ux/page.mdx",
   "title": "বাংলা ইউএক্স এবং মোবাইল-ফার্স্ট পণ্য",
@@ -2410,6 +2416,12 @@
   "title": "চাকরি শেষ করা, নোটিশ পিরিয়ড ও গ্র্যাচুইটি বেসিক",
   "locale": "bn",
   "stub": true
+ },
+ "/terms": {
+  "repoPath": "app/(contents)/(bn)/terms/page.mdx",
+  "title": "ব্যবহারের শর্ত",
+  "locale": "bn",
+  "stub": false
  },
  "/tools/affordable-tools": {
   "repoPath": "app/(contents)/(bn)/tools/affordable-tools/page.mdx",
@@ -4541,6 +4553,12 @@
   "locale": "en",
   "stub": true
  },
+ "/en/privacy": {
+  "repoPath": "app/(contents)/en/privacy/page.mdx",
+  "title": "Privacy Policy",
+  "locale": "en",
+  "stub": false
+ },
  "/en/product/bangla-ux": {
   "repoPath": "app/(contents)/en/product/bangla-ux/page.mdx",
   "title": "Bangla UX and Mobile-First Products",
@@ -5116,6 +5134,12 @@
   "title": "Termination, Notice Period, and Gratuity Basics",
   "locale": "en",
   "stub": true
+ },
+ "/en/terms": {
+  "repoPath": "app/(contents)/en/terms/page.mdx",
+  "title": "Terms of Service",
+  "locale": "en",
+  "stub": false
  },
  "/en/tools/affordable-tools": {
   "repoPath": "app/(contents)/en/tools/affordable-tools/page.mdx",

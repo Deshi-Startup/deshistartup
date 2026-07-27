@@ -2,8 +2,8 @@
  "locale": "en",
  "generatedAt": null,
  "counts": {
-  "pages": 452,
-  "written": 93,
+  "pages": 454,
+  "written": 95,
   "stubs": 359
  },
  "sections": {
@@ -3253,6 +3253,23 @@
    "total": 16,
    "written": 0
   },
+  "privacy": {
+   "slug": "privacy",
+   "index": {
+    "route": "/en/privacy",
+    "slug": "privacy",
+    "title": "Privacy Policy",
+    "fullTitle": "Privacy Policy",
+    "description": "What information Deshi Startup processes when you read the site or submit a contribution, and how to contact us about your information.",
+    "stub": false,
+    "date": null,
+    "verified": null
+   },
+   "children": [],
+   "title": "Privacy Policy",
+   "total": 0,
+   "written": 0
+  },
   "product": {
    "slug": "product",
    "index": {
@@ -4273,6 +4290,23 @@
    ],
    "title": "Team, Hiring & Labor Law",
    "total": 23,
+   "written": 0
+  },
+  "terms": {
+   "slug": "terms",
+   "index": {
+    "route": "/en/terms",
+    "slug": "terms",
+    "title": "Terms of Service",
+    "fullTitle": "Terms of Service",
+    "description": "Simple terms covering Deshi Startup's guides, open licences, contributions, acceptable use and limits of responsibility.",
+    "stub": false,
+    "date": null,
+    "verified": null
+   },
+   "children": [],
+   "title": "Terms of Service",
+   "total": 0,
    "written": 0
   },
   "tools": {

@@ -24,6 +24,7 @@
   "metrics": "মেট্রিক্স ও ড্যাশবোর্ড",
   "operations": "ডেলিভারি, কুরিয়ার ও ক্যাশ অন ডেলিভারি",
   "payments": "পেমেন্ট ব্যবস্থা",
+  "privacy": "গোপনীয়তা নীতি",
   "product": "প্রোডাক্ট ও প্রযুক্তি",
   "registration": "ব্যবসা নিবন্ধন",
   "rjsc-name-clearance": "RJSC নাম ছাড়পত্র ও কোম্পানি নিবন্ধন: কোন গাইডে যাবেন",
@@ -32,14 +33,15 @@
   "start-here": "শুরু করুন",
   "tax": "কর, ভ্যাট ও হিসাবরক্ষণ",
   "team": "টিম, নিয়োগ ও শ্রম আইন",
+  "terms": "ব্যবহারের শর্ত",
   "tools": "টেমপ্লেট ও টুলস",
   "trade": "আমদানি-রপ্তানি ও শিপিং",
   "trade-license": "ট্রেড লাইসেন্স",
   "validation": "আইডিয়া যাচাই"
  },
  "bnCounts": {
-  "pages": 452,
-  "written": 93,
+  "pages": 454,
+  "written": 95,
   "stubs": 359
  },
  "en": {
@@ -67,6 +69,7 @@
   "metrics": "Metrics & Dashboards",
   "operations": "Delivery, Couriers & Cash on Delivery",
   "payments": "Payments: MFS, Bank, Cards and Cash on Delivery",
+  "privacy": "Privacy Policy",
   "product": "Product & Technology",
   "registration": "Business Registration: When, How and Which Structure",
   "rjsc-name-clearance": "RJSC Name Clearance and Company Registration: Where to Go",
@@ -75,14 +78,15 @@
   "start-here": "Start Here: Building a Startup or Small Business in Bangladesh",
   "tax": "Tax, VAT & Bookkeeping",
   "team": "Team, Hiring & Labor Law",
+  "terms": "Terms of Service",
   "tools": "Templates & Tools",
   "trade": "Import, Export & Shipping",
   "trade-license": "Trade License: Local Permission to Operate",
   "validation": "Idea Validation"
  },
  "enCounts": {
-  "pages": 452,
-  "written": 93,
+  "pages": 454,
+  "written": 95,
   "stubs": 359
  }
 }
