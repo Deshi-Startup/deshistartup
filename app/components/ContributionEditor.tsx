@@ -5,6 +5,7 @@ import { Crepe } from '@milkdown/crepe'
 import '@milkdown/crepe/theme/common/style.css'
 import '@milkdown/crepe/theme/classic.css'
 import { remarkPluginsCtx, remarkStringifyOptionsCtx } from '@milkdown/kit/core'
+import { insert, replaceAll } from '@milkdown/kit/utils'
 import { REPO_URL } from '../nav.config'
 import { UserInfo } from '../lib/client-auth'
 import {
@@ -20,6 +21,13 @@ import {
   pruneDrafts,
   saveDraft
 } from '../lib/contribution-draft'
+import {
+  ContributionMediaInput,
+  MAX_CONTRIBUTION_IMAGE_BYTES,
+  MAX_IMAGES_PER_CONTRIBUTION,
+  extractPendingMediaIds,
+  rejectPendingMediaInMarkdown
+} from '../lib/contribution-media'
 
 /**
  * DIRECTION CONTRACT
@@ -94,6 +102,16 @@ function PencilIcon() {
   )
 }
 
+function ImageIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="edit-image-icon">
+      <rect x="3" y="4" width="18" height="16" rx="1" />
+      <circle cx="9" cy="10" r="2" />
+      <path d="m4 18 5-5 3 3 2-2 6 5" />
+    </svg>
+  )
+}
+
 export interface SubmitResult {
   prUrl: string
   updated?: boolean
@@ -130,6 +148,16 @@ interface PageData {
   existingPR?: {
     url: string
   }
+  pendingMedia?: PendingMedia[]
+}
+
+interface PendingMedia extends ContributionMediaInput {
+  name?: string
+  bytes?: number
+  w?: number
+  h?: number
+  expiresAt?: string
+  status?: 'quarantined' | 'pending_review' | 'expired'
 }
 
 export default function ContributionEditor({
@@ -157,7 +185,12 @@ export default function ContributionEditor({
   const [confirmingExit, setConfirmingExit] = useState(false)
   const [draft, setDraft] = useState<ContributionDraft | null>(null)
   const [draftApplied, setDraftApplied] = useState(false)
+  const [pendingMedia, setPendingMedia] = useState<PendingMedia[]>([])
+  const [uploadingImage, setUploadingImage] = useState(false)
+  const [uploadError, setUploadError] = useState<string | null>(null)
+  const [previewUrls, setPreviewUrls] = useState<Record<string, string>>({})
   const containerRef = useRef<HTMLDivElement>(null)
+  const imageInputRef = useRef<HTMLInputElement>(null)
   const summaryRef = useRef<HTMLTextAreaElement>(null)
   const crepeRef = useRef<Crepe | null>(null)
   const markdownRef = useRef<string>('')
@@ -166,11 +199,123 @@ export default function ContributionEditor({
   const lockedBlocksRef = useRef<string[]>([])
   const seenExitSignalRef = useRef(exitSignal)
   const saveTimerRef = useRef(0)
+  const pendingMediaRef = useRef<PendingMedia[]>([])
+  const previewUrlsRef = useRef<Record<string, string>>({})
+
+  const updatePendingMedia = useCallback(
+    (updater: PendingMedia[] | ((current: PendingMedia[]) => PendingMedia[])) => {
+      setPendingMedia((current) => {
+        const next = typeof updater === 'function' ? updater(current) : updater
+        pendingMediaRef.current = next
+        return next
+      })
+    },
+    []
+  )
 
   const discardDraft = useCallback(() => {
     clearDraft(pathname)
     setDraft(null)
   }, [pathname])
+
+  const rememberPreview = useCallback((id: string, url: string) => {
+    const previous = previewUrlsRef.current[id]
+    if (previous && previous !== url && previous.startsWith('blob:')) URL.revokeObjectURL(previous)
+    const next = { ...previewUrlsRef.current, [id]: url }
+    previewUrlsRef.current = next
+    setPreviewUrls(next)
+  }, [])
+
+  const uploadImage = useCallback(
+    async (file: File): Promise<string> => {
+      setUploadError(null)
+      if (!authToken) {
+        setUploadError('unauthorized')
+        onReauthenticate()
+        throw new Error('unauthorized')
+      }
+      if (pendingMediaRef.current.length >= MAX_IMAGES_PER_CONTRIBUTION) {
+        setUploadError('too_many_images')
+        throw new Error('too_many_images')
+      }
+      if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.type)) {
+        setUploadError('unsupported_type')
+        throw new Error('unsupported_type')
+      }
+      if (file.size > MAX_CONTRIBUTION_IMAGE_BYTES) {
+        setUploadError('file_too_large')
+        throw new Error('file_too_large')
+      }
+
+      const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+      setUploadingImage(true)
+      try {
+        const response = await fetch(`${basePath}/api/contribution-media`, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+            'Content-Type': file.type,
+            'X-File-Name': encodeURIComponent(file.name),
+            'X-Page-Path': pathname
+          },
+          body: file
+        })
+        const result = await response.json().catch(() => ({}))
+        if (!response.ok) throw new Error(result.error || 'upload_failed')
+        const item: PendingMedia = {
+          id: result.id,
+          alt: '',
+          name: result.name,
+          bytes: result.bytes,
+          w: result.w,
+          h: result.h,
+          expiresAt: result.expiresAt,
+          status: 'quarantined'
+        }
+        updatePendingMedia((current) => [...current, item])
+        rememberPreview(result.id, URL.createObjectURL(file))
+        return result.src
+      } catch (error) {
+        const code = error instanceof Error ? error.message : 'upload_failed'
+        setUploadError(code)
+        if (code === 'unauthorized') {
+          onSessionExpired()
+          onReauthenticate()
+        }
+        throw error
+      } finally {
+        setUploadingImage(false)
+      }
+    },
+    [
+      authToken,
+      onReauthenticate,
+      onSessionExpired,
+      pathname,
+      rememberPreview,
+      updatePendingMedia
+    ]
+  )
+
+  const proxyImageUrl = useCallback(
+    async (url: string): Promise<string> => {
+      const match = url.match(/^\/__pending-media\/([a-f0-9]{32})$/)
+      if (!match) return url
+      const id = match[1]
+      const remembered = previewUrlsRef.current[id]
+      if (remembered) return remembered
+      if (!authToken) return url
+      const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+      const response = await fetch(`${basePath}/api/contribution-media/${id}`, {
+        headers: { Authorization: `Bearer ${authToken}` }
+      })
+      if (!response.ok) throw new Error('media_expired')
+      const objectUrl = URL.createObjectURL(await response.blob())
+      rememberPreview(id, objectUrl)
+      return objectUrl
+    },
+    [authToken, rememberPreview]
+  )
 
   /**
    * Locked MDX components ride through the round-trip as internal fenced blocks,
@@ -248,6 +393,39 @@ export default function ContributionEditor({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, authToken])
 
+  // The branch is the authority for already-submitted images; a restored local
+  // draft carries the metadata for images that were uploaded but never sent.
+  useEffect(() => {
+    if (!data) return
+    const restored = draftApplied && draft?.media ? draft.media : data.pendingMedia || []
+    updatePendingMedia(restored as PendingMedia[])
+  }, [data, draft, draftApplied, updatePendingMedia])
+
+  // A pending image is private, so a normal browser image request cannot load it:
+  // fetch it with the Google token and hand the editor/browser a local blob URL.
+  useEffect(() => {
+    if (!authToken) return
+    for (const media of pendingMedia) {
+      if (media.status === 'expired' || previewUrlsRef.current[media.id]) continue
+      proxyImageUrl(`/__pending-media/${media.id}`).catch(() => {
+        updatePendingMedia((current) =>
+          current.map((item) =>
+            item.id === media.id ? { ...item, status: 'expired' } : item
+          )
+        )
+      })
+    }
+  }, [authToken, pendingMedia, proxyImageUrl, updatePendingMedia])
+
+  useEffect(
+    () => () => {
+      for (const url of Object.values(previewUrlsRef.current)) {
+        if (url.startsWith('blob:')) URL.revokeObjectURL(url)
+      }
+    },
+    []
+  )
+
   // Initialize the Milkdown/Crepe editor once content is loaded.
   useEffect(() => {
     if (!data || !containerRef.current) return
@@ -265,7 +443,7 @@ export default function ContributionEditor({
       features: {
         [Crepe.Feature.AI]: false,
         [Crepe.Feature.Latex]: false,
-        [Crepe.Feature.ImageBlock]: false
+        [Crepe.Feature.ImageBlock]: true
       },
       featureConfigs: {
         [Crepe.Feature.Placeholder]: {
@@ -278,6 +456,26 @@ export default function ContributionEditor({
         // toolbar, which is what a contributor actually reaches for, stay.
         [Crepe.Feature.BlockEdit]: {
           blockHandle: { shouldShow: () => false }
+        },
+        [Crepe.Feature.ImageBlock]: {
+          blockUploadButton: t(isEn, 'ছবি বাছুন', 'Choose image'),
+          inlineUploadButton: t(isEn, 'ছবি বাছুন', 'Choose image'),
+          blockUploadPlaceholderText: t(
+            isEn,
+            'PNG, JPEG বা WebP ছবি দিন',
+            'Choose a PNG, JPEG, or WebP image'
+          ),
+          blockCaptionPlaceholderText: t(
+            isEn,
+            'ছবির নিচে ছোট ক্যাপশন লিখুন',
+            'Write a short caption under the image'
+          ),
+          blockConfirmButton: t(isEn, 'ছবি বসান', 'Insert image'),
+          inlineConfirmButton: t(isEn, 'ছবি বসান', 'Insert image'),
+          onUpload: uploadImage,
+          proxyDomURL: proxyImageUrl,
+          maxWidth: 1600,
+          maxHeight: 6000
         }
       }
     })
@@ -314,7 +512,7 @@ export default function ContributionEditor({
         // rescuing, so the draft goes rather than lingering as a false alarm.
         window.clearTimeout(saveTimerRef.current)
         saveTimerRef.current = window.setTimeout(() => {
-          if (next) saveDraft(pathname, markdown)
+          if (next) saveDraft(pathname, markdown, Date.now(), pendingMediaRef.current)
           else clearDraft(pathname)
         }, 700)
       })
@@ -408,6 +606,70 @@ export default function ContributionEditor({
     else onExit()
   }
 
+  async function handleImageChosen(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0]
+    event.target.value = ''
+    if (!file || !crepeRef.current) return
+    try {
+      const src = await uploadImage(file)
+      crepeRef.current.editor.action(insert(`\n\n![1.00](${src} "")\n\n`))
+    } catch {
+      // uploadImage already names the problem beside the control.
+    }
+  }
+
+  function changeMedia(id: string, patch: Partial<ContributionMediaInput>) {
+    updatePendingMedia((current) => {
+      const next = current.map((item) => (item.id === id ? { ...item, ...patch } : item))
+      const markdown = crepeRef.current?.getMarkdown() || markdownRef.current
+      saveDraft(pathname, markdown, Date.now(), next)
+      return next
+    })
+    if (!dirtyRef.current) {
+      dirtyRef.current = true
+      setDirty(true)
+    }
+  }
+
+  async function removeMedia(id: string) {
+    const currentMarkdown = crepeRef.current?.getMarkdown() || markdownRef.current
+    let nextMarkdown = currentMarkdown
+    try {
+      nextMarkdown = rejectPendingMediaInMarkdown(currentMarkdown, id)
+      crepeRef.current?.editor.action(replaceAll(nextMarkdown))
+    } catch {
+      // The contributor may already have removed the block with Backspace.
+    }
+    const next = pendingMediaRef.current.filter((item) => item.id !== id)
+    updatePendingMedia(next)
+    saveDraft(pathname, nextMarkdown, Date.now(), next)
+
+    const url = previewUrlsRef.current[id]
+    if (url?.startsWith('blob:')) URL.revokeObjectURL(url)
+    const nextPreviews = { ...previewUrlsRef.current }
+    delete nextPreviews[id]
+    previewUrlsRef.current = nextPreviews
+    setPreviewUrls(nextPreviews)
+
+    if (!authToken) return
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+    await fetch(`${basePath}/api/contribution-media`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authToken}`
+      },
+      body: JSON.stringify({ id })
+    }).catch(() => {})
+  }
+
+  async function discardUnsubmittedMedia() {
+    const unsubmitted = pendingMediaRef.current.filter(
+      (item) => item.status === 'quarantined'
+    )
+    await Promise.allSettled(unsubmitted.map((item) => removeMedia(item.id)))
+  }
+
   async function handleSubmit() {
     if (!data || submitting) return
     setSubmitError(null)
@@ -431,6 +693,22 @@ export default function ContributionEditor({
       setSubmitError('content_empty')
       return
     }
+    const referencedMedia = extractPendingMediaIds(body)
+    if (
+      referencedMedia.length !== pendingMediaRef.current.length ||
+      pendingMediaRef.current.some((item) => !referencedMedia.includes(item.id))
+    ) {
+      setSubmitError('image_not_placed')
+      return
+    }
+    if (pendingMediaRef.current.some((item) => item.status === 'expired')) {
+      setSubmitError('image_expired_or_forbidden')
+      return
+    }
+    if (pendingMediaRef.current.some((item) => !item.alt.trim())) {
+      setSubmitError('image_alt_required')
+      return
+    }
     if (!authToken) {
       setSubmitError('unauthorized')
       onReauthenticate()
@@ -446,7 +724,18 @@ export default function ContributionEditor({
           'Content-Type': 'application/json',
           Authorization: `Bearer ${authToken}`
         },
-        body: JSON.stringify({ path: pathname, content: fullContent, summary })
+        body: JSON.stringify({
+          path: pathname,
+          content: fullContent,
+          summary,
+          media: pendingMediaRef.current.map(({ id, alt, source, credit, checked }) => ({
+            id,
+            alt,
+            source,
+            credit,
+            checked
+          }))
+        })
       })
       const j = await res.json().catch(() => ({}))
       if (!res.ok) throw new Error(j.error || 'submit_failed')
@@ -463,11 +752,20 @@ export default function ContributionEditor({
         'content_empty',
         'content_too_large',
         'content_too_short',
+        'contribution_rate_limited',
+        'contributor_banned',
+        'contributor_muted',
         'auth_unavailable',
+        'image_alt_required',
+        'image_expired_or_forbidden',
+        'image_metadata_required',
+        'image_not_placed',
         'locked_content_changed',
         'not_contributable',
         'pr_creation_failed',
         'submit_failed',
+        'too_many_images',
+        'uncontrolled_image_source',
         'unauthorized'
       ].includes(code)
         ? code
@@ -523,7 +821,7 @@ export default function ContributionEditor({
                   // behind would offer this same work back on the next visit.
                   window.clearTimeout(saveTimerRef.current)
                   discardDraft()
-                  onExit()
+                  discardUnsubmittedMedia().finally(onExit)
                 }}
               >
                 {t(isEn, 'পরিবর্তন বাদ দিন', 'Discard changes')}
@@ -531,6 +829,31 @@ export default function ContributionEditor({
             </>
           ) : (
             <>
+              <input
+                ref={imageInputRef}
+                className="sr-only"
+                type="file"
+                accept="image/png,image/jpeg,image/webp"
+                onChange={handleImageChosen}
+                tabIndex={-1}
+                aria-hidden="true"
+              />
+              <button
+                type="button"
+                className="edit-btn"
+                onClick={() => imageInputRef.current?.click()}
+                disabled={
+                  !ready ||
+                  submitting ||
+                  uploadingImage ||
+                  pendingMedia.length >= MAX_IMAGES_PER_CONTRIBUTION
+                }
+              >
+                <ImageIcon />
+                {uploadingImage
+                  ? t(isEn, 'ছবি তোলা হচ্ছে…', 'Adding image…')
+                  : t(isEn, 'ছবি যোগ করুন', 'Add image')}
+              </button>
               <button type="button" className="edit-btn" onClick={requestExit} disabled={submitting}>
                 {error ? t(isEn, 'পড়ায় ফিরুন', 'Back to reading') : t(isEn, 'বাতিল', 'Cancel')}
               </button>
@@ -564,6 +887,19 @@ export default function ContributionEditor({
                   isEn,
                   'আবার সাইন ইন করলে এখান থেকেই সম্পাদনা চালিয়ে যেতে পারবেন।',
                   'Sign in again to continue editing from here.'
+                )}
+              </p>
+            </>
+          ) : error === 'contributor_banned' || error === 'contributor_muted' ? (
+            <>
+              <strong>
+                {t(isEn, 'এই অ্যাকাউন্ট থেকে সম্পাদনা থামানো আছে', 'Editing is paused for this account')}
+              </strong>
+              <p>
+                {t(
+                  isEn,
+                  'বারবার স্প্যাম বা নিয়ম ভাঙার কারণে এই অ্যাকাউন্ট থেকে এখন অবদান পাঠানো যাচ্ছে না। ভুল হয়ে থাকলে রক্ষণাবেক্ষণকারীদের সঙ্গে যোগাযোগ করুন।',
+                  'This account cannot submit contributions right now because of spam or repeated rule violations. Contact the maintainers if this is a mistake.'
                 )}
               </p>
             </>
@@ -661,6 +997,198 @@ export default function ContributionEditor({
             ref={containerRef}
           />
 
+          {(pendingMedia.length > 0 || uploadError) && (
+            <section className="edit-media" aria-labelledby="edit-media-heading">
+              <div className="edit-media__heading">
+                <div>
+                  <h2 id="edit-media-heading">
+                    {t(isEn, 'এই সম্পাদনার ছবি', 'Images in this edit')}
+                  </h2>
+                  <p>
+                    {t(
+                      isEn,
+                      `ছবিগুলো এখন ব্যক্তিগতভাবে রাখা আছে। রিভিউয়ার প্রতিটি ছবি আলাদাভাবে অনুমোদন করবেন। সর্বোচ্চ ${MAX_IMAGES_PER_CONTRIBUTION}টি, আর ৭ দিনের মধ্যে সিদ্ধান্ত না হলে ছবি নিজে থেকে মুছে যাবে।`,
+                      `These images are private for now. A reviewer must approve each one separately. You can add up to ${MAX_IMAGES_PER_CONTRIBUTION}; undecided images are deleted after 7 days.`
+                    )}
+                  </p>
+                </div>
+                <span>
+                  {pendingMedia.length}/{MAX_IMAGES_PER_CONTRIBUTION}
+                </span>
+              </div>
+
+              {uploadError && (
+                <p className="edit-media__error" role="alert">
+                  {uploadError === 'file_too_large'
+                    ? t(
+                        isEn,
+                        'ছবিটি ৩০০ KB-এর বেশি। একটু ছোট করে বা WebP হিসেবে সেভ করে আবার দিন।',
+                        'This image is over 300 KB. Make it smaller or save it as WebP, then try again.'
+                      )
+                    : uploadError === 'unsupported_type'
+                      ? t(
+                          isEn,
+                          'শুধু PNG, JPEG বা WebP ছবি দেওয়া যাবে।',
+                          'Use a PNG, JPEG, or WebP image.'
+                        )
+                      : uploadError === 'daily_image_limit' ||
+                          uploadError === 'daily_byte_limit'
+                        ? t(
+                            isEn,
+                            'আজকের ছবি দেওয়ার সীমা পূর্ণ হয়েছে। আগামীকাল আবার চেষ্টা করুন।',
+                            'You have reached today’s image allowance. Try again tomorrow.'
+                          )
+                        : uploadError === 'upload_rate_limited'
+                          ? t(
+                              isEn,
+                              'খুব দ্রুত অনেকবার চেষ্টা হয়েছে। এক মিনিট পরে আবার দিন।',
+                              'There have been too many attempts. Try again in a minute.'
+                            )
+                          : uploadError === 'contributor_banned' ||
+                              uploadError === 'contributor_muted'
+                            ? t(
+                                isEn,
+                                'এই অ্যাকাউন্ট থেকে এখন ছবি দেওয়া যাচ্ছে না।',
+                                'This account cannot upload images right now.'
+                              )
+                            : t(
+                                isEn,
+                                'ছবিটি যোগ করা যায়নি। ইন্টারনেট ঠিক থাকলে আবার চেষ্টা করুন।',
+                                'The image could not be added. Check your connection and try again.'
+                              )}
+                </p>
+              )}
+
+              <div className="edit-media__list">
+                {pendingMedia.map((media, index) => {
+                  const placed = extractPendingMediaIds(
+                    crepeRef.current?.getMarkdown() || markdownRef.current
+                  ).includes(media.id)
+                  return (
+                    <article className="edit-media-item" key={media.id}>
+                      <div className="edit-media-item__preview">
+                        {previewUrls[media.id] ? (
+                          <img src={previewUrls[media.id]} alt="" />
+                        ) : (
+                          <span>{t(isEn, 'প্রিভিউ নেই', 'Preview unavailable')}</span>
+                        )}
+                      </div>
+                      <div className="edit-media-item__fields">
+                        <div className="edit-media-item__title">
+                          <strong>
+                            {t(isEn, `ছবি ${index + 1}`, `Image ${index + 1}`)}
+                          </strong>
+                          <span>
+                            {media.w && media.h ? `${media.w} × ${media.h}` : ''}
+                            {media.bytes ? ` · ${Math.ceil(media.bytes / 1024)} KB` : ''}
+                          </span>
+                        </div>
+
+                        {media.status === 'expired' && (
+                          <p className="edit-media-item__notice is-error">
+                            {t(
+                              isEn,
+                              'এই ছবির ৭ দিনের মেয়াদ শেষ হয়েছে। এটি সরিয়ে আবার ছবি দিন।',
+                              'This image has passed its 7-day limit. Remove it and upload it again.'
+                            )}
+                          </p>
+                        )}
+                        {!placed && (
+                          <p className="edit-media-item__notice is-error">
+                            {t(
+                              isEn,
+                              'ছবিটি লেখার মধ্যে নেই। এটি সরান, অথবা আবার লেখায় বসান।',
+                              'This image is no longer in the article. Remove it or insert it again.'
+                            )}
+                          </p>
+                        )}
+
+                        <label htmlFor={`media-alt-${media.id}`}>
+                          {t(
+                            isEn,
+                            'ছবিতে কী দেখা যাচ্ছে? (অবশ্যই লিখুন)',
+                            'What does the image show? (required)'
+                          )}
+                        </label>
+                        <textarea
+                          id={`media-alt-${media.id}`}
+                          value={media.alt}
+                          onChange={(event) =>
+                            changeMedia(media.id, { alt: event.target.value.slice(0, 280) })
+                          }
+                          placeholder={t(
+                            isEn,
+                            'যেমন: RJSC পোর্টালে কোম্পানির নাম খোঁজার ফর্ম',
+                            'e.g. Company-name search form in the RJSC portal'
+                          )}
+                          rows={2}
+                          maxLength={280}
+                          required
+                        />
+                        <p className="edit-media-item__hint">
+                          {t(
+                            isEn,
+                            'ক্যাপশনটি উপরের ছবির ঠিক নিচে লিখতে পারবেন।',
+                            'Write the visible caption directly under the image above.'
+                          )}
+                        </p>
+
+                        <div className="edit-media-item__optional">
+                          <label htmlFor={`media-source-${media.id}`}>
+                            {t(isEn, 'সূত্র (থাকলে)', 'Source (if any)')}
+                            <input
+                              id={`media-source-${media.id}`}
+                              value={media.source || ''}
+                              onChange={(event) =>
+                                changeMedia(media.id, {
+                                  source: event.target.value.slice(0, 300)
+                                })
+                              }
+                              placeholder={t(isEn, 'যেমন: RJSC পোর্টাল', 'e.g. RJSC portal')}
+                              maxLength={300}
+                            />
+                          </label>
+                          <label htmlFor={`media-credit-${media.id}`}>
+                            {t(isEn, 'কৃতজ্ঞতা / ক্রেডিট (থাকলে)', 'Credit (if any)')}
+                            <input
+                              id={`media-credit-${media.id}`}
+                              value={media.credit || ''}
+                              onChange={(event) =>
+                                changeMedia(media.id, {
+                                  credit: event.target.value.slice(0, 200)
+                                })
+                              }
+                              maxLength={200}
+                            />
+                          </label>
+                          <label htmlFor={`media-checked-${media.id}`}>
+                            {t(isEn, 'স্ক্রিনটি কবে মিলিয়েছেন?', 'When was this screen checked?')}
+                            <input
+                              id={`media-checked-${media.id}`}
+                              type="date"
+                              value={media.checked || ''}
+                              onChange={(event) =>
+                                changeMedia(media.id, { checked: event.target.value })
+                              }
+                            />
+                          </label>
+                        </div>
+
+                        <button
+                          type="button"
+                          className="edit-media-item__remove"
+                          onClick={() => removeMedia(media.id)}
+                        >
+                          {t(isEn, 'ছবিটি সরান', 'Remove image')}
+                        </button>
+                      </div>
+                    </article>
+                  )
+                })}
+              </div>
+            </section>
+          )}
+
           <div className="edit-publish">
             <label className="edit-publish__label" htmlFor="contrib-summary">
               {t(isEn, 'কী বদলালেন? (ঐচ্ছিক)', 'What changed? (optional)')}
@@ -705,7 +1233,44 @@ export default function ContributionEditor({
                             'পরিবর্তনটি একবারে পাঠানোর জন্য খুব বড়। ছোট ভাগে পাঠান, বা GitHub-এ সম্পাদনা করুন।',
                             'This change is too large to send at once. Submit a smaller edit, or edit on GitHub.'
                           )
-                        : submitError === 'content_empty' || submitError === 'content_too_short'
+                        : submitError === 'image_alt_required'
+                          ? t(
+                              isEn,
+                              'প্রতিটি ছবিতে কী দেখা যাচ্ছে তা লিখুন। এই বর্ণনাই ছবিটি দেখতে না পাওয়া পাঠককে সাহায্য করবে।',
+                              'Describe what each image shows. This is what helps readers who cannot see it.'
+                            )
+                          : submitError === 'image_not_placed'
+                            ? t(
+                                isEn,
+                                'একটি ছবি লেখার মধ্যে আর নেই। ছবির তালিকা থেকে সেটি সরান, অথবা আবার লেখায় বসান।',
+                                'One attached image is no longer in the article. Remove it from the image list or insert it again.'
+                              )
+                            : submitError === 'image_expired_or_forbidden'
+                              ? t(
+                                  isEn,
+                                  'একটি ছবির ৭ দিনের মেয়াদ শেষ হয়েছে। সেটি সরিয়ে আবার ছবি দিন।',
+                                  'One image has passed its 7-day limit. Remove it and upload it again.'
+                                )
+                              : submitError === 'uncontrolled_image_source'
+                                ? t(
+                                    isEn,
+                                    'ইন্টারনেটের লিংক থেকে সরাসরি ছবি বসানো যাবে না। “ছবি যোগ করুন” দিয়ে ফাইলটি দিন, যাতে ব্যক্তিগতভাবে যাচাই করা যায়।',
+                                    'Images cannot be embedded directly from another website. Use “Add image” so the file can be reviewed privately.'
+                                  )
+                              : submitError === 'contributor_banned' ||
+                                  submitError === 'contributor_muted'
+                                ? t(
+                                    isEn,
+                                    'এই অ্যাকাউন্ট থেকে এখন অবদান পাঠানো যাচ্ছে না। ভুল হয়ে থাকলে রক্ষণাবেক্ষণকারীদের সঙ্গে যোগাযোগ করুন।',
+                                    'This account cannot submit contributions right now. Contact the maintainers if this is a mistake.'
+                                  )
+                                : submitError === 'contribution_rate_limited'
+                                  ? t(
+                                      isEn,
+                                      'খুব দ্রুত কয়েকবার জমা দেওয়ার চেষ্টা হয়েছে। এক মিনিট পরে আবার পাঠান।',
+                                      'There have been several submission attempts. Try again in a minute.'
+                                    )
+                                  : submitError === 'content_empty' || submitError === 'content_too_short'
                           ? t(
                               isEn,
                               'পাতাটি এখন ফাঁকা, তাই কিছু পাঠানো হয়নি। লেখা ভুলে মুছে গিয়ে থাকলে Ctrl+Z (Mac-এ Cmd+Z) চেপে ফিরিয়ে আনুন, তারপর আবার পাঠান।',

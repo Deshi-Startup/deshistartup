@@ -75,6 +75,13 @@ function attributes(raw) {
 }
 
 function checkSource(src, where, page) {
+  if (src.startsWith('/__pending-media/')) {
+    errors.push(
+      `${page}: ${where} is still waiting for explicit image review (${src}). ` +
+        'Approve or reject it from the private review link in the pull request before merging.'
+    )
+    return
+  }
   if (/^[a-z][a-z0-9+.-]*:/i.test(src) || src.startsWith('//')) {
     errors.push(
       `${page}: ${where} loads an image from another domain (${src}). ` +

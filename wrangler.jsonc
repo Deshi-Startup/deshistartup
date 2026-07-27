@@ -19,6 +19,48 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
+  "r2_buckets": [
+    {
+      "binding": "MEDIA_LIBRARY",
+      "bucket_name": "deshistartup-media"
+    },
+    {
+      "binding": "MEDIA_QUARANTINE",
+      "bucket_name": "deshistartup-media-quarantine"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "CONTRIBUTION_GUARDS",
+      "id": "dad4266a35b94358a77568fd98b87a6d"
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "MEDIA_USER_RATE",
+      "namespace_id": "31001",
+      "simple": {
+        "limit": 10,
+        "period": 60
+      }
+    },
+    {
+      "name": "MEDIA_GLOBAL_RATE",
+      "namespace_id": "31002",
+      "simple": {
+        "limit": 60,
+        "period": 60
+      }
+    },
+    {
+      "name": "CONTRIBUTION_USER_RATE",
+      "namespace_id": "31003",
+      "simple": {
+        "limit": 3,
+        "period": 60
+      }
+    }
+  ],
   "observability": {
     "enabled": true
   }

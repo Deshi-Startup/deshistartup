@@ -25,7 +25,7 @@
     "backlog:status": "node scripts/backlog-status.mjs",
     "lint:bangla": "node scripts/bangla-lint.mjs",
     "lint:routes": "node scripts/route-lint.mjs",
-    "test:contribute": "node --experimental-strip-types --test app/lib/contribution-markdown.test.mjs app/lib/contribution-draft.test.mjs",
+    "test:contribute": "node --experimental-strip-types --test app/lib/contribution-markdown.test.mjs app/lib/contribution-draft.test.mjs app/lib/contribution-media.test.mjs",
     "seo:audit": "node scripts/seo-audit.mjs",
     "seo:indexnow": "node scripts/submit-indexnow.mjs",
     "seo:indexnow:dry": "node scripts/submit-indexnow.mjs --dry-run",

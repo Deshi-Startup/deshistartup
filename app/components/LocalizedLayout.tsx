@@ -203,6 +203,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   const pathname = usePathname()
   const isEn = pathname.startsWith('/en/') || pathname === '/en'
   const isLanding = pathname === '/' || pathname === '/en'
+  const isPrivateReview = pathname.startsWith('/contribute/review/')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [headings, setHeadings] = useState<HeadingItem[]>([])
   const [pageTitle, setPageTitle] = useState('')
@@ -231,7 +232,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
       setAuthToken(stored.token)
     }
     const wantsEdit = new URLSearchParams(window.location.search).get('action') === 'edit'
-    if (!wantsEdit || pathname === '/' || pathname === '/en') return
+    if (!wantsEdit || pathname === '/' || pathname === '/en' || isPrivateReview) return
     if (stored) setIsEditing(true)
     else setAuthOpen(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -525,7 +526,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
               <GitHubIcon />
               <span>GitHub</span>
             </a>
-            <LanguageSwitcher />
+            {!isPrivateReview && <LanguageSwitcher />}
             <button
               className="nav-toggle"
               type="button"
@@ -564,7 +565,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
           <Sidebar
             isEn={isEn}
             pathname={pathname}
-            headings={isLanding ? [] : headings}
+            headings={isLanding || isPrivateReview ? [] : headings}
             onNavigate={() => closeSidebar()}
             onClose={() => closeSidebar(true)}
             closeButtonRef={sidebarCloseRef}
@@ -573,7 +574,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
         </div>
 
         <main className="content-canvas" id="main">
-          <nav className="article-tabs" aria-label={isEn ? 'About this page' : 'এই পাতা নিয়ে'}>
+          {!isPrivateReview && <nav className="article-tabs" aria-label={isEn ? 'About this page' : 'এই পাতা নিয়ে'}>
             <div className="tab-group">
               <span className="tab active" aria-current="page">{tabs.article}</span>
               <a
@@ -618,9 +619,9 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
                 {tabs.history}
               </a>
             </div>
-          </nav>
+          </nav>}
 
-          {flash && !isEditing && (
+          {flash && !isEditing && !isPrivateReview && (
             <div className="edit-flash" role="status">
               <p>
                 <strong>
@@ -654,7 +655,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             </div>
           )}
 
-          {isEditing && (
+          {isEditing && !isPrivateReview && (
             <ContributionEditor
               pathname={pathname}
               isEn={isEn}
@@ -671,7 +672,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             />
           )}
 
-          {!isLanding && !isEditing && (
+          {!isLanding && !isEditing && !isPrivateReview && (
             <div className="article-lede">
               <Breadcrumbs isEn={isEn} pathname={pathname} pageTitle={pageTitle} />
               <div className="article-meta">
@@ -711,15 +712,16 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
           )}
 
           <article
-            className={isEditing && !editorReady ? 'article is-yielding' : 'article'}
-            data-pagefind-body
+            className={`${isEditing && !editorReady ? 'article is-yielding' : 'article'}${isPrivateReview ? ' article--utility' : ''}`}
+            data-pagefind-body={isPrivateReview ? undefined : ''}
+            data-pagefind-ignore={isPrivateReview ? 'all' : undefined}
             ref={articleRef}
             hidden={editorReady}
           >
             {children}
           </article>
 
-          {!isLanding && !isEditing && (
+          {!isLanding && !isEditing && !isPrivateReview && (
             <footer className="article-footer">
               <h2>{isEn ? 'Help improve this page' : 'এই পাতা আরও ভালো করুন'}</h2>
               <div className="contrib-row">

@@ -1,6 +1,15 @@
 import contributable from '../../generated/contributable.json'
 import { requireUser } from '../../lib/google-token'
 import { findOpenContribution } from '../../lib/github-app'
+import { extractPendingMediaIds } from '../../lib/contribution-media'
+import {
+  QuarantineMediaRecord,
+  contributorHash,
+  getContributionBindings,
+  mediaRecordKey,
+  moderationFor,
+  readJson
+} from '../../lib/contribution-guard'
 
 interface ContributableEntry {
   repoPath: string
@@ -84,6 +93,20 @@ export async function GET(req: Request) {
   }
   if (!user) return json({ error: 'unauthorized' }, 401)
 
+  let bindings
+  try {
+    bindings = getContributionBindings()
+  } catch (err) {
+    console.error('[content] Cloudflare contribution bindings unavailable:', err)
+    return json({ error: 'contribution_unavailable' }, 503)
+  }
+  const ownerHash = await contributorHash(user)
+  const moderation = await moderationFor(bindings, ownerHash)
+  if (moderation.status === 'banned') return json({ error: 'contributor_banned' }, 403)
+  if (moderation.status === 'muted') {
+    return json({ error: 'contributor_muted', until: moderation.until }, 403)
+  }
+
   const url = new URL(req.url)
   const path = url.searchParams.get('path')
   if (!path || typeof path !== 'string') return json({ error: 'path required' }, 400)
@@ -120,6 +143,25 @@ export async function GET(req: Request) {
   }
 
   const { frontmatterRaw, frontmatter, content } = splitFrontmatter(source)
+  const pendingMedia = await Promise.all(
+    extractPendingMediaIds(content).map(async (id) => {
+      const record = await readJson<QuarantineMediaRecord>(
+        bindings.guards,
+        mediaRecordKey(id)
+      )
+      if (!record || record.ownerHash !== ownerHash) return { id, status: 'expired' }
+      return {
+        id,
+        name: record.originalName,
+        bytes: record.bytes,
+        w: record.w,
+        h: record.h,
+        expiresAt: record.expiresAt,
+        status: record.status,
+        ...(record.metadata || {})
+      }
+    })
+  )
   return json({
     path,
     repoPath: entry.repoPath,
@@ -129,6 +171,7 @@ export async function GET(req: Request) {
     frontmatter,
     frontmatterRaw,
     content,
+    pendingMedia,
     ...(existingPR ? { existingPR } : {})
   })
 }

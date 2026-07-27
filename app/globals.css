@@ -642,6 +642,10 @@ a.tab {
   padding: 26px 48px 64px;
 }
 
+.article--utility {
+  padding: 0;
+}
+
 /* Cap the prose measure. The canvas has no right-hand rail, so on a wide
    monitor a paragraph would otherwise run to ~86 Bangla characters a line and
    the eye loses its place returning. Headings are capped with the text so their
@@ -2700,6 +2704,228 @@ body.auth-open {
   pointer-events: none;
 }
 
+/* Images stay part of the article while editing. Crepe owns the resize/caption
+   mechanics; these rules keep the block in the reference-work visual language. */
+.edit-live .milkdown .milkdown-image-block {
+  max-width: var(--measure);
+  margin: 24px 0;
+}
+
+.edit-live .milkdown .milkdown-image-block > .image-wrapper {
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--canvas-soft);
+}
+
+.edit-live .milkdown .milkdown-image-block > .image-wrapper img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.edit-live .milkdown .milkdown-image-block > .caption-input {
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  padding: 8px 2px;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.88rem;
+}
+
+.edit-image-icon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+/* Proposed-media metadata follows the article rather than interrupting it with
+   a modal. Each ruled row binds one private preview to the information a
+   reviewer and a screen-reader user actually need. */
+.edit-media {
+  border-top: 1px solid var(--line);
+  background: var(--canvas-soft);
+  padding: 22px 48px 28px;
+}
+
+.edit-media__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 58rem;
+}
+
+.edit-media__heading h2 {
+  margin: 0 0 4px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.25rem;
+}
+
+.edit-media__heading p {
+  max-width: var(--measure);
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.edit-media__heading > span {
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--canvas);
+  padding: 3px 9px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.edit-media__error {
+  max-width: var(--measure);
+  margin: 14px 0 0;
+  border: 1px solid var(--warn-border);
+  background: var(--warn-bg);
+  padding: 10px 12px;
+  color: var(--warn-ink);
+  font-size: 0.9rem;
+}
+
+.edit-media__list {
+  max-width: 58rem;
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.edit-media-item {
+  display: grid;
+  grid-template-columns: minmax(150px, 240px) minmax(0, 1fr);
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+  padding: 20px 0;
+}
+
+.edit-media-item__preview {
+  display: grid;
+  place-items: center;
+  min-height: 140px;
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  color: var(--faint);
+  font-size: 0.82rem;
+}
+
+.edit-media-item__preview img {
+  display: block;
+  width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+}
+
+.edit-media-item__fields {
+  min-width: 0;
+}
+
+.edit-media-item__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+  margin-bottom: 10px;
+}
+
+.edit-media-item__title strong {
+  color: var(--ink);
+}
+
+.edit-media-item__title span {
+  color: var(--faint);
+  font-size: 0.82rem;
+}
+
+.edit-media-item__fields > label,
+.edit-media-item__optional label {
+  display: grid;
+  gap: 5px;
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.edit-media-item :is(input, textarea),
+.media-review__moderation input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--canvas);
+  padding: 8px 10px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.edit-media-item textarea {
+  resize: vertical;
+}
+
+.edit-media-item :is(input, textarea):focus-visible,
+.media-review__moderation input:focus-visible {
+  border-color: var(--green);
+  outline: 2px solid var(--green-deep);
+  outline-offset: 2px;
+}
+
+.edit-media-item__hint {
+  margin: 5px 0 12px;
+  color: var(--faint);
+  font-size: 0.82rem;
+}
+
+.edit-media-item__optional {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.edit-media-item__optional label:last-child {
+  grid-column: 1 / -1;
+  max-width: 16rem;
+}
+
+.edit-media-item__notice {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.edit-media-item__notice.is-error {
+  color: var(--error);
+}
+
+.edit-media-item__remove {
+  margin-top: 12px;
+  border: 0;
+  background: none;
+  padding: 5px 0;
+  color: var(--blue);
+  font: inherit;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.edit-media-item__remove:hover {
+  color: var(--blue-hover);
+  text-decoration: underline;
+}
+
 /* -------------------------------------------------------- publish panel */
 
 .edit-publish {
@@ -2903,10 +3129,228 @@ body.auth-open {
   stroke-linecap: round;
 }
 
+/* ---------------------------------------------------- private image review */
+
+.media-review {
+  width: min(100%, 68rem);
+  margin: 0 auto;
+  padding: 42px 48px 72px;
+}
+
+.media-review__header {
+  max-width: var(--measure);
+  margin-bottom: 28px;
+}
+
+.media-review__kicker {
+  margin: 0 0 6px;
+  color: var(--green-deep);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.media-review__header h1 {
+  margin: 0 0 10px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(2.1rem, 3vw, 3.2rem);
+  line-height: 1.3;
+}
+
+.media-review__header > p:last-child,
+.media-review__state p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.media-review__state {
+  border: 1px solid var(--line);
+  background: var(--canvas-soft);
+  padding: 24px;
+}
+
+.media-review__state h2 {
+  margin: 0 0 6px;
+  font-size: 1.15rem;
+}
+
+.media-review__state .edit-btn {
+  margin-top: 16px;
+}
+
+.media-review__error {
+  margin: 18px 0;
+  border: 1px solid var(--warn-border);
+  background: var(--warn-bg);
+  padding: 12px 14px;
+  color: var(--warn-ink);
+}
+
+.media-review__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px 32px;
+  border-block: 1px solid var(--line);
+  padding: 16px 0;
+}
+
+.media-review__summary > div {
+  display: grid;
+  gap: 2px;
+}
+
+.media-review__summary span,
+.media-review__summary code {
+  color: var(--faint);
+  font-size: 0.8rem;
+}
+
+.media-review__summary > a {
+  margin-left: auto;
+}
+
+.media-review__checklist {
+  max-width: var(--measure);
+  margin: 26px 0 30px;
+  border: 1px solid var(--green);
+  background: var(--green-ground);
+  padding: 16px 18px;
+}
+
+.media-review__checklist ul {
+  margin: 8px 0 0;
+  padding-left: 22px;
+}
+
+.media-review__checklist li {
+  margin: 4px 0;
+}
+
+.media-review__images {
+  border-top: 1px solid var(--line);
+}
+
+.media-review-item {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(280px, 0.9fr);
+  gap: 28px;
+  border-bottom: 1px solid var(--line);
+  padding: 28px 0;
+}
+
+.media-review-item__image {
+  display: grid;
+  place-items: center;
+  min-height: 260px;
+  border: 1px solid var(--line);
+  background: var(--canvas-soft);
+  color: var(--faint);
+}
+
+.media-review-item__image img {
+  display: block;
+  width: 100%;
+  max-height: 560px;
+  object-fit: contain;
+}
+
+.media-review-item__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.media-review-item__title h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.55rem;
+}
+
+.media-review-status {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 9px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.media-review-status.is-approved {
+  border-color: var(--green);
+  background: var(--green-soft);
+  color: var(--green-deep);
+}
+
+.media-review-status.is-rejected,
+.media-review-status.is-expired {
+  border-color: var(--warn-border);
+  background: var(--warn-bg);
+  color: var(--warn-ink);
+}
+
+.media-review-item dl {
+  margin: 16px 0;
+}
+
+.media-review-item dl > div {
+  border-top: 1px solid var(--line-soft);
+  padding: 9px 0;
+}
+
+.media-review-item dt {
+  color: var(--faint);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.media-review-item dd {
+  margin: 2px 0 0;
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+.media-review-item__actions,
+.media-review__moderation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.media-review__moderation {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.8fr) minmax(18rem, 1.2fr);
+  gap: 18px 28px;
+  margin-top: 38px;
+  border-top: 1px solid var(--line);
+  background: var(--canvas-soft);
+  padding: 22px;
+}
+
+.media-review__moderation h2,
+.media-review__moderation p {
+  margin: 0;
+}
+
+.media-review__moderation label {
+  display: grid;
+  gap: 5px;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.media-review__moderation-actions {
+  grid-column: 1 / -1;
+}
+
 /* ------------------------------------------------------------ responsive */
 
 @media (max-width: 1180px) {
   .edit-bar,
+  .edit-media,
   .edit-publish,
   .edit-state {
     padding-left: 32px;
@@ -2956,6 +3400,7 @@ body.auth-open {
   }
 
   .edit-publish,
+  .edit-media,
   .edit-state {
     padding-left: 18px;
     padding-right: 18px;
@@ -2974,6 +3419,24 @@ body.auth-open {
   .edit-publish__actions .edit-btn {
     flex: 1 1 auto;
     justify-content: center;
+  }
+
+  .edit-media-item,
+  .media-review-item {
+    grid-template-columns: 1fr;
+  }
+
+  .media-review {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .media-review__moderation {
+    grid-template-columns: 1fr;
+  }
+
+  .media-review__moderation-actions {
+    grid-column: auto;
   }
 }
 
@@ -2997,6 +3460,23 @@ body.auth-open {
     padding: 24px max(20px, calc((100% - 400px) / 2)) max(24px, env(safe-area-inset-bottom));
     animation-name: modal-sheet-in;
     animation-duration: 220ms;
+  }
+
+  .edit-media-item__optional {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-media-item__optional label:last-child {
+    grid-column: auto;
+  }
+
+  .media-review {
+    padding: 28px 18px 56px;
+  }
+
+  .media-review__summary > a {
+    flex-basis: 100%;
+    margin-left: 0;
   }
 }
 
@@ -3026,6 +3506,7 @@ body.auth-open {
 
 @media print {
   .edit-bar,
+  .edit-media,
   .edit-publish,
   .edit-flash {
     display: none !important;

@@ -13,6 +13,8 @@
  * behind on the next sign-in with no way to name it.
  */
 
+import type { ContributionMediaInput } from './contribution-media'
+
 const PREFIX = 'deshi_draft:'
 /** After a fortnight an unsent draft is a puzzle, not a rescue. */
 const TTL_MS = 14 * 24 * 60 * 60 * 1000
@@ -20,6 +22,7 @@ const TTL_MS = 14 * 24 * 60 * 60 * 1000
 export interface ContributionDraft {
   body: string
   savedAt: number
+  media?: ContributionMediaInput[]
 }
 
 function storage(): Storage | null {
@@ -73,17 +76,42 @@ export function loadDraft(path: string, now = Date.now()): ContributionDraft | n
       store.removeItem(keyFor(path))
       return null
     }
-    return { body: data.body, savedAt: data.savedAt }
+    const media = Array.isArray(data.media)
+      ? data.media.filter(
+          (item: unknown): item is ContributionMediaInput =>
+            Boolean(item) &&
+            typeof item === 'object' &&
+            typeof (item as ContributionMediaInput).id === 'string' &&
+            typeof (item as ContributionMediaInput).alt === 'string'
+        )
+      : []
+    return {
+      body: data.body,
+      savedAt: data.savedAt,
+      ...(media.length ? { media } : {})
+    }
   } catch {
     return null
   }
 }
 
-export function saveDraft(path: string, body: string, now = Date.now()): void {
+export function saveDraft(
+  path: string,
+  body: string,
+  now = Date.now(),
+  media: ContributionMediaInput[] = []
+): void {
   const store = storage()
   if (!store) return
   try {
-    store.setItem(keyFor(path), JSON.stringify({ body, savedAt: now }))
+    store.setItem(
+      keyFor(path),
+      JSON.stringify({
+        body,
+        savedAt: now,
+        ...(media.length ? { media } : {})
+      })
+    )
   } catch {
     // Quota exceeded, or storage disabled. The editor still holds the text;
     // only the crash insurance is gone, and there is nothing useful to say

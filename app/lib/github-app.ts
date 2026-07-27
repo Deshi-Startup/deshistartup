@@ -50,6 +50,13 @@ function utf8ToBase64(str: string): string {
   return btoa(bin)
 }
 
+function base64ToUtf8(str: string): string {
+  const bin = atob(str.replace(/\s/g, ''))
+  const bytes = new Uint8Array(bin.length)
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i)
+  return new TextDecoder().decode(bytes)
+}
+
 // --- GitHub App JWT (RS256) ---
 
 let _cachedKey: KeyObject | null = null
@@ -197,6 +204,7 @@ interface CreateContributionPRProps {
   pageTitle: string
   pageUrl?: string
   pagePath: string
+  reviewId?: string
 }
 
 /**
@@ -213,7 +221,16 @@ interface CreateContributionPRProps {
  *
  * @returns {{ prUrl: string, prNumber: number, updated: boolean }}
  */
-export async function createContributionPR({ repoPath, content, summary, contributor, pageTitle, pageUrl, pagePath }: CreateContributionPRProps) {
+export async function createContributionPR({
+  repoPath,
+  content,
+  summary,
+  contributor,
+  pageTitle,
+  pageUrl,
+  pagePath,
+  reviewId
+}: CreateContributionPRProps) {
   const token = await installationToken()
   const branchName = contribBranchName(pagePath, contributor.email)
   const owner = REPO.split('/')[0]
@@ -270,7 +287,28 @@ export async function createContributionPR({ repoPath, content, summary, contrib
 
   // 5. Return existing PR or create a new one
   if (existingPR) {
-    return { prUrl: existingPR.html_url, prNumber: existingPR.number, updated: true }
+    if (reviewId) {
+      const reviewUrl = `https://deshistartup.com/contribute/review/${reviewId}`
+      const currentBody = String(existingPR.body || '')
+      if (!currentBody.includes(reviewUrl)) {
+        await ghJson(`/pulls/${existingPR.number}`, {
+          method: 'PATCH',
+          token,
+          body: {
+            body:
+              `${currentBody.trim()}\n\n` +
+              `## ছবি যাচাই / Image review\n\n` +
+              `[প্রস্তাবিত ছবিগুলো আলাদাভাবে যাচাই করুন / Review each proposed image](${reviewUrl})`
+          }
+        })
+      }
+    }
+    return {
+      prUrl: existingPR.html_url,
+      prNumber: existingPR.number,
+      branchName,
+      updated: true
+    }
   }
 
   const neutralizeMentions = (text: string) => text.replace(/@/g, '@\u200b')
@@ -278,11 +316,17 @@ export async function createContributionPR({ repoPath, content, summary, contrib
     contributor.name || contributor.email || 'Anonymous contributor'
   )
   const safeSummary = neutralizeMentions(summary.trim())
+  const reviewUrl = reviewId
+    ? `https://deshistartup.com/contribute/review/${reviewId}`
+    : ''
   const prBody = [
     safeSummary ? `## সারসংক্ষেপ / Summary\n\n${safeSummary}` : '',
     '',
     `**পাতা / Page:** [${pageTitle}](${pageUrl || ''})`,
     `**অবদানকারী / Contributor:** ${safeName}`,
+    reviewUrl
+      ? `\n## ছবি যাচাই / Image review\n\n[প্রস্তাবিত ছবিগুলো আলাদাভাবে যাচাই করুন / Review each proposed image](${reviewUrl})`
+      : '',
     '',
     '---',
     '_এই পুল রিকোয়েস্টটি দেশি স্টার্টআপ সাইটের ইনলাইন এডিটর থেকে তৈরি করা হয়েছে।_  ',
@@ -302,5 +346,81 @@ export async function createContributionPR({ repoPath, content, summary, contrib
     }
   })
 
-  return { prUrl: pr.html_url, prNumber: pr.number, updated: false }
+  return {
+    prUrl: pr.html_url,
+    prNumber: pr.number,
+    branchName,
+    updated: false
+  }
+}
+
+export async function readContributionFile(
+  branchName: string,
+  repoPath: string
+): Promise<string> {
+  const token = await installationToken()
+  const file = await ghJson(
+    `/contents/${repoPath}?ref=${encodeURIComponent(branchName)}`,
+    { token }
+  )
+  if (typeof file?.content !== 'string' || file?.encoding !== 'base64') {
+    throw new Error(`GitHub did not return ${repoPath} as base64 content`)
+  }
+  return base64ToUtf8(file.content)
+}
+
+interface CommitContributionFilesProps {
+  branchName: string
+  files: Array<{ path: string; content: string }>
+  message: string
+}
+
+/**
+ * Commits all reviewer-generated file changes in one Git tree update. The page
+ * and media registry therefore cannot land in separate commits, which prevents
+ * an approved image from temporarily referencing an unregistered object.
+ */
+export async function commitContributionFiles({
+  branchName,
+  files,
+  message
+}: CommitContributionFilesProps): Promise<string> {
+  const token = await installationToken()
+  const ref = await ghJson(`/git/ref/heads/${branchName}`, { token })
+  const parentSha = ref?.object?.sha
+  if (!parentSha) throw new Error('Contribution branch has no head SHA')
+  const parent = await ghJson(`/git/commits/${parentSha}`, { token })
+  const baseTree = parent?.tree?.sha
+  if (!baseTree) throw new Error('Contribution branch head has no tree SHA')
+
+  const entries = []
+  for (const file of files) {
+    const blob = await ghJson('/git/blobs', {
+      method: 'POST',
+      token,
+      body: { content: utf8ToBase64(file.content), encoding: 'base64' }
+    })
+    entries.push({
+      path: file.path,
+      mode: '100644',
+      type: 'blob',
+      sha: blob.sha
+    })
+  }
+  const tree = await ghJson('/git/trees', {
+    method: 'POST',
+    token,
+    body: { base_tree: baseTree, tree: entries }
+  })
+  const commit = await ghJson('/git/commits', {
+    method: 'POST',
+    token,
+    body: { message, tree: tree.sha, parents: [parentSha] }
+  })
+  await ghJson(`/git/refs/heads/${branchName}`, {
+    method: 'PATCH',
+    token,
+    body: { sha: commit.sha, force: false }
+  })
+  return commit.sha
 }

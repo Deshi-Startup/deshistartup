@@ -4,6 +4,15 @@ import { createRequire } from 'node:module'
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+// Exposes locally simulated R2, KV, and rate-limit bindings to Next route
+// handlers during `next dev`. Production receives the same bindings from the
+// OpenNext Worker environment.
+if (process.env.NODE_ENV === 'development') {
+  import('@opennextjs/cloudflare').then(({ initOpenNextCloudflareForDev }) =>
+    initOpenNextCloudflareForDev()
+  )
+}
+
 const projectRoot = dirname(fileURLToPath(import.meta.url))
 const require = createRequire(import.meta.url)
 const [nextMajor, nextMinor] = require('next/package.json').version.split('.').map(Number)

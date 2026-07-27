@@ -18,6 +18,7 @@ const GOOGLE_JWKS = createRemoteJWKSet(
 const VALID_ISSUERS = ['https://accounts.google.com', 'accounts.google.com']
 
 export interface GoogleUser {
+  sub: string
   name: string
   email: string
   picture: string
@@ -49,6 +50,7 @@ export async function verifyIdToken(token: string): Promise<GoogleUser | null> {
   if (!payload.email) return null
 
   return {
+    sub: String(payload.sub || ''),
     name: payload.name || payload.email,
     email: payload.email,
     picture: payload.picture || ''

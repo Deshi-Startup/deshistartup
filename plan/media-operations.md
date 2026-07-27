@@ -30,18 +30,44 @@ Official references:
 
 ## Trust boundary
 
-- There is **no public media-upload endpoint**. The site editor can propose MDX in a pull request,
-  but it cannot write to R2.
-- Uploads run only from a maintainer's authenticated Wrangler session. No R2 write key is stored in
-  the repository, Worker, browser, or GitHub Actions.
+- Contributors never receive an R2 credential or write to the public library. A verified Google
+  token can send one bounded image through the same-origin Worker route only into the private
+  `deshistartup-media-quarantine` bucket.
+- The quarantine bucket has no custom domain, `r2.dev` URL, or CORS. Private previews are streamed
+  only after the Worker re-verifies that the requester owns the image or is an allowlisted
+  reviewer.
+- Direct maintainer uploads still run only from an authenticated Wrangler session. No R2 access
+  key is stored in the repository, browser, or GitHub Actions.
 - Pull requests may reference only logical `/media/...` entries already present in the committed
-  registry. CI rejects missing objects, external hotlinks, raw media elements, and direct
-  transformation URLs.
+  registry. A pending `/__pending-media/...` marker deliberately fails CI until a reviewer has
+  explicitly approved or rejected that image.
 - The R2 custom domain is public for reads. The `r2.dev` development URL must remain disabled and
   CORS must remain unset. Never expose bucket-write credentials to client code.
-- Do not add direct contributor uploads to this bucket. A future upload feature would need a
-  separate private quarantine bucket, authentication, rate and byte quotas, MIME sniffing,
-  malware/content review, an expiry lifecycle, and a maintainer-controlled promotion step.
+- Reviewer Google accounts come only from the runtime `CONTRIBUTION_REVIEWER_EMAILS` allowlist.
+  Reviewers can mute for 7 or 30 days, ban, or restore a contributor. The moderation key is a
+  one-way hash of the verified Google subject, not a browser/IP guess.
+
+## Contributor quarantine gates
+
+The Worker rejects a proposed image before writing bytes unless all of these pass:
+
+- verified Google ID token; account is not muted or banned;
+- Worker rate-limit bindings: 10 image attempts per account per minute, 60 total per point of
+  presence per minute, and three contribution submissions per account per minute;
+- PNG, JPEG, or WebP only, with MIME, extension, and file header agreeing;
+- maximum 300 KB, 3,000 px wide, 6,000 px tall, and 12 million decoded pixels;
+- maximum 5 images in one contribution, 15 images and 1.5 MB per account per UTC day;
+- maximum 25 MB across the entire private quarantine.
+
+The request gate runs before any R2 operation. After validation, one strongly consistent R2 list
+enforces the daily and global storage ceilings; a paginated result fails closed because 1,000
+pending objects is already outside the intended envelope. Quota races can overshoot by at most the
+small number of simultaneously accepted 300 KB requests, not by an unbounded amount.
+
+Submission binds every pending marker to the signed-in owner, page, private object, and required alt
+text. The PR body links the private review page. A reviewer decision revalidates the bytes, checks
+the 500 MB public-library ceiling, then writes one atomic Git tree containing both the article and
+registry update. Only after that commit succeeds are the quarantine bytes deleted.
 
 ## Upload gates
 
@@ -86,6 +112,11 @@ content.
 R2's default "abort incomplete multipart uploads after 7 days" rule should remain enabled. It is
 safe because it affects unfinished uploads, not live media.
 
+The quarantine bucket additionally has the scoped
+`delete-quarantined-after-7-days` lifecycle rule on `pending/`. This is the final cleanup backstop
+for abandoned drafts and undecided reviews. Rejected images are deleted immediately. Approved
+images are copied into the content-addressed public namespace and then removed from quarantine.
+
 ## Cloudflare dashboard controls
 
 These controls are outside the repository and must be checked after account, plan, or DNS changes:
@@ -93,15 +124,17 @@ These controls are outside the repository and must be checked after account, pla
 1. **R2 bucket:** Standard storage; custom domain `media.deshistartup.com` active; `r2.dev`
    disabled; no CORS rule; no public write token; Data Catalog, SQL, event notifications, and local
    uploads off unless separately reviewed.
-2. **Cache Rule for the media hostname:** cache eligible static media, respect the immutable origin
+2. **Quarantine R2 bucket:** `deshistartup-media-quarantine`; Standard storage; no custom domain,
+   no `r2.dev`, no CORS; only the seven-day `pending/` expiry lifecycle.
+3. **Cache Rule for the media hostname:** cache eligible static media, respect the immutable origin
    header, and use a custom cache key that ignores query strings. The site emits no media query
    parameters, so ignoring them prevents random query strings from turning one object into
    unlimited cache misses.
-3. **Tiered Cache:** enable Smart Tiered Cache. Cloudflare recommends it for R2 custom domains and
+4. **Tiered Cache:** enable Smart Tiered Cache. Cloudflare recommends it for R2 custom domains and
    currently makes it available on all plans without extra cost.
-4. **Budget alerts:** create account-level alerts at **$1 and $5**. The default $10 alert is too
+5. **Budget alerts:** create account-level alerts at **$1 and $5**. The default $10 alert is too
    late for a zero-cost goal. Alerts are informational, processed daily, and do **not** cap spend.
-5. **Billable Usage:** check daily for the first week after enabling media or changing cache rules,
+6. **Billable Usage:** check daily for the first week after enabling media or changing cache rules,
    then monthly. Investigate any non-zero R2 charge, sudden Class B growth, or storage that differs
    materially from the registry report.
 
@@ -111,7 +144,9 @@ review, budget alerts warn but do not stop service.
 **Live verification (2026-07-27):** Billable Usage was $0.00; the $1 early-warning, $5 urgent, and
 Cloudflare default $10 alerts were active; the `Media R2 cache guardrail` rule matched
 `media.deshistartup.com`, made responses cache-eligible, and ignored query strings; Smart Tiered
-Cache was active.
+Cache was active. The private `deshistartup-media-quarantine` bucket was created in WEUR with its
+seven-day `pending/` lifecycle, and the `CONTRIBUTION_GUARDS` KV namespace was created for
+short-lived review state and sparse moderation records.
 
 **Cost kill switch:** if unexplained R2 operations are growing faster than they can be investigated,
 disable `media.deshistartup.com` under the bucket's Custom Domains settings. Article text remains
@@ -126,6 +161,8 @@ npm run media:prune
 npx wrangler r2 bucket info deshistartup-media
 npx wrangler r2 bucket dev-url get deshistartup-media
 npx wrangler r2 bucket lifecycle list deshistartup-media
+npx wrangler r2 bucket info deshistartup-media-quarantine
+npx wrangler r2 bucket lifecycle list deshistartup-media-quarantine
 ```
 
 Then compare the live object count/bytes with the active and retired counts printed by the local

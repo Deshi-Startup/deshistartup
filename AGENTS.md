@@ -138,7 +138,7 @@ and are never committed to this repository** — git cannot forget a binary once
 and a reference work accumulates screenshots for years. What git keeps is
 `app/generated/media.json`, a text registry naming every uploaded object with its dimensions.
 
-**Adding an image:**
+**Maintainer upload (directly approved media):**
 
 1. Put the file in `media/` (repo root, gitignored) at the path you want it addressed by:
    `media/registration/rjsc-search.png`.
@@ -149,9 +149,21 @@ and a reference work accumulates screenshots for years. What git keeps is
 3. Reference it as `/media/registration/rjsc-search.png` and commit the registry change with the
    page. Uploads use the maintainer's own `wrangler login`; there is no R2 key to keep secret.
 
-There is deliberately **no public upload endpoint**. Contributors can propose media references in
-a PR, but only a maintainer can put bytes in R2. CI rejects hotlinks, raw media tags, missing
-registry entries, and direct transformation URLs. The full trust, cost, dashboard, and incident
+**Signed-in contributor upload:** the inline editor's **Add image** control accepts PNG, JPEG, and
+WebP, uploads the bytes through an authenticated Worker route into the separate private
+`deshistartup-media-quarantine` bucket, and inserts a private pending marker into the draft. The
+contributor supplies alt text and optional source/credit/checked metadata without seeing R2 paths
+or Markdown. Every image remains private until a reviewer follows the PR's review link and
+explicitly approves that individual image. Approval promotes the validated bytes into the public
+bucket and atomically updates the page plus `app/generated/media.json` on the contribution branch.
+Rejection removes the pending marker and deletes the quarantined bytes.
+
+Quarantine is not a second public library: it has no custom domain, development URL, or CORS;
+requires a verified Google token; enforces per-minute, per-user/day, per-contribution, byte,
+dimension, pixel, and 25 MB global pending ceilings; and deletes undecided objects after seven
+days. Reviewers are the comma-separated Google emails in `CONTRIBUTION_REVIEWER_EMAILS` and can
+mute or ban an abusive account. CI deliberately rejects unresolved `/__pending-media/...` markers,
+so merging text cannot silently approve an image. The full trust, cost, dashboard, and incident
 policy is [`plan/media-operations.md`](./plan/media-operations.md).
 
 Three paths for one file: `media/a/b.png` (staging) → `a/b.<hash>.png` (object key) →
