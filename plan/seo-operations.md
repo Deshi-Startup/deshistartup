@@ -66,11 +66,12 @@ The wildcard group also publishes `search=yes`, `ai-input=yes`, `ai-train=no`, a
 may appear as an unrecognized line in Search Console; Cloudflare documents no resulting search
 crawl impact.
 
-Cloudflare's managed robots setting prepends its own policy to a successful origin `robots.txt`
-response. Keep its Training policy aligned with this file. Once the generated origin file is
-deployed, the merged response must still include the canonical `Sitemap:` line. If the project's
-training policy changes, change the Cloudflare setting and the named training groups together,
-without blocking search-specific agents.
+Keep Cloudflare's **Managed robots.txt** setting off. The repository-generated file is the
+canonical crawler policy; enabling Cloudflare's setting prepends a second wildcard group and
+creates two policy owners. If the project's policy changes, update the Content Signals and named
+crawler groups in `scripts/build-manifest.mjs` together, without blocking search-specific agents.
+Cloudflare's enforcement controls are separate from this publishing setting and may still be used
+when an advisory `robots.txt` rule is not enough.
 
 ## Metadata policy
 
@@ -105,8 +106,9 @@ and eligible for a normal Search snippet. For all answer engines, the durable wo
 3. Run `npm run build:worker`; the build includes the final SEO audit and OpenNext packaging.
 4. Run `npm run preview:worker` when runtime-facing code changed, then deploy the generated Worker.
 5. Confirm `https://deshistartup.com/robots.txt`, `/sitemap.xml`, `/llms.txt`, the IndexNow key,
-   and one Bengali/English page pair all return HTTP 200. The live, Cloudflare-merged robots file
-   must retain the canonical `Sitemap:` line and allow every search/answer agent listed above.
+   and one Bengali/English page pair all return HTTP 200. The live robots file must contain exactly
+   one `User-agent: *` group, no `# BEGIN Cloudflare Managed content`, the canonical Content
+   Signals and `Sitemap:` line, and must allow every search/answer agent listed above.
 6. Inspect one guide in Google Rich Results Test and Schema.org Validator.
 7. Run `npm run seo:indexnow` only after the new URLs are live.
 
@@ -130,6 +132,8 @@ These actions require the domain owner's accounts and cannot be completed by a r
 7. Check Bing Site Scan, URL Inspection, crawl errors, and IndexNow status monthly.
 8. Track a fixed set of Bangla and English founder questions monthly in Google, ChatGPT,
    Perplexity, and Copilot. Record which Deshi Startup URL, if any, is cited.
+9. Keep **AI Crawl Control → Signals → Managed robots.txt** off in Cloudflare. The generated
+   `public/robots.txt` is the only crawler-policy source.
 
 ## Primary documentation
 
