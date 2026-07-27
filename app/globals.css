@@ -1990,8 +1990,10 @@ a.is-stub-link:hover {
   }
 }
 
-/* --------------------------------------------------- contribution editor */
-/* Auth + editor shared modal shell. Reuses site CSS variables.            */
+/* --------------------------------------------------- sign-in modal */
+/* The site's one true dialog. It is a sheet of the same stock as the       */
+/* reading canvas, carrying the same green top rule, so signing in reads as */
+/* part of this reference work and not as a borrowed auth popup.            */
 
 body.auth-open {
   overflow: hidden;
@@ -2007,24 +2009,30 @@ body.auth-open {
   overscroll-behavior: contain;
   background: rgb(var(--ink-channels) / 55%);
   padding: max(24px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
+  animation: modal-scrim-in 160ms ease-out both;
 }
 
+/* 466px less the 1px rules and 32px padding leaves Google's full 400px
+   rendering column. Keeping the iframe at the width it was painted avoids
+   clipping its personalized account state at the right-hand rule. */
 .modal-card {
   position: relative;
-  width: min(100%, 480px);
+  width: min(100%, 466px);
   max-height: calc(100vh - 48px);
   max-height: calc(100dvh - 48px);
   overflow-y: auto;
   border: 1px solid var(--line);
-  border-radius: 3px;
+  border-top: 5px solid var(--green-deep);
   background: var(--canvas);
-  padding: 28px;
+  padding: 26px 32px 24px;
+  animation: modal-card-in 180ms ease-out both;
 }
 
 .modal-card:focus {
   outline: none;
 }
 
+/* One reserve that clears the 44px close target from either padding. */
 .modal-card h2 {
   margin: 0 0 10px;
   border: 0;
@@ -2046,10 +2054,16 @@ body.auth-open {
   border-radius: 3px;
   background: none;
   color: var(--faint);
-  font: inherit;
-  font-size: 1.55rem;
-  line-height: 1;
   cursor: pointer;
+}
+
+.modal-close svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
 }
 
 .modal-close:hover {
@@ -2064,36 +2078,56 @@ body.auth-open {
   font-size: 0.95rem;
 }
 
+/* The waiting state and the button Google eventually paints share one grid
+   cell, so the card never grows or shrinks under the reader's cursor. */
+.modal-signin {
+  display: grid;
+}
+
+.modal-signin > * {
+  grid-area: 1 / 1;
+}
+
 .google-btn-wrap {
   display: flex;
   min-height: 44px;
   align-items: center;
+  justify-content: center;
 }
 
-.google-btn-wrap iframe {
-  max-width: 100%;
-}
-
+/* Holds the button's exact footprint while Google's script is in flight, and
+   breathes a green wash so a slow connection still looks like it is working. */
 .modal-status {
+  display: grid;
+  place-items: center;
   min-height: 44px;
   margin: 0;
-  color: var(--green-deep);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--canvas-soft);
+  color: var(--muted);
   font-size: 0.9rem;
-  line-height: 44px;
+  animation: modal-wait 1.5s ease-in-out infinite alternate;
 }
 
+/* A sign-in that will not load is a caution, not a failure of the reader's,
+   so it wears the notice family and names itself (The Rule-and-Label Rule). */
 .modal-error {
-  margin: 12px 0 0;
-  border: 1px solid color-mix(in srgb, var(--error), var(--canvas) 58%);
-  border-radius: 3px;
-  background: color-mix(in srgb, var(--error), var(--canvas) 94%);
-  padding: 12px;
-  color: var(--error);
+  margin: 14px 0 0;
+  border: 1px solid var(--warn-border);
+  background: var(--warn-bg);
+  padding: 12px 14px;
+  color: var(--warn-ink);
   font-size: 0.9rem;
 }
 
 .modal-error p {
   margin: 0;
+}
+
+.modal-error .modal-error__label {
+  margin: 0 0 3px;
+  font-weight: 700;
 }
 
 .modal-error__actions {
@@ -2104,9 +2138,37 @@ body.auth-open {
 }
 
 .modal-note {
-  margin: 16px 0 0;
+  margin: 18px 0 0;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 14px;
   color: var(--faint);
   font-size: 0.85rem;
+}
+
+@keyframes modal-scrim-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes modal-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes modal-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes modal-wait {
+  to {
+    border-color: var(--green);
+    background: var(--green-soft);
+  }
 }
 
 .tab-action-btn {
@@ -2783,6 +2845,10 @@ body.auth-open {
     padding: max(12px, env(safe-area-inset-top)) 0 0;
   }
 
+  /* A bottom sheet, rising from the edge the thumb is already on. The side
+     padding keeps the whole sheet on one 400px column, so a large phone or a
+     landscape handset does not run the lede edge to edge while the Google
+     button stops dead at its own maximum width. */
   .modal-card {
     width: 100%;
     max-height: calc(100vh - max(12px, env(safe-area-inset-top)));
@@ -2790,8 +2856,9 @@ body.auth-open {
     border-right: 0;
     border-bottom: 0;
     border-left: 0;
-    border-radius: 0;
-    padding: 24px 20px max(24px, env(safe-area-inset-bottom));
+    padding: 24px max(20px, calc((100% - 400px) / 2)) max(24px, env(safe-area-inset-bottom));
+    animation-name: modal-sheet-in;
+    animation-duration: 220ms;
   }
 }
 
@@ -2804,9 +2871,18 @@ body.auth-open {
 
 @media (prefers-reduced-motion: reduce) {
   .article.is-yielding,
-  .edit-live {
+  .edit-live,
+  .modal-overlay,
+  .modal-card,
+  .modal-status {
     animation: none;
     transition: none;
+  }
+
+  /* The waiting state still has to read as "waiting" without the breath. */
+  .modal-status {
+    border-color: var(--green);
+    background: var(--green-soft);
   }
 }
 

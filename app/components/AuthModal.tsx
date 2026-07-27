@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useId, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { decodeIdToken, storeAuth, UserInfo } from '../lib/client-auth'
 
@@ -9,6 +9,11 @@ const GIS_SCRIPT_SELECTOR = 'script[data-deshi-gis]'
 /** Long enough for a bad 3G connection, short enough that nobody waits at a
  *  spinner wondering whether it is them. */
 const GIS_TIMEOUT_MS = 12000
+/** Google renders its button at a pixel width, so it cannot follow a column
+ *  that changes. These are the bounds it accepts; the modal is sized so the
+ *  column lands inside them, and a resize repaints the button at the new one. */
+const GIS_MIN_WIDTH = 200
+const GIS_MAX_WIDTH = 400
 const FOCUSABLE_SELECTOR =
   'a[href], button:not(:disabled), iframe, input:not(:disabled), [tabindex]:not([tabindex="-1"])'
 
@@ -72,6 +77,7 @@ export default function AuthModal({
   const containerRef = useRef<HTMLDivElement>(null)
   const dialogRef = useRef<HTMLDivElement>(null)
   const previousFocusRef = useRef<HTMLElement | null>(null)
+  const paintedWidthRef = useRef(0)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [retryKey, setRetryKey] = useState(0)
@@ -80,6 +86,34 @@ export default function AuthModal({
   const descriptionId = useId()
 
   const t = (bn: string, en: string) => (isEn ? en : bn)
+
+  /** Paint Google's button at the column's current width. Cheap to call again:
+   *  it no-ops unless the width actually moved, which is what keeps a resize
+   *  observer from chasing its own tail. */
+  const paintButton = useCallback(() => {
+    const googleId = window.google?.accounts?.id
+    const container = containerRef.current
+    if (!googleId || !container) return false
+
+    // Use the actual content box. Resizing Google's iframe with CSS after it
+    // has rendered leaves its internal personalized state at the old width,
+    // which is what clips the account button's right-hand rule.
+    const available = container.clientWidth
+    const width = Math.max(GIS_MIN_WIDTH, Math.min(GIS_MAX_WIDTH, available || GIS_MAX_WIDTH))
+    if (width === paintedWidthRef.current) return true
+
+    paintedWidthRef.current = width
+    container.innerHTML = ''
+    googleId.renderButton(container, {
+      theme: 'outline',
+      size: 'large',
+      text: 'continue_with',
+      shape: 'rectangular',
+      width,
+      locale: isEn ? 'en' : 'bn'
+    })
+    return true
+  }, [isEn])
 
   // A real modal owns focus while it is open, closes with Escape, and gives
   // focus back to the Edit button that opened it.
@@ -204,16 +238,8 @@ export default function AuthModal({
         // one-time initialization and only refresh the active modal callback.
         window.__deshiGoogleAuth.handleCredential = handleCredential
       }
-      container.innerHTML = ''
-      const availableWidth = Math.floor(container.getBoundingClientRect().width)
-      googleId.renderButton(container, {
-        theme: 'outline',
-        size: 'large',
-        text: 'continue_with',
-        shape: 'rectangular',
-        width: Math.max(220, Math.min(320, availableWidth || 300)),
-        locale: isEn ? 'en' : 'bn'
-      })
+      paintedWidthRef.current = 0
+      paintButton()
       setLoading(false)
     }
 
@@ -255,7 +281,28 @@ export default function AuthModal({
     }
     // `handleCredential` deliberately belongs to the active modal render.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open, clientId, isEn, retryKey])
+  }, [open, clientId, isEn, retryKey, paintButton])
+
+  /* The button is a fixed-width iframe, so it does not follow the column on
+     its own. Rotating a phone, or the on-screen keyboard resizing the
+     viewport, would otherwise leave it stranded at the width it happened to be
+     born at. */
+  useEffect(() => {
+    if (!open || loading) return undefined
+    const container = containerRef.current
+    if (!container || typeof ResizeObserver === 'undefined') return undefined
+
+    let frame = 0
+    const observer = new ResizeObserver(() => {
+      window.cancelAnimationFrame(frame)
+      frame = window.requestAnimationFrame(() => paintButton())
+    })
+    observer.observe(container)
+    return () => {
+      window.cancelAnimationFrame(frame)
+      observer.disconnect()
+    }
+  }, [open, loading, paintButton])
 
   function handleCredential(response: GoogleCredentialResponse) {
     const token = response?.credential
@@ -317,7 +364,9 @@ export default function AuthModal({
           aria-label={t('সাইন-ইন বন্ধ করুন', 'Close sign-in')}
           onClick={onClose}
         >
-          ×
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m6 6 12 12M18 6 6 18" />
+          </svg>
         </button>
         <h2 id={headingId}>{t('Google দিয়ে সাইন ইন করুন', 'Sign in with Google')}</h2>
         <p className="modal-lede" id={descriptionId}>
@@ -327,15 +376,22 @@ export default function AuthModal({
           )}
         </p>
 
-        {loading && (
-          <p className="modal-status" role="status">
-            {t('সাইন-ইন প্রস্তুত হচ্ছে…', 'Preparing sign-in…')}
-          </p>
+        {clientId && (
+          <div className="modal-signin">
+            <div className="google-btn-wrap" ref={containerRef} />
+            {loading && (
+              <p className="modal-status" role="status">
+                {t('সাইন-ইন প্রস্তুত হচ্ছে…', 'Preparing sign-in…')}
+              </p>
+            )}
+          </div>
         )}
-        {clientId && <div className="google-btn-wrap" ref={containerRef} aria-hidden={loading} />}
 
         {errorMessage && (
           <div className="modal-error" role="alert">
+            <p className="modal-error__label">
+              {t('সাইন-ইন করা যায়নি', 'Sign-in did not work')}
+            </p>
             <p>{errorMessage}</p>
             <div className="modal-error__actions">
               {error === 'script_load_failed' && (
