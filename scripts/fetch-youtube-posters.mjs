@@ -16,7 +16,13 @@
  */
 import fs from 'node:fs'
 import path from 'node:path'
-import { readRegistry, root, stagingDir, uploadFiles } from './lib/media-lib.mjs'
+import {
+  readRegistry,
+  root,
+  stagingDir,
+  uploadFiles,
+  validateImageBuffer
+} from './lib/media-lib.mjs'
 
 const contentRoot = path.join(root, 'app', '(contents)')
 const posterDir = path.join(stagingDir, 'youtube')
@@ -80,6 +86,11 @@ for (const [id, pages] of videos) {
     // A missing size answers 200 with a 120x90 grey placeholder. Anything that
     // small is that placeholder.
     if (buf.length < 4096) continue
+    const validation = validateImageBuffer(buf, `youtube/${id}.jpg`)
+    // maxres thumbnails can exceed the site's hard weight/dimension limits.
+    // Try the next, smaller YouTube size rather than uploading first and only
+    // discovering the problem during prebuild.
+    if (validation.errors.length) continue
     fs.writeFileSync(file, buf)
     console.log(`  ✓ ${id}.jpg  ${name}  ${(buf.length / 1024).toFixed(0)} KB`)
     staged.push(file)

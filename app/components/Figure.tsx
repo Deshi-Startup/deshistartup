@@ -2,6 +2,7 @@ import React from 'react'
 import {
   DEFAULT_SIZES,
   formatMediaDate,
+  mediaDefaultWidth,
   mediaEntry,
   mediaId,
   mediaSrcSet,
@@ -84,7 +85,7 @@ export default function Figure({
   const image = (
     <img
       className="figure__img"
-      src={mediaUrl(path, srcSet ? 800 : undefined)}
+      src={mediaUrl(path, srcSet ? mediaDefaultWidth(path) : undefined)}
       srcSet={srcSet}
       sizes={srcSet ? sizes : undefined}
       // Intrinsic size keeps the article from reflowing as images land. It is

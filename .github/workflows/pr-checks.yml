@@ -20,6 +20,9 @@ jobs:
       - name: Bangla style lint (hard findings fail)
         run: npm run lint:bangla -- --strict
 
+      - name: Media guardrail tests
+        run: npm run test:media
+
       - name: Build Cloudflare Worker
         run: npm run build:worker
         env:

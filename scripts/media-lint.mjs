@@ -10,6 +10,7 @@
  *   - a page references a /media/... file that was never uploaded
  *   - <Figure> without alt text
  *   - <YouTube> without a valid 11-character video id, or without a title
+ *   - hotlinked or raw media that bypasses the controlled components
  *   - an image committed into public/media (bytes belong in the bucket)
  *   - a file over the hard weight cap, or in a format we do not serve
  *
@@ -17,24 +18,35 @@
  *   - markdown image with empty alt text
  *   - a file heavier or wider than an article needs
  *   - an uploaded file no page references (paying storage for nothing)
- *   - an image hotlinked from another domain
  *   - a <YouTube> embed with no poster in the bucket
  */
 import fs from 'node:fs'
 import path from 'node:path'
-import { readRegistry, root, stagingDir } from './lib/media-lib.mjs'
+import {
+  CONTENT_TYPES,
+  MAX_FILE_BYTES,
+  MAX_IMAGE_HEIGHT,
+  MAX_IMAGE_PIXELS,
+  MAX_IMAGE_WIDTH,
+  readRegistry,
+  readRetired,
+  root,
+  STORAGE_BUDGET_BYTES,
+  stagingDir,
+  objectKeyMatchesLogicalPath,
+  validLogicalPath,
+  WARN_FILE_BYTES,
+  WARN_IMAGE_WIDTH
+} from './lib/media-lib.mjs'
 
 const contentRoot = path.join(root, 'app', '(contents)')
 const publicMedia = path.join(root, 'public', 'media')
 
-const ERROR_BYTES = 300 * 1024
-const WARN_BYTES = 150 * 1024
-const ERROR_WIDTH = 3000
-const WARN_WIDTH = 1600
-const ALLOWED = new Set(['.png', '.jpg', '.jpeg', '.webp', '.gif', '.svg'])
+const ALLOWED = new Set(Object.keys(CONTENT_TYPES))
 const VIDEO_ID = /^[A-Za-z0-9_-]{11}$/
 
 const registry = readRegistry()
+const retired = readRetired()
 const errors = []
 const warnings = []
 const referenced = new Set()
@@ -64,9 +76,9 @@ function attributes(raw) {
 
 function checkSource(src, where, page) {
   if (/^[a-z][a-z0-9+.-]*:/i.test(src) || src.startsWith('//')) {
-    warnings.push(
+    errors.push(
       `${page}: ${where} loads an image from another domain (${src}). ` +
-        'Hotlinked images break when the other site moves them.'
+        'Hotlinked media bypasses review, privacy, and cost controls. Upload an approved copy to /media/.'
     )
     return
   }
@@ -86,6 +98,19 @@ function checkSource(src, where, page) {
 for (const file of walk(contentRoot, (name) => name.endsWith('.mdx'))) {
   const page = path.relative(root, file)
   const source = fs.readFileSync(file, 'utf8')
+
+  for (const match of source.matchAll(
+    /<(img|picture|source|iframe|video|audio|object|embed|Image|svg|foreignObject|canvas|script)\b/gi
+  )) {
+    errors.push(
+      `${page}: raw <${match[1]}> media is not allowed. Use <Figure> or <YouTube> so review and delivery controls apply.`
+    )
+  }
+  if (/\b(?:mediaUrl|mediaSrcSet)\s*\(|cdn-cgi\/image|next\/image/.test(source)) {
+    errors.push(
+      `${page}: content cannot construct media or transformation URLs directly. Use <Figure> or <YouTube>.`
+    )
+  }
 
   for (const match of source.matchAll(/!\[([^\]]*)\]\(\s*([^)\s]+)(?:\s+["'][^"']*["'])?\s*\)/g)) {
     const [, alt, src] = match
@@ -151,36 +176,88 @@ if (!selfHosting) {
 
 // Everything in the bucket, weighed and measured.
 for (const [key, entry] of Object.entries(registry)) {
+  if (!validLogicalPath(key)) {
+    errors.push(`${key}: registry path is not a safe logical /media/ path.`)
+    continue
+  }
   const ext = path.extname(key).toLowerCase()
   if (!ALLOWED.has(ext)) {
     errors.push(`${key}: ${ext || 'no extension'} is not a format this site serves.`)
     continue
   }
   const bytes = entry.bytes || 0
-  if (bytes > ERROR_BYTES) {
-    errors.push(
-      `${key} is ${(bytes / 1024).toFixed(0)} KB, over the ${ERROR_BYTES / 1024} KB cap. ` +
-        'Export it narrower or save it as WebP.'
-    )
-  } else if (bytes > WARN_BYTES) {
-    warnings.push(
-      `${key} is ${(bytes / 1024).toFixed(0)} KB. Under ${WARN_BYTES / 1024} KB is kinder.`
-    )
-  }
-  if (ext !== '.svg') {
-    if (!entry.w || !entry.h) {
-      errors.push(`${key}: no width and height recorded, so the page will reflow around it.`)
-    } else if (entry.w > ERROR_WIDTH) {
-      errors.push(
-        `${key} is ${entry.w}px wide. Nothing on this site needs more than ${WARN_WIDTH}px.`
-      )
-    } else if (entry.w > WARN_WIDTH) {
-      warnings.push(`${key} is ${entry.w}px wide; ${WARN_WIDTH}px is the widest an article uses.`)
+  if (
+    !entry.remote ||
+    !entry.key ||
+    !/^[a-f0-9]{12}$/.test(entry.sha || '') ||
+    !Number.isSafeInteger(entry.bytes) ||
+    entry.bytes <= 0
+  ) {
+    errors.push(`${key}: registry entry is missing valid remote, key, or SHA metadata.`)
+  } else {
+    if (!objectKeyMatchesLogicalPath(key, entry.key) || !entry.key.includes(`.${entry.sha}${ext}`)) {
+      errors.push(`${key}: object key does not match the logical path and recorded SHA.`)
     }
   }
-  if (!referenced.has(key) && !key.startsWith('/media/youtube/')) {
+  if (bytes > MAX_FILE_BYTES) {
+    errors.push(
+      `${key} is ${(bytes / 1024).toFixed(0)} KB, over the ${MAX_FILE_BYTES / 1024} KB cap. ` +
+        'Export it narrower or save it as WebP.'
+    )
+  } else if (bytes > WARN_FILE_BYTES) {
+    warnings.push(
+      `${key} is ${(bytes / 1024).toFixed(0)} KB. Under ${WARN_FILE_BYTES / 1024} KB is kinder.`
+    )
+  }
+  if (!entry.w || !entry.h) {
+    errors.push(`${key}: no width and height recorded, so the page will reflow around it.`)
+  } else {
+    if (entry.w > MAX_IMAGE_WIDTH) {
+      errors.push(`${key} is ${entry.w}px wide, over the ${MAX_IMAGE_WIDTH}px limit.`)
+    } else if (entry.w > WARN_IMAGE_WIDTH) {
+      warnings.push(`${key} is ${entry.w}px wide; ${WARN_IMAGE_WIDTH}px is the widest an article uses.`)
+    }
+    if (entry.h > MAX_IMAGE_HEIGHT) {
+      errors.push(`${key} is ${entry.h}px tall, over the ${MAX_IMAGE_HEIGHT}px limit.`)
+    }
+    if (entry.w * entry.h > MAX_IMAGE_PIXELS) {
+      errors.push(
+        `${key} has ${(entry.w * entry.h).toLocaleString()} pixels, over the ${MAX_IMAGE_PIXELS.toLocaleString()}-pixel limit.`
+      )
+    }
+  }
+  if (!referenced.has(key)) {
     warnings.push(`${key} is in the bucket but no page uses it.`)
   }
+}
+
+const activeKeys = new Set(Object.values(registry).map((entry) => entry.key).filter(Boolean))
+for (const entry of retired) {
+  if (
+    !entry.key ||
+    !entry.logicalPath ||
+    !entry.retiredAt ||
+    !['superseded', 'unreferenced'].includes(entry.reason) ||
+    !objectKeyMatchesLogicalPath(entry.logicalPath, entry.key) ||
+    !Number.isFinite(Date.parse(entry.retiredAt)) ||
+    !Number.isSafeInteger(entry.bytes) ||
+    entry.bytes < 0
+  ) {
+    errors.push('app/generated/media-retired.json contains an incomplete retirement entry.')
+  }
+  if (activeKeys.has(entry.key)) {
+    errors.push(`${entry.key}: the same object cannot be both active and retired.`)
+  }
+}
+
+const trackedBytes =
+  Object.values(registry).reduce((sum, entry) => sum + (entry.bytes || 0), 0) +
+  retired.reduce((sum, entry) => sum + (entry.bytes || 0), 0)
+if (trackedBytes > STORAGE_BUDGET_BYTES) {
+  errors.push(
+    `active + retired media uses ${(trackedBytes / 1024 / 1024).toFixed(1)} MB, over the ` +
+      `${STORAGE_BUDGET_BYTES / 1024 / 1024} MB project ceiling.`
+  )
 }
 
 // Staged files that were never uploaded are the easiest mistake to make: the
@@ -205,7 +282,8 @@ if (warnings.length) {
 }
 if (!errors.length) {
   console.log(
-    `media lint: ${count} object${count === 1 ? '' : 's'} in the registry, ${referenced.size} referenced` +
+    `media lint: ${count} active, ${retired.length} retired, ${referenced.size} referenced, ` +
+      `${(trackedBytes / 1024 / 1024).toFixed(1)} MB tracked` +
       (warnings.length ? `, ${warnings.length} warning${warnings.length === 1 ? '' : 's'}` : ', clean')
   )
 }

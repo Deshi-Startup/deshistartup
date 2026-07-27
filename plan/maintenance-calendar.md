@@ -17,6 +17,7 @@ against this calendar is what earns it a bumped `verified:` date.
 | Action | Sources | Priority |
 |---|---|---|
 | Track RJSC/NBR fee notices, SROs, circulars, and portal process changes; update affected pages directly rather than waiting for the annual sweep. | RJSC, NBR, VAT Online | High |
+| Run the media dry-run and compare the committed registry with the live R2 object count/bytes; prune grace-expired retired objects and investigate any non-zero billable usage or unexplained Class B spike. | `plan/media-operations.md`, R2 metrics, Billable Usage | High |
 | Refresh the opportunity/event calendar: demo days, grant application windows, accelerator cohort deadlines, pitch nights. | iDEA, BIG, Startup Bangladesh, BASIS, universities | Medium |
 
 ## Quarterly

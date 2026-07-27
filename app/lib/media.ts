@@ -31,6 +31,8 @@ export interface MediaEntry {
   sha?: string
   /** True once the object is in the bucket. */
   remote?: boolean
+  /** ISO timestamp recorded after the object was successfully uploaded. */
+  uploadedAt?: string
 }
 
 const entries = mediaManifest as Record<string, MediaEntry>
@@ -38,8 +40,11 @@ const entries = mediaManifest as Record<string, MediaEntry>
 /** Every in-repo media path starts here. Also the object key prefix in a bucket. */
 export const MEDIA_PREFIX = '/media/'
 
-/** Widths we ask the edge for. Tuned to the 72ch prose column, not the viewport. */
-export const DEFAULT_WIDTHS = [480, 800, 1200]
+/**
+ * The only widths we ask the edge for. Three fixed candidates cap monthly
+ * unique transformations while still covering an 800px article at 2× density.
+ */
+export const DEFAULT_WIDTHS = [480, 800, 1600]
 
 /** Matches the 860px layout breakpoint in globals.css. */
 export const DEFAULT_SIZES = '(max-width: 860px) 100vw, 800px'
@@ -59,8 +64,8 @@ function objectKey(src: string): string {
   return entries[src]?.key || src.slice(MEDIA_PREFIX.length)
 }
 
-// SVG needs no resizing and GIF would lose its animation, so neither is sent
-// through the transformer.
+// Matches the upload allowlist; unsupported or external formats never reach
+// the transformer.
 const TRANSFORMABLE = /\.(png|jpe?g|webp)$/i
 
 export function isExternalMedia(src: string): boolean {
@@ -116,11 +121,18 @@ export function mediaSrcSet(src: string, widths: number[] = DEFAULT_WIDTHS): str
     // step gives no browser anything, and every candidate is a separate
     // billable transformation.
     const largest = usable[usable.length - 1] ?? 0
-    if (intrinsic >= largest * 1.15) usable.push(intrinsic)
+    const largestConfigured = widths[widths.length - 1] ?? 0
+    if (intrinsic <= largestConfigured && intrinsic >= largest * 1.15) usable.push(intrinsic)
   }
   const unique = [...new Set(usable)].sort((a, b) => a - b)
   if (unique.length < 2) return undefined
   return unique.map((width) => `${mediaUrl(src, width)} ${width}w`).join(', ')
+}
+
+/** A non-upscaling fallback width that is already present in the srcset. */
+export function mediaDefaultWidth(src: string, preferred = 800): number {
+  const intrinsic = mediaEntry(src)?.w
+  return intrinsic ? Math.min(preferred, intrinsic) : preferred
 }
 
 const BN_DIGITS = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯']

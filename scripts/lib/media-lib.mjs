@@ -29,24 +29,39 @@ import { fileURLToPath } from 'node:url'
 export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..')
 export const stagingDir = path.join(root, 'media')
 export const registryFile = path.join(root, 'app', 'generated', 'media.json')
+export const retiredFile = path.join(root, 'app', 'generated', 'media-retired.json')
 
 export const BUCKET = process.env.DESHI_R2_BUCKET || 'deshistartup-media'
 
 /** Safe because the key changes whenever the bytes do. */
 export const CACHE_CONTROL = 'public, max-age=31536000, immutable'
 
+// These are storage controls, not editorial suggestions. They are shared by
+// upload, lint, poster fetching, and tests so a file cannot pass one gate and
+// fail only after it has already consumed R2 operations and storage.
+export const MAX_FILE_BYTES = 300 * 1024
+export const WARN_FILE_BYTES = 150 * 1024
+export const MAX_IMAGE_WIDTH = 3000
+export const WARN_IMAGE_WIDTH = 1600
+export const MAX_IMAGE_HEIGHT = 6000
+export const MAX_IMAGE_PIXELS = 12_000_000
+export const MAX_BATCH_FILES = 25
+export const MAX_BATCH_BYTES = 5 * 1024 * 1024
+// Five percent of R2's current 10 GB-month Standard storage free allowance.
+// Raising this is a deliberate code review decision, never an environment flag.
+export const STORAGE_BUDGET_BYTES = 500 * 1024 * 1024
+export const RETIREMENT_GRACE_DAYS = 30
+
 export const CONTENT_TYPES = {
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
-  '.webp': 'image/webp',
-  '.gif': 'image/gif',
-  '.svg': 'image/svg+xml'
+  '.webp': 'image/webp'
 }
 
 // --- header parsers -------------------------------------------------------
 //
-// Hand-written rather than pulled from a dependency: reading four image headers
+// Hand-written rather than pulled from a dependency: reading three image headers
 // is a hundred lines, and it keeps a native module (sharp) out of every
 // contributor's install and out of Workers Builds.
 
@@ -98,32 +113,6 @@ function webpSize(buf) {
   return null
 }
 
-function gifSize(buf) {
-  if (buf.length < 10 || buf.toString('ascii', 0, 4) !== 'GIF8') return null
-  return { w: buf.readUInt16LE(6), h: buf.readUInt16LE(8) }
-}
-
-function svgSize(buf) {
-  const head = buf.toString('utf8', 0, Math.min(buf.length, 4096))
-  const attr = (name) => {
-    const match = head.match(new RegExp(`\\b${name}\\s*=\\s*["']([^"']+)["']`, 'i'))
-    if (!match) return null
-    const value = parseFloat(match[1])
-    return Number.isFinite(value) ? value : null
-  }
-  const w = attr('width')
-  const h = attr('height')
-  if (w && h) return { w: Math.round(w), h: Math.round(h) }
-  const viewBox = head.match(/\bviewBox\s*=\s*["']([^"']+)["']/i)
-  if (viewBox) {
-    const parts = viewBox[1].trim().split(/[\s,]+/).map(Number)
-    if (parts.length === 4 && parts.every(Number.isFinite)) {
-      return { w: Math.round(parts[2]), h: Math.round(parts[3]) }
-    }
-  }
-  return null
-}
-
 /** Intrinsic dimensions straight from the file header, or null. */
 export function imageSize(buf, ext) {
   switch (ext) {
@@ -134,10 +123,6 @@ export function imageSize(buf, ext) {
       return jpegSize(buf)
     case '.webp':
       return webpSize(buf)
-    case '.gif':
-      return gifSize(buf)
-    case '.svg':
-      return svgSize(buf)
     default:
       return null
   }
@@ -155,6 +140,24 @@ export function writeRegistry(registry) {
   for (const key of Object.keys(registry).sort()) sorted[key] = registry[key]
   fs.mkdirSync(path.dirname(registryFile), { recursive: true })
   fs.writeFileSync(registryFile, JSON.stringify(sorted, null, 2) + '\n')
+  return sorted
+}
+
+export function readRetired() {
+  if (!fs.existsSync(retiredFile)) return []
+  const value = JSON.parse(fs.readFileSync(retiredFile, 'utf8'))
+  if (!Array.isArray(value)) throw new Error(`${path.relative(root, retiredFile)} must contain an array`)
+  return value
+}
+
+export function writeRetired(retired) {
+  const sorted = [...retired].sort(
+    (a, b) =>
+      String(a.retiredAt).localeCompare(String(b.retiredAt)) ||
+      String(a.key).localeCompare(String(b.key))
+  )
+  fs.mkdirSync(path.dirname(retiredFile), { recursive: true })
+  fs.writeFileSync(retiredFile, JSON.stringify(sorted, null, 2) + '\n')
   return sorted
 }
 
@@ -188,6 +191,166 @@ export function walkStaging(dir = stagingDir) {
 
 export function contentHash(buf) {
   return crypto.createHash('sha256').update(buf).digest('hex').slice(0, 12)
+}
+
+const SAFE_STAGED_PATH =
+  /^(?:[A-Za-z0-9][A-Za-z0-9_-]*\/)*[A-Za-z0-9][A-Za-z0-9_-]*\.(?:png|jpe?g|webp)$/
+
+export function validLogicalPath(logicalPath) {
+  return logicalPath.startsWith('/media/') && SAFE_STAGED_PATH.test(logicalPath.slice('/media/'.length))
+}
+
+export function objectKeyMatchesLogicalPath(logicalPath, key) {
+  if (!validLogicalPath(logicalPath) || typeof key !== 'string') return false
+  const staged = logicalPath.slice('/media/'.length)
+  const ext = path.extname(staged)
+  const base = staged.slice(0, -ext.length)
+  const escape = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  return new RegExp(`^${escape(base)}\\.[a-f0-9]{12}${escape(ext)}$`).test(key)
+}
+
+/**
+ * Validate bytes before any network request. Relying on an extension alone is
+ * unsafe, and discovering an oversize file in prebuild is too late: it is
+ * already occupying R2 by then.
+ */
+export function validateImageBuffer(buf, staged) {
+  const errors = []
+  const ext = path.extname(staged).toLowerCase()
+
+  if (!SAFE_STAGED_PATH.test(staged)) {
+    errors.push(
+      'path must use ASCII letters, numbers, hyphens, underscores, and folders, with a PNG, JPEG, or WebP extension'
+    )
+  }
+  if (!CONTENT_TYPES[ext]) {
+    errors.push(`${ext || 'no extension'} is not allowed; use PNG, JPEG, or WebP`)
+  }
+  if (buf.length > MAX_FILE_BYTES) {
+    errors.push(
+      `${Math.ceil(buf.length / 1024)} KB exceeds the ${MAX_FILE_BYTES / 1024} KB per-file limit`
+    )
+  }
+
+  const size = CONTENT_TYPES[ext] ? imageSize(buf, ext) : null
+  if (!size) {
+    errors.push('the file header does not match its extension or has no readable dimensions')
+  } else {
+    if (size.w > MAX_IMAGE_WIDTH) {
+      errors.push(`${size.w}px width exceeds the ${MAX_IMAGE_WIDTH}px limit`)
+    }
+    if (size.h > MAX_IMAGE_HEIGHT) {
+      errors.push(`${size.h}px height exceeds the ${MAX_IMAGE_HEIGHT}px limit`)
+    }
+    if (size.w * size.h > MAX_IMAGE_PIXELS) {
+      errors.push(
+        `${size.w.toLocaleString()}×${size.h.toLocaleString()} exceeds the ${MAX_IMAGE_PIXELS.toLocaleString()}-pixel limit`
+      )
+    }
+  }
+
+  return { errors, ext, size, bytes: buf.length }
+}
+
+/**
+ * Inspect the complete batch atomically. If one file is unsafe or the batch
+ * crosses a budget, nothing is uploaded.
+ */
+export function preflightFiles(files) {
+  const errors = []
+  const inspected = []
+  const seen = new Set()
+
+  for (const file of files) {
+    let stat
+    try {
+      stat = fs.lstatSync(file)
+    } catch (error) {
+      errors.push({ key: path.relative(root, file), error: error.message })
+      continue
+    }
+    if (!stat.isFile() || stat.isSymbolicLink()) {
+      errors.push({
+        key: path.relative(root, file),
+        error: 'only regular files are accepted; directories and symbolic links are rejected'
+      })
+      continue
+    }
+
+    const real = fs.realpathSync(file)
+    if (!real.startsWith(stagingDir + path.sep)) {
+      errors.push({
+        key: path.relative(root, file),
+        error: 'the resolved file is outside media/'
+      })
+      continue
+    }
+
+    const staged = stagedPath(file)
+    const entry = registryKey(staged)
+    if (seen.has(entry)) {
+      errors.push({ key: entry, error: 'the same logical media path appears more than once' })
+      continue
+    }
+    seen.add(entry)
+
+    const buf = fs.readFileSync(file)
+    const validation = validateImageBuffer(buf, staged)
+    if (validation.errors.length) {
+      errors.push({ key: entry, error: validation.errors.join('; ') })
+      continue
+    }
+    inspected.push({
+      file,
+      staged,
+      entry,
+      buf,
+      sha: contentHash(buf),
+      size: validation.size,
+      bytes: validation.bytes,
+      ext: validation.ext
+    })
+  }
+
+  if (files.length > MAX_BATCH_FILES) {
+    errors.push({
+      key: 'batch',
+      error: `${files.length} files exceeds the ${MAX_BATCH_FILES}-file upload limit`
+    })
+  }
+  const batchBytes = inspected.reduce((sum, item) => sum + item.bytes, 0)
+  if (batchBytes > MAX_BATCH_BYTES) {
+    errors.push({
+      key: 'batch',
+      error: `${(batchBytes / 1024 / 1024).toFixed(1)} MB exceeds the ${MAX_BATCH_BYTES / 1024 / 1024} MB upload limit`
+    })
+  }
+
+  const registry = readRegistry()
+  const retired = readRetired()
+  const activeBytes = Object.values(registry).reduce((sum, entry) => sum + (entry.bytes || 0), 0)
+  const retiredBytes = retired.reduce((sum, entry) => sum + (entry.bytes || 0), 0)
+  let projectedBytes = activeBytes + retiredBytes
+  for (const item of inspected) {
+    const previous = registry[item.entry]
+    // Replacing a logical path keeps the previous immutable object during the
+    // grace period, so only a same-key force upload avoids adding stored bytes.
+    if (previous?.key === objectKey(item.staged, item.sha)) {
+      projectedBytes += item.bytes - (previous.bytes || 0)
+    } else {
+      projectedBytes += item.bytes
+    }
+  }
+  if (projectedBytes > STORAGE_BUDGET_BYTES) {
+    errors.push({
+      key: 'storage budget',
+      error:
+        `${(projectedBytes / 1024 / 1024).toFixed(1)} MB projected active + retired storage exceeds ` +
+        `the ${STORAGE_BUDGET_BYTES / 1024 / 1024} MB project ceiling; prune retired media first`
+    })
+  }
+
+  return { errors, inspected, registry, retired, batchBytes, projectedBytes }
 }
 
 // --- upload ---------------------------------------------------------------
@@ -228,25 +391,20 @@ export function putObject(file, key) {
  * @returns {{ uploaded: string[], skipped: string[], failed: {key: string, error: string}[] }}
  */
 export function uploadFiles(files, { force = false } = {}) {
-  const registry = readRegistry()
+  const preflight = preflightFiles(files)
+  if (preflight.errors.length) {
+    return { uploaded: [], skipped: [], failed: preflight.errors }
+  }
+
+  const { inspected, registry, retired } = preflight
   const uploaded = []
   const skipped = []
   const failed = []
 
-  for (const file of files) {
-    const staged = stagedPath(file)
-    const entry = registryKey(staged)
-    const buf = fs.readFileSync(file)
-    const sha = contentHash(buf)
+  for (const item of inspected) {
+    const { file, staged, entry, buf, sha, size } = item
     if (!force && registry[entry]?.sha === sha && registry[entry]?.remote) {
       skipped.push(entry)
-      continue
-    }
-
-    const ext = path.extname(file).toLowerCase()
-    const size = imageSize(buf, ext)
-    if (!size && ext !== '.svg') {
-      failed.push({ key: entry, error: 'could not read width and height from the file header' })
       continue
     }
 
@@ -259,16 +417,45 @@ export function uploadFiles(files, { force = false } = {}) {
       continue
     }
 
+    const previous = registry[entry]
+    if (previous?.key && previous.key !== key) {
+      const alreadyRetired = retired.some((candidate) => candidate.key === previous.key)
+      if (!alreadyRetired) {
+        retired.push({
+          logicalPath: entry,
+          key: previous.key,
+          bytes: previous.bytes || 0,
+          retiredAt: new Date().toISOString(),
+          reason: 'superseded',
+          replacementKey: key
+        })
+      }
+    }
+
     registry[entry] = {
       key,
-      ...(size ? { w: size.w, h: size.h } : {}),
+      w: size.w,
+      h: size.h,
       bytes: buf.length,
       sha,
-      remote: true
+      remote: true,
+      uploadedAt: new Date().toISOString()
     }
     uploaded.push(entry)
   }
 
+  // Write the safety ledger first. If the process is interrupted between the
+  // two local writes, prune still refuses to delete any key that is active in
+  // the registry.
+  writeRetired(retired)
   writeRegistry(registry)
   return { uploaded, skipped, failed }
+}
+
+export function deleteObject(key) {
+  execFileSync(
+    'npx',
+    ['wrangler', 'r2', 'object', 'delete', `${BUCKET}/${key}`, '--remote'],
+    { cwd: root, stdio: ['ignore', 'pipe', 'pipe'] }
+  )
 }

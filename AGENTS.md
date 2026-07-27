@@ -142,17 +142,26 @@ and a reference work accumulates screenshots for years. What git keeps is
 
 1. Put the file in `media/` (repo root, gitignored) at the path you want it addressed by:
    `media/registration/rjsc-search.png`.
-2. `npm run media:upload` — reads its dimensions, uploads it to the bucket, records it in the
-   registry. Re-running only sends what changed (content-hashed).
+2. `npm run media:upload` — preflights the full batch, then uploads it and records it in the
+   registry. Re-running only sends what changed (content-hashed). PNG, JPEG, and WebP only; the
+   hard per-file, batch, dimension, decoded-pixel, and 500 MB project storage ceilings live in
+   `scripts/lib/media-lib.mjs`.
 3. Reference it as `/media/registration/rjsc-search.png` and commit the registry change with the
    page. Uploads use the maintainer's own `wrangler login`; there is no R2 key to keep secret.
+
+There is deliberately **no public upload endpoint**. Contributors can propose media references in
+a PR, but only a maintainer can put bytes in R2. CI rejects hotlinks, raw media tags, missing
+registry entries, and direct transformation URLs. The full trust, cost, dashboard, and incident
+policy is [`plan/media-operations.md`](./plan/media-operations.md).
 
 Three paths for one file: `media/a/b.png` (staging) → `a/b.<hash>.png` (object key) →
 `/media/a/b.png` (what content writes, and the registry key). The object key is
 **content-addressed**, so objects are cached forever (`immutable`) and a corrected screenshot still
 reaches every reader at once: new bytes mint a new key, and the registry points at it. Re-uploading
-unchanged files is a no-op. Superseded objects stay in the bucket until someone prunes them; at
-these sizes that is cheaper than the alternatives.
+unchanged files is a no-op. Superseded objects enter `app/generated/media-retired.json`. Keep them
+for the 30-day rollback grace period, then remove them with the dry-run-first
+`npm run media:prune` workflow. Never add a blanket age lifecycle to the active namespace; it
+would eventually delete still-used images.
 
 - **Addressing:** content only ever writes root-relative `/media/...`. `app/lib/media.ts` is the
   single place that turns one into a delivery URL, so where the bytes sit stays a deployment
@@ -175,8 +184,9 @@ these sizes that is cheaper than the alternatives.
   uploads posters for every embed in the tree. Never hand-place a raw YouTube `<iframe>`: it costs
   ~2 MB on load and breaks the performance budget.
 - **`npm run lint:media`** runs in `prebuild`. Errors: a referenced file that was never uploaded, a
-  `<Figure>` without alt text, an invalid video id, a file over 300 KB, or **any image committed
-  under `public/media`** — that last one is what keeps binaries out of git.
+  `<Figure>` without alt text, an invalid video id, a hotlinked/raw embed, malformed registry
+  metadata, a file over 300 KB, or **any image committed under `public/media`** — that last one is
+  what keeps binaries out of git.
 
 ## Style guide (Bangla)
 
@@ -325,6 +335,7 @@ but doesn't appear in the editor, the manifest is stale.
 - `npm run manifest` - Regenerate `app/generated/manifest.*.json`, `sections-lite.json` and `public/page-dates.json` from the content tree + git dates
 - `npm run media:upload` - Upload everything staged in `media/` to the R2 bucket and record it in `app/generated/media.json` (`-- --force` to re-upload; accepts explicit paths)
 - `npm run media:posters` - Fetch and upload a poster for every `<YouTube>` embed (`-- --force` to re-fetch)
+- `npm run media:prune` - Dry-run the repository-aware R2 cleanup; see `plan/media-operations.md` before using `-- --retire-unreferenced` or `-- --apply`
 - `npm run lint:media` - Check embedded media: missing files, missing alt text, invalid video ids, oversized files; also runs in `prebuild`
 - `npm run lint:routes` - Enforce the URL policy (segment depth, path length, slug charset, bn/en mirror, StubNotice paths); also runs automatically in `prebuild`
 - `npm run seo:audit` - Validate the built HTML, canonicals, hreflang, indexability, metadata, JSON-LD, sitemap, robots, and internal links

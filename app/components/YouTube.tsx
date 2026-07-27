@@ -1,6 +1,13 @@
 import React from 'react'
 import { SITE_URL } from '../seo.config.mjs'
-import { formatMediaDate, mediaEntry, mediaId, mediaSrcSet, mediaUrl } from '../lib/media'
+import {
+  formatMediaDate,
+  mediaDefaultWidth,
+  mediaEntry,
+  mediaId,
+  mediaSrcSet,
+  mediaUrl
+} from '../lib/media'
 
 const VIDEO_ID = /^[A-Za-z0-9_-]{11}$/
 
@@ -44,6 +51,7 @@ export default function YouTube({ id, title, caption, start, date, locale = 'bn'
     .map((ext) => `/media/youtube/${id}${ext}`)
     .find((path) => mediaEntry(path))
   const posterEntry = poster ? mediaEntry(poster) : undefined
+  const posterSrcSet = poster ? mediaSrcSet(poster) : undefined
   const watchUrl = `https://www.youtube.com/watch?v=${id}${start ? `&t=${start}` : ''}`
   const playLabel = `${isEn ? 'Play video' : 'ভিডিও চালান'}: ${title}`
   const captionId = `yt-${mediaId(id, caption)}`
@@ -75,8 +83,8 @@ export default function YouTube({ id, title, caption, start, date, locale = 'bn'
         {poster ? (
           <img
             className="yt__poster"
-            src={mediaUrl(poster, mediaSrcSet(poster) ? 800 : undefined)}
-            srcSet={mediaSrcSet(poster)}
+            src={mediaUrl(poster, posterSrcSet ? mediaDefaultWidth(poster) : undefined)}
+            srcSet={posterSrcSet}
             sizes="(max-width: 860px) 100vw, 800px"
             width={posterEntry?.w}
             height={posterEntry?.h}
