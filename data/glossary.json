@@ -1,82 +1,112 @@
 {
   "authorized-capital": {
-    "bn": "কোম্পানির অনুমোদিত মূলধন (Authorized Capital): স্মারকলিপিতে (MoA) উল্লিখিত সর্বোচ্চ মূলধন সীমা, যা কোম্পানি তার শেয়ারহোল্ডারদের কাছে বিলি বা ইস্যু করার আইনি অনুমতি রাখে।",
-    "en": "Authorized Capital: The maximum amount of share capital that a company is authorized by its Memorandum of Association (MoA) to issue to shareholders."
+    "bn": "কোম্পানির MoA-তে লেখা সর্বোচ্চ শেয়ার মূলধন, যার মধ্যে থেকে কোম্পানি শেয়ার ইস্যু করতে পারে।",
+    "en": "The maximum share capital stated in a company's Memorandum of Association, within which the company may issue shares.",
+    "sourceUrl": "https://bdlaws.minlaw.gov.bd/act-print-788.html",
+    "verified": "2026-07-28"
   },
   "paid-up-capital": {
-    "bn": "পরিশোধিত মূলধন (Paid-up Capital): শেয়ারহোল্ডাররা কোম্পানির কাছে বাস্তবে যে পরিমাণ টাকা পরিশোধ করে শেয়ার কিনেছেন।",
-    "en": "Paid-up Capital: The actual amount of money paid by shareholders for the shares issued to them."
+    "bn": "ইস্যু করা শেয়ারের বিপরীতে শেয়ারহোল্ডাররা কোম্পানিকে যে অর্থ বাস্তবে পরিশোধ করেছেন।",
+    "en": "The amount shareholders have actually paid the company for shares issued to them.",
+    "sourceUrl": "https://bdlaws.minlaw.gov.bd/act-print-788.html",
+    "verified": "2026-07-28"
   },
   "form-xii": {
-    "bn": "ফরম ১২ (Form XII): আরজেএসসিতে পরিচালকদের নিয়োগ, পদত্যাগ বা তথ্য পরিবর্তনের বিবরণী জমা দেওয়ার আইনি ফরম।",
-    "en": "Form XII: The statutory RJSC form used to report the appointment, resignation, or change of particulars of company directors."
+    "bn": "পরিচালক বা ব্যবস্থাপকের নিয়োগ, পদত্যাগ কিংবা তথ্যের পরিবর্তন RJSC-কে জানানোর ফরম।",
+    "en": "The RJSC form used to report the appointment, resignation, or changed particulars of a director or manager.",
+    "sourceUrl": "https://app.roc.gov.bd/Guidlines/Download/FORM%20XII.htm",
+    "verified": "2026-07-28"
   },
   "form-117": {
-    "bn": "ফরম ১১৭ (Form 117): প্রাইভেট লিমিটেড কোম্পানির শেয়ার হস্তান্তরের সময় আরজেএসসিতে জমা দেওয়ার দালিলিক ফরম।",
-    "en": "Form 117: The statutory instrument of share transfer submitted to RJSC when transferring private limited company shares."
+    "bn": "শেয়ার হস্তান্তরের লিখিত দলিল। হস্তান্তরকারী, গ্রহীতা ও শেয়ারের বিবরণ এতে থাকে।",
+    "en": "The written instrument used to record a transfer of shares, including details of the transferor, transferee, and shares.",
+    "sourceUrl": "https://app1.roc.gov.bd/Guidlines/Download/FORM-117.htm",
+    "verified": "2026-07-28"
   },
   "moa-aoa": {
-    "bn": "স্মারকলিপি ও পরিমেল নিয়মাবলী (MoA & AoA): কোম্পানির মৌলিক উদ্দেশ্য (MoA) এবং অভ্যন্তরীণ পরিচালনার নিয়মকানুন (AoA) সংক্রান্ত সনদ।",
-    "en": "MoA & AoA: Memorandum of Association (company objectives and scope) and Articles of Association (internal governance rules)."
+    "bn": "কোম্পানির দুটি মূল নথি। MoA-তে উদ্দেশ্য ও কাজের সীমা থাকে। AoA-তে কোম্পানি পরিচালনার নিয়ম থাকে।",
+    "en": "A company's two core constitutional documents: the MoA states its objects and scope, while the AoA sets its internal governance rules.",
+    "sourceUrl": "https://bdlaws.minlaw.gov.bd/act-print-788.html",
+    "verified": "2026-07-28"
   },
   "rjsc-name-clearance": {
-    "bn": "আরজেএসসি নাম ছাড়পত্র (RJSC Name Clearance): নতুন কোম্পানি গঠনের আগে কাঙ্ক্ষিত নামটি খালি আছে কি না তা আরজেএসসি থেকে অনুমোদন নেওয়ার সনদ।",
-    "en": "RJSC Name Clearance: Official approval from RJSC confirming that the proposed company name is available and acceptable."
+    "bn": "প্রস্তাবিত কোম্পানির নাম নেওয়া যাবে কি না, নিবন্ধনের আগে RJSC-এর দেওয়া সেই প্রাথমিক অনুমোদন। এটি কোম্পানি নিবন্ধনের সনদ নয়।",
+    "en": "RJSC's preliminary approval that a proposed company name is available and acceptable. It is not a certificate of incorporation.",
+    "sourceUrl": "https://app1.roc.gov.bd/Guidlines/faq.html",
+    "verified": "2026-07-28"
   },
   "e-tin": {
-    "bn": "ই-টিআইএন (e-TIN): এনবিআর কর্তৃক ব্যক্তি বা প্রতিষ্ঠানের জন্য ইস্যুকৃত ১২ ডিজিটের ইলেকট্রনিক কর নম্বর।",
-    "en": "e-TIN: 12-digit electronic Taxpayer Identification Number issued by NBR for individuals and entities."
+    "bn": "NBR ব্যক্তি বা প্রতিষ্ঠানকে যে ১২ সংখ্যার ইলেকট্রনিক করদাতা শনাক্তকরণ নম্বর দেয়।",
+    "en": "The 12-digit electronic Taxpayer Identification Number issued by NBR to an individual or entity.",
+    "sourceUrl": "https://secure.incometax.gov.bd/TINHome",
+    "verified": "2026-07-28"
   },
   "vat-bin": {
-    "bn": "ভ্যাট বিআইএন (VAT BIN): এনবিআরের ভ্যাট অনলাইন পোর্টাল থেকে প্রাপ্ত ৯ ডিজিটের বিজনেস আইডেন্টিফিকেশন নম্বর।",
-    "en": "VAT BIN: 9-digit Business Identification Number issued via NBR's VAT Online portal for turnover tax and VAT compliance."
+    "bn": "ভ্যাট নিবন্ধন বা টার্নওভার করের তালিকাভুক্তির পর পাওয়া ৯ সংখ্যার ব্যবসা শনাক্তকরণ নম্বর।",
+    "en": "The 9-digit Business Identification Number issued after VAT registration or turnover-tax enlistment.",
+    "sourceUrl": "https://nbr.gov.bd/faq/vat-faq/en",
+    "verified": "2026-07-28"
   },
   "trade-license": {
-    "bn": "ট্রেড লাইসেন্স (Trade License): স্থানীয় সিটি কর্পোরেশন, পৌরসভা বা ইউনিয়ন পরিষদ থেকে ব্যবসা পরিচালনার বার্ষিক অনুমতিপত্র।",
-    "en": "Trade License: Annual permit issued by local government authorities (City Corporation, Pourashava, or Union Parishad) to operate a business."
+    "bn": "ব্যবসার ঠিকানা অনুযায়ী সিটি করপোরেশন, পৌরসভা বা ইউনিয়ন পরিষদ থেকে নেওয়া ব্যবসা পরিচালনার অনুমতিপত্র।",
+    "en": "A permit to operate a business, issued by the city corporation, municipality, or union parishad responsible for its address."
   },
   "encashment-certificate": {
-    "bn": "এনক্যাশমেন্ট সার্টিফিকেট (Encashment Certificate): বিদেশ থেকে আসা রেমিট্যান্স বা শেয়ারের টাকা ব্যাংকে দেশি মুদ্রায় (টাকা) ভাঙানোর এনবিআর/আরজেএসসি গ্রাহ্য প্রমাণপত্র।",
-    "en": "Encashment Certificate: Bank-issued certificate proving foreign currency remittance has been converted into local currency (BDT) via official banking channels."
+    "bn": "বিদেশ থেকে ব্যাংকিং চ্যানেলে আসা বৈদেশিক মুদ্রা টাকায় রূপান্তরের পর ব্যাংকের দেওয়া প্রমাণপত্র।",
+    "en": "A bank-issued certificate showing that foreign currency received through a banking channel was converted into Bangladeshi taka.",
+    "sourceUrl": "https://www.bb.org.bd/feidportal/fdi.php",
+    "verified": "2026-07-28"
   },
   "mfs": {
-    "bn": "মোবাইল ফাইন্যান্সিয়াল সার্ভিসেস (MFS): বিকাশ, নগদ, রকেটের মতো বাংলাদেশ ব্যাংক অনুমোদিত ডিজিটাল ওয়ালেট সেবাসমূহ।",
-    "en": "Mobile Financial Services (MFS): Bangladesh Bank authorized mobile wallets (such as bKash, Nagad, Rocket)."
+    "bn": "মোবাইল অ্যাকাউন্টে টাকা রাখা, পাঠানো, নেওয়া ও পেমেন্ট করার সেবা। যেমন বিকাশ, নগদ বা রকেট।",
+    "en": "A service for storing, sending, receiving, and paying money through a mobile account, such as bKash, Nagad, or Rocket.",
+    "sourceUrl": "https://www.bb.org.bd/en/index.php/financialsystems/paysystems",
+    "verified": "2026-07-28"
   },
   "cod": {
-    "bn": "ক্যাশ অন ডেলিভারি (COD): পণ্য ক্রেতার হাতে পৌঁছানোর পর সরাসরি কুরিয়ার প্রতিনিধিকে নগদ বা ওয়ালেটে টাকা পরিশোধ করার পদ্ধতি।",
-    "en": "Cash on Delivery (COD): Payment method where the customer pays cash or wallet transfer to the courier upon product delivery."
+    "bn": "পণ্য হাতে পাওয়ার সময় ক্রেতা মূল্য পরিশোধ করেন, নগদে বা বিক্রেতা ও কুরিয়ারের সমর্থিত অন্য কোনো উপায়ে।",
+    "en": "A payment method in which the customer pays when the product is delivered, in cash or another method supported by the seller and courier."
   },
   "vesting": {
-    "bn": "শেয়ার ভেস্টিং (Vesting): কো-ফাউন্ডার বা কর্মীদের নির্দিষ্ট সময় (সাধারণত ৪ বছর, ১ বছর ক্লিফসহ) প্রতিষ্ঠানে থাকার বিনিময়ে ধাপে ধাপে শেয়ারের পূর্ণ মালিকানা অর্জনের চুক্তি।",
-    "en": "Vesting: The process by which founders or employees earn full ownership of their equity over time (typically a 4-year schedule with a 1-year cliff)."
+    "bn": "নির্ধারিত সময় বা শর্ত পূরণের সঙ্গে সঙ্গে প্রতিষ্ঠাতা বা কর্মীর শেয়ারের অধিকার ধাপে ধাপে পাকা হওয়ার ব্যবস্থা।",
+    "en": "An arrangement under which a founder's or employee's right to equity becomes earned gradually as time or agreed conditions are met."
   },
   "cap-table": {
-    "bn": "ক্যাপিটালাইজেশন টেবিল (Cap Table): কোম্পানির মালিকানার অনুপাত, শেয়ার সংখ্যা, ভেস্টিং ও বিভিন্ন বিনিয়োগকারীর শেয়ারের বিস্তারিত সারণী।",
-    "en": "Cap Table: A capitalization table detailing company ownership percentages, share counts, vesting, and investor equity."
+    "bn": "কোম্পানিতে কার কত শেয়ার ও মালিকানা আছে, তা দেখানো হিসাব। এতে শেয়ারের ধরন, ভেস্টিং ও বিনিয়োগের তথ্যও থাকতে পারে।",
+    "en": "A record of who owns how many shares in a company and their ownership percentages; it may also track share classes, vesting, and investments."
   },
   "bida-oss": {
-    "bn": "বিডা ওএসএস (BIDA OSS): বাংলাদেশ বিনিয়োগ উন্নয়ন কর্তৃপক্ষের ওয়ান স্টপ সার্ভিস পোর্টাল, যেখানে বিভিন্ন সরকারি অনুমতি অনলাইনে পাওয়া যায়।",
-    "en": "BIDA OSS: Bangladesh Investment Development Authority's One Stop Service portal for streamlined business approvals."
+    "bn": "বাংলাদেশ বিনিয়োগ উন্নয়ন কর্তৃপক্ষের অনলাইন পোর্টাল, যেখানে বিভিন্ন সরকারি অনুমোদন ও সেবার আবেদন করা যায়।",
+    "en": "Bangladesh Investment Development Authority's online portal for applying for a range of government approvals and services.",
+    "sourceUrl": "https://ossbida.gov.bd",
+    "verified": "2026-07-28"
   },
   "board-resolution": {
-    "bn": "বোর্ড রেজল্যুশন (Board Resolution): পরিচালনা পর্ষদের সভায় গৃহীত আনুষ্ঠানিক লিখিত সিদ্ধান্ত (যেমন ব্যাংক অ্যাকাউন্ট খোলা বা প্রতিনিধি নিয়োগ)।",
-    "en": "Board Resolution: A formal document recording decisions made by a company's Board of Directors (e.g. opening a bank account)."
+    "bn": "পরিচালনা পর্ষদের সভায় নেওয়া আনুষ্ঠানিক সিদ্ধান্তের লিখিত নথি। যেমন ব্যাংক হিসাব খোলা বা প্রতিনিধি নিয়োগ।",
+    "en": "The written record of a formal decision made by a company's board, such as opening a bank account or appointing a representative."
   },
   "withholding-tax": {
-    "bn": "উৎসে কর কর্তন (TDS / Withholding Tax): সেবামূল্য, বেতন বা বিল পরিশোধের সময় আইন অনুযায়ী আগে থেকেই নির্দিষ্ট হারে কর কেটে সরকারি কোডে জমা দেওয়া।",
-    "en": "Withholding Tax (TDS): Tax deducted at source from payments (salaries, vendor bills, rent) and deposited directly to the government treasury."
+    "bn": "বেতন, ভাড়া, সেবামূল্য বা অন্য কোনো প্রযোজ্য বিল দেওয়ার সময় আইন অনুযায়ী কর কেটে সরকারি কোষাগারে জমা দেওয়া।",
+    "en": "Tax deducted under the law when paying salary, rent, service fees, or another applicable bill, then deposited with the government.",
+    "sourceUrl": "https://nbr.gov.bd/uploads/acts/Income_tax_act_2023.pdf",
+    "verified": "2026-07-28"
   },
   "corporate-tax": {
-    "bn": "কর্পোরেট কর (Corporate Tax): প্রাইভেট লিমিটেড কোম্পানির বাৎসরিক নিট মুনাফার ওপর প্রযোজ্য সরকারি আয়কর।",
-    "en": "Corporate Tax: Income tax levied by the government on the annual net profit of a registered company."
+    "bn": "কোম্পানির করযোগ্য আয়ের ওপর প্রযোজ্য আয়কর। হার ও হিসাব কোম্পানির ধরন, আয় ও চলতি করবিধির ওপর নির্ভর করে।",
+    "en": "Income tax on a company's taxable income. The rate and calculation depend on the company type, its income, and the current tax rules.",
+    "sourceUrl": "https://nbr.gov.bd/uploads/acts/Income_tax_act_2023.pdf",
+    "verified": "2026-07-28"
   },
   "share-transfer": {
-    "bn": "শেয়ার হস্তান্তর (Share Transfer): পরিচালনা পর্ষদের অনুমোদন ও এনবিআরের কর পরিশোধের মাধ্যমে এক শেয়ারহোল্ডার থেকে অন্য শেয়ারহোল্ডারের কাছে শেয়ার মালিকানা হস্তান্তর।",
-    "en": "Share Transfer: Legal process of transferring share ownership between parties, requiring Board approval, NBR tax assessment, and RJSC filing."
+    "bn": "প্রয়োজনীয় হস্তান্তর দলিল, কোম্পানির অনুমোদন এবং প্রযোজ্য কর ও নিয়ন্ত্রক শর্ত মেনে এক শেয়ারহোল্ডারের শেয়ার অন্যজনের নামে নেওয়ার প্রক্রিয়া। বিদেশি শেয়ারহোল্ডার থাকলে বাংলাদেশ ব্যাংকের আলাদা নিয়মও লাগতে পারে।",
+    "en": "The process of moving shares from one shareholder to another using the required transfer instrument, company approvals, and any applicable tax or regulatory steps. Separate Bangladesh Bank rules may apply when a non-resident is involved.",
+    "sourceUrl": "https://www.bb.org.bd/feidportal/fdi.php",
+    "verified": "2026-07-28"
   },
   "incorp-certificate": {
-    "bn": "ইনকর্পোরেশন সার্টিফিকেট (Incorporation Certificate): আরজেএসসি কর্তৃক প্রাইভেট লিমিটেড কোম্পানি গঠনের পর নিবন্ধনের চুড়ান্ত সরকারি সনদ।",
-    "en": "Incorporation Certificate: Official certificate issued by RJSC confirming the legal incorporation of a company."
+    "bn": "কোম্পানি নিবন্ধন সম্পন্ন হলে RJSC যে সনদ দেয়। এটি কোম্পানির আইনি নিবন্ধনের প্রমাণ।",
+    "en": "The certificate RJSC issues when company registration is complete; it is evidence of the company's legal incorporation.",
+    "sourceUrl": "https://app1.roc.gov.bd/Guidlines/faq.html",
+    "verified": "2026-07-28"
   }
 }

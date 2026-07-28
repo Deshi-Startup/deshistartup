@@ -1,7 +1,4 @@
-'use client'
-
 import React from 'react'
-import { usePathname } from 'next/navigation'
 
 interface CiteProps {
   id?: string | number
@@ -10,24 +7,27 @@ interface CiteProps {
   children?: React.ReactNode
 }
 
-const bengaliDigits = (val: string | number) => String(val).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[Number(d)])
+const bengaliDigits = (value: string | number) =>
+  String(value).replace(/\d/g, (digit) => '০১২৩৪৫৬৭৮৯'[Number(digit)])
 
 export default function Cite({ id = '1', href, title, children }: CiteProps) {
-  const pathname = usePathname() || ''
-  const isEn = pathname.startsWith('/en/') || pathname === '/en'
-
-  const displayNum = children || (isEn ? String(id) : bengaliDigits(id))
   const targetHref = href || `#ref-${id}`
 
   return (
     <sup className="cite-footnote">
-      <a
-        href={targetHref}
-        className="cite-link"
-        title={title || (isEn ? `See reference [${id}]` : `সূত্র দ্রষ্টব্য [${displayNum}]`)}
-        aria-label={title || (isEn ? `Reference ${id}` : `সূত্র ${displayNum}`)}
-      >
-        [{displayNum}]
+      <a href={targetHref} className="cite-link" title={title}>
+        [
+        {children || (
+          <>
+            <span className="cite-number cite-number--bn">{bengaliDigits(id)}</span>
+            <span className="cite-number cite-number--en">{id}</span>
+          </>
+        )}
+        ]
+        <span className="sr-only">
+          <span className="cite-label cite-label--bn"> নম্বর সূত্র দেখুন</span>
+          <span className="cite-label cite-label--en"> See reference</span>
+        </span>
       </a>
     </sup>
   )

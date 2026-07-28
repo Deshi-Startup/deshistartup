@@ -1,16 +1,12 @@
-'use client'
-
-import React, { useState, useRef, useEffect } from 'react'
-import { usePathname } from 'next/navigation'
+import React, { useId } from 'react'
 import glossaryData from '../../data/glossary.json'
 
 interface GlossaryEntry {
   bn: string
   en: string
+  sourceUrl?: string
+  verified?: string
 }
-
-type GlossaryMap = Record<string, GlossaryEntry>
-const glossary = glossaryData as GlossaryMap
 
 interface TermProps {
   name?: string
@@ -18,77 +14,86 @@ interface TermProps {
   children: React.ReactNode
 }
 
+type GlossaryMap = Record<string, GlossaryEntry>
+const glossary = glossaryData as GlossaryMap
+
+const bengaliDigits = (value: string) =>
+  value.replace(/\d/g, (digit) => '০১২৩৪৫৬৭৮৯'[Number(digit)])
+
 export default function Term({ name, def, children }: TermProps) {
-  const pathname = usePathname() || ''
-  const isEn = pathname.startsWith('/en/') || pathname === '/en'
-  const [isOpen, setIsOpen] = useState(false)
-  const containerRef = useRef<HTMLSpanElement>(null)
+  const reactId = useId()
+  const popoverId = `term-${reactId.replace(/[^a-zA-Z0-9_-]/g, '')}`
+  const anchorName = `--${popoverId}`
+  const entry = name ? glossary[name] : undefined
+  const definitionBn = def || entry?.bn
+  const definitionEn = def || entry?.en
 
-  // Resolve definition from explicit `def` or lookup in `glossary.json`
-  let resolvedDef = def
-  if (!resolvedDef && name && glossary[name]) {
-    resolvedDef = isEn ? glossary[name].en : glossary[name].bn
-  }
-
-  useEffect(() => {
-    if (!isOpen) return undefined
-
-    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
-      }
-    }
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsOpen(false)
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-    document.addEventListener('touchstart', handleClickOutside)
-    document.addEventListener('keydown', handleKeyDown)
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-      document.removeEventListener('touchstart', handleClickOutside)
-      document.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [isOpen])
-
-  if (!resolvedDef) {
+  if (!definitionBn && !definitionEn) {
     return <span className="glossary-term-plain">{children}</span>
   }
 
   return (
-    <span
-      ref={containerRef}
-      className={`glossary-term-wrap ${isOpen ? 'is-active' : ''}`}
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
-    >
+    <span className="glossary-term-wrap">
       <button
         type="button"
         className="glossary-term-btn"
-        onClick={() => setIsOpen((prev) => !prev)}
-        aria-expanded={isOpen}
-        aria-label={isEn ? `Definition of ${children}` : `${children}-এর সংজ্ঞা`}
+        popoverTarget={popoverId}
+        popoverTargetAction="toggle"
+        aria-details={popoverId}
+        style={{ anchorName }}
       >
         {children}
         <span className="glossary-term-dot" aria-hidden="true" />
+        <span className="sr-only">
+          <span className="glossary-copy glossary-copy--bn">: সংজ্ঞা দেখুন</span>
+          <span className="glossary-copy glossary-copy--en">: show definition</span>
+        </span>
       </button>
 
-      {isOpen && (
-        <span className="glossary-popover" role="tooltip">
-          <span className="glossary-popover__title">
-            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="currentColor">
-              <path d="M8 0a8 8 0 100 16A8 8 0 008 0zm.75 12h-1.5V7h1.5v5zm0-6h-1.5V4.5h1.5V6z" />
-            </svg>
-            {isEn ? 'Term Definition' : 'শব্দের সংজ্ঞা'}
-          </span>
-          <span className="glossary-popover__body">{resolvedDef}</span>
+      <span
+        id={popoverId}
+        className="glossary-popover"
+        popover="auto"
+        role="note"
+        style={{ positionAnchor: anchorName }}
+      >
+        <span className="glossary-popover__title">
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="currentColor">
+            <path d="M8 0a8 8 0 100 16A8 8 0 008 0zm.75 12h-1.5V7h1.5v5zm0-6h-1.5V4.5h1.5V6z" />
+          </svg>
+          <span className="glossary-copy glossary-copy--bn">শব্দের সংজ্ঞা</span>
+          <span className="glossary-copy glossary-copy--en">Term definition</span>
         </span>
-      )}
+        <span className="glossary-popover__body">
+          <span className="glossary-copy glossary-copy--bn">
+            {definitionBn || definitionEn}
+          </span>
+          <span className="glossary-copy glossary-copy--en">
+            {definitionEn || definitionBn}
+          </span>
+        </span>
+        {(entry?.sourceUrl || entry?.verified) && (
+          <span className="glossary-popover__meta">
+            {entry.sourceUrl && (
+              <a href={entry.sourceUrl} target="_blank" rel="noreferrer">
+                <span className="glossary-copy glossary-copy--bn">সরকারি উৎস</span>
+                <span className="glossary-copy glossary-copy--en">Official source</span>
+              </a>
+            )}
+            {entry.sourceUrl && entry.verified && <span aria-hidden="true"> · </span>}
+            {entry.verified && (
+              <>
+                <span className="glossary-copy glossary-copy--bn">
+                  যাচাই: {bengaliDigits(entry.verified)}
+                </span>
+                <span className="glossary-copy glossary-copy--en">
+                  Verified: {entry.verified}
+                </span>
+              </>
+            )}
+          </span>
+        )}
+      </span>
     </span>
   )
 }

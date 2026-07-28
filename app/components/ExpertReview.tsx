@@ -1,7 +1,4 @@
-'use client'
-
 import React from 'react'
-import { usePathname } from 'next/navigation'
 
 interface ExpertReviewProps {
   reviewer: string
@@ -10,19 +7,36 @@ interface ExpertReviewProps {
   date?: string
   source?: string
   notes?: string
+  locale?: 'bn' | 'en'
 }
 
-function formatDate(iso: string, isEn: boolean) {
-  try {
-    return new Date(`${iso}T00:00:00Z`).toLocaleDateString(isEn ? 'en-GB' : 'bn-BD', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-      timeZone: 'UTC'
-    })
-  } catch {
-    return iso
-  }
+function containsBangla(value?: string): boolean {
+  return Boolean(value && /[\u0980-\u09ff]/.test(value))
+}
+
+function validIsoDate(iso: string): Date | null {
+  const match = iso.match(/^(\d{4})-(\d{2})-(\d{2})$/)
+  if (!match) return null
+
+  const [, year, month, day] = match
+  const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)))
+  return date.getUTCFullYear() === Number(year) &&
+    date.getUTCMonth() === Number(month) - 1 &&
+    date.getUTCDate() === Number(day)
+    ? date
+    : null
+}
+
+function formatDate(iso: string, locale: 'bn' | 'en'): string {
+  const date = validIsoDate(iso)
+  if (!date) return iso
+
+  return date.toLocaleDateString(locale === 'en' ? 'en-GB' : 'bn-BD', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC'
+  })
 }
 
 export default function ExpertReview({
@@ -31,15 +45,27 @@ export default function ExpertReview({
   organization,
   date,
   source,
-  notes
+  notes,
+  locale
 }: ExpertReviewProps) {
-  const pathname = usePathname() || ''
-  const isEn = pathname.startsWith('/en/') || pathname === '/en'
-
-  const formattedDate = date ? formatDate(date, isEn) : null
+  const resolvedLocale =
+    locale ||
+    (containsBangla(reviewer) ||
+    containsBangla(role) ||
+    containsBangla(organization) ||
+    containsBangla(notes) ||
+    containsBangla(source)
+      ? 'bn'
+      : 'en')
+  const isEn = resolvedLocale === 'en'
+  const formattedDate = date ? formatDate(date, resolvedLocale) : null
 
   return (
-    <aside className="expert-review" role="note" aria-label={isEn ? 'Expert Editorial Review' : 'বিশেষজ্ঞ পর্যালোচনা ও যাচাই'}>
+    <aside
+      className="expert-review"
+      role="note"
+      aria-label={isEn ? 'Expert editorial review' : 'বিশেষজ্ঞের সম্পাদকীয় পর্যালোচনা'}
+    >
       <div className="expert-review__header">
         <span className="expert-review__badge">
           <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" aria-hidden="true">
@@ -49,11 +75,11 @@ export default function ExpertReview({
               clipRule="evenodd"
             />
           </svg>
-          {isEn ? 'Expert Verified' : 'বিশেষজ্ঞ দ্বারা যাচাইকৃত'}
+          {isEn ? 'Expert reviewed' : 'বিশেষজ্ঞ পর্যালোচিত'}
         </span>
         {formattedDate && (
           <span className="expert-review__date">
-            {isEn ? 'Verified date: ' : 'যাচাইয়ের তারিখ: '}
+            {isEn ? 'Reviewed: ' : 'পর্যালোচনা: '}
             {formattedDate}
           </span>
         )}
@@ -62,6 +88,7 @@ export default function ExpertReview({
       <div className="expert-review__body">
         <div className="expert-review__person">
           <strong className="expert-review__name">{reviewer}</strong>
+          <span aria-hidden="true"> · </span>
           <span className="expert-review__role">{role}</span>
           {organization && <span className="expert-review__org"> · {organization}</span>}
         </div>
@@ -70,7 +97,7 @@ export default function ExpertReview({
 
         {source && (
           <p className="expert-review__source">
-            <strong>{isEn ? 'Primary authority: ' : 'মূল সরকারি আইনি উৎস: '}</strong>
+            <strong>{isEn ? 'Sources reviewed: ' : 'পর্যালোচনায় ব্যবহৃত উৎস: '}</strong>
             {source}
           </p>
         )}
