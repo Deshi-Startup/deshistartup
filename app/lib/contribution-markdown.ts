@@ -1,5 +1,10 @@
 const LOCKED_FENCE = 'deshi-locked-mdx'
 const SELF_CLOSING_COMPONENT = /<([A-Z][\w]*)\b[^>]*?\/>/g
+const EDITABLE_COMPONENTS = new Set(['YouTube', 'FacebookVideo'])
+
+function isEditableVideoComponent(name: string): boolean {
+  return EDITABLE_COMPONENTS.has(name)
+}
 
 function mapOutsideCodeFences(source: string, transform: (segment: string) => string): string {
   const lines = source.match(/[^\n]*\n|[^\n]+$/g) || []
@@ -46,7 +51,10 @@ export function encodeLockedMdx(body: string): string {
   return mapOutsideCodeFences(body, (segment) =>
     segment.replace(
       SELF_CLOSING_COMPONENT,
-      (match) => `\`\`\`${LOCKED_FENCE}\n${match}\n\`\`\``
+      (match, name: string) =>
+        isEditableVideoComponent(name)
+          ? match
+          : `\`\`\`${LOCKED_FENCE}\n${match}\n\`\`\``
     )
   )
 }
@@ -62,7 +70,9 @@ export function decodeLockedMdx(markdown: string): string {
 export function lockedMdxBlocks(body: string): string[] {
   const blocks: string[] = []
   mapOutsideCodeFences(body, (segment) => {
-    blocks.push(...(segment.match(SELF_CLOSING_COMPONENT) || []))
+    for (const match of segment.matchAll(SELF_CLOSING_COMPONENT)) {
+      if (!isEditableVideoComponent(match[1])) blocks.push(match[0])
+    }
     return segment
   })
   return blocks

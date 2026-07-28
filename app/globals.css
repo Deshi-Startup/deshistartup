@@ -835,12 +835,14 @@ img {
    rules make the paragraph disappear around them so the spacing is the
    figure's own. */
 p:has(> .figure),
-p:has(> .yt) {
+p:has(> .yt),
+p:has(> .fb-video) {
   margin: 0;
 }
 
 .figure,
-.yt {
+.yt,
+.fb-video {
   display: block;
   margin: 22px auto;
   max-width: 100%;
@@ -859,7 +861,8 @@ p:has(> .yt) {
 }
 
 .figure__caption,
-.yt__caption {
+.yt__caption,
+.fb-video__caption {
   display: block;
   margin: 8px auto 0;
   color: var(--muted);
@@ -870,7 +873,8 @@ p:has(> .yt) {
 /* Source and checked-date sit under the caption in the quieter grey: they are
    the provenance, not the teaching. */
 .figure__meta,
-.yt__meta {
+.yt__meta,
+.fb-video__meta {
   display: block;
   color: var(--faint);
   font-size: 0.82rem;
@@ -893,6 +897,11 @@ p:has(> .yt) {
 
 .yt__frame:hover {
   text-decoration: none;
+}
+
+.yt__frame::after,
+.fb-video__frame::after {
+  content: none !important;
 }
 
 .yt__poster {
@@ -959,9 +968,95 @@ p:has(> .yt) {
   border: 1px solid var(--line);
 }
 
+/* Facebook's public-video plugin is less predictable than YouTube and exposes
+   no credential-free thumbnail metadata. Its honest resting state is therefore
+   a named, title-forward facade; the official player still loads only on click. */
+.fb-video__frame {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #202328;
+  color: #fff;
+  text-decoration: none;
+}
+
+.fb-video__frame:hover {
+  text-decoration: none;
+}
+
+.fb-video__brand {
+  position: absolute;
+  top: -0.25em;
+  right: 0.08em;
+  color: rgb(255 255 255 / 9%);
+  font-family: var(--sans);
+  font-size: clamp(9rem, 30vw, 18rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.fb-video__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+}
+
+.fb-video__play svg {
+  display: block;
+}
+
+.fb-video__play circle {
+  fill: rgb(var(--ink-channels) / 78%);
+  transition: fill 120ms ease;
+}
+
+.fb-video__play path {
+  fill: #fff;
+}
+
+.fb-video__frame:hover .fb-video__play circle,
+.fb-video__frame:focus-visible .fb-video__play circle {
+  fill: #1877f2;
+}
+
+.fb-video__title {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 42px 14px 12px;
+  background: linear-gradient(to top, rgb(var(--ink-channels) / 88%), transparent);
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.fb-video__frame:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.fb-video__iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+}
+
+.fb-video__meta a {
+  color: inherit;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .yt__play,
-  .yt__play-bg {
+  .yt__play-bg,
+  .fb-video__play circle {
     transition: none;
   }
 }
@@ -2733,6 +2828,209 @@ body.auth-open {
   color: var(--muted);
   font: inherit;
   font-size: 0.88rem;
+}
+
+/* A pasted video becomes a real editor block, not source code. The large
+   preview confirms what will appear in the article; the quiet fields below it
+   expose only metadata a contributor may reasonably want to improve. */
+.edit-live .milkdown .milkdown-video-block {
+  max-width: var(--measure);
+  margin: 24px 0;
+  border: 1px solid var(--line);
+  background: var(--canvas-soft);
+}
+
+.edit-live .milkdown .milkdown-video-block[data-selected] {
+  outline: 2px solid var(--green-deep);
+  outline-offset: 2px;
+}
+
+.edit-video__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: #202328;
+}
+
+.edit-video__poster {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.edit-video__empty-poster {
+  position: absolute;
+  top: -0.2em;
+  right: 0.08em;
+  color: rgb(255 255 255 / 9%);
+  font-family: var(--sans);
+  font-size: clamp(9rem, 30vw, 18rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.edit-video__provider {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  border: 1px solid rgb(255 255 255 / 42%);
+  background: rgb(var(--ink-channels) / 76%);
+  padding: 3px 7px;
+  color: #fff;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.edit-video__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.edit-video__play svg {
+  display: block;
+}
+
+.edit-video__play circle {
+  fill: rgb(var(--ink-channels) / 78%);
+}
+
+.edit-video__play path {
+  fill: #fff;
+}
+
+.edit-video__fields {
+  padding: 14px 16px 12px;
+}
+
+.edit-video__field {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.edit-video__field-name {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.edit-live .milkdown .edit-video__field input,
+.edit-live .milkdown .edit-video__details input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 40px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--canvas);
+  padding: 7px 9px;
+  color: var(--ink);
+  font: inherit;
+}
+
+.edit-live .milkdown .edit-video__title {
+  font-weight: 700;
+}
+
+.edit-live .milkdown .edit-video__field input:focus,
+.edit-live .milkdown .edit-video__details input:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 1px;
+}
+
+.edit-live .milkdown .edit-video__field input[aria-invalid] {
+  border-bottom-color: var(--error);
+}
+
+.edit-video__status {
+  margin: 2px 0 10px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.edit-video__details {
+  border-top: 1px solid var(--line);
+  padding: 9px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.edit-video__details summary {
+  min-height: 32px;
+  color: var(--green-deep);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.edit-video__details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 4px 0 12px;
+}
+
+.edit-video__details-grid label > span {
+  display: block;
+  min-height: 2.8em;
+  margin-bottom: 4px;
+}
+
+.edit-video__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+
+.edit-live .milkdown .edit-video__action {
+  min-height: 36px;
+  border: 0;
+  background: transparent;
+  padding: 6px 0;
+  color: var(--blue);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.edit-live .milkdown .edit-video__action:hover {
+  text-decoration: underline;
+}
+
+.edit-live .milkdown .edit-video__action:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.edit-live .milkdown .edit-video__action.is-remove {
+  margin-left: auto;
+  color: var(--error);
+}
+
+@media (max-width: 560px) {
+  .edit-video__details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-live .milkdown .edit-video__action.is-remove {
+    width: 100%;
+    margin-left: 0;
+    text-align: left;
+  }
 }
 
 .edit-image-icon {

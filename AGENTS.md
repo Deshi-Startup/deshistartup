@@ -126,9 +126,12 @@ Maintainer flow:
 2. run `npm run media:upload`;
 3. reference the logical `/media/...` path and commit the registry change.
 
-Use `<Figure>` or Markdown images for images and `<YouTube>` for video facades. Never add raw media
-embeds or YouTube iframes. Run `npm run lint:media`. Retire and prune objects only through the
-dry-run-first process in `plan/media-operations.md`.
+Use `<Figure>` or Markdown images for images, `<YouTube>` for YouTube facades and
+`<FacebookVideo>` for supported public Facebook-video facades. Browser contributors should only
+need to paste a standalone video URL into an empty editor paragraph; the editor owns the component
+syntax and metadata fields. Never add raw media embeds or platform iframes. Run
+`npm run lint:media`. Retire and prune objects only through the dry-run-first process in
+`plan/media-operations.md`.
 
 ## Generated files
 

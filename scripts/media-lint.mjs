@@ -10,6 +10,7 @@
  *   - a page references a /media/... file that was never uploaded
  *   - <Figure> without alt text
  *   - <YouTube> without a valid 11-character video id, or without a title
+ *   - <FacebookVideo> without a supported public-video URL or title
  *   - hotlinked or raw media that bypasses the controlled components
  *   - an image committed into public/media (bytes belong in the bucket)
  *   - a file over the hard weight cap, or in a format we do not serve
@@ -44,6 +45,13 @@ const publicMedia = path.join(root, 'public', 'media')
 
 const ALLOWED = new Set(Object.keys(CONTENT_TYPES))
 const VIDEO_ID = /^[A-Za-z0-9_-]{11}$/
+const FACEBOOK_HOSTS = new Set([
+  'facebook.com',
+  'www.facebook.com',
+  'm.facebook.com',
+  'web.facebook.com'
+])
+const FACEBOOK_SHORT_HOSTS = new Set(['fb.watch', 'www.fb.watch'])
 
 const registry = readRegistry()
 const retired = readRetired()
@@ -100,6 +108,27 @@ function checkSource(src, where, page) {
         'Stage it under media/ and run `npm run media:upload`.'
     )
   }
+}
+
+function validFacebookVideoUrl(value) {
+  let url
+  try {
+    url = new URL(value)
+  } catch {
+    return false
+  }
+  if (!['http:', 'https:'].includes(url.protocol)) return false
+  const host = url.hostname.toLowerCase()
+  if (FACEBOOK_SHORT_HOSTS.has(host)) return url.pathname !== '/'
+  if (!FACEBOOK_HOSTS.has(host)) return false
+  const pathname = url.pathname.replace(/\/+$/, '') || '/'
+  return (
+    /\/videos\/[^/]+$/i.test(pathname) ||
+    /\/reel\/[^/]+$/i.test(pathname) ||
+    /\/share\/(?:v|r)\/[^/]+$/i.test(pathname) ||
+    (/^\/watch$/i.test(pathname) && Boolean(url.searchParams.get('v'))) ||
+    (/^\/video\.php$/i.test(pathname) && Boolean(url.searchParams.get('v')))
+  )
 }
 
 for (const file of walk(contentRoot, (name) => name.endsWith('.mdx'))) {
@@ -163,6 +192,18 @@ for (const file of walk(contentRoot, (name) => name.endsWith('.mdx'))) {
       warnings.push(
         `${page}: <YouTube id="${props.id}"> has no poster in the bucket. Run \`npm run media:posters\`.`
       )
+    }
+  }
+
+  for (const match of source.matchAll(/<FacebookVideo\b([\s\S]*?)\/>/g)) {
+    const props = attributes(match[1])
+    if (typeof props.url !== 'string' || !validFacebookVideoUrl(props.url)) {
+      errors.push(
+        `${page}: <FacebookVideo url="${props.url ?? ''}"> is not a supported Facebook video URL.`
+      )
+    }
+    if (typeof props.title !== 'string' || !props.title.trim()) {
+      errors.push(`${page}: <FacebookVideo url="${props.url ?? ''}"> has no title.`)
     }
   }
 }

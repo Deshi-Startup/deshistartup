@@ -84,7 +84,7 @@ remain utilitarian. Neither needs decorative depth.
 
 - Article pages stay near-zero-JS outside search, navigation and contribution controls.
 - Fonts are self-hosted; do not add render-blocking font services.
-- Do not embed a raw YouTube iframe. Use the facade component.
+- Do not embed raw YouTube or Facebook iframes. Use the click-to-load facade components.
 - Do not add a heavy dependency for a small interaction or calculator.
 - Prefer semantic HTML and CSS over client state.
 

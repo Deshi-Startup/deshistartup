@@ -15,6 +15,15 @@ import {
   sameLockedMdx
 } from '../lib/contribution-markdown'
 import {
+  decodeEditableVideos,
+  editableVideoError,
+  encodeEditableVideos
+} from '../lib/contribution-video'
+import {
+  contributionVideoPlugins,
+  installContributionVideoPaste
+} from '../lib/contribution-video-editor'
+import {
   ContributionDraft,
   clearDraft,
   loadDraft,
@@ -430,15 +439,19 @@ export default function ContributionEditor({
   useEffect(() => {
     if (!data || !containerRef.current) return
     let destroyed = false
+    let removeVideoPaste: (() => void) | undefined
+    const editorRoot = containerRef.current
     // Restoring a draft rebuilds the editor around it. The locked-block list
     // still comes from the server copy, so a draft that lost a <StubNotice/>
     // is caught by the submit guard rather than quietly shipping without it.
     const initialValue =
-      draftApplied && draft ? draft.body : encodeLockedMdx(data.content)
+      draftApplied && draft
+        ? draft.body
+        : encodeLockedMdx(encodeEditableVideos(data.content))
     lockedBlocksRef.current = lockedMdxBlocks(data.content)
 
     const crepe = new Crepe({
-      root: containerRef.current,
+      root: editorRoot,
       defaultValue: initialValue,
       features: {
         [Crepe.Feature.AI]: false,
@@ -479,6 +492,7 @@ export default function ContributionEditor({
         }
       }
     })
+    crepe.editor.use(contributionVideoPlugins)
 
     // Customize Markdown serializer options to keep bullet list format consistent
     crepe.editor.config((ctx) => {
@@ -531,6 +545,11 @@ export default function ContributionEditor({
         // measure as unchanged and the submit button would stay disabled.
         if (baselineRef.current === null) baselineRef.current = crepe.getMarkdown()
         markdownRef.current = crepe.getMarkdown()
+        removeVideoPaste = installContributionVideoPaste(
+          crepe,
+          editorRoot,
+          isEn ? 'en' : 'bn'
+        )
         setReady(true)
         scheduleMark()
       })
@@ -541,6 +560,7 @@ export default function ContributionEditor({
 
     return () => {
       destroyed = true
+      removeVideoPaste?.()
       cancelAnimationFrame(markFrame)
       window.clearTimeout(saveTimerRef.current)
       try {
@@ -674,13 +694,20 @@ export default function ContributionEditor({
     if (!data || submitting) return
     setSubmitError(null)
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
-    let body
+    let editorMarkdown
     try {
-      const md = crepeRef.current ? crepeRef.current.getMarkdown() : markdownRef.current
-      body = decodeLockedMdx(md || '')
+      editorMarkdown = crepeRef.current
+        ? crepeRef.current.getMarkdown()
+        : markdownRef.current
     } catch {
-      body = decodeLockedMdx(markdownRef.current || '')
+      editorMarkdown = markdownRef.current
     }
+    const videoError = editableVideoError(editorMarkdown || '')
+    if (videoError) {
+      setSubmitError(videoError)
+      return
+    }
+    const body = decodeEditableVideos(decodeLockedMdx(editorMarkdown || ''))
     if (!sameLockedMdx(lockedBlocksRef.current, lockedMdxBlocks(body))) {
       setSubmitError('locked_content_changed')
       return
@@ -766,7 +793,9 @@ export default function ContributionEditor({
         'submit_failed',
         'too_many_images',
         'uncontrolled_image_source',
-        'unauthorized'
+        'unauthorized',
+        'video_link_invalid',
+        'video_title_required'
       ].includes(code)
         ? code
         : 'network_error'
@@ -1227,6 +1256,18 @@ export default function ContributionEditor({
                           'সাইটের নিজস্ব একটি অংশ বদলে গেছে। ওই অংশ আগের অবস্থায় ফিরিয়ে আবার চেষ্টা করুন। আপনার অন্য পরিবর্তন হারায়নি।',
                           'A protected site component was changed. Restore it, then try again. Your other changes are still here.'
                         )
+                      : submitError === 'video_title_required'
+                        ? t(
+                            isEn,
+                            'ভিডিওটির শিরোনাম লিখুন। ভিডিওটি কী নিয়ে, তা ছোট করে বললেই হবে।',
+                            'Give the video a title so readers know what they are about to play.'
+                          )
+                        : submitError === 'video_link_invalid'
+                          ? t(
+                              isEn,
+                              'একটি ভিডিওর লিংক ঠিক নেই। ভিডিওটি সরিয়ে আসল YouTube বা Facebook লিংকটি আবার পেস্ট করুন।',
+                              'One video link is invalid. Remove it, then paste the original YouTube or Facebook link again.'
+                            )
                       : submitError === 'content_too_large'
                         ? t(
                             isEn,

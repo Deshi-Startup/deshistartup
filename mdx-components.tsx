@@ -4,6 +4,7 @@ import SectionIndex from './app/components/SectionIndex'
 import SiteMap from './app/components/SiteMap'
 import Figure, { MarkdownImage } from './app/components/Figure'
 import YouTube from './app/components/YouTube'
+import FacebookVideo from './app/components/FacebookVideo'
 
 interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href?: string
@@ -33,6 +34,7 @@ export function useMDXComponents(components: Record<string, any>): Record<string
     SectionIndex,
     SiteMap,
     Figure,
-    YouTube
+    YouTube,
+    FacebookVideo
   }
 }

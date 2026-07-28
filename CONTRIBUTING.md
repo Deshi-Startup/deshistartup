@@ -68,6 +68,15 @@ GitHub ব্যবহার করতে চাইলে পাতার নি
 নিজের নয় এমন ব্যক্তিগত তথ্য, গোপন নথি বা অনুমতি ছাড়া নেওয়া স্ক্রিনশট দেবেন না।
 ছবির উৎস, প্রয়োজনীয় ক্রেডিট এবং কী দেখা যাচ্ছে তার সংক্ষিপ্ত বর্ণনা দিন।
 
+## ভিডিও যোগ করলে
+
+লেখার একটি ফাঁকা লাইনে YouTube বা পাবলিক Facebook ভিডিওর লিংক পেস্ট করুন। সম্পাদক
+নিজে ভিডিওর ব্লক বসাবে। YouTube ভিডিওর শিরোনামও আনার চেষ্টা করবে। দরকার হলে শিরোনাম,
+ক্যাপশন, শুরুর সময় বা তারিখ বদলে দিতে পারবেন।
+
+Facebook ভিডিওটি পাবলিক না হলে সাইটের প্লেয়ারে নাও চলতে পারে। সে ক্ষেত্রে শুধু লিংক
+রাখুন, যাতে Facebook-এ দেখার অনুমতি আছে এমন পাঠক ভিডিওটি খুলতে পারেন।
+
 ## রিভিউ
 
 রিভিউয়ার দেখেন তথ্য ও সূত্র মেলে কি না, পাঠকের পরের কাজ পরিষ্কার কি না, কোনো পরামর্শে
@@ -166,6 +175,15 @@ authorized reviewer approves it separately.
 
 Do not submit another person's private information, confidential documents or screenshots you do
 not have permission to share. Include the source, any required credit and useful alt text.
+
+## Contributing videos
+
+Paste a YouTube or public Facebook video URL into an empty line in the editor. The editor creates
+the video block and tries to retrieve YouTube titles automatically. You can still change the title,
+caption, start time or date.
+
+Private Facebook videos may not play in the site's player. Keep those as normal links so readers
+with permission can open them on Facebook.
 
 ## Review
 
