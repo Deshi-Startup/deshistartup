@@ -55,7 +55,7 @@ Phase 1: Starting,Local Licenses & Tax,"বাজেট, এনবিআর স�
 Phase 1: Starting,Banking & Payments Setup,ব্যবসায়িক ব্যাংক অ্যাকাউন্ট নির্দেশিকা,Business bank account guide,/payments/bank-account,Guide / Checklist,High,
 Phase 1: Starting,Banking & Payments Setup,কোন ব্যাংকগুলো স্টার্টআপ-বান্ধব?,Which banks are startup-friendly,/payments/startup-friendly-banks,Guide / Checklist,High,
 Phase 1: Starting,Banking & Payments Setup,কর্পোরেট ব্যাংক অ্যাকাউন্টের ডকুমেন্টেশন চেকলিস্ট,Corporate bank account documentation checklist,/payments/bank-documents,Guide / Checklist,High,
-Phase 1: Starting,Banking & Payments Setup,বিকাশ/নগদ/পেমেন্ট গেটওয়ে বেসিক,bKash/Nagad/payment gateway basics,/payments/mfs-and-gateways,Guide / Checklist,High,
+Phase 1: Starting,Banking & Payments Setup,"বিকাশ, নগদ ও পেমেন্ট গেটওয়ে: কোনটা কখন লাগে","bKash, Nagad, and payment gateways: which one you actually need",/payments/mfs-and-gateways,Guide / Checklist,High,
 Phase 1: Starting,Banking & Payments Setup,"পেমেন্ট গেটওয়ে ইন্টিগ্রেশন: SSLCommerz, AmarPay, PortWallet","Payment gateway integration: SSLCommerz, AmarPay, PortWallet",/payments/gateway-integration,Guide / Checklist,High,
 Phase 1: Starting,Banking & Payments Setup,কার্ড ব্যবহারের কম হার: ব্যবসায়িক প্রভাব,Low card penetration implications,/payments/low-card-penetration,Guide / Checklist,High,
 Phase 1: Starting,Banking & Payments Setup,"SaaS রপ্তানি, রেমিটেন্স এবং বিদেশী শেয়ারহোল্ডারদের জন্য বৈদেশিক মুদ্রা বিনিময়ের প্রাথমিক বিষয়াবলী","Foreign exchange basics for SaaS export, remittance, and foreign shareholders",/trade/foreign-exchange,Guide / Checklist,High,

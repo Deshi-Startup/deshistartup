@@ -1,12 +1,139 @@
 ---
-title: "bKash/Nagad/Payment Gateway Basics"
-description: "bKash/Nagad/Payment Gateway Basics – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "bKash, Nagad, and Payment Gateways: Which One You Actually Need"
+description: "When a payment gateway is genuinely required, who holds a Bangladesh Bank licence, and what the published setup fees and transaction rates actually cost — worked out with official and company-published figures."
+verified: 2026-07-28
 ---
 
-# bKash/Nagad/Payment Gateway Basics
+# bKash, Nagad, and Payment Gateways: Which One You Actually Need
 
-<StubNotice path="payments/mfs-and-gateways" locale="en" />
+> **Key Takeaway:** If you sell through a Facebook page, you do not need a payment gateway yet — an MFS merchant account in the business name is enough. A gateway is for the moment a customer completes payment themselves, on your own website or app. When comparing quotes, insist on two separate numbers: the one-time setup fee and the per-transaction percentage. Most gateways publish the percentage but not the setup fee, so the real cost is unknowable until a written quote arrives.
+
+## How Far You Get Without a Gateway
+
+A belief that costs new founders money early: that selling online requires a payment gateway first. In practice a gateway is a piece of website machinery. It exists for the moment a customer sits on your site, enters a card number or a bKash PIN, and completes the payment without you.
+
+Taking orders in a Facebook inbox, quoting the price by message, and receiving the money over bKash involves no gateway at any point. What that flow needs is a merchant account in the business name.
+
+| Payment route | When it is enough | What it requires |
+|---|---|---|
+| MFS merchant (bKash, Nagad, Rocket) | Facebook page, inbox orders, small service fees | Trade licence and business papers, provider verification |
+| Cash on delivery | Shipping goods, new customers unwilling to pay upfront | Courier agreement, a returns process, a reconciliation sheet |
+| Payment gateway | Own website or app, card acceptance, rising order volume | Business papers, bank account, setup fee, integration work |
+
+None of the three replaces the others. Most businesses eventually run two or three together, but there is no reason to start all of them at once.
+
+## Who Actually Holds a Licence
+
+Running a Mobile Financial Service (MFS) in Bangladesh requires a Payment Service Provider (PSP) licence from the Payment Systems Department of Bangladesh Bank. Under the MFS Regulations 2022, only a subsidiary led by a scheduled bank, a financial institution, or a government entity can hold one.
+
+On the verification date (28 July 2026), Bangladesh Bank's own list carried 13 MFS services. Some of the familiar ones:
+
+| MFS service | Business entity |
+|---|---|
+| bKash | bKash Ltd. |
+| ROCKET | Dutch Bangla Bank Ltd. |
+| Upay | UCB Fintech Company Ltd. |
+| tap | Trust Axiata Digital Ltd. |
+| Nagad | Bangladesh Post office (with interim approval of BB) |
+
+That last line is worth reading closely. Nagad's entry carries the parenthetical "with interim approval of BB" — an interim approval rather than a full licence. No such qualifier appears against the other 12. Keep the distinction in mind when deciding where your business balance will sit, and check Bangladesh Bank's current list yourself before signing anything.
+
+## Gateway Pricing Comes in Two Parts
+
+Most discussion of gateway cost stops at the percentage. The larger first-year hit usually comes from somewhere else — a one-time, non-refundable setup fee.
+
+What the companies published on their own sites as of 28 July 2026:
+
+| Gateway and plan | One-time setup fee | Per transaction |
+|---|---|---|
+| SSLCommerz – Basic | BDT 25,500, non-refundable | 2.5%, 3.5% for American Express |
+| aamarPay – aamarGrowth | Not published, "Call For Price" | 2.55% cards, 2.00% bKash/Nagad |
+| aamarPay – Easy Trx | Not published, "Call For Price" | 2.75% cards, 2.20% bKash/Nagad |
+| ShurjoPay | No pricing page on the site at all | Not published |
+
+Three practical points fall out of that table.
+
+**First, the lowest advertised rate is not available to everyone.** aamarPay's cheapest tier (1.85% cards, 1.75% bKash/Nagad) is reserved for schools, colleges, and universities. When someone quotes that number in a blog post or a Facebook group, check which plan it belongs to.
+
+**Second, bKash and Nagad cost less than cards.** Most small businesses in Bangladesh already receive the bulk of their payments through MFS, so budgeting at the card rate overstates the cost. Work out the actual split from your last three months of orders.
+
+**Third, almost nobody publishes the setup fee.** One of the three gives a number. That is not a small gap — as the arithmetic below shows, this single unknown can reverse the entire comparison.
+
+One more thing worth holding on to during negotiation: Bangladesh Bank fixes, by circular, the maximum merchant charge a bank may levy on card, Bangla QR, and e-commerce transactions. Asking a sales representative how their quoted rate relates to that capped rate at least reveals where the number is coming from.
+
+### Work the Arithmetic
+
+Suppose Rumana sells homemade pickles from Rajshahi. She started on a Facebook page and now handles roughly 200 orders a month at an average of BDT 1,200, so monthly sales are BDT 240,000. Almost all her customers pay by bKash. She is considering her own website, which is why she is asking about gateways.
+
+With SSLCommerz, the first month is BDT 25,500 in setup plus 2.5% of BDT 240,000, or BDT 6,000 in transaction fees — BDT 31,500 in total. Every month after that is BDT 6,000. Across the first year: 25,500 + (6,000 × 12) = BDT 97,500.
+
+With aamarPay's Easy Trx, the bKash rate is 2.20%, so BDT 5,280 a month, or BDT 63,360 a year. The setup fee is the number Rumana does not have.
+
+The two therefore break even when aamarPay's setup fee equals 97,500 − 63,360 = BDT 34,140. **Below BDT 34,140 in the quote, aamarPay is cheaper over the first year. Above it, it is not.** Holding that figure before the "Call For Price" phone call changes the conversation.
+
+Now look at the other direction. Had Rumana been doing 20 orders a month — BDT 24,000 in sales — the 2.5% transaction fee would come to BDT 600 a month. The setup fee alone would then equal roughly three and a half years of transaction fees. At that volume, money spent on a website and a gateway is eaten before it ever becomes profit, and staying on a bKash merchant account is the better call.
+
+## Taking Business Money Through a Personal Number
+
+The MFS Regulations 2022 treat payments for goods and services (Person to Business) and transfers between individuals (Person to Person) as separate categories of service. The same circular contemplates MFS accounts opened in the names of individuals, businesses, and other entities, each subject to KYC and CDD checks.
+
+Put simply, the rules do not regard the two activities as the same thing. What actually happens when sales money lands in a personal wallet:
+
+- household spending and business income mix in one place, and month-end reconciliation becomes guesswork
+- who pays the send-money charge turns into a negotiation on nearly every order
+- new customers hesitate to send money to a personal number, especially on higher-value items
+- when you later apply for a business bank account or a gateway, you have no transaction record in the business name to show
+
+The last one is the expensive mistake, because by the time it surfaces the time is already lost. For what each provider requires, see [bKash Personal vs Merchant Account](/en/payments/bkash-merchant).
+
+## The Numbers to Check on a Quote
+
+Take these seven questions into the meeting, and write down the answers.
+
+1. How much is the setup fee, and is any part of it refundable?
+2. Is there a separate monthly or annual fee?
+3. What are the card and bKash/Nagad rates, stated separately?
+4. How many working days until money reaches the bank account?
+5. On a refund, is the fee charged on the original transaction returned?
+6. Does adding a payment method or a second store cost extra? aamarPay's Easy Trx plan, for instance, lists BDT 1,000 for each additional payment method.
+7. How long is the contract, and what happens on early exit?
+
+Number five is the one people forget most often. In a business with frequent returns, a fee that is not reversed on refund means every cancelled order costs you twice.
+
+## Common Mistakes
+
+| Mistake | Result |
+|---|---|
+| Choosing a gateway on the percentage alone | The cheaper plan turns out dearer once setup is counted |
+| Paying a setup fee with no website live | Money sits idle and the service never gets used |
+| Budgeting from an old figure found in a blog post | The quote does not match the plan |
+| Costing every order at the card rate | MFS rates are lower, so the estimate runs high |
+| Remembering gateway fees after setting prices | The charge comes straight out of margin |
+
+## Checklist
+
+- [ ] Decided whether a gateway is genuinely needed yet
+- [ ] Checked the service against Bangladesh Bank's current MFS list
+- [ ] Worked out the bKash-versus-card split from the last three months of orders
+- [ ] Obtained written quotes from at least two gateways, each stating the setup fee
+- [ ] Calculated total first-year cost separately for both
+- [ ] Confirmed in writing whether fees are reversed on refunds
+- [ ] Holding a merchant account in the business name rather than taking sales through a personal number
+
+Rule of thumb: **do not sign with any gateway until the setup fee and the percentage are both in your hand at the same time.**
+
+## What to Do Next
+
+- To compare the published figures side by side: [Payment Gateway Comparison](/en/payments/gateway-comparison)
+- To move from personal to merchant: [bKash Personal vs Merchant Account](/en/payments/bkash-merchant)
+- If a business bank account comes first: [Business Bank Account](/en/payments/bank-account)
+- If you sell on cash on delivery: [Cash on Delivery and Delivery Risk](/en/operations/cod-risk)
 
 ## Relevant Sources
 
-- [Bangladesh Bank](https://www.bb.org.bd)
+- [Bangladesh Bank – List of licensed MFS services (PDF)](https://www.bb.org.bd/fnansys/paymentsys/mfs_provider.pdf)
+- [Bangladesh Bank – Bangladesh Mobile Financial Services (MFS) Regulations, 2022, PSD Circular No. 04/2022 (PDF)](https://www.bb.org.bd/mediaroom/circulars/psd/feb152022psd04e.pdf)
+- [Bangladesh Bank – PSD circular on merchant charges for card, Bangla QR, and e-commerce transactions, 6 February 2025 (PDF)](https://www.bb.org.bd/mediaroom/circulars/psd/feb062025psd02.pdf)
+- [SSLCommerz – Pricing](https://sslcommerz.com/pricing/)
+- [aamarPay – Pricing](https://www.aamarpay.com/index.php/pricing)
+- [ShurjoPay](https://shurjopay.com.bd)
