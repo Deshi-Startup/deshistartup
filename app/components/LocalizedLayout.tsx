@@ -458,35 +458,45 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     setHeadings(nextHeadings)
   }, [pathname])
 
-  // Last-updated date, fetched lazily from the build manifest.
+  // Both dates for this route, read from the meta tags the postbuild pass writes
+  // into every prerendered page (same reason the breadcrumb leaf is injected
+  // there: the shared client shell cannot know the route during the static
+  // root-layout render). Navigation is full document loads, so the tags always
+  // describe the page on screen.
+  //
+  // Fetching the site-wide maps instead cost every first-time reader ~40 KB to
+  // render one date, which is the wrong trade on the phone-and-patchy-bandwidth
+  // scene this site is built for. `next dev` runs no postbuild pass, so the
+  // maps stay the fallback and dev keeps showing dates.
   useEffect(() => {
     setLastUpdated(null)
-    if (isLanding) return
-    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
-    let active = true
-    fetch(`${basePath}/page-dates.json`)
-      .then((res) => (res.ok ? res.json() : null))
-      .then((dates) => {
-        if (active && dates && dates[pathname]) setLastUpdated(dates[pathname])
-      })
-      .catch(() => {})
-    return () => {
-      active = false
-    }
-  }, [pathname, isLanding])
-
-  // Stronger editorial verification date, separate from last git update.
-  useEffect(() => {
     setLastVerified(null)
     if (isLanding) return
+
+    const readMeta = (name: string) =>
+      document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`)?.content || null
+
+    const updated = readMeta('deshi:updated')
+    const verified = readMeta('deshi:verified')
+    if (updated || verified) {
+      setLastUpdated(updated)
+      setLastVerified(verified)
+      return
+    }
+
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
     let active = true
-    fetch(`${basePath}/page-verified.json`)
-      .then((res) => (res.ok ? res.json() : null))
-      .then((dates) => {
-        if (active && dates && dates[pathname]) setLastVerified(dates[pathname])
-      })
-      .catch(() => {})
+    Promise.all(
+      ['page-dates.json', 'page-verified.json'].map((name) =>
+        fetch(`${basePath}/${name}`)
+          .then((res) => (res.ok ? res.json() : null))
+          .catch(() => null)
+      )
+    ).then(([dates, verifiedDates]) => {
+      if (!active) return
+      if (dates?.[pathname]) setLastUpdated(dates[pathname])
+      if (verifiedDates?.[pathname]) setLastVerified(verifiedDates[pathname])
+    })
     return () => {
       active = false
     }

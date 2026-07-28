@@ -35,6 +35,34 @@ function htmlFileFor(route) {
   return path.join(outDir, route === '/' ? 'index.html' : `${route.slice(1)}.html`)
 }
 
+/**
+ * The hashed URL of the Bengali serif, lifted out of the built stylesheet so it
+ * carries whatever basePath this deployment was built with. Bengali headings are
+ * set in it, and no common platform ships Noto Serif Bengali for the local()
+ * source to match, so on a Bengali page it is always fetched. Left to @font-face
+ * alone it is not discovered until the stylesheet has downloaded and parsed.
+ */
+function bengaliSerifUrl() {
+  const cssDirs = [
+    path.join(root, '.next', 'static', 'css'),
+    path.join(root, 'out', '_next', 'static', 'css')
+  ]
+  for (const dir of cssDirs) {
+    if (!fs.existsSync(dir)) continue
+    for (const name of fs.readdirSync(dir)) {
+      if (!name.endsWith('.css')) continue
+      const match = fs
+        .readFileSync(path.join(dir, name), 'utf8')
+        .match(/url\(\s*["']?([^"')]*noto-serif-bengali-700[^"')]*\.woff2)["']?\s*\)/)
+      if (match) return match[1]
+    }
+  }
+  return null
+}
+
+const serifUrl = bengaliSerifUrl()
+if (!serifUrl) console.warn('postbuild SEO: Bengali serif not found in built CSS; skipping font preload')
+
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -269,6 +297,13 @@ for (const page of pages) {
   const tags = [
     '<!-- deshi-seo:start -->',
     `<link rel="canonical" href="${escapeHtml(url)}"/>`,
+    // Bengali pages only: the English tree renders no Bengali codepoints, so the
+    // face's unicode-range keeps it unfetched there and a preload would be pure
+    // cost. crossorigin is required or the preload misses and the font is
+    // fetched twice.
+    ...(serifUrl && !isEn
+      ? [`<link rel="preload" as="font" type="font/woff2" href="${escapeHtml(serifUrl)}" crossorigin="anonymous"/>`]
+      : []),
     `<meta name="robots" content="${robots}"/>`,
     `<meta http-equiv="content-language" content="${contentLanguage}"/>`,
     `<meta name="author" content="${SITE_NAME} contributors"/>`,
@@ -308,6 +343,12 @@ for (const page of pages) {
     if (page.date) tags.push(`<meta property="article:modified_time" content="${page.date}"/>`)
     tags.push(`<meta property="article:author" content="${SITE_URL}/"/>`)
   }
+
+  // The client shell's meta bar reads these instead of downloading the
+  // site-wide date maps. Emitted for every page, not just article-typed ones,
+  // because collection and hub pages show the same line.
+  if (page.date) tags.push(`<meta name="deshi:updated" content="${page.date}"/>`)
+  if (page.verified) tags.push(`<meta name="deshi:verified" content="${page.verified}"/>`)
 
   const schema = schemaFor(page, wordCount)
   if (schema) tags.push(`<script type="application/ld+json" data-deshi-schema>${jsonLd(schema)}</script>`)

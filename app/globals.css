@@ -8,8 +8,12 @@
 
 @font-face {
   font-family: 'Noto Sans Bengali';
+  /* Plain woff2, not the old woff2-variations draft value: a browser must skip
+     any src whose format() it does not recognise, and variable support is read
+     from the file itself. The stale keyword risked dropping the source entirely
+     on the devices least able to spare a fallback. */
   src: local('Noto Sans Bengali Regular'), local('NotoSansBengali-Regular'),
-    url('./fonts/noto-sans-bengali-var.woff2') format('woff2-variations');
+    url('./fonts/noto-sans-bengali-var.woff2') format('woff2');
   font-weight: 400 700;
   font-style: normal;
   font-display: swap;
