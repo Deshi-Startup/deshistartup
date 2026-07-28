@@ -1,13 +1,155 @@
 ---
-title: "SSLCommerz, aamarPay, and PortWallet Comparison Checklist"
-description: "SSLCommerz, aamarPay, and PortWallet Comparison Checklist – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "Payment Gateway Comparison: SSLCommerz, aamarPay, PortPos, and ShurjoPay"
+description: "Published fees, settlement cycles, and document requirements for four Bangladeshi gateways, side by side — how to calculate your effective rate, and which numbers none of them publish. Verified 28 July 2026."
+verified: 2026-07-28
 ---
 
-# SSLCommerz, aamarPay, and PortWallet Comparison Checklist
+# Payment Gateway Comparison: SSLCommerz, aamarPay, PortPos, and ShurjoPay
 
-<StubNotice path="payments/gateway-comparison" locale="en" />
+> **Key Takeaway:** Everyone asks "what percentage" when choosing a gateway, but for most businesses in Bangladesh the real cost is decided by a different number — the MFS rate. SSLCommerz charges the same 2.5% on cards and on bKash/Nagad; aamarPay and PortPos charge less for MFS. Where eight of every ten orders arrive by bKash, that difference runs to thousands of taka a year. The table below records what each company published on its own site on 28 July 2026. What they do not publish is marked too, because the empty cells are the expensive ones.
+
+## At a Glance
+
+| | SSLCommerz (Basic) | aamarPay (aamarGrowth) | PortPos | ShurjoPay |
+|---|---|---|---|---|
+| One-time setup fee | BDT 25,500, non-refundable | Not published, "Call For Price" | None | Not published |
+| Cards | 2.5% | 2.55% | 2.50% | Not published |
+| American Express | 3.5% | Not stated separately | 3.50% | Not published |
+| bKash, Nagad, net banking | 2.5% (same rate) | 2.00% | 2.20% | Not published |
+| Additional flat fee per transaction | Not published | Not published | BDT 1 | Not published |
+| Monthly fee | Not published | None | None | Not published |
+| Settlement cycle | Not published | Twice weekly, on working days | Not published | Not published |
+| Single transaction limit | Typically BDT 500,000, varies by acquiring bank | Not published | Not published | Not published |
+| Refund reaches the customer | 5–7 working days | After the dispute is investigated | Not published | Not published |
+| Merchant panel | merchant.sslcommerz.com | merchant.aamarpay.com and a mobile app | myaccount.portpos.com | Not published |
+
+Read two caveats alongside the table. First, these are the companies' own published claims, not independent verification. Second, "not published" does not mean the service is absent — it means the number is not on the website, so you have to ask for it in a quote.
+
+One more thing. Price is the easiest dimension to compare, which is exactly why it tempts you to decide on price alone. How long the company has operated, which banks and wallets are connected, and who picks up the phone when something breaks are not things a table can price. Check whether a plugin exists for your platform, too.
+
+## The Number That Costs the Most
+
+SSLCommerz states on its pricing page that the 2.5% rate applies across all standard payment channels — Visa, Mastercard, bKash, Nagad, Rocket, and more. aamarPay and PortPos price cards and MFS separately, and their MFS rate is the lower one.
+
+In Bangladesh this is not a technical footnote. Most businesses that grew out of a Facebook page receive nearly all their money through bKash or Nagad and very little on cards. Yet people compare on the card rate, because that is the number they see first.
+
+### Calculate Your Effective Rate
+
+You can work out your real rate in one line. Call it the **effective rate** — the average percentage deducted once every channel is accounted for.
+
+> Effective rate = (card share × card rate) + (MFS share × MFS rate) + (flat fee ÷ average order value)
+
+Take a worked example. Eighty per cent of orders arrive by bKash and 20% on cards, average order value is BDT 1,200, there are 200 orders a month, and monthly sales are BDT 240,000. Three gateways work out like this:
+
+| Gateway | Effective rate | Monthly fees | First year including setup |
+|---|---|---|---|
+| SSLCommerz | 2.50% | BDT 6,000 | BDT 97,500 |
+| aamarPay (aamarGrowth) | 2.11% | BDT 5,064 | BDT 60,768 plus an unknown setup fee |
+| PortPos | 2.34% | BDT 5,624 | BDT 67,488 |
+
+Open the arithmetic up. For aamarPay: (0.8 × 2.00) + (0.2 × 2.55) = 1.60 + 0.51 = 2.11%. For PortPos: (0.8 × 2.20) + (0.2 × 2.50) = 1.76 + 0.50 = 2.26%. Add BDT 200 in flat fees across 200 orders and the month comes to BDT 5,624. SSLCommerz charges one rate on both channels, so the split makes no difference: 2.50%.
+
+Two usable decisions come out of that.
+
+**First, PortPos costs BDT 30,012 less than SSLCommerz over the first year** — 97,500 minus 67,488. The card rates are nearly identical (2.5% against 2.50%); the entire gap comes from the MFS rate and the setup fee.
+
+**Second, aamarPay only wins if its setup fee is below BDT 6,720** — what remains after subtracting 60,768 from 67,488. aamarPay has the lowest percentage of the three, and this one unpublished number can still swallow the whole advantage. Have 6,720 in front of you before the call.
+
+Do not know your own split? Open the last three months of order records and count the bKash and card orders separately. Estimating turns the entire calculation into fiction.
+
+## PortWallet Is Now PortPos
+
+It is easy to end up comparing stale prices. The site at portwallet.com is still live, and it still lists a BDT 5,000 signup fee, 2.99% on cards (Starter) or 2.59% (Business), and 2.30% or 2.20% on MFS.
+
+But PortPos's own page says plainly, "PortWallet is now PortPos" — and the prices there are different: no signup fee, 2.50% on cards, 2.20% on MFS, and BDT 1 per transaction.
+
+The lesson is not confined to one company. Most of the blog posts and Facebook discussions about gateways in Bangladesh are several years old, and their figures are often lifted from a domain that has since been retired. **Check every rate against the company's current site, then get it in writing on the quote.**
+
+If you accept international cards, note one more thing. Both the PortWallet and PortPos pages mention an added cross-border fee on foreign cards, but the two pages do not present the rate identically. If you have overseas customers, get that figure confirmed separately by email.
+
+## How Long Until the Money Reaches Your Bank
+
+This is the least published number of all, and the one that matters most for cash flow.
+
+Of the four, only aamarPay states the cycle in its FAQ: twice a week, on working days. They do not disburse on bank holidays, weekly holidays, or government holidays. Nothing about a cycle appears on the pricing, FAQ, or terms pages of the other three.
+
+Consider why this is worth pressing on. On BDT 240,000 of monthly sales, moving from twice-weekly to once-weekly settlement leaves several days of takings permanently parked at the gateway. When you need to buy raw materials or restock, those few days are everything.
+
+Ask for these three separately in the quote:
+
+1. How many times a week settlement runs, and on which days.
+2. How many working days pass between the transaction and the money reaching the bank.
+3. How the cycle shifts around holidays.
+
+## What Documents You Need
+
+SSLCommerz lists its document requirements by business structure on its onboarding page:
+
+| Business structure | What their list asks for |
+|---|---|
+| Proprietorship | TIN, MEF, trade licence, VAT, DBID |
+| Partnership | DBID, TIN, MEF, trade licence, partnership deed, VAT |
+| Private limited | MOA/AOA, VAT, CBR, RCBFI, COI, trade licence, MEF, TIN, DBID |
+| Education | MEF, EIIN, permission letter from the headmaster or principal, trustee board |
+
+aamarPay's FAQ gives a different list: trade licence, TIN, VAT (if any), NID, one photograph, partnership deed (for a partnership), and certificate of incorporation plus MOA/AOA (for a private limited company). On top of that you complete their own application form and the bank's sub-merchant registration form, then print, sign and seal it, and send the scan back.
+
+Reading the two lists together, one difference stands out. SSLCommerz asks for a **DBID** for every business structure; aamarPay's published list does not. DBID stands for Digital Business Identity, a separate registration number for doing business online. Without it in hand your application can stall, so find out whether you need one before you settle on a gateway.
+
+As for **CBR** and **RCBFI** on the SSLCommerz list — neither abbreviation is expanded anywhere on their page. Do not guess. Ask the account manager directly which document is meant for your structure.
+
+## Who Cannot Apply
+
+aamarPay's FAQ states that the service is only for Bangladeshi companies registered in Bangladesh. It also rules out several categories outright:
+
+- pornography and adult content
+- firearms, ammunition, and fireworks
+- unapproved drugs
+- gambling and pyramid schemes
+- stolen goods, money laundering, and terrorist financing
+- any other activity against the laws of Bangladesh
+
+The list belongs to one company, but the pattern is much the same everywhere. If your product sits near the boundary — herbal medicine, anything involving wagering, or an import whose approval status is unclear — ask by email before submitting documents. Recovering money stuck in a closed account takes a great deal of running around.
+
+## Common Mistakes
+
+| Mistake | Result |
+|---|---|
+| Comparing on the card rate alone | A bKash-heavy business ends up with an entirely different real cost |
+| Ignoring the flat fee | On low-priced items, even BDT 1 becomes a large percentage |
+| Taking rates from an old domain or blog post | The quote does not match the figures |
+| Signing without knowing the settlement cycle | Money sits idle and restocking slips |
+| Applying without a DBID or VAT registration | The application stalls for want of paperwork |
+| Ignoring the Amex and foreign-card surcharges | Margin drops on international sales |
+
+## Checklist
+
+- [ ] Worked out the bKash-versus-card split from the last three months of orders
+- [ ] Know the average order value, so the flat fee can be converted to a percentage
+- [ ] Calculated the effective rate myself for at least two gateways
+- [ ] Every quote states the setup fee
+- [ ] Have the settlement frequency in writing
+- [ ] Matched the document list against my own business structure, and know whether a DBID is needed
+- [ ] Confirmed my product is not on the restricted list
+- [ ] Checked the rates against each company's current website myself
+
+Rule of thumb: **choose on the effective rate calculated from your own channel split, not on the card rate.**
+
+## What to Do Next
+
+- If you are unsure a gateway is needed at all: [bKash, Nagad, and Payment Gateways: Which One You Actually Need](/en/payments/mfs-and-gateways)
+- To assemble the paperwork: [What You Need to Open a Merchant Account](/en/payments/merchant-account)
+- To match settlement deposits against orders: [Payment Reconciliation](/en/payments/reconciliation)
+- To handle refunds and chargebacks: [Refunds and Chargebacks](/en/payments/refunds-chargebacks)
 
 ## Relevant Sources
 
-- [GSMA Bangladesh](https://www.gsma.com)
-- [Bangladesh Bank](https://www.bb.org.bd)
+- [SSLCommerz – Pricing](https://sslcommerz.com/pricing/)
+- [SSLCommerz – Onboarding Requirements](https://sslcommerz.com/onboarding-requirements/)
+- [SSLCommerz – FAQ](https://sslcommerz.com/faq/)
+- [aamarPay – Pricing](https://www.aamarpay.com/index.php/pricing)
+- [aamarPay – FAQ](https://www.aamarpay.com/index.php/faq)
+- [PortPos – Business and Pricing](https://portpos.com/business)
+- [PortWallet – Pricing (the retired brand's site)](https://www.portwallet.com/en_US/pricing.html)
+- [ShurjoPay](https://shurjopay.com.bd)
+- [Bangladesh Bank – List of licensed MFS services (PDF)](https://www.bb.org.bd/fnansys/paymentsys/mfs_provider.pdf)
