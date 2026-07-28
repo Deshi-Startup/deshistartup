@@ -3810,3 +3810,283 @@ body.auth-open {
     display: none !important;
   }
 }
+
+/* Expert Editorial Review Badge */
+.expert-review {
+  margin: 24px 0 28px;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--green);
+  border-radius: 4px;
+  background: var(--canvas);
+}
+
+.expert-review__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.expert-review__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--green-deep);
+  background: var(--green-soft);
+  padding: 3px 9px;
+  border-radius: 12px;
+}
+
+.expert-review__date {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.expert-review__person {
+  font-size: 0.96rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.expert-review__name {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.expert-review__role {
+  color: var(--ink-light);
+}
+
+.expert-review__org {
+  color: var(--muted);
+}
+
+.expert-review__notes {
+  margin: 8px 0 0;
+  font-size: 0.88rem;
+  color: var(--ink-light);
+  line-height: 1.5;
+}
+
+.expert-review__source {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* Wikipedia-style Inline Footnotes */
+.cite-footnote {
+  font-size: 0.75em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  top: -0.5em;
+  margin-left: 2px;
+}
+
+.cite-link {
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration: none;
+  padding: 1px 3px;
+  border-radius: 2px;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.cite-link:hover,
+.cite-link:focus-visible {
+  background-color: var(--blue-soft, #eef5fc);
+  text-decoration: underline;
+}
+
+/* Interactive Hoverable Term Glossary */
+.glossary-term-plain {
+  font-weight: 500;
+}
+
+.glossary-term-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.glossary-term-btn {
+  display: inline-flex;
+  align-items: baseline;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--ink);
+  font-weight: 600;
+  border-bottom: 1.5px dotted var(--green);
+  cursor: help;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.glossary-term-btn:hover,
+.glossary-term-btn:focus-visible {
+  border-bottom-style: solid;
+  background-color: var(--green-soft);
+  color: var(--green-deep);
+  outline: none;
+}
+
+.glossary-term-dot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin-left: 2px;
+  border-radius: 50%;
+  background-color: var(--green);
+  vertical-align: super;
+}
+
+.glossary-popover {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  width: max-content;
+  max-width: 280px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--canvas);
+  box-shadow: 0 4px 20px rgb(var(--ink-channels) / 16%);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--ink);
+  pointer-events: auto;
+  animation: popover-fade 150ms ease-out;
+}
+
+.glossary-popover::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: var(--canvas) transparent transparent transparent;
+}
+
+.glossary-popover__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--green-deep);
+}
+
+.glossary-popover__body {
+  display: block;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+@keyframes popover-fade {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 4px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* Enhanced Print Optimization */
+@media print {
+  /* Hide interactive/chrome elements */
+  .site-header,
+  .sidebar-wrap,
+  .sidebar-backdrop,
+  .article-tabs,
+  .skip-link,
+  .top-actions,
+  .edit-bar,
+  .edit-media,
+  .edit-publish,
+  .edit-flash,
+  .site-footer,
+  .recent-list,
+  .nav-toggle,
+  .sidebar-close,
+  button,
+  .glossary-popover {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  .page-shell,
+  .content-canvas,
+  .article {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  h1, h2, h3, h4 {
+    color: #000000 !important;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  h1 {
+    font-size: 22pt;
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 16pt;
+    border-bottom: 1px solid #ccc !important;
+  }
+
+  /* Prevent awkward breaks inside components */
+  table,
+  blockquote,
+  .wiki-notice,
+  .expert-review,
+  .figure,
+  details {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .expert-review {
+    border: 1px solid #999 !important;
+    border-left: 4px solid #1b4d3e !important;
+  }
+
+  /* Show full destination URLs for external links when printed */
+  .article a[href^="http"]:not(.cite-link)::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #444;
+  }
+}
+

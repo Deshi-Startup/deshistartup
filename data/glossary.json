@@ -1,0 +1,82 @@
+{
+  "authorized-capital": {
+    "bn": "কোম্পানির অনুমোদিত মূলধন (Authorized Capital): স্মারকলিপিতে (MoA) উল্লিখিত সর্বোচ্চ মূলধন সীমা, যা কোম্পানি তার শেয়ারহোল্ডারদের কাছে বিলি বা ইস্যু করার আইনি অনুমতি রাখে।",
+    "en": "Authorized Capital: The maximum amount of share capital that a company is authorized by its Memorandum of Association (MoA) to issue to shareholders."
+  },
+  "paid-up-capital": {
+    "bn": "পরিশোধিত মূলধন (Paid-up Capital): শেয়ারহোল্ডাররা কোম্পানির কাছে বাস্তবে যে পরিমাণ টাকা পরিশোধ করে শেয়ার কিনেছেন।",
+    "en": "Paid-up Capital: The actual amount of money paid by shareholders for the shares issued to them."
+  },
+  "form-xii": {
+    "bn": "ফরম ১২ (Form XII): আরজেএসসিতে পরিচালকদের নিয়োগ, পদত্যাগ বা তথ্য পরিবর্তনের বিবরণী জমা দেওয়ার আইনি ফরম।",
+    "en": "Form XII: The statutory RJSC form used to report the appointment, resignation, or change of particulars of company directors."
+  },
+  "form-117": {
+    "bn": "ফরম ১১৭ (Form 117): প্রাইভেট লিমিটেড কোম্পানির শেয়ার হস্তান্তরের সময় আরজেএসসিতে জমা দেওয়ার দালিলিক ফরম।",
+    "en": "Form 117: The statutory instrument of share transfer submitted to RJSC when transferring private limited company shares."
+  },
+  "moa-aoa": {
+    "bn": "স্মারকলিপি ও পরিমেল নিয়মাবলী (MoA & AoA): কোম্পানির মৌলিক উদ্দেশ্য (MoA) এবং অভ্যন্তরীণ পরিচালনার নিয়মকানুন (AoA) সংক্রান্ত সনদ।",
+    "en": "MoA & AoA: Memorandum of Association (company objectives and scope) and Articles of Association (internal governance rules)."
+  },
+  "rjsc-name-clearance": {
+    "bn": "আরজেএসসি নাম ছাড়পত্র (RJSC Name Clearance): নতুন কোম্পানি গঠনের আগে কাঙ্ক্ষিত নামটি খালি আছে কি না তা আরজেএসসি থেকে অনুমোদন নেওয়ার সনদ।",
+    "en": "RJSC Name Clearance: Official approval from RJSC confirming that the proposed company name is available and acceptable."
+  },
+  "e-tin": {
+    "bn": "ই-টিআইএন (e-TIN): এনবিআর কর্তৃক ব্যক্তি বা প্রতিষ্ঠানের জন্য ইস্যুকৃত ১২ ডিজিটের ইলেকট্রনিক কর নম্বর।",
+    "en": "e-TIN: 12-digit electronic Taxpayer Identification Number issued by NBR for individuals and entities."
+  },
+  "vat-bin": {
+    "bn": "ভ্যাট বিআইএন (VAT BIN): এনবিআরের ভ্যাট অনলাইন পোর্টাল থেকে প্রাপ্ত ৯ ডিজিটের বিজনেস আইডেন্টিফিকেশন নম্বর।",
+    "en": "VAT BIN: 9-digit Business Identification Number issued via NBR's VAT Online portal for turnover tax and VAT compliance."
+  },
+  "trade-license": {
+    "bn": "ট্রেড লাইসেন্স (Trade License): স্থানীয় সিটি কর্পোরেশন, পৌরসভা বা ইউনিয়ন পরিষদ থেকে ব্যবসা পরিচালনার বার্ষিক অনুমতিপত্র।",
+    "en": "Trade License: Annual permit issued by local government authorities (City Corporation, Pourashava, or Union Parishad) to operate a business."
+  },
+  "encashment-certificate": {
+    "bn": "এনক্যাশমেন্ট সার্টিফিকেট (Encashment Certificate): বিদেশ থেকে আসা রেমিট্যান্স বা শেয়ারের টাকা ব্যাংকে দেশি মুদ্রায় (টাকা) ভাঙানোর এনবিআর/আরজেএসসি গ্রাহ্য প্রমাণপত্র।",
+    "en": "Encashment Certificate: Bank-issued certificate proving foreign currency remittance has been converted into local currency (BDT) via official banking channels."
+  },
+  "mfs": {
+    "bn": "মোবাইল ফাইন্যান্সিয়াল সার্ভিসেস (MFS): বিকাশ, নগদ, রকেটের মতো বাংলাদেশ ব্যাংক অনুমোদিত ডিজিটাল ওয়ালেট সেবাসমূহ।",
+    "en": "Mobile Financial Services (MFS): Bangladesh Bank authorized mobile wallets (such as bKash, Nagad, Rocket)."
+  },
+  "cod": {
+    "bn": "ক্যাশ অন ডেলিভারি (COD): পণ্য ক্রেতার হাতে পৌঁছানোর পর সরাসরি কুরিয়ার প্রতিনিধিকে নগদ বা ওয়ালেটে টাকা পরিশোধ করার পদ্ধতি।",
+    "en": "Cash on Delivery (COD): Payment method where the customer pays cash or wallet transfer to the courier upon product delivery."
+  },
+  "vesting": {
+    "bn": "শেয়ার ভেস্টিং (Vesting): কো-ফাউন্ডার বা কর্মীদের নির্দিষ্ট সময় (সাধারণত ৪ বছর, ১ বছর ক্লিফসহ) প্রতিষ্ঠানে থাকার বিনিময়ে ধাপে ধাপে শেয়ারের পূর্ণ মালিকানা অর্জনের চুক্তি।",
+    "en": "Vesting: The process by which founders or employees earn full ownership of their equity over time (typically a 4-year schedule with a 1-year cliff)."
+  },
+  "cap-table": {
+    "bn": "ক্যাপিটালাইজেশন টেবিল (Cap Table): কোম্পানির মালিকানার অনুপাত, শেয়ার সংখ্যা, ভেস্টিং ও বিভিন্ন বিনিয়োগকারীর শেয়ারের বিস্তারিত সারণী।",
+    "en": "Cap Table: A capitalization table detailing company ownership percentages, share counts, vesting, and investor equity."
+  },
+  "bida-oss": {
+    "bn": "বিডা ওএসএস (BIDA OSS): বাংলাদেশ বিনিয়োগ উন্নয়ন কর্তৃপক্ষের ওয়ান স্টপ সার্ভিস পোর্টাল, যেখানে বিভিন্ন সরকারি অনুমতি অনলাইনে পাওয়া যায়।",
+    "en": "BIDA OSS: Bangladesh Investment Development Authority's One Stop Service portal for streamlined business approvals."
+  },
+  "board-resolution": {
+    "bn": "বোর্ড রেজল্যুশন (Board Resolution): পরিচালনা পর্ষদের সভায় গৃহীত আনুষ্ঠানিক লিখিত সিদ্ধান্ত (যেমন ব্যাংক অ্যাকাউন্ট খোলা বা প্রতিনিধি নিয়োগ)।",
+    "en": "Board Resolution: A formal document recording decisions made by a company's Board of Directors (e.g. opening a bank account)."
+  },
+  "withholding-tax": {
+    "bn": "উৎসে কর কর্তন (TDS / Withholding Tax): সেবামূল্য, বেতন বা বিল পরিশোধের সময় আইন অনুযায়ী আগে থেকেই নির্দিষ্ট হারে কর কেটে সরকারি কোডে জমা দেওয়া।",
+    "en": "Withholding Tax (TDS): Tax deducted at source from payments (salaries, vendor bills, rent) and deposited directly to the government treasury."
+  },
+  "corporate-tax": {
+    "bn": "কর্পোরেট কর (Corporate Tax): প্রাইভেট লিমিটেড কোম্পানির বাৎসরিক নিট মুনাফার ওপর প্রযোজ্য সরকারি আয়কর।",
+    "en": "Corporate Tax: Income tax levied by the government on the annual net profit of a registered company."
+  },
+  "share-transfer": {
+    "bn": "শেয়ার হস্তান্তর (Share Transfer): পরিচালনা পর্ষদের অনুমোদন ও এনবিআরের কর পরিশোধের মাধ্যমে এক শেয়ারহোল্ডার থেকে অন্য শেয়ারহোল্ডারের কাছে শেয়ার মালিকানা হস্তান্তর।",
+    "en": "Share Transfer: Legal process of transferring share ownership between parties, requiring Board approval, NBR tax assessment, and RJSC filing."
+  },
+  "incorp-certificate": {
+    "bn": "ইনকর্পোরেশন সার্টিফিকেট (Incorporation Certificate): আরজেএসসি কর্তৃক প্রাইভেট লিমিটেড কোম্পানি গঠনের পর নিবন্ধনের চুড়ান্ত সরকারি সনদ।",
+    "en": "Incorporation Certificate: Official certificate issued by RJSC confirming the legal incorporation of a company."
+  }
+}

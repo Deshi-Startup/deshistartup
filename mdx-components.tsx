@@ -5,6 +5,9 @@ import SiteMap from './app/components/SiteMap'
 import Figure, { MarkdownImage } from './app/components/Figure'
 import YouTube from './app/components/YouTube'
 import FacebookVideo from './app/components/FacebookVideo'
+import Term from './app/components/Term'
+import Cite from './app/components/Cite'
+import ExpertReview from './app/components/ExpertReview'
 
 interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href?: string
@@ -35,6 +38,10 @@ export function useMDXComponents(components: Record<string, any>): Record<string
     SiteMap,
     Figure,
     YouTube,
-    FacebookVideo
+    FacebookVideo,
+    Term,
+    Cite,
+    ExpertReview
   }
 }
+
