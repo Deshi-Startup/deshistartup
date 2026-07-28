@@ -53,6 +53,9 @@ group in `app/nav-groups.json`.
 
 ## Writing a page
 
+Before writing or editing any Bangla anywhere in the repository, including public documentation,
+metadata and UI copy, read [`STYLE.md`](./STYLE.md).
+
 Before writing content, read:
 
 - [`STYLE.md`](./STYLE.md) for natural Bangladeshi Bangla;
