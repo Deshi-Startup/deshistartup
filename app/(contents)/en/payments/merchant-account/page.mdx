@@ -1,14 +1,116 @@
 ---
 title: "What You Need to Open a Merchant Account"
-description: "What You Need to Open a Merchant Account – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+description: "The combined document list demanded by bKash, gateways, and banks, where each one comes from, and the order that keeps an application from stalling halfway."
+verified: 2026-07-28
 ---
 
 # What You Need to Open a Merchant Account
 
-<StubNotice path="payments/merchant-account" locale="en" />
+> **Key Takeaway:** Collecting the documents one at a time wastes weeks, because each one depends on another. There is no business bank account without a trade licence, and without a bank account a gateway has nowhere to send your settlements. So work through the order, not the list. And before you submit anything, do one thing without fail: check that the business name and address match letter for letter across every document.
+
+## Who Asks for What
+
+Three kinds of organisation may ask you for paperwork — MFS merchant services (bKash, Nagad, Rocket), payment gateways, and banks. Here is what two gateways asked for on their own sites as of 28 July 2026:
+
+| Document | On SSLCommerz's list | On aamarPay's list |
+|---|---|---|
+| Trade licence | For every structure | Yes |
+| TIN | For every structure | Yes |
+| VAT registration | For every structure | If any |
+| NID | Not listed separately | Yes |
+| Photograph | Not listed separately | 1 copy |
+| DBID | For every structure | Not listed |
+| Partnership deed | For partnerships | For partnerships |
+| COI and MOA/AOA | For limited companies | For limited companies |
+| Their own forms | MEF | Application form and bank sub-merchant form |
+
+The two lists are not the same, and that is the useful part. Assemble against the stricter list and you can walk into any provider. Do the reverse — work to the easiest list — and switching gateways later means starting over.
+
+bKash works differently. There is no document list on their site. You submit a form with the shop name, district, and contact details; they get in touch and tell you what is needed then. Details are in [bKash Personal vs Merchant Account](/en/payments/bkash-merchant).
+
+## Where Each Document Comes From
+
+| Document | Issued by | In short |
+|---|---|---|
+| Trade licence | City corporation, municipality, or union parishad | This business, at this address, is listed in your name – [details](/en/trade-license) |
+| e-TIN | NBR, online | The 12-digit taxpayer identification number – [details](/en/tax/e-tin) |
+| BIN (VAT) | NBR, via the Mushak-2.1 form | The 9-digit VAT identification number – [details](/en/tax/vat-bin) |
+| Business bank account | A scheduled bank | Where settlement money lands – [details](/en/payments/bank-account) |
+| COI, MOA, and AOA | RJSC | If you incorporate – [details](/en/registration/private-limited) |
+| DBID | Government portal | A separate identifier for online business, see below |
+| MEF and other forms | The provider | They send them; you complete, sign, seal, and return |
+
+## The Order That Avoids Backtracking
+
+The documents stack on one another. Work in this order and you never have to double back:
+
+1. **Have your NID.** Everything else starts here.
+2. **Get the trade licence.** Whatever address you put here is the address every later document must carry.
+3. **Get the e-TIN.** It is done online. In your own name for a sole proprietorship, in the company's name if you have incorporated.
+4. **Open a bank account in the business name.** With the trade licence and TIN in hand, this step gets much easier.
+5. **Register for VAT or turnover-tax enlistment if it applies.** Work out which route is yours first.
+6. **If you sell online, find out about DBID.** Where a gateway requires it, the application will not move without one.
+7. **Now apply for the merchant account or gateway.**
+
+Steps four and five can run in parallel once step three is done, but nothing at all before step two.
+
+## What Remains Unclear About DBID
+
+DBID stands for Digital Business Identification, a separate registration number for doing business online. SSLCommerz asks for it against every business structure on its onboarding list, while aamarPay's published list does not mention it at all.
+
+Here the limits of our verification should be stated plainly. The official registration address is `dbid.gov.bd`, but on 28 July 2026 the site would not load from outside Bangladesh. So we could not check the fee, the form, or the current process against the primary source.
+
+Two things follow. First, open the portal from a connection inside the country. Second, ask the account manager at whichever gateway you are applying to whether your type of business needs one. We have nothing more certain than that at present.
+
+## Check These Before You Submit
+
+The usual reason an application stalls is not a missing document. It is details that do not match across the documents you have.
+
+- **Business name.** One spelling on the trade licence and another at the bank is enough to stop verification. Keep spacing, spelling, and the English-versus-Bangla form identical everywhere.
+- **Address.** The same address, spelled the same way, on the trade licence, at the bank, and on the application.
+- **Owner's name.** Exactly as it appears on the NID, everywhere.
+- **State of the website.** The gateway opens your site and looks at it, so it needs to be live when you apply.
+- **Validity.** Check whether the trade licence renewal date has passed. Submitting an expired licence stalls the whole file.
+
+The fourth catches people out. Since they do look at the site, an application can come back if there is no pricing, contact, or refund-policy page. Open your own site with a stranger's eyes before you apply.
+
+## Common Mistakes
+
+| Mistake | Result |
+|---|---|
+| Going to the bank before the trade licence | The account cannot be opened and you make the trip twice |
+| Offering a personal-name bank account | Settlement records never build up in the business's name |
+| Names and addresses differing across documents | Verification stalls and corrections eat weeks |
+| Assembling against the easiest list | Switching providers means starting again |
+| Applying with an unfinished website | The gateway looks and sends it back |
+| Submitting an expired trade licence | The whole file hangs |
+
+## Checklist
+
+- [ ] A clear scan of the NID
+- [ ] Trade licence in hand and still valid
+- [ ] e-TIN taken in the correct entity's name
+- [ ] Bank account active in the business name
+- [ ] Know whether VAT registration applies
+- [ ] COI, MOA, and AOA in hand if incorporated
+- [ ] Asked the provider whether DBID is required
+- [ ] Business name and address match letter for letter across every document
+- [ ] Website has pricing, contact, and refund-policy pages
+
+Rule of thumb: **assemble against the strictest list, and changing provider later will not send you back to the start.**
+
+## What to Do Next
+
+- If there is no bank account yet: [Business Bank Account](/en/payments/bank-account)
+- To decide which gateway: [Payment Gateway Comparison](/en/payments/gateway-comparison)
+- To become a bKash merchant: [bKash Personal vs Merchant Account](/en/payments/bkash-merchant)
+- If the trade licence comes first: [Trade Licence](/en/trade-license)
 
 ## Relevant Sources
 
+- [SSLCommerz – Onboarding Requirements](https://sslcommerz.com/onboarding-requirements/)
+- [aamarPay – FAQ](https://www.aamarpay.com/index.php/faq)
+- [bKash – Merchant](https://www.bkash.com/en/business/merchant)
+- [NBR](https://nbr.gov.bd)
+- [RJSC](https://roc.gov.bd)
 - [Bangladesh Bank](https://www.bb.org.bd)
-- [Bangladesh Trade Portal](https://www.bangladeshtradeportal.gov.bd)
-- [Chief Controller of Imports and Exports (CCIE)](http://www.ccie.gov.bd)

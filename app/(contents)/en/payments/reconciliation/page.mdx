@@ -1,16 +1,105 @@
 ---
 title: "Payment Reconciliation: Gateway, Wallet, Bank, and COD"
-description: "Payment Reconciliation: Gateway, Wallet, Bank, and COD – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+description: "Why one day's sales produce four different numbers, the arithmetic that makes them agree, and exactly where to look when they don't — with a weekly routine."
+verified: 2026-07-28
 ---
 
 # Payment Reconciliation: Gateway, Wallet, Bank, and COD
 
-<StubNotice path="payments/reconciliation" locale="en" />
+> **Key Takeaway:** Reconciliation is not about making every number equal. It is about being able to explain why each one differs. A single day's sales produce at least four numbers — the order sheet, the gateway dashboard, the bank statement, and the courier report — and all four are correct. Fees, settlement lag, refunds, and returns create the gaps. Sit down once a week and write the reason beside each gap, and you stop guessing about profit at month end.
+
+## Four Numbers for the Same Day's Sales
+
+The first shock for a new founder: the order sheet says one thing and less money lands in the bank. It feels like something is being skimmed. In fact each number is answering a different question.
+
+| The number | What it reports | Why it differs |
+|---|---|---|
+| Order sheet | The value of orders received | May still include cancelled and failed payments |
+| Gateway dashboard | The value of successful payments | Failed and abandoned transactions excluded |
+| Bank statement | What actually arrived | Fees deducted, and delayed by the settlement cycle |
+| Courier report | What was collected on delivery | Returns excluded, delivery charges deducted, delayed |
+
+These four will not match, and they are not supposed to. The job is to be able to write a reason beside every difference.
+
+## The Arithmetic That Makes Them Agree
+
+For gateway money the formula is straightforward:
+
+> Bank credit = (successful transactions − refunds) − gateway fee − flat fee − bank charges
+
+Work through one week. The order sheet shows 50 orders worth BDT 60,000. Three customers never completed checkout, so the gateway dashboard shows 47 successful transactions worth BDT 56,400. Two orders were later cancelled and BDT 2,400 refunded. The gateway's bKash rate is 2.20%.
+
+- Successful transactions: BDT 56,400
+- Refunds BDT 2,400, so net sales BDT 54,000
+- Gateway fee: 2.20% of 56,400 = BDT 1,240.80
+- Expected bank credit: 54,000 − 1,240.80 = **BDT 52,759.20**
+
+Notice the fee was charged on 56,400, not on 54,000. The fee on the BDT 2,400 you refunded — BDT 52.80 — stays with you, unless your gateway reverses fees on refunds. Confirming that term before signing is called out separately in the [gateway comparison](/en/payments/gateway-comparison).
+
+If BDT 52,759.20 lands, the week reconciles. If less arrives, check first for a flat per-transaction fee. At BDT 1 across 47 transactions that is another BDT 47, bringing the expected figure to BDT 52,712.20.
+
+## Where to Look When It Doesn't Match
+
+When there is a gap, do not guess. Work down this list — the earlier causes are the more frequent ones.
+
+1. **Settlement cycle.** With twice-weekly disbursement, Thursday's sales may land the following week. Match on transaction date, not bank date.
+2. **Failed and abandoned transactions.** A customer who reaches the payment page and backs out stays on the order sheet but never appears at the gateway.
+3. **Refunds.** The date you issued one and the settlement it was deducted from are two different things.
+4. **Partial payments.** Take a deposit and the balance on delivery, and one order's money sits in two places.
+5. **Courier deductions.** The courier remits after subtracting delivery and return charges.
+6. **Bank charges.** Intercity deposits and withdrawals attract their own fees.
+7. **Chargebacks.** Money from an older transaction can be pulled back this week.
+
+The seventh is the most confusing, because the deduction lands long after the sale. When an explanation will not come, quote the transaction ID to the gateway's support team rather than writing your own guess into the books.
+
+## A Once-a-Week Routine
+
+You need no special software at the start. A sheet and thirty minutes a week will do.
+
+1. Download the settlement reports from the gateway and wallets.
+2. Put that week's lines from the bank statement beside them.
+3. Pull the courier's cash-on-delivery report.
+4. Against each order on the sheet, record the date the money arrived and its source.
+5. Set aside everything that did not match.
+6. Write the reason beside each mismatch. If you do not know the reason, write "don't know" — never leave it blank.
+7. Email support about the lines marked "don't know."
+
+Step six is the discipline that matters. Nobody ever goes back to fill in a blank cell, and three months later no one remembers that transaction.
+
+## Common Mistakes
+
+| Mistake | Result |
+|---|---|
+| Matching on bank date | Settlement lag makes every week look wrong |
+| Reading profit off gross sales | Fees, refunds, and courier charges get left out |
+| Applying the fee to net sales | The fee on refunded orders escapes the calculation |
+| Leaving mismatches for later | Three months on, neither memory nor evidence survives |
+| Not separating cash-on-delivery money | Courier deductions go unnoticed |
+| Booking an adjustment without knowing the cause | The books balance on paper but not in reality |
+
+## Checklist
+
+- [ ] Every order carries an ID
+- [ ] The order sheet records payment source and date
+- [ ] Know the gateway's settlement cycle
+- [ ] Gateway fees and flat fees are included in the calculation
+- [ ] Know whether fees are reversed on refunds
+- [ ] Courier reports are reconciled separately
+- [ ] A fixed day each week is set aside for this
+- [ ] No line from last week is still marked "don't know"
+
+Rule of thumb: **do not try to make the numbers equal — write the reason beside each difference.**
+
+## What to Do Next
+
+- To reconcile cash-on-delivery money: [Cash on Delivery Reconciliation](/en/payments/cod-reconciliation)
+- To handle refunds and chargebacks: [Refunds and Chargebacks](/en/payments/refunds-chargebacks)
+- To understand gateway fees and settlement: [Payment Gateway Comparison](/en/payments/gateway-comparison)
+- To see what one order actually earns: [Unit Economics](/en/metrics/unit-economics)
 
 ## Relevant Sources
 
+- [SSLCommerz – FAQ](https://sslcommerz.com/faq/)
+- [aamarPay – FAQ](https://www.aamarpay.com/index.php/faq)
+- [bKash – Charge and Limits](https://www.bkash.com/en/help/limits)
 - [Bangladesh Bank](https://www.bb.org.bd)
-- [BASIS](https://www.basis.org.bd)
-- [BIDA](https://bida.gov.bd)
-- [GSMA Bangladesh](https://www.gsma.com)
-- [RJSC](https://roc.gov.bd)
