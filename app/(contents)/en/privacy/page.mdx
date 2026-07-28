@@ -5,33 +5,36 @@ description: "What data is processed when you read the site, sign in with Google
 
 # Privacy Policy
 
-> **In short:** Reading guides requires no account. Editing with Google provides your name, email,
-> profile image and a temporary identity token. Submitted text, images and your name enter the
-> review process. Measurement tags may run through Google Tag Manager to help understand site use.
+> **In short:** You do not need an account or need to identify yourself to read the guides. If you
+> sign in with Google to edit a page, we receive your name, email, profile image and a temporary
+> identity token. Submitted text, images and your name are used to review the contribution.
+> Measurement tags may also run through Google Tag Manager to help us understand site use.
 
 **Effective: 28 July 2026**
 
-## Reading the site
+## When you only read the site
 
-Hosting and security services may process ordinary request data such as IP address, browser, time
-and requested URL.
+When you open a page, hosting and security services may process ordinary technical details about
+the request. These can include the IP address, browser type, time and requested URL.
 
 The site loads Google Tag Manager. Measurement tags configured inside it may send data such as page
-views, device information, approximate location and referring page to Google. The application code
-does not currently provide advertising or build its own reader profiles. Browser privacy and
-tracking controls may limit this processing.
+views, device information, approximate location and the referring page to Google. The application
+code does not currently show advertising or build its own profiles of readers. Browser privacy and
+tracking controls may limit this measurement.
 
-## Editing a page
+## When you edit a page
 
-Google sign-in provides a name, email, profile image and signed temporary ID token.
+When you open the editor and sign in with Google, Google provides your name, email, profile image
+and a signed temporary ID token.
 
-- The token stays in browser local storage and normally expires in about one hour.
+- The token stays in browser local storage. It normally expires in about one hour.
 - An unfinished local draft may stay in the same browser for up to 14 days.
 - The server verifies the token on every request and keeps no separate login session.
-- Submitted text, summary and name appear in a public GitHub pull request; the email does not.
+- Submitted text, the change summary and your name appear in a public GitHub pull request. Your
+  email does not.
 - Account-based rate limits and mute/ban records may be used to prevent abuse.
 
-## Contributing an image
+## When you contribute an image
 
 Image bytes, type, dimensions, alt text, source/credit, page path and a hashed account identifier
 are stored in a private quarantine bucket. Only the owner and authorized reviewers can view a
@@ -40,21 +43,23 @@ pending image.
 - Approved images become part of the public media library and GitHub history.
 - Rejected images are deleted immediately.
 - Undecided pending images expire after seven days.
-- Review checks privacy, copyright, personal information and necessary redaction before publication.
+- Before publication, review checks privacy, copyright, personal information and whether anything
+  sensitive has been properly redacted.
 
 Do not submit another person's private information, confidential documents or sensitive
 screenshots without permission.
 
-## Retention and other services
+## How long information remains
 
 Expired tokens and local drafts older than 14 days are removed when the browser next uses the
-editor. Accepted contributions may remain in public GitHub history. Approved media may remain in
-content history and caches.
+editor. Accepted contributions may remain in the public GitHub version history. Approved media may
+remain in content history and caches.
 
 Google, GitHub and Cloudflare process information under their own policies.
 
 ## Questions or removal requests
 
 [Open a GitHub issue](https://github.com/Deshi-Startup/deshistartup/issues/new), but do not place
-sensitive information in a public issue. A public contribution may not be fully removable after it
-has been copied into git history, forks or caches.
+sensitive information in it because the issue will be public. Once a contribution is published,
+copies may spread through git history, forks or caches, so complete removal may not always be
+possible.

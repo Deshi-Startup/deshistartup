@@ -1,17 +1,17 @@
-<!-- ছোট browser edit হলে শুধু কী বদলেছে লিখলেই হবে। বাকিটা reviewer ও CI দেখবে।
-For a small browser edit, describe the change; reviewers and CI will handle the rest. -->
+<!-- ব্রাউজার থেকে ছোট সংশোধন পাঠালে শুধু কী বদলেছে লিখলেই হবে। বাকিটা রিভিউয়ার ও CI দেখবে।
+For a small browser edit, describe what changed; reviewers and CI will handle the rest. -->
 
 ## কী বদলেছে · What changed
 
-<!-- এক-দুই লাইনে। ইস্যু বন্ধ করার জন্য লিখুন: `Closes #নম্বর` -->
+<!-- এক-দুই লাইনে কী বদলেছে এবং কেন লিখুন। ইস্যু বন্ধ করার জন্য লিখুন: `Closes #নম্বর` -->
 
-## বড় কনটেন্ট বদলের চেক · For substantial content changes
+## বড় লেখা বদলালে · For substantial content changes
 
-- [ ] তথ্য ও আইন/ফি/নিয়মের দাবিতে সূত্র আছে; বদলাতে পারে এমন সংখ্যায় সাল আছে
-- [ ] বাংলা জোরে পড়ে দেখেছি এবং STYLE.md / EDITORIAL.md-এর শেষ checklist মিলিয়েছি
-- [ ] `<StubNotice />` লাইনটি **শুধু পূর্ণ গাইড হলে** সরিয়েছি
+- [ ] তথ্য এবং আইন, ফি বা নিয়মের দাবির কাছে সূত্র দিয়েছি। বদলাতে পারে এমন সংখ্যার সঙ্গে সাল বা যাচাইয়ের তারিখ আছে
+- [ ] বাংলা জোরে পড়েছি এবং `STYLE.md` ও `EDITORIAL.md`-এর শেষ চেকলিস্ট মিলিয়েছি
+- [ ] `<StubNotice />` **শুধু পূর্ণ গাইড শেষ হলে** সরিয়েছি
 
-## লোকাল চেক · Local checks (optional)
+## নিজের কম্পিউটারে চালানো চেক · Local checks (optional)
 
 - [ ] `npm run lint:bangla` সবুজ · passes
 - [ ] `npm run build` সবুজ · passes

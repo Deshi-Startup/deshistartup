@@ -10,63 +10,98 @@
 
 </div>
 
-## Why it exists
+## Why this project exists
 
-Useful information for Bangladeshi founders is scattered across government portals, reports,
-Facebook posts, videos and personal experience. Deshi Startup turns that material into practical,
-source-backed guides in clear Bangla.
+Founders in Bangladesh keep running into the same questions. How do you tell whether people
+actually want an idea? Where do you begin company registration? Which payment route fits the
+business? How do you find the first customers?
 
-It covers idea validation, registration, tax, payments, customers, teams and funding through the
-realities of building in Bangladesh. Bengali is the source edition; every page has an English mirror
-under `/en/...`.
+Answers exist, but not in one place. Some sit in government portals, reports and videos. Much of
+the practical knowledge is scattered across Facebook posts and personal experience. International
+guides can offer useful ideas, but their advice does not always survive contact with Bangladesh's
+offices, markets, payment systems and trust constraints.
 
-## What is inside
+Deshi Startup checks that scattered information and explains it in practical Bangla. It does not
+assume that a first-time founder already speaks the language of law, accounting or startups. A
+useful page should leave the reader knowing what to do next, where to go and what to verify again.
 
-- [Starter roadmap](https://deshistartup.com/en/start-here)
-- [All topic guides](https://deshistartup.com/en/guides)
-- [Guided paths by goal](https://deshistartup.com/en/journeys)
-- [Templates, scripts and calculators](https://deshistartup.com/en/tools)
-- [Bangladeshi startup case studies](https://deshistartup.com/en/case-studies)
-- [Investor and accelerator directory](https://deshistartup.com/en/directory)
+Bengali is the source edition. Matching English pages live under `/en/...`.
 
-The [sitemap](https://deshistartup.com/en/sitemap) shows current completed-page counts. Incomplete
-topics are honestly marked **to be written**.
+## What you will find
+
+- **[Start Here](https://deshistartup.com/en/start-here):** the roadmap from an idea to the first
+  concrete steps.
+- **[Topic guides](https://deshistartup.com/en/guides):** registration, tax, payments, customers,
+  operations, teams, funding and more.
+- **[Journeys](https://deshistartup.com/en/journeys):** an ordered reading path based on the
+  founder's current goal.
+- **[Templates and tools](https://deshistartup.com/en/tools):** copy-ready scripts, checklists and
+  lightweight calculators.
+- **[Case studies](https://deshistartup.com/en/case-studies):** how Bangladeshi startups began,
+  where they struggled and what other founders can learn.
+- **[Directory](https://deshistartup.com/en/directory):** sourced information about investors and
+  accelerators.
+- **[Founder Life](https://deshistartup.com/en/founder-life):** family pressure, mental health and
+  the less visible work of building alone.
+
+The site is still being written. An unfinished topic is marked **to be written** rather than
+presented as a complete guide. The [sitemap](https://deshistartup.com/en/sitemap) shows the current
+completed-page count.
 
 ## Contribute
 
-You do not need coding or GitHub experience.
+Rules, fees and lived experience change, so keeping this manual useful takes many pairs of eyes.
+A contribution does not have to be large:
 
-1. Use **Report a mistake** on a page.
-2. Press **Edit**, sign in with Google and make the correction in the browser.
-3. Choose a **to be written** page and develop it into a complete guide.
+| What you can do | How |
+|---|---|
+| Report wrong or outdated information | Use **Report a mistake** on the page |
+| Fix a typo, link or sentence | Press **Edit**, sign in with Google and make the change in the browser |
+| Turn an unwritten topic into a full guide | Choose the topic, research it and send the draft for review |
 
-Small, accurate fixes are valuable. See [CONTRIBUTING.md](./CONTRIBUTING.md) for the short workflow
-and minimum content standard.
+No coding experience is required, and the first draft does not need perfect prose. Review starts
+with the facts, sources and whether the reader can understand the next action.
+
+Read the [contribute page](https://deshistartup.com/en/contribute) for the browser workflow, or
+[CONTRIBUTING.md](./CONTRIBUTING.md) if you prefer working through GitHub.
 
 ## Why trust it
 
-- Legal, fee and regulatory claims are checked against official or primary sources.
-- Changeable facts are dated.
-- Relevant pages distinguish routine updates from regulatory verification.
-- Every contribution is reviewed and recorded in public GitHub history.
-- Incomplete pages are not presented to search engines as finished guides.
+- Official or primary sources come first for legal, tax, fee and regulatory claims.
+- Changeable fees, thresholds and figures are dated or carry a verification date.
+- Routine editing and an actual regulatory re-check are shown separately.
+- Every change is reviewed, with the history kept openly on GitHub.
+- Unfinished pages are not presented to search engines as complete guides.
+- AI may assist the writing process, but people make the final decisions about facts, language and
+  publication.
 
-This is still general guidance, not a government service or personal legal/tax advice. Confirm
-consequential decisions with current official information or an appropriate professional.
+This remains general guidance, not a government service or personal legal or tax advice. Confirm
+consequential decisions against current official information and consult an appropriate
+professional when needed.
 
-## Development
+## Open planning
+
+The repository shows what will be written, which sources come first and what must be rechecked:
+
+- [Plan and backlog](./plan/)
+- [Project direction](./plan/vision.md)
+- [Contribution rules](./CONTRIBUTING.md)
+- [Discussions](https://github.com/Deshi-Startup/deshistartup/discussions)
+
+## For developers
 
 ```bash
 npm install
 npm run dev
 ```
 
-See [AGENTS.md](./AGENTS.md) for architecture and repository rules, and
-[`plan/vision.md`](./plan/vision.md) for product direction.
+[AGENTS.md](./AGENTS.md) contains the architecture, commands and security boundaries. None of the
+technical stack is required for a content contribution.
 
 ## License
 
 - Content under `app/(contents)/`: [CC BY-SA 4.0](./LICENSE-content.md)
 - Code: [MIT](./LICENSE)
 
-Attribution: *“Deshi Startup – deshistartup.com, CC BY-SA 4.0”*
+Attribution format:
+`Deshi Startup – deshistartup.com, CC BY-SA 4.0`
