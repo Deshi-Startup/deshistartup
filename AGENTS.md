@@ -1,390 +1,172 @@
-# deshistartup Agent Context
+# Deshi Startup repository guide
 
-This is the committed operations manual and project map for Deshi Startup. Read it before touching
-anything. For _what to build and write next_, the planning brain is `plan/` — start at
-[`plan/README.md`](./plan/README.md). `README.md` (Bangla, mirrored by `README.en.md`) is the
-public, contributor-facing front door — keep it short and inviting; the long-form vision/spec
-lives in [`plan/vision.md`](./plan/vision.md).
+Read this before changing the project. For priorities and planned content, start at
+[`plan/README.md`](./plan/README.md). For human contribution steps, use
+[`CONTRIBUTING.md`](./CONTRIBUTING.md).
 
-## Project Overview
+## Mission and scope
 
-Deshi Startup is a free, open-source, Bangla-first knowledge base and practical operating manual for
-building a **startup** in Bangladesh. The audience is founders building something new and scalable, and
-the lens, depth, and priorities are theirs. Much of the foundational process (registration, tax,
-payments, hiring) also serves any small business, and it's fine when a guide is useful beyond startups —
-but never dilute the startup focus to chase generic SME, family-business, import/export, or
-online-seller audiences. The name **Deshi
-Startup** is final and the domain **deshistartup.com** is registered — name-dependent assets (logo,
-.com/.org, Facebook page) are now safe to build.
+Deshi Startup is a free, open-source, Bangla-first operating manual for founders building new,
+scalable businesses in Bangladesh. Registration, tax, payments and hiring guides may also help
+small businesses, but the project does not broaden its scope to become a generic SME,
+family-business, import/export or online-seller portal.
 
-Scale: ~430 Bengali pages are planned (see `plan/content-backlog.csv`); most are still honest
-stubs. Never count a page as written unless it is a real, finished guide — boilerplate template
-pages do not count. Run `npm run backlog:status` for live written/stub counts. Bengali is the
-source of truth; English mirrors it at `/en/...`.
+Bengali is the source edition. English mirrors it at `/en/...`. A page counts as written only
+when it is a real guide without `<StubNotice />`; run `npm run backlog:status` for current counts.
 
-The site is a Next.js documentation app built with Nextra, mostly statically prerendered, and
-wrapped in a custom wiki-style shell (not the stock Nextra theme). Two API route handlers power the
-public contribution flow, so production runs on Cloudflare Workers through OpenNext.
+## Architecture
 
-## Key Technologies
+- Next.js + Nextra render mostly static MDX content.
+- OpenNext packages the static pages and contribution route handlers for Cloudflare Workers.
+- Pagefind supplies client-side static search.
+- Milkdown Crepe powers the inline editor.
+- `jose` verifies Google ID tokens on every contribution request.
 
-- Next.js `^15.1.3` (using Turbopack for dev)
-- Nextra docs theme (`nextra-theme-docs ^4.0.0`)
-- React `18.3.1`
-- OpenNext for Cloudflare (`@opennextjs/cloudflare 1.20.2`) packages the prerendered pages and the
-  inline editor's API route handlers for Cloudflare Workers.
-- Pagefind (`pagefind ^1.5.2`) for fast, static client-side search (runs automatically on `postbuild`)
-- Milkdown Crepe (`@milkdown/crepe`) for the inline WYSIWYG contribution editor
-- `jose` for backend verification of Google ID tokens
+Key paths:
 
-## Important Files and Directories
+- `app/(contents)/(bn)/` – Bengali pages at clean root URLs.
+- `app/(contents)/en/` – matching English pages under `/en`.
+- `app/components/LocalizedLayout.tsx` – shell, navigation, page chrome and editor entry.
+- `app/components/ContributionEditor.tsx` – browser editor and draft recovery.
+- `app/api/` and `app/lib/` – contribution, authentication, GitHub and media-review logic.
+- `data/directory/` – structured directory entries.
+- `plan/content-backlog.csv` – canonical planned-topic and route registry.
+- `app/nav.config.ts` – curated top-level navigation.
+- `app/nav-groups.json` – section-hub groups.
+- `app/generated/` and generated files in `public/` – build outputs; never hand-edit them.
 
-- `app/` - Shared Next.js app shell, layouts, global CSS, components, and route groups.
-- `app/(contents)/(bn)/` - Bengali content. Route-group folders do not appear in public URLs, so these pages render at clean root paths like `/start-here`, `/registration/private-limited`, and `/e-tin-vat-bin`.
-- `app/(contents)/en/` - English localized content. These pages render at `/en/...`, for example `/en/start-here`.
-- `app/components/LocalizedLayout.jsx` - Localized Nextra layout, language detection, sidebar ordering, and route-group page-map normalization.
-- `app/components/LanguageSwitcher.jsx` - Switches between clean Bengali URLs and `/en/...` URLs.
-- `_meta.js` files are intentionally not used under `app/` because Nextra validation does not work cleanly with the current route-group localization structure. Sidebar order is controlled programmatically in `LocalizedLayout.jsx`.
-- `plan/` - The committed planning brain: the canonical content backlog, tiered source registry, case-study format, directory schema, founder journeys, and research/freshness cadences. Treat it as the source of truth for _what to build and write next_. Start at [`plan/README.md`](./plan/README.md).
-- `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `.github/ISSUE_TEMPLATE/` - The bilingual contributor surface. The site's per-page "ভুল জানান" links open the `report-mistake.yml` issue form with the page prefilled; `.github/workflows/pr-checks.yml` runs `lint:bangla --strict` + build on every PR. `scripts/seed-issues.mjs` generates "নতুন গাইড" issues from High-priority backlog stubs.
-- `knowledge-bank/` - Optional, local-only scraped source material for legal/business content. It is gitignored for copyright hygiene and may be absent — never rely on it existing, and never commit it.
-- `app/generated/` - Build artifacts produced by `scripts/build-manifest.mjs` (`manifest.bn.json`, `manifest.en.json`, `sections-lite.json`, `seo-pages.json`). They are committed to git but must never be hand-edited; run `npm run manifest` (or any dev/build) to regenerate after content changes.
-- `app/nav.config.js` - Hand-curated top-level sidebar (`bnNav` / `enNav`). `app/nav-groups.json` - hand-curated thematic grouping of section-hub listings.
-- `public/media/` - Every image, screenshot, and video poster a content page embeds. See "Media" below; `app/lib/media.ts` is the only module that decides how a `/media/...` path is delivered.
-- `public/` - Static assets used by the site, including the built Pagefind search index (`public/_pagefind`) and generated SEO/discovery files (`sitemap.xml`, `robots.txt`, `llms.txt`, IndexNow key, and route date maps). Do not hand-edit generated files; run `npm run manifest`.
-- `scripts/build-manifest.mjs` - regenerates the navigation manifests. `scripts/scrape.js` - scraping utility used to gather external ecosystem data.
+## Routes and content trees
 
-## Site Structure
+Content URLs have at most two semantic segments, mirrored exactly in both locales. The
+`Path` column in `plan/content-backlog.csv` owns permanent planned URLs. Internal content links are
+always root-relative:
 
-**Topic-owned URLs (July 2026 migration).** Content lives at one canonical, topic-based URL of at
-most two segments (`/{section}/{slug}`, mirrored at `/en/...`). The former `phase-one`…`phase-four`
-stage sections were dissolved into topic sections; the staged path survives as curated _views_ at
-`/roadmap/{validate|build|grow|scale}`.
+- Bengali: `/registration/private-limited`
+- English: `/en/registration/private-limited`
 
-Each topic section hub lists its children automatically via
-`<SectionIndex section="..." locale="..." />` (backed by the generated manifests). The sections:
+Do not derive a URL from an editable title. Do not use relative links such as `../page`.
+`npm run lint:routes` enforces depth, charset, mirror parity and `<StubNotice path>`.
 
-- `start-here` — beginner roadmap and orientation
-- `ideas`, `validation` — finding ideas/market research, and customer/demand validation
-- `registration`, `licenses`, `tax`, `ip`, `trade` — paperwork: company setup, approvals, tax/VAT, IP, import-export
-- `payments`, `customers`, `b2b`, `operations`, `metrics`, `funding` — money, sales, delivery, numbers
-- `product`, `manufacturing`, `cofounders`, `team` — building the product and the people
-- `growth`, `industries`, `ecosystem` — expansion, sector playbooks, government support/community
-- `roadmap` — the four staged views; `guides` — the browse-all-topics page
-- `journeys` — goal-based guided paths ("কোন পথে যাবেন") that stitch existing guides into an ordered path (source: `plan/workflow-maps.csv`)
-- `case-studies`, `directory`, `founder-life`, `tools`, `contribute`
-- Root cornerstones kept as short standalone URLs: `/company-types`, `/trade-license`,
-  `/rjsc-name-clearance`, `/e-tin-vat-bin`, `/legal-roadmap`, `/about`, `/sitemap`
+Section hubs use `<SectionIndex section="..." locale="..." />`; do not maintain page lists in MDX.
+Add a new top-level destination to `app/nav.config.ts`, and a new section child to the appropriate
+group in `app/nav-groups.json`.
 
-**URL policy (enforced by `npm run lint:routes`, which runs in `prebuild`):** max two semantic
-segments (excluding `/en`); leaf slug normally 2–5 words; target path length under 45 characters,
-warn above 60, hard-fail above 75; lowercase ASCII `a-z0-9-` only; no full-headline slugs, no brand
-lists, no filler (`how-to`, `guide`, `step-by-step`) when context already carries it. Permanent URLs
-are never derived from editable titles — the backlog's `Path` column and the content tree are the
-registry. The bn and en trees must mirror exactly, and a `<StubNotice path>` must equal its page's
-slug (both are lint errors).
+## Writing a page
 
-**The source of truth for what exists is `app/generated/manifest.bn.json` / `manifest.en.json`; the
-source of truth for what _should_ exist is `plan/content-backlog.csv` (its `Path` column is the
-canonical route registry). Never hand-maintain page lists in this doc — they drift.** To see the
-current page inventory, read the manifests or run `npm run manifest` and inspect them.
+Before writing content, read:
 
-## Choosing what to work on
+- [`STYLE.md`](./STYLE.md) for natural Bangladeshi Bangla;
+- [`EDITORIAL.md`](./EDITORIAL.md) for research, teaching, evidence and review; and
+- the finished `/start-here` page for a working example.
 
-1. Open `plan/content-backlog.csv` and filter for `Priority=High` rows whose site page is still a
-   stub (a page containing a `<StubNotice ... />` line). Cross-check status against the manifests
-   (run `npm run backlog:status` to generate the local, git-ignored `plan/status-report.md`).
-2. Prefer topics whose `Notes` column gives you an angle to write from.
-3. Write the Bengali page first, then create the English mirror at the matching `/en/...` slug.
-4. Delete the `StubNotice` line **only** when the page is a real, finished guide — that single line
-   is what flips the page to "written" everywhere (manifest, badges, search rank).
-5. Run `npm run manifest` after content or structural changes.
+Default guide shape:
 
-## Content types & page anatomy
+1. frontmatter with `title` and `description`;
+2. one `#` heading;
+3. `> **সারকথা:**` / `> **In short:**`;
+4. the decision, steps, cost/time, mistakes and checklist the topic actually needs; and
+5. `## প্রাসঙ্গিক সূত্র` / `## Relevant Sources`.
 
-- **Guide** (the default): YAML frontmatter (`title`, `description`) → one `#` title →
-  `> **সারকথা:**` 3–4 line summary → `##` sections (typically কার কখন দরকার / ধাপে ধাপে কী করবেন /
-  খরচ ও সময় / সাধারণ ভুল) → a checklist → `## প্রাসঙ্গিক সূত্র`. Exemplar: `/start-here`
-  (`app/(contents)/(bn)/start-here/page.mdx`) — সারকথা opener, decision tables, checklists, sourced
-  links, natural spoken Bangla.
-- **Case study**: follows the 15 fields of `plan/case-study-format.md`. Suggested Bengali headings for
-  the 15 fields (used by the exemplar at `/case-studies/pathao`): এক নজরে · সমস্যা · সমস্যাটি
-  বাংলাদেশ-নির্দিষ্ট কেন · শুরুর ইনসাইট · প্রথম ওয়েজ · প্রথম গ্রাহক · বিশ্বাস তৈরি · স্থানীয় শিক্ষা ·
-  বাধা ও সীমাবদ্ধতা · বিজনেস মডেল · মূলধন ও ফান্ডিং · যা অনুকরণ করতে পারেন · যা অনুকরণ করবেন না ·
-  যা এখনো অজানা · সূত্র. Source-backed only: separate facts from anecdotes, cite every factual claim,
-  never overclaim.
-- **Directory page**: data-backed, not prose. Entries live in `data/directory/*.json` and are
-  rendered by a component — never hand-maintained prose tables. Directory entries must include
-  `name`, `type`, `stage`, `sectors`, `website`, `sourceUrl`, and `lastVerified`; use `null` or
-  "Not publicly stated" for cheque size, cohort timing, deadlines, or equity terms you cannot
-  verify from public sources. Re-check directory entries quarterly against official websites or
-  reliable public profiles before bumping `lastVerified`.
-- **Journey / guided-path page**: a short, goal-based wayfinding page that stitches existing guides
-  into an ordered path — frontmatter → `#` title → `> **সারকথা:**` → a short intro → an ordered
-  `## ধাপে ধাপে পথ` list where each step links an existing guide → `## এই পথের চেকলিস্ট` →
-  `## এরপর কোন পথে` cross-links to sibling journeys. Lives under the `journeys` section
-  (`/journeys/...`, mirror at `/en/journeys/...`). Because it links internal guides, it needs no
-  external `## প্রাসঙ্গিক সূত্র`. The 12 journeys come from `plan/workflow-maps.csv`; add a new one
-  there first, then register its slug in `app/nav-groups.json` under `journeys`. Never link a route
-  that does not exist — check against `app/generated/manifest.bn.json`.
-- **Template / checklist / script pages**: copy-paste-ready blocks with minimal theory.
-- **Calculators**: client components are allowed here — the one sanctioned exception to the
-  near-zero-JS budget. Keep them dependency-free (no heavy libraries).
+Use official sources for legal, tax, fee, registration and regulatory claims. Date changeable
+numbers. Never fabricate a statistic, quote, example or anecdote. Do not bump `verified:` unless
+the relevant claims were re-checked against official sources.
 
-## Media (images, screenshots, video)
+Page types with separate rules:
 
-Pages are not text-only. **Image bytes live in an R2 bucket served from `media.deshistartup.com`
-and are never committed to this repository** — git cannot forget a binary once it is in history,
-and a reference work accumulates screenshots for years. What git keeps is
-`app/generated/media.json`, a text registry naming every uploaded object with its dimensions.
+- Case studies use [`plan/case-study-format.md`](./plan/case-study-format.md).
+- Journeys order existing guides and must not link missing routes.
+- Directory pages render `data/directory/*.json`; do not hand-maintain prose tables.
+- Templates and scripts put the copy-ready material first.
+- A stub contains `<StubNotice />` and starting sources, not guide-shaped filler.
 
-**Maintainer upload (directly approved media):**
+After content changes, run `npm run manifest` and `npm run lint:bangla`. Before finishing a full
+guide, run `npm run build`.
 
-1. Put the file in `media/` (repo root, gitignored) at the path you want it addressed by:
-   `media/registration/rjsc-search.png`.
-2. `npm run media:upload` — preflights the full batch, then uploads it and records it in the
-   registry. Re-running only sends what changed (content-hashed). PNG, JPEG, and WebP only; the
-   hard per-file, batch, dimension, decoded-pixel, and 500 MB project storage ceilings live in
-   `scripts/lib/media-lib.mjs`.
-3. Reference it as `/media/registration/rjsc-search.png` and commit the registry change with the
-   page. Uploads use the maintainer's own `wrangler login`; there is no R2 key to keep secret.
+## Public contribution flow
 
-**Signed-in contributor upload:** the inline editor's **Add image** control accepts PNG, JPEG, and
-WebP, uploads the bytes through an authenticated Worker route into the separate private
-`deshistartup-media-quarantine` bucket, and inserts a private pending marker into the draft. The
-contributor supplies alt text and optional source/credit/checked metadata without seeing R2 paths
-or Markdown. Every image remains private until a reviewer follows the PR's review link and
-explicitly approves that individual image. Approval promotes the validated bytes into the public
-bucket and atomically updates the page plus `app/generated/media.json` on the contribution branch.
-Rejection removes the pending marker and deletes the quarantined bytes.
+The public editor is a supported product feature:
 
-Quarantine is not a second public library: it has no custom domain, development URL, or CORS;
-requires a verified Google token; enforces per-minute, per-user/day, per-contribution, byte,
-dimension, pixel, and 25 MB global pending ceilings; and deletes undecided objects after seven
-days. Reviewers are the comma-separated Google emails in `CONTRIBUTION_REVIEWER_EMAILS` and can
-mute or ban an abusive account. CI deliberately rejects unresolved `/__pending-media/...` markers,
-so merging text cannot silently approve an image. The full trust, cost, dashboard, and incident
-policy is [`plan/media-operations.md`](./plan/media-operations.md).
+1. A reader presses **Edit** and signs in with Google.
+2. The browser sends the Google ID token as a bearer token; the server verifies it on every request.
+3. `GET /api/content` resolves the URL through generated `contributable.json` and returns source MDX.
+4. Crepe edits the body while locked MDX components survive as protected fenced blocks.
+5. `POST /api/contribute` creates or updates a deterministic contributor/page branch and pull request
+   through the GitHub App.
+6. Local drafts protect unsent work; the public GitHub PR remains the review and audit record.
 
-Three paths for one file: `media/a/b.png` (staging) → `a/b.<hash>.png` (object key) →
-`/media/a/b.png` (what content writes, and the registry key). The object key is
-**content-addressed**, so objects are cached forever (`immutable`) and a corrected screenshot still
-reaches every reader at once: new bytes mint a new key, and the registry points at it. Re-uploading
-unchanged files is a no-op. Superseded objects enter `app/generated/media-retired.json`. Keep them
-for the 30-day rollback grace period, then remove them with the dry-run-first
-`npm run media:prune` workflow. Never add a blanket age lifecycle to the active namespace; it
-would eventually delete still-used images.
+Contributor image upload is also supported and must retain its security boundary:
 
-- **Addressing:** content only ever writes root-relative `/media/...`. `app/lib/media.ts` is the
-  single place that turns one into a delivery URL, so where the bytes sit stays a deployment
-  concern. `DESHI_MEDIA_BASE_URL` moves the whole library; an empty value falls back to serving
-  `public/media` from the site itself.
-- **Rendering:** `<Figure src alt caption source checked credit />`, or plain markdown
-  `![alt](/media/x.png "caption")` — both render through `app/components/Figure.tsx`, because
-  `img` is mapped to it in `mdx-components.tsx`. Nextra's `staticImage` is deliberately off
-  (`next.config.mjs`): it would rewrite markdown images into hashed webpack imports and drop the
-  caption. Output is a plain `<img>` with srcset, lazy loading, and intrinsic width/height from
-  the registry, so articles do not reflow as images arrive — no client JS, no `next/image`.
-- **Resizing** is done at the edge by Cloudflare's `/cdn-cgi/image/` transformations rather than by
-  storing derivatives, and is on by default (`DESHI_MEDIA_TRANSFORM=0` disables it). It is always
-  requested from the host that serves the original, so the source is same-origin. `format=auto`
-  hands AVIF to phones that take it and PNG/JPEG to those that do not, and counts as one billable
-  transformation either way. Every URL carries `onerror=redirect`, so exceeding the free 5,000
-  monthly transformations degrades to the original file instead of a broken image.
-- **Video:** `<YouTube id title caption date />` renders a facade — our own poster, a play button,
-  and a link. Nothing contacts Google until the reader clicks. `npm run media:posters` fetches and
-  uploads posters for every embed in the tree. Never hand-place a raw YouTube `<iframe>`: it costs
-  ~2 MB on load and breaks the performance budget.
-- **`npm run lint:media`** runs in `prebuild`. Errors: a referenced file that was never uploaded, a
-  `<Figure>` without alt text, an invalid video id, a hotlinked/raw embed, malformed registry
-  metadata, a file over 300 KB, or **any image committed under `public/media`** — that last one is
-  what keeps binaries out of git.
+- uploads go only to the private quarantine R2 bucket;
+- file type, header, size, dimensions, pixel count and quotas are checked before acceptance;
+- pending media is private and bound to its owner and page;
+- an allowlisted reviewer approves or rejects each image;
+- approval atomically updates the article and media registry before quarantine deletion;
+- unresolved pending markers fail CI; and
+- abandoned quarantine objects expire after seven days.
 
-## Style guide (Bangla)
+Do not weaken these controls as a side effect of UI or refactoring work. The threat model, limits,
+cost controls and recovery procedure live in
+[`plan/media-operations.md`](./plan/media-operations.md).
 
-**[`STYLE.md`](./STYLE.md) is the binding Bangla style standard — read it before writing or
-editing any Bengali content.** It exists because a 2026-07 language audit found content that was
-thought in English and rendered in Bangla; the guide defines the natural Bangladeshi register
-(the way founders actually write on Facebook/LinkedIn and in good Bangla blogs) and bans the
-translationese patterns found on this site. The essentials:
+Contribution environment variables are documented in `.env.local.example`. The GitHub App private
+key is the only GitHub secret. Never expose credentials in client code.
 
-- **Think in Bangla.** Never draft in English and translate. If a sentence back-translates
-  word-for-word into fluent English, restructure it. Read the page aloud before finishing.
-- সহজ, প্রচলিত বাংলা; "আপনি" register ("আপনি আবেদন করবেন" – "আবেদন করা হইবে" নয়).
-- Natural skeletons: "-লে" conditionals over যদি…তাহলে; verbs over verbal nouns
-  (কনফার্ম করুন, not নিশ্চিতকরণ); আর/ও + short sentences over এবং-chains; drop এটি/আপনার
-  where context carries it; no semicolons in Bangla prose; vary sentence length; direct
-  questions and "ধরুন…" scenarios are encouraged.
-- Banned calques (full table in STYLE.md §3.1): ব্যবসা-থেকে-ব্যবসা → বিটুবি (B2B); ক্রয়াদেশ →
-  পারচেজ অর্ডার (PO); গ্রাহক অর্জন → গ্রাহক পাওয়া; রূপান্তর → কনভার্শন; নিশ্চিতকরণ → কনফার্ম করা।
-- প্রচলিত ইংরেজি টার্ম বাংলা হরফে (ট্রেড লাইসেন্স, ভ্যাট, ফাউন্ডার, এমভিপি); explain each new
-  term at first use ("ইকুইটি (equity) মানে কোম্পানির মালিকানার ভাগ"); Latin script only for
-  metric/document acronyms (MRR, SaaS, e-TIN), portal/form names, and non-Bangla brands.
-  Never leave ordinary English words untransliterated mid-sentence.
-- বাংলা বাক্যে বাংলা সংখ্যা ("ফি ৫০০ টাকা", "ধাপ ৩"); টাকা লাখ/কোটিতে; year-stamp every
-  fee/number ("২০২৬ সালের হিসাবে ফি ৩,০০০ টাকা").
-- আইন, ফি ও নিয়মের দাবিতে সূত্র দিন (সরকারি পোর্টাল সবচেয়ে ভালো); যা নিশ্চিত নন, লিখবেন না —
-  অনুমান লিখলে "যাচাই প্রয়োজন" বলে দিন।
-- **Adapt, don't translate.** Copyrighted third-party work (YC, Stripe, LightCastle and similar) must
-  be _adapted_ — teach the ideas in our own Bangla and cite the source; never translate or copy it.
-  Government/official sources may be used freely with citation.
-- Use `## প্রাসঙ্গিক সূত্র` (Bangla) / `## Relevant Sources` (English) for source lists, with
-  root/section URLs from `plan/sources.csv`. For a load-bearing data claim or figure, a stable exact
-  report/dataset link is allowed only after it has been verified and recorded in that registry.
-  Never guess or invent deep links. See `EDITORIAL.md` §8.3.
-- `/start-here` is the bar for depth and tone. Match it.
-- Before finishing any Bangla page, run `npm run lint:bangla` (`scripts/bangla-lint.mjs`) and
-  clear the hard (✖) findings; then run the STYLE.md §7 read-aloud checklist — the linter only
-  catches the mechanical tells.
+## Media
 
-## Editorial guide (pedagogy)
+Image bytes live in R2 and are addressed in content as `/media/...`; binaries do not belong in git.
+`app/generated/media.json` is the committed registry. `app/lib/media.ts` is the only delivery-URL
+resolver.
 
-**[`EDITORIAL.md`](./EDITORIAL.md) is the binding editorial/teaching standard — read it together
-with STYLE.md before writing any content page (both locales).** STYLE.md governs how the Bangla
-reads; EDITORIAL.md governs what a page teaches and how: write for a non-technical
-first-generation founder, run every hard concept through the five-step teaching loop (name →
-plain definition → one দেশি metaphor → worked টাকা example → so-what), no naked abstractions
-(named people, real cities, worked arithmetic), signalled "ধরুন…" scenarios and micro-stories,
-legal rules translated into "আপনার জন্য এর মানে" decision language, a concrete next action with
-কোথায়/কী লাগবে/খরচ/সময়, one memorable থাম্ব রুল per page, inline source attribution, and an
-absolute ban on fabricated facts, statistics, or anecdotes. Every page must pass the EDITORIAL.md
-§12 checklist alongside STYLE.md §7 before it is done.
+Maintainer flow:
 
-## Content & Editorial Guidelines
+1. stage approved PNG, JPEG or WebP files under the gitignored `media/` directory;
+2. run `npm run media:upload`;
+3. reference the logical `/media/...` path and commit the registry change.
 
-- **Language & pedagogy:** Bengali pages follow the Style guide (Bangla) section above —
-  `STYLE.md` is binding, don't restate its rules here. `EDITORIAL.md` (Editorial guide section
-  above) is equally binding for _both_ locales — it defines how pages teach, not just how they
-  read. English pages: use clear English, leave no Bengali text behind.
-- **Localization:** Do not replace Bengali content when localizing — create/update the matching page
-  under `app/(contents)/en/...`, keeping slugs and folder structure aligned across locales.
-- **Routing / internal links:** Always write internal links as **root-relative canonical paths** —
-  `/registration/private-limited` in Bengali pages, `/en/registration/private-limited` in English
-  pages. Never use relative forms (`../section/slug`, `sibling-slug`): they depend on the linking
-  page's depth and broke silently before the July 2026 migration canonicalized all 800+ files. The
-  MDX anchor wrapper (`mdx-components.js`) and `localHref()` can add a deployment basePath for a
-  subpath mirror, so content never hard-codes it.
-- **Punctuation in page content:** Never use an em dash in page copy, titles, or descriptions
-  under `app/(contents)/` (this doc and other meta files are exempt). Use an en dash (–), a comma,
-  or split into two sentences instead. The full dash rule lives in STYLE.md §4.3 and
-  `npm run lint:bangla` enforces it as a hard (✖) finding, both locales; the content tree is
-  already em-dash-free.
-- **Writing a stub into a real guide:** research the topic properly (web search, official portals,
-  the relevant Act/NBR/RJSC text) rather than relying on assumptions. Before publishing, check
-  `app/nav-groups.json` and sibling stub titles in the same section for topic overlap — if two
-  slugs cover the same ground, scope the new guide to its unique angle and cross-link to the other
-  slug instead of duplicating content. Verify the stub's pre-listed sources are actually relevant;
-  drop irrelevant ones. Run `npm run build` after writing to confirm it compiles and is grouped
-  correctly.
-- **Navigation:** Section hub pages list their children automatically via `<SectionIndex ... />`.
-  Only the curated top-level sidebar lives in `app/nav.config.js` — update it when adding a new
-  top-level guide. Thematic grouping of hub lists lives in `app/nav-groups.json` (hand-curated) —
-  add a brand-new page's slug to the right group; unlisted pages fall back to an "আরও গাইড" group.
-- **Stub pages:** Unwritten topics contain a `<StubNotice path="section/slug" locale="bn|en" />`
-  banner plus a sources list — nothing else. Never imitate a finished guide on a stub. When writing
-  the real guide, delete the `StubNotice` line.
-- **Local Context:** Always tailor advice to the Bangladeshi market — Mobile Financial Services
-  (bKash/Nagad), Cash on Delivery (COD), Facebook-first growth, and low-trust market dynamics.
-- **Accuracy:** Cross-reference local laws and fees (RJSC fees, NBR VAT thresholds, trade license
-  processes) with current realities (year-stamping is covered in the Style guide section above).
-- **Formatting:** Standard Nextra MDX with `title`/`description` frontmatter on every page.
+Use `<Figure>` or Markdown images for images and `<YouTube>` for video facades. Never add raw media
+embeds or YouTube iframes. Run `npm run lint:media`. Retire and prune objects only through the
+dry-run-first process in `plan/media-operations.md`.
 
-## Public Contribution Feature
+## Generated files
 
-The inline editor lets any reader edit a page without touching GitHub. The flow:
+`npm run manifest` derives navigation, contribution maps, SEO inputs, route date maps, sitemap,
+robots and `llms.txt` from the content tree and git history. These are outputs, not additional
+sources of truth. Do not edit or review their contents as authored files; regenerate them.
 
-1. Reader clicks **"সম্পাদনা" / "Edit"** on any non-landing content page.
-2. If not signed in, `AuthModal` opens with a Google Identity Services button (client-side
-   only — no server session, no OAuth redirect). Google returns a signed ID token to the browser.
-3. The token is stored in `localStorage` (`app/lib/client-auth.js`) and sent as a
-   `Bearer` header on API calls. Tokens expire in ~1 hour; the backend re-verifies on every
-   request via `jose` + Google's JWKS (`app/lib/google-token.js`).
-4. `ContributionEditor` (Milkdown Crepe, dynamically imported) fetches the page's raw MDX from
-   `GET /api/content?path=<url>`, which looks up the repo path in `contributable.json` and
-   fetches from `raw.githubusercontent.com` (5-min in-memory cache).
-5. Locked MDX components (`<StubNotice/>`, `<SectionIndex/>`) are fenced as ` ```mdx ` code
-   blocks so they survive the markdown round-trip unchanged.
-6. On submit, `POST /api/contribute` creates a GitHub PR via the bot App: branch off `main` →
-   commit full MDX (frontmatter + body) → open PR with the contributor's name/email in the body.
-7. A reviewer merges the PR; the next deploy takes the change live.
+The authored media registries are the exception:
 
-**Env vars** (see `.env.local.example`): `NEXT_PUBLIC_GOOGLE_CLIENT_ID` (client + server),
-`GITHUB_APP_ID`, `GITHUB_APP_PRIVATE_KEY` (PEM), `GITHUB_INSTALLATION_ID`. The PEM is the only
-secret — everything else is an ID. The GitHub App needs Contents + Pull requests Read & write
-permissions on `Deshi-Startup/deshistartup`.
+- `app/generated/media.json`
+- `app/generated/media-retired.json`
 
-**Regenerating `contributable.json`:** run `npm run manifest`. The manifest maps every
-non-landing content URL to its repo path, title, locale, and stub status. If a new page is added
-but doesn't appear in the editor, the manifest is stale.
+## Commands
 
-## Licensing
+```bash
+npm run dev                 # local site; regenerates manifests first
+npm run manifest            # regenerate content and SEO outputs
+npm run backlog:status      # write the local planning status report
+npm run lint:bangla         # Bangla/content mechanical checks
+npm run lint:routes         # URL and locale-tree checks
+npm run lint:media          # media references and limits
+npm run test:contribute     # editor/contribution helpers
+npm run test:media          # media pipeline helpers
+npm run build               # production Next build + Pagefind + SEO audit
+npm run build:worker        # package the Cloudflare Worker
+npm run preview:worker      # local Worker preview
+```
 
-- **Code:** MIT.
-- **Content** (everything under `app/(contents)/`): Creative Commons Attribution-ShareAlike 4.0
-  (CC BY-SA 4.0).
-- Contributions are accepted under these licenses. See `LICENSE` and `LICENSE-content.md` for the
-  authoritative text and attribution format.
+## Deployment and safety
 
-## Keeping content current
+Production is the `deshistartup` Cloudflare Worker at `deshistartup.com`. Workers Builds runs
+`npm run build:worker` from `main`. Runtime variables and secrets are documented in
+`.env.local.example` and `wrangler.jsonc`.
 
-- Legal, tax, and fee pages carry an optional `verified: YYYY-MM-DD` frontmatter field, separate
-  from the automatic "last updated" (last-commit) date. Only set or bump `verified:` after actually
-  re-checking the page's claims against official sources — never as a drive-by edit.
-- `plan/maintenance-calendar.md` is the freshness cadence: what to re-check, where, and how often
-  (annual budget-speech mining, monthly RJSC/NBR/VAT-circular checks, quarterly directory
-  re-verification, and ongoing rules for legal pages and source attribution). Treat an overdue item
-  on that calendar as higher-priority than most unwritten stubs.
-- `plan/sources.csv` is the tiered source registry to re-check against; `plan/research-ops.csv` is
-  the raw cadence data the calendar was generated from.
+Pushing `main` deploys production. Never push unless Shamir asks.
 
-## Build and Run Commands
+Preserve these constraints:
 
-- `npm run dev` - Start development server (uses Turbopack; `predev` regenerates the content manifest first)
-- `npm run build` - Build the Next.js site (`prebuild` regenerates the manifest; postbuild runs Pagefind and the SEO audit)
-- `npm run build:worker` - Build and package the production Cloudflare Worker with OpenNext
-- `npm run preview:worker` - Build and run the production Worker locally in `workerd`
-- `npm run deploy:worker` - Deploy the already-built `.open-next` output while preserving dashboard variables
-- `npm run manifest` - Regenerate `app/generated/manifest.*.json`, `sections-lite.json` and `public/page-dates.json` from the content tree + git dates
-- `npm run media:upload` - Upload everything staged in `media/` to the R2 bucket and record it in `app/generated/media.json` (`-- --force` to re-upload; accepts explicit paths)
-- `npm run media:posters` - Fetch and upload a poster for every `<YouTube>` embed (`-- --force` to re-fetch)
-- `npm run media:prune` - Dry-run the repository-aware R2 cleanup; see `plan/media-operations.md` before using `-- --retire-unreferenced` or `-- --apply`
-- `npm run lint:media` - Check embedded media: missing files, missing alt text, invalid video ids, oversized files; also runs in `prebuild`
-- `npm run lint:routes` - Enforce the URL policy (segment depth, path length, slug charset, bn/en mirror, StubNotice paths); also runs automatically in `prebuild`
-- `npm run seo:audit` - Validate the built HTML, canonicals, hreflang, indexability, metadata, JSON-LD, sitemap, robots, and internal links
-- `npm run seo:indexnow:dry` - Preview the canonical URL batch for IndexNow; use `npm run seo:indexnow` only after a deployment is live
-- `npm start` - Start the production server
-- `npm run scrape` - Run the scraping utility
-
-## Deployment
-
-- **Production (`main` branch → Workers Builds → Cloudflare Worker `deshistartup` →
-  `deshistartup.com`):** Workers Builds runs `npm run build:worker`, then
-  `npm run deploy:worker`. OpenNext keeps the prerendered content on Cloudflare's static-assets
-  cache and runs `/api/content` and `/api/contribute` in the Worker runtime.
-- Runtime variables: `NEXT_PUBLIC_GOOGLE_CLIENT_ID`, `GITHUB_APP_ID`, and
-  `GITHUB_INSTALLATION_ID`; runtime secret: `GITHUB_APP_PRIVATE_KEY`. Workers Builds also needs
-  `NEXT_PUBLIC_GOOGLE_CLIENT_ID` during the build. Keep dashboard variables by deploying with
-  `--keep-vars`.
-- Media build flags (both optional, both build-time only): `DESHI_MEDIA_TRANSFORM=1` turns on edge
-  image resizing, and requires Transformations to be enabled for the zone first;
-  `DESHI_MEDIA_BASE_URL=https://media.deshistartup.com` moves `/media/...` to a bucket.
-- A future subpath mirror can set `DEPLOY_BASE_PATH=/deshistartup`; keep internal content links
-  root-relative and preserve `localHref()` / `NEXT_PUBLIC_BASE_PATH`.
-- CI and Workers Builds use Node 22. `images.unoptimized` avoids an unnecessary image service.
-  **Pushing `main` deploys the live site — never push unless Shamir asks.**
-
-## Design System (July 2026 redesign)
-
-- All styling lives in `app/globals.css` as a token-based design system ("national reference work" aesthetic: Bangladesh-green structure, warm paper, serif Bangla display headings, wiki-blue links).
-- **The shell is a reasoned default, not a locked one.** The Wikipedia-clone look (paper background, white canvas, green top rule, no right ToC rail) is deliberate: it buys a reference work instant credibility, costs almost no bandwidth, and keeps attention on the content. It is open to challenge like everything else here — bring the reasoning and a rendered before/after, and it changes. What is not a style preference is the goal it serves: a first-time founder on a mid-range Android phone, on patchy bandwidth, has to trust the page and be able to read it fast. Propose against that, not against taste. Do not restyle the shell as an unexamined side effect of some other task.
-- Fonts are self-hosted in `app/fonts/` (Noto Sans Bengali variable + Noto Serif Bengali 700, Bengali subset, `local()`-first so most Android devices download nothing). Do not add render-blocking Google Fonts links.
-- Bangla UI text uses Bengali numerals (০-৯); dates render via `toLocaleDateString('bn-BD')`.
-- Per-page chrome (breadcrumbs, last-updated meta bar, edit/history/report links, ToC rail, article footer) is generated in `app/components/LocalizedLayout.jsx` from the pathname – content pages need no extra markup.
-- Performance budget: article critical path (HTML+CSS) under ~150 KB; keep article pages near-zero JS and never add autoplaying/heavy embeds. Calculators and the directory are the sanctioned exceptions — still no heavy libraries.
-
-## Notes for Agent Use
-
-- Prefer content already in `app/` and the planning brain in `plan/` over inferred assumptions about "standard" startup processes — Bangladesh has unique constraints.
-- The project is a static docs site, so changes should preserve the Nextra page layout and route-group structure. Route groups are used intentionally: `(contents)` and `(bn)` organize files without changing public URLs.
-- Do not reintroduce `_meta.js` under `app/` unless the route-group validation issue has actually been solved.
-- After making structural or content changes, run `npm run manifest`, then `npm run build` before finishing. CI uses Node 22 — if the local Node runtime is too old for the build, report that clearly instead of assuming the content change is broken.
+- article critical path stays small and near-zero-JS;
+- self-hosted Bengali fonts remain;
+- content remains available without login;
+- contribution changes always go through review;
+- legal/tax content is general guidance, not professional advice;
+- code is MIT and content under `app/(contents)/` is CC BY-SA 4.0.

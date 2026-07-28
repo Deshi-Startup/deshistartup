@@ -1,7 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { Agent as HttpsAgent } from 'https';
-import fetch from 'node-fetch';
 import * as cheerio from 'cheerio';
 import TurndownService from 'turndown';
 import robotsParser from 'robots-parser';

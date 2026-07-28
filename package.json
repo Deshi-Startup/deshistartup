@@ -22,7 +22,7 @@
     "media:prune": "node scripts/media-prune.mjs",
     "lint:media": "node scripts/media-lint.mjs",
     "test:media": "node --test scripts/media-lib.test.mjs",
-    "backlog:status": "node scripts/backlog-status.mjs",
+    "backlog:status": "npm run manifest && node scripts/backlog-status.mjs",
     "lint:bangla": "node scripts/bangla-lint.mjs",
     "lint:routes": "node scripts/route-lint.mjs",
     "test:contribute": "node --experimental-strip-types --test app/lib/contribution-markdown.test.mjs app/lib/contribution-draft.test.mjs app/lib/contribution-media.test.mjs",
@@ -36,11 +36,9 @@
   "dependencies": {
     "@milkdown/crepe": "^7.21.2",
     "@milkdown/kit": "^7.21.2",
-    "@milkdown/react": "^7.21.2",
     "jose": "^6.2.3",
     "next": "^15.1.3",
     "nextra": "^4.0.0",
-    "nextra-theme-docs": "^4.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -50,7 +48,6 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "cheerio": "^1.2.0",
-    "node-fetch": "^3.3.2",
     "pagefind": "^1.5.2",
     "robots-parser": "^3.0.1",
     "turndown": "^7.2.4",

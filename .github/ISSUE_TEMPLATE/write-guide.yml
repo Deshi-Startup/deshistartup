@@ -6,9 +6,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        দারুণ! শুরু করার আগে [অবদান রাখার নিয়ম](https://github.com/Deshi-Startup/deshistartup/blob/main/CONTRIBUTING.md)
-        আর [ভাষার মান](https://github.com/Deshi-Startup/deshistartup/blob/main/STYLE.md) দেখে নিন।
-        [লেখা বাকি বিষয়গুলো দেখুন](https://github.com/Deshi-Startup/deshistartup/blob/main/plan/content-backlog.csv)।
+        [লেখা বাকি বিষয়](https://deshistartup.com/guides) বেছে নিন, তারপর
+        [ছোট contribution guide](https://github.com/Deshi-Startup/deshistartup/blob/main/CONTRIBUTING.md) দেখুন।
   - type: input
     id: topic
     attributes:
@@ -36,7 +35,5 @@ body:
     attributes:
       label: "লেখার মূল নিয়ম · Ground rules"
       options:
-        - label: "বাংলায় ভেবে বাংলায় লিখব – ইংরেজি থেকে অনুবাদ নয় (STYLE.md) · I'll think and write in Bangla, not translate from English"
-          required: true
-        - label: "আইন/ফি/নিয়মের প্রতিটি দাবিতে সূত্র দেব, অনুমান লিখব না · Every legal or fee claim will have a source, with no guessing"
+        - label: "নিজের ভাষায় লিখব, আইন/ফি/নিয়মের দাবিতে সূত্র দেব এবং অনুমানকে তথ্য বানাব না · I will write in my own words, source consequential claims and not present guesses as facts"
           required: true

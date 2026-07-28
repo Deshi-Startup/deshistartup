@@ -1,153 +1,92 @@
-# অবদান রাখার নিয়ম · Contributing
+# অবদান রাখুন · Contributing
 
-**বাংলা প্রথম, নিচে ইংরেজি।**
+দেশি স্টার্টআপে অবদান রাখতে কোড বা GitHub জানা লাগে না। সাইটের
+[অবদান পাতায়](https://deshistartup.com/contribute) বাংলা ধাপগুলো আছে।
 
-দেশি স্টার্টআপ সবাই মিলে লেখা একটি উন্মুক্ত জ্ঞানভাণ্ডার। ভুল ধরিয়ে দেওয়া থেকে পূর্ণ গাইড লেখা
-পর্যন্ত – যেটুকু পারেন, সেটুকুই কাজে লাগবে। শুরু করতে সাইটের
-[কীভাবে অবদান রাখবেন](https://deshistartup.com/contribute) পাতাটি পড়ুন। সেখানে ৩টি পথ
-ধাপে ধাপে দেখানো আছে। এই ফাইলে একই কথা আরও খুঁটিনাটিসহ দেওয়া আছে।
+## শুরু করার ৩টি পথ
 
-## ৩টি পথ
+1. **ভুল জানান:** পাতার **ভুল জানান** লিংকে কী ভুল লিখুন। সূত্র জানা থাকলে দিন।
+2. **ছোট সংশোধন করুন:** পাতার **সম্পাদনা** বোতাম চাপুন, Google দিয়ে সাইন ইন করুন,
+   লেখা ঠিক করে **রিভিউতে পাঠান** চাপুন। পুল রিকোয়েস্ট নিজে থেকেই তৈরি হবে।
+3. **পূর্ণ গাইড লিখুন:** কোনো **লেখা বাকি** পাতা বেছে নিন। একই বিষয়ে দুজন যেন কাজ না
+   করেন, আগে সংশ্লিষ্ট ইস্যুতে “আমি লিখছি” লিখুন।
 
-1. **ভুল বা পুরোনো তথ্য জানান (২ মিনিট)** – যেকোনো পাতার **"ভুল জানান"** লিংক, বা
-   [ইস্যু ফর্ম](https://github.com/Deshi-Startup/deshistartup/issues/new?template=report-mistake.yml)।
-   কী ভুল আর সঠিকটা কী (জানলে সূত্রসহ) – এটুকুই যথেষ্ট।
-2. **ছোট সংশোধন নিজেই করুন (৫–১০ মিনিট)** – পাতার **"সম্পাদনা"** লিংকে ক্লিক করলে ফাইলটা
-   GitHub-এ খুলবে। ঠিক করে **"Propose changes"** চাপুন। ফর্ক-ব্রাঞ্চের ঝামেলা
-   GitHub নিজেই সামলাবে। কিছু ইনস্টল করতে হবে না।
-3. **একটি "লেখা বাকি" বিষয়ে পূর্ণ গাইড লিখুন** – নিচের নিয়মগুলো দেখুন।
+GitHub ব্যবহার করতে চাইলে পাতার নিচের **GitHub-এ সম্পাদনা** লিংকও ব্যবহার করতে পারেন।
 
-## নতুন গাইড লেখার নিয়ম
+## পূর্ণ গাইডের ন্যূনতম মান
 
-1. **বিষয় বেছে নিন:** ["নতুন গাইড" ইস্যুগুলো](https://github.com/Deshi-Startup/deshistartup/issues?q=is%3Aissue+is%3Aopen+label%3A%22নতুন+গাইড%22)
-   থেকে, বা [কনটেন্ট ব্যাকলগ](./plan/content-backlog.csv) থেকে যেকোনো "লেখা বাকি"
-   বিষয়। কোনটা আগে দরকার, ব্যাকলগেই লেখা আছে। ইস্যুতে **"আমি লিখছি"** মন্তব্য করুন, যাতে
-   দুজন একই বিষয়ে কাজ না করেন।
-2. **অনুমান নয়, রিসার্চ:** সরকারি পোর্টাল, আইনের মূল লেখা আর
-   [সোর্স রেজিস্ট্রি](./plan/sources.csv) ধরে লিখুন। যেটা নিশ্চিত নন, সেটা বাদ দিন। লিখতেই
-   হলে "যাচাই প্রয়োজন" বলে দিন।
-3. **কাঠামো:** স্টাব পাতার শুরুর `<StubNotice ... />` লাইনটি **শুধু পূর্ণ গাইড শেষ হলে** মুছবেন –
-   ওই এক লাইন মুছলেই পাতাটা সব জায়গায় (মেনু, ব্যাজ, সার্চ) "লেখা শেষ" হয়ে যায়। গাইডের ছাঁচ:
+- সরকারি বা মূল সূত্র ধরে রিসার্চ করুন। অনুমানকে তথ্য হিসেবে লিখবেন না।
+- বাংলায় ভেবে সহজ বাংলায় লিখুন। লেখা শেষ করে জোরে পড়ুন।
+- পাঠক যেন বুঝতে পারেন: কার দরকার, কী করবেন, কী লাগবে, খরচ ও সময় কত।
+- আইন, ফি, সীমা ও নিয়মের দাবির পাশে সূত্র দিন। বদলাতে পারে এমন সংখ্যার সঙ্গে সাল দিন।
+- `<StubNotice ... />` শুধু পূর্ণ গাইড শেষ হলে সরান।
+- বাংলা পাতাই মূল। ইংরেজি মিরর দিলে ভালো; না পারলেও বাংলা অবদান জমা দিন।
 
-   ```text
-   # শিরোনাম
+কাজের ছাঁচ:
 
-   > **সারকথা:** ৩–৪ লাইনে পুরো বিষয়ের নির্যাস।
+```text
+# শিরোনাম
 
-   ## কার কখন দরকার
-   ## ধাপে ধাপে কী করবেন
-   ## খরচ ও সময় (সাল উল্লেখ করুন)
-   ## সাধারণ ভুল
-   ## প্রাসঙ্গিক সূত্র (সরকারি লিংক আগে)
-   ```
+> **সারকথা:** ৩–৪ লাইনে মূল উত্তর।
 
-4. **ভাষা ও শেখানোর মান:** [STYLE.md](./STYLE.md) (বাংলায় ভেবে বাংলায় লিখুন – অনুবাদ নয়) আর
-   [EDITORIAL.md](./EDITORIAL.md) (প্রতিটি কঠিন ধারণা: নাম → সহজ সংজ্ঞা → দেশি উদাহরণ → টাকার
-   হিসাব → আপনার জন্য এর মানে কী)। কেমন লেখা চাই, তা দেখতে
-   [/start-here](https://deshistartup.com/start-here) পাতাটি পড়ুন।
-5. **বাংলা আগে, ইংরেজি পরে:** বাংলা পাতাই মূল (`app/(contents)/(bn)/<slug>/page.mdx`)। পারলে
-   একই PR-এ ইংরেজি মিরর দিন (`app/(contents)/en/<slug>/page.mdx`, একই স্লাগ)। না পারলে শুধু
-   বাংলা দিলেও চলবে – মিররটা মেইনটেইনাররা করে নেবেন।
-6. **PR খুলুন।** ভাষা নিখুঁত না হলেও জমা দিন – রিভিউতে আমরা গুছিয়ে দেব। আসল কথা: তথ্য ঠিক
-   আছে কি না, আর সূত্র আছে কি না।
+## কার কখন দরকার
+## ধাপে ধাপে কী করবেন
+## খরচ ও সময়
+## সাধারণ ভুল
+## চেকলিস্ট
+## প্রাসঙ্গিক সূত্র
+```
 
-## রিভিউ কীভাবে হয়
+ভাষার উদাহরণ ও শেষ চেকের জন্য [STYLE.md](./STYLE.md), আর গবেষণা ও শেখানোর মানের জন্য
+[EDITORIAL.md](./EDITORIAL.md) দেখুন। [/start-here](https://deshistartup.com/start-here)
+একটি ভালো নমুনা।
 
-- **প্রথম জবাব ৪৮ ঘণ্টার মধ্যে** – এটাই আমাদের কথা।
-- স্বয়ংক্রিয় চেক (লিন্টার + বিল্ড) PR-এ নিজে থেকেই চলে। ওয়েব থেকে সম্পাদনা করলে এগুলো নিয়ে
-  ভাবতে হবে না – ফল দেখে আমরা জানিয়ে দেব।
-- আইন, কর, রেজিস্ট্রেশন, ফান্ডিং – এই পাতাগুলো মেইনটেইনারের রিভিউ ছাড়া মার্জ হয় না। জটিল
-  হলে আমরা আইনজীবী বা সিএ-কে দেখাই।
-- রিভিউতে কিছু বদলাতে বললে সেটা লেখা নিয়ে, আপনাকে নিয়ে নয়। প্রশ্ন থাকলে ইস্যুতে বা
-  [Discussions](https://github.com/Deshi-Startup/deshistartup/discussions)-এ জিজ্ঞেস করুন।
+## রিভিউ
 
-## ডেভেলপারদের জন্য (ঐচ্ছিক)
+রিভিউয়ার তথ্য, সূত্র, স্পষ্টতা, সম্ভাব্য ক্ষতি এবং কপিরাইট দেখেন। আইন, কর, রেজিস্ট্রেশন,
+শ্রম, পেমেন্ট ও ফান্ডিংয়ের লেখা প্রয়োজনমতো বিশেষজ্ঞের কাছে যায়। প্রথম খসড়া নিখুঁত হতে
+হবে না; সঠিক তথ্য ও ভালো সূত্র ভাষার চেয়ে বেশি জরুরি।
 
-কনটেন্ট লিখতে এসব লাগে না। সাইটের কোড/কম্পোনেন্টে কাজ করলে:
+## ডেভেলপারদের জন্য
 
 ```bash
 npm install
-npm run dev          # লোকাল সার্ভার
-npm run lint:bangla  # বাংলা লেখার যান্ত্রিক চেক
-npm run build        # স্ট্যাটিক বিল্ড (manifest নিজে থেকেই রিজেনারেট হয়)
+npm run dev
+npm run lint:bangla
+npm run build
 ```
 
-আর্কিটেকচার, রাউটিং, স্টাব-ব্যবস্থা, নেভিগেশন কনভেনশন – সব [AGENTS.md](./AGENTS.md)-এ।
-`app/generated/*` কখনো হাতে বদলাবেন না (বিল্ড আর্টিফ্যাক্ট)।
+কোডের মানচিত্র ও অপরিবর্তনীয় নিয়ম [AGENTS.md](./AGENTS.md)-এ আছে। `app/generated/` ও
+SEO আউটপুট বিল্ডে তৈরি হয়; হাতে বদলাবেন না।
 
-## লাইসেন্স
-
-PR জমা দেওয়া মানেই আপনি রাজি: কনটেন্ট অবদান [কনটেন্ট লাইসেন্স](./LICENSE-content.md), কোড অবদান
-[MIT](./LICENSE) লাইসেন্সে প্রকাশিত হবে। অন্যের লেখা কপি করে দেবেন না – ধারণা নিজের ভাষায়
-শেখান, সূত্র দিন (বিস্তারিত [EDITORIAL.md](./EDITORIAL.md)-এ)।
+অবদান পাঠালে কনটেন্টের জন্য [CC BY-SA 4.0](./LICENSE-content.md) এবং কোডের জন্য
+[MIT](./LICENSE) লাইসেন্সে প্রকাশে সম্মতি দিচ্ছেন। অন্যের লেখা কপি করবেন না।
 
 ---
 
-# Contributing (English)
+# Contributing
 
-Deshi Startup is an open knowledge base written together. Everything from reporting a typo to
-writing a full guide is welcome. The easiest introduction is the site's
-[contribute page](https://deshistartup.com/en/contribute); this file is its GitHub version with
-extra detail.
+You do not need to know GitHub or install anything to contribute. The
+[contribute page](https://deshistartup.com/en/contribute) has the full browser-based flow.
 
-## Three paths
+## Three ways to start
 
-1. **Report wrong or outdated info (2 min)** – the **"Report a mistake"** link on any page, or the
-   [issue form](https://github.com/Deshi-Startup/deshistartup/issues/new?template=report-mistake.yml).
-   Say what's wrong and, if you know it, the correct info with a source.
-2. **Make a small fix yourself (5–10 min)** – click **"Edit"** on any page; GitHub opens the file
-   in your browser. Fix it and hit **"Propose changes"** – GitHub handles the fork and branch.
-   Nothing to install.
-3. **Write a stub into a full guide** – see below.
+1. **Report a problem:** use **Report a mistake** on the page and describe what is wrong.
+2. **Make a small fix:** press **Edit**, sign in with Google, make the change, then press
+   **Send for review**. The site creates the pull request.
+3. **Write a guide:** choose a **to be written** page and claim its issue before starting.
 
-## Writing a guide
+For a complete guide, research from primary sources, explain who needs the answer and what to do,
+cite every legal or regulatory claim, date changeable numbers, and remove `<StubNotice ... />`
+only when the guide is genuinely complete. Bengali is the source edition; an English mirror is
+welcome but optional.
 
-1. **Pick a topic** from the [open issues](https://github.com/Deshi-Startup/deshistartup/issues)
-   or [plan/content-backlog.csv](./plan/content-backlog.csv) (priorities are marked). Comment
-   **"I'm writing this"** on the issue so two people don't duplicate work.
-2. **Research properly:** official portals, the underlying law, and the tiered sources in
-   [plan/sources.csv](./plan/sources.csv). Never guess; mark unverified claims as needing
-   verification, or leave them out.
-3. **Structure:** delete the stub's `<StubNotice ... />` line **only when the guide is complete** –
-   that single line is what flips the page to "written" everywhere. Use the guide skeleton shown
-   in the Bangla section above (সারকথা summary → who needs it → step by step → cost & time,
-   year-stamped → common mistakes → sources, official links first).
-4. **Quality bars:** [STYLE.md](./STYLE.md) (think in Bangla, never translate from English) and
-   [EDITORIAL.md](./EDITORIAL.md) (every hard concept: name → plain definition → local example →
-   worked taka math → so-what). [/start-here](https://deshistartup.com/start-here) is the exemplar.
-5. **Bengali first, English mirror second:** the Bengali page is the source of truth
-   (`app/(contents)/(bn)/<slug>/page.mdx`). An English mirror in the same PR
-   (`app/(contents)/en/<slug>/page.mdx`, same slug) is welcome but optional – maintainers will
-   mirror it if you can't.
-6. **Open the PR.** Imperfect language is fine; review polishes it. What matters is factual
-   accuracy and sources.
+Use [STYLE.md](./STYLE.md) for natural Bangla and [EDITORIAL.md](./EDITORIAL.md) for research,
+teaching and source standards. Review focuses on accuracy, evidence, clarity, harm and copyright.
+Imperfect prose is welcome; reviewers can help polish it.
 
-## How review works
+Developers can run `npm install`, `npm run dev`, `npm run lint:bangla`, and `npm run build`.
+Architecture and repository rules live in [AGENTS.md](./AGENTS.md).
 
-- **First response within 48 hours** – that's our promise.
-- Automated checks (Bangla linter + build) run on every PR. If you edited from the browser,
-  don't worry about them – we'll read the results and tell you what, if anything, to change.
-- Legal, tax, registration, and funding pages never merge without maintainer review; complex
-  cases get professional (lawyer/CA) review.
-- Change requests are about the page, never about you. Ask anything in the issue or in
-  [Discussions](https://github.com/Deshi-Startup/deshistartup/discussions).
-
-## For developers (optional)
-
-Not needed for content. If you work on the site's code:
-
-```bash
-npm install
-npm run dev          # local dev server
-npm run lint:bangla  # mechanical Bangla style check
-npm run build        # static build (manifest regenerates automatically)
-```
-
-Architecture, routing, the stub system, and navigation conventions live in
-[AGENTS.md](./AGENTS.md). Never hand-edit `app/generated/*` (build artifacts).
-
-## Licensing of contributions
-
-By submitting a PR you agree that content contributions are licensed under
-[CC BY-SA 4.0](./LICENSE-content.md) and code contributions under [MIT](./LICENSE). Never paste in
-copyrighted text – teach the ideas in your own words and cite the source (EDITORIAL.md §8).
+By contributing, you agree to publish content under [CC BY-SA 4.0](./LICENSE-content.md) and
+code under [MIT](./LICENSE). Do not submit text you do not have the right to share.

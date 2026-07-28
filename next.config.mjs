@@ -1,6 +1,5 @@
 import nextra from 'nextra'
 import { MEDIA_URL } from './app/seo.config.mjs'
-import { createRequire } from 'node:module'
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -14,12 +13,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const projectRoot = dirname(fileURLToPath(import.meta.url))
-const require = createRequire(import.meta.url)
-const [nextMajor, nextMinor] = require('next/package.json').version.split('.').map(Number)
-const turboRootConfig =
-  nextMajor > 15 || (nextMajor === 15 && nextMinor >= 3)
-    ? { turbopack: { root: projectRoot } }
-    : { experimental: { turbo: { root: projectRoot } } }
 
 const withNextra = nextra({
   search: {
@@ -57,7 +50,7 @@ const nextConfig = {
   // dynamic route handlers need a server runtime. OpenNext packages that
   // runtime for Cloudflare Workers while preserving prerendered content.
   outputFileTracingRoot: projectRoot,
-  ...turboRootConfig,
+  turbopack: { root: projectRoot },
   basePath,
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
@@ -77,4 +70,14 @@ const nextConfig = {
   }
 }
 
-export default withNextra(nextConfig)
+const config = withNextra(nextConfig)
+
+// Nextra 4 still emits the old experimental.turbo key. Next 15.5 accepts the
+// same rules and aliases under the stable top-level turbopack option.
+if (config.experimental?.turbo) {
+  config.turbopack = { ...config.experimental.turbo, ...config.turbopack }
+  const { turbo: _turbo, ...experimental } = config.experimental
+  config.experimental = experimental
+}
+
+export default config

@@ -6,7 +6,7 @@
  * banned calques, officialese, em dashes (hard), semicolons in Bangla prose, raw Latin-script English
  * words mid-sentence, stray Devanagari characters, English digits in Bangla prose,
  * formal suffixes (-সমূহ / -ীকরণ), self-description tics (চেষ্টা করি, "আপনার জন্য এর মানে" mold),
- * sentence-rhythm (over-long or drum-machine-uniform sentences, STYLE §2.10),
+ * sentence-rhythm (over-long or drum-machine-uniform sentences),
  * and density of filler words (এবং / এটি / গুরুত্বপূর্ণ / -ভাবে / আপনার).
  *
  * IMPORTANT: this catches the *mechanical* tells only. A page can score zero here and still read
@@ -38,7 +38,7 @@ const BANGLA = /[ঀ-৿]/
 // Rules
 // ---------------------------------------------------------------------------
 
-// Hard: banned calques and MT artifacts (STYLE.md §3.1, §3.5)
+// Hard: banned calques and machine-translation artifacts.
 const BANNED = [
   ['ব্যবসা-থেকে-ব্যবসা', 'বিটুবি (B2B) লিখুন'],
   ['ব্যবসা থেকে ব্যবসা', 'বিটুবি (B2B) লিখুন'],
@@ -56,7 +56,7 @@ const BANNED = [
   ['খোলা প্রজেক্ট', '"ওপেন-সোর্স প্রজেক্ট" লিখুন'],
 ]
 
-// Soft: officialese that almost always wants the everyday word (STYLE.md §3.2)
+// Soft: officialese that almost always wants the everyday word.
 const OFFICIALESE = [
   ['প্রদান কর', 'দেওয়া'],
   ['সম্পন্ন কর', 'শেষ করা / সেরে ফেলা'],
@@ -78,13 +78,13 @@ const OFFICIALESE = [
   ['হালনাগাদকরণ', 'হালনাগাদ / আপডেট করা'],
 ]
 
-// Soft: formal suffixes that want the everyday form (STYLE.md §4.1, §2.5). Regex, per line.
+// Soft: formal suffixes that usually want the everyday form. Regex, per line.
 const SUFFIX = [
-  [/[ঀ-৿]+সমূহ/, '-সমূহ', '"-গুলো" লিখুন (STYLE.md §4.1)'],
-  [/[ঀ-৿]+ীকরণ/, '-ীকরণ', 'ক্রিয়ায় ভাঙুন: আধুনিকীকরণ→আধুনিক করা (STYLE.md §2.5)'],
+  [/[ঀ-৿]+সমূহ/, '-সমূহ', '"-গুলো" লিখুন'],
+  [/[ঀ-৿]+ীকরণ/, '-ীকরণ', 'ক্রিয়ায় ভাঙুন: আধুনিকীকরণ→আধুনিক করা'],
 ]
 
-// Latin-script tokens allowed inside Bangla prose (STYLE.md §3.4 point 3)
+// Latin-script tokens allowed inside Bangla prose.
 const LATIN_ALLOW = new Set(
   [
     // metric/document acronyms & real-world spellings
@@ -111,7 +111,7 @@ const LATIN_ALLOW = new Set(
   ].map((w) => w.toLowerCase()),
 )
 
-// Soft: coined collocations — near-idioms nobody says on the phone (STYLE.md §2.14)
+// Soft: coined collocations — near-idioms nobody says on the phone.
 const COINED = [
   ['উত্তর সাজায়', '"তুলে ধরে" / "দেয়" লিখুন'],
   ['পর্যন্ত সাজায়', '"পর্যন্ত নিয়ে যাবে" লিখুন'],
@@ -121,15 +121,15 @@ const COINED = [
 
 // Density notices per page (soft)
 const DENSITY = [
-  [/এবং/g, 'এবং', 8, 'আর/ও ব্যবহার করুন বা বাক্য ভাঙুন (STYLE.md §2.8)'],
-  [/এটি|এটা /g, 'এটি/এটা', 8, 'সর্বনাম ফেলে দিন যেখানে বোঝা যায় (STYLE.md §2.9)'],
-  [/গুরুত্বপূর্ণ/g, 'গুরুত্বপূর্ণ', 2, 'জরুরি/দরকারি/কারণ বলুন (STYLE.md §3.3)'],
-  [/[ঀ-৿]+ভাবে/g, '-ভাবে', 5, 'ক্রিয়া দিয়ে লিখুন (STYLE.md §2.7)'],
-  [/ হলো /g, 'হলো', 6, '"X হলো Y" রিফ্লেক্স ভাঙুন (STYLE.md §2.4)'],
-  [/মানে শুধু/g, 'মানে শুধু', 1, 'এক পাতায় একবারই – আর সারকথা-ওপেনার হিসেবে সাইটজুড়ে ছাঁচ বানাবেন না (STYLE.md §2.11)'],
-  [/আপনার/g, 'আপনার', 12, 'ইংরেজি "your"-এর প্রতিধ্বনি – বেশির ভাগ ফেলে দিন (STYLE.md §2.9)'],
-  [/চেষ্টা করি/g, 'চেষ্টা করি', 3, 'আত্ম-বর্ণনায় হেজ – অনুচ্ছেদে একবারই যথেষ্ট (STYLE.md §2.13)'],
-  [/আপনার জন্য এর মানে/g, 'আপনার জন্য এর মানে', 1, 'ছাঁচ-বাক্য – STYLE.md §3.8 থেকে রোটেট করুন (তাহলে দাঁড়াল / সোজা কথায় / মোদ্দা কথা…)'],
+  [/এবং/g, 'এবং', 8, 'আর/ও ব্যবহার করুন বা বাক্য ভাঙুন'],
+  [/এটি|এটা /g, 'এটি/এটা', 8, 'সর্বনাম ফেলে দিন যেখানে বোঝা যায়'],
+  [/গুরুত্বপূর্ণ/g, 'গুরুত্বপূর্ণ', 2, 'জরুরি/দরকারি/কারণ বলুন'],
+  [/[ঀ-৿]+ভাবে/g, '-ভাবে', 5, 'ক্রিয়া দিয়ে লিখুন'],
+  [/ হলো /g, 'হলো', 6, '"X হলো Y" রিফ্লেক্স ভাঙুন'],
+  [/মানে শুধু/g, 'মানে শুধু', 1, 'এক পাতায় একবারই – আর সারকথা-ওপেনার হিসেবে সাইটজুড়ে ছাঁচ বানাবেন না'],
+  [/আপনার/g, 'আপনার', 12, 'ইংরেজি "your"-এর প্রতিধ্বনি – বেশির ভাগ ফেলে দিন'],
+  [/চেষ্টা করি/g, 'চেষ্টা করি', 3, 'আত্ম-বর্ণনায় হেজ – অনুচ্ছেদে একবারই যথেষ্ট'],
+  [/আপনার জন্য এর মানে/g, 'আপনার জন্য এর মানে', 1, 'ছাঁচ-বাক্য ঘুরিয়ে লিখুন (তাহলে দাঁড়াল / সোজা কথায় / মোদ্দা কথা…)'],
 ]
 
 // ---------------------------------------------------------------------------
@@ -173,7 +173,7 @@ function preprocess(source) {
 }
 
 /**
- * Sentence rhythm (STYLE.md §2.10). Translationese runs at one uniform medium-long length;
+ * Translationese often runs at one uniform medium-long sentence length;
  * billboard-Bangla runs at uniform short. Human Bangla breathes — varied length. We flag
  * over-long prose and drum-machine uniformity. Calibrated so the site's best pages
  * (unit-economics: mean≈12, sd≈6) stay clean while pages that run hot get a nudge.
@@ -211,11 +211,11 @@ function sentenceRhythm(raw) {
   const sd = Math.sqrt(lens.map((x) => (x - mean) ** 2).reduce((a, b) => a + b, 0) / lens.length)
   const veryLong = lens.filter((x) => x > 26).length
   const long = lens.filter((x) => x > 22).length
-  if (mean > 18) out.push([0, `বাক্য গড়ে ${mean.toFixed(0)} শব্দ (লক্ষ্য ~১২-১৫) — বড় বাক্য ভাঙুন (STYLE.md §2.10)`])
-  if (veryLong >= 3) out.push([0, `২৬+ শব্দের বাক্য ${veryLong}টি — জোরে পড়লে শ্বাস আটকায়, ভাঙুন (STYLE.md §2.10)`])
-  else if (long >= 10) out.push([0, `২২+ শব্দের বাক্য ${long}টি — কিছু ভাঙলে লেখা শ্বাস নেবে (STYLE.md §2.10)`])
+  if (mean > 18) out.push([0, `বাক্য গড়ে ${mean.toFixed(0)} শব্দ (লক্ষ্য ~১২-১৫) — বড় বাক্য ভাঙুন`])
+  if (veryLong >= 3) out.push([0, `২৬+ শব্দের বাক্য ${veryLong}টি — জোরে পড়লে শ্বাস আটকায়, ভাঙুন`])
+  else if (long >= 10) out.push([0, `২২+ শব্দের বাক্য ${long}টি — কিছু ভাঙলে লেখা শ্বাস নেবে`])
   if (sd < 3.5 && mean < 10)
-    out.push([0, `বাক্যের দৈর্ঘ্যে বৈচিত্র্য কম (sd≈${sd.toFixed(1)}) — একটানা খাটো বাক্য বিজ্ঞাপনী ড্রামের মতো (STYLE.md §2.10, §2.12)`])
+    out.push([0, `বাক্যের দৈর্ঘ্যে বৈচিত্র্য কম (sd≈${sd.toFixed(1)}) — একটানা খাটো বাক্য বিজ্ঞাপনী ড্রামের মতো`])
   return out
 }
 
@@ -226,9 +226,9 @@ function lintFile(file) {
   const soft = []
 
   // Em dash is banned in all content, both locales — checked on the raw file so
-  // frontmatter titles/descriptions are covered too (STYLE.md §4.3).
+  // Frontmatter titles and descriptions are covered too.
   raw.split('\n').forEach((l, i) => {
-    if (l.includes('—')) hard.push([i + 1, 'এম-ড্যাশ (—) নিষিদ্ধ — স্পেসসহ এন-ড্যাশ ( – ), কমা বা দুই বাক্য (STYLE.md §4.3)'])
+    if (l.includes('—')) hard.push([i + 1, 'এম-ড্যাশ (—) নিষিদ্ধ — স্পেসসহ এন-ড্যাশ ( – ), কমা বা দুই বাক্য'])
   })
 
   lines.forEach((line, idx) => {
@@ -250,7 +250,7 @@ function lintFile(file) {
       if (line.includes(needle)) soft.push([no, `"${needle.trim()}" → ${fix}`])
     }
     for (const [needle, fix] of COINED) {
-      if (line.includes(needle)) soft.push([no, `"${needle}" – বানানো কোলোকেশন, ফোন-টেস্টে ফেল → ${fix} (STYLE.md §2.14)`])
+      if (line.includes(needle)) soft.push([no, `"${needle}" – বানানো কোলোকেশন, ফোন-টেস্টে ফেল → ${fix}`])
     }
     for (const [re, label, fix] of SUFFIX) {
       const m = line.match(re)
@@ -258,7 +258,7 @@ function lintFile(file) {
     }
 
     // semicolon inside Bangla prose
-    if (line.includes(';')) soft.push([no, 'বাংলা বাক্যে সেমিকোলন — দুই বাক্যে ভাঙুন (STYLE.md §4.3)'])
+    if (line.includes(';')) soft.push([no, 'বাংলা বাক্যে সেমিকোলন — দুই বাক্যে ভাঙুন'])
 
     // English digits in Bangla prose (dates in frontmatter/links already stripped)
     const digits = line.match(/[ঀ-৿][^\n]*?\b(\d[\d,.]*)\b/)
@@ -302,7 +302,7 @@ function lintFile(file) {
 // ---------------------------------------------------------------------------
 
 // Bangla UI copy that lives outside app/(contents)/ — the homepage strings escaped every
-// sweep until 2026-07-11 reader feedback caught billboard-Bangla there (STYLE.md §2.12–2.14).
+// sweep until reader feedback caught billboard-style Bangla there.
 const EXTRA_BN_SOURCES = ['app/components/WikiLanding.tsx', 'app/nav.config.ts']
 
 const targets = fileArgs.length
@@ -329,7 +329,7 @@ console.log(
 )
 console.log(
   'A clean pass means the MECHANICAL tells are gone — not that the Bangla reads natural. Architecture-level\n' +
-    'translationese is invisible to regex. Before publishing, run the read-aloud test (STYLE.md §1) and have\n' +
+    'translationese is invisible to regex. Before publishing, run the read-aloud test in STYLE.md and have\n' +
     'a native reader go through the page sentence by sentence.',
 )
 

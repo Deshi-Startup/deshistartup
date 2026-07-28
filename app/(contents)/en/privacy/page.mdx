@@ -1,42 +1,60 @@
 ---
 title: "Privacy Policy"
-description: "What information Deshi Startup processes when you read the site or submit a contribution, and how to contact us about your information."
+description: "What data is processed when you read the site, sign in with Google, contribute text or images, and use pages measured through analytics."
 ---
 
 # Privacy Policy
 
-> **In short:** You do not need an account to read Deshi Startup. We do not collect information to show ads or track individual readers. If you sign in with Google to edit a page, we receive your name, email address and profile picture. Your submitted text and name appear in a public GitHub pull request; your email address does not.
+> **In short:** Reading guides requires no account. Editing with Google provides your name, email,
+> profile image and a temporary identity token. Submitted text, images and your name enter the
+> review process. Measurement tags may run through Google Tag Manager to help understand site use.
 
-**Effective: 27 July 2026**
+**Effective: 28 July 2026**
 
-## When you read the site
+## Reading the site
 
-You do not need to provide a name, email address or account to read the guides. Our hosting provider may process standard technical information, such as an IP address, browser type and request time, to deliver and protect the site. We do not use that information to build individual reader profiles.
+Hosting and security services may process ordinary request data such as IP address, browser, time
+and requested URL.
 
-The site does not use our own advertising or behavioural analytics.
+The site loads Google Tag Manager. Measurement tags configured inside it may send data such as page
+views, device information, approximate location and referring page to Google. The application code
+does not currently provide advertising or build its own reader profiles. Browser privacy and
+tracking controls may limit this processing.
 
-## When you edit a page
+## Editing a page
 
-The inline editor requires Google sign-in. Google provides your name, email address, profile picture and a signed, short-lived identity token.
+Google sign-in provides a name, email, profile image and signed temporary ID token.
 
-- The token is kept in your browser's local storage and normally expires in about one hour.
-- An unsent draft may remain in the same browser's local storage for up to 14 days. It is removed when submitted or discarded.
-- The server verifies the token on each request and does not create a separate login session.
-- Your email address identifies your contribution branch. It is not printed in the pull request.
-- When you submit an edit, the text, your summary and your name are published in a public GitHub pull request.
+- The token stays in browser local storage and normally expires in about one hour.
+- An unfinished local draft may stay in the same browser for up to 14 days.
+- The server verifies the token on every request and keeps no separate login session.
+- Submitted text, summary and name appear in a public GitHub pull request; the email does not.
+- Account-based rate limits and mute/ban records may be used to prevent abuse.
 
-Google and GitHub process information under their own policies. Their privacy terms also apply when you use those services.
+## Contributing an image
 
-## Local storage and cookies
+Image bytes, type, dimensions, alt text, source/credit, page path and a hashed account identifier
+are stored in a private quarantine bucket. Only the owner and authorized reviewers can view a
+pending image.
 
-We use browser local storage for the sign-in token and unsent drafts. Google's sign-in service may use its own cookies or similar technology. You can clear local data through your browser settings, but doing so will remove your sign-in state and any unsent draft.
+- Approved images become part of the public media library and GitHub history.
+- Rejected images are deleted immediately.
+- Undecided pending images expire after seven days.
+- Review checks privacy, copyright, personal information and necessary redaction before publication.
 
-## How long information remains
+Do not submit another person's private information, confidential documents or sensitive
+screenshots without permission.
 
-Expired sign-in tokens are removed when you next open the site. The editor also removes unsent drafts older than 14 days when it next checks local storage. A submitted contribution becomes part of GitHub's public history and may be retained to preserve that history and support open-source collaboration.
+## Retention and other services
 
-## Questions and removal requests
+Expired tokens and local drafts older than 14 days are removed when the browser next uses the
+editor. Accepted contributions may remain in public GitHub history. Approved media may remain in
+content history and caches.
 
-To ask about, correct or request removal of your information, [open a GitHub issue](https://github.com/Deshi-Startup/deshistartup/issues/new). Do not post sensitive information in a public issue. Complete removal of a public contribution may not always be possible because others may have copied or forked the repository.
+Google, GitHub and Cloudflare process information under their own policies.
 
-If this policy changes, we will update the effective date on this page.
+## Questions or removal requests
+
+[Open a GitHub issue](https://github.com/Deshi-Startup/deshistartup/issues/new), but do not place
+sensitive information in a public issue. A public contribution may not be fully removable after it
+has been copied into git history, forks or caches.

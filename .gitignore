@@ -40,7 +40,17 @@ next-env.d.ts
 CLAUDE.md
 PRODUCT.md
 app/generated/*
+!app/generated/media.json
 !app/generated/media-retired.json
+# Derived content/SEO outputs; npm run manifest recreates them.
+public/page-dates.json
+public/page-published.json
+public/page-verified.json
+public/sitemap.xml
+public/robots.txt
+public/llms.txt
+public/progress.json
+public/progress.en.json
 # TypeScript incremental build cache
 tsconfig.tsbuildinfo
 *.tsbuildinfo

@@ -1,22 +1,17 @@
-<!-- ধন্যবাদ! যেটুকু আপনার বদলের সঙ্গে মেলে, সেটুকু পূরণ করুন। ওয়েব ব্রাউজার থেকে ছোট সংশোধন
-করলে চেকলিস্ট নিয়ে ভাববেন না – স্বয়ংক্রিয় চেক আর রিভিউয়াররা বাকিটা দেখে নেবেন।
-Thanks! Fill in what applies. If this is a small browser edit, don't worry about the
-checklist – CI and reviewers will handle the rest. -->
+<!-- ছোট browser edit হলে শুধু কী বদলেছে লিখলেই হবে। বাকিটা reviewer ও CI দেখবে।
+For a small browser edit, describe the change; reviewers and CI will handle the rest. -->
 
 ## কী বদলেছে · What changed
 
 <!-- এক-দুই লাইনে। ইস্যু বন্ধ করার জন্য লিখুন: `Closes #নম্বর` -->
 
-## কনটেন্ট পাতার চেকলিস্ট · Content checklist
+## বড় কনটেন্ট বদলের চেক · For substantial content changes
 
-- [ ] জোরে পড়ে দেখেছি – মুখের কথার মতো শোনায়, অনুবাদ-অনুবাদ লাগে না (STYLE.md §7)
-- [ ] আইন/ফি/নিয়মের প্রতিটি দাবিতে সূত্র আছে
-- [ ] প্রতিটি ফি ও সংখ্যার পাশে সাল আছে ("২০২৬ সালের হিসাবে…")
-- [ ] EDITORIAL.md §12 চেকলিস্ট মিলিয়ে দেখেছি (নতুন বা বড় করে লেখা পাতার জন্য)
+- [ ] তথ্য ও আইন/ফি/নিয়মের দাবিতে সূত্র আছে; বদলাতে পারে এমন সংখ্যায় সাল আছে
+- [ ] বাংলা জোরে পড়ে দেখেছি এবং STYLE.md / EDITORIAL.md-এর শেষ checklist মিলিয়েছি
 - [ ] `<StubNotice />` লাইনটি **শুধু পূর্ণ গাইড হলে** সরিয়েছি
-- [ ] ইংরেজি মিরর দিয়েছি, অথবা মিররটা মেইনটেইনারদের জন্য রেখে দিলাম (দুটোই ঠিক আছে)
 
-## লোকাল চেক (ঐচ্ছিক) · Local checks (optional)
+## লোকাল চেক · Local checks (optional)
 
 - [ ] `npm run lint:bangla` সবুজ · passes
 - [ ] `npm run build` সবুজ · passes

@@ -1,22 +1,20 @@
-# plan/ — the project's planning brain
+# Planning
 
-This folder is the **committed, canonical planning layer** of Deshi Startup.
-
-Agents (Claude Code, Codex) and human contributors should treat these files as the source of truth
-for *what to build and write next*. The site content itself lives in `app/(contents)/`.
+This folder holds the authored decisions about what to build and maintain. Site content lives in
+`app/(contents)/`; generated status and manifests are outputs, not planning documents.
 
 | File | What it is |
 |---|---|
-| `vision.md` | Long-form vision & content spec: purpose, principles, audiences, quality rules, and AI direction. |
-| `content-backlog.csv` | Canonical content backlog: 393 topics with section, Bangla/English titles, content type, priority, notes. The `Path` column is the **canonical route registry** — permanent URLs are never derived from titles. A topic is "written" when its site page exists without a `<StubNotice />`. |
+| `vision.md` | Durable mission, principles, product shape and success criteria. |
+| `content-backlog.csv` | Canonical planned topics and permanent routes. `Path` is the route registry. |
 | `sources.csv` | Tiered source registry (63 sources): who to trust for what, with URLs. Use when adding sources to any page. |
 | `case-study-format.md` | The 15-field format every startup case study must follow. |
 | `directory-schema.csv` | Categories + suggested data fields for the ecosystem directory. |
-| `workflow-maps.csv` | 12 founder journeys ("I have an idea but no product" …) to become guided paths. |
-| `bd-insights.csv` | 27 Bangladesh-specific research questions that should shape playbooks. |
+| `workflow-maps.csv` | Founder journeys and their ordered paths. |
+| `bd-insights.csv` | Bangladesh-specific research questions that should shape playbooks. |
 | `templates-tools.csv` | Planned templates, checklists, and calculators. |
 | `people-startups.csv` | Founders/startups to research for case studies, and where to look. |
-| `research-ops.csv` | Freshness cadences: what to re-check, where, how often (budget speech, RJSC/NBR notices…). |
+| `maintenance-calendar.md` | What to re-check, where and how often. |
 | `seo-operations.md` | Canonical SEO/GEO architecture, crawler policy, generated artifacts, validation and search-console release checklist. |
 | `media-operations.md` | R2 cost envelope, upload trust boundary, retention/pruning policy, and Cloudflare dashboard checklist. |
 
@@ -24,6 +22,7 @@ Conventions:
 
 - CSVs are UTF-8, comma-separated, quoted where needed. Keep them machine-readable — no merged
   prose blocks.
-- When a planning decision changes, update the relevant file in the same PR as the content change.
+- Do not repeat live counts or priority lists in prose. Run `npm run backlog:status`.
+- When a planning decision changes, update its one owning file in the same PR.
 - Raw scraped source material stays out of the public repo (`knowledge-bank/` is gitignored on
   purpose — copyright hygiene). Everything in `plan/` is our own work.

@@ -1,9 +1,7 @@
 # Maintenance calendar
 
-Converted from `plan/research-ops.csv` (2026-07-07). This is the freshness cadence for Deshi
-Startup: what to re-check, where, and how often, so the site does not silently go stale. Pair with
-the [`verified:` frontmatter system](../AGENTS.md#keeping-content-current) — re-verifying a page
-against this calendar is what earns it a bumped `verified:` date.
+This is the single freshness schedule for Deshi Startup: what to re-check, where and how often.
+A `verified:` date changes only after the relevant claims are re-checked, not after a routine edit.
 
 ## Annual
 
