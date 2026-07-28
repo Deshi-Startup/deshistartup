@@ -1,16 +1,103 @@
 ---
-title: "COD and Delivery Risk"
-description: "COD and Delivery Risk – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "Cash on Delivery Risk: How Many Returns You Can Absorb"
+description: "What a returned parcel actually costs, the return rate at which cash on delivery stops being profitable, and why that ceiling collapses on low-margin products — worked out in full."
+verified: 2026-07-28
 ---
 
-# COD and Delivery Risk
+# Cash on Delivery Risk: How Many Returns You Can Absorb
 
-<StubNotice path="operations/cod-risk" locale="en" />
+> **Key Takeaway:** Returns are unavoidable with cash on delivery, so the question is not whether parcels come back but how many you can absorb. The answer depends almost entirely on margin. A product earning BDT 400 of gross margin stays profitable up to roughly 69% returns; one earning BDT 120 breaks even at about 20%. Work out your own figure, then decide which products keep cash on delivery and which ones require a deposit.
+
+## Where the Cost Hides
+
+Many sellers count a returned parcel as one delivery charge. In reality a return costs money in at least three places — sending it, bringing it back, and the packaging. If the goods are damaged or the packet has been opened, a fourth is added.
+
+Even on a successful delivery, some costs do not show up plainly on a quote:
+
+- **The cash-on-delivery charge.** The courier takes a percentage of the money it collects for you. Steadfast's pricing page states that a 1% cash-on-delivery and risk-management charge applies.
+- **VAT.** The same page notes that the charges listed exclude VAT and tax, so the bill runs higher.
+- **Parcel size.** A light item in a large box can still cost more.
+- **Pick-and-drop minimum.** At Steadfast this is BDT 80.
+
+Delivery charges vary by route, weight, and size, so there is no single number worth memorising. Put your own route into the courier's calculator, then add the four items above.
+
+## How Many Returns You Can Absorb
+
+The share of dispatched parcels that come back unsold is called RTO — return to origin. The question is the rate at which profit reaches zero.
+
+You need two numbers. What you keep on each delivered order, and what you lose on each returned one.
+
+> Break-even RTO = profit per delivery ÷ (profit per delivery + loss per return)
+
+### A higher-margin product
+
+Sells for BDT 1,200, costs BDT 800. Outbound delivery BDT 60, packaging BDT 20, cash-on-delivery charge 1% of 1,200 = BDT 12.
+
+- Kept on delivery: 1,200 − 800 − 60 − 20 − 12 = **BDT 308**
+- Lost on a return: outbound 60 + return 60 + packaging 20 = **BDT 140**
+- Break-even RTO = 308 ÷ (308 + 140) = 308 ÷ 448 = **about 69%**
+
+Six returns in ten and this product is still not losing money. With a healthy margin, cash on delivery is fairly forgiving.
+
+### A lower-margin product
+
+Sells for BDT 600, costs BDT 480. The other costs barely change, because couriers do not lower their charge for cheaper goods. The cash-on-delivery charge is 1% of 600 = BDT 6.
+
+- Kept on delivery: 600 − 480 − 60 − 20 − 6 = **BDT 34**
+- Lost on a return: the same **BDT 140**
+- Break-even RTO = 34 ÷ (34 + 140) = 34 ÷ 174 = **about 20%**
+
+This is the whole point. The cost of a return does not shrink with the price of the item, but the profit does. On cheap goods, one return in five wipes out the margin on the other four.
+
+Put the two calculations side by side and the decision becomes clear: cash on delivery is most dangerous on inexpensive products — and inexpensive products are exactly where customers ask for it most.
+
+## Bringing Returns Down
+
+Once you know the break-even rate, measure your actual one. The courier's report shows parcels dispatched and returned. Divide once a month and you have the rate. Then the things that help:
+
+- **A confirmation rule.** Before dispatch, confirm price, delivery charge, and expected day by call or message.
+- **No answer, no dispatch.** After two failed attempts to reach the customer, hold the order.
+- **A partial deposit.** Taking a deposit equal to the delivery charge removes most fake orders.
+- **Verify the address.** Record the area, a landmark, and an alternative number.
+- **Keep photos and measurements accurate.** Customers refuse parcels when the item does not match expectations.
+- **Require deposits on cheap items.** Tighten the terms exactly where the break-even rate is low.
+- **Keep a list of repeat refusers.** Do not dispatch to them again without a deposit.
+
+Sellers hesitate over the third, fearing lost sales. Rather than applying it to every order at once, switch it on for low-margin products first and compare the rate after a month.
+
+## Common Mistakes
+
+| Mistake | Result |
+|---|---|
+| Counting a return as one delivery charge | Return freight and packaging never enter the calculation |
+| One cash-on-delivery policy for every product | Low-margin items quietly lose money |
+| Ignoring the COD charge and VAT | The bill exceeds the quote |
+| Never measuring your own RTO rate | The problem surfaces months late |
+| Dispatching to customers who never answer | The return rate rises and you pay freight both ways |
+| Setting prices without allowing for returns | Margin exists on paper but never in hand |
+
+## Checklist
+
+- [ ] Worked out profit per delivery and loss per return for each product
+- [ ] Calculated the break-even RTO for each product
+- [ ] Know last month's actual RTO rate
+- [ ] Included the cash-on-delivery charge and VAT in costs
+- [ ] Have a written order-confirmation rule
+- [ ] Set a deposit rule for low-margin products
+- [ ] Keeping a list of numbers that repeatedly refuse delivery
+
+Rule of thumb: **where the break-even RTO is under 25%, do not dispatch without a deposit.**
+
+## What to Do Next
+
+- To match courier money against orders: [Cash on Delivery Reconciliation](/en/payments/cod-reconciliation)
+- To see what one order actually earns: [Unit Economics](/en/metrics/unit-economics)
+- To set up a way to take deposits: [bKash, Nagad, and Payment Gateways](/en/payments/mfs-and-gateways)
+- For the whole payments picture: [Payments](/en/payments)
 
 ## Relevant Sources
 
-- [Bangladesh Bank](https://bb.org.bd)
-- [GSMA](https://gsma.com)
-- [BTRC](https://btrc.gov.bd)
+- [Steadfast Courier – Pricing](https://steadfast.com.bd/pricing)
+- [Steadfast Courier – Coverage](https://steadfast.com.bd/coverage)
+- [RedX – FAQ](https://redx.com.bd/faq)
 - [e-CAB](https://e-cab.net)
-- [DataReportal Bangladesh](https://datareportal.com/reports/digital-2026-bangladesh)
