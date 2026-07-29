@@ -1,13 +1,133 @@
 ---
-title: "Payment Gateway Integration: SSLCommerz, aamarPay, PortPos"
-description: "Payment Gateway Integration: SSLCommerz, aamarPay, PortPos – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "Gateway Integration: What to Tell Your Developer"
+description: "A success page is not proof of payment. The verification APIs, IPN, sandbox addresses and go-live checklist for SSLCommerz, aamarPay and PortPos, taken from their own documentation. Verified 29 July 2026."
+verified: 2026-07-29
 ---
 
-# Payment Gateway Integration: SSLCommerz, aamarPay, PortPos
+# Gateway Integration: What to Tell Your Developer
 
-<StubNotice path="payments/gateway-integration" locale="en" />
+> **Key Takeaway:** One mistake costs more than any other when wiring up a gateway: treating the success page the customer lands on as proof that the money arrived. That redirect happens in the customer's browser, and a browser cannot be trusted. All three gateways expose a separate API your server can call to ask whether the money genuinely came in, and how much. SSLCommerz says it outright in its documentation — you must validate the transaction and the amount through the Order Validation API. Put that condition in writing when you brief a developer: no order gets confirmed without a server-side check.
+
+## First, Check Whether You Need Code at All
+
+If your shop runs on a familiar platform — WooCommerce, Shopify, Magento, PrestaShop — look for the plugin before anyone writes code. SSLCommerz's documentation lists plugins for Magento, Shopify, WooCommerce, and WHMCS, plus sample code for PHP, Laravel, React, Next.js, Python, Flutter, Android, and iOS, all published on their GitHub. PortPos also advertises ready-made integrations for WooCommerce, PrestaShop, and several other platforms.
+
+Do not assume installing the plugin ends the job. Even with a plugin, the IPN or callback address is yours to configure, and before going live you still need one real order paid with your own money. A custom site or app leaves you no choice but the API, and then every step below is your responsibility.
+
+## The Job Is Really Five Steps
+
+The three gateways use different names and different parameters, but the shape is identical.
+
+1. Your server sends the order details to the gateway — amount, customer name and phone, and a unique order number of your own.
+2. The gateway returns a payment link.
+3. The customer goes there and pays by card or bKash.
+4. The gateway sends word to two places — it redirects the customer's browser back to your site, and it posts a notification (IPN) directly to your server.
+5. Your server calls the verification API, and only then confirms the order.
+
+Step five is the one most often skipped, and it is the one that matters most.
+
+| | SSLCommerz | aamarPay | PortPos |
+|---|---|---|---|
+| Sandbox | `sandbox.sslcommerz.com` | `sandbox.aamarpay.com` | `api-sandbox.portpos.com` |
+| Live | `securepay.sslcommerz.com` | `secure.aamarpay.com` | `api.portpos.com` |
+| How you identify yourself | `store_id` and `store_passwd` | `store_id` and `signature_key` | Bearer token built from `APPKEY` and `SECRETKEY` |
+| Verification API | Order Validation API | Search Transaction API | IPN validate |
+| To start testing | Separate registration on the developer site | Published test credentials work immediately | Generate sandbox credentials in the panel |
+
+The three routes into a sandbox differ, and that matters on day one. aamarPay leaves its test credentials open in the documentation, so a developer can start writing code before you even have an account. SSLCommerz requires a separate developer registration. PortPos has you log into the panel to generate your own sandbox credentials, and states that test-mode data never reaches the card networks.
+
+## A Success Page Is Not Proof
+
+The problem comes from both directions. The customer pays, then the connection drops or the tab closes before the redirect completes — the money has left their account and your order sheet shows nothing. The other direction is worse. Someone edits the URL, walks straight onto your success page, and the site confirms an order on the spot.
+
+SSLCommerz sets this out plainly. On IPN, it says the data travels from their server to your server, so the customer's session plays no part in it. And in the integration steps: you must validate your transaction and amount by calling the Order Validation API.
+
+The other two provide the same facility. aamarPay's Search Transaction API takes your own order number and returns `status_code` and `pay_status` — `2` and "Successful" for a completed payment. Their documentation says specifically to check `status_code` together with the `amount` field. PortPos's IPN validate call takes the invoice number and the original amount together, so a mismatched amount fails verification by construction.
+
+The lesson is the same in all three places. The amount the gateway reports is not enough on its own — set it beside the price recorded for that order in your own database and check that the two match.
+
+## Orders Have More Than Two States
+
+Sorting everything into "paid" and "not paid" will scramble your records. SSLCommerz's IPN sends five states, each meaning something different.
+
+| Status | Meaning | Your move |
+|---|---|---|
+| VALID | The payment succeeded | Verify, then release the order |
+| FAILED | The customer's bank declined it | Hold the order and tell the customer |
+| CANCELLED | The customer cancelled | Keep the cart |
+| UNATTEMPTED | The customer never chose a payment method | Add to the follow-up list |
+| EXPIRED | The session timed out | Send a fresh link |
+
+Tell your developer one more thing explicitly. Word about the same order can arrive more than once — once on the browser redirect, once by IPN. The code has to be built so the second arrival does not repeat the first one's work. Otherwise one order gets packed twice, or one sale lands in the books twice.
+
+## When a Risk Flag Arrives
+
+SSLCommerz attaches a `risk_level` field to every transaction — 0 for safe, 1 for risky. For risky ones, the documentation says to hold the service and collect customer verification documents. The final call is yours, but the signal should not go unseen.
+
+Build something small around it. A flagged order goes to a separate list, somebody phones the customer, and only then does it ship. On high-value items and foreign cards, that one step removes much of the [chargeback](/en/payments/refunds-chargebacks) trouble before it starts.
+
+## Before You Go Live
+
+Working in the sandbox is no guarantee of working in production. What changes, and what blocks you:
+
+- **Both the addresses and the credentials change.** Sandbox URLs and keys written into the code have to be hunted down on launch day. Keep them in environment variables from the start.
+- **Check that your IPN address is reachable from the internet.** The gateway cannot post to an address on your laptop.
+- **TLS 1.2 is required.** SSLCommerz says it accepts nothing below TLS 1.2, and PortPos says only TLS 1.2 is supported. SSLCommerz also publishes a test command to run from your server, which returns "TLS is okay" when the server is fine.
+- **There are amount limits.** SSLCommerz's documentation puts the transaction amount between BDT 10 and BDT 500,000. If you raise large B2B invoices, find that ceiling out in advance.
+- **Secrets must stay out of front-end code.** If `store_passwd` or `signature_key` reaches the browser, anyone can create transactions in your name. Committing them to git is the same exposure.
+
+On launch day, place one small order with your own money, then refund it. Confirmation, the IPN arriving, the sale appearing in your records, and the money going back — you want to watch all four happen once.
+
+## Seven Questions for Your Developer
+
+Not writing the code yourself is no reason to skip these. Write the answers down.
+
+1. Does the server call the verification API before an order is confirmed?
+2. Is the amount from the gateway compared against the amount in our database?
+3. Is the IPN address configured, and where does it get logged?
+4. If the same notification arrives twice, will the order be processed twice?
+5. Are FAILED, CANCELLED, and EXPIRED handled separately, or lumped into "didn't happen"?
+6. Where do the secrets live, and are any of them in git?
+7. Where will refunds be issued from — the gateway panel or our own site?
+
+## Common Mistakes
+
+| Mistake | What follows |
+|---|---|
+| Confirming the order on arrival at the success page | Goods ship even when no money came in |
+| Recording the amount the gateway reports | A mismatch with your own price goes unnoticed |
+| Skipping IPN | Orders whose session dropped stay "pending" forever |
+| No handling for a repeated notification | One order is packed twice, or booked twice |
+| Sandbox addresses and credentials written into the code | Launch day turns into a rushed find-and-replace |
+| Secrets in front-end code or in git | Someone else can create transactions in your name |
+| Testing only in the sandbox | Real cards, real money, and holiday behaviour stay untested |
+
+## Checklist
+
+- [ ] Checked whether an official plugin exists for the platform
+- [ ] The server calls the verification API before confirming an order
+- [ ] The gateway's amount is compared against the amount in our database
+- [ ] The IPN address is configured and reachable from the internet
+- [ ] A repeated notification does not process the order twice
+- [ ] FAILED, CANCELLED, and EXPIRED are handled separately
+- [ ] Secrets sit in environment variables, not in git
+- [ ] The server runs TLS 1.2
+- [ ] Placed one live order and one refund with my own money
+
+Rule of thumb: **What the browser says is news; what the server verifies is proof. Do not release goods without proof.**
+
+## What to Do Next
+
+- To decide which gateway to use: [payment gateway comparison](/en/payments/gateway-comparison)
+- To work out whether you need a gateway at all: [bKash, Nagad, and payment gateways](/en/payments/mfs-and-gateways)
+- For what belongs beside cards at checkout: [cards are common, card purchases are not](/en/payments/low-card-penetration)
+- For the rules on refunds and chargebacks: [refunds, chargebacks, and dispute handling](/en/payments/refunds-chargebacks)
+- To confirm the money reached your bank: [payment reconciliation](/en/payments/reconciliation)
 
 ## Relevant Sources
 
-- [Bangladesh Bank](https://www.bb.org.bd)
-- [GSMA Bangladesh](https://www.gsma.com)
+- [SSLCommerz – Developer Documentation v4](https://developer.sslcommerz.com/doc/v4/)
+- [SSLCommerz – sandbox registration](https://developer.sslcommerz.com/registration/)
+- [SSLCommerz – GitHub libraries and sample code](https://github.com/sslcommerz)
+- [aamarPay – Developer Reference (Initiate Payment, Search Transaction)](https://aamarpay.readme.io/reference/overview)
+- [PortPos – Developer Documentation v2](http://developer.portpos.com/documentation-v2.php)
