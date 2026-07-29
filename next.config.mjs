@@ -3,16 +3,8 @@ import { MEDIA_URL } from './app/seo.config.mjs'
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-// Exposes locally simulated R2, KV, and rate-limit bindings to Next route
-// handlers during `next dev`. Production receives the same bindings from the
-// OpenNext Worker environment.
-if (process.env.NODE_ENV === 'development') {
-  import('@opennextjs/cloudflare').then(({ initOpenNextCloudflareForDev }) =>
-    initOpenNextCloudflareForDev()
-  )
-}
-
 const projectRoot = dirname(fileURLToPath(import.meta.url))
+const isDevelopment = process.env.NODE_ENV === 'development'
 
 const withNextra = nextra({
   search: {
@@ -31,7 +23,7 @@ const withNextra = nextra({
 //   - GitHub Pages serves the project under /deshistartup (a repo subpath)
 //   - deshistartup.com (Cloudflare Pages or Workers) serves from the root
 // DEPLOY_BASE_PATH overrides everything. The explicit Worker target is inherited
-// by the nested Next build that OpenNext runs.
+// by the Cloudflare static-assets build.
 const isRootDeployment =
   process.env.CF_PAGES === '1' ||
   process.env.DESHI_DEPLOY_TARGET === 'cloudflare-worker'
@@ -46,12 +38,22 @@ const mediaBaseUrl = (process.env.DESHI_MEDIA_BASE_URL ?? MEDIA_URL).replace(/\/
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
-  // `output: 'export'` is intentionally absent: the contribution feature's
-  // dynamic route handlers need a server runtime. OpenNext packages that
-  // runtime for Cloudflare Workers while preserving prerendered content.
-  outputFileTracingRoot: projectRoot,
+  // Content is a static asset. The small native Worker in worker/ owns only
+  // /api/*, so adding guides does not increase the Worker script bundle.
   turbopack: { root: projectRoot },
   basePath,
+  ...(isDevelopment
+    ? {
+        async rewrites() {
+          return [
+            {
+              source: '/api/:path*',
+              destination: 'http://127.0.0.1:8787/api/:path*'
+            }
+          ]
+        }
+      }
+    : { output: 'export' }),
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
     // Edge image resizing (/cdn-cgi/image/...), on wherever there is a

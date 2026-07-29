@@ -12,12 +12,15 @@
 import { createPrivateKey, sign as nodeSign, createHash, KeyObject } from 'node:crypto'
 
 const API = 'https://api.github.com'
-const REPO = process.env.GITHUB_REPO || 'Deshi-Startup/deshistartup'
 
 const enc = new TextEncoder()
 
-function repoApi(path: string) {
-  return `${API}/repos/${REPO}${path}`
+function repoName(env: CloudflareEnv): string {
+  return env.GITHUB_REPO || 'Deshi-Startup/deshistartup'
+}
+
+function repoApi(env: CloudflareEnv, path: string) {
+  return `${API}/repos/${repoName(env)}${path}`
 }
 
 function apiHeaders(token: string, extra: Record<string, string> = {}) {
@@ -59,21 +62,23 @@ function base64ToUtf8(str: string): string {
 
 // --- GitHub App JWT (RS256) ---
 
-let _cachedKey: KeyObject | null = null
-function getAppKey(): KeyObject {
-  if (_cachedKey) return _cachedKey
-  const pem = process.env.GITHUB_APP_PRIVATE_KEY
+let _cachedKey: { pem: string; key: KeyObject } | null = null
+function getAppKey(env: CloudflareEnv): KeyObject {
+  const pem = env.GITHUB_APP_PRIVATE_KEY
   if (!pem) throw new Error('GITHUB_APP_PRIVATE_KEY is not set')
   // Support literal-\n escapes or real-newline PEMs from env vars.
   const normalized = pem.replace(/\\n/g, '\n')
-  _cachedKey = createPrivateKey({ key: normalized, format: 'pem' })
-  return _cachedKey
+  const cached = _cachedKey
+  if (cached?.pem === normalized) return cached.key
+  const key = createPrivateKey({ key: normalized, format: 'pem' })
+  _cachedKey = { pem: normalized, key }
+  return key
 }
 
-export async function appJwt(): Promise<string> {
-  const appId = process.env.GITHUB_APP_ID
+export async function appJwt(env: CloudflareEnv): Promise<string> {
+  const appId = env.GITHUB_APP_ID
   if (!appId) throw new Error('GITHUB_APP_ID is not set')
-  const key = getAppKey()
+  const key = getAppKey(env)
   const now = Math.floor(Date.now() / 1000)
   const header = { alg: 'RS256', typ: 'JWT' }
   const payload = { iat: now - 60, exp: now + 9 * 60, iss: appId }
@@ -84,16 +89,21 @@ export async function appJwt(): Promise<string> {
 
 // --- Installation token (cached ~55 min) ---
 
-let _tokenCache = { token: null as string | null, expiresAt: 0 }
+let _tokenCache = { key: '', token: null as string | null, expiresAt: 0 }
 
-export async function installationToken(): Promise<string> {
+export async function installationToken(env: CloudflareEnv): Promise<string> {
   const now = Date.now()
-  if (_tokenCache.token && _tokenCache.expiresAt - now > 5 * 60 * 1000) {
+  const cacheKey = `${env.GITHUB_APP_ID}:${env.GITHUB_INSTALLATION_ID}`
+  if (
+    _tokenCache.key === cacheKey &&
+    _tokenCache.token &&
+    _tokenCache.expiresAt - now > 5 * 60 * 1000
+  ) {
     return _tokenCache.token
   }
-  const installationId = process.env.GITHUB_INSTALLATION_ID
+  const installationId = env.GITHUB_INSTALLATION_ID
   if (!installationId) throw new Error('GITHUB_INSTALLATION_ID is not set')
-  const jwt = await appJwt()
+  const jwt = await appJwt(env)
   const res = await fetch(`${API}/app/installations/${installationId}/access_tokens`, {
     method: 'POST',
     headers: apiHeaders(jwt)
@@ -102,8 +112,9 @@ export async function installationToken(): Promise<string> {
     const text = await res.text()
     throw new Error(`Failed to create installation token (${res.status}): ${text}`)
   }
-  const data = await res.json()
+  const data = (await res.json()) as { token: string; expires_at?: string }
   _tokenCache = {
+    key: cacheKey,
     token: data.token,
     expiresAt: data.expires_at ? new Date(data.expires_at).getTime() : now + 50 * 60 * 1000
   }
@@ -139,8 +150,12 @@ interface GhOptions {
   token: string
 }
 
-async function gh(path: string, { method = 'GET', body, token }: GhOptions) {
-  const res = await fetch(repoApi(path), {
+async function gh(
+  env: CloudflareEnv,
+  path: string,
+  { method = 'GET', body, token }: GhOptions
+) {
+  const res = await fetch(repoApi(env, path), {
     method,
     headers: apiHeaders(token, body ? { 'Content-Type': 'application/json' } : {}),
     body: body ? JSON.stringify(body) : undefined
@@ -148,8 +163,12 @@ async function gh(path: string, { method = 'GET', body, token }: GhOptions) {
   return res
 }
 
-async function ghJson(path: string, opts: GhOptions): Promise<any> {
-  const res = await gh(path, opts)
+async function ghJson(
+  env: CloudflareEnv,
+  path: string,
+  opts: GhOptions
+): Promise<any> {
+  const res = await gh(env, path, opts)
   if (!res.ok) {
     const text = await res.text()
     throw new Error(`GitHub API ${opts?.method || 'GET'} ${path} → ${res.status}: ${text}`)
@@ -162,32 +181,38 @@ async function ghJson(path: string, opts: GhOptions): Promise<any> {
  * is a recoverable draft left by an interrupted PR-creation request.
  */
 export async function findOpenContribution(
+  env: CloudflareEnv,
   pagePath: string,
   contributorEmail: string
 ): Promise<{ branchName: string; prUrl: string | null; headSha: string } | null> {
-  const token = await installationToken()
+  const token = await installationToken(env)
   const branchName = contribBranchName(pagePath, contributorEmail)
-  const owner = REPO.split('/')[0]
+  const owner = repoName(env).split('/')[0]
 
   // 1. Does the branch exist?
-  const refRes = await fetch(repoApi(`/git/ref/heads/${branchName}`), {
+  const refRes = await fetch(repoApi(env, `/git/ref/heads/${branchName}`), {
     headers: apiHeaders(token)
   })
   if (refRes.status === 404) return null
   if (!refRes.ok) {
     throw new Error(`GitHub API GET branch reference failed (${refRes.status})`)
   }
-  const ref = await refRes.json()
+  const ref = (await refRes.json()) as { object?: { sha?: string } }
   const headSha = ref?.object?.sha
   if (!headSha) throw new Error('GitHub branch reference is missing its head SHA')
 
   // 2. Is there an open PR for it?
   const params = new URLSearchParams({ state: 'open', head: `${owner}:${branchName}`, per_page: '1' })
-  const prRes = await fetch(repoApi(`/pulls?${params}`), { headers: apiHeaders(token) })
+  const prRes = await fetch(repoApi(env, `/pulls?${params}`), {
+    headers: apiHeaders(token)
+  })
   if (!prRes.ok) {
     throw new Error(`GitHub API GET pull requests failed (${prRes.status})`)
   }
-  const prs = await prRes.json()
+  const prs = (await prRes.json()) as Array<{
+    html_url: string
+    head?: { sha?: string }
+  }>
   if (!prs.length) return { branchName, prUrl: null, headSha }
 
   return { branchName, prUrl: prs[0].html_url, headSha: prs[0]?.head?.sha || headSha }
@@ -221,22 +246,25 @@ interface CreateContributionPRProps {
  *
  * @returns {{ prUrl: string, prNumber: number, updated: boolean }}
  */
-export async function createContributionPR({
-  repoPath,
-  content,
-  summary,
-  contributor,
-  pageTitle,
-  pageUrl,
-  pagePath,
-  reviewId
-}: CreateContributionPRProps) {
-  const token = await installationToken()
+export async function createContributionPR(
+  env: CloudflareEnv,
+  {
+    repoPath,
+    content,
+    summary,
+    contributor,
+    pageTitle,
+    pageUrl,
+    pagePath,
+    reviewId
+  }: CreateContributionPRProps
+) {
+  const token = await installationToken(env)
   const branchName = contribBranchName(pagePath, contributor.email)
-  const owner = REPO.split('/')[0]
+  const owner = repoName(env).split('/')[0]
 
   // 1. Does the branch already exist?
-  const refRes = await fetch(repoApi(`/git/ref/heads/${branchName}`), {
+  const refRes = await fetch(repoApi(env, `/git/ref/heads/${branchName}`), {
     headers: apiHeaders(token)
   })
   if (!refRes.ok && refRes.status !== 404) {
@@ -248,18 +276,20 @@ export async function createContributionPR({
   let existingPR: any = null
   if (branchExists) {
     const params = new URLSearchParams({ state: 'open', head: `${owner}:${branchName}`, per_page: '1' })
-    const prRes = await fetch(repoApi(`/pulls?${params}`), { headers: apiHeaders(token) })
+    const prRes = await fetch(repoApi(env, `/pulls?${params}`), {
+      headers: apiHeaders(token)
+    })
     if (!prRes.ok) {
       throw new Error(`GitHub API GET pull requests failed (${prRes.status})`)
     }
-    const prs = await prRes.json()
+    const prs = (await prRes.json()) as any[]
     if (prs.length > 0) existingPR = prs[0]
   }
 
   // 3. Prepare the branch
   if (!branchExists) {
-    const mainRef = await ghJson('/git/ref/heads/main', { token })
-    await ghJson('/git/refs', {
+    const mainRef = await ghJson(env, '/git/ref/heads/main', { token })
+    await ghJson(env, '/git/refs', {
       method: 'POST',
       token,
       body: { ref: `refs/heads/${branchName}`, sha: mainRef.object.sha }
@@ -270,11 +300,13 @@ export async function createContributionPR({
   //    Existing branches can contain a recoverable draft from an interrupted
   //    request, so always read their file SHA before updating them.
   const fileRef = branchExists ? branchName : 'main'
-  const fileInfo = await ghJson(`/contents/${repoPath}?ref=${encodeURIComponent(fileRef)}`, {
-    token
-  })
+  const fileInfo = await ghJson(
+    env,
+    `/contents/${repoPath}?ref=${encodeURIComponent(fileRef)}`,
+    { token }
+  )
 
-  await ghJson(`/contents/${repoPath}`, {
+  await ghJson(env, `/contents/${repoPath}`, {
     method: 'PUT',
     token,
     body: {
@@ -288,10 +320,10 @@ export async function createContributionPR({
   // 5. Return existing PR or create a new one
   if (existingPR) {
     if (reviewId) {
-      const reviewUrl = `https://deshistartup.com/contribute/review/${reviewId}`
+      const reviewUrl = `https://deshistartup.com/contribute/review?id=${encodeURIComponent(reviewId)}`
       const currentBody = String(existingPR.body || '')
       if (!currentBody.includes(reviewUrl)) {
-        await ghJson(`/pulls/${existingPR.number}`, {
+        await ghJson(env, `/pulls/${existingPR.number}`, {
           method: 'PATCH',
           token,
           body: {
@@ -317,7 +349,7 @@ export async function createContributionPR({
   )
   const safeSummary = neutralizeMentions(summary.trim())
   const reviewUrl = reviewId
-    ? `https://deshistartup.com/contribute/review/${reviewId}`
+    ? `https://deshistartup.com/contribute/review?id=${encodeURIComponent(reviewId)}`
     : ''
   const prBody = [
     safeSummary ? `## সারসংক্ষেপ / Summary\n\n${safeSummary}` : '',
@@ -335,7 +367,7 @@ export async function createContributionPR({
     .filter(Boolean)
     .join('\n')
 
-  const pr = await ghJson('/pulls', {
+  const pr = await ghJson(env, '/pulls', {
     method: 'POST',
     token,
     body: {
@@ -355,11 +387,13 @@ export async function createContributionPR({
 }
 
 export async function readContributionFile(
+  env: CloudflareEnv,
   branchName: string,
   repoPath: string
 ): Promise<string> {
-  const token = await installationToken()
+  const token = await installationToken(env)
   const file = await ghJson(
+    env,
     `/contents/${repoPath}?ref=${encodeURIComponent(branchName)}`,
     { token }
   )
@@ -380,22 +414,21 @@ interface CommitContributionFilesProps {
  * and media registry therefore cannot land in separate commits, which prevents
  * an approved image from temporarily referencing an unregistered object.
  */
-export async function commitContributionFiles({
-  branchName,
-  files,
-  message
-}: CommitContributionFilesProps): Promise<string> {
-  const token = await installationToken()
-  const ref = await ghJson(`/git/ref/heads/${branchName}`, { token })
+export async function commitContributionFiles(
+  env: CloudflareEnv,
+  { branchName, files, message }: CommitContributionFilesProps
+): Promise<string> {
+  const token = await installationToken(env)
+  const ref = await ghJson(env, `/git/ref/heads/${branchName}`, { token })
   const parentSha = ref?.object?.sha
   if (!parentSha) throw new Error('Contribution branch has no head SHA')
-  const parent = await ghJson(`/git/commits/${parentSha}`, { token })
+  const parent = await ghJson(env, `/git/commits/${parentSha}`, { token })
   const baseTree = parent?.tree?.sha
   if (!baseTree) throw new Error('Contribution branch head has no tree SHA')
 
   const entries = []
   for (const file of files) {
-    const blob = await ghJson('/git/blobs', {
+    const blob = await ghJson(env, '/git/blobs', {
       method: 'POST',
       token,
       body: { content: utf8ToBase64(file.content), encoding: 'base64' }
@@ -407,17 +440,17 @@ export async function commitContributionFiles({
       sha: blob.sha
     })
   }
-  const tree = await ghJson('/git/trees', {
+  const tree = await ghJson(env, '/git/trees', {
     method: 'POST',
     token,
     body: { base_tree: baseTree, tree: entries }
   })
-  const commit = await ghJson('/git/commits', {
+  const commit = await ghJson(env, '/git/commits', {
     method: 'POST',
     token,
     body: { message, tree: tree.sha, parents: [parentSha] }
   })
-  await ghJson(`/git/refs/heads/${branchName}`, {
+  await ghJson(env, `/git/refs/heads/${branchName}`, {
     method: 'PATCH',
     token,
     body: { sha: commit.sha, force: false }

@@ -4,7 +4,7 @@ import {
   contributionMediaLogicalPath,
   rejectPendingMediaInMarkdown,
   validateContributionImage
-} from '../../../lib/contribution-media'
+} from '../../app/lib/contribution-media'
 import {
   ContributionReviewRecord,
   QuarantineMediaRecord,
@@ -17,12 +17,12 @@ import {
   setModeration,
   sha256Hex,
   writeJson
-} from '../../../lib/contribution-guard'
-import { requireUser } from '../../../lib/google-token'
+} from '../lib/contribution-guard'
+import { requireUser } from '../lib/google-token'
 import {
   commitContributionFiles,
   readContributionFile
-} from '../../../lib/github-app'
+} from '../lib/github-app'
 
 const REGISTRY_PATH = 'app/generated/media.json'
 const CACHE_CONTROL = 'public, max-age=31536000, immutable'
@@ -38,10 +38,10 @@ function json(data: unknown, status = 200) {
   })
 }
 
-async function reviewer(req: Request) {
-  const user = await requireUser(req).catch(() => null)
+async function reviewer(req: Request, env: CloudflareEnv) {
+  const user = await requireUser(req, env).catch(() => null)
   if (!user) return { error: json({ error: 'unauthorized' }, 401) }
-  if (!isReviewer(user)) return { error: json({ error: 'reviewer_required' }, 403) }
+  if (!isReviewer(user, env)) return { error: json({ error: 'reviewer_required' }, 403) }
   return { user }
 }
 
@@ -64,8 +64,8 @@ function safeReview(record: ContributionReviewRecord, moderation: unknown) {
   }
 }
 
-async function loadRecord(id: string) {
-  const bindings = getContributionBindings()
+async function loadRecord(env: CloudflareEnv, id: string) {
+  const bindings = getContributionBindings(env)
   const record = await readJson<ContributionReviewRecord>(
     bindings.guards,
     reviewRecordKey(id)
@@ -75,15 +75,15 @@ async function loadRecord(id: string) {
 
 export async function GET(
   req: Request,
-  { params }: { params: Promise<{ id: string }> }
+  env: CloudflareEnv,
+  id: string
 ) {
-  const auth = await reviewer(req)
+  const auth = await reviewer(req, env)
   if (auth.error) return auth.error
 
-  const { id } = await params
   let loaded
   try {
-    loaded = await loadRecord(id)
+    loaded = await loadRecord(env, id)
   } catch (error) {
     console.error('[contribution-review] Bindings unavailable:', error)
     return json({ error: 'review_unavailable' }, 503)
@@ -115,20 +115,21 @@ async function saveRecord(
 }
 
 async function decideImage(
+  env: CloudflareEnv,
   record: ContributionReviewRecord,
   mediaId: string,
   action: 'approve' | 'reject',
   reviewerEmail: string,
   reason?: string
 ) {
-  const bindings = getContributionBindings()
+  const bindings = getContributionBindings(env)
   if (!record.branchName) throw new Error('review_branch_missing')
   const index = record.media.findIndex((item) => item.id === mediaId)
   if (index < 0) throw new Error('media_not_in_review')
   const media = record.media[index]
   if (media.status !== 'pending') return record
 
-  const pageContent = await readContributionFile(record.branchName, record.repoPath)
+  const pageContent = await readContributionFile(env, record.branchName, record.repoPath)
   const liveMedia = await readJson<QuarantineMediaRecord>(
     bindings.guards,
     mediaRecordKey(media.id)
@@ -153,7 +154,7 @@ async function decideImage(
 
   if (action === 'reject') {
     const nextContent = rejectPendingMediaInMarkdown(pageContent, media.id)
-    await commitContributionFiles({
+    await commitContributionFiles(env, {
       branchName: record.branchName,
       files: [{ path: record.repoPath, content: nextContent }],
       message: `chore: reject proposed image for "${record.pageTitle}"`
@@ -174,7 +175,7 @@ async function decideImage(
 
   const [object, registryText] = await Promise.all([
     bindings.quarantine.get(media.objectKey),
-    readContributionFile(record.branchName, REGISTRY_PATH)
+    readContributionFile(env, record.branchName, REGISTRY_PATH)
   ])
   if (!object) throw new Error('image_expired')
 
@@ -232,7 +233,7 @@ async function decideImage(
     })
   }
   try {
-    await commitContributionFiles({
+    await commitContributionFiles(env, {
       branchName: record.branchName,
       files: [
         { path: record.repoPath, content: nextContent },
@@ -261,9 +262,10 @@ async function decideImage(
 
 export async function POST(
   req: Request,
-  { params }: { params: Promise<{ id: string }> }
+  env: CloudflareEnv,
+  id: string
 ) {
-  const auth = await reviewer(req)
+  const auth = await reviewer(req, env)
   if (auth.error || !auth.user) return auth.error
 
   let body: {
@@ -278,10 +280,9 @@ export async function POST(
     return json({ error: 'invalid_json' }, 400)
   }
 
-  const { id } = await params
   let loaded
   try {
-    loaded = await loadRecord(id)
+    loaded = await loadRecord(env, id)
   } catch {
     return json({ error: 'review_unavailable' }, 503)
   }
@@ -310,6 +311,7 @@ export async function POST(
   ) {
     try {
       record = await decideImage(
+        env,
         record,
         body.mediaId,
         body.action,

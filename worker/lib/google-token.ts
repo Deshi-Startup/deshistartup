@@ -27,10 +27,13 @@ export interface GoogleUser {
 /**
  * Verifies a raw Google ID token and returns {name, email, picture} or null.
  */
-export async function verifyIdToken(token: string): Promise<GoogleUser | null> {
-  const clientId = process.env.GOOGLE_CLIENT_ID || process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
+export async function verifyIdToken(
+  token: string,
+  env: CloudflareEnv
+): Promise<GoogleUser | null> {
+  const clientId = env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
   if (!clientId) {
-    throw new Error('GOOGLE_CLIENT_ID is not set. Add it to .env.local.')
+    throw new Error('NEXT_PUBLIC_GOOGLE_CLIENT_ID is not set. Add it to .env.local.')
   }
   if (!token || typeof token !== 'string') return null
 
@@ -61,9 +64,12 @@ export async function verifyIdToken(token: string): Promise<GoogleUser | null> {
  * Reads + verifies the Bearer token from a request's Authorization header.
  * Returns the user object, or null if absent/invalid.
  */
-export async function requireUser(req: Request): Promise<GoogleUser | null> {
+export async function requireUser(
+  req: Request,
+  env: CloudflareEnv
+): Promise<GoogleUser | null> {
   const auth = req.headers.get('authorization') || ''
   const match = auth.match(/^Bearer\s+(.+)$/i)
   if (!match) return null
-  return verifyIdToken(match[1])
+  return verifyIdToken(match[1], env)
 }

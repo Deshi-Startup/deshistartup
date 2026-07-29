@@ -4,9 +4,10 @@ This is the operational source of truth for search discovery on `https://deshist
 The canonical domain never includes a deployment base path.
 
 Production is built from `main` by Cloudflare Workers Builds and served by the `deshistartup`
-Worker at the apex domain. OpenNext packages Next.js' prerendered HTML and the contribution API
-routes for the Worker runtime. `DESHI_DEPLOY_TARGET=cloudflare-worker` keeps canonical output at the
-root; the production HTML is validated before OpenNext creates `.open-next/`.
+Worker at the apex domain. Next.js exports prerendered HTML to `out/`, Cloudflare Static Assets
+serve matching files without invoking code, and the native Worker handles only contribution API
+routes. `DESHI_DEPLOY_TARGET=cloudflare-worker` keeps canonical output at the root; the production
+HTML is validated before Wrangler packages the deployment.
 
 ## Indexing policy
 
@@ -103,19 +104,20 @@ and eligible for a normal Search snippet. For all answer engines, the durable wo
 
 1. Run `npm run manifest`.
 2. Run `npm run lint:bangla`.
-3. Run `npm run build:worker`; the build includes the final SEO audit and OpenNext packaging.
-4. Run `npm run preview:worker` when runtime-facing code changed, then deploy the generated Worker.
-5. Confirm `https://deshistartup.com/robots.txt`, `/sitemap.xml`, `/llms.txt`, the IndexNow key,
+3. Run `npm run build:worker`; the build includes the static export and final SEO audit.
+4. Run `npm run check:worker`; this enforces the Worker and Static Assets growth budgets.
+5. Run `npm run preview:worker` when runtime-facing code changed, then deploy the generated Worker.
+6. Confirm `https://deshistartup.com/robots.txt`, `/sitemap.xml`, `/llms.txt`, the IndexNow key,
    and one Bengali/English page pair all return HTTP 200. The live robots file must contain exactly
    one `User-agent: *` group, no `# BEGIN Cloudflare Managed content`, the canonical Content
    Signals and `Sitemap:` line, and must allow every search/answer agent listed above.
-6. Inspect one guide in Google Rich Results Test and Schema.org Validator.
-7. Run `npm run seo:indexnow` only after the new URLs are live.
+7. Inspect one guide in Google Rich Results Test and Schema.org Validator.
+8. Run `npm run seo:indexnow` only after the new URLs are live.
 
 The canonical production deployment must build the branch that contains these generators and
 artifacts. Before releasing, compare the deployment branch with `main`; never assume an older
 provider-specific branch contains current content or SEO work. A release is not complete until the
-canonical-domain endpoint checks in step 5 pass.
+canonical-domain endpoint checks in step 6 pass.
 
 ## One-time external setup
 

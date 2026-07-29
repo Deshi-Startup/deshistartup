@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import AuthModal from './AuthModal'
 import { AuthState, getStoredAuth } from '../lib/client-auth'
 
@@ -36,7 +37,8 @@ interface ReviewData {
   media: ReviewMedia[]
 }
 
-export default function ContributionImageReview({ reviewId }: { reviewId: string }) {
+export default function ContributionImageReview() {
+  const reviewId = useSearchParams().get('id') || ''
   const [auth, setAuth] = useState<AuthState | null>(null)
   const [authOpen, setAuthOpen] = useState(false)
   const [data, setData] = useState<ReviewData | null>(null)
@@ -56,6 +58,11 @@ export default function ContributionImageReview({ reviewId }: { reviewId: string
 
   const load = useCallback(async () => {
     if (!auth) return
+    if (!reviewId) {
+      setLoading(false)
+      setError('review_expired')
+      return
+    }
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
     setLoading(true)
     setError(null)

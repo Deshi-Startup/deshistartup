@@ -1,61 +1,21 @@
-import { getCloudflareContext } from '@opennextjs/cloudflare'
 import type { GoogleUser } from './google-token'
-import type { ContributionMediaInput, ContributionImageMime } from './contribution-media'
+import type {
+  ContributionMediaInput,
+  ContributionImageMime
+} from '../../app/lib/contribution-media'
 
-export interface GuardNamespace {
-  get<T>(key: string, type: 'json'): Promise<T | null>
-  put(
-    key: string,
-    value: string,
-    options?: { expirationTtl?: number }
-  ): Promise<void>
-  delete(key: string): Promise<void>
-}
-
-export interface ContributionR2Object {
-  key: string
-  size: number
-}
-
-export interface ContributionR2Body extends ContributionR2Object {
-  body: ReadableStream<Uint8Array>
-  arrayBuffer(): Promise<ArrayBuffer>
-}
-
-export interface ContributionR2Bucket {
-  get(key: string): Promise<ContributionR2Body | null>
-  head(key: string): Promise<ContributionR2Object | null>
-  put(
-    key: string,
-    value: Uint8Array | ArrayBuffer | ReadableStream,
-    options?: {
-      httpMetadata?: { contentType?: string; cacheControl?: string }
-      customMetadata?: Record<string, string>
-    }
-  ): Promise<ContributionR2Object>
-  delete(key: string): Promise<void>
-  list(options?: {
-    prefix?: string
-    limit?: number
-    cursor?: string
-  }): Promise<{
-    objects: ContributionR2Object[]
-    truncated: boolean
-    cursor?: string
-  }>
-}
-
-export interface ContributionRateLimit {
-  limit(options: { key: string }): Promise<{ success: boolean }>
-}
+export type GuardNamespace = CloudflareEnv['CONTRIBUTION_GUARDS']
+export type ContributionR2Bucket = CloudflareEnv['MEDIA_QUARANTINE']
+export type ContributionR2Object = R2Object
+export type ContributionR2Body = R2ObjectBody
 
 export interface ContributionBindings {
-  guards: GuardNamespace
-  library: ContributionR2Bucket
-  quarantine: ContributionR2Bucket
-  mediaUserRate: ContributionRateLimit
-  mediaGlobalRate: ContributionRateLimit
-  contributionUserRate: ContributionRateLimit
+  guards: CloudflareEnv['CONTRIBUTION_GUARDS']
+  library: CloudflareEnv['MEDIA_LIBRARY']
+  quarantine: CloudflareEnv['MEDIA_QUARANTINE']
+  mediaUserRate: CloudflareEnv['MEDIA_USER_RATE']
+  mediaGlobalRate: CloudflareEnv['MEDIA_GLOBAL_RATE']
+  contributionUserRate: CloudflareEnv['CONTRIBUTION_USER_RATE']
 }
 
 export type ModerationState =
@@ -121,33 +81,14 @@ const moderationCache = new Map<string, { value: ModerationState; expires: numbe
 const MODERATION_CACHE_MS = 30_000
 const textEncoder = new TextEncoder()
 
-export function getContributionBindings(): ContributionBindings {
-  const { env } = getCloudflareContext()
-  const contributionEnv = env as unknown as {
-    CONTRIBUTION_GUARDS?: GuardNamespace
-    MEDIA_LIBRARY?: ContributionR2Bucket
-    MEDIA_QUARANTINE?: ContributionR2Bucket
-    MEDIA_USER_RATE?: ContributionRateLimit
-    MEDIA_GLOBAL_RATE?: ContributionRateLimit
-    CONTRIBUTION_USER_RATE?: ContributionRateLimit
-  }
-  if (
-    !contributionEnv.CONTRIBUTION_GUARDS ||
-    !contributionEnv.MEDIA_LIBRARY ||
-    !contributionEnv.MEDIA_QUARANTINE ||
-    !contributionEnv.MEDIA_USER_RATE ||
-    !contributionEnv.MEDIA_GLOBAL_RATE ||
-    !contributionEnv.CONTRIBUTION_USER_RATE
-  ) {
-    throw new Error('contribution_bindings_unavailable')
-  }
+export function getContributionBindings(env: CloudflareEnv): ContributionBindings {
   return {
-    guards: contributionEnv.CONTRIBUTION_GUARDS,
-    library: contributionEnv.MEDIA_LIBRARY,
-    quarantine: contributionEnv.MEDIA_QUARANTINE,
-    mediaUserRate: contributionEnv.MEDIA_USER_RATE,
-    mediaGlobalRate: contributionEnv.MEDIA_GLOBAL_RATE,
-    contributionUserRate: contributionEnv.CONTRIBUTION_USER_RATE
+    guards: env.CONTRIBUTION_GUARDS,
+    library: env.MEDIA_LIBRARY,
+    quarantine: env.MEDIA_QUARANTINE,
+    mediaUserRate: env.MEDIA_USER_RATE,
+    mediaGlobalRate: env.MEDIA_GLOBAL_RATE,
+    contributionUserRate: env.CONTRIBUTION_USER_RATE
   }
 }
 
@@ -225,8 +166,11 @@ export async function setModeration(
   moderationCache.delete(ownerHash)
 }
 
-export function isReviewer(user: Pick<GoogleUser, 'email'>): boolean {
-  const allowed = (process.env.CONTRIBUTION_REVIEWER_EMAILS || '')
+export function isReviewer(
+  user: Pick<GoogleUser, 'email'>,
+  env: CloudflareEnv
+): boolean {
+  const allowed = (env.CONTRIBUTION_REVIEWER_EMAILS || '')
     .split(',')
     .map((email) => email.trim().toLowerCase())
     .filter(Boolean)

@@ -1,7 +1,7 @@
-import { requireUser } from '../../lib/google-token'
-import { findOpenContribution } from '../../lib/github-app'
-import { extractPendingMediaIds } from '../../lib/contribution-media'
-import { resolveContributable } from '../../lib/contributable-registry'
+import { requireUser } from '../lib/google-token'
+import { findOpenContribution } from '../lib/github-app'
+import { extractPendingMediaIds } from '../../app/lib/contribution-media'
+import { resolveContributable } from '../../app/lib/contributable-registry'
 import {
   QuarantineMediaRecord,
   contributorHash,
@@ -9,10 +9,9 @@ import {
   mediaRecordKey,
   moderationFor,
   readJson
-} from '../../lib/contribution-guard'
+} from '../lib/contribution-guard'
 
 const RAW_BASE = 'https://raw.githubusercontent.com'
-const REPO = process.env.GITHUB_REPO || 'Deshi-Startup/deshistartup'
 
 interface CacheEntry {
   source: string
@@ -54,11 +53,16 @@ function splitFrontmatter(source: string) {
   return { frontmatterRaw, frontmatter, content }
 }
 
-async function fetchRawMdx(repoPath: string, ref = 'main'): Promise<string> {
-  const cacheKey = `${ref}:${repoPath}`
+async function fetchRawMdx(
+  env: CloudflareEnv,
+  repoPath: string,
+  ref = 'main'
+): Promise<string> {
+  const repo = env.GITHUB_REPO || 'Deshi-Startup/deshistartup'
+  const cacheKey = `${repo}:${ref}:${repoPath}`
   const cached = _cache.get(cacheKey)
   if (cached && Date.now() - cached.t < CACHE_TTL) return cached.source
-  const url = `${RAW_BASE}/${REPO}/${ref}/${repoPath.split('/').map(encodeURIComponent).join('/')}`
+  const url = `${RAW_BASE}/${repo}/${ref}/${repoPath.split('/').map(encodeURIComponent).join('/')}`
   const res = await fetch(url, {
     cache: 'no-store',
     headers: { 'User-Agent': 'deshistartup-contributor-bot' }
@@ -74,10 +78,10 @@ async function fetchRawMdx(repoPath: string, ref = 'main'): Promise<string> {
   return source
 }
 
-export async function GET(req: Request) {
+export async function GET(req: Request, env: CloudflareEnv) {
   let user
   try {
-    user = await requireUser(req)
+    user = await requireUser(req, env)
   } catch (err) {
     console.error('[content] Google authentication is unavailable:', err)
     return json({ error: 'auth_unavailable' }, 503)
@@ -86,7 +90,7 @@ export async function GET(req: Request) {
 
   let bindings
   try {
-    bindings = getContributionBindings()
+    bindings = getContributionBindings(env)
   } catch (err) {
     console.error('[content] Cloudflare contribution bindings unavailable:', err)
     return json({ error: 'contribution_unavailable' }, 503)
@@ -110,7 +114,7 @@ export async function GET(req: Request) {
   let existingPR: { url: string } | null = null
   let ref = 'main'
   try {
-    const contrib = await findOpenContribution(path, user.email)
+    const contrib = await findOpenContribution(env, path, user.email)
     if (contrib) {
       if (contrib.prUrl) existingPR = { url: contrib.prUrl }
       // Cache by immutable commit SHA rather than branch name. When the same
@@ -127,7 +131,7 @@ export async function GET(req: Request) {
 
   let source: string
   try {
-    source = await fetchRawMdx(entry.repoPath, ref)
+    source = await fetchRawMdx(env, entry.repoPath, ref)
   } catch (err: any) {
     console.error('[content] Source fetch failed:', err)
     return json({ error: 'fetch_failed' }, 502)

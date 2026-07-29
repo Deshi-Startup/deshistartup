@@ -5,8 +5,8 @@ import {
   isReviewer,
   mediaRecordKey,
   readJson
-} from '../../../lib/contribution-guard'
-import { requireUser } from '../../../lib/google-token'
+} from '../lib/contribution-guard'
+import { requireUser } from '../lib/google-token'
 
 function json(error: string, status: number) {
   return new Response(JSON.stringify({ error }), {
@@ -21,23 +21,23 @@ function json(error: string, status: number) {
 
 export async function GET(
   req: Request,
-  { params }: { params: Promise<{ id: string }> }
+  env: CloudflareEnv,
+  id: string
 ) {
-  const user = await requireUser(req).catch(() => null)
+  const user = await requireUser(req, env).catch(() => null)
   if (!user) return json('unauthorized', 401)
 
   let bindings
   try {
-    bindings = getContributionBindings()
+    bindings = getContributionBindings(env)
   } catch {
     return json('media_unavailable', 503)
   }
 
-  const { id } = await params
   const record = await readJson<QuarantineMediaRecord>(bindings.guards, mediaRecordKey(id))
   if (!record) return json('media_expired', 404)
   const owner = record.ownerHash === (await contributorHash(user))
-  if (!owner && !isReviewer(user)) return json('forbidden', 403)
+  if (!owner && !isReviewer(user, env)) return json('forbidden', 403)
 
   const object = await bindings.quarantine.get(record.objectKey)
   if (!object) return json('media_expired', 404)

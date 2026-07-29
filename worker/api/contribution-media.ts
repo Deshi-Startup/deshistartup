@@ -5,7 +5,7 @@ import {
   MAX_QUARANTINE_BYTES,
   QUARANTINE_TTL_SECONDS,
   validateContributionImage
-} from '../../lib/contribution-media'
+} from '../../app/lib/contribution-media'
 import {
   QuarantineMediaRecord,
   contributorHash,
@@ -17,9 +17,9 @@ import {
   newOpaqueId,
   readJson,
   writeJson
-} from '../../lib/contribution-guard'
-import { resolveContributable } from '../../lib/contributable-registry'
-import { requireUser } from '../../lib/google-token'
+} from '../lib/contribution-guard'
+import { resolveContributable } from '../../app/lib/contributable-registry'
+import { requireUser } from '../lib/google-token'
 
 function json(data: unknown, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -65,10 +65,10 @@ async function readBoundedBody(req: Request): Promise<Uint8Array | null> {
   return bytes
 }
 
-export async function POST(req: Request) {
+export async function POST(req: Request, env: CloudflareEnv) {
   let user
   try {
-    user = await requireUser(req)
+    user = await requireUser(req, env)
   } catch (error) {
     console.error('[contribution-media] Google authentication unavailable:', error)
     return json({ error: 'auth_unavailable' }, 503)
@@ -77,7 +77,7 @@ export async function POST(req: Request) {
 
   let bindings
   try {
-    bindings = getContributionBindings()
+    bindings = getContributionBindings(env)
   } catch (error) {
     console.error('[contribution-media] Cloudflare bindings unavailable:', error)
     return json({ error: 'media_unavailable' }, 503)
@@ -187,8 +187,8 @@ export async function POST(req: Request) {
   })
 }
 
-export async function DELETE(req: Request) {
-  const user = await requireUser(req).catch(() => null)
+export async function DELETE(req: Request, env: CloudflareEnv) {
+  const user = await requireUser(req, env).catch(() => null)
   if (!user) return json({ error: 'unauthorized' }, 401)
 
   let body: { id?: string } = {}
@@ -201,7 +201,7 @@ export async function DELETE(req: Request) {
 
   let bindings
   try {
-    bindings = getContributionBindings()
+    bindings = getContributionBindings(env)
   } catch {
     return json({ error: 'media_unavailable' }, 503)
   }

@@ -2,9 +2,9 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 /**
- * Locate the prerendered HTML produced by either Next's server build or a
- * static export. OpenNext invokes the normal Next build first, so postbuild
- * validation must run before the `.open-next` bundle exists.
+ * Locate the prerendered HTML produced by either a static export or a legacy
+ * Next server build. Production uses `out`; the fallback keeps the audit
+ * scripts usable for downstream forks that have not adopted static export.
  */
 export function resolveBuildOutput(root) {
   const override = process.env.DESHI_HTML_OUTPUT
@@ -12,9 +12,9 @@ export function resolveBuildOutput(root) {
     : null
   const candidates = [
     override,
+    path.join(root, 'out'),
     path.join(root, '.next', 'standalone', '.next', 'server', 'app'),
-    path.join(root, '.next', 'server', 'app'),
-    path.join(root, 'out')
+    path.join(root, '.next', 'server', 'app')
   ].filter(Boolean)
   const htmlDir = candidates.find((candidate) => fs.existsSync(candidate))
 

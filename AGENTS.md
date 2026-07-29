@@ -17,7 +17,8 @@ when it is a real guide without `<StubNotice />`; run `npm run backlog:status` f
 ## Architecture
 
 - Next.js + Nextra render mostly static MDX content.
-- OpenNext packages the static pages and contribution route handlers for Cloudflare Workers.
+- Next.js exports the site to `out/`; Cloudflare Static Assets serve it without invoking the Worker.
+- A small native Worker handles only contribution APIs and legacy review-link redirects.
 - Pagefind supplies client-side static search.
 - Milkdown Crepe powers the inline editor.
 - `jose` verifies Google ID tokens on every contribution request.
@@ -28,7 +29,8 @@ Key paths:
 - `app/(contents)/en/` – matching English pages under `/en`.
 - `app/components/LocalizedLayout.tsx` – shell, navigation, page chrome and editor entry.
 - `app/components/ContributionEditor.tsx` – browser editor and draft recovery.
-- `app/api/` and `app/lib/` – contribution, authentication, GitHub and media-review logic.
+- `worker/api/` and `worker/lib/` – contribution, authentication, GitHub and media-review logic.
+- `worker/index.ts` – explicit API router and static-asset fallback.
 - `data/directory/` – structured directory entries.
 - `plan/content-backlog.csv` – canonical planned-topic and route registry.
 - `app/nav.config.ts` – curated top-level navigation.
@@ -147,7 +149,7 @@ The authored media registries are the exception:
 ## Commands
 
 ```bash
-npm run dev                 # local site; regenerates manifests first
+npm run dev                 # local Next site + API Worker; regenerates manifests first
 npm run manifest            # regenerate content and SEO outputs
 npm run backlog:status      # write the local planning status report
 npm run lint:bangla         # Bangla/content mechanical checks
@@ -156,15 +158,18 @@ npm run lint:media          # media references and limits
 npm run test:contribute     # editor/contribution helpers
 npm run test:media          # media pipeline helpers
 npm run build               # production Next build + Pagefind + SEO audit
-npm run build:worker        # package the Cloudflare Worker
+npm run build:worker        # production static export + Pagefind + SEO audit
+npm run check:worker        # typecheck, dry-run package, and enforce growth budgets
 npm run preview:worker      # local Worker preview
 ```
 
 ## Deployment and safety
 
 Production is the `deshistartup` Cloudflare Worker at `deshistartup.com`. Workers Builds runs
-`npm run build:worker` from `main`. Runtime variables and secrets are documented in
-`.env.local.example` and `wrangler.jsonc`.
+`npm run build:worker` from `main`, then Wrangler deploys `out/` with the native API Worker.
+Runtime variables and secrets are documented in `.env.local.example` and `wrangler.jsonc`.
+Deployment architecture and size budgets are documented in
+[`plan/deployment-architecture.md`](./plan/deployment-architecture.md).
 
 Pushing `main` deploys production. Never push unless Shamir asks.
 
