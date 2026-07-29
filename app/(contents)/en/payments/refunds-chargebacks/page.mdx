@@ -1,16 +1,185 @@
 ---
 title: "Refunds, Chargebacks, and Dispute Handling"
-description: "Refunds, Chargebacks, and Dispute Handling – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+description: "Money goes back three ways — you send it, a bank pulls it, or the law requires it. The 10-day refund rule, what proof of delivery is worth in a chargeback, and what the gateways will not publish. Verified 29 July 2026."
+verified: 2026-07-29
 ---
 
 # Refunds, Chargebacks, and Dispute Handling
 
-<StubNotice path="payments/refunds-chargebacks" locale="en" />
+> **Key Takeaway:** If you take payment up front and then miss the delivery deadline, the Digital Commerce Operation Guidelines 2021 require you to return the full amount within 10 days, through the same channel the customer paid by. Any charge incurred in making that refund is yours to absorb, not the customer's. None of this is tied to cards — it applies just as much when the money came through bKash, and just as much when you sell from a Facebook page. A chargeback is a different animal. There the decision sits with the customer's bank, and one document stands between you and the loss: proof of delivery. Without it you lose the money and the goods.
+
+## Three Ways the Money Goes Back
+
+From the outside, a customer asking for their money back looks like one situation. It is actually three, and which one you are in decides who gets the final say.
+
+| Route | Who decides | When you find out |
+|---|---|---|
+| Refund | You | You start it yourself |
+| Chargeback | The bank that issued the customer's card | When the gateway asks you for evidence |
+| Legal obligation | The consumer directorate and the courts | After a complaint is filed |
+
+Each one calls for different preparation. On a refund you set the rules. On a chargeback you assemble evidence. Under the law you simply meet the deadlines.
+
+The most common mistake sits right here. Plenty of founders assume that avoiding cards avoids the whole problem. It is true that bKash payments cannot be charged back — that mechanism belongs to the card networks. But the legal duty does not care which channel the money arrived on.
+
+## What the Law Actually Requires
+
+If you sell online, the Digital Commerce Operation Guidelines 2021 apply to you. They were published in the Bangladesh Gazette on 4 July 2021, and as of 29 July 2026 this is still the version on the Ministry of Commerce notice page. Marketplaces, your own website, and Facebook pages all fall inside their scope.
+
+Here are the deadlines together. The first three rows apply where the customer has already paid in full.
+
+| Situation | What the guidelines say | Clause |
+|---|---|---|
+| After full payment | Hand the goods to the delivery person or courier within 48 hours and inform the buyer | 3.3.1 |
+| Buyer and seller in the same city | Deliver within 5 days of the order | 3.3.2 |
+| Different city, or a village | Deliver within 10 days | 3.3.2 |
+| Any complaint received | Resolve within 72 hours and tell the buyer | 3.4.2 |
+| Goods not supplied within the set time | Refund in full within 10 days of the payment | 3.5.1 |
+| Force majeure after full payment | Inform the buyer within 48 hours of the order, refund in full within the next 72 hours | 3.4.4 |
+
+### Three Conditions Inside Clause 3.5.1
+
+Clause 3.5.1 is the core refund rule, and it is specific in three places. Each one costs money.
+
+**First, the refund goes back through the same channel.** Paid by bKash, returned by bKash; paid by card, returned to the card. Handing over store credit and promising to "adjust it against your next order" does not satisfy the clause.
+
+**Second, any charge on the refund is yours.** The guidelines say plainly that where a charge applies, the marketplace or the seller bears it. You cannot deduct the gateway fee and return the remainder — the customer receives the whole amount.
+
+**Third, the 10-day clock starts on the day of payment**, not on the day the customer complains. The time consumed by the payment channel itself sits outside that window.
+
+One more line in the clause runs against most people's instinct: you may not refund more than the customer paid. Settling a dispute by adding something extra as compensation is not an option the rule leaves open.
+
+### Where the Clause Does Not Reach
+
+It is easy to simplify legal language until the scope grows, so be clear about this one. Clause 3.5.1 compels a refund when you took payment up front and then failed to supply the goods on time. A product that arrived properly and simply was not to the customer's taste is a separate matter, governed by your own return policy.
+
+The clause also covers the reverse case. Where the buyer fails to take delivery on time, the deadline may be relaxed.
+
+### The Limit on Advance Payment
+
+Clause 3.2.10 lands directly on pre-order and made-to-order businesses, and it gets very little attention. If the product will not be in a condition to hand to a delivery person or courier within 48 hours of taking the full price, you may not collect more than 10% of the price in advance. Through a Bangladesh Bank approved escrow service, you may take up to 100%.
+
+Put simply, collecting the full price for stock you do not hold runs into the rule. Importing it, or making it after the order arrives? Either take a 10% deposit or arrange escrow.
+
+## Chargebacks: Where You Do Not Decide
+
+A chargeback means the customer skipped you entirely, complained to the bank that issued their card, and the bank began pulling the money back. aamarPay's FAQ lists the usual causes — a stolen card, a product or service that fell short of expectations, or a charge made by mistake.
+
+The difference is not only who starts it. On a refund you send the money. On a chargeback the money is taken, and you learn about it afterwards.
+
+### The Whole Defence Rests on One Document
+
+SSLCommerz sets the process out in its FAQ. When a chargeback request arrives from the bank, they ask you for proof that the product or service was delivered — a delivery receipt, or other tangible evidence that the customer received it. They pass that to the acquiring bank, and if the bank finds it sufficient, the claim is denied.
+
+So the entire defence rests on a receipt. No proof of delivery and the fight is over before it starts.
+
+### What Losing Costs
+
+Say Nafisa sells skincare from her own website in Dhaka. A set she bought for BDT 800 sells for BDT 1,200, the customer pays by card, and the gateway rate is 2.5%.
+
+| | Refund, goods returned | Chargeback, lost |
+|---|---|---|
+| Customer gets back | BDT 1,200 | BDT 1,200 |
+| Received at the time of sale | BDT 1,170 | BDT 1,170 |
+| Where the goods are | Back with you | Still with the customer |
+| Cost of the goods | – | BDT 800 |
+| Additional chargeback fee | – | Varies by gateway, not published |
+| **Direct loss** | **BDT 30, plus courier** | **BDT 830, plus the chargeback fee** |
+
+Work the arithmetic through. A 2.5% fee on BDT 1,200 is BDT 30, so BDT 1,170 reached you. You must return the full BDT 1,200, because under clause 3.5.1 the charge is the seller's. That BDT 30 is gone either way, unless your gateway returns its own fee on a refund.
+
+The goods are what separate the two columns. On a refund they come back; on a lost chargeback they do not. Which makes a delivery receipt worth BDT 800 here.
+
+### The Two Gateways Do Not Work the Same Way
+
+| | SSLCommerz | aamarPay |
+|---|---|---|
+| Who starts a refund | The customer asks you, you process it from the panel | They receive the dispute and investigate it themselves |
+| Who pays the customer | You | They refund the customer directly once verified |
+| Customer receives it in | 5–7 working days | Not published |
+| Partial refunds | Yes, enter the amount in the panel | Not published |
+| Your job in a chargeback | Send proof of delivery | Not published |
+| Chargeback terms | Per your contract: "Chargeback executed as per agreement" | A charge applied at their "charge back policy ratio" |
+
+This table is what the two companies publish about themselves, not independent verification. The last row is the expensive one, because both of them withhold the number. SSLCommerz says the terms live in your agreement, not on the website. aamarPay says a chargeback triggers a charge set by their policy, without saying what the rate is.
+
+So get these four in writing before you sign:
+
+1. How many days you get to submit chargeback evidence.
+2. The exact charge per chargeback.
+3. Whether frequent chargebacks trigger a hold on funds or account closure.
+4. Whether a refund returns the fee already deducted.
+
+The fourth also appears on the [payment reconciliation](/en/payments/reconciliation) page, because it bites into every month's numbers.
+
+## What Belongs in a Refund Policy
+
+Writing a policy is not optional courtesy. Clause 3.1.17 is precise here: the terms for price refunds, product returns, and exchanges, along with the delivery method and delivery time, must all be recorded **in Bangla** and displayed clearly. Other languages may sit alongside it. The clause names Facebook pages explicitly, so selling from a page earns no exemption.
+
+At minimum, cover:
+
+- which products you take back, and which you do not
+- the window for requesting a return, counted from the day of receipt
+- the condition goods must be in
+- who pays the courier charge
+- the channel the money returns by — the same one, per the guidelines
+- how long the refund will take
+- a phone number and email for complaints
+
+That last item is also a rule. Clause 3.4.1 requires a clearly stated phone number and email for receiving complaints, and requires every digital commerce business to appoint a compliance officer who can coordinate with the Directorate of National Consumer Rights Protection.
+
+## Reducing Disputes
+
+Chargeback defence does not begin when the chargeback arrives. The document you will need then has to be accumulating now.
+
+- **Keep proof of every delivery.** Courier delivery receipts, tracking numbers, signatures, photographs — whatever you get, file it against the order number.
+- **Keep it for six years.** Clause 3.1.14 requires all transaction records to be retained for at least six years and supplied to any authorised government body on request.
+- **Treat foreign cards with extra care.** SSLCommerz states that most transactions its system flags as suspicious involve foreign cards. aamarPay refuses virtual and prepaid cards outright to limit fraud.
+- **Check 3D Secure.** SSLCommerz classes a transaction as risky when the card does not comply with 3D Secure.
+- **Keep photographs and descriptions honest.** Clauses 3.2.1 through 3.2.4 require full detail on quantity, ingredients, colour, size, and quality. The gap between the photograph and the item in hand is where most disputes are born.
+- **Watch the 72-hour clock.** Letting complaints pile up breaks the rule, and by then the customer may have gone to their bank instead.
+
+The guidelines also say what non-compliance can cost. Under clause 3.4.5 the authority may cancel a trade licence, company registration, or VAT registration, and may ban the marketplace. Under clause 3.4.6 an aggrieved buyer may file a complaint with the Directorate of National Consumer Rights Protection and with the courts.
+
+## Common Mistakes
+
+| Mistake | Consequence |
+|---|---|
+| Deducting the gateway fee and refunding the rest | Breaks clause 3.5.1 — the charge is the seller's |
+| Offering store credit or an adjustment on the next order | Fails the same-channel requirement |
+| Not keeping proof of delivery | Nothing to fight a chargeback with, and the goods are gone too |
+| Publishing the refund policy only in English | Clause 3.1.17 requires it recorded in Bangla |
+| Taking the full price for stock you do not hold | Clause 3.2.10 caps the advance at 10% |
+| Letting complaints sit | The 72-hour deadline passes |
+| Signing the contract without reading the chargeback terms | You learn the fee and the deadline after the fact |
+
+## Checklist
+
+- [ ] The refund and return policy is written in Bangla and visible on the site or page
+- [ ] It states the time window, who pays courier charges, and the refund channel
+- [ ] A complaints phone number and email appear on the page
+- [ ] A compliance officer has been named
+- [ ] Proof of delivery is filed against the order number for every order
+- [ ] The gateway has confirmed in writing how long you get to submit chargeback evidence
+- [ ] The charge per chargeback is on paper
+- [ ] You know whether a refund returns the gateway fee
+- [ ] You are not taking more than a 10% advance on stock you do not hold
+
+Rule of thumb: **on a refund you set the terms; on a chargeback you can only produce evidence. So get the evidence in order first.**
+
+## What to Do Next
+
+- To reconcile refunds and chargebacks against your books: [Payment Reconciliation](/en/payments/reconciliation)
+- To compare rates and terms before signing: [Payment Gateway Comparison](/en/payments/gateway-comparison)
+- To work out whether you need a gateway at all: [bKash, Nagad, and Payment Gateways](/en/payments/mfs-and-gateways)
+- To handle returns on cash on delivery: [Cash on Delivery Risk](/en/operations/cod-risk)
 
 ## Relevant Sources
 
-- [Bangladesh Bank](https://bb.org.bd)
-- [GSMA](https://gsma.com)
-- [BTRC](https://btrc.gov.bd)
-- [e-CAB](https://e-cab.net)
-- [DataReportal Bangladesh](https://datareportal.com/reports/digital-2026-bangladesh)
+- [Digital Commerce Operation Guidelines 2021, Bangladesh Gazette, 4 July 2021 (PDF)](https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-mincom/2024/12/13ad70feb24d40b3b2ec98d40c7b8f82.pdf)
+- [Ministry of Commerce – notice page for the guidelines](https://mincom.gov.bd/pages/notices/6940322335ce18e1c055a68a)
+- [Directorate of National Consumer Rights Protection – how to file a complaint](https://dncrp.gov.bd/pages/static-pages/6922e087933eb65569e276ca)
+- [Consumer Rights Protection Act, 2009](http://bdlaws.minlaw.gov.bd/act-1014.html)
+- [SSLCommerz – FAQ (refunds and chargebacks)](https://sslcommerz.com/faq/)
+- [SSLCommerz – Refund API](https://developer.sslcommerz.com/doc/v4/)
+- [aamarPay – FAQ](https://www.aamarpay.com/index.php/faq)
