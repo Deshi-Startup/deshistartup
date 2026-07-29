@@ -1,16 +1,172 @@
 ---
-title: "Where to Find Market Data in Bangladesh: BBS, World Bank, BIDA, Sectoral Reports"
-description: "Where to Find Market Data in Bangladesh: BBS, World Bank, BIDA, Sectoral Reports – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "Where to Find Bangladesh Market Data, and What to Check First"
+description: "What BBS, BTRC, Bangladesh Bank and EPB actually publish, and how the definition under the table changes what a number means. Verified 30 July 2026."
+verified: 2026-07-30
 ---
 
-# Where to Find Market Data in Bangladesh: BBS, World Bank, BIDA, Sectoral Reports
+# Where to Find Bangladesh Market Data, and What to Check First
 
-<StubNotice path="ideas/market-data-sources" locale="en" />
+> **Key Takeaway:** Most questions about the Bangladesh market are answered somewhere in a government publication, and it can be downloaded free. The hard part is not finding a number, it is working out what the number counts. BTRC reports 18.98 crore mobile subscribers in June 2026, while the 2022 census puts the country's adjusted population at 16,98,28,911. There are roughly 2 crore more connections than people, because BTRC states the definition right under the table: a subscriber is a connection active at least once in 90 days, not a person. So before a number goes into a deck or a report, read the line under the table, and keep the file with a date on it.
+
+## Which Question Is Answered Where
+
+Plenty of founders estimate the market because they assume the data does not exist. In practice, the country's people, businesses, connections, and money movements are each counted in a separate publication, and nearly all of them are open.
+
+| What you want to know | Where it is | How often it updates |
+|---|---|---|
+| Population, literacy, urban-rural split | BBS, Population and Housing Census 2022 | Once a decade |
+| How many businesses, in which sectors | BBS, Economic Census 2024 | Roughly once a decade |
+| Mobile and internet subscribers | BTRC statistics pages | Monthly |
+| Cards, MFS, and transaction value | Bangladesh Bank, Digital Financial Statistics | Monthly |
+| Inflation and wage indices | BBS, CPI and industrial production index | Monthly |
+| Export volumes and destinations | EPB export data | Monthly |
+| Per capita income and long-run comparisons | World Bank Open Data | Yearly |
+| Which companies are registered | RJSC | Continuously |
+
+The list is short, and that is the point. The numbers behind sector reports and news coverage keep coming back to these eight places.
+
+## A Count of SIMs Is Not a Count of People
+
+BTRC publishes subscriber counts by operator every month. June 2026:
+
+| Operator | Subscribers |
+|---|---|
+| Grameenphone | 8.66 crore |
+| Robi Axiata | 5.86 crore |
+| Banglalink | 3.79 crore |
+| Teletalk | 68 lakh |
+| **Total** | **18.98 crore** |
+
+The total exceeds the country's population, and that is not an error. BTRC gives the definition under the table: a subscriber is a biometric-verified connection that has been used at least once in the preceding 90 days. So someone running two SIMs is counted twice, and a SIM idle for three months drops off the list.
+
+The internet rows work the same way. June 2026 shows 13.59 crore internet subscribers in total. Of those, mobile accounts for 12.08 crore and ISP plus PSTN for 1.51 crore. Here a subscriber means a connection that accessed the internet at least once in the preceding 90 days.
+
+The difference matters when it reaches a business decision. Write "13.59 crore people in Bangladesh use the internet" and you have written something false, and whoever reads it can open the BTRC page and catch it. Separating connections from people does not shrink your number, it strengthens your credibility.
+
+## Two Different Populations in One Report
+
+The National Report of the 2022 Population and Housing Census gives the country's population twice, as two different numbers. The enumerated population is 16,51,58,616 and the adjusted population is 16,98,28,911. The gap is about 47 lakh, more than half the total population of Barishal division.
+
+The reason is not hidden. After the census, a check survey establishes who was missed in enumeration, and the figure is adjusted accordingly. Both are real, and each has its own use.
+
+Your job is simple then. Name the one you used. If you calculate anything per capita, write down which figure sits in the denominator, or you will not be able to reconcile it yourself six months later.
+
+The same report holds other figures that bear directly on reading a market. Of the adjusted population, 68.34% live in rural areas and 31.66% in urban. Literacy among those aged 7 and above is 74.80%. The annual population growth rate fell from 1.47% in 2011 to 1.22% in 2022. By division, Dhaka is highest at 4,42,15,759 people and Barishal lowest at 91,00,104.
+
+## Numbers Do Not Only Go Up
+
+Pull BTRC's internet subscriber row across a few years and this becomes plain.
+
+| Month | Total internet subscribers |
+|---|---|
+| June 2024 | 14.22 crore |
+| February 2026 | 12.83 crore |
+| June 2026 | 13.59 crore |
+
+Two different stories can be built from one table. Set June 2024 against June 2026 and subscribers fell by more than 62 lakh across two years. Set February 2026 against June 2026 and they rose by more than 76 lakh in four months. Both sentences are true, and both come from the same government source.
+
+So when you pick two months, ask yourself why those two. If the answer is that it makes your story sound better, the number will end up working against you. The safest route is to show the whole row, the rises and the falls together.
+
+## How Many Businesses the Country Has Is Now Counted
+
+The most under-used dataset for founders is probably the Economic Census 2024. BBS counted the country's economic units in it, by sector, by urban and rural, by size. The total is 1,17,02,792 units, up from 78,18,565 in 2013. Of those, 68,43,426 are establishments and 48,59,366 are economic households. Rural holds 73,85,828 and urban 43,16,964.
+
+The sector split shows what business in Bangladesh actually consists of.
+
+| Sector | Units in 2024 | Share of total |
+|---|---|---|
+| Wholesale and retail trade, repair | 48,94,610 | 41.8% |
+| Transportation and storage | 26,00,151 | 22.2% |
+| Other service activities | 12,06,976 | 10.3% |
+| Manufacturing | 11,19,401 | 9.6% |
+| Accommodation and food service | 9,49,096 | 8.1% |
+| Education | 2,98,991 | 2.6% |
+| Information and communication | 45,668 | 0.4% |
+| **Total** | **1,17,02,792** | **100%** |
+
+Look at that second-to-last row again. Information and communication holds 45,668 units in the whole country, 0.4% of the total. If you run a software or digital services business, that is your competitor count, and it is small.
+
+There is a column for computer use too, but the census publishes it only for the industry sector. Of that sector's 11,68,349 units, 28,151 use a computer or IT, which is 2.41%. Narrow it to manufacturing and it is 27,277 out of 11,19,401, while for urban manufacturing units the rate is 4.04%.
+
+### Say You Are Building Billing Software for Shops
+
+You start with 1.17 crore units in hand. That is not your market. Drop into the wholesale and retail row and you get 48,94,610, which is not it either. Now the third step, and this is where the number really cuts. Units that use any online or e-commerce system in their business come to 1,15,948 nationally, under 1% of all units.
+
+Here is the honest part. The next two steps have no number in any report. How many such shops sit in your district, and how many of them will pay you monthly, is not something the census tells you. Those two you have to go and count, and if you assume them instead, the whole calculation stays on paper.
+
+There is still a gain. Across those three steps you came down from 1.17 crore to about 1.16 lakh, and each step rests on a government table. That calculation holds up in front of an investor. "Bangladesh has 1.17 crore businesses" does not.
+
+## Two Different Percentages in One Table
+
+The Economic Census table on online transaction modes contains the most common trap in reading numbers. Of the 1,15,948 units that use an online system, this is how they take money:
+
+| Mode of transaction | Responses | % of responses | % of units |
+|---|---|---|---|
+| Cash | 64,679 | 35.69% | 55.78% |
+| Mobile banking | 59,007 | 32.56% | 50.89% |
+| Online banking | 34,559 | 19.07% | 29.81% |
+| Agent banking | 17,835 | 9.84% | 15.38% |
+| Others | 5,160 | 2.85% | 4.45% |
+| **Total** | **1,81,240** | **100%** | **156.31%** |
+
+That last cell reads 156.31%, and it is not a misprint. A unit can take money by more than one route, so there are 1,81,240 responses but only 1,15,948 responding units. The two percentage columns therefore have different denominators.
+
+The consequence is direct. Lift "mobile banking 32.56%" and you are saying a third of online businesses take mobile banking. BBS is saying something else: more than half of them do, 50.89%. The error did not even flatter you here, and it is still an error.
+
+Spotting a table like this is easy enough. Add the column up. If it comes to more than 100, one respondent was able to give more than one answer, and you then have to think about which denominator you actually need.
+
+## Where the Data Does Not Exist
+
+Some things nobody publishes, and it is better to start out assuming that. How much a specific customer group in your area spends, how many walk away once they hear the price, which month sales drop in, what margin a competitor runs on, what percentage comes back through the courier — there is no national table for any of it.
+
+The census gives you a ceiling here, and your own counting gives you the real number. The two do different jobs, and without the second the first will not run a business. Ways to gather your own numbers are on the [idea validation](/en/validation) page.
+
+## Links Break, Files Do Not
+
+Government sites get rebuilt, and old addresses stop working when they do. There is an example in front of us right now. BBS's census page still carries links to the 2011 district reports, and those point at an IP address. On 30 July 2026 that address returned nothing at all. The 2022 and 2024 reports, meanwhile, sit on a different storage server as files with scrambled names.
+
+So download the file you are taking numbers from and keep it. Write three things beside it: the name of the publication, which period the figures cover, and the date you downloaded it. If somebody questions the number six months later, you can open the file and show them, whether the link still works or not.
+
+## Common Mistakes
+
+| Mistake | What follows |
+|---|---|
+| Reading mobile or internet subscribers as people | SIM counts exceed the population and the estimate inflates |
+| Not saying which of the two populations you used | Per capita figures cannot be reconciled later |
+| Picking two months that match the story | The claim collapses when someone opens the full row |
+| Using the wrong denominator in a multiple-response table | Percentages come out half or double |
+| Treating the national unit count as your market | Planning rests on a number you cannot reach |
+| Keeping the link but not the file | The site changes and the evidence is gone |
+| Lifting a number straight from news or a report | The original table's definition and period stay unknown |
+
+## Checklist
+
+- [ ] Written down which publication the number is from and which period it covers
+- [ ] Read the definition and footnotes under the table
+- [ ] Written connections and people as separate things
+- [ ] Stated which of the two population figures I used
+- [ ] Have a reason for the months or years I compared
+- [ ] Checked which denominator the percentage uses
+- [ ] Downloaded the file and dated it
+- [ ] Planned how to count the numbers that exist nowhere
+
+Rule of thumb: **Read the definition before the number, and keep the file rather than the link.**
+
+## What to Do Next
+
+- To size a market: [market sizing](/en/ideas/market-sizing)
+- For how to cite sources: [citing market data](/en/ideas/citing-market-data)
+- To gather your own numbers: [idea validation](/en/validation)
+- For how buyers actually pay: [cards are common, card purchases are not](/en/payments/low-card-penetration)
+- To see where the openings are: [opportunity sectors](/en/ideas/opportunity-sectors)
 
 ## Relevant Sources
 
-- [World Bank](https://data.worldbank.org/country/bangladesh)
-- [LightCastle Partners](https://lightcastlepartners.com)
-- [Anchorless Bangladesh](https://www.anchorless.vc)
-- [Bangladesh Bank](https://www.bb.org.bd)
-- [Bangladesh Bureau of Statistics (BBS)](http://www.bbs.gov.bd)
+- [BBS – Economic Census 2024 (reports and chapter tables)](https://bbs.gov.bd/pages/static-pages/695b99a3c4774958d7b705e2)
+- [BBS – Population and Housing Census 2022 and 2011](https://bbs.gov.bd/pages/static-pages/6922dc2a933eb65569e0ebd5)
+- [BTRC – Mobile Subscribers](https://btrc.gov.bd/pages/static-pages/6922dda8933eb65569e15c3d)
+- [BTRC – Internet Subscribers](https://btrc.gov.bd/pages/static-pages/6922e0a3933eb65569e27f59)
+- [Bangladesh Bank – Financial Inclusion and Digital Financial Statistics](https://www.bb.org.bd/en/index.php/econdata/fin_digitalfstat)
+- [BBS – CPI and Industrial Production Index](https://bbs.gov.bd/pages/static-pages/6922de7a933eb65569e1ae8f)
+- [EPB – Export Data](https://epb.gov.bd/site/view/epb_export_data/-)
+- [World Bank – Bangladesh Data](https://data.worldbank.org/country/BD)
