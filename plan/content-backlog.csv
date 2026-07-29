@@ -121,7 +121,7 @@ Phase 1: Starting,Banking & Payments Setup,"বিকাশ ব্যক্ত�
 Phase 1: Starting,Banking & Payments Setup,Nagad ও Rocket মার্চেন্ট সেটআপ চেকলিস্ট,Nagad and Rocket merchant setup checklist,/payments/nagad-rocket-merchant,Checklist,Medium,Wallet acceptance path.
 Phase 1: Starting,Banking & Payments Setup,"পেমেন্ট মিলানো: গেটওয়ে, ওয়ালেট, ব্যাংক ও COD","Payment reconciliation across gateway, wallet, bank and COD",/payments/reconciliation,Guide / Template,High,Ops-critical topic.
 Phase 1: Starting,Banking & Payments Setup,"রিফান্ড, চার্জব্যাক ও বিরোধ সামলানো","Refunds, chargebacks and dispute handling",/payments/refunds-chargebacks,Guide,High,Trust and finance ops.
-Phase 1: Starting,Banking & Payments Setup,সাবস্ক্রিপশন পেমেন্ট নেওয়ার বাস্তবতা,Reality of taking subscription payments in Bangladesh,/payments/subscription-payments,Guide,High,"Cards, wallets, invoices and manual renewal."
+Phase 1: Starting,Banking & Payments Setup,সাবস্ক্রিপশন পেমেন্ট: টাকা কি নিজে থেকেই কাটবে?,Subscription payments: will the money pull itself?,/payments/subscription-payments,Guide,High,"Cards, wallets, invoices and manual renewal."
 Phase 1: Starting,Banking & Payments Setup,"আন্তর্জাতিক পেমেন্ট, কার্ড ও পেমেন্ট লিংকের সীমাবদ্ধতা","International payment, card and payment-link constraints",/payments/international-payments,Guide,Medium,Source lead: Bangladesh Bank / gateways.
 Phase 1: Starting,Banking & Payments Setup,COD নগদ টাকা মিলানোর টেমপ্লেট,COD cash reconciliation template,/payments/cod-reconciliation,Template,High,For commerce operators.
 Phase 1: Starting,Banking & Payments Setup,পেমেন্ট জালিয়াতির ঝুঁকি চেকলিস্ট,Payment fraud risk checklist,/payments/fraud-risk-checklist,Checklist,Medium,For online sellers.
