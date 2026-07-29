@@ -23,10 +23,10 @@ jobs:
       - name: Media guardrail tests
         run: npm run test:media
 
-      - name: Build Cloudflare Worker
+      - name: Build Cloudflare deployment
         run: npm run build:worker
         env:
           NEXT_TELEMETRY_DISABLED: '1'
 
-      - name: Validate Worker bundle
+      - name: Validate deployment budgets
         run: npm run check:worker

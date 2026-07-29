@@ -1,7 +1,7 @@
 /**
  * Client-side Google auth state. The ID token comes straight from Google
  * Identity Services ("Sign in with Google") in the browser; the backend
- * verifies it on each request (see app/lib/google-token.ts). No server
+ * verifies it on each request (see worker/lib/google-token.ts). No server
  * session exists — the token lives in localStorage and is sent as a
  * Bearer header with API calls. Google ID tokens expire in ~1 hour.
  */

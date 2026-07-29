@@ -1,6 +1,6 @@
-import { requireUser } from '../../lib/google-token'
-import { createContributionPR } from '../../lib/github-app'
-import { resolveContributable } from '../../lib/contributable-registry'
+import { requireUser } from '../lib/google-token'
+import { createContributionPR } from '../lib/github-app'
+import { resolveContributable } from '../../app/lib/contributable-registry'
 import {
   MAX_IMAGES_PER_CONTRIBUTION,
   countPendingMediaUses,
@@ -8,7 +8,7 @@ import {
   normalizeContributionMediaInput,
   QUARANTINE_TTL_SECONDS,
   uncontrolledImageSources
-} from '../../lib/contribution-media'
+} from '../../app/lib/contribution-media'
 import {
   ContributionReviewRecord,
   QuarantineMediaRecord,
@@ -22,7 +22,7 @@ import {
   readJson,
   reviewRecordKey,
   writeJson
-} from '../../lib/contribution-guard'
+} from '../lib/contribution-guard'
 
 function json(data: any, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -35,10 +35,10 @@ function json(data: any, status = 200) {
   })
 }
 
-export async function POST(req: Request) {
+export async function POST(req: Request, env: CloudflareEnv) {
   let user
   try {
-    user = await requireUser(req)
+    user = await requireUser(req, env)
   } catch (err) {
     console.error('[contribute] Google authentication is unavailable:', err)
     return json({ error: 'auth_unavailable' }, 503)
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
 
   let bindings
   try {
-    bindings = getContributionBindings()
+    bindings = getContributionBindings(env)
   } catch (err) {
     console.error('[contribute] Cloudflare contribution bindings unavailable:', err)
     return json({ error: 'contribution_unavailable' }, 503)
@@ -198,7 +198,7 @@ export async function POST(req: Request) {
 
   let result: any
   try {
-    result = await createContributionPR({
+    result = await createContributionPR(env, {
       repoPath: entry.repoPath,
       content,
       summary: summaryStr,

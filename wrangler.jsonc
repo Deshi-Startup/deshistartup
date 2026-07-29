@@ -1,8 +1,8 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "deshistartup",
-  "main": ".open-next/worker.js",
-  "compatibility_date": "2026-07-26",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-07-29",
   "compatibility_flags": [
     "nodejs_compat",
     "global_fetch_strictly_public"
@@ -16,8 +16,25 @@
     }
   ],
   "assets": {
-    "directory": ".open-next/assets",
-    "binding": "ASSETS"
+    "directory": "./out",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": [
+      "/api/*",
+      "/contribute/review/*"
+    ]
+  },
+  "vars": {
+    "GITHUB_REPO": "Deshi-Startup/deshistartup"
+  },
+  "secrets": {
+    "required": [
+      "NEXT_PUBLIC_GOOGLE_CLIENT_ID",
+      "GITHUB_APP_ID",
+      "GITHUB_APP_PRIVATE_KEY",
+      "GITHUB_INSTALLATION_ID",
+      "CONTRIBUTION_REVIEWER_EMAILS"
+    ]
   },
   "r2_buckets": [
     {

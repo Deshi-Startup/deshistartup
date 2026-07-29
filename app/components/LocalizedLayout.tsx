@@ -203,7 +203,8 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   const pathname = usePathname()
   const isEn = pathname.startsWith('/en/') || pathname === '/en'
   const isLanding = pathname === '/' || pathname === '/en'
-  const isPrivateReview = pathname.startsWith('/contribute/review/')
+  const isPrivateReview =
+    pathname === '/contribute/review' || pathname.startsWith('/contribute/review/')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [headings, setHeadings] = useState<HeadingItem[]>([])
   const [pageTitle, setPageTitle] = useState('')
