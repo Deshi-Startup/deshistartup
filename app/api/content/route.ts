@@ -1,7 +1,7 @@
-import contributable from '../../generated/contributable.json'
 import { requireUser } from '../../lib/google-token'
 import { findOpenContribution } from '../../lib/github-app'
 import { extractPendingMediaIds } from '../../lib/contribution-media'
+import { resolveContributable } from '../../lib/contributable-registry'
 import {
   QuarantineMediaRecord,
   contributorHash,
@@ -10,15 +10,6 @@ import {
   moderationFor,
   readJson
 } from '../../lib/contribution-guard'
-
-interface ContributableEntry {
-  repoPath: string
-  title: string
-  locale: string
-  stub: boolean
-}
-
-const typedContributable = contributable as Record<string, ContributableEntry>
 
 const RAW_BASE = 'https://raw.githubusercontent.com'
 const REPO = process.env.GITHUB_REPO || 'Deshi-Startup/deshistartup'
@@ -111,7 +102,7 @@ export async function GET(req: Request) {
   const path = url.searchParams.get('path')
   if (!path || typeof path !== 'string') return json({ error: 'path required' }, 400)
 
-  const entry = typedContributable[path]
+  const entry = resolveContributable(path)
   if (!entry) return json({ error: 'not_contributable' }, 404)
 
   // Check if this contributor has a branch for this page. It may hold either

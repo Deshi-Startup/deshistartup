@@ -1,44 +1,25 @@
 import React from 'react'
-import manifestBn from '../generated/manifest.bn.json'
-import manifestEn from '../generated/manifest.en.json'
-import groupsConfig from '../nav-groups.json'
+import contentIndex from '../generated/content-index.json'
 
-interface PageInfo {
-  slug: string
-  route: string
-  title: string
-  description?: string
-  stub?: boolean
-}
-
-interface SectionInfo {
-  slug: string
-  title: string
-  total: number
-  written: number
-  children: PageInfo[]
-}
-
-interface Manifest {
-  counts: {
-    written: number
-    stubs: number
-    total: number
-  }
+type PageInfo = [
+  route: string,
+  title: string,
+  stub: 0 | 1,
+  description: string | null
+]
+type GroupInfo = [title: string, items: PageInfo[]]
+type SectionInfo = [
+  title: string,
+  total: number,
+  written: number,
+  index: PageInfo | null,
+  groups: GroupInfo[]
+]
+interface ContentIndexLocale {
   sections: Record<string, SectionInfo>
 }
 
-// Typecast the imported JSON files
-const typedManifestBn = manifestBn as unknown as Manifest
-const typedManifestEn = manifestEn as unknown as Manifest
-
-interface GroupConfigItem {
-  bn: string
-  en: string
-  slugs: string[]
-}
-
-const typedGroupsConfig = groupsConfig as Record<string, GroupConfigItem[]>
+const typedContentIndex = contentIndex as unknown as Record<'bn' | 'en', ContentIndexLocale>
 
 const bengaliDigits = (value: number) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[Number(d)])
 
@@ -54,51 +35,29 @@ interface SectionIndexProps {
  */
 export default function SectionIndex({ section, locale = 'bn' }: SectionIndexProps) {
   const isEn = locale === 'en'
-  const manifest = isEn ? typedManifestEn : typedManifestBn
-  const data = manifest.sections[section]
+  const data = typedContentIndex[locale].sections[section]
   if (!data) return null
+  const [, total, written, , groups] = data
 
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
   const href = (route: string) => `${basePath}${route}`
   const num = (n: number) => (isEn ? String(n) : bengaliDigits(n))
 
-  const byChildSlug = new Map<string, PageInfo>(
-    data.children.map((child) => [child.slug.split('/').slice(1).join('/'), child])
-  )
-
-  const rawGroups = typedGroupsConfig[section] || []
-  const groups = rawGroups
-    .map((group) => ({
-      title: isEn ? group.en : group.bn,
-      items: group.slugs.map((slug) => byChildSlug.get(slug)).filter((x): x is PageInfo => !!x)
-    }))
-    .filter((group) => group.items.length > 0)
-
-  // Fallback: pages not covered by the curated grouping (e.g. added later).
-  const grouped = new Set<string>(
-    rawGroups.flatMap((group) => group.slugs)
-  )
-  const leftovers = data.children.filter(
-    (child) => !grouped.has(child.slug.split('/').slice(1).join('/'))
-  )
-  if (leftovers.length > 0) {
-    groups.push({ title: isEn ? 'More guides' : 'আরও গাইড', items: leftovers })
-  }
-
   const renderItem = (page: PageInfo) => {
-    const written = !page.stub
+    const [route, title, stub, description] = page
+    const pageIsWritten = !stub
     return (
-      <li key={page.route}>
-        {written ? (
+      <li key={route}>
+        {pageIsWritten ? (
           <>
-            <a href={href(page.route)}>{page.title}</a>
-            {page.description && !page.description.startsWith('>') && (
-              <span className="index-desc">{page.description}</span>
+            <a href={href(route)}>{title}</a>
+            {description && !description.startsWith('>') && (
+              <span className="index-desc">{description}</span>
             )}
           </>
         ) : (
           <>
-            <a href={href(page.route)} className="is-stub-link" rel="nofollow">{page.title}</a>
+            <a href={href(route)} className="is-stub-link" rel="nofollow">{title}</a>
             <span className="stub-chip">{isEn ? 'to be written' : 'লেখা বাকি'}</span>
           </>
         )}
@@ -106,7 +65,7 @@ export default function SectionIndex({ section, locale = 'bn' }: SectionIndexPro
     )
   }
 
-  const remaining = data.total - data.written
+  const remaining = total - written
 
   return (
     <section className="section-index" data-pagefind-ignore>
@@ -115,10 +74,10 @@ export default function SectionIndex({ section, locale = 'bn' }: SectionIndexPro
       </h2>
       <div className="section-stats">
         <span>
-          {isEn ? 'Total topics' : 'মোট বিষয়'} <b>{num(data.total)}</b>
+          {isEn ? 'Total topics' : 'মোট বিষয়'} <b>{num(total)}</b>
         </span>
         <span>
-          {isEn ? 'Written' : 'লেখা হয়েছে'} <b>{num(data.written)}</b>
+          {isEn ? 'Written' : 'লেখা হয়েছে'} <b>{num(written)}</b>
         </span>
         {/* A "0 to be written" pill is noise, and the invitation below it would
             be pointing at nothing. A finished section should just say so. */}
@@ -138,12 +97,12 @@ export default function SectionIndex({ section, locale = 'bn' }: SectionIndexPro
             : 'এই বিভাগের সব বিষয়ই লেখা হয়েছে। কোথাও পুরোনো তথ্য চোখে পড়লে প্রতিটি গাইডের নিচের সম্পাদনা লিংক থেকে আপনিও ঠিক করে দিতে পারেন।'}
       </p>
 
-      {groups.map((group) => {
-        const writtenItems = group.items.filter((page) => !page.stub)
-        const stubItems = group.items.filter((page) => page.stub)
+      {groups.map(([groupTitle, items]) => {
+        const writtenItems = items.filter((page) => !page[2])
+        const stubItems = items.filter((page) => page[2])
         return (
-          <div key={group.title}>
-            <h3>{group.title}</h3>
+          <div key={groupTitle}>
+            <h3>{groupTitle}</h3>
             {writtenItems.length > 0 && <ul>{writtenItems.map(renderItem)}</ul>}
             {stubItems.length > 0 &&
               (writtenItems.length > 0 ? (

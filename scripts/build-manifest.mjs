@@ -5,8 +5,9 @@
  * hand-maintenance. Contributors only add/edit page.mdx files.
  *
  * Outputs:
- *   app/generated/manifest.bn.json  – full tree for server components (hubs)
+ *   app/generated/manifest.bn.json  – full locale tree for build/reporting
  *   app/generated/manifest.en.json
+ *   app/generated/content-index.json – compact tree used by rendered hub UI
  *   public/page-dates.json          – route -> last git commit date (client meta bar)
  */
 import { execSync } from "node:child_process";
@@ -127,6 +128,7 @@ const allPublished = {};
 const allVerified = {};
 const llmsPages = {};
 const localeCounts = {};
+const localeManifests = {};
 const seoPages = [];
 
 for (const locale of LOCALES) {
@@ -206,6 +208,7 @@ for (const locale of LOCALES) {
     sections,
   };
   localeCounts[locale.key] = manifest.counts;
+  localeManifests[locale.key] = manifest;
 
   fs.writeFileSync(
     path.join(generatedDir, `manifest.${locale.key}.json`),
@@ -216,28 +219,24 @@ for (const locale of LOCALES) {
   );
 }
 
-// URL -> repo path map for the inline contribution editor. Lets the
-// /api/content endpoint resolve a public URL to its source MDX file.
+// Route allowlist for the inline contribution editor. Source paths and locale
+// are derived only after a route passes this generated allowlist.
 // Landing pages ("/" and "/en") are excluded — they are hubs, not articles.
 {
-  const contributable = {};
+  const contributable = [];
   for (const locale of LOCALES) {
     for (const page of llmsPages[locale.key] || []) {
       if (page.route === "/" || page.route === "/en") continue;
-      contributable[page.route] = {
-        repoPath: page.repoPath,
-        title: page.fullTitle || page.title,
-        locale: locale.key,
-        stub: !!page.stub,
-      };
+      contributable.push(page.route);
     }
   }
+  contributable.sort();
   fs.writeFileSync(
     path.join(generatedDir, "contributable.json"),
     JSON.stringify(contributable, null, 1),
   );
   console.log(
-    `contributable.json: ${Object.keys(contributable).length} editable routes`,
+    `contributable.json: ${contributable.length} editable routes`,
   );
 }
 
@@ -430,12 +429,97 @@ fs.writeFileSync(
   `${INDEXNOW_KEY}\n`,
 );
 
+// Compact, presentation-specific tree for the rendered hubs. The full manifests
+// remain useful build artifacts, but importing them into server components made
+// every title, repeated stub description, verification date and full title part
+// of the Worker. Tuples keep this runtime index small while named tuple types in
+// the consuming components preserve readability.
+{
+  const groupsConfig = JSON.parse(
+    fs.readFileSync(path.join(root, "app", "nav-groups.json"), "utf8"),
+  );
+  const contentIndex = {};
+  const compactPage = (page) =>
+    page
+      ? [
+          page.route,
+          page.title,
+          page.stub ? 1 : 0,
+          page.stub ? null : page.description || null,
+        ]
+      : null;
+
+  for (const locale of LOCALES) {
+    const manifest = localeManifests[locale.key];
+    if (!manifest) continue;
+    const sections = {};
+
+    for (const [slug, section] of Object.entries(manifest.sections)) {
+      const byChildSlug = new Map(
+        section.children.map((page) => [
+          page.slug.split("/").slice(1).join("/"),
+          page,
+        ]),
+      );
+      const configuredGroups = groupsConfig[slug] || [];
+      const groupedSlugs = new Set(
+        configuredGroups.flatMap((group) => group.slugs),
+      );
+      const groups = configuredGroups
+        .map((group) => [
+          group[locale.key],
+          group.slugs
+            .map((childSlug) => byChildSlug.get(childSlug))
+            .filter(Boolean)
+            .map(compactPage),
+        ])
+        .filter((group) => group[1].length > 0);
+      const leftovers = section.children.filter(
+        (page) =>
+          !groupedSlugs.has(page.slug.split("/").slice(1).join("/")),
+      );
+      if (leftovers.length > 0) {
+        groups.push([
+          locale.key === "en" ? "More guides" : "আরও গাইড",
+          leftovers.map(compactPage),
+        ]);
+      }
+
+      sections[slug] = [
+        section.title,
+        section.total,
+        section.written,
+        compactPage(section.index),
+        groups,
+      ];
+    }
+
+    const recent = Object.values(manifest.sections)
+      .flatMap((section) => [section.index, ...section.children])
+      .filter((page) => page && !page.stub && page.date)
+      .sort((a, b) => (a.date < b.date ? 1 : -1))
+      .slice(0, 5)
+      .map((page) => [page.route, page.title, page.date]);
+
+    contentIndex[locale.key] = {
+      counts: [manifest.counts.written, manifest.counts.stubs],
+      recent,
+      sections,
+    };
+  }
+
+  fs.writeFileSync(
+    path.join(generatedDir, "content-index.json"),
+    JSON.stringify(contentIndex, null, 1),
+  );
+  console.log("content-index.json written");
+}
+
 // Tiny client-safe map (section slug -> title) for breadcrumbs.
 const lite = {};
 for (const locale of LOCALES) {
-  const manifestPath = path.join(generatedDir, `manifest.${locale.key}.json`);
-  if (!fs.existsSync(manifestPath)) continue;
-  const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  const manifest = localeManifests[locale.key];
+  if (!manifest) continue;
   lite[locale.key] = Object.fromEntries(
     Object.values(manifest.sections).map((s) => [s.slug, s.title]),
   );

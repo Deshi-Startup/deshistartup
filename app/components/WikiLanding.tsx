@@ -1,35 +1,14 @@
 import React from 'react'
 import { REPO_URL } from '../nav.config'
-import manifestBn from '../generated/manifest.bn.json'
-import manifestEn from '../generated/manifest.en.json'
+import contentIndex from '../generated/content-index.json'
 
-interface PageInfo {
-  route: string
-  title: string
-  description?: string
-  stub?: boolean
-  date?: string
+type RecentPage = [route: string, title: string, date: string]
+interface ContentIndexLocale {
+  counts: [written: number, stubs: number]
+  recent: RecentPage[]
 }
 
-interface SectionInfo {
-  slug: string
-  title: string
-  index: PageInfo | null
-  children: PageInfo[]
-}
-
-interface Manifest {
-  counts: {
-    written: number
-    stubs: number
-    total: number
-  }
-  sections: Record<string, SectionInfo>
-}
-
-// Typecast the imported JSON files
-const typedManifestBn = manifestBn as unknown as Manifest
-const typedManifestEn = manifestEn as unknown as Manifest
+const typedContentIndex = contentIndex as unknown as Record<'bn' | 'en', ContentIndexLocale>
 
 const bengaliDigits = (value: number | string) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[Number(d)])
 
@@ -259,14 +238,7 @@ interface WikiLandingProps {
 export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
   const isEn = locale === 'en'
   const t = isEn ? en : bn
-  const manifest = isEn ? typedManifestEn : typedManifestBn
-  const { written, stubs } = manifest.counts
-
-  const recent = Object.values(manifest.sections)
-    .flatMap((section) => [section.index, ...section.children])
-    .filter((page): page is PageInfo => !!page && !page.stub && !!page.date)
-    .sort((a, b) => ((a.date || '') < (b.date || '') ? 1 : -1))
-    .slice(0, 5)
+  const { counts: [written, stubs], recent } = typedContentIndex[locale]
 
   const formatDate = (iso: string) =>
     new Date(`${iso}T00:00:00Z`).toLocaleDateString(isEn ? 'en-GB' : 'bn-BD', {
@@ -404,10 +376,10 @@ export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
         <section className="wiki-section" aria-labelledby="recent-title">
           <h2 id="recent-title">{t.recentTitle}</h2>
           <ul className="recent-list">
-            {recent.map((page) => (
-              <li key={page.route}>
-                <a href={localHref(page.route)}>{page.title}</a>
-                <time dateTime={page.date}>{formatDate(page.date!)}</time>
+            {recent.map(([route, title, date]) => (
+              <li key={route}>
+                <a href={localHref(route)}>{title}</a>
+                <time dateTime={date}>{formatDate(date)}</time>
               </li>
             ))}
           </ul>

@@ -1,33 +1,26 @@
 import React from 'react'
-import manifestBn from '../generated/manifest.bn.json'
-import manifestEn from '../generated/manifest.en.json'
+import contentIndex from '../generated/content-index.json'
 
-interface PageInfo {
-  route: string
-  title: string
-  description?: string
-  stub?: boolean
-}
-
-interface SectionInfo {
-  slug: string
-  title: string
-  index: PageInfo | null
-  children: PageInfo[]
-}
-
-interface Manifest {
-  counts: {
-    written: number
-    stubs: number
-    total: number
-  }
+type PageInfo = [
+  route: string,
+  title: string,
+  stub: 0 | 1,
+  description: string | null
+]
+type GroupInfo = [title: string, items: PageInfo[]]
+type SectionInfo = [
+  title: string,
+  total: number,
+  written: number,
+  index: PageInfo | null,
+  groups: GroupInfo[]
+]
+interface ContentIndexLocale {
+  counts: [written: number, stubs: number]
   sections: Record<string, SectionInfo>
 }
 
-// Typecast the imported JSON files
-const typedManifestBn = manifestBn as unknown as Manifest
-const typedManifestEn = manifestEn as unknown as Manifest
+const typedContentIndex = contentIndex as unknown as Record<'bn' | 'en', ContentIndexLocale>
 
 const bengaliDigits = (value: number) => String(value).replace(/\d/g, (digit) => '০১২৩৪৫৬৭৮৯'[Number(digit)])
 
@@ -37,24 +30,32 @@ interface SiteMapProps {
 
 export default function SiteMap({ locale = 'bn' }: SiteMapProps) {
   const isEn = locale === 'en'
-  const manifest = isEn ? typedManifestEn : typedManifestBn
+  const index = typedContentIndex[locale]
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
   const href = (route: string) => `${basePath}${route}`
   const currentRoute = isEn ? '/en/sitemap' : '/sitemap'
 
-  const sections = Object.values(manifest.sections)
-    .map((section) => ({
-      ...section,
-      index: section.index && !section.index.stub ? section.index : null,
-      children: section.children.filter((page) => !page.stub && page.route !== currentRoute)
-    }))
+  const sections = Object.entries(index.sections)
+    .map(([slug, section]) => {
+      const [title, , , sectionIndex, groups] = section
+      const children = groups
+        .flatMap(([, items]) => items)
+        .filter(([route, , stub]) => !stub && route !== currentRoute)
+        .sort(([, titleA], [, titleB]) => titleA.localeCompare(titleB, isEn ? 'en' : 'bn'))
+      return {
+        slug,
+        title,
+        index: sectionIndex && !sectionIndex[2] ? sectionIndex : null,
+        children
+      }
+    })
     .filter((section) => section.index || section.children.length > 0)
 
   const standalone = sections
-    .filter((section) => section.index && section.children.length === 0 && section.index.route !== currentRoute)
+    .filter((section) => section.index && section.children.length === 0 && section.index[0] !== currentRoute)
     .map((section) => section.index as PageInfo)
   const clusters = sections.filter((section) => section.children.length > 0)
-  const total = manifest.counts.written
+  const total = index.counts[0]
 
   return (
     <div className="section-index sitemap-list" data-pagefind-ignore>
@@ -69,10 +70,10 @@ export default function SiteMap({ locale = 'bn' }: SiteMapProps) {
         <section>
           <h2>{isEn ? 'Core guides' : 'মূল গাইড'}</h2>
           <ul>
-            {standalone.map((page) => (
-              <li key={page.route}>
-                <a href={href(page.route)}>{page.title}</a>
-                {page.description && <span className="index-desc">{page.description}</span>}
+            {standalone.map(([route, title, , description]) => (
+              <li key={route}>
+                <a href={href(route)}>{title}</a>
+                {description && <span className="index-desc">{description}</span>}
               </li>
             ))}
           </ul>
@@ -82,13 +83,13 @@ export default function SiteMap({ locale = 'bn' }: SiteMapProps) {
       {clusters.map((section) => (
         <section key={section.slug}>
           <h2>
-            {section.index ? <a href={href(section.index.route)}>{section.index.title}</a> : section.title}
+            {section.index ? <a href={href(section.index[0])}>{section.index[1]}</a> : section.title}
           </h2>
           <ul>
-            {section.children.map((page) => (
-              <li key={page.route}>
-                <a href={href(page.route)}>{page.title}</a>
-                {page.description && <span className="index-desc">{page.description}</span>}
+            {section.children.map(([route, title, , description]) => (
+              <li key={route}>
+                <a href={href(route)}>{title}</a>
+                {description && <span className="index-desc">{description}</span>}
               </li>
             ))}
           </ul>

@@ -1,4 +1,3 @@
-import contributable from '../../generated/contributable.json'
 import {
   MAX_CONTRIBUTION_IMAGE_BYTES,
   MAX_BYTES_PER_USER_PER_DAY,
@@ -19,9 +18,8 @@ import {
   readJson,
   writeJson
 } from '../../lib/contribution-guard'
+import { resolveContributable } from '../../lib/contributable-registry'
 import { requireUser } from '../../lib/google-token'
-
-const typedContributable = contributable as Record<string, unknown>
 
 function json(data: unknown, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -96,7 +94,7 @@ export async function POST(req: Request) {
   }
 
   const pagePath = req.headers.get('x-page-path') || ''
-  if (!typedContributable[pagePath]) return json({ error: 'not_contributable' }, 404)
+  if (!resolveContributable(pagePath)) return json({ error: 'not_contributable' }, 404)
 
   const declaredType = (req.headers.get('content-type') || '').split(';')[0].trim().toLowerCase()
   const fileName = safeFileName(req.headers.get('x-file-name'))

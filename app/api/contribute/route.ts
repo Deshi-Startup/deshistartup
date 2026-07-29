@@ -1,6 +1,6 @@
-import contributable from '../../generated/contributable.json'
 import { requireUser } from '../../lib/google-token'
 import { createContributionPR } from '../../lib/github-app'
+import { resolveContributable } from '../../lib/contributable-registry'
 import {
   MAX_IMAGES_PER_CONTRIBUTION,
   countPendingMediaUses,
@@ -23,15 +23,6 @@ import {
   reviewRecordKey,
   writeJson
 } from '../../lib/contribution-guard'
-
-interface ContributableEntry {
-  repoPath: string
-  title: string
-  locale: string
-  stub: boolean
-}
-
-const typedContributable = contributable as Record<string, ContributableEntry>
 
 function json(data: any, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -84,7 +75,7 @@ export async function POST(req: Request) {
   const { path, content, summary, media } = body || {}
   if (!path || typeof path !== 'string') return json({ error: 'path_required' }, 400)
 
-  const entry = typedContributable[path]
+  const entry = resolveContributable(path)
   if (!entry) return json({ error: 'not_contributable' }, 404)
 
   if (typeof content !== 'string' || content.trim().length < 10) {
