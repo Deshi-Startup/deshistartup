@@ -1,12 +1,126 @@
 ---
-title: "Low Card Usage Rate: Business Implications"
-description: "Low Card Usage Rate: Business Implications – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "Cards Are Common, Card Purchases Are Not: How to Set Up Payments"
+description: "Of every BDT 100 moving through cards in Bangladesh, 89 is cash in or out of a machine and 4 is spent online. What Bangladesh Bank's May 2026 figures mean for your checkout and pricing. Verified 29 July 2026."
+verified: 2026-07-29
 ---
 
-# Low Card Usage Rate: Business Implications
+# Cards Are Common, Card Purchases Are Not: How to Set Up Payments
 
-<StubNotice path="payments/low-card-penetration" locale="en" />
+> **Key Takeaway:** More than 5 crore cards have been issued in Bangladesh, yet 89% of the money moving through them is cash being pulled out of, or pushed into, a machine. Bangladesh Bank's figures for May 2026 put online card spending at BDT 2,467 crore — 4% of all card transaction value. In the same month, customers paid businesses through MFS wallets like bKash and Nagad 4.71 crore times, roughly three times the combined count of card payments at the counter and online. Make cards the only route at checkout and you lose the customer who came ready to buy. Keep cards, but keep them for the larger orders.
+
+## What People Actually Do With Their Cards
+
+By May 2026 banks had issued close to 5.10 crore cards. The number invites an obvious conclusion: the country now shops by card. Bangladesh Bank's statistics department publishes where those cards are actually used, split four ways, every month. Line the four up and the conclusion falls apart.
+
+May 2026:
+
+| Where the card was used | Transactions | Value | Share of value |
+|---|---|---|---|
+| ATM – cash withdrawn at a booth | 2.79 crore | BDT 33,911 crore | 55.3% |
+| CRM – cash deposited and withdrawn at a machine | 1.80 crore | BDT 20,695 crore | 33.8% |
+| POS – at a shop counter | 89.6 lakh | BDT 4,199 crore | 6.9% |
+| E-commerce – online | 66.34 lakh | BDT 2,467 crore | 4.0% |
+| **Total** | **6.15 crore** | **BDT 61,272 crore** | **100%** |
+
+The first two rows together come to 89%. ATMs and CRMs are machines for moving cash in and out, not places to buy anything. On this evidence, a card in Bangladesh is still mostly a way to get hold of cash.
+
+Scaled to BDT 100, it is easier to remember. Of every BDT 100 that moves through cards, BDT 89 is cash in and out of a machine, BDT 7 is at a shop counter, and BDT 4 is online.
+
+Look at the online row once more. Across the entire country, across an entire month, across every website and app combined, cards were used online 66.34 lakh times. Working out what share of that could plausibly reach your site is not difficult.
+
+## Issued Cards and Live Cards Are Different Numbers
+
+Holding a card and using a card are also different things, and Bangladesh Bank reports both in the same table.
+
+| Card | Issued | Active |
+|---|---|---|
+| Debit | 3.97 crore | 3.21 crore |
+| Credit | 26.50 lakh | 19.32 lakh |
+| Prepaid | 86 lakh | 83.90 lakh |
+
+The credit row deserves a second look. There are 19.32 lakh active credit cards, against an active debit base more than sixteen times larger — and what people do with those debit cards is in the previous table: withdraw cash.
+
+Two qualifications belong here. These count cards, not people; one person with two cards appears twice. So the real number of cardholders is lower than the table, not higher. And these are cards issued by banks — the 92,000 credit cards issued by one financial institution (LankaBangla) sit outside the total.
+
+It is worth knowing where the card-reading machines are, too. In May 2026 there were 1,51,361 POS terminals nationwide: 1,32,622 urban and 18,739 rural. Paying by card at a counter is still largely an urban option. That describes offline retail, though — online sales need no terminal.
+
+## So How Do People Pay Digitally?
+
+Outside cards, the digital payment story is MFS. Bangladesh Bank counts it in a column called "merchant payment" — money a customer sent from their own MFS wallet to a shop or a business. Put the three routes side by side for May 2026:
+
+| How the customer paid | Transactions | Value | Average payment |
+|---|---|---|---|
+| MFS merchant payment | 4.71 crore | BDT 6,296 crore | BDT 1,336 |
+| Card, at a shop counter | 89.6 lakh | BDT 4,199 crore | BDT 4,686 |
+| Card, online | 66.34 lakh | BDT 2,467 crore | BDT 3,719 |
+
+In money the two sides are close — BDT 6,296 crore through MFS, BDT 6,666 crore through cards at counters and online combined. In number of payments, MFS is nearly three times larger. The reason is in the last column.
+
+An MFS payment averages BDT 1,336; a card payment online averages BDT 3,719. If your typical order is somewhere around a thousand taka, the route your customers are used to paying that amount through is not a card. If your typical order runs to several thousand, cards suddenly matter — which is the situation for electronics, furniture, course fees, and B2B invoices.
+
+### Before You Compare Two Months
+
+Bangladesh Bank prints one warning under the MFS table itself. From March 2025 to February 2026, Nagad could not supply the required data; submission resumed in March 2026. So you cannot set February beside March and announce that the market doubled in a month. One provider's data came back; the market did not leap.
+
+Read the footnote under any source before a number of this kind goes into a pitch deck or a report. An investor who opens the original table will find the gap.
+
+## Five Decisions to Make Now
+
+**Do not let a card be the only way through.** At checkout — the page where the customer actually pays — offer bKash or Nagad, and if you ship goods, weigh up cash on delivery too. With cards alone, the customer who wanted to buy leaves instead, and no report will tell you why.
+
+**Price against your own mix, not one rate.** MFS rates usually run below card rates, so costing every order at the card rate overstates your expense. The [payment gateway comparison](/en/payments/gateway-comparison) page works through how to calculate your effective rate.
+
+**Do not build monthly pricing on an assumption of auto-debit.** A subscription model rests on one condition: that next month's money can be taken without the customer lifting a finger. With 19.32 lakh active credit cards, that condition cannot be assumed. Get it in writing from your provider — which methods can be charged repeatedly and which cannot — before you sign. Skip that and you inherit the job of chasing every customer, every month.
+
+**Cash on delivery is hard to plan around.** A large share of buyers still pay in cash, which lifts orders but shifts the cost of returns and courier charges onto you. How many returns the margin absorbs is worked out on the [cash on delivery risk](/en/operations/cod-risk) page.
+
+**Overseas customers are a separate calculation.** Everything above describes the domestic market. Buyers of exported software and services do pay by card; the friction sits elsewhere, in the rules for bringing the money home. The starting steps are on the [exporting SaaS from Bangladesh](/en/ideas/export-saas) page.
+
+### Running the Numbers on Your Own Business
+
+Say you go through the last three months — 450 orders — and find 310 paid cash on delivery, 110 through bKash or Nagad, and 30 by card. Cards account for 7%. Now ask the question backwards: if your website had accepted cards only, what would have happened to the other 420 orders?
+
+Not all of them would have walked. Some would have borrowed a card from a relative; some would have phoned to ask whether bKash was an option. But there is no reason to place that bet with 420 orders on the table, particularly when the cost of adding a payment method appears in the gateway's own quotation.
+
+Finding your own number is not hard. If your order sheet has a payment-method column, three months of data is one sitting's work. If it does not, add the column today; the weekly routine for matching it all up is on the [payment reconciliation](/en/payments/reconciliation) page.
+
+## Common Mistakes
+
+| Mistake | What follows |
+|---|---|
+| Cards as the only checkout option | The customer who came to buy leaves, and no report shows the reason |
+| Sizing the market on "everyone has a card" | 19.32 lakh active credit cards; the assumption and the number do not meet |
+| Treating issued cards as cardholders | One person holds several cards, so the market looks larger than it is |
+| Pricing a subscription on assumed auto-debit | You collect by hand every month, and customers drop off |
+| Setting February's MFS figures beside March's | A provider's data returning gets reported as growth |
+| Costing card and MFS charges as one rate | The margin arithmetic changes after the price is set |
+| Choosing payment routes without knowing your average order | The route your customers prefer is the one you leave out |
+
+## Checklist
+
+- [ ] The payment page offers bKash or Nagad alongside cards
+- [ ] Decided whether to offer cash on delivery
+- [ ] Worked out the card, MFS, and cash split across the last three months of orders
+- [ ] The order sheet has a payment-method column
+- [ ] I know my average order value
+- [ ] For any monthly plan, the provider has confirmed in writing how the money will be collected
+- [ ] Checked the date and the footnotes on any figure before using it outside
+
+Rule of thumb: **Accept cards, but do not stand a business model on them.**
+
+## What to Do Next
+
+- Whether you need a gateway now or an MFS merchant account will do: [bKash, Nagad, and payment gateways](/en/payments/mfs-and-gateways)
+- To compare rates and setup fees side by side: [payment gateway comparison](/en/payments/gateway-comparison)
+- To work out cash-on-delivery risk: [cash on delivery risk](/en/operations/cod-risk)
+- To see what each order really leaves you: [unit economics](/en/metrics/unit-economics)
+- For the rules on giving money back: [refunds, chargebacks, and dispute handling](/en/payments/refunds-chargebacks)
 
 ## Relevant Sources
 
-- [RJSC](https://roc.gov.bd)
+- [Bangladesh Bank – ATM, POS, CRM and e-Commerce Transaction Statistics by Cards (PDF)](https://www.bb.org.bd/econdata/fin_digitalfstat/tab4.pdf)
+- [Bangladesh Bank – Number of Issued and Active Cards distributed by Currency (PDF)](https://www.bb.org.bd/econdata/fin_digitalfstat/tab3.pdf)
+- [Bangladesh Bank – Number of ATM, POS, CDM, CRM and RTDM (PDF)](https://www.bb.org.bd/econdata/fin_digitalfstat/tab2.pdf)
+- [Bangladesh Bank – Mobile Financial Services (MFS) Statistics: Transaction Statistics (PDF)](https://www.bb.org.bd/econdata/fin_digitalfstat/tab9.pdf)
+- [Bangladesh Bank – Financial Inclusion and Digital Financial Statistics](https://www.bb.org.bd/en/index.php/econdata/fin_digitalfstat)
+- [Bangladesh Bank – An Overview of Card Usage Patterns Within and Outside Bangladesh, May 2026 (PDF)](https://www.bb.org.bd/pub/monthly/creditcard/may,%202026.pdf)
