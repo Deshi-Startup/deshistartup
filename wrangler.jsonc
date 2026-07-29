@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "deshistartup",
+  "account_id": "c9b2946097af78a7d76afb2fb99e7309",
   "main": "worker/index.ts",
   "compatibility_date": "2026-07-29",
   "compatibility_flags": [
