@@ -163,6 +163,7 @@ function preprocess(source) {
     if (/^\s*<[A-Za-z]/.test(line) && !BANGLA.test(line)) { keep.push(''); continue }
     line = line
       .replace(/`[^`]*`/g, ' ')             // inline code
+      .replace(/\[\^[a-z0-9-]+\]:?/g, ' ')  // GFM footnote references and definition labels
       .replace(/[“"]([A-Za-z][A-Za-z0-9 .&/+()'-]{1,80})[”"]/g, ' ') // quoted official portal/form labels
       .replace(/\]\([^)]*\)/g, '](url)')     // link targets
       .replace(/https?:\/\/\S+/g, ' ')       // bare URLs
@@ -197,6 +198,7 @@ function sentenceRhythm(raw) {
       .replace(/^>+\s*/, '')
       .replace(/\*\*/g, '')
       .replace(/`[^`]*`/g, ' ')
+      .replace(/\[\^[a-z0-9-]+\]:?/g, ' ')
       .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
     if (BANGLA.test(clean)) kept.push(clean)
   }

@@ -24,21 +24,21 @@ The middle one is what you need, and it is the least documented of the three.
 
 bKash's developer documentation lays out the tokenized checkout steps. The first time, the customer clicks "Add bKash Account", lands on a bKash page, enters their wallet number, agrees to the terms, then types the 6-digit OTP that arrives by SMS. Once that matches, an agreement is created, and it is stored against that customer's account in your system.
 
-What happens after that is the point. The documentation states it plainly: for further payments the customer will only use their bKash wallet PIN. Which means the customer has to be on your site at payment time, pick their saved account, and enter the PIN.
+What happens after that is the point. The documentation states it plainly: for further payments the customer will only use their bKash wallet PIN.[^bkash-tokenized-checkout] Which means the customer has to be on your site at payment time, pick their saved account, and enter the PIN.
 
 The facility is useful, just for a different job. It removes the chore of retyping a wallet number, shortens checkout, and can lift completion rates. But pulling money on the first of the month while the customer sleeps is not something this arrangement does.
 
 ## The Product That Exists but Is Not Documented
 
-bKash's payment gateway product list carries a service called Subscriptions, marked "Available". The description says that after one-time authorization by a customer, subscription-based merchants will be able to collect recurring payments, with EMI and insurance premiums given as examples.
+bKash's payment gateway product list carries a service called Subscriptions, marked "Available". The description says that after one-time authorization by a customer, subscription-based merchants will be able to collect recurring payments, with EMI and insurance premiums given as examples.[^bkash-subscriptions]
 
-The service is named; the instructions for using it are not there. Tokenized checkout, checkout, auth and capture, refund, disbursement, webhooks — each has its own page. Subscriptions does not.
+The service is named; the instructions for using it are not there. Tokenized checkout, checkout, auth and capture, refund, disbursement, webhooks — each has its own page. Subscriptions does not.[^bkash-subscriptions]
 
 That gap is not a developer's problem, it is a founder's problem. No documentation means you do not know who qualifies for the service, on what terms, how long approval takes, or what it costs. So email your account manager before you announce the price of a monthly plan, and ask for the answer in email too.
 
 ## Card EMI Is Not Your Monthly Bill
 
-Search SSLCommerz's v4 documentation and you will find no API named recurring or subscription. What you will find is EMI — switch on `emi_option` when you send the transaction and the customer sees 3, 6, or 9 instalment choices on the gateway page.
+Search SSLCommerz's v4 documentation and you will find no API named recurring or subscription. What you will find is EMI — switch on `emi_option` when you send the transaction and the customer sees 3, 6, or 9 instalment choices on the gateway page.[^sslcommerz-emi]
 
 Do not read the two as the same thing. EMI means the customer bought once, and the bank that issued their card split that single price into instalments. The money reaches you in one go. From where you sit, that is one sale, not a twelve-month relationship.
 
@@ -108,7 +108,10 @@ Rule of thumb: **Until the written answer arrives, assume the customer has to pa
 
 ## Relevant Sources
 
-- [bKash Developer – Product Overview (product list and Subscriptions)](https://developer.bka.sh/docs)
-- [bKash Developer – Tokenized Checkout Process](https://developer.bka.sh/docs/tokenized-checkout-process)
-- [SSLCommerz – Developer Documentation v4 (EMI parameters)](https://developer.sslcommerz.com/doc/v4/)
+[^bkash-subscriptions]: [bKash Developer – Product Overview (product list and Subscriptions)](https://developer.bka.sh/docs), accessed 29 July 2026. This is the company's own documentation.
+
+[^bkash-tokenized-checkout]: [bKash Developer – Tokenized Checkout Process](https://developer.bka.sh/docs/tokenized-checkout-process), accessed 29 July 2026.
+
+[^sslcommerz-emi]: [SSLCommerz – Developer Documentation v4 (EMI parameters)](https://developer.sslcommerz.com/doc/v4/), accessed 29 July 2026.
+
 - [aamarPay – Developer Reference](https://aamarpay.readme.io/reference/overview)
