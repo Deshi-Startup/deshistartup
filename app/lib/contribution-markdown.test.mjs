@@ -87,6 +87,17 @@ test('video components are editable rather than protected site components', () =
   assert.deepEqual(lockedMdxBlocks(source), [])
 })
 
+test('GFM citations remain editable Markdown instead of protected MDX', () => {
+  const source = [
+    'A claim.[^official-source]',
+    '',
+    '[^official-source]: [Official source](https://example.com)'
+  ].join('\n')
+
+  assert.equal(encodeLockedMdx(source), source)
+  assert.deepEqual(lockedMdxBlocks(source), [])
+})
+
 test('YouTube links normalize across common copied URL formats', () => {
   assert.deepEqual(
     parseContributionVideoUrl('https://youtu.be/dQw4w9WgXcQ?t=1m30s', 'en'),

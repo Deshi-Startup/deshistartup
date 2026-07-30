@@ -1,5 +1,6 @@
 import nextra from 'nextra'
 import { MEDIA_URL } from './app/seo.config.mjs'
+import rehypeFootnotes from './app/lib/rehype-footnotes.mjs'
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -9,6 +10,12 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 const withNextra = nextra({
   search: {
     codeblocks: false
+  },
+  mdxOptions: {
+    // Nextra already turns GFM footnotes into numbered links, source targets
+    // and backlinks. This build-only pass localizes the generated UI and adds
+    // stable classes without shipping JavaScript to article readers.
+    rehypePlugins: [rehypeFootnotes]
   },
   // Nextra would otherwise rewrite every markdown image into a webpack static
   // import: the src becomes an object pointing at a hashed /_next/static/media

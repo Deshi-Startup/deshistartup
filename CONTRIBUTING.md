@@ -35,6 +35,9 @@ GitHub ব্যবহার করতে চাইলে পাতার নি
 6. **খসড়া পাঠান।** প্রথম খসড়া নিখুঁত হওয়ার অপেক্ষা করবেন না। তথ্য ও সূত্র ঠিক
    থাকলে রিভিউতে ভাষা ও গঠন আরও ভালো করা যাবে।
 
+GitHub থেকে লিখলে দাবির পরে `[^source-name]` দিন। `## প্রাসঙ্গিক সূত্র` অংশে একই নামে
+`[^source-name]: [সূত্রের নাম](URL)` লিখলে সাইট নম্বর ও ফিরে যাওয়ার লিংক নিজেই বসাবে।
+
 সব গাইডে একই শিরোনাম লাগবে না। বিষয়টিতে যেগুলো দরকার, শুধু সেগুলো রাখুন। শুরু
 করার জন্য এই ছাঁচ ব্যবহার করতে পারেন:
 
@@ -93,6 +96,7 @@ Facebook ভিডিওটি পাবলিক না হলে সাইট�
 npm install
 npm run dev
 npm run lint:bangla
+npm run lint:citations
 npm run build
 ```
 
@@ -143,6 +147,10 @@ If you prefer working through GitHub, use **Edit on GitHub** at the bottom of a 
    facts that may change.
 6. **Submit the draft.** It does not need perfect prose. Review can improve language and structure
    when the facts and sources are sound.
+
+When writing through GitHub, put `[^source-name]` after the claim. Under `## Relevant Sources`,
+define the same identifier as `[^source-name]: [Source title](URL)`; the site generates numbering
+and backlinks.
 
 Not every guide needs identical sections. Keep only what serves the topic. This is a useful
 starting shape:
@@ -199,6 +207,7 @@ sources, likely reader harm and clarity guide the decision.
 npm install
 npm run dev
 npm run lint:bangla
+npm run lint:citations
 npm run build
 ```
 

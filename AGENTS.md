@@ -76,6 +76,10 @@ Use official sources for legal, tax, fee, registration and regulatory claims. Da
 numbers. Never fabricate a statistic, quote, example or anecdote. Do not bump `verified:` unless
 the relevant claims were re-checked against official sources.
 
+Use GFM footnotes for inline citations: put `[^source-name]` beside the claim and define the same
+identifier under the sources heading as `[^source-name]: [Source title](https://example.com)`.
+Identifiers use lowercase ASCII words separated by hyphens. Numbering and backlinks are generated.
+
 Page types with separate rules:
 
 - Case studies use [`plan/case-study-format.md`](./plan/case-study-format.md).
@@ -84,8 +88,8 @@ Page types with separate rules:
 - Templates and scripts put the copy-ready material first.
 - A stub contains `<StubNotice />` and starting sources, not guide-shaped filler.
 
-After content changes, run `npm run manifest` and `npm run lint:bangla`. Before finishing a full
-guide, run `npm run build`.
+After content changes, run `npm run manifest`, `npm run lint:bangla` and
+`npm run lint:citations`. Before finishing a full guide, run `npm run build`.
 
 ## Public contribution flow
 
@@ -153,6 +157,7 @@ npm run dev                 # local Next site + API Worker; regenerates manifest
 npm run manifest            # regenerate content and SEO outputs
 npm run backlog:status      # write the local planning status report
 npm run lint:bangla         # Bangla/content mechanical checks
+npm run lint:citations      # inline citation definitions, parity and IDs
 npm run lint:routes         # URL and locale-tree checks
 npm run lint:media          # media references and limits
 npm run test:contribute     # editor/contribution helpers

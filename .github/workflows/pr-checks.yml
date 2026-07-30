@@ -23,6 +23,9 @@ jobs:
       - name: Media guardrail tests
         run: npm run test:media
 
+      - name: Citation guardrail tests
+        run: npm run test:citations
+
       - name: Build Cloudflare deployment
         run: npm run build:worker
         env:

@@ -51,6 +51,7 @@
   --green-ground: #f8fbf7;
   --blue: #3366cc;
   --blue-hover: #1f4fb2;
+  --blue-soft: #eef5fc;
   --visited: #6b4ba1;
   --yellow: #f7c948;
   --warn-bg: #fff8df;
@@ -3885,17 +3886,24 @@ body.auth-open {
   line-height: 1.4;
 }
 
-/* Wikipedia-style Inline Footnotes */
+/* Wikipedia-style inline citations and source notes */
+@counter-style bengali-decimal {
+  system: numeric;
+  symbols: '০' '১' '২' '৩' '৪' '৫' '৬' '৭' '৮' '৯';
+  suffix: '. ';
+}
+
 .cite-footnote {
   font-size: 0.75em;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
   top: -0.5em;
-  margin-left: 2px;
+  margin-inline-start: 2px;
 }
 
-.cite-link {
+.article .cite-link,
+.article .cite-link:visited {
   color: var(--blue);
   font-weight: 600;
   text-decoration: none;
@@ -3904,26 +3912,70 @@ body.auth-open {
   transition: background-color 150ms ease, color 150ms ease;
 }
 
-.cite-link:hover,
-.cite-link:focus-visible {
-  background-color: var(--blue-soft, #eef5fc);
+.cite-link::before {
+  content: '[';
+}
+
+.cite-link::after {
+  content: ']';
+}
+
+.article .cite-link:hover,
+.article .cite-link:focus-visible {
+  color: var(--blue-hover);
+  background-color: var(--blue-soft);
   text-decoration: underline;
 }
 
-.cite-number--en,
-.cite-label--en,
+.reference-notes {
+  margin-block-start: 0.5rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.reference-list {
+  margin-block: 0;
+  padding-inline-start: 1.75rem;
+}
+
+html[lang='bn'] .reference-list {
+  list-style-type: bengali-decimal;
+}
+
+.reference-item {
+  padding-inline-start: 0.25rem;
+  scroll-margin-block-start: 7rem;
+  border-radius: 3px;
+}
+
+.reference-item:target {
+  background: var(--blue-soft);
+}
+
+.reference-item > :last-child {
+  margin-block-end: 0;
+}
+
+.reference-backlink {
+  display: inline-block;
+  margin-inline-start: 0.2rem;
+  padding-inline: 0.25rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.reference-backlink sup {
+  margin-inline-start: 0.08rem;
+}
+
 .glossary-copy--en {
   display: none;
 }
 
-html[lang='en'] .cite-number--bn,
-html[lang='en'] .cite-label--bn,
 html[lang='en'] .glossary-copy--bn {
   display: none;
 }
 
-html[lang='en'] .cite-number--en,
-html[lang='en'] .cite-label--en,
 html[lang='en'] .glossary-copy--en {
   display: inline;
 }
@@ -4150,6 +4202,14 @@ html[lang='en'] .glossary-copy--en {
 
   .glossary-term-dot {
     display: none !important;
+  }
+
+  .reference-backlink {
+    display: none !important;
+  }
+
+  .reference-item:target {
+    background: transparent !important;
   }
 
   /* Show full destination URLs for external links when printed */

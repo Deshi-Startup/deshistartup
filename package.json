@@ -22,7 +22,9 @@
     "media:upload": "node scripts/media-upload.mjs",
     "media:posters": "node scripts/fetch-youtube-posters.mjs",
     "media:prune": "node scripts/media-prune.mjs",
+    "lint:citations": "node scripts/citation-lint.mjs",
     "lint:media": "node scripts/media-lint.mjs",
+    "test:citations": "node --experimental-strip-types --test app/lib/rehype-footnotes.test.mjs app/lib/contribution-markdown.test.mjs scripts/citation-lint.test.mjs",
     "test:media": "node --test scripts/media-lib.test.mjs",
     "backlog:status": "npm run manifest && node scripts/backlog-status.mjs",
     "lint:bangla": "node scripts/bangla-lint.mjs",
@@ -32,7 +34,7 @@
     "seo:indexnow": "node scripts/submit-indexnow.mjs",
     "seo:indexnow:dry": "node scripts/submit-indexnow.mjs --dry-run",
     "predev": "node scripts/build-manifest.mjs",
-    "prebuild": "node scripts/route-lint.mjs && node scripts/media-lint.mjs && node scripts/build-manifest.mjs",
+    "prebuild": "node scripts/route-lint.mjs && node scripts/media-lint.mjs && node scripts/citation-lint.mjs && node scripts/build-manifest.mjs",
     "postbuild": "node scripts/postbuild-seo.mjs && node scripts/build-pagefind.mjs && node scripts/seo-audit.mjs"
   },
   "dependencies": {
@@ -50,9 +52,12 @@
     "@types/react-dom": "^19.2.3",
     "cheerio": "^1.2.0",
     "pagefind": "^1.5.2",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
     "robots-parser": "^3.0.1",
     "turndown": "^7.2.4",
     "typescript": "^5.9.3",
+    "unified": "^11.0.5",
     "wrangler": "4.114.0"
   }
 }
