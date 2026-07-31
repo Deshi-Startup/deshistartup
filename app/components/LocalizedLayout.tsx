@@ -785,22 +785,79 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             ? 'Deshi Startup – an open, Bangladesh-specific founder operating manual, written together, free for everyone.'
             : 'দেশি স্টার্টআপ – বাংলাদেশি ফাউন্ডারদের জন্য উন্মুক্ত, বাস্তব গাইড। সবাই মিলে লেখা, সবার জন্য ফ্রি।'}
         </div>
-        <div className="footer-links">
-          <a href={localHref(isEn ? '/en/start-here' : '/start-here')}>{isEn ? 'Start here' : 'শুরু করুন'}</a>
-          <a href={localHref(isEn ? '/en/about' : '/about')}>{isEn ? 'About & editorial policy' : 'পরিচিতি ও সম্পাদকীয় নীতি'}</a>
-          <a href={localHref(isEn ? '/en/contribute' : '/contribute')}>{isEn ? 'How to contribute' : 'কীভাবে অবদান রাখবেন'}</a>
-          <a href={localHref(isEn ? '/en/privacy' : '/privacy')}>{isEn ? 'Privacy' : 'গোপনীয়তা'}</a>
-          <a href={localHref(isEn ? '/en/terms' : '/terms')}>{isEn ? 'Terms' : 'ব্যবহারের শর্ত'}</a>
-          <a href={localHref(isEn ? '/en/sitemap' : '/sitemap')}>{isEn ? 'Sitemap' : 'সাইটম্যাপ'}</a>
-          <a href={FACEBOOK_URL} target="_blank" rel="me noopener noreferrer">Facebook</a>
-          <a href={LINKEDIN_URL} target="_blank" rel="me noopener noreferrer">LinkedIn</a>
-          <a href={YOUTUBE_URL} target="_blank" rel="me noopener noreferrer">YouTube</a>
-          <a href={REPO_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer">Discord</a>
-          <a href={`${REPO_URL}/issues`} target="_blank" rel="noopener noreferrer">
-            {isEn ? 'Report a mistake' : 'ভুল জানান'}
-          </a>
-        </div>
+        <nav className="footer-nav" aria-label={isEn ? 'Footer navigation' : 'আরও লিংক'}>
+          <div className="footer-link-group">
+            <p className="footer-link-label" id="footer-project-label">
+              {isEn ? 'Project' : 'প্রকল্প'}
+            </p>
+            <ul className="footer-link-list" aria-labelledby="footer-project-label">
+              <li>
+                <a href={localHref(isEn ? '/en/start-here' : '/start-here')}>
+                  {isEn ? 'Start here' : 'শুরু করুন'}
+                </a>
+              </li>
+              <li>
+                <a href={localHref(isEn ? '/en/about' : '/about')}>
+                  {isEn ? 'About & editorial policy' : 'পরিচিতি ও সম্পাদকীয় নীতি'}
+                </a>
+              </li>
+              <li>
+                <a href={localHref(isEn ? '/en/contribute' : '/contribute')}>
+                  {isEn ? 'How to contribute' : 'কীভাবে অবদান রাখবেন'}
+                </a>
+              </li>
+              <li>
+                <a href={localHref(isEn ? '/en/sitemap' : '/sitemap')}>
+                  {isEn ? 'Sitemap' : 'সাইটম্যাপ'}
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-link-group">
+            <p className="footer-link-label" id="footer-community-label">
+              {isEn ? 'Community' : 'কমিউনিটি'}
+            </p>
+            <ul className="footer-link-list" aria-labelledby="footer-community-label">
+              <li>
+                <a href={FACEBOOK_URL} target="_blank" rel="me noopener noreferrer">Facebook</a>
+              </li>
+              <li>
+                <a href={LINKEDIN_URL} target="_blank" rel="me noopener noreferrer">LinkedIn</a>
+              </li>
+              <li>
+                <a href={YOUTUBE_URL} target="_blank" rel="me noopener noreferrer">YouTube</a>
+              </li>
+              <li>
+                <a href={REPO_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
+              </li>
+              <li>
+                <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer">Discord</a>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-link-group">
+            <p className="footer-link-label" id="footer-help-label">
+              {isEn ? 'Help & policies' : 'সহায়তা ও নীতি'}
+            </p>
+            <ul className="footer-link-list" aria-labelledby="footer-help-label">
+              <li>
+                <a href={`${REPO_URL}/issues`} target="_blank" rel="noopener noreferrer">
+                  {isEn ? 'Report a mistake' : 'ভুল জানান'}
+                </a>
+              </li>
+              <li>
+                <a href={localHref(isEn ? '/en/privacy' : '/privacy')}>
+                  {isEn ? 'Privacy' : 'গোপনীয়তা'}
+                </a>
+              </li>
+              <li>
+                <a href={localHref(isEn ? '/en/terms' : '/terms')}>
+                  {isEn ? 'Terms' : 'ব্যবহারের শর্ত'}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
         <p className="footer-legal">
           {isEn
             ? 'This site is general guidance, not legal or tax advice. Fees, forms and rules change – always confirm with official government sources (RJSC, NBR, Bangladesh Bank) before acting.'
