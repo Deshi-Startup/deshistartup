@@ -8,10 +8,18 @@ import SearchBox from './SearchBox'
 import AuthModal from './AuthModal'
 import type { SubmitResult } from './ContributionEditor'
 import { clearAuth, getStoredAuth, UserInfo } from '../lib/client-auth'
-import { bnNav, DISCORD_URL, enNav, REPO_URL } from '../nav.config'
+import {
+  bnNav,
+  DISCORD_URL,
+  enNav,
+  FACEBOOK_URL,
+  LINKEDIN_URL,
+  REPO_URL,
+  YOUTUBE_URL
+} from '../nav.config'
 import sectionsLite from '../generated/sections-lite.json'
 
-// Heavy (Milkdown) — only loads when a contributor opens the editor.
+// Heavy (Milkdown) – only loads when a contributor opens the editor.
 const ContributionEditor = dynamic(() => import('./ContributionEditor'), { ssr: false })
 
 interface SectionsLite {
@@ -357,7 +365,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   useEffect(() => {
     const article = articleRef.current
     if (!article) return
-    // @ts-ignore — `inert` lands as a DOM property before React 19 types it as a prop.
+    // @ts-ignore – `inert` lands as a DOM property before React 19 types it as a prop.
     article.inert = isEditing
   }, [isEditing, editorReady])
 
@@ -784,6 +792,9 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
           <a href={localHref(isEn ? '/en/privacy' : '/privacy')}>{isEn ? 'Privacy' : 'গোপনীয়তা'}</a>
           <a href={localHref(isEn ? '/en/terms' : '/terms')}>{isEn ? 'Terms' : 'ব্যবহারের শর্ত'}</a>
           <a href={localHref(isEn ? '/en/sitemap' : '/sitemap')}>{isEn ? 'Sitemap' : 'সাইটম্যাপ'}</a>
+          <a href={FACEBOOK_URL} target="_blank" rel="me noopener noreferrer">Facebook</a>
+          <a href={LINKEDIN_URL} target="_blank" rel="me noopener noreferrer">LinkedIn</a>
+          <a href={YOUTUBE_URL} target="_blank" rel="me noopener noreferrer">YouTube</a>
           <a href={REPO_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
           <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer">Discord</a>
           <a href={`${REPO_URL}/issues`} target="_blank" rel="noopener noreferrer">

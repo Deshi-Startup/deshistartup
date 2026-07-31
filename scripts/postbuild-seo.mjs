@@ -15,6 +15,7 @@ import {
   CONTENT_LICENSE_URL,
   DEFAULT_DESCRIPTIONS,
   DEFAULT_OG_IMAGE,
+  ORGANIZATION_SAME_AS,
   REPOSITORY_URL,
   SITE_NAME,
   SITE_NAME_BN,
@@ -163,7 +164,7 @@ function schemaFor(page, wordCount) {
       width: 128,
       height: 128
     },
-    sameAs: [REPOSITORY_URL],
+    sameAs: ORGANIZATION_SAME_AS,
     areaServed: { '@type': 'Country', name: 'Bangladesh' },
     knowsLanguage: ['bn', 'en'],
     publishingPrinciples: canonicalUrl(isEn ? '/en/about' : '/about')

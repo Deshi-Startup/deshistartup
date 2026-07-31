@@ -5,8 +5,13 @@
  * Case Studies, Directory) plus the contributor group; /guides lists every
  * topic hub, so the sidebar only surfaces the most-used ones.
  */
-export const REPO_URL = 'https://github.com/Deshi-Startup/deshistartup'
+import { REPOSITORY_URL, SOCIAL_PROFILE_URLS } from './seo.config.mjs'
+
+export const REPO_URL = REPOSITORY_URL
 export const DISCORD_URL = 'https://discord.gg/Wsgn3CaFyD'
+export const FACEBOOK_URL = SOCIAL_PROFILE_URLS.facebook
+export const LINKEDIN_URL = SOCIAL_PROFILE_URLS.linkedin
+export const YOUTUBE_URL = SOCIAL_PROFILE_URLS.youtube
 
 export interface NavSection {
   label: string

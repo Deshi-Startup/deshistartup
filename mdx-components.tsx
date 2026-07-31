@@ -5,6 +5,7 @@ import SiteMap from './app/components/SiteMap'
 import Figure, { MarkdownImage } from './app/components/Figure'
 import YouTube from './app/components/YouTube'
 import FacebookVideo from './app/components/FacebookVideo'
+import OfficialSocialLinks from './app/components/OfficialSocialLinks'
 import Term from './app/components/Term'
 import ExpertReview from './app/components/ExpertReview'
 
@@ -38,6 +39,7 @@ export function useMDXComponents(components: Record<string, any>): Record<string
     Figure,
     YouTube,
     FacebookVideo,
+    OfficialSocialLinks,
     Term,
     ExpertReview
   }

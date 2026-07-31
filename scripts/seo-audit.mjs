@@ -11,6 +11,7 @@ import robotsParser from 'robots-parser'
 import {
   DEFAULT_OG_IMAGE,
   INDEXNOW_KEY,
+  ORGANIZATION_SAME_AS,
   SITE_URL,
   canonicalUrl
 } from '../app/seo.config.mjs'
@@ -146,6 +147,14 @@ for (const page of pages) {
       }
       if (!types.has('Organization') || !types.has('WebSite')) {
         record(errors, `${page.route}: JSON-LD must define its publisher Organization and WebSite`)
+      }
+      const organization = graph.find((node) => node['@type'] === 'Organization')
+      const sameAs = new Set(Array.isArray(organization?.sameAs) ? organization.sameAs : [])
+      if (
+        sameAs.size !== ORGANIZATION_SAME_AS.length ||
+        ORGANIZATION_SAME_AS.some((url) => !sameAs.has(url))
+      ) {
+        record(errors, `${page.route}: Organization sameAs does not list every official profile`)
       }
       if (page.slug && !types.has('BreadcrumbList')) record(errors, `${page.route}: JSON-LD has no BreadcrumbList`)
       if (!page.slug && (!types.has('Organization') || !types.has('WebSite'))) {

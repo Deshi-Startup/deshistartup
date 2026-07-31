@@ -5,6 +5,17 @@ export const MEDIA_URL = 'https://media.deshistartup.com'
 export const SITE_NAME = 'Deshi Startup'
 export const SITE_NAME_BN = 'দেশি স্টার্টআপ'
 export const REPOSITORY_URL = 'https://github.com/Deshi-Startup/deshistartup'
+export const SOCIAL_PROFILE_URLS = Object.freeze({
+  facebook: 'https://www.facebook.com/deshistartup',
+  linkedin: 'https://www.linkedin.com/company/deshistartup/',
+  youtube: 'https://www.youtube.com/@deshistartupbd'
+})
+export const ORGANIZATION_SAME_AS = Object.freeze([
+  REPOSITORY_URL,
+  SOCIAL_PROFILE_URLS.facebook,
+  SOCIAL_PROFILE_URLS.linkedin,
+  SOCIAL_PROFILE_URLS.youtube
+])
 export const CONTENT_LICENSE_URL = 'https://creativecommons.org/licenses/by-sa/4.0/'
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.png`
 export const INDEXNOW_KEY = 'e9aed4bed68feea1a2f4ffa5e9deddbc'
