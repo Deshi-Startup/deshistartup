@@ -338,14 +338,15 @@ p {
   white-space: nowrap;
 }
 
-.top-actions .gh-link {
+.top-actions .social-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  min-height: 44px;
   color: var(--ink);
 }
 
-.top-actions .gh-link svg {
+.top-actions .social-link svg {
   width: 20px;
   height: 20px;
   fill: currentColor;
@@ -1866,8 +1867,13 @@ a.is-stub-link:hover {
     gap: 14px;
   }
 
-  .top-actions .gh-link span {
+  .top-actions .social-link span {
     display: none;
+  }
+
+  .top-actions .social-link {
+    justify-content: center;
+    min-width: 44px;
   }
 
   .page-shell {
@@ -1929,7 +1935,7 @@ a.is-stub-link:hover {
     height: 44px;
   }
 
-  .top-actions .gh-link {
+  .top-actions .social-link {
     display: none;
   }
 

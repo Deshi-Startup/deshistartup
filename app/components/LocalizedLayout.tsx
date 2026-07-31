@@ -8,7 +8,7 @@ import SearchBox from './SearchBox'
 import AuthModal from './AuthModal'
 import type { SubmitResult } from './ContributionEditor'
 import { clearAuth, getStoredAuth, UserInfo } from '../lib/client-auth'
-import { bnNav, enNav, REPO_URL } from '../nav.config'
+import { bnNav, DISCORD_URL, enNav, REPO_URL } from '../nav.config'
 import sectionsLite from '../generated/sections-lite.json'
 
 // Heavy (Milkdown) — only loads when a contributor opens the editor.
@@ -54,6 +54,14 @@ function GitHubIcon() {
   return (
     <svg viewBox="0 0 16 16" aria-hidden="true">
       <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+    </svg>
+  )
+}
+
+function DiscordIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20.3 4.4A17.5 17.5 0 0 0 16 3l-.5 1a16 16 0 0 0-7 0L8 3a17.5 17.5 0 0 0-4.3 1.4C1 8.4.3 12.3.7 16.1a17.3 17.3 0 0 0 5.2 2.6l1.3-1.8-2-1a12 12 0 0 0 1.2.6 13.6 13.6 0 0 0 11.2 0 12 12 0 0 0 1.2-.6l-2 1 1.3 1.8a17.3 17.3 0 0 0 5.2-2.6c.5-4.4-.8-8.2-3-11.7ZM8.5 14.6c-1 0-1.9-1-1.9-2.2 0-1.2.8-2.2 1.9-2.2 1 0 1.9 1 1.9 2.2 0 1.2-.9 2.2-1.9 2.2Zm7 0c-1 0-1.9-1-1.9-2.2 0-1.2.8-2.2 1.9-2.2 1 0 1.9 1 1.9 2.2 0 1.2-.9 2.2-1.9 2.2Z" />
     </svg>
   )
 }
@@ -533,9 +541,19 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
           </div>
 
           <nav className="top-actions" aria-label={isEn ? 'Site actions' : 'সাইটের কাজ'}>
-            <a className="gh-link" href={REPO_URL} target="_blank" rel="noopener noreferrer">
+            <a className="social-link" href={REPO_URL} target="_blank" rel="noopener noreferrer">
               <GitHubIcon />
               <span>GitHub</span>
+            </a>
+            <a
+              className="social-link"
+              href={DISCORD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={isEn ? 'Join the Deshi Startup Discord' : 'Deshi Startup Discord কমিউনিটিতে যোগ দিন'}
+            >
+              <DiscordIcon />
+              <span>Discord</span>
             </a>
             {!isPrivateReview && <LanguageSwitcher />}
             <button
@@ -767,6 +785,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
           <a href={localHref(isEn ? '/en/terms' : '/terms')}>{isEn ? 'Terms' : 'ব্যবহারের শর্ত'}</a>
           <a href={localHref(isEn ? '/en/sitemap' : '/sitemap')}>{isEn ? 'Sitemap' : 'সাইটম্যাপ'}</a>
           <a href={REPO_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer">Discord</a>
           <a href={`${REPO_URL}/issues`} target="_blank" rel="noopener noreferrer">
             {isEn ? 'Report a mistake' : 'ভুল জানান'}
           </a>

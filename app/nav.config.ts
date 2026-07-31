@@ -6,6 +6,7 @@
  * topic hub, so the sidebar only surfaces the most-used ones.
  */
 export const REPO_URL = 'https://github.com/Deshi-Startup/deshistartup'
+export const DISCORD_URL = 'https://discord.gg/Wsgn3CaFyD'
 
 export interface NavSection {
   label: string
@@ -58,6 +59,7 @@ export const bnNav: NavSection[] = [
       ['/about', 'পরিচিতি ও সম্পাদকীয় নীতি'],
       ['/contribute', 'কীভাবে অবদান রাখবেন'],
       [REPO_URL, 'GitHub-এ দেখুন'],
+      [DISCORD_URL, 'Discord কমিউনিটিতে যোগ দিন'],
       [`${REPO_URL}/issues/new?template=report-mistake.yml`, 'ভুল জানান']
     ]
   }
@@ -109,6 +111,7 @@ export const enNav: NavSection[] = [
       ['/en/about', 'About & editorial policy'],
       ['/en/contribute', 'How to contribute'],
       [REPO_URL, 'View on GitHub'],
+      [DISCORD_URL, 'Join the Discord community'],
       [`${REPO_URL}/issues/new?template=report-mistake.yml`, 'Report a mistake']
     ]
   }
