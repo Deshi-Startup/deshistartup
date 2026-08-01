@@ -1,13 +1,90 @@
 ---
 title: "Cohort Retention in the Bangladesh Context"
-description: "Cohort Retention in the Bangladesh Context – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+description: "How to build and read a cohort retention table, walked through Tanvir's subscription delivery service in Bogura. Plus the Bangladesh-specific traps, Eid spikes, one phone shared by a whole family, Facebook-first signups, and feature-phone customers, that quietly distort what the numbers seem to say."
 ---
 
 # Cohort Retention in the Bangladesh Context
 
-<StubNotice path="metrics/cohort-retention" locale="en" />
+> **In short:** A cohort retention table groups customers by the month you got them, then tracks what percentage of that group is still active in the months after. Reading it correctly in Bangladesh means separating out four things, or you'll draw the wrong conclusion: an Eid-time order surge that isn't real retention, one phone shared by a whole household counted as one customer, a Facebook-comment customer whose real "day 0" is hard to pin down, and a customer marked "inactive" just because they never opened an app. If you haven't yet nailed down what retention and churn actually mean, read [CAC, LTV, Retention, Churn, Payback](/en/metrics/cac-ltv-churn) first.
+
+A cohort retention table does one simple thing: it splits customers into groups by time. But business reality in Bangladesh means that split-up table often tells a misleading story. This page first shows you how to build the table, then walks through where it distorts things and how to read it correctly anyway.
+
+## What a cohort retention table actually is
+
+A "cohort" is a group of customers who started at the same time. Whichever month a customer first signed up or placed their first order becomes the name of their group. From there, you track month by month what percentage of that group is still active.
+
+Say Tanvir runs a subscription service called "Sobuj Baksho" (Green Box) out of Bogura, delivering fresh vegetables and daily essentials to homes once a week. Customers order through a Facebook page and WhatsApp, pay once at the start of the month, and get deliveries all month. Tanvir puts each month's new customers in their own row and tracks whether they kept subscribing in the months after.
+
+| Signup month | Month 0 (new customers) | Month 1 active | Month 2 active | Month 3 active |
+|---|---|---|---|---|
+| January | 40 | 28 (70%) | 20 (50%) | 14 (35%) |
+| February | 45 | 32 (71%) | 22 (49%) | – |
+| March (say, right before Eid) | 90 | 36 (40%) | 22 (24%) | – |
+| April | 50 | 36 (72%) | – | – |
+
+Each row is a cohort, each column is that group's age: month 1 means the month right after signup, month 2 the one after that. The empty cells simply haven't happened yet. January and February look almost the same, holding near 70 percent in month 1 and tapering off slowly. But the March row stands out immediately: nearly double the new customers, yet the lowest retention of the lot. That's what the next section is about.
+
+## Where the table gets misleading in Bangladesh
+
+### Don't read Eid and seasonal spikes as retention
+
+In the March cohort above, Tanvir's new customers jump to 90 because many people placed a one-off order before Eid, as a gift or as extra household shopping. Most of them never came to become regular customers, which is why month 1 retention drops to 40 percent, far below January and February's roughly 70 percent.
+
+For you this means: don't look at March's low retention and conclude the business suddenly got worse. E-commerce sales in Bangladesh jump well above a normal month around Eid; in 2022, e-commerce sales rose roughly 40 percent over the preceding weeks around Eid, according to e-CAB[^dhaka-tribune-eid-ecommerce]. Don't line up a festival-month cohort directly against ordinary-month cohorts. To read the real retention trend, compare the ordinary months against each other instead.
+
+### One phone, one whole family
+
+In many Bangladeshi households there's just one smartphone. The father orders on it after coming home from work, the mother uses it during the day, and an older son or daughter occasionally buys something on the same number too. In Tanvir's books this is one "customer." In reality it's three or four people's demand blended into a single account.
+
+Bottom line: a row that shows "active" for four straight months might not be one loyal customer at all; it could be different family members ordering at different times from the same number. The reverse happens too: a genuinely regular customer who once orders from a relative's phone gets counted as a fresh signup, and their real continuity gets lost in the table. There's no fully clean fix for this, but cross-checking the phone number against the delivery address makes it easier to catch multiple orders from the same household. What to keep in mind: one "active" number doesn't necessarily mean one person's behaviour.
+
+### The real "day 0" for a Facebook-comment customer
+
+Founders who started on a Facebook page or WhatsApp mostly never had a clean signup form. A customer might comment on a post in January asking the price, haggle in the inbox in February, and finally pay in March. So which one is day 0?
+
+Put simply: if you count the first comment or message as day 0, the cohort table will show that customer as "inactive" for two months when in reality they weren't even a customer yet. The practical fix is to always set day 0 as the date of the first paid order, not the date of first contact. That puts every cohort on the same footing, and the long comment-to-order haggling period doesn't quietly leak into your retention numbers.
+
+### Feature phone versus smartphone: how are you measuring "active"
+
+If your tracking treats "active" as opening the app or tapping around in it, then customers who order by phone call or SMS will always show up inactive, even though they're buying regularly. This isn't a small issue in Bangladesh: by the end of 2025, only around 73 percent of the country's mobile connections were on 3G, 4G, or 5G (broadband); the rest were still on 2G[^datareportal-bangladesh-2026], and mobile financial services like bKash are deliberately built to run on a USSD menu on a basic phone, with no internet needed[^gsma-bkash-ussd].
+
+So here's what to do: outside Dhaka, and for older customers especially, define "active" by orders or transactions, not by app-open events. Someone who calls in an order every week and pays through bKash might never once show up in your app logs, yet in Tanvir's actual sales records, they're his most consistent customer.
+
+## How to actually build this in a spreadsheet
+
+You don't need special software, a Google Sheet and your order list are enough. Set up these columns:
+
+| Column | What goes in it |
+|---|---|
+| Cohort month | The month of the customer's first paid order |
+| Month 0 count | Number of new customers that month |
+| Month 1 active | Count and percentage who placed at least one order the following month |
+| Month 2 active | Count and percentage who placed at least one order the month after that |
+| Month 3 active | Same, for the third month |
+| Note | Flag whether that cohort fell in Eid or another festival month |
+
+Decide what "active" means before you start, ideally at least one paid order in the month, not simply opening the app. Compare cohorts by percentage, not raw counts, since January's 40 customers and March's 90 don't line up directly. Keeping a note column means you'll remember later which row was inflated by a festival, so you can set it aside and compare the ordinary months against each other.
+
+Building this table isn't a one-time job either. That retention number belongs in your [monthly founder dashboard](/en/metrics/founder-dashboard) as a recurring line, and it needs to line up with the day-to-day order, delivery, and return numbers you track on the [manual ops dashboard](/en/metrics/ops-dashboard), since the raw material for the cohort table comes straight out of that daily order log.
+
+## Checklist
+
+- Set day 0 for every cohort as the first paid order, not the first message or comment
+- Wrote down that "active" means at least one order or transaction, not just an app open
+- Flagged which cohorts fall in Eid or other festival months
+- Checked delivery address alongside phone number, so one household's multiple orders don't get misread as one customer
+- Counted customers who order by phone call or SMS/bKash, not just app users
+- Compared cohorts by percentage, not raw counts
+
+Rule of thumb: when a retention number drops, first check whether it's a festival, a shared phone, or a measurement gap. Only call it real churn once you've ruled out all three.
 
 ## Relevant Sources
 
-- [Prothom Alo Business](https://www.prothomalo.com/business)
-- [RJSC](https://roc.gov.bd)
+[^dhaka-tribune-eid-ecommerce]: [E-commerce sales rise 40% this Eid, Dhaka Tribune](https://www.dhakatribune.com/business/2022/05/09/e-commerce-sales-rise-40-this-eid).
+
+[^datareportal-bangladesh-2026]: [DataReportal Digital 2026: Bangladesh](https://datareportal.com/reports/digital-2026-bangladesh).
+
+[^gsma-bkash-ussd]: [bKash – Bangladesh, GSMA Mobile for Development](https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-for-development/gsma_resources/bkash/).
+
+- [LightCastle Partners](https://lightcastlepartners.com/insights) – analysis of local e-commerce and customer behaviour
+- [Future Startup](https://futurestartup.com) – founders talking through customer retention in their own words

@@ -1,12 +1,94 @@
 ---
 title: "CAC, LTV, Retention, Churn, Payback"
-description: "CAC, LTV, Retention, Churn, Payback – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+description: "Step-by-step maths for LTV, CAC, the LTV:CAC ratio, and payback, built on Sumaiya's subscription software numbers. Plus clear definitions of retention and churn, and how a steady monthly churn rate compounds to cut a cohort roughly in half within a few months."
 ---
 
 # CAC, LTV, Retention, Churn, Payback
 
-<StubNotice path="metrics/cac-ltv-churn" locale="en" />
+> **In short:** In a buy-again business (subscriptions, coaching, salon memberships), you have to measure profit and loss per customer, not per order. Contribution margin times average customer lifespan gives you LTV, and an LTV:CAC ratio below roughly 3:1 is generally considered weak. CAC payback tells you when that cost comes back; retention and churn tell you how long a customer actually sticks around. Today's job: plug in your own four numbers, see where your ratio lands, and know which lever to pull if it's short.
+
+The [Unit Economics](/en/metrics/unit-economics) guide showed that for a sell-once business, the maths of one order is enough. But in a business where a customer buys again and again, subscription software, a coaching centre's monthly fee, a salon membership, the per-order number hides the real picture. Investors look at these businesses differently too, because when demand keeps coming back, one customer can hand you profit many times over, not just once.[^lightcastle-recurring-demand] LTV is exactly that "many times over" folded into a single number. This page works through CAC, LTV, their ratio, payback, and retention and churn, step by step, using Sumaiya's software business as the running example.
+
+## Getting LTV out of Sumaiya's numbers
+
+[Unit Economics](/en/metrics/unit-economics) worked out Sumaiya's numbers this way: her customer pays 500 taka a month in subscription fees, and after every cost her contribution margin is 100 taka a month. Winning one customer costs 500 taka of CAC, and a customer stays 10 months on average. Every other number on this page comes out of these four; there's no need to rebuild contribution margin from scratch.
+
+**LTV (lifetime value)** is the total contribution one customer leaves behind across the whole relationship. The maths is simple: monthly contribution times how many months they stay.
+
+For Sumaiya that's 100 taka times 10 months, which is 1,000 taka. So one customer leaves her 1,000 taka of contribution over the full relationship, for a cost of only 500 taka to win them.
+
+## The LTV:CAC ratio, and three ways to move it
+
+Put 1,000 taka of LTV next to 500 taka of CAC and the ratio is 2:1. That's not a losing number, but the common view among founders and investors is that this ratio needs to sit at roughly 3:1 or better before a business is really built to scale. Sumaiya's 2:1 sits below that line. Her current model still turns a profit as she grows, just more slowly, and she's getting back less relative to what she spends winning each new customer.
+
+There are really only three ways to move the ratio: the two halves of LTV, margin and lifespan, and CAC itself. Move any one of the three and the ratio shifts:
+
+| Lever | What changes | New maths | New ratio |
+|---|---|---|---|
+| Raise price or margin | Monthly contribution goes from 100 to 150 taka, via a price rise or lower costs | 150 × 10 months = 1,500 taka LTV | 1,500:500 = 3:1 |
+| Extend retention | Average lifespan goes from 10 to 15 months, via better onboarding and regular check-ins | 100 × 15 months = 1,500 taka LTV | 1,500:500 = 3:1 |
+| Cut CAC | Cost to win a customer drops from 500 to 333 taka, via a cheaper channel | LTV stays at 1,000 taka | 1,000:333 ≈ 3:1 |
+
+Any one of these three gets Sumaiya to 3:1 on its own. In practice it's easier to lean on all three a little rather than one a lot: nudge the price up slightly, put some work into retention, lean on referrals instead of ads. Do all three together and the ratio clears 3:1 just as well.
+
+## What CAC payback actually tells you about cash risk
+
+Payback is CAC divided by monthly contribution. For Sumaiya that's 500 divided by 100, which is 5 months. Past that point, the money spent winning one customer has come back; the remaining 5 months, on average, are pure profit.
+
+That number isn't just tidy on paper, it's a real cash-risk signal. Say Sumaiya wants to win 20 new customers this month. That's 20 times 500, or 10,000 taka, spent upfront, while this batch brings back only 20 times 100, or 2,000 taka, each month.
+
+| Month | Contribution collected | Position against the 10,000 taka spent |
+|---|---|---|
+| 1 | 2,000 | -8,000 |
+| 2 | 4,000 | -6,000 |
+| 3 | 6,000 | -4,000 |
+| 4 | 8,000 | -2,000 |
+| 5 | 10,000 | 0 |
+
+That means Sumaiya has to carry the 10,000 taka spent on these 20 customers out of her own pocket or savings for those 5 months. Add another 20 new customers next month and the outlay stacks up again, while the money coming back always lags behind. The longer the payback period, the bigger the cash cushion you need while growing. So before you decide how fast to grow, check whether you actually have enough in hand to carry that many months of CAC.
+
+## Breaking down retention and churn
+
+Behind Sumaiya's "stays 10 months on average" is a hidden monthly rate at which some customers drop off. That rate is **retention** and **churn**.
+
+In plain terms: retention is what percentage of one month's customers are still there the next month. Churn is the flip side, what percentage left.
+
+For a local example distinct from Sumaiya's single-customer case, say an online coaching platform had 100 paying students at the start of a month. By month's end, 85 kept their subscription going and 15 dropped out.
+
+The maths: churn rate equals customers lost divided by customers at the start, so 15 divided by 100 is 15 percent. Retention rate is the rest, 85 divided by 100, or 85 percent. The two always add up to 100 percent.
+
+This is exactly where most founders get fooled. A 15 percent churn rate sounds small, just 15 people a month. But if that rate holds steady month after month, the losses don't add, they compound:
+
+| Month | Students remaining |
+|---|---|
+| 0 | 100 |
+| 1 | 85 |
+| 2 | 72 |
+| 3 | 61 |
+| 4 | 52 |
+| 5 | 44 |
+
+By month five, more than half the original cohort is gone, even though every single month the number looked like "just 15 percent." What to do: track each month's churn separately, and follow the same cohort across several months rather than eyeballing one month at a time. The full detail on how to build that cohort table, and where it tells a misleading story in Bangladesh specifically, is in the [Cohort Retention](/en/metrics/cohort-retention) guide.
+
+## What actually brings churn down
+
+The cheapest way to cut churn isn't winning new customers, it's keeping the ones you have. An interview-based look at Bangladeshi founders found a pattern worth noting: discounts win customers fast, but it's product or service quality that keeps them around longer.[^future-startup-quality-retention] The same logic applies to Sumaiya. Spending time on onboarding instead of more ad budget, responding fast when a new customer hits a snag in month one, and checking once a month whether the software is actually pulling its weight for them, that's the real work of cutting churn. As the table above shows, even a few extra months of retention move the LTV:CAC ratio directly.
+
+## Checklist
+
+- Worked out LTV like Sumaiya did, from my own contribution margin, CAC, and average customer lifespan
+- Worked out the LTV:CAC ratio and checked whether it's near 3:1
+- If the ratio is short, decided which of the three levers (price/margin, retention, CAC) to pull
+- Worked out CAC payback and know how many months of spend I have to carry out of my own cash
+- Worked out monthly churn and retention rates and compounded them a few months out
+- Added the Cohort Retention guide to my reading list for a deeper cohort table
+
+Rule of thumb: **if LTV isn't at least three times CAC, fix retention or cut CAC before you push harder on growth.**
 
 ## Relevant Sources
 
-- [RJSC](https://roc.gov.bd)
+[^lightcastle-recurring-demand]: [LightCastle Partners, "A Billion Dollars Over a Decade: How Startup Capital Took Shape in Bangladesh"](https://lightcastlepartners.com/insights/2026/02/startup-ecosystem-bangladesh-early-bets-to-scale/).
+
+[^future-startup-quality-retention]: [Future Startup, "10 Growth Strategies That Have Worked For Bangladeshi Startups"](https://futurestartup.com/2021/04/20/10-growth-strategies-that-have-worked-for-bangladeshi-startups/).
+
+- [BASIS](https://basis.org.bd) – Bangladesh's software and IT industry association, for policy and community resources for subscription or SaaS businesses

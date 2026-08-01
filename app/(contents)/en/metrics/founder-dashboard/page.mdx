@@ -1,13 +1,87 @@
 ---
 title: "Monthly Founder Dashboard"
-description: "Monthly Founder Dashboard – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+description: "A copy-ready monthly dashboard template that puts cash in bank, contribution margin, CAC, runway, and real profit or loss side by side. Filled in with Rahim's unit-economics numbers for a worked sample month, plus a plain-language walkthrough of the runway calculation."
 ---
 
 # Monthly Founder Dashboard
 
-<StubNotice path="metrics/founder-dashboard" locale="en" />
+> **In short:** This page is built around one table you fill in once a month: cash in bank, which way contribution margin is moving, CAC, runway (how many months of cash are left), and the real profit or loss. Line these numbers up side by side and it becomes obvious which direction the business is heading. This is a monthly financial review. For daily or weekly operational numbers like orders, delivery rate, or stock, there's a separate [weekly operations dashboard](/en/metrics/ops-dashboard) built for once you have a small team. The two aren't the same thing: one is for checking the bank balance and runway once a month, the other is for running the week-to-week operation.
+
+## The monthly dashboard template
+
+Set this table up in a Google Sheet. Fill in the numbers once, at the end of each month or right at the start of the next.
+
+| Metric | This month | Last month | Target / alert |
+|---|---|---|---|
+| Total sales (revenue) | | | Watch the trend; a steady decline is a warning sign |
+| Net profit/loss | | | Two losing months in a row means it's time to dig into costs |
+| Contribution margin (average, per order or customer) | | | Turns negative, red alert – see [unit economics](/en/metrics/unit-economics) |
+| CAC (cost to win one customer or order) | | | Rising faster than contribution means stop boosting |
+| LTV:CAC ratio | | | Below 3x is a warning sign – see [CAC, LTV, churn](/en/metrics/cac-ltv-churn) |
+| Active or repeat customers | | | Falling month over month is a warning sign |
+| Churn or retention rate | | | Rising churn is a red alert – see [CAC, LTV, churn](/en/metrics/cac-ltv-churn) |
+| Cash in bank | | | How close to zero is the real signal |
+| Monthly burn (net: fixed costs minus contribution) | | | Once contribution overtakes fixed costs, burn stops |
+| Runway (months) | | | Below 6 months is a red alert |
+
+The point of the exercise is putting "this month" and "last month" side by side. One month's number on its own doesn't say much; the trend is what tells you whether the business is getting healthier or sicker.
+
+## Rahim's dashboard: a worked month
+
+Plugging Rahim's numbers from [unit economics](/en/metrics/unit-economics) into this table looks like this. Rahim spends 10,000 taka a month on boosting and gets 125 orders, so CAC is 80 taka an order. On paper, one order leaves 160 taka of contribution, but once returned orders (RTO) are counted, the real number comes down. Fixed costs, his own living stipend plus phone, internet, and small odds and ends, run 11,500 taka a month.
+
+| Metric | This month | Last month |
+|---|---|---|
+| Total sales (revenue) | 1,20,000 taka (100 orders delivered) | About 1,13,000 taka (94 orders delivered) |
+| Net profit/loss | -3,000 taka | -6,000 taka |
+| Contribution margin (average per order, returns included) | 68 taka | 44 taka |
+| CAC (ad cost per order) | 80 taka | 80 taka |
+| LTV:CAC ratio | Not applicable (sell-once business) | Not applicable |
+| Active customers (tracked via monthly order count) | 125 orders | 125 orders |
+| Return rate (RTO) | 1 in 5 | 1 in 4 |
+| Cash in bank | 21,000 taka | 24,000 taka |
+| Monthly burn (net) | 3,000 taka | 6,000 taka |
+| Runway | 7 months | 4 months |
+
+Read across the row and the story is clear. Revenue barely moved month over month, yet the loss nearly halved and runway almost doubled. The one reason: the return rate improved from 1-in-4 to 1-in-5. Revenue alone would never have shown this improvement; it only shows up in the contribution and burn rows.
+
+Because Rahim's business is sell-once rather than repeat-purchase, the LTV:CAC and churn rows genuinely don't apply to him. If yours is a repeat-purchase or subscription business, those two rows matter and deserve real numbers; the full maths is on the [CAC, LTV, churn page](/en/metrics/cac-ltv-churn). Where a row doesn't fit your business, don't force a number in – write "not applicable" and move on.
+
+## How to work out runway
+
+There's one number on this table worth learning properly by hand; the rest have their own deep-dive pages. That number is runway: at the current rate of spending, how many months the cash in the bank will last.
+
+The formula is one line:
+
+**Runway = cash in bank ÷ monthly burn**
+
+Monthly burn is what's left once this month's contribution is subtracted from this month's fixed costs. For Rahim this month, fixed costs are 11,500 taka and total contribution is 8,500 taka, so burn comes to 3,000 taka. He has 21,000 taka in the bank. Divide 21,000 by 3,000 and runway comes out to 7 months.
+
+That means if nothing about the numbers changes from today, the bank runs dry in seven months. In practice the numbers shift a little every month, so runway needs recalculating every month too; work it out once and forget about it, and it stops meaning anything.
+
+What to do about it is simple. If runway falls below 6 months or keeps sliding, there are three moves available: cut costs, raise contribution (see the break-even section of [unit economics](/en/metrics/unit-economics)), or start planning to raise outside money right now. Don't wait for the number to get close to zero; by then there's no time left to decide.
+
+One thing worth remembering: if burn comes out negative, meaning contribution is greater than fixed costs, the business is profitable and cash in the bank is growing every month. Runway is then effectively infinite, but keep checking the number every month anyway. A sudden change gets caught immediately instead of showing up as a surprise at month's end.
+
+## When to actually sit down and do this
+
+Pick one fixed day of the month, say the 1st, or the day after the bank statement arrives, and sit down on that same day every month. Doing it on the same day is what lets one month's numbers be honestly compared with the next; do it on a random day each time and the comparison stops meaning anything.
+
+If weekly order and expense numbers are already being logged, filling this table shouldn't take more than 30-45 minutes. The first time, expect to spend closer to an hour digging through past orders and bank statements; every month after that goes faster.
+
+## Checklist
+
+- Wrote down this month's bank balance, sales, contribution, and CAC
+- Placed them next to last month's numbers to read the trend
+- Worked out monthly burn: fixed costs minus contribution
+- Worked out runway: cash in bank divided by monthly burn
+- Kept sales and profit as separate numbers, didn't blend them into one
+- Wrote "not applicable" for any row that genuinely doesn't fit the business, instead of forcing a number in
+- Using a separate dashboard for weekly or daily operational numbers
+
+Rule of thumb: **once runway drops below 6 months, don't wait – cut costs or start raising money that same month.**
 
 ## Relevant Sources
 
-- [BD Startup Founders Facebook Group](https://www.facebook.com/groups/bdstartupfounders)
-- [Future Startup](https://futurestartup.com)
+- [Future Startup](https://futurestartup.com) – how founders actually think about monthly numbers and cash, in their own words
+- [LightCastle Partners](https://lightcastlepartners.com/insights) – where the cost-and-revenue trends of local business and startups get analysed

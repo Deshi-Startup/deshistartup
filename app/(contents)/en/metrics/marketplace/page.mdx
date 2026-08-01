@@ -1,16 +1,92 @@
 ---
 title: "Marketplace Metrics"
-description: "Marketplace Metrics – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+description: "A marketplace connects buyers and sellers without holding inventory. GMV, take rate, fill rate (liquidity) and repeat rate are the four numbers that tell you whether the matching is actually working, walked through with Nasrin's hypothetical home-tutor app in Sylhet and ShopUp's Mokam, plus a monthly tracking sheet template."
 ---
 
 # Marketplace Metrics
 
-<StubNotice path="metrics/marketplace" locale="en" />
+> **In short:** A marketplace doesn't hold its own inventory, it matches buyers and sellers, so its maths is different from [E-commerce Metrics](/en/metrics/e-commerce). The total money flowing through the platform is GMV, but that whole amount isn't your revenue. Revenue is the slice of GMV you keep as commission, the take rate, so real health isn't GMV alone, it's GMV times take rate. Even before that, check how often a buyer's request actually gets matched to a seller, that's fill rate or liquidity, and most marketplaces get stuck here early on, not on low GMV. Today's job: put your own platform's GMV, take rate, fill rate and repeat rate into four numbers and see whether the matching is actually working.
+
+## Why the maths differs from your own e-commerce store
+
+The AOV, RTO and CAC taught in [E-commerce Metrics](/en/metrics/e-commerce) assume you buy the product yourself, hold it in a warehouse, and sell it yourself. In a marketplace you don't buy anything. You bring a buyer and a seller together and keep a commission on the transaction. So the real question here isn't the product's price or courier cost, it's how much money changed hands, what share of it is yours, and whether buyers and sellers are actually finding each other.
+
+## GMV: the money flowing through the platform, not your revenue
+
+**GMV (gross merchandise value)** is the total value of everything bought and sold through your platform in a given period.
+
+Say Nasrin runs an app in Sylhet that matches local home tutors with parents. In January, 55 tutoring matches went through, each worth an average of 2,500 taka in the first month's fee. January's GMV is 55 times 2,500, that's 137,500 taka.
+
+That money isn't Nasrin's income. It's owed to the tutors; her app just did the matching. For you this means: don't let a big GMV number fool you into thinking "the business is growing" before checking how much of that money actually lands in your hand.
+
+## Take rate: how much of GMV is actually yours
+
+**Take rate** is the percentage of GMV a marketplace keeps for itself as commission or fee, and that's its real revenue.
+
+Say Nasrin's app deducts 20% commission on the first month's fee for every match. January's revenue is 20% of 137,500 taka, that's 27,500 taka. This is where a marketplace's real health hides, GMV alone tells you nothing, GMV combined with take rate does. A platform with 1 million taka of GMV but a 2% take rate earns just 20,000 taka in revenue, while one with only 200,000 taka of GMV at a 15% take rate earns 30,000. A big GMV number dazzles the eye; take rate decides the revenue.
+
+## Fill rate or liquidity: how well the matching actually works
+
+**Liquidity** or **fill rate** is the percentage of buyer requests that actually get matched to an available seller, or looked at from the other side, how many buyers a seller's listing actually reaches.
+
+In January, 100 families requested a tutor on Nasrin's app, and 55 got matched. That's a 55% fill rate. The other 45 families waited three days without a tutor and went looking elsewhere.
+
+This is where most new marketplaces struggle. The table below shows what happens to the same 100 requests when fill rate changes, with take rate held constant.
+
+| | 55% fill rate | 80% fill rate |
+|---|---|---|
+| Tutoring matches | 55 | 80 |
+| GMV | 137,500 taka | 200,000 taka |
+| Take rate | 20% | 20% |
+| Revenue | 27,500 taka | 40,000 taka |
+
+Same requests, same take rate, but a better matching rate lifts revenue by roughly half. The reverse is just as true: pour money into ads to push requests up to 200 while the number of tutors stays the same, and fill rate collapses, GMV may stay flat or fall, and bad reviews pile up. So before chasing more requests early on, check how much of what's already coming in actually gets matched. Plenty of listings with poor matching isn't a working marketplace, it's just a directory.
+
+## Repeat GMV: does either side come back
+
+Making one match is easy; keeping both sides coming back is hard. **Repeat GMV** is the share of a given month's GMV that comes from existing buyers or sellers, not new ones.
+
+Say that in February, 12 of January's 55 families come back wanting a second tutor, for another child or another subject. That's a repeat rate of 12 out of 55, roughly 22%. A low number here means the platform is satisfying one-time curiosity, not becoming a trusted habit. The same question applies to tutors: does the same tutor keep getting matched to new families, or does a tutor and family, once matched, leave the app and deal directly from then on.
+
+## Why two-sided cold start is harder than a normal launch
+
+Starting a marketplace is harder than opening your own shop, because you need both sides at once, buyers and sellers. Recruit only tutors and they'll leave once they see no parents; recruit only parents and they'll leave once they see no tutors. This is the **two-sided cold-start problem**, the challenge of pulling in both sides at roughly the same time. Whether a marketplace is even the right model to build is a separate decision, covered in [B2C vs B2B](/en/ideas/b2c-vs-b2b) and [Finding Ideas](/en/ideas/finding-ideas). This page assumes you're already running a marketplace and want the metrics to tell you whether it's actually working.
+
+## What it looks like in practice: ShopUp's Mokam
+
+A real example of a marketplace-like model working in Bangladesh is ShopUp's Mokam platform. Bangladesh has roughly 4.5 million small neighbourhood grocery shops, holding 98% of the country's retail market, and Mokam brings these shops onto one platform together with manufacturers and wholesalers[^shopup-mokam]. Mokam doesn't publicly disclose specific GMV, take rate or fill rate figures, and that's true of most Bangladeshi marketplaces, a search for company-level GMV or take-rate disclosures for the local market turns up almost nothing public. So the worked maths in this guide stays with Nasrin's hypothetical example. But the same three questions apply: do shop owners keep ordering again, what share of each order is Mokam's, and does an order actually get filled when a shop places one. That's the real measure, not total sales alone.
+
+## How to track this month by month
+
+In one row of a Google Sheet, per month, fill in these columns:
+
+| Column | What goes in |
+|---|---|
+| Month | Which month this row covers |
+| GMV | Total value of all transactions matched through the platform that month |
+| Take rate | The percentage you deduct as commission from GMV |
+| Revenue | GMV times take rate |
+| Fill rate (liquidity) | What percentage of total requests actually got matched |
+| Repeat rate | What percentage of this month's matched transactions came from existing buyers or sellers |
+
+Fill this row in for three or four months and you'll see whether GMV is growing, whether that growth comes from better fill rate or just more ad spend, and whether repeat rate is climbing or stuck where it started.
+
+## Checklist
+
+- Worked out this month's GMV by adding up all matched transactions
+- Entered take rate and worked out real revenue as GMV times take rate
+- Measured fill rate, the share of total requests that actually got matched
+- If fill rate is low, put fixing it ahead of just buying more requests through ads
+- Worked out repeat rate, the share of this month's transactions from existing buyers or sellers
+- Logging GMV, take rate, fill rate and repeat rate in the same sheet every month
+
+Rule of thumb: **Don't take pride in GMV, survive on GMV times take rate, and fixing a broken fill rate matters more than growing GMV around it.**
 
 ## Relevant Sources
 
-- [LightCastle Partners](https://lightcastlepartners.com)
-- [The Business Standard](https://www.tbsnews.net)
-- [Business Inspection BD](https://businessinspection.com.bd)
-- [BASIS](https://www.basis.org.bd)
-- [BIDA](https://bida.gov.bd)
+[^shopup-mokam]: [Future Startup's history of ShopUp](https://futurestartup.com/2025/04/14/a-brief-history-of-shopup-from-facebook-commerce-facilitator-to-cross-regional-b2b-powerhouse/).
+
+- [LightCastle Partners](https://lightcastlepartners.com/insights) – analysis of the local e-commerce and marketplace sector
+- [The Business Standard](https://www.tbsnews.net) – coverage of the country's e-commerce and marketplace sector
+- [BASIS](https://basis.org.bd) – context on IT/ITES-sector platform businesses
+- [e-CAB](https://e-cab.net) – e-commerce and digital commerce policy and guidance
