@@ -12,6 +12,7 @@ import {
   decodeLockedMdx,
   encodeLockedMdx,
   lockedMdxBlocks,
+  normalizeTables,
   sameLockedMdx
 } from '../lib/contribution-markdown'
 import {
@@ -77,6 +78,15 @@ function remarkTightLists() {
     }
     visit(tree)
   }
+}
+
+/**
+ * Everything the editor hands back goes through here, so the baseline, the
+ * draft and the submitted body are all measured in the same shape.
+ */
+function readMarkdown(crepe: Crepe | null | undefined): string {
+  const markdown = crepe?.getMarkdown()
+  return typeof markdown === 'string' ? normalizeTables(markdown) : ''
 }
 
 function repoFileFor(pathname: string): string {
@@ -494,11 +504,14 @@ export default function ContributionEditor({
     })
     crepe.editor.use(contributionVideoPlugins)
 
-    // Customize Markdown serializer options to keep bullet list format consistent
+    // Serialize in the shape the repo is already written in, so an untouched
+    // page comes back byte-identical and a contributor's diff shows only what
+    // they actually changed. Without `rule`, every `---` returns as `***`.
     crepe.editor.config((ctx) => {
       ctx.update(remarkStringifyOptionsCtx, (prev) => ({
         ...prev,
-        bullet: '-' as const
+        bullet: '-' as const,
+        rule: '-' as const
       }))
       ctx.update(remarkPluginsCtx, (prev) => [...prev, remarkTightLists as any])
     })
@@ -510,7 +523,8 @@ export default function ContributionEditor({
     }
 
     crepe.on((api) => {
-      api.markdownUpdated((_ctx, markdown) => {
+      api.markdownUpdated((_ctx, rawMarkdown) => {
+        const markdown = normalizeTables(rawMarkdown)
         markdownRef.current = markdown
         scheduleMark()
         // Compare against what the editor itself serialized on load, not the raw
@@ -543,8 +557,8 @@ export default function ContributionEditor({
         // The baseline is the server's text as this editor serializes it, and
         // it survives a draft restore: otherwise the restored work would
         // measure as unchanged and the submit button would stay disabled.
-        if (baselineRef.current === null) baselineRef.current = crepe.getMarkdown()
-        markdownRef.current = crepe.getMarkdown()
+        if (baselineRef.current === null) baselineRef.current = readMarkdown(crepe)
+        markdownRef.current = readMarkdown(crepe)
         removeVideoPaste = installContributionVideoPaste(
           crepe,
           editorRoot,
@@ -641,7 +655,7 @@ export default function ContributionEditor({
   function changeMedia(id: string, patch: Partial<ContributionMediaInput>) {
     updatePendingMedia((current) => {
       const next = current.map((item) => (item.id === id ? { ...item, ...patch } : item))
-      const markdown = crepeRef.current?.getMarkdown() || markdownRef.current
+      const markdown = readMarkdown(crepeRef.current) || markdownRef.current
       saveDraft(pathname, markdown, Date.now(), next)
       return next
     })
@@ -652,7 +666,7 @@ export default function ContributionEditor({
   }
 
   async function removeMedia(id: string) {
-    const currentMarkdown = crepeRef.current?.getMarkdown() || markdownRef.current
+    const currentMarkdown = readMarkdown(crepeRef.current) || markdownRef.current
     let nextMarkdown = currentMarkdown
     try {
       nextMarkdown = rejectPendingMediaInMarkdown(currentMarkdown, id)
@@ -697,7 +711,7 @@ export default function ContributionEditor({
     let editorMarkdown
     try {
       editorMarkdown = crepeRef.current
-        ? crepeRef.current.getMarkdown()
+        ? readMarkdown(crepeRef.current)
         : markdownRef.current
     } catch {
       editorMarkdown = markdownRef.current
@@ -1092,7 +1106,7 @@ export default function ContributionEditor({
               <div className="edit-media__list">
                 {pendingMedia.map((media, index) => {
                   const placed = extractPendingMediaIds(
-                    crepeRef.current?.getMarkdown() || markdownRef.current
+                    readMarkdown(crepeRef.current) || markdownRef.current
                   ).includes(media.id)
                   return (
                     <article className="edit-media-item" key={media.id}>

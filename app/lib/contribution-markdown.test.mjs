@@ -6,6 +6,7 @@ import {
   decodeLockedMdx,
   encodeLockedMdx,
   lockedMdxBlocks,
+  normalizeTables,
   sameLockedMdx
 } from './contribution-markdown.ts'
 import {
@@ -177,5 +178,79 @@ test('every current content page survives the protected-component round trip', (
       source,
       `${file} changed during the editor round trip`
     )
+  }
+})
+
+test('a table already in the repo shape is left byte-identical', () => {
+  const table = [
+    '| প্রশ্ন | ০ | ১ |',
+    '|---|---|---|',
+    '| সাম্প্রতিক ঘটনা শুনেছি? | না | একটা |',
+    ''
+  ].join('\n')
+  assert.equal(normalizeTables(table), table)
+})
+
+test('the serializer’s padded table collapses back to the repo shape', () => {
+  const padded = [
+    '| প্রশ্ন                  | ০      | ১    |',
+    '| ----------------------- | ------ | ---- |',
+    '| সাম্প্রতিক ঘটনা শুনেছি? | না     | একটা |',
+    ''
+  ].join('\n')
+  assert.equal(
+    normalizeTables(padded),
+    ['| প্রশ্ন | ০ | ১ |', '|---|---|---|', '| সাম্প্রতিক ঘটনা শুনেছি? | না | একটা |', ''].join(
+      '\n'
+    )
+  )
+})
+
+test('column alignment survives the collapse', () => {
+  const aligned = ['| a | b | c |', '| :--- | ---: | :---: |', '| 1 | 2 | 3 |', ''].join('\n')
+  assert.equal(
+    normalizeTables(aligned),
+    ['| a | b | c |', '|:---|---:|:---:|', '| 1 | 2 | 3 |', ''].join('\n')
+  )
+})
+
+test('an empty cell keeps its single space of padding on each side', () => {
+  const table = ['| a |  | c |', '|---|---|---|', '| 1 |  | 3 |', ''].join('\n')
+  assert.equal(normalizeTables(table), table)
+})
+
+test('an escaped pipe stays inside its cell', () => {
+  const table = ['| a \\| b | c |', '|---|---|', '| d | e |', ''].join('\n')
+  assert.equal(normalizeTables(table), table)
+})
+
+test('a pipe table inside a code fence is left alone', () => {
+  const fenced = [
+    '```',
+    '| a      | b |',
+    '| ------ | - |',
+    '```',
+    ''
+  ].join('\n')
+  assert.equal(normalizeTables(fenced), fenced)
+})
+
+test('prose containing a pipe is not mistaken for a table', () => {
+  const prose = ['Use `a | b` to pipe.', '', 'Not a table.', ''].join('\n')
+  assert.equal(normalizeTables(prose), prose)
+})
+
+test('normalizing is idempotent', () => {
+  const padded = ['| a   | b |', '| --- | - |', '| 1   | 2 |', ''].join('\n')
+  const once = normalizeTables(padded)
+  assert.equal(normalizeTables(once), once)
+})
+
+test('every current content page is already in the normalized table shape', () => {
+  const pages = pageFiles('app/(contents)')
+  assert.ok(pages.length > 800, `expected the full corpus, saw ${pages.length}`)
+  for (const file of pages) {
+    const source = readFileSync(file, 'utf8')
+    assert.equal(normalizeTables(source), source, `${file} would be rewritten on submission`)
   }
 })
