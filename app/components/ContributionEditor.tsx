@@ -783,6 +783,7 @@ export default function ContributionEditor({
         'contributor_banned',
         'contributor_muted',
         'auth_unavailable',
+        'duplicate_image_marker',
         'image_alt_required',
         'image_expired_or_forbidden',
         'image_metadata_required',
@@ -1286,6 +1287,12 @@ export default function ContributionEditor({
                                 'একটি ছবি লেখার মধ্যে আর নেই। ছবির তালিকা থেকে সেটি সরান, অথবা আবার লেখায় বসান।',
                                 'One attached image is no longer in the article. Remove it from the image list or insert it again.'
                               )
+                            : submitError === 'duplicate_image_marker'
+                              ? t(
+                                  isEn,
+                                  'একই ছবি লেখায় দুবার বসানো আছে। বাড়তি কপিটি মুছে আবার পাঠান।',
+                                  'The same image appears twice in the article. Delete the extra copy and send again.'
+                                )
                             : submitError === 'image_expired_or_forbidden'
                               ? t(
                                   isEn,
