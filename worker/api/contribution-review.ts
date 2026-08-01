@@ -161,7 +161,7 @@ async function decideImage(
     })
     await Promise.all([
       bindings.quarantine.delete(media.objectKey),
-      bindings.guards.delete(`media:${media.id}`)
+      bindings.guards.delete(mediaRecordKey(media.id))
     ])
     record.media[index] = {
       ...media,
@@ -248,7 +248,7 @@ async function decideImage(
 
   await Promise.all([
     bindings.quarantine.delete(media.objectKey),
-    bindings.guards.delete(`media:${media.id}`)
+    bindings.guards.delete(mediaRecordKey(media.id))
   ])
   record.media[index] = {
     ...media,
