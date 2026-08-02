@@ -12,7 +12,7 @@ import {
   decodeLockedMdx,
   encodeLockedMdx,
   lockedMdxBlocks,
-  normalizeTables,
+  normalizeContributionMarkdown,
   sameLockedMdx
 } from '../lib/contribution-markdown'
 import {
@@ -86,7 +86,7 @@ function remarkTightLists() {
  */
 function readMarkdown(crepe: Crepe | null | undefined): string {
   const markdown = crepe?.getMarkdown()
-  return typeof markdown === 'string' ? normalizeTables(markdown) : ''
+  return typeof markdown === 'string' ? normalizeContributionMarkdown(markdown) : ''
 }
 
 function repoFileFor(pathname: string): string {
@@ -524,7 +524,7 @@ export default function ContributionEditor({
 
     crepe.on((api) => {
       api.markdownUpdated((_ctx, rawMarkdown) => {
-        const markdown = normalizeTables(rawMarkdown)
+        const markdown = normalizeContributionMarkdown(rawMarkdown)
         markdownRef.current = markdown
         scheduleMark()
         // Compare against what the editor itself serialized on load, not the raw
