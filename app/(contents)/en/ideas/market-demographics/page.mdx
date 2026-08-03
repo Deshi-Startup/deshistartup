@@ -1,15 +1,77 @@
 ---
 title: "Understanding Demographics, Internet Penetration, Mobile-First Behavior, Urban vs. Rural Dynamics"
-description: "Understanding Demographics, Internet Penetration, Mobile-First Behavior, Urban vs. Rural Dynamics – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+description: "98.9% of Bangladeshi households have a mobile phone and 72.4% own a smartphone, yet only 48.9% of people actually use the internet themselves. Why that gap exists, why urban/rural figures disagree across sources, and how to translate national averages into your own customer. Verified 4 August 2026."
+verified: 2026-08-04
 ---
 
 # Understanding Demographics, Internet Penetration, Mobile-First Behavior, Urban vs. Rural Dynamics
 
-<StubNotice path="ideas/market-demographics" locale="en" />
+> **Key Takeaway:** 98.9% of households in Bangladesh have a mobile phone, and 72.4% have at least one smartphone. Yet only 48.9% of people actually use the internet themselves, fewer than one in two. That gap isn't an error; owning a device and being a customer are two different things. A phone sitting in the house doesn't mean someone will find your app, buy data, or make the spending decision alone. So before you size a market, pull these three numbers apart: who has a phone, who actually goes online, and who decides how the money gets spent.
+
+## A Young Population, and an Address That Depends on Who's Counting
+
+Bangladesh's population still skews young. International demographic datasets put the median age at close to 26,[^median-age] meaning half the country is younger than that. Many markets in Europe or East Asia have already crossed 40-45. That translates into a customer base that picks up new technology fast, follows trends, and hasn't settled into brand loyalty yet. The flip side is that the same customers tend to have less money saved, since a large share of their income still goes straight into the household.
+
+Where people actually live depends on which source you ask. The 2022 Population and Housing Census puts BBS's adjusted population at 68.34% rural and 31.66% urban.[^census-2022] DataReportal, by contrast, estimated 42.2% urban and 57.8% rural as of October 2025.[^datareportal-bangladesh-2026] Neither figure is wrong; the two organizations simply draw the line around "urban" differently. BBS follows the administrative boundaries of city corporations and pourashavas, while international datasets often work from broader area definitions. Which one you should use depends on what "urban" means for your own launch plan — pull the number and write down its definition together.
+
+Division-level population is useful for picking a launch city too: Dhaka division has the most people, Barishal the fewest.[^census-2022] The full breakdown and sources are on [Where to Find Bangladesh Market Data](/en/ideas/market-data-sources).
+
+## Owning a Device Doesn't Mean You Have a Customer
+
+This is where the real gap shows up. BBS's ICT usage survey (Q1 of FY2025-26, July-September 2025) found that 98.9% of households have at least one mobile phone, and 72.4% own a smartphone. The urban rate is 80.8%, the rural rate 68.8% — a smaller gap than it sounds.[^ict-survey-2025-26]
+
+But a device sitting in the house is not the same as one person actually using it. The same survey put individual internet use at just 48.9%, with men at 51.2% and women at 46.3%. Personal handset ownership shows the same split: 63.2% of men own their own phone, against 52.8% of women.[^ict-survey-2025-26] In other words, even where a household owns a smartphone, who actually holds it, opens the app, and places the order varies household by household. If you're building for women specifically, this gap needs to be part of your plan from the start.
+
+This isn't a made-up number; two independent sources land close together. DataReportal calculated internet use independently for the same window (October 2025) at 47.0%,[^datareportal-bangladesh-2026] close to BBS's 48.9%. BTRC's June 2026 internet subscriber count, by contrast, is 13.594 crore — divide that by the population and it works out to roughly 80%. That gap isn't a mystery: BTRC counts SIM connections, while BBS and DataReportal count people. Some SIMs sit in a home router, some sit unused in a drawer, and one person can hold several SIMs. Why SIM counts and people diverge is covered in full on [Where to Find Bangladesh Market Data](/en/ideas/market-data-sources).
+
+## Mobile-First Means Building Without a Desktop
+
+Computers fall outside this picture almost entirely. The same survey found computers in only 9.1% of households.[^ict-survey-2025-26] So a plan built around "put up a website, people will find it when they need it" never reaches most customers. Instead of building for desktop first and adapting for mobile later, you have to work in the other direction — whatever works on mobile first is the actual product.
+
+Data cost enters the picture here too. Say your app pulls a few MB every time it opens, and your customer buys a 500 MB package to last the week. A heavy app or a large image burns through that package fast, and the next day they simply won't open it again. This is exactly why many products in Bangladesh still run on a Facebook page, Messenger, or WhatsApp rather than a standalone app. DataReportal counts 64.0 million Facebook users and 35.0 million Messenger users, well ahead of any single Bangladeshi app.[^datareportal-bangladesh-2026] The playbook for validating demand through Facebook is on [Testing Demand in Facebook Groups](/en/validation/facebook-group-tests).
+
+For customers with neither a smartphone nor internet access, a USSD menu on a basic phone still works. bKash built its agent network exactly this way, without requiring data or a smartphone. That model is covered on [Copied Ideas vs. Localized Ideas](/en/ideas/copy-vs-localize).
+
+## These National Averages Aren't Your Specific Customer
+
+Everything above is a national average. Where your actual customer sits within that average is something you still need to work out separately. If you're building audit-ready bookkeeping software for private limited companies, your buyer is a small, urban, educated slice comfortable with a smartphone — closer to the national 48.9% of internet users than to the wider population. Go the other way, targeting a rural agri-input retailer, and much of that 69% rural smartphone figure actually sits in someone else's hands; the farmer themself may never touch that phone.
+
+To bridge that gap, size your market by stepping down from the national number to your actual buyer's layer instead of jumping straight from one to the other — the method is on [How to Size a Market in Bangladesh](/en/ideas/market-sizing) and [Calculating TAM/SAM/SOM](/en/ideas/tam-sam-som). For how to separate multiple family members ordering from the same phone in your tracking, see [Cohort Retention](/en/metrics/cohort-retention).
+
+## Common Mistakes
+
+| Mistake | Result |
+|---|---|
+| Treating a smartphone-owning household as a customer directly | Whoever actually operates the phone gets left out of the count |
+| Mixing urban/rural figures from different sources without noting the definition | The comparison stops being apples-to-apples |
+| Treating BTRC's connection count as internet users | The real customer count comes out much smaller than the number used |
+| Building desktop-first and adapting for mobile later | Most customers get a broken first experience |
+| Assuming men and women have equal digital access | Reach for a women-focused product gets miscalculated |
+| Applying a national average as your specific sector's number | Software or premium-product market estimates come out inflated |
+
+## Checklist
+
+- [ ] Separated device access from individual users
+- [ ] Noted which source's definition the urban/rural number uses
+- [ ] Didn't conflate SIM connections with people
+- [ ] Thought through men's and women's access separately
+- [ ] Drew my specific customer's picture apart from the national average
+- [ ] Recorded the source and date for every number
+
+Rule of thumb: **A phone in the house is not a customer. Who operates it, and who decides how the money gets spent, is the real question.**
+
+## What to Do Next
+
+- Where the underlying data lives and how to read it: [Where to Find Bangladesh Market Data](/en/ideas/market-data-sources)
+- Step down from a national number to your own market: [How to Size a Market in Bangladesh](/en/ideas/market-sizing)
+- Fit the numbers into a named three-layer framework: [Calculating TAM/SAM/SOM](/en/ideas/tam-sam-som)
+- Validate demand through Facebook: [Testing Demand in Facebook Groups](/en/validation/facebook-group-tests)
+- Adapt a product for customers without a smartphone: [Copied Ideas vs. Localized Ideas](/en/ideas/copy-vs-localize)
+- Separate multiple orders from one shared phone: [Cohort Retention](/en/metrics/cohort-retention)
 
 ## Relevant Sources
 
-- [Bangladesh Bureau of Statistics (BBS)](http://www.bbs.gov.bd)
-- [DataReportal](https://datareportal.com/reports/?tag=Bangladesh)
-- [BTRC](http://www.btrc.gov.bd)
-- [GSMA Bangladesh](https://www.gsma.com)
+[^median-age]: [Worldometer – Bangladesh Demographics](https://www.worldometers.info/demographics/bangladesh-demographics/)
+[^census-2022]: [BBS – Population and Housing Census 2022](https://bbs.gov.bd/pages/static-pages/6922dc2a933eb65569e0ebd5)
+[^ict-survey-2025-26]: [BSS News – report on BBS's ICT Access and Use Survey 2025-26 (1st quarter), 21 December 2025](https://www.bssnews.net/news/343905)
+[^datareportal-bangladesh-2026]: [DataReportal Digital 2026: Bangladesh](https://datareportal.com/reports/digital-2026-bangladesh)
