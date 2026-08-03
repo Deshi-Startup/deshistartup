@@ -1,12 +1,85 @@
 ---
 title: "SaaS Metrics"
-description: "SaaS Metrics – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+description: "How to read the real health of a subscription business through MRR, ARR, and NRR, worked through Sumaiya's software numbers step by step, plus the Rule of 40 and how a taka-priced SaaS differs from an export-oriented one."
 ---
 
 # SaaS Metrics
 
-<StubNotice path="metrics/saas" locale="en" />
+> **In short:** In a subscription business, matching one customer's CAC against their LTV isn't enough – you also need to measure which way the whole business is moving, month to month. MRR tells you how much locked-in revenue you have this month, ARR blows that number up to a yearly scale, and the one that matters most, NRR, tells you whether your existing customers are quietly growing the business or quietly leaking it. These three numbers, plus a quick Rule of 40 check, are enough to read your business's real health twice a year.
+
+Sumaiya's software business already has its single-customer maths worked out on the [CAC, LTV, Retention, Churn, Payback](/en/metrics/cac-ltv-churn) page: a customer pays 500 taka a month, leaving 100 taka of contribution; CAC runs 500 taka; a customer stays 10 months on average, so LTV comes to 1,000 taka; and LTV-to-CAC sits at 2:1. That's the maths of one customer. This page is about the whole business – many customers together – and how to measure which direction it's moving, month over month.
+
+## MRR: this month's locked-in revenue
+
+Say Sumaiya's software has 100 active customers right now, each paying 500 taka a month. Then **MRR (monthly recurring revenue)** – the month's locked-in revenue – comes to 100 × 500 = 50,000 taka.
+
+MRR isn't a month's total sales; it's a snapshot on a given date. A one-time setup fee or a one-off consultation doesn't count toward it, since there's no guarantee that money repeats next month – MRR only counts revenue expected to recur.
+
+For you this means the month's bank statement can't tell you if the business is growing or shrinking, since old dues, refunds, and one-off sales are all mixed in. Counting active customers on the 1st of every month and logging MRR shows the real momentum instead.
+
+## ARR: seeing the year-scale number
+
+Multiply MRR by 12 and you get **ARR (annual recurring revenue)** – the year's locked-in revenue. Sumaiya's 50,000 taka of MRR means an ARR of 600,000 taka.
+
+ARR earns its keep when talking to an investor, negotiating an annual contract, or planning the year ahead – it's the number everyone grasps instantly. But for day-to-day decisions, like which channel is working this month or where customers are slipping away, MRR is the real number. ARR is only a projection, resting on the assumption that today's MRR holds steady for the next 12 months, and young businesses tend to have higher churn, so a big ARR figure can be falsely reassuring. ARR is the number you show an investor; MRR is the number you decide with.
+
+## NRR: does the business grow on existing customers alone
+
+This single number gets misunderstood more than any other, and investors weigh it more heavily than almost anything else.
+
+**Name:** it's called **NRR (net revenue retention)**.
+
+**Simple meaning:** take the exact same group of customers who were paying a month or a year ago, and ask how much that same group is paying today, counting zero new customers. Some upgrade their plan and add revenue; some downgrade or cancel entirely and take revenue away. Net all that movement together and you get NRR.
+
+**Local example:** say last month Sumaiya had 100 customers, each paying 500 taka, for 50,000 taka total. Here's what happened to that exact same group this month, with no new customers anywhere in this picture:
+
+| Customer status | Count | Last month's revenue | This month's revenue |
+|---|---|---:|---:|
+| Stayed on the same plan | 60 | 30,000 | 30,000 |
+| Upgraded plan (500 → 700 taka) | 25 | 12,500 | 17,500 |
+| Downgraded plan (500 → 350 taka) | 10 | 5,000 | 3,500 |
+| Churned entirely | 5 | 2,500 | 0 |
+| **Total** | **100** | **50,000** | **51,000** |
+
+**The maths:** NRR = this month's revenue ÷ last month's revenue × 100 = 51,000 ÷ 50,000 × 100 = 102%.
+
+Notice that 5 customers left entirely and 10 cut back, yet NRR still lands above 100 – the 25 who upgraded more than covered that loss and then some. Without adding a single new customer, Sumaiya's revenue from this exact cohort grew. That's exactly why NRR above 100 percent matters: it proves the business can grow without new sales, and any new customer on top is pure upside.
+
+Now picture the reverse: only 5 upgrade instead of 25, and 15 leave instead of 5. The number falls below 100, meaning the business isn't even holding onto existing customers – the foundation itself is leaking. Plugging that leak comes before spending a single taka on new customers.
+
+**What to do:** build this table every month or quarter, always keeping new customers out of it. If NRR drops below 100, the first move isn't a bigger ad budget – it's finding out why customers are leaving or downgrading. The deeper CAC and LTV maths lives on the [CAC, LTV, Retention, Churn, Payback](/en/metrics/cac-ltv-churn) page.
+
+## Rule of 40: balancing growth and profit
+
+Subscription businesses use a common rule of thumb called the **Rule of 40**: add your year-over-year revenue growth rate (as a percentage) to your profit margin (also as a percentage), and a sum around 40 or higher counts as balanced. Larger companies swap in an EBITDA margin for "profit," but an ordinary profit margin works fine for your own tracking.
+
+Say Sumaiya's business grew 30 percent over the past year, with a 10 percent profit margin. 30 + 10 = 40, exactly balanced by the Rule of 40. Now the opposite: growth of only 15 percent, but a 10 percent loss instead of profit. 15 − 10 = 5, well short of 40 – either growth needs to speed up or the losses need cutting, and doing neither leaves the business limping.
+
+There's no need to treat this as a strict funding requirement in Bangladesh. Published reports on the local startup ecosystem mostly talk about funding and investment totals; a public NRR or Rule of 40 benchmark specific to Bangladeshi SaaS companies just isn't out there.[^lightcastle-scope] So benchmark against your own last year rather than another local company, and talk to other SaaS founders through a community like BASIS, the national trade body for the software and ITES sector, to get a feel for what's realistic.[^basis-trade-body]
+
+## Taka-priced SaaS versus export-oriented SaaS
+
+For a taka-priced SaaS selling to the local market, like Sumaiya's, the MRR and ARR maths stays simple. Customers pay through bKash, Nagad, or a direct bank transfer, and the number stays in taka from start to finish.
+
+For an export-oriented SaaS pricing foreign customers in dollars, the picture looks a bit different. Money arrives through Payoneer, Wise, or a direct bank wire, and must eventually land in a Bangladeshi bank account as a traceable inward remittance, under Bangladesh Bank's foreign exchange rules.[^bb-repatriation] So track the real MRR in dollars first, then convert to taka for the local books. Even if dollar MRR holds flat, a shift in the exchange rate will move taka MRR up or down – that's currency noise, not real business growth, and the two shouldn't get confused.
+
+The ITES tax exemption on export earnings, and the EXP form rules that go with it, are a whole separate subject with their own full treatment on the [Export-Oriented SaaS from Bangladesh](/en/ideas/export-saas) page.
+
+## Checklist
+
+- Counted this month's active customers and worked out MRR
+- Multiplied MRR by 12 to get ARR, and remembered it's only a projection
+- Split last month's customers into upgrades, downgrades, and churn to work out NRR
+- Know whether NRR sits above or below 100 percent
+- Checked the Rule of 40 at least once a year to see the balance between growth and profit
+- Know whether pricing is in taka or foreign currency, and keep the core numbers in that same currency
+
+Rule of thumb: **check NRR before you spend on new customers. If existing customers are quietly slipping away, pouring money into ads is like pouring water into a leaking bucket.**
 
 ## Relevant Sources
 
-- [Bangladesh Bank](https://www.bb.org.bd)
+[^bb-repatriation]: [Bangladesh Bank](https://www.bb.org.bd), rules on foreign exchange and repatriating export earnings, accessed August 2026.
+
+[^basis-trade-body]: [BASIS](https://basis.org.bd), the national trade body for Bangladesh's software and ITES industry, founded 1998.
+
+[^lightcastle-scope]: [LightCastle Partners – Bangladesh Startup Ecosystem Dashboard](https://lightcastlepartners.com/bangladesh-startup-ecosystem-dashboard/), primarily a funding and investment dashboard, accessed August 2026.
