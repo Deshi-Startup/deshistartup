@@ -1,14 +1,199 @@
 ---
-title: "What TDS/VDS to Deduct during Vendor Payments"
-description: "What TDS/VDS to Deduct during Vendor Payments – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "Deducting TDS and VDS from a Vendor's Bill"
+description: "Being a company makes you a withholding entity — there is no size threshold. Fail to deduct and the amount lands on you, plus 2% a month. What to deduct on which payment, and when not to."
+verified: 2026-08-05
 ---
 
-# What TDS/VDS to Deduct during Vendor Payments
+# Deducting TDS and VDS from a Vendor's Bill
 
-<StubNotice path="tax/tds-vds" locale="en" />
+> **In short:** Office rent, a lawyer's fee, a graphic designer's invoice, a courier charge — handing over the full amount does not close the transaction. The Income Tax Act's definition of a "specified person" includes any company, with no size threshold attached.[^ita-specified-person] On the VAT side, the 2025 deduction-at-source rules define a withholding entity to include any limited company outright.[^vds-rules] So from the day a private limited company exists, both obligations are yours. Fail to deduct, or deduct and fail to deposit, and the Act deems you an assessee-in-default: you pay the un-deducted amount out of your own pocket, plus 2% per month on top, for up to 24 months.[^ita-tds-default] Raise deduction when you agree the price with a vendor, not when the invoice arrives.
+
+---
+
+## TDS and VDS are two different things
+
+Because the two get named in one breath, they get confused. They are separate laws, separate rates, separate returns.
+
+| | TDS | VDS |
+|---|---|---|
+| Tax being withheld | Income tax | Value added tax |
+| Law | Income Tax Act 2023 | VAT Act 2012 and the Deduction at Source Rules 2025 |
+| Whose liability it settles | Credited against the supplier's income tax | Credited against the supplier's VAT |
+| Return | Monthly, by the 25th | Inside the monthly VAT return |
+
+One invoice can attract both. A consultancy firm's bill, for instance, carries income tax TDS and VAT VDS, calculated separately.
+
+---
+
+## Accept first that you are a withholding entity
+
+**On income tax.** The Act defines a "specified person" as any company, firm, association of persons, trust, or fund — along with hospitals, clinics, diagnostic centres, and e-commerce platforms, hotels, resorts, or transport agencies with annual turnover above one crore taka.[^ita-specified-person] For companies, no turnover threshold applies.
+
+**On VAT.** The Act's own definition is narrow and speaks of public limited companies. But the Value Added Tax Deduction and Collection at Source Rules 2025, issued on 27 May 2025, define it far more broadly. The rules cover:[^vds-rules]
+
+- government and semi-government bodies, autonomous institutions, and local authorities
+- NGOs approved by the NGO Affairs Bureau or the Directorate of Social Services
+- banks, insurance companies, and similar financial institutions
+- educational institutions at secondary level or above
+- **any limited company**
+- any person or institution with annual turnover exceeding ten crore taka
+
+The rules took effect on 1 July 2025.[^vds-rules]
+
+So "we're too small for this" is wrong on both sides.
+
+---
+
+## Which payments attract income tax deduction
+
+The Act sets out separate heads in separate sections. The ones a startup actually hits:
+
+| Payment | Section | Rate |
+|---|---|---|
+| Rent of house property, hotel, empty premises, or plant and machinery | 109 | 5%[^ita-tds-heads] |
+| Royalty, franchise, licence, trademark, copyright, and other intellectual property | 91 | 10% where the base does not exceed 25 lakh taka, 12% above it[^ita-tds-heads] |
+| Contracts, supply of goods, manufacture and processing, printing, packaging, binding | 89 | A prescribed rate, not exceeding 10%[^ita-tds-heads] |
+| Any service | 90 | A rate determined at the time of payment, not exceeding 20%[^ita-tds-heads] |
+| Employee salary | 86 | Per the employee's own tax computation |
+
+For sections 89 and 90 the Act fixes only the ceiling; the operative rate is set by rules and notifications that can change every year. That is why no specific figure appears here for those two. Confirm the current rate with your accountant or NBR's publications before paying.
+
+What the tax is calculated on is also defined. "Base value" means the highest of the contract value, the invoice amount, and the payment.[^ita-specified-person]
+
+---
+
+## Two rules that make the rate half again as large
+
+Almost nobody knows these in advance, and both are common:
+
+- If the person you are deducting from cannot produce evidence of having filed their return, the rate is 50% higher than the applicable rate.[^ita-tds-higher-rates]
+- If the contract price, bill, rent, fee, charge, or salary is not paid through bank transfer, the rate is again 50% higher.[^ita-tds-higher-rates]
+
+Paying a bill in cash, in other words, isn't just an accounting problem — it raises the tax rate directly.
+
+There's a further trap in contract wording. Agree to pay a vendor a net "in-hand" amount and the Act computes the tax on a grossed-up figure: C = (100 × A) ÷ (100 − B), where A is the payment without tax and B is the applicable rate.[^ita-tds-higher-rates] Put plainly, the tax becomes your cost. So state in the contract whether the number is inclusive or exclusive of tax.
+
+---
+
+## Which services attract VAT deduction, and at what rate
+
+Rule 3 of the 2025 rules sets rates against service codes. It says explicitly that for a listed service, deduction is mandatory **whether or not there is a VAT invoice**.[^vds-rules] The services a startup actually buys:
+
+| Service code | Service | Rate |
+|---|---|---|
+| S004.00 | Construction firm | 10% |
+| S007.00 | Advertising agency | 15% |
+| S008.10 | Printing press | 15% |
+| S028.00 | Courier and express mail service | 15% |
+| S032.00 | Consultancy and supervisory firm | 15% |
+| S034.00 | Audit and accounting firm | 15% |
+| S037.00 | Procurement provider | 10% |
+| S040.00 | Security service | 15% |
+| S045.00 | Legal adviser | 15% |
+| S049.00 | Vehicle rental provider | 15% |
+| S050.10 | Architect, interior designer, or interior decorator | 15% |
+| S050.20 | Graphic designer | 15% |
+| S051.00 | Engineering firm | 15% |
+| S072.00 | Human resource supply or management agency | 15% |
+| S099.10 | Information Technology Enabled Services (ITES) | 5% |
+| S099.20 | Other miscellaneous services | 15% |
+| S099.30 | Sponsorship services | 15% |
+
+This is not the full table — the rules list many more services, and a June 2026 amendment added semiconductor assembly, testing, and packaging services.[^vds-rules] Match the service code against the current rules before paying.
+
+Note how wide "other miscellaneous services" is. A service that fits none of the specific headings can still land there.
+
+---
+
+## When not to deduct
+
+Rule 5 lists the exemptions. Over-deducting is its own problem, so know these:[^vds-rules]
+
+- payments of fuel oil, gas, water (WASA), electricity, telephone, and mobile phone bills
+- supplies of goods or services exempted under the Act's First Schedule
+- zero-rated supplies under section 21 of the VAT Act
+- services not listed in the rule 3 table, where the supplier supplies against Form Mushak-6.3
+- supplies by a manufacturer against a Mushak-6.3 invoice stating the 15% or reduced rate
+
+The last two turn on the Mushak-6.3 invoice. What it is and how to check it is in [Mushak 6.3 invoices and VAT documentation](/tax/mushak-63).
+
+---
+
+## What happens if you don't deduct
+
+The Act's language here is hard. Failing to deduct, deducting less, or deducting and failing to deposit to the government makes the person an assessee-in-default.[^ita-tds-default] What follows:
+
+- the full amount of tax that was not deducted
+- the shortfall, where less was deducted than required
+- the amount deducted but not deposited
+- up to 10 lakh taka for failing to comply with any other provision
+
+On top of that comes an additional 2% per month, running from the date fixed for deduction to the date of deposit, capped at 24 months.[^ita-tds-default]
+
+The point to hold on to: the money is the vendor's tax, but the liability is yours. If the vendor walks away with the full amount, NBR comes to you, not to them.
+
+The VAT side works the same way. For tax withheld at source and its deposit to the treasury, the withholding entity and the supplier are jointly and severally liable.[^vat-vds-act]
+
+---
+
+## What remains after you deduct
+
+Withholding is not the end of it. Four things follow.
+
+**1. Issue the certificate.** The person you deducted from must receive a certificate of deduction showing their name and TIN, the amount, the section under which it was deducted, and the particulars of its payment to the government.[^ita-tds-certificate] On the VAT side, the withholding entity issues its certificate after depositing the withheld tax to the treasury.[^vds-rules]
+
+**2. Deposit it.** All deducted sums must reach the government within the prescribed time.[^ita-tds-certificate] The payment route and challan are covered in [a-Chalan and online tax payment](/tax/a-chalan).
+
+**3. File the monthly return.** The previous month's withholding return is due by the 25th of every month.[^ita-tds-certificate] All the dates sit together in [the tax calendar](/tax/tax-calendar).
+
+**4. Adjust in the VAT return.** A registered withholding entity makes an increasing adjustment for the withheld VAT, in the return for the tax period of the supply on which it was withheld.[^vat-vds-act]
+
+---
+
+## When you are the supplier
+
+Know the other side too. When someone withholds VAT from your bill, you may make a decreasing adjustment of the same amount. But it must be claimed in the tax period in which the tax on the supply was paid, or within the six months after that period — after which the claim is time-barred.[^vat-vds-act]
+
+One more condition: no decreasing adjustment can be claimed unless you issued a combined tax invoice and withholding certificate in the withholding entity's favour.[^vat-vds-act] Skip the paperwork and the money is simply your loss.
+
+---
+
+## Checklist
+
+- [ ] Accepted that as a company you withhold on both sides, and built a process around it
+- [ ] Listed regular vendors with each one's service code and applicable rate
+- [ ] Confirmed the current section 89 and 90 rates with an accountant
+- [ ] Stated in contracts whether amounts are inclusive or exclusive of tax
+- [ ] Paying all significant vendors by bank transfer
+- [ ] Asked vendors for evidence of their return filing
+- [ ] Issuing certificates after deducting and depositing on time
+- [ ] Put the 25th of each month on the calendar for the withholding return
+- [ ] Making the increasing adjustment in the VAT return
+
+Rule of thumb: **The money is the vendor's tax, but if you don't deduct it, the bill is yours. Raise it when you agree the price, not when the invoice arrives.**
+
+## What to Do Next
+
+- To see all the dates in one place: [The tax calendar](/tax/tax-calendar)
+- For the monthly VAT workflow: [The monthly return after getting a BIN](/tax/monthly-vat-return)
+- To check invoices: [Mushak 6.3 invoices and VAT documentation](/tax/mushak-63)
+- To keep the books straight: [Audit, accounts, and bookkeeping setup](/tax/bookkeeping-setup)
 
 ## Relevant Sources
 
+[^ita-specified-person]: [Income Tax Act 2023, NBR's published English text](https://nbr.gov.bd/uploads/acts/Income_tax_act_2023.pdf), consolidated to the Gazette of 16 October 2025, accessed 5 August 2026 — the definitions in Part 7 listing "specified person" as any company, firm, association of persons, trust, or fund, and "base value" as the highest of contract value, invoice amount, and payment.
+
+[^ita-tds-heads]: Income Tax Act 2023, sections 86, 89, 90, 91, and 109 — salary, payments to contractors and suppliers at a prescribed rate not exceeding 10%, services at a rate not exceeding 20%, intellectual property at 10% up to a 25 lakh taka base and 12% above it, and rent at 5%. Same source as above.
+
+[^ita-tds-higher-rates]: Income Tax Act 2023, sections 141 and 142 — the gross-up formula for payments made without tax, a rate 50% higher where the payee cannot produce evidence of filing a return, and a rate 50% higher where payment is not made through bank transfer. Same source as above.
+
+[^ita-tds-default]: Income Tax Act 2023, section 143 — being deemed an assessee-in-default for failing to deduct, deducting less, or failing to deposit; the sums then payable; up to 10 lakh taka for other non-compliance; and an additional 2% per month for up to 24 months. Same source as above.
+
+[^ita-tds-certificate]: Income Tax Act 2023, sections 145, 146, and 177 — what the certificate of deduction must contain, the duty to deposit deducted sums within the prescribed time, and the previous month's return being due by the 25th. Same source as above.
+
+[^vds-rules]: [Value Added Tax Deduction and Collection at Source Rules 2025](https://nbr.gov.bd/uploads/sros/VATSRO-1822.pdf), SRO No. 182-Law/2025/310-VAT, issued 27 May 2025 and effective 1 July 2025, accessed 5 August 2026 — rule 2(1)(b) defining the withholding entity, rule 3 with the table of service codes and rates and the requirement to deduct whether or not a VAT invoice exists, and rule 5 listing where no deduction is made. Amended by [SRO No. 140-Law/2026/345-VAT](https://nbr.gov.bd/uploads/sros/VAT_SRO-140.pdf), 7 June 2026.
+
+[^vat-vds-act]: [Value Added Tax and Supplementary Duty Act 2012, NBR's published English translation](https://nbr.gov.bd/uploads/acts/18.pdf), accessed 5 August 2026 — section 49 on withholding at source, the timing of the increasing adjustment, and the joint and several liability of the withholding entity and the supplier; and section 50 on the supplier's decreasing adjustment, its six-month limit, and the invoice and certificate condition.
+
 - [NBR](https://nbr.gov.bd)
-- [Bangladesh Bank](https://www.bb.org.bd)
-- [RJSC](https://roc.gov.bd)
+- [VAT Online](https://vat.gov.bd)
