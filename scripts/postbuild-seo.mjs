@@ -142,6 +142,7 @@ function schemaFor(page, wordCount) {
   const isAbout = page.slug === 'about'
   const isCollection =
     page.slug === 'sitemap' ||
+    page.slug === 'contributors' ||
     page.slug === 'directory' ||
     page.slug.startsWith('directory/') ||
     children.length > 0
@@ -285,6 +286,7 @@ for (const page of pages) {
   const pageChildren = childrenFor(page)
   const isCollectionPage =
     page.slug === 'sitemap' ||
+    page.slug === 'contributors' ||
     page.slug === 'directory' ||
     page.slug.startsWith('directory/') ||
     pageChildren.length > 0

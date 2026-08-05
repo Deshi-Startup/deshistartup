@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "repository": "Deshi-Startup/deshistartup",
+  "coreTeam": ["anwarulislam", "sagar290", "shamirislam"],
+  "displayNameOverrides": {
+    "anwarulislam": "Anwarul Islam",
+    "niloy-biswas": "Niloy Biswas",
+    "sagar290": "Sagar",
+    "shamirislam": "Shamir Islam",
+    "uttamdeb": "Uttam Deb"
+  },
+  "inlineAttributionLinks": {},
+  "exclusions": {
+    "githubLogins": [],
+    "inlineNames": []
+  },
+  "optOuts": {
+    "githubLogins": [],
+    "inlineNames": []
+  }
+}

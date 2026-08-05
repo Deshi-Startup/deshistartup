@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 2,
+  "repository": "Deshi-Startup/deshistartup",
+  "refreshedAt": "2026-08-05T17:55:48.477Z",
+  "totals": {
+    "contributors": 2,
+    "mergedPullRequests": 5
+  },
+  "unattributedCount": 0,
+  "rankedProfiles": [
+    {
+      "displayName": "Niloy Biswas",
+      "githubLogin": "niloy-biswas",
+      "profileUrl": "https://github.com/niloy-biswas",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/28513863?v=4&s=160",
+      "mergedPullRequestCount": 3,
+      "lastMergedAt": "2026-08-01T22:30:58.000Z",
+      "rank": 1
+    },
+    {
+      "displayName": "Uttam Deb",
+      "githubLogin": "uttamdeb",
+      "profileUrl": "https://github.com/uttamdeb",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/105539415?v=4&s=160",
+      "mergedPullRequestCount": 2,
+      "lastMergedAt": "2026-08-01T16:20:50.000Z",
+      "rank": 2
+    }
+  ],
+  "coreProfiles": [
+    {
+      "displayName": "Anwarul Islam",
+      "githubLogin": "anwarulislam",
+      "profileUrl": "https://github.com/anwarulislam",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/26295990?v=4&s=160",
+      "mergedPullRequestCount": 1,
+      "lastMergedAt": "2026-07-26T05:04:12.000Z"
+    },
+    {
+      "displayName": "Sagar",
+      "githubLogin": "sagar290",
+      "profileUrl": "https://github.com/sagar290",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/7631656?v=4&s=160",
+      "mergedPullRequestCount": 2,
+      "lastMergedAt": "2026-08-03T01:12:12.000Z"
+    },
+    {
+      "displayName": "Shamir Islam",
+      "githubLogin": "shamirislam",
+      "profileUrl": "https://github.com/shamirislam",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/11095742?v=4&s=160",
+      "mergedPullRequestCount": 3,
+      "lastMergedAt": "2026-07-29T22:53:01.000Z"
+    }
+  ]
+}

@@ -30,6 +30,7 @@ plan/status-report.md
 .opencode/
 .codex/
 .impeccable/
+.playwright-mcp/
 .vinext/
 .open-next/
 .wrangler/
@@ -40,6 +41,7 @@ next-env.d.ts
 CLAUDE.md
 PRODUCT.md
 app/generated/*
+!app/generated/contributors.json
 !app/generated/media.json
 !app/generated/media-retired.json
 # Derived content/SEO outputs; npm run manifest recreates them.

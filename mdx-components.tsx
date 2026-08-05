@@ -8,6 +8,7 @@ import FacebookVideo from './app/components/FacebookVideo'
 import OfficialSocialLinks from './app/components/OfficialSocialLinks'
 import Term from './app/components/Term'
 import ExpertReview from './app/components/ExpertReview'
+import ContributorLeaderboard from './app/components/ContributorLeaderboard'
 
 interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href?: string
@@ -41,6 +42,7 @@ export function useMDXComponents(components: Record<string, any>): Record<string
     FacebookVideo,
     OfficialSocialLinks,
     Term,
-    ExpertReview
+    ExpertReview,
+    ContributorLeaderboard
   }
 }

@@ -221,6 +221,11 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   const isLanding = pathname === '/' || pathname === '/en'
   const isPrivateReview =
     pathname === '/contribute/review' || pathname.startsWith('/contribute/review/')
+  // The contributor list is generated from merged pull requests, so the article
+  // lede has nothing true to say about it: "Home › Contributors" is a crumb to
+  // nowhere, there is no edit date to report and a mistake belongs in a rename
+  // request, not a content correction.
+  const isCredits = pathname === '/contributors' || pathname === '/en/contributors'
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [headings, setHeadings] = useState<HeadingItem[]>([])
   const [pageTitle, setPageTitle] = useState('')
@@ -709,7 +714,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             />
           )}
 
-          {!isLanding && !isEditing && !isPrivateReview && (
+          {!isLanding && !isEditing && !isPrivateReview && !isCredits && (
             <div className="article-lede">
               <Breadcrumbs isEn={isEn} pathname={pathname} pageTitle={pageTitle} />
               <div className="article-meta">
