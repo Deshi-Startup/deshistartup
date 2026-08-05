@@ -6,6 +6,21 @@
    Bengali-subset, local()-first so most Android devices download nothing.
    --------------------------------------------------------------------------- */
 
+/* Both files are cut to exactly the unicode-range declared below, with the
+   glyph-name and vertical-metrics tables dropped: nothing outside that range
+   can ever be drawn from these faces, so the names, the space and the vertical
+   metrics were bytes no reader could ever see. Reproduce with:
+
+     pyftsubset <in>.woff2 --output-file=<out>.woff2 --flavor=woff2 \
+       --unicodes="U+0951-0952,U+0964-0965,U+0980-09FE,U+1CD0,U+1CD2,\
+U+1CD5-1CD6,U+1CD8,U+1CE1,U+1CEA,U+1CED,U+1CF2,U+1CF5-1CF7,U+200C-200D,\
+U+20B9,U+25CC,U+A8F1" \
+       --layout-features='*' --no-hinting --no-glyph-names --name-IDs='' \
+       --drop-tables+=vhea,vmtx,gasp,STAT
+
+   --layout-features='*' is load-bearing: Bengali conjuncts are GSUB
+   substitutions, so dropping features would silently break যুক্তাক্ষর. */
+
 @font-face {
   font-family: 'Noto Sans Bengali';
   /* Plain woff2, not the old woff2-variations draft value: a browser must skip
@@ -158,8 +173,13 @@ p {
   top: 0;
   z-index: 10;
   border-bottom: 1px solid var(--line);
-  background: rgb(255 255 255 / 92%);
-  backdrop-filter: blur(14px);
+  /* Opaque, not a translucent pane over a blur. The header is sticky, so a
+     backdrop-filter makes the compositor re-blur a full-width strip on every
+     scroll frame, and that cost lands on exactly the mid-range Android this
+     site is read on. What it bought was a smear of paper nobody looks at. The
+     canvas white is the honest surface: the article is white, and the header
+     is the top of it. */
+  background: var(--canvas);
 }
 
 .header-inner {
@@ -667,6 +687,19 @@ a.tab {
 .article th,
 .article blockquote {
   overflow-wrap: anywhere;
+  /* Keeps a paragraph from ending on a single stranded word. Bengali sentences
+     are long and the mobile column is narrow, so this fires often. */
+  text-wrap: pretty;
+}
+
+/* Bengali headings are long, and a wrapped one used to drop its last word alone
+   on a rule of its own. `balance` evens the lines instead; where it is
+   unsupported the heading simply wraps as before. */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
 }
 
 h1,

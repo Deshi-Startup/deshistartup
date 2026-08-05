@@ -1,0 +1,42 @@
+# Cache policy for Cloudflare Workers static assets.
+#
+# Workers serves every asset with `public, max-age=0, must-revalidate` unless
+# told otherwise. This site has no client-side routing, so each click is a full
+# document load: without these rules a reader on a 300 ms mobile connection pays
+# a conditional round-trip for the stylesheet, every JS chunk and the 72 KB
+# Bengali serif on every page they open, for files whose names already contain a
+# content hash and therefore can never change.
+#
+# Only hash-named files are marked immutable. Anything whose name stays the same
+# across builds keeps a revalidating policy, and HTML keeps the default so a
+# corrected fee or date is live the moment it is deployed.
+#
+# GitHub Pages ignores this file; it is read only by the Cloudflare deployment.
+
+# Next.js build output: CSS, JS chunks and the self-hosted fonts under media/.
+# Every filename here carries a content hash.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Pagefind's search index. Fragments and index shards are content-addressed
+# (bn_0964ecb.pf_fragment); the loader and entry manifest that name them are
+# not, and are deliberately left revalidating so a new index is picked up.
+/_pagefind/fragment/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/_pagefind/index/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Stable brand and content assets. Unhashed, so they revalidate daily and may
+# be served stale for a week while the new copy is fetched in the background.
+/deshi-mark.svg
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/og-default.png
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/og-default.svg
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/images/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

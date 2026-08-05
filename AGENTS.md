@@ -184,6 +184,10 @@ Runtime variables and secrets are documented in `.env.local.example` and `wrangl
 Deployment architecture and size budgets are documented in
 [`plan/deployment-architecture.md`](./plan/deployment-architecture.md).
 
+`public/_headers` (copied to `out/_headers`) is the asset cache policy. Only hash-named files are
+marked immutable; HTML stays revalidating so a corrected fee goes live on deploy. Add a rule there
+rather than in the Worker when a new asset directory needs its own policy.
+
 Pushing `main` deploys production. Never push unless Shamir asks.
 
 Preserve these constraints:
