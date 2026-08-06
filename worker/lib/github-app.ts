@@ -133,7 +133,7 @@ function branchSlugFromPath(path: string): string {
   return slug || 'page'
 }
 
-function emailHash(email: string): string {
+export function emailHash(email: string): string {
   return createHash('sha256').update((email || '').toLowerCase().trim()).digest('hex').slice(0, 8)
 }
 
@@ -457,3 +457,99 @@ export async function commitContributionFiles(
   })
   return commit.sha
 }
+
+export async function listUserContributions(
+  env: CloudflareEnv,
+  contributorEmail: string
+): Promise<Array<{
+  prNumber: number
+  prUrl: string
+  branchName: string
+  pageTitle: string
+  pagePath: string
+  createdAt: string
+  updatedAt: string
+}>> {
+  const token = await installationToken(env)
+  const hash = emailHash(contributorEmail)
+
+  // Fetch open PRs
+  const params = new URLSearchParams({ state: 'open', per_page: '100' })
+  const res = await fetch(repoApi(env, `/pulls?${params}`), {
+    headers: apiHeaders(token)
+  })
+  if (!res.ok) {
+    const text = await res.text()
+    throw new Error(`GitHub API GET pulls failed (${res.status}): ${text}`)
+  }
+  const prs = (await res.json()) as any[]
+
+  const userPrs = prs.filter((pr) => pr.head?.ref?.endsWith(`-${hash}`))
+
+  const results = []
+  for (const pr of userPrs) {
+    // Extract page path and title from body or branch
+    let pagePath = ''
+    const match = pr.body?.match(/https?:\/\/deshistartup\.com(\/[^)\s]+)/)
+    if (match) {
+      pagePath = match[1]
+    }
+
+    // Clean up title: e.g. "Update: Company Registration" -> "Company Registration"
+    const pageTitle = pr.title.replace(/^Update:\s*/i, '')
+
+    results.push({
+      prNumber: pr.number,
+      prUrl: pr.html_url,
+      branchName: pr.head.ref,
+      pageTitle,
+      pagePath,
+      createdAt: pr.created_at,
+      updatedAt: pr.updated_at
+    })
+  }
+
+  return results
+}
+
+export async function getPullRequestDiff(
+  env: CloudflareEnv,
+  prNumber: number
+): Promise<string> {
+  const token = await installationToken(env)
+  const res = await fetch(repoApi(env, `/pulls/${prNumber}`), {
+    headers: apiHeaders(token, {
+      Accept: 'application/vnd.github.v3.diff'
+    })
+  })
+  if (!res.ok) {
+    const text = await res.text()
+    throw new Error(`GitHub API GET pull diff failed (${res.status}): ${text}`)
+  }
+  return res.text()
+}
+
+export async function getUserPullRequestDiff(
+  env: CloudflareEnv,
+  prNumber: number,
+  contributorEmail: string
+): Promise<string> {
+  const token = await installationToken(env)
+  const hash = emailHash(contributorEmail)
+
+  // 1. Fetch the pull request to verify ownership
+  const prRes = await fetch(repoApi(env, `/pulls/${prNumber}`), {
+    headers: apiHeaders(token)
+  })
+  if (!prRes.ok) {
+    throw new Error('PR_NOT_FOUND')
+  }
+  const pr = (await prRes.json()) as any
+  if (!pr.head?.ref?.endsWith(`-${hash}`)) {
+    throw new Error('FORBIDDEN')
+  }
+
+  // 2. Fetch the unified diff
+  return getPullRequestDiff(env, prNumber)
+}
+
