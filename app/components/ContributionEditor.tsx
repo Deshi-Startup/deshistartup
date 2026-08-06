@@ -38,6 +38,8 @@ import {
   extractPendingMediaIds,
   rejectPendingMediaInMarkdown
 } from '../lib/contribution-media'
+import { diffLines, DiffLine } from '../lib/diff'
+import DiffModal from './DiffModal'
 
 /**
  * DIRECTION CONTRACT
@@ -220,6 +222,9 @@ export default function ContributionEditor({
   const saveTimerRef = useRef(0)
   const pendingMediaRef = useRef<PendingMedia[]>([])
   const previewUrlsRef = useRef<Record<string, string>>({})
+  const [diffOpen, setDiffOpen] = useState(false)
+  const [calculatedDiff, setCalculatedDiff] = useState<DiffLine[]>([])
+
 
   const updatePendingMedia = useCallback(
     (updater: PendingMedia[] | ((current: PendingMedia[]) => PendingMedia[])) => {
@@ -231,6 +236,22 @@ export default function ContributionEditor({
     },
     []
   )
+
+  const handleShowDiff = useCallback(() => {
+    let editorMarkdown
+    try {
+      editorMarkdown = crepeRef.current
+        ? readMarkdown(crepeRef.current)
+        : markdownRef.current
+    } catch {
+      editorMarkdown = markdownRef.current
+    }
+    const body = decodeEditableVideos(decodeLockedMdx(editorMarkdown || ''))
+    const baseline = data ? decodeEditableVideos(decodeLockedMdx(data.content)) : ''
+    const diff = diffLines(baseline.split('\n'), body.split('\n'))
+    setCalculatedDiff(diff)
+    setDiffOpen(true)
+  }, [data])
 
   const discardDraft = useCallback(() => {
     clearDraft(pathname)
@@ -901,6 +922,16 @@ export default function ContributionEditor({
               <button type="button" className="edit-btn" onClick={requestExit} disabled={submitting}>
                 {error ? t(isEn, 'পড়ায় ফিরুন', 'Back to reading') : t(isEn, 'বাতিল', 'Cancel')}
               </button>
+              {!error && dirty && (
+                <button
+                  type="button"
+                  className="edit-btn edit-btn--secondary"
+                  onClick={handleShowDiff}
+                  disabled={!ready || submitting}
+                >
+                  {t(isEn, 'পরিবর্তনগুলো দেখুন', 'Review Changes')}
+                </button>
+              )}
               {!error && (
                 <button
                   type="button"
@@ -1370,6 +1401,16 @@ export default function ContributionEditor({
                 <button type="button" className="edit-btn" onClick={requestExit} disabled={submitting}>
                   {t(isEn, 'বাতিল', 'Cancel')}
                 </button>
+                {dirty && (
+                  <button
+                    type="button"
+                    className="edit-btn edit-btn--secondary"
+                    onClick={handleShowDiff}
+                    disabled={!ready || submitting}
+                  >
+                    {t(isEn, 'পরিবর্তনগুলো দেখুন', 'Review Changes')}
+                  </button>
+                )}
                 <button
                   type="button"
                   className="edit-btn is-primary"
@@ -1385,6 +1426,13 @@ export default function ContributionEditor({
           </div>
         </>
       )}
+      <DiffModal
+        open={diffOpen}
+        onClose={() => setDiffOpen(false)}
+        diffLines={calculatedDiff}
+        title={t(isEn, 'পরিবর্তনগুলো দেখুন', 'Review Changes')}
+        isEn={isEn}
+      />
     </div>
   )
 }

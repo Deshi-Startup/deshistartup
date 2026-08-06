@@ -8,6 +8,7 @@
     "node": ">=22.6.0"
   },
   "scripts": {
+    "dev:legacy": "next dev",
     "dev": "node scripts/dev.mjs",
     "dev:turbo": "node scripts/dev.mjs --turbopack",
     "build": "NODE_ENV=production next build",
