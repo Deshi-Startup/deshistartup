@@ -5,10 +5,12 @@ import {
   POST as uploadContributionMedia
 } from './api/contribution-media'
 import { GET as getContributionMedia } from './api/contribution-media-item'
-import {
-  GET as getContributionReview,
+import { GET as getContributionReview,
   POST as updateContributionReview
 } from './api/contribution-review'
+import { GET as getContributions } from './api/contributions'
+import { GET as getContributionDiff } from './api/contribution-diff'
+
 
 const OPAQUE_ID = /^[a-f0-9]{32}$/
 
@@ -44,6 +46,18 @@ async function apiResponse(
     return request.method === 'POST'
       ? createContribution(request, env)
       : methodNotAllowed('POST')
+  }
+
+  if (pathname === '/api/contributions') {
+    return request.method === 'GET'
+      ? getContributions(request, env)
+      : methodNotAllowed('GET')
+  }
+
+  if (pathname === '/api/contributions/diff') {
+    return request.method === 'GET'
+      ? getContributionDiff(request, env)
+      : methodNotAllowed('GET')
   }
 
   if (pathname === '/api/contribution-media') {

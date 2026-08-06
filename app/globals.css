@@ -4482,3 +4482,369 @@ html[lang='en'] .glossary-copy--en {
     color: #444;
   }
 }
+
+/* --------------------------------------------------- Diff & Dashboard Styles */
+
+.modal-card--large {
+  width: min(100%, 860px) !important;
+}
+
+.diff-container {
+  max-height: 480px;
+  overflow-y: auto;
+  border: 1px solid var(--line-soft);
+  border-radius: 4px;
+  background: var(--canvas-soft);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.diff-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.diff-row {
+  display: grid;
+  grid-template-columns: 48px 24px 1fr;
+  gap: 8px;
+  padding: 4px 12px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  border-bottom: 1px solid rgb(0 0 0 / 2%);
+}
+
+.diff-line-number {
+  color: var(--faint);
+  text-align: right;
+  user-select: none;
+  font-size: 0.8rem;
+  border-right: 1px solid var(--line-soft);
+  padding-right: 8px;
+}
+
+.diff-sign {
+  color: var(--faint);
+  text-align: center;
+  user-select: none;
+  font-weight: bold;
+}
+
+.diff-content {
+  color: var(--ink);
+}
+
+.diff-row--added {
+  background: #eafbe8;
+}
+.diff-row--added .diff-content,
+.diff-row--added .diff-sign {
+  color: #1e6823;
+}
+
+.diff-row--removed {
+  background: #fdf2f2;
+}
+.diff-row--removed .diff-content,
+.diff-row--removed .diff-sign {
+  color: var(--error);
+}
+
+.diff-row--meta {
+  background: #f1f8ff;
+  font-weight: bold;
+}
+.diff-row--meta .diff-content,
+.diff-row--meta .diff-sign {
+  color: var(--blue);
+}
+
+.diff-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* Contributor Profile Header Action */
+.profile-menu-container {
+  position: relative;
+  display: inline-flex;
+}
+
+.profile-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--line-soft);
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  overflow: visible; /* allows badge to hang off edge */
+  transition: border-color 0.15s ease;
+}
+
+.profile-btn:hover,
+.profile-btn:focus-visible {
+  border-color: var(--green);
+  outline: none;
+}
+
+.profile-btn img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-btn .pending-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--error);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border-radius: 50%;
+  min-width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 1px solid var(--canvas);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 15%);
+}
+
+.signin-link-btn {
+  background: none;
+  border: none;
+  color: var(--blue);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.signin-link-btn:hover {
+  background: var(--blue-soft);
+  color: var(--blue-hover);
+}
+
+/* Dashboard Dropdown */
+.dashboard-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 8px;
+  width: 330px;
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: dashboard-in 150ms ease-out both;
+}
+
+@keyframes dashboard-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.dashboard-user img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.dashboard-user__info {
+  min-width: 0;
+}
+
+.dashboard-user__name {
+  display: block;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-user__email {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dashboard-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--faint);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contrib-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.contrib-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px;
+  background: var(--canvas-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: 4px;
+}
+
+.contrib-item__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.contrib-item__title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contrib-item__title:hover {
+  color: var(--blue);
+}
+
+.contrib-item__pr-link {
+  flex-shrink: 0;
+  color: var(--blue);
+  display: inline-flex;
+}
+
+.contrib-item__pr-link svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.contrib-item__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--faint);
+}
+
+.contrib-item__badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: var(--blue-soft);
+  color: var(--blue-hover);
+}
+
+.contrib-item__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.contrib-item__btn {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.contrib-item__btn:hover {
+  background: var(--canvas);
+  border-color: var(--faint);
+}
+
+.contrib-empty {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+  padding: 12px;
+}
+
+.signout-btn {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--line);
+  background: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--faint);
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: all 0.15s ease;
+}
+
+.signout-btn:hover {
+  background: var(--error);
+  color: #fff;
+  border-color: var(--error);
+}
+
+.edit-btn--secondary {
+  background: var(--canvas) !important;
+  border: 1px solid var(--line) !important;
+  color: var(--ink) !important;
+}
+
+.edit-btn--secondary:hover {
+  background: var(--canvas-soft) !important;
+  border-color: var(--faint) !important;
+}
+
