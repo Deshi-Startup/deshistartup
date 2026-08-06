@@ -21,6 +21,7 @@ import sectionsLite from '../generated/sections-lite.json'
 
 // Heavy (Milkdown) – only loads when a contributor opens the editor.
 const ContributionEditor = dynamic(() => import('./ContributionEditor'), { ssr: false })
+import ContributorDashboard from './ContributorDashboard'
 
 interface SectionsLite {
   en?: Record<string, string>
@@ -246,11 +247,35 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   const [exitSignal, setExitSignal] = useState(0)
   const [flash, setFlash] = useState<SubmitResult | null>(null)
   const [authOpen, setAuthOpen] = useState(false)
+  const [dashboardOpen, setDashboardOpen] = useState(false)
+  const [pendingCount, setPendingCount] = useState(0)
   const navToggleRef = useRef<HTMLButtonElement>(null)
   const sidebarRef = useRef<HTMLDivElement>(null)
   const sidebarCloseRef = useRef<HTMLButtonElement>(null)
   const articleRef = useRef<HTMLElement>(null)
   const scrollBeforeEdit = useRef(0)
+
+  const refreshPendingCount = useCallback((token: string | null) => {
+    if (!token) {
+      setPendingCount(0)
+      return
+    }
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+    fetch(`${basePath}/api/contributions`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(async (res) => {
+        if (res.ok) {
+          const j = await res.json().catch(() => ({}))
+          if (Array.isArray(j.contributions)) {
+            setPendingCount(j.contributions.length)
+          }
+        }
+      })
+      .catch((err) => {
+        console.error('[LocalizedLayout] Failed to refresh pending count:', err)
+      })
+  }, [])
 
   // Restore a still-valid Google ID token from localStorage on mount, and honour
   // a shared ?action=edit link the way a wiki does: land straight in the editor.
@@ -259,6 +284,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     if (stored) {
       setSession(stored.user)
       setAuthToken(stored.token)
+      refreshPendingCount(stored.token)
     }
     const wantsEdit = new URLSearchParams(window.location.search).get('action') === 'edit'
     if (!wantsEdit || pathname === '/' || pathname === '/en' || isPrivateReview || isNotFound) return
@@ -293,7 +319,12 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   }, [])
 
   const handleExit = useCallback(() => exitEdit(), [exitEdit])
-  const handleSubmitted = useCallback((result: SubmitResult) => exitEdit(result), [exitEdit])
+  const handleSubmitted = useCallback((result: SubmitResult) => {
+    exitEdit(result)
+    setTimeout(() => {
+      refreshPendingCount(authToken)
+    }, 1000)
+  }, [exitEdit, authToken, refreshPendingCount])
 
   // The server rejected the stored token. Forget it here so the next press of
   // সম্পাদনা offers a fresh sign-in rather than the same failure again.
@@ -301,6 +332,8 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     clearAuth()
     setSession(null)
     setAuthToken(null)
+    setPendingCount(0)
+    setDashboardOpen(false)
   }, [])
 
   function handleContribute() {
@@ -311,6 +344,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   function handleAuthenticated(user: UserInfo, token: string) {
     setSession(user)
     setAuthToken(token)
+    refreshPendingCount(token)
     if (!isEditing) enterEdit()
   }
 
@@ -576,6 +610,38 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
               <span>Discord</span>
             </a>
             {!isPrivateReview && <LanguageSwitcher />}
+
+            {session ? (
+              <div className="profile-menu-container">
+                <button
+                  type="button"
+                  className="profile-btn"
+                  onClick={() => setDashboardOpen((open) => !open)}
+                  aria-label={isEn ? 'Contributor dashboard' : 'কন্ট্রিবিউটর ড্যাশবোর্ড'}
+                >
+                  <img src={session.picture} alt="" />
+                  {pendingCount > 0 && <span className="pending-badge">{pendingCount}</span>}
+                </button>
+                {dashboardOpen && (
+                  <ContributorDashboard
+                    session={session}
+                    authToken={authToken}
+                    onClose={() => setDashboardOpen(false)}
+                    onSignOut={handleSessionExpired}
+                    isEn={isEn}
+                  />
+                )}
+              </div>
+            ) : (
+              <button
+                type="button"
+                className="signin-link-btn"
+                onClick={() => setAuthOpen(true)}
+              >
+                {isEn ? 'Sign In' : 'প্রবেশ করুন'}
+              </button>
+            )}
+
             <button
               className="nav-toggle"
               type="button"
