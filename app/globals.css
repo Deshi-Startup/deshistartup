@@ -1329,6 +1329,10 @@ a.is-stub-link:hover {
   margin: 22px 0;
 }
 
+/* Filter count varies by directory category, so the track list is keyed off a
+   data attribute rather than an inline style: an inline grid-template-columns
+   outranks the mobile collapse below and pushes the Reset button off-screen. */
+
 .directory-controls {
   display: grid;
   grid-template-columns: minmax(220px, 1.4fr) repeat(3, minmax(150px, 1fr)) auto;
@@ -1338,6 +1342,14 @@ a.is-stub-link:hover {
   border: 1px solid var(--line);
   background: var(--canvas-soft);
   padding: 12px;
+}
+
+.directory-controls[data-filters='1'] {
+  grid-template-columns: minmax(220px, 1.4fr) minmax(150px, 1fr) auto;
+}
+
+.directory-controls[data-filters='2'] {
+  grid-template-columns: minmax(220px, 1.4fr) repeat(2, minmax(150px, 1fr)) auto;
 }
 
 .directory-controls label {
@@ -2345,7 +2357,10 @@ a.is-stub-link:hover {
     margin: 0 0 14px;
   }
 
+  /* Matches the specificity of the per-count rules above and comes later, so
+     every directory collapses to one column here. */
   .directory-controls,
+  .directory-controls[data-filters],
   .wiki-scope-grid,
   .wiki-source-list {
     grid-template-columns: 1fr;

@@ -105,6 +105,22 @@ function collectGitDates() {
   return { modified, published };
 }
 
+// A directory page is a shell around data/directory/*.json. With no rows it is
+// as unwritten as a StubNotice page, so it must not be counted as written,
+// indexed, or listed in the sitemap and llms.txt. Flips back on its own as soon
+// as entries land, so no page edit is needed when the data arrives.
+function rendersEmptyDirectory(source) {
+  const match = source.match(/<DirectoryList[^>]*\bcategory=["']([^"']+)["']/);
+  if (!match) return false;
+  const dataPath = path.join(root, "data", "directory", `${match[1]}.json`);
+  try {
+    return JSON.parse(fs.readFileSync(dataPath, "utf8")).length === 0;
+  } catch {
+    // Missing or unparseable data renders nothing either way.
+    return true;
+  }
+}
+
 function walkPages(dir, baseDir) {
   const pages = [];
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -140,7 +156,8 @@ for (const locale of LOCALES) {
     const source = fs.readFileSync(filePath, "utf8");
     const fm = parseFrontmatter(source);
     const title = fm.title || firstHeading(source) || rel;
-    const isStub = source.includes("<StubNotice");
+    const isStub =
+      source.includes("<StubNotice") || rendersEmptyDirectory(source);
     const route =
       rel === "" ? locale.routePrefix || "/" : `${locale.routePrefix}/${rel}`;
     const repoPath = path.relative(root, filePath).split(path.sep).join("/");

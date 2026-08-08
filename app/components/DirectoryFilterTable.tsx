@@ -281,11 +281,7 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
 
   return (
     <div className="directory-list">
-      <div
-        className="directory-controls"
-        role="search"
-        style={{ gridTemplateColumns: `minmax(220px, 1.4fr) repeat(${config.filters.length}, minmax(150px, 1fr)) auto` }}
-      >
+      <div className="directory-controls" role="search" data-filters={config.filters.length}>
         <label className="directory-search">
           <span>{labels.search}</span>
           <input

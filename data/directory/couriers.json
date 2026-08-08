@@ -1,1 +1,93 @@
-[]
+[
+  {
+    "name": "Pathao Courier",
+    "type": "E-commerce courier",
+    "coverage": "64 districts; home delivery stated in every district.",
+    "codSupport": "Yes — 0.5% COD charge inside Dhaka Metropolitan City, 1% outside Dhaka City.",
+    "pricing": "Same city (24h) BDT 60–90; suburbs (72h) BDT 80–130; inter-city Dhaka (72h) BDT 110–170; outside Dhaka (72h) BDT 120–180. Extra charge above 2 kg.",
+    "api": "Not stated on the courier page; merchants integrate through the merchant panel.",
+    "applicationPath": "Register at merchant.pathao.com/register with business name, owner name, mobile and email, then add store and payout details.",
+    "website": "https://pathao.com/courier/",
+    "sourceUrl": "https://pathao.com/courier/",
+    "lastVerified": "2026-08-08",
+    "notes": "Publishes both a rate range and the COD percentage, which most couriers here do not. Rate bands vary by weight — confirm your own weight class."
+  },
+  {
+    "name": "Paperfly",
+    "type": "E-commerce courier",
+    "coverage": "Same city, periphery/suburb and rest of Bangladesh. Parcels up to 8 kg.",
+    "codSupport": "Yes — 0% COD charge for same-city delivery, 1% for periphery/suburb and rest of Bangladesh, on the collected amount.",
+    "pricing": "Standard up to 1 kg: BDT 70 same city, BDT 110 periphery/suburb, BDT 130 rest of Bangladesh. BDT 20 per additional kg. Charges include VAT and tax.",
+    "api": "Not publicly stated",
+    "applicationPath": "Register through the Paperfly site, then use the merchant panel.",
+    "website": "https://paperfly.com.bd/",
+    "sourceUrl": "https://paperfly.com.bd/",
+    "lastVerified": "2026-08-08",
+    "notes": "States no additional return charge — only one attempted delivery charge applies. Exchange and partial delivery add 50% of the delivery charge on top of one forward charge."
+  },
+  {
+    "name": "eCourier",
+    "type": "E-commerce courier",
+    "coverage": "Inside Dhaka, outside Dhaka metro, and thana/union areas.",
+    "codSupport": "Yes — COD reconciliation, reporting and settlement listed on both plans.",
+    "pricing": "Inside Dhaka next-day standard (24–48h) BDT 80; outside Dhaka metro (3–4 days) BDT 130; outside Dhaka thana/union (5–7 days) BDT 160.",
+    "api": "Express plan only — the Standard plan lists no API access.",
+    "applicationPath": "Sign up from the pricing page; the Express plan states a two-month minimum signup period.",
+    "website": "https://ecourier.com.bd/",
+    "sourceUrl": "https://ecourier.com.bd/pricing",
+    "lastVerified": "2026-08-08",
+    "notes": "Publishes a plan comparison rather than a single rate card. If you need API access or multi-pickup addresses, those sit on the paid Express tier."
+  },
+  {
+    "name": "Steadfast Courier",
+    "type": "E-commerce courier",
+    "coverage": "Stated as available in 64 districts.",
+    "codSupport": "Yes — the site states it collects cash on behalf of the merchant.",
+    "pricing": "Not publicly stated; the site offers a price calculator instead of a rate card.",
+    "api": "Not publicly stated",
+    "applicationPath": "Sign up as a merchant on steadfast.com.bd.",
+    "website": "https://steadfast.com.bd/",
+    "sourceUrl": "https://steadfast.com.bd/coverage",
+    "lastVerified": "2026-08-08",
+    "notes": "Claims 300k registered merchants and unlimited daily pickup. Get the rate from the calculator or your account manager before comparing with the couriers that publish one."
+  },
+  {
+    "name": "REDX",
+    "type": "E-commerce courier",
+    "coverage": "Stated as 490+ upazilas across Bangladesh.",
+    "codSupport": "Not publicly stated",
+    "pricing": "Not publicly stated",
+    "api": "Yes — an open developer API for parcel creation, pickup stores and tracking, plus WordPress and Shopify integrations, with a sandbox environment.",
+    "applicationPath": "Register through redx.com.bd/registration.",
+    "website": "https://redx.com.bd/",
+    "sourceUrl": "https://redx.com.bd/coverage-area/",
+    "lastVerified": "2026-08-08",
+    "notes": "The RedX site renders entirely in the browser, so its pages could not be read directly on the verification date — the coverage and API details here come from the indexed official pages. Confirm rates and COD terms in the merchant panel."
+  },
+  {
+    "name": "S.A. Paribahan",
+    "type": "Courier and cargo network",
+    "coverage": "64 districts, 120+ branches and 8 divisional hubs; international hubs in Malaysia and Singapore.",
+    "codSupport": "Not publicly stated",
+    "pricing": "Not publicly stated; the site directs visitors to request a quote.",
+    "api": "Yes — corporate API integration for connecting an e-commerce store is advertised.",
+    "applicationPath": "Request a quote through the S.A. Paribahan site.",
+    "website": "https://saparibahan.com/",
+    "sourceUrl": "https://saparibahan.com/",
+    "lastVerified": "2026-08-08",
+    "notes": "Branch-and-cargo network with an e-commerce express service on top, rather than an e-commerce-first merchant platform. Useful for bulk and heavy consignments."
+  },
+  {
+    "name": "Sundarban Courier Service",
+    "type": "Courier and cargo network",
+    "coverage": "600+ outlets, with 160 branches and agency offices nationwide.",
+    "codSupport": "Collects the value-declared amount against e-commerce and condition parcels through its branch network.",
+    "pricing": "Not publicly stated",
+    "api": "Not publicly stated; a customer portal exists at customer.sundarbancourierltd.com.",
+    "applicationPath": "Contact through the customer portal or the 16214 hotline.",
+    "website": "https://www.sundarbancourierltd.com/",
+    "sourceUrl": "https://www.sundarbancourierltd.com/",
+    "lastVerified": "2026-08-08",
+    "notes": "The oldest and widest branch network of the couriers here. Strong where a customer will collect from a counter; weaker as a doorstep e-commerce workflow."
+  }
+]

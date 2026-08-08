@@ -1,1 +1,114 @@
-[]
+[
+  {
+    "name": "Startup Bangladesh Limited",
+    "type": "Government-backed venture capital",
+    "eligibility": "Not publicly stated; the Fund of Funds track publishes separate eligibility criteria for fund managers.",
+    "amount": "Not publicly stated",
+    "stage": [
+      "Seed",
+      "Early stage",
+      "Growth"
+    ],
+    "deadline": "Rolling — no deadline published",
+    "applicationPath": "Apply through the Application for Investment page.",
+    "website": "https://www.startupbangladesh.vc/",
+    "sourceUrl": "https://www.startupbangladesh.vc/contact/apply-for-investment/",
+    "lastVerified": "2026-08-08",
+    "notes": "The government's own venture capital company. Also listed in the investor directory — this entry covers the government-funding route into it."
+  },
+  {
+    "name": "iDEA Project, ICT Division",
+    "type": "Government grant programme",
+    "eligibility": "Early-stage or newly established ventures for the pre-seed startup grant; small and medium ICT-based entrepreneurs for the SME grant.",
+    "amount": "Not publicly stated as a fixed tier on the project site.",
+    "stage": [
+      "Idea",
+      "Pre-seed",
+      "SME"
+    ],
+    "deadline": "Not publicly stated",
+    "applicationPath": "Apply for the Startup Grant, SME Grant or co-working space through the iDEA portal; an SoP for the startup grant is published.",
+    "website": "https://idea.gov.bd/",
+    "sourceUrl": "https://idea.gov.bd/",
+    "lastVerified": "2026-08-08",
+    "notes": "Innovation Design and Entrepreneurship Academy, run by the ICT Division. States 450+ startups funded. Free co-working space is offered alongside the grants."
+  },
+  {
+    "name": "Bangladesh Bank Startup Fund",
+    "type": "Central bank refinance scheme, disbursed through banks",
+    "eligibility": "Startup entrepreneurs borrowing through a scheduled bank; 10% of the fund is reserved for women entrepreneurs.",
+    "amount": "BDT 5,000 million refinancing revolving fund at Bangladesh Bank, plus separate bank-level funds built from 1% of yearly operating profit (2021–2025).",
+    "stage": [
+      "Early stage"
+    ],
+    "deadline": "Rolling — administered by the lending bank",
+    "applicationPath": "Apply through a scheduled bank, not Bangladesh Bank directly.",
+    "website": "https://www.bb.org.bd/",
+    "sourceUrl": "https://www.bb.org.bd/smeportal/schemes.php",
+    "lastVerified": "2026-08-08",
+    "notes": "Policy caps the borrower's interest rate at 4%. This is debt, not equity — confirm current terms, security requirements and the bank's own conditions before counting on it."
+  },
+  {
+    "name": "SME Foundation",
+    "type": "Government-established SME development body",
+    "eligibility": "Small and medium enterprises; a separate women entrepreneur development track exists.",
+    "amount": "Not publicly stated",
+    "stage": [
+      "SME",
+      "Growth"
+    ],
+    "deadline": "Not publicly stated",
+    "applicationPath": "Access to Finance credit wholesaling and Business Support Services through smef.gov.bd.",
+    "website": "https://smef.gov.bd/",
+    "sourceUrl": "https://smef.gov.bd/",
+    "lastVerified": "2026-08-08",
+    "notes": "Runs credit wholesaling through partner banks rather than lending directly, plus advisory centres, a women entrepreneurs directory and policy advocacy. Publishes a bank loan checklist and business plan template."
+  },
+  {
+    "name": "Bangladesh Hi-Tech Park Authority (BHTPA)",
+    "type": "Government authority — parks, incentives and one-stop service",
+    "eligibility": "IT and ITES companies and investors locating in a hi-tech park.",
+    "amount": "Not publicly stated; an incentive package is published separately.",
+    "stage": [
+      "Early stage",
+      "Growth"
+    ],
+    "deadline": "Rolling",
+    "applicationPath": "Apply through the BHTPA One Stop Service (OSS) portal.",
+    "website": "https://bhtpa.gov.bd/",
+    "sourceUrl": "https://bhtpa.gov.bd/",
+    "lastVerified": "2026-08-08",
+    "notes": "The value here is space, tax and duty incentives rather than cash. Read the published incentive package before assuming any specific exemption applies to you."
+  },
+  {
+    "name": "Bangladesh Small and Cottage Industries Corporation (BSCIC)",
+    "type": "Government corporation — small and cottage industry",
+    "eligibility": "Small and cottage industries; district office network handles applications.",
+    "amount": "Not publicly stated",
+    "stage": [
+      "Idea",
+      "SME"
+    ],
+    "deadline": "Not publicly stated",
+    "applicationPath": "BSCIC One Stop Service and district offices.",
+    "website": "https://bscic.gov.bd/",
+    "sourceUrl": "https://bscic.gov.bd/",
+    "lastVerified": "2026-08-08",
+    "notes": "Runs loan programmes, training, industrial estate plots and published project profiles. Oriented to manufacturing and cottage industry more than to software startups."
+  },
+  {
+    "name": "EDGE Project, Bangladesh Computer Council",
+    "type": "World Bank and Government of Bangladesh project",
+    "eligibility": "Programme-specific — innovators, entrepreneurs and organisations.",
+    "amount": "Not publicly stated",
+    "stage": [
+      "Early stage"
+    ],
+    "deadline": "Programme-specific",
+    "applicationPath": "Join through edge.gov.bd; a Hire and Train programme application is advertised.",
+    "website": "https://edge.gov.bd/",
+    "sourceUrl": "https://edge.gov.bd/",
+    "lastVerified": "2026-08-08",
+    "notes": "Enhancing Digital Government and Economy — a BCC project under the ICT Division. Offers skills, 4IR and research centres rather than direct startup capital."
+  }
+]
