@@ -1,0 +1,69 @@
+[
+  {
+    "name": "SSLCOMMERZ",
+    "type": "Payment gateway aggregator",
+    "fees": "Basic plan: BDT 25,500 one-time setup, then 2.5% per successful transaction (3.5% for American Express).",
+    "settlement": "Not publicly stated",
+    "supportedMethods": [
+      "Cards",
+      "Mobile financial services",
+      "Internet banking"
+    ],
+    "requiredDocs": "Proprietorship: trade licence, company bank account and cheque leaf, signatory photo and NID, TIN certificate, DBID, signed MEF and undertaking. Partnership adds the partnership deed, company BIN and letter of authorisation. Limited company: trade licence, incorporation certificate, MOA/AOA, Form XII, company BIN/VAT certificate, bank cheque leaf, signatory NID and photo, signed MEF.",
+    "applicationPath": "Sign up through join.sslcommerz.com; the site advertises a five-minute signup and merchant dashboard access.",
+    "website": "https://sslcommerz.com/",
+    "sourceUrl": "https://sslcommerz.com/pricing/",
+    "lastVerified": "2026-08-08",
+    "notes": "Names Visa, Mastercard, bKash, Nagad and Rocket on its pricing page. One of the few gateways in Bangladesh that publishes a rate card — settlement timing is not on it, so ask before you sign."
+  },
+  {
+    "name": "aamarPay",
+    "type": "Payment gateway aggregator",
+    "fees": "Not publicly stated. The pricing page asks merchants to request a quote and says there is no monthly fee.",
+    "settlement": "Disbursed twice weekly on available working days; no payout on bank holidays, weekly closures or government holidays.",
+    "supportedMethods": [
+      "Cards",
+      "Mobile financial services",
+      "Internet banking",
+      "QR"
+    ],
+    "requiredDocs": "Trade licence, TIN, VAT certificate (if any), NID and one photo. Partnerships add the partnership deed; private limited companies add the incorporation certificate and memorandum and articles.",
+    "applicationPath": "Request a quote or sign up through the aamarPay site.",
+    "website": "https://aamarpay.com/",
+    "sourceUrl": "https://aamarpay.com/index.php/faq",
+    "lastVerified": "2026-08-08",
+    "notes": "Also offers payment links, invoicing and QR collection alongside the hosted gateway. Rates are quoted per merchant, so compare against a gateway that publishes one."
+  },
+  {
+    "name": "ShurjoPay",
+    "type": "Payment gateway aggregator",
+    "fees": "Not publicly stated",
+    "settlement": "Not publicly stated",
+    "supportedMethods": [
+      "Cards",
+      "Mobile financial services",
+      "Bank EMI"
+    ],
+    "requiredDocs": "Not itemised; the site states onboarding needs minimum documentation and is entirely online.",
+    "applicationPath": "Start from the ShurjoPay site; the site states onboarding is entirely online with minimum documentation.",
+    "website": "https://shurjopay.com.bd/",
+    "sourceUrl": "https://shurjopay.com.bd/",
+    "lastVerified": "2026-08-08",
+    "notes": "Operated by shurjoMukhi Solutions. The site claims 36+ payment channels and bank EMI options, and 1500+ merchants. No rate card is published."
+  },
+  {
+    "name": "bKash Online Payment Gateway",
+    "type": "Mobile financial service, direct integration",
+    "fees": "Not publicly stated",
+    "settlement": "Not publicly stated",
+    "supportedMethods": [
+      "Mobile financial services"
+    ],
+    "requiredDocs": "Not publicly stated",
+    "applicationPath": "Integration is documented on the bKash developer portal; commercial terms come through bKash merchant onboarding.",
+    "website": "https://developer.bka.sh/",
+    "sourceUrl": "https://developer.bka.sh/",
+    "lastVerified": "2026-08-08",
+    "notes": "Covers the bKash wallet only. The developer portal documents hosted Checkout, tokenized payment, instant payout (B2C) and webhooks. Taking bKash directly instead of through an aggregator means one more integration to maintain — worth it only at volume."
+  }
+]

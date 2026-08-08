@@ -782,7 +782,31 @@
    "en": "Funding & Support",
    "slugs": [
     "investors",
-    "accelerators"
+    "accelerators",
+    "government-funding"
+   ]
+  },
+  {
+   "bn": "পেমেন্ট ও ডেলিভারি",
+   "en": "Payments & Delivery",
+   "slugs": [
+    "payment-gateways",
+    "couriers"
+   ]
+  },
+  {
+   "bn": "আইন, হিসাব ও সরকারি সেবা",
+   "en": "Legal, Accounting & Government",
+   "slugs": [
+    "legal-accounting",
+    "government-services"
+   ]
+  },
+  {
+   "bn": "কাজের জায়গা",
+   "en": "Workspace",
+   "slugs": [
+    "coworking"
    ]
   }
  ]
