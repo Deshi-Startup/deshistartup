@@ -1,4 +1,5 @@
-# Cache policy for Cloudflare Workers static assets.
+# Response headers for Cloudflare Workers static assets: transport security
+# first, then cache policy.
 #
 # Workers serves every asset with `public, max-age=0, must-revalidate` unless
 # told otherwise. This site has no client-side routing, so each click is a full
@@ -12,6 +13,18 @@
 # corrected fee or date is live the moment it is deployed.
 #
 # GitHub Pages ignores this file; it is read only by the Cloudflare deployment.
+
+# Transport security for every asset response. This has to live here rather than
+# in the Worker: static assets are served without running Worker code, so a page
+# load never reaches worker/index.ts and could not pick the header up there.
+#
+# This tells a browser that has already been here once to refuse plaintext, but
+# it cannot fix the very first visit — nothing is enforcing the http -> https
+# redirect at the edge, and that is a zone setting ("Always Use HTTPS"), not a
+# file in this repository. Sets no Cache-Control, so the policies below still
+# apply unchanged.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
 
 # Next.js build output: CSS, JS chunks and the self-hosted fonts under media/.
 # Every filename here carries a content hash.

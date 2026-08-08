@@ -184,9 +184,14 @@ Runtime variables and secrets are documented in `.env.local.example` and `wrangl
 Deployment architecture and size budgets are documented in
 [`plan/deployment-architecture.md`](./plan/deployment-architecture.md).
 
-`public/_headers` (copied to `out/_headers`) is the asset cache policy. Only hash-named files are
-marked immutable; HTML stays revalidating so a corrected fee goes live on deploy. Add a rule there
-rather than in the Worker when a new asset directory needs its own policy.
+`public/_headers` (copied to `out/_headers`) carries the asset response headers: the site-wide
+`Strict-Transport-Security` rule, then the cache policy. Only hash-named files are marked
+immutable; HTML stays revalidating so a corrected fee goes live on deploy. Add a rule there
+rather than in the Worker when a new asset directory needs its own policy — static assets are
+served without running Worker code, so a header set in `worker/index.ts` never reaches a page load.
+
+The http -> https redirect is **not** in this repository. It is the zone-level "Always Use HTTPS"
+setting in the Cloudflare dashboard; the Worker cannot stand in for it, for the same reason.
 
 Pushing `main` deploys production. Never push unless Shamir asks.
 
