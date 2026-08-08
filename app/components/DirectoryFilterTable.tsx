@@ -26,6 +26,7 @@ export type DirectoryCategory =
   | 'couriers'
   | 'legal-accounting'
   | 'government-services'
+  | 'coworking'
 
 interface LocalText {
   bn: string
@@ -115,6 +116,7 @@ const CATEGORY_CONFIG: Record<DirectoryCategory, CategoryConfig> = {
       { key: 'fees', label: { bn: 'ফি', en: 'Fees' } },
       { key: 'settlement', label: { bn: 'সেটেলমেন্ট', en: 'Settlement' } },
       { key: 'supportedMethods', label: { bn: 'মাধ্যম', en: 'Methods' } },
+      { key: 'requiredDocs', label: { bn: 'যেসব কাগজ লাগে', en: 'Documents needed' } },
       applicationPathColumn
     ],
     filters: [
@@ -133,6 +135,7 @@ const CATEGORY_CONFIG: Record<DirectoryCategory, CategoryConfig> = {
       { key: 'coverage', label: { bn: 'কভারেজ', en: 'Coverage' } },
       { key: 'codSupport', label: { bn: 'COD', en: 'COD' } },
       { key: 'pricing', label: { bn: 'ভাড়া', en: 'Pricing' } },
+      { key: 'returnHandling', label: { bn: 'ফেরত', en: 'Returns' } },
       { key: 'api', label: { bn: 'API', en: 'API' } },
       applicationPathColumn
     ],
@@ -168,6 +171,25 @@ const CATEGORY_CONFIG: Record<DirectoryCategory, CategoryConfig> = {
       }
     ],
     searchPlaceholder: { bn: 'নাম, সেবা বা নোট', en: 'Name, service or notes' }
+  },
+  coworking: {
+    columns: [
+      typeColumn,
+      { key: 'locations', label: { bn: 'এলাকা', en: 'Locations' } },
+      { key: 'priceRange', label: { bn: 'খরচ', en: 'Pricing' } },
+      { key: 'facilities', label: { bn: 'সুবিধা', en: 'Facilities' } },
+      { key: 'hours', label: { bn: 'সময়', en: 'Hours' } },
+      applicationPathColumn
+    ],
+    filters: [
+      typeFilter,
+      {
+        key: 'city',
+        label: { bn: 'শহর', en: 'City' },
+        allLabel: { bn: 'সব শহর', en: 'All cities' }
+      }
+    ],
+    searchPlaceholder: { bn: 'নাম, এলাকা বা নোট', en: 'Name, area or notes' }
   }
 }
 
@@ -313,46 +335,42 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
       <div className="directory-list__summary" aria-live="polite">
         {labels.showing(shownCount, totalCount)}
       </div>
-      <div className="directory-table-wrap">
+      <div className="directory-results">
         {filteredRows.length > 0 ? (
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">{labels.name}</th>
-                {config.columns.map((column) => (
-                  <th key={column.key} scope="col">{isEn ? column.label.en : column.label.bn}</th>
-                ))}
-                <th scope="col">{labels.source}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredRows.map((row, index) => (
-                // Two entries can share a name, and directory data is edited by
-                // hand: index keeps a collision from silently dropping a row.
-                <tr key={`${row.name}-${index}`}>
-                  <td>
-                    <strong>{row.name}</strong>
-                    <span>{row.notes}</span>
-                  </td>
+          // Most values here are sentences, not tokens — a nine-column grid gave
+          // every one of them a ~60px track and broke words mid-character. One
+          // card per entry, with the fields as a labelled definition list, reads
+          // at any width and takes a new field without squeezing the rest.
+          <div className="directory-cards">
+            {filteredRows.map((row, index) => (
+              // Two entries can share a name, and directory data is edited by
+              // hand: index keeps a collision from silently dropping a row.
+              <article className="directory-card" key={`${row.name}-${index}`}>
+                <h3>{row.name}</h3>
+                {row.notes && <p className="directory-card__note">{row.notes}</p>}
+                <dl>
                   {config.columns.map((column) => (
-                    <td key={column.key}>{asText(row[column.key], fallback)}</td>
+                    <div key={column.key}>
+                      <dt>{isEn ? column.label.en : column.label.bn}</dt>
+                      <dd>{asText(row[column.key], fallback)}</dd>
+                    </div>
                   ))}
-                  <td>
-                    {row.sourceUrl ? (
-                      <a href={row.sourceUrl} target="_blank" rel="noopener noreferrer">
-                        {labels.source}
-                      </a>
-                    ) : (
-                      labels.source
-                    )}
-                    <span>
-                      {labels.verified}: {isEn ? row.lastVerified : formatBanglaDate(row.lastVerified)}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                </dl>
+                <p className="directory-card__source">
+                  {row.sourceUrl ? (
+                    <a href={row.sourceUrl} target="_blank" rel="noopener noreferrer">
+                      {labels.source}
+                    </a>
+                  ) : (
+                    labels.source
+                  )}
+                  <span>
+                    {labels.verified}: {isEn ? row.lastVerified : formatBanglaDate(row.lastVerified)}
+                  </span>
+                </p>
+              </article>
+            ))}
+          </div>
         ) : (
           <p className="directory-empty">{labels.noResults}</p>
         )}

@@ -1406,32 +1406,72 @@ a.is-stub-link:hover {
   font-weight: 700;
 }
 
-.directory-table-wrap {
-  overflow-x: auto;
+/* One card per entry instead of a wide table. Directory values are sentences —
+   coverage areas, rate bands, application steps — and a column grid gave each of
+   them a track too narrow to hold a word, so text broke mid-character. Cards
+   also mean a new field costs one more labelled line, not one more squeezed
+   column, and there is no horizontal scroll at any width. */
+
+.directory-cards {
+  display: grid;
+  gap: 12px;
+}
+
+.directory-card {
   border: 1px solid var(--line);
   background: var(--canvas);
+  padding: 16px 18px;
 }
 
-.directory-list table {
-  min-width: 860px;
+.directory-card h3 {
   margin: 0;
-  font-size: 0.85rem;
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
-.directory-list td:first-child {
-  min-width: 190px;
-}
-
-.directory-list td strong,
-.directory-list td span {
-  display: block;
-}
-
-.directory-list td span {
-  margin-top: 4px;
+.directory-card__note {
+  margin: 6px 0 0;
   color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.directory-card dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px 20px;
+  margin: 14px 0 0;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.directory-card dt {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.directory-card dd {
+  margin: 2px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.directory-card__source {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+  margin: 12px 0 0;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
   font-size: 0.82rem;
-  line-height: 1.45;
+}
+
+.directory-card__source span {
+  color: var(--muted);
 }
 
 .directory-empty {
@@ -2376,8 +2416,8 @@ a.is-stub-link:hover {
     grid-template-columns: 104px 1fr;
   }
 
-  .site-footer {
-    padding: 22px 18px 28px;
+  .directory-card {
+    padding: 14px;
   }
 }
 

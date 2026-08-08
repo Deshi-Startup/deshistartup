@@ -801,6 +801,13 @@
     "legal-accounting",
     "government-services"
    ]
+  },
+  {
+   "bn": "কাজের জায়গা",
+   "en": "Workspace",
+   "slugs": [
+    "coworking"
+   ]
   }
  ]
 }

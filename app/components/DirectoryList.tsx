@@ -6,6 +6,7 @@ import paymentGateways from '../../data/directory/payment-gateways.json'
 import couriers from '../../data/directory/couriers.json'
 import legalAccounting from '../../data/directory/legal-accounting.json'
 import governmentServices from '../../data/directory/government-services.json'
+import coworking from '../../data/directory/coworking.json'
 import DirectoryFilterTable, { DirectoryCategory, DirectoryRow } from './DirectoryFilterTable'
 
 const DATA: Record<DirectoryCategory, DirectoryRow[]> = {
@@ -15,7 +16,8 @@ const DATA: Record<DirectoryCategory, DirectoryRow[]> = {
   'payment-gateways': paymentGateways as unknown as DirectoryRow[],
   couriers: couriers as unknown as DirectoryRow[],
   'legal-accounting': legalAccounting as unknown as DirectoryRow[],
-  'government-services': governmentServices as unknown as DirectoryRow[]
+  'government-services': governmentServices as unknown as DirectoryRow[],
+  coworking: coworking as unknown as DirectoryRow[]
 }
 
 interface DirectoryListProps {
