@@ -1,13 +1,91 @@
 ---
 title: "Cap Table Basics in Plain English"
-description: "Cap Table Basics in Plain English – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+description: "Understanding capitalization tables, share classes, founder equity dilution, vesting schedules, and common equity management mistakes."
+verified: 2026-08-09
 ---
 
 # Cap Table Basics in Plain English
 
-<StubNotice path="funding/cap-table" locale="en" />
+*This guide is adapted from Shoumik Shahriar's ["Understanding Cap Table"](https://shoumik.substack.com/p/understanding-cap-table) on SS Notes.*[^shoumik-cap-table]
+
+> **In short:** A Cap Table (Capitalization Table) is a master spreadsheet that breaks down exactly who owns what in your startup. It tracks how many shares each person holds, what they paid, and how ownership gets diluted over time as you raise more funds.
+
+## Why Is a Cap Table Essential?
+
+At inception, equity ownership appears simple—such as two co-founders splitting ownership 50-50. However, as investors enter, Employee Stock Option Pools (ESOP) are carved out, or [SAFE notes](/funding/safe-convertible-notes) convert, the equity equation rapidly becomes complex.
+
+A clean cap table helps you accomplish three vital functions:
+1. **Ownership Clarity:** Gives an immediate snapshot of fully diluted ownership across founders, employees, and investors.
+2. **Dilution Modeling:** Lets you simulate future fundraising rounds to see exactly how your personal stake will shrink.
+3. **Governance & Control:** Helps track board control and voting rights before you sign a [Term Sheet](/funding/term-sheets).
+
+## Share Dilution: A Step-by-Step Scenario
+
+The most common failure mode for founders is not understanding dilution. Let’s walk through a practical scenario.
+
+Imagine you and your co-founder start with 1,00,000 shares total (50,000 each). 
+
+**Step 1: Angel Round**
+You raise 10 Lakh BDT at a 1 Crore BDT post-money valuation. The angel gets 10%.
+- New shares issued: 11,111
+- Total shares become: 1,11,111
+- Your ownership: 45%, Co-founder: 45%, Angel: 10%.
+
+**Step 2: ESOP Pool Created**
+You carve out a 10% options pool for future hires.
+- New shares issued: 12,345
+- Total shares become: 1,23,456
+- Your ownership dilutes down to 40.5%.
+
+**Step 3: Seed Round**
+You raise 50 Lakh BDT at a 5 Crore BDT pre-money valuation. 
+- Share price: 5 Crore / 1,23,456 = 405 BDT per share.
+- New shares issued: 50 Lakh / 405 = 12,345 shares.
+- Total shares become: 1,35,801.
+
+**Final Cap Table:**
+
+| Shareholder | Total Shares | Ownership % |
+|---|---|---|
+| Founder 1 | 50,000 | 36.8% |
+| Founder 2 | 50,000 | 36.8% |
+| Angel Investor | 11,111 | 8.2% |
+| ESOP | 12,345 | 9.1% |
+| Seed Investor | 12,345 | 9.1% |
+
+## Vesting: Protecting the Equity
+
+Shares aren't just handed out on day one; they are earned over time. A 4-year vesting schedule with a 1-year cliff is the standard.
+
+Imagine your co-founder Arif joins in January 2024 with 40,000 shares.
+- **1-Year Cliff:** If Arif leaves before 12 months, he gets 0 shares.
+- **After 1 Year:** In January 2025, 10,000 shares vest. He officially owns them.
+- **Monthly Thereafter:** The remaining 30,000 shares vest over the next 36 months (roughly 833 shares per month).
+- **Early Departure:** If Arif leaves after 18 months, he keeps the first year's 10,000 shares plus 6 months' worth (6 × 833 = 4,998) for a total of 14,998 shares. The remaining 25,002 shares return to the company.
+
+## Cap Tables and RJSC Compliance in Bangladesh
+
+Your Excel or Google Sheet cap table is just for internal math. In Bangladesh, the legally binding ownership record is held by the Registrar of Joint Stock Companies and Firms (RJSC).
+
+- **Form X (Return of Allotment):** Must be filed within a strict timeframe (usually 60 days) after any new shares are issued, to officially log the new allotment.
+- **Form IX:** Must be filed when a new director joins the board.
+
+If your internal cap table and the RJSC records don't match exactly, your fundraising legal due diligence will fail. Fixing RJSC records retroactively is notoriously painful, expensive, and time-consuming. Always rely on a professional lawyer or corporate agent to handle these filings.
+
+## Three Dangerous Cap Table Mistakes
+
+1. **Excessive Early Dilution:** Giving away 40%–50% equity in an angel round leaves founders under-incentivized. Series A VCs usually run away from cap tables where founders own too little.
+2. **Unvested Founder Equity:** If a co-founder leaves without a vesting schedule in place, they take their massive equity chunk with them, making the startup uninvestable. 
+3. **Unwritten Equity Promises:** Casual verbal or email promises like "I'll give you 2% for your help" lead to disastrous legal disputes. Document everything.
+
+## Action Plan
+
+- [ ] Build a standard cap table model in Google Sheets right now.
+- [ ] Track vested vs. unvested shares in separate columns for all founders and key personnel.
+- [ ] Audit your RJSC filings (Form X) to ensure they perfectly match your internal cap table.
+
+---
 
 ## Relevant Sources
 
-- [RJSC](https://roc.gov.bd)
-- [Prothom Alo Business](https://www.prothomalo.com/business)
+[^shoumik-cap-table]: Shoumik Shahriar, "[Understanding Cap Table](https://shoumik.substack.com/p/understanding-cap-table)," SS Notes (Substack).

@@ -9,7 +9,9 @@
     "shamirislam": "Shamir Islam",
     "uttamdeb": "Uttam Deb"
   },
-  "inlineAttributionLinks": {},
+  "inlineAttributionLinks": {
+    "Shoumik Shahriar": "https://shoumik.substack.com"
+  },
   "exclusions": {
     "githubLogins": [],
     "inlineNames": []
