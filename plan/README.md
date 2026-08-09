@@ -1,28 +1,47 @@
 # Planning
 
-This folder holds the authored decisions about what to build and maintain. Site content lives in
-`app/(contents)/`; generated status and manifests are outputs, not planning documents.
+This folder records durable, public decisions about Deshi Startup. It is not a task tracker or a
+second copy of the website.
 
-| File | What it is |
+## One home for each kind of work
+
+| Information | Owner |
 |---|---|
-| `vision.md` | Durable mission, principles, product shape and success criteria. |
-| `content-backlog.csv` | Canonical planned topics and permanent routes. `Path` is the route registry. |
-| `sources.csv` | Tiered source registry (63 sources): who to trust for what, with URLs. Use when adding sources to any page. |
-| `case-study-format.md` | The 15-field format every startup case study must follow. |
-| `directory-schema.csv` | Categories + suggested data fields for the ecosystem directory. |
-| `workflow-maps.csv` | Founder journeys and their ordered paths. |
-| `bd-insights.csv` | Bangladesh-specific research questions that should shape playbooks. |
-| `templates-tools.csv` | Planned templates, checklists, and calculators. |
-| `people-startups.csv` | Founders/startups to research for case studies, and where to look. |
-| `maintenance-calendar.md` | What to re-check, where and how often. |
-| `seo-operations.md` | Canonical SEO/GEO architecture, crawler policy, generated artifacts, validation and search-console release checklist. |
-| `media-operations.md` | R2 cost envelope, upload trust boundary, retention/pruning policy, and Cloudflare dashboard checklist. |
+| Mission, principles and boundaries | [`vision.md`](./vision.md) |
+| Current six-month outcomes and priorities | [`roadmap.md`](./roadmap.md) |
+| Planned topics and permanent routes | [`content-backlog.csv`](./content-backlog.csv) |
+| Current task, owner and status | GitHub Issues; add a project view only if the issue list becomes hard to follow |
+| Public source policy and starting sources | [`sources.csv`](./sources.csv) |
+| Research leads, interviews, outreach, consent and attribution | Notion's Research & Source Library |
+| Decisions made in chat or meetings | The relevant owning file above |
 
-Conventions:
+Do not create a GitHub wiki or duplicate the roadmap in Notion. Chat is useful for discussion, but
+an agreed decision should be moved to its owner so it can be found later.
 
-- CSVs are UTF-8, comma-separated, quoted where needed. Keep them machine-readable — no merged
-  prose blocks.
-- Do not repeat live counts or priority lists in prose. Run `npm run backlog:status`.
-- When a planning decision changes, update its one owning file in the same PR.
-- Raw scraped source material stays out of the public repo (`knowledge-bank/` is gitignored on
-  purpose — copyright hygiene). Everything in `plan/` is our own work.
+## Files
+
+| File | What it owns |
+|---|---|
+| `vision.md` | Durable mission, principles, boundaries and definition of success. |
+| `roadmap.md` | The current six-month focus, immediate priorities and outcome measures. |
+| `content-backlog.csv` | Canonical planned topics and routes. The `Path` column owns permanent URLs. |
+| `sources.csv` | Public, tiered starting sources for research and citations. |
+| `case-study-format.md` | The required structure for startup case studies. |
+| `maintenance-calendar.md` | What must be re-checked and how often. |
+| `seo-operations.md` | Search, crawler and generated SEO operations. |
+| `media-operations.md` | Media security, review, retention and cost controls. |
+| `deployment-architecture.md` | Deployment boundaries, checks and size budgets. |
+
+The live content tree owns journeys, directories and tools. Their pages and structured data should
+not be copied into planning spreadsheets.
+
+## Rules
+
+- Keep one owner for each fact. Link to it instead of copying it.
+- Keep live counts and task status out of prose. Run `npm run backlog:status` for current content
+  progress and use GitHub for current work.
+- Add a planning document only when no existing file can own the decision clearly.
+- Keep CSVs UTF-8 and machine-readable.
+- Keep raw source material, private contact details and unpublished interviews out of the public
+  repository. Record permission and attribution before reusing a person's contribution.
+- Change the owning file in the same pull request as the decision it records.

@@ -87,6 +87,10 @@ Facebook ভিডিওটি পাবলিক না হলে সাইট�
 রেজিস্ট্রেশন, শ্রম, পেমেন্ট ও ফান্ডিংয়ের মতো বড় সিদ্ধান্তের লেখায় প্রয়োজন হলে
 বিশেষজ্ঞের মত নেওয়া হয়।
 
+পূর্ণ গাইড মার্জ করার আগে একজন মেইনটেইনার রিভিউ করেন। কারও পদবি একা সূত্রের বিকল্প
+নয়। কোনো পাতায় রিভিউয়ারের নাম বা তারিখ তখনই দেখানো হবে, যখন সেই রিভিউ সত্যিই
+হয়েছে, কী দেখা হয়েছে তা নথিভুক্ত আছে এবং নাম প্রকাশের অনুমতি আছে।
+
 পরিবর্তন চাইলে আমরা লেখাটি নিয়েই কথা বলব, লেখককে নিয়ে নয়। মতভেদ হলে মূল সূত্র,
 পাঠকের সম্ভাব্য ক্ষতি এবং কোন ব্যাখ্যাটি বোঝা সহজ, এগুলো ধরে সিদ্ধান্ত হবে।
 
@@ -197,6 +201,10 @@ with permission can open them on Facebook.
 
 Reviewers check facts, sources, whether the next action is clear, possible harm and copyright.
 Content about legal, tax, registration, employment, payments and funding may need expert review.
+
+A maintainer reviews every complete guide before merge. A person's title is not a substitute for
+evidence. A page names and dates a reviewer only when that review happened, its scope was recorded
+and the reviewer allowed the project to identify them.
 
 Feedback should be about the page, not the person who wrote it. When reviewers disagree, primary
 sources, likely reader harm and clarity guide the decision.
