@@ -1,35 +1,16 @@
 /* ---------------------------------------------------------------------------
    দেশি স্টার্টআপ – classic wiki shell
    The original Wikipedia-inspired look: warm paper page, white content canvas
-   with a deep-green top rule, serif Bangla headings (weight reduced to 700),
-   familiar blue links, yellow accents. Bengali webfonts are self-hosted,
-   Bengali-subset, local()-first so most Android devices download nothing.
+   with a deep-green top rule and Tiro Bangla typography. Familiar blue links
+   and yellow accents remain. Bengali webfonts are self-hosted and split into
+   script-specific subsets.
    --------------------------------------------------------------------------- */
 
-/* Both files are cut to exactly the unicode-range declared below, with the
-   glyph-name and vertical-metrics tables dropped: nothing outside that range
-   can ever be drawn from these faces, so the names, the space and the vertical
-   metrics were bytes no reader could ever see. Reproduce with:
-
-     pyftsubset <in>.woff2 --output-file=<out>.woff2 --flavor=woff2 \
-       --unicodes="U+0951-0952,U+0964-0965,U+0980-09FE,U+1CD0,U+1CD2,\
-U+1CD5-1CD6,U+1CD8,U+1CE1,U+1CEA,U+1CED,U+1CF2,U+1CF5-1CF7,U+200C-200D,\
-U+20B9,U+25CC,U+A8F1" \
-       --layout-features='*' --no-hinting --no-glyph-names --name-IDs='' \
-       --drop-tables+=vhea,vmtx,gasp,STAT
-
-   --layout-features='*' is load-bearing: Bengali conjuncts are GSUB
-   substitutions, so dropping features would silently break যুক্তাক্ষর. */
-
 @font-face {
-  font-family: 'Noto Sans Bengali';
-  /* Plain woff2, not the old woff2-variations draft value: a browser must skip
-     any src whose format() it does not recognise, and variable support is read
-     from the file itself. The stale keyword risked dropping the source entirely
-     on the devices least able to spare a fallback. */
-  src: local('Noto Sans Bengali Regular'), local('NotoSansBengali-Regular'),
-    url('./fonts/noto-sans-bengali-var.woff2') format('woff2');
-  font-weight: 400 700;
+  font-family: 'Tiro Bangla';
+  src: local('Tiro Bangla Regular'), local('TiroBangla-Regular'),
+    url('./fonts/tiro-bangla-bengali-400.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
   unicode-range: U+0951-0952, U+0964-0965, U+0980-09FE, U+1CD0, U+1CD2,
@@ -38,15 +19,39 @@ U+20B9,U+25CC,U+A8F1" \
 }
 
 @font-face {
-  font-family: 'Noto Serif Bengali';
-  src: local('Noto Serif Bengali Bold'), local('NotoSerifBengali-Bold'),
-    url('./fonts/noto-serif-bengali-700.woff2') format('woff2');
-  font-weight: 700;
+  font-family: 'Tiro Bangla';
+  src: local('Tiro Bangla Regular'), local('TiroBangla-Regular'),
+    url('./fonts/tiro-bangla-latin-400.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Tiro Bangla';
+  src: local('Tiro Bangla Italic'), local('TiroBangla-Italic'),
+    url('./fonts/tiro-bangla-bengali-400-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
   font-display: swap;
   unicode-range: U+0951-0952, U+0964-0965, U+0980-09FE, U+1CD0, U+1CD2,
     U+1CD5-1CD6, U+1CD8, U+1CE1, U+1CEA, U+1CED, U+1CF2, U+1CF5-1CF7,
     U+200C-200D, U+20B9, U+25CC, U+A8F1;
+}
+
+@font-face {
+  font-family: 'Tiro Bangla';
+  src: local('Tiro Bangla Italic'), local('TiroBangla-Italic'),
+    url('./fonts/tiro-bangla-latin-400-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 :root {
@@ -89,9 +94,8 @@ U+20B9,U+25CC,U+A8F1" \
      while editing, because the header stacks to a second row on phones. */
   --header-h: 84px;
   --shadow: 0 14px 32px rgb(var(--ink-channels) / 8%);
-  --sans: '.SF Bangla', system-ui, -apple-system, BlinkMacSystemFont, 'Nirmala UI', 'Noto Sans Bengali',
-    'Noto Sans', 'Segoe UI', sans-serif;
-  --serif: 'Noto Serif Bengali', 'Noto Serif', Georgia, serif;
+  --sans: 'Tiro Bangla', Georgia, serif;
+  --serif: 'Tiro Bangla', Georgia, serif;
 }
 
 * {

@@ -37,13 +37,13 @@ function htmlFileFor(route) {
 }
 
 /**
- * The hashed URL of the Bengali serif, lifted out of the built stylesheet so it
- * carries whatever basePath this deployment was built with. Bengali headings are
- * set in it, and no common platform ships Noto Serif Bengali for the local()
- * source to match, so on a Bengali page it is always fetched. Left to @font-face
- * alone it is not discovered until the stylesheet has downloaded and parsed.
+ * The hashed URL of the primary Bengali face, lifted out of the built stylesheet
+ * so it carries whatever basePath this deployment was built with. Bengali pages
+ * use it throughout, and no common platform ships Tiro Bangla for the local()
+ * source to match. Left to @font-face alone it is not discovered until the
+ * stylesheet has downloaded and parsed.
  */
-function bengaliSerifUrl() {
+function bengaliPrimaryFontUrl() {
   const cssDirs = [
     path.join(root, '.next', 'static', 'css'),
     path.join(root, 'out', '_next', 'static', 'css')
@@ -54,15 +54,15 @@ function bengaliSerifUrl() {
       if (!name.endsWith('.css')) continue
       const match = fs
         .readFileSync(path.join(dir, name), 'utf8')
-        .match(/url\(\s*["']?([^"')]*noto-serif-bengali-700[^"')]*\.woff2)["']?\s*\)/)
+        .match(/url\(\s*["']?([^"')]*tiro-bangla-bengali-400(?!-italic)[^"')]*\.woff2)["']?\s*\)/)
       if (match) return match[1]
     }
   }
   return null
 }
 
-const serifUrl = bengaliSerifUrl()
-if (!serifUrl) console.warn('postbuild SEO: Bengali serif not found in built CSS; skipping font preload')
+const bengaliFontUrl = bengaliPrimaryFontUrl()
+if (!bengaliFontUrl) console.warn('postbuild SEO: primary Bengali font not found in built CSS; skipping font preload')
 
 function escapeHtml(value) {
   return String(value)
@@ -304,8 +304,8 @@ for (const page of pages) {
     // face's unicode-range keeps it unfetched there and a preload would be pure
     // cost. crossorigin is required or the preload misses and the font is
     // fetched twice.
-    ...(serifUrl && !isEn
-      ? [`<link rel="preload" as="font" type="font/woff2" href="${escapeHtml(serifUrl)}" crossorigin="anonymous"/>`]
+    ...(bengaliFontUrl && !isEn
+      ? [`<link rel="preload" as="font" type="font/woff2" href="${escapeHtml(bengaliFontUrl)}" crossorigin="anonymous"/>`]
       : []),
     `<meta name="robots" content="${robots}"/>`,
     `<meta http-equiv="content-language" content="${contentLanguage}"/>`,
