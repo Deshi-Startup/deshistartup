@@ -7,7 +7,7 @@
 লেখা বদলাতে কোড জানা বা নিজের কম্পিউটারে প্রজেক্ট চালানো লাগে না। সাইটের
 [অবদান পাতায়](https://deshistartup.com/contribute) ব্রাউজার থেকে কাজ করার পুরো ধাপ আছে।
 
-## শুরু করার ৩টি পথ
+## শুরু করার ৪টি পথ
 
 1. **ভুল জানান:** পাতার **ভুল জানান** লিংকে কোন তথ্যটি ভুল বা অস্পষ্ট, তা লিখুন।
    সঠিক তথ্য বা সরকারি সূত্র জানা থাকলে সঙ্গে দিন। রিপোর্ট পাঠাতে GitHub-এ সাইন ইন
@@ -17,6 +17,9 @@
    একটি পুল রিকোয়েস্ট তৈরি করবে।
 3. **পূর্ণ গাইড লিখুন:** কোনো **লেখা বাকি** পাতা বেছে নিন। একই বিষয়ে দুজন যেন
    একসঙ্গে কাজ না করেন, শুরু করার আগে ওই ইস্যুতে “আমি লিখছি” লিখুন।
+4. **নতুন বিষয় প্রস্তাব করুন:** সাইটে নেই এমন কোনো বিষয় জানলে GitHub-এ
+   [নতুন বিষয়ের ইস্যু](https://github.com/Deshi-Startup/deshistartup/issues/new?template=new-topic.yml)
+   খুলুন। খসড়া থাকলে ইস্যুতেই পেস্ট করুন – দ্রুত প্রকাশ করা যায়।
 
 GitHub ব্যবহার করতে চাইলে পাতার নিচের **GitHub-এ সম্পাদনা** লিংকও ব্যবহার করতে পারেন।
 
@@ -124,7 +127,7 @@ contributions.
 You do not need to know GitHub, code or run the project locally to edit the writing. The
 [contribute page](https://deshistartup.com/en/contribute) explains the complete browser workflow.
 
-## Three ways to start
+## Four ways to start
 
 1. **Report a problem:** use **Report a mistake** on the page and describe what is wrong or
    unclear. Add the corrected information or an official source if you have one. GitHub may ask
@@ -133,6 +136,9 @@ You do not need to know GitHub, code or run the project locally to edit the writ
    **Send for review**. No GitHub account is required; the site creates the pull request.
 3. **Write a guide:** choose a **to be written** page. If it has a matching issue, comment that
    you are working on it so two people do not unknowingly duplicate the work.
+4. **Suggest a new topic:** know a subject the site doesn't cover? Open a
+   [New topic issue](https://github.com/Deshi-Startup/deshistartup/issues/new?template=new-topic.yml)
+   on GitHub. Paste your draft into the issue if you have one – it publishes faster.
 
 If you prefer working through GitHub, use **Edit on GitHub** at the bottom of a page.
 

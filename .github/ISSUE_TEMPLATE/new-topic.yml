@@ -1,5 +1,5 @@
-name: "💡 নতুন বিষয়ের অনুরোধ · Request a new topic"
-description: "সাইটে নেই এমন কোনো প্রশ্ন বা বিষয় যোগ করার প্রস্তাব দিন। · Suggest a question or topic the site doesn't cover yet."
+name: "💡 নতুন বিষয়ের প্রস্তাব ও খসড়া · Suggest & write a new topic"
+description: "সাইটে নেই এমন কোনো বিষয় প্রস্তাব করুন। খসড়া থাকলে সঙ্গে দিন – দ্রুত প্রকাশ করা যায়। · Propose a topic the site doesn't cover. Attach a draft if you're ready – it publishes faster."
 title: "নতুন বিষয়: "
 labels: ["enhancement"]
 body:
@@ -7,12 +7,31 @@ body:
     attributes:
       value: |
         আগে [ব্যাকলগে](https://github.com/Deshi-Startup/deshistartup/blob/main/plan/content-backlog.csv) খুঁজে দেখুন।
-        বিষয়টা আগে থেকেই আছে কি না, একবার মিলিয়ে নিন। · Please check whether the topic is already in the backlog.
+        বিষয়টা যদি আগে থেকেই পরিকল্পনায় থাকে আর আপনি লিখতে চান, তাহলে ["গাইড লিখতে চাই"](https://github.com/Deshi-Startup/deshistartup/issues/new?template=write-guide.yml) ফর্মটি ব্যবহার করুন।
+
+        Check the [backlog](https://github.com/Deshi-Startup/deshistartup/blob/main/plan/content-backlog.csv) first.
+        If the topic already exists and you want to write it, use the ["I want to write a guide"](https://github.com/Deshi-Startup/deshistartup/issues/new?template=write-guide.yml) form instead.
   - type: input
     id: topic
     attributes:
       label: "বিষয়টা কী? · What's the topic?"
       placeholder: "যেমন: বিদেশি ক্লায়েন্ট থেকে ডলার আনার নিয়ম"
+    validations:
+      required: true
+  - type: dropdown
+    id: section
+    attributes:
+      label: "কোন বিভাগে মানাবে? · Which section fits best?"
+      description: "নিশ্চিত না হলে 'নিশ্চিত না' বেছে নিন – মেইনটেইনার ঠিক করে দেবেন। · Pick 'Not sure' if uncertain – a maintainer will decide."
+      options:
+        - নিশ্চিত না · Not sure
+        - "Start Here – শুরু করুন"
+        - "Phase 1: Starting – আইডিয়া ও যাচাই"
+        - "Phase 2: Building – তৈরি করা"
+        - "Phase 3: Launching & Growing – লঞ্চ ও বৃদ্ধি"
+        - "Phase 4: Ecosystem & Support – ইকোসিস্টেম ও সহায়তা"
+        - "Founder Life – প্রতিষ্ঠাতার জীবন"
+        - "Case Studies – কেস স্টাডি"
     validations:
       required: true
   - type: textarea
@@ -22,3 +41,25 @@ body:
       description: "বাস্তব পরিস্থিতিটা বলুন – কেমন ফাউন্ডার কখন এই প্রশ্নে আটকে পড়েন? · Describe the real situation: which founder gets stuck on this, and when?"
     validations:
       required: true
+  - type: textarea
+    id: draft
+    attributes:
+      label: "খসড়া (যদি থাকে) · Draft (if you have one)"
+      description: "বিষয়টা জানলে মার্কডাউনে খসড়া পেস্ট করুন। না লিখলেও চলবে – শুধু প্রস্তাবও কাজের। · Paste your draft in markdown if you're ready. Leaving this blank is fine – a suggestion alone is still valuable."
+      render: markdown
+    validations:
+      required: false
+  - type: textarea
+    id: sources
+    attributes:
+      label: "সূত্র · Sources"
+      description: "কোন সরকারি নথি, ওয়েবসাইট বা মূল সূত্র ব্যবহার করেছেন বা করবেন? · Which official documents, websites or primary sources did you use or plan to use?"
+    validations:
+      required: false
+  - type: textarea
+    id: experience
+    attributes:
+      label: "বিষয়টা আপনি কীভাবে জানেন? · How do you know this topic?"
+      description: "নিজে কাজটি করেছেন, পেশাগতভাবে জানেন, নাকি রিসার্চ করে লিখবেন? এক-দুই লাইনই যথেষ্ট। · Did you do it yourself, know it professionally, or plan to research it? A line or two is enough."
+    validations:
+      required: false
