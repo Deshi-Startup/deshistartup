@@ -150,17 +150,25 @@ The authored media registries are the exception:
 - `app/generated/media.json`
 - `app/generated/media-retired.json`
 
+`app/generated/contributors.json` is committed too, but comes from its own command. It is a
+snapshot of merged pull requests read at build time, so the site never calls the GitHub API during
+a build or at runtime. Refresh it with `npm run contributors:refresh` when someone new lands work;
+a failed refresh leaves the previous snapshot in place. Who counts as core team, and any renames or
+opt-outs, live in `data/contributors-policy.json`.
+
 ## Commands
 
 ```bash
 npm run dev                 # local Next site + API Worker; regenerates manifests first
 npm run manifest            # regenerate content and SEO outputs
+npm run contributors:refresh # re-read merged PRs into app/generated/contributors.json
 npm run backlog:status      # write the local planning status report
 npm run lint:bangla         # Bangla/content mechanical checks
 npm run lint:citations      # inline citation definitions, parity and IDs
 npm run lint:routes         # URL and locale-tree checks
 npm run lint:media          # media references and limits
 npm run test:contribute     # editor/contribution helpers
+npm run test:contributors   # contributor snapshot and leaderboard helpers
 npm run test:media          # media pipeline helpers
 npm run build               # production Next build + Pagefind + SEO audit
 npm run build:worker        # production static export + Pagefind + SEO audit
@@ -175,6 +183,15 @@ Production is the `deshistartup` Cloudflare Worker at `deshistartup.com`. Worker
 Runtime variables and secrets are documented in `.env.local.example` and `wrangler.jsonc`.
 Deployment architecture and size budgets are documented in
 [`plan/deployment-architecture.md`](./plan/deployment-architecture.md).
+
+`public/_headers` (copied to `out/_headers`) carries the asset response headers: the site-wide
+`Strict-Transport-Security` rule, then the cache policy. Only hash-named files are marked
+immutable; HTML stays revalidating so a corrected fee goes live on deploy. Add a rule there
+rather than in the Worker when a new asset directory needs its own policy — static assets are
+served without running Worker code, so a header set in `worker/index.ts` never reaches a page load.
+
+The http -> https redirect is **not** in this repository. It is the zone-level "Always Use HTTPS"
+setting in the Cloudflare dashboard; the Worker cannot stand in for it, for the same reason.
 
 Pushing `main` deploys production. Never push unless Shamir asks.
 

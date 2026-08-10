@@ -6,6 +6,8 @@ import {
   decodeLockedMdx,
   encodeLockedMdx,
   lockedMdxBlocks,
+  normalizeContributionMarkdown,
+  normalizeTables,
   sameLockedMdx
 } from './contribution-markdown.ts'
 import {
@@ -177,5 +179,183 @@ test('every current content page survives the protected-component round trip', (
       source,
       `${file} changed during the editor round trip`
     )
+  }
+})
+
+test('a table already in the repo shape is left byte-identical', () => {
+  const table = [
+    '| প্রশ্ন | ০ | ১ |',
+    '|---|---|---|',
+    '| সাম্প্রতিক ঘটনা শুনেছি? | না | একটা |',
+    ''
+  ].join('\n')
+  assert.equal(normalizeTables(table), table)
+})
+
+test('the serializer’s padded table collapses back to the repo shape', () => {
+  const padded = [
+    '| প্রশ্ন                  | ০      | ১    |',
+    '| ----------------------- | ------ | ---- |',
+    '| সাম্প্রতিক ঘটনা শুনেছি? | না     | একটা |',
+    ''
+  ].join('\n')
+  assert.equal(
+    normalizeTables(padded),
+    ['| প্রশ্ন | ০ | ১ |', '|---|---|---|', '| সাম্প্রতিক ঘটনা শুনেছি? | না | একটা |', ''].join(
+      '\n'
+    )
+  )
+})
+
+test('column alignment survives the collapse', () => {
+  const aligned = ['| a | b | c |', '| :--- | ---: | :---: |', '| 1 | 2 | 3 |', ''].join('\n')
+  assert.equal(
+    normalizeTables(aligned),
+    ['| a | b | c |', '|:---|---:|:---:|', '| 1 | 2 | 3 |', ''].join('\n')
+  )
+})
+
+test('an empty cell keeps its single space of padding on each side', () => {
+  const table = ['| a |  | c |', '|---|---|---|', '| 1 |  | 3 |', ''].join('\n')
+  assert.equal(normalizeTables(table), table)
+})
+
+test('an escaped pipe stays inside its cell', () => {
+  const table = ['| a \\| b | c |', '|---|---|', '| d | e |', ''].join('\n')
+  assert.equal(normalizeTables(table), table)
+})
+
+test('an even backslash before a pipe remains a cell boundary', () => {
+  const table = ['| a \\\\| b | c |', '|---|---|---|', '| d | e | f |', ''].join('\n')
+  assert.equal(
+    normalizeContributionMarkdown(table),
+    ['| a \\\\ | b | c |', '|---|---|---|', '| d | e | f |', ''].join('\n')
+  )
+})
+
+test('a pipe table inside a code fence is left alone', () => {
+  const fenced = [
+    '```',
+    '| a      | b |',
+    '| ------ | - |',
+    '```',
+    ''
+  ].join('\n')
+  assert.equal(normalizeTables(fenced), fenced)
+})
+
+test('prose containing a pipe is not mistaken for a table', () => {
+  const prose = ['Use `a | b` to pipe.', '', 'Not a table.', ''].join('\n')
+  assert.equal(normalizeTables(prose), prose)
+})
+
+test('normalizing is idempotent', () => {
+  const padded = ['| a   | b |', '| --- | - |', '| 1   | 2 |', ''].join('\n')
+  const once = normalizeTables(padded)
+  assert.equal(normalizeTables(once), once)
+})
+
+test('nested tables keep their blockquote and list containers', () => {
+  const padded = [
+    '> | header        | value |',
+    '> | ------------- | ----- |',
+    '> | row           | text  |',
+    '',
+    '* | header        | value |',
+    '  | ------------- | ----- |',
+    '  | row           | text  |',
+    '',
+    '- outer',
+    '  - | header        | value |',
+    '    | ------------- | ----- |',
+    '    | row           | text  |',
+    '',
+    '> * | header        | value |',
+    '>   | ------------- | ----- |',
+    '>   | row           | text  |',
+    ''
+  ].join('\n')
+  const expected = [
+    '> | header | value |',
+    '> |---|---|',
+    '> | row | text |',
+    '',
+    '* | header | value |',
+    '  |---|---|',
+    '  | row | text |',
+    '',
+    '- outer',
+    '  - | header | value |',
+    '    |---|---|',
+    '    | row | text |',
+    '',
+    '> * | header | value |',
+    '>   |---|---|',
+    '>   | row | text |',
+    ''
+  ].join('\n')
+  assert.equal(normalizeContributionMarkdown(padded), expected)
+})
+
+test('tables with inline code are normalized without touching the code span', () => {
+  const padded = ['| `a`    | b |', '| ------ | - |', '| x      | y |', ''].join('\n')
+  assert.equal(
+    normalizeContributionMarkdown(padded),
+    ['| `a` | b |', '|---|---|', '| x | y |', ''].join('\n')
+  )
+})
+
+test('only structural table rows are normalized', () => {
+  const source = [
+    '<YouTube title="a | b" />',
+    '|---|---|',
+    '| x | y |',
+    '',
+    '# a | b',
+    '|---|---|',
+    '| x | y |',
+    ''
+  ].join('\n')
+  assert.equal(normalizeContributionMarkdown(source), source)
+})
+
+test('serializer-only text escapes are removed outside code', () => {
+  const serialized = [
+    '# C\\&F',
+    '',
+    'Use \\_\\_\\_ here.',
+    '',
+    'word\\_word',
+    '`C\\&F` and `\\_\\_\\_`',
+    '\\&copy;',
+    '\\\\&F',
+    ''
+  ].join('\n')
+  const expected = [
+    '# C&F',
+    '',
+    'Use ___ here.',
+    '',
+    'word\\_word',
+    '`C\\&F` and `\\_\\_\\_`',
+    '\\&copy;',
+    '\\\\&F',
+    ''
+  ].join('\n')
+  assert.equal(normalizeContributionMarkdown(serialized), expected)
+})
+
+test('serializer normalization is idempotent', () => {
+  const serialized = ['C\\&F', '', 'a \\_\\_\\_ b', ''].join('\n')
+  const once = normalizeContributionMarkdown(serialized)
+  assert.equal(normalizeContributionMarkdown(once), once)
+})
+
+test('every current content page is already in the normalized table shape', () => {
+  const pages = pageFiles('app/(contents)')
+  assert.ok(pages.length > 800, `expected the full corpus, saw ${pages.length}`)
+  for (const file of pages) {
+    const source = readFileSync(file, 'utf8')
+    assert.equal(normalizeTables(source), source, `${file} would be rewritten on submission`)
   }
 })

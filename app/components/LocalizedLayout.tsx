@@ -221,6 +221,18 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   const isLanding = pathname === '/' || pathname === '/en'
   const isPrivateReview =
     pathname === '/contribute/review' || pathname.startsWith('/contribute/review/')
+  // The contributor list is generated from merged pull requests, so the article
+  // lede has nothing true to say about it: "Home › Contributors" is a crumb to
+  // nowhere, there is no edit date to report and a mistake belongs in a rename
+  // request, not a content correction.
+  const isCredits = pathname === '/contributors' || pathname === '/en/contributors'
+  // One 404 document serves every unmatched URL, so the router reports the
+  // synthetic `/_not-found` route. There is no source file behind it: an
+  // "Edit on GitHub" link would open GitHub's new-file editor at a path that
+  // does not exist, "View history" would 404, and a mistake report would name
+  // a page nobody can read. Drop the page-contribution chrome; the 404 body
+  // carries its own way out.
+  const isNotFound = pathname === '/_not-found' || pathname === '/en/_not-found'
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [headings, setHeadings] = useState<HeadingItem[]>([])
   const [pageTitle, setPageTitle] = useState('')
@@ -249,7 +261,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
       setAuthToken(stored.token)
     }
     const wantsEdit = new URLSearchParams(window.location.search).get('action') === 'edit'
-    if (!wantsEdit || pathname === '/' || pathname === '/en' || isPrivateReview) return
+    if (!wantsEdit || pathname === '/' || pathname === '/en' || isPrivateReview || isNotFound) return
     if (stored) setIsEditing(true)
     else setAuthOpen(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -611,7 +623,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
         </div>
 
         <main className="content-canvas" id="main">
-          {!isPrivateReview && <nav className="article-tabs" aria-label={isEn ? 'About this page' : 'এই পাতা নিয়ে'}>
+          {!isPrivateReview && !isNotFound && <nav className="article-tabs" aria-label={isEn ? 'About this page' : 'এই পাতা নিয়ে'}>
             <div className="tab-group">
               <span className="tab active" aria-current="page">{tabs.article}</span>
               <a
@@ -709,7 +721,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             />
           )}
 
-          {!isLanding && !isEditing && !isPrivateReview && (
+          {!isLanding && !isEditing && !isPrivateReview && !isCredits && !isNotFound && (
             <div className="article-lede">
               <Breadcrumbs isEn={isEn} pathname={pathname} pageTitle={pageTitle} />
               <div className="article-meta">
@@ -758,7 +770,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             {children}
           </article>
 
-          {!isLanding && !isEditing && !isPrivateReview && (
+          {!isLanding && !isEditing && !isPrivateReview && !isNotFound && (
             <footer className="article-footer">
               <h2>{isEn ? 'Help improve this page' : 'এই পাতা আরও ভালো করুন'}</h2>
               <div className="contrib-row">

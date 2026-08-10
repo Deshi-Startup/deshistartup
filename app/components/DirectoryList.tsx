@@ -1,15 +1,27 @@
 import React from 'react'
 import investors from '../../data/directory/investors.json'
 import accelerators from '../../data/directory/accelerators.json'
-import DirectoryFilterTable, { DirectoryRow } from './DirectoryFilterTable'
+import governmentFunding from '../../data/directory/government-funding.json'
+import paymentGateways from '../../data/directory/payment-gateways.json'
+import couriers from '../../data/directory/couriers.json'
+import legalAccounting from '../../data/directory/legal-accounting.json'
+import governmentServices from '../../data/directory/government-services.json'
+import coworking from '../../data/directory/coworking.json'
+import DirectoryFilterTable, { DirectoryCategory, DirectoryRow } from './DirectoryFilterTable'
 
-const DATA: Record<string, DirectoryRow[]> = {
+const DATA: Record<DirectoryCategory, DirectoryRow[]> = {
   investors: investors as unknown as DirectoryRow[],
-  accelerators: accelerators as unknown as DirectoryRow[]
+  accelerators: accelerators as unknown as DirectoryRow[],
+  'government-funding': governmentFunding as unknown as DirectoryRow[],
+  'payment-gateways': paymentGateways as unknown as DirectoryRow[],
+  couriers: couriers as unknown as DirectoryRow[],
+  'legal-accounting': legalAccounting as unknown as DirectoryRow[],
+  'government-services': governmentServices as unknown as DirectoryRow[],
+  coworking: coworking as unknown as DirectoryRow[]
 }
 
 interface DirectoryListProps {
-  category?: 'investors' | 'accelerators'
+  category?: DirectoryCategory
   locale?: 'bn' | 'en'
 }
 

@@ -1,16 +1,96 @@
 ---
 title: "Easy Method for Calculating TAM/SAM/SOM in Bangladesh"
-description: "Easy Method for Calculating TAM/SAM/SOM in Bangladesh – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+description: "A fill-in worksheet for TAM, SAM, and SOM, a full worked example using DataReportal and BBS numbers, and why you should never say \"just 1% of the market.\" Verified 4 August 2026."
+verified: 2026-08-04
 ---
 
 # Easy Method for Calculating TAM/SAM/SOM in Bangladesh
 
-<StubNotice path="ideas/tam-sam-som" locale="en" />
+> **Key Takeaway:** TAM, SAM, and SOM are three named layers of the same top-down narrowing you'd do anyway. TAM is everyone who could conceivably spend money on this problem. SAM is who you can actually reach with your product, price, and channel. SOM is how many of them you can realistically capture in year one. The most common mistake in Bangladesh happens at the very first layer: seeing a population of over 17 crore and using that as TAM, when more than half the country still isn't online.
+
+## A One-Page Worksheet
+
+Fill this in before you calculate anything.
+
+```text
+Product/service:
+Date:
+
+TAM (total addressable market)
+What the base number measures (people/businesses/money):
+Source and year:
+Number:
+
+SAM (actually reachable through your channel)
+Filter 1 (channel or platform):
+Filter 2 (region, age, or income):
+Source and year:
+Number:
+
+SOM (realistic in the first 12 months)
+Capacity constraint (ad budget, production, or delivery):
+Assumption:
+Number:
+```
+
+## How to Fill in Each Row
+
+**TAM's base number.** This is where the biggest mistake happens. Before starting from total population, think about what a person actually needs in order to buy your product. For an online product, internet users are the real base, not total population. As of October 2025, Bangladesh had 8.28 crore internet users, 47.0% of the population.[^datareportal-2026] The remaining 53% are offline, and there's no way to reach them with a Facebook ad.
+
+**SAM's two filters.** The first filter is your sales channel, the second is your target segment. Set both with a number, not a feeling. National survey data is rarely broken down by city, so at this layer you multiply a national rate by a regional share to arrive at an approximate number. It isn't exact, but it rests on far more than a guess.
+
+**SOM is where the data runs out.** SOM appears in no government table; it's your own capacity ceiling. Your ad budget, how much your kitchen or warehouse can handle per day, how many people are on your sales team — these set SOM. No matter how big the market is, you won't sell beyond your own capacity.
+
+## A Filled-In Example
+
+Say you're launching a healthy meal-plan subscription for urban office workers. You'll sell on Facebook, and delivery will start in urban areas only.
+
+TAM is set as the country's internet users, since nobody can order without seeing a Facebook ad first. DataReportal and Kepios put this at 8.28 crore as of October 2025.
+
+SAM needs two filters. First, how many people can actually be reached with a Facebook ad — that's 6.4 crore, 36.3% of the population.[^datareportal-2026] Second, since delivery is urban-only, apply the urban population share of 42.2%: 64,000,000 × 42.2% ≈ 2.7 crore. That second filter is an approximation, since Facebook doesn't publish its user count by city; the national urban rate stands in as a proxy here.
+
+At SOM, government and platform numbers run out entirely. Say your ad budget and kitchen capacity together can produce a maximum of 6,000 meals a month in year one. If the average customer buys 15 meals a month, that capacity supports 6,000 ÷ 15 = 400 active customers at any one time. SOM is therefore 400, less than 0.002% of SAM's 2.7 crore.
+
+There's no reason to be discouraged by a small number. A small SOM is normal — you're not meant to capture a large share of the market in year one. The real work is planning how much that 400 can grow next year by expanding kitchen capacity or ad spend.
+
+## Never Say "Just 1% of the Market"
+
+One line shows up in nearly every pitch deck: "If we capture just 1% of the market, we'll make this many crore taka." It sounds modest, but it isn't a plan at all. There's no reason given for why 1%, rather than 0.5% or 5%. Investors have heard this line so often that it now works as a warning sign rather than a selling point.
+
+The real question isn't a percentage, it's capacity. In the example above, SOM came out to 400 from an ad budget and a kitchen limit, not from any percentage of SAM. Writing "1% of SAM is 2.7 lakh customers" makes the number look impressive, but if your kitchen can't produce more than 6,000 meals a month, that number stays on paper.
+
+## Common Mistakes
+
+| Mistake | Result |
+|---|---|
+| Using total population for TAM with no internet or purchasing-power filter | The market looks several times bigger than it is |
+| Not stating the source for a SAM filter | Can't tell if the number is data or a guess |
+| Setting SOM as a percentage of SAM | Ignores your own actual capacity limits |
+| Saying "just 1% of the market" instead of stating SOM | Reads as a warning sign to investors |
+| Treating a national rate applied to a city as exact | An approximation gets presented as data |
+| Skipping one of the three layers and jumping straight to a revenue projection | No layer is left that can be checked |
+
+## Checklist
+
+- [ ] Checked that TAM's base number fits the product (not total population)
+- [ ] Wrote SAM's two filters separately, with sources
+- [ ] Made clear that any city-level filter is an approximation
+- [ ] Set SOM from actual capacity (budget, production, delivery)
+- [ ] Did not replace SOM with a percentage ("1% of the market")
+- [ ] Recorded the year next to all three numbers
+
+Rule of thumb: **SOM doesn't come from data. It comes from your own capacity.**
+
+## What to Do Next
+
+- Understand the two underlying sizing methods first: [How to Size a Market in Bangladesh](/en/ideas/market-sizing)
+- How to write the source and year next to a number: [How to Cite Bangladesh Market Data Cleanly](/en/ideas/citing-market-data)
+- Where the base data comes from: [Where to Find Bangladesh Market Data](/en/ideas/market-data-sources)
+- Test SOM's price and frequency assumptions: [Pricing Tests](/en/validation/pricing-tests)
+- Plan your first test around SOM: [The Experiment Plan](/en/validation/mvp-experiment-planner)
 
 ## Relevant Sources
 
-- [Business Inspection BD](https://businessinspection.com.bd)
-- [LightCastle Partners](https://lightcastlepartners.com)
-- [Prothom Alo Business](https://www.prothomalo.com/business)
-- [RJSC](https://roc.gov.bd)
-- [The Business Standard](https://www.tbsnews.net)
+[^datareportal-2026]: [DataReportal – Digital 2026: Bangladesh (Kepios analysis, data as of October 2025)](https://datareportal.com/reports/digital-2026-bangladesh)
+
+- [BBS – Population and Housing Census 2022](https://bbs.gov.bd/pages/static-pages/6922dc2a933eb65569e0ebd5)

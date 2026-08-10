@@ -1,16 +1,92 @@
 ---
 title: "Understanding the Market with BBS, BTRC, World Bank, and DataReportal"
-description: "Understanding the Market with BBS, BTRC, World Bank, and DataReportal – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+description: "The four sources do different jobs. DataReportal's Facebook/Instagram/TikTok 'user' numbers are ad-reach estimates, not a census. When each source actually helps, and how to combine all four into one credible number."
+verified: 2026-08-04
 ---
 
 # Understanding the Market with BBS, BTRC, World Bank, and DataReportal
 
-<StubNotice path="ideas/using-market-data" locale="en" />
+> **In short:** Don't see "64 million users" on Facebook and assume that's the country's internet-user count. That figure is DataReportal's "social media user" statistic, and it's actually Meta's own advertising platform telling you how many people it could theoretically show an ad to. [The previous page](/ideas/market-data-sources) covers the gaps in BBS, BTRC, and Bangladesh Bank's official numbers. This one covers the other two sources — World Bank and DataReportal — and how to combine all four into a real estimate.
+
+What actually happens when someone picks a number for a pitch deck's market-size slide? Often it's whatever comes up first in a Google search, without checking what the source is actually measuring. This page exists to help you avoid that.
+
+---
+
+## Four Sources, Four Different Jobs
+
+| Source | Measures | Useful for |
+|---|---|---|
+| BBS, BTRC, Bangladesh Bank | Official government counts and registrations | The base number, for anchoring market size |
+| World Bank | Globally comparable development indicators | Seeing where Bangladesh sits against peer or neighboring countries |
+| DataReportal | Ad platforms' potential-audience estimates | A directional signal on online behavior, not a final number |
+
+The first row is covered in detail on [where to find market data](/ideas/market-data-sources). The other two are below.
+
+---
+
+## What World Bank Tells You, and What It Doesn't
+
+Two World Bank databases matter most. World Development Indicators (WDI) carries large economic figures — GDP, poverty, internet-related development indicators. The Global Findex database carries financial inclusion, bank account, and mobile money usage numbers; the 2025 edition shows 79% of adults globally now have some kind of account.[^wb-findex]
+
+The real strength of these two databases is comparison, not one Bangladesh number in isolation. Global Findex data shows Bangladesh, Brazil, and Paraguay — outside Sub-Saharan Africa — all saw mobile money account growth between 2014 and 2021, an example of placing Bangladesh alongside peer economies.[^wb-findex-2021] But this data only refreshes every few years, so for the most current picture, BTRC's or Bangladesh Bank's monthly statistics are more reliable.
+
+---
+
+## What DataReportal Is Actually Counting
+
+DataReportal doesn't run its own survey. It combines Meta's, Google's, and TikTok's advertising planning tools with GSMA Intelligence and Ookla data, and publishes an annual "Digital: Bangladesh" report, analyzed by a firm called Kepios.[^datareportal-bd] By their own stated methodology, a "social media user" figure is based on the single platform with the largest ad-reach audience in the country.[^datareportal-methodology] That means it's not a census — it's an estimate of how many people an advertiser could theoretically reach.
+
+The October 2025 DataReportal report puts Facebook's "users" in Bangladesh at 64.0 million, YouTube's at 49.8 million, and TikTok's (among users aged 18+) at 56.2 million.[^datareportal-bd] These three numbers look close but are actually measuring three different things — different age floors, different platform definitions, different counting methods. Meta's own advertising tools carry this exact caveat: "Estimated audience size is not a proxy for monthly or daily active users... Estimates aren't designed to match population, census estimates or other sources."[^datareportal-bd]
+
+So if you use a DataReportal number in a pitch deck or market research, write "X million potential ad reach (DataReportal, 2026)," not "X million users." The gap between those two phrasings looks small, but to a careful reader they're completely different claims.
+
+---
+
+## Two Population Numbers, Two Different Reasons
+
+[The previous page](/ideas/market-data-sources) explains why BTRC's connection count exceeds the population. Here's a different gap: Bangladesh's 2022 census counted an adjusted population of 169,828,911 — a direct count. Based on UN data, DataReportal put Bangladesh's population at 176 million as of October 2025 — a projection built from births, deaths, and migration between census years, not a direct count.[^datareportal-bd] Both are built with sound methods, but one is a count and the other a projection, so it's normal for them not to match. State clearly in your own report which one you're using.
+
+---
+
+## The Rule for Combining All Four
+
+Use sources in this order when building a market estimate:
+
+1. **Anchor the denominator with BBS or BTRC** – how many people, businesses, or connections, from a government count or registration
+2. **Check current activity with BTRC or Bangladesh Bank** – what happened last month, since both refresh monthly
+3. **Bring in comparative context from World Bank** – where Bangladesh sits against similar countries, useful context but not sufficient alone
+4. **Take directional signals from DataReportal, with the caveat attached** – a sense of direction on online behavior, not a final number, and never use the figure without citing the methodology note
+
+Keep these four steps in mind before copying a number straight out of any one source. How to write the actual inline citation is covered at [how to cite market data](/ideas/citing-market-data).
+
+---
+
+## Checklist
+
+- [ ] Population or market base comes from BBS or BTRC, not DataReportal
+- [ ] Any DataReportal number is labeled "potential ad reach," not "users"
+- [ ] World Bank figures are used for comparison, not as the sole source
+- [ ] Every number carries its source, date, and what it actually measures
+- [ ] When two sources' numbers don't match, I understand why (count vs. projection, ad reach vs. users)
+
+Rule of thumb: **Before who made the number, read what the number is actually counting. Ad reach, connections, and people are three different things.**
+
+## What to Do Next
+
+- To understand BBS, BTRC, and Bangladesh Bank numbers in depth: [Where to find market data](/ideas/market-data-sources)
+- To turn numbers into a market size: [Market sizing](/ideas/market-sizing)
+- For citation rules: [How to cite market data](/ideas/citing-market-data)
+- To calculate TAM/SAM/SOM: [Simple TAM/SAM/SOM](/ideas/tam-sam-som)
 
 ## Relevant Sources
 
+[^wb-findex]: [The Global Findex Database 2025, World Bank](https://www.worldbank.org/en/publication/globalfindex), accessed 4 August 2026.
+
+[^wb-findex-2021]: [The Global Findex Database 2021, World Bank](https://documents1.worldbank.org/curated/en/099818107072234182/pdf/IDU06a834fe908933040670a6560f44e3f4d35b7.pdf), accessed 4 August 2026.
+
+[^datareportal-bd]: [Digital 2026: Bangladesh, DataReportal](https://datareportal.com/reports/digital-2026-bangladesh), accessed 4 August 2026 – data as of October 2025.
+
+[^datareportal-methodology]: [Digital 2026: Global Overview Report, DataReportal](https://datareportal.com/reports/digital-2026-global-overview-report), accessed 4 August 2026 – social media user identities methodology.
+
 - [LightCastle Partners](https://lightcastlepartners.com)
-- [BTRC](http://www.btrc.gov.bd)
-- [Bangladesh Bank](https://www.bb.org.bd)
 - [Bangladesh Bureau of Statistics (BBS)](http://www.bbs.gov.bd)
-- [Bangladesh Trade Portal](https://www.bangladeshtradeportal.gov.bd)

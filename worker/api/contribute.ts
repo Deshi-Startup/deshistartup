@@ -115,24 +115,30 @@ export async function POST(req: Request, env: CloudflareEnv) {
   }
 
   const summaryStr = typeof summary === 'string' ? summary.trim().slice(0, 280) : ''
+  const quarantineChecks = await Promise.all(
+    pendingIds.map(async (id) => {
+      const record = await readJson<QuarantineMediaRecord>(
+        bindings.guards,
+        mediaRecordKey(id)
+      )
+      if (
+        !record ||
+        record.ownerHash !== ownerHash ||
+        record.pagePath !== path ||
+        !['quarantined', 'pending_review'].includes(record.status) ||
+        Date.parse(record.expiresAt) <= Date.now()
+      ) {
+        return { id, record: null }
+      }
+      if (!(await bindings.quarantine.head(record.objectKey))) {
+        return { id, record: null }
+      }
+      return { id, record }
+    })
+  )
   const quarantineRecords: QuarantineMediaRecord[] = []
-  for (const id of pendingIds) {
-    const record = await readJson<QuarantineMediaRecord>(
-      bindings.guards,
-      mediaRecordKey(id)
-    )
-    if (
-      !record ||
-      record.ownerHash !== ownerHash ||
-      record.pagePath !== path ||
-      !['quarantined', 'pending_review'].includes(record.status) ||
-      Date.parse(record.expiresAt) <= Date.now()
-    ) {
-      return json({ error: 'image_expired_or_forbidden', id }, 409)
-    }
-    if (!(await bindings.quarantine.head(record.objectKey))) {
-      return json({ error: 'image_expired_or_forbidden', id }, 409)
-    }
+  for (const { id, record } of quarantineChecks) {
+    if (!record) return json({ error: 'image_expired_or_forbidden', id }, 409)
     quarantineRecords.push(record)
   }
 

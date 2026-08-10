@@ -6,6 +6,21 @@
    Bengali-subset, local()-first so most Android devices download nothing.
    --------------------------------------------------------------------------- */
 
+/* Both files are cut to exactly the unicode-range declared below, with the
+   glyph-name and vertical-metrics tables dropped: nothing outside that range
+   can ever be drawn from these faces, so the names, the space and the vertical
+   metrics were bytes no reader could ever see. Reproduce with:
+
+     pyftsubset <in>.woff2 --output-file=<out>.woff2 --flavor=woff2 \
+       --unicodes="U+0951-0952,U+0964-0965,U+0980-09FE,U+1CD0,U+1CD2,\
+U+1CD5-1CD6,U+1CD8,U+1CE1,U+1CEA,U+1CED,U+1CF2,U+1CF5-1CF7,U+200C-200D,\
+U+20B9,U+25CC,U+A8F1" \
+       --layout-features='*' --no-hinting --no-glyph-names --name-IDs='' \
+       --drop-tables+=vhea,vmtx,gasp,STAT
+
+   --layout-features='*' is load-bearing: Bengali conjuncts are GSUB
+   substitutions, so dropping features would silently break যুক্তাক্ষর. */
+
 @font-face {
   font-family: 'Noto Sans Bengali';
   /* Plain woff2, not the old woff2-variations draft value: a browser must skip
@@ -158,8 +173,13 @@ p {
   top: 0;
   z-index: 10;
   border-bottom: 1px solid var(--line);
-  background: rgb(255 255 255 / 92%);
-  backdrop-filter: blur(14px);
+  /* Opaque, not a translucent pane over a blur. The header is sticky, so a
+     backdrop-filter makes the compositor re-blur a full-width strip on every
+     scroll frame, and that cost lands on exactly the mid-range Android this
+     site is read on. What it bought was a smear of paper nobody looks at. The
+     canvas white is the honest surface: the article is white, and the header
+     is the top of it. */
+  background: var(--canvas);
 }
 
 .header-inner {
@@ -667,6 +687,19 @@ a.tab {
 .article th,
 .article blockquote {
   overflow-wrap: anywhere;
+  /* Keeps a paragraph from ending on a single stranded word. Bengali sentences
+     are long and the mobile column is narrow, so this fires often. */
+  text-wrap: pretty;
+}
+
+/* Bengali headings are long, and a wrapped one used to drop its last word alone
+   on a rule of its own. `balance` evens the lines instead; where it is
+   unsupported the heading simply wraps as before. */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
 }
 
 h1,
@@ -1296,6 +1329,10 @@ a.is-stub-link:hover {
   margin: 22px 0;
 }
 
+/* Filter count varies by directory category, so the track list is keyed off a
+   data attribute rather than an inline style: an inline grid-template-columns
+   outranks the mobile collapse below and pushes the Reset button off-screen. */
+
 .directory-controls {
   display: grid;
   grid-template-columns: minmax(220px, 1.4fr) repeat(3, minmax(150px, 1fr)) auto;
@@ -1305,6 +1342,14 @@ a.is-stub-link:hover {
   border: 1px solid var(--line);
   background: var(--canvas-soft);
   padding: 12px;
+}
+
+.directory-controls[data-filters='1'] {
+  grid-template-columns: minmax(220px, 1.4fr) minmax(150px, 1fr) auto;
+}
+
+.directory-controls[data-filters='2'] {
+  grid-template-columns: minmax(220px, 1.4fr) repeat(2, minmax(150px, 1fr)) auto;
 }
 
 .directory-controls label {
@@ -1361,32 +1406,72 @@ a.is-stub-link:hover {
   font-weight: 700;
 }
 
-.directory-table-wrap {
-  overflow-x: auto;
+/* One card per entry instead of a wide table. Directory values are sentences —
+   coverage areas, rate bands, application steps — and a column grid gave each of
+   them a track too narrow to hold a word, so text broke mid-character. Cards
+   also mean a new field costs one more labelled line, not one more squeezed
+   column, and there is no horizontal scroll at any width. */
+
+.directory-cards {
+  display: grid;
+  gap: 12px;
+}
+
+.directory-card {
   border: 1px solid var(--line);
   background: var(--canvas);
+  padding: 16px 18px;
 }
 
-.directory-list table {
-  min-width: 860px;
+.directory-card h3 {
   margin: 0;
-  font-size: 0.85rem;
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
-.directory-list td:first-child {
-  min-width: 190px;
-}
-
-.directory-list td strong,
-.directory-list td span {
-  display: block;
-}
-
-.directory-list td span {
-  margin-top: 4px;
+.directory-card__note {
+  margin: 6px 0 0;
   color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.directory-card dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px 20px;
+  margin: 14px 0 0;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.directory-card dt {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.directory-card dd {
+  margin: 2px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.directory-card__source {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+  margin: 12px 0 0;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
   font-size: 0.82rem;
-  line-height: 1.45;
+}
+
+.directory-card__source span {
+  color: var(--muted);
 }
 
 .directory-empty {
@@ -1394,6 +1479,179 @@ a.is-stub-link:hover {
   padding: 22px;
   color: var(--muted);
   font-weight: 700;
+}
+
+/* ----------------------------------------------------------- contributors */
+
+/* A credit list, not a scoreboard: one row per person, all the same size and
+   the same ground, hairlines doing the separating, and the only number on the
+   row being the one thing that is actually counted. Order carries the ranking;
+   nothing else needs to. */
+
+.contributor-summary {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 20px;
+  margin: 0;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 9px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.contributor-list {
+  margin: 0 0 34px;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.contributor-row {
+  display: grid;
+  grid-template-columns: 34px 56px minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  margin: 0;
+  border-bottom: 1px solid var(--line-soft);
+  padding: 16px 12px 16px 4px;
+}
+
+.contributor-row__rank {
+  color: var(--green-deep);
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: right;
+}
+
+.contributor-avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--blue-soft);
+  color: var(--green-deep);
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.contributor-avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  color: transparent;
+}
+
+.contributor-row__identity {
+  min-width: 0;
+}
+
+.contributor-row__identity strong,
+.contributor-row__identity > span {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.contributor-row__identity strong {
+  font-family: var(--serif);
+  font-size: 1.14rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.contributor-row__identity strong a {
+  color: var(--ink);
+}
+
+.contributor-row__identity strong a:hover {
+  color: var(--blue-hover);
+}
+
+.contributor-row__identity > span {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.contributor-row__count {
+  display: block;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.contributor-row__count a,
+.contributor-row__count > span {
+  color: var(--ink);
+  font-size: 0.86rem;
+}
+
+.contributor-row__count a:hover {
+  color: var(--blue-hover);
+}
+
+.contributor-row__count b {
+  color: var(--green-deep);
+  font-family: var(--serif);
+  font-size: 1.32rem;
+}
+
+.contributor-row__count time {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+/* The core team keeps the ranked columns so the two lists line up, but the rank
+   cell stays empty: they are credited, not placed. */
+
+.contributor-method,
+.contributor-empty {
+  margin: 0;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.contributor-method strong {
+  color: var(--ink);
+}
+
+@media (max-width: 620px) {
+  .contributor-row {
+    grid-template-columns: 26px 48px minmax(0, 1fr);
+    gap: 6px 14px;
+    padding-right: 4px;
+  }
+
+  .contributor-avatar {
+    width: 48px;
+    height: 48px;
+    font-size: 0.95rem;
+  }
+
+  .contributor-row__count {
+    grid-column: 3 / -1;
+    display: flex;
+    gap: 4px 12px;
+    align-items: baseline;
+    text-align: left;
+  }
+
+  .contributor-row__count time {
+    margin-top: 0;
+  }
 }
 
 /* -------------------------------------------------------------- homepage */
@@ -1832,6 +2090,11 @@ a.is-stub-link:hover {
 
 /* ---------------------------------------------------------------- footer */
 
+/* The footer is a sibling of .page-shell, not a child, so it cannot inherit the
+   grid: the left padding is the sidebar column (282px) plus the 28px gutter,
+   hand-computed to line the footer text up with the content canvas. That makes
+   it a magic number tied to .page-shell's first column — every breakpoint that
+   resizes or removes that column has to re-state this padding below. */
 .site-footer {
   width: min(1660px, 100%);
   margin: 0 auto;
@@ -1907,6 +2170,11 @@ a.is-stub-link:hover {
 
   .page-shell {
     grid-template-columns: 238px minmax(0, 1fr);
+  }
+
+  /* Follows the narrower sidebar column above: 238px + the 28px gutter. */
+  .site-footer {
+    padding-left: 266px;
   }
 
   .sidebar {
@@ -2127,6 +2395,13 @@ a.is-stub-link:hover {
     margin-right: 18px;
   }
 
+  /* The sidebar is an off-canvas drawer from here down, so there is no column
+     to clear: the 310px reserved for it would otherwise squeeze the footer into
+     a ~50px strip on a phone. Match the article's 18px gutters instead. */
+  .site-footer {
+    padding: 24px 18px 32px;
+  }
+
   h1 {
     font-size: 2.05rem;
   }
@@ -2139,7 +2414,10 @@ a.is-stub-link:hover {
     margin: 0 0 14px;
   }
 
+  /* Matches the specificity of the per-count rules above and comes later, so
+     every directory collapses to one column here. */
   .directory-controls,
+  .directory-controls[data-filters],
   .wiki-scope-grid,
   .wiki-source-list {
     grid-template-columns: 1fr;
@@ -2155,8 +2433,8 @@ a.is-stub-link:hover {
     grid-template-columns: 104px 1fr;
   }
 
-  .site-footer {
-    padding: 22px 18px 28px;
+  .directory-card {
+    padding: 14px;
   }
 }
 

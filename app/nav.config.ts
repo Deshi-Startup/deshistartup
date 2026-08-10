@@ -63,6 +63,7 @@ export const bnNav: NavSection[] = [
     items: [
       ['/about', 'পরিচিতি ও সম্পাদকীয় নীতি'],
       ['/contribute', 'কীভাবে অবদান রাখবেন'],
+      ['/contributors', 'অবদানকারীরা'],
       [REPO_URL, 'GitHub-এ দেখুন'],
       [DISCORD_URL, 'Discord কমিউনিটিতে যোগ দিন'],
       [`${REPO_URL}/issues/new?template=report-mistake.yml`, 'ভুল জানান']
@@ -115,6 +116,7 @@ export const enNav: NavSection[] = [
     items: [
       ['/en/about', 'About & editorial policy'],
       ['/en/contribute', 'How to contribute'],
+      ['/en/contributors', 'Contributors'],
       [REPO_URL, 'View on GitHub'],
       [DISCORD_URL, 'Join the Discord community'],
       [`${REPO_URL}/issues/new?template=report-mistake.yml`, 'Report a mistake']

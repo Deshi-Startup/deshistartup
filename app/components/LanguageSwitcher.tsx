@@ -12,8 +12,19 @@ export default function LanguageSwitcher() {
   const pathname = usePathname()
   const router = useRouter()
   const isEn = pathname.startsWith('/en/') || pathname === '/en'
+  // One 404 document serves every unmatched URL, so the router reports the
+  // synthetic `/_not-found` route rather than the address the reader typed.
+  // Mirroring it would send them to a second 404, so send them to the other
+  // edition's home instead.
+  const isNotFound = pathname === '/_not-found' || pathname === '/en/_not-found'
 
-  const targetPath = isEn ? pathname.replace(/^\/en/, '') || '/' : `/en${pathname === '/' ? '' : pathname}`
+  const targetPath = isNotFound
+    ? isEn
+      ? '/'
+      : '/en'
+    : isEn
+      ? pathname.replace(/^\/en/, '') || '/'
+      : `/en${pathname === '/' ? '' : pathname}`
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
   const href = targetPath === '/' ? basePath || '/' : `${basePath}${targetPath}`
 

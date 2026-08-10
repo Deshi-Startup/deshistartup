@@ -79,6 +79,7 @@ export interface ContributionReviewRecord {
 
 const moderationCache = new Map<string, { value: ModerationState; expires: number }>()
 const MODERATION_CACHE_MS = 30_000
+const MODERATION_CACHE_MAX = 1024
 const textEncoder = new TextEncoder()
 
 export function getContributionBindings(env: CloudflareEnv): ContributionBindings {
@@ -152,6 +153,13 @@ export async function moderationFor(
     value = stored
   }
   moderationCache.set(ownerHash, { value, expires: now + MODERATION_CACHE_MS })
+  if (moderationCache.size >= MODERATION_CACHE_MAX) {
+    const cutoff = now
+    for (const [key, entry] of moderationCache) {
+      if (entry.expires <= cutoff) moderationCache.delete(key)
+    }
+    if (moderationCache.size >= MODERATION_CACHE_MAX) moderationCache.clear()
+  }
   return value
 }
 

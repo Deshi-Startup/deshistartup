@@ -87,6 +87,10 @@ remain utilitarian. Neither needs decorative depth.
 - Do not embed raw YouTube or Facebook iframes. Use the click-to-load facade components.
 - Do not add a heavy dependency for a small interaction or calculator.
 - Prefer semantic HTML and CSS over client state.
+- Nothing sticky or full-width carries a `backdrop-filter`. Blurring a strip on every scroll frame
+  is paid by the mid-range Android this site is read on, and buys a texture nobody looks at.
+- Hash-named build output is cached immutably in `public/_headers`. Every navigation is a full
+  document load, so a revalidation round-trip there is charged to the reader on every click.
 
 ## Review checklist
 
