@@ -23,8 +23,18 @@
 # redirect at the edge, and that is a zone setting ("Always Use HTTPS"), not a
 # file in this repository. Sets no Cache-Control, so the policies below still
 # apply unchanged.
+#
+# nosniff stops a browser from guessing a different type than the served
+# Content-Type (a classic HTML-injection amplifier). Referrer-Policy keeps
+# article URLs and page paths out of the Referer header sent to the gov
+# portals, GitHub and YouTube we link out to. X-Frame-Options prevents the
+# Google-authenticated reviewer flow from being clickjacked in an attacker's
+# iframe. The site embeds no third-party frames, so DENY is safe.
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
 
 # Next.js build output: CSS, JS chunks and the self-hosted fonts under media/.
 # Every filename here carries a content hash.
