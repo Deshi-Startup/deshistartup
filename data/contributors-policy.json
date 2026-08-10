@@ -4,12 +4,14 @@
   "coreTeam": ["anwarulislam", "sagar290", "shamirislam"],
   "displayNameOverrides": {
     "anwarulislam": "Anwarul Islam",
+    "muhaiminulfahim": "Muhaiminul Islam Khan",
     "niloy-biswas": "Niloy Biswas",
     "sagar290": "Sagar",
     "shamirislam": "Shamir Islam",
     "uttamdeb": "Uttam Deb"
   },
   "inlineAttributionLinks": {
+    "Muhaiminul Islam Khan": "muhaiminulfahim",
     "Shoumik Shahriar": "https://shoumik.substack.com"
   },
   "exclusions": {
