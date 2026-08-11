@@ -1,8 +1,18 @@
-Copyright 2020 The Indigo Project Authors (https://github.com/TiroTypeworks/Indigo)
+Copyright 2025 The Noto Project Authors (https://github.com/notofonts/bengali),
+with Reserved Font Name "Noto".
+
+Applies to:
+
+  deshi-sans-bengali-var.woff2
+
+This is a Modified Version of Noto Sans Bengali: it is subset to the Bengali
+Unicode range used in app/globals.css, its weight axis is clipped to 400–700,
+and its file, family and instance names are changed to Deshi Sans Bengali so
+the Reserved Font Name is not used as the modified font's name.
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:
-http://scripts.sil.org/OFL
+https://openfontlicense.org
 
 
 -----------------------------------------------------------

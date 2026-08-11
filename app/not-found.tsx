@@ -25,7 +25,7 @@ export default function NotFound() {
   return (
     <div style={{ maxWidth: '36rem', margin: '0 auto', padding: '56px 20px', textAlign: 'center' }}>
       <p className="wiki-kicker">{isEn ? '404' : '৪০৪'}</p>
-      <h1 style={{ fontFamily: 'var(--serif)' }}>
+      <h1 style={{ fontFamily: 'var(--display)' }}>
         {isEn ? 'This page could not be found' : 'পাতাটি পাওয়া যায়নি'}
       </h1>
       <p style={{ color: 'var(--muted)' }}>

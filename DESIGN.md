@@ -21,7 +21,8 @@ A first-time founder on patchy bandwidth must be able to:
 
 - Warm paper surrounds a white reading canvas with a deep-green top rule.
 - Green means structure and active state. Blue means links.
-- Headings use the Bengali serif; body text and UI use the system/sans stack.
+- Body text and UI use a script-aware sans stack. Headings use the dedicated `--display` role;
+  today it shares the same family and separates through scale, weight, spacing and hairline rules.
 - Hairline borders create hierarchy. Shadows and large radii are rare.
 - Yellow is reserved for cautions and the language-toggle thumb.
 - Error red is for errors only.
@@ -35,7 +36,7 @@ label, border or spacing change.
 - The article collapses to one column on mobile; navigation becomes a drawer.
 - Body copy is at least 15–16px with generous Bangla line-height.
 - Long prose has a readable measure. Tables and indexes may use the wider canvas.
-- `h1` and `h2` use serif display type and a hairline rule; `h3`, labels and UI remain sans.
+- `h1` and `h2` use the display role and a hairline rule; `h3`, labels and UI remain sans.
 - Touch targets for important mobile actions are at least 44px.
 
 The exact breakpoints, widths and type sizes are implementation details in `app/globals.css`.
@@ -83,6 +84,11 @@ remain utilitarian. Neither needs decorative depth.
 ## Performance rules
 
 - Article pages stay near-zero-JS outside search, navigation and contribution controls.
+- Latin uses the local system stack and downloads nothing. Bengali uses one renamed, self-hosted
+  variable subset covering weights 400–700. The browser resolves the stack per character, so mixed
+  Bangla and English text needs no markup or locale-specific font override.
+- Bengali emphasis stays upright at weight 600 rather than synthesising an italic slant through
+  conjuncts. English emphasis uses the platform face's native italic.
 - Fonts are self-hosted; do not add render-blocking font services.
 - Do not embed raw YouTube or Facebook iframes. Use the click-to-load facade components.
 - Do not add a heavy dependency for a small interaction or calculator.

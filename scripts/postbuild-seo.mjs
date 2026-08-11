@@ -37,11 +37,9 @@ function htmlFileFor(route) {
 }
 
 /**
- * The hashed URL of the primary Bengali face, lifted out of the built stylesheet
- * so it carries whatever basePath this deployment was built with. Bengali pages
- * use it throughout, and no common platform ships Tiro Bangla for the local()
- * source to match. Left to @font-face alone it is not discovered until the
- * stylesheet has downloaded and parsed.
+ * The hashed URL of the self-hosted Bengali face, lifted out of the built
+ * stylesheet so it carries this deployment's basePath. Bengali pages always
+ * use this file because the @font-face deliberately has no local() source.
  */
 function bengaliPrimaryFontUrl() {
   const cssDirs = [
@@ -54,7 +52,7 @@ function bengaliPrimaryFontUrl() {
       if (!name.endsWith('.css')) continue
       const match = fs
         .readFileSync(path.join(dir, name), 'utf8')
-        .match(/url\(\s*["']?([^"')]*tiro-bangla-bengali-400(?!-italic)[^"')]*\.woff2)["']?\s*\)/)
+        .match(/url\(\s*["']?([^"')]*deshi-sans-bengali-var[^"')]*\.woff2)["']?\s*\)/)
       if (match) return match[1]
     }
   }
@@ -62,7 +60,7 @@ function bengaliPrimaryFontUrl() {
 }
 
 const bengaliFontUrl = bengaliPrimaryFontUrl()
-if (!bengaliFontUrl) console.warn('postbuild SEO: primary Bengali font not found in built CSS; skipping font preload')
+if (!bengaliFontUrl) console.warn('postbuild SEO: Bengali font not found in built CSS; skipping font preload')
 
 function escapeHtml(value) {
   return String(value)

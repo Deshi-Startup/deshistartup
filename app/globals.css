@@ -1,57 +1,23 @@
 /* ---------------------------------------------------------------------------
    দেশি স্টার্টআপ – classic wiki shell
    The original Wikipedia-inspired look: warm paper page, white content canvas
-   with a deep-green top rule and Tiro Bangla typography. Familiar blue links
-   and yellow accents remain. Bengali webfonts are self-hosted and split into
-   script-specific subsets.
+   with a deep-green top rule, familiar blue links and yellow accents.
+
+   Latin uses the platform sans stack: no download and no font swap. Bengali
+   uses one self-hosted variable face, renamed after subsetting to comply with
+   the original font's Reserved Font Name. The stack resolves per character, so
+   mixed Bangla and English text needs no locale wrapper or hand-written spans.
    --------------------------------------------------------------------------- */
 
 @font-face {
-  font-family: 'Tiro Bangla';
-  src: local('Tiro Bangla Regular'), local('TiroBangla-Regular'),
-    url('./fonts/tiro-bangla-bengali-400.woff2') format('woff2');
-  font-weight: 400;
+  font-family: 'Deshi Sans Bengali';
+  src: url('./fonts/deshi-sans-bengali-var.woff2') format('woff2');
+  font-weight: 400 700;
   font-style: normal;
   font-display: swap;
   unicode-range: U+0951-0952, U+0964-0965, U+0980-09FE, U+1CD0, U+1CD2,
     U+1CD5-1CD6, U+1CD8, U+1CE1, U+1CEA, U+1CED, U+1CF2, U+1CF5-1CF7,
     U+200C-200D, U+20B9, U+25CC, U+A8F1;
-}
-
-@font-face {
-  font-family: 'Tiro Bangla';
-  src: local('Tiro Bangla Regular'), local('TiroBangla-Regular'),
-    url('./fonts/tiro-bangla-latin-400.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
-    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Tiro Bangla';
-  src: local('Tiro Bangla Italic'), local('TiroBangla-Italic'),
-    url('./fonts/tiro-bangla-bengali-400-italic.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-  unicode-range: U+0951-0952, U+0964-0965, U+0980-09FE, U+1CD0, U+1CD2,
-    U+1CD5-1CD6, U+1CD8, U+1CE1, U+1CEA, U+1CED, U+1CF2, U+1CF5-1CF7,
-    U+200C-200D, U+20B9, U+25CC, U+A8F1;
-}
-
-@font-face {
-  font-family: 'Tiro Bangla';
-  src: local('Tiro Bangla Italic'), local('TiroBangla-Italic'),
-    url('./fonts/tiro-bangla-latin-400-italic.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
-    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 :root {
@@ -98,8 +64,14 @@
      while editing, because the header stacks to a second row on phones. */
   --header-h: 84px;
   --shadow: 0 14px 32px rgb(var(--ink-channels) / 8%);
-  --sans: 'Tiro Bangla', Georgia, serif;
-  --serif: 'Tiro Bangla', Georgia, serif;
+  --sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Deshi Sans Bengali', sans-serif;
+  /* Display stays a named role even while it shares the low-bandwidth family.
+     Size, weight, balanced wrapping and the hairline rules carry the hierarchy. */
+  --display: var(--sans);
+  --w-display: 500;
+  --w-heading: 600;
+  --w-strong: 600;
 }
 
 * {
@@ -147,6 +119,13 @@ textarea {
 
 p {
   margin: 0 0 1em;
+}
+
+/* Bengali scripts do not have a native italic convention in this family.
+   Preserve semantic emphasis without browser-synthesised slanting conjuncts. */
+:lang(bn) em {
+  font-style: normal;
+  font-weight: var(--w-strong);
 }
 
 .sr-only {
@@ -234,7 +213,7 @@ p {
   display: block;
   color: var(--ink);
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: var(--w-strong);
   line-height: 1.1;
   white-space: nowrap;
 }
@@ -451,7 +430,7 @@ p {
   height: 22px;
   color: var(--muted);
   font-size: 10px;
-  font-weight: 800;
+  font-weight: var(--w-strong);
   line-height: 1;
 }
 
@@ -519,7 +498,7 @@ p {
   border-top: 1px solid var(--line-warm);
   padding-top: 14px;
   color: var(--muted);
-  font-weight: 700;
+  font-weight: var(--w-strong);
   font-size: 0.82rem;
 }
 
@@ -536,7 +515,7 @@ p {
 
 .sidebar-group a.is-active {
   color: var(--green-deep);
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .sidebar-note {
@@ -592,7 +571,7 @@ a.tab {
   border-top: 3px solid var(--green);
   background: var(--canvas);
   color: var(--ink);
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .article-actions {
@@ -612,7 +591,7 @@ a.tab {
    the current one, set in ink, and the other stays a link. */
 .article-actions .is-current {
   color: var(--ink);
-  font-weight: 700;
+  font-weight: var(--w-strong);
   cursor: default;
 }
 
@@ -753,9 +732,9 @@ h1 {
   margin: 0 0 18px;
   border-bottom: 1px solid var(--line);
   padding-bottom: 14px;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: clamp(2.1rem, 3vw, 3.2rem);
-  font-weight: 700;
+  font-weight: var(--w-display);
   line-height: 1.3;
 }
 
@@ -763,15 +742,15 @@ h2 {
   margin: 34px 0 12px;
   border-bottom: 1px solid var(--line);
   padding-bottom: 7px;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 1.55rem;
-  font-weight: 700;
+  font-weight: var(--w-heading);
 }
 
 h3 {
   margin: 24px 0 10px;
   font-size: 1.08rem;
-  font-weight: 700;
+  font-weight: var(--w-heading);
 }
 
 .lead,
@@ -817,7 +796,7 @@ h3 {
   background: var(--canvas);
   padding: 9px 18px;
   color: var(--green-deep);
-  font-weight: 700;
+  font-weight: var(--w-strong);
   text-decoration: none;
 }
 
@@ -910,7 +889,7 @@ td {
 
 th {
   background: var(--shade);
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 ul,
@@ -1084,7 +1063,7 @@ p:has(> .fb-video) {
   background: linear-gradient(to top, rgb(var(--ink-channels) / 82%), transparent);
   color: #fff;
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
   line-height: 1.5;
 }
 
@@ -1125,7 +1104,7 @@ p:has(> .fb-video) {
   color: rgb(255 255 255 / 9%);
   font-family: var(--sans);
   font-size: clamp(9rem, 30vw, 18rem);
-  font-weight: 700;
+  font-weight: var(--w-strong);
   line-height: 1;
 }
 
@@ -1165,7 +1144,7 @@ p:has(> .fb-video) {
   background: linear-gradient(to top, rgb(var(--ink-channels) / 88%), transparent);
   color: #fff;
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
   line-height: 1.5;
 }
 
@@ -1210,7 +1189,7 @@ p:has(> .fb-video) {
   gap: 10px;
   padding: 9px 14px;
   color: var(--green-deep);
-  font-weight: 700;
+  font-weight: var(--w-strong);
   cursor: pointer;
   list-style: none;
 }
@@ -1363,7 +1342,7 @@ a.is-stub-link:hover {
   padding: 0 8px;
   color: var(--warn-ink);
   font-size: 0.68rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
   line-height: 1.7;
   white-space: nowrap;
   vertical-align: 2px;
@@ -1492,7 +1471,7 @@ a.is-stub-link:hover {
   gap: 4px;
   color: var(--muted);
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .directory-controls input,
@@ -1520,7 +1499,7 @@ a.is-stub-link:hover {
   color: var(--green-deep);
   font: inherit;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
   cursor: pointer;
 }
 
@@ -1538,7 +1517,7 @@ a.is-stub-link:hover {
   padding: 4px 12px;
   color: var(--muted);
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 /* One card per entry instead of a wide table. Directory values are sentences —
@@ -1562,7 +1541,7 @@ a.is-stub-link:hover {
   margin: 0;
   font-family: var(--sans);
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .directory-card__note {
@@ -1584,7 +1563,7 @@ a.is-stub-link:hover {
 .directory-card dt {
   color: var(--muted);
   font-size: 0.76rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
   letter-spacing: 0.02em;
 }
 
@@ -1613,7 +1592,7 @@ a.is-stub-link:hover {
   margin: 0;
   padding: 22px;
   color: var(--muted);
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 /* ----------------------------------------------------------- contributors */
@@ -1654,9 +1633,9 @@ a.is-stub-link:hover {
 
 .contributor-row__rank {
   color: var(--green-deep);
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
   line-height: 1;
   text-align: right;
 }
@@ -1672,9 +1651,9 @@ a.is-stub-link:hover {
   border-radius: 50%;
   background: var(--blue-soft);
   color: var(--green-deep);
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .contributor-avatar img {
@@ -1697,9 +1676,9 @@ a.is-stub-link:hover {
 }
 
 .contributor-row__identity strong {
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 1.14rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
   line-height: 1.3;
 }
 
@@ -1735,7 +1714,7 @@ a.is-stub-link:hover {
 
 .contributor-row__count b {
   color: var(--green-deep);
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 1.32rem;
 }
 
@@ -1824,7 +1803,7 @@ a.is-stub-link:hover {
 .wiki-kicker {
   margin: 0 0 4px;
   color: var(--green-deep);
-  font-weight: 800;
+  font-weight: var(--w-strong);
 }
 
 /* The one ranked pair of actions on the site. Kept inside the flat, bordered
@@ -1860,7 +1839,7 @@ a.is-stub-link:hover {
   border-color: var(--green-deep);
   background: var(--green-ground);
   color: var(--green-deep);
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .wiki-start .is-primary::after {
@@ -1875,7 +1854,7 @@ a.is-stub-link:hover {
 .wiki-subtitle {
   margin: 0 0 14px;
   color: var(--muted);
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 1.08rem;
 }
 
@@ -1935,7 +1914,7 @@ a.is-stub-link:hover {
 .wiki-infobox strong {
   display: block;
   text-align: center;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 1.08rem;
 }
 
@@ -1971,7 +1950,7 @@ a.is-stub-link:hover {
 
 .wiki-infobox dt {
   color: var(--muted);
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .wiki-section {
@@ -2083,7 +2062,7 @@ a.is-stub-link:hover {
   padding-top: 14px;
   color: var(--green-deep);
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .wiki-path-card__go::after {
@@ -2123,7 +2102,7 @@ a.is-stub-link:hover {
   align-items: baseline;
   gap: 10px;
   padding: 13px 18px;
-  font-weight: 700;
+  font-weight: var(--w-strong);
   cursor: pointer;
   list-style: none;
 }
@@ -2137,7 +2116,7 @@ a.is-stub-link:hover {
   flex: 0 0 auto;
   width: 0.8em;
   color: var(--green-deep);
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .home-faq details[open] > summary::before {
@@ -2193,7 +2172,7 @@ a.is-stub-link:hover {
 
 .contrib-section .contrib-stats b {
   color: var(--green-deep);
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 /* recently updated */
@@ -2256,7 +2235,7 @@ a.is-stub-link:hover {
   margin: 0;
   color: var(--faint);
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
   line-height: 1.7;
 }
 
@@ -2852,7 +2831,7 @@ body.auth-open {
 
 .modal-error .modal-error__label {
   margin: 0 0 3px;
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .modal-error__actions {
@@ -3015,7 +2994,7 @@ body.auth-open {
   border-color: var(--green-deep);
   background: var(--green-ground);
   color: var(--green-deep);
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .edit-btn.is-primary:hover:not(:disabled) {
@@ -3075,7 +3054,7 @@ body.auth-open {
   --crepe-color-hover: var(--green-soft);
   --crepe-color-selected: var(--green-soft);
   --crepe-color-inline-area: var(--line-soft);
-  --crepe-font-title: var(--serif);
+  --crepe-font-title: var(--display);
   --crepe-font-default: var(--sans);
   --crepe-font-code: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
   --crepe-shadow-1: 0 2px 10px rgb(var(--ink-channels) / 10%);
@@ -3125,8 +3104,8 @@ body.auth-open {
 .edit-live .milkdown .ProseMirror :is(h1, h2, h3, h4, h5, h6) {
   padding: 0;
   color: var(--ink);
-  font-family: var(--serif);
-  font-weight: 700;
+  font-family: var(--display);
+  font-weight: var(--w-heading);
   line-height: 1.25;
   letter-spacing: 0;
 }
@@ -3223,7 +3202,7 @@ body.auth-open {
 
 .edit-live .milkdown .ProseMirror th {
   background: var(--shade);
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 /* Blue is this site's link colour and nothing else's; Crepe would paint links in
@@ -3279,7 +3258,7 @@ body.auth-open {
   color: var(--warn-ink);
   font-family: var(--sans);
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .edit-live .milkdown .milkdown-code-block[data-locked] .cm-editor {
@@ -3357,7 +3336,7 @@ body.auth-open {
   color: rgb(255 255 255 / 9%);
   font-family: var(--sans);
   font-size: clamp(9rem, 30vw, 18rem);
-  font-weight: 700;
+  font-weight: var(--w-strong);
   line-height: 1;
 }
 
@@ -3370,7 +3349,7 @@ body.auth-open {
   padding: 3px 7px;
   color: #fff;
   font-size: 0.76rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .edit-video__play {
@@ -3409,7 +3388,7 @@ body.auth-open {
   margin-bottom: 4px;
   color: var(--muted);
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .edit-live .milkdown .edit-video__field input,
@@ -3427,7 +3406,7 @@ body.auth-open {
 }
 
 .edit-live .milkdown .edit-video__title {
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .edit-live .milkdown .edit-video__field input:focus,
@@ -3458,7 +3437,7 @@ body.auth-open {
   min-height: 32px;
   color: var(--green-deep);
   cursor: pointer;
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .edit-video__details-grid {
@@ -3491,7 +3470,7 @@ body.auth-open {
   cursor: pointer;
   font: inherit;
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
   text-decoration: none;
 }
 
@@ -3551,7 +3530,7 @@ body.auth-open {
 .edit-media__heading h2 {
   margin: 0 0 4px;
   color: var(--ink);
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 1.25rem;
 }
 
@@ -3642,7 +3621,7 @@ body.auth-open {
   gap: 5px;
   color: var(--ink);
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .edit-media-item :is(input, textarea),
@@ -3724,7 +3703,7 @@ body.auth-open {
   display: block;
   color: var(--ink);
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .edit-publish__hint {
@@ -3932,7 +3911,7 @@ body.auth-open {
   margin: 0 0 6px;
   color: var(--green-deep);
   font-size: 0.86rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .media-review__header h1 {
@@ -3940,7 +3919,7 @@ body.auth-open {
   border-bottom: 1px solid var(--line);
   padding-bottom: 12px;
   color: var(--ink);
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: clamp(2.1rem, 3vw, 3.2rem);
   line-height: 1.3;
 }
@@ -4053,7 +4032,7 @@ body.auth-open {
 
 .media-review-item__title h2 {
   margin: 0;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: 1.55rem;
 }
 
@@ -4090,7 +4069,7 @@ body.auth-open {
 .media-review-item dt {
   color: var(--faint);
   font-size: 0.8rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .media-review-item dd {
@@ -4125,7 +4104,7 @@ body.auth-open {
   display: grid;
   gap: 5px;
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
 }
 
 .media-review__moderation-actions {
@@ -4324,7 +4303,7 @@ body.auth-open {
   align-items: center;
   gap: 6px;
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
   color: var(--green-deep);
   background: var(--green-soft);
   padding: 3px 9px;
@@ -4343,7 +4322,7 @@ body.auth-open {
 }
 
 .expert-review__name {
-  font-weight: 700;
+  font-weight: var(--w-strong);
   color: var(--ink);
 }
 
@@ -4541,7 +4520,7 @@ html[lang='en'] .glossary-copy--en {
   gap: 6px;
   margin-bottom: 6px;
   font-size: 0.76rem;
-  font-weight: 700;
+  font-weight: var(--w-strong);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--green-deep);
