@@ -34,9 +34,15 @@ label, border or spacing change.
 
 - The desktop shell has a left navigation rail and a readable article canvas.
 - The article collapses to one column on mobile; navigation becomes a drawer.
-- Body copy is at least 15–16px with generous Bangla line-height.
+- Body copy is 16px, and the phone never gets the smaller setting: Bangla carries matra above and
+  conjuncts below the line, so the narrow column takes more leading, not less type.
 - Long prose has a readable measure. Tables and indexes may use the wider canvas.
-- `h1` and `h2` use the display role and a hairline rule; `h3`, labels and UI remain sans.
+- `h1` and `h2` use the display role and a hairline rule; `h3`, labels and UI remain sans. Each
+  heading level stays a clear step above the body at every width, not a weight change.
+- A fenced block on this site holds Bangla prose, a fee sum or a template, so it is set in the
+  reading face and wraps on a phone. Inline `code` keeps the monospace, where it names a field.
+- A table divides the phone column evenly rather than sizing itself from its longest word. Only a
+  genuinely dense grid becomes its own horizontal scroll surface.
 - Touch targets for important mobile actions are at least 44px.
 
 The exact breakpoints, widths and type sizes are implementation details in `app/globals.css`.

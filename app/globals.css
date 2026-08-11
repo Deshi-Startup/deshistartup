@@ -432,7 +432,9 @@ p {
   width: 34px;
   height: 22px;
   color: var(--muted);
-  font-size: 10px;
+  /* Two capitals in a 34px cell: the extra pixel costs no geometry and this is
+     the smallest type in the header. */
+  font-size: 11px;
   font-weight: var(--w-strong);
   line-height: 1;
 }
@@ -713,6 +715,16 @@ a.tab {
   text-wrap: pretty;
 }
 
+/* `anywhere` also lets the browser count a broken word when it sizes a column,
+   which is what a narrow table wants – but inside a 110px column on a phone it
+   took the invitation everywhere and set "E-commerce" as "E-/commerc/e". Cells
+   break only what genuinely cannot fit a line on its own; what keeps the table
+   inside the canvas is the fixed layout on a phone, not shredded words. */
+.article :is(td, th) {
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
 /* Bengali headings are long, and a wrapped one used to drop its last word alone
    on a rule of its own. `balance` evens the lines instead; where it is
    unsupported the heading simply wraps as before. */
@@ -928,17 +940,40 @@ pre {
   padding: 16px;
 }
 
+/* Every fenced block on this site holds Bengali: a message template, a fee sum,
+   a share calculation. The monospace families cover none of it, so the script
+   fell through to whatever Bengali face the platform keeps behind `monospace`
+   and a paragraph of prose changed typeface mid-page. The self-hosted face
+   leads for the same reason it leads --sans: it is fenced to the Bengali range,
+   so Latin, digits and punctuation skip it and still land on the monospace. */
 code {
   border-radius: 3px;
   background: var(--shade);
   padding: 1px 4px;
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  font-family: 'Deshi Sans Bengali', 'SFMono-Regular', Consolas,
+    'Liberation Mono', monospace;
   font-size: 0.92em;
+}
+
+/* The fenced blocks in these guides are Bangla: a message template, a fee sum,
+   a share calculation. Monospace buys them nothing – the digits are Bengali and
+   resolve to the same face either way – while its space advance is close to
+   twice the proportional one, which opens visible gutters through a Bangla
+   sentence. The border, the ground and the preserved line breaks are what set
+   the block apart; the letters belong in the reading face. Inline code keeps
+   the monospace, where it is naming a field, a file or a form. */
+pre,
+pre code {
+  font-family: var(--sans);
 }
 
 pre code {
   background: transparent;
   padding: 0;
+  /* Inline code shrinks slightly so it does not shout inside a sentence. A
+     whole block has the border and the ground to set it apart, and the reader
+     is meant to work from the text in it, so it keeps the body size. */
+  font-size: 1em;
 }
 
 img {
@@ -1762,9 +1797,14 @@ a.is-stub-link:hover {
     font-size: 0.95rem;
   }
 
+  /* The count and the date keep their own nowrap – neither phrase should break
+     mid-way – but the pair of them has to be allowed to stack. Without the
+     wrap the date ran off the canvas on a 360px screen and, because the body
+     clips overflow, the year was simply gone rather than scrollable. */
   .contributor-row__count {
     grid-column: 3 / -1;
     display: flex;
+    flex-wrap: wrap;
     gap: 4px 12px;
     align-items: baseline;
     text-align: left;
@@ -2341,8 +2381,18 @@ a.is-stub-link:hover {
     scroll-padding-top: 152px;
   }
 
+  /* The phone is the reading device, so it gets the larger body, not the
+     smaller one. Bengali carries matra above and conjuncts below the line, and
+     at 15px the stacked forms – ক্ত, ষ্ঠ, ঙ্গ – are where a founder on a
+     mid-range Android starts guessing. 16px costs about one word a line and
+     buys back the shapes. The leading below is the other half of it: the same
+     ratio that reads calm in Latin runs tight once the matra is in it. */
   body {
-    font-size: 15px;
+    font-size: 16px;
+  }
+
+  .article :is(p, li, dd, td, th, blockquote) {
+    line-height: 1.78;
   }
 
   .header-inner {
@@ -2539,6 +2589,15 @@ a.is-stub-link:hover {
     min-width: 8rem;
   }
 
+  /* Everything narrower stays in the column and divides it evenly. Automatic
+     layout sizes a table from its longest word, so one "Requirements" in a
+     three-column reference walked the whole table 9px past the canvas and gave
+     the page a sideways scroll. Fixed layout settles the columns first and lets
+     the text wrap inside them, which is the arrangement a phone can read. */
+  .article > table:not(:has(tr > :nth-child(4))) {
+    table-layout: fixed;
+  }
+
   .article-footer {
     margin-left: 18px;
     margin-right: 18px;
@@ -2553,6 +2612,35 @@ a.is-stub-link:hover {
 
   h1 {
     font-size: 2.05rem;
+  }
+
+  /* A heading that fits one line on a monitor takes two or three on a phone, so
+     the leading stops being a detail of the first line and becomes the texture
+     of the whole block. 1.25 left the matra of a second line sitting on the
+     descenders of the first. h3 moves up as well: against a 16px body it was a
+     1.28px step, which is a weight change, not a level. */
+  h2,
+  h3 {
+    line-height: 1.34;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  /* Nothing in these blocks is code. They hold a Bangla message template, a fee
+     sum, a share calculation – prose that happens to want a fixed frame – and a
+     phone is exactly where sideways scrolling loses the end of the line. */
+  .article pre {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+
+  /* "লেখা বাকি" sits beside a link the reader is deciding whether to follow, so
+     it has to be readable at a glance, not merely present. Bengali at 10.9px on
+     a phone is neither. */
+  .stub-chip {
+    font-size: 0.78rem;
   }
 
   .wiki-title-row {
@@ -2576,6 +2664,22 @@ a.is-stub-link:hover {
   .directory-controls select,
   .directory-controls button {
     min-height: 44px;
+  }
+
+  /* A one-column grid track still floors at the widest thing inside it, and a
+     <select> reports its longest option as min-content. On a 320px screen that
+     pushed the whole filter panel 24px past the canvas. The label is a grid of
+     its own, so the floor has to be released on both. */
+  .directory-controls label {
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .directory-controls input,
+  .directory-controls select,
+  .directory-controls button {
+    min-width: 0;
+    max-width: 100%;
   }
 
   .wiki-infobox dl div {
@@ -4734,8 +4838,9 @@ html[lang='en'] .glossary-copy--en {
    overridden where it is set rather than at a specificity nobody can predict. */
 
 @media (pointer: coarse) {
-  /* Search inherits the body, and the body drops to 15px at 860px – so the one
-     control every reader touches first was the one triggering the zoom. */
+  /* Search inherits the body, which now holds 16px on a phone. It stays on the
+     list because it is the one control every reader touches first, and it
+     should not become a zoom trap again if the body size is ever revisited. */
   .search input,
   .directory-controls input,
   .directory-controls select,
@@ -4752,5 +4857,13 @@ html[lang='en'] .glossary-copy--en {
   .directory-controls select,
   .directory-controls button {
     min-height: 44px;
+  }
+
+  /* The citation marker is the smallest target on a source-backed page and the
+     one a founder checking a fee actually reaches for. Its sup carries
+     line-height 0, so vertical padding grows the target to ~24px without moving
+     a single line of the paragraph around it. */
+  .article .cite-link {
+    padding-block: 6px;
   }
 }
