@@ -1,6 +1,9 @@
 node_modules/
 out/
 .next/
+# `next dev` builds here instead, so a dev server running in an editor cannot
+# corrupt a production build's .next. See next.config.mjs.
+.next-dev/
 _pagefind/
 *.log
 .env

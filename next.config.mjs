@@ -48,6 +48,15 @@ const nextConfig = {
   // Content is a static asset. The small native Worker in worker/ owns only
   // /api/*, so adding guides does not increase the Worker script bundle.
   turbopack: { root: projectRoot },
+  // `next dev` and `next build` otherwise share one .next directory, and a dev
+  // server left running in an editor writes into it while a build is reading
+  // it. That does not fail loudly: builds die on a different random route each
+  // time ("Cannot find module for page", "Failed to collect page data"), or
+  // worse, succeed and export a stale client chunk, so a fix appears to have
+  // been deployed when the old code shipped. Give dev its own directory and
+  // the two stop touching the same files. Nothing else reads .next-dev; the
+  // build tooling (postbuild-seo, build-output) is production-only.
+  ...(isDevelopment ? { distDir: '.next-dev' } : {}),
   basePath,
   ...(isDevelopment
     ? {
