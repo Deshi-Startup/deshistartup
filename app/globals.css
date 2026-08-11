@@ -130,7 +130,9 @@ a:hover {
 }
 
 button,
-input {
+input,
+select,
+textarea {
   font: inherit;
 }
 
@@ -4606,5 +4608,33 @@ html[lang='en'] .glossary-copy--en {
     content: " (" attr(href) ")";
     font-size: 0.85em;
     color: #444;
+  }
+}
+
+/* ------------------------------------------------------ touch input floor */
+
+/* iOS Safari zooms the viewport when a focused control renders text under 16px
+   and never zooms back out, which leaves a reader scrolling sideways through
+   the rest of the page. Every control below runs a deliberately small label at
+   desktop width; on a touch pointer it gets the body size back instead. Last in
+   the file and selector-for-selector with the rules above, so each one is
+   overridden where it is set rather than at a specificity nobody can predict. */
+
+@media (pointer: coarse) {
+  .directory-controls input,
+  .directory-controls select,
+  .edit-media-item :is(input, textarea),
+  .media-review__moderation input,
+  .edit-publish__summary,
+  .edit-live .milkdown .milkdown-image-block > .caption-input {
+    font-size: 1rem;
+  }
+
+  /* Named in DESIGN.md: the important mobile actions are at least 44px. The
+     directory filters are the whole interface on that page. */
+  .directory-controls input,
+  .directory-controls select,
+  .directory-controls button {
+    min-height: 44px;
   }
 }

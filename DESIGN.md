@@ -91,6 +91,17 @@ remain utilitarian. Neither needs decorative depth.
   is paid by the mid-range Android this site is read on, and buys a texture nobody looks at.
 - Hash-named build output is cached immutably in `public/_headers`. Every navigation is a full
   document load, so a revalidation round-trip there is charged to the reader on every click.
+- Nothing appears above the article after the page has painted. The shell is one client component
+  that cannot know the route while the static HTML is rendered, so anything it discovers from the
+  DOM used to arrive a moment late and push the reading down. Both "on this page" lists are now
+  written into the HTML by `scripts/postbuild-seo.mjs`, marked with `deshi:toc`, and reproduced
+  exactly by the shell's first client render. The rule is stated once and implemented twice, so a
+  change to either side has to be made on both.
+- Dates stay client-side on purpose. Node and Chrome ship different CLDR data — Node writes
+  "৩১ জানুয়ারী", Chrome writes "৩১ জানুয়ারি" — so a build-time Bengali date would not survive
+  hydration. Formatting a date in the browser is the only way both agree.
+- Analytics is `lazyOnload`, behind the window load event. It is the largest main-thread bill on the
+  page and none of it is what the reader came for.
 
 ## Review checklist
 

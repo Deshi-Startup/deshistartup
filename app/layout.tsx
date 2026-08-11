@@ -53,10 +53,13 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="bn" dir="ltr" suppressHydrationWarning>
       <body>
-        {/* Analytics loads after first-party code, not during head parse. A founder
-            on a mid-range Android on patchy bandwidth gets the article first; the
-            measurement still happens, just not ahead of the thing they came for. */}
-        <Script id="gtm-init" strategy="afterInteractive">
+        {/* Analytics waits for the window load event, not just for hydration. A
+            founder on a mid-range Android on patchy bandwidth gets the article,
+            its font and its own interactivity first; the container and whatever
+            it pulls in behind it are a bigger main-thread bill than any
+            first-party code on the page, and none of it is what they came for.
+            The measurement still happens, at the back of the queue. */}
+        <Script id="gtm-init" strategy="lazyOnload">
           {googleTagManagerScript}
         </Script>
         <noscript>

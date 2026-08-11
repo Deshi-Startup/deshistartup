@@ -5,7 +5,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import LanguageSwitcher from './LanguageSwitcher'
 import SearchBox from './SearchBox'
-import AuthModal from './AuthModal'
 import type { SubmitResult } from './ContributionEditor'
 import { cleanRoute } from '../lib/clean-route'
 import { clearAuth, getStoredAuth, UserInfo } from '../lib/client-auth'
@@ -22,6 +21,9 @@ import sectionsLite from '../generated/sections-lite.json'
 
 // Heavy (Milkdown) – only loads when a contributor opens the editor.
 const ContributionEditor = dynamic(() => import('./ContributionEditor'), { ssr: false })
+// Google Identity Services and a focus-trapping dialog, for the small share of
+// readers who sign in. Kept out of the chunk every reader downloads.
+const AuthModal = dynamic(() => import('./AuthModal'), { ssr: false })
 
 interface SectionsLite {
   en?: Record<string, string>
@@ -88,6 +90,61 @@ function ActionPencil() {
 interface HeadingItem {
   id: string
   text: string
+}
+
+/* Both "On this page" lists are built from the article's own h2s. The shell is
+   one shared client component that cannot know the route while the static HTML
+   is rendered, so the lists used to be filled in after hydration – and a
+   collapsed accordion appearing above the article pushed the whole page down
+   the moment the JavaScript landed. The postbuild pass now writes both lists
+   into the HTML and marks the page with `deshi:toc`; when that marker is there
+   the first client render reads the same h2s and reproduces the same markup, so
+   there is nothing left to shift. `next dev` runs no postbuild pass, hence the
+   unmarked path stays exactly as it was. */
+
+const HEADING_LIMIT = 16
+
+function slugifyHeading(value: string) {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
+/** `assignIds` is the unmarked path: give an id to any h2 that reached the
+ *  browser without one, so its link still has somewhere to go. A production
+ *  build runs rehype-slug and never needs it. */
+function collectHeadings(assignIds: boolean): HeadingItem[] {
+  const article = document.querySelector('.article')
+  if (!article) return []
+
+  const nodes = [...article.querySelectorAll('h2')].slice(0, HEADING_LIMIT)
+
+  if (assignIds) {
+    const seen = new Set<string>()
+    nodes.forEach((heading, index) => {
+      if (!heading.id) {
+        let id = slugifyHeading(heading.textContent || '') || `section-${index + 1}`
+        while (seen.has(id)) id = `${id}-${index}`
+        heading.id = id
+      }
+      seen.add(heading.id)
+    })
+  }
+
+  return nodes
+    .map((heading) => ({ id: heading.id, text: heading.textContent?.trim() || '' }))
+    .filter((heading) => heading.id && heading.text)
+}
+
+function hasServerRenderedToc() {
+  return !!document.querySelector('meta[name="deshi:toc"]')
+}
+
+function initialHeadings(): HeadingItem[] {
+  if (typeof document === 'undefined') return []
+  return hasServerRenderedToc() ? collectHeadings(false) : []
 }
 
 interface SidebarProps {
@@ -235,7 +292,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   // carries its own way out.
   const isNotFound = pathname === '/_not-found' || pathname === '/en/_not-found'
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const [headings, setHeadings] = useState<HeadingItem[]>([])
+  const [headings, setHeadings] = useState<HeadingItem[]>(initialHeadings)
   const [pageTitle, setPageTitle] = useState('')
   const [lastUpdated, setLastUpdated] = useState<string | null>(null)
   const [lastVerified, setLastVerified] = useState<string | null>(null)
@@ -247,6 +304,9 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   const [exitSignal, setExitSignal] = useState(0)
   const [flash, setFlash] = useState<SubmitResult | null>(null)
   const [authOpen, setAuthOpen] = useState(false)
+  // Latched separately from `authOpen` so the dialog stays mounted through its
+  // close, instead of being torn out mid-transition the first time it is used.
+  const [authMounted, setAuthMounted] = useState(false)
   const navToggleRef = useRef<HTMLButtonElement>(null)
   const sidebarRef = useRef<HTMLDivElement>(null)
   const sidebarCloseRef = useRef<HTMLButtonElement>(null)
@@ -264,7 +324,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     const wantsEdit = new URLSearchParams(window.location.search).get('action') === 'edit'
     if (!wantsEdit || pathname === '/' || pathname === '/en' || isPrivateReview || isNotFound) return
     if (stored) setIsEditing(true)
-    else setAuthOpen(true)
+    else openAuth()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -304,9 +364,14 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     setAuthToken(null)
   }, [])
 
+  function openAuth() {
+    setAuthMounted(true)
+    setAuthOpen(true)
+  }
+
   function handleContribute() {
     if (session && authToken) enterEdit()
-    else setAuthOpen(true)
+    else openAuth()
   }
 
   function handleAuthenticated(user: UserInfo, token: string) {
@@ -472,20 +537,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     // Short form for chrome (breadcrumb leaf, issue titles): cut at the em dash.
     setPageTitle(h1 ? h1.textContent?.split('–')[0].trim() || '' : '')
 
-    const slugify = (value: string) =>
-      value.trim().toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-+|-+$/g, '')
-
-    const seen = new Set<string>()
-    const nextHeadings = [...article.querySelectorAll('h2')].slice(0, 16).map((heading, index) => {
-      if (!heading.id) {
-        let id = slugify(heading.textContent || '') || `section-${index + 1}`
-        while (seen.has(id)) id = `${id}-${index}`
-        heading.id = id
-      }
-      seen.add(heading.id)
-      return { id: heading.id, text: heading.textContent?.trim() || '' }
-    })
-    setHeadings(nextHeadings)
+    setHeadings(collectHeadings(!hasServerRenderedToc()))
   }, [pathname])
 
   // Both dates for this route, read from the meta tags the postbuild pass writes
@@ -716,7 +768,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
               onExit={handleExit}
               onSubmitted={handleSubmitted}
               onSessionExpired={handleSessionExpired}
-              onReauthenticate={() => setAuthOpen(true)}
+              onReauthenticate={openAuth}
               onReadyChange={setEditorReady}
               onDirtyChange={setIsDirty}
             />
@@ -878,13 +930,15 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
         </p>
       </footer>
 
-      <AuthModal
-        open={authOpen}
-        onClose={() => setAuthOpen(false)}
-        onAuthenticated={handleAuthenticated}
-        isEn={isEn}
-        fallbackHref={`${REPO_URL}/edit/main/${file}`}
-      />
+      {authMounted && (
+        <AuthModal
+          open={authOpen}
+          onClose={() => setAuthOpen(false)}
+          onAuthenticated={handleAuthenticated}
+          isEn={isEn}
+          fallbackHref={`${REPO_URL}/edit/main/${file}`}
+        />
+      )}
     </>
   )
 }

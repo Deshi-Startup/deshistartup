@@ -76,6 +76,75 @@ function jsonLd(value) {
   return JSON.stringify(value).replace(/</g, '\\u003c')
 }
 
+/**
+ * The two "On this page" lists.
+ *
+ * The shared client shell cannot know the route while the static HTML is
+ * rendered, so it used to collect the article's h2s after hydration. That put a
+ * collapsed accordion above the article a moment after first paint and pushed
+ * the whole page down — a layout shift on every guide, charged to exactly the
+ * mid-range phone this site is read on. The lists are the same for every reader
+ * and known here, so they are written into the HTML instead, and the shell
+ * reproduces them on its first client render rather than adding them later.
+ *
+ * That only holds while both sides agree, so the rule lives in one sentence and
+ * is implemented twice: the article's own h2s, in document order, first 16,
+ * keeping the ones that carry both an id and text. `deshi:toc` tells the shell
+ * this pass ran; without it (`next dev`) the shell falls back to filling the
+ * lists in after hydration.
+ */
+const HEADING_LIMIT = 16
+
+function collectShellHeadings($) {
+  const article = $('.article').first()
+  if (article.length === 0) return []
+  return article
+    .find('h2')
+    .slice(0, HEADING_LIMIT)
+    .map((_, el) => ({ id: $(el).attr('id') || '', text: $(el).text().trim() }))
+    .get()
+    .filter((heading) => heading.id && heading.text)
+}
+
+function pageTocHtml(headings, isEn) {
+  // Matches the shell's own threshold: two headings are not a table of contents.
+  if (headings.length <= 2) return ''
+  const items = headings
+    .map((h) => `<li><a href="#${escapeHtml(h.id)}">${escapeHtml(h.text)}</a></li>`)
+    .join('')
+  return `<details class="page-toc"><summary>${
+    isEn ? 'On this page' : 'এই পাতায়'
+  }</summary><ul>${items}</ul></details>`
+}
+
+function sidebarTocHtml(headings, isEn) {
+  if (headings.length === 0) return ''
+  const links = headings
+    .map((h) => `<a href="#${escapeHtml(h.id)}">${escapeHtml(h.text)}</a>`)
+    .join('')
+  return `<div class="sidebar-group"><p>${isEn ? 'On This Page' : 'এই পাতায়'}</p>${links}</div>`
+}
+
+/** Insert the accordion as the article lede's last child, where the shell
+ *  renders it. Anchored on the lede so a page without one is left alone. */
+function insertPageToc(html, toc) {
+  if (!toc) return html
+  const ledeStart = html.indexOf('<div class="article-lede">')
+  if (ledeStart === -1) return html
+  const articleStart = html.indexOf('<article class="article', ledeStart)
+  if (articleStart === -1) return html
+  const closers = '</div></div>'
+  if (html.slice(articleStart - closers.length, articleStart) !== closers) return html
+  return `${html.slice(0, articleStart - closers.length)}</div>${toc}</div>${html.slice(articleStart)}`
+}
+
+/** The sidebar's last group, immediately before the standing contribution note. */
+function insertSidebarToc(html, group) {
+  const anchor = '<p class="sidebar-note">'
+  if (!group || !html.includes(anchor)) return html
+  return html.replace(anchor, `${group}${anchor}`)
+}
+
 function localHomeRoute(locale) {
   return locale === 'en' ? '/en' : '/'
 }
@@ -262,6 +331,10 @@ for (const page of pages) {
   }
 
   let html = fs.readFileSync(file, 'utf8')
+  // The head block below is rebuilt from scratch on every run. The heading
+  // lists are written into the body, where there is nothing to strip them by,
+  // so a second run over the same output has to leave them alone.
+  const headingsAlreadyWritten = html.includes('<meta name="deshi:toc"')
   html = html.replace(/\n?<!-- deshi-seo:start -->[\s\S]*?<!-- deshi-seo:end -->\n?/g, '')
 
   const $ = load(html)
@@ -270,6 +343,8 @@ for (const page of pages) {
   const articleText = $('.article').text().trim()
   const wordCount = articleText ? articleText.split(/\s+/).length : 0
   const isEn = page.locale === 'en'
+  // The shell shows no page headings on the two landing pages, so neither does this.
+  const shellHeadings = page.slug === '' ? [] : collectShellHeadings($)
   const htmlLanguage = isEn ? 'en' : 'bn'
   const contentLanguage = isEn ? 'en-BD' : 'bn-BD'
   const ogLocale = isEn ? 'en_BD' : 'bn_BD'
@@ -353,6 +428,10 @@ for (const page of pages) {
   if (page.date) tags.push(`<meta name="deshi:updated" content="${page.date}"/>`)
   if (page.verified) tags.push(`<meta name="deshi:verified" content="${page.verified}"/>`)
 
+  // Tells the shell the heading lists below are already in the HTML, so its
+  // first client render reproduces them instead of adding them after paint.
+  if (shellHeadings.length > 0) tags.push('<meta name="deshi:toc" content="1"/>')
+
   const schema = schemaFor(page, wordCount)
   if (schema) tags.push(`<script type="application/ld+json" data-deshi-schema>${jsonLd(schema)}</script>`)
   tags.push('<!-- deshi-seo:end -->')
@@ -363,6 +442,10 @@ for (const page of pages) {
   // The client shell discovers the page title after hydration; give the static
   // HTML the real breadcrumb leaf (the component suppresses the hydration diff).
   html = html.replace('<li aria-current="page">…</li>', `<li aria-current="page">${escapeHtml(page.title)}</li>`)
+  if (shellHeadings.length > 0 && !headingsAlreadyWritten) {
+    html = insertSidebarToc(html, sidebarTocHtml(shellHeadings, isEn))
+    html = insertPageToc(html, pageTocHtml(shellHeadings, isEn))
+  }
   fs.writeFileSync(file, html)
   enriched += 1
   if (page.stub) noindexed += 1

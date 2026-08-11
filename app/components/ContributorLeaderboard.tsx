@@ -174,7 +174,10 @@ export default function ContributorLeaderboard({ locale = 'bn' }: { locale?: Loc
 
       {view.coreProfiles.length ? (
         <>
-          <h2>{text.coreTitle}</h2>
+          {/* Rendered by a component, so rehype-slug never sees it. Without an
+              id the shell's "on this page" link has no target, and the list is
+              added after hydration instead of shipping in the HTML. */}
+          <h2 id="core-team">{text.coreTitle}</h2>
           <ul className="contributor-list contributor-list--core">
             {view.coreProfiles.map((profile) => (
               <ContributorRow key={profile.displayName} profile={profile} locale={locale} />
