@@ -544,7 +544,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   )}&page=${encodeURIComponent(pageUrl)}`
 
   return (
-    <>
+    <div className={`locale-shell locale-shell--${isEn ? 'en' : 'bn'}`} lang={isEn ? 'en' : 'bn'}>
       <a className="skip-link" href="#main">{isEn ? 'Skip to content' : 'মূল লেখায় যান'}</a>
 
       <header className="site-header">
@@ -885,6 +885,6 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
         isEn={isEn}
         fallbackHref={`${REPO_URL}/edit/main/${file}`}
       />
-    </>
+    </div>
   )
 }
