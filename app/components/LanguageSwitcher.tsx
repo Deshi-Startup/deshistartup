@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { usePathname, useRouter } from 'next/navigation'
+import { cleanRoute } from '../lib/clean-route'
 
 /**
  * Real, crawlable link between the Bengali and English mirrors. The click
@@ -9,7 +10,9 @@ import { usePathname, useRouter } from 'next/navigation'
  * plain <a href> still works for users and crawlers.
  */
 export default function LanguageSwitcher() {
-  const pathname = usePathname()
+  // Clean spelling, or /en.html reads as the Bengali side and this links to
+  // /en/en.html. See app/lib/clean-route.ts.
+  const pathname = cleanRoute(usePathname())
   const router = useRouter()
   const isEn = pathname.startsWith('/en/') || pathname === '/en'
   // One 404 document serves every unmatched URL, so the router reports the
