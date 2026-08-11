@@ -396,6 +396,7 @@ p {
   gap: 6px;
   min-height: 44px;
   color: var(--ink);
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .top-actions .social-link svg {
@@ -417,6 +418,7 @@ p {
   background: var(--canvas);
   color: var(--ink);
   cursor: pointer;
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   isolation: isolate;
   text-decoration: none;
 }
@@ -2220,6 +2222,10 @@ a.is-stub-link:hover {
   display: inline-flex;
   align-items: center;
   min-height: 28px;
+}
+
+.site-footer #footer-community-label + .footer-link-list a {
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .site-footer .footer-legal {
