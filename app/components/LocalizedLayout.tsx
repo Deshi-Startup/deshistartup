@@ -204,7 +204,7 @@ function Sidebar({ isEn, pathname, headings, onNavigate, onClose, closeButtonRef
         ))}
 
         {headings.length > 0 && (
-          <div className="sidebar-group">
+          <div className="sidebar-group sidebar-group--toc">
             <p>{isEn ? 'On This Page' : 'এই পাতায়'}</p>
             {headings.map((heading) => (
               <a href={`#${heading.id}`} key={heading.id} onClick={onNavigate}>

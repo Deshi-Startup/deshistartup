@@ -57,11 +57,29 @@ function cleanTitle(data: any) {
   return data?.meta?.title || data?.title || data?.url || ''
 }
 
-function cleanExcerpt(data: any) {
-  if (data?.excerpt) {
-    return data.excerpt.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
+/* Pagefind indexes the h1 as the first words of the page, so nearly every
+   excerpt opened by restating the title printed directly above it – the reader
+   had to get past a line they had already read to reach the first new word.
+   Drop that opening, including the partial the excerpt window sometimes starts
+   mid-title with, and the separator the h1 leaves behind. */
+function stripTitleEcho(excerpt: string, title: string) {
+  const trimmed = title.trim()
+  if (!trimmed) return excerpt
+  const words = trimmed.split(/\s+/)
+  for (let start = 0; start < words.length; start += 1) {
+    const candidate = words.slice(start).join(' ')
+    if (candidate.length > 3 && excerpt.startsWith(candidate)) {
+      return excerpt.slice(candidate.length).replace(/^[\s.।,–—-]+/, '')
+    }
   }
-  return (data?.content || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').slice(0, 160)
+  return excerpt
+}
+
+function cleanExcerpt(data: any, title: string) {
+  const raw = data?.excerpt
+    ? data.excerpt.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
+    : (data?.content || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').slice(0, 160)
+  return stripTitleEcho(raw, title)
 }
 
 interface SearchResult {
@@ -133,11 +151,12 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
         const searchResults = await Promise.all(
           response.results.slice(0, 10).map(async (item) => {
             const data = await item.data()
+            const title = cleanTitle(data)
             return {
               id: item.id,
               url: data.url,
-              title: cleanTitle(data),
-              excerpt: cleanExcerpt(data),
+              title,
+              excerpt: cleanExcerpt(data, title),
               isStub: Boolean(data?.meta?.stub)
             }
           })

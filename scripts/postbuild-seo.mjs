@@ -122,7 +122,12 @@ function sidebarTocHtml(headings, isEn) {
   const links = headings
     .map((h) => `<a href="#${escapeHtml(h.id)}">${escapeHtml(h.text)}</a>`)
     .join('')
-  return `<div class="sidebar-group"><p>${isEn ? 'On This Page' : 'এই পাতায়'}</p>${links}</div>`
+  // `sidebar-group--toc` is what hides this copy below 1024px, where the
+  // article's own accordion takes over. Kept identical to the shell's markup in
+  // LocalizedLayout, which reproduces this node on its first client render.
+  return `<div class="sidebar-group sidebar-group--toc"><p>${
+    isEn ? 'On This Page' : 'এই পাতায়'
+  }</p>${links}</div>`
 }
 
 /** Insert the accordion as the article lede's last child, where the shell

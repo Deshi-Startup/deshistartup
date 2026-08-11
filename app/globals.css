@@ -87,9 +87,13 @@
      construction, because a scrim that drifts off the ink it is made from is
      the kind of thing nobody notices until the palette moves. */
   --ink-channels: 32 33 34;
-  /* Longest comfortable prose line. Only bites above ~1500px, where the canvas
-     would otherwise run to 86 Bangla characters a line. */
-  --measure: 65rem;
+  /* Longest comfortable prose line, measured rather than guessed. Uncapped, a
+     1500px window puts 97 Bangla graphemes (25 words) on a line and the eye
+     loses the return sweep; 65rem was still 97, because it was set above the
+     width the canvas actually offers. 48rem lands at 72 graphemes / 19 words,
+     inside the 45–75 range prose has always been set to. Tables, code and the
+     generated indexes are exempt below and keep the full canvas. */
+  --measure: 48rem;
   /* Sticky-header clearance for the edit bar. Measured and overwritten from JS
      while editing, because the header stacks to a second row on phones. */
   --header-h: 84px;
@@ -157,8 +161,12 @@ p {
   border: 0;
 }
 
+/* Fixed, not absolute. Absolute pins it to the top of the document, so a reader
+   who tabs into the page after scrolling focuses a control that is off screen
+   and the browser yanks them back to the top to show it. Fixed keeps it at the
+   corner of the viewport, which is where a skip link is supposed to appear. */
 .skip-link {
-  position: absolute;
+  position: fixed;
   top: 8px;
   left: 8px;
   z-index: 20;
@@ -264,9 +272,28 @@ p {
   outline: none;
 }
 
+/* The placeholder is not decoration here – it is where the reader learns what
+   this site can be asked about. Left to the browser it is #757575 in Chrome but
+   40% black in Safari, which is 3.6:1 on white. State it. */
+.search input::placeholder {
+  color: var(--faint);
+  opacity: 1;
+}
+
 .search input:focus {
   border-color: var(--green);
   box-shadow: inset 0 0 0 1px var(--green);
+}
+
+/* `outline: none` above drops the site-wide focus ring, and the green border
+   alone reads as "active field" rather than "your keyboard is here". Keyboard
+   focus gets the same ring every other control on the site gets; a mouse click
+   keeps the quieter border-only treatment. */
+.search input:focus-visible {
+  outline: 2px solid var(--green-deep);
+  /* Inset, because the field shares an edge with the submit button and a ring
+     drawn outside it would cut across the button instead of closing. */
+  outline-offset: -2px;
 }
 
 .search .search-submit {
@@ -333,8 +360,14 @@ p {
   font-weight: 600;
 }
 
+/* Two lines each, so eight results scan as a list rather than as eight blocks
+   of different heights. Pagefind returns whatever window matched, and a Bengali
+   sentence can be three lines of it. */
 .search-result .result-excerpt {
-  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   margin-top: 2px;
   color: var(--muted);
   font-size: 0.85rem;
@@ -679,7 +712,7 @@ a.tab {
 }
 
 /* Cap the prose measure. The canvas has no right-hand rail, so on a wide
-   monitor a paragraph would otherwise run to ~86 Bangla characters a line and
+   monitor a paragraph would otherwise run to ~97 Bangla graphemes a line and
    the eye loses its place returning. Headings are capped with the text so their
    hairline underline ends on the same edge; tables, code and the generated
    indexes keep the full canvas, because they need the room. */
@@ -855,6 +888,10 @@ hr {
   border-top: 0;
 }
 
+/* Full canvas, wider than the prose measure above it, the way a figure is. The
+   two right edges are the point: what you read runs to --measure, what you
+   consult runs to the canvas. Shrink-wrapping tables to their content instead
+   lands them on a third edge that answers to nothing. */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -1164,11 +1201,36 @@ p:has(> .fb-video) {
   font-size: 0.9rem;
 }
 
+/* The site's stated open/closed sign, the same one .home-faq uses. The browser
+   triangle was the only disclosure control on the site still drawn by the
+   browser, and it read as a different family from the accordions beside it. */
 .page-toc summary {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
   padding: 9px 14px;
   color: var(--green-deep);
   font-weight: 700;
   cursor: pointer;
+  list-style: none;
+}
+
+.page-toc summary::-webkit-details-marker {
+  display: none;
+}
+
+.page-toc summary::before {
+  content: '+';
+  flex: 0 0 auto;
+  width: 0.8em;
+}
+
+.page-toc[open] > summary::before {
+  content: '–';
+}
+
+.page-toc summary:hover {
+  background: var(--green-soft);
 }
 
 .page-toc ul {
@@ -1180,8 +1242,25 @@ p:has(> .fb-video) {
   margin: 4px 0;
 }
 
+/* Exactly one "on this page" at every width: the sidebar owns it from 1024px
+   up, where the rail is on screen beside the article, and this accordion owns
+   it below, where the rail is either a drawer or a long scroll away. Keeping
+   both meant the reader met the same list twice on the same screen. The two
+   rules are a pair – move one and the other has to move with it.
+
+   The `:has()` is load-bearing, not tidiness. The accordion only exists on
+   pages that render an article lede and clear its own heading threshold, so an
+   unconditional hide would leave /contributors with no list at all below
+   1024px. Hide the rail's copy only where the accordion is there to take over.
+   Where `:has()` is unsupported both stay, which is what happens today. */
 @media (min-width: 1024px) {
   .page-toc {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .page-shell:has(.page-toc) .sidebar-group--toc {
     display: none;
   }
 }
@@ -2268,9 +2347,12 @@ a.is-stub-link:hover {
 }
 
 @media (max-width: 860px) {
-  /* The header stacks to two rows here (~121px), so anchors need to clear it. */
+  /* The header stacks to two rows here. It is 121px while the tagline fits on
+     one line and 140px on a 390px screen, where it wraps – so the clearance is
+     set from the taller case. Measured; 132px left the target heading tucked
+     under the header on a phone, which is the width this matters on. */
   html {
-    scroll-padding-top: 132px;
+    scroll-padding-top: 152px;
   }
 
   body {
@@ -2388,6 +2470,16 @@ a.is-stub-link:hover {
   .sidebar nav {
     position: static;
     max-height: none;
+  }
+
+  /* This drawer is the whole navigation on a phone, and DESIGN.md puts the
+     important mobile actions at 44px. At the desktop density these rows are
+     29px, which is a thumb-width target for the site's primary menu. */
+  .sidebar-group a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0;
   }
 
   .content-canvas {
@@ -4621,6 +4713,9 @@ html[lang='en'] .glossary-copy--en {
    overridden where it is set rather than at a specificity nobody can predict. */
 
 @media (pointer: coarse) {
+  /* Search inherits the body, and the body drops to 15px at 860px – so the one
+     control every reader touches first was the one triggering the zoom. */
+  .search input,
   .directory-controls input,
   .directory-controls select,
   .edit-media-item :is(input, textarea),
