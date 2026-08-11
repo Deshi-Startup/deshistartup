@@ -3,6 +3,8 @@
 import React, { useEffect, useId, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
+import { trackSearch, trackSearchResultSelect } from '../lib/search-analytics'
+
 interface PagefindItem {
   id: string
   data: () => Promise<{
@@ -139,6 +141,7 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
     }
 
     let isActive = true
+    let reportTimeout = 0
     const timeout = window.setTimeout(async () => {
       setIsLoading(true)
       setError(false)
@@ -172,6 +175,15 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
           setResults(ranked)
           setActiveIndex(-1)
           setIsOpen(true)
+
+          /* Typing "ট্রেড লাইসেন্স" would otherwise report eleven searches, one
+             per keystroke, and bury the query the reader actually meant under
+             ten prefixes of it. The next keystroke re-runs this effect and the
+             cleanup below cancels this timer, so only a query left alone long
+             enough to be read is counted. */
+          reportTimeout = window.setTimeout(() => {
+            trackSearch(trimmedQuery, ranked.length, isEn)
+          }, 900)
         }
       } catch {
         if (isActive) {
@@ -187,8 +199,9 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
     return () => {
       isActive = false
       window.clearTimeout(timeout)
+      window.clearTimeout(reportTimeout)
     }
-  }, [query, basePath])
+  }, [query, basePath, isEn])
 
   // Keep the arrow-selected option inside the scrolling popover.
   useEffect(() => {
@@ -198,8 +211,11 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
       ?.scrollIntoView({ block: 'nearest', inline: 'nearest' })
   }, [activeIndex]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const goTo = (url: string) => {
+  // `selected` is absent when the reader leaves for the sitemap rather than for
+  // a result, which is a different thing to have happened and stays uncounted.
+  const goTo = (url: string, selected?: { index: number; isStub: boolean }) => {
     const nextUrl = basePath && url.startsWith(basePath) ? url.slice(basePath.length) || '/' : url
+    if (selected) trackSearchResultSelect(query, { url: nextUrl, ...selected }, isEn)
     router.push(nextUrl)
     setQuery('')
     setIsOpen(false)
@@ -280,8 +296,9 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
       }}
       onSubmit={(event) => {
         event.preventDefault()
-        const target = results[activeIndex] || results[0]
-        if (target) goTo(target.url)
+        const targetIndex = activeIndex >= 0 ? activeIndex : 0
+        const target = results[targetIndex]
+        if (target) goTo(target.url, { index: targetIndex, isStub: target.isStub })
       }}
     >
       <input
@@ -352,7 +369,7 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
                 className={index === activeIndex ? 'search-result is-active' : 'search-result'}
                 onMouseDown={(event) => event.preventDefault()}
                 onMouseMove={() => setActiveIndex(index)}
-                onClick={() => goTo(result.url)}
+                onClick={() => goTo(result.url, { index, isStub: result.isStub })}
               >
                 <span className="result-title">
                   {result.title}

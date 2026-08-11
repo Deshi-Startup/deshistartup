@@ -25,6 +25,8 @@ context/
 plan/status-report.md
 # Personal Claude Code settings (permissions allowlist) — machine-local, not shared
 .claude/settings.local.json
+# Project-scoped MCP servers — machine-local, requires personal OAuth, not shared
+.mcp.json
 # Local experiments and artifacts
 .firecrawl/
 .agents/
