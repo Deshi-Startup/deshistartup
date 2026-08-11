@@ -9,6 +9,7 @@ import OfficialSocialLinks from './app/components/OfficialSocialLinks'
 import Term from './app/components/Term'
 import ExpertReview from './app/components/ExpertReview'
 import ContributorLeaderboard from './app/components/ContributorLeaderboard'
+import ContributionInvite from './app/components/ContributionInvite'
 
 interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href?: string
@@ -43,6 +44,7 @@ export function useMDXComponents(components: Record<string, any>): Record<string
     OfficialSocialLinks,
     Term,
     ExpertReview,
-    ContributorLeaderboard
+    ContributorLeaderboard,
+    ContributionInvite
   }
 }

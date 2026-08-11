@@ -62,7 +62,7 @@ export const bnNav: NavSection[] = [
     label: 'অংশ নিন',
     items: [
       ['/about', 'পরিচিতি ও সম্পাদকীয় নীতি'],
-      ['/contribute', 'কীভাবে অবদান রাখবেন'],
+      ['/contribute', 'অবদান রাখুন'],
       ['/contributors', 'অবদানকারীরা'],
       [REPO_URL, 'GitHub-এ দেখুন'],
       [DISCORD_URL, 'Discord কমিউনিটিতে যোগ দিন'],
@@ -115,7 +115,7 @@ export const enNav: NavSection[] = [
     label: 'Take Part',
     items: [
       ['/en/about', 'About & editorial policy'],
-      ['/en/contribute', 'How to contribute'],
+      ['/en/contribute', 'Contribute'],
       ['/en/contributors', 'Contributors'],
       [REPO_URL, 'View on GitHub'],
       [DISCORD_URL, 'Join the Discord community'],

@@ -1,5 +1,4 @@
 import React from 'react'
-import { REPO_URL } from '../nav.config'
 import contentIndex from '../generated/content-index.json'
 
 type RecentPage = [route: string, title: string, date: string]
@@ -49,7 +48,6 @@ interface TranslationStrings {
   bandBody: string
   bandStats: (written: number, stubs: number) => [string, string][]
   bandCta: string
-  bandGh: string
   contribute: string
   recentTitle: string
 }
@@ -130,15 +128,14 @@ const bn: TranslationStrings = {
     ['BIDA OSS', 'বিনিয়োগ, অনুমোদন ও সরকারি সেবার আবেদন', 'https://ossbida.gov.bd'],
     ['বাংলাদেশ ব্যাংক', 'ব্যাংকিং, পেমেন্ট ও বৈদেশিক মুদ্রার নিয়ম', 'https://www.bb.org.bd']
   ],
-  bandTitle: 'এই গাইড সবাই মিলে লিখছি',
+  bandTitle: 'এই গাইডে অবদান রাখুন',
   bandBody:
-    'নিয়ম বদলায়, ফি বদলায়, নতুন প্রশ্ন আসে। এত বড় জ্ঞানভাণ্ডার একা ঠিক রাখা যায় না। আপনি যা জানেন, সেটাই কারও পরের ধাপ। বানান বা ভাষা নিয়ে ভাববেন না। রিভিউয়াররা গুছিয়ে দেবেন।',
+    'একটি ভুল ঠিক করুন, নতুন গাইড লিখুন, কন্ট্রিবিউটর টিমে যোগ দিন অথবা নিজের কাজের অভিজ্ঞতা ও রিসোর্স শেয়ার করুন। একবার বা নিয়মিত – যেভাবে আপনার সুবিধা।',
   bandStats: (written, stubs) => [
     [bengaliDigits(written), 'গাইড লেখা হয়েছে'],
     [bengaliDigits(stubs), 'বিষয় লেখার অপেক্ষায়']
   ],
-  bandCta: 'কীভাবে অবদান রাখবেন',
-  bandGh: 'GitHub-এ দেখুন',
+  bandCta: 'অবদান রাখুন',
   contribute: '/contribute',
   recentTitle: 'সম্প্রতি হালনাগাদ হয়েছে'
 }
@@ -218,15 +215,14 @@ const en: TranslationStrings = {
     ['BIDA OSS', 'Investment approvals and government services', 'https://ossbida.gov.bd'],
     ['Bangladesh Bank', 'Banking, payments and foreign exchange rules', 'https://www.bb.org.bd']
   ],
-  bandTitle: 'We are writing this manual together',
+  bandTitle: 'Contribute to the guide',
   bandBody:
-    'Rules change, fees change, new questions appear – a knowledge base this size stays accurate only with many hands. What you already know is someone else\'s next step. Don\'t worry about polish – reviewers will help.',
+    'Fix a mistake, write a guide, join the contributor team, or share relevant work and resources. Contribute once or work with us regularly.',
   bandStats: (written, stubs) => [
     [String(written), 'guides written'],
     [String(stubs), 'topics waiting for a writer']
   ],
-  bandCta: 'How to contribute',
-  bandGh: 'View on GitHub',
+  bandCta: 'Contribute',
   contribute: '/en/contribute',
   recentTitle: 'Recently updated'
 }
@@ -367,7 +363,6 @@ export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
           </div>
           <div className="contrib-row">
             <a href={localHref(t.contribute)}>{t.bandCta}</a>
-            <a href={REPO_URL} target="_blank" rel="noopener noreferrer">{t.bandGh}</a>
           </div>
         </div>
       </section>

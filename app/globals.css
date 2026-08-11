@@ -762,6 +762,56 @@ h3 {
   opacity: 0.8;
 }
 
+/* Keep the two higher-commitment contribution actions visible without turning
+   the article into a grid of competing cards. */
+.contribution-invite {
+  max-width: var(--measure);
+  margin: 20px 0 30px;
+  border: 1px solid var(--green);
+  background: var(--green-ground);
+  padding: 20px 22px;
+}
+
+.contribution-invite__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  border: 1px solid var(--green-deep);
+  border-radius: 3px;
+  background: var(--canvas);
+  padding: 9px 18px;
+  color: var(--green-deep);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.contribution-invite__action::after {
+  content: '→';
+  transition: transform 140ms ease-out;
+}
+
+.article .contribution-invite__action:visited {
+  color: var(--green-deep);
+}
+
+.contribution-invite__action:hover {
+  border-color: var(--green);
+  background: var(--green-soft);
+  color: var(--green-deep);
+  text-decoration: none;
+}
+
+.contribution-invite__action:hover::after {
+  transform: translateX(3px);
+}
+
+.contribution-invite p {
+  margin: 13px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
 /* The সারকথা block at the top of every guide. Bounded on all four sides like the
    stub and homepage notices, in the green family rather than the caution yellow:
    a summary is not a warning. The rules-above-and-below version it replaced sat
