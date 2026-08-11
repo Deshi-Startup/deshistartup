@@ -7,6 +7,7 @@ import LanguageSwitcher from './LanguageSwitcher'
 import SearchBox from './SearchBox'
 import AuthModal from './AuthModal'
 import type { SubmitResult } from './ContributionEditor'
+import { cleanRoute } from '../lib/clean-route'
 import { clearAuth, getStoredAuth, UserInfo } from '../lib/client-auth'
 import {
   bnNav,
@@ -216,7 +217,7 @@ interface LocalizedLayoutProps {
 }
 
 export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
-  const pathname = usePathname()
+  const pathname = cleanRoute(usePathname())
   const isEn = pathname.startsWith('/en/') || pathname === '/en'
   const isLanding = pathname === '/' || pathname === '/en'
   const isPrivateReview =
