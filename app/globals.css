@@ -62,8 +62,13 @@
      while editing, because the header stacks to a second row on phones. */
   --header-h: 84px;
   --shadow: 0 14px 32px rgb(var(--ink-channels) / 8%);
-  --sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Deshi Sans Bengali', sans-serif;
+  /* The Bengali face leads the stack on purpose. Matching is per character and
+     the @font-face above is fenced to the Bengali range, so Latin skips it and
+     lands on the platform sans. Listed last it would never be reached at all:
+     macOS resolves system-ui to SF Pro's composite cascade, which already
+     carries a Bengali fallback, so the system font claims the character first. */
+  --sans: 'Deshi Sans Bengali', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   /* Display stays a named role even while it shares the low-bandwidth family.
      Size, weight, balanced wrapping and the hairline rules carry the hierarchy. */
   --display: var(--sans);
