@@ -53,13 +53,11 @@
      construction, because a scrim that drifts off the ink it is made from is
      the kind of thing nobody notices until the palette moves. */
   --ink-channels: 32 33 34;
-  /* Longest comfortable prose line, measured rather than guessed. Uncapped, a
-     1500px window puts 97 Bangla graphemes (25 words) on a line and the eye
-     loses the return sweep; 65rem was still 97, because it was set above the
-     width the canvas actually offers. 48rem lands at 72 graphemes / 19 words,
-     inside the 45–75 range prose has always been set to. Tables, code and the
-     generated indexes are exempt below and keep the full canvas. */
-  --measure: 48rem;
+  /* Longest comfortable prose line. The shell has no right-hand rail, so the
+     established 65rem measure lets guides belong to the wide reading canvas
+     without making prose fully fluid. Dense tables, code and the generated
+     indexes are exempt below and keep the full canvas. */
+  --measure: 65rem;
   /* Sticky-header clearance for the edit bar. Measured and overwritten from JS
      while editing, because the header stacks to a second row on phones. */
   --header-h: 84px;
@@ -867,16 +865,20 @@ hr {
   border-top: 0;
 }
 
-/* Full canvas, wider than the prose measure above it, the way a figure is. The
-   two right edges are the point: what you read runs to --measure, what you
-   consult runs to the canvas. Shrink-wrapping tables to their content instead
-   lands them on a third edge that answers to nothing. */
+/* Tables fill their available space by default. Dense datasets with four or
+   more columns keep the wider canvas; simpler reference tables are aligned to
+   the prose measure below so their cells do not turn into empty horizontal
+   fields on a wide screen. */
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 18px 0;
   background: var(--canvas);
   font-size: 0.9rem;
+}
+
+.article > table:not(:has(tr > :nth-child(4))) {
+  max-width: var(--measure);
 }
 
 th,
@@ -2517,6 +2519,21 @@ a.is-stub-link:hover {
     padding: 22px 18px 44px;
   }
 
+  /* Dense comparison grids need more than a phone can offer without turning
+     every heading into a tall stack of syllables. The table becomes its own
+     native horizontal scroll surface; simple two- and three-column references
+     continue to fit the article normally. */
+  .article > table:has(tr > :nth-child(4)) {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+  }
+
+  .article > table:has(tr > :nth-child(4)) :is(th, td) {
+    min-width: 8rem;
+  }
+
   .article-footer {
     margin-left: 18px;
     margin-right: 18px;
@@ -2562,6 +2579,26 @@ a.is-stub-link:hover {
 
   .directory-card {
     padding: 14px;
+  }
+}
+
+/* The production date arrives from postbuild metadata after hydration. On a
+   narrow phone it occupies the first line and the repair link the second, so
+   reserve that exact grid before the date arrives and keep the article still. */
+@media (max-width: 420px) {
+  .article-meta {
+    display: grid;
+    grid-template-rows: minmax(1.5em, auto) auto;
+    row-gap: 4px;
+    column-gap: 0;
+  }
+
+  .article-meta .meta-date {
+    grid-row: 1;
+  }
+
+  .article-meta a {
+    grid-row: 2;
   }
 }
 

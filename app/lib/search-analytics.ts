@@ -29,13 +29,14 @@ declare global {
    measure costs us one row, a term we should never have stored costs more.
 
    The digit run has to count Bangla digits too — a reader typing their phone
-   number here is far more likely to write ০১৭… than 017…. Separators are
-   stripped first so `০১৭ ১২৩ ৪৫৬৭৮` is caught as one run, and the threshold
-   sits at seven so real queries keep their numbers: `কোম্পানি আইন ১৯৯৪`,
-   `ভ্যাট ১৫%`, and `form IX` all survive. */
+   number here is far more likely to write ০১৭… than 017…. A phone-shaped run
+   may contain any punctuation, symbol or whitespace a keyboard offers, so
+   slashes and Unicode dashes are caught alongside spaces and hyphens. The
+   threshold sits at seven so real queries keep their numbers: `কোম্পানি আইন
+   ১৯৯৪`, `ভ্যাট ১৫%`, and `form IX` all survive. */
 function looksLikeContactDetail(term: string) {
   if (term.includes('@')) return true
-  return /[0-9০-৯]{7,}/.test(term.replace(/[\s\-().+]/g, ''))
+  return /[0-9০-৯](?:[^\p{L}\p{N}]*[0-9০-৯]){6,}/u.test(term)
 }
 
 /**
@@ -74,6 +75,28 @@ export function trackSearch(term: string, resultsCount: number, isEn: boolean) {
     results_count: resultsCount,
     search_language: isEn ? 'en' : 'bn'
   })
+}
+
+export interface SearchReportState {
+  term: string | null
+}
+
+/**
+ * Report a settled query at most once. The search box calls this from both its
+ * quiet-period timer and its result-selection path: a fast reader who chooses
+ * a result before the timer fires is still counted, without a later duplicate.
+ */
+export function trackSearchOnce(
+  state: SearchReportState,
+  term: string,
+  resultsCount: number,
+  isEn: boolean
+) {
+  const searchTerm = normalizeSearchTerm(term)
+  if (!searchTerm || state.term === searchTerm) return false
+  trackSearch(searchTerm, resultsCount, isEn)
+  state.term = searchTerm
+  return true
 }
 
 /**

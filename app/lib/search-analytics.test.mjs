@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import { normalizeSearchTerm } from './search-analytics.ts'
+import { normalizeSearchTerm, trackSearchOnce } from './search-analytics.ts'
 
 test('spellings of the same query collapse into one row', () => {
   assert.equal(normalizeSearchTerm('Trade License'), 'trade license')
@@ -20,6 +20,9 @@ test('anything shaped like a contact detail is dropped', () => {
   assert.equal(normalizeSearchTerm('০১৭১২৩৪৫৬৭৮'), null)
   assert.equal(normalizeSearchTerm('০১৭ ১২৩ ৪৫৬৭৮'), null)
   assert.equal(normalizeSearchTerm('+880 1712-345678'), null)
+  assert.equal(normalizeSearchTerm('01712/345678'), null)
+  assert.equal(normalizeSearchTerm('০১৭১২–৩৪৫৬৭৮'), null)
+  assert.equal(normalizeSearchTerm('01712—345678'), null)
 })
 
 test('a real query keeps its numbers', () => {
@@ -32,4 +35,26 @@ test('a real query keeps its numbers', () => {
 test('a runaway paste cannot blow up the dimension', () => {
   const long = 'ক'.repeat(400)
   assert.equal(normalizeSearchTerm(long).length, 100)
+})
+
+test('a fast result selection reports the settled query without duplicating it', () => {
+  const originalWindow = globalThis.window
+  globalThis.window = { dataLayer: [] }
+
+  try {
+    const state = { term: null }
+    assert.equal(trackSearchOnce(state, 'Trade License', 6, false), true)
+    assert.equal(trackSearchOnce(state, 'trade  license', 6, false), false)
+    assert.deepEqual(globalThis.window.dataLayer, [
+      {
+        event: 'site_search',
+        search_term: 'trade license',
+        results_count: 6,
+        search_language: 'bn'
+      }
+    ])
+  } finally {
+    if (originalWindow === undefined) delete globalThis.window
+    else globalThis.window = originalWindow
+  }
 })

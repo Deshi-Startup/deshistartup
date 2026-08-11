@@ -3,7 +3,11 @@
 import React, { useEffect, useId, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-import { trackSearch, trackSearchResultSelect } from '../lib/search-analytics'
+import {
+  trackSearchOnce,
+  trackSearchResultSelect,
+  type SearchReportState
+} from '../lib/search-analytics'
 
 interface PagefindItem {
   id: string
@@ -99,6 +103,7 @@ interface SearchBoxProps {
 export default function SearchBox({ isEn = false }: SearchBoxProps) {
   const router = useRouter()
   const inputRef = useRef<HTMLInputElement>(null)
+  const searchReportRef = useRef<SearchReportState>({ term: null })
   const listboxId = `${useId()}listbox`
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchResult[]>([])
@@ -131,6 +136,7 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
 
   useEffect(() => {
     const trimmedQuery = query.trim()
+    searchReportRef.current.term = null
     setActiveIndex(-1)
 
     if (!trimmedQuery) {
@@ -182,7 +188,7 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
              cleanup below cancels this timer, so only a query left alone long
              enough to be read is counted. */
           reportTimeout = window.setTimeout(() => {
-            trackSearch(trimmedQuery, ranked.length, isEn)
+            trackSearchOnce(searchReportRef.current, trimmedQuery, ranked.length, isEn)
           }, 900)
         }
       } catch {
@@ -215,7 +221,12 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
   // a result, which is a different thing to have happened and stays uncounted.
   const goTo = (url: string, selected?: { index: number; isStub: boolean }) => {
     const nextUrl = basePath && url.startsWith(basePath) ? url.slice(basePath.length) || '/' : url
-    if (selected) trackSearchResultSelect(query, { url: nextUrl, ...selected }, isEn)
+    if (selected) {
+      // Selecting a result is conclusive intent. Flush the settled-search event
+      // now in case this reader was faster than the quiet-period timer.
+      trackSearchOnce(searchReportRef.current, query, results.length, isEn)
+      trackSearchResultSelect(query, { url: nextUrl, ...selected }, isEn)
+    }
     router.push(nextUrl)
     setQuery('')
     setIsOpen(false)
