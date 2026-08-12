@@ -26,6 +26,16 @@ updates:
       - dependency-name: typescript
         update-types: ['version-update:semver-major']
     groups:
+      # react and react-dom pin each other, so a PR carrying one without the
+      # other cannot even `npm ci`. Keep the four together, majors included.
+      # This group is listed first because the one below matches everything.
+      react:
+        applies-to: version-updates
+        patterns:
+          - react
+          - react-dom
+          - '@types/react'
+          - '@types/react-dom'
       # One PR for routine patch/minor bumps; majors still arrive separately
       # so a breaking Next/Nextra upgrade is reviewed on its own.
       dependencies:
