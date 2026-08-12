@@ -7,6 +7,10 @@ on:
   # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
+concurrency:
+  group: refresh-contributors
+  cancel-in-progress: false
+
 jobs:
   refresh:
     runs-on: ubuntu-latest

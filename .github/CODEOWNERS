@@ -1,0 +1,27 @@
+# Reviewers that GitHub requests automatically. Content pages are intentionally
+# left out: anyone can edit a guide and any maintainer can review it. Only the
+# parts that can break the build, the deployment, or the site's trust surface
+# are owned here.
+#
+# Review is requested, not required — nothing here blocks a merge on its own.
+
+# Build, deploy and CI plumbing
+/.github/                @shamirislam
+/scripts/                @shamirislam
+/worker/                 @shamirislam
+/wrangler.jsonc          @shamirislam
+/next.config.mjs         @shamirislam
+/package.json            @shamirislam
+/package-lock.json       @shamirislam
+
+# Contribution backend (GitHub App credentials, media uploads, rate limits)
+/app/lib/                @shamirislam
+
+# Project ground rules
+/AGENTS.md               @shamirislam
+/STYLE.md                @shamirislam
+/EDITORIAL.md            @shamirislam
+/LICENSE                 @shamirislam
+/LICENSE-content.md      @shamirislam
+/SECURITY.md             @shamirislam
+/CODE_OF_CONDUCT.md      @shamirislam

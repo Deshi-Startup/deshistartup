@@ -86,6 +86,7 @@ The repository shows what will be written, which sources come first and what mus
 - [Plan and backlog](./plan/)
 - [Project direction](./plan/vision.md)
 - [Contribution rules](./CONTRIBUTING.md)
+- [Security policy](./SECURITY.md)
 - [Discussions](https://github.com/Deshi-Startup/deshistartup/discussions)
 
 ## For developers

@@ -3,11 +3,24 @@ name: PR checks
 on:
   pull_request:
 
+# Nothing here writes to the repository: read-only token, even if the repo
+# default ever loosens.
+permissions:
+  contents: read
+
+# A new push to the same PR cancels the older run instead of queueing behind it.
+concurrency:
+  group: pr-checks-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Don't leave the token in .git/config for the build steps to reach.
+          persist-credentials: false
 
       - uses: actions/setup-node@v4
         with:

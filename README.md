@@ -88,6 +88,7 @@
 - [পরিকল্পনা ও ব্যাকলগ](./plan/)
 - [প্রজেক্টের লক্ষ্য](./plan/vision.md)
 - [অবদান রাখার নিয়ম](./CONTRIBUTING.md)
+- [নিরাপত্তার ত্রুটি জানানোর নিয়ম](./SECURITY.md)
 - [Discussions](https://github.com/Deshi-Startup/deshistartup/discussions)
 
 ## ডেভেলপারদের জন্য
