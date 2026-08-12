@@ -203,3 +203,24 @@ Preserve these constraints:
 - contribution changes always go through review;
 - legal/tax content is general guidance, not professional advice;
 - code is MIT and content under `app/(contents)/` is CC BY-SA 4.0.
+
+## Agent skills
+
+Per-repo configuration the installed engineering skills read before they act. Edit the files under
+`docs/agents/` directly when a convention changes; re-running the setup skill is only needed to
+switch issue trackers.
+
+### Issue tracker
+
+Issues and specs live as GitHub issues on `Deshi-Startup/deshistartup`, driven by the `gh` CLI.
+External PRs are not treated as a triage surface. See [`docs/agents/issue-tracker.md`](./docs/agents/issue-tracker.md).
+
+### Triage labels
+
+The five canonical roles, each label string equal to its name: `needs-triage`, `needs-info`,
+`ready-for-agent`, `ready-for-human`, `wontfix`. See [`docs/agents/triage-labels.md`](./docs/agents/triage-labels.md).
+
+### Domain docs
+
+Single-context: one `CONTEXT.md` plus `docs/adr/` at the repo root, both created lazily — neither
+exists yet, and their absence is not a problem to flag. See [`docs/agents/domain.md`](./docs/agents/domain.md).
