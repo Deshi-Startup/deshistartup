@@ -43,10 +43,15 @@ gh api -X PUT "repos/$REPO/actions/permissions" \
 gh api -X PUT "repos/$REPO/actions/permissions/selected-actions" \
   -F github_owned_allowed=true -F verified_allowed=true --silent
 
-say "Actions: workflow token stays read-only, no PR approvals from workflows"
+# The second flag is one switch for "create *and* approve pull requests", and
+# refresh-contributors has to open one. Leaving it on costs nothing here: the
+# ruleset requires zero approving reviews, so an approval from a workflow is
+# not what lets anything merge. Each workflow still starts from a read-only
+# token and has to ask for more in its own `permissions:` block.
+say "Actions: workflow token starts read-only"
 gh api -X PUT "repos/$REPO/actions/permissions/workflow" \
   -f default_workflow_permissions=read \
-  -F can_approve_pull_request_reviews=false --silent
+  -F can_approve_pull_request_reviews=true --silent
 
 say "CodeQL default setup"
 gh api -X PATCH "repos/$REPO/code-scanning/default-setup" \
