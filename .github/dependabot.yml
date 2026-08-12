@@ -14,6 +14,17 @@ updates:
     commit-message:
       prefix: chore
       include: scope
+    # Two majors that the toolchain cannot take yet, so Dependabot stops
+    # reopening them every week. Security updates ignore this list.
+    ignore:
+      # Next 16 breaks Nextra 4: "loader nextra/loader.cjs ... does not have
+      # serializable options". Lift this once Nextra supports Next 16.
+      - dependency-name: next
+        update-types: ['version-update:semver-major']
+      # TypeScript 7, the native port, breaks the Next/webpack type layer:
+      # "Cannot read properties of undefined (reading 'readFile')".
+      - dependency-name: typescript
+        update-types: ['version-update:semver-major']
     groups:
       # One PR for routine patch/minor bumps; majors still arrive separately
       # so a breaking Next/Nextra upgrade is reviewed on its own.
