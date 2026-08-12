@@ -44,16 +44,16 @@
     "postbuild": "node scripts/postbuild-seo.mjs && node scripts/build-pagefind.mjs && node scripts/seo-audit.mjs"
   },
   "dependencies": {
-    "@milkdown/crepe": "^7.21.2",
+    "@milkdown/crepe": "^7.22.0",
     "@milkdown/kit": "^7.21.2",
-    "jose": "^6.2.3",
+    "jose": "^6.2.8",
     "next": "^15.1.3",
-    "nextra": "^4.0.0",
+    "nextra": "^4.6.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.2.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "cheerio": "^1.2.0",
