@@ -15,9 +15,12 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
 
-    # The built-in GITHUB_TOKEN needs write access to push the updated snapshot.
+    # main takes changes through pull requests, so the snapshot arrives as one
+    # too: push the branch (contents), open it and let it merge itself
+    # (pull-requests).
     permissions:
       contents: write
+      pull-requests: write
 
     steps:
       - uses: actions/checkout@v4
@@ -35,11 +38,33 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit and push if changed
+      - name: Open a pull request if the snapshot changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: chore/contributors
         run: |
-          git diff --quiet app/generated/contributors.json && exit 0
+          git diff --quiet app/generated/contributors.json && {
+            echo "Snapshot unchanged — nothing to do."
+            exit 0
+          }
+
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
           git add app/generated/contributors.json
           git commit -m "chore: refresh contributor snapshot"
-          git push
+          # The branch is disposable and always one commit ahead of main.
+          git push --force origin "$BRANCH"
+
+          if [ -z "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
+            gh pr create \
+              --base main \
+              --head "$BRANCH" \
+              --title "chore: refresh contributor snapshot" \
+              --body "Daily rebuild of \`app/generated/contributors.json\` from the GitHub API. Merges itself once it is mergeable."
+          fi
+
+          # Merge when GitHub says it can; fall back to merging right away if it
+          # already can (auto-merge refuses on an already-mergeable PR).
+          gh pr merge "$BRANCH" --auto --squash --delete-branch ||
+            gh pr merge "$BRANCH" --squash --delete-branch

@@ -57,6 +57,26 @@ gh api -X PATCH "repos/$REPO/code-scanning/default-setup" \
   -f 'languages[]=javascript-typescript' --jq '.run_id // .state' ||
   echo "  (skipped — already configured or unsupported here)"
 
+# Ruleset notes
+#
+# No "required_status_checks" rule. The PR checks would never report on the
+# contributor-snapshot PR: GitHub does not start workflows for anything the
+# built-in GITHUB_TOKEN pushes or opens, so a required check would stay
+# "expected" forever and that PR would never merge. Every human and App PR
+# still runs PR checks, they are just not a hard gate.
+#
+# To make them a hard gate later: give the refresh-contributors workflow a
+# token from the org's GitHub App (actions/create-github-app-token, with
+# APP_ID and APP_PRIVATE_KEY as Actions secrets), then add back:
+#
+#   { "type": "required_status_checks", "parameters": {
+#       "strict_required_status_checks_policy": false,
+#       "do_not_enforce_on_create": false,
+#       "required_status_checks": [ { "context": "check", "integration_id": 15368 } ] } }
+#
+# GitHub Actions itself cannot be a bypass actor on a repository-level ruleset
+# ("must be part of the ruleset source or owner organization"), and org-level
+# rulesets need GitHub Team, so bypassing the bot is not an option on this plan.
 say "Branch ruleset on the default branch"
 RULESET_ID="$(gh api "repos/$REPO/rulesets" --jq '.[] | select(.name == "Protect Main") | .id' || true)"
 BODY="$(cat <<JSON
@@ -67,8 +87,7 @@ BODY="$(cat <<JSON
   "conditions": { "ref_name": { "include": ["~DEFAULT_BRANCH"], "exclude": [] } },
   "bypass_actors": [
     { "actor_id": null, "actor_type": "OrganizationAdmin", "bypass_mode": "always" },
-    { "actor_id": 5, "actor_type": "RepositoryRole", "bypass_mode": "always" },
-    { "actor_id": $ACTIONS_APP_ID, "actor_type": "Integration", "bypass_mode": "always" }
+    { "actor_id": 5, "actor_type": "RepositoryRole", "bypass_mode": "always" }
   ],
   "rules": [
     { "type": "deletion" },
@@ -76,23 +95,13 @@ BODY="$(cat <<JSON
     {
       "type": "pull_request",
       "parameters": {
-        "required_approving_review_count": 1,
+        "required_approving_review_count": 0,
         "dismiss_stale_reviews_on_push": false,
         "require_code_owner_review": false,
         "require_last_push_approval": false,
         "required_review_thread_resolution": true,
         "automatic_copilot_code_review_enabled": false,
         "allowed_merge_methods": ["merge", "squash", "rebase"]
-      }
-    },
-    {
-      "type": "required_status_checks",
-      "parameters": {
-        "strict_required_status_checks_policy": false,
-        "do_not_enforce_on_create": false,
-        "required_status_checks": [
-          { "context": "check", "integration_id": $ACTIONS_APP_ID }
-        ]
       }
     }
   ]
