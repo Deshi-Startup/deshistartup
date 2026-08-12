@@ -24,12 +24,12 @@ description is enough to get started.
 
 **What to expect**
 
-| | |
-| --- | --- |
-| First response | within 72 hours |
-| Assessment and plan | within 7 days |
-| Fix for a confirmed issue | as fast as the severity warrants; critical issues take priority over everything else |
-| Credit | your name or handle in the advisory and the release note, unless you prefer to stay anonymous |
+- **First response:** within 72 hours.
+- **Assessment and plan:** within 7 days.
+- **A fix for a confirmed issue:** as fast as the severity warrants. Critical
+  issues take priority over everything else in the project.
+- **Credit:** your name or handle in the published advisory, unless you would
+  rather stay anonymous.
 
 This is a volunteer-run open-source project, so there is no bug bounty. We do
 read every report.

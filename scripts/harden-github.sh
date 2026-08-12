@@ -1,18 +1,17 @@
 #!/usr/bin/env bash
-# One-shot GitHub hardening for Deshi-Startup/deshistartup.
+# GitHub settings for Deshi-Startup/deshistartup, as code.
 #
-# Everything here is a repository *setting*, not code, so it lives outside the
-# build. Re-running is safe: every call is idempotent.
+# These live outside the build because they are repository *settings*, and any
+# admin can change them from the web UI. This script is the intended state:
+# re-run it to undo drift, or to set up a mirror or a fork the same way
+# (REPO=owner/name bash scripts/harden-github.sh). Every call is idempotent.
 #
-# Requires a token with "Administration: Read and write" on the repository
-# (a fine-grained PAT with only Contents/PR write returns 403). Check with:
-#
-#   gh api -X PATCH repos/Deshi-Startup/deshistartup -f has_projects=true
+# Needs a token with "Administration: Read and write" on the repository; a
+# fine-grained PAT holding only Contents/PR write returns 403.
 #
 set -euo pipefail
 
 REPO="${REPO:-Deshi-Startup/deshistartup}"
-ACTIONS_APP_ID=15368 # github-actions, needed as a ruleset bypass actor
 
 say() { printf '\n\033[1m%s\033[0m\n' "$1"; }
 
@@ -29,22 +28,20 @@ gh api -X PUT "repos/$REPO/vulnerability-alerts" --silent
 say "Private vulnerability reporting (the form SECURITY.md points at)"
 gh api -X PUT "repos/$REPO/private-vulnerability-reporting" --silent
 
-say "Secret scanning: add non-provider patterns and validity checks"
+# Non-provider patterns and validity checks belong to GHAS Secret Protection.
+# The API accepts them on this plan and leaves them disabled, so they are not
+# set here — only the two that public repositories actually get.
+say "Secret scanning and push protection"
 gh api -X PATCH "repos/$REPO" \
   -F 'security_and_analysis[secret_scanning][status]=enabled' \
   -F 'security_and_analysis[secret_scanning_push_protection][status]=enabled' \
-  -F 'security_and_analysis[secret_scanning_non_provider_patterns][status]=enabled' \
-  -F 'security_and_analysis[secret_scanning_validity_checks][status]=enabled' \
   --jq '.security_and_analysis'
 
 say "Actions: only GitHub-authored and verified-creator actions may run"
 gh api -X PUT "repos/$REPO/actions/permissions" \
   -F enabled=true -f allowed_actions=selected --silent
 gh api -X PUT "repos/$REPO/actions/permissions/selected-actions" \
-  -F github_owned_allowed=true -F verified_allowed=true \
-  -f 'patterns_allowed[]=' --silent 2>/dev/null ||
-  gh api -X PUT "repos/$REPO/actions/permissions/selected-actions" \
-    -F github_owned_allowed=true -F verified_allowed=true --silent
+  -F github_owned_allowed=true -F verified_allowed=true --silent
 
 say "Actions: workflow token stays read-only, no PR approvals from workflows"
 gh api -X PUT "repos/$REPO/actions/permissions/workflow" \

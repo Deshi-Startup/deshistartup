@@ -14,6 +14,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     # main takes changes through pull requests, so the snapshot arrives as one
     # too: push the branch (contents), open it and let it merge itself
