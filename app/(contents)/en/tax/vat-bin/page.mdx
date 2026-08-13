@@ -1,14 +1,20 @@
 ---
 title: "Applying for a BIN: Reconcile These Records Before Mushak-2.1"
 description: "Understand the 9-digit BIN, distinguish full VAT registration from turnover-tax enlistment, complete Mushak-2.1, and prepare for post-certificate work."
-verified: 2026-07-10
+verified: 2026-08-13
 ---
 
 # Applying for a BIN: Reconcile These Records Before Mushak-2.1
 
-> **Key Takeaway:** A BIN is the 9-digit business identifier in the VAT system. Both full VAT registration and turnover-tax enlistment produce a BIN, so decide which route applies before starting. Create the VAT Online user for the correct person, complete the current Mushak-2.1 form, and then check the tax type, name, and effective date on the Mushak-2.3 certificate. Receiving a BIN starts invoice, return, and recordkeeping obligations.
+> **In short:** A BIN is the 9-digit business identifier in the VAT system. Both full VAT registration and turnover-tax enlistment produce a BIN, so decide which route applies before starting: enlistment generally covers turnover above 30 lakh up to 50 lakh, and full registration covers turnover above 50 lakh. Create the VAT Online user for the correct person, complete the current Mushak-2.1 form, and then check the tax type, name, and effective date on the Mushak-2.3 certificate. Receiving a BIN starts invoice, return, and recordkeeping obligations.
 
-Suppose an agency has BDT 4.5 million of turnover over 12 months. The proprietor hears that a BIN is needed and selects full VAT registration, even though the ordinary turnover rules might place the agency under turnover-tax enlistment. Choosing the wrong route changes both the invoice and return obligations.
+## Who needs this, and when
+
+You need this page if you are about to apply for a BIN — or have been told you need one — and you want the route decided correctly before touching the form. Registration and enlistment both produce a BIN and both start from the same Mushak-2.1 form, so the decision comes first.
+
+Haven't confirmed whether you need a BIN at all? Start with [When Full VAT Registration or Turnover Tax Applies](/en/tax/when-vat-required).
+
+This page covers an ordinary business applying through VAT Online. By the end you will have a filed application or a checked Mushak-2.3 certificate, plus the invoicing, bookkeeping, and return work assigned.
 
 ---
 
@@ -27,9 +33,31 @@ It is normal for the same business to have both a TIN and BIN. They are not inte
 
 ## Decide Between Registration and Enlistment
 
-**Full VAT registration:** Generally above BDT 8 million of turnover over 12 months, for a special mandatory class, or voluntarily. A fully registered person issues Mushak-6.3 tax invoices and files monthly returns.[^vat-registration-and-enlistment]
+Two thresholds decide the route, and the preceding 12-month turnover is the only input:
 
-**Turnover-tax enlistment:** Generally above BDT 3 million and up to BDT 8 million. The current rate is 3%. An enlisted person issues Mushak-6.9 invoices and has quarterly turnover-tax periods.[^vat-registration-and-enlistment]
+<DataBars
+  max={50}
+  data={[
+    { label: "Enlistment threshold", value: 30, display: "30 lakh" },
+    { label: "Registration threshold", value: 50, display: "50 lakh" },
+  ]}
+/>
+
+| Preceding 12-month turnover | Route |
+|---|---|
+| Below 30 lakh | Generally no obligation |
+| Above 30 lakh, up to 50 lakh | Turnover-tax enlistment |
+| Above 50 lakh | Full VAT registration |
+
+**Full VAT registration:** Generally above BDT 5 million (50 lakh) of turnover over 12 months, for a special mandatory class, or voluntarily. A fully registered person issues Mushak-6.3 tax invoices.[^vat-registration-and-enlistment]
+
+**Turnover-tax enlistment:** Generally above BDT 3 million (30 lakh) and up to BDT 5 million (50 lakh). The rate is 4% of turnover. An enlisted person issues Mushak-6.9 invoices.[^vat-registration-and-enlistment]
+
+**Example:** An agency's books show BDT 4.5 million (45 lakh) of turnover over the preceding 12 months. The decision is a comparison, not a calculation: 45 is above 30 and not above 50, so the agency falls in the enlistment band. That one result changes the invoice (Mushak-6.9 instead of Mushak-6.3) and the tax (4% of turnover instead of VAT on each supply).
+
+**Copy this:** Preceding 12-month turnover: ______ lakh. Band: below 30 / 30–50 / above 50. Route: no obligation / enlistment / registration.
+
+**Keep in mind:** NBR's English VAT FAQ still describes older figures — registration above BDT 8 million and turnover tax at 3%. The Act governs, and it sets BDT 3 million and BDT 5 million with turnover tax at 4%.[^vat-registration-and-enlistment] The Finance Act 2026 also lets the Government notify fixed sector-specific turnover-tax amounts of up to BDT 200,000 in place of the 4% rate; until such a notification is issued, 4% continues to apply.[^finance-act-2026]
 
 If the answer is unclear, first use [When Full VAT Registration or Turnover Tax Applies](/en/tax/when-vat-required) and [Turnover Tax and VAT Thresholds](/en/tax/vat-thresholds).
 
@@ -56,6 +84,22 @@ The 2026 amended Mushak-2.1 form requests e-TIN “where applicable.”[^mushak-
 
 ## Apply Through VAT Online
 
+The nine steps below fall into four phases. The hollow stretch is where applications usually lose time:
+
+<Timeline
+  ticks={["Prepare", "Submit", "Verify", "Certificate"]}
+  rows={[
+    {
+      label: "One application",
+      spans: [
+        { start: 0, end: 2, label: "reconcile records, then file Mushak-2.1" },
+        { start: 2, end: 3, tone: "gap", label: "queries land here — timing varies" },
+        { start: 3, end: 4, label: "download Mushak-2.3" },
+      ],
+    },
+  ]}
+/>
+
 1. Open [VAT Online](https://vat.gov.bd) and create the user in the name of the person to be registered or enlisted.
 2. Keep the mobile number and email under the business's control, not an agent's personal account.
 3. Open the current Mushak-2.1 under registration and select the correct ownership type.
@@ -65,6 +109,8 @@ The 2026 amended Mushak-2.1 form requests e-TIN “where applicable.”[^mushak-
 7. Download the draft or preserve the screens and ask another person to check the names, figures, codes, and addresses.
 8. Submit and retain the acknowledgment and application number. Respond to any query by following the comment.
 9. After the certificate is created, download Mushak-2.3 and check the BIN, tax type, effective date, and address.
+
+{/* Screenshot slot: the Mushak-2.1 form inside VAT Online — mark the ownership-type selector at the top and where the full-registration or enlistment choice appears. source "VAT Online"; add a checked date when captured. */}
 
 There is no government fee for the online application. Any adviser charge is for the service. Do not promise a certificate date. NBR's FAQ refers both to three working days after verification and to instantaneous online registration for a correct application.[^vat-online-application] Validation, queries, and portal conditions can change the actual timing.
 
@@ -80,16 +126,22 @@ There is no government fee for the online application. Any adviser charge is for
 
 Do not issue invoices from an incorrect certificate. Use the portal's information-change procedure. Current Rules require many changes to be reported within 15 working days.[^vat-registration-rules]
 
+You'll know the application is done when Mushak-2.3 shows the right name, tax type, BIN, effective date, and address — and someone owns the invoicing, bookkeeping, and return work that starts now.
+
 ---
 
 ## Work That Starts After the BIN
 
-| Status | Invoice | Tax period | Core work |
-|---|---|---|---|
-| Full VAT registration | Mushak-6.3 | Monthly | Output VAT, input-tax credits, withholding VAT, and return |
-| Turnover-tax enlistment | Mushak-6.9 | Quarterly | 3% of turnover, sales, and invoice records |
+| Status | Invoice | Core work |
+|---|---|---|
+| Full VAT registration | Mushak-6.3 | Output VAT, input-tax credits, withholding VAT, and returns |
+| Turnover-tax enlistment | Mushak-6.9 | 4% of turnover, sales, and invoice records |
+
+The calendar is now the same for both. The tax period is one Gregorian calendar month, and since 1 July 2026 that applies to enlisted persons too — the separate quarterly turnover-tax period was abolished. Quarterly return filing is the default for both statuses, due by the 15th day after the quarter ends, with monthly filing available as an option and due by the last day of the following month.[^finance-act-2026]
 
 Both statuses require the certificate to be displayed, the BIN to be used in specified records, and changes to be reported. A zero return may still have to be filed.[^vat-registration-rules] Assign ownership of invoicing, bookkeeping, and returns before applying.
+
+A BIN is also becoming unavoidable outside the tax office. Since 1 July 2026, a valid BIN or proof of registration is required to open or operate a business current or STD account, to take a loan from a bank or non-bank financial institution, to renew a trade licence, to open an MFS merchant account, to hold trade-association membership, to get electricity and gas connections in the business's name, and to register a vehicle with BRTA.[^finance-act-2026]
 
 ---
 
@@ -125,10 +177,12 @@ Rule of thumb: **Check the tax type on the certificate before the BIN number. Re
 
 ## Relevant Sources
 
-[^vat-registration-and-enlistment]: [NBR VAT FAQ](https://nbr.gov.bd/faq/vat-faq/en) and the [Value Added Tax and Supplementary Duty Act, 2012](https://nbr.gov.bd/uploads/acts/18.pdf).
+[^vat-registration-and-enlistment]: [NBR VAT FAQ](https://nbr.gov.bd/faq/vat-faq/en) and the [Value Added Tax and Supplementary Duty Act, 2012, consolidated through the Finance Ordinance, 2025](http://bdlaws.minlaw.gov.bd/upload/act/2026-01-18-15-14-21-72.-Value-Added-Tax-and-Supplementary-Duty-Act,-2012.pdf).
 
 [^mushak-registration-form]: [2026 amendment containing the current Mushak-2.1 form](https://nbr.gov.bd/uploads/sros/VAT_SRO-125.pdf).
 
 [^vat-online-application]: [NBR VAT FAQ](https://nbr.gov.bd/faq/vat-faq/en) and [VAT Online](https://vat.gov.bd).
 
 [^vat-registration-rules]: [VAT and Supplementary Duty Rules, 2016, English text amended through 2025](https://nbr.gov.bd/uploads/rules/Authentic_English_Text_VAT_Rules_2016.pdf).
+
+[^finance-act-2026]: [PwC Bangladesh, *Finance Act, 2026: Key Amendments*](https://www.pwc.com/bd/en/assets/pdfs/budget/finance-act-2026-key-amendments.pdf), VAT section. The Finance Act 2026 took effect on 1 July 2026 and is not yet reflected in the consolidated Act text published on bdlaws, which was last consolidated on 18 January 2026. Where this page relies on the Finance Act 2026 rather than the consolidated Act, it says so. Note also that the Finance Bill's proposal to delete the BDT 3 million enlistment threshold was **not** enacted, so that threshold still stands.
