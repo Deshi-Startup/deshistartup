@@ -148,11 +148,24 @@ function collectPages(dir) {
 }
 
 /** Strip regions where English/symbols are legitimate. */
+/**
+ * A component block in MDX is data, not prose: `value: 79` is a bar length and
+ * `label`/`display` are prop names, so linting them as Bangla sentences only
+ * produces noise. Keep the quoted strings that actually reach the reader.
+ */
+function jsxProse(line) {
+  return [...line.matchAll(/"([^"]*)"/g)]
+    .map((match) => match[1])
+    .filter((text) => BANGLA.test(text))
+    .join(' ')
+}
+
 function preprocess(source) {
   const lines = source.split('\n')
   const keep = []
   let inFrontmatter = false
   let inCode = false
+  let inJsx = false
   for (let i = 0; i < lines.length; i++) {
     let line = lines[i]
     if (i === 0 && line.trim() === '---') { inFrontmatter = true; keep.push(''); continue }
@@ -160,6 +173,16 @@ function preprocess(source) {
     if (line.trim().startsWith('```')) { inCode = !inCode; keep.push(''); continue }
     if (inCode) { keep.push(''); continue }
     if (/^\s*(import|export)\s/.test(line)) { keep.push(''); continue }
+    if (inJsx) {
+      if (/\/>\s*$/.test(line)) inJsx = false
+      keep.push(jsxProse(line))
+      continue
+    }
+    if (/^\s*<[A-Z]/.test(line)) {
+      inJsx = !/\/>\s*$/.test(line)
+      keep.push(jsxProse(line))
+      continue
+    }
     if (/^\s*<[A-Za-z]/.test(line) && !BANGLA.test(line)) { keep.push(''); continue }
     line = line
       .replace(/`[^`]*`/g, ' ')             // inline code
@@ -185,12 +208,16 @@ function sentenceRhythm(raw) {
   const kept = []
   let fm = false
   let code = false
+  let jsx = false
   for (let i = 0; i < lines.length; i++) {
     const t = lines[i].trim()
     if (i === 0 && t === '---') { fm = true; continue }
     if (fm) { if (t === '---') fm = false; continue }
     if (t.startsWith('```')) { code = !code; continue }
     if (code || !t) continue
+    // Component props are labels, not sentences — they have no rhythm to judge.
+    if (jsx) { if (/\/>$/.test(t)) jsx = false; continue }
+    if (/^<[A-Z]/.test(t)) { jsx = !/\/>$/.test(t); continue }
     if (t.startsWith('#') || t.startsWith('|') || /^[-*]\s/.test(t) || /^\d+[.)]\s/.test(t)) continue
     if (/^(import|export)\s/.test(t)) continue
     if (/^<[A-Za-z]/.test(t) && !BANGLA.test(t)) continue
