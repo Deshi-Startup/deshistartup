@@ -64,7 +64,7 @@ export default function ExpertReview({
     <aside
       className="expert-review"
       role="note"
-      aria-label={isEn ? 'Expert editorial review' : 'বিশেষজ্ঞের সম্পাদকীয় পর্যালোচনা'}
+      aria-label={isEn ? 'Expert editorial review' : 'বিশেষজ্ঞের রিভিউ'}
     >
       <div className="expert-review__header">
         <span className="expert-review__badge">
@@ -75,11 +75,11 @@ export default function ExpertReview({
               clipRule="evenodd"
             />
           </svg>
-          {isEn ? 'Expert reviewed' : 'বিশেষজ্ঞ পর্যালোচিত'}
+          {isEn ? 'Expert reviewed' : 'বিশেষজ্ঞ দেখে দিয়েছেন'}
         </span>
         {formattedDate && (
           <span className="expert-review__date">
-            {isEn ? 'Reviewed: ' : 'পর্যালোচনা: '}
+            {isEn ? 'Reviewed: ' : 'রিভিউ করেছেন: '}
             {formattedDate}
           </span>
         )}
@@ -97,7 +97,7 @@ export default function ExpertReview({
 
         {source && (
           <p className="expert-review__source">
-            <strong>{isEn ? 'Sources reviewed: ' : 'পর্যালোচনায় ব্যবহৃত উৎস: '}</strong>
+            <strong>{isEn ? 'Sources reviewed: ' : 'যে সোর্সগুলো দেখেছেন: '}</strong>
             {source}
           </p>
         )}

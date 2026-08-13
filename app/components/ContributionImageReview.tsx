@@ -167,7 +167,7 @@ export default function ContributionImageReview() {
         <h1>প্রস্তাবিত ছবি যাচাই</h1>
         <p>
           লেখার অনুমোদন আর ছবির অনুমোদন আলাদা। গোপন তথ্য, অধিকার, প্রাসঙ্গিকতা,
-          বিকল্প বর্ণনা এবং সূত্র দেখে প্রতিটি ছবিতে আলাদা সিদ্ধান্ত নিন।
+          বিকল্প বর্ণনা এবং সোর্স দেখে প্রতিটি ছবিতে আলাদা সিদ্ধান্ত নিন।
         </p>
       </header>
 
@@ -271,7 +271,7 @@ export default function ContributionImageReview() {
                     </div>
                     {media.source && (
                       <div>
-                        <dt>সূত্র</dt>
+                        <dt>সোর্স</dt>
                         <dd>{media.source}</dd>
                       </div>
                     )}

@@ -207,7 +207,7 @@ interface Labels {
 const LABELS: Record<'bn' | 'en', Labels> = {
   bn: {
     name: 'নাম',
-    source: 'সূত্র',
+    source: 'সোর্স',
     notStated: 'প্রকাশ্যে বলা নেই',
     verified: 'যাচাই',
     search: 'খুঁজুন',
@@ -337,7 +337,7 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
       </div>
       <div className="directory-results">
         {filteredRows.length > 0 ? (
-          // Most values here are sentences, not tokens — a nine-column grid gave
+          // Most values here are sentences, not tokens. A nine-column grid gave
           // every one of them a ~60px track and broke words mid-character. One
           // card per entry, with the fields as a labelled definition list, reads
           // at any width and takes a new field without squeezing the rest.

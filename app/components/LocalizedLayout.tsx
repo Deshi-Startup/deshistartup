@@ -236,7 +236,7 @@ function Breadcrumbs({ isEn, pathname, pageTitle }: BreadcrumbsProps) {
   if (rest.length === 0) return null
 
   const sectionTitles = (isEn ? typedSectionsLite.en : typedSectionsLite.bn) || {}
-  const crumbs = [{ href: isEn ? '/en' : '/', label: isEn ? 'Home' : 'প্রধান পাতা' }]
+  const crumbs = [{ href: isEn ? '/en' : '/', label: isEn ? 'Home' : 'হোম' }]
 
   if (rest.length > 1) {
     const sectionSlug = rest[0]

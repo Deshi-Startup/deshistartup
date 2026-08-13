@@ -165,7 +165,7 @@ function breadcrumbsFor(page) {
     {
       '@type': 'ListItem',
       position: 1,
-      name: isEn ? 'Home' : 'প্রধান পাতা',
+      name: isEn ? 'Home' : 'হোম',
       item: canonicalUrl(localHomeRoute(page.locale))
     }
   ]

@@ -829,7 +829,7 @@ export default function ContributionEditor({
   let status = ''
   if (submitting) status = t(isEn, 'রিভিউতে পাঠানো হচ্ছে…', 'Sending for review…')
   else if (loading) status = t(isEn, 'লেখা আনা হচ্ছে…', 'Loading the page…')
-  else if (dirty) status = t(isEn, 'পরিবর্তন এখনো জমা হয়নি', 'Changes not submitted')
+  else if (dirty) status = t(isEn, 'এডিট এখনো পাঠানো হয়নি', 'Changes not submitted')
 
   return (
     <div className="edit-mode" aria-busy={submitting || loading}>
@@ -942,7 +942,7 @@ export default function ContributionEditor({
               <p>
                 {t(
                   isEn,
-                  'বারবার স্প্যাম বা নিয়ম ভাঙার কারণে এই অ্যাকাউন্ট থেকে এখন অবদান পাঠানো যাচ্ছে না। ভুল হয়ে থাকলে রক্ষণাবেক্ষণকারীদের সঙ্গে যোগাযোগ করুন।',
+                  'বারবার স্প্যাম বা নিয়ম ভাঙার কারণে এই অ্যাকাউন্ট থেকে এখন অবদান পাঠানো যাচ্ছে না। ভুল হয়ে থাকলে টিমের সঙ্গে যোগাযোগ করুন।',
                   'This account cannot submit contributions right now because of spam or repeated rule violations. Contact the maintainers if this is a mistake.'
                 )}
               </p>
@@ -999,7 +999,7 @@ export default function ContributionEditor({
 
       {draft && !draftApplied && !error && ready && (
         <aside className="edit-draft-notice" role="note">
-          <strong>{t(isEn, 'জমা না দেওয়া লেখা পাওয়া গেছে', 'Unsent changes found')}</strong>
+          <strong>{t(isEn, 'আগের এডিট পাওয়া গেছে', 'Unsent changes found')}</strong>
           <p>
             {t(
               isEn,
@@ -1179,7 +1179,7 @@ export default function ContributionEditor({
 
                         <div className="edit-media-item__optional">
                           <label htmlFor={`media-source-${media.id}`}>
-                            {t(isEn, 'সূত্র (থাকলে)', 'Source (if any)')}
+                            {t(isEn, 'সোর্স (থাকলে)', 'Source (if any)')}
                             <input
                               id={`media-source-${media.id}`}
                               value={media.source || ''}
@@ -1193,7 +1193,7 @@ export default function ContributionEditor({
                             />
                           </label>
                           <label htmlFor={`media-credit-${media.id}`}>
-                            {t(isEn, 'কৃতজ্ঞতা / ক্রেডিট (থাকলে)', 'Credit (if any)')}
+                            {t(isEn, 'ক্রেডিট (থাকলে)', 'Credit (if any)')}
                             <input
                               id={`media-credit-${media.id}`}
                               value={media.credit || ''}
@@ -1235,7 +1235,7 @@ export default function ContributionEditor({
 
           <div className="edit-publish">
             <label className="edit-publish__label" htmlFor="contrib-summary">
-              {t(isEn, 'কী বদলালেন? (ঐচ্ছিক)', 'What changed? (optional)')}
+              {t(isEn, 'কী বদলালেন? (না দিলেও হবে)', 'What changed? (optional)')}
             </label>
             <p className="edit-publish__hint">
               {t(
@@ -1323,7 +1323,7 @@ export default function ContributionEditor({
                                   submitError === 'contributor_muted'
                                 ? t(
                                     isEn,
-                                    'এই অ্যাকাউন্ট থেকে এখন অবদান পাঠানো যাচ্ছে না। ভুল হয়ে থাকলে রক্ষণাবেক্ষণকারীদের সঙ্গে যোগাযোগ করুন।',
+                                    'এই অ্যাকাউন্ট থেকে এখন অবদান পাঠানো যাচ্ছে না। ভুল হয়ে থাকলে টিমের সঙ্গে যোগাযোগ করুন।',
                                     'This account cannot submit contributions right now. Contact the maintainers if this is a mistake.'
                                   )
                                 : submitError === 'contribution_rate_limited'

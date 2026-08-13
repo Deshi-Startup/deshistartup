@@ -34,7 +34,7 @@ export default function NotFound() {
           : 'লিংকটা হয়তো বদলে গেছে, অথবা পাতাটা এখনো লেখা হয়নি। ওপরের সার্চে খুঁজে দেখুন। না পেলে নিচের কোনো পথ ধরুন।'}
       </p>
       <div className="contrib-row" style={{ justifyContent: 'center', marginTop: 24 }}>
-        <a href={home}>{isEn ? 'Home' : 'প্রধান পাতা'}</a>
+        <a href={home}>{isEn ? 'Home' : 'হোম'}</a>
         <a href={`${prefix}/start-here`}>{isEn ? 'Start here' : 'শুরু করুন'}</a>
         <a href={`${prefix}/contribute`}>{isEn ? 'Contribute' : 'অবদান রাখুন'}</a>
       </div>

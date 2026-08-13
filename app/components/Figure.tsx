@@ -49,7 +49,7 @@ export interface FigureProps {
 
 /**
  * The one image renderer on the site. Plain `<img>` with a srcset the edge
- * fills — no client JS, no image service, no next/image (which is switched off
+ * fills. There is no client JS, image service or next/image (which is switched off
  * for this deploy target anyway).
  *
  * Markup note: this is a `<span>` and not a `<figure>`, because a markdown
@@ -78,8 +78,8 @@ export default function Figure({
   const isEn = locale === 'en'
 
   const meta: string[] = []
-  if (source) meta.push(`${isEn ? 'Source' : 'সূত্র'}: ${source}`)
-  if (credit) meta.push(`${isEn ? 'Credit' : 'কৃতজ্ঞতা'}: ${credit}`)
+  if (source) meta.push(`${isEn ? 'Source' : 'সোর্স'}: ${source}`)
+  if (credit) meta.push(`${isEn ? 'Credit' : 'ক্রেডিট'}: ${credit}`)
   if (checked) meta.push(`${isEn ? 'Checked' : 'যাচাই'}: ${formatMediaDate(checked, locale)}`)
 
   const image = (

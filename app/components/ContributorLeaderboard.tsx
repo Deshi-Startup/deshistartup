@@ -27,10 +27,10 @@ interface LeaderboardView {
 const copy = {
   bn: {
     countClassifier: 'টি',
-    countUnit: 'গৃহীত কাজ',
-    countTitle: (name: string) => `${name}-এর গৃহীত পুল রিকোয়েস্ট GitHub-এ দেখুন`,
+    countUnit: 'সাইটে যোগ হওয়া কাজ',
+    countTitle: (name: string) => `${name}-এর মার্জ হওয়া পুল রিকোয়েস্ট GitHub-এ দেখুন`,
     lastLabel: 'সর্বশেষ',
-    summary: (people: string, pulls: string) => `${people} জন অবদানকারী · ${pulls}টি গৃহীত কাজ`,
+    summary: (people: string, pulls: string) => `${people} জন অবদানকারী · সাইটে যোগ হয়েছে ${pulls}টি কাজ`,
     refreshed: 'হালনাগাদ',
     coreTitle: 'কোর টিম',
     methodTitle: 'হিসাবটা কীভাবে হয়:',
