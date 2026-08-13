@@ -65,6 +65,23 @@ test('tilde fences and indented component blocks are preserved', () => {
   ])
 })
 
+test('a multi-line chart component survives the editor as one protected block', () => {
+  const chart = [
+    '<DataBars',
+    '  unit="%"',
+    '  max={100}',
+    '  data={[',
+    '    { label: "১২০০ টাকার পণ্য", value: 79, display: "৭৯%" },',
+    '    { label: "৬০০ টাকার পণ্য", value: 30, display: "৩০%" },',
+    '  ]}',
+    '/>'
+  ].join('\n')
+  const source = ['Some prose.', '', chart, '', 'More prose.', ''].join('\n')
+
+  assert.equal(decodeLockedMdx(encodeLockedMdx(source)), source)
+  assert.deepEqual(lockedMdxBlocks(source), [chart])
+})
+
 test('protected-component validation catches changes, additions and deletion', () => {
   const original = lockedMdxBlocks('<StubNotice path="ideas/test" locale="en" />')
 

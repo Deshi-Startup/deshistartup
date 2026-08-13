@@ -1033,6 +1033,341 @@ p:has(> .fb-video) {
   font-size: 0.82rem;
 }
 
+/* --- Data bars --- */
+
+/* A minimal horizontal bar chart for small comparisons. Pure CSS, so there is
+   no raster to upload, no SVG to sanitize and no client JavaScript. The bar
+   length is the only data channel; the label and value are real text, so the
+   meaning survives printing, a screen reader or a failed stylesheet. */
+.databars {
+  margin: 22px auto;
+  padding: 0;
+  list-style: none;
+}
+
+.databars__row + .databars__row {
+  margin-top: 14px;
+}
+
+.databars__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.databars__label {
+  font-weight: var(--w-strong);
+}
+
+.databars__value {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.databars__track {
+  height: 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--canvas-soft);
+  overflow: hidden;
+}
+
+.databars__bar {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--green);
+}
+
+/* --- Waterfall --- */
+
+/* A horizontal waterfall: anchored start/end bars sit on the zero edge while
+   the steps in between float as red (out) or green (in) segments, so the eye
+   follows the money down the ladder. The numbers are text beside each row. */
+.waterfall {
+  margin: 22px auto;
+  padding: 0;
+  list-style: none;
+}
+
+.waterfall__row + .waterfall__row {
+  margin-top: 12px;
+}
+
+.waterfall__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.waterfall__label {
+  font-weight: var(--w-strong);
+}
+
+.waterfall__delta {
+  color: var(--faint);
+  font-weight: 400;
+}
+
+.waterfall__value {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.waterfall__track {
+  position: relative;
+  height: 16px;
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  background: var(--canvas-soft);
+  overflow: hidden;
+}
+
+.waterfall__bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: 5px;
+}
+
+.waterfall__bar--total,
+.waterfall__bar--pos {
+  background: var(--green);
+}
+
+.waterfall__bar--neg {
+  background: var(--error);
+}
+
+/* --- Timeline --- */
+
+/* A horizontal band timeline on a shared tick axis. A hollow, amber span
+   marks the window where nothing has landed yet — the cash-flow gap. */
+.timeline {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 14px;
+  row-gap: 12px;
+  align-items: center;
+  margin: 22px auto;
+}
+
+.timeline__ticks,
+.timeline__track {
+  display: grid;
+  gap: 4px;
+}
+
+.timeline__tick {
+  overflow: hidden;
+  color: var(--faint);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeline__label {
+  font-weight: var(--w-strong);
+  line-height: 1.3;
+  text-align: right;
+}
+
+.timeline__span {
+  display: flex;
+  align-items: center;
+  height: 22px;
+  min-width: 0;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: var(--green);
+  overflow: hidden;
+}
+
+.timeline__span--gap {
+  border: 1px dashed var(--warn-border);
+  background: var(--warn-bg);
+}
+
+.timeline__span-label {
+  overflow: hidden;
+  color: #fff;
+  font-size: 0.78rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeline__span--gap .timeline__span-label {
+  color: var(--warn-ink);
+}
+
+/* --- Calculator --- */
+
+/* A small client island: the inputs edit the worked example the server already
+   rendered, so nothing depends on JavaScript to show the default numbers. */
+.calc {
+  margin: 22px auto;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--canvas-soft);
+}
+
+.calc__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.calc__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.calc__label {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.calc__input {
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--canvas);
+  color: var(--ink);
+  font: inherit;
+}
+
+.calc__hint {
+  color: var(--faint);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.calc__results {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 14px 0 0;
+}
+
+.calc__result {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--canvas);
+}
+
+.calc__result dt {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.calc__result dd {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: var(--w-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.calc__result--main {
+  border-color: var(--green);
+  background: var(--green-soft);
+}
+
+.calc__result--main dd {
+  color: var(--green-deep);
+  font-size: 1.2rem;
+}
+
+.calc__verdict {
+  margin: 12px 0 0;
+  color: var(--warn-ink);
+  font-size: 0.92rem;
+}
+
+/* --- Charts and calculator: small screens --- */
+
+/* Most readers are on a narrow phone, so the two-column input grid folds and
+   the timeline drops its label gutter, putting each row label above its own
+   track instead of squeezing the axis into what is left. */
+@media (max-width: 620px) {
+  .calc {
+    padding: 14px;
+  }
+
+  .calc__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .timeline {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 4px;
+  }
+
+  .timeline__corner {
+    display: none;
+  }
+
+  .timeline__label {
+    margin-top: 10px;
+    text-align: left;
+  }
+
+  .timeline__tick {
+    font-size: 0.68rem;
+  }
+
+  .timeline__ticks,
+  .timeline__track {
+    gap: 2px;
+  }
+
+  .databars__head,
+  .waterfall__head {
+    flex-wrap: wrap;
+    gap: 0 12px;
+  }
+}
+
+/* --- Charts and calculator: print --- */
+
+/* Browsers drop background colours when printing, which would leave every bar
+   blank and the white span labels invisible. The bar length is the data, so
+   the colours have to survive. */
+@media print {
+  .databars__bar,
+  .waterfall__bar,
+  .waterfall__track,
+  .databars__track,
+  .timeline__span {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .databars__row,
+  .waterfall__row,
+  .calc {
+    break-inside: avoid;
+  }
+
+  .calc__input {
+    border-color: #999;
+  }
+}
+
 /* --- YouTube facade --- */
 
 /* Nothing here talks to Google until the reader clicks, so the box has to look
