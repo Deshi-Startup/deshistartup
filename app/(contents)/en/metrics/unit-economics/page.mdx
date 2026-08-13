@@ -33,6 +33,19 @@ Let's break Rahim's 1,200-taka shirt order down step by step. At each step, watc
 | Less ad cost to win the order | 80 | 160 |
 | **Contribution margin per order** |  | **160** |
 
+<Waterfall
+  digits="en"
+  steps={[
+    { label: "Sale", delta: 1200, total: true },
+    { label: "Shirt cost (COGS)", delta: -800 },
+    { label: "Courier", delta: -120 },
+    { label: "Packaging", delta: -20 },
+    { label: "Cash-collection fee", delta: -20 },
+    { label: "Ad cost to win the order", delta: -80 },
+    { label: "Contribution margin", total: true },
+  ]}
+/>
+
 So not 400 but 160 taka is what Rahim actually keeps. Where did that 80 taka of ads come from? Say Rahim boosts with 10,000 taka a month and gets 125 orders. That's an average ad cost of 80 taka to win one order, and that is exactly **CAC (customer acquisition cost)**, the cost of winning one customer. The plain meaning of the term is in the [glossary](/en/start-here/glossary).
 
 ### Now take the hit from returned orders

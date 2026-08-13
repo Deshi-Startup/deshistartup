@@ -1,61 +1,111 @@
 ---
 title: "Cash on Delivery Risk: How Many Returns You Can Absorb"
-description: "What a returned parcel actually costs, the return rate at which cash on delivery stops being profitable, and why that ceiling collapses on low-margin products — worked out in full."
-verified: 2026-07-28
+description: "What a returned parcel actually costs, the return rate at which cash on delivery stops paying, and why that ceiling collapses on cheap products — with the full maths, a live calculator, and a message to copy."
+verified: 2026-08-13
 ---
 
 # Cash on Delivery Risk: How Many Returns You Can Absorb
 
-> **Key Takeaway:** Returns are unavoidable with cash on delivery, so the question is not whether parcels come back but how many you can absorb. The answer depends almost entirely on margin. A product earning BDT 400 of gross margin stays profitable up to roughly 69% returns; one earning BDT 120 breaks even at about 20%. Work out your own figure, then decide which products keep cash on delivery and which ones require a deposit.
+> **In short:** With cash on delivery, parcels come back — the question is how many your margin can absorb before profit hits zero, and the answer depends almost entirely on margin. A product that leaves BDT 308 per delivery stays profitable up to about 79% returns, while one that leaves BDT 34 breaks even at about 30%. Work out your own number with the calculator below, then decide which products keep COD and which need a deposit before dispatch.
 
-## Where the Cost Hides
+## Who needs this, and when
 
-Many sellers count a returned parcel as one delivery charge. In reality a return costs money in at least three places — sending it, bringing it back, and the packaging. If the goods are damaged or the packet has been opened, a fourth is added.
+You need this page if you sell with cash on delivery and want three answers: what a returned parcel actually costs, how many returns your margin can absorb, and which products should require a deposit.
+
+You can skip it if you take payment in advance only, or if you already know your per-delivery profit, your per-return loss, and your real return rate.
+
+## The two terms first
+
+**Cash on delivery (COD)** means the customer pays the courier when the parcel arrives, and the courier later sends that money to you. **Return to origin (RTO)** is the share of dispatched parcels that come back unsold — the customer refused, was absent, or the address failed.
+
+A return matters because you pay for the delivery anyway — the sale is zero.
+
+## Where the cost hides
+
+Many sellers count a returned parcel as one delivery charge. In reality a return costs money in at least two places even when the courier brings it back for free — the outbound delivery, which you still pay, and the packaging. If the goods are damaged or the packet opened, a third is added.
 
 Even on a successful delivery, some costs do not show up plainly on a quote:
 
-- **The cash-on-delivery charge.** The courier takes a percentage of the money it collects for you. Steadfast's pricing page states that a 1% cash-on-delivery and risk-management charge applies.[^steadfast-pricing]
-- **VAT.** The same page notes that the charges listed exclude VAT and tax, so the bill runs higher.
+- **The cash-on-delivery charge.** The courier takes a percentage of the money it collects for you. Steadfast's pricing page states a 1% cash-on-delivery and risk-management charge.[^steadfast-pricing]
+- **VAT.** The listed charges exclude VAT and tax, so the bill runs higher.
 - **Parcel size.** A light item in a large box can still cost more.
 - **Pick-and-drop minimum.** At Steadfast this is BDT 80.[^steadfast-pricing]
 
-Delivery charges vary by route, weight, and size, so there is no single number worth memorising. Put your own route into the courier's calculator, then add the four items above.
+One more cost hides on a returned parcel: you pay the outbound delivery whether it is delivered or cancelled, and Steadfast adds no charge for the return leg itself — though other couriers do. So a return costs you delivery plus packaging, not delivery twice.
 
-## How Many Returns You Can Absorb
+Delivery charges vary by route, weight, and size, so there is no single number worth memorising. Put your own route into the courier's calculator, then add the items above.
 
-The share of dispatched parcels that come back unsold is called RTO — return to origin. The question is the rate at which profit reaches zero.
+## How many returns you can absorb
 
-You need two numbers. What you keep on each delivered order, and what you lose on each returned one.
+You need two numbers: what you keep on each delivered order, and what you lose on each returned one.
 
-> Break-even RTO = profit per delivery ÷ (profit per delivery + loss per return)
+> **Break-even RTO = profit per delivery ÷ (profit per delivery + loss per return)**
 
 ### A higher-margin product
 
-Sells for BDT 1,200, costs BDT 800. Outbound delivery BDT 60, packaging BDT 20, cash-on-delivery charge 1% of 1,200 = BDT 12.
+Say a product sells for BDT 1,200 and costs BDT 800 to buy. Outbound delivery BDT 60, packaging BDT 20, and the COD charge 1% of 1,200, so BDT 12.
 
 - Kept on delivery: 1,200 − 800 − 60 − 20 − 12 = **BDT 308**
-- Lost on a return: outbound 60 + return 60 + packaging 20 = **BDT 140**
-- Break-even RTO = 308 ÷ (308 + 140) = 308 ÷ 448 = **about 69%**
+- Lost on a return: outbound 60 + packaging 20 = **BDT 80** (Steadfast adds no return freight)
+- Break-even RTO = 308 ÷ (308 + 80) = **about 79%**
 
-Six returns in ten and this product is still not losing money. With a healthy margin, cash on delivery is fairly forgiving.
+Eight returns in ten and this product still does not lose money. With a healthy margin, COD is forgiving.
 
 ### A lower-margin product
 
-Sells for BDT 600, costs BDT 480. The other costs barely change, because couriers do not lower their charge for cheaper goods. The cash-on-delivery charge is 1% of 600 = BDT 6.
+Say the product sells for BDT 600 and costs BDT 480. The other costs barely change, because couriers do not lower their charge for cheaper goods. The COD charge is 1% of 600, so BDT 6.
 
 - Kept on delivery: 600 − 480 − 60 − 20 − 6 = **BDT 34**
-- Lost on a return: the same **BDT 140**
-- Break-even RTO = 34 ÷ (34 + 140) = 34 ÷ 174 = **about 20%**
+- Lost on a return: the same **BDT 80**
+- Break-even RTO = 34 ÷ (34 + 80) = **about 30%**
 
-This is the whole point. The cost of a return does not shrink with the price of the item, but the profit does. On cheap goods, one return in five wipes out the margin on the other four.
+> **Keep in mind:** The cost of a return does not shrink with the price of the item — the profit does. On cheap goods, one return in three wipes out the margin on the other two.
 
-Put the two calculations side by side and the decision becomes clear: cash on delivery is most dangerous on inexpensive products — and inexpensive products are exactly where customers ask for it most.
+### The pattern across products
 
-## Bringing Returns Down
+Add a middle price and the pattern is easier to see. For a product selling at BDT 800 and costing BDT 600, the COD charge is 1% of 800, so BDT 8. Kept on delivery is 800 − 600 − 60 − 20 − 8 = **BDT 112**, the loss on a return is still **BDT 80**, and the break-even RTO is 112 ÷ (112 + 80) = **about 58%**.
 
-Once you know the break-even rate, measure your actual one. The courier's report shows parcels dispatched and returned. Divide once a month and you have the rate. Then the things that help:
+<DataBars
+  unit="%"
+  max={100}
+  data={[
+    { label: "BDT 1,200 product", value: 79 },
+    { label: "BDT 800 product", value: 58 },
+    { label: "BDT 600 product", value: 30 },
+  ]}
+/>
 
-- **A confirmation rule.** Before dispatch, confirm price, delivery charge, and expected day by call or message.
+The return loss stays flat at BDT 80 while the profit collapses, so the break-even rate falls with it. Cash on delivery is most dangerous on inexpensive products — and inexpensive products are exactly where customers ask for it most.
+
+| Selling price | Kept per delivery | Lost per return | Break-even RTO |
+|---:|---:|---:|---:|
+| BDT 1,200 | 308 | 80 | ~79% |
+| BDT 800 | 112 | 80 | ~58% |
+| BDT 600 | 34 | 80 | ~30% |
+
+> **Warning:** Below some price the maths goes negative before any return. When per-delivery profit is zero or less, every order loses money even with no returns at all. The calculator below will show you this for your own numbers.
+
+## Work out your own number
+
+Change the values to match one of your products. The examples above are the defaults.
+
+<CodRiskCalculator locale="en" />
+
+You'll know you're done when you can say it in one sentence: "My [product] breaks even at [X]% returns, last month's actual rate was [Y]%, so I keep COD / now require a deposit."
+
+## Bringing returns down
+
+Once you know the break-even rate, measure your actual one. The courier's report shows parcels dispatched and returned; divide once a month and you have the rate.
+
+Start with a confirmation message before dispatch. Copy and adapt this:
+
+```text
+Hi, this is [your shop name]. Your order: [item], BDT [price], delivery BDT [amount].
+It should reach you by [day]. Reply 1 to confirm, or 2 to cancel.
+```
+
+Then the things that help:
+
 - **No answer, no dispatch.** After two failed attempts to reach the customer, hold the order.
 - **A partial deposit.** Taking a deposit equal to the delivery charge removes most fake orders.
 - **Verify the address.** Record the area, a landmark, and an alternative number.
@@ -63,14 +113,14 @@ Once you know the break-even rate, measure your actual one. The courier's report
 - **Require deposits on cheap items.** Tighten the terms exactly where the break-even rate is low.
 - **Keep a list of repeat refusers.** Do not dispatch to them again without a deposit.
 
-Sellers hesitate over the third, fearing lost sales. Rather than applying it to every order at once, switch it on for low-margin products first and compare the rate after a month.
+Sellers hesitate over the deposit, fearing lost sales. Rather than applying it to every order at once, switch it on for low-margin products first and compare the rate after a month.
 
-## Common Mistakes
+## Common mistakes
 
 | Mistake | Result |
 |---|---|
 | Counting a return as one delivery charge | Return freight and packaging never enter the calculation |
-| One cash-on-delivery policy for every product | Low-margin items quietly lose money |
+| One COD policy for every product | Low-margin items quietly lose money |
 | Ignoring the COD charge and VAT | The bill exceeds the quote |
 | Never measuring your own RTO rate | The problem surfaces months late |
 | Dispatching to customers who never answer | The return rate rises and you pay freight both ways |
@@ -81,14 +131,14 @@ Sellers hesitate over the third, fearing lost sales. Rather than applying it to 
 - [ ] Worked out profit per delivery and loss per return for each product
 - [ ] Calculated the break-even RTO for each product
 - [ ] Know last month's actual RTO rate
-- [ ] Included the cash-on-delivery charge and VAT in costs
+- [ ] Included the COD charge and VAT in costs
 - [ ] Have a written order-confirmation rule
 - [ ] Set a deposit rule for low-margin products
-- [ ] Keeping a list of numbers that repeatedly refuse delivery
+- [ ] Keep a list of numbers that repeatedly refuse delivery
 
-Rule of thumb: **where the break-even RTO is under 25%, do not dispatch without a deposit.**
+> **Rule of thumb:** where the break-even RTO is under about 30%, do not dispatch without a deposit.
 
-## What to Do Next
+## What to do next
 
 - To match courier money against orders: [Cash on Delivery Reconciliation](/en/payments/cod-reconciliation)
 - To see what one order actually earns: [Unit Economics](/en/metrics/unit-economics)
@@ -97,4 +147,4 @@ Rule of thumb: **where the break-even RTO is under 25%, do not dispatch without 
 
 ## Relevant Sources
 
-[^steadfast-pricing]: [Steadfast Courier – Pricing](https://steadfast.com.bd/pricing) – publishes the 1% cash-on-delivery and risk-management charge and the BDT 80 pick-and-drop minimum
+[^steadfast-pricing]: [Steadfast Courier – Pricing](https://steadfast.com.bd/pricing) and [Terms and Conditions](https://www.steadfast.com.bd/terms-and-condition) — the pricing page states the 1% cash-on-delivery and risk-management charge and the BDT 80 pick-and-drop minimum; the terms state that charges exclude VAT and tax, that the merchant pays delivery charges whether a parcel is delivered or cancelled, and that Steadfast does not charge for return parcels. Accessed 13 August 2026.
