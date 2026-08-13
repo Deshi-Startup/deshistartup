@@ -41,9 +41,9 @@ export function inspectCitations(source, file = '<content>') {
   const errors = []
   if (
     definitions.size > 0 &&
-    !/^##[ \t]+(?:প্রাসঙ্গিক সূত্র|Relevant Sources)[ \t]*$/m.test(source)
+    !/^##[ \t]+(?:প্রাসঙ্গিক সোর্স|Relevant Sources)[ \t]*$/m.test(source)
   ) {
-    errors.push(`${file}: cited pages must include a ## প্রাসঙ্গিক সূত্র or ## Relevant Sources heading`)
+    errors.push(`${file}: cited pages must include a ## প্রাসঙ্গিক সোর্স or ## Relevant Sources heading`)
   }
 
   for (const { identifier, node } of unresolved) {

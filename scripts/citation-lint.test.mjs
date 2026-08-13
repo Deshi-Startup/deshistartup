@@ -19,6 +19,20 @@ test('accepts a defined citation reused more than once', () => {
   assert.deepEqual(result.referenceCounts, { 'official-source': 2 })
 })
 
+test('accepts the Bangla sources heading', () => {
+  const result = inspectCitations(
+    [
+      'দাবি।[^official-source]',
+      '',
+      '## প্রাসঙ্গিক সোর্স',
+      '',
+      '[^official-source]: [সোর্স](https://example.com)'
+    ].join('\n')
+  )
+
+  assert.deepEqual(result.errors, [])
+})
+
 test('rejects unresolved citation syntax', () => {
   const result = inspectCitations('Claim.[^missing-source]', 'page.mdx')
   assert.match(result.errors[0], /page\.mdx:1 unresolved citation \[\^missing-source\]/)
@@ -43,7 +57,7 @@ test('requires cited pages to retain their sources heading', () => {
   const result = inspectCitations(
     'Claim.[^official-source]\n\n[^official-source]: [Source](https://example.com)'
   )
-  assert.ok(result.errors.some((error) => /must include a ## প্রাসঙ্গিক সূত্র/))
+  assert.ok(result.errors.some((error) => /must include a ## প্রাসঙ্গিক সোর্স/))
 })
 
 test('ignores citation-shaped examples inside code', () => {

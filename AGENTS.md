@@ -70,7 +70,7 @@ Default guide shape:
 2. one `#` heading;
 3. `> **সারকথা:**` / `> **In short:**`;
 4. the decision, steps, cost/time, mistakes and checklist the topic actually needs; and
-5. `## প্রাসঙ্গিক সূত্র` / `## Relevant Sources`.
+5. `## প্রাসঙ্গিক সোর্স` / `## Relevant Sources`.
 
 Use official sources for legal, tax, fee, registration and regulatory claims. Date changeable
 numbers. Never fabricate a statistic, quote, example or anecdote. Do not bump `verified:` unless
