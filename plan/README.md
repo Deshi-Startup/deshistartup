@@ -27,6 +27,7 @@ an agreed decision should be moved to its owner so it can be found later.
 | `content-backlog.csv` | Canonical planned topics and routes. The `Path` column owns permanent URLs. |
 | `sources.csv` | Public, tiered starting sources for research and citations. |
 | `case-study-format.md` | The required structure for startup case studies. |
+| `guide-playbook.md` | The English-first production pipeline and the visual/interactive toolkit for guides. |
 | `maintenance-calendar.md` | What must be re-checked and how often. |
 | `seo-operations.md` | Search, crawler and generated SEO operations. |
 | `media-operations.md` | Media security, review, retention and cost controls. |

@@ -6,13 +6,15 @@ Read this before changing the project. For priorities and planned content, start
 
 ## Mission and scope
 
-Deshi Startup is a free, open-source, Bangla-first operating manual for founders building new,
-scalable businesses in Bangladesh. Registration, tax, payments and hiring guides may also help
-small businesses, but the project does not broaden its scope to become a generic SME,
-family-business, import/export or online-seller portal.
+Deshi Startup is a free, open-source operating manual for founders building new, scalable
+businesses in Bangladesh, written in English with a Bangla translation of every guide.
+Registration, tax, payments and hiring guides may also help small businesses, but the project
+does not broaden its scope to become a generic SME, family-business, import/export or online-seller
+portal.
 
-Bengali is the source edition. English mirrors it at `/en/...`. A page counts as written only
-when it is a real guide without `<StubNotice />`; run `npm run backlog:status` for current counts.
+English is the canonical authoring edition; the Bangla edition is translated from the finished
+English guide with the `translate-bangla-guide` skill. A page counts as written only when it is a
+real guide without `<StubNotice />`; run `npm run backlog:status` for current counts.
 
 ## Architecture
 
@@ -60,9 +62,16 @@ metadata and UI copy, read [`STYLE.md`](./STYLE.md).
 
 Before writing content, read:
 
-- [`STYLE.md`](./STYLE.md) for natural Bangladeshi Bangla;
-- [`EDITORIAL.md`](./EDITORIAL.md) for research, teaching, evidence and review; and
-- the finished `/start-here` page for a working example.
+- [`EDITORIAL.md`](./EDITORIAL.md) for the quality standard: standalone pages, sources, visuals,
+  and the five finish gates;
+- [`plan/guide-playbook.md`](./plan/guide-playbook.md) for the English-first pipeline and the
+  visual toolkit (`DataBars`, `Waterfall`, `Timeline`, `Figure`, `YouTube`, calculators);
+- [`STYLE.md`](./STYLE.md) for natural Bangladeshi Bangla, used when translating; and
+- the finished `/en/operations/cod-risk`, `/en/metrics/unit-economics` and
+  `/en/metrics/cashflow-vs-profit` pages for working examples of the full standard.
+
+Write the English guide first and finalise it against the five gates before translating to
+Bangla.
 
 Default guide shape:
 

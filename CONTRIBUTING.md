@@ -31,7 +31,7 @@ GitHub ব্যবহার করতে চাইলে পাতার নি
    নথি বা মূল সূত্র আগে দেখুন। কোনো তথ্য নিশ্চিত না হলে সেটি স্পষ্ট করে লিখুন।
 3. **পাঠকের কাজ ধরে সাজান।** কার এই তথ্য দরকার, আগে কী প্রস্তুত করবেন, কোথায় যাবেন,
    কত সময় বা টাকা লাগতে পারে এবং এরপর কী করবেন, এগুলোর উত্তর দিন।
-4. **বাংলায় ভেবে লিখুন।** ইংরেজি খসড়া অনুবাদ না করে পরিচিত শব্দে সরাসরি বোঝান।
+4. **সহজ ভাষায় লিখুন।** মূল গাইড ইংরেজিতে লেখা হয়। বাংলায় লিখলে STYLE.md মেনে সরাসরি বাংলায় ভাবুন, ইংরেজি খসড়া শব্দে শব্দে অনুবাদ করবেন না।
    শেষ হলে জোরে পড়ে যেসব বাক্য মুখে বলা যায় না, সেগুলো আবার লিখুন।
 5. **সূত্র ও সাল দিন।** আইন, ফি, সীমা ও নিয়মের দাবির কাছে সূত্র দিন। বদলাতে পারে
    এমন সংখ্যা বা ফি-এর সঙ্গে সাল বা যাচাইয়ের তারিখ দিন।
@@ -58,8 +58,8 @@ GitHub থেকে লিখলে দাবির পরে `[^source-name]` �
 ```
 
 শুরুর `<StubNotice ... />` শুধু পূর্ণ গাইড শেষ হলে সরান। অসম্পূর্ণ কাজও পাঠাতে পারেন,
-তবে সেটিকে শেষ লেখা হিসেবে দেখাবেন না। বাংলা পাতাই মূল সংস্করণ। ইংরেজি মিরর দিলে
-ভালো, না পারলেও বাংলা অবদান জমা দিন।
+তবে সেটিকে শেষ লেখা হিসেবে দেখাবেন না। ইংরেজি পাতাই মূল সংস্করণ। বাংলা পাতা পরে
+সেটির অনুবাদ হিসেবে লেখা হয়। যে ভাষায় সুবিধা হয়, সেই ভাষায় অবদান পাঠান।
 
 ভাষার উদাহরণ ও শেষবার মিলিয়ে দেখার জন্য [STYLE.md](./STYLE.md), আর গবেষণা, সূত্র ও
 শেখানোর মানের জন্য [EDITORIAL.md](./EDITORIAL.md) পড়ুন।
@@ -150,9 +150,9 @@ If you prefer working through GitHub, use **Edit on GitHub** at the bottom of a 
    government-process claims. State uncertainty instead of filling a gap with a guess.
 3. **Follow the reader's decision.** Explain who needs this, what to prepare, where to go, what it
    may cost, how long it may take and what to do next.
-4. **Write the Bengali source directly in Bangla.** Do not translate an English draft sentence by
-   sentence. Read it aloud and rewrite anything that does not sound like something a person would
-   naturally say.
+4. **Write plainly.** The canonical guide is written in natural English. If you write in Bangla,
+   follow STYLE.md and compose directly in Bangla rather than translating an English draft word for
+   word. Read it aloud and rewrite anything that does not sound like a person talking.
 5. **Cite and date claims.** Put sources near consequential claims. Date fees, thresholds and other
    facts that may change.
 6. **Submit the draft.** It does not need perfect prose. Review can improve language and structure
@@ -179,8 +179,9 @@ starting shape:
 ```
 
 Remove `<StubNotice ... />` only when the guide is genuinely complete. Partial work is welcome,
-but do not present it as finished. Bengali is the source edition; an English mirror is welcome but
-optional.
+but do not present it as finished. English is the canonical edition; the Bangla version is
+translated from it after the English guide is reviewed. Contribute in whichever language you are
+comfortable with.
 
 Use [STYLE.md](./STYLE.md) for natural Bangla and [EDITORIAL.md](./EDITORIAL.md) for research,
 teaching and evidence standards. [/en/start-here](https://deshistartup.com/en/start-here) is a
