@@ -674,7 +674,7 @@ a.tab {
   color: var(--blue);
 }
 
-/* "ভুল জানান" is the one repair action on every page, and at the meta line's
+/* "ফিডব্যাক দিন" is the one repair action on every page, and at the meta line's
    0.85rem it lands at 23px tall – a pixel under WCAG 2.2 SC 2.5.8. Give it the
    24px on touch only, so the line keeps its weight under a mouse. */
 @media (pointer: coarse) {
@@ -2533,7 +2533,7 @@ a.is-stub-link:hover {
   /* The row collapses to the one control a phone reader can act on. "পড়ুন" is
      the view they are already in, and commit history is a poor thing to open on
      a phone – but the founder who spots a wrong fee on the bus is exactly the
-     person this editor is for, so সম্পাদনা stays, drawn as something tappable. */
+     person this editor is for, so এডিট stays, drawn as something tappable. */
   .article-actions {
     gap: 12px;
     padding-bottom: 10px;
@@ -3036,7 +3036,7 @@ body.auth-open {
 }
 
 /* ------------------------------------------------------ in-canvas editing */
-/* The wiki move: pressing সম্পাদনা does not hand you an editor, it turns the
+/* The wiki move: pressing এডিট does not hand you an editor, it turns the
    page into one. The text keeps its column, its measure and its faces, so the
    paragraph a founder was reading is still exactly where they left it, now with
    a caret in it. Edit mode adds two objects and no new colour: a bar on the
@@ -3216,7 +3216,7 @@ body.auth-open {
    `.milkdown .ProseMirror x` and injected after this file, so every rule below
    carries `.edit-live .milkdown` to outrank it. The values are the article's own,
    restated deliberately: if one of them drifts, the text jumps when you press
-   সম্পাদনা, and the whole point of this mode is that it does not. */
+   এডিট, and the whole point of this mode is that it does not. */
 
 .edit-live .milkdown .ProseMirror {
   --prosemirror-virtual-cursor-color: var(--green-deep);

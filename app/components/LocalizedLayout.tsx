@@ -77,7 +77,7 @@ function DiscordIcon() {
   )
 }
 
-/* Carried by the সম্পাদনা action so it still reads as "edit" on a phone, where
+/* Carried by the এডিট action so it still reads as "edit" on a phone, where
    the row collapses to that one control and the neighbouring words are gone. */
 function ActionPencil() {
   return (
@@ -265,8 +265,8 @@ const bnTabs = {
   article: 'গাইড',
   talk: 'আলোচনা',
   read: 'পড়ুন',
-  edit: 'সম্পাদনা',
-  history: 'ইতিহাস'
+  edit: 'এডিট',
+  history: 'কী বদলেছে'
 }
 
 interface LocalizedLayoutProps {
@@ -357,7 +357,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   const handleSubmitted = useCallback((result: SubmitResult) => exitEdit(result), [exitEdit])
 
   // The server rejected the stored token. Forget it here so the next press of
-  // সম্পাদনা offers a fresh sign-in rather than the same failure again.
+  // এডিট offers a fresh sign-in rather than the same failure again.
   const handleSessionExpired = useCallback(() => {
     clearAuth()
     setSession(null)
@@ -795,7 +795,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
                   )
                 )}
                 <a href={issueUrl} target="_blank" rel="noopener noreferrer">
-                  {isEn ? 'Report a mistake' : 'ভুল জানান'}
+                  {isEn ? 'Report a mistake' : 'ফিডব্যাক দিন'}
                 </a>
               </div>
               {headings.length > 2 && (
@@ -829,11 +829,11 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
               <div className="contrib-row">
                 <a href={`${REPO_URL}/edit/main/${file}`} target="_blank" rel="noopener noreferrer">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /></svg>
-                  {isEn ? 'Edit on GitHub' : 'GitHub-এ সম্পাদনা করুন'}
+                  {isEn ? 'Edit on GitHub' : 'GitHub-এ এডিট করুন'}
                 </a>
                 <a href={issueUrl} target="_blank" rel="noopener noreferrer">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" /></svg>
-                  {isEn ? 'Report a mistake' : 'ভুল পেলে জানান'}
+                  {isEn ? 'Report a mistake' : 'ফিডব্যাক দিন'}
                 </a>
                 <a href={localHref(isEn ? '/en/contribute' : '/contribute')}>
                   {isEn ? 'How to contribute' : 'কীভাবে অবদান রাখবেন'}
@@ -907,7 +907,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             <ul className="footer-link-list" aria-labelledby="footer-help-label">
               <li>
                 <a href={`${REPO_URL}/issues`} target="_blank" rel="noopener noreferrer">
-                  {isEn ? 'Report a mistake' : 'ভুল জানান'}
+                  {isEn ? 'Report a mistake' : 'ফিডব্যাক দিন'}
                 </a>
               </li>
               <li>

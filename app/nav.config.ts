@@ -66,7 +66,7 @@ export const bnNav: NavSection[] = [
       ['/contributors', 'অবদানকারীরা'],
       [REPO_URL, 'GitHub-এ দেখুন'],
       [DISCORD_URL, 'Discord কমিউনিটিতে যোগ দিন'],
-      [`${REPO_URL}/issues/new?template=report-mistake.yml`, 'ভুল জানান']
+      [`${REPO_URL}/issues/new?template=report-mistake.yml`, 'ফিডব্যাক দিন']
     ]
   }
 ]

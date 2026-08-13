@@ -94,7 +94,7 @@ export default function SectionIndex({ section, locale = 'bn' }: SectionIndexPro
             : 'যে বিষয়গুলো এখনো লেখা হয়নি সেগুলো চিহ্নিত করা আছে – চাইলে যেকোনোটিতে ঢুকে সূত্র দেখে লেখায় হাত লাগাতে পারেন।'
           : isEn
             ? 'Every topic in this section is written. Spotted something out of date? The edit link at the bottom of each guide is open to you.'
-            : 'এই বিভাগের সব বিষয়ই লেখা হয়েছে। কোথাও পুরোনো তথ্য চোখে পড়লে প্রতিটি গাইডের নিচের সম্পাদনা লিংক থেকে আপনিও ঠিক করে দিতে পারেন।'}
+            : 'এই বিভাগের সব বিষয়ই লেখা হয়েছে। কোথাও পুরোনো তথ্য চোখে পড়লে গাইডের নিচের এডিট অপশন থেকেই ঠিক করে দিতে পারেন।'}
       </p>
 
       {groups.map(([groupTitle, items]) => {

@@ -6,7 +6,7 @@
 > জানান, অথবা মেইল করুন **security@deshistartup.com** ঠিকানায়। ৭২ ঘণ্টার মধ্যে
 > উত্তর দেওয়ার চেষ্টা করি, আর সমাধান হয়ে গেলে চাইলে আপনার নাম কৃতজ্ঞতার সঙ্গে
 > লিখে দিই। লেখায় ভুল তথ্য থাকলে সেটি নিরাপত্তার বিষয় নয়, সেটির জন্য পাতার
-> **ভুল জানান** লিংকটিই ঠিক জায়গা।
+> **ফিডব্যাক দিন** অপশনটিই ঠিক জায়গা।
 >
 > নিচের ইংরেজি অংশটিই আনুষ্ঠানিক নীতি।
 
@@ -52,7 +52,7 @@ exposure of reviewer email addresses or App credentials.
 ## What is out of scope
 
 - Wrong, outdated, or incomplete **content** in a guide. That is an editorial
-  issue: use the **ভুল জানান** link on the page, or open a normal issue.
+  issue: use the **ফিডব্যাক দিন** option on the page, or open a normal issue.
 - Reports that are only the output of an automated scanner, with no working
   attack behind them.
 - Missing hardening headers, missing SPF/DMARC, TLS configuration preferences,

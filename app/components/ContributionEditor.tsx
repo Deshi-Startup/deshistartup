@@ -50,7 +50,7 @@ import {
  *   Edit mode adds exactly two objects and no new colour, both on the cool-paper
  *   panel neutral: a bar ruled at the bottom that pins under the header, and a
  *   publish panel ruled at the top that closes the canvas.
- * STORY: a founder spots a wrong fee, presses সম্পাদনা, and the paragraph they
+ * STORY: a founder spots a wrong fee, presses এডিট, and the paragraph they
  *   were reading is suddenly under their cursor in the same place on the page.
  *   They fix it, say what they changed, and submit. A reviewer takes it from there.
  * FIRST VIEWPORT: tab strip, then the edit bar (what you are editing on the left,
@@ -363,7 +363,7 @@ export default function ContributionEditor({
           'aria-label',
           isEn
             ? 'Protected site component. It cannot be edited here.'
-            : 'সাইটের সুরক্ষিত অংশ। এখানে এটি সম্পাদনা করা যাবে না।'
+            : 'সাইটের সুরক্ষিত অংশ। এটি এখানে এডিট করা যাবে না।'
         )
       } else {
         block.removeAttribute('contenteditable')
@@ -396,7 +396,7 @@ export default function ContributionEditor({
         if (!active) return
         setError(err.message)
         // The server is the authority on whether a token is still good. If it
-        // says no, drop it, so pressing সম্পাদনা again offers a fresh sign-in
+        // says no, drop it, so pressing এডিট again offers a fresh sign-in
         // instead of failing the same way a second time.
         if (err.message === 'unauthorized') {
           onSessionExpired()
@@ -836,7 +836,7 @@ export default function ContributionEditor({
       <div className="edit-bar">
         <p className="edit-bar__what">
           <PencilIcon />
-          <span>{t(isEn, 'সম্পাদনা করছেন', 'Editing')}</span>
+          <span>{t(isEn, 'এডিট করছেন', 'Editing')}</span>
           {pageTitle && <strong title={pageTitle}>{pageTitle}</strong>}
         </p>
 
@@ -855,7 +855,7 @@ export default function ContributionEditor({
                 )}
               </span>
               <button type="button" className="edit-btn" onClick={() => setConfirmingExit(false)}>
-                {t(isEn, 'সম্পাদনা চালিয়ে যান', 'Keep editing')}
+                {t(isEn, 'এডিট চালিয়ে যান', 'Keep editing')}
               </button>
               <button
                 type="button"
@@ -929,7 +929,7 @@ export default function ContributionEditor({
               <p>
                 {t(
                   isEn,
-                  'আবার সাইন ইন করলে এখান থেকেই সম্পাদনা চালিয়ে যেতে পারবেন।',
+                  'আবার সাইন ইন করলে এখান থেকেই এডিট চালিয়ে যেতে পারবেন।',
                   'Sign in again to continue editing from here.'
                 )}
               </p>
@@ -937,7 +937,7 @@ export default function ContributionEditor({
           ) : error === 'contributor_banned' || error === 'contributor_muted' ? (
             <>
               <strong>
-                {t(isEn, 'এই অ্যাকাউন্ট থেকে সম্পাদনা থামানো আছে', 'Editing is paused for this account')}
+                {t(isEn, 'এই অ্যাকাউন্ট থেকে আপাতত এডিট করা যাচ্ছে না', 'Editing is paused for this account')}
               </strong>
               <p>
                 {t(
@@ -949,11 +949,11 @@ export default function ContributionEditor({
             </>
           ) : error === 'not_contributable' ? (
             <>
-              <strong>{t(isEn, 'এই পাতা এখানে সম্পাদনা করা যাচ্ছে না', 'This page cannot be edited here')}</strong>
+              <strong>{t(isEn, 'এই পাতা এখানে এডিট করা যাচ্ছে না', 'This page cannot be edited here')}</strong>
               <p>
                 {t(
                   isEn,
-                  'পাতাটি এখন ইনলাইন এডিটরে খোলা যাচ্ছে না। GitHub-এ সরাসরি সম্পাদনা করলে সেটিও একইভাবে রিভিউ হবে।',
+                  'পাতাটি এখন ইনলাইন এডিটরে খোলা যাচ্ছে না। GitHub-এ সরাসরি এডিট করলেও একইভাবে রিভিউ হবে।',
                   'This page is not available in the inline editor. You can edit it on GitHub instead; it goes through the same review.'
                 )}
               </p>
@@ -964,7 +964,7 @@ export default function ContributionEditor({
               <p>
                 {t(
                   isEn,
-                  'পাতার লেখা ঠিক আছে, কিন্তু এই ব্রাউজারে এডিটর চালু হয়নি। পাতা রিলোড করে আবার চেষ্টা করুন, বা GitHub-এ সম্পাদনা করুন।',
+                  'পাতার লেখা ঠিক আছে, কিন্তু এই ব্রাউজারে এডিটর চালু হয়নি। পাতা রিলোড করে আবার চেষ্টা করুন, বা GitHub-এ এডিট করুন।',
                   'The page is fine, but the editor did not start in this browser. Reload and try again, or edit on GitHub.'
                 )}
               </p>
@@ -975,7 +975,7 @@ export default function ContributionEditor({
               <p>
                 {t(
                   isEn,
-                  'পাতার লেখা আনতে গিয়ে সমস্যা হয়েছে। ইন্টারনেট ঠিক থাকলে একটু পরে আবার চেষ্টা করুন, বা GitHub-এ সরাসরি সম্পাদনা করুন।',
+                  'পাতার লেখা আনতে গিয়ে সমস্যা হয়েছে। ইন্টারনেট ঠিক থাকলে একটু পরে আবার চেষ্টা করুন, বা GitHub-এ সরাসরি এডিট করুন।',
                   'Something went wrong while fetching the page. Try again in a moment, or edit it directly on GitHub.'
                 )}
               </p>
@@ -988,7 +988,7 @@ export default function ContributionEditor({
               </button>
             )}
             <a className="edit-btn" href={ghEditUrl} target="_blank" rel="noopener noreferrer">
-              {t(isEn, 'GitHub-এ সম্পাদনা করুন', 'Edit on GitHub')}
+              {t(isEn, 'GitHub-এ এডিট করুন', 'Edit on GitHub')}
             </a>
             <button type="button" className="edit-btn" onClick={onExit}>
               {t(isEn, 'পড়ায় ফিরুন', 'Back to reading')}
@@ -1020,7 +1020,7 @@ export default function ContributionEditor({
 
       {data?.existingPR && !error && (
         <aside className="edit-draft-notice" role="note">
-          <strong>{t(isEn, 'আপনি আপনার নিজের ড্রাফট সম্পাদনা করছেন', 'You are editing your own draft')}</strong>
+          <strong>{t(isEn, 'আপনি নিজের ড্রাফট এডিট করছেন', 'You are editing your own draft')}</strong>
           <p>
             {t(
               isEn,
@@ -1046,7 +1046,7 @@ export default function ContributionEditor({
               <div className="edit-media__heading">
                 <div>
                   <h2 id="edit-media-heading">
-                    {t(isEn, 'এই সম্পাদনার ছবি', 'Images in this edit')}
+                    {t(isEn, 'এই এডিটের ছবি', 'Images in this edit')}
                   </h2>
                   <p>
                     {t(
@@ -1286,7 +1286,7 @@ export default function ContributionEditor({
                       : submitError === 'content_too_large'
                         ? t(
                             isEn,
-                            'পরিবর্তনটি একবারে পাঠানোর জন্য খুব বড়। ছোট ভাগে পাঠান, বা GitHub-এ সম্পাদনা করুন।',
+                            'পরিবর্তনটি একবারে পাঠানোর জন্য খুব বড়। ছোট ভাগে পাঠান, বা GitHub-এ এডিট করুন।',
                             'This change is too large to send at once. Submit a smaller edit, or edit on GitHub.'
                           )
                         : submitError === 'image_alt_required'

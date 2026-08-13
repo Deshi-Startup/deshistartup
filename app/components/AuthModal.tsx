@@ -330,7 +330,7 @@ export default function AuthModal({
   const errorMessage =
     error === 'no_client_id'
       ? t(
-          'এই সাইটে Google সাইন-ইন এখন পাওয়া যাচ্ছে না। আপাতত GitHub-এ সম্পাদনা করতে পারেন।',
+          'এই সাইটে Google সাইন-ইন এখন পাওয়া যাচ্ছে না। আপাতত GitHub-এ এডিট করতে পারেন।',
           'Google sign-in is not available right now. You can edit on GitHub instead.'
         )
       : error === 'script_load_failed'
@@ -371,7 +371,7 @@ export default function AuthModal({
         <h2 id={headingId}>{t('Google দিয়ে সাইন ইন করুন', 'Sign in with Google')}</h2>
         <p className="modal-lede" id={descriptionId}>
           {t(
-            'এই পাতায় সম্পাদনা শুরু করতে সাইন ইন করুন। GitHub অ্যাকাউন্ট লাগবে না।',
+            'এই পাতা এডিট করতে সাইন ইন করুন। GitHub অ্যাকাউন্ট লাগবে না।',
             'Sign in to start editing this page. No GitHub account needed.'
           )}
         </p>
@@ -401,7 +401,7 @@ export default function AuthModal({
               )}
               {fallbackHref && (
                 <a className="edit-btn" href={fallbackHref} target="_blank" rel="noopener noreferrer">
-                  {t('GitHub-এ সম্পাদনা করুন', 'Edit on GitHub')}
+                  {t('GitHub-এ এডিট করুন', 'Edit on GitHub')}
                 </a>
               )}
             </div>
