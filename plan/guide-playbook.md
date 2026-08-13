@@ -2,8 +2,9 @@
 
 This file owns **how** Deshi Startup produces and upgrades guides at the current quality bar. The
 **what** — the quality standard itself — lives in [`EDITORIAL.md`](../EDITORIAL.md). Working
-examples of the full bar: `/en/operations/cod-risk`, `/en/metrics/unit-economics`,
-`/en/metrics/cashflow-vs-profit`, and the hub `/start-here`.
+examples of the full bar: `/en/operations/cod-risk`, `/en/metrics/unit-economics` and
+`/en/metrics/cashflow-vs-profit` for money pages, `/en/registration/private-limited` for a
+process-and-fees page, and the hub `/start-here`.
 
 ## Canonical edition and translation
 
@@ -13,9 +14,11 @@ examples of the full bar: `/en/operations/cod-risk`, `/en/metrics/unit-economics
   Bangla reads as if composed in Bangla, never as a word-for-word translation).
 - **Skip conditions:** never re-translate community-contributed guides or material adapted from
   expert contributors, for example, Shoumik Shahriar (the skill documents how to check).
-- **Citation parity:** `citation-lint` requires identical footnote identifiers and inline counts
-  in both editions. When the English guide adds a source, add it to the Bangla page in the same
-  change, or fold it into an existing shared identifier until both pages are touched.
+- **Citation parity:** `citation-lint` compares footnote identifiers *and* inline counts per
+  route, so the two editions must always agree. Adding, removing or renaming a source is therefore
+  never an English-only change: mirror that footnote into the Bangla page in the same commit, or
+  fold the claim into an existing shared identifier until both pages are rewritten. Everything
+  else — prose, structure, examples — can move ahead in English alone.
 - **Route parity:** both editions share the same route depth and mirror each other;
   `lint:routes` enforces it. Every new topic exists in `plan/content-backlog.csv` first — the
   `Path` column owns the URL.
@@ -24,24 +27,36 @@ examples of the full bar: `/en/operations/cod-risk`, `/en/metrics/unit-economics
 
 1. **Claim the topic.** Pick the route from `plan/content-backlog.csv`; note the claim on its
    GitHub issue.
-2. **Write the page brief** (`EDITORIAL.md`): the reader's question, their starting knowledge,
+2. **Create both route files** if the topic is not already a stub pair:
+   `app/(contents)/en/<path>/page.mdx` and `app/(contents)/(bn)/<path>/page.mdx`. `lint:routes`
+   fails the build when either side is missing, so the Bangla file exists from the start and
+   carries only `<StubNotice />` until step 8.
+3. **Write the page brief** (`EDITORIAL.md`): the reader's question, their starting knowledge,
    the page's single job, the expected output, the most dangerous misunderstanding, the evidence
-   needed, candidate visuals, and freshness risk.
-3. **Draft the English guide.** Four layers (orientation, minimum mental model, execution,
+   needed, candidate visuals, and freshness risk — the re-check cadence for that risk lives in
+   [`maintenance-calendar.md`](./maintenance-calendar.md).
+4. **Draft the English guide.** Four layers (orientation, minimum mental model, execution,
    verification), a worked Bangladesh-specific example, tables, and a checklist. Write in plain,
    natural English.
-4. **Add visuals** from the toolkit below wherever the selector table in `EDITORIAL.md` says one
+5. **Add visuals** from the toolkit below wherever the selector table in `EDITORIAL.md` says one
    earns its place. Every visual keeps its numbers in a table and a one-line takeaway in prose.
-5. **Add a calculator** only when the page's whole job is the reader's own calculation (see the
+6. **Add a calculator** only when the page's whole job is the reader's own calculation (see the
    calculator pattern below).
-6. **Review against the five gates** (`EDITORIAL.md`). For flagship guides, run the cold-reader
+7. **Review against the five gates** (`EDITORIAL.md`). For flagship guides, run the cold-reader
    test on a phone.
-7. **Run the checks:** `npm run lint:citations`, `npm run lint:media`, `npm run lint:routes`, and
-   `npm run build`.
-8. **Publish the English guide.**
-9. **Translate to Bangla** with `translate-bangla-guide`, then `npm run lint:bangla -- <file>`.
-10. **Re-check parity** (`npm run lint:citations`) and review the Bangla for voice against
-    `STYLE.md`.
+8. **Translate to Bangla** with `translate-bangla-guide`, then `npm run lint:bangla -- <file>`.
+9. **Run the checks:** `npm run build`. Its `prebuild` runs `lint:routes`, `lint:media`,
+   `lint:citations` and the manifest, so run those singly only for faster feedback while drafting.
+   Citation parity can only pass once the Bangla page carries the same footnotes, which is why the
+   full build comes after the translation, not before it.
+10. **Review the Bangla for voice** against `STYLE.md` — the read-aloud test, not just a clean
+    lint — then publish both editions in one commit.
+
+**What ships together.** A new guide ships as both editions in one change. `citation-lint`
+compares footnotes per route, so a finished English page sitting beside a Bangla stub fails the
+build the moment the English carries a single citation — there is no publishable state in between.
+Only an already-mirrored page whose source set does not change can ship English-first and be
+re-translated later; that is the normal shape of an upgrade, not of a new guide.
 
 ## The visual toolkit
 
@@ -125,6 +140,35 @@ Requires staging the PNG under `media/` and running `npm run media:upload` (poli
 [`media-operations.md`](./media-operations.md)). Markdown images `![alt](/media/...)` get the same
 rendering.
 
+When the screenshot is not captured yet, leave the media brief where the image will go instead of
+a bare TODO:
+
+```mdx
+{/* Screenshot slot: the RJSC online-services application screen — mark where to start the
+application and where the generated challan appears. source "RJSC portal"; add a checked date
+when captured. */}
+```
+
+The comment says what the image must teach and what to stamp on it, mirrors into the Bangla page
+like any other structure, and does not trip `media-lint`, which only checks `/media/...` paths a
+page actually references.
+
+### Term — a definition without leaving the sentence
+
+```mdx
+<Term name="rjsc-name-clearance">RJSC name clearance</Term>
+```
+
+Props: `name` (a key in `data/glossary.json`), optional `def` (an inline definition for a term the
+glossary does not carry), and the children — the words as they read in the sentence. A glossary
+entry holds `bn`, `en`, and optional `sourceUrl` and `verified`; both languages ship in the markup
+and CSS shows the reader's one, so the same `name` works in both editions and needs no translation.
+Zero-JS: it is the native popover API.
+
+Add the term to `data/glossary.json` first, and keep `/start-here/glossary` as its home. The
+popover never replaces defining the term on the page — `EDITORIAL.md` still requires the plain
+meaning at first use; `Term` is the reminder for a reader who forgot it two screens later.
+
 ### YouTube / FacebookVideo — video facades
 
 ```mdx
@@ -152,6 +196,20 @@ Pattern (`app/components/CodRiskCalculator.tsx` is the reference):
 Blockquotes with bold labels: `**Warning:**`, `**Rule:**`, `**Example:**`, `**Keep in mind:**`,
 plus the page-opening `**In short:**`. The fixed set is documented in `EDITORIAL.md`.
 
+### Two selector rows have no component
+
+`EDITORIAL.md` starts a "which path applies to me?" reader on a decision tree and a "what happens
+in what order?" reader on a process diagram. Neither has a component, and neither needs one:
+
+- **Decision tree:** a branching list — "if you only sell services → …; if you import stock → …" —
+  or a two-column table of condition and consequence. `/en/registration/structure-decision-tree`
+  is the worked shape.
+- **Process diagram:** `<Timeline>` when the steps sit on a time or deadline axis, otherwise a
+  numbered list where each step names its own finished state.
+
+Do not draw either as a raster. Text is searchable, translatable, readable at 320 px, and survives
+a blocked image.
+
 ## Upgrading existing guides
 
 Work in this order:
@@ -167,11 +225,11 @@ Per-page upgrade checklist:
 
 - [ ] Page brief written (retroactively is fine)
 - [ ] Cold-entry opening with "who needs this, and when"
-- [ ] Terms defined at first use on the page
+- [ ] Terms defined at first use on the page, `<Term>` used for the ones a reader forgets
 - [ ] Worked example plus a blank, copy-ready version
 - [ ] Toolkit visual added wherever the selector table applies
 - [ ] Sources re-checked against official pages; stale numbers corrected; `verified:` bumped only
-      after an actual re-check
+      after an actual re-check, on the cadence in [`maintenance-calendar.md`](./maintenance-calendar.md)
 - [ ] Five gates pass (cold-reader test included for flagships)
 
 A useful upgrade habit from the cod-risk pass: when re-checking sources, read the full terms, not
@@ -191,14 +249,18 @@ and when" section; (3) add toolkit visuals (DataBars, Waterfall, Timeline, Figur
 selector table says they earn their place; (4) add a calculator only if the page's whole job is
 the reader's own calculation; (5) re-check every source against the official page and correct
 stale numbers, bumping verified: only after an actual re-check; (6) pass the five finish gates;
-(7) keep citation identifiers and counts identical to the Bangla page; and (8) finish with
-lint:citations, lint:media, lint:routes, and npm run build. English only — do not touch the
-Bangla page; it will be re-translated later with the translate-bangla-guide skill.
+and (7) finish with npm run build, whose prebuild runs lint:routes, lint:media and lint:citations.
+Bangla prose is out of scope — that page will be re-translated later with the
+translate-bangla-guide skill. The one exception: if the pass adds, removes or renames a source,
+mirror that footnote into the Bangla page in the same change, because citation-lint compares
+footnote identifiers and counts per route and the build fails when the two editions disagree.
 ```
 
 For a new guide from the backlog, swap the first sentence: "Create a new English guide at the
-backlog route <path>…". Give the agent one page at a time, with the route and (if known) the
-page's single job; the playbook and EDITORIAL.md supply the rest of the judgement.
+backlog route <path>…", and drop the Bangla exclusion — a new guide has no Bangla page to protect,
+so it is written, translated and published as one change (see "What ships together"). Give the
+agent one page at a time, with the route and (if known) the page's single job; the playbook and
+EDITORIAL.md supply the rest of the judgement.
 
 ## Definition of done
 
@@ -207,4 +269,7 @@ A guide is done when:
 - it passes the five gates in `EDITORIAL.md`;
 - its visuals use the toolkit components and keep their numbers in tables;
 - its sources are checked, dated, and mirrored in both editions;
-- both editions pass `lint:citations`, `lint:routes`, `lint:media`, `lint:bangla`, and the build.
+- both editions pass `lint:citations`, `lint:routes`, `lint:media`, `lint:bangla`, and the build;
+- the GitHub issue claimed in step 1 is closed; and
+- `npm run backlog:status` has been re-run when a stub became a guide, so
+  [`status-report.md`](./status-report.md) counts it — that file is generated, never hand-edited.
