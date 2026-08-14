@@ -1,16 +1,282 @@
 ---
-title: "Valuation Basics"
-description: "Valuation Basics – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "Early-Stage Valuation: Building a Number You Can Defend"
+description: "How a Bangladeshi founder sets a defensible pre-money valuation range — starting from the raise, cross-checking with revenue multiples and the next round, and surviving Bangladesh Bank's fair-value test later."
+verified: 2026-08-14
 ---
 
-# Valuation Basics
+# Early-Stage Valuation: Building a Number You Can Defend
 
-<StubNotice path="funding/valuation" locale="en" />
+> **In short:** Do not pick a valuation. Build a *range*, starting from how much you need to raise and how much ownership you can afford to sell, then cross-check it two other ways. The dangerous mistake is treating the number as a bragging right: in Bangladesh your agreed price becomes the recorded allotment price at RJSC, binds share transfers for the next year, and has to survive a regulator-defined fair-value test when anyone eventually wants their money out.[^bb-master-valuation] [^companies-act] Your next action is the runway arithmetic in the section "Start from the raise" — it takes fifteen minutes and produces the floor of your range.
+
+Say Nusrat co-founds a two-year-old B2B app in Dhaka that supplies restaurant kitchens. The company makes BDT 6 lakh a month in net revenue, growing about 8% a month, and burns BDT 4 lakh a month after that revenue. An angel who liked the demo asks the question every founder dreads:
+
+*"So what valuation are you raising at?"*
+
+She has heard BDT 20 crore mentioned at a startup event, and she also knows her company earns BDT 72 lakh a year. Neither fact tells her what to say. What follows is how to answer that question with a number you can still defend eighteen months later, in front of a lawyer.
+
+---
+
+## Who needs this, and when
+
+- **You have a term sheet, a serious investor conversation, or an accelerator asking for a number.** This guide is for you.
+- **You are pre-revenue with no investor at the table.** You do not need a valuation, and setting one now only creates a price you will have to defend or climb down from. Raise on a [SAFE or convertible note](/funding/safe-convertible-notes) and let the priced round set it.
+- **You are raising from family or friends.** You still need this — informal money at an unrecorded price causes the worst cap-table damage. See [how to reflect family money in the cap table](/funding/family-money-cap-table).
+- **A foreign investor is involved.** You need this *and* the section on Bangladesh's fair-value regime below, because their exit route depends on how your price was justified.
+- **You are choosing between a loan and equity at all.** Settle that first with [bank loan, SME finance or equity](/funding/loan-or-equity); valuation only matters if the answer is equity.
+
+This page owns one thing: arriving at a defensible valuation range and the pre-money/post-money decision. Ownership records and dilution tracking live on the [cap table page](/funding/cap-table); how caps and discounts convert lives on the [SAFE page](/funding/safe-convertible-notes); the clauses you sign around the number live on the [term sheet page](/funding/term-sheets).
+
+**What you will have at the end:** a three-lens range, the price per share it implies, a filled worksheet, and the evidence pack that backs each number.
+
+---
+
+## The two numbers, and the only arithmetic that matters
+
+**Pre-money valuation** is what the business is worth before the investor's money arrives. **Post-money valuation** is what it is worth immediately after — the same business plus the cash that just landed in its account.
+
+```
+Post-money  =  Pre-money  +  Investment
+Investor's ownership  =  Investment ÷ Post-money
+Price per share  =  Pre-money ÷ existing shares
+```
+
+Nusrat raises BDT 1.2 crore at a BDT 5 crore pre-money valuation:
+
+```
+Post-money                =  5,00,00,000 + 1,20,00,000  =  BDT 6.2 crore
+Investor's ownership      =  1,20,00,000 ÷ 6,20,00,000  =  19.35%
+Existing shares                                          =  1,00,000
+Price per share           =  5,00,00,000 ÷ 1,00,000      =  BDT 500
+New shares issued         =  1,20,00,000 ÷ 500           =  24,000
+Total shares after                                       =  1,24,000
+Check: 24,000 ÷ 1,24,000                                 =  19.35% ✓
+```
+
+> **Warning:** When an investor says "BDT 5 crore valuation", always ask *pre or post*. At a BDT 1.2 crore raise, the difference between a BDT 5 crore pre-money and a BDT 5 crore post-money is 19.35% versus 24% of your company — nearly a fifth of the stake, decided by one missing word.
+
+Two things that quietly move this arithmetic, both of which belong to other pages: an ESOP pool carved out of the *pre-money* dilutes founders further before the investor arrives (see [term sheets](/funding/term-sheets)), and any outstanding SAFEs convert into this round, taking their shares out of your side of the table (see [SAFE and convertible notes](/funding/safe-convertible-notes)). Model both before you agree a price, not after.
+
+---
+
+## Start from the raise, not from the valuation
+
+Early-stage valuation runs backwards from what you actually need. The sequence is: how long do I need to fund, what does that cost, how much ownership can I sell, and what valuation does that imply?
+
+**Step 1 — Set the runway.** Eighteen to twenty-four months to a clear milestone. Shorter and you will be fundraising again before the results arrive; longer and you are selling ownership to fund uncertainty.
+
+**Step 2 — Cost it, honestly.** Nusrat's plan: two engineers and one operations hire (BDT 2.4 lakh a month combined), current net burn of BDT 4 lakh a month falling as revenue grows, and BDT 8 lakh of one-time spending. Over eighteen months, with revenue growth reducing burn, she needs about BDT 1.2 crore including a buffer.
+
+**Step 3 — Choose the dilution you can afford.** A single early priced round that sells 15–25% is normal; below 10% rarely justifies the paperwork for the investor, and above 30% in one early round makes later rounds hard because founders are under-incentivised — the failure mode described on the [cap table page](/funding/cap-table).
+
+**Step 4 — Turn that into a valuation.**
+
+```
+Post-money  =  Raise ÷ target ownership sold
+At 20%:  1,20,00,000 ÷ 0.20  =  BDT 6.0 crore post  →  BDT 4.8 crore pre
+At 15%:  1,20,00,000 ÷ 0.15  =  BDT 8.0 crore post  →  BDT 6.8 crore pre
+```
+
+So before any method, any spreadsheet and any comparison, Nusrat's defensible band is roughly BDT 4.8–6.8 crore pre-money. That is the floor and the optimistic edge of the same decision, and it came entirely from her own plan.
+
+**Keep in mind:** a valuation that is too high is not a win. It sets a price your next round must beat, and a down round — raising later at a lower price — damages morale, triggers anti-dilution terms, and is far harder to explain than a modest first price.
+
+---
+
+## Cross-check with two more lenses
+
+One number from one method is a guess wearing a suit. Take at least three independent lenses and see where they overlap.
+
+**Lens 2 — Revenue multiple.** Annualise current revenue and apply a sales multiple. Nusrat: BDT 6 lakh × 12 = BDT 72 lakh annualised; at 6× sales that implies about **BDT 4.3 crore**. Price to Sales is the multiple Bangladesh Bank's own valuation guidance points to for technology and startup companies, precisely because they are usually loss-making and asset-light, so earnings and net-asset methods say almost nothing.[^bb-master-valuation]
+
+**Lens 3 — The next round test.** Whatever you price today, the next round has to be visibly higher. Work forwards:
+
+```
+Revenue today                       BDT 6 lakh/month
+At 8% monthly growth, 24 months     6 × 1.08^24  =  BDT 38 lakh/month  =  BDT 4.6 crore/year
+At 6x sales, implied next valuation                                    ≈  BDT 27 crore
+If growth halves to 4% a month      6 × 1.04^24  =  BDT 15.4 lakh/month =  BDT 1.85 crore/year
+At 6x sales, implied next valuation                                    ≈  BDT 11 crore
+```
+
+Price today at BDT 8 crore and the slower path leaves the company barely above flat in two years. Price at BDT 5 crore and both paths still look like progress. That asymmetry is the whole argument for modesty.
+
+<DataBars
+  max={900}
+  data={[
+    { label: "Lens 2: 6x annualised revenue", value: 432, display: "BDT 4.3 crore" },
+    { label: "Lens 1: raise ÷ 20% sold", value: 480, display: "BDT 4.8 crore" },
+    { label: "Lens 1: raise ÷ 15% sold", value: 680, display: "BDT 6.8 crore" },
+    { label: "Ceiling: next round struggles above this", value: 800, display: "BDT 8.0 crore" },
+  ]}
+/>
+
+| Lens | Implied pre-money | What it depends on |
+|---|---|---|
+| 6× annualised revenue | BDT 4.3 crore | The multiple being defensible for your sector |
+| Raise ÷ 20% ownership sold | BDT 4.8 crore | Your own budget and dilution appetite |
+| Raise ÷ 15% ownership sold | BDT 6.8 crore | The investor accepting a smaller stake |
+| Where the next round starts to struggle | BDT 8.0 crore | Growth holding at 8% a month for two years |
+
+Two of the three honest lenses cluster between BDT 4.3 and 4.8 crore, and the optimistic case reaches 6.8. **Nusrat's answer is therefore "we are raising BDT 1.2 crore at BDT 4.5 to 6 crore pre-money", not a single number.** Give a range with your reasoning attached and the conversation becomes about evidence; give a point estimate and it becomes about ego.
+
+---
+
+## Which method is honest at which stage
+
+The Accelerating Bangladesh sessions on valuation walk through the standard toolkit — Berkus, scorecard, risk-factor summation, the venture capital method, market multiples, cost to duplicate, discounted cash flow and First Chicago — and the useful lesson from that taxonomy is not that you should run all of them. It is that each one is only honest when you have the evidence it needs.[^ab-valuation-methods] [^ab-early-stage]
+
+| Method | Honest when | Evidence it needs | How it fails |
+|---|---|---|---|
+| **Raise ÷ dilution** | Always, as the starting floor | A costed 18–24 month plan | Encourages padding the plan to justify a bigger number |
+| **Scorecard / risk-factor** | Pre-revenue, with a real local baseline | Actual recent deals in your market | In Bangladesh the baseline is usually invented, so the output is too |
+| **Berkus / cost to duplicate** | Pre-revenue, capped by design | Honest rebuild cost of what exists | Values effort, not demand; ignores the market entirely |
+| **Revenue multiple (P/S)** | Any repeatable revenue | 3+ months of clean, repeatable revenue | One-off project revenue treated as recurring |
+| **Earnings multiple (P/E)** | Profitable companies only | Audited profit | Meaningless for a loss-making startup |
+| **Net asset value** | Asset-heavy businesses | Audited balance sheet | Says almost nothing about a software company[^bb-master-valuation] |
+| **DCF** | Predictable cash flows, later stage | A forecast you would bet on | Tiny assumption changes swing the answer wildly |
+| **VC method / next round test** | Any stage, as a ceiling | A view of the next round's size | Depends on a future you cannot control |
+
+The pattern down the "how it fails" column is the same failure repeated: every method quietly imports an assumption, and at seed stage the assumption is usually doing more work than the arithmetic. That is why you triangulate and present a range.
+
+One local caveat about comparables. Bangladesh Bank's guidance tells valuers to build peer groups from companies "listed in the stock exchange(s)" and to fall back on the overall market multiple when no sector peer exists.[^bb-master-valuation] For a two-year-old app, the honest peer set on the DSE is empty. Published local startup round data is thin and self-reported, and disclosed deals are not exhaustive. So treat any "startups like us raised at X" claim as a conversation, not evidence, and never build your floor on it.
+
+---
+
+## What Bangladesh does to your number afterwards
+
+This is the part generic valuation advice leaves out, and it is the part that costs money.
+
+**Nothing checks your price at the moment you issue shares.** When a foreign investor brings money in through the banking channel and you issue shares against it, the requirement is that the funds arrive first, arrive as equity investment through an authorised dealer bank, and that the issue is reported to Bangladesh Bank's Foreign Exchange Investment Department within fourteen days — with banks able to handle the paperwork themselves for issues up to BDT 10 lakh in cash consideration.[^bb-share-issue] The filing mechanics belong to the [FDI rules page](/funding/fdi-rules).
+
+**The check comes later, when shares or money try to move.** Under Bangladesh Bank's March 2026 master circular on transfer of shares in unlisted companies:[^bb-master-valuation]
+
+| Situation | What is required |
+|---|---|
+| Any transfer involving a non-resident, deal value **up to BDT 1 crore** | No independent valuation report; a statement jointly signed by buyer and seller justifying the deal value |
+| Non-resident selling to a resident, deal value **at or below net asset value** per the latest audited accounts | Proceeds repatriated without prior Bangladesh Bank approval, at any amount |
+| Deal value **up to BDT 100 crore** | Fair value determined by an independent valuer using the prescribed methods; the bank's own committee decides |
+| Everything else | Prior approval from Bangladesh Bank, through your bank |
+
+Read that table as a single message: the state stops caring about your optimism and starts caring about evidence at exactly the moment someone wants to take money out. Three further rules decide whether that moment goes smoothly:
+
+- **Fair value means a defined method, not an opinion.** Bangladesh Bank accepts net asset value, market value and discounted cash flow — weighted together, or one of them where justified by the nature of the company. The report must come from a merchant banker licensed by BSEC, or a chartered accountant listed with Bangladesh Bank or BSEC, who is independent of the company, its directors and its auditors.[^bb-master-valuation]
+- **Your round price binds transfers for a year.** The transfer value of shares must be consistent with the latest issue value within one year.[^bb-master-valuation] An inflated round price is not a harmless headline; it becomes the reference price for anyone trying to sell shares in the next twelve months.
+- **The paperwork has its own clocks.** The audited accounts relied on cannot be older than six months at the date of the sale-purchase memorandum, and the transfer must complete within forty-five days of signing it or of Bangladesh Bank's approval, whichever is later.[^bb-master-valuation]
+
+<Timeline
+  ticks={["Round closes", "+60 days", "+6 months", "+12 months", "+18 months", "Exit"]}
+  rows={[
+    { label: "RJSC record", spans: [{ start: 0, end: 1, label: "Return of allotment filed" }, { start: 1, end: 6, label: "price is now public record" }] },
+    { label: "Transfer price", spans: [{ start: 0, end: 3, tone: "gap", label: "transfers must be consistent with the issue value" }, { start: 3, end: 6, label: "fair value governs" }] },
+    { label: "Fair-value test", spans: [{ start: 3, end: 6, label: "NAV / multiples / DCF, by a licensed valuer" }] },
+  ]}
+/>
+
+The amber band is the one founders never see coming: for a year after the round, the price you agreed is the price the paperwork expects.
+
+**Your price is also a public record.** Where a company allots shares, it must file a return of allotment with the Registrar of Joint Stock Companies and Firms within sixty days, stating the number and nominal amount of shares and the amount paid on each.[^companies-act] And because Nusrat's shares have a face value of BDT 10 while the round prices them at BDT 500, the difference is a premium: where a company issues shares at a premium, a sum equal to the total premium goes to a "share premium account", which the Act then treats largely as if it were paid-up capital.[^companies-act]
+
+```
+Face value per share                    BDT 10
+Round price per share                   BDT 500
+Share premium per share                 BDT 490
+Premium on 24,000 new shares            BDT 1,17,60,000  →  share premium account
+```
+
+> **Warning:** Get a lawyer or corporate agent to handle the allotment filing and a chartered accountant to book the premium correctly. A cap table that does not match the RJSC record is the single most common reason Bangladeshi fundraising diligence stalls — see the [data room checklist](/funding/data-room).
+
+---
+
+## The evidence pack behind the number
+
+Every claim in your range needs one document behind it. Assemble these before the meeting where the number comes up:
+
+- [ ] **Revenue proof:** bank statements or gateway settlement reports for the last 6–12 months, not a dashboard screenshot
+- [ ] **Repeatability proof:** the share of revenue from repeat customers, and the churn behind it
+- [ ] **The costed plan:** an 18–24 month budget showing exactly what the raise buys, month by month
+- [ ] **Unit economics:** contribution per order or per customer, worked out — see [unit economics](/metrics/unit-economics)
+- [ ] **Current cap table**, reconciled to the RJSC filings, with vesting shown
+- [ ] **The multiple you used**, and why that peer set is arguable
+- [ ] **Audited financial statements** for every year you have them, since valuation and diligence both start there
+- [ ] **A one-page valuation memo:** the three lenses, the range, and the milestone that would justify the top of it
+
+**Keep in mind:** the memo is the asset. An investor who disagrees with your number but can see your reasoning will negotiate. An investor who cannot see any reasoning will assume the number is decoration and discount everything else you said.
+
+---
+
+## Negotiating without moving the price
+
+When an investor pushes back, founders reflexively cut the valuation. Often that is the most expensive concession available. Cheaper things to give first:
+
+- **A tranche structure:** half now, half on a named milestone, at the same price.
+- **A smaller round:** raise BDT 90 lakh instead of BDT 1.2 crore, sell less, and revisit in nine months.
+- **Information rights and reporting discipline** — costly in time, not ownership. See [investor updates](/funding/investor-updates).
+- **A modest ESOP pool sized to your actual hiring plan** rather than an arbitrary 20%.
+
+What to refuse without long thought: participating liquidation preferences, and pools inflated well beyond your hiring plan. Both quietly cost more than the price argument you were having — the arithmetic for each is on the [term sheet page](/funding/term-sheets).
+
+**Rule:** never negotiate the valuation before your evidence pack exists. Without it, every counter-offer is just a stronger personality winning.
+
+---
+
+## Common mistakes
+
+| Mistake | Consequence | Safe action |
+|---|---|---|
+| **Quoting a number without saying pre or post** | Silently hands over several extra percent of the company | Write "BDT X crore pre-money" in every message and slide |
+| **Anchoring on someone else's headline round** | Headline numbers omit structure, tranches and preferences | Build from your own raise and revenue; treat gossip as gossip |
+| **Pricing high to feel successful** | A down round, or a round you cannot close at all | Test the price against the two-year growth math above |
+| **Ignoring SAFEs already outstanding** | Ownership evaporates at conversion, on top of the new round | Model conversion in the [cap table](/funding/cap-table) before agreeing a price |
+| **Treating one-off project revenue as recurring** | The multiple collapses under diligence | Separate recurring from project revenue in your own numbers first |
+| **Assuming a high price now has no later cost** | It constrains transfers for a year and sets up the fair-value gap at exit[^bb-master-valuation] | Price where you can still show progress in eighteen months |
+| **Leaving RJSC filings until later** | Diligence stalls; retroactive fixes are slow and expensive | File the return of allotment within sixty days[^companies-act] |
+
+Five of these seven are communication failures rather than analytical ones. The arithmetic in this guide takes an afternoon; the discipline of saying the same number, the same way, to everyone, is what actually protects you.
+
+---
+
+## The worksheet
+
+Copy this and fill it in with your own numbers.
+
+| Input | Your number |
+|---|---|
+| Monthly net revenue (last full month) | |
+| Monthly growth rate, averaged over 6 months | |
+| Monthly net burn | |
+| Runway needed (months) | |
+| Total raise, including buffer | |
+| Ownership you are willing to sell (%) | |
+| **Lens 1 — pre-money** = raise ÷ ownership − raise | |
+| Annualised revenue = monthly × 12 | |
+| Multiple used, and why | |
+| **Lens 2 — pre-money** = annualised revenue × multiple | |
+| Projected revenue in 24 months at your growth rate | |
+| **Lens 3 — implied next-round valuation** = projected annual revenue × multiple | |
+| **Your range** (where lenses 1 and 2 overlap, capped by lens 3) | |
+| Existing shares | |
+| Price per share = pre-money ÷ existing shares | |
+| Face value per share, and premium per share | |
+
+**Done looks like this:** you can state a range and its two arithmetic sources in under a minute; you know your price per share and the premium it creates; your cap table matches your RJSC filings; and every number in the range has a document behind it.
+
+---
+
+## What to do next
+
+- Model the dilution properly: [cap table basics](/funding/cap-table)
+- If you are raising before a priced round: [SAFE, convertible notes and priced rounds](/funding/safe-convertible-notes)
+- When the number turns into an offer: [term sheet basics](/funding/term-sheets)
+- Before an investor asks for documents: [the fundraising data room](/funding/data-room)
+- If the investor is foreign: [FDI rules and the Singapore flip](/funding/fdi-rules)
+- If equity is not actually the right instrument: [bank loan, SME finance or equity](/funding/loan-or-equity)
+
+---
 
 ## Relevant Sources
 
-- [Startup Bangladesh Limited](https://startupbangladesh.vc)
-- [Bangladesh Angels Network](https://bdangels.co)
-- [Anchorless Bangladesh](https://anchorless.vc)
-- [LightCastle Partners](https://lightcastlepartners.com/insights)
-- [Bangladesh Bank](https://bb.org.bd)
+[^bb-master-valuation]: [Bangladesh Bank](https://www.bb.org.bd/mediaroom/circulars/feid/mar082026feid01e.pdf) – *FEID Circular No. 01, 8 March 2026: Master circular on transfer of shares and repatriation of sale proceeds of shares in favor of non-resident in private/public limited companies not listed with stock exchanges.* Paragraph 1 (thresholds for transfers to and from non-residents: BDT 10,000,000 without an independent valuation report; BDT 1,000,000,000 with one; net-asset-value based repatriation without prior approval), paragraph 2 (six-month audited accounts, 45-day completion, consistency with the latest issue value within one year, bank committees), paragraph 5 (net asset value, market and discounted cash flow approaches, weighted; Price to Sales for technology and startup companies) and paragraph 6 (who may act as valuer). Accessed 14 August 2026.
+[^bb-share-issue]: [Bangladesh Bank](https://www.bb.org.bd/mediaroom/circulars/feid/jan272025feid01e.pdf) – *FEID Circular No. 01, 27 January 2025: Issue of ordinary shares in favor of non-residents in private/public limited companies not listed with stock exchanges*, including the fourteen-day reporting requirement and the BDT 1.00 million threshold under which authorised dealers scrutinise documents and submit a declaration themselves. Accessed 14 August 2026.
+[^companies-act]: [The Companies Act, 1994 (Act No. XVIII of 1994)](https://basis.org.bd/public/files/policy/5e1654acafde5companiesact_0.pdf) – section 57 (application of premiums received on issue of shares, and the share premium account) and section 151 (return as to allotment, to be filed with the Registrar within sixty days, stating the nominal amount of the shares and the amount paid or payable on each). Ministry-published text hosted by BASIS. Accessed 14 August 2026.
+[^ab-valuation-methods]: [Accelerating Bangladesh](https://acceleratingbangladesh.com/courses/valuation-methods-and-funding-modalities-by-m-g-shaon/) – *Valuation Methods and Funding Modalities*, session with M. G. Shaon, CFA (Truvalu Bangladesh), 10 September 2025. Practitioner session, used for the market-based, income-based and risk-adjusted method taxonomy and for how investors frame instrument choice; not a regulatory source and not an endorsement of Deshi Startup.
+[^ab-early-stage]: [Accelerating Bangladesh](https://acceleratingbangladesh.com/courses/early-stage-startup-valuation/) – *Early-Stage Startup Valuation and Pitchdeck Essentials*, 9 September 2025. Practitioner session, used for the pre-seed and seed method list (Berkus, scorecard, risk-factor summation, venture capital method, discounted cash flow, market multiples, cost to duplicate, First Chicago). Deck construction itself is covered separately on the pitch deck page.
