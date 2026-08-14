@@ -4881,6 +4881,7 @@ body.auth-open {
   padding-inline-start: 1.75rem;
 }
 
+html[lang='bn'] ol:not(.breadcrumbs ol),
 html[lang='bn'] .reference-list {
   list-style-type: bengali-decimal;
 }

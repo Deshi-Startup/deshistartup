@@ -9,6 +9,7 @@ A `verified:` date changes only after the relevant claims are re-checked, not af
 |---|---|---|
 | Mine the national budget speech (delivered every June) for startup-relevant tax/VAT changes; update the regulatory changelog page and any fee tables it touches. | Finance Act, NBR circulars, budget speech | High |
 | Sweep all license/registration fee tables site-wide for the new fiscal year and year-stamp every number found ("২০২৭ সালের হিসাবে…"). | RJSC, NBR, city corporation portals, BIDA | High |
+| Re-read the consolidated foreign-exchange circulars on export and import transactions, reissued every July with one year's validity, and update the retention-quota rates, thresholds and repatriation deadlines they carry (`/growth/cross-border-rules`, `/trade/*`, `/funding/fdi-rules`). Amending circulars land mid-year, so treat the July consolidation as the floor, not the only check. | Bangladesh Bank FEPD-1 circulars | High |
 
 ## Monthly
 
