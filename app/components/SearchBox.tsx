@@ -291,7 +291,7 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
     if (results.length === 0) return isEn ? 'No results found.' : 'কোনো মিল পাওয়া যায়নি।'
     return isEn
       ? `${results.length} results. Use the up and down arrow keys to choose.`
-      : `${bengaliDigits(results.length)}টি ফলাফল। উপর-নিচ তীর দিয়ে বেছে নিন।`
+      : `${bengaliDigits(results.length)}টি ফলাফল। ওপর-নিচের তীর দিয়ে বেছে নিন।`
   }
 
   return (
@@ -354,7 +354,7 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
 
           {!isLoading && !error && results.length === 0 && query.trim() && (
             <p className="search-status">
-              {isEn ? 'No results found. Try another word, or ' : 'কোনো মিল পাওয়া যায়নি। অন্য শব্দে খুঁজুন, বা '}
+              {isEn ? 'No results found. Try another word, or ' : 'কিছু খুঁজে পাওয়া যায়নি। অন্য শব্দ দিয়ে খুঁজুন, অথবা '}
               <a
                 href={sitemapHref}
                 onMouseDown={(event) => event.preventDefault()}

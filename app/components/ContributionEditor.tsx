@@ -895,7 +895,7 @@ export default function ContributionEditor({
               >
                 <ImageIcon />
                 {uploadingImage
-                  ? t(isEn, 'ছবি তোলা হচ্ছে…', 'Adding image…')
+                  ? t(isEn, 'ছবি যোগ করা হচ্ছে…', 'Adding image…')
                   : t(isEn, 'ছবি যোগ করুন', 'Add image')}
               </button>
               <button type="button" className="edit-btn" onClick={requestExit} disabled={submitting}>
@@ -1024,7 +1024,7 @@ export default function ContributionEditor({
           <p>
             {t(
               isEn,
-              'এই পাতায় আপনার একটা পুল রিকোয়েস্ট এখনো রিভিউয়ের অপেক্ষায় আছে। নিচে সেটার সর্বশেষ লেখাই দেখছেন, আর জমা দিলে সেটাই হালনাগাদ হবে।',
+              'এই পাতায় আপনার একটা পুল রিকোয়েস্ট এখনো রিভিউয়ের অপেক্ষায় আছে। নিচে সেটার সর্বশেষ লেখাই দেখছেন, আর জমা দিলে সেটাই আপডেট হবে।',
               'You already have a pull request waiting for review on this page. What you see below is that draft, and submitting updates it.'
             )}{' '}
             <a href={data.existingPR.url} target="_blank" rel="noopener noreferrer">
@@ -1172,7 +1172,7 @@ export default function ContributionEditor({
                         <p className="edit-media-item__hint">
                           {t(
                             isEn,
-                            'ক্যাপশনটি উপরের ছবির ঠিক নিচে লিখতে পারবেন।',
+                            'ক্যাপশনটি ওপরের ছবির ঠিক নিচে লিখতে পারবেন।',
                             'Write the visible caption directly under the image above.'
                           )}
                         </p>

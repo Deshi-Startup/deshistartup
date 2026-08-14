@@ -137,7 +137,7 @@ const bn: TranslationStrings = {
   ],
   bandCta: 'অবদান রাখুন',
   contribute: '/contribute',
-  recentTitle: 'সম্প্রতি হালনাগাদ হয়েছে'
+  recentTitle: 'সম্প্রতি আপডেট হয়েছে'
 }
 
 const en: TranslationStrings = {

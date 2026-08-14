@@ -730,7 +730,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
                   {flash.updated
                     ? isEn
                       ? 'Your draft has been updated.'
-                      : 'আপনার ড্রাফট হালনাগাদ হয়েছে।'
+                      : 'আপনার ড্রাফট আপডেট হয়েছে।'
                     : isEn
                       ? 'Your contribution has been submitted.'
                       : 'আপনার অবদান জমা পড়েছে।'}
@@ -789,7 +789,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
                 ) : (
                   dateLabel && (
                     <span className="meta-date">
-                      {isEn ? 'Last updated: ' : 'সর্বশেষ হালনাগাদ: '}
+                      {isEn ? 'Last updated: ' : 'সর্বশেষ আপডেট: '}
                       {dateLabel}
                     </span>
                   )

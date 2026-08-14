@@ -31,7 +31,7 @@ const copy = {
     countTitle: (name: string) => `${name}-এর মার্জ হওয়া পুল রিকোয়েস্ট GitHub-এ দেখুন`,
     lastLabel: 'সর্বশেষ',
     summary: (people: string, pulls: string) => `${people} জন অবদানকারী · সাইটে যোগ হয়েছে ${pulls}টি কাজ`,
-    refreshed: 'হালনাগাদ',
+    refreshed: 'আপডেট',
     coreTitle: 'কোর টিম',
     methodTitle: 'হিসাবটা কীভাবে হয়:',
     methodText:

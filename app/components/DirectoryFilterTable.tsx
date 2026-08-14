@@ -212,8 +212,8 @@ const LABELS: Record<'bn' | 'en', Labels> = {
     verified: 'যাচাই',
     search: 'খুঁজুন',
     reset: 'রিসেট',
-    showing: (shown, total) => `মোট ${shown}/${total}টি এন্ট্রি দেখানো হচ্ছে।`,
-    noResults: 'মিল পাওয়া যায়নি।'
+    showing: (shown, total) => `মোট ${total}টির মধ্যে ${shown}টি দেখানো হচ্ছে।`,
+    noResults: 'কিছু খুঁজে পাওয়া যায়নি।'
   },
   en: {
     name: 'Name',
