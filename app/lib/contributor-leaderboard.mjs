@@ -3,24 +3,49 @@
 // hand-edited snapshot degrades to an empty list instead of shipping a broken
 // page or an attacker-controlled URL.
 
-function finiteNonNegative(value) {
-  const number = Number(value)
-  return Number.isFinite(number) && number >= 0 ? number : 0
+const SAFE_GITHUB_LOGIN_PATTERN = /^[a-z\d](?:[a-z\d-]{0,37}[a-z\d])?$/i
+const SAFE_REPOSITORY_PATTERN = /^[a-z\d][\w.-]{0,99}\/[a-z\d][\w.-]{0,99}$/i
+const ISO_TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z$/
+const MAX_PUBLIC_TEXT_LENGTH = 180
+
+function finiteNonNegativeInteger(value) {
+  return Number.isSafeInteger(value) && value >= 0 ? value : 0
 }
 
 function safeText(value, fallback) {
-  const text = typeof value === 'string' ? value.trim() : ''
-  return text || fallback
+  const text = typeof value === 'string'
+    ? value
+        .replace(/[\u0000-\u001f\u007f]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+    : ''
+  return [...text].slice(0, MAX_PUBLIC_TEXT_LENGTH).join('') || fallback
 }
 
 function safeUrl(value, host) {
   if (typeof value !== 'string') return null
   try {
     const url = new URL(value)
-    return url.protocol === 'https:' && (!host || url.hostname.endsWith(host)) ? url.href : null
+    return url.protocol === 'https:' && (!host || url.hostname === host) ? url.href : null
   } catch {
     return null
   }
+}
+
+function safeGithubLogin(value) {
+  const login = typeof value === 'string' ? value.trim() : ''
+  return SAFE_GITHUB_LOGIN_PATTERN.test(login) ? login : null
+}
+
+function safeRepository(value) {
+  const repository = typeof value === 'string' ? value.trim() : ''
+  return SAFE_REPOSITORY_PATTERN.test(repository) ? repository : ''
+}
+
+function safeTimestamp(value) {
+  if (typeof value !== 'string' || !ISO_TIMESTAMP_PATTERN.test(value)) return null
+  const date = new Date(value)
+  return Number.isNaN(date.valueOf()) ? null : date.toISOString()
 }
 
 export function monogramForName(displayName) {
@@ -35,30 +60,32 @@ export function monogramForName(displayName) {
 // Every count on the page is a claim about merged pull requests, so each one
 // links to the GitHub search that reproduces it.
 export function mergedPullsUrl(repository, githubLogin) {
-  if (!githubLogin || !/^[\w.-]+\/[\w.-]+$/.test(repository || '')) return null
-  const query = `is:pr is:merged author:${githubLogin}`
-  return `https://github.com/${repository}/pulls?q=${encodeURIComponent(query)}`
+  const safeLogin = safeGithubLogin(githubLogin)
+  const safeRepo = safeRepository(repository)
+  if (!safeLogin || !safeRepo) return null
+  const query = `is:pr is:merged author:${safeLogin}`
+  return `https://github.com/${safeRepo}/pulls?q=${encodeURIComponent(query)}`
 }
 
 function prepareProfile(profile, index, repository, ranked) {
   const displayName = safeText(profile?.displayName, 'Unnamed contributor')
-  const githubLogin = typeof profile?.githubLogin === 'string' ? profile.githubLogin : null
+  const githubLogin = safeGithubLogin(profile?.githubLogin)
   return {
-    rank: ranked ? finiteNonNegative(profile?.rank) || index + 1 : null,
+    rank: ranked ? index + 1 : null,
     displayName,
     monogram: monogramForName(displayName),
     githubLogin,
     profileUrl: safeUrl(profile?.profileUrl, 'github.com'),
-    avatarUrl: safeUrl(profile?.avatarUrl, 'githubusercontent.com'),
+    avatarUrl: safeUrl(profile?.avatarUrl, 'avatars.githubusercontent.com'),
     pullsUrl: mergedPullsUrl(repository, githubLogin),
-    mergedPullRequestCount: finiteNonNegative(profile?.mergedPullRequestCount),
-    lastMergedAt: typeof profile?.lastMergedAt === 'string' ? profile.lastMergedAt : null
+    mergedPullRequestCount: finiteNonNegativeInteger(profile?.mergedPullRequestCount),
+    lastMergedAt: safeTimestamp(profile?.lastMergedAt)
   }
 }
 
 export function prepareContributorSnapshot(snapshot) {
   const source = snapshot && typeof snapshot === 'object' ? snapshot : {}
-  const repository = typeof source.repository === 'string' ? source.repository : ''
+  const repository = safeRepository(source.repository)
   const list = (value, ranked) =>
     (Array.isArray(value) ? value : []).map((profile, index) =>
       prepareProfile(profile, index, repository, ranked)
@@ -67,10 +94,13 @@ export function prepareContributorSnapshot(snapshot) {
   const rankedProfiles = list(source.rankedProfiles, true)
   return {
     repository,
-    refreshedAt: typeof source.refreshedAt === 'string' ? source.refreshedAt : null,
+    refreshedAt: safeTimestamp(source.refreshedAt),
     totals: {
-      contributors: finiteNonNegative(source.totals?.contributors),
-      mergedPullRequests: finiteNonNegative(source.totals?.mergedPullRequests)
+      contributors: rankedProfiles.length,
+      mergedPullRequests: rankedProfiles.reduce(
+        (sum, profile) => sum + profile.mergedPullRequestCount,
+        0
+      )
     },
     rankedProfiles,
     coreProfiles: list(source.coreProfiles, false),

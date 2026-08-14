@@ -65,6 +65,7 @@ for (const page of pages) {
   const titles = $('title')
   const descriptions = $('meta[name="description"]')
   const canonicals = $('link[rel="canonical"]')
+  const llmsDescriptions = $('link[rel="describedby"]')
   const robots = $('meta[name="robots"]').attr('content') || ''
   const alternates = $('link[rel="alternate"][hreflang]')
   const schemaScripts = $('script[data-deshi-schema][type="application/ld+json"]')
@@ -84,7 +85,15 @@ for (const page of pages) {
   if ($('h1').length !== 1) record(errors, `${page.route}: expected one H1, found ${$('h1').length}`)
   $('article img').each((_, image) => {
     const alt = $(image).attr('alt')
-    const decorative = $(image).attr('role') === 'presentation' || $(image).attr('aria-hidden') === 'true'
+    const contributorRow = $(image).closest('.contributor-row')
+    const redundantContributorAvatar =
+      alt === '' &&
+      contributorRow.length > 0 &&
+      contributorRow.find('.contributor-row__identity').first().text().trim().length > 0
+    const decorative =
+      $(image).attr('role') === 'presentation' ||
+      $(image).attr('aria-hidden') === 'true' ||
+      redundantContributorAvatar
     if (!decorative && (!alt || !alt.trim())) {
       record(errors, `${page.route}: article image is missing meaningful alt text`)
     }
@@ -102,6 +111,12 @@ for (const page of pages) {
   } else {
     if (!/^index, follow/i.test(robots)) record(errors, `${page.route}: written page is not index, follow`)
     if (schemaScripts.length !== 1) record(errors, `${page.route}: expected one Deshi Startup JSON-LD graph`)
+    if (
+      llmsDescriptions.length !== 1 ||
+      llmsDescriptions.first().attr('href') !== canonicalUrl('/llms.txt')
+    ) {
+      record(errors, `${page.route}: missing or incorrect llms.txt discovery link`)
+    }
 
     const bnPair = pageByLocaleSlug.get(`bn:${page.slug}`)
     const enPair = pageByLocaleSlug.get(`en:${page.slug}`)
@@ -176,6 +191,25 @@ for (const page of pages) {
         }
         if (article.image?.url !== DEFAULT_OG_IMAGE || !article.publishingPrinciples) {
           record(errors, `${page.route}: Article image or publishing principles are missing`)
+        }
+        if (!article.headline || !article.datePublished || !article.dateModified) {
+          record(errors, `${page.route}: Article headline or publication dates are missing`)
+        }
+      }
+      const collection = graph.find((node) => node['@type'] === 'CollectionPage')
+      if (collection && (page.slug === 'contributors' || page.slug.startsWith('directory/'))) {
+        const visibleCount = page.slug === 'contributors'
+          ? $('.contributor-list .contributor-row').length
+          : $('.directory-card').length
+        const items = collection.mainEntity?.itemListElement
+        if (
+          collection.mainEntity?.['@type'] !== 'ItemList' ||
+          !Array.isArray(items) ||
+          items.length !== visibleCount ||
+          collection.mainEntity.numberOfItems !== visibleCount ||
+          items.some((item, index) => item.position !== index + 1 || !item.item?.name)
+        ) {
+          record(errors, `${page.route}: CollectionPage ItemList does not match visible entries`)
         }
       }
     } catch (error) {
@@ -285,6 +319,24 @@ if (!fs.existsSync(llmsPath)) {
   if (llms.includes('deshistartup.com/deshistartup')) record(errors, 'llms.txt contains non-canonical basePath URLs')
   if (!llms.includes(`Canonical sitemap: ${canonicalUrl('/sitemap.xml')}`)) {
     record(errors, 'llms.txt does not declare the canonical sitemap')
+  }
+  if (!llms.includes(canonicalUrl('/llms-full.txt'))) {
+    record(errors, 'llms.txt does not link to the full published-page index')
+  }
+  if (Buffer.byteLength(llms, 'utf8') > 32 * 1024) {
+    record(errors, 'llms.txt is too large to serve as a concise agent overview')
+  }
+}
+
+const llmsFullPath = path.join(staticDir, 'llms-full.txt')
+if (!fs.existsSync(llmsFullPath)) {
+  record(errors, 'llms-full.txt is missing from production output')
+} else {
+  const llmsFull = fs.readFileSync(llmsFullPath, 'utf8')
+  for (const page of indexable) {
+    if (!llmsFull.includes(`](${canonicalUrl(page.route)})`)) {
+      record(errors, `llms-full.txt is missing ${canonicalUrl(page.route)}`)
+    }
   }
 }
 

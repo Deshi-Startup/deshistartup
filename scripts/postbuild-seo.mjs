@@ -202,7 +202,43 @@ function childrenFor(page) {
   )
 }
 
-function schemaFor(page, wordCount) {
+function visibleCollectionItemsFor($, page) {
+  if (page.slug === 'contributors') {
+    return $('.contributor-list .contributor-row')
+      .map((index, element) => {
+        const identity = $(element).find('.contributor-row__identity strong').first()
+        const name = identity.text().trim()
+        if (!name) return null
+        const profileUrl = identity.find('a[href]').first().attr('href')
+        const item = { '@type': 'Person', name }
+        if (profileUrl) item.url = profileUrl
+        return { '@type': 'ListItem', position: index + 1, item }
+      })
+      .get()
+      .filter(Boolean)
+  }
+
+  if (page.slug.startsWith('directory/')) {
+    return $('.directory-card')
+      .map((index, element) => {
+        const card = $(element)
+        const name = card.find('h3').first().text().trim()
+        if (!name) return null
+        const sourceUrl = card.find('.directory-card__source a[href]').first().attr('href')
+        const description = card.find('.directory-card__note').first().text().trim()
+        const item = { '@type': 'Thing', name }
+        if (sourceUrl) item.url = sourceUrl
+        if (description) item.description = description
+        return { '@type': 'ListItem', position: index + 1, item }
+      })
+      .get()
+      .filter(Boolean)
+  }
+
+  return []
+}
+
+function schemaFor(page, wordCount, visibleCollectionItems = []) {
   if (page.stub) return null
 
   const isEn = page.locale === 'en'
@@ -264,20 +300,28 @@ function schemaFor(page, wordCount) {
     about: {
       '@type': 'Thing',
       name: isEn ? 'Startups and entrepreneurship in Bangladesh' : 'বাংলাদেশে স্টার্টআপ ও উদ্যোক্তা'
-    }
+    },
+    publisher: { '@id': organizationNode['@id'] },
+    isAccessibleForFree: true,
+    license: CONTENT_LICENSE_URL,
+    copyrightHolder: { '@id': organizationNode['@id'] }
   }
 
+  if (page.published) pageNode.datePublished = page.published
   if (page.date) pageNode.dateModified = page.date
-  if (isCollection && children.length > 0) {
-    pageNode.mainEntity = {
-      '@type': 'ItemList',
-      numberOfItems: children.length,
-      itemListElement: children.map((child, index) => ({
+  const collectionItems = visibleCollectionItems.length > 0
+    ? visibleCollectionItems
+    : children.map((child, index) => ({
         '@type': 'ListItem',
         position: index + 1,
         name: child.fullTitle,
         url: canonicalUrl(child.route)
       }))
+  if (isCollection && collectionItems.length > 0) {
+    pageNode.mainEntity = {
+      '@type': 'ItemList',
+      numberOfItems: collectionItems.length,
+      itemListElement: collectionItems
     }
   }
   const graph = [organizationNode, websiteNode]
@@ -378,6 +422,7 @@ for (const page of pages) {
   const tags = [
     '<!-- deshi-seo:start -->',
     `<link rel="canonical" href="${escapeHtml(url)}"/>`,
+    ...(!page.stub ? [`<link rel="describedby" href="${canonicalUrl('/llms.txt')}"/>`] : []),
     // Bengali pages only: the English tree renders no Bengali codepoints, so the
     // face's unicode-range keeps it unfetched there and a preload would be pure
     // cost. crossorigin is required or the preload misses and the font is
@@ -435,7 +480,7 @@ for (const page of pages) {
   // first client render reproduces them instead of adding them after paint.
   if (shellHeadings.length > 0) tags.push('<meta name="deshi:toc" content="1"/>')
 
-  const schema = schemaFor(page, wordCount)
+  const schema = schemaFor(page, wordCount, visibleCollectionItemsFor($, page))
   if (schema) tags.push(`<script type="application/ld+json" data-deshi-schema>${jsonLd(schema)}</script>`)
   tags.push('<!-- deshi-seo:end -->')
 

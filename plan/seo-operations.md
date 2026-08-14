@@ -27,6 +27,7 @@ HTML is validated before Wrangler packages the deployment.
 - `public/sitemap.xml`
 - `public/robots.txt`
 - `public/llms.txt`
+- `public/llms-full.txt`
 - page modified, published, and editorial-verification date maps
 - the public IndexNow ownership key file
 
@@ -97,8 +98,11 @@ and eligible for a normal Search snippet. For all answer engines, the durable wo
 - show real updated/verified dates;
 - keep the visible text consistent with structured data;
 - connect guides through crawlable hubs, journeys, breadcrumbs, and the human sitemap;
-- maintain the experimental `llms.txt`, but never treat it as a ranking guarantee or a substitute
-  for crawlable HTML and a standard XML sitemap.
+- maintain the experimental, curated `llms.txt` as a concise orientation document and keep the
+  exhaustive published-page inventory in `llms-full.txt`; never treat either file as a ranking
+  guarantee or a substitute for crawlable HTML and a standard XML sitemap;
+- publish `rel="describedby"` links from indexable HTML pages to the root `llms.txt`, while keeping
+  stubs out of both LLM-facing indexes.
 
 ## Release checklist
 
@@ -107,7 +111,7 @@ and eligible for a normal Search snippet. For all answer engines, the durable wo
 3. Run `npm run build:worker`; the build includes the static export and final SEO audit.
 4. Run `npm run check:worker`; this enforces the Worker and Static Assets growth budgets.
 5. Run `npm run preview:worker` when runtime-facing code changed, then deploy the generated Worker.
-6. Confirm `https://deshistartup.com/robots.txt`, `/sitemap.xml`, `/llms.txt`, the IndexNow key,
+6. Confirm `https://deshistartup.com/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/llms-full.txt`, the IndexNow key,
    and one Bengali/English page pair all return HTTP 200. The live robots file must contain exactly
    one `User-agent: *` group, no `# BEGIN Cloudflare Managed content`, the canonical Content
    Signals and `Sitemap:` line, and must allow every search/answer agent listed above.

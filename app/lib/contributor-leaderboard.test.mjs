@@ -35,7 +35,7 @@ test('links every count to the GitHub search that reproduces it', () => {
 })
 
 test('handles long names, missing avatars and malformed data safely', () => {
-  const longName = 'A Contributor With An Intentionally Very Long Public Display Name'
+  const longName = `A Contributor With Control Characters\u0000${' Very Long'.repeat(30)}`
   const view = prepareContributorSnapshot({
     repository: 'Deshi-Startup/deshistartup',
     totals: { contributors: 'broken', mergedPullRequests: -4 },
@@ -48,14 +48,48 @@ test('handles long names, missing avatars and malformed data safely', () => {
     })]
   })
   const [entry] = view.rankedProfiles
-  assert.equal(entry.displayName, longName)
+  assert.equal([...entry.displayName].length, 180)
+  assert.doesNotMatch(entry.displayName, /[\u0000-\u001f\u007f]/)
   assert.equal(entry.monogram, 'AC')
   assert.equal(entry.avatarUrl, null)
   assert.equal(entry.profileUrl, null)
   assert.equal(entry.pullsUrl, null)
   assert.equal(entry.mergedPullRequestCount, 0)
-  assert.deepEqual(view.totals, { contributors: 0, mergedPullRequests: 0 })
+  assert.deepEqual(view.totals, { contributors: 1, mergedPullRequests: 0 })
   assert.deepEqual(prepareContributorSnapshot(null).rankedProfiles, [])
+})
+
+test('rejects deceptive hosts, invalid logins and malformed timestamps', () => {
+  const view = prepareContributorSnapshot({
+    repository: 'Deshi-Startup/deshistartup',
+    refreshedAt: 'tomorrow',
+    rankedProfiles: [profile(0, {
+      githubLogin: 'person with spaces',
+      profileUrl: 'https://notgithub.com/person',
+      avatarUrl: 'https://notgithubusercontent.com/u/1',
+      lastMergedAt: '2026-99-99T10:00:00.000Z'
+    })]
+  })
+  const [entry] = view.rankedProfiles
+  assert.equal(view.refreshedAt, null)
+  assert.equal(entry.githubLogin, null)
+  assert.equal(entry.profileUrl, null)
+  assert.equal(entry.avatarUrl, null)
+  assert.equal(entry.pullsUrl, null)
+  assert.equal(entry.lastMergedAt, null)
+})
+
+test('derives ranks and totals from the sanitized rendered list', () => {
+  const view = prepareContributorSnapshot({
+    repository: 'Deshi-Startup/deshistartup',
+    totals: { contributors: 999, mergedPullRequests: 999 },
+    rankedProfiles: [
+      profile(0, { rank: 70, mergedPullRequestCount: 3 }),
+      profile(1, { rank: -4, mergedPullRequestCount: 2.5 })
+    ]
+  })
+  assert.deepEqual(view.rankedProfiles.map((entry) => entry.rank), [1, 2])
+  assert.deepEqual(view.totals, { contributors: 2, mergedPullRequests: 3 })
 })
 
 test('numbers ranked entries but leaves the core team unranked', () => {

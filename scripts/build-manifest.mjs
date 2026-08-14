@@ -282,53 +282,90 @@ fs.writeFileSync(
 );
 console.log(`seo-pages.json: ${seoPages.length} routes`);
 
-// llms.txt – an experimental, legible map for AI assistants. Canonical URLs always
-// use the custom domain, regardless of a deployment mirror's basePath.
+// llms.txt – an experimental, curated map for AI assistants. Keep this much
+// smaller than the sitemap: it is an orientation document that agents should be
+// able to hold in context, not a duplicate inventory of every article. The full
+// published-page list remains available separately in llms-full.txt.
 {
   const abs = canonicalUrl;
   const oneLine = (value) => value.replace(/\s+/g, " ").trim();
-
-  const lines = [];
-  lines.push("# Deshi Startup");
-  lines.push("");
-  lines.push(
+  const writtenByLocale = Object.fromEntries(
+    ["bn", "en"].map((key) => [
+      key,
+      (llmsPages[key] || []).filter((page) => !page.stub),
+    ]),
+  );
+  const curatedSlugs = [
+    "",
+    "start-here",
+    "roadmap",
+    "ecosystem",
+    "guides",
+    "ideas",
+    "validation",
+    "registration",
+    "tax",
+    "payments",
+    "customers",
+    "team",
+    "funding",
+    "founder-life",
+    "journeys",
+    "tools",
+    "case-studies",
+    "directory",
+    "about",
+    "contribute",
+    "contributors",
+  ];
+  const curatedOrder = new Map(curatedSlugs.map((slug, index) => [slug, index]));
+  const preamble = (title) => [
+    `# ${title}`,
+    "",
     "> Deshi Startup is a free, open-source, Bangla-first knowledge base and practical operating " +
       "manual for founders building startups in Bangladesh. Some startup basics also help small " +
-      "businesses, but the focus is scalable new ventures. Bengali is the source of truth; English " +
-      "mirrors it at /en/...",
-  );
-  lines.push("");
-  lines.push(`Base URL: ${SITE_URL}`);
-  lines.push(`Canonical sitemap: ${canonicalUrl("/sitemap.xml")}`);
-  lines.push(`Content license: ${CONTENT_LICENSE_URL}`);
-  lines.push(`Source repository: ${REPOSITORY_URL}`);
-  lines.push("");
-  lines.push(
-    "Use the Bengali page as the source of truth when the two language versions differ. " +
-      "Legal, tax, fee and regulatory claims should be checked against each page’s cited official sources and verification date.",
-  );
-
-  const localeSections = [
-    { key: "bn", heading: "## বাংলা (Bengali)" },
-    { key: "en", heading: "## English" },
+      "businesses, but the focus is scalable new ventures. Completed guides are published in " +
+      "matching Bengali and English editions; Bengali is the public default and English is under /en/...",
+    "",
+    `Base URL: ${SITE_URL}`,
+    `Canonical sitemap: ${canonicalUrl("/sitemap.xml")}`,
+    `Content license: ${CONTENT_LICENSE_URL}`,
+    "",
+    "Legal, tax, fee and regulatory claims should be checked against each page’s cited official " +
+      "sources and verification date. If the language versions differ, use those sources to verify the claim.",
   ];
-
-  let totalStubs = 0;
-  for (const { key, heading } of localeSections) {
-    const pages = (llmsPages[key] || []).filter((p) => !p.stub);
-    totalStubs += localeCounts[key]?.stubs || 0;
-    lines.push("");
-    lines.push(heading);
+  const addPageList = (lines, pages) => {
     for (const page of pages) {
       const desc = page.description ? oneLine(page.description) : "";
       lines.push(
         `- [${oneLine(page.title)}](${abs(page.route)})${desc ? `: ${desc}` : ""}`,
       );
     }
+  };
+
+  const localeSections = [
+    { key: "bn", heading: "## বাংলা (Bengali)" },
+    { key: "en", heading: "## English" },
+  ];
+
+  const lines = preamble("Deshi Startup");
+  let totalStubs = 0;
+  for (const { key, heading } of localeSections) {
+    const pages = writtenByLocale[key]
+      .filter((page) => curatedOrder.has(page.slug))
+      .sort((a, b) => curatedOrder.get(a.slug) - curatedOrder.get(b.slug));
+    totalStubs += localeCounts[key]?.stubs || 0;
+    lines.push("");
+    lines.push(heading);
+    addPageList(lines, pages);
   }
 
   lines.push("");
-  lines.push("---");
+  lines.push("## Optional");
+  lines.push(`- [Full published-page index](${abs("/llms-full.txt")}): Every completed Bengali and English page.`);
+  lines.push(`- [XML sitemap](${abs("/sitemap.xml")}): Canonical indexable URLs and language alternates.`);
+  lines.push(`- [Source repository](${REPOSITORY_URL}): Editorial policy, source history and website code.`);
+  lines.push("");
   lines.push(
     `${totalStubs} additional topics are planned but not yet written (stubs) across both languages. ` +
       `See ${abs("/contribute")} to help write one.`,
@@ -339,7 +376,20 @@ console.log(`seo-pages.json: ${seoPages.length} routes`);
     lines.join("\n") + "\n",
   );
   console.log(
-    `llms.txt: ${(llmsPages.bn?.filter((p) => !p.stub).length || 0) + (llmsPages.en?.filter((p) => !p.stub).length || 0)} written pages listed`,
+    `llms.txt: ${localeSections.reduce((count, { key }) => count + writtenByLocale[key].filter((page) => curatedOrder.has(page.slug)).length, 0)} curated pages listed`,
+  );
+
+  const fullLines = preamble("Deshi Startup — full published-page index");
+  for (const { key, heading } of localeSections) {
+    fullLines.push("", heading);
+    addPageList(fullLines, writtenByLocale[key]);
+  }
+  fs.writeFileSync(
+    path.join(root, "public", "llms-full.txt"),
+    fullLines.join("\n") + "\n",
+  );
+  console.log(
+    `llms-full.txt: ${localeSections.reduce((count, { key }) => count + writtenByLocale[key].length, 0)} written pages listed`,
   );
 }
 

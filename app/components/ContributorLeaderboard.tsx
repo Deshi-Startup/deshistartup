@@ -75,14 +75,14 @@ function formatDate(value: string | null, locale: Locale) {
   }).format(date)
 }
 
-function Avatar({ profile, locale }: { profile: ProfileView; locale: Locale }) {
+function Avatar({ profile }: { profile: ProfileView }) {
   return (
     <span className="contributor-avatar">
       <span aria-hidden="true">{profile.monogram}</span>
       {profile.avatarUrl ? (
         <img
           src={profile.avatarUrl}
-          alt={locale === 'bn' ? `${profile.displayName}-এর ছবি` : `${profile.displayName}'s photo`}
+          alt=""
           width={72}
           height={72}
           loading="lazy"
@@ -104,15 +104,15 @@ function ContributorRow({ profile, locale }: { profile: ProfileView; locale: Loc
       <span className="contributor-row__rank" aria-hidden="true">
         {profile.rank ? formatNumber(profile.rank, locale) : ''}
       </span>
-      <Avatar profile={profile} locale={locale} />
+      <Avatar profile={profile} />
       <span className="contributor-row__identity">
-        <strong>
+        <strong dir="auto">
           {profile.profileUrl ? (
             <a href={profile.profileUrl} rel="noopener noreferrer">
-              {profile.displayName}
+              <bdi>{profile.displayName}</bdi>
             </a>
           ) : (
-            profile.displayName
+            <bdi>{profile.displayName}</bdi>
           )}
         </strong>
         {profile.githubLogin ? <span>@{profile.githubLogin}</span> : null}
@@ -179,8 +179,12 @@ export default function ContributorLeaderboard({ locale = 'bn' }: { locale?: Loc
               added after hydration instead of shipping in the HTML. */}
           <h2 id="core-team">{text.coreTitle}</h2>
           <ul className="contributor-list contributor-list--core">
-            {view.coreProfiles.map((profile) => (
-              <ContributorRow key={profile.displayName} profile={profile} locale={locale} />
+            {view.coreProfiles.map((profile, index) => (
+              <ContributorRow
+                key={profile.githubLogin || `${profile.displayName}:${index}`}
+                profile={profile}
+                locale={locale}
+              />
             ))}
           </ul>
         </>

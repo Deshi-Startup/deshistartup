@@ -56,6 +56,7 @@ public/page-verified.json
 public/sitemap.xml
 public/robots.txt
 public/llms.txt
+public/llms-full.txt
 public/progress.json
 public/progress.en.json
 # TypeScript incremental build cache

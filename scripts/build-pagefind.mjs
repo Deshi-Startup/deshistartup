@@ -26,7 +26,7 @@ if (isStaticExport) {
   fs.rmSync(publicIndex, { recursive: true, force: true })
   fs.cpSync(outputDir, publicIndex, { recursive: true })
 
-  for (const file of ['sitemap.xml', 'robots.txt', 'llms.txt']) {
+  for (const file of ['sitemap.xml', 'robots.txt', 'llms.txt', 'llms-full.txt']) {
     fs.copyFileSync(path.join(root, 'public', file), path.join(root, 'out', file))
   }
 }

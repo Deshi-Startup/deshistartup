@@ -151,7 +151,7 @@ syntax and metadata fields. Never add raw media embeds or platform iframes. Run
 ## Generated files
 
 `npm run manifest` derives navigation, contribution maps, SEO inputs, route date maps, sitemap,
-robots and `llms.txt` from the content tree and git history. These are outputs, not additional
+robots, `llms.txt` and `llms-full.txt` from the content tree and git history. These are outputs, not additional
 sources of truth. Do not edit or review their contents as authored files; regenerate them.
 
 The authored media registries are the exception:
