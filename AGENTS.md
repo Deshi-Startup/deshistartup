@@ -175,6 +175,7 @@ npm run backlog:status      # write the local planning status report
 npm run lint:bangla         # Bangla/content mechanical checks
 npm run lint:citations      # inline citation definitions, parity and IDs
 npm run lint:routes         # URL and locale-tree checks
+npm run lint:terms          # tag first mention of each glossary term with <Term>; rewrites content files
 npm run lint:media          # media references and limits
 npm run test:contribute     # editor/contribution helpers
 npm run test:contributors   # contributor snapshot and leaderboard helpers
