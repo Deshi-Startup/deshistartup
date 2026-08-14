@@ -80,6 +80,13 @@ explanation.
 A good example shortens the explanation. After giving one, do not restate the same point three
 ways.
 
+**A named character carries the whole guide, or does not appear at all.** An opening vignette that
+is never mentioned again is a hook, not a teaching device: the reader warms to a person, the person
+vanishes, and the rest of the page reads as a reference sheet. If a guide opens with someone, that
+same person supplies the worked example, the arithmetic, and the closing decision. Their problem in
+paragraph one must be answered somewhere on the page — a guide that opens with "the bank demanded
+land Nabil does not have" and never says what to offer instead has abandoned its own premise.
+
 ## Law, tax, fees, and risk
 
 Plain language must not shrink legal meaning.
@@ -207,6 +214,18 @@ Screenshots teach recognition and navigation, not procedure.
 - Split tables that answer more than one question.
 - Put the decision takeaway in prose; never make the reader infer it from twenty cells.
 - Test every table at 320 px and at large text size.
+
+**Sandwich every table.** A line of prose above says which question this table answers; a line or
+two below says the thing a reader would otherwise have to infer from the cells — which row matters
+most, which one ends applications late, which two are really the same rule seen twice. A page where
+tables sit back to back with only a heading between them has stopped teaching and become a
+reference sheet: accurate, scannable, and impossible to learn from. The test is to read only the
+prose, skipping every table, and check that the argument still runs end to end.
+
+Where a table is the *explanation* rather than the summary, put the three or four numbers that
+actually drive the decision into prose first, and let the table stand behind them as the full
+reference. A ten-row parameter table is something a reader returns to, not something they learn
+from on first pass.
 
 ### Worked examples, templates, and calculators
 

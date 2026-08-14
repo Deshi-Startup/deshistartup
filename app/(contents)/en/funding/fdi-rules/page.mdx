@@ -1,16 +1,258 @@
 ---
-title: "Foreign Investment/FDI Rules and Diaspora Funding"
-description: "Foreign Investment/FDI Rules and Diaspora Funding – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "Foreign Direct Investment (FDI) and the Singapore Flip"
+description: "How Bangladeshi startups structure cross-border holding companies in Singapore or Delaware, receive foreign direct investment (FDI), navigate Bangladesh Bank remittance rules, and maintain compliance across borders."
+verified: 2026-08-14
 ---
 
-# Foreign Investment/FDI Rules and Diaspora Funding
+# Foreign Direct Investment (FDI) and the Singapore Flip
 
-<StubNotice path="funding/fdi-rules" locale="en" />
+> **In short:** Raising foreign venture money or selling software globally usually means a Singapore or Delaware holding company above your Bangladeshi operating company. You cannot legally wire your own taka abroad to set it up — the holding company must be capitalised with offshore money (investor checks, NRB partners, export receipts) — and foreign money coming back in must follow the formal FDI route: SWIFT remittance, encashment certificate, RJSC share allotment, then BIDA registration and Bangladesh Bank reporting. If your revenue is all local taka, skip the flip and stay a local company.
+
+Imagine Tanjil and Anika, founders of an AI-driven fleet logistics startup in Dhaka. After eighteen months of bootstrapping, a Singapore venture fund offers them a $250,000 seed check. The term sheet carries one non-negotiable line: *"Funding is contingent on closing through a Singapore Private Limited holding entity."*
+
+Tanjil checks the company account in Dhaka, finds BDT 5 Lakh, and gets ready to wire the Singapore registration fees from there. His bank manager stops him on the spot. Under Bangladesh's foreign exchange rules, a resident cannot send money abroad to buy shares in a foreign company without permission from Bangladesh Bank.[^bb-gfet]
+
+So the money to build the structure cannot come from inside the structure. This guide walks through how founders bridge that gap legally, what the offshore entity costs to keep alive, and the exact filing sequence that lets foreign money come in — and, years later, come back out.
+
+---
+
+## Who needs this, and when
+
+| Situation | Recommended Structure | Why |
+|---|---|---|
+| **Raising institutional venture capital from foreign VCs** | Foreign HoldCo (Singapore Pte. Ltd. or Delaware C-Corp) | International funds work under mandates that stop them investing directly into frontier-market entities, because of currency conversion and court enforcement friction.[^lightcastle-funding] |
+| **Global B2B SaaS or digital export product** | Singapore Operating or Holding Entity | Needed to collect international customer payments through Stripe, PayPal, and multi-currency merchant accounts. |
+| **Local B2C, retail, food, or traditional commerce in Bangladesh** | Local Bangladeshi [private limited company](/registration/private-limited) | An offshore company costs roughly $3,400–$5,200 every year in compliance alone. If your customers pay in taka, keep the company local. |
+| **Pre-revenue idea / unvalidated prototype** | Local prototype first | Do not spend scarce pre-seed capital on foreign incorporation before a signed term sheet or recurring foreign clients. |
+
+The pattern across those four rows is that the structure follows the *money's* passport, not the founders'. Tanjil and Anika are not flipping because they want a Singapore company. They are flipping because the fund writing the check cannot legally send it anywhere else.
+
+You can skip this guide if your business operates entirely within Bangladesh, collects revenue in BDT through [bKash, Nagad, and local gateways](/payments/mfs-and-gateways), and raises capital only from domestic angels or [bank loans](/funding/bb-startup-fund).
+
+---
+
+## The minimum mental model: HoldCo and OpCo
+
+Cross-border structuring splits your company into two entities that do different jobs:
+
+| Corporate Layer | Jurisdiction & Registration | Core Responsibilities | Cash Inflows & Outflows |
+|---|---|---|---|
+| **Holding Company (HoldCo)** | Singapore (ACRA) or US (Delaware) | • Owns global intellectual property (IP)<br/>• Signs [SAFEs and term sheets](/funding/safe-convertible-notes) with foreign VCs<br/>• Houses the master [cap table](/funding/cap-table) | • Receives foreign VC equity checks in USD<br/>• Collects Stripe/card revenue from global clients<br/>• Wires operating funds to Bangladesh |
+| **Operating Company (OpCo)** | Bangladesh (RJSC private limited) | • Hires local engineers and operational staff<br/>• Holds [trade licence](/trade-license), [e-TIN](/tax/e-tin), [BIN/VAT](/tax/vat-bin)<br/>• Signs local vendor and commercial contracts | • Receives FDI inward remittances from HoldCo<br/>• Pays local payroll, rent, and utility bills<br/>• Faces zero foreign-exchange risk on local taka |
+
+The short version: **value lives upstairs, work happens downstairs.** The investor buys shares in the Singapore company, so that is where the IP and the cap table must sit. The engineers are in Dhaka, so that is where payroll and the trade licence sit. Money flows down as funding, and up later as dividends or exit proceeds — which is exactly why the filings in this guide matter. Every one of them is really about keeping the upward path open.
+
+A **SAFE** (Simple Agreement for Future Equity) is a contract where the investor pays now and receives shares later, at the next priced round. It is the standard instrument a HoldCo signs with foreign VCs; the details live on the [SAFE and convertible notes page](/funding/safe-convertible-notes).
+
+### What "the flip" actually does
+
+The word makes it sound like the company turns upside down. Mechanically it is simpler than that.
+
+1. Tanjil and Anika own 100% of the Dhaka company between them — say 60/40.
+2. A new Singapore company is incorporated, and they take shares in it in the **same 60/40 proportion**. Nothing about their relative ownership changes.
+3. That Singapore company then acquires the Dhaka company's shares, or capitalises it as a subsidiary.
+4. The Dhaka company keeps trading exactly as before. It now has one shareholder — the Singapore company — instead of two people.
+
+Afterwards the founders own Bangladesh the same way they always did, but one layer up. The investor buys into the layer above them.
+
+### The rule that makes step 2 hard
+
+Under the *Foreign Exchange Regulation Act, 1947* and Bangladesh Bank's Guidelines for Foreign Exchange Transactions, a Bangladeshi resident generally cannot send funds out of Bangladesh to buy equity in a foreign company without permission.[^bb-gfet]
+
+> **Rule:** Your foreign holding company must be incorporated and capitalised with offshore money — the foreign investor's check, non-resident Bangladeshi (NRB) co-founders, or offshore service fees already earned abroad. You cannot remit capital outbound from a Bangladeshi bank account to fund your foreign entity.[^bb-gfet]
+
+In practice this is why the sequencing in the timeline below runs the way it does. Tanjil does not pay for the Singapore company and then raise. The investor's money, or an NRB co-founder's, pays for it — and the structure gets built in the same motion as the round.
+
+---
+
+## Choosing a holding jurisdiction
+
+US accelerators favour Delaware C-Corporations, but **Singapore** is the common holding jurisdiction for Bangladeshi and South Asian venture-backed startups.[^lightcastle-funding] Read the table below by asking one question: *where does the money that will fund me actually live?* Almost everything else follows from that answer.
+
+| Feature | Singapore (Pte. Ltd.) | US Delaware (C-Corp) | UAE (ADGM / DIFC) |
+|---|---|---|---|
+| **Primary Investor Base** | South Asian, Southeast Asian, European VCs | US VCs, Y Combinator, Techstars | Middle Eastern VCs, regional family offices |
+| **Governing Law** | English Common Law (ACRA)[^acra-act] | Delaware General Corporation Law | English Common Law / dual court system |
+| **Statutory Resident Director** | **Mandatory** (1 Singapore resident)[^acra-act] | Not required | Mandatory registered agent/office |
+| **Corporate Income Tax** | 17% headline, with the start-up exemption below[^iras-sute] | 21% federal + Delaware franchise tax | 0%–9% depending on qualifying income |
+| **Capital Gains / Dividend Withholding** | 0% capital gains, 0% dividend withholding[^iras-sute] | No separate capital-gains rate (income taxed at 21%); dividends to non-residents withheld at 30% — there is no BD–US treaty | 0% capital gains, 0% dividend withholding |
+| **Corporate Banking Setup** | A few days to a week (Aspire, ANext, Airwallex) | 2–5 days (Mercury, Brex) | 2–4 weeks (Wio, traditional UAE banks) |
+| **Annual Maintenance Overhead** | $3,400–$5,200 / year | $2,000–$4,000 / year | $6,000–$12,000 / year |
+
+Two rows deserve a second look. The **resident director** requirement is Singapore's real cost of entry, not the tax rate — no Bangladeshi founder satisfies it alone, so a nominee has to be hired, permanently. And the **dividend withholding** row is where Delaware quietly punishes Bangladeshi founders: 30% withheld on dividends to non-residents, with no treaty to reduce it. For Tanjil, whose investor is in Singapore anyway, the choice is not close.
+
+Banking-setup days and maintenance costs are typical figures quoted by corporate service providers, not statutory rules. Confirm current quotes before budgeting.[^accelerating-bd-crossborder]
+
+---
+
+## Singapore statutory requirements
+
+To incorporate and maintain a Private Limited (Pte. Ltd.) company under Singapore's Accounting and Corporate Regulatory Authority (ACRA):[^acra-act]
+
+- **Resident director:** at least one director must be ordinarily resident in Singapore — a citizen, permanent resident, or holder of an EntrePass (Singapore's work pass for foreign entrepreneurs). Startups without a local founder hire a licensed **nominee director** through an accredited corporate secretarial firm.[^accelerating-bd-crossborder]
+- **Shareholders:** 1 to 50; foreign individuals and companies can own 100% of the shares.[^acra-act]
+- **Corporate secretary:** a qualified resident secretary must be appointed within 6 months of incorporation.[^acra-act]
+- **Registered address:** a physical commercial address in Singapore. Virtual commercial addresses from corporate service firms are compliant.
+- **Paid-up capital:** S$1 minimum.[^acra-act]
+
+A nominee director is a real person taking real legal responsibility for a company they do not run, which is why the fee is annual and why the firm will run know-your-customer checks on the founders before agreeing. Budget the time as well as the money.
+
+### The Singapore start-up tax exemption
+
+A qualifying new company pays tax on far less than its profit during its **first three years of assessment**. The exemption is 75% on the first S$100,000 of chargeable income and 50% on the next S$100,000:[^iras-sute]
+
+| Chargeable Income (first 3 years) | Exemption | Amount Exempt | Taxable | Tax Due (at 17%) |
+|---|---|---|---|---|
+| **First S$100,000** | 75% | S$75,000 | S$25,000 | **S$4,250** |
+| **Next S$100,000** | 50% | S$50,000 | S$50,000 | **S$8,500** |
+| **First S$200,000 Combined** | — | **S$125,000 exempt** | **S$75,000** | **S$12,750 (~6.4% effective)** |
+
+The headline rate is 17%; the rate a young profitable startup actually pays on its first S$200,000 is about 6.4%. That gap is the point of the scheme.
+
+To qualify, the company must be incorporated in Singapore, be a Singapore tax resident for that year, and have no more than 20 shareholders — either all individuals, or at least one individual holding 10% or more of the ordinary shares. Property developers and investment-holding companies are excluded.[^iras-sute]
+
+From the **fourth** year of assessment onwards, the exemption shrinks to the partial scheme available to all companies: 75% of the first S$10,000 and 50% of the next S$190,000.[^iras-sute]
+
+---
+
+## The execution timeline: from Singapore setup to Bangladesh encashment
+
+<Timeline
+  ticks={["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6"]}
+  rows={[
+    {
+      label: "Offshore Setup",
+      spans: [{ start: 0, end: 2, label: "ACRA incorporation & Nominee Director KYC" }]
+    },
+    {
+      label: "Banking & Checks",
+      spans: [{ start: 1, end: 3, label: "Digital multi-currency account & SAFE check deposit" }]
+    },
+    {
+      label: "Inward FDI Remittance",
+      spans: [{ start: 3, end: 4, label: "SWIFT wire to Dhaka & Encashment Certificate" }]
+    },
+    {
+      label: "RJSC, BB & BIDA Filings",
+      spans: [
+        { start: 3, end: 4, tone: "gap", label: "14-day BB reporting window" },
+        { start: 4, end: 6, label: "RJSC share allotment & BIDA registration" }
+      ]
+    }
+  ]}
+/>
+
+The amber band is the only hard deadline on the chart. Everything else slips by a week without lasting damage; that one does not.
+
+---
+
+## Bringing foreign investment into Bangladesh: the four-step FDI route
+
+First, one piece of vocabulary that appears on every form in this section. An **AD bank** is an *Authorised Dealer* — a commercial bank licensed by Bangladesh Bank to handle foreign exchange. Not every branch of every bank is one. Tanjil cannot receive his $250,000 at whichever branch is nearest the office; it has to land at an AD branch, and that branch becomes his counterparty for everything that follows.
+
+When your Singapore HoldCo or a foreign investor wires money into your Bangladeshi OpCo, follow this sequence so that dividends and exit proceeds can legally flow back out later:[^bb-gfet]
+
+| Step | Action Required | Agency / Partner | Deliverable |
+|---|---|---|---|
+| **1. Inward Remittance** | Wire funds by SWIFT with the purpose code *"Inward FDI Equity"* — the code that tells the receiving bank this money is share capital, not a sale or a loan. | Remitting Bank → Bangladeshi AD Bank Branch[^bb-gfet] | SWIFT MT103 confirmation |
+| **2. Encashment** | The bank converts the foreign currency to BDT at the interbank rate. | Bangladeshi Commercial Bank (AD Branch) | **Encashment Certificate** — the bank's written proof the foreign currency arrived and was converted — and Bangladesh Bank **Form C**, the declaration recording an inward remittance[^bb-gfet] |
+| **3. Share Allotment** | The board allots shares in the local company to the foreign entity and files with RJSC. | Registrar of Joint Stock Companies (RJSC) | **Form VI** (capital increase) and the allotment form filed and approved |
+| **4. Reporting & Registration** | The AD bank reports the share issuance to Bangladesh Bank's Foreign Exchange Investment Department (FEID) **within 14 days**; the venture registers the foreign investment with BIDA. | Bangladesh Bank, BIDA | FEID filing by the AD bank; **BIDA OSS FDI registration certificate**[^bb-feguide] [^bida-fdi] |
+
+Read those four steps as one chain rather than four errands. Each deliverable is the entry ticket to the next step: no encashment certificate means RJSC will not accept the allotment, and no allotment means there is nothing for the AD bank to report. Miss a link and the paperwork does not fail loudly — it simply stops, and nobody calls to tell you.
+
+One threshold to know while planning timing: BIDA's FAQ requires **branch, liaison, representative and project offices** — a different legal form from your OpCo — to bring in at least **USD 50,000** of foreign exchange within **two months** of approval. Equity FDI into a locally incorporated company carries no published minimum, so size the remittance to your capital plan, not to a threshold.[^bida-fdi]
+
+> **Warning:** If you skip the encashment certificate, the AD bank never reports the share issuance, or the venture stays unregistered with BIDA, foreign shareholders may find dividends and exit proceeds trapped in Bangladesh years later. The cost of getting this wrong is not a fine. It is that the money cannot leave.
+
+---
+
+## A worked scenario: the software services agreement
+
+Not all cross-border cash flow is equity. Suppose Tanjil's fleet product starts selling to logistics companies in Malaysia and the UAE. Those customers pay the Singapore HoldCo, which then has to get money to the engineers in Dhaka — and it cannot simply gift it. The mechanism is an **Export Services Agreement**, on a cost-plus model:
+
+```
+1. Global clients pay Singapore HoldCo (via Stripe / wire):   $25,000 / month
+2. Bangladesh OpCo incurs local engineering & office costs:   $10,000 / month
+3. Singapore HoldCo pays OpCo (cost + 10%):                   $11,000 / month
+4. Retained in Singapore for global cloud & marketing:        $14,000 / month
+```
+
+- **Why cost plus ten, and not just $10,000?** Because the Dhaka company is providing a real service to a related company, and a real service provider earns a profit. A subsidiary that recovers exactly its costs and never profits looks, to a tax authority, like a device rather than a business.
+- **Transfer pricing:** that 10% markup is how you demonstrate the transaction between related entities was priced at arm's length — meaning on the terms two unconnected companies would have agreed. Chapter XI of the Income Tax Act 2023 requires it.[^nbr-transfer-pricing]
+- **Bangladesh tax treatment:** the $11,000 arrives through the banking channel as software/ITES export proceeds. Bangladesh has long given reduced tax treatment to qualifying IT/ITES export income, but the exact rate and conditions change through annual SROs. Check the current SRO on the NBR site before relying on any number.[^nbr-transfer-pricing]
+
+Sign the agreement before the first payment, not after the first audit question.
+
+---
+
+## Annual operating budget for a Singapore holding company
+
+Maintaining an offshore entity costs real money every year, whether or not the startup is doing well. Budget it before you commit:
+
+| Expense Item | First-Year Cost (USD) | Ongoing Annual Cost (USD) |
+|---|---|---|
+| **ACRA Incorporation & Name Clearance Fee** | $600–$1,000 | — |
+| **Nominee Director & Corporate Secretary** | $1,800–$2,500 | $1,800–$2,500 / year |
+| **Registered Commercial Office Address** | $300–$500 | $300–$500 / year |
+| **Annual Tax Filing & Unaudited Financial Statements** | $800–$1,200 | $800–$1,200 / year |
+| **Bangladesh Legal & CA Compliance Filings** | $1,000–$2,000 | $500–$1,000 / year |
+| **Total Estimated Run-Rate** | **~$4,500–$7,200** | **~$3,400–$5,200 / year** |
+
+Put that ongoing figure next to your runway before you decide. Roughly $4,000 a year is a rounding error against a $250,000 seed round and a serious problem for a bootstrapped company with $900 a month of revenue. This is the single clearest test of whether you should flip yet: **if the compliance bill is a visible share of your burn, you are too early.**
+
+These are typical ranges reported by corporate service providers in a practitioner workshop. Get current written quotes, as prices and firms change.[^accelerating-bd-crossborder]
+
+---
+
+## Common mistakes
+
+| Mistake | Consequence | Safe Action |
+|---|---|---|
+| **Wiring money from Dhaka to pay offshore incorporation fees** | Breaches FERA 1947 and Bangladesh Bank's foreign exchange rules.[^bb-gfet] | Capitalise the offshore entity with non-resident funds, diaspora partners, or investor pre-seed checks. |
+| **Failing to collect the Encashment Certificate** | RJSC will reject foreign share allotments without bank proof of inward foreign exchange. | Request the Encashment Certificate and Form C from your AD branch the day the funds arrive. |
+| **Missing the 14-day Bangladesh Bank reporting** | The share issuance goes unrecorded with FEID, complicating future repatriation.[^bb-feguide] | Remind your AD bank to file with FEID within 14 days of allotment, and keep the filing evidence yourself. |
+| **Skipping BIDA registration** | The venture lacks the registration that dividends and exit remittances depend on.[^bida-fdi] | Complete BIDA OSS registration right after the RJSC filings. |
+| **Neglecting annual ACRA returns** | ACRA imposes late-filing penalties and can strike off the Singapore entity after repeated non-compliance.[^acra-act] | Keep an annual retainer with a licensed Singapore corporate secretarial firm. |
+| **Ignoring transfer pricing between HoldCo and OpCo** | NBR audits can recharacterise cross-border payments and assess additional corporate tax.[^nbr-transfer-pricing] | Execute a formal Master Services Agreement with documented cost-plus pricing. |
+
+Four of those six are filing failures rather than judgement failures — nobody decided to skip them, they simply never got done in a busy month. Put each one on a calendar with a named owner the day the round closes.
+
+---
+
+## Checklist
+
+- [ ] Confirmed a foreign investor term sheet or global customer base actually requires an offshore entity.
+- [ ] Confirmed the annual compliance bill is a small share of your monthly burn, not a visible one.
+- [ ] Chosen the jurisdiction (Singapore for South Asian and Southeast Asian VCs; Delaware for US accelerators).
+- [ ] Engaged an accredited corporate service provider for nominee director and corporate secretary services.[^acra-act]
+- [ ] Opened a multi-currency business account (Aspire, Airwallex, or a traditional bank).
+- [ ] Deposited investor funds offshore via standard [SAFEs or share subscriptions](/funding/safe-convertible-notes).[^lightcastle-funding]
+- [ ] Confirmed your receiving branch in Dhaka is an AD (Authorised Dealer) branch.
+- [ ] Wired operating capital to that AD branch with the "FDI Equity" purpose code.[^bb-gfet]
+- [ ] Collected the bank Encashment Certificate and Bangladesh Bank Form C.
+- [ ] Filed Form VI and the allotment documents with RJSC.
+- [ ] Had the AD bank report the share issuance to Bangladesh Bank FEID within 14 days.[^bb-feguide]
+- [ ] Registered the foreign investment on the BIDA One Stop Service (OSS) portal.[^bida-fdi]
+
+---
+
+## What to do next
+
+- To structure investment agreements: [SAFE, Convertible Notes, and Priced Rounds](/funding/safe-convertible-notes)
+- To prepare for foreign investor meetings: [International Investors: Pitching and Due Diligence](/funding/international-investors)
+- To incorporate your local operating entity: [Private Limited Company Registration Step-by-Step](/registration/private-limited)
+- To understand export proceeds and banking: [Foreign Exchange Basics for SaaS Export](/trade/foreign-exchange)
+
+---
 
 ## Relevant Sources
 
-- [BIDA](https://bida.gov.bd)
-- [Bangladesh Angels](https://bdangels.co)
-- [Anchorless Bangladesh](https://www.anchorless.vc)
-- [Bangabandhu Innovation Grant (BIG)](https://big.gov.bd)
-- [LightCastle Partners](https://lightcastlepartners.com)
+[^acra-act]: [Accounting and Corporate Regulatory Authority (ACRA) Singapore](https://www.acra.gov.sg) – Companies Act (Cap. 50); statutory guidelines on resident directors, corporate secretarial appointments, and annual returns. Accessed 14 August 2026.
+[^iras-sute]: [Inland Revenue Authority of Singapore (IRAS)](https://www.iras.gov.sg/taxes/corporate-income-tax/basics-of-corporate-income-tax/corporate-income-tax-rate-rebates-and-tax-exemption-schemes) – *Corporate Income Tax Rate, Rebates & Tax Exemption Schemes*: Tax Exemption Scheme for New Start-Up Companies and Partial Tax Exemption. Accessed 14 August 2026.
+[^bb-gfet]: [Bangladesh Bank](https://www.bb.org.bd) – Guidelines for Foreign Exchange Transactions (GFET Vol 1 & Vol 2), Foreign Exchange Regulation Act 1947, and Inward Remittance Declaration Form C rules. Accessed 14 August 2026.
+[^bb-feguide]: [Bangladesh Bank](https://www.bb.org.bd/aboutus/regulationguideline/foreignexchange/feguidevol1/9_a.pdf) – Foreign Exchange Guidelines Vol 1, *Foreign Investment in Bangladesh*: issue of shares to non-residents and 14-day FEID reporting. Accessed 14 August 2026.
+[^bida-fdi]: [Bangladesh Investment Development Authority (BIDA)](https://www.bida.gov.bd/foreign-joint-venture-projects) – Foreign & Joint Venture Investment registration requirements, and the [BIDA FAQ](https://investbangladesh.gov.bd/faq) on FDI registration and the USD 50,000 / two-month rule for branch, liaison, representative and project offices. Accessed 14 August 2026.
+[^nbr-transfer-pricing]: [National Board of Revenue (NBR)](https://nbr.gov.bd) – Income Tax Act 2023, Chapter XI Transfer Pricing Regulations, and IT/ITES export tax treatment SROs. Accessed 14 August 2026.
+[^lightcastle-funding]: [LightCastle Partners](https://lightcastlepartners.com/insights) – *Bangladesh Startup Investment Ecosystem Report*: cross-border holding structures, funding inflows, and sectoral capital trends. Accessed 14 August 2026.
+[^accelerating-bd-crossborder]: [Accelerating Bangladesh & Doerscircle](https://www.youtube.com/watch?v=xGRPFyHedDs) – *Online Workshop on Singapore Entry Roadmap for Bangladeshi Startups*. Video recording; practitioner discussion, used for nominee-governance practice and provider cost ranges. Accessed 14 August 2026.
