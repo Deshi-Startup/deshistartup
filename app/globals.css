@@ -5318,6 +5318,29 @@ html[lang='en'] .glossary-copy--en {
   margin: 0;
 }
 
+/* Keep every term in the HTML while skipping layout and paint for letter
+   groups that are still far below the viewport. `auto` remembers each group's
+   real size after first render; the fallback estimate keeps the scroll range
+   stable on the first pass through the page. */
+.glossary-letter-block {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+/* A fragment link needs the browser's real preceding geometry before it picks
+   a scroll offset. Fall back to ordinary layout only for that linked visit;
+   the unlinked lookup surface keeps the faster off-screen rendering path. */
+.glossary:has(:target) .glossary-letter-block {
+  content-visibility: visible;
+  contain-intrinsic-size: none;
+}
+
+/* The root otherwise smooth-scrolls the full glossary, which can leave a
+   shared term link travelling through the page for more than a second. */
+html:has(.glossary :target) {
+  scroll-behavior: auto;
+}
+
 .glossary-entry__term {
   margin: 0;
   display: flex;
@@ -5541,6 +5564,11 @@ html[lang='en'] .glossary-copy--en {
   .glossary-starters {
     page-break-inside: avoid;
     break-inside: avoid;
+  }
+
+  .glossary-letter-block {
+    content-visibility: visible;
+    contain-intrinsic-size: none;
   }
 
   body {
