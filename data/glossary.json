@@ -1807,11 +1807,11 @@
       "en": "The cut or percentage a platform keeps for itself from every sale made through it."
     },
     "example": {
-      "bn": "ধরো তুমি পাঠাওয়ের মতো একটা অ্যাপ চালাও। কোনো রাইডার যদি ১০০ টাকার ট্রিপ দেয়, আর তুমি তার থেকে ১০ টাকা কমিশন হিসেবে কেটে রাখো। এই যে ১০ টাকা তোমার পকেটে ঢুকল, এটাই তোমার টেক রেট বা প্ল্যাটফর্মের আসল ইনকাম।",
+      "bn": "ধরুন আপনি পাঠাওয়ের মতো একটা অ্যাপ চালান। কোনো রাইডার যদি ১০০ টাকার ট্রিপ দেয়, আর আপনি তার থেকে ১০ টাকা কমিশন হিসেবে কেটে রাখেন। এই যে ১০ টাকা আপনার পকেটে ঢুকল, এটাই আপনার টেক রেট বা প্ল্যাটফর্মের আসল ইনকাম।",
       "en": "Imagine you run an app like Pathao. If a rider completes a 100 taka trip and you keep 10 taka as commission, that's your take rate. It's essentially the actual revenue your platform earns from each transaction."
     },
     "watchOut": {
-      "bn": "তুমি যদি টেক রেট খুব বেশি রাখো, তবে সাপ্লায়াররা তোমার প্ল্যাটফর্ম ছেড়ে চলে যাবে। আবার খুব কম রাখলে দিনশেষে তোমার নিজের খরচই উঠবে না।",
+      "bn": "আপনি যদি টেক রেট খুব বেশি রাখেন, তবে সাপ্লায়াররা আপনার প্ল্যাটফর্ম ছেড়ে চলে যাবে। আবার খুব কম রাখলে দিনশেষে আপনার নিজের খরচই উঠবে না।",
       "en": "If you set your take rate too high, sellers or riders might leave your platform. But if it's too low, you won't make enough money to cover your own costs."
     },
     "see": [
@@ -1832,11 +1832,11 @@
     ],
     "group": "growth",
     "def": {
-      "bn": "তোমার ব্যবসার বাজারটা আসলে কতটা বড়, তা বোঝার তিনটা ধাপ। ট্যাম মানে দুনিয়ার সম্ভাব্য সব কাস্টমার, স্যাম হলো তুমি যাদের কাছে পৌঁছাতে পারবে, আর সম হলো বর্তমানে তুমি যাদের আসলেই কাস্টমার বানাতে পারবে।",
+      "bn": "আপনার ব্যবসার বাজারটা আসলে কতটা বড়, তা বোঝার তিনটা ধাপ। ট্যাম মানে দুনিয়ার সম্ভাব্য সব কাস্টমার, স্যাম হলো আপনি যাদের কাছে পৌঁছাতে পারবেন, আর সম হলো বর্তমানে আপনি যাদের আসলেই কাস্টমার বানাতে পারবেন।",
       "en": "A way to guess how big your business can get. TAM is everyone who might buy it, SAM is the people you can actually reach, and SOM is the small chunk you can realistically win right now."
     },
     "watchOut": {
-      "bn": "ইনভেস্টররা তোমার বড় স্বপ্ন দেখার পাশাপাশি এটা কতটা বাস্তবে সম্ভব, সেটাও মিলিয়ে দেখতে চান। শুধু ট্যাম বড় হলেই হয় না, তোমার সম অর্জন করার পরিষ্কার প্ল্যান থাকতে হয়।",
+      "bn": "ইনভেস্টররা আপনার বড় স্বপ্ন দেখার পাশাপাশি এটা কতটা বাস্তবে সম্ভব, সেটাও মিলিয়ে দেখতে চান। শুধু ট্যাম বড় হলেই হয় না, আপনার সম অর্জন করার পরিষ্কার প্ল্যান থাকতে হয়।",
       "en": "Investors want to see that you dream big, but also that your goals for right now are realistic. Having a huge TAM isn't enough; you need a solid plan to capture your SOM."
     },
     "guide": "/ideas/tam-sam-som",
@@ -1845,7 +1845,7 @@
       "traction"
     ],
     "example": {
-      "bn": "ধরো তুমি ঢাকায় একটা প্রিমিয়াম বেকারি বানাচ্ছ। সারা দেশের সব মানুষ তোমার ট্যাম, ঢাকার যে এলাকায় তুমি ডেলিভারি দিতে পারবে তারা তোমার স্যাম। আর প্রথম বছরে যে মানুষগুলো আসলেই তোমার কেক কিনবে, তারাই তোমার সম।",
+      "bn": "ধরুন আপনি ঢাকায় একটা প্রিমিয়াম বেকারি বানাচ্ছেন। সারা দেশের সব মানুষ আপনার ট্যাম, ঢাকার যে এলাকায় আপনি ডেলিভারি দিতে পারবেন তারা আপনার স্যাম। আর প্রথম বছরে যে মানুষগুলো আসলেই আপনার কেক কিনবে, তারাই আপনার সম।",
       "en": "Suppose you're starting a premium bakery in Dhaka. The whole country is your TAM, while the areas where you can actually deliver form your SAM. The people who will realistically buy your cakes in the first year make up your SOM."
     }
   },
@@ -1854,15 +1854,15 @@
     "bn": "টার্ম শিট",
     "group": "funding",
     "def": {
-      "bn": "ইনভেস্টমেন্ট পাওয়ার আগে একটা খসড়া চুক্তি। এতে লেখা থাকে তুমি কত টাকা পাবে, আর ইনভেস্টর এর বদলে কোম্পানির কতটুকু মালিকানা পাবে।",
+      "bn": "ইনভেস্টমেন্ট পাওয়ার আগে একটা খসড়া চুক্তি। এতে লেখা থাকে আপনি কত টাকা পাবেন, আর ইনভেস্টর এর বদলে কোম্পানির কতটুকু মালিকানা পাবে।",
       "en": "A rough summary of the main rules for an investment, like how much money you get and how much of your company the investor gets."
     },
     "example": {
-      "bn": "এটা অনেকটা বিয়ের কাবিননামার খসড়ার মতো। ইনভেস্টর হয়তো বলল তোমাকে ৫ কোটি টাকা দেবে, বিনিময়ে কোম্পানির ২০% শেয়ার নেবে। এই প্রাথমিক শর্তগুলোই টার্ম শিটে লেখা থাকে।",
+      "bn": "এটা অনেকটা বিয়ের কাবিননামার খসড়ার মতো। ইনভেস্টর হয়তো বলল আপনাকে ৫ কোটি টাকা দেবে, বিনিময়ে কোম্পানির ২০% শেয়ার নেবে। এই প্রাথমিক শর্তগুলোই টার্ম শিটে লেখা থাকে।",
       "en": "Think of it like a draft agreement before a big deal. An investor might offer 5 crore taka in exchange for 20% of your company. These initial terms are laid out in the term sheet."
     },
     "watchOut": {
-      "bn": "টার্ম শিটে সই করা মানেই যে তুমি টাকা পেয়ে গেছ, তা কিন্তু নয়। কোনো কিছু না বুঝলে সই করার আগে অবশ্যই একজন উকিলের সাথে কথা বলে নিও।",
+      "bn": "টার্ম শিটে সই করা মানেই যে আপনি টাকা পেয়ে গেছেন, তা কিন্তু নয়। কোনো কিছু না বুঝলে সই করার আগে অবশ্যই একজন উকিলের সাথে কথা বলে নেবেন।",
       "en": "Signing this doesn't mean the money is in your bank account yet. Never sign it without asking a lawyer to explain the confusing parts, as it sets the stage for the final binding contract."
     },
     "guide": "/funding/term-sheets",
@@ -1878,11 +1878,11 @@
     "group": "growth",
     "starter": true,
     "def": {
-      "bn": "তোমার বিজনেসটা যে আসলেই মানুষের কাজে লাগছে এবং বাড়ছে, তার প্রমাণ। যেমন- প্রতিদিন নতুন অর্ডার আসা বা ইউজার বাড়া।",
+      "bn": "আপনার বিজনেসটা যে আসলেই মানুষের কাজে লাগছে এবং বাড়ছে, তার প্রমাণ। যেমন- প্রতিদিন নতুন অর্ডার আসা বা ইউজার বাড়া।",
       "en": "Real proof that people love what you are building, like when your sales, app downloads, or active users keep going up."
     },
     "watchOut": {
-      "bn": "ইনভেস্টররা শুধু তোমার দারুণ আইডিয়া শুনেই টাকা দিতে চান না। তারা দেখতে চান যে তোমার প্রডাক্টের আসলেই একটা শক্ত ট্র্যাকশন আছে কি না।",
+      "bn": "ইনভেস্টররা শুধু আপনার দারুণ আইডিয়া শুনেই টাকা দিতে চান না। তারা দেখতে চান যে আপনার প্রডাক্টের আসলেই একটা শক্ত ট্র্যাকশন আছে কি না।",
       "en": "Investors care way more about your traction than your cool ideas. Without real proof of growth, a great idea is just a dream."
     },
     "guide": "/metrics",
@@ -1892,7 +1892,7 @@
       "pitch-deck"
     ],
     "example": {
-      "bn": "ধরো তুমি একটা নতুন গ্রোসারি অ্যাপ বানালে। প্রথম মাসে তোমার ১০০ জন কাস্টমার ছিল, আর দ্বিতীয় মাসে সেটা বেড়ে ৫০০ জন হলো। এই যে মানুষ তোমার অ্যাপটা ব্যবহার করতে শুরু করেছে, এটাই তোমার ট্র্যাকশন।",
+      "bn": "ধরুন আপনি একটা নতুন গ্রোসারি অ্যাপ বানালেন। প্রথম মাসে আপনার ১০০ জন কাস্টমার ছিল, আর দ্বিতীয় মাসে সেটা বেড়ে ৫০০ জন হলো। এই যে মানুষ আপনার অ্যাপটা ব্যবহার করতে শুরু করেছে, এটাই আপনার ট্র্যাকশন।",
       "en": "Imagine you built a new grocery app. If you had 100 customers in your first month and 500 in the second, that steady growth is your traction. It shows that people actually want what you're selling."
     }
   },
@@ -1904,11 +1904,11 @@
     ],
     "group": "paperwork",
     "def": {
-      "bn": "তোমার ব্যবসা চালানোর জন্য সিটি করপোরেশন বা ইউনিয়ন পরিষদ থেকে নেওয়া একটা সরকারি অনুমতিপত্র।",
+      "bn": "আপনার ব্যবসা চালানোর জন্য সিটি করপোরেশন বা ইউনিয়ন পরিষদ থেকে নেওয়া একটা সরকারি অনুমতিপত্র।",
       "en": "An official permission slip from your local government saying you are allowed to run your business."
     },
     "watchOut": {
-      "bn": "মনে রেখো, এটা কিন্তু প্রতি বছর বছর নির্দিষ্ট ফি দিয়ে রিনিউ বা নবায়ন করতে হয়। মেয়াদ পার হয়ে গেলে তোমাকে জরিমানা দিতে হতে পারে।",
+      "bn": "মনে রাখবেন, এটা কিন্তু প্রতি বছর বছর নির্দিষ্ট ফি দিয়ে রিনিউ বা নবায়ন করতে হয়। মেয়াদ পার হয়ে গেলে আপনাকে জরিমানা দিতে হতে পারে।",
       "en": "Don't forget that you need to renew this license every single year by paying a fee. If you miss the deadline, you might have to pay heavy fines."
     },
     "guide": "/trade-license",
@@ -1917,7 +1917,7 @@
       "vat-bin"
     ],
     "example": {
-      "bn": "তুমি যদি একটা ছোট মুদি দোকান বা টেক স্টার্টআপ, যাই শুরু করো না কেন, সিটি করপোরেশন থেকে এই অনুমতিপত্রটা নিতেই হবে। এটা ছাড়া ব্যবসা করা সম্পূর্ণ বেআইনি।",
+      "bn": "আপনি যদি একটা ছোট মুদি দোকান বা টেক স্টার্টআপ, যাই শুরু করুন না কেন, সিটি করপোরেশন থেকে এই অনুমতিপত্রটা নিতেই হবে। এটা ছাড়া ব্যবসা করা সম্পূর্ণ বেআইনি।",
       "en": "Whether you're starting a small grocery shop or a tech startup, you must get this permission slip from the city corporation. Operating without it is completely illegal."
     }
   },
@@ -1927,11 +1927,11 @@
     "group": "money",
     "starter": true,
     "def": {
-      "bn": "একটা মাত্র জিনিস বিক্রি করলে তোমার লাভ না ক্ষতি হচ্ছে, সেই হিসাব। এতে বোঝা যায় তোমার ব্যবসার বেসিক কতটা মজবুত।",
+      "bn": "একটা মাত্র জিনিস বিক্রি করলে আপনার লাভ না ক্ষতি হচ্ছে, সেই হিসাব। এতে বোঝা যায় আপনার ব্যবসার বেসিক কতটা মজবুত।",
       "en": "The basic math of making a profit on just one item. It looks at how much it costs to sell one product versus how much you earn from it."
     },
     "example": {
-      "bn": "ধরো চালডালের মতো তুমি একটা জিনিস ডেলিভারি দিচ্ছ। কাস্টমার তোমাকে ১০০ টাকা দিল, কিন্তু মাল কেনা, প্যাকেজিং আর ডেলিভারি বয়ের খরচ মিলে তোমার ১১০ টাকা চলে গেল। তার মানে তোমার ইউনিট ইকোনমিকস একদমই ভালো না।",
+      "bn": "ধরুন চালডালের মতো আপনি একটা জিনিস ডেলিভারি দিচ্ছেন। কাস্টমার আপনাকে ১০০ টাকা দিল, কিন্তু মাল কেনা, প্যাকেজিং আর ডেলিভারি বয়ের খরচ মিলে আপনার ১১০ টাকা চলে গেল। তার মানে আপনার ইউনিট ইকোনমিকস একদমই ভালো না।",
       "en": "Imagine you are running a delivery service like Chaldal. If a customer pays you 100 taka, but buying the item, packaging, and delivery costs you 110 taka, your unit economics are broken."
     },
     "watchOut": {
@@ -1956,15 +1956,15 @@
     ],
     "group": "equity",
     "def": {
-      "bn": "তোমার পুরো কোম্পানির দাম কত, তার একটা হিসাব। ইনভেস্টমেন্ট পাওয়ার আগের দামকে 'প্রি-মানি' আর ইনভেস্টমেন্টের টাকা যোগ করার পরের দামকে 'পোস্ট-মানি' বলে।",
+      "bn": "আপনার পুরো কোম্পানির দাম কত, তার একটা হিসাব। ইনভেস্টমেন্ট পাওয়ার আগের দামকে 'প্রি-মানি' আর ইনভেস্টমেন্টের টাকা যোগ করার পরের দামকে 'পোস্ট-মানি' বলে।",
       "en": "How much your whole company is worth. 'Pre-money' is the value before new investment, and 'post-money' is the value after the new money is added."
     },
     "example": {
-      "bn": "ইনভেস্টরের কাছে যাওয়ার আগে তোমার কোম্পানির দাম যদি ৮০ লাখ টাকা হয়, তবে সেটা প্রি-মানি ভ্যালুয়েশন। ইনভেস্টর যদি ২০ লাখ টাকা দেয়, তবে সব মিলে নতুন দাম বা পোস্ট-মানি ভ্যালুয়েশন হবে ১ কোটি টাকা।",
+      "bn": "ইনভেস্টরের কাছে যাওয়ার আগে আপনার কোম্পানির দাম যদি ৮০ লাখ টাকা হয়, তবে সেটা প্রি-মানি ভ্যালুয়েশন। ইনভেস্টর যদি ২০ লাখ টাকা দেয়, তবে সব মিলে নতুন দাম বা পোস্ট-মানি ভ্যালুয়েশন হবে ১ কোটি টাকা।",
       "en": "Before an investor puts money in, if your company is worth 80 lakh taka, that's your pre-money valuation. If they invest 20 lakh, the combined 1 crore taka is your post-money valuation."
     },
     "watchOut": {
-      "bn": "ইনভেস্টরের সাথে কথা বলার সময় আগেই ক্লিয়ার করে নিও যে তোমরা প্রি-মানি নাকি পোস্ট-মানি নিয়ে কথা বলছো। একটু ভুল বুঝাবুঝি হলে তোমার অনেকগুলো শেয়ার হাতছাড়া হয়ে যেতে পারে।",
+      "bn": "ইনভেস্টরের সাথে কথা বলার সময় আগেই ক্লিয়ার করে নেবেন যে আপনারা প্রি-মানি নাকি পোস্ট-মানি নিয়ে কথা বলছেন। একটু ভুল বুঝাবুঝি হলে আপনার অনেকগুলো শেয়ার হাতছাড়া হয়ে যেতে পারে।",
       "en": "Always be crystal clear whether you and the investor are talking about pre-money or post-money. A small misunderstanding here can cost you a big chunk of your ownership."
     },
     "guide": "/funding/valuation",
@@ -1983,7 +1983,7 @@
       "en": "A price limit set early on to protect early investors, making sure they get a fair share of the company when it grows."
     },
     "watchOut": {
-      "bn": "এই লিমিট বা ক্যাপ যত কম হবে, শুরুতে টাকা দেওয়া ইনভেস্টররা তত বেশি শেয়ার পাবেন। তাই অনেক কম দামে ক্যাপ ঠিক করলে পরবর্তীতে তোমার নিজের শেয়ার অনেক কমে যেতে পারে।",
+      "bn": "এই লিমিট বা ক্যাপ যত কম হবে, শুরুতে টাকা দেওয়া ইনভেস্টররা তত বেশি শেয়ার পাবেন। তাই অনেক কম দামে ক্যাপ ঠিক করলে পরবর্তীতে আপনার নিজের শেয়ার অনেক কমে যেতে পারে।",
       "en": "A lower limit means the early investors will get a bigger piece of the pie later on. Setting the cap too low can heavily dilute your own ownership down the road."
     },
     "guide": "/funding/safe-convertible-notes",
@@ -1993,7 +1993,7 @@
       "dilution"
     ],
     "example": {
-      "bn": "তোমার স্টার্টআপ যখন একদম ছোট, তখন একজন ইনভেস্টর টাকা দিল। তাকে সুরক্ষিত রাখতে তোমরা ঠিক করলে যে, ভবিষ্যতে কোম্পানির দাম যাই হোক না কেন, তার শেয়ারের হিসাব সর্বোচ্চ ১০ কোটি টাকা ধরে করা হবে। এই ১০ কোটি টাকাই হলো ভ্যালুয়েশন ক্যাপ।",
+      "bn": "আপনার স্টার্টআপ যখন একদম ছোট, তখন একজন ইনভেস্টর টাকা দিল। তাকে সুরক্ষিত রাখতে আপনারা ঠিক করলেন যে, ভবিষ্যতে কোম্পানির দাম যাই হোক না কেন, তার শেয়ারের হিসাব সর্বোচ্চ ১০ কোটি টাকা ধরে করা হবে। এই ১০ কোটি টাকাই হলো ভ্যালুয়েশন ক্যাপ।",
       "en": "When your startup is brand new, an early investor gives you money. To protect them, you agree that no matter how big the company gets, their share will be calculated at a maximum value of 10 crore taka. That 10 crore is the valuation cap."
     }
   },
@@ -2008,7 +2008,7 @@
     ],
     "group": "paperwork",
     "def": {
-      "bn": "ভ্যাট হলো কেনাকাটার সময় দেওয়া একটা সরকারি ট্যাক্স। আর এই ভ্যাট দেওয়ার জন্য সরকার তোমার ব্যবসাকে যে ৯ সংখ্যার একটা বিশেষ আইডি নম্বর দেয়, সেটাই হলো বিআইএন (BIN)।",
+      "bn": "ভ্যাট হলো কেনাকাটার সময় দেওয়া একটা সরকারি ট্যাক্স। আর এই ভ্যাট দেওয়ার জন্য সরকার আপনার ব্যবসাকে যে ৯ সংখ্যার একটা বিশেষ আইডি নম্বর দেয়, সেটাই হলো বিআইএন (BIN)।",
       "en": "VAT is the extra tax added to things we buy. BIN is your company's 9-digit special ID number to show you are registered to handle this tax."
     },
     "guide": "/e-tin-vat-bin",
@@ -2020,11 +2020,11 @@
     "sourceUrl": "https://nbr.gov.bd/faq/vat-faq/en",
     "verified": "2026-07-28",
     "example": {
-      "bn": "তুমি যখন কোনো বড় রেস্টুরেন্টে খেতে যাও, তখন বিলের সাথে এক্সট্রা কিছু টাকা ভ্যাট হিসেবে দিতে হয়। এই টাকাটা সরকার ঠিকমতো পাচ্ছে কি না, সেটা ট্র্যাক করতেই রেস্টুরেন্টগুলোকে একটা বিআইএন বা ভ্যাট নিবন্ধন নম্বর নিতে হয়।",
+      "bn": "আপনি যখন কোনো বড় রেস্টুরেন্টে খেতে যান, তখন বিলের সাথে এক্সট্রা কিছু টাকা ভ্যাট হিসেবে দিতে হয়। এই টাকাটা সরকার ঠিকমতো পাচ্ছে কি না, সেটা ট্র্যাক করতেই রেস্টুরেন্টগুলোকে একটা বিআইএন বা ভ্যাট নিবন্ধন নম্বর নিতে হয়।",
       "en": "When you eat at a nice restaurant, you pay an extra amount on your bill as VAT. To track that this money actually reaches the government, businesses must use their special BIN."
     },
     "watchOut": {
-      "bn": "কাস্টমারদের কাছ থেকে ভ্যাট নেওয়ার পর সেটা সরকারের কাছে জমা না দেওয়া মারাত্মক অপরাধ। এজন্য তোমার ব্যবসার লাইসেন্স বাতিল হতে পারে এবং বড় অংকের জরিমানাও হতে পারে।",
+      "bn": "কাস্টমারদের কাছ থেকে ভ্যাট নেওয়ার পর সেটা সরকারের কাছে জমা না দেওয়া মারাত্মক অপরাধ। এজন্য আপনার ব্যবসার লাইসেন্স বাতিল হতে পারে এবং বড় অংকের জরিমানাও হতে পারে।",
       "en": "Collecting VAT from customers and not depositing it to the government is a serious crime. Your business could face massive fines or even get shut down."
     }
   },
@@ -2038,11 +2038,11 @@
       "en": "A company that gathers money from rich people and uses it to invest in fast-growing startups."
     },
     "example": {
-      "bn": "ধরো তুমি অনেক বড় একটা স্টার্টআপ বানাতে চাও, কিন্তু তোমার কাছে কয়েক কোটি টাকা নেই। তখন তুমি কোনো ভিসি বা ভেঞ্চার ক্যাপিটাল ফার্মের কাছে যাও, যারা তোমার কোম্পানির শেয়ারের বিনিময়ে ওই বড় অংকের টাকাটা ইনভেস্ট করবে।",
+      "bn": "ধরুন আপনি অনেক বড় একটা স্টার্টআপ বানাতে চান, কিন্তু আপনার কাছে কয়েক কোটি টাকা নেই। তখন আপনি কোনো ভিসি বা ভেঞ্চার ক্যাপিটাল ফার্মের কাছে যান, যারা আপনার কোম্পানির শেয়ারের বিনিময়ে ওই বড় অংকের টাকাটা ইনভেস্ট করবে।",
       "en": "Suppose you want to build a massive startup but don't have crores of taka. You'd go to a VC firm, who will invest that huge amount of money in exchange for shares in your company."
     },
     "watchOut": {
-      "bn": "ভিসিরা সবসময় এমন কোম্পানি খোঁজে, যারা খুব দ্রুত অনেক বড় হতে পারবে। তুমি যদি একটা সাধারণ মুদি দোকান বা ছোট ব্যবসা করতে চাও, তবে ভিসি তোমার জন্য নয়।",
+      "bn": "ভিসিরা সবসময় এমন কোম্পানি খোঁজে, যারা খুব দ্রুত অনেক বড় হতে পারবে। আপনি যদি একটা সাধারণ মুদি দোকান বা ছোট ব্যবসা করতে চান, তবে ভিসি আপনার জন্য নয়।",
       "en": "VCs are only interested if they think your company can become massive very quickly. If you just want to run a stable local business, a VC is not the right fit for you."
     },
     "guide": "/funding",
@@ -2065,7 +2065,7 @@
       "en": "A rule that says founders and employees earn their company shares piece by piece over time, rather than getting them all on day one."
     },
     "example": {
-      "bn": "তুমি আর তোমার বন্ধু মিলে একটা স্টার্টআপ শুরু করলে, আর ঠিক হলো চার বছরে পুরো শেয়ার পাবে। প্রথম এক বছর কাজ না করলে কেউই কোনো শেয়ার পাবেবিধা পাবে না, এই এক বছরের অপেক্ষাকে বলে 'ক্লিফ'।",
+      "bn": "আপনি আর আপনার বন্ধু মিলে একটা স্টার্টআপ শুরু করলেন, আর ঠিক হলো চার বছরে পুরো শেয়ার পাবেন। প্রথম এক বছর কাজ না করলে কেউই কোনো শেয়ার পাবেন না, এই এক বছরের অপেক্ষাকে বলে 'ক্লিফ'।",
       "en": "You and a friend start a company and agree to earn your shares over four years. If someone leaves before the first year, they get nothing–this one-year wait is called a 'cliff'."
     },
     "watchOut": {
@@ -2088,7 +2088,7 @@
       "en": "A chunk of tax that you must hold back from a payment and send directly to the government instead of giving it to the seller."
     },
     "watchOut": {
-      "bn": "এটা কেটে রাখার দায়িত্ব সম্পূর্ণ তোমার। ভুলে গেলে বা না কাটলে সরকার কিন্তু তোমাকেই জরিমানা করবে, যার কাছ থেকে সার্ভিস নিয়েছো তাকে নয়।",
+      "bn": "এটা কেটে রাখার দায়িত্ব সম্পূর্ণ আপনার। ভুলে গেলে বা না কাটলে সরকার কিন্তু আপনাকেই জরিমানা করবে, যার কাছ থেকে সার্ভিস নিয়েছেন তাকে নয়।",
       "en": "It is your legal responsibility to deduct this tax. If you forget, the government will penalize you, not the agency you paid."
     },
     "see": [
@@ -2099,7 +2099,7 @@
     "sourceUrl": "https://nbr.gov.bd/",
     "verified": "2026-07-28",
     "example": {
-      "bn": "ধরো তুমি তোমার অফিসের জন্য একটা আইটি কোম্পানি থেকে ৫ লাখ টাকার সফটওয়্যার কিনলে। বিল দেওয়ার সময় তুমি হয়তো ৫% টাকা ট্যাক্স হিসেবে কেটে রেখে বাকি টাকা তাদেরকে দিলে। এই কেটে রাখা টাকাই হলো উইথহোল্ডিং ট্যাক্স বা উৎস কর।",
+      "bn": "ধরুন আপনি আপনার অফিসের জন্য একটা আইটি কোম্পানি থেকে ৫ লাখ টাকার সফটওয়্যার কিনলেন। বিল দেওয়ার সময় আপনি হয়তো ৫% টাকা ট্যাক্স হিসেবে কেটে রেখে বাকি টাকা তাদেরকে দিলেন। এই কেটে রাখা টাকাই হলো উইথহোল্ডিং ট্যাক্স বা উৎস কর।",
       "en": "Suppose you buy software worth 5 lakh taka from an IT agency for your office. When paying the bill, you might hold back 5% as tax and pay them the rest. That held-back amount is the withholding tax."
     }
   },
@@ -2108,11 +2108,11 @@
     "bn": "ওয়ার্কিং ক্যাপিটাল",
     "group": "money",
     "def": {
-      "bn": "প্রতিদিনের ব্যবসা চালানোর জন্য তোমার হাতে যে নগদ টাকা থাকা দরকার। যেমন- মালপত্র কেনা, কর্মচারীর বেতন দেওয়া বা দোকান ভাড়া দেওয়া।",
+      "bn": "প্রতিদিনের ব্যবসা চালানোর জন্য আপনার হাতে যে নগদ টাকা থাকা দরকার। যেমন- মালপত্র কেনা, কর্মচারীর বেতন দেওয়া বা দোকান ভাড়া দেওয়া।",
       "en": "The ready cash you need to keep your business running smoothly every single day, like paying rent and buying supplies."
     },
     "watchOut": {
-      "bn": "নগদ টাকায় মাল কিনে যদি বাকিতে বিক্রি করো, তবে তোমার প্রতিদিনের ব্যবসা চালানোর এই টাকা কিন্তু আটকে যাবে। ওয়ার্কিং ক্যাপিটাল ফুরিয়ে গেলে লাভজনক ব্যবসাও হুট করে বন্ধ হয়ে যেতে পারে।",
+      "bn": "নগদ টাকায় মাল কিনে যদি বাকিতে বিক্রি করেন, তবে আপনার প্রতিদিনের ব্যবসা চালানোর এই টাকা কিন্তু আটকে যাবে। ওয়ার্কিং ক্যাপিটাল ফুরিয়ে গেলে লাভজনক ব্যবসাও হুট করে বন্ধ হয়ে যেতে পারে।",
       "en": "If you pay cash for your supplies but let customers buy on credit, your daily cash flow will get stuck. Running out of working capital can kill even a profitable business."
     },
     "guide": "/metrics/cashflow-vs-profit",
