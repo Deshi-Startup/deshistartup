@@ -889,6 +889,11 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
                 </a>
               </li>
               <li>
+                <a href={localHref(isEn ? '/en/contact' : '/contact')}>
+                  {isEn ? 'Contact us' : 'যোগাযোগ করুন'}
+                </a>
+              </li>
+              <li>
                 <a href={localHref(isEn ? '/en/contribute' : '/contribute')}>
                   {isEn ? 'How to contribute' : 'কীভাবে অবদান রাখবেন'}
                 </a>

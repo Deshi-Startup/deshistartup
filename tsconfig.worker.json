@@ -7,6 +7,7 @@
     "skipLibCheck": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "types": ["node"]
@@ -14,6 +15,7 @@
   "include": [
     "cloudflare-env.d.ts",
     "worker/**/*.ts",
+    "app/lib/contact.ts",
     "app/lib/contributable-registry.ts",
     "app/lib/contribution-media.ts"
   ]

@@ -1,4 +1,5 @@
 import { GET as getContent } from './api/content'
+import { POST as sendContactMessage } from './api/contact'
 import { POST as createContribution } from './api/contribute'
 import {
   DELETE as deleteContributionMedia,
@@ -38,6 +39,12 @@ async function apiResponse(
     return request.method === 'GET'
       ? getContent(request, env)
       : methodNotAllowed('GET')
+  }
+
+  if (pathname === '/api/contact') {
+    return request.method === 'POST'
+      ? sendContactMessage(request, env)
+      : methodNotAllowed('POST')
   }
 
   if (pathname === '/api/contribute') {

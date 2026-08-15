@@ -15,6 +15,7 @@ import Glossary from './app/components/Glossary'
 import ExpertReview from './app/components/ExpertReview'
 import ContributorLeaderboard from './app/components/ContributorLeaderboard'
 import ContributionInvite from './app/components/ContributionInvite'
+import ContactForm from './app/components/ContactForm'
 
 interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href?: string
@@ -55,6 +56,7 @@ export function useMDXComponents(components: Record<string, any>): Record<string
     Glossary,
     ExpertReview,
     ContributorLeaderboard,
-    ContributionInvite
+    ContributionInvite,
+    ContactForm
   }
 }

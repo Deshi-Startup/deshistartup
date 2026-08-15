@@ -62,6 +62,7 @@ export const bnNav: NavSection[] = [
     label: 'অংশ নিন',
     items: [
       ['/about', 'পরিচিতি ও সম্পাদকীয় নীতি'],
+      ['/contact', 'যোগাযোগ করুন'],
       ['/contribute', 'অবদান রাখুন'],
       ['/contributors', 'অবদানকারীরা'],
       [REPO_URL, 'GitHub-এ দেখুন'],
@@ -115,6 +116,7 @@ export const enNav: NavSection[] = [
     label: 'Take Part',
     items: [
       ['/en/about', 'About & editorial policy'],
+      ['/en/contact', 'Contact us'],
       ['/en/contribute', 'Contribute'],
       ['/en/contributors', 'Contributors'],
       [REPO_URL, 'View on GitHub'],

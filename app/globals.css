@@ -115,7 +115,7 @@ textarea {
   font: inherit;
 }
 
-:where(a, button, input, select, summary):focus-visible {
+:where(a, button, input, select, textarea, summary):focus-visible {
   outline: 2px solid var(--green-deep);
   outline-offset: 3px;
 }
@@ -839,6 +839,190 @@ h3 {
   margin: 13px 0 0;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+/* --- Contact form --- */
+
+/* The one place a reader writes to us from inside the site. It is a plain
+   bordered card rather than the green invitation card, because the page's
+   green already belongs to the addresses beside it, and a form the reader is
+   filling in should not compete with them. Every address on the page works
+   without this island, so nothing here is load-bearing. */
+.contact-form {
+  max-width: var(--measure);
+  margin: 20px 0 30px;
+  border: 1px solid var(--line);
+  background: var(--canvas-soft);
+  padding: 20px 22px;
+}
+
+.contact-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 18px;
+}
+
+.contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0 0 14px;
+}
+
+.contact-form__grid .contact-form__field {
+  margin: 0;
+}
+
+.contact-form__label {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: var(--w-strong);
+}
+
+.contact-form__input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--canvas);
+  padding: 10px 11px;
+  color: var(--ink);
+  font: inherit;
+}
+
+/* Chrome treats a click into a text field as keyboard focus, so the site ring
+   shows either way. The border moving to green is all this needs on top of it;
+   an inset fill as well read as two rings around one control. */
+.contact-form__input:focus {
+  border-color: var(--green);
+}
+
+/* Error red on the border, never as a fill, and only on the field that is
+   actually wrong. */
+.contact-form__input[aria-invalid='true'] {
+  border-color: var(--error);
+}
+
+.contact-form__select {
+  padding-right: 6px;
+}
+
+.contact-form__textarea {
+  min-height: 150px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.contact-form__hint {
+  margin: 0;
+  color: var(--faint);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+/* Off-screen rather than display:none: a bot that skips hidden inputs is not
+   the one this catches, and a bot that fills every field still reaches it. */
+.contact-form__trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.contact-form__error {
+  margin: 0 0 14px;
+  color: var(--error);
+  font-size: 0.92rem;
+}
+
+.contact-form__submit,
+.contact-form__again {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  border: 1px solid var(--green-deep);
+  border-radius: 3px;
+  background: var(--canvas);
+  padding: 10px 20px;
+  color: var(--green-deep);
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+
+.contact-form__submit:hover:not(:disabled),
+.contact-form__again:hover {
+  border-color: var(--green);
+  background: var(--green-soft);
+}
+
+.contact-form__submit:disabled {
+  border-color: var(--line-soft);
+  color: var(--faint);
+  font-weight: 400;
+  cursor: default;
+}
+
+.contact-form__note {
+  margin: 12px 0 0;
+  color: var(--faint);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+/* The page's one authored moment: the panel that replaces the form arrives
+   rather than appearing, so a reader who was mid-scroll sees the swap. */
+.contact-form--sent {
+  border-color: var(--green);
+  background: var(--green-ground);
+  animation: contact-sent 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes contact-sent {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.contact-form__sent-title {
+  margin: 0 0 6px;
+  color: var(--green-deep);
+  font-size: 1.05rem;
+  font-weight: var(--w-strong);
+}
+
+.contact-form__sent-body {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-form--sent {
+    animation: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .contact-form {
+    padding: 16px 15px;
+  }
+
+  .contact-form__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .contact-form__grid .contact-form__field {
+    margin: 0 0 14px;
+  }
+
+  .contact-form__submit,
+  .contact-form__again {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* The সারকথা block at the top of every guide. Bounded on all four sides like the

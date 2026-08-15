@@ -31,6 +31,11 @@ const pages = JSON.parse(fs.readFileSync(path.join(root, 'app', 'generated', 'se
 const pageByLocaleSlug = new Map(pages.map((page) => [`${page.locale}:${page.slug}`, page]))
 const pageByRoute = new Map(pages.map((page) => [page.route, page]))
 const writtenPages = pages.filter((page) => !page.stub)
+const UTILITY_SLUGS = new Set(['contribute', 'contact'])
+
+function isUtilityPage(page) {
+  return UTILITY_SLUGS.has(page.slug)
+}
 
 function htmlFileFor(route) {
   return path.join(outDir, route === '/' ? 'index.html' : `${route.slice(1)}.html`)
@@ -254,7 +259,12 @@ function schemaFor(page, wordCount, visibleCollectionItems = []) {
     page.slug === 'directory' ||
     page.slug.startsWith('directory/') ||
     children.length > 0
-  const isArticle = !isHome && !isAbout && !isCollection && page.slug !== 'contribute'
+  // /contribute and /contact invite an action rather than teaching something,
+  // so neither is an Article: they carry no publication date a reader should
+  // weigh, and marking them up as one would put a stale "last updated" beside
+  // an address that has not changed.
+  const isUtility = isUtilityPage(page)
+  const isArticle = !isHome && !isAbout && !isCollection && !isUtility
   const pageType = isAbout ? 'AboutPage' : isCollection ? 'CollectionPage' : 'WebPage'
   const pageName = isHome ? `${isEn ? SITE_NAME : SITE_NAME_BN} – ${page.fullTitle}` : page.fullTitle
 
@@ -307,8 +317,8 @@ function schemaFor(page, wordCount, visibleCollectionItems = []) {
     copyrightHolder: { '@id': organizationNode['@id'] }
   }
 
-  if (page.published) pageNode.datePublished = page.published
-  if (page.date) pageNode.dateModified = page.date
+  if (!isUtility && page.published) pageNode.datePublished = page.published
+  if (!isUtility && page.date) pageNode.dateModified = page.date
   const collectionItems = visibleCollectionItems.length > 0
     ? visibleCollectionItems
     : children.map((child, index) => ({
@@ -413,7 +423,11 @@ for (const page of pages) {
     page.slug === 'directory' ||
     page.slug.startsWith('directory/') ||
     pageChildren.length > 0
-  const ogType = page.stub || page.slug === '' || isCollectionPage || page.slug === 'about' || page.slug === 'contribute'
+  const ogType = page.stub ||
+    page.slug === '' ||
+    isCollectionPage ||
+    page.slug === 'about' ||
+    isUtilityPage(page)
     ? 'website'
     : 'article'
   const robots = page.stub

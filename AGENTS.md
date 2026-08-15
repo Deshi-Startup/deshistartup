@@ -20,7 +20,7 @@ real guide without `<StubNotice />`; run `npm run backlog:status` for current co
 
 - Next.js + Nextra render mostly static MDX content.
 - Next.js exports the site to `out/`; Cloudflare Static Assets serve it without invoking the Worker.
-- A small native Worker handles only contribution APIs and legacy review-link redirects.
+- A small native Worker handles the contact endpoint, contribution APIs and legacy review-link redirects.
 - Pagefind supplies client-side static search.
 - Milkdown Crepe powers the inline editor.
 - `jose` verifies Google ID tokens on every contribution request.
@@ -31,7 +31,7 @@ Key paths:
 - `app/(contents)/en/` – matching English pages under `/en`.
 - `app/components/LocalizedLayout.tsx` – shell, navigation, page chrome and editor entry.
 - `app/components/ContributionEditor.tsx` – browser editor and draft recovery.
-- `worker/api/` and `worker/lib/` – contribution, authentication, GitHub and media-review logic.
+- `worker/api/` and `worker/lib/` – contact, contribution, authentication, GitHub and media-review logic.
 - `worker/index.ts` – explicit API router and static-asset fallback.
 - `data/directory/` – structured directory entries.
 - `data/glossary.json` – the one glossary source, read by the glossary page and every `<Term>`.
@@ -189,6 +189,7 @@ npm run lint:media          # media references and limits
 npm run test:contribute     # editor/contribution helpers
 npm run test:contributors   # contributor snapshot and leaderboard helpers
 npm run test:media          # media pipeline helpers
+npm run test:contact        # contact endpoint admission, limits and mail composition
 npm run build               # production Next build + Pagefind + SEO audit
 npm run build:worker        # production static export + Pagefind + SEO audit
 npm run check:worker        # typecheck, dry-run package, and enforce growth budgets
