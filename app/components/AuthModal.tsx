@@ -335,12 +335,12 @@ export default function AuthModal({
         )
       : error === 'script_load_failed'
         ? t(
-            'Google সাইন-ইন লোড হয়নি। ইন্টারনেট সংযোগ দেখে আবার চেষ্টা করুন।',
+            'Google সাইন-ইন লোড হয়নি। ইন্টারনেট কানেকশন চেক করে আবার চেষ্টা করুন।',
             'Google sign-in did not load. Check your connection and try again.'
           )
         : error
           ? t(
-              'Google সাইন-ইন শেষ করা যায়নি। আবার চেষ্টা করুন।',
+              'Google সাইন-ইন সম্পূর্ণ হয়নি। আবার চেষ্টা করুন।',
               'Google sign-in could not be completed. Please try again.'
             )
           : null
@@ -381,7 +381,7 @@ export default function AuthModal({
             <div className="google-btn-wrap" ref={containerRef} />
             {loading && (
               <p className="modal-status" role="status">
-                {t('সাইন-ইন প্রস্তুত হচ্ছে…', 'Preparing sign-in…')}
+                {t('লোড হচ্ছে...', 'Preparing sign-in…')}
               </p>
             )}
           </div>
@@ -410,7 +410,7 @@ export default function AuthModal({
 
         <p className="modal-note">
           {t(
-            'জমা দিলে রিভিউয়ের জন্য একটি পুল রিকোয়েস্ট তৈরি হবে। অনুমোদনের আগে সাইটে কিছু বদলাবে না।',
+            'সাবমিট করলে রিভিউয়ের জন্য একটি পুল রিকোয়েস্ট তৈরি হবে। অ্যাপ্রুভ হওয়ার আগে সাইটে কিছু বদলাবে না।',
             'Submitting creates a pull request for review. Nothing changes on the site until it is approved.'
           )}
         </p>

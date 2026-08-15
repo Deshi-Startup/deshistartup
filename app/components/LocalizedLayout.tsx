@@ -217,7 +217,7 @@ function Sidebar({ isEn, pathname, headings, onNavigate, onClose, closeButtonRef
         <p className="sidebar-note">
           {isEn
             ? 'Free & open source. Every guide can be improved by anyone – including you.'
-            : 'সম্পূর্ণ ফ্রি ও ওপেন সোর্স। প্রতিটি গাইড যে কেউ সংশোধন করতে পারেন, আপনিও।'}
+            : 'সম্পূর্ণ ফ্রি ও ওপেন সোর্স। যে কেউ এডিট বা আপডেট করতে পারেন, আপনিও।'}
         </p>
       </nav>
     </aside>
@@ -755,11 +755,11 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
                       : 'আপনার ড্রাফট আপডেট হয়েছে।'
                     : isEn
                       ? 'Your contribution has been submitted.'
-                      : 'আপনার অবদান জমা পড়েছে।'}
+                      : 'আপনার এডিট জমা হয়েছে।'}
                 </strong>{' '}
                 {isEn
                   ? 'A reviewer will take a look, and once it is approved the change appears on this page.'
-                  : 'একজন রিভিউয়ার এটা দেখবেন। অনুমোদন হয়ে গেলে পরিবর্তনটা এই পাতায় যুক্ত হবে।'}
+                  : 'রিভিউয়ার অ্যাপ্রুভ করলে চেঞ্জগুলো এই পাতায় লাইভ হবে।'}
               </p>
               <div className="edit-flash__actions">
                 <a className="edit-btn" href={flash.prUrl} target="_blank" rel="noopener noreferrer">
