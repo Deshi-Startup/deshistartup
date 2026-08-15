@@ -27,6 +27,7 @@
     "media:posters": "node scripts/fetch-youtube-posters.mjs",
     "media:prune": "node scripts/media-prune.mjs",
     "lint:citations": "node scripts/citation-lint.mjs",
+    "lint:glossary": "node scripts/glossary-lint.mjs",
     "lint:media": "node scripts/media-lint.mjs",
     "test:citations": "node --experimental-strip-types --test app/lib/rehype-footnotes.test.mjs app/lib/contribution-markdown.test.mjs scripts/citation-lint.test.mjs",
     "test:media": "node --test scripts/media-lib.test.mjs",
@@ -41,7 +42,7 @@
     "seo:indexnow": "node scripts/submit-indexnow.mjs",
     "seo:indexnow:dry": "node scripts/submit-indexnow.mjs --dry-run",
     "predev": "node scripts/build-manifest.mjs",
-    "prebuild": "node scripts/route-lint.mjs && node scripts/media-lint.mjs && node scripts/citation-lint.mjs && node scripts/build-manifest.mjs",
+    "prebuild": "node scripts/route-lint.mjs && node scripts/media-lint.mjs && node scripts/citation-lint.mjs && node scripts/build-manifest.mjs && node scripts/glossary-lint.mjs",
     "postbuild": "node scripts/postbuild-seo.mjs && node scripts/build-pagefind.mjs && node scripts/seo-audit.mjs"
   },
   "dependencies": {

@@ -332,7 +332,15 @@ function lintFile(file) {
 
 // Bangla UI copy that lives outside app/(contents)/ — the homepage strings escaped every
 // sweep until reader feedback caught billboard-style Bangla there.
-const EXTRA_BN_SOURCES = ['app/components/WikiLanding.tsx', 'app/nav.config.ts']
+const EXTRA_BN_SOURCES = [
+  'app/components/WikiLanding.tsx',
+  'app/nav.config.ts',
+  // The glossary moved out of prose and into structured data, and its Bangla
+  // definitions are the same reader-facing copy they were as MDX bullets.
+  'data/glossary.json',
+  'app/components/Glossary.tsx',
+  'app/components/GlossaryControls.tsx',
+]
 
 const targets = fileArgs.length
   ? fileArgs

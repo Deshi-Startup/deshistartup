@@ -495,6 +495,20 @@ caption between soft hairlines, and a definition list on a 112px label column th
 104px below 860px and to stacked blocks below 520px. It earns its weight by being singular. Nothing
 else in the system gets a filled header.
 
+### Glossary
+
+The site's one lookup surface, and the only page whose spine is alphabetical rather than
+editorial. A reader arrives having just heard a single English word, so the page answers that
+first: a filter field, theme pills, an A–Z strip that doubles as the table of contents, and then
+every term on a dictionary's two-column grid, headword rail on the left and meaning on the right.
+The rail is what the eye runs down; that is why this is not a card list. The headword is the
+English term in both editions with the Bangla gloss beneath, because the English word is what was
+heard. Every term is server-rendered and the controls only hide rows, so browser find, Pagefind
+and a reader without JavaScript all get the whole glossary. The page carries no `h2`, on purpose:
+the letter strip is a better contents list than a rail of single letters. Its one authored moment
+is the green ground that fades off an entry arrived at by `#id`, which answers "where did I land"
+once and then leaves.
+
 ### Directory
 
 Utilitarian by design. A bordered cool-white filter panel on a data-attribute-keyed grid, a pill

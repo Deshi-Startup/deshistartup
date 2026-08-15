@@ -5065,6 +5065,451 @@ html[lang='en'] .glossary-copy--en {
   }
 }
 
+/* ---------------------------------------------- glossary page (A–Z lookup) */
+
+/* The glossary is a lookup surface before it is a reading surface: a founder
+   arrives having just heard one English word and wants its meaning in seconds.
+   So the spine is alphabetical rather than thematic, the headword is the English
+   term in both editions, and the theme is a filter instead of the structure.
+
+   Every entry is server-rendered here, and the controls only hide rows, so the
+   whole glossary is present for browser find, for Pagefind and for a reader
+   whose JavaScript never arrives. There are no h2s on the page on purpose: the
+   letter strip is the table of contents, and a rail listing A, B, C would be a
+   worse one. */
+
+.glossary {
+  max-width: var(--measure);
+  margin-top: 20px;
+}
+
+/* Controls: the same cool-white utility panel as the directory filters, because
+   they are the same kind of object and should not read as two systems. */
+.glossary-controls {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+  border: 1px solid var(--line);
+  background: var(--canvas-soft);
+  padding: 12px;
+}
+
+.glossary-controls__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.glossary-search {
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: var(--w-strong);
+}
+
+.glossary-search input {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  padding: 6px 10px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.glossary-search input::placeholder {
+  color: var(--faint);
+  opacity: 1;
+}
+
+.glossary-search input:focus {
+  border-color: var(--green);
+  box-shadow: inset 0 0 0 1px var(--green);
+}
+
+.glossary-count {
+  margin: 0 0 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--canvas);
+  padding: 4px 12px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: var(--w-strong);
+  white-space: nowrap;
+}
+
+/* Pills, because these are toggles. That is the only thing a pill means here. */
+.glossary-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.glossary-groups button {
+  min-height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--canvas);
+  padding: 4px 14px;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: var(--w-strong);
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease;
+}
+
+.glossary-groups button:hover {
+  border-color: var(--green);
+  background: var(--green-ground);
+  color: var(--green-deep);
+}
+
+.glossary-groups button[aria-pressed='true'] {
+  border-color: var(--green-deep);
+  background: var(--green-soft);
+  color: var(--green-deep);
+}
+
+/* The recovery is its own line rather than a control stranded mid-sentence at
+   whatever width the message happens to wrap. */
+.glossary-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 8px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.glossary-empty p {
+  margin: 0;
+}
+
+.glossary-reset {
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  padding: 3px 10px;
+  color: var(--green-deep);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+
+.glossary-reset:hover {
+  border-color: var(--green-deep);
+  background: var(--green-ground);
+}
+
+/* The letter strip is this page's table of contents. auto-fit keeps every cell
+   the same size at every width, so it wraps into even rows on a phone instead of
+   becoming a sideways scroll the reader has to discover. */
+.glossary-alphabet {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+  gap: 3px;
+  margin-bottom: 4px;
+}
+
+.glossary-alphabet a,
+.glossary-alphabet span {
+  display: grid;
+  place-items: center;
+  min-height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--canvas);
+  color: var(--blue);
+  font-size: 0.9rem;
+  font-weight: var(--w-strong);
+  text-decoration: none;
+}
+
+.glossary-alphabet a:visited {
+  color: var(--blue);
+}
+
+.glossary-alphabet a:hover {
+  border-color: var(--green);
+  background: var(--green-soft);
+  color: var(--green-deep);
+  text-decoration: none;
+}
+
+.glossary-alphabet span,
+.glossary-alphabet a.is-empty {
+  border-color: var(--line-soft);
+  color: var(--faint);
+  font-weight: 400;
+  pointer-events: none;
+}
+
+/* Entries, cross-references and the starter row all sit on one two-column grid:
+   headword rail on the left, meaning on the right. The rail is what the eye runs
+   down when looking a word up, and it is the reason this is not a card list. */
+.glossary-starters,
+.glossary-entry,
+.glossary-xref {
+  display: grid;
+  grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+  gap: 8px 32px;
+  margin-inline: -12px;
+  border-bottom: 1px solid var(--line-soft);
+  padding: 16px 12px;
+}
+
+.glossary-starters {
+  border-bottom-color: var(--line);
+}
+
+.glossary-starters__title {
+  margin: 0;
+  color: var(--green-deep);
+  font-size: 0.82rem;
+  font-weight: var(--w-strong);
+}
+
+.glossary-starters__list,
+.glossary-starters__note {
+  margin: 0;
+  grid-column: 2;
+}
+
+.glossary-starters__list {
+  font-weight: var(--w-strong);
+  line-height: 1.9;
+}
+
+.glossary-starters__note {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.glossary-letter {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 36px 0 0;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4px;
+}
+
+.glossary-letter__mark {
+  color: var(--green-deep);
+  font-size: 1.55rem;
+  font-weight: var(--w-heading);
+  line-height: 1.25;
+}
+
+.glossary-letter__back {
+  font-size: 0.82rem;
+  font-weight: var(--w-strong);
+}
+
+.glossary-list {
+  margin: 0;
+}
+
+.glossary-entry__term {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.glossary-entry__head {
+  color: var(--ink);
+  font-size: 1.08rem;
+  font-weight: var(--w-heading);
+  line-height: 1.25;
+}
+
+.glossary-entry__expansion,
+.glossary-entry__gloss {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.glossary-entry__group {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: var(--w-strong);
+}
+
+.glossary-entry__body {
+  margin: 0;
+}
+
+.glossary-entry__def {
+  margin: 0;
+}
+
+.glossary-entry__note {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Labelled the way a printed reference labels a note: a word, not a coloured
+   slab down one edge. Notice Ink marks the caution without spending a fill on
+   sixty entries. */
+.glossary-entry__label {
+  margin-inline-end: 6px;
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: var(--w-strong);
+}
+
+.glossary-entry__note--warn .glossary-entry__label {
+  color: var(--warn-ink);
+}
+
+.glossary-entry__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin: 10px 0 0;
+  font-size: 0.9rem;
+}
+
+.glossary-entry__guide {
+  font-weight: var(--w-strong);
+}
+
+.glossary-entry__guide::after {
+  content: '→';
+  display: inline-block;
+  margin-inline-start: 5px;
+  transition: transform 120ms ease;
+}
+
+.glossary-entry__guide:hover::after {
+  transform: translateX(3px);
+}
+
+.glossary-entry__see {
+  color: var(--muted);
+}
+
+.glossary-entry__source {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* A cross-reference is a signpost, not an entry: it recedes so the alphabetical
+   rail still reads as a list of real terms. */
+.glossary-xref .glossary-entry__head {
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.glossary-xref__to {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* The one authored moment on the page. Arriving from a term popover or a shared
+   link, the reader has to find where they landed among eighty-eight entries; the
+   ground answers that once and then gets out of the way. */
+.glossary-entry:target {
+  animation: glossary-land 1800ms ease-out;
+}
+
+@keyframes glossary-land {
+  0%,
+  35% {
+    background-color: var(--green-soft);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* The controls hide rows by setting `hidden`, and these are grids, so the
+   attribute's own `display: none` would otherwise lose. */
+.glossary-starters[hidden],
+.glossary-entry[hidden],
+.glossary-xref[hidden],
+.glossary-letter-block[hidden] {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .glossary-starters,
+  .glossary-entry,
+  .glossary-xref {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .glossary-starters__list,
+  .glossary-starters__note {
+    grid-column: 1;
+  }
+
+  /* The rail collapses, so the headword takes its own line and everything that
+     qualified it in the rail runs together beneath as one muted meta line. Left
+     as a wrapping flex row, the expansion, the Bangla gloss and the theme ran
+     into each other with nothing to say where one ended. */
+  .glossary-entry__term {
+    display: block;
+  }
+
+  .glossary-entry__head {
+    display: block;
+  }
+
+  .glossary-entry__expansion,
+  .glossary-entry__gloss,
+  .glossary-entry__group {
+    display: inline;
+    margin-top: 0;
+    font-size: 0.85rem;
+    font-weight: 400;
+  }
+
+  .glossary-entry__expansion + .glossary-entry__gloss::before,
+  .glossary-entry__expansion + .glossary-entry__group::before,
+  .glossary-entry__gloss + .glossary-entry__group::before {
+    content: ' · ';
+  }
+
+  .glossary-controls__row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .glossary-count {
+    justify-self: start;
+    margin-bottom: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glossary-entry:target {
+    animation: none;
+    background-color: var(--green-ground);
+  }
+
+  .glossary-groups button,
+  .glossary-entry__guide::after {
+    transition: none;
+  }
+}
+
 /* Enhanced Print Optimization */
 @media print {
   /* Hide interactive/chrome elements */
@@ -5082,8 +5527,20 @@ html[lang='en'] .glossary-copy--en {
   .recent-list,
   .nav-toggle,
   .sidebar-close,
-  .glossary-popover {
+  .glossary-popover,
+  .glossary-controls,
+  .glossary-alphabet,
+  .glossary-letter__back {
     display: none !important;
+  }
+
+  /* A printed glossary is read as a list, and a term split across a page break
+     is the one thing that makes it unusable at a counter. */
+  .glossary-entry,
+  .glossary-xref,
+  .glossary-starters {
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
 
   body {
@@ -5178,6 +5635,7 @@ html[lang='en'] .glossary-copy--en {
      list because it is the one control every reader touches first, and it
      should not become a zoom trap again if the body size is ever revisited. */
   .search input,
+  .glossary-search input,
   .directory-controls input,
   .directory-controls select,
   .edit-media-item :is(input, textarea),
@@ -5193,6 +5651,21 @@ html[lang='en'] .glossary-copy--en {
   .directory-controls select,
   .directory-controls button {
     min-height: 44px;
+  }
+
+  /* Same reasoning on the glossary: the filter field, the theme pills and the
+     letter strip are the whole interface of that page. The letters run 40px
+     rather than 44px because twenty-six cells at 44 push the first term most of
+     a screen down on a 360px phone. */
+  .glossary-search input,
+  .glossary-groups button {
+    min-height: 44px;
+  }
+
+  .glossary-alphabet a,
+  .glossary-alphabet span {
+    min-height: 40px;
+    font-size: 1rem;
   }
 
   /* The citation marker is the smallest target on a source-backed page and the

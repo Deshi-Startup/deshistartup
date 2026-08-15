@@ -34,6 +34,7 @@ Key paths:
 - `worker/api/` and `worker/lib/` – contribution, authentication, GitHub and media-review logic.
 - `worker/index.ts` – explicit API router and static-asset fallback.
 - `data/directory/` – structured directory entries.
+- `data/glossary.json` – the one glossary source, read by the glossary page and every `<Term>`.
 - `plan/content-backlog.csv` – canonical planned-topic and route registry.
 - `app/nav.config.ts` – curated top-level navigation.
 - `app/nav-groups.json` – section-hub groups.
@@ -94,6 +95,13 @@ Page types with separate rules:
 - Case studies use [`plan/case-study-format.md`](./plan/case-study-format.md).
 - Journeys order existing guides and must not link missing routes.
 - Directory pages render `data/directory/*.json`; do not hand-maintain prose tables.
+- The glossary at `/start-here/glossary` renders `data/glossary.json` through `<Glossary />`;
+  add or edit a term there, never as prose in the page. One entry feeds the A–Z page, the inline
+  `<Term>` popover and the `#id` a guide deep-links to, so both locales stay in step by
+  construction. Terms are filed alphabetically under the English headword in both editions,
+  because that is the word a founder hears and looks up. `guide` is the locale-neutral route of the
+  written guide that owns the concept: concepts graduate from an entry to a full guide, and the
+  glossary never grows a `/glossary/{term}` tree of its own.
 - Templates and scripts put the copy-ready material first.
 - A stub contains `<StubNotice />` and starting sources, not guide-shaped filler.
 
@@ -174,6 +182,7 @@ npm run contributors:refresh # re-read merged PRs into app/generated/contributor
 npm run backlog:status      # write the local planning status report
 npm run lint:bangla         # Bangla/content mechanical checks
 npm run lint:citations      # inline citation definitions, parity and IDs
+npm run lint:glossary       # glossary schema, locale parity, guide links and term-tag ids
 npm run lint:routes         # URL and locale-tree checks
 npm run lint:terms          # tag first mention of each glossary term with <Term>; rewrites content files
 npm run lint:media          # media references and limits

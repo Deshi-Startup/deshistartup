@@ -1,12 +1,6 @@
 import React, { useId } from 'react'
 import glossaryData from '../../data/glossary.json'
-
-interface GlossaryEntry {
-  bn: string
-  en: string
-  sourceUrl?: string
-  verified?: string
-}
+import type { GlossaryEntry } from './Glossary'
 
 interface TermProps {
   name?: string
@@ -15,7 +9,7 @@ interface TermProps {
 }
 
 type GlossaryMap = Record<string, GlossaryEntry>
-const glossary = glossaryData as GlossaryMap
+const glossary = glossaryData as unknown as GlossaryMap
 
 const bengaliDigits = (value: string) =>
   value.replace(/\d/g, (digit) => '০১২৩৪৫৬৭৮৯'[Number(digit)])
@@ -25,8 +19,13 @@ export default function Term({ name, def, children }: TermProps) {
   const popoverId = `term-${reactId.replace(/[^a-zA-Z0-9_-]/g, '')}`
   const anchorName = `--${popoverId}`
   const entry = name ? glossary[name] : undefined
-  const definitionBn = def || entry?.bn
-  const definitionEn = def || entry?.en
+  const definitionBn = def || entry?.def?.bn
+  const definitionEn = def || entry?.def?.en
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+  // The popover carries the short definition; the glossary entry carries the
+  // worked example, the failure mode and the link to the guide that owns the
+  // concept. One source, two depths, so they can never disagree.
+  const entryPath = entry && name ? `/start-here/glossary#${name}` : null
 
   if (!definitionBn && !definitionEn) {
     return <span className="glossary-term-plain">{children}</span>
@@ -72,16 +71,35 @@ export default function Term({ name, def, children }: TermProps) {
             {definitionEn || definitionBn}
           </span>
         </span>
-        {(entry?.sourceUrl || entry?.verified) && (
+        {(entryPath || entry?.sourceUrl || entry?.verified) && (
           <span className="glossary-popover__meta">
-            {entry.sourceUrl && (
+            {entryPath && (
+              <>
+                <a
+                  className="glossary-copy glossary-copy--bn"
+                  href={`${basePath}${entryPath}`}
+                >
+                  শব্দকোষে পুরো ভুক্তি
+                </a>
+                <a
+                  className="glossary-copy glossary-copy--en"
+                  href={`${basePath}/en${entryPath}`}
+                >
+                  Full glossary entry
+                </a>
+              </>
+            )}
+            {entryPath && (entry?.sourceUrl || entry?.verified) && (
+              <span aria-hidden="true"> · </span>
+            )}
+            {entry?.sourceUrl && (
               <a href={entry.sourceUrl} target="_blank" rel="noreferrer">
                 <span className="glossary-copy glossary-copy--bn">সরকারি উৎস</span>
                 <span className="glossary-copy glossary-copy--en">Official source</span>
               </a>
             )}
-            {entry.sourceUrl && entry.verified && <span aria-hidden="true"> · </span>}
-            {entry.verified && (
+            {entry?.sourceUrl && entry?.verified && <span aria-hidden="true"> · </span>}
+            {entry?.verified && (
               <>
                 <span className="glossary-copy glossary-copy--bn">
                   যাচাই: {bengaliDigits(entry.verified)}

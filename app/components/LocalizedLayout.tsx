@@ -388,6 +388,28 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     exitEdit()
   }
 
+  // Opening a URL that names a #fragment has to actually land on it. The router
+  // settles the scroll position itself while hydrating, so a reader arriving at
+  // a shared footnote, a heading from search, or a glossary term from an inline
+  // definition popover was being dropped at the top of a long page instead. This
+  // only fires when nothing has scrolled yet, so it never fights a restored
+  // position, and it scrolls instantly rather than animating the length of the
+  // document past the reader.
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1))
+    if (!id) return undefined
+    let frame = 0
+    const settle = () => {
+      if (window.scrollY > 0) return
+      document.getElementById(id)?.scrollIntoView({ behavior: 'auto', block: 'start' })
+    }
+    frame = window.requestAnimationFrame(() => {
+      frame = window.requestAnimationFrame(settle)
+    })
+    return () => window.cancelAnimationFrame(frame)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   // Nobody loses an edit to a stray reload, tab close or Android back gesture.
   useEffect(() => {
     if (!isEditing || !isDirty) return undefined

@@ -1,112 +1,1444 @@
 {
+  "accelerator": {
+    "head": "Accelerator",
+    "bn": "অ্যাক্সিলারেটর",
+    "group": "funding",
+    "def": {
+      "bn": "এমন একটি প্রোগ্রাম, যা চালু থাকা একটি টিমকে নির্দিষ্ট কয়েক মাসে আরও দ্রুত এগোতে সাহায্য করে।",
+      "en": "A programme that helps an operating team move faster over a fixed few months."
+    },
+    "watchOut": {
+      "bn": "কেউ টাকা দেয়, কেউ বিনিময়ে ইকুইটি নেয়, আবার কেউ শুধু ট্রেনিং দেয়। আবেদন করার আগে শর্তগুলো মন দিয়ে পড়া উচিত।",
+      "en": "Some provide money, some take equity in return, some offer training only. Read the terms carefully before applying."
+    },
+    "see": ["incubator", "demo-day", "equity"]
+  },
+  "accounts-receivable": {
+    "head": "Accounts receivable",
+    "bn": "অ্যাকাউন্টস রিসিভেবল",
+    "group": "money",
+    "def": {
+      "bn": "বিক্রির মাধ্যমে আয় করা যে টাকা এখনো আপনার হাতে আসেনি।",
+      "en": "Money you have earned by selling but have not collected yet."
+    },
+    "example": {
+      "bn": "বিটুবিতে ৩০ থেকে ৬০ দিনের বাকি থাকা স্বাভাবিক।",
+      "en": "In B2B, 30 to 60 days of credit is normal."
+    },
+    "watchOut": {
+      "bn": "এ কারণেই আপনার হিসাবের খাতায় থাকা লাভের সাথে ব্যাংকের ব্যালেন্স মেলে না।",
+      "en": "This is why the profit in your books does not match the balance in your bank."
+    },
+    "guide": "/metrics/cashflow-vs-profit",
+    "see": ["cash-flow", "working-capital", "b2b-b2c"]
+  },
+  "angel-investor": {
+    "head": "Angel investor",
+    "bn": "অ্যাঞ্জেল ইনভেস্টর",
+    "group": "funding",
+    "def": {
+      "bn": "একেবারে শুরুর ধাপে নিজের জমানো ছোট অঙ্কের টাকা ইনভেস্ট করেন এমন একজন ব্যক্তি।",
+      "en": "An individual investing small amounts of their own money at the earliest stage."
+    },
+    "example": {
+      "bn": "চেকের পাশাপাশি এরা অনেক সময় ভালো পরামর্শ আর দরকারি যোগাযোগও নিয়ে আসেন। এখানকার অনেক অ্যাঞ্জেল ইনভেস্টর নিজেই একজন সফল ফাউন্ডার।",
+      "en": "They often bring advice and useful introductions along with the cheque. Many angels here are successful founders themselves."
+    },
+    "guide": "/funding",
+    "see": ["vc", "funding-rounds"]
+  },
+  "aov": {
+    "head": "AOV",
+    "bn": "এওভি",
+    "expansion": "average order value",
+    "group": "commerce",
+    "def": {
+      "bn": "প্রতিটি অর্ডারের গড় টাকা।",
+      "en": "The average taka value per order."
+    },
+    "example": {
+      "bn": "৪০০টি অর্ডারে মোট ২ লাখ টাকা বিক্রি মানে এওভি ৫০০ টাকা।",
+      "en": "2 lakh taka of sales across 400 orders is an AOV of 500 taka."
+    },
+    "watchOut": {
+      "bn": "এওভি বাড়াতে পারলে একই কাস্টমারের কাছ থেকে আপনি বেশি আয় করতে পারবেন।",
+      "en": "Raise AOV and you earn more from the same customer."
+    },
+    "guide": "/metrics/unit-economics",
+    "see": ["gmv", "repeat-rate", "unit-economics"]
+  },
   "authorized-capital": {
-    "bn": "কোম্পানির MoA-তে লেখা সর্বোচ্চ শেয়ার মূলধন, যার মধ্যে থেকে কোম্পানি শেয়ার ইস্যু করতে পারে।",
-    "en": "The maximum share capital stated in a company's Memorandum of Association, within which the company may issue shares.",
+    "head": "Authorized capital",
+    "bn": "অথরাইজড ক্যাপিটাল",
+    "aka": ["authorised capital", "অনুমোদিত মূলধন"],
+    "group": "equity",
+    "def": {
+      "bn": "কোম্পানির MoA-তে লেখা সর্বোচ্চ শেয়ার মূলধন, যার মধ্যে থেকে কোম্পানি শেয়ার ইস্যু করতে পারে।",
+      "en": "The maximum share capital stated in a company's Memorandum of Association, within which the company may issue shares."
+    },
+    "watchOut": {
+      "bn": "অথরাইজড আর পেইড-আপ ক্যাপিটাল এক নয়, অথচ কাগজপত্রে প্রায়ই এ দুটি গুলিয়ে ফেলা হয়।",
+      "en": "Authorized and paid-up capital are not the same thing, and the two are often confused on the paperwork."
+    },
+    "guide": "/company-types",
+    "see": ["paid-up-capital", "moa-aoa", "share"],
     "sourceUrl": "https://bdlaws.minlaw.gov.bd/act-print-788.html",
     "verified": "2026-07-28"
   },
-  "paid-up-capital": {
-    "bn": "ইস্যু করা শেয়ারের বিপরীতে শেয়ারহোল্ডাররা কোম্পানিকে যে অর্থ বাস্তবে পরিশোধ করেছেন।",
-    "en": "The amount shareholders have actually paid the company for shares issued to them.",
-    "sourceUrl": "https://bdlaws.minlaw.gov.bd/act-print-788.html",
-    "verified": "2026-07-28"
+  "b2b-b2c": {
+    "head": "B2B / B2C",
+    "bn": "বিটুবি / বিটুসি",
+    "aka": ["B2C", "business to business", "business to consumer"],
+    "group": "growth",
+    "def": {
+      "bn": "বিজনেসের কাছে বিক্রি করা বনাম সরাসরি ভোক্তার কাছে বিক্রি করা।",
+      "en": "Selling to businesses versus selling straight to consumers."
+    },
+    "example": {
+      "bn": "দোকানে সাবান সাপ্লাই দেওয়া বিটুবি। আর নিজের পেজ থেকে একজন ক্রেতার কাছে বিক্রি করা বিটুসি।",
+      "en": "Supplying soap to shops is B2B; selling to one buyer from your page is B2C."
+    },
+    "watchOut": {
+      "bn": "এই দুইয়ের বিক্রির ধরন আর ক্যাশ সাইকেল সম্পূর্ণ আলাদা।",
+      "en": "The sales style and the cash cycle differ between them."
+    },
+    "see": ["accounts-receivable", "lead"]
   },
-  "form-xii": {
-    "bn": "পরিচালক বা ব্যবস্থাপকের নিয়োগ, পদত্যাগ কিংবা তথ্যের পরিবর্তন RJSC-কে জানানোর ফরম।",
-    "en": "The RJSC form used to report the appointment, resignation, or changed particulars of a director or manager.",
-    "sourceUrl": "https://app.roc.gov.bd/Guidlines/Download/FORM%20XII.htm",
-    "verified": "2026-07-28"
-  },
-  "form-117": {
-    "bn": "শেয়ার হস্তান্তরের লিখিত দলিল। হস্তান্তরকারী, গ্রহীতা ও শেয়ারের বিবরণ এতে থাকে।",
-    "en": "The written instrument used to record a transfer of shares, including details of the transferor, transferee, and shares.",
-    "sourceUrl": "https://app1.roc.gov.bd/Guidlines/Download/FORM-117.htm",
-    "verified": "2026-07-28"
-  },
-  "moa-aoa": {
-    "bn": "কোম্পানির দুটি মূল নথি। MoA-তে উদ্দেশ্য ও কাজের সীমা থাকে। AoA-তে কোম্পানি পরিচালনার নিয়ম থাকে।",
-    "en": "A company's two core constitutional documents: the MoA states its objects and scope, while the AoA sets its internal governance rules.",
-    "sourceUrl": "https://bdlaws.minlaw.gov.bd/act-print-788.html",
-    "verified": "2026-07-28"
-  },
-  "rjsc-name-clearance": {
-    "bn": "প্রস্তাবিত কোম্পানির নাম নেওয়া যাবে কি না, নিবন্ধনের আগে RJSC-এর দেওয়া সেই প্রাথমিক অনুমোদন। এটি কোম্পানি নিবন্ধনের সনদ নয়।",
-    "en": "RJSC's preliminary approval that a proposed company name is available and acceptable. It is not a certificate of incorporation.",
-    "sourceUrl": "https://app1.roc.gov.bd/Guidlines/faq.html",
-    "verified": "2026-07-28"
-  },
-  "e-tin": {
-    "bn": "NBR ব্যক্তি বা প্রতিষ্ঠানকে যে ১২ সংখ্যার ইলেকট্রনিক করদাতা শনাক্তকরণ নম্বর দেয়।",
-    "en": "The 12-digit electronic Taxpayer Identification Number issued by NBR to an individual or entity.",
-    "sourceUrl": "https://secure.incometax.gov.bd/TINHome",
-    "verified": "2026-07-28"
-  },
-  "vat-bin": {
-    "bn": "ভ্যাট নিবন্ধন বা টার্নওভার করের তালিকাভুক্তির পর পাওয়া ৯ সংখ্যার ব্যবসা শনাক্তকরণ নম্বর।",
-    "en": "The 9-digit Business Identification Number issued after VAT registration or turnover-tax enlistment.",
-    "sourceUrl": "https://nbr.gov.bd/faq/vat-faq/en",
-    "verified": "2026-07-28"
-  },
-  "trade-license": {
-    "bn": "ব্যবসার ঠিকানা অনুযায়ী সিটি করপোরেশন, পৌরসভা বা ইউনিয়ন পরিষদ থেকে নেওয়া ব্যবসা পরিচালনার অনুমতিপত্র।",
-    "en": "A permit to operate a business, issued by the city corporation, municipality, or union parishad responsible for its address."
-  },
-  "encashment-certificate": {
-    "bn": "বিদেশ থেকে ব্যাংকিং চ্যানেলে আসা বৈদেশিক মুদ্রা টাকায় রূপান্তরের পর ব্যাংকের দেওয়া প্রমাণপত্র।",
-    "en": "A bank-issued certificate showing that foreign currency received through a banking channel was converted into Bangladeshi taka.",
-    "sourceUrl": "https://www.bb.org.bd/feidportal/fdi.php",
-    "verified": "2026-07-28"
-  },
-  "mfs": {
-    "bn": "মোবাইল অ্যাকাউন্টে টাকা রাখা, পাঠানো, নেওয়া ও পেমেন্ট করার সেবা। যেমন বিকাশ, নগদ বা রকেট।",
-    "en": "A service for storing, sending, receiving, and paying money through a mobile account, such as bKash, Nagad, or Rocket.",
-    "sourceUrl": "https://www.bb.org.bd/en/index.php/financialsystems/paysystems",
-    "verified": "2026-07-28"
-  },
-  "cod": {
-    "bn": "পণ্য হাতে পাওয়ার সময় ক্রেতা মূল্য পরিশোধ করেন, নগদে বা বিক্রেতা ও কুরিয়ারের সমর্থিত অন্য কোনো উপায়ে।",
-    "en": "A payment method in which the customer pays when the product is delivered, in cash or another method supported by the seller and courier."
-  },
-  "vesting": {
-    "bn": "নির্ধারিত সময় বা শর্ত পূরণের সঙ্গে সঙ্গে প্রতিষ্ঠাতা বা কর্মীর শেয়ারের অধিকার ধাপে ধাপে পাকা হওয়ার ব্যবস্থা।",
-    "en": "An arrangement under which a founder's or employee's right to equity becomes earned gradually as time or agreed conditions are met."
-  },
-  "cap-table": {
-    "bn": "কোম্পানিতে কার কত শেয়ার ও মালিকানা আছে, তা দেখানো হিসাব। এতে শেয়ারের ধরন, ভেস্টিং ও বিনিয়োগের তথ্যও থাকতে পারে।",
-    "en": "A record of who owns how many shares in a company and their ownership percentages; it may also track share classes, vesting, and investments."
+  "beta": {
+    "head": "Beta",
+    "bn": "বেটা",
+    "group": "product",
+    "def": {
+      "bn": "ছোট একটি দলের ব্যবহারের জন্য ছাড়া ট্রায়াল ভার্সন।",
+      "en": "A trial version released to a small group of customers."
+    },
+    "watchOut": {
+      "bn": "বৃহত্তর বাজারে যাওয়ার আগেই যেন খুঁতগুলো ধরা পড়ে, ঠিক সেজন্যই এটি ছাড়া হয়।",
+      "en": "It is released precisely so the flaws surface before the wider market sees them."
+    },
+    "see": ["mvp", "prototype", "early-adopter"]
   },
   "bida-oss": {
-    "bn": "বাংলাদেশ বিনিয়োগ উন্নয়ন কর্তৃপক্ষের অনলাইন পোর্টাল, যেখানে বিভিন্ন সরকারি অনুমোদন ও সেবার আবেদন করা যায়।",
-    "en": "Bangladesh Investment Development Authority's online portal for applying for a range of government approvals and services.",
-    "sourceUrl": "https://ossbida.gov.bd",
+    "head": "BIDA OSS",
+    "bn": "বিডা ওএসএস",
+    "expansion": "BIDA One Stop Service",
+    "group": "paperwork",
+    "def": {
+      "bn": "বাংলাদেশ বিনিয়োগ উন্নয়ন কর্তৃপক্ষের অনলাইন পোর্টাল, যেখানে বিভিন্ন সরকারি অনুমোদন ও সেবার আবেদন করা যায়।",
+      "en": "Bangladesh Investment Development Authority's online portal for applying for a range of government approvals and services."
+    },
+    "sourceUrl": "https://bidaquickserv.org/",
     "verified": "2026-07-28"
   },
   "board-resolution": {
-    "bn": "পরিচালনা পর্ষদের সভায় নেওয়া আনুষ্ঠানিক সিদ্ধান্তের লিখিত নথি। যেমন ব্যাংক হিসাব খোলা বা প্রতিনিধি নিয়োগ।",
-    "en": "The written record of a formal decision made by a company's board, such as opening a bank account or appointing a representative."
-  },
-  "withholding-tax": {
-    "bn": "বেতন, ভাড়া, সেবামূল্য বা অন্য কোনো প্রযোজ্য বিল দেওয়ার সময় আইন অনুযায়ী কর কেটে সরকারি কোষাগারে জমা দেওয়া।",
-    "en": "Tax deducted under the law when paying salary, rent, service fees, or another applicable bill, then deposited with the government.",
-    "sourceUrl": "https://nbr.gov.bd/uploads/acts/Income_tax_act_2023.pdf",
+    "head": "Board resolution",
+    "bn": "বোর্ড রেজল্যুশন",
+    "group": "paperwork",
+    "def": {
+      "bn": "পরিচালনা পর্ষদের সভায় নেওয়া সিদ্ধান্তের লিখিত রেকর্ড, যা ব্যাংক ও নিয়ন্ত্রক সংস্থার কাছে কোম্পানির অনুমোদনের প্রমাণ।",
+      "en": "The written record of a decision taken at a board meeting, used as the company's proof of authorisation with banks and regulators."
+    },
+    "see": ["moa-aoa", "compliance"],
+    "sourceUrl": "https://bdlaws.minlaw.gov.bd/act-print-788.html",
     "verified": "2026-07-28"
+  },
+  "bootstrapping": {
+    "head": "Bootstrapping",
+    "bn": "বুটস্ট্র্যাপিং",
+    "group": "money",
+    "def": {
+      "bn": "বাইরের ইনভেস্টর ছাড়াই নিজের জমানো টাকা আর বিজনেসের নিজস্ব আয় দিয়ে বেড়ে ওঠা।",
+      "en": "Growing without outside investors, on your own savings and the business's own income."
+    },
+    "watchOut": {
+      "bn": "গতি একটু ধীর হলেও মালিকানা পুরোপুরি আপনার হাতেই থাকে।",
+      "en": "Slower going, but the ownership stays entirely in your hands."
+    },
+    "see": ["dilution", "equity", "runway"]
+  },
+  "break-even": {
+    "head": "Break-even",
+    "bn": "ব্রেক-ইভেন",
+    "group": "money",
+    "def": {
+      "bn": "বিক্রির সেই পর্যায় যেখানে মাসের সব খরচ পুরোপুরি উঠে আসে। এরপর থেকেই লাভ শুরু হয়।",
+      "en": "The sales level at which the month's costs are fully covered; profit starts beyond it."
+    },
+    "example": {
+      "bn": "নিজের খরচ আর মার্জিন জানা থাকলে এটি সহজেই বের করা যায়।",
+      "en": "Knowing your costs and margin lets you work it out."
+    },
+    "guide": "/start-here/one-page-startup-plan",
+    "see": ["gross-margin", "unit-economics", "burn-rate"]
+  },
+  "burn-rate": {
+    "head": "Burn rate",
+    "bn": "বার্ন রেট",
+    "group": "money",
+    "starter": true,
+    "def": {
+      "bn": "প্রতি মাসে আয়ের চেয়ে আপনি কত বেশি খরচ করছেন।",
+      "en": "How much more you spend than you earn each month."
+    },
+    "example": {
+      "bn": "আয় ১ লাখ আর খরচ ৩ লাখ হলে বার্ন হলো ২ লাখ টাকা।",
+      "en": "Earning 1 lakh and spending 3 lakh means a burn of 2 lakh taka."
+    },
+    "watchOut": {
+      "bn": "বার্ন যত বেশি, হাতের ক্যাশ তত দ্রুত ফুরিয়ে যায়।",
+      "en": "The higher the burn, the faster the cash in hand runs out."
+    },
+    "see": ["runway", "cash-flow", "break-even"]
+  },
+  "cac": {
+    "head": "CAC",
+    "bn": "ক্যাক",
+    "expansion": "customer acquisition cost",
+    "group": "growth",
+    "starter": true,
+    "def": {
+      "bn": "একজন নতুন কাস্টমার জোগাড় করার গড় খরচ।",
+      "en": "The average cost of winning one new customer."
+    },
+    "example": {
+      "bn": "বুস্টিংয়ে ১০,০০০ টাকা খরচ করে ২০টি নতুন অর্ডার পেলে ক্যাক হলো ৫০০ টাকা।",
+      "en": "Spend 10,000 taka on boosting and get 20 new orders: CAC is 500 taka."
+    },
+    "watchOut": {
+      "bn": "একজন কাস্টমারের ভ্যালুর চেয়ে এই খরচ বেড়ে গেলে, যত বেশি বিক্রি করবেন, তত বেশি লোকসান গুনবেন।",
+      "en": "When this cost exceeds what a customer is worth, the more you sell the more you lose."
+    },
+    "guide": "/metrics/cac-ltv-churn",
+    "see": ["ltv", "unit-economics", "organic-vs-paid"]
+  },
+  "cap-table": {
+    "head": "Cap table",
+    "bn": "ক্যাপ টেবিল",
+    "aka": ["capitalisation table"],
+    "group": "equity",
+    "def": {
+      "bn": "কোম্পানিতে কার কত শেয়ার ও মালিকানা আছে, তার পুরো তালিকা। এতে শেয়ারের ধরন, ভেস্টিং ও বিনিয়োগের তথ্যও থাকতে পারে।",
+      "en": "A record of who owns how many shares in a company and their ownership percentages; it may also track share classes, vesting, and investments."
+    },
+    "watchOut": {
+      "bn": "ইনভেস্টররা সবার আগে যে জিনিসগুলো দেখতে চান, এটি তার একটি। শুরু থেকেই এটি পরিচ্ছন্ন রাখলে পরে অনেক ঝামেলা বাঁচে।",
+      "en": "It is among the first things an investor asks to see. Keep it clean from the start and you save trouble later."
+    },
+    "guide": "/funding/cap-table",
+    "see": ["dilution", "share", "vesting"]
+  },
+  "cash-flow": {
+    "head": "Cash flow",
+    "bn": "ক্যাশ ফ্লো",
+    "group": "money",
+    "def": {
+      "bn": "ভেতরে ঢোকা আর বাইরে যাওয়া টাকার স্রোত।",
+      "en": "The stream of money in and out."
+    },
+    "watchOut": {
+      "bn": "বাকিতে বিক্রি করলে কাগজে-কলমে আপনি লাভে থাকতে পারেন, কিন্তু হাত একদম খালি থাকতে পারে, আর ঠিক তখনই একটি বিজনেস মুখ থুবড়ে পড়ে।",
+      "en": "You can be profitable on paper and still have no cash in hand if you sell on credit, and that is exactly when a business chokes."
+    },
+    "guide": "/metrics/cashflow-vs-profit",
+    "see": ["working-capital", "accounts-receivable", "runway"]
+  },
+  "churn": {
+    "head": "Churn",
+    "bn": "চার্ন",
+    "group": "growth",
+    "def": {
+      "bn": "রিটেনশনের উল্টো দিক: যে হারে কাস্টমাররা চলে যায়।",
+      "en": "Retention's flip side: the rate at which customers leave."
+    },
+    "example": {
+      "bn": "একটি ফুটো বালতির কথা ভাবুন: যত খুশি পানি ঢালুন, ফুটো বড় হলে তা কখনো ভরবে না।",
+      "en": "Think of a leaky bucket: pour in as much as you like, and if the hole is big it never fills."
+    },
+    "watchOut": {
+      "bn": "চার্ন ঠিক না করেই অ্যাডে টাকা ঢালা হলো ফুটো বালতিতে পানি ঢালার মতো।",
+      "en": "Spending on ads without fixing churn is pouring water into a leaky bucket."
+    },
+    "guide": "/metrics/cac-ltv-churn",
+    "see": ["retention", "cohort", "ltv"]
+  },
+  "cod": {
+    "head": "COD",
+    "bn": "ক্যাশ অন ডেলিভারি",
+    "expansion": "cash on delivery",
+    "group": "commerce",
+    "def": {
+      "bn": "পণ্য হাতে পাওয়ার সময় ক্রেতা মূল্য পরিশোধ করেন, নগদে বা বিক্রেতা ও কুরিয়ারের সমর্থিত অন্য কোনো উপায়ে।",
+      "en": "A payment method in which the customer pays when the product is delivered, in cash or another method supported by the seller and courier."
+    },
+    "guide": "/operations/cod-risk",
+    "see": ["rto", "cash-flow", "payment-gateway"]
+  },
+  "cogs": {
+    "head": "COGS",
+    "bn": "কগস",
+    "expansion": "cost of goods sold",
+    "aka": ["direct cost", "ডিরেক্ট কস্ট"],
+    "group": "money",
+    "def": {
+      "bn": "কোনো জিনিস বানানো বা জোগাড় করা এবং বিক্রি করার সরাসরি খরচ: কাঁচামাল, প্যাকেজিং, কুরিয়ার।",
+      "en": "What it directly takes to make or source and sell a thing: materials, packaging, courier."
+    },
+    "watchOut": {
+      "bn": "অফিসের ভাড়া আর বেতন এর মধ্যে পড়ে না। বিক্রি থেকে এটি বাদ দিলে পাবেন গ্রস প্রফিট।",
+      "en": "Office rent and salaries do not count here. Subtract this from sales and you get gross profit."
+    },
+    "guide": "/metrics/unit-economics",
+    "see": ["gross-margin", "unit-economics"]
+  },
+  "cohort": {
+    "head": "Cohort",
+    "bn": "কোহোর্ট",
+    "group": "growth",
+    "def": {
+      "bn": "একসঙ্গে শুরু করা কাস্টমারদের একটি দল, যেমন জুনে প্রথম কেনা সবাই।",
+      "en": "A group of customers who started together, say everyone who first bought in June."
+    },
+    "example": {
+      "bn": "মাস ধরে ধরে তাদের ট্র্যাক করলে বোঝা যায় কোন দলটি সবচেয়ে বেশি দিন থাকে।",
+      "en": "Tracking them month by month shows which group stays longest."
+    },
+    "watchOut": {
+      "bn": "গড়ের আড়ালে লুকিয়ে থাকা সত্যিটা কোহোর্টে বেরিয়ে আসে।",
+      "en": "The truth hidden behind an average shows up in the cohort."
+    },
+    "guide": "/metrics/cohort-retention",
+    "see": ["retention", "churn"]
+  },
+  "compliance": {
+    "head": "Compliance",
+    "bn": "কমপ্লায়েন্স",
+    "group": "paperwork",
+    "def": {
+      "bn": "আইনিভাবে ঠিক থাকার নিয়মিত কাজ: রিটার্ন জমা দেওয়া, ভ্যাটের রেকর্ড, লাইসেন্স নবায়ন।",
+      "en": "The recurring work of staying legal: filing returns, VAT records, licence renewals."
+    },
+    "watchOut": {
+      "bn": "এটি একবারের কাজ নয়, বরং বার্ষিক রুটিন। জমিয়ে রাখলে জরিমানাও জমতে থাকে।",
+      "en": "Not a one-time task but an annual routine. Let it pile up and the fines pile up too."
+    },
+    "see": ["trade-license", "vat-bin", "corporate-tax"]
+  },
+  "conversion": {
+    "head": "Conversion",
+    "bn": "কনভার্শন",
+    "group": "growth",
+    "def": {
+      "bn": "আগ্রহী কোনো ব্যক্তির ক্রেতায় পরিণত হওয়া, যাকে একটি হার হিসেবে মাপা হয়।",
+      "en": "An interested person becoming a buyer, measured as a rate."
+    },
+    "example": {
+      "bn": "১০০ জন দাম জিজ্ঞেস করে যদি ৮ জন কেনেন, তবে কনভার্শন রেট ৮ শতাংশ।",
+      "en": "100 people ask the price and 8 buy: that is 8 percent conversion."
+    },
+    "see": ["funnel", "lead"]
   },
   "corporate-tax": {
-    "bn": "কোম্পানির করযোগ্য আয়ের ওপর প্রযোজ্য আয়কর। হার ও হিসাব কোম্পানির ধরন, আয় ও চলতি করবিধির ওপর নির্ভর করে।",
-    "en": "Income tax on a company's taxable income. The rate and calculation depend on the company type, its income, and the current tax rules.",
-    "sourceUrl": "https://nbr.gov.bd/uploads/acts/Income_tax_act_2023.pdf",
+    "head": "Corporate tax",
+    "bn": "করপোরেট কর",
+    "group": "paperwork",
+    "def": {
+      "bn": "কোম্পানির করযোগ্য মুনাফার ওপর ধার্য আয়কর, যার হার কোম্পানির ধরন ও তালিকাভুক্তির অবস্থার ওপর নির্ভর করে।",
+      "en": "Income tax charged on a company's taxable profit, at a rate that depends on the company's type and listing status."
+    },
+    "see": ["withholding-tax", "e-tin", "compliance"],
+    "sourceUrl": "https://nbr.gov.bd/",
     "verified": "2026-07-28"
   },
-  "share-transfer": {
-    "bn": "প্রয়োজনীয় হস্তান্তর দলিল, কোম্পানির অনুমোদন এবং প্রযোজ্য কর ও নিয়ন্ত্রক শর্ত মেনে এক শেয়ারহোল্ডারের শেয়ার অন্যজনের নামে নেওয়ার প্রক্রিয়া। বিদেশি শেয়ারহোল্ডার থাকলে বাংলাদেশ ব্যাংকের আলাদা নিয়মও লাগতে পারে।",
-    "en": "The process of moving shares from one shareholder to another using the required transfer instrument, company approvals, and any applicable tax or regulatory steps. Separate Bangladesh Bank rules may apply when a non-resident is involved.",
+  "data-room": {
+    "head": "Data room",
+    "bn": "ডেটা রুম",
+    "group": "funding",
+    "def": {
+      "bn": "ডিউ ডিলিজেন্সের জন্য কোম্পানির সব জরুরি কাগজপত্র এক জায়গায় জড়ো করা ফোল্ডার।",
+      "en": "A folder gathering all the company's key documents in one place for due diligence."
+    },
+    "watchOut": {
+      "bn": "এটি আগে থেকেই গুছিয়ে রাখলে ইনভেস্টমেন্ট দ্রুত এগোয়।",
+      "en": "Organise it ahead of time and the investment moves faster."
+    },
+    "see": ["due-diligence", "cap-table"]
+  },
+  "demo-day": {
+    "head": "Demo day",
+    "bn": "ডেমো ডে",
+    "group": "funding",
+    "def": {
+      "bn": "প্রোগ্রামের শেষ দিন, যখন প্রতিটি টিম ইনভেস্টরদের সামনে পিচ করে।",
+      "en": "The final day of a programme, when every team pitches in front of investors."
+    },
+    "watchOut": {
+      "bn": "মাসের পর মাসের কাজ এই একটি দিনের ওপরই নির্ভর করে।",
+      "en": "Months of work riding on a single day."
+    },
+    "see": ["accelerator", "pitch-deck"]
+  },
+  "dilution": {
+    "head": "Dilution",
+    "bn": "ডাইল্যুশন",
+    "group": "equity",
+    "starter": true,
+    "def": {
+      "bn": "নতুন শেয়ার ছাড়ার কারণে পুরোনো মালিকদের শতকরা হার কমে যাওয়া।",
+      "en": "Existing owners' percentages shrinking when new shares are issued."
+    },
+    "example": {
+      "bn": "ছোট পিৎজার বড় ভাগের চেয়ে বড় পিৎজার ছোট ভাগ অনেক সময় বেশি কাজের হয়।",
+      "en": "A small slice of a big pizza often beats a big slice of a small one."
+    },
+    "watchOut": {
+      "bn": "আপনার ভাগটা ছোট হয়ে আসে ঠিকই, কিন্তু কোম্পানি বড় হলে ছোট ভাগটার দামও বেশি হতে পারে।",
+      "en": "Your slice gets smaller, but if the company grows a smaller slice can be worth more."
+    },
+    "guide": "/funding/cap-table",
+    "see": ["cap-table", "equity", "esop"]
+  },
+  "due-diligence": {
+    "head": "Due diligence",
+    "bn": "ডিউ ডিলিজেন্স",
+    "group": "funding",
+    "def": {
+      "bn": "টাকা ছাড়ার আগে ইনভেস্টরের সূক্ষ্ম যাচাই-বাছাই: আপনার হিসাবপত্র, কাগজপত্র, আপনার করা প্রতিটি দাবি।",
+      "en": "The investor's close inspection before releasing the money: your books, your paperwork, every claim you have made."
+    },
+    "example": {
+      "bn": "জমি কেনার আগে দলিল যাচাই করার মতো।",
+      "en": "Like verifying the deed before buying land."
+    },
+    "watchOut": {
+      "bn": "রেকর্ডপত্র গোছানো রাখলে এই ধাপটি দ্রুত পার হয়ে যায়।",
+      "en": "Keep your records tidy and this stage passes quickly."
+    },
+    "guide": "/funding/international-investors",
+    "see": ["data-room", "term-sheet", "compliance"]
+  },
+  "e-tin": {
+    "head": "e-TIN",
+    "bn": "ই-টিআইএন",
+    "expansion": "electronic Taxpayer Identification Number",
+    "aka": ["TIN", "টিআইএন"],
+    "group": "paperwork",
+    "def": {
+      "bn": "NBR ব্যক্তি বা প্রতিষ্ঠানকে যে ১২ সংখ্যার ইলেকট্রনিক করদাতা শনাক্তকরণ নম্বর দেয়।",
+      "en": "The 12-digit electronic Taxpayer Identification Number issued by NBR to an individual or entity."
+    },
+    "watchOut": {
+      "bn": "কোম্পানির নিজের জন্য একটি আর মালিকের আলাদা একটি দরকার হয়।",
+      "en": "The company needs its own and the owner needs a separate one."
+    },
+    "guide": "/e-tin-vat-bin",
+    "see": ["nbr", "vat-bin", "corporate-tax"],
+    "sourceUrl": "https://secure.incometax.gov.bd/TINHome",
+    "verified": "2026-07-28"
+  },
+  "early-adopter": {
+    "head": "Early adopter",
+    "bn": "আর্লি অ্যাডপ্টার",
+    "group": "product",
+    "def": {
+      "bn": "যে কাস্টমার নতুন জিনিস সবার আগে লুফে নেন।",
+      "en": "The customer who grabs new things first."
+    },
+    "watchOut": {
+      "bn": "এরা বাগ সহ্য করেন, তীক্ষ্ণ ফিডব্যাক দেন আর শুরুর দিনগুলোর সবচেয়ে দামি শিক্ষক হন। এদের কথার ওপর ভিত্তি করেই একটি প্রোডাক্ট নিজের পায়ে দাঁড়ায়।",
+      "en": "They tolerate bugs, give sharp feedback, and are the most valuable teachers of the early days. It is their input that gets a product on its feet."
+    },
+    "see": ["beta", "mvp", "pmf"]
+  },
+  "encashment-certificate": {
+    "head": "Encashment certificate",
+    "bn": "এনক্যাশমেন্ট সার্টিফিকেট",
+    "group": "paperwork",
+    "def": {
+      "bn": "বিদেশ থেকে ব্যাংকিং চ্যানেলে আসা বৈদেশিক মুদ্রা টাকায় রূপান্তরের পর ব্যাংকের দেওয়া প্রমাণপত্র।",
+      "en": "A bank-issued certificate showing that foreign currency received through a banking channel was converted into Bangladeshi taka."
+    },
+    "see": ["bida-oss"],
     "sourceUrl": "https://www.bb.org.bd/feidportal/fdi.php",
     "verified": "2026-07-28"
   },
+  "equity": {
+    "head": "Equity",
+    "bn": "ইকুইটি",
+    "group": "equity",
+    "starter": true,
+    "def": {
+      "bn": "কোম্পানিতে মালিকানার অংশ। টাকার বিনিময়ে ইনভেস্টররা এটাই পান।",
+      "en": "An ownership share in the company. It is what investors get in exchange for their money."
+    },
+    "watchOut": {
+      "bn": "ইকুইটি ছেড়ে দেওয়া মানে ভবিষ্যতের লাভের একটি অংশ ছেড়ে দেওয়া, তাই হিসাব কষেই এটি ছাড়া উচিত।",
+      "en": "Giving up equity means giving up a share of future profit, so give it up with the maths in mind."
+    },
+    "guide": "/cofounders/equity-and-vesting",
+    "see": ["share", "dilution", "vesting"]
+  },
+  "esop": {
+    "head": "ESOP",
+    "bn": "ইএসওপি",
+    "expansion": "employee share option plan",
+    "aka": ["option pool", "অপশন পুল"],
+    "group": "equity",
+    "def": {
+      "bn": "ভবিষ্যতের কোনো একসময় শেয়ার পাওয়ার অপশন হিসেবে কর্মীদের জন্য আলাদা করে রাখা ইকুইটি।",
+      "en": "Equity set aside so employees can have a future option to receive shares."
+    },
+    "watchOut": {
+      "bn": "এটি ভালো মানুষ টানতে সাহায্য করে, তবে এই পুল সাধারণত ফাউন্ডারদের অংশ থেকেই কাটা হয়।",
+      "en": "It helps attract good people, but the pool is usually carved out of the founders' share."
+    },
+    "guide": "/cofounders/equity-and-vesting",
+    "see": ["equity", "vesting", "dilution"]
+  },
+  "exit": {
+    "head": "Exit",
+    "bn": "এক্সিট",
+    "group": "funding",
+    "def": {
+      "bn": "ইনভেস্টর বা ফাউন্ডার যখন তাদের অংশকে ক্যাশে পরিণত করেন, সাধারণত কোম্পানি বিক্রি বা শেয়ারবাজারে লিস্ট করার মাধ্যমে।",
+      "en": "The event where an investor or founder turns their stake into cash, usually a company sale or a stock-market listing."
+    },
+    "watchOut": {
+      "bn": "এখানেই সবার আসল লাভ বা লোকসানের ফয়সালা হয়।",
+      "en": "This is where everyone's real gain or loss is settled."
+    },
+    "see": ["liquidation-preference", "valuation"]
+  },
+  "form-117": {
+    "head": "Form 117",
+    "bn": "ফরম ১১৭",
+    "group": "paperwork",
+    "def": {
+      "bn": "শেয়ার হস্তান্তরের লিখিত দলিল। হস্তান্তরকারী, গ্রহীতা ও শেয়ারের বিবরণ এতে থাকে।",
+      "en": "The written instrument used to record a transfer of shares, including details of the transferor, transferee, and shares."
+    },
+    "see": ["share-transfer", "rjsc"],
+    "sourceUrl": "https://app1.roc.gov.bd/Guidlines/Download/FORM-117.htm",
+    "verified": "2026-07-28"
+  },
+  "form-xii": {
+    "head": "Form XII",
+    "bn": "ফরম ১২",
+    "group": "paperwork",
+    "def": {
+      "bn": "পরিচালক বা ব্যবস্থাপকের নিয়োগ, পদত্যাগ কিংবা তথ্যের পরিবর্তন RJSC-কে জানানোর ফরম।",
+      "en": "The RJSC form used to report the appointment, resignation, or changed particulars of a director or manager."
+    },
+    "see": ["rjsc", "compliance"],
+    "sourceUrl": "https://app.roc.gov.bd/Guidlines/Download/FORM%20XII.htm",
+    "verified": "2026-07-28"
+  },
+  "funding-rounds": {
+    "head": "Pre-seed / seed / Series A",
+    "bn": "প্রি-সিড / সিড / সিরিজ এ",
+    "aka": ["seed", "Series A", "pre-seed", "সিড", "সিরিজ এ"],
+    "group": "funding",
+    "def": {
+      "bn": "ফান্ডিং রাউন্ডের ধাপ।",
+      "en": "The stages of funding rounds."
+    },
+    "example": {
+      "bn": "সিড মানে ঠিক তাই: আইডিয়া প্রমাণের টাকা। মডেল কাজ করছে, এমন প্রমাণ পাওয়ার পর তাকে স্কেল করার জন্য আসে সিরিজ এ।",
+      "en": "Seed means exactly that: money to prove the idea. Series A comes after evidence that the model works, to scale it."
+    },
+    "guide": "/funding",
+    "see": ["angel-investor", "vc", "traction"]
+  },
+  "funnel": {
+    "head": "Funnel",
+    "bn": "ফানেল",
+    "group": "growth",
+    "def": {
+      "bn": "দেখা থেকে শুরু করে কেনা পর্যন্ত ধাপগুলোর একটি ছবি, যেখানে প্রতিটি ধাপেই মানুষ ঝরে পড়ে।",
+      "en": "The picture of the steps from seeing to buying, with people dropping off at each step."
+    },
+    "example": {
+      "bn": "অনেকটা ফানেলের মতোই: ওপর দিয়ে অনেকে ঢোকে, নিচ দিয়ে অল্প কয়েকজন বের হয়।",
+      "en": "Like a funnel: many pour in at the top, a few come out the bottom."
+    },
+    "watchOut": {
+      "bn": "সবচেয়ে বেশি মানুষ কোথায় ঝরে পড়ছে, তা দেখলে বোঝা যায় কোথায় কাজ করতে হবে।",
+      "en": "Seeing where the biggest drop is tells you where to work."
+    },
+    "see": ["conversion", "lead"]
+  },
+  "gmv": {
+    "head": "GMV",
+    "bn": "জিএমভি",
+    "expansion": "gross merchandise value",
+    "group": "commerce",
+    "def": {
+      "bn": "প্ল্যাটফর্মের মাধ্যমে বিক্রি হওয়া সবকিছুর মোট মূল্য। মার্কেটপ্লেসের নিজের আয় নয়, বরং হাতবদল হওয়া মোট টাকার পরিমাণ।",
+      "en": "The total value of everything sold across a platform. Not the marketplace's own income; the total money changing hands."
+    },
+    "example": {
+      "bn": "এক মাসে ৫০ লাখ টাকার অর্ডার মানে ৫০ লাখ জিএমভি, যদিও প্ল্যাটফর্ম হয়তো এর ছোট্ট একটি অংশই রাখে।",
+      "en": "50 lakh taka of orders in a month is 50 lakh GMV, though the platform may keep only a small slice."
+    },
+    "see": ["take-rate", "aov", "revenue"]
+  },
+  "grant": {
+    "head": "Grant",
+    "bn": "গ্রান্ট",
+    "group": "funding",
+    "def": {
+      "bn": "এমন টাকা যার জন্য সাধারণত লোন শোধ করতে হয় না বা ইকুইটি দিতে হয় না।",
+      "en": "Money that normally requires neither loan repayment nor equity."
+    },
+    "watchOut": {
+      "bn": "তবে কাজ, খরচ আর রিপোর্টিংয়ের শর্ত থাকতে পারে। সেগুলো পূরণ না হলে টাকা আটকে যায়।",
+      "en": "It can still carry conditions on the work, spending, and reporting; miss those and the money is held back."
+    },
+    "guide": "/funding/bb-startup-fund",
+    "see": ["equity", "funding-rounds"]
+  },
+  "gross-margin": {
+    "head": "Gross margin",
+    "bn": "গ্রস মার্জিন",
+    "group": "money",
+    "def": {
+      "bn": "ডিরেক্ট কস্ট বাদ দেওয়ার পর বিক্রির যে শতাংশ বাকি থাকে।",
+      "en": "The percentage of sales left after direct cost."
+    },
+    "example": {
+      "bn": "৪০০ টাকার এক বয়াম আচারে উপকরণ আর প্যাকেজিংয়ের খরচ ২২০ টাকা হলে গ্রস প্রফিট ১৮০ টাকা আর গ্রস মার্জিন ৪৫ শতাংশ।",
+      "en": "On a 400-taka jar of pickle with 220 taka of ingredients and packaging, gross profit is 180 taka and gross margin is 45 percent."
+    },
+    "watchOut": {
+      "bn": "মার্জিন খুব কম হলে অনেক বিক্রি করেও লাভের মুখ দেখা যায় না।",
+      "en": "When margin is thin, selling a lot still yields no profit."
+    },
+    "guide": "/metrics/unit-economics",
+    "see": ["cogs", "unit-economics", "break-even"]
+  },
+  "hypothesis": {
+    "head": "Hypothesis",
+    "bn": "হাইপোথিসিস",
+    "group": "product",
+    "def": {
+      "bn": "“মানুষ টাকা দিয়ে এই সমস্যার সমাধান কিনবে” এমন একটি বিশ্বাস, যা পরীক্ষা করার আগ পর্যন্ত নিছকই একটি অনুমান।",
+      "en": "A belief like “people will pay to solve this problem” that, until you test it, is just a guess."
+    },
+    "watchOut": {
+      "bn": "বিজনেস আসলে একের পর এক অনুমান যাচাই করারই একটি কাজ।",
+      "en": "A business is really the act of testing one assumption after another."
+    },
+    "guide": "/validation/mvp-experiment-planner",
+    "see": ["mvp", "pivot", "pmf"]
+  },
   "incorp-certificate": {
-    "bn": "কোম্পানি নিবন্ধন সম্পন্ন হলে RJSC যে সনদ দেয়। এটি কোম্পানির আইনি নিবন্ধনের প্রমাণ।",
-    "en": "The certificate RJSC issues when company registration is complete; it is evidence of the company's legal incorporation.",
+    "head": "Certificate of incorporation",
+    "bn": "ইনকর্পোরেশন সার্টিফিকেট",
+    "aka": ["incorporation certificate", "নিবন্ধন সনদ"],
+    "group": "paperwork",
+    "def": {
+      "bn": "RJSC থেকে দেওয়া সনদ, যা প্রমাণ করে কোম্পানিটি আইনত নিবন্ধিত হয়েছে।",
+      "en": "The certificate issued by RJSC proving that a company has been legally registered."
+    },
+    "watchOut": {
+      "bn": "নামের ছাড়পত্র এই সনদ নয়। ছাড়পত্র কেবল নাম আটকে রাখে, নিবন্ধন করে না।",
+      "en": "Name clearance is not this certificate; clearance only reserves the name, it does not register the company."
+    },
+    "guide": "/company-types",
+    "see": ["rjsc", "rjsc-name-clearance", "moa-aoa"],
     "sourceUrl": "https://app1.roc.gov.bd/Guidlines/faq.html",
     "verified": "2026-07-28"
+  },
+  "incubator": {
+    "head": "Incubator",
+    "bn": "ইনকিউবেটর",
+    "group": "funding",
+    "def": {
+      "bn": "এমন একটি প্রোগ্রাম, যা একদম শুরুর একটি টিমকে শিক্ষা, মেন্টর, কাজ করার জায়গা বা নেটওয়ার্ক দিয়ে নিজের পায়ে দাঁড়াতে সাহায্য করে।",
+      "en": "A programme that helps an early team get on its feet with learning, mentors, workspace, or a network."
+    },
+    "watchOut": {
+      "bn": "এর সুবিধা আর সময়সীমা জায়গাভেদে একেক রকম হয়।",
+      "en": "The benefits and timelines vary from place to place."
+    },
+    "see": ["accelerator", "demo-day"]
+  },
+  "ip": {
+    "head": "IP",
+    "bn": "আইপি",
+    "expansion": "intellectual property",
+    "group": "equity",
+    "def": {
+      "bn": "ব্র্যান্ডের নাম, লোগো, সফটওয়্যারের কোড, আপনার নিজের রেসিপি।",
+      "en": "The brand name, the logo, the software's code, your own recipe."
+    },
+    "watchOut": {
+      "bn": "ডিউ ডিলিজেন্সের সময় ইনভেস্টররা দেখেন এটি কার নামে রেজিস্টার করা আছে। কোনো ফাউন্ডারের নামের চেয়ে কোম্পানির নামে রাখাটা বেশি নিরাপদ।",
+      "en": "Investors check whose name it is registered under during due diligence. Safer to hold it in the company's name than a founder's."
+    },
+    "see": ["due-diligence", "compliance"]
+  },
+  "k-factor": {
+    "head": "K-factor",
+    "bn": "কে-ফ্যাক্টর",
+    "aka": ["virality", "ভাইরালটি"],
+    "group": "growth",
+    "def": {
+      "bn": "গড়ে একেকজন কাস্টমার কতজন নতুন কাস্টমার নিয়ে আসেন।",
+      "en": "How many new customers, on average, each customer brings in."
+    },
+    "watchOut": {
+      "bn": "এটি একের বেশি হলে, অ্যাড ছাড়াই বিজনেস নিজে নিজে ছড়াতে থাকে। এটি আসলে রেফারেলকেই সংখ্যায় রূপ দেওয়া।",
+      "en": "Above one, the business spreads on its own, without ads. It is referral turned into a number."
+    },
+    "see": ["referral", "organic-vs-paid"]
+  },
+  "kyc": {
+    "head": "KYC",
+    "bn": "কেওয়াইসি",
+    "expansion": "know your customer",
+    "group": "paperwork",
+    "def": {
+      "bn": "পরিচয় যাচাইয়ের নিয়ম।",
+      "en": "The identity-verification rule."
+    },
+    "watchOut": {
+      "bn": "ঠিক এ কারণেই আপনাকে চালু করার আগে ব্যাংক, এমএফএস বা পেমেন্ট গেটওয়ে আপনার এনআইডি ও কাগজপত্র চায়।",
+      "en": "It is exactly why a bank, MFS, or payment gateway asks for your NID and papers before switching you on."
+    },
+    "guide": "/payments",
+    "see": ["mfs", "payment-gateway"]
+  },
+  "lead": {
+    "head": "Lead",
+    "bn": "লিড",
+    "group": "growth",
+    "def": {
+      "bn": "সম্ভাব্য কাস্টমার, যিনি আগ্রহ দেখিয়েছেন।",
+      "en": "A potential customer who has shown interest."
+    },
+    "example": {
+      "bn": "ইনবক্সে “দাম কত?” লেখা মানুষটি এখনো ক্রেতা নন, তিনি একজন লিড।",
+      "en": "The person writing “dam koto?” in your inbox is not a buyer yet; they are a lead."
+    },
+    "watchOut": {
+      "bn": "লিডকে ক্রেতায় রূপান্তর করাই হলো বিক্রির আসল কাজ।",
+      "en": "Turning leads into buyers is the real work of selling."
+    },
+    "see": ["conversion", "funnel"]
+  },
+  "liquidation-preference": {
+    "head": "Liquidation preference",
+    "bn": "লিকুইডেশন প্রেফারেন্স",
+    "group": "funding",
+    "def": {
+      "bn": "কোম্পানি বিক্রি হলে সবার আগে কে টাকা ফেরত পাবে, তা ঠিক করার শর্ত।",
+      "en": "The terms deciding who gets paid back first if the company is sold."
+    },
+    "watchOut": {
+      "bn": "বিক্রির দাম কম হলে ইনভেস্টর তার টাকা আগে বের করে নেন আর ফাউন্ডারের হাতে খুব সামান্যই থাকে। টার্ম শিটের সবচেয়ে কম-বোঝা আর সবচেয়ে দামি শর্ত এটিই।",
+      "en": "If the sale price is low, the investor takes their money out first and the founder can be left with very little. The least-understood and most costly term on a term sheet."
+    },
+    "guide": "/funding/term-sheets",
+    "see": ["term-sheet", "exit", "pro-rata"]
+  },
+  "ltv": {
+    "head": "LTV",
+    "bn": "এলটিভি",
+    "expansion": "lifetime value",
+    "group": "growth",
+    "starter": true,
+    "def": {
+      "bn": "পুরো সম্পর্কজুড়ে একজন কাস্টমার বিজনেসে যে পরিমাণ মোট লাভ রেখে যান।",
+      "en": "The total profit a customer leaves in the business over the whole relationship."
+    },
+    "example": {
+      "bn": "এলটিভি সাধারণত ক্যাকের তিনগুণ বা তার বেশি হলে তাকে স্বাস্থ্যকর ধরা হয়।",
+      "en": "LTV is generally considered healthy at three times CAC or more."
+    },
+    "watchOut": {
+      "bn": "শুধু বিক্রির দামটা হিসাব করলে ওই কাস্টমারকে সেবা দেওয়ার আসল খরচটা আড়ালেই থেকে যায়।",
+      "en": "Reckon with the sale price alone and the real cost of serving that customer stays hidden."
+    },
+    "guide": "/metrics/cac-ltv-churn",
+    "see": ["cac", "retention", "unit-economics"]
+  },
+  "mfs": {
+    "head": "MFS",
+    "bn": "এমএফএস",
+    "expansion": "mobile financial services",
+    "group": "paperwork",
+    "def": {
+      "bn": "মোবাইল অ্যাকাউন্টে টাকা রাখা, পাঠানো, নেওয়া ও পেমেন্ট করার সেবা। যেমন বিকাশ, নগদ বা রকেট।",
+      "en": "A service for storing, sending, receiving, and paying money through a mobile account, such as bKash, Nagad, or Rocket."
+    },
+    "watchOut": {
+      "bn": "দেশের ডিজিটাল লেনদেনের বেশির ভাগই চলে এদের মাধ্যমে।",
+      "en": "Most of the country's digital transactions run through them."
+    },
+    "guide": "/payments",
+    "see": ["payment-gateway", "kyc", "cod"],
+    "sourceUrl": "https://www.bb.org.bd/en/index.php/financialsystems/paysystems",
+    "verified": "2026-07-28"
+  },
+  "moa-aoa": {
+    "head": "MoA / AoA",
+    "bn": "এমওএ / এওএ",
+    "expansion": "Memorandum and Articles of Association",
+    "aka": ["AoA", "MoA", "Memorandum of Association", "Articles of Association"],
+    "group": "paperwork",
+    "def": {
+      "bn": "কোম্পানির দুটি মূল নথি। MoA-তে উদ্দেশ্য ও কাজের সীমা থাকে। AoA-তে কোম্পানি পরিচালনার নিয়ম থাকে।",
+      "en": "A company's two core constitutional documents: the MoA states its objects and scope, while the AoA sets its internal governance rules."
+    },
+    "watchOut": {
+      "bn": "রেজিস্ট্রেশনের সময় এটি RJSC-তে জমা দিতে হয়।",
+      "en": "Filed with RJSC at registration."
+    },
+    "guide": "/company-types",
+    "see": ["rjsc", "authorized-capital", "incorp-certificate"],
+    "sourceUrl": "https://bdlaws.minlaw.gov.bd/act-print-788.html",
+    "verified": "2026-07-28"
+  },
+  "moat": {
+    "head": "Moat",
+    "bn": "মোট",
+    "group": "product",
+    "def": {
+      "bn": "এমন একটি সুবিধা যা প্রতিযোগীদের জন্য আপনাকে টপকে যাওয়া কঠিন করে দেয়: একটি শক্তিশালী ব্র্যান্ড, কম খরচে সাপ্লাই, বিশাল নেটওয়ার্ক, বা জমে থাকা ডেটা।",
+      "en": "An advantage that makes you hard for a competitor to overtake: a strong brand, cheaper supply, a large network, or accumulated data."
+    },
+    "example": {
+      "bn": "দুর্গের চারপাশের খাদের মতোই এটি যত চওড়া, আপনি তত নিরাপদ।",
+      "en": "Like the moat around a fort, the wider it is the safer you are."
+    },
+    "watchOut": {
+      "bn": "নতুন বিজনেসের এমন কিছু থাকে না। আপনাকে গড়ে তুলতে হয়।",
+      "en": "A new business has none; you have to build one."
+    },
+    "see": ["pmf", "k-factor"]
+  },
+  "mrr-arr": {
+    "head": "MRR / ARR",
+    "bn": "এমআরআর / এআরআর",
+    "expansion": "monthly / annual recurring revenue",
+    "aka": ["ARR", "MRR", "recurring revenue"],
+    "group": "money",
+    "def": {
+      "bn": "সাবস্ক্রিপশন-ধাঁচের বিজনেসে প্রতি মাসে বা বছরে নিয়ম করে যে আয় আসে।",
+      "en": "Income that arrives on schedule every month or year in subscription-style businesses."
+    },
+    "watchOut": {
+      "bn": "একবারের বিক্রি এর মধ্যে পড়ে না, যে কারণে এই আয় অনেক বেশি নির্ভরযোগ্য।",
+      "en": "One-off sales do not count, which is why this income is more dependable."
+    },
+    "see": ["revenue", "retention", "churn"]
+  },
+  "mvp": {
+    "head": "MVP",
+    "bn": "এমভিপি",
+    "expansion": "minimum viable product",
+    "group": "product",
+    "starter": true,
+    "def": {
+      "bn": "সবচেয়ে ঝুঁকির অনুমানটি যাচাই করার সবচেয়ে ছোট রূপ।",
+      "en": "The smallest thing that can test your riskiest assumption."
+    },
+    "example": {
+      "bn": "ফুড-ডেলিভারির একটি আইডিয়া ধরা যাক: অ্যাপ বানানোর আগে একটি ফেসবুক পেজ আর হোয়াটসঅ্যাপ নম্বর দিয়ে ১০ দিন অর্ডার নিন। এটাই এমভিপি।",
+      "en": "Take a food-delivery idea: before building an app, take orders for 10 days through a Facebook page and a WhatsApp number. That is the MVP."
+    },
+    "watchOut": {
+      "bn": "অর্ধেক বানানো কোনো বাজে প্রোডাক্ট নয়। ছোট, কিন্তু সত্যিকারের একটি পরীক্ষা।",
+      "en": "Not a half-built bad product; a small but real test."
+    },
+    "guide": "/validation/mvp-examples",
+    "see": ["prototype", "hypothesis", "pmf"]
+  },
+  "nbr": {
+    "head": "NBR",
+    "bn": "এনবিআর",
+    "expansion": "National Board of Revenue",
+    "group": "paperwork",
+    "def": {
+      "bn": "জাতীয় রাজস্ব বোর্ড, ট্যাক্স আর ভ্যাটের শীর্ষ সরকারি সংস্থা।",
+      "en": "The National Board of Revenue, the top government body for tax and VAT."
+    },
+    "watchOut": {
+      "bn": "টিআইএন, ভ্যাট আর কাস্টমস ডিউটি সবই এর অধীনে।",
+      "en": "TIN, VAT, and customs duty all sit under it."
+    },
+    "guide": "/e-tin-vat-bin",
+    "see": ["e-tin", "vat-bin", "corporate-tax"],
+    "sourceUrl": "https://nbr.gov.bd/",
+    "verified": "2026-07-28"
+  },
+  "north-star-metric": {
+    "head": "North star metric",
+    "bn": "নর্থ স্টার মেট্রিক",
+    "group": "growth",
+    "def": {
+      "bn": "এমন একটি সংখ্যা, যা দেখে পুরো টিম এগোয়, এবং কাস্টমাররা সত্যিকার অর্থে ভ্যালু পেলেই কেবল এই সংখ্যাটি বাড়ে।",
+      "en": "The one number the whole team steers by, which rises only when customers actually get value."
+    },
+    "example": {
+      "bn": "ফুড ডেলিভারির জন্য এটি হতে পারে “সময়মতো ডেলিভারি হওয়া অর্ডার।”",
+      "en": "For food delivery it might be “orders delivered on time.”"
+    },
+    "watchOut": {
+      "bn": "দশটি সংখ্যার পেছনে না ছুটে একটি সংখ্যাকে ঠিকভাবে কাজ করানো অনেক ভালো।",
+      "en": "Better to make one number real than to chase ten."
+    },
+    "guide": "/metrics",
+    "see": ["traction", "retention"]
+  },
+  "organic-vs-paid": {
+    "head": "Organic vs paid",
+    "bn": "অর্গানিক বনাম পেইড",
+    "aka": ["organic", "paid"],
+    "group": "growth",
+    "def": {
+      "bn": "অ্যাডের খরচ ছাড়াই (সার্চ, শেয়ার, মুখের কথা) আসা কাস্টমার বনাম অ্যাড থেকে আসা কাস্টমার।",
+      "en": "Customers who arrive without ad spend (search, shares, word of mouth) versus customers who came from ads."
+    },
+    "watchOut": {
+      "bn": "শুরুতে পেইড থেকে দ্রুত সাড়া মেলে, কিন্তু অর্গানিক অনেক বেশি দিন টেকে।",
+      "en": "Paid gets a faster response at the start, but organic lasts longer."
+    },
+    "see": ["cac", "referral", "k-factor"]
+  },
+  "paid-up-capital": {
+    "head": "Paid-up capital",
+    "bn": "পেইড-আপ ক্যাপিটাল",
+    "aka": ["পরিশোধিত মূলধন"],
+    "group": "equity",
+    "def": {
+      "bn": "ইস্যু করা শেয়ারের বিপরীতে শেয়ারহোল্ডাররা কোম্পানিকে যে অর্থ বাস্তবে পরিশোধ করেছেন।",
+      "en": "The amount shareholders have actually paid the company for shares issued to them."
+    },
+    "guide": "/company-types",
+    "see": ["authorized-capital", "share"],
+    "sourceUrl": "https://bdlaws.minlaw.gov.bd/act-print-788.html",
+    "verified": "2026-07-28"
+  },
+  "payment-gateway": {
+    "head": "Payment gateway",
+    "bn": "পেমেন্ট গেটওয়ে",
+    "group": "paperwork",
+    "def": {
+      "bn": "যে সেবার মাধ্যমে ওয়েবসাইট বা অ্যাপ কার্ড আর এমএফএস থেকে টাকা নিতে পারে, যেমন এসএসএলকমার্জ বা আমারপে।",
+      "en": "The service that lets a website or app take money by card and MFS, like SSLCommerz or aamarPay."
+    },
+    "watchOut": {
+      "bn": "চুক্তিবদ্ধ হওয়ার আগে দেখে নিন টাকা কবে আপনার হাতে পৌঁছাবে আর কত ফি কাটা হবে।",
+      "en": "Check when the money reaches you and what fee is deducted before you commit."
+    },
+    "guide": "/payments",
+    "see": ["mfs", "kyc", "cod"]
+  },
+  "pitch-deck": {
+    "head": "Pitch deck",
+    "bn": "পিচ ডেক",
+    "aka": ["pitch", "পিচ"],
+    "group": "funding",
+    "def": {
+      "bn": "ইনভেস্টরকে বোঝানোর গোছানো ধরনটিই পিচ। আর এর সাথে দেখানো ছোট স্লাইডের ডকুমেন্টটি পিচ ডেক।",
+      "en": "A pitch is the structured explanation you give an investor; a pitch deck is the short slide document shown with it."
+    },
+    "watchOut": {
+      "bn": "একটি ভালো ডেক হয় ছোট, পরিষ্কার এবং এমন, যা মনে প্রশ্ন জাগায়।",
+      "en": "A good deck is short, clear, and question-raising."
+    },
+    "guide": "/funding",
+    "see": ["demo-day", "traction", "tam-sam-som"]
+  },
+  "pivot": {
+    "head": "Pivot",
+    "bn": "পিভট",
+    "group": "product",
+    "def": {
+      "bn": "কোনো পরীক্ষা থেকে শেখার পর বিজনেসের বড় কোনো অংশ বদলে ফেলা। কাস্টমার, সমস্যা, সমাধান, দাম বা বিক্রির পথ বদলে যেতে পারে।",
+      "en": "Changing a major part of the business after learning from a test. The customer, problem, solution, price, or sales route may change."
+    },
+    "watchOut": {
+      "bn": "হার মানা নয়, বরং যা শিখেছেন তা কাজে লাগানো।",
+      "en": "Not defeat; putting what you learned to use."
+    },
+    "see": ["hypothesis", "pmf", "mvp"]
+  },
+  "pmf": {
+    "head": "Product-market fit",
+    "bn": "প্রোডাক্ট-মার্কেট ফিট",
+    "aka": ["PMF", "পিএমএফ"],
+    "group": "product",
+    "starter": true,
+    "def": {
+      "bn": "নির্দিষ্ট একটি বাজারে এমন জোরদার চাহিদা যে, কাস্টমাররা বারবার প্রোডাক্টটি ব্যবহার করছেন, কিনছেন এবং অন্যদের বলছেন।",
+      "en": "Demand strong enough within a defined market that customers keep using the product, buy again, and tell others."
+    },
+    "example": {
+      "bn": "বাজার যখন আপনার হাত থেকে জিনিসটি একরকম কেড়ে নিতে শুরু করবে, তখন বুঝবেন আপনি এর কাছাকাছি আছেন।",
+      "en": "When the market starts pulling the thing out of your hands, you are close."
+    },
+    "watchOut": {
+      "bn": "নির্দিষ্ট কোনো একটি মেট্রিক দিয়ে এটি প্রমাণ করা যায় না।",
+      "en": "No single metric proves it."
+    },
+    "guide": "/validation",
+    "see": ["traction", "retention", "mvp"]
+  },
+  "pro-rata": {
+    "head": "Pro-rata",
+    "bn": "প্রো-রাটা",
+    "group": "funding",
+    "def": {
+      "bn": "নিজের শতকরা হার ধরে রাখার জন্য আগের ইনভেস্টরের পরের রাউন্ডে আরও টাকা দেওয়ার অধিকার।",
+      "en": "The earlier investor's right to put in more money in the next round to hold their percentage."
+    },
+    "watchOut": {
+      "bn": "একটি ভালো কোম্পানিতে এই অধিকারই হলো ইনভেস্টরের বড় রিটার্নের প্রধান পথ।",
+      "en": "In a good company, this right is an investor's main path to a big return."
+    },
+    "guide": "/funding/term-sheets",
+    "see": ["dilution", "term-sheet"]
+  },
+  "prototype": {
+    "head": "Prototype",
+    "bn": "প্রোটোটাইপ",
+    "group": "product",
+    "def": {
+      "bn": "দেখানোর আর শেখার জন্য বানানো প্রথম নমুনা। বিক্রির জন্য নয়, বোঝার জন্য।",
+      "en": "The first sample, built to show and to learn. Not for selling; for understanding."
+    },
+    "example": {
+      "bn": "কাগজে আঁকা কোনো স্ক্রিন বা ক্যানভায় বানানো ডেমোও প্রোটোটাইপের খাতায় পড়ে।",
+      "en": "A screen sketched on paper or a demo built in Canva counts as a prototype too."
+    },
+    "see": ["mvp", "beta"]
+  },
+  "referral": {
+    "head": "Referral",
+    "bn": "রেফারেল",
+    "group": "growth",
+    "def": {
+      "bn": "পুরোনো কাস্টমারদের মাধ্যমে নতুন কাস্টমার আসা, তা নিজে থেকেই হোক বা ছোট কোনো পুরস্কারের বিনিময়েই হোক।",
+      "en": "New customers arriving through old ones, spontaneously or for a small reward."
+    },
+    "watchOut": {
+      "bn": "একজন খুশি কাস্টমারই হলো সবচেয়ে সস্তা মার্কেটিং।",
+      "en": "A happy customer is the cheapest marketing there is."
+    },
+    "see": ["k-factor", "organic-vs-paid", "cac"]
+  },
+  "repeat-rate": {
+    "head": "Repeat rate",
+    "bn": "রিপিট রেট",
+    "group": "commerce",
+    "def": {
+      "bn": "কাস্টমারদের মধ্যে যে অংশটি একবারের বেশি কেনে।",
+      "en": "The share of customers who buy more than once."
+    },
+    "example": {
+      "bn": "১০০ জন ক্রেতার মধ্যে ৩০ জন ফিরে এলে রিপিট রেট ৩০ শতাংশ।",
+      "en": "30 of 100 buyers come back: a 30 percent repeat rate."
+    },
+    "watchOut": {
+      "bn": "রিপিট রেট কম হওয়ার মানে হলো প্রোডাক্ট বা সার্ভিসে কোনো গণ্ডগোল আছে।",
+      "en": "A low repeat rate means something in the product or service is off."
+    },
+    "guide": "/metrics/cohort-retention",
+    "see": ["retention", "aov", "ltv"]
+  },
+  "retention": {
+    "head": "Retention",
+    "bn": "রিটেনশন",
+    "group": "growth",
+    "def": {
+      "bn": "কাস্টমার ধরে রাখার ক্ষমতা। এই মাসে যারা কিনেছেন, তাদের মধ্যে যে অংশটি পরের মাসেও ফিরে আসে।",
+      "en": "The ability to keep customers. Of the people who bought this month, the share who come back next month."
+    },
+    "watchOut": {
+      "bn": "নতুন কাস্টমার জোগাড় করার চেয়ে পুরনো কাস্টমার ধরে রাখা অনেক বেশি সস্তা।",
+      "en": "Keeping an old customer is far cheaper than winning a new one."
+    },
+    "guide": "/metrics/cac-ltv-churn",
+    "see": ["churn", "cohort", "repeat-rate"]
+  },
+  "revenue": {
+    "head": "Revenue",
+    "bn": "রেভিনিউ",
+    "group": "money",
+    "def": {
+      "bn": "বিক্রি থেকে আসা মোট টাকা, যা থেকে কোনো খরচ বাদ দেওয়া হয়নি।",
+      "en": "The total money that came in from sales, before any costs are deducted."
+    },
+    "watchOut": {
+      "bn": "রেভিনিউ আর লাভ এক জিনিস নয়। বেশি রেভিনিউয়ের অনেক বিজনেসই লোকসানে চলে।",
+      "en": "Earning revenue and making a profit are not the same; many high-revenue businesses run at a loss."
+    },
+    "guide": "/metrics/cashflow-vs-profit",
+    "see": ["gross-margin", "cogs", "gmv"]
+  },
+  "rjsc": {
+    "head": "RJSC",
+    "bn": "আরজেএসসি",
+    "expansion": "Registrar of Joint Stock Companies and Firms",
+    "group": "paperwork",
+    "def": {
+      "bn": "জয়েন্ট স্টক কোম্পানির নিবন্ধক, কোম্পানি আর পার্টনারশিপ রেজিস্ট্রেশন করার সরকারি অফিস।",
+      "en": "The Registrar of Joint Stock Companies, the government office for registering companies and partnerships."
+    },
+    "watchOut": {
+      "bn": "নামের ছাড়পত্র থেকে শুরু করে কোম্পানি রেজিস্ট্রেশন, সবই এখানে হয়।",
+      "en": "From name clearance to company registration, it all happens here."
+    },
+    "guide": "/company-types",
+    "see": ["rjsc-name-clearance", "moa-aoa", "incorp-certificate"],
+    "sourceUrl": "https://app1.roc.gov.bd/Guidlines/faq.html",
+    "verified": "2026-07-28"
+  },
+  "rjsc-name-clearance": {
+    "head": "Name clearance",
+    "bn": "নামের ছাড়পত্র",
+    "aka": ["RJSC name clearance"],
+    "group": "paperwork",
+    "def": {
+      "bn": "প্রস্তাবিত কোম্পানির নাম নেওয়া যাবে কি না, নিবন্ধনের আগে RJSC-এর দেওয়া সেই প্রাথমিক অনুমোদন।",
+      "en": "RJSC's preliminary approval that a proposed company name is available and acceptable."
+    },
+    "watchOut": {
+      "bn": "এটি কোম্পানি নিবন্ধনের সনদ নয়।",
+      "en": "It is not a certificate of incorporation."
+    },
+    "guide": "/company-types",
+    "see": ["rjsc", "incorp-certificate"],
+    "sourceUrl": "https://app1.roc.gov.bd/Guidlines/faq.html",
+    "verified": "2026-07-28"
+  },
+  "rto": {
+    "head": "RTO",
+    "bn": "আরটিও",
+    "expansion": "return to origin",
+    "aka": ["returned parcel", "রিটার্নড পার্সেল"],
+    "group": "commerce",
+    "def": {
+      "bn": "ক্যাশ-অন-ডেলিভারির পার্সেল, যা কাস্টমার ফিরিয়ে দেওয়ার কারণে ফেরত আসে।",
+      "en": "A cash-on-delivery parcel that comes back because the customer refuses it."
+    },
+    "example": {
+      "bn": "প্রতিটি রিটার্ন আপনার ঘাড়ে দু-দিকের কুরিয়ার খরচ চাপিয়ে দেয়।",
+      "en": "Each return puts two-way courier costs on you."
+    },
+    "watchOut": {
+      "bn": "বাংলাদেশের ই-কমার্সে টাকা গলে যাওয়ার সবচেয়ে বড় জায়গা হলো এই উচ্চ আরটিও।",
+      "en": "High RTO is the biggest source of bleeding in Bangladeshi e-commerce."
+    },
+    "guide": "/operations/cod-risk",
+    "see": ["cod", "unit-economics", "gross-margin"]
+  },
+  "runway": {
+    "head": "Runway",
+    "bn": "রানওয়ে",
+    "group": "money",
+    "starter": true,
+    "def": {
+      "bn": "হাতের টাকা দিয়ে আপনি কত মাস টিকে থাকতে পারবেন: ক্যাশকে বার্ন দিয়ে ভাগ করলে এটি পাওয়া যায়।",
+      "en": "How many months you can survive on the money at hand: cash divided by burn."
+    },
+    "example": {
+      "bn": "মাসে ২ লাখ বার্ন হলে ব্যাংকে থাকা ১০ লাখে ৫ মাসের রানওয়ে।",
+      "en": "10 lakh in the bank at 2 lakh monthly burn is a 5-month runway."
+    },
+    "watchOut": {
+      "bn": "এটি ফুরিয়ে যাওয়ার আগেই আপনাকে রেভিনিউ বাড়াতে হবে, নয়তো নতুন টাকা তুলতে হবে।",
+      "en": "Before it runs out you must either grow revenue or raise fresh money."
+    },
+    "see": ["burn-rate", "cash-flow", "bootstrapping"]
+  },
+  "safe": {
+    "head": "SAFE / convertible note",
+    "bn": "সেফ / কনভার্টেবল নোট",
+    "expansion": "simple agreement for future equity",
+    "aka": ["convertible note", "কনভার্টেবল নোট"],
+    "group": "funding",
+    "def": {
+      "bn": "এমন একটি চুক্তি, যা এখন টাকা দেয় এবং নির্দিষ্ট নিয়মের অধীনে পরে শেয়ারে পরিণত হয়।",
+      "en": "An agreement that provides money now and turns into shares later under defined rules."
+    },
+    "example": {
+      "bn": "কবে, কী দামে এবং কোন শর্তে এটি শেয়ার হবে, তা চুক্তির ওপর নির্ভর করে।",
+      "en": "When, at what price, and on what conditions it converts vary by document."
+    },
+    "watchOut": {
+      "bn": "দেখতে ছোট হলেও এর ভেতরে ভবিষ্যতের মালিকানা লুকিয়ে থাকে, তাই আইনি পরামর্শ ছাড়া সই করবেন না।",
+      "en": "It looks small but the future ownership hides inside it, so do not sign without legal advice."
+    },
+    "guide": "/funding/safe-convertible-notes",
+    "see": ["valuation-cap", "dilution", "term-sheet"]
+  },
+  "share": {
+    "head": "Share",
+    "bn": "শেয়ার",
+    "group": "equity",
+    "def": {
+      "bn": "মালিকানা মাপার একক। মোট শেয়ারের যে ভগ্নাংশ আপনার কাছে থাকে, ঠিক সেটাই আপনার অংশ।",
+      "en": "The unit ownership is measured in. Whatever fraction of total shares you hold, that is exactly your stake."
+    },
+    "guide": "/funding/cap-table",
+    "see": ["equity", "cap-table", "share-transfer"]
+  },
+  "share-transfer": {
+    "head": "Share transfer",
+    "bn": "শেয়ার হস্তান্তর",
+    "group": "equity",
+    "def": {
+      "bn": "এক শেয়ারহোল্ডারের কাছ থেকে অন্যের কাছে শেয়ারের মালিকানা হস্তান্তর, যা দলিলে লিখে কোম্পানির রেকর্ডে তুলতে হয়।",
+      "en": "Moving ownership of shares from one shareholder to another, recorded in an instrument and entered in the company's register."
+    },
+    "guide": "/funding/cap-table",
+    "see": ["form-117", "share", "cap-table"],
+    "sourceUrl": "https://bdlaws.minlaw.gov.bd/act-print-788.html",
+    "verified": "2026-07-28"
+  },
+  "startup": {
+    "head": "Startup",
+    "bn": "স্টার্টআপ",
+    "group": "product",
+    "def": {
+      "bn": "এমন একটি নতুন বিজনেস মডেল যা এখনো প্রমাণিত নয়, তবে একবার দাঁড়িয়ে গেলে যা খুব দ্রুত বাড়তে পারে।",
+      "en": "A new business model that is not proven yet, but which can grow very fast once it works."
+    },
+    "example": {
+      "bn": "একটি মুদি দোকান বছরের পর বছর একই গতিতে চলে। আর একটি স্টার্টআপ হয় হু হু করে বাড়ে, নয়তো বন্ধ হয়ে যায়।",
+      "en": "A grocery shop runs about the same year after year; a startup either shoots up or shuts down."
+    },
+    "guide": "/start-here/what-is-a-startup",
+    "see": ["pmf", "traction", "vc"]
+  },
+  "take-rate": {
+    "head": "Take rate",
+    "bn": "টেক রেট",
+    "group": "commerce",
+    "def": {
+      "bn": "প্রতিটি লেনদেনে মার্কেটপ্লেস কমিশন হিসেবে যে শতাংশ রাখে।",
+      "en": "The percentage a marketplace keeps as commission on each transaction."
+    },
+    "example": {
+      "bn": "৫০ লাখ জিএমভিতে ১০ শতাংশ টেক রেট হলে প্ল্যাটফর্মের আয় ৫ লাখ টাকা।",
+      "en": "On 50 lakh GMV at a 10 percent take rate, the platform earns 5 lakh taka."
+    },
+    "watchOut": {
+      "bn": "এই রেটই হলো মার্কেটপ্লেসের আসল বিজনেস।",
+      "en": "This rate is the marketplace's actual business."
+    },
+    "see": ["gmv", "revenue", "aov"]
+  },
+  "tam-sam-som": {
+    "head": "TAM / SAM / SOM",
+    "bn": "ট্যাম / স্যাম / সম",
+    "expansion": "total, serviceable and obtainable market",
+    "aka": ["TAM", "SAM", "SOM", "market size"],
+    "group": "growth",
+    "def": {
+      "bn": "তিনটি স্তরে বাজারের আকার: সম্ভাব্য পুরো বাজার, বাস্তবে আপনি যে অংশে সেবা দিতে পারবেন, এবং প্রথম কয়েক বছরে আপনি আসলেই যা দখল করতে পারবেন।",
+      "en": "Market size in three layers: the whole possible market, the part you can realistically serve, and what you will actually capture in the first few years."
+    },
+    "watchOut": {
+      "bn": "ইনভেস্টররা বড় স্বপ্ন আর বাস্তব সংখ্যা দুটিই পাশাপাশি দেখতে চান।",
+      "en": "Investors want the big dream and the realistic number side by side."
+    },
+    "guide": "/ideas/tam-sam-som",
+    "see": ["pitch-deck", "traction"]
+  },
+  "term-sheet": {
+    "head": "Term sheet",
+    "bn": "টার্ম শিট",
+    "group": "funding",
+    "def": {
+      "bn": "ইনভেস্টমেন্টের মূল শর্তগুলোর খসড়া: কত টাকা, কী ভ্যালুয়েশনে, কোন কোন অধিকারে।",
+      "en": "The draft of an investment's key terms: how much money, at what valuation, with what rights."
+    },
+    "example": {
+      "bn": "এতে সই করা মানেই চূড়ান্ত চুক্তি নয়, তবে দরকষাকষির দিক ঠিক হয়ে যায় এখানেই।",
+      "en": "Signing it is not the final contract, but the direction of the negotiation is set here."
+    },
+    "watchOut": {
+      "bn": "সই করার আগে না-বোঝা যেকোনো বিষয় নিয়ে একজন আইনজীবীর সাথে কথা বলুন।",
+      "en": "Have a lawyer look at anything you do not understand before you sign."
+    },
+    "guide": "/funding/term-sheets",
+    "see": ["liquidation-preference", "pro-rata", "valuation"]
+  },
+  "traction": {
+    "head": "Traction",
+    "bn": "ট্র্যাকশন",
+    "group": "growth",
+    "starter": true,
+    "def": {
+      "bn": "বিজনেস যে আসলেই এগোচ্ছে, তার শক্ত প্রমাণ: বাড়তে থাকা অর্ডার, রেভিনিউ, নিয়মিত ব্যবহার, বা ফিরে আসা কাস্টমার।",
+      "en": "Hard evidence that the business is genuinely moving: growing orders, revenue, regular usage, or returning customers."
+    },
+    "watchOut": {
+      "bn": "ইনভেস্টররা গল্প কম শুনতে চান, ট্র্যাকশন দেখতে চান বেশি।",
+      "en": "Investors want less story and more traction."
+    },
+    "guide": "/metrics",
+    "see": ["pmf", "north-star-metric", "pitch-deck"]
+  },
+  "trade-license": {
+    "head": "Trade licence",
+    "bn": "ট্রেড লাইসেন্স",
+    "aka": ["trade license"],
+    "group": "paperwork",
+    "def": {
+      "bn": "ব্যবসার ঠিকানা অনুযায়ী সিটি করপোরেশন, পৌরসভা বা ইউনিয়ন পরিষদ থেকে নেওয়া ব্যবসা পরিচালনার অনুমতিপত্র।",
+      "en": "A permit to operate a business, issued by the city corporation, municipality, or union parishad responsible for its address."
+    },
+    "watchOut": {
+      "bn": "এটি প্রতি বছর নবায়ন করতে হয়।",
+      "en": "It must be renewed every year."
+    },
+    "guide": "/trade-license",
+    "see": ["compliance", "vat-bin"]
+  },
+  "unit-economics": {
+    "head": "Unit economics",
+    "bn": "ইউনিট ইকোনমিকস",
+    "group": "money",
+    "starter": true,
+    "def": {
+      "bn": "একটি ইউনিটের লাভ-ক্ষতির হিসাব: দিনশেষে একটি অর্ডার বা একজন কাস্টমারের কাছ থেকে কত থাকে।",
+      "en": "The profit-and-loss maths of a single unit: what is left on one order or one customer at the end."
+    },
+    "example": {
+      "bn": "একটি ইউনিটে লোকসান হলে হাজার ইউনিটে হাজার গুণ লোকসান হবে।",
+      "en": "Lose money on one unit and a thousand units lose a thousand times as much."
+    },
+    "watchOut": {
+      "bn": "“স্কেল করলে লাভ হবে” এমন সিদ্ধান্ত নেওয়ার আগেই এটি ঠিক করে নিন।",
+      "en": "Settle this before you decide “scaling will make it profitable.”"
+    },
+    "guide": "/metrics/unit-economics",
+    "see": ["gross-margin", "cac", "ltv"]
+  },
+  "valuation": {
+    "head": "Valuation",
+    "bn": "ভ্যালুয়েশন",
+    "aka": ["pre-money", "post-money", "প্রি-মানি", "পোস্ট-মানি"],
+    "group": "equity",
+    "def": {
+      "bn": "পুরো কোম্পানির একটি রাজি হওয়া দাম। টাকা ঢোকার আগের দাম হলো প্রি-মানি, আর নতুন টাকা যোগ করার পরের দাম পোস্ট-মানি।",
+      "en": "The agreed price of the whole company. The price before the money goes in is pre-money; after the new money is added it is post-money."
+    },
+    "example": {
+      "bn": "১ কোটি প্রি-মানিতে ২৫ লাখ ঢুকালে পোস্ট-মানি হয় ১ কোটি ২৫ লাখ, যা ইনভেস্টরকে দেয় ২০ শতাংশের মালিকানা।",
+      "en": "Put 25 lakh into a 1-crore pre-money and post-money is 1 crore 25 lakh, giving the investor a 20 percent stake."
+    },
+    "watchOut": {
+      "bn": "আপনারা দুজন আসলে কোনটি নিয়ে কথা বলছেন, তা শুরুতেই পরিষ্কার করে নিন।",
+      "en": "Be clear up front which one you are both talking about."
+    },
+    "guide": "/funding/valuation",
+    "see": ["dilution", "valuation-cap", "term-sheet"]
+  },
+  "valuation-cap": {
+    "head": "Valuation cap",
+    "bn": "ভ্যালুয়েশন ক্যাপ",
+    "group": "funding",
+    "def": {
+      "bn": "আগে থেকে সেফ বা নোটে ঠিক করে রাখা সর্বোচ্চ ভ্যালুয়েশন, যেটিতে আগের ইনভেস্টরের টাকা শেয়ারে পরিণত হয়।",
+      "en": "The maximum valuation, fixed in advance in a SAFE or note, at which the earlier investor's money converts into shares."
+    },
+    "watchOut": {
+      "bn": "ক্যাপ যত কম হবে, আগের ইনভেস্টর তত বেশি শেয়ার পাবেন।",
+      "en": "The lower the cap, the more shares that earlier investor gets."
+    },
+    "guide": "/funding/safe-convertible-notes",
+    "see": ["safe", "valuation", "dilution"]
+  },
+  "vat-bin": {
+    "head": "VAT / BIN",
+    "bn": "ভ্যাট / বিআইএন",
+    "expansion": "value added tax / Business Identification Number",
+    "aka": ["BIN", "VAT", "ভ্যাট নিবন্ধন"],
+    "group": "paperwork",
+    "def": {
+      "bn": "ভ্যাট হলো পণ্য ও সেবার ওপর বসা ভ্যালু-অ্যাডেড ট্যাক্স। আর ভ্যাট নিবন্ধন বা টার্নওভার করের তালিকাভুক্তির পর পাওয়া ৯ সংখ্যার ব্যবসা শনাক্তকরণ নম্বরটিই বিআইএন।",
+      "en": "VAT is the value-added tax charged on goods and services, and BIN is the 9-digit Business Identification Number issued after VAT registration or turnover-tax enlistment."
+    },
+    "guide": "/e-tin-vat-bin",
+    "see": ["nbr", "e-tin", "compliance"],
+    "sourceUrl": "https://nbr.gov.bd/faq/vat-faq/en",
+    "verified": "2026-07-28"
+  },
+  "vc": {
+    "head": "VC",
+    "bn": "ভিসি",
+    "expansion": "venture capital",
+    "group": "funding",
+    "def": {
+      "bn": "এমন একটি প্রতিষ্ঠান যারা অন্যের টাকা মিলিয়ে একটি ফান্ড বানায় এবং স্টার্টআপে ইনভেস্ট করে।",
+      "en": "A firm that pools other people's money into a fund and invests it in startups."
+    },
+    "example": {
+      "bn": "এরা জেনেশুনেই ঝুঁকি নেয়। দশটির মধ্যে একটি বড় জয়ই পুরো ফান্ডের টাকা উশুল করে দেয়।",
+      "en": "It takes risk deliberately; one big win in ten pays for the whole fund."
+    },
+    "watchOut": {
+      "bn": "তাই ভিসি সবসময় খুব দ্রুত বড় হওয়ার সুযোগ খোঁজে।",
+      "en": "So a VC is looking for the chance to get very big, fast."
+    },
+    "guide": "/funding",
+    "see": ["angel-investor", "funding-rounds", "exit"]
+  },
+  "vesting": {
+    "head": "Vesting",
+    "bn": "ভেস্টিং",
+    "aka": ["cliff", "ক্লিফ"],
+    "group": "equity",
+    "def": {
+      "bn": "নির্ধারিত সময় বা শর্ত পূরণের সঙ্গে সঙ্গে প্রতিষ্ঠাতা বা কর্মীর শেয়ারের অধিকার ধাপে ধাপে পাকা হওয়ার ব্যবস্থা।",
+      "en": "An arrangement under which a founder's or employee's right to equity becomes earned gradually as time or agreed conditions are met."
+    },
+    "example": {
+      "bn": "সাধারণ নিয়ম হলো চার বছরে পুরোপুরি ভেস্টিং, আর এক বছরের “ক্লিফ” পার না হওয়া পর্যন্ত কিছুই না পাওয়া।",
+      "en": "The common rule is full vesting over four years, with nothing at all until you pass the one-year “cliff.”"
+    },
+    "watchOut": {
+      "bn": "এর মূল কারণ হলো, শুরুতে চলে যাওয়া কোনো কো-ফাউন্ডার যেন পুরো অংশ নিয়ে বেরিয়ে যেতে না পারেন।",
+      "en": "The point is to stop a co-founder who leaves early from walking off with a full stake."
+    },
+    "guide": "/cofounders/equity-and-vesting",
+    "see": ["equity", "esop", "cap-table"]
+  },
+  "withholding-tax": {
+    "head": "Withholding tax",
+    "bn": "উৎস কর",
+    "group": "paperwork",
+    "def": {
+      "bn": "পেমেন্ট দেওয়ার সময় প্রদানকারীকে যে কর কেটে রেখে NBR-এ জমা দিতে হয়।",
+      "en": "Tax the payer must deduct at the time of payment and deposit with NBR."
+    },
+    "watchOut": {
+      "bn": "কাটার দায়িত্ব প্রদানকারীর। না কাটলে জরিমানা তার ঘাড়েই পড়ে।",
+      "en": "The duty to deduct sits with the payer; miss it and the penalty lands on them, not the recipient."
+    },
+    "see": ["nbr", "corporate-tax", "compliance"],
+    "sourceUrl": "https://nbr.gov.bd/",
+    "verified": "2026-07-28"
+  },
+  "working-capital": {
+    "head": "Working capital",
+    "bn": "ওয়ার্কিং ক্যাপিটাল",
+    "group": "money",
+    "def": {
+      "bn": "দৈনন্দিন কাজ চালানোর জন্য হাতের টাকা: স্টক কেনা, বেতন দেওয়া আর ভাড়া মেটানোর মতো তরল টাকা।",
+      "en": "The money on hand to run day to day: the liquidity to buy stock, pay salaries and cover rent."
+    },
+    "watchOut": {
+      "bn": "নগদে স্টক কিনে বাকিতে বিক্রি করলেই এই টাকা আটকে যায়।",
+      "en": "Sell on credit while buying stock for cash and this is the money that gets stuck."
+    },
+    "guide": "/metrics/cashflow-vs-profit",
+    "see": ["cash-flow", "accounts-receivable", "runway"]
   }
 }

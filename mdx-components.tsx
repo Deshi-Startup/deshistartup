@@ -11,6 +11,7 @@ import YouTube from './app/components/YouTube'
 import FacebookVideo from './app/components/FacebookVideo'
 import OfficialSocialLinks from './app/components/OfficialSocialLinks'
 import Term from './app/components/Term'
+import Glossary from './app/components/Glossary'
 import ExpertReview from './app/components/ExpertReview'
 import ContributorLeaderboard from './app/components/ContributorLeaderboard'
 import ContributionInvite from './app/components/ContributionInvite'
@@ -51,6 +52,7 @@ export function useMDXComponents(components: Record<string, any>): Record<string
     FacebookVideo,
     OfficialSocialLinks,
     Term,
+    Glossary,
     ExpertReview,
     ContributorLeaderboard,
     ContributionInvite
