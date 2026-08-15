@@ -47,8 +47,8 @@ export const GLOSSARY_GROUPS: { key: string; label: LocalText }[] = [
 
 const LABELS: Record<Locale, Record<string, string>> = {
   bn: {
-    starterTitle: 'প্রথমে এই দশটি',
-    starterNote: 'পুরো তালিকা মুখস্থ করার দরকার নেই। এগুলো আগে বুঝে নিন, বাকিগুলো দরকারের সময় এমনিতেই আসবে।',
+    starterTitle: 'শুরুতে এই ১০টি শব্দ জেনে নিন',
+    starterNote: 'পুরো তালিকা মুখস্থ করে ফেলার কোনো দরকার নেই। আগে শুধু এই কয়টা শব্দ বুঝে নিন, বাকিগুলো আপনার কাজের দরকারের সময় এমনিতেই শিখে যাবেন।',
     jump: 'অক্ষর ধরে যান',
     index: 'সূচি',
     example: 'উদাহরণ',
@@ -60,8 +60,8 @@ const LABELS: Record<Locale, Record<string, string>> = {
     xref: 'দেখুন'
   },
   en: {
-    starterTitle: 'Start with these ten',
-    starterNote: 'You do not need to memorise the list. Get these down first and let the rest come as you meet them.',
+    starterTitle: 'Start by learning these 10 terms',
+    starterNote: 'There is absolutely no need to memorize the whole list. Just understand these core terms first, and pick up the rest naturally as you need them.',
     jump: 'Jump to a letter',
     index: 'Index',
     example: 'Example',
