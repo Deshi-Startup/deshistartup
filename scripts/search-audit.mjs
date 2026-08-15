@@ -53,11 +53,11 @@ const cases = [
     language: 'bn',
     query: 'glossary',
     path: '/start-here/glossary.html',
-    title: 'স্টার্টআপ শব্দকোষ: কোন শব্দের মানে কী'
+    title: 'স্টার্টআপ ডিকশনারি: কোন শব্দের মানে কী'
   },
   {
     language: 'en',
-    query: 'শব্দকোষ',
+    query: 'ডিকশনারি',
     path: '/en/start-here/glossary.html',
     title: 'Startup Glossary: What do these terms mean?'
   }
