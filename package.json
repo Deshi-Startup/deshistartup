@@ -38,12 +38,13 @@
     "test:contribute": "node --experimental-strip-types --test app/lib/contributable-path.test.mjs app/lib/contribution-markdown.test.mjs app/lib/contribution-draft.test.mjs app/lib/contribution-media.test.mjs app/lib/clean-route.test.mjs",
     "test:contributors": "node --test scripts/contributor-data.test.mjs app/lib/contributor-leaderboard.test.mjs",
     "test:analytics": "node --experimental-strip-types --test app/lib/search-analytics.test.mjs",
+    "search:audit": "node scripts/search-audit.mjs",
     "seo:audit": "node scripts/seo-audit.mjs",
     "seo:indexnow": "node scripts/submit-indexnow.mjs",
     "seo:indexnow:dry": "node scripts/submit-indexnow.mjs --dry-run",
     "predev": "node scripts/build-manifest.mjs",
     "prebuild": "node scripts/route-lint.mjs && node scripts/media-lint.mjs && node scripts/citation-lint.mjs && node scripts/build-manifest.mjs && node scripts/glossary-lint.mjs",
-    "postbuild": "node scripts/postbuild-seo.mjs && node scripts/build-pagefind.mjs && node scripts/seo-audit.mjs"
+    "postbuild": "node scripts/postbuild-seo.mjs && node scripts/build-pagefind.mjs && node scripts/search-audit.mjs && node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "@milkdown/crepe": "^7.22.0",

@@ -404,6 +404,7 @@ for (const page of pages) {
     : `${page.fullTitle} | ${isEn ? SITE_NAME : SITE_NAME_BN}`
   const pairedBn = pageByLocaleSlug.get(`bn:${page.slug}`)
   const pairedEn = pageByLocaleSlug.get(`en:${page.slug}`)
+  const pairedPage = isEn ? pairedBn : pairedEn
   const hasIndexablePair = !page.stub && pairedBn && pairedEn && !pairedBn.stub && !pairedEn.stub
   const pageChildren = childrenFor(page)
   const isCollectionPage =
@@ -441,6 +442,18 @@ for (const page of pages) {
       `<link rel="alternate" hreflang="bn-BD" href="${escapeHtml(canonicalUrl(pairedBn.route))}"/>`,
       `<link rel="alternate" hreflang="en-BD" href="${escapeHtml(canonicalUrl(pairedEn.route))}"/>`,
       `<link rel="alternate" hreflang="x-default" href="${escapeHtml(canonicalUrl(pairedBn.route))}"/>`
+    )
+  }
+
+  // Pagefind builds separate indexes from <html lang>, which is the right
+  // default: a reader should stay in the language they chose. The paired title
+  // is nevertheless valuable search vocabulary. Index it as metadata so an
+  // English phrase can find the Bangla route (and vice versa) without merging
+  // both indexes and returning duplicate-language pages. Metadata also stays
+  // out of excerpts, unlike hidden body copy.
+  if (pairedPage) {
+    tags.push(
+      `<meta data-pagefind-meta="alternate-title[content]" content="${escapeHtml(pairedPage.fullTitle)}"/>`
     )
   }
 

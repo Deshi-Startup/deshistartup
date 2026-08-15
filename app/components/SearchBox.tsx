@@ -27,7 +27,12 @@ interface Pagefind {
   search: (query: string) => Promise<{
     results: PagefindItem[]
   }>
-  options: (opts: { baseUrl: string }) => Promise<void>
+  options: (opts: {
+    baseUrl: string
+    ranking?: {
+      metaWeights?: Record<string, number>
+    }
+  }) => Promise<void>
 }
 
 // Extend global window interface
@@ -50,7 +55,18 @@ async function loadPagefind(basePath = ''): Promise<Pagefind | null> {
       // @ts-ignore
       pagefindPromise = import(/* webpackIgnore: true */ pagefindUrl).then((module) => {
         window.pagefind = module
-        return window.pagefind!.options({ baseUrl: basePath || '/' }).then(() => window.pagefind!)
+        return window.pagefind!
+          .options({
+            baseUrl: basePath || '/',
+            ranking: {
+              // The translated page title is a search alias, not a second
+              // result title. Keep the visible title's built-in 5x lead while
+              // making an equivalent query in the other site language rank
+              // well above an incidental body-text match.
+              metaWeights: { 'alternate-title': 4 }
+            }
+          })
+          .then(() => window.pagefind!)
       })
     }
     await pagefindPromise
