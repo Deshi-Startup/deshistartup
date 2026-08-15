@@ -875,7 +875,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
         <nav className="footer-nav" aria-label={isEn ? 'Footer navigation' : 'আরও লিংক'}>
           <div className="footer-link-group">
             <p className="footer-link-label" id="footer-project-label">
-              {isEn ? 'Project' : 'প্রকল্প'}
+              {isEn ? 'Project' : 'প্রজেক্ট'}
             </p>
             <ul className="footer-link-list" aria-labelledby="footer-project-label">
               <li>
@@ -948,7 +948,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
         <p className="footer-legal">
           {isEn
             ? 'This site is general guidance, not legal or tax advice. Fees, forms and rules change – always confirm with official government sources (RJSC, NBR, Bangladesh Bank) before acting.'
-            : 'এই সাইট সাধারণ গাইড দেয়। আইনি বা কর পরামর্শ নয়। ফি, ফর্ম ও নিয়ম বদলায়। কাজের আগে সরকারি উৎস (RJSC, NBR, বাংলাদেশ ব্যাংক) থেকে যাচাই করে নিন।'}
+            : 'এই সাইট সাধারণ গাইড দেয়। আইনি বা কর পরামর্শ নয়। ফি, ফর্ম ও নিয়ম বদলায়। কাজের আগে সরকারি সোর্স (RJSC, NBR, বাংলাদেশ ব্যাংক) থেকে যাচাই করে নিন।'}
         </p>
       </footer>
 

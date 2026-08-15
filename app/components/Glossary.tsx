@@ -55,7 +55,7 @@ const LABELS: Record<Locale, Record<string, string>> = {
     watchOut: 'যেখানে ভুল হয়',
     guide: 'পুরো গাইড',
     see: 'আরও দেখুন',
-    source: 'সরকারি উৎস',
+    source: 'সরকারি সোর্স',
     verified: 'যাচাই',
     xref: 'দেখুন'
   },

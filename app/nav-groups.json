@@ -46,7 +46,7 @@
    ]
   },
   {
-   "bn": "বাজার গবেষণা ও প্রতিযোগী বোঝা",
+   "bn": "মার্কেট রিসার্চ ও প্রতিযোগী বোঝা",
    "en": "Market Research & Competitors",
    "slugs": [
     "market-demographics",
@@ -102,7 +102,7 @@
    ]
   },
   {
-   "bn": "কোম্পানি নিবন্ধন ও আরজেএসসি",
+   "bn": "কোম্পানি রেজিস্ট্রেশন ও আরজেএসসি",
    "en": "Company Registration & RJSC",
    "slugs": [
     "name-clearance",
@@ -149,7 +149,7 @@
  ],
  "tax": [
   {
-   "bn": "কর, ভ্যাট ও হিসাবরক্ষণ",
+   "bn": "কর, ভ্যাট ও হিসাব রাখা",
    "en": "Tax, VAT & Bookkeeping",
    "slugs": [
     "e-tin",
@@ -472,7 +472,7 @@
    ]
   },
   {
-   "bn": "বিনিয়োগকারী খোঁজা",
+   "bn": "ইনভেস্টর খোঁজা",
    "en": "Finding Investors",
    "slugs": [
     "angel-investors",

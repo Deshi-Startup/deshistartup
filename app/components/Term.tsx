@@ -95,7 +95,7 @@ export default function Term({ name, def, children }: TermProps) {
             )}
             {entry?.sourceUrl && (
               <a href={entry.sourceUrl} target="_blank" rel="noreferrer">
-                <span className="glossary-copy glossary-copy--bn">সরকারি উৎস</span>
+                <span className="glossary-copy glossary-copy--bn">সরকারি সোর্স</span>
                 <span className="glossary-copy glossary-copy--en">Official source</span>
               </a>
             )}
