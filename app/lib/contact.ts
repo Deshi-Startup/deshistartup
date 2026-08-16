@@ -20,10 +20,10 @@ export type ContactTopic = (typeof CONTACT_TOPIC_KEYS)[number]
 
 export const CONTACT_TOPIC_LABELS = {
   bn: {
-    general: 'সাধারণ প্রশ্ন',
-    correction: 'ভুল ধরিয়ে দেওয়া বা মতামত',
-    contribute: 'লেখালেখিতে যোগ দেওয়া',
-    partnership: 'পার্টনারশিপ বা সংবাদমাধ্যম',
+    general: 'সাধারণ কোনো প্রশ্ন',
+    correction: 'ভুল সংশোধন বা ফিডব্যাক',
+    contribute: 'কন্ট্রিবিউট করা নিয়ে',
+    partnership: 'পার্টনারশিপ বা প্রেস',
     other: 'অন্য কিছু'
   },
   en: {

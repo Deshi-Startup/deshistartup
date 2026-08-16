@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   CONTACT_FIELD_LIMITS,
   CONTACT_TOPIC_KEYS,
@@ -20,6 +20,7 @@ import {
  */
 
 const CONTACT_EMAIL = 'hello@deshistartup.com'
+const MESSAGE_MIN = 10
 type Field = 'name' | 'email' | 'message'
 
 interface ContactFormProps {
@@ -28,49 +29,49 @@ interface ContactFormProps {
 
 const copy = {
   bn: {
-    name: 'আপনার নাম',
-    email: 'ইমেইল ঠিকানা',
-    emailHint: 'উত্তর এই ঠিকানাতেই যাবে।',
-    topic: 'কী নিয়ে লিখছেন',
+    name: 'নাম',
+    email: 'ইমেইল',
+    topic: 'বিষয়',
     message: 'মেসেজ',
-    messageHint: 'মেসেজটি ৫,০০০ অক্ষরের মধ্যে রাখুন। যত পরিষ্কার করে লিখবেন, উত্তর তত কাজে লাগবে।',
-    submit: 'মেসেজ পাঠান',
+    messageHint: 'বিস্তারিত লিখলে উত্তর দেওয়া সহজ হয়। (সর্বোচ্চ ৫,০০০ অক্ষর)',
+    submit: 'পাঠিয়ে দিন',
     sending: 'পাঠানো হচ্ছে…',
     honeypot: 'এই ঘরটা খালি রাখুন',
-    sentTitle: 'মেসেজ পৌঁছে গেছে',
+    sentTitle: 'মেসেজ পেয়েছি',
     sentBody: (email: string) =>
-      `উত্তর যাবে ${email} ঠিকানায়। জরুরি হলে সরাসরি ${CONTACT_EMAIL}-এ মেইল করুন।`,
+      `উত্তর যাবে ${email} ঠিকানায়। খুব জরুরি কিছু হলে সরাসরি ${CONTACT_EMAIL}-এ মেইল করুন।`,
     again: 'আরেকটা মেসেজ পাঠান',
     errors: {
-      name: 'আপনার নামটা লিখুন।',
-      email: 'ইমেইল ঠিকানাটা দিন, উত্তর পাঠাতে লাগবে।',
-      emailFormat: 'ইমেইল ঠিকানাটা ঠিক দেখাচ্ছে না। আরেকবার দেখে নিন।',
-      message: 'কী দরকার, সেটা লিখুন।',
-      messageTooLong: 'মেসেজটি ৫,০০০ অক্ষরের মধ্যে রাখুন।',
-      rateLimited: `একটু বেশি মেসেজ চলে এসেছে। কয়েক মিনিট পরে আবার চেষ্টা করুন, নয়তো ${CONTACT_EMAIL}-এ মেইল করুন।`,
-      failed: `মেসেজটা পাঠানো গেল না। ${CONTACT_EMAIL} ঠিকানায় মেইল করে দিন, আমরা পেয়ে যাব।`
+      name: 'নাম লিখুন।',
+      email: 'ইমেইল দিন।',
+      emailFormat: 'ইমেইল ঠিক নেই, আবার দেখুন।',
+      message: 'মেসেজ ফাঁকা রাখা যাবে না।',
+      messageTooShort: 'আরেকটু বিস্তারিত লিখুন, অন্তত ১০ অক্ষর।',
+      messageTooLong: 'মেসেজ ৫,০০০ অক্ষরের বেশি হয়ে গেছে।',
+      rateLimited: `অনেক বেশি মেসেজ পাঠানো হয়েছে। একটু পর আবার চেষ্টা করুন, অথবা সরাসরি ${CONTACT_EMAIL}-এ মেইল করুন।`,
+      failed: `মেসেজ পাঠানো যায়নি। সরাসরি ${CONTACT_EMAIL}-এ মেইল করে দিন।`
     }
   },
   en: {
-    name: 'Your name',
-    email: 'Email address',
-    emailHint: 'The reply goes to this address.',
-    topic: 'What is this about',
+    name: 'Name',
+    email: 'Email',
+    topic: 'Topic',
     message: 'Message',
-    messageHint: 'Keep it within 5,000 characters. The clearer the detail, the more useful the reply.',
+    messageHint: 'The more detail you give, the easier it is to reply. (5,000 characters max)',
     submit: 'Send message',
     sending: 'Sending…',
     honeypot: 'Leave this field empty',
-    sentTitle: 'Message sent',
+    sentTitle: 'Message received',
     sentBody: (email: string) =>
       `The reply goes to ${email}. If it is urgent, email ${CONTACT_EMAIL} directly.`,
     again: 'Send another message',
     errors: {
       name: 'Add your name.',
-      email: 'Add your email address so we can reply.',
-      emailFormat: 'That email address does not look right. Check it once more.',
-      message: 'Write what you need, so we know how to help.',
-      messageTooLong: 'Keep the message within 5,000 characters.',
+      email: 'Add your email address.',
+      emailFormat: 'That email address does not look right. Check it again.',
+      message: 'The message cannot be empty.',
+      messageTooShort: 'Add a little more detail, at least 10 characters.',
+      messageTooLong: 'The message is longer than 5,000 characters.',
       rateLimited: `Too many messages from here just now. Try again in a few minutes, or email ${CONTACT_EMAIL}.`,
       failed: `The message did not send. Email ${CONTACT_EMAIL} instead and we will get it.`
     }
@@ -79,7 +80,6 @@ const copy = {
 
 export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
   const t = copy[locale]
-  const isEn = locale === 'en'
   const topicLabels = CONTACT_TOPIC_LABELS[locale]
 
   const [name, setName] = useState('')
@@ -88,8 +88,9 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
   const [message, setMessage] = useState('')
   const [website, setWebsite] = useState('')
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle')
-  const [error, setError] = useState('')
   const [invalid, setInvalid] = useState<Field | null>(null)
+  const [fieldError, setFieldError] = useState('')
+  const [formError, setFormError] = useState('')
   const [sentTo, setSentTo] = useState('')
 
   const fields = {
@@ -97,22 +98,51 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
     email: useRef<HTMLInputElement>(null),
     message: useRef<HTMLTextAreaElement>(null)
   }
+  const panel = useRef<HTMLDivElement>(null)
+  const returning = useRef(false)
+
+  /* Submitting removes the button the reader was standing on, and returning to
+     the form removes the panel. Without this the caret lands on <body> and a
+     keyboard or screen-reader user is dropped back at the top of the document.
+     The refs are stable, so only a status change moves focus. */
+  useEffect(() => {
+    if (status === 'sent') {
+      panel.current?.focus()
+    } else if (returning.current) {
+      returning.current = false
+      fields.name.current?.focus()
+    }
+  }, [status])
 
   /** An error that names a field should also take the reader to it. */
   function fail(field: Field, text: string) {
     setInvalid(field)
-    setError(text)
+    setFieldError(text)
+    setFormError('')
     fields[field].current?.focus()
   }
 
+  /** A field stops being wrong the moment the reader starts fixing it. */
+  function clearError(field: Field) {
+    if (invalid !== field) return
+    setInvalid(null)
+    setFieldError('')
+  }
+
+  function errorId(field: Field) {
+    return invalid === field ? `contact-${field}-error` : undefined
+  }
+
   function reset() {
+    returning.current = true
     setName('')
     setEmail('')
     setTopic('general')
     setMessage('')
     setWebsite('')
-    setError('')
     setInvalid(null)
+    setFieldError('')
+    setFormError('')
     setStatus('idle')
   }
 
@@ -131,13 +161,17 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(trimmed.email)) {
       return fail('email', t.errors.emailFormat)
     }
-    if (trimmed.message.length < 10) return fail('message', t.errors.message)
+    if (!trimmed.message) return fail('message', t.errors.message)
+    if (trimmed.message.length < MESSAGE_MIN) {
+      return fail('message', t.errors.messageTooShort)
+    }
     if (trimmed.message.length > CONTACT_FIELD_LIMITS.message) {
       return fail('message', t.errors.messageTooLong)
     }
 
-    setError('')
     setInvalid(null)
+    setFieldError('')
+    setFormError('')
     setStatus('sending')
 
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
@@ -154,20 +188,25 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
       if (!res.ok) {
         const body = (await res.json().catch(() => ({}))) as { error?: string }
         setStatus('idle')
-        setError(body.error === 'rate_limited' ? t.errors.rateLimited : t.errors.failed)
+        setFormError(body.error === 'rate_limited' ? t.errors.rateLimited : t.errors.failed)
         return
       }
       setSentTo(trimmed.email)
       setStatus('sent')
     } catch {
       setStatus('idle')
-      setError(t.errors.failed)
+      setFormError(t.errors.failed)
     }
   }
 
   if (status === 'sent') {
     return (
-      <div className="contact-form contact-form--sent" role="status">
+      <div
+        className="contact-form contact-form--sent"
+        role="status"
+        ref={panel}
+        tabIndex={-1}
+      >
         <p className="contact-form__sent-title">{t.sentTitle}</p>
         <p className="contact-form__sent-body">{t.sentBody(sentTo)}</p>
         <button type="button" className="contact-form__again" onClick={reset}>
@@ -194,11 +233,20 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
             autoComplete="name"
             ref={fields.name}
             aria-invalid={invalid === 'name' || undefined}
+            aria-describedby={errorId('name')}
             value={name}
-            onChange={(event) => setName(event.target.value)}
+            onChange={(event) => {
+              setName(event.target.value)
+              clearError('name')
+            }}
             maxLength={CONTACT_FIELD_LIMITS.name}
             required
           />
+          {invalid === 'name' && (
+            <p className="contact-form__field-error" id="contact-name-error" role="alert">
+              {fieldError}
+            </p>
+          )}
         </div>
         <div className="contact-form__field">
           <label className="contact-form__label" htmlFor="contact-email">
@@ -213,15 +261,20 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
             autoComplete="email"
             ref={fields.email}
             aria-invalid={invalid === 'email' || undefined}
+            aria-describedby={errorId('email')}
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            aria-describedby="contact-email-hint"
+            onChange={(event) => {
+              setEmail(event.target.value)
+              clearError('email')
+            }}
             maxLength={CONTACT_FIELD_LIMITS.email}
             required
           />
-          <p className="contact-form__hint" id="contact-email-hint">
-            {t.emailHint}
-          </p>
+          {invalid === 'email' && (
+            <p className="contact-form__field-error" id="contact-email-error" role="alert">
+              {fieldError}
+            </p>
+          )}
         </div>
       </div>
 
@@ -248,6 +301,9 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
         <label className="contact-form__label" htmlFor="contact-message">
           {t.message}
         </label>
+        {/* No maxLength: a pasted 6,000-character message would be silently
+            truncated, and the reader would send something they did not write.
+            The length check below names the problem instead. */}
         <textarea
           id="contact-message"
           className="contact-form__input contact-form__textarea"
@@ -256,11 +312,22 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
           ref={fields.message}
           aria-invalid={invalid === 'message' || undefined}
           value={message}
-          onChange={(event) => setMessage(event.target.value)}
-          aria-describedby="contact-message-hint"
-          maxLength={CONTACT_FIELD_LIMITS.message}
+          onChange={(event) => {
+            setMessage(event.target.value)
+            clearError('message')
+          }}
+          aria-describedby={
+            invalid === 'message'
+              ? 'contact-message-error contact-message-hint'
+              : 'contact-message-hint'
+          }
           required
         />
+        {invalid === 'message' && (
+          <p className="contact-form__field-error" id="contact-message-error" role="alert">
+            {fieldError}
+          </p>
+        )}
         <p className="contact-form__hint" id="contact-message-hint">
           {t.messageHint}
         </p>
@@ -280,20 +347,16 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
         />
       </div>
 
-      {error && (
-        <p className="contact-form__error" role="alert">
-          {error}
-        </p>
-      )}
-
-      <button type="submit" className="contact-form__submit" disabled={sending}>
-        {sending ? t.sending : t.submit}
-      </button>
-      <p className="contact-form__note">
-        {isEn
-          ? 'Your name, email, topic and message reach the Deshi Startup inbox, and are used only to reply.'
-          : 'আপনার নাম, ইমেইল, বিষয় আর মেসেজ দেশি স্টার্টআপের ইনবক্সে যায়, আর উত্তর দেওয়া ছাড়া অন্য কিছুতে লাগে না।'}
-      </p>
+      <div className="contact-form__actions">
+        {formError && (
+          <p className="contact-form__error" role="alert">
+            {formError}
+          </p>
+        )}
+        <button type="submit" className="contact-form__submit" disabled={sending}>
+          {sending ? t.sending : t.submit}
+        </button>
+      </div>
     </form>
   )
 }

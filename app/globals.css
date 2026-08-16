@@ -849,39 +849,46 @@ h3 {
    filling in should not compete with them. Every address on the page works
    without this island, so nothing here is load-bearing. */
 .contact-form {
+  --field-h: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
   max-width: var(--measure);
   margin: 20px 0 30px;
   border: 1px solid var(--line);
   background: var(--canvas-soft);
-  padding: 20px 22px;
+  padding: 22px;
 }
 
 .contact-form__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px 18px;
+  gap: 18px;
 }
 
+/* A label belongs to its own control and to nothing else, so the gap inside a
+   field is a third of the gap between fields. At the old 5px against a 1.72
+   line-height the label's half-leading closed most of that difference, and the
+   next label sat on the previous control's focus ring. */
 .contact-form__field {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  margin: 0 0 14px;
-}
-
-.contact-form__grid .contact-form__field {
-  margin: 0;
+  gap: 6px;
 }
 
 .contact-form__label {
   color: var(--muted);
   font-size: 0.85rem;
   font-weight: var(--w-strong);
+  line-height: 1.35;
 }
 
+/* Chrome forces `line-height: normal` on a select, so a select left to its own
+   height lands 6px short of the inputs beside it. One height for every control
+   in the form, declared once. */
 .contact-form__input {
   width: 100%;
-  min-height: 44px;
+  min-height: var(--field-h);
   border: 1px solid var(--line);
   border-radius: 3px;
   background: var(--canvas);
@@ -916,7 +923,7 @@ h3 {
 .contact-form__hint {
   margin: 0;
   color: var(--faint);
-  font-size: 0.75rem;
+  font-size: 0.82rem;
   line-height: 1.45;
 }
 
@@ -930,8 +937,27 @@ h3 {
   overflow: hidden;
 }
 
+/* A message about one field sits with that field. Only a failure that belongs
+   to the whole submission (the network, the rate limit) sits by the button.
+   The extra 4px clears the focus ring: naming a field also focuses it, so the
+   ring and the message are always on screen together. */
+.contact-form__field-error {
+  margin: 4px 0 0;
+  color: var(--error);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.contact-form__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 4px;
+}
+
 .contact-form__error {
-  margin: 0 0 14px;
+  margin: 0;
   color: var(--error);
   font-size: 0.92rem;
 }
@@ -940,7 +966,7 @@ h3 {
 .contact-form__again {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  min-height: var(--field-h);
   border: 1px solid var(--green-deep);
   border-radius: 3px;
   background: var(--canvas);
@@ -963,19 +989,24 @@ h3 {
   cursor: default;
 }
 
-.contact-form__note {
-  margin: 12px 0 0;
-  color: var(--faint);
-  font-size: 0.8rem;
-  line-height: 1.5;
-}
-
 /* The page's one authored moment: the panel that replaces the form arrives
-   rather than appearing, so a reader who was mid-scroll sees the swap. */
+   rather than appearing, so a reader who was mid-scroll sees the swap. It takes
+   focus when it mounts, and the outline is the panel's own edge rather than the
+   site ring, which at 3px offset would trace a second box around the card. */
 .contact-form--sent {
+  display: block;
   border-color: var(--green);
   background: var(--green-ground);
   animation: contact-sent 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.contact-form--sent:focus {
+  outline: none;
+}
+
+.contact-form--sent:focus-visible {
+  outline: 2px solid var(--green-deep);
+  outline-offset: -1px;
 }
 
 @keyframes contact-sent {
@@ -1006,16 +1037,17 @@ h3 {
 
 @media (max-width: 620px) {
   .contact-form {
+    gap: 16px;
     padding: 16px 15px;
   }
 
   .contact-form__grid {
     grid-template-columns: minmax(0, 1fr);
-    gap: 0;
+    gap: 16px;
   }
 
-  .contact-form__grid .contact-form__field {
-    margin: 0 0 14px;
+  .contact-form__actions {
+    align-items: stretch;
   }
 
   .contact-form__submit,

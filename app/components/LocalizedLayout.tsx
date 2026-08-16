@@ -284,6 +284,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   // nowhere, there is no edit date to report and a mistake belongs in a rename
   // request, not a content correction.
   const isCredits = pathname === '/contributors' || pathname === '/en/contributors'
+  const isContact = pathname === '/contact' || pathname === '/en/contact'
   // One 404 document serves every unmatched URL, so the router reports the
   // synthetic `/_not-found` route. There is no source file behind it: an
   // "Edit on GitHub" link would open GitHub's new-file editor at a path that
@@ -799,27 +800,29 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
           {!isLanding && !isEditing && !isPrivateReview && !isCredits && !isNotFound && (
             <div className="article-lede">
               <Breadcrumbs isEn={isEn} pathname={pathname} pageTitle={pageTitle} />
-              <div className="article-meta">
-                {/* One date, not two. "Last updated" is the last commit, so a typo fix bumps it;
-                    `verified:` means someone re-checked the claims against the official source.
-                    Where a page carries the stronger signal, that is the one worth showing. */}
-                {verifiedLabel ? (
-                  <span className="meta-date">
-                    {isEn ? 'Last verified: ' : 'সর্বশেষ যাচাই: '}
-                    {verifiedLabel}
-                  </span>
-                ) : (
-                  dateLabel && (
+              {!isContact && (
+                <div className="article-meta">
+                  {/* One date, not two. "Last updated" is the last commit, so a typo fix bumps it;
+                      `verified:` means someone re-checked the claims against the official source.
+                      Where a page carries the stronger signal, that is the one worth showing. */}
+                  {verifiedLabel ? (
                     <span className="meta-date">
-                      {isEn ? 'Last updated: ' : 'সর্বশেষ আপডেট: '}
-                      {dateLabel}
+                      {isEn ? 'Last verified: ' : 'সর্বশেষ যাচাই: '}
+                      {verifiedLabel}
                     </span>
-                  )
-                )}
-                <a href={issueUrl} target="_blank" rel="noopener noreferrer">
-                  {isEn ? 'Report a mistake' : 'ফিডব্যাক দিন'}
-                </a>
-              </div>
+                  ) : (
+                    dateLabel && (
+                      <span className="meta-date">
+                        {isEn ? 'Last updated: ' : 'সর্বশেষ আপডেট: '}
+                        {dateLabel}
+                      </span>
+                    )
+                  )}
+                  <a href={issueUrl} target="_blank" rel="noopener noreferrer">
+                    {isEn ? 'Report a mistake' : 'ফিডব্যাক দিন'}
+                  </a>
+                </div>
+              )}
               {headings.length > 2 && (
                 <details className="page-toc">
                   <summary>{isEn ? 'On this page' : 'এই পাতায়'}</summary>
@@ -845,7 +848,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             {children}
           </article>
 
-          {!isLanding && !isEditing && !isPrivateReview && !isNotFound && (
+          {!isLanding && !isEditing && !isPrivateReview && !isNotFound && !isContact && (
             <footer className="article-footer">
               <h2>{isEn ? 'Help improve this page' : 'এই পাতা আরও ভালো করুন'}</h2>
               <div className="contrib-row">
