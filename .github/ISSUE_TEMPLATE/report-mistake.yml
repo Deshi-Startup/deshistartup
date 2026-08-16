@@ -1,5 +1,5 @@
 name: "🔴 ভুল বা পুরোনো তথ্য জানান · Report wrong or outdated info"
-description: "পাতার ভুল, পুরোনো ফি, নষ্ট লিংক বা গোলমেলে ব্যাখ্যা ২ মিনিটে জানান। · Report an error, stale fee, broken link, or unclear explanation in two minutes."
+description: "পেজের ভুল, পুরোনো ফি, নষ্ট লিংক বা গোলমেলে ব্যাখ্যা ২ মিনিটে জানান। · Report an error, stale fee, broken link, or unclear explanation in two minutes."
 title: "ভুল: "
 labels: ["ভুল তথ্য"]
 body:
@@ -12,8 +12,8 @@ body:
   - type: input
     id: page
     attributes:
-      label: "কোন পাতায়? · Which page?"
-      description: "পাতার লিংক দিন · Paste the page URL"
+      label: "কোন পেজে? · Which page?"
+      description: "পেজের লিংক দিন · Paste the page URL"
       placeholder: "https://deshistartup.com/..."
     validations:
       required: true

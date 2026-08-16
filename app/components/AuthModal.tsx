@@ -371,7 +371,7 @@ export default function AuthModal({
         <h2 id={headingId}>{t('Google দিয়ে সাইন ইন করুন', 'Sign in with Google')}</h2>
         <p className="modal-lede" id={descriptionId}>
           {t(
-            'এই পাতা এডিট করতে সাইন ইন করুন। GitHub অ্যাকাউন্ট লাগবে না।',
+            'এই পেজ এডিট করতে সাইন ইন করুন। GitHub অ্যাকাউন্ট লাগবে না।',
             'Sign in to start editing this page. No GitHub account needed.'
           )}
         </p>

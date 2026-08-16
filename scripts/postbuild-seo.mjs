@@ -116,7 +116,7 @@ function pageTocHtml(headings, isEn) {
     .map((h) => `<li><a href="#${escapeHtml(h.id)}">${escapeHtml(h.text)}</a></li>`)
     .join('')
   return `<details class="page-toc"><summary>${
-    isEn ? 'On this page' : 'এই পাতায়'
+    isEn ? 'On this page' : 'এই পেজে'
   }</summary><ul>${items}</ul></details>`
 }
 
@@ -129,7 +129,7 @@ function sidebarTocHtml(headings, isEn) {
   // article's own accordion takes over. Kept identical to the shell's markup in
   // LocalizedLayout, which reproduces this node on its first client render.
   return `<div class="sidebar-group sidebar-group--toc"><p>${
-    isEn ? 'On This Page' : 'এই পাতায়'
+    isEn ? 'On This Page' : 'এই পেজে'
   }</p>${links}</div>`
 }
 

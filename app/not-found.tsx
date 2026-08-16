@@ -26,12 +26,12 @@ export default function NotFound() {
     <div style={{ maxWidth: '36rem', margin: '0 auto', padding: '56px 20px', textAlign: 'center' }}>
       <p className="wiki-kicker">{isEn ? '404' : '৪০৪'}</p>
       <h1 style={{ fontFamily: 'var(--display)' }}>
-        {isEn ? 'This page could not be found' : 'পাতাটি পাওয়া যায়নি'}
+        {isEn ? 'This page could not be found' : 'পেজটি পাওয়া যায়নি'}
       </h1>
       <p style={{ color: 'var(--muted)' }}>
         {isEn
           ? 'The link may have changed, or the page has not been written yet. Try the search above. If nothing turns up, one of these will get you moving.'
-          : 'লিংকটা হয়তো বদলে গেছে, অথবা পাতাটা এখনো লেখা হয়নি। ওপরের সার্চে খুঁজে দেখুন। না পেলে নিচের কোনো পথ ধরুন।'}
+          : 'লিংকটা হয়তো বদলে গেছে, অথবা পেজটা এখনো লেখা হয়নি। ওপরের সার্চে খুঁজে দেখুন। না পেলে নিচের কোনো পথ ধরুন।'}
       </p>
       <div className="contrib-row" style={{ justifyContent: 'center', marginTop: 24 }}>
         <a href={home}>{isEn ? 'Home' : 'হোম'}</a>

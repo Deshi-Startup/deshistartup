@@ -354,7 +354,7 @@ export async function createContributionPR(
   const prBody = [
     safeSummary ? `## সারসংক্ষেপ / Summary\n\n${safeSummary}` : '',
     '',
-    `**পাতা / Page:** [${pageTitle}](${pageUrl || ''})`,
+    `**পেজ / Page:** [${pageTitle}](${pageUrl || ''})`,
     `**অবদানকারী / Contributor:** ${safeName}`,
     reviewUrl
       ? `\n## ছবি যাচাই / Image review\n\n[প্রস্তাবিত ছবিগুলো আলাদাভাবে যাচাই করুন / Review each proposed image](${reviewUrl})`

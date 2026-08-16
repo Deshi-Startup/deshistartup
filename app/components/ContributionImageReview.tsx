@@ -203,7 +203,7 @@ export default function ContributionImageReview() {
         <>
           <section className="media-review__summary">
             <div>
-              <span>পাতা</span>
+              <span>পেজ</span>
               <strong>{data.pageTitle}</strong>
               <code>{data.pagePath}</code>
             </div>

@@ -118,16 +118,16 @@ for (const { row, slug } of picked) {
   const body = [
     `**বিষয়:** ${row['Topic (Bangla)']} *(English: ${row['Topic (English)']})*`,
     `**সেকশন:** ${row.Section} · **অগ্রাধিকার:** High · **ধরন:** ${row['Content type'] || 'Guide'}`,
-    `**স্টাব পাতা:** ${SITE}/${slug}`,
+    `**স্টাব পেজ:** ${SITE}/${slug}`,
     '',
     row.Notes ? `**লেখার অ্যাঙ্গেল:** ${row.Notes}\n` : null,
     sources.length ? '### শুরু করার সূত্র\n\n' + sources.join('\n') + '\n' : null,
     '### কীভাবে লিখবেন',
     '',
     '1. এই ইস্যুতে **"আমি লিখছি"** মন্তব্য করুন – তাহলে আর কেউ একই বিষয়ে সময় দেবেন না।',
-    `2. [স্টাব পাতাটি](${SITE}/${slug}) খুলে **"পাতাটি লিখুন"** বা **"এডিট"** অপশনে ক্লিক করুন – ব্রাউজারেই লেখা যায়। বিস্তারিত ধাপ: [CONTRIBUTING.md](https://github.com/${REPO}/blob/main/CONTRIBUTING.md)।`,
+    `2. [স্টাব পেজটি](${SITE}/${slug}) খুলে **"পেজটি লিখুন"** বা **"এডিট"** অপশনে ক্লিক করুন – ব্রাউজারেই লেখা যায়। বিস্তারিত ধাপ: [CONTRIBUTING.md](https://github.com/${REPO}/blob/main/CONTRIBUTING.md)।`,
     '3. বাংলায় ভেবে নিজের ভাষায় লিখুন। আইন, ফি ও নিয়মের দাবিতে সূত্র দিন। বদলাতে পারে এমন সংখ্যায় সাল দিন। ভাষার জন্য [STYLE.md](https://github.com/' + REPO + '/blob/main/STYLE.md), গবেষণা ও শেখানোর জন্য [EDITORIAL.md](https://github.com/' + REPO + '/blob/main/EDITORIAL.md) দেখুন।',
-    '4. পাতা পূর্ণাঙ্গ গাইড হলে শুরুর `<StubNotice ... />` লাইনটি মুছে PR দিন।',
+    '4. পেজ পূর্ণাঙ্গ গাইড হলে শুরুর `<StubNotice ... />` লাইনটি মুছে PR দিন।',
     '',
     'ভাষা নিখুঁত না হলেও জমা দিন – রিভিউতে গুছিয়ে নেওয়া যাবে। প্রশ্ন থাকলে এখানেই করুন।'
   ].filter((line) => line !== null).join('\n')

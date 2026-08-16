@@ -205,7 +205,7 @@ function Sidebar({ isEn, pathname, headings, onNavigate, onClose, closeButtonRef
 
         {headings.length > 0 && (
           <div className="sidebar-group sidebar-group--toc">
-            <p>{isEn ? 'On This Page' : 'এই পাতায়'}</p>
+            <p>{isEn ? 'On This Page' : 'এই পেজে'}</p>
             {headings.map((heading) => (
               <a href={`#${heading.id}`} key={heading.id} onClick={onNavigate}>
                 {heading.text}
@@ -699,7 +699,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
         </div>
 
         <main className="content-canvas" id="main">
-          {!isPrivateReview && !isNotFound && <nav className="article-tabs" aria-label={isEn ? 'About this page' : 'এই পাতা নিয়ে'}>
+          {!isPrivateReview && !isNotFound && <nav className="article-tabs" aria-label={isEn ? 'About this page' : 'এই পেজ নিয়ে'}>
             <div className="tab-group">
               <span className="tab active" aria-current="page">{tabs.article}</span>
               <a
@@ -760,7 +760,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
                 </strong>{' '}
                 {isEn
                   ? 'A reviewer will take a look, and once it is approved the change appears on this page.'
-                  : 'রিভিউয়ার অ্যাপ্রুভ করলে চেঞ্জগুলো এই পাতায় লাইভ হবে।'}
+                  : 'রিভিউয়ার অ্যাপ্রুভ করলে চেঞ্জগুলো এই পেজে লাইভ হবে।'}
               </p>
               <div className="edit-flash__actions">
                 <a className="edit-btn" href={flash.prUrl} target="_blank" rel="noopener noreferrer">
@@ -825,7 +825,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
               )}
               {headings.length > 2 && (
                 <details className="page-toc">
-                  <summary>{isEn ? 'On this page' : 'এই পাতায়'}</summary>
+                  <summary>{isEn ? 'On this page' : 'এই পেজে'}</summary>
                   <ul>
                     {headings.map((heading) => (
                       <li key={heading.id}>
@@ -850,7 +850,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
 
           {!isLanding && !isEditing && !isPrivateReview && !isNotFound && !isContact && (
             <footer className="article-footer">
-              <h2>{isEn ? 'Help improve this page' : 'এই পাতা আরও ভালো করুন'}</h2>
+              <h2>{isEn ? 'Help improve this page' : 'এই পেজ আরও ভালো করুন'}</h2>
               <div className="contrib-row">
                 <a href={`${REPO_URL}/edit/main/${file}`} target="_blank" rel="noopener noreferrer">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /></svg>

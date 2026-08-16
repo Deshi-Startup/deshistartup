@@ -61,7 +61,7 @@ export default function SiteMap({ locale = 'bn' }: SiteMapProps) {
     <div className="section-index sitemap-list" data-pagefind-ignore>
       <p className="section-stats">
         <span>
-          {isEn ? 'Published pages' : 'প্রকাশিত পাতা'}{' '}
+          {isEn ? 'Published pages' : 'প্রকাশিত পেজ'}{' '}
           <b>{isEn ? total : bengaliDigits(total)}</b>
         </span>
       </p>

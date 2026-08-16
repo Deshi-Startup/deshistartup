@@ -379,7 +379,7 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
                   goTo(sitemapHref)
                 }}
               >
-                {isEn ? 'browse every page' : 'সব পাতার তালিকা দেখুন'}
+                {isEn ? 'browse every page' : 'সব পেজের তালিকা দেখুন'}
               </a>
               {isEn ? '.' : '।'}
             </p>

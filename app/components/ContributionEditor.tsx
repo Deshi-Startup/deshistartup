@@ -850,7 +850,7 @@ export default function ContributionEditor({
               <span className="edit-bar__warn">
                 {t(
                   isEn,
-                  'এই পাতায় করা পরিবর্তন মুছে যাবে।',
+                  'এই পেজে করা পরিবর্তন মুছে যাবে।',
                   'Your changes to this page will be lost.'
                 )}
               </span>
@@ -949,11 +949,11 @@ export default function ContributionEditor({
             </>
           ) : error === 'not_contributable' ? (
             <>
-              <strong>{t(isEn, 'এই পাতা এখানে এডিট করা যাচ্ছে না', 'This page cannot be edited here')}</strong>
+              <strong>{t(isEn, 'এই পেজ এখানে এডিট করা যাচ্ছে না', 'This page cannot be edited here')}</strong>
               <p>
                 {t(
                   isEn,
-                  'পাতাটি এখন ইনলাইন এডিটরে খোলা যাচ্ছে না। GitHub-এ সরাসরি এডিট করলেও একইভাবে রিভিউ হবে।',
+                  'পেজটি এখন ইনলাইন এডিটরে খোলা যাচ্ছে না। GitHub-এ সরাসরি এডিট করলেও একইভাবে রিভিউ হবে।',
                   'This page is not available in the inline editor. You can edit it on GitHub instead; it goes through the same review.'
                 )}
               </p>
@@ -964,7 +964,7 @@ export default function ContributionEditor({
               <p>
                 {t(
                   isEn,
-                  'পাতার লেখা ঠিক আছে, কিন্তু এই ব্রাউজারে এডিটর চালু হয়নি। পাতা রিলোড করে আবার চেষ্টা করুন, বা GitHub-এ এডিট করুন।',
+                  'পেজের লেখা ঠিক আছে, কিন্তু এই ব্রাউজারে এডিটর চালু হয়নি। পেজ রিলোড করে আবার চেষ্টা করুন, বা GitHub-এ এডিট করুন।',
                   'The page is fine, but the editor did not start in this browser. Reload and try again, or edit on GitHub.'
                 )}
               </p>
@@ -975,7 +975,7 @@ export default function ContributionEditor({
               <p>
                 {t(
                   isEn,
-                  'পাতার লেখা আনতে গিয়ে সমস্যা হয়েছে। ইন্টারনেট ঠিক থাকলে একটু পরে আবার চেষ্টা করুন, বা GitHub-এ সরাসরি এডিট করুন।',
+                  'পেজের লেখা আনতে গিয়ে সমস্যা হয়েছে। ইন্টারনেট ঠিক থাকলে একটু পরে আবার চেষ্টা করুন, বা GitHub-এ সরাসরি এডিট করুন।',
                   'Something went wrong while fetching the page. Try again in a moment, or edit it directly on GitHub.'
                 )}
               </p>
@@ -1003,7 +1003,7 @@ export default function ContributionEditor({
           <p>
             {t(
               isEn,
-              `এই পাতায় আপনার কিছু পরিবর্তন এই ব্রাউজারে জমা আছে (${formatSavedAt(draft.savedAt, isEn)}), কিন্তু রিভিউতে পাঠানো হয়নি। নিচে এখন পাতাটির বর্তমান লেখা দেখছেন।`,
+              `এই পেজে আপনার কিছু পরিবর্তন এই ব্রাউজারে জমা আছে (${formatSavedAt(draft.savedAt, isEn)}), কিন্তু রিভিউতে পাঠানো হয়নি। নিচে এখন পেজটির বর্তমান লেখা দেখছেন।`,
               `Some changes you made on this page are saved in this browser (${formatSavedAt(draft.savedAt, isEn)}) but were never sent for review. What you see below is the page as it stands now.`
             )}
           </p>
@@ -1024,7 +1024,7 @@ export default function ContributionEditor({
           <p>
             {t(
               isEn,
-              'এই পাতায় আপনার একটা পুল রিকোয়েস্ট এখনো রিভিউয়ের অপেক্ষায় আছে। নিচে সেটার সর্বশেষ লেখাই দেখছেন, আর জমা দিলে সেটাই আপডেট হবে।',
+              'এই পেজে আপনার একটা পুল রিকোয়েস্ট এখনো রিভিউয়ের অপেক্ষায় আছে। নিচে সেটার সর্বশেষ লেখাই দেখছেন, আর জমা দিলে সেটাই আপডেট হবে।',
               'You already have a pull request waiting for review on this page. What you see below is that draft, and submitting updates it.'
             )}{' '}
             <a href={data.existingPR.url} target="_blank" rel="noopener noreferrer">
@@ -1262,7 +1262,7 @@ export default function ContributionEditor({
                   {submitError === 'unauthorized'
                     ? t(
                         isEn,
-                        'সাইন-ইনের মেয়াদ শেষ হয়েছে। আপনার পরিবর্তন এই পাতাতেই আছে। আবার সাইন ইন করে রিভিউতে পাঠান।',
+                        'সাইন-ইনের মেয়াদ শেষ হয়েছে। আপনার পরিবর্তন এই পেজেই আছে। আবার সাইন ইন করে রিভিউতে পাঠান।',
                         'Your sign-in expired. Your changes are still here. Sign in again, then send them for review.'
                       )
                     : submitError === 'locked_content_changed'
@@ -1335,12 +1335,12 @@ export default function ContributionEditor({
                                   : submitError === 'content_empty' || submitError === 'content_too_short'
                           ? t(
                               isEn,
-                              'পাতাটি এখন ফাঁকা, তাই কিছু পাঠানো হয়নি। লেখা ভুলে মুছে গিয়ে থাকলে Ctrl+Z (Mac-এ Cmd+Z) চেপে ফিরিয়ে আনুন, তারপর আবার পাঠান।',
+                              'পেজটি এখন ফাঁকা, তাই কিছু পাঠানো হয়নি। লেখা ভুলে মুছে গিয়ে থাকলে Ctrl+Z (Mac-এ Cmd+Z) চেপে ফিরিয়ে আনুন, তারপর আবার পাঠান।',
                               'The page is empty, so nothing was sent. If the text was deleted by accident, press Ctrl+Z (Cmd+Z on a Mac) to bring it back, then send again.'
                             )
                           : t(
                               isEn,
-                              'রিভিউতে পাঠানো যায়নি। একটু পরে আবার চেষ্টা করুন। আপনার পরিবর্তন এই পাতাতেই আছে।',
+                              'রিভিউতে পাঠানো যায়নি। একটু পরে আবার চেষ্টা করুন। আপনার পরিবর্তন এই পেজেই আছে।',
                               'The changes could not be sent for review. Try again in a moment; your work is still here.'
                             )}
                 </p>
