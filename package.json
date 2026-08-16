@@ -48,7 +48,7 @@
     "postbuild": "node scripts/postbuild-seo.mjs && node scripts/build-pagefind.mjs && node scripts/search-audit.mjs && node scripts/seo-audit.mjs"
   },
   "dependencies": {
-    "@milkdown/crepe": "^7.22.0",
+    "@milkdown/crepe": "^7.22.1",
     "@milkdown/kit": "^7.21.2",
     "jose": "^6.2.8",
     "next": "^15.5.23",
@@ -68,7 +68,7 @@
     "turndown": "^7.2.4",
     "typescript": "^5.9.3",
     "unified": "^11.0.5",
-    "wrangler": "^4.120.0"
+    "wrangler": "^4.123.0"
   },
   "overrides": {
     "postcss": "^8.5.23",
