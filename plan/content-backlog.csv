@@ -166,7 +166,7 @@ Phase 2: Building,Hiring,কর্মসংস্থান চুক্তি,Em
 Phase 2: Building,Hiring,"ইপিএফ, গ্র্যাচুইটি এবং অন্যান্য সুবিধার প্রাথমিক বিষয়াবলী","EPF, gratuity, and benefits basics",/team/benefits-gratuity,Guide / Template,High,
 Phase 2: Building,Hiring,বেতনের মানদণ্ড গবেষণা পরিকল্পনা,Salary benchmarks research plan,/team/salary-benchmarks,Guide / Template,High,
 Phase 2: Building,Hiring,"প্রতিভা কোথায় খুঁজে পাবেন: লিঙ্কডইন, ফেসবুক গ্রুপ, চাকরি.কম, বিডিজবস, বিশ্ববিদ্যালয়ের ক্যারিয়ার অফিস","Where to find talent: LinkedIn, Facebook groups, Chakri.com, BDJobs, university career offices",/team/find-talent,Guide / Template,High,
-Phase 2: Building,Hiring,বাংলাদেশি স্টার্টআপগুলিতে সাংস্কৃতিক ভুল,Culture mistakes in Bangladeshi startups,/team/culture-mistakes,Guide / Template,High,
+Phase 2: Building,Hiring,বাংলাদেশি স্টার্টআপগুলোতে সাংস্কৃতিক ভুল,Culture mistakes in Bangladeshi startups,/team/culture-mistakes,Guide / Template,High,
 Phase 2: Building,Hiring,প্রতিভা ধরে রাখা এবং মেধা পাচার,Talent retention and brain drain,/team/retention,Guide / Template,High,
 Phase 2: Building,Hiring,নিয়োগ স্কোরকার্ড,Hiring scorecard,/team/hiring-scorecard,Guide / Template,High,
 Phase 2: Building,Product,বাংলাদেশে আপনার পণ্য তৈরি করা,Building your product in Bangladesh,/product/building-basics,Guide,Medium,
@@ -245,7 +245,7 @@ Phase 3: Launching & Growing,Metrics & Operations,ভ্যাট ক্যা�
 Phase 3: Launching & Growing,Metrics & Operations,ব্রেক-ইভেন ক্যালকুলেটর,Break-even calculator,/tools/break-even-calculator,Guide / Calculator,High,
 Phase 3: Launching & Growing,Metrics & Operations,বেতন/পিএফ ক্যালকুলেটর,Salary/PF calculator,/tools/salary-pf-calculator,Guide / Calculator,High,
 Phase 3: Launching & Growing,Metrics & Operations,রানওয়ে ক্যালকুলেটর,Runway calculator,/tools/runway-calculator,Guide / Calculator,High,"Glossary terms runway and burn-rate have no written guide; set their `guide` in data/glossary.json when this lands."
-Phase 3: Launching & Growing,Metrics & Operations,বাংলাদেশি স্টার্টআপগুলির জন্য সহজলভ্য এবং সাশ্রয়ী সরঞ্জাম,Tools accessible and affordable for Bangladeshi startups,/tools/affordable-tools,Guide / Calculator,High,
+Phase 3: Launching & Growing,Metrics & Operations,বাংলাদেশি স্টার্টআপগুলোর জন্য সহজলভ্য এবং সাশ্রয়ী সরঞ্জাম,Tools accessible and affordable for Bangladeshi startups,/tools/affordable-tools,Guide / Calculator,High,
 Phase 3: Launching & Growing,Funding,বাংলাদেশে বুটস্ট্র্যাপিং,Bootstrapping in Bangladesh,/funding/bootstrapping,Guide / Template,High,"Glossary term bootstrapping has no written guide; set its `guide` in data/glossary.json when this lands."
 Phase 3: Launching & Growing,Funding,বন্ধু এবং পরিবারের তহবিল,Friends and family funding,/funding/friends-family,Guide / Template,High,
 Phase 3: Launching & Growing,Funding,অ্যাঞ্জেল বিনিয়োগকারীরা,Angel investors,/funding/angel-investors,Guide / Template,High,
