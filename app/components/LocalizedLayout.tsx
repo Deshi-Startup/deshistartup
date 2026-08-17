@@ -12,6 +12,7 @@ import {
   bnNav,
   DISCORD_URL,
   enNav,
+  FACEBOOK_GROUP_URL,
   FACEBOOK_URL,
   LINKEDIN_URL,
   REPO_URL,
@@ -69,10 +70,14 @@ function GitHubIcon() {
   )
 }
 
-function DiscordIcon() {
+function FacebookIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M20.3 4.4A17.5 17.5 0 0 0 16 3l-.5 1a16 16 0 0 0-7 0L8 3a17.5 17.5 0 0 0-4.3 1.4C1 8.4.3 12.3.7 16.1a17.3 17.3 0 0 0 5.2 2.6l1.3-1.8-2-1a12 12 0 0 0 1.2.6 13.6 13.6 0 0 0 11.2 0 12 12 0 0 0 1.2-.6l-2 1 1.3 1.8a17.3 17.3 0 0 0 5.2-2.6c.5-4.4-.8-8.2-3-11.7ZM8.5 14.6c-1 0-1.9-1-1.9-2.2 0-1.2.8-2.2 1.9-2.2 1 0 1.9 1 1.9 2.2 0 1.2-.9 2.2-1.9 2.2Zm7 0c-1 0-1.9-1-1.9-2.2 0-1.2.8-2.2 1.9-2.2 1 0 1.9 1 1.9 2.2 0 1.2-.9 2.2-1.9 2.2Z" />
+      <circle cx="12" cy="12" r="10" />
+      <path
+        fill="var(--canvas)"
+        d="M13.5 21v-8h2.75l.41-3.13H13.5v-2c0-.91.25-1.53 1.58-1.53h1.69V3.54a22.6 22.6 0 0 0-2.46-.13c-2.43 0-4.1 1.49-4.1 4.2v2.26H7.46V13h2.75v8h3.29Z"
+      />
     </svg>
   )
 }
@@ -643,13 +648,13 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             </a>
             <a
               className="social-link"
-              href={DISCORD_URL}
+              href={FACEBOOK_GROUP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={isEn ? 'Join the Deshi Startup Discord' : 'Deshi Startup Discord কমিউনিটিতে যোগ দিন'}
+              aria-label={isEn ? 'Join the Deshi Startup Facebook community' : 'দেশি স্টার্টআপ ফেসবুক কমিউনিটিতে যোগ দিন'}
             >
-              <DiscordIcon />
-              <span>Discord</span>
+              <FacebookIcon />
+              <span>{isEn ? 'Community' : 'কমিউনিটি'}</span>
             </a>
             {!isPrivateReview && <LanguageSwitcher />}
             <button
@@ -914,7 +919,14 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             </p>
             <ul className="footer-link-list" aria-labelledby="footer-community-label">
               <li>
-                <a href={FACEBOOK_URL} target="_blank" rel="me noopener noreferrer">Facebook</a>
+                <a href={FACEBOOK_GROUP_URL} target="_blank" rel="noopener noreferrer">
+                  {isEn ? 'Join the Facebook community' : 'ফেসবুক কমিউনিটিতে যোগ দিন'}
+                </a>
+              </li>
+              <li>
+                <a href={FACEBOOK_URL} target="_blank" rel="me noopener noreferrer">
+                  {isEn ? 'Facebook page' : 'ফেসবুক পেজ'}
+                </a>
               </li>
               <li>
                 <a href={LINKEDIN_URL} target="_blank" rel="me noopener noreferrer">LinkedIn</a>
@@ -926,7 +938,9 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
                 <a href={REPO_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
               </li>
               <li>
-                <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer">Discord</a>
+                <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer">
+                  {isEn ? 'Contributor Discord' : 'কন্ট্রিবিউটর ডিসকর্ড'}
+                </a>
               </li>
             </ul>
           </div>

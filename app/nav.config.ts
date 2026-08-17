@@ -9,6 +9,7 @@ import { REPOSITORY_URL, SOCIAL_PROFILE_URLS } from './seo.config.mjs'
 
 export const REPO_URL = REPOSITORY_URL
 export const DISCORD_URL = 'https://discord.gg/Wsgn3CaFyD'
+export const FACEBOOK_GROUP_URL = 'https://www.facebook.com/groups/deshistartup/'
 export const FACEBOOK_URL = SOCIAL_PROFILE_URLS.facebook
 export const LINKEDIN_URL = SOCIAL_PROFILE_URLS.linkedin
 export const YOUTUBE_URL = SOCIAL_PROFILE_URLS.youtube
@@ -66,7 +67,8 @@ export const bnNav: NavSection[] = [
       ['/contribute', 'অবদান রাখুন'],
       ['/contributors', 'অবদানকারীরা'],
       [REPO_URL, 'GitHub-এ দেখুন'],
-      [DISCORD_URL, 'Discord কমিউনিটিতে যোগ দিন'],
+      [FACEBOOK_GROUP_URL, 'ফেসবুক কমিউনিটিতে যোগ দিন'],
+      [DISCORD_URL, 'কন্ট্রিবিউটর ডিসকর্ড'],
       [`${REPO_URL}/issues/new?template=report-mistake.yml`, 'ফিডব্যাক দিন']
     ]
   }
@@ -120,7 +122,8 @@ export const enNav: NavSection[] = [
       ['/en/contribute', 'Contribute'],
       ['/en/contributors', 'Contributors'],
       [REPO_URL, 'View on GitHub'],
-      [DISCORD_URL, 'Join the Discord community'],
+      [FACEBOOK_GROUP_URL, 'Join the Facebook community'],
+      [DISCORD_URL, 'Contributor Discord'],
       [`${REPO_URL}/issues/new?template=report-mistake.yml`, 'Report a mistake']
     ]
   }
