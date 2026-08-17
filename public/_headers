@@ -55,6 +55,15 @@
 /deshi-mark.svg
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
+/deshi-mark.webp
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/favicon-32.png
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
 /og-default.png
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 

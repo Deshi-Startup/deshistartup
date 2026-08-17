@@ -191,7 +191,7 @@ p {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   min-width: 0;
   color: var(--ink);
   text-decoration: none;
@@ -203,8 +203,8 @@ p {
 }
 
 .brand img {
-  width: 54px;
-  height: 54px;
+  width: 50px;
+  height: 50px;
   flex: 0 0 auto;
 }
 
@@ -2506,7 +2506,7 @@ a.is-stub-link:hover {
   display: block;
   width: 112px;
   height: 112px;
-  margin: 24px auto 10px;
+  margin: 20px auto 14px;
 }
 
 .wiki-infobox strong {
@@ -2953,8 +2953,8 @@ a.is-stub-link:hover {
   }
 
   .brand img {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
   }
 
   .top-actions .social-link {

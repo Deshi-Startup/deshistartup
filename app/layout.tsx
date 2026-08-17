@@ -27,7 +27,8 @@ export const metadata = {
   publisher: SITE_NAME,
   category: 'education',
   icons: {
-    icon: `${basePath}/deshi-mark.svg`
+    icon: `${basePath}/favicon-32.png`,
+    apple: `${basePath}/apple-touch-icon.png`
   },
   ...(googleSiteVerification || bingSiteVerification
     ? {

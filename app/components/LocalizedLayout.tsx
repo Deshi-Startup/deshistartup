@@ -633,7 +633,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
       <header className="site-header">
         <div className="header-inner">
           <a className="brand" href={localHref(isEn ? '/en' : '/')} aria-label={isEn ? 'Deshi Startup home' : 'দেশি স্টার্টআপ হোম'}>
-            <img src={localHref('/deshi-mark.svg')} alt="" width="54" height="54" />
+            <img src={localHref('/deshi-mark.webp')} alt="" width="50" height="50" />
             <span>
               <strong>{isEn ? 'Deshi Startup' : 'দেশি স্টার্টআপ'}</strong>
               <small>{isEn ? 'The Bangladeshi startup manual' : 'বাংলাদেশে স্টার্টআপ গড়ার গাইড'}</small>
