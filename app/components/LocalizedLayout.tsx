@@ -73,10 +73,13 @@ function GitHubIcon() {
 function FacebookIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" />
+      {/* One path, evenodd: the "f" is a hole punched through the disc, not a
+          white shape painted on top. A knocked-out counter stays correct on
+          whatever surface the header happens to be, so the icon never has to
+          know the background colour. */}
       <path
-        fill="var(--canvas)"
-        d="M13.5 21v-8h2.75l.41-3.13H13.5v-2c0-.91.25-1.53 1.58-1.53h1.69V3.54a22.6 22.6 0 0 0-2.46-.13c-2.43 0-4.1 1.49-4.1 4.2v2.26H7.46V13h2.75v8h3.29Z"
+        fillRule="evenodd"
+        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20ZM13.5 21v-8h2.75l.41-3.13H13.5v-2c0-.91.25-1.53 1.58-1.53h1.69V3.54a22.6 22.6 0 0 0-2.46-.13c-2.43 0-4.1 1.49-4.1 4.2v2.26H7.46V13h2.75v8h3.29Z"
       />
     </svg>
   )
@@ -642,7 +645,17 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
           </div>
 
           <nav className="top-actions" aria-label={isEn ? 'Site actions' : 'সাইটের কাজ'}>
-            <a className="social-link" href={REPO_URL} target="_blank" rel="noopener noreferrer">
+            {/* Both social links carry an aria-label: below 1180px the span is
+                display:none, which drops it from the accessibility tree, and
+                the icon is aria-hidden — without the label the link would have
+                no accessible name at all in that range. */}
+            <a
+              className="social-link"
+              href={REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={isEn ? 'Deshi Startup on GitHub' : 'GitHub-এ দেশি স্টার্টআপ'}
+            >
               <GitHubIcon />
               <span>GitHub</span>
             </a>
@@ -654,7 +667,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
               aria-label={isEn ? 'Join the Deshi Startup Facebook community' : 'দেশি স্টার্টআপ ফেসবুক কমিউনিটিতে যোগ দিন'}
             >
               <FacebookIcon />
-              <span>{isEn ? 'Community' : 'কমিউনিটি'}</span>
+              <span>{isEn ? 'Facebook' : 'ফেসবুক'}</span>
             </a>
             {!isPrivateReview && <LanguageSwitcher />}
             <button
