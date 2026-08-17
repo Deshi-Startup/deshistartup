@@ -7,6 +7,9 @@
 লেখা বদলাতে কোড জানা বা নিজের কম্পিউটারে প্রজেক্ট চালানো লাগে না। সাইটের
 [অবদান পেজে](https://deshistartup.com/contribute) ব্রাউজার থেকে কাজ করার পুরো ধাপ আছে।
 
+প্রজেক্টের কাজ নিয়ে আলোচনা আর সমন্বয়ের জন্য সক্রিয় কন্ট্রিবিউটররা
+[কন্ট্রিবিউটর ডিসকর্ড](https://discord.gg/Wsgn3CaFyD) ব্যবহার করেন।
+
 ## শুরু করার ৪টি পথ
 
 1. **ফিডব্যাক দিন:** পেজের **ফিডব্যাক দিন** অপশনে কোন তথ্যটি ভুল বা অস্পষ্ট, তা লিখুন।
@@ -126,6 +129,9 @@ contributions.
 
 You do not need to know GitHub, code or run the project locally to edit the writing. The
 [contribute page](https://deshistartup.com/en/contribute) explains the complete browser workflow.
+
+Active contributors use the [Contributor Discord](https://discord.gg/Wsgn3CaFyD) for project
+discussions and coordination.
 
 ## Four ways to start
 
