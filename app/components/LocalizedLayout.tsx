@@ -667,7 +667,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
               aria-label={isEn ? 'Join the Deshi Startup Facebook community' : 'দেশি স্টার্টআপ ফেসবুক কমিউনিটিতে যোগ দিন'}
             >
               <FacebookIcon />
-              <span>{isEn ? 'Facebook' : 'ফেসবুক'}</span>
+              <span>{isEn ? 'Community' : 'কমিউনিটি'}</span>
             </a>
             {!isPrivateReview && <LanguageSwitcher />}
             <button
