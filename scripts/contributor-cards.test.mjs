@@ -9,9 +9,15 @@ import {
   CARD_HEIGHT,
   CARD_WIDTH,
   buildContributorCards,
+  createContributorCardFont,
   fitNameLines,
   renderContributorCardSvg
 } from './build-contributor-cards.mjs'
+
+const root = path.resolve(new URL('..', import.meta.url).pathname)
+const fontPath = path.join(root, 'app', 'fonts', 'deshi-sans-bengali-var.woff2')
+const markPath = path.join(root, 'public', 'deshi-mark.webp')
+const cardFont = createContributorCardFont(await fs.readFile(fontPath))
 
 const profile = {
   displayName: 'সাবরিনা Rahman',
@@ -50,22 +56,40 @@ test('long Bengali, English, and mixed-script names fit within two lines', () =>
   }
 })
 
-test('card SVG uses a monogram and omits optional affiliation cleanly', () => {
-  const svg = renderContributorCardSvg({ profile, fontData: '', markData: '' })
-  assert.match(svg, />সR<\/text>/)
-  assert.match(svg, /কন্ট্রিবিউটর · Contributor/)
+test('card SVG outlines every Bengali run and omits optional affiliation cleanly', () => {
+  const svg = renderContributorCardSvg({ profile, font: cardFont, markData: '' })
+  assert.match(svg, /data-card-text="সR"/)
+  assert.match(svg, /data-card-text="কন্ট্রিবিউটর · Contributor"/)
+  assert.match(svg, /xml:space="preserve"> · Contributor<\/text>/)
+  assert.match(svg, /xml:space="preserve"> · Deshi Startup<\/text>/)
+  assert.ok((svg.match(/data-bengali-glyph=/g) || []).length > 20)
+  assert.doesNotMatch(svg, /<text[^>]*>[^<]*\p{Script=Bengali}/u)
+  assert.doesNotMatch(svg, /@font-face|data:font\/woff2/)
   assert.doesNotMatch(svg, /Verified|Certified|Rank/)
-  assert.doesNotMatch(svg, />Example Labs<\/text>/)
+  assert.doesNotMatch(svg, /data-card-text="Example Labs"/)
 })
 
 test('card SVG includes an optional organization without changing the proof claim', () => {
   const svg = renderContributorCardSvg({
     profile: { ...profile, organization: { id: 'example', name: 'Example Labs', url: null } },
-    fontData: '',
+    font: cardFont,
     markData: ''
   })
-  assert.match(svg, />Example Labs<\/text>/)
+  assert.match(svg, /data-card-text="Example Labs"/)
   assert.doesNotMatch(svg, /Verified|Certified|Rank/)
+})
+
+test('card generation refuses to fall back to a host font', async () => {
+  const outputDir = await fs.mkdtemp(path.join(os.tmpdir(), 'deshi-contributor-cards-font-'))
+  try {
+    await assert.rejects(
+      buildContributorCards({ snapshot: snapshotData, outputDir }),
+      /font path is required/
+    )
+    assert.throws(() => createContributorCardFont(Buffer.alloc(0)), /missing or empty/)
+  } finally {
+    await fs.rm(outputDir, { recursive: true, force: true })
+  }
 })
 
 test('card text colors retain WCAG AA contrast on their rendered grounds', () => {
@@ -86,7 +110,7 @@ test('card build creates 1200 by 630 PNGs, replaces cards, and removes stale ass
   await fs.writeFile(path.join(outputDir, 'stale.png'), 'stale')
   await fs.writeFile(path.join(outputDir, 'niloy-biswas.png'), 'old')
 
-  const result = await buildContributorCards({ snapshot: snapshotData, outputDir })
+  const result = await buildContributorCards({ snapshot: snapshotData, outputDir, fontPath, markPath })
   assert.deepEqual(result, { generated: 4, removed: 1 })
   await assert.rejects(fs.access(path.join(outputDir, 'stale.png')))
 
@@ -94,4 +118,15 @@ test('card build creates 1200 by 630 PNGs, replaces cards, and removes stale ass
   assert.equal(card.width, CARD_WIDTH)
   assert.equal(card.height, CARD_HEIGHT)
   assert.equal(card.format, 'png')
+
+  const { data, info } = await sharp(path.join(outputDir, 'niloy-biswas.png'))
+    .extract({ left: 82, top: 78, width: 86, height: 86 })
+    .raw()
+    .toBuffer({ resolveWithObject: true })
+  let saturatedMarkPixels = 0
+  for (let index = 0; index < data.length; index += info.channels) {
+    const [red, green, blue] = data.subarray(index, index + 3)
+    if (red > 140 && red > green * 1.35 && red > blue * 1.2) saturatedMarkPixels += 1
+  }
+  assert.ok(saturatedMarkPixels > 100, 'embedded Deshi Startup mark is missing from the rendered card')
 })

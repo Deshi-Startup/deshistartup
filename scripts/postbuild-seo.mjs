@@ -112,6 +112,16 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;')
 }
 
+function stripAuthorMetadata(html) {
+  // Next's root metadata cannot know which accepted author belongs to a route.
+  // Remove its generic author tags so this route-aware pass remains the only
+  // owner of meta author and rel=author in the exported document.
+  return html.replace(
+    /<(?:meta|link)\b(?=[^>]*\b(?:name|rel)=["']author["'])[^>]*\/?\s*>/gi,
+    ''
+  )
+}
+
 function jsonLd(value) {
   return JSON.stringify(value).replace(/</g, '\\u003c')
 }
@@ -186,6 +196,9 @@ function formatAcceptedDate(value, locale) {
   }).format(date)
 }
 
+// The index labels a person's activity category (Researcher, Editor). A page
+// credit labels the work attached to that page (Research, Editing), so these
+// few grammatical variants are deliberate and share the same controlled IDs.
 const PAGE_CREDIT_ROLE_LABELS = {
   ...ROLE_LABELS,
   author: { bn: 'লেখক', en: 'Author' },
@@ -614,6 +627,7 @@ for (const page of pages) {
   // so a second run over the same output has to leave them alone.
   const headingsAlreadyWritten = html.includes('<meta name="deshi:toc"')
   html = html.replace(/\n?<!-- deshi-seo:start -->[\s\S]*?<!-- deshi-seo:end -->\n?/g, '')
+  html = stripAuthorMetadata(html)
 
   const $ = load(html)
   const documentTitle = $('title').first().text().trim() || page.fullTitle
@@ -677,6 +691,12 @@ for (const page of pages) {
     (pageNamedAuthors.length > 0
       ? pageNamedAuthors.map((profile) => profile.displayName).join(', ')
       : `${SITE_NAME} contributors`)
+  const authorProfiles = contributorProfile ? [contributorProfile] : pageNamedAuthors
+  const authorLinks = authorProfiles.length > 0
+    ? authorProfiles.map((profile) =>
+        `<link rel="author" href="${canonicalUrl(contributorProfilePath(profile.slug, page.locale))}"/>`
+      )
+    : [`<link rel="author" href="${SITE_URL}/"/>`]
 
   const tags = [
     '<!-- deshi-seo:start -->',
@@ -692,6 +712,7 @@ for (const page of pages) {
     `<meta name="robots" content="${robots}"/>`,
     `<meta http-equiv="content-language" content="${contentLanguage}"/>`,
     `<meta name="author" content="${escapeHtml(metaAuthor)}"/>`,
+    ...authorLinks,
     `<link rel="license" href="${CONTENT_LICENSE_URL}"/>`
   ]
 

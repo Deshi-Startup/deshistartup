@@ -27,7 +27,6 @@ function profile(id, login = id, overrides = {}) {
     githubLogin: login,
     links: [{ label: 'GitHub', url: `https://github.com/${login}` }],
     avatar: { kind: 'monogram' },
-    proofCard: { image: 'monogram' },
     confirmedAt: null,
     visibility: 'public',
     ...overrides
@@ -40,7 +39,7 @@ function policy(profiles = [], overrides = {}) {
     repository: 'Deshi-Startup/deshistartup',
     coreTeam: ['shamirislam'],
     identityAliases: {
-      githubLogins: Object.fromEntries(profiles.filter((item) => item.githubLogin).map((item) => [item.githubLogin, item.id])),
+      githubLogins: {},
       inlineNames: {}
     },
     displayNameOverrides: { shamirislam: 'Shamir Islam' },
@@ -221,6 +220,48 @@ test('supports anonymous editorial contributions without creating profiles', asy
   assert.equal(snapshot.events[0].credits[0].mode, 'anonymous')
 })
 
+test('reconciles an accepted GitHub PR anonymously while naming permission is unresolved', async () => {
+  const sourceLedger = ledger([], [event(79, null, {
+    acceptedAt: '2026-08-18',
+    targetPaths: [],
+    credits: [{ mode: 'anonymous', roles: ['product'] }]
+  })])
+  const snapshot = await buildContributorSnapshot({
+    policy: policy([]),
+    ledger: sourceLedger,
+    targetCatalog: targetCatalog(),
+    fetchImpl: githubMock([pull(79, 'new-contributor', {
+      merged_at: '2026-08-18T12:00:00Z'
+    })])
+  })
+  assert.equal(snapshot.totals.acceptedEvents, 1)
+  assert.equal(snapshot.totals.contributors, 0)
+  assert.equal(snapshot.events[0].credits[0].mode, 'anonymous')
+  assert.equal(snapshot.totals.roleCategories.product, 1)
+})
+
+test('reconciles an unattributed inline-editor PR when its accepted credit is anonymous', async () => {
+  const sourceLedger = ledger([], [event(99, null, {
+    targetPaths: [],
+    credits: [{ mode: 'anonymous', roles: ['editor'] }]
+  })])
+  const snapshot = await buildContributorSnapshot({
+    policy: policy([]),
+    ledger: sourceLedger,
+    targetCatalog: targetCatalog(),
+    fetchImpl: githubMock([pull(99, 'app/deshistartup', {
+      body: [
+        '**অবদানকারী / Contributor:** Anonymous contributor',
+        '_Created via the Deshi Startup inline editor._'
+      ].join('\n'),
+      user: { login: 'app/deshistartup', type: 'Bot', avatar_url: null }
+    })])
+  })
+  assert.equal(snapshot.totals.acceptedEvents, 1)
+  assert.equal(snapshot.unattributedCount, 0)
+  assert.equal(snapshot.events[0].credits[0].mode, 'anonymous')
+})
+
 test('supports person-plus-organization credit only with valid references and confirmation', async () => {
   const organization = { id: 'example-lab', name: 'Example Lab', url: 'https://example.org/' }
   const alice = profile('alice', 'alice', {
@@ -294,6 +335,36 @@ test('rejects unsafe URLs, emails, tokens, private evidence and raw consent fiel
   for (const candidate of cases) {
     assert.throws(() => validateContributorLedger({ ledger: candidate, policy: policy([alice]), targetCatalog: catalog }))
   }
+})
+
+test('rejects unconfirmed external profile links and profile text that the public reader would truncate', () => {
+  const alice = profile('alice')
+  const catalog = targetCatalog('/guides/example')
+  const unconfirmedLink = ledger([{
+    ...alice,
+    links: [{ label: 'Newsletter', url: 'https://example.org/alice' }]
+  }], [])
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: unconfirmedLink,
+      policy: policy([alice]),
+      targetCatalog: catalog
+    }),
+    /unconfirmed public details/
+  )
+
+  const oversizedName = ledger([{
+    ...alice,
+    displayName: 'A'.repeat(181)
+  }], [])
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: oversizedName,
+      policy: policy([alice]),
+      targetCatalog: catalog
+    }),
+    /oversized text/
+  )
 })
 
 test('ranks by lifetime accepted events, then recency, then display name', async () => {
@@ -432,7 +503,19 @@ test('output is secret-free even when GitHub refresh is authenticated', async ()
   assert.equal(JSON.stringify(snapshot).includes('email'), false)
 })
 
-test('the authored current ledger reconciles to four contributors and thirteen events', async () => {
+test('public snapshot validation rejects a profile value that would be silently normalized', async () => {
+  const current = JSON.parse(await fs.readFile(
+    path.join(root, 'app', 'generated', 'contributors.json'),
+    'utf8'
+  ))
+  current.rankedProfiles[0].displayName = 'A'.repeat(181)
+  assert.throws(
+    () => validatePublicSnapshot(current),
+    /normalized or truncated profile data/
+  )
+})
+
+test('the authored current ledger reconciles to four contributors and fourteen events', async () => {
   const [currentLedger, currentPolicy, catalog] = await Promise.all([
     fs.readFile(path.join(root, 'data', 'contributor-ledger.json'), 'utf8').then(JSON.parse),
     fs.readFile(path.join(root, 'data', 'contributors-policy.json'), 'utf8').then(JSON.parse),
@@ -448,6 +531,9 @@ test('the authored current ledger reconciles to four contributors and thirteen e
     pull(41, 'niloy-biswas'),
     pull(39, 'uttamdeb'),
     pull(40, 'uttamdeb'),
+    pull(79, 'msultan-k', {
+      merged_at: '2026-08-18T10:30:00Z'
+    }),
     pull(57, 'app/deshistartup', {
       merged_at: '2026-08-10T21:59:38Z',
       body: inlineBody,
@@ -461,6 +547,6 @@ test('the authored current ledger reconciles to four contributors and thirteen e
     fetchImpl: githubMock(pulls)
   })
   assert.equal(snapshot.totals.contributors, 4)
-  assert.equal(snapshot.totals.acceptedEvents, 13)
+  assert.equal(snapshot.totals.acceptedEvents, 14)
   assert.equal(snapshot.totals.pagesImproved, 37)
 })

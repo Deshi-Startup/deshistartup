@@ -17,6 +17,7 @@ import {
   DEFAULT_OG_IMAGE,
   INDEXNOW_KEY,
   ORGANIZATION_SAME_AS,
+  SITE_NAME,
   SITE_URL,
   canonicalUrl
 } from '../app/seo.config.mjs'
@@ -102,6 +103,21 @@ for (const page of pages) {
   const expectedContributionEvents = isContributorProfile(page)
     ? []
     : contributorEventsByTarget.get(`/${page.slug}`) || []
+  const authorProfiles = contributorProfile
+    ? [contributorProfile]
+    : [...new Map(expectedContributionEvents.flatMap((event) =>
+        event.credits.flatMap((credit) => {
+          if (!credit.roles.includes('author') || !credit.profileId) return []
+          const profile = contributorProfileById.get(credit.profileId)
+          return profile ? [[profile.id, profile]] : []
+        })
+      )).values()]
+  const expectedMetaAuthor = authorProfiles.length > 0
+    ? authorProfiles.map((profile) => profile.displayName).join(', ')
+    : `${SITE_NAME} contributors`
+  const expectedAuthorLinks = authorProfiles.length > 0
+    ? authorProfiles.map((profile) => canonicalUrl(contributorProfilePath(profile.slug, page.locale)))
+    : [`${SITE_URL}/`]
 
   if ($('html').attr('lang') !== expectedLanguage) {
     record(errors, `${page.route}: html lang is ${$('html').attr('lang') || 'missing'}, expected ${expectedLanguage}`)
@@ -133,6 +149,17 @@ for (const page of pages) {
   })
   if (canonicals.length !== 1 || canonicals.first().attr('href') !== canonicalUrl(page.route)) {
     record(errors, `${page.route}: canonical is missing, duplicated, or incorrect`)
+  }
+  const metaAuthors = $('meta[name="author"]')
+  if (metaAuthors.length !== 1 || metaAuthors.first().attr('content') !== expectedMetaAuthor) {
+    record(errors, `${page.route}: meta author is missing, duplicated, or incorrect`)
+  }
+  const authorLinks = $('link[rel="author"]').toArray().map((node) => $(node).attr('href'))
+  if (
+    authorLinks.length !== expectedAuthorLinks.length ||
+    expectedAuthorLinks.some((href) => !authorLinks.includes(href))
+  ) {
+    record(errors, `${page.route}: rel=author does not match the route's accepted author`)
   }
   if (isContributorProfile(page) && $('html').attr('data-pagefind-ignore') !== 'all') {
     record(errors, `${page.route}: contributor profile is not excluded from Pagefind`)

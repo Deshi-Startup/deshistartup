@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import {
+  MAX_PROFILE_TEXT_LENGTH,
   ROLE_IDS,
   prepareContributorSnapshot,
   safePublicUrl,
@@ -80,6 +81,16 @@ function assertProfileLinkUrl(value, label) {
   if (DIRECT_CONTACT_HOSTS.has(url.hostname) || PHONE_PATTERN.test(publicParts)) {
     throw new Error(`${label} must not expose direct contact details`)
   }
+}
+
+function isCanonicalGithubProfileLink(profile, value) {
+  if (!profile.githubLogin) return false
+  const url = new URL(value)
+  return url.hostname === 'github.com' &&
+    url.pathname.replace(/\/+$/, '').toLocaleLowerCase('en-US') ===
+      `/${profile.githubLogin.toLocaleLowerCase('en-US')}` &&
+    !url.search &&
+    !url.hash
 }
 
 function assertNoPrivateFields(value, pathLabel = 'contributor data') {
@@ -190,7 +201,9 @@ export function validateContributorLedger({ ledger, policy, targetCatalog = new 
     if (!SAFE_ID_PATTERN.test(organization?.id || '') || organizationIds.has(organization.id)) {
       throw new Error(`Duplicate or invalid contributor organization ID: ${organization?.id || '(missing)'}`)
     }
-    assertPublicText(organization.name, `organization ${organization.id} name`)
+    assertPublicText(organization.name, `organization ${organization.id} name`, {
+      maximum: MAX_PROFILE_TEXT_LENGTH
+    })
     if (organization.url != null) assertPublicUrl(organization.url, `organization ${organization.id} URL`)
     organizationIds.add(organization.id)
   }
@@ -205,8 +218,13 @@ export function validateContributorLedger({ ledger, policy, targetCatalog = new 
     if (!SAFE_ID_PATTERN.test(profile?.slug || '') || slugs.has(profile.slug)) {
       throw new Error(`Duplicate or invalid contributor slug: ${profile?.slug || '(missing)'}`)
     }
-    assertPublicText(profile.displayName, `profile ${profile.id} display name`)
-    assertPublicText(profile.headline, `profile ${profile.id} headline`, { nullable: true })
+    assertPublicText(profile.displayName, `profile ${profile.id} display name`, {
+      maximum: MAX_PROFILE_TEXT_LENGTH
+    })
+    assertPublicText(profile.headline, `profile ${profile.id} headline`, {
+      nullable: true,
+      maximum: MAX_PROFILE_TEXT_LENGTH
+    })
     if (!['public', 'hidden'].includes(profile.visibility)) throw new Error(`Invalid profile visibility: ${profile.id}`)
     if (profile.organizationId != null && !organizationIds.has(profile.organizationId)) {
       throw new Error(`Profile ${profile.id} references an unknown organization`)
@@ -217,9 +235,11 @@ export function validateContributorLedger({ ledger, policy, targetCatalog = new 
       }
       githubLogins.add(normalizedKey(profile.githubLogin))
     }
+    let hasUnconfirmedExternalLink = false
     for (const [index, link] of (profile.links || []).entries()) {
       assertPublicText(link?.label, `profile ${profile.id} link ${index} label`, { maximum: 60 })
       assertProfileLinkUrl(link?.url, `profile ${profile.id} link ${index}`)
+      if (!isCanonicalGithubProfileLink(profile, link.url)) hasUnconfirmedExternalLink = true
     }
     if (!['monogram', 'url'].includes(profile.avatar?.kind)) throw new Error(`Invalid avatar preference: ${profile.id}`)
     if (profile.avatar.kind === 'url') {
@@ -229,16 +249,10 @@ export function validateContributorLedger({ ledger, policy, targetCatalog = new 
         throw new Error(`Profile ${profile.id} avatar host is not approved`)
       }
     }
-    if (!['monogram', 'approved-avatar'].includes(profile.proofCard?.image)) {
-      throw new Error(`Invalid proof-card image preference: ${profile.id}`)
-    }
-    if (profile.proofCard.image === 'approved-avatar' && profile.avatar.kind !== 'url') {
-      throw new Error(`Profile ${profile.id} has no approved image for its proof card`)
-    }
     if (profile.confirmedAt != null && !validDate(profile.confirmedAt)) {
       throw new Error(`Profile ${profile.id} confirmation date is malformed`)
     }
-    if ((profile.headline || profile.organizationId || profile.proofCard.image === 'approved-avatar') && !profile.confirmedAt) {
+    if ((profile.headline || profile.organizationId || hasUnconfirmedExternalLink) && !profile.confirmedAt) {
       throw new Error(`Profile ${profile.id} contains unconfirmed public details`)
     }
     profileIds.add(profile.id)
@@ -498,8 +512,7 @@ function publicProfileFromLedger(profile, policy, optedOutProfileIds) {
     organizationId: profile.organizationId || null,
     githubLogin: profile.githubLogin || null,
     links: profile.links || [],
-    avatarUrl: profile.avatar?.kind === 'url' ? sizedAvatarUrl(profile.avatar.url) || profile.avatar.url : null,
-    proofCardImage: profile.proofCard?.image === 'approved-avatar' ? 'approved-avatar' : 'monogram'
+    avatarUrl: profile.avatar?.kind === 'url' ? sizedAvatarUrl(profile.avatar.url) || profile.avatar.url : null
   }
 }
 
@@ -575,6 +588,21 @@ export async function buildContributorSnapshot({
     const identity = identityForPull(pull, indexes)
     if (identity.status === 'excluded') continue
     if (identity.status === 'unattributed') {
+      const event = eventByPull.get(Number(pull.number))
+      if (event) {
+        const acceptedAt = new Date(pull.merged_at).toISOString().slice(0, 10)
+        if (event.acceptedAt !== acceptedAt) {
+          throw new Error(`Ledger date for PR #${pull.number} does not match its merge date`)
+        }
+        if (event.credits.every((credit) => credit.mode === 'anonymous')) {
+          seenLedgerPulls.add(Number(pull.number))
+          continue
+        }
+        throw new Error(
+          `Merged PR #${pull.number} has no stable contributor identity; ` +
+          'use anonymous credit or record a stable identity'
+        )
+      }
       unattributedCount += 1
       continue
     }
@@ -594,8 +622,16 @@ export async function buildContributorSnapshot({
     if (event.acceptedAt !== acceptedAt) {
       throw new Error(`Ledger date for PR #${pull.number} does not match its merge date`)
     }
+    const isAnonymousEvent = event.credits.every((credit) => credit.mode === 'anonymous')
+    if (isAnonymousEvent) {
+      seenLedgerPulls.add(Number(pull.number))
+      continue
+    }
     if (!identity.profileId) {
-      throw new Error(`Merged PR #${pull.number} has no stable contributor identity alias`)
+      throw new Error(
+        `Merged PR #${pull.number} has no stable contributor identity; ` +
+        'set githubLogin on its ledger profile or add a historical identity alias'
+      )
     }
     if (!event.credits.some((credit) => credit.profileId === identity.profileId)) {
       throw new Error(`Ledger credit for PR #${pull.number} does not match its public contributor identity`)
@@ -672,7 +708,6 @@ export async function buildContributorSnapshot({
     githubLogin: profile.githubLogin,
     links: profile.links,
     avatarUrl: profile.avatarUrl,
-    proofCardImage: profile.proofCardImage,
     acceptedEventCount: profile.acceptedEventCount,
     lastAcceptedAt: profile.lastAcceptedAt,
     contributorSince: profile.contributorSince,

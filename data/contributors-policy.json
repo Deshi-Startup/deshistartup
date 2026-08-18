@@ -3,11 +3,7 @@
   "repository": "Deshi-Startup/deshistartup",
   "coreTeam": ["anwarulislam", "sagar290", "shamirislam"],
   "identityAliases": {
-    "githubLogins": {
-      "muhaiminulfahim": "muhaiminul-islam-khan",
-      "niloy-biswas": "niloy-biswas",
-      "uttamdeb": "uttam-deb"
-    },
+    "githubLogins": {},
     "inlineNames": {
       "Muhaiminul Islam Khan": "muhaiminul-islam-khan"
     }

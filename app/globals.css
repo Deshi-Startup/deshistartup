@@ -1837,6 +1837,105 @@ p:has(> .fb-video) {
   }
 }
 
+/* ------------------------------------------------ page contribution credit */
+
+/* Postbuild fills this sibling from the public ledger. Until then it remains
+   empty in dev and must not reserve a blank band below every article. */
+.page-contribution-credits:empty {
+  display: none;
+}
+
+.page-contribution-credits {
+  margin: 40px 48px 0;
+  border-top: 1px solid var(--line);
+  padding: 18px 0 30px;
+}
+
+.page-contribution-credits__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 24px;
+  align-items: baseline;
+}
+
+.page-contribution-credits__header h2 {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.page-contribution-credits__header p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.page-credit-list {
+  margin: 15px 0 0;
+  border-top: 1px solid var(--line-soft);
+  padding: 0;
+  list-style-type: none;
+}
+
+.page-credit {
+  margin: 0;
+  border-bottom: 1px solid var(--line-soft);
+  padding: 15px 0;
+}
+
+.page-credit__line,
+.page-credit__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 14px;
+  align-items: baseline;
+}
+
+.page-credit__roles {
+  color: var(--green-deep);
+  font-size: 0.78rem;
+  font-weight: var(--w-strong);
+}
+
+.page-credit__roles span + span::before {
+  content: ' · ';
+  color: var(--faint);
+}
+
+.page-credit__person {
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: var(--w-heading);
+}
+
+.page-credit__scope,
+.page-credit__affiliation,
+.page-credit__review,
+.page-credit__meta {
+  margin: 5px 0 0;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.page-credit__scope {
+  color: var(--ink);
+}
+
+.page-credit__affiliation,
+.page-credit__review,
+.page-credit__meta {
+  color: var(--muted);
+}
+
+.page-credit__meta {
+  justify-content: space-between;
+}
+
 /* -------------------------------------------------------- article footer */
 
 .article-footer {
@@ -2413,18 +2512,22 @@ a.is-stub-link:hover {
 /* ---- index: colophon ---- */
 
 .contributor-core {
-  margin: 42px 0 0;
-  border-top: 1px solid var(--line);
-  padding-top: 20px;
+  margin: 34px 0 0;
 }
 
-.contributor-core h2,
-.contributor-method h2,
 .contributor-proof h2,
 .contributor-trail h2 {
   margin: 0 0 6px;
   border: 0;
   padding: 0;
+  font-size: 1.16rem;
+}
+
+.contributor-core h2,
+.contributor-method h2 {
+  margin: 0 0 12px;
+  border-bottom: 1px solid var(--line);
+  padding: 0 0 7px;
   font-size: 1.16rem;
 }
 
@@ -2501,8 +2604,6 @@ a.is-stub-link:hover {
 /* Small print: how the number was arrived at, and how to correct it. */
 .contributor-method {
   margin: 36px 0 0;
-  border-top: 1px solid var(--line-soft);
-  padding-top: 18px;
   color: var(--muted);
 }
 
@@ -3416,6 +3517,7 @@ a.is-stub-link:hover {
     padding-right: 32px;
   }
 
+  .page-contribution-credits,
   .article-footer {
     margin-left: 32px;
     margin-right: 32px;
@@ -3660,6 +3762,7 @@ a.is-stub-link:hover {
     table-layout: fixed;
   }
 
+  .page-contribution-credits,
   .article-footer {
     margin-left: 18px;
     margin-right: 18px;

@@ -10,7 +10,7 @@ const SAFE_SLUG_PATTERN = /^[a-z\d](?:[a-z\d-]{0,78}[a-z\d])?$/
 const SAFE_TARGET_PATTERN = /^\/[a-z\d-]+(?:\/[a-z\d-]+)?$/
 const ISO_TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z$/
 const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/
-const MAX_PUBLIC_TEXT_LENGTH = 180
+export const MAX_PROFILE_TEXT_LENGTH = 180
 const PRIVATE_HOST_PATTERNS = [
   /^localhost$/i,
   /\.localhost$/i,
@@ -49,7 +49,7 @@ function finiteNonNegativeInteger(value) {
   return Number.isSafeInteger(value) && value >= 0 ? value : 0
 }
 
-function safeText(value, fallback = '', maximum = MAX_PUBLIC_TEXT_LENGTH) {
+function safeText(value, fallback = '', maximum = MAX_PROFILE_TEXT_LENGTH) {
   const text = typeof value === 'string'
     ? value
         .replace(/[\u0000-\u001f\u007f]/g, ' ')
@@ -229,7 +229,6 @@ function prepareProfiles(source, organizations) {
       githubLogin,
       links,
       avatarUrl: safeAvatarUrl(profile?.avatarUrl),
-      proofCardImage: profile?.proofCardImage === 'approved-avatar' ? 'approved-avatar' : 'monogram',
       profilePath,
       monogram: monogramForName(displayName)
     }]
@@ -431,6 +430,28 @@ export function validatePublicSnapshot(snapshot) {
     prepared.organizations.length !== snapshot.organizations.length
   ) {
     throw new Error('Contributor snapshot contains unsafe or inconsistent public data')
+  }
+  const rawOrganizations = new Map(snapshot.organizations.map((organization) => [organization?.id, organization]))
+  for (const organization of prepared.organizations) {
+    const raw = rawOrganizations.get(organization.id)
+    if (raw?.name !== organization.name || (raw?.url ?? null) !== organization.url) {
+      throw new Error('Contributor snapshot contains normalized or truncated organization data')
+    }
+  }
+  const rawProfiles = new Map(snapshot.rankedProfiles.map((profile) => [profile?.id, profile]))
+  for (const profile of prepared.rankedProfiles) {
+    const raw = rawProfiles.get(profile.id)
+    if (
+      raw?.slug !== profile.slug ||
+      raw?.displayName !== profile.displayName ||
+      (raw?.headline ?? null) !== profile.headline ||
+      (raw?.organizationId ?? null) !== profile.organizationId ||
+      (raw?.githubLogin ?? null) !== profile.githubLogin ||
+      (raw?.avatarUrl ?? null) !== profile.avatarUrl ||
+      JSON.stringify(raw?.links || []) !== JSON.stringify(profile.links)
+    ) {
+      throw new Error('Contributor snapshot contains normalized or truncated profile data')
+    }
   }
   return snapshot
 }

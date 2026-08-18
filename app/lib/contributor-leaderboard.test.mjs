@@ -20,7 +20,6 @@ function profile(index, overrides = {}) {
     githubLogin: `person-${index + 1}`,
     links: [{ label: 'GitHub', url: `https://github.com/person-${index + 1}` }],
     avatarUrl: null,
-    proofCardImage: 'monogram',
     ...overrides
   }
 }
@@ -71,12 +70,12 @@ test('prepares empty, one-person, two-person and 250-person snapshots', () => {
   }
 })
 
-test('prepares the committed four-person, thirteen-event baseline', () => {
+test('prepares the committed four-person, fourteen-event baseline', () => {
   const current = JSON.parse(fs.readFileSync(new URL('../generated/contributors.json', import.meta.url), 'utf8'))
   const view = prepareContributorSnapshot(current)
   assert.deepEqual(view.totals, {
     contributors: 4,
-    acceptedEvents: 13,
+    acceptedEvents: 14,
     pagesImproved: 37,
     roleCategories: {
       author: 11,
@@ -85,7 +84,7 @@ test('prepares the committed four-person, thirteen-event baseline', () => {
       researcher: 0,
       'operational-insight': 0,
       reviewer: 0,
-      product: 1
+      product: 2
     }
   })
   assert.deepEqual(view.rankedProfiles.map((entry) => entry.displayName), [

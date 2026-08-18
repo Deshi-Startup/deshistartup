@@ -30,8 +30,8 @@ async function main() {
   )
   if (unattributedCount) {
     process.stdout.write(
-      'Some merged work could not be tied to a person. Add a stable entry to ' +
-      '`identityAliases` in data/contributors-policy.json before crediting it.\n'
+      'Some merged work could not be tied to a person. Set `githubLogin` on the ledger profile, ' +
+      'or add an `identityAliases` entry when the unmatched identity is historical.\n'
     )
   }
 }

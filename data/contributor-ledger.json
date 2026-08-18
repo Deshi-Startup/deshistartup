@@ -18,9 +18,6 @@
         "kind": "url",
         "url": "https://avatars.githubusercontent.com/u/28513863?v=4&s=160"
       },
-      "proofCard": {
-        "image": "monogram"
-      },
       "confirmedAt": null,
       "visibility": "public"
     },
@@ -41,9 +38,6 @@
         "kind": "url",
         "url": "https://avatars.githubusercontent.com/u/105539415?v=4&s=160"
       },
-      "proofCard": {
-        "image": "monogram"
-      },
       "confirmedAt": null,
       "visibility": "public"
     },
@@ -63,9 +57,6 @@
       "avatar": {
         "kind": "monogram"
       },
-      "proofCard": {
-        "image": "monogram"
-      },
       "confirmedAt": null,
       "visibility": "public"
     },
@@ -76,17 +67,9 @@
       "headline": null,
       "organizationId": null,
       "githubLogin": null,
-      "links": [
-        {
-          "label": "SS Notes",
-          "url": "https://shoumik.substack.com"
-        }
-      ],
+      "links": [],
       "avatar": {
         "kind": "monogram"
-      },
-      "proofCard": {
-        "image": "monogram"
       },
       "confirmedAt": null,
       "visibility": "public"
@@ -412,6 +395,26 @@
           "profileId": "shoumik-shahriar",
           "roles": [
             "author"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "github-pr-79",
+      "acceptedAt": "2026-08-18",
+      "sourceType": "github-pr",
+      "sourceRef": 79,
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/79",
+      "summary": {
+        "bn": "ব্র্যান্ড মার্ক ও সাইটের লোগো বিন্যাস উন্নত করা",
+        "en": "Improved the brand mark and site logo lockup"
+      },
+      "targetPaths": [],
+      "credits": [
+        {
+          "mode": "anonymous",
+          "roles": [
+            "product"
           ]
         }
       ]

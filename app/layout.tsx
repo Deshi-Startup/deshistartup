@@ -22,7 +22,6 @@ export const metadata = {
   description: DEFAULT_DESCRIPTIONS.bn,
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
-  authors: [{ name: `${SITE_NAME} contributors`, url: SITE_URL }],
   creator: `${SITE_NAME} contributors`,
   publisher: SITE_NAME,
   category: 'education',
