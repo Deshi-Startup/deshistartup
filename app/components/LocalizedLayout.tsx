@@ -8,6 +8,7 @@ import SearchBox from './SearchBox'
 import type { SubmitResult } from './ContributionEditor'
 import { cleanRoute } from '../lib/clean-route'
 import { clearAuth, getStoredAuth, UserInfo } from '../lib/client-auth'
+import { pageChromePolicy } from '../lib/page-chrome'
 import {
   bnNav,
   DISCORD_URL,
@@ -304,6 +305,12 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   // a page nobody can read. Drop the page-contribution chrome; the 404 body
   // carries its own way out.
   const isNotFound = pathname === '/_not-found' || pathname === '/en/_not-found'
+  const { showContentTabs, showPageActions } = pageChromePolicy(pathname)
+  const showPageChrome =
+    !isPrivateReview &&
+    !isCredits &&
+    !isNotFound &&
+    (showContentTabs || showPageActions)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [headings, setHeadings] = useState<HeadingItem[]>(initialHeadings)
   const [pageTitle, setPageTitle] = useState('')
@@ -729,52 +736,56 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
         </div>
 
         <main className="content-canvas" id="main">
-          {!isPrivateReview && !isCredits && !isNotFound && <nav className="article-tabs" aria-label={isEn ? 'About this page' : 'এই পেজ নিয়ে'}>
-            <div className="tab-group">
-              <span className="tab active" aria-current="page">{tabs.article}</span>
-              <a
-                className="tab"
-                href={`${REPO_URL}/discussions`}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={isEn ? 'Discuss on GitHub' : 'গিটহাবে আলোচনা করুন'}
-              >
-                {tabs.talk}
-              </a>
-            </div>
-            <div className="article-actions">
-              {isEditing ? (
-                <button type="button" className="act-read tab-action-btn" onClick={handleRead}>
-                  {tabs.read}
-                </button>
-              ) : (
-                <span className="act-read is-current" aria-current="page">
-                  {tabs.read}
-                </span>
+          {showPageChrome && (
+            <nav
+              className={`article-tabs${showContentTabs ? '' : ' article-tabs--actions-only'}`}
+              aria-label={isEn ? 'About this page' : 'এই পেজ নিয়ে'}
+            >
+              {showContentTabs && (
+                <div className="tab-group">
+                  <span className="tab active" aria-current="page">{tabs.article}</span>
+                  <a
+                    className="tab"
+                    href={`${REPO_URL}/discussions`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={isEn ? 'Discuss on GitHub' : 'গিটহাবে আলোচনা করুন'}
+                  >
+                    {tabs.talk}
+                  </a>
+                </div>
               )}
+              {showPageActions && (
+                <div className="article-actions">
+                  {isEditing ? (
+                    <button type="button" className="act-read tab-action-btn" onClick={handleRead}>
+                      {tabs.read}
+                    </button>
+                  ) : (
+                    <span className="act-read is-current" aria-current="page">
+                      {tabs.read}
+                    </span>
+                  )}
 
-              {isLanding ? (
-                <a className="act-edit" href={`${REPO_URL}/edit/main/${file}`} target="_blank" rel="noopener noreferrer">
-                  <ActionPencil />
-                  {tabs.edit}
-                </a>
-              ) : isEditing ? (
-                <span className="act-edit is-current" aria-current="page">
-                  <ActionPencil />
-                  {tabs.edit}
-                </span>
-              ) : (
-                <button type="button" className="act-edit tab-action-btn" onClick={handleContribute}>
-                  <ActionPencil />
-                  {tabs.edit}
-                </button>
+                  {isEditing ? (
+                    <span className="act-edit is-current" aria-current="page">
+                      <ActionPencil />
+                      {tabs.edit}
+                    </span>
+                  ) : (
+                    <button type="button" className="act-edit tab-action-btn" onClick={handleContribute}>
+                      <ActionPencil />
+                      {tabs.edit}
+                    </button>
+                  )}
+
+                  <a className="act-history" href={`${REPO_URL}/commits/main/${file}`} target="_blank" rel="noopener noreferrer">
+                    {tabs.history}
+                  </a>
+                </div>
               )}
-
-              <a className="act-history" href={`${REPO_URL}/commits/main/${file}`} target="_blank" rel="noopener noreferrer">
-                {tabs.history}
-              </a>
-            </div>
-          </nav>}
+            </nav>
+          )}
 
           {flash && !isEditing && !isPrivateReview && (
             <div className="edit-flash" role="status">

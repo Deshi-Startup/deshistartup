@@ -552,6 +552,10 @@ p {
   padding: 28px 48px 0;
 }
 
+.article-tabs--actions-only {
+  justify-content: flex-end;
+}
+
 .tab-group {
   display: flex;
 }
