@@ -2,6 +2,8 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import test from 'node:test'
 import {
+  ROLE_ACTIVITY_LABELS,
+  ROLE_LABELS,
   contributorProfilePath,
   mergedPullsUrl,
   monogramForName,
@@ -9,6 +11,13 @@ import {
   profileFromSnapshot,
   safePublicUrl
 } from './contributor-leaderboard.mjs'
+
+test('keeps contributor roles distinct from page-level activity labels', () => {
+  assert.equal(ROLE_LABELS.author.bn, 'লেখক')
+  assert.equal(ROLE_LABELS.editor.bn, 'সম্পাদক')
+  assert.equal(ROLE_ACTIVITY_LABELS.editor.bn, 'সম্পাদনা')
+  assert.equal(ROLE_ACTIVITY_LABELS.editor.en, 'Editing')
+})
 
 function profile(index, overrides = {}) {
   return {
@@ -70,12 +79,12 @@ test('prepares empty, one-person, two-person and 250-person snapshots', () => {
   }
 })
 
-test('prepares the committed four-person, fourteen-event baseline', () => {
+test('prepares the committed four-person, thirteen-event baseline', () => {
   const current = JSON.parse(fs.readFileSync(new URL('../generated/contributors.json', import.meta.url), 'utf8'))
   const view = prepareContributorSnapshot(current)
   assert.deepEqual(view.totals, {
     contributors: 4,
-    acceptedEvents: 14,
+    acceptedEvents: 13,
     pagesImproved: 37,
     roleCategories: {
       author: 11,
@@ -84,7 +93,7 @@ test('prepares the committed four-person, fourteen-event baseline', () => {
       researcher: 0,
       'operational-insight': 0,
       reviewer: 0,
-      product: 2
+      product: 1
     }
   })
   assert.deepEqual(view.rankedProfiles.map((entry) => entry.displayName), [
@@ -93,6 +102,11 @@ test('prepares the committed four-person, fourteen-event baseline', () => {
     'Uttam Deb',
     'Muhaiminul Islam Khan'
   ])
+  assert.ok(view.coreProfiles.some((entry) => (
+    entry.displayName === 'Mohammad Sultan Khaja' &&
+    entry.githubLogin === 'M9S4K' &&
+    entry.rank === null
+  )))
 })
 
 test('derives accepted-event counts, roles, pages and deterministic ranks from events', () => {

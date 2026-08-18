@@ -2300,22 +2300,53 @@ a.is-stub-link:hover {
 
 .contributor-board,
 .contributor-profile {
-  --register-rank: 26px;
+  --register-rank: 32px;
   --register-avatar: 56px;
   --register-numeric: 132px;
   --register-gap: 18px;
+  --register-inset: 12px;
   margin: 0;
 }
 
-/* ---- index: standing line ---- */
+/* ---- index: register header ---- */
+
+.contributor-register {
+  position: relative;
+}
+
+/* One uninterrupted measure holds the header and all rows together. It is a
+   reading aid, not decoration: names and accepted counts stay visually paired
+   even when the contribution descriptions wrap. */
+.contributor-register::after {
+  position: absolute;
+  inset-block: 0;
+  right: calc(var(--register-inset) + var(--register-numeric) + var(--register-gap) / 2);
+  width: 1px;
+  background: var(--line-soft);
+  content: '';
+  pointer-events: none;
+}
+
+.contributor-register__head {
+  display: grid;
+  grid-template-columns:
+    var(--register-rank) var(--register-avatar) minmax(0, 1fr) var(--register-numeric);
+  gap: 0 var(--register-gap);
+  align-items: baseline;
+  border-block: 1px solid var(--line);
+  background: var(--green-ground);
+  padding: 11px var(--register-inset);
+}
 
 .contributor-standing {
+  grid-column: 1 / 4;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: baseline;
   gap: 6px 24px;
-  margin: 0 0 30px;
+  min-width: 0;
+  margin: 0;
 }
 
 .contributor-standing p {
@@ -2323,23 +2354,25 @@ a.is-stub-link:hover {
 }
 
 .contributor-standing__line {
-  font-size: 0.96rem;
+  font-size: 0.82rem;
+  font-weight: var(--w-strong);
 }
 
 .contributor-standing__refreshed {
   color: var(--faint);
-  font-size: 0.76rem;
+  font-size: 0.82rem;
 }
 
 
-/* ---- index: the register ---- */
+/* ---- index: register rows ---- */
 
 /* The caption names the numeric column once. Repeating a unit on every row is
    what turned the old column into a row of little stat blocks. */
 .contributor-register-caption {
-  margin: 0 0 7px;
+  grid-column: 4;
+  margin: 0;
   color: var(--muted);
-  font-size: 0.76rem;
+  font-size: 0.82rem;
   font-weight: var(--w-strong);
   text-align: right;
 }
@@ -2354,12 +2387,8 @@ a.is-stub-link:hover {
   counter-reset: none;
 }
 
-/* One rule down the whole register rather than a border repeated per row: the
-   segments used to break at every row's padding and read as ticks. */
 .contributor-list--ranked {
-  border-top: 1px solid var(--line);
-  background: linear-gradient(var(--line-soft), var(--line-soft))
-    right calc(var(--register-numeric) + var(--register-gap) / 2) top 0 / 1px 100% no-repeat;
+  background: var(--canvas);
 }
 
 .contributor-row {
@@ -2370,7 +2399,17 @@ a.is-stub-link:hover {
   align-items: start;
   margin: 0;
   border-bottom: 1px solid var(--line-soft);
-  padding: 20px 0;
+  padding: 20px var(--register-inset);
+}
+
+@media (hover: hover) {
+  .contributor-row:hover {
+    background: var(--green-ground);
+  }
+}
+
+.contributor-row:focus-within {
+  background: var(--green-ground);
 }
 
 .contributor-list--ranked > .contributor-row:last-child {
@@ -2378,13 +2417,15 @@ a.is-stub-link:hover {
 }
 
 .contributor-row__rank {
-  padding-top: 4px;
-  color: var(--faint);
+  display: grid;
+  place-items: center;
+  height: var(--register-avatar);
+  color: var(--muted);
   font-family: var(--display);
-  font-size: 0.86rem;
+  font-size: 1rem;
+  font-weight: var(--w-strong);
   font-variant-numeric: tabular-nums;
-  line-height: 1.3;
-  text-align: right;
+  line-height: 1;
 }
 
 .contributor-avatar,
@@ -2455,6 +2496,20 @@ a.is-stub-link:hover {
   overflow-wrap: anywhere;
 }
 
+.contributor-row__roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 5px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.contributor-row__roles > span:first-child {
+  color: var(--faint);
+}
+
 .contributor-row__latest {
   display: flex;
   flex-wrap: wrap;
@@ -2465,7 +2520,7 @@ a.is-stub-link:hover {
   line-height: 1.5;
 }
 
-.contributor-row__latest a {
+.contributor-row__latest-summary {
   min-width: 0;
   overflow-wrap: anywhere;
 }
@@ -2477,6 +2532,11 @@ a.is-stub-link:hover {
   align-self: stretch;
   min-width: 0;
   text-align: right;
+}
+
+.contributor-row__value {
+  display: inline-flex;
+  align-items: baseline;
 }
 
 .contributor-row__count b {
@@ -2516,7 +2576,7 @@ a.is-stub-link:hover {
 /* ---- index: colophon ---- */
 
 .contributor-core {
-  margin: 34px 0 0;
+  margin: 48px 0 0;
 }
 
 .contributor-proof h2,
@@ -2574,7 +2634,7 @@ a.is-stub-link:hover {
 }
 
 .contributor-cta {
-  margin: 34px 0 0;
+  margin: 22px 0 0;
 }
 
 .contributor-cta a,
@@ -2886,19 +2946,33 @@ a.is-stub-link:hover {
 @media (max-width: 720px) {
   .contributor-board,
   .contributor-profile {
-    --register-rank: 20px;
+    --register-rank: 28px;
     --register-avatar: 44px;
     --register-gap: 13px;
+    --register-inset: 0px;
   }
 
   /* The numeric column and its rule are a wide-screen affordance. On a phone
      the count moves under the name and names itself. */
-  .contributor-register-caption {
+  .contributor-register::after {
     display: none;
   }
 
-  .contributor-list--ranked {
-    background: none;
+  .contributor-register__head {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding: 10px 12px;
+  }
+
+  .contributor-standing {
+    grid-column: 1;
+    display: grid;
+    justify-items: start;
+    gap: 3px;
+  }
+
+  .contributor-register-caption {
+    display: none;
   }
 
   .contributor-row {
@@ -2929,6 +3003,10 @@ a.is-stub-link:hover {
     clip-path: none;
     color: var(--muted);
     font-size: 0.82rem;
+  }
+
+  :lang(en) .contributor-row__unit {
+    margin-left: 0.25em;
   }
 
   .contributor-row__count time {

@@ -1,5 +1,6 @@
 import { SITE_URL } from '../seo.config.mjs'
 import { ROLE_LABELS, contributorProfilePath } from '../lib/contributor-leaderboard.mjs'
+import { mediaUrl } from '../lib/media'
 import type {
   ContributorLocale,
   ContributorOrganization,
@@ -13,22 +14,24 @@ const copy = {
     back: 'সব কন্ট্রিবিউটর',
     publicLinks: 'পাবলিক লিংক',
     workCount: (count: string) => `${count}টি অবদান`,
+    roleCaption: (_count: number) => 'ভূমিকা',
     since: (date: string) => `${date} থেকে যুক্ত আছেন`,
     cardTitle: 'শেয়ার করার কার্ড',
-    cardText: 'কার্ডটি এই পাবলিক রেকর্ডের সাথে যুক্ত। এতে কোনো র‍্যাঙ্ক দেওয়া নেই, তাই লিডারবোর্ডের ক্রম বদলে গেলেও কার্ডের তথ্য ঠিক থাকে।',
+    cardText: 'কার্ডটি এই পাবলিক রেকর্ডের সাথে যুক্ত। এতে কোনো র‍্যাঙ্ক দেওয়া নেই, তাই লিডারবোর্ডের সিরিয়াল বদলালেও কার্ডের তথ্য ঠিক থাকে।',
     cardAlt: (name: string) => `${name}-এর দেশি স্টার্টআপ কন্ট্রিবিউটর কার্ড`,
-    trailTitle: 'প্রকাশিত অবদানের রেকর্ড',
+    trailTitle: 'পাবলিশ হওয়া কাজের রেকর্ড',
     evidence: 'প্রমাণ দেখে নিন',
-    pages: (count: string) => `${count}টি প্রকাশিত পেজ`,
-    page: 'প্রকাশিত পেজ',
+    pages: (count: string) => `${count}টি পাবলিশ হওয়া পেজ`,
+    page: 'পাবলিশ হওয়া পেজ',
     affiliation: 'সে সময়ের প্রতিষ্ঠান',
     reviewScope: 'রিভিউয়ের পরিধি',
-    noPage: 'সাইটের প্রোডাক্ট বা কাঠামোগত কাজ'
+    noPage: 'সাইটের প্রোডাক্ট বা ইনফ্রাস্ট্রাকচারের কাজ'
   },
   en: {
     back: 'All contributors',
     publicLinks: 'Public links',
     workCount: (count: string) => `${count} ${count === '1' ? 'contribution' : 'contributions'}`,
+    roleCaption: (count: number) => (count === 1 ? 'Role' : 'Roles'),
     since: (date: string) => `Contributing since ${date}`,
     cardTitle: 'Shareable proof card',
     cardText: 'The card links back to this public record. It omits rank, so it stays accurate as the order changes.',
@@ -123,11 +126,13 @@ export default function ContributorProfile({
   const canonicalProfileUrl = `${SITE_URL}${profilePath}`
   const cardPath = `/contributor-cards/${profile.slug}.png`
   const organizationById = new Map(organizations.map((organization) => [organization.id, organization]))
+  const avatarSrc = profile.avatarUrl ? mediaUrl(profile.avatarUrl, 192) : null
   const since = formatDate(profile.contributorSince, locale)
   // The standing line is what the roles section used to be: the same facts,
   // read as one sentence instead of a two-column grid with one entry in it.
+  const roleSummary = profile.roles.map((role) => roleLabel(role, locale)).join(' · ')
   const standing = [
-    profile.roles.map((role) => roleLabel(role, locale)).join(' · '),
+    roleSummary ? `${text.roleCaption(profile.roles.length)}: ${roleSummary}` : null,
     text.workCount(formatNumber(profile.acceptedEventCount, locale)),
     since ? text.since(since) : null
   ].filter(Boolean).join(' · ')
@@ -143,11 +148,11 @@ export default function ContributorProfile({
       </a>
 
       <header className="contributor-profile__header">
-        <span className={`contributor-profile__avatar${profile.avatarUrl ? '' : ' contributor-avatar--monogram'}`}>
+        <span className={`contributor-profile__avatar${avatarSrc ? '' : ' contributor-avatar--monogram'}`}>
           <span aria-hidden="true">{profile.monogram}</span>
-          {profile.avatarUrl ? (
+          {avatarSrc ? (
             <img
-              src={profile.avatarUrl}
+              src={avatarSrc}
               alt=""
               aria-hidden="true"
               width="96"

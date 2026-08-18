@@ -43,6 +43,7 @@ function policy(profiles = [], overrides = {}) {
       inlineNames: {}
     },
     displayNameOverrides: { shamirislam: 'Shamir Islam' },
+    legacyAvatarUrls: {},
     exclusions: { githubLogins: [], inlineNames: [], profileIds: [] },
     optOuts: { githubLogins: [], inlineNames: [], profileIds: [] },
     ...overrides
@@ -118,6 +119,21 @@ function githubMock(pulls, calls = []) {
   return async (url, options) => {
     calls.push({ url, options })
     const parsed = new URL(url)
+    const page = Number(parsed.searchParams.get('page') || 1)
+    const start = (page - 1) * 100
+    return response(pulls.slice(start, start + 100))
+  }
+}
+
+function githubUsersMock(pulls, users, calls = []) {
+  return async (url, options) => {
+    calls.push({ url, options })
+    const parsed = new URL(url)
+    if (parsed.pathname.startsWith('/users/')) {
+      const login = decodeURIComponent(parsed.pathname.slice('/users/'.length)).toLocaleLowerCase('en-US')
+      const user = users[login]
+      return user ? response(user) : response({ message: 'Not Found' }, 404)
+    }
     const page = Number(parsed.searchParams.get('page') || 1)
     const start = (page - 1) * 100
     return response(pulls.slice(start, start + 100))
@@ -440,6 +456,174 @@ test('attributes inline-editor pull requests through a stable identity alias', a
   assert.equal(snapshot.rankedProfiles[0].id, 'muhaimin')
 })
 
+test('resolves a confirmed GitHub avatar separately from an inline-editor bot identity', async () => {
+  const muhaimin = profile('muhaimin', 'muhaiminulfahim', {
+    avatar: { kind: 'github' },
+    confirmedAt: '2026-08-01'
+  })
+  const basePolicy = policy([muhaimin])
+  basePolicy.identityAliases.inlineNames['Muhaiminul Islam Khan'] = 'muhaimin'
+  const inlineBody = [
+    '**অবদানকারী / Contributor:** Muhaiminul Islam Khan',
+    '_Created via the Deshi Startup inline editor._'
+  ].join('\n')
+  const calls = []
+  const snapshot = await buildContributorSnapshot({
+    policy: basePolicy,
+    ledger: ledger([muhaimin], [event(57, 'muhaimin')]),
+    targetCatalog: targetCatalog('/guides/example'),
+    fetchImpl: githubUsersMock([
+      pull(57, 'app/deshistartup', {
+        body: inlineBody,
+        user: { login: 'app/deshistartup', type: 'Bot', avatar_url: null }
+      })
+    ], {
+      muhaiminulfahim: {
+        login: 'MuhaiminulFahim',
+        avatar_url: 'https://avatars.githubusercontent.com/u/57?v=4'
+      }
+    }, calls)
+  })
+  assert.equal(snapshot.rankedProfiles[0].avatarUrl, 'https://avatars.githubusercontent.com/u/57?v=4&s=160')
+  assert.ok(calls.some(({ url }) => new URL(url).pathname === '/users/muhaiminulfahim'))
+})
+
+test('requires confirmation and a login before resolving a GitHub avatar', () => {
+  const catalog = targetCatalog()
+  const withoutConfirmation = profile('alice', 'alice', { avatar: { kind: 'github' } })
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: ledger([withoutConfirmation]),
+      policy: policy([withoutConfirmation]),
+      targetCatalog: catalog
+    }),
+    /GitHub avatar requires confirmation/
+  )
+
+  const withoutLogin = profile('alice', null, {
+    githubLogin: null,
+    links: [],
+    avatar: { kind: 'github' },
+    confirmedAt: '2026-08-01'
+  })
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: ledger([withoutLogin]),
+      policy: policy([withoutLogin]),
+      targetCatalog: catalog
+    }),
+    /GitHub avatar requires a GitHub login/
+  )
+})
+
+test('permits only exact migration-allowlisted legacy URL avatars', () => {
+  const legacyUrl = 'https://avatars.githubusercontent.com/u/42?v=4&s=160'
+  const alice = profile('alice', 'alice', {
+    avatar: { kind: 'url', url: legacyUrl }
+  })
+  const allowedPolicy = policy([alice], {
+    legacyAvatarUrls: { alice: legacyUrl }
+  })
+  assert.doesNotThrow(() => validateContributorLedger({
+    ledger: ledger([alice]),
+    policy: allowedPolicy
+  }))
+
+  const newlyConfirmed = profile('bob', 'bob', {
+    avatar: { kind: 'url', url: 'https://avatars.githubusercontent.com/u/43?v=4&s=160' },
+    confirmedAt: '2026-08-01'
+  })
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: ledger([newlyConfirmed]),
+      policy: policy([newlyConfirmed])
+    }),
+    /not in the migration allowlist/
+  )
+})
+
+test('rejects mismatched identities and unsafe URLs from GitHub avatar lookup', async () => {
+  const alice = profile('alice', 'alice', {
+    avatar: { kind: 'github' },
+    confirmedAt: '2026-08-01'
+  })
+  const options = {
+    policy: policy([alice]),
+    ledger: ledger([alice], [event(1, 'alice')]),
+    targetCatalog: targetCatalog('/guides/example')
+  }
+  await assert.rejects(
+    buildContributorSnapshot({
+      ...options,
+      fetchImpl: githubUsersMock([pull(1, 'alice')], {
+        alice: {
+          login: 'mallory',
+          avatar_url: 'https://avatars.githubusercontent.com/u/1?v=4'
+        }
+      })
+    }),
+    /different public identity/
+  )
+  await assert.rejects(
+    buildContributorSnapshot({
+      ...options,
+      fetchImpl: githubUsersMock([pull(1, 'alice')], {
+        alice: { login: 'alice', avatar_url: 'https://example.com/alice.webp' }
+      })
+    }),
+    /unsafe avatar URL/
+  )
+})
+
+test('requires confirmed, registered media avatars and keeps their logical path in the snapshot', async () => {
+  const logicalPath = '/media/contributors/alice.webp'
+  const sha = '0123456789ab'
+  const mediaManifest = {
+    [logicalPath]: {
+      key: `contributors/alice.${sha}.webp`,
+      sha,
+      remote: true
+    }
+  }
+  const unconfirmed = profile('alice', null, {
+    githubLogin: null,
+    links: [],
+    avatar: { kind: 'media', path: logicalPath }
+  })
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: ledger([unconfirmed]),
+      policy: policy([unconfirmed]),
+      mediaManifest
+    }),
+    /media avatar requires confirmation/
+  )
+
+  const alice = profile('alice', null, {
+    githubLogin: null,
+    links: [],
+    avatar: { kind: 'media', path: logicalPath },
+    confirmedAt: '2026-08-01'
+  })
+  assert.throws(
+    () => validateContributorLedger({ ledger: ledger([alice]), policy: policy([alice]) }),
+    /missing a remote content-addressed registry entry/
+  )
+  const snapshot = await buildContributorSnapshot({
+    policy: policy([alice]),
+    ledger: ledger([alice], [editorialEvent('event-8', [
+      { mode: 'person', profileId: 'alice', roles: ['author'] }
+    ])]),
+    targetCatalog: targetCatalog('/guides/example'),
+    mediaManifest,
+    fetchImpl: githubMock([])
+  })
+  assert.equal(
+    snapshot.rankedProfiles[0].avatarUrl,
+    logicalPath
+  )
+})
+
 test('keeps bots out and core maintainers separate and unranked', async () => {
   const snapshot = await buildContributorSnapshot({
     policy: policy([]),
@@ -487,6 +671,34 @@ test('API failure preserves the last good snapshot', async () => {
   }
 })
 
+test('a failed GitHub avatar lookup preserves the last good snapshot', async () => {
+  const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'deshi-contributor-avatar-'))
+  const outputPath = path.join(directory, 'contributors.json')
+  const original = '{"lastGood":"avatar"}\n'
+  const alice = profile('alice', 'alice', {
+    avatar: { kind: 'github' },
+    confirmedAt: '2026-08-01'
+  })
+  await fs.writeFile(outputPath, original)
+  try {
+    await assert.rejects(
+      refreshContributorFile({
+        policy: policy([alice]),
+        ledger: ledger([alice], [event(1, 'alice')]),
+        targetCatalog: targetCatalog('/guides/example'),
+        outputPath,
+        fetchImpl: githubUsersMock([pull(1, 'alice')], {
+          alice: { login: 'alice', avatar_url: 'https://example.com/alice.webp' }
+        })
+      }),
+      /unsafe avatar URL/
+    )
+    assert.equal(await fs.readFile(outputPath, 'utf8'), original)
+  } finally {
+    await fs.rm(directory, { recursive: true, force: true })
+  }
+})
+
 test('output is secret-free even when GitHub refresh is authenticated', async () => {
   const secret = 'github_pat_never_publish_this'
   const calls = []
@@ -515,7 +727,7 @@ test('public snapshot validation rejects a profile value that would be silently 
   )
 })
 
-test('the authored current ledger reconciles to four contributors and fourteen events', async () => {
+test('the authored current ledger reconciles to four contributors and thirteen community events', async () => {
   const [currentLedger, currentPolicy, catalog] = await Promise.all([
     fs.readFile(path.join(root, 'data', 'contributor-ledger.json'), 'utf8').then(JSON.parse),
     fs.readFile(path.join(root, 'data', 'contributors-policy.json'), 'utf8').then(JSON.parse),
@@ -531,8 +743,8 @@ test('the authored current ledger reconciles to four contributors and fourteen e
     pull(41, 'niloy-biswas'),
     pull(39, 'uttamdeb'),
     pull(40, 'uttamdeb'),
-    pull(79, 'msultan-k', {
-      merged_at: '2026-08-18T10:30:00Z'
+    pull(79, 'M9S4K', {
+      merged_at: '2026-08-18T13:07:32Z'
     }),
     pull(57, 'app/deshistartup', {
       merged_at: '2026-08-10T21:59:38Z',
@@ -540,13 +752,53 @@ test('the authored current ledger reconciles to four contributors and fourteen e
       user: { login: 'app/deshistartup', type: 'Bot', avatar_url: null }
     })
   ]
+  const shoumikMedia = {
+    '/media/contributors/shoumik-shahriar.webp': {
+      key: 'contributors/shoumik-shahriar.860da7a3d696.webp',
+      w: 384,
+      h: 384,
+      bytes: 9344,
+      sha: '860da7a3d696',
+      remote: true,
+      uploadedAt: '2026-08-18T21:34:09.801Z'
+    }
+  }
   const snapshot = await buildContributorSnapshot({
     policy: currentPolicy,
     ledger: currentLedger,
     targetCatalog: catalog,
-    fetchImpl: githubMock(pulls)
+    mediaManifest: shoumikMedia,
+    fetchImpl: githubUsersMock(pulls, {
+      muhaiminulfahim: {
+        login: 'MuhaiminulFahim',
+        avatar_url: 'https://avatars.githubusercontent.com/u/57?v=4'
+      }
+    })
   })
   assert.equal(snapshot.totals.contributors, 4)
-  assert.equal(snapshot.totals.acceptedEvents, 14)
+  assert.equal(snapshot.totals.acceptedEvents, 13)
   assert.equal(snapshot.totals.pagesImproved, 37)
+  const muhaimin = snapshot.rankedProfiles.find((profile) => profile.id === 'muhaiminul-islam-khan')
+  const niloy = snapshot.rankedProfiles.find((profile) => profile.id === 'niloy-biswas')
+  const shoumik = snapshot.rankedProfiles.find((profile) => profile.id === 'shoumik-shahriar')
+  const uttam = snapshot.rankedProfiles.find((profile) => profile.id === 'uttam-deb')
+  assert.equal(muhaimin.avatarUrl, 'https://avatars.githubusercontent.com/u/57?v=4&s=160')
+  assert.equal(niloy.headline, 'Data & AI Professional')
+  assert.equal(shoumik.headline, 'Management Consultant')
+  assert.equal(shoumik.organizationId, 'lightcastle-partners')
+  assert.equal(shoumik.avatarUrl, '/media/contributors/shoumik-shahriar.webp')
+  assert.equal(uttam.headline, 'Data & AI Professional')
+  assert.deepEqual(snapshot.coreProfiles, [{
+    displayName: 'Mohammad Sultan Khaja',
+    githubLogin: 'M9S4K',
+    profileUrl: 'https://github.com/M9S4K',
+    avatarUrl: 'https://avatars.githubusercontent.com/u/79?v=4&s=160',
+    mergedPullRequestCount: 1,
+    lastMergedAt: '2026-08-18T13:07:32.000Z'
+  }])
+  assert.deepEqual(snapshot.organizations, [{
+    id: 'lightcastle-partners',
+    name: 'LightCastle Partners',
+    url: 'https://lightcastlepartners.com/'
+  }])
 })

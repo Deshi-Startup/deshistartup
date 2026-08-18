@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url'
 import { load } from 'cheerio'
 import snapshotData from '../app/generated/contributors.json' with { type: 'json' }
 import {
-  ROLE_LABELS,
+  ROLE_ACTIVITY_LABELS,
   contributorProfilePath,
   prepareContributorSnapshot
 } from '../app/lib/contributor-leaderboard.mjs'
@@ -77,6 +77,30 @@ function isUtilityPage(page) {
 function htmlFileFor(route) {
   return path.join(outDir, route === '/' ? 'index.html' : `${route.slice(1)}.html`)
 }
+
+/* Contributor media paths are resolved by app/lib/media.ts while Next renders
+   the static profile. Read that rendered src once, before enriching any page,
+   so ProfilePage and article Person nodes use the same delivery URL without a
+   second media-registry resolver in this postbuild pass. */
+function renderedContributorAvatarUrls() {
+  const avatars = new Map()
+  for (const page of pages) {
+    if (!isContributorProfile(page)) continue
+    const file = htmlFileFor(page.route)
+    if (!fs.existsSync(file)) continue
+    const $ = load(fs.readFileSync(file, 'utf8'))
+    const src = $('.contributor-profile__avatar img[src]').first().attr('src')
+    if (!src) continue
+    const existing = avatars.get(page.profileId)
+    if (existing && existing !== src) {
+      throw new Error(`Contributor ${page.profileId} rendered different avatar URLs across locales`)
+    }
+    avatars.set(page.profileId, src)
+  }
+  return avatars
+}
+
+const contributorAvatarUrlById = renderedContributorAvatarUrls()
 
 /**
  * The hashed URL of the self-hosted Bengali face, lifted out of the built
@@ -144,7 +168,7 @@ function contributorPersonNode(profile) {
     url: profileUrl
   }
   if (profile.headline) node.description = profile.headline
-  const image = publicImageUrl(profile.avatarUrl)
+  const image = publicImageUrl(contributorAvatarUrlById.get(profile.id))
   if (image) node.image = image
   if (profile.links.length > 0) node.sameAs = profile.links.map((link) => link.url)
   if (profile.organization) {
@@ -196,16 +220,6 @@ function formatAcceptedDate(value, locale) {
   }).format(date)
 }
 
-// The index labels a person's activity category (Researcher, Editor). A page
-// credit labels the work attached to that page (Research, Editing), so these
-// few grammatical variants are deliberate and share the same controlled IDs.
-const PAGE_CREDIT_ROLE_LABELS = {
-  ...ROLE_LABELS,
-  author: { bn: 'লেখক', en: 'Author' },
-  researcher: { bn: 'গবেষণা', en: 'Research' },
-  reviewer: { bn: 'রিভিউ', en: 'Review' }
-}
-
 function pageCreditsHtml(page, events, basePath) {
   if (events.length === 0) return ''
   const isEn = page.locale === 'en'
@@ -229,7 +243,7 @@ function pageCreditsHtml(page, events, basePath) {
       ? `<a href="${escapeHtml(localBuildHref(contributorProfilePath(profile.slug, locale), basePath))}">${escapeHtml(profile.displayName)}</a>`
       : `<span>${anonymous}</span>`
     const roles = credit.roles
-      .map((role) => PAGE_CREDIT_ROLE_LABELS[role]?.[locale] || role)
+      .map((role) => ROLE_ACTIVITY_LABELS[role]?.[locale] || role)
       .map((role) => `<span>${escapeHtml(role)}</span>`)
       .join('')
     const organizationHtml = organization

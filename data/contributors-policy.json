@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "repository": "Deshi-Startup/deshistartup",
-  "coreTeam": ["anwarulislam", "sagar290", "shamirislam"],
+  "coreTeam": ["anwarulislam", "M9S4K", "sagar290", "shamirislam"],
   "identityAliases": {
     "githubLogins": {},
     "inlineNames": {
@@ -10,8 +10,13 @@
   },
   "displayNameOverrides": {
     "anwarulislam": "Anwarul Islam",
+    "M9S4K": "Mohammad Sultan Khaja",
     "sagar290": "Sagar",
     "shamirislam": "Shamir Islam"
+  },
+  "legacyAvatarUrls": {
+    "niloy-biswas": "https://avatars.githubusercontent.com/u/28513863?v=4&s=160",
+    "uttam-deb": "https://avatars.githubusercontent.com/u/105539415?v=4&s=160"
   },
   "exclusions": {
     "githubLogins": [],

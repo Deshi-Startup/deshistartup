@@ -7,6 +7,7 @@ import {
   safePublicUrl,
   validatePublicSnapshot
 } from '../app/lib/contributor-leaderboard.mjs'
+import { objectKeyMatchesLogicalPath } from './lib/media-lib.mjs'
 
 const API_ROOT = 'https://api.github.com'
 const INLINE_MARKER = 'Created via the Deshi Startup inline editor.'
@@ -31,6 +32,7 @@ const DIRECT_CONTACT_HOSTS = new Set([
 ])
 const ROLE_SET = new Set(ROLE_IDS)
 const AVATAR_SIZE = 160
+const MEDIA_SHA_PATTERN = /^[a-f0-9]{12}$/
 
 export const SNAPSHOT_SCHEMA_VERSION = 3
 
@@ -165,6 +167,19 @@ function assertPolicy(policy) {
   for (const login of policy.coreTeam || []) {
     if (!SAFE_LOGIN_PATTERN.test(login || '')) throw new Error(`Invalid core-team GitHub login: ${login || '(missing)'}`)
   }
+  if (!policy.legacyAvatarUrls || typeof policy.legacyAvatarUrls !== 'object' || Array.isArray(policy.legacyAvatarUrls)) {
+    throw new Error('Contributor policy legacy avatar allowlist is malformed')
+  }
+  const legacyAvatarUrls = new Set()
+  for (const [profileId, avatarUrl] of Object.entries(policy.legacyAvatarUrls)) {
+    if (!SAFE_ID_PATTERN.test(profileId)) throw new Error(`Invalid legacy avatar profile ID: ${profileId}`)
+    assertPublicUrl(avatarUrl, `legacy avatar for ${profileId}`)
+    if (new URL(avatarUrl).hostname !== 'avatars.githubusercontent.com') {
+      throw new Error(`Legacy avatar for ${profileId} is not on GitHub's avatar host`)
+    }
+    if (legacyAvatarUrls.has(avatarUrl)) throw new Error(`Duplicate legacy avatar URL: ${avatarUrl}`)
+    legacyAvatarUrls.add(avatarUrl)
+  }
   for (const [group, aliases] of Object.entries(policy.identityAliases || {})) {
     if (!['githubLogins', 'inlineNames'].includes(group) || !aliases || typeof aliases !== 'object') {
       throw new Error('Contributor identity aliases are malformed')
@@ -188,7 +203,31 @@ function targetTitle(targetCatalog, targetPath) {
   }
 }
 
-export function validateContributorLedger({ ledger, policy, targetCatalog = new Map() }) {
+function mediaAvatarPath(profile, mediaManifest) {
+  const logicalPath = profile.avatar?.path
+  const expectedPath = `/media/contributors/${profile.slug}.webp`
+  if (logicalPath !== expectedPath) {
+    throw new Error(`Profile ${profile.id} media avatar must use ${expectedPath}`)
+  }
+  const entry = mediaManifest && !Array.isArray(mediaManifest) ? mediaManifest[logicalPath] : null
+  if (
+    !entry ||
+    entry.remote !== true ||
+    !MEDIA_SHA_PATTERN.test(entry.sha || '') ||
+    !objectKeyMatchesLogicalPath(logicalPath, entry.key) ||
+    !entry.key.includes(`.${entry.sha}.webp`)
+  ) {
+    throw new Error(`Profile ${profile.id} media avatar is missing a remote content-addressed registry entry`)
+  }
+  return logicalPath
+}
+
+export function validateContributorLedger({
+  ledger,
+  policy,
+  targetCatalog = new Map(),
+  mediaManifest = {}
+}) {
   assertPolicy(policy)
   assertNoPrivateFields(ledger, 'contributor ledger')
   if (!ledger || ledger.schemaVersion !== 1) throw new Error('Unsupported contributor ledger')
@@ -241,22 +280,42 @@ export function validateContributorLedger({ ledger, policy, targetCatalog = new 
       assertProfileLinkUrl(link?.url, `profile ${profile.id} link ${index}`)
       if (!isCanonicalGithubProfileLink(profile, link.url)) hasUnconfirmedExternalLink = true
     }
-    if (!['monogram', 'url'].includes(profile.avatar?.kind)) throw new Error(`Invalid avatar preference: ${profile.id}`)
+    if (!['monogram', 'url', 'github', 'media'].includes(profile.avatar?.kind)) {
+      throw new Error(`Invalid avatar preference: ${profile.id}`)
+    }
     if (profile.avatar.kind === 'url') {
       assertPublicUrl(profile.avatar.url, `profile ${profile.id} avatar`)
       const host = new URL(profile.avatar.url).hostname
-      if (host !== 'avatars.githubusercontent.com' && host !== 'media.deshistartup.com') {
+      if (host !== 'avatars.githubusercontent.com') {
         throw new Error(`Profile ${profile.id} avatar host is not approved`)
+      }
+      if (policy.legacyAvatarUrls?.[profile.id] !== profile.avatar.url) {
+        throw new Error(`Profile ${profile.id} URL avatar is not in the migration allowlist`)
       }
     }
     if (profile.confirmedAt != null && !validDate(profile.confirmedAt)) {
       throw new Error(`Profile ${profile.id} confirmation date is malformed`)
+    }
+    if (profile.avatar.kind === 'github') {
+      if (!profile.githubLogin) throw new Error(`Profile ${profile.id} GitHub avatar requires a GitHub login`)
+      if (!profile.confirmedAt) throw new Error(`Profile ${profile.id} GitHub avatar requires confirmation`)
+    }
+    if (profile.avatar.kind === 'media') {
+      if (!profile.confirmedAt) throw new Error(`Profile ${profile.id} media avatar requires confirmation`)
+      mediaAvatarPath(profile, mediaManifest)
     }
     if ((profile.headline || profile.organizationId || hasUnconfirmedExternalLink) && !profile.confirmedAt) {
       throw new Error(`Profile ${profile.id} contains unconfirmed public details`)
     }
     profileIds.add(profile.id)
     slugs.add(profile.slug)
+  }
+
+  for (const [profileId, avatarUrl] of Object.entries(policy.legacyAvatarUrls || {})) {
+    const profile = ledger.profiles.find((candidate) => candidate.id === profileId)
+    if (!profile || profile.avatar?.kind !== 'url' || profile.avatar.url !== avatarUrl) {
+      throw new Error(`Legacy avatar allowlist entry does not match profile ${profileId}`)
+    }
   }
 
   for (const aliases of Object.values(policy.identityAliases || {})) {
@@ -479,6 +538,26 @@ async function githubJson(fetchImpl, url, token) {
   return data
 }
 
+async function githubUser(fetchImpl, login, token) {
+  const url = `${API_ROOT}/users/${encodeURIComponent(login)}`
+  const headers = {
+    Accept: 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+    'User-Agent': 'deshi-startup-contributor-refresh'
+  }
+  if (token) headers.Authorization = `Bearer ${token}`
+  const response = await fetchImpl(url, { headers })
+  if (!response.ok) throw new Error(`GitHub API ${response.status} for ${new URL(url).pathname}`)
+  const user = await response.json()
+  const returnedLogin = cleanPublicText(user?.login)
+  if (!returnedLogin || normalizedKey(returnedLogin) !== normalizedKey(login)) {
+    throw new Error(`GitHub avatar lookup for ${login} returned a different public identity`)
+  }
+  const avatarUrl = sizedAvatarUrl(user?.avatar_url)
+  if (!avatarUrl) throw new Error(`GitHub avatar lookup for ${login} returned an unsafe avatar URL`)
+  return avatarUrl
+}
+
 export async function fetchPaginated(fetchImpl, url, token) {
   const items = []
   const seen = new Set()
@@ -496,7 +575,7 @@ export async function fetchPaginated(fetchImpl, url, token) {
   return items
 }
 
-function publicProfileFromLedger(profile, policy, optedOutProfileIds) {
+function publicProfileFromLedger(profile, policy, optedOutProfileIds, mediaManifest) {
   const profileIdKey = normalizedKey(profile.id)
   const hidden = profile.visibility !== 'public' ||
     optedOutProfileIds.has(profileIdKey) ||
@@ -512,7 +591,11 @@ function publicProfileFromLedger(profile, policy, optedOutProfileIds) {
     organizationId: profile.organizationId || null,
     githubLogin: profile.githubLogin || null,
     links: profile.links || [],
-    avatarUrl: profile.avatar?.kind === 'url' ? sizedAvatarUrl(profile.avatar.url) || profile.avatar.url : null
+    avatarUrl: profile.avatar?.kind === 'url'
+      ? sizedAvatarUrl(profile.avatar.url) || profile.avatar.url
+      : profile.avatar?.kind === 'media'
+        ? mediaAvatarPath(profile, mediaManifest)
+        : null
   }
 }
 
@@ -560,11 +643,12 @@ export async function buildContributorSnapshot({
   policy,
   ledger,
   targetCatalog = new Map(),
+  mediaManifest = {},
   fetchImpl = globalThis.fetch,
   token = process.env.GITHUB_TOKEN,
   now = new Date()
 }) {
-  validateContributorLedger({ ledger, policy, targetCatalog })
+  validateContributorLedger({ ledger, policy, targetCatalog, mediaManifest })
   if (typeof fetchImpl !== 'function') throw new Error('A fetch implementation is required')
 
   const indexes = policyIndex(policy, ledger.profiles)
@@ -669,7 +753,12 @@ export async function buildContributorSnapshot({
   }
 
   const rawProfiles = ledger.profiles
-    .map((profile) => publicProfileFromLedger(profile, policy, hiddenProfileIds))
+    .map((profile) => publicProfileFromLedger(
+      profile,
+      policy,
+      hiddenProfileIds,
+      mediaManifest
+    ))
     .filter(Boolean)
   const publicProfileIds = new Set(rawProfiles.map((profile) => profile.id))
   const events = publicEventsFromLedger(ledger, targetCatalog, publicProfileIds, hiddenProfileIds)
@@ -677,6 +766,13 @@ export async function buildContributorSnapshot({
     events.flatMap((event) => event.credits.map((credit) => credit.profileId).filter(Boolean))
   )
   const rankedProfiles = rawProfiles.filter((profile) => activeProfileIds.has(profile.id))
+  const ledgerProfileById = new Map(ledger.profiles.map((profile) => [profile.id, profile]))
+  await Promise.all(rankedProfiles.map(async (profile) => {
+    const ledgerProfile = ledgerProfileById.get(profile.id)
+    if (ledgerProfile?.avatar?.kind === 'github') {
+      profile.avatarUrl = await githubUser(fetchImpl, ledgerProfile.githubLogin, token)
+    }
+  }))
   const usedOrganizationIds = new Set([
     ...rankedProfiles.map((profile) => profile.organizationId).filter(Boolean),
     ...events.flatMap((event) => event.credits.map((credit) => credit.organizationId).filter(Boolean))

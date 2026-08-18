@@ -1,10 +1,10 @@
 {
   "schemaVersion": 3,
   "repository": "Deshi-Startup/deshistartup",
-  "refreshedAt": "2026-08-18T18:46:14.385Z",
+  "refreshedAt": "2026-08-18T22:28:13.556Z",
   "totals": {
     "contributors": 4,
-    "acceptedEvents": 14,
+    "acceptedEvents": 13,
     "pagesImproved": 37,
     "roleCategories": {
       "author": 11,
@@ -13,11 +13,17 @@
       "researcher": 0,
       "operational-insight": 0,
       "reviewer": 0,
-      "product": 2
+      "product": 1
     }
   },
   "unattributedCount": 0,
-  "organizations": [],
+  "organizations": [
+    {
+      "id": "lightcastle-partners",
+      "name": "LightCastle Partners",
+      "url": "https://lightcastlepartners.com/"
+    }
+  ],
   "events": [
     {
       "id": "github-pr-7",
@@ -575,28 +581,6 @@
           "review": null
         }
       ]
-    },
-    {
-      "id": "github-pr-79",
-      "acceptedAt": "2026-08-18",
-      "sourceType": "github-pr",
-      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/79",
-      "summary": {
-        "bn": "ব্র্যান্ড মার্ক ও সাইটের লোগো বিন্যাস উন্নত করা",
-        "en": "Improved the brand mark and site logo lockup"
-      },
-      "targets": [],
-      "credits": [
-        {
-          "mode": "anonymous",
-          "profileId": null,
-          "organizationId": null,
-          "roles": [
-            "product"
-          ],
-          "review": null
-        }
-      ]
     }
   ],
   "rankedProfiles": [
@@ -604,11 +588,11 @@
       "id": "shoumik-shahriar",
       "slug": "shoumik-shahriar",
       "displayName": "Shoumik Shahriar",
-      "headline": null,
-      "organizationId": null,
+      "headline": "Management Consultant",
+      "organizationId": "lightcastle-partners",
       "githubLogin": null,
       "links": [],
-      "avatarUrl": null,
+      "avatarUrl": "/media/contributors/shoumik-shahriar.webp",
       "acceptedEventCount": 7,
       "lastAcceptedAt": "2026-08-10",
       "contributorSince": "2026-08-10",
@@ -627,7 +611,7 @@
       "id": "niloy-biswas",
       "slug": "niloy-biswas",
       "displayName": "Niloy Biswas",
-      "headline": null,
+      "headline": "Data & AI Professional",
       "organizationId": null,
       "githubLogin": "niloy-biswas",
       "links": [
@@ -655,7 +639,7 @@
       "id": "uttam-deb",
       "slug": "uttam-deb",
       "displayName": "Uttam Deb",
-      "headline": null,
+      "headline": "Data & AI Professional",
       "organizationId": null,
       "githubLogin": "uttamdeb",
       "links": [
@@ -692,7 +676,7 @@
           "url": "https://github.com/muhaiminulfahim"
         }
       ],
-      "avatarUrl": null,
+      "avatarUrl": "https://avatars.githubusercontent.com/u/123251415?v=4&s=160",
       "acceptedEventCount": 1,
       "lastAcceptedAt": "2026-08-10",
       "contributorSince": "2026-08-10",
@@ -716,6 +700,14 @@
       "avatarUrl": "https://avatars.githubusercontent.com/u/26295990?v=4&s=160",
       "mergedPullRequestCount": 1,
       "lastMergedAt": "2026-07-26T05:04:12.000Z"
+    },
+    {
+      "displayName": "Mohammad Sultan Khaja",
+      "githubLogin": "M9S4K",
+      "profileUrl": "https://github.com/M9S4K",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/20677421?v=4&s=160",
+      "mergedPullRequestCount": 1,
+      "lastMergedAt": "2026-08-18T13:07:32.000Z"
     },
     {
       "displayName": "Sagar",

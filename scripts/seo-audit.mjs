@@ -10,6 +10,7 @@ import { load } from 'cheerio'
 import robotsParser from 'robots-parser'
 import snapshotData from '../app/generated/contributors.json' with { type: 'json' }
 import {
+  ROLE_LABELS,
   contributorProfilePath,
   prepareContributorSnapshot
 } from '../app/lib/contributor-leaderboard.mjs'
@@ -369,6 +370,57 @@ for (const page of pages) {
       }
     } else if (row.find('.page-credit__person a').length > 0) {
       record(errors, `${page.route}: anonymous credit for ${event.id} exposes a profile link`)
+    }
+  }
+
+  if (page.slug === 'contributors') {
+    const rankedRows = $('.contributor-list--ranked .contributor-row')
+    if (rankedRows.length !== contributorView.rankedProfiles.length) {
+      record(errors, `${page.route}: contributor register does not match the public snapshot`)
+    }
+    for (const profile of contributorView.rankedProfiles) {
+      const row = rankedRows.filter(`[data-contributor-profile="${profile.slug}"]`)
+      if (row.length !== 1) {
+        record(errors, `${page.route}: missing or duplicate contributor row for ${profile.slug}`)
+        continue
+      }
+      const confirmedIdentity = [profile.headline, profile.organization?.name].filter(Boolean)
+      const expectedProfessional = confirmedIdentity.length
+        ? confirmedIdentity.join(' · ')
+        : profile.githubLogin
+          ? `@${profile.githubLogin}`
+          : ''
+      const professional = row.find('.contributor-row__meta')
+      if (
+        professional.length !== (expectedProfessional ? 1 : 0) ||
+        professional.text().trim() !== expectedProfessional
+      ) {
+        record(errors, `${page.route}: professional identity is malformed for ${profile.slug}`)
+      }
+      const localizedRoles = profile.roles.map((role) => ROLE_LABELS[role]?.[page.locale] || role)
+      const roleCaption = page.locale === 'en'
+        ? localizedRoles.length === 1 ? 'Role' : 'Roles'
+        : 'ভূমিকা'
+      const expectedRoles = `${roleCaption}: ${localizedRoles.join(' · ')}`
+      const roleLine = row.find('.contributor-row__roles')
+      if (roleLine.length !== 1 || roleLine.text().replace(/\s+/g, ' ').trim() !== expectedRoles) {
+        record(errors, `${page.route}: contribution roles are malformed for ${profile.slug}`)
+      }
+    }
+
+    const correctionLinks = $('.contributor-method > p:last-of-type a[href]')
+    const expectedCorrectionRoute = page.locale === 'en' ? '/en/contact' : '/contact'
+    const expectedCorrectionLabel = page.locale === 'en' ? 'contact us' : 'যোগাযোগ করুন'
+    if (correctionLinks.length !== 1) {
+      record(errors, `${page.route}: expected exactly one contributor correction contact link`)
+    } else {
+      const correctionLink = correctionLinks.first()
+      if (normalizeInternalHref(correctionLink.attr('href'), page.route) !== expectedCorrectionRoute) {
+        record(errors, `${page.route}: contributor correction link does not point to the localized contact page`)
+      }
+      if (correctionLink.text().trim() !== expectedCorrectionLabel) {
+        record(errors, `${page.route}: contributor correction link has the wrong localized label`)
+      }
     }
   }
 

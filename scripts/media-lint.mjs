@@ -18,11 +18,12 @@
  * Warnings (⚠, reported only):
  *   - markdown image with empty alt text
  *   - a file heavier or wider than an article needs
- *   - an uploaded file no page references (paying storage for nothing)
+ *   - an uploaded file no page or contributor profile references (paying storage for nothing)
  *   - a <YouTube> embed with no poster in the bucket
  */
 import fs from 'node:fs'
 import path from 'node:path'
+import { classifyContributorMediaAvatars } from './lib/contributor-media.mjs'
 import {
   CONTENT_TYPES,
   MAX_FILE_BYTES,
@@ -42,6 +43,8 @@ import {
 
 const contentRoot = path.join(root, 'app', '(contents)')
 const publicMedia = path.join(root, 'public', 'media')
+const contributorLedgerFile = path.join(root, 'data', 'contributor-ledger.json')
+const contributorPolicyFile = path.join(root, 'data', 'contributors-policy.json')
 
 const ALLOWED = new Set(Object.keys(CONTENT_TYPES))
 const VIDEO_ID = /^[A-Za-z0-9_-]{11}$/
@@ -109,6 +112,63 @@ function checkSource(src, where, page) {
     )
   }
 }
+
+function checkContributorAvatarReferences() {
+  const ledgerName = path.relative(root, contributorLedgerFile)
+  const policyName = path.relative(root, contributorPolicyFile)
+  let ledger
+  let policy
+  try {
+    ledger = JSON.parse(fs.readFileSync(contributorLedgerFile, 'utf8'))
+  } catch (error) {
+    errors.push(`${ledgerName}: could not read contributor avatar references (${error.message}).`)
+    return
+  }
+  try {
+    policy = JSON.parse(fs.readFileSync(contributorPolicyFile, 'utf8'))
+  } catch (error) {
+    errors.push(`${policyName}: could not read contributor visibility controls (${error.message}).`)
+    return
+  }
+
+  let avatars
+  try {
+    avatars = classifyContributorMediaAvatars(ledger, policy)
+  } catch (error) {
+    errors.push(`${ledgerName}: could not classify contributor avatar references (${error.message}).`)
+    return
+  }
+
+  const withdrawalLabels = {
+    visibility: 'its visibility is hidden',
+    'exclusion-profile': 'its profile ID is excluded',
+    'opt-out-profile': 'its profile ID is opted out',
+    'exclusion-github': 'its GitHub login is excluded',
+    'opt-out-github': 'its GitHub login is opted out',
+    'exclusion-inline': 'an inline identity alias is excluded',
+    'opt-out-inline': 'an inline identity alias is opted out'
+  }
+  for (const avatar of avatars.withdrawn) {
+    const reason = withdrawalLabels[avatar.withdrawal.kind] || 'it is not public'
+    const identity = avatar.withdrawal.identity ? ` (${avatar.withdrawal.identity})` : ''
+    errors.push(
+      `${ledgerName}: profile ${avatar.profileId} still selects media avatar ` +
+        `${avatar.path || '(without a path)'}, but ${reason}${identity}. Change its avatar to ` +
+        '`{ "kind": "monogram" }`, refresh contributors, then run ' +
+        '`npm run media:prune -- --retire-unreferenced` to retire the withdrawn image.'
+    )
+  }
+
+  for (const avatar of avatars.active) {
+    if (typeof avatar.path !== 'string' || !avatar.path.trim()) {
+      errors.push(`${ledgerName}: profile ${avatar.profileId} has a media avatar without a logical path.`)
+      continue
+    }
+    checkSource(avatar.path, `profile ${avatar.profileId} avatar`, ledgerName)
+  }
+}
+
+checkContributorAvatarReferences()
 
 function validFacebookVideoUrl(value) {
   let url
@@ -275,7 +335,7 @@ for (const [key, entry] of Object.entries(registry)) {
     }
   }
   if (!referenced.has(key)) {
-    warnings.push(`${key} is in the bucket but no page uses it.`)
+    warnings.push(`${key} is in the bucket but no page or contributor profile uses it.`)
   }
 }
 

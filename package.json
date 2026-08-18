@@ -31,7 +31,7 @@
     "lint:glossary": "node scripts/glossary-lint.mjs",
     "lint:media": "node scripts/media-lint.mjs",
     "test:citations": "node --experimental-strip-types --test app/lib/rehype-footnotes.test.mjs app/lib/contribution-markdown.test.mjs scripts/citation-lint.test.mjs",
-    "test:media": "node --test scripts/media-lib.test.mjs",
+    "test:media": "node --test scripts/media-lib.test.mjs scripts/contributor-media.test.mjs",
     "test:contact": "node --experimental-strip-types --test worker/api/contact.test.mjs",
     "backlog:status": "npm run manifest && node scripts/backlog-status.mjs",
     "lint:bangla": "node scripts/bangla-lint.mjs",

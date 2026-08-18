@@ -4,6 +4,7 @@ import {
   contributorProfilePath,
   prepareContributorSnapshot
 } from '../lib/contributor-leaderboard.mjs'
+import { mediaUrl } from '../lib/media'
 
 type Locale = 'bn' | 'en'
 
@@ -17,6 +18,7 @@ interface ProfileView {
   rank: number | null
   slug?: string
   displayName: string
+  headline?: string | null
   monogram: string
   githubLogin: string | null
   profileUrl?: string | null
@@ -46,18 +48,19 @@ interface LeaderboardView {
 
 const copy = {
   bn: {
-    standing: (pages: string) => `এখন পর্যন্ত ${pages}টি পেজে অবদান যোগ হয়েছে।`,
+    standing: (pages: string) => `এ পর্যন্ত ${pages}টি পেজে কন্ট্রিবিউটররা কাজ করেছেন।`,
     refreshed: 'শেষ আপডেট',
     countCaption: 'অবদান',
+    roleCaption: (_count: number) => 'ভূমিকা',
     latestLabel: 'সর্বশেষ',
-    profileLabel: (name: string) => `${name}-এর অবদানের বিস্তারিত দেখুন`,
+    profileLabel: (name: string) => `${name}-এর কাজগুলো দেখুন`,
     coreTitle: 'কোর টিম',
-    coreText: 'তাঁরা প্রজেক্টের রিভিউ, প্রকাশনা আর রক্ষণাবেক্ষণের দায়িত্বে আছেন। এই তালিকাটা র‍্যাঙ্ক করা নয়।',
-    methodTitle: 'হিসাবটা কীভাবে হয়',
+    coreText: 'প্রজেক্ট রিভিউ, সাইটে পাবলিশ আর মেনটেইন্যান্সের দায়িত্ব এঁদের। এখানকার নামগুলো র‍্যাঙ্ক করা নয়।',
+    methodTitle: 'হিসাবটা যেভাবে হয়',
     methodText:
-      'এখানে শুধু সেই কাজই গোনা হয়, যেটা রিভিউ পেরিয়ে সাইটে যোগ হয়েছে। একই কাজে কেউ কয়েকটা ভূমিকা রাখলে, বা কাজটা বাংলা আর ইংরেজি দুই পেজে গেলেও, গোনা হয় একবারই। যাঁর অবদান বেশি, তাঁর নাম আগে থাকে। সংখ্যা মিলে গেলে নতুন কাজ আগে, তারপর নাম ধরে সাজানো হয়। ক্রম দেখে কারও দক্ষতা বা কাজের মান বোঝা যায় না।',
-    correctionText: 'নাম, ক্রেডিট বা পরিচয়ে কোনো ভুল থাকলে বা নাম সরাতে চাইলে',
-    correctionLink: 'সংশোধনের অনুরোধ করুন',
+      'রিভিউ পেরিয়ে যেসব কাজ সাইটে লাইভ হয়, আমরা শুধু সেগুলোরই হিসাব রাখি। একটা লেখায় কারো একাধিক ভূমিকা থাকলেও কাউন্ট হবে একবারই – এমনকি কাজটা বাংলা-ইংরেজি দুই ভার্সনেই গেলেও। যাঁর কন্ট্রিবিউশন বেশি, তাঁর নাম তত উপরে থাকবে। সংখ্যা মিলে গেলে নতুন কাজ আগে, এরপর নাম অনুযায়ী সাজানো হয়। এখানকার সিরিয়াল দেখে কার দক্ষতা কতটা বা কাজের মান কেমন, সেটা বোঝার উপায় নেই।',
+    correctionText: 'কন্ট্রিবিউটরের নাম, ক্রেডিট বা পরিচয় সংশোধন করতে কিংবা নাম সরাতে চাইলে',
+    correctionLink: 'যোগাযোগ করুন',
     cta: 'দেশি স্টার্টআপে আপনার কাজও যোগ করুন',
     emptyText: 'কমিউনিটির প্রথম কাজটা এখনো সাইটে যোগ হয়নি। এখানে প্রথম নামটা কিন্তু আপনারই হতে পারে।'
   },
@@ -65,6 +68,7 @@ const copy = {
     standing: (pages: string) => `${pages} pages have been improved so far.`,
     refreshed: 'Data updated',
     countCaption: 'Contributions',
+    roleCaption: (count: number) => (count === 1 ? 'Role' : 'Roles'),
     latestLabel: 'Latest',
     profileLabel: (name: string) => `View ${name}'s published contribution trail`,
     coreTitle: 'Core team',
@@ -72,8 +76,8 @@ const copy = {
     methodTitle: 'How the count works',
     methodText:
       'Only work that passes review and goes live on the site is counted here. One piece of work counts once, however many roles someone took in it, and even when it lands on both the Bengali and the English page. More contributions put a name higher up. When two counts tie, the newer work comes first, then the name. The order does not tell you how skilled someone is or how good the work was.',
-    correctionText: 'If a name, credit, or identity is wrong,',
-    correctionLink: 'request a correction or opt out',
+    correctionText: 'To correct or remove a contributor name, credit, or identity,',
+    correctionLink: 'contact us',
     cta: 'Add your work to Deshi Startup',
     emptyText: 'No community contribution has gone live yet. Yours could be the first name here.'
   }
@@ -105,7 +109,7 @@ function formatDate(value: string | null | undefined, locale: Locale) {
    suffix rather than a separate word. */
 function countUnit(count: number, locale: Locale) {
   if (locale === 'bn') return 'টি অবদান'
-  return count === 1 ? ' contribution' : ' contributions'
+  return count === 1 ? 'contribution' : 'contributions'
 }
 
 function roleLabel(role: string, locale: Locale) {
@@ -114,16 +118,17 @@ function roleLabel(role: string, locale: Locale) {
 
 function Avatar({ profile, small = false }: { profile: ProfileView; small?: boolean }) {
   const size = small ? 40 : 56
+  const avatarSrc = profile.avatarUrl ? mediaUrl(profile.avatarUrl, size * 2) : null
   return (
     <span
       className={`contributor-avatar${small ? ' contributor-avatar--small' : ''}${
-        profile.avatarUrl ? '' : ' contributor-avatar--monogram'
+        avatarSrc ? '' : ' contributor-avatar--monogram'
       }`}
     >
       <span aria-hidden="true">{profile.monogram}</span>
-      {profile.avatarUrl ? (
+      {avatarSrc ? (
         <img
-          src={profile.avatarUrl}
+          src={avatarSrc}
           alt=""
           aria-hidden="true"
           width={size}
@@ -137,14 +142,13 @@ function Avatar({ profile, small = false }: { profile: ProfileView; small?: bool
   )
 }
 
-/* One middot line carries what the person did and, when it is public, where
-   they did it from. The bordered role chips it replaces put three outlined
-   boxes on every row, which read as controls rather than as a description. */
-function identityMeta(profile: ProfileView, locale: Locale) {
-  const parts = (profile.roles || []).map((role) => roleLabel(role, locale))
-  if (profile.organization) parts.push(profile.organization.name)
-  else if (profile.githubLogin) parts.push(`@${profile.githubLogin}`)
-  return parts.join(' · ')
+/* Professional identity and contribution role answer different questions.
+   Keep them on separate lines so a title, an organization, and the work done
+   for Deshi Startup never read as one malformed credential. */
+function professionalMeta(profile: ProfileView) {
+  const confirmedIdentity = [profile.headline, profile.organization?.name].filter(Boolean)
+  if (confirmedIdentity.length) return confirmedIdentity.join(' · ')
+  return profile.githubLogin ? `@${profile.githubLogin}` : ''
 }
 
 function ContributorRow({ profile, locale }: { profile: ProfileView; locale: Locale }) {
@@ -153,7 +157,8 @@ function ContributorRow({ profile, locale }: { profile: ProfileView; locale: Loc
   const count = formatNumber(profile.acceptedEventCount || 0, locale)
   const lastAccepted = formatDate(profile.lastAcceptedAt, locale)
   const latestSummary = profile.latestContribution?.summary?.[locale]
-  const meta = identityMeta(profile, locale)
+  const professional = professionalMeta(profile)
+  const roles = (profile.roles || []).map((role) => roleLabel(role, locale))
 
   return (
     <li className="contributor-row" data-contributor-profile={profile.slug}>
@@ -171,19 +176,26 @@ function ContributorRow({ profile, locale }: { profile: ProfileView; locale: Loc
             <bdi>{profile.displayName}</bdi>
           )}
         </strong>
-        {meta ? <span className="contributor-row__meta">{meta}</span> : null}
+        {professional ? <span className="contributor-row__meta" dir="auto">{professional}</span> : null}
+        {roles.length ? (
+          <span className="contributor-row__roles">
+            <span>{text.roleCaption(roles.length)}:</span>
+            {' '}
+            <span>{roles.join(' · ')}</span>
+          </span>
+        ) : null}
         {latestSummary ? (
           <span className="contributor-row__latest">
-            <span>{text.latestLabel}</span>
-            <a href={profile.latestContribution?.evidenceUrl} rel="noopener noreferrer">
-              {latestSummary}
-            </a>
+            <span>{text.latestLabel}:</span>
+            <span className="contributor-row__latest-summary">{latestSummary}</span>
           </span>
         ) : null}
       </span>
       <span className="contributor-row__count">
-        <b>{count}</b>
-        <span className="contributor-row__unit">{countUnit(profile.acceptedEventCount || 0, locale)}</span>
+        <span className="contributor-row__value">
+          <b>{count}</b>
+          <span className="contributor-row__unit">{countUnit(profile.acceptedEventCount || 0, locale)}</span>
+        </span>
         {lastAccepted ? (
           <time dateTime={profile.lastAcceptedAt || undefined}>{lastAccepted}</time>
         ) : null}
@@ -222,54 +234,54 @@ export default function ContributorLeaderboard({ locale = 'bn' }: { locale?: Loc
   const text = copy[locale]
   const view = prepareContributorSnapshot(snapshotData) as LeaderboardView
   const refreshed = formatDate(view.refreshedAt, locale)
-  const privacyIssueUrl =
-    'https://github.com/Deshi-Startup/deshistartup/issues/new?title=Contributor%20listing%20request'
+  const correctionHref = localHref(locale === 'en' ? '/en/contact' : '/contact')
 
   return (
     <section className="contributor-board">
       {view.hasContributors ? (
-        <>
+        <div className="contributor-register">
           {/* One line, and only the fact the rows cannot give you: how far the
               work has reached. The per-role tally that sat here repeated what
               every row already says beside the name. */}
-          <div className="contributor-standing">
-            <p className="contributor-standing__line">
-              {text.standing(formatNumber(view.totals.pagesImproved, locale))}
-            </p>
-            {refreshed ? (
-              <p className="contributor-standing__refreshed">
-                {text.refreshed}:{' '}
-                <time dateTime={view.refreshedAt || undefined}>{refreshed}</time>
+          <div className="contributor-register__head">
+            <div className="contributor-standing">
+              <p className="contributor-standing__line">
+                {text.standing(formatNumber(view.totals.pagesImproved, locale))}
               </p>
-            ) : null}
-          </div>
+              {refreshed ? (
+                <p className="contributor-standing__refreshed">
+                  {text.refreshed}:{' '}
+                  <time dateTime={view.refreshedAt || undefined}>{refreshed}</time>
+                </p>
+              ) : null}
+            </div>
 
-          {/* The caption labels the numeric column once instead of repeating a
-              unit on every row, which is what keeps the column readable as a
-              column rather than as a row of stat tiles. */}
-          <p className="contributor-register-caption">{text.countCaption}</p>
+            {/* The caption labels the numeric column once instead of repeating
+                a unit on every wide-screen row. */}
+            <p className="contributor-register-caption">{text.countCaption}</p>
+          </div>
           <ol className="contributor-list contributor-list--ranked">
             {view.rankedProfiles.map((profile) => (
               <ContributorRow key={profile.slug || profile.displayName} profile={profile} locale={locale} />
             ))}
           </ol>
-        </>
+        </div>
       ) : (
         <p className="contributor-empty">{text.emptyText}</p>
       )}
 
-      <CoreTeam profiles={view.coreProfiles} locale={locale} />
-
       <p className="contributor-cta">
         <a href={localHref(locale === 'en' ? '/en/contribute' : '/contribute')}>{text.cta}</a>
       </p>
+
+      <CoreTeam profiles={view.coreProfiles} locale={locale} />
 
       <section className="contributor-method" aria-labelledby="contributor-method-title">
         <h2 id="contributor-method-title">{text.methodTitle}</h2>
         <p>{text.methodText}</p>
         <p>
           {text.correctionText}{' '}
-          <a href={privacyIssueUrl}>{text.correctionLink}</a>.
+          <a href={correctionHref}>{text.correctionLink}</a>.
         </p>
       </section>
     </section>

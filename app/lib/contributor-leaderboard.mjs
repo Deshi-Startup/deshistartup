@@ -34,12 +34,25 @@ export const ROLE_IDS = Object.freeze([
 ])
 
 export const ROLE_LABELS = Object.freeze({
-  author: { bn: 'লেখা', en: 'Author' },
-  editor: { bn: 'সম্পাদনা', en: 'Editor' },
-  translator: { bn: 'অনুবাদ', en: 'Translator' },
-  researcher: { bn: 'রিসার্চ', en: 'Researcher' },
+  author: { bn: 'লেখক', en: 'Author' },
+  editor: { bn: 'সম্পাদক', en: 'Editor' },
+  translator: { bn: 'অনুবাদক', en: 'Translator' },
+  researcher: { bn: 'গবেষক', en: 'Researcher' },
   'operational-insight': { bn: 'মাঠের অভিজ্ঞতা', en: 'Operational insight' },
-  reviewer: { bn: 'রিভিউ', en: 'Reviewer' },
+  reviewer: { bn: 'রিভিউয়ার', en: 'Reviewer' },
+  product: { bn: 'প্রোডাক্ট', en: 'Product' }
+})
+
+// Person-facing surfaces name the contributor's role (Author, Editor), while
+// page credits name the kind of work attached to that page (Editing, Review).
+// Keep both forms beside the controlled role IDs so their wording cannot drift.
+export const ROLE_ACTIVITY_LABELS = Object.freeze({
+  author: { bn: 'লেখক', en: 'Author' },
+  editor: { bn: 'সম্পাদনা', en: 'Editing' },
+  translator: { bn: 'অনুবাদ', en: 'Translation' },
+  researcher: { bn: 'গবেষণা', en: 'Research' },
+  'operational-insight': { bn: 'মাঠের অভিজ্ঞতা', en: 'Operational insight' },
+  reviewer: { bn: 'রিভিউ', en: 'Review' },
   product: { bn: 'প্রোডাক্ট', en: 'Product' }
 })
 

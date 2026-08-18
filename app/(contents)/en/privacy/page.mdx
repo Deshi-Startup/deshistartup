@@ -56,8 +56,9 @@ and a signed temporary ID token.
 When accepted work goes live and you choose named credit, the same public record may appear on the
 [contributors index](/en/contributors), a dedicated contributor profile, the relevant guides and a
 shareable proof card. Depending on what you have confirmed, that record can contain your public
-name, role labels, accepted-work count, acceptance dates, evidence links, organization and selected
-public profile links. Work is not assigned to a person when attribution is ambiguous.
+name, role labels, accepted-work count, acceptance dates, evidence links, a short headline or job
+title, organization, selected public profile links and an approved profile photo. Work is not
+assigned to a person when attribution is ambiguous.
 
 Contributor profiles can be indexed by search engines. They also include `ProfilePage` and
 `Person` structured data so search tools can understand that the page describes a person and their
@@ -69,10 +70,18 @@ downloaded and is used as the profile's social preview image. The card contains 
 up to three role labels, accepted-work count, profile URL and an optional confirmed organization.
 V1 cards use a letter monogram rather than fetching a contributor photo during the build.
 
-Profile photos shown on the index or profile page can come from GitHub's own servers. Opening one
-of those pages then sends GitHub an ordinary image request that may carry the IP address, browser
-information and request time. A letter monogram stands in when there is no photo, or when you
-would rather not show one.
+If you choose your public GitHub photo, maintainers look up the approved GitHub account only while
+refreshing the contributor record. The index and profile page then load that photo from GitHub's
+servers, so opening either page sends GitHub an ordinary image request that may carry the IP
+address, browser information and request time.
+
+If you approve a photo supplied directly or selected from your website, LinkedIn or another public
+profile, a copy is placed in Deshi Startup's R2 media storage and served from our media domain. We
+do not scrape profile pages or hotlink those photos. A letter monogram stands in when there is no
+approved photo, or when you would rather not show one.
+
+A headline or job title is published only in wording you have confirmed. It is descriptive context,
+not a certification, verification of expertise or endorsement by Deshi Startup.
 
 If a public-identity opt-out is accepted, the next site build removes the contributor profile and
 proof card. The ranked identity and guide-level names are removed, while work that remains

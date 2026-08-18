@@ -7,15 +7,20 @@ import { buildTargetCatalog, refreshContributorFile } from './contributor-data.m
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const policyPath = path.join(root, 'data', 'contributors-policy.json')
 const ledgerPath = path.join(root, 'data', 'contributor-ledger.json')
+const mediaManifestPath = path.join(root, 'app', 'generated', 'media.json')
 const outputPath = path.join(root, 'app', 'generated', 'contributors.json')
 
 async function main() {
-  const policy = JSON.parse(await fs.readFile(policyPath, 'utf8'))
-  const ledger = JSON.parse(await fs.readFile(ledgerPath, 'utf8'))
-  const targetCatalog = await buildTargetCatalog(root)
+  const [policy, ledger, mediaManifest, targetCatalog] = await Promise.all([
+    fs.readFile(policyPath, 'utf8').then(JSON.parse),
+    fs.readFile(ledgerPath, 'utf8').then(JSON.parse),
+    fs.readFile(mediaManifestPath, 'utf8').then(JSON.parse),
+    buildTargetCatalog(root)
+  ])
   const snapshot = await refreshContributorFile({
     policy,
     ledger,
+    mediaManifest,
     targetCatalog,
     outputPath,
     token: process.env.GITHUB_TOKEN
