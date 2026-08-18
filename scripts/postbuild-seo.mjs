@@ -278,10 +278,10 @@ function schemaFor(page, wordCount, visibleCollectionItems = []) {
     logo: {
       '@type': 'ImageObject',
       '@id': `${SITE_URL}/#logo`,
-      url: `${SITE_URL}/deshi-mark.svg`,
-      contentUrl: `${SITE_URL}/deshi-mark.svg`,
-      width: 128,
-      height: 128
+      url: `${SITE_URL}/deshi-mark.webp`,
+      contentUrl: `${SITE_URL}/deshi-mark.webp`,
+      width: 384,
+      height: 384
     },
     sameAs: ORGANIZATION_SAME_AS,
     areaServed: { '@type': 'Country', name: 'Bangladesh' },
