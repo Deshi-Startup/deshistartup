@@ -10,6 +10,8 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
+import snapshotData from '../app/generated/contributors.json' with { type: 'json' }
+import { prepareContributorSnapshot } from '../app/lib/contributor-leaderboard.mjs'
 import { resolveBuildOutput } from './build-output.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -20,6 +22,7 @@ const indexDir = isStaticExport
 const bundleFile = path.join(indexDir, 'pagefind.js')
 const bundleOrigin = 'http://pagefind.local'
 const bundleBase = `${bundleOrigin}/_pagefind/`
+const contributorView = prepareContributorSnapshot(snapshotData)
 
 if (!fs.existsSync(bundleFile)) {
   throw new Error(`search audit: missing Pagefind bundle at ${path.relative(root, bundleFile)}`)
@@ -113,7 +116,22 @@ for (const testCase of cases) {
     )
   }
 
+  for (const profile of contributorView.rankedProfiles) {
+    const profileResponse = await pagefind.search(profile.displayName)
+    const profileResults = await Promise.all(
+      profileResponse.results.slice(0, 50).map((result) => result.data())
+    )
+    const forbiddenSuffix = `${
+      testCase.language === 'en' ? '/en' : ''
+    }/contributors/${profile.slug}.html`
+    if (profileResults.some((result) => new URL(result.url).pathname.endsWith(forbiddenSuffix))) {
+      throw new Error(
+        `search audit: contributor profile ${forbiddenSuffix} leaked into the founder-guide index`
+      )
+    }
+  }
+
   await pagefind.destroy()
 }
 
-console.log('search audit: translated-title aliases and clean glossary excerpts verified')
+console.log('search audit: translated-title aliases, clean excerpts, and profile exclusion verified')

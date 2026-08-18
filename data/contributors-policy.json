@@ -1,25 +1,30 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "repository": "Deshi-Startup/deshistartup",
   "coreTeam": ["anwarulislam", "sagar290", "shamirislam"],
+  "identityAliases": {
+    "githubLogins": {
+      "muhaiminulfahim": "muhaiminul-islam-khan",
+      "niloy-biswas": "niloy-biswas",
+      "uttamdeb": "uttam-deb"
+    },
+    "inlineNames": {
+      "Muhaiminul Islam Khan": "muhaiminul-islam-khan"
+    }
+  },
   "displayNameOverrides": {
     "anwarulislam": "Anwarul Islam",
-    "muhaiminulfahim": "Muhaiminul Islam Khan",
-    "niloy-biswas": "Niloy Biswas",
     "sagar290": "Sagar",
-    "shamirislam": "Shamir Islam",
-    "uttamdeb": "Uttam Deb"
-  },
-  "inlineAttributionLinks": {
-    "Muhaiminul Islam Khan": "muhaiminulfahim",
-    "Shoumik Shahriar": "https://shoumik.substack.com"
+    "shamirislam": "Shamir Islam"
   },
   "exclusions": {
     "githubLogins": [],
-    "inlineNames": []
+    "inlineNames": [],
+    "profileIds": []
   },
   "optOuts": {
     "githubLogins": [],
-    "inlineNames": []
+    "inlineNames": [],
+    "profileIds": []
   }
 }

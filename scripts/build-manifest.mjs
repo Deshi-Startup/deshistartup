@@ -21,9 +21,16 @@ import {
   SITE_URL,
   canonicalUrl,
 } from "../app/seo.config.mjs";
+import { prepareContributorSnapshot } from "../app/lib/contributor-leaderboard.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const contentRoot = path.join(root, "app", "(contents)");
+const contributorSnapshotPath = path.join(
+  root,
+  "app",
+  "generated",
+  "contributors.json",
+);
 
 const LOCALES = [
   { key: "bn", dir: path.join(contentRoot, "(bn)"), routePrefix: "" },
@@ -233,6 +240,45 @@ for (const locale of LOCALES) {
   );
   console.log(
     `manifest.${locale.key}.json: ${pages.length} pages (${manifest.counts.written} written, ${manifest.counts.stubs} stubs)`,
+  );
+}
+
+// Contributor profiles are generated static routes rather than authored MDX,
+// so they do not belong in the content manifests, editor allowlist, or llms
+// indexes. They do belong in the SEO route registry and sitemap. The committed
+// snapshot is the only build input; there is no runtime identity lookup.
+if (fs.existsSync(contributorSnapshotPath)) {
+  const contributorView = prepareContributorSnapshot(
+    JSON.parse(fs.readFileSync(contributorSnapshotPath, "utf8")),
+  );
+  for (const profile of contributorView.rankedProfiles) {
+    const descriptions = {
+      bn: `${profile.displayName}-এর দেশি স্টার্টআপে প্রকাশিত অবদান, ভূমিকা ও প্রতিটি কাজের প্রমাণের তালিকা।`,
+      en: `${profile.displayName}'s published Deshi Startup contributions, roles, and evidence trail.`,
+    };
+    for (const locale of LOCALES) {
+      const isEn = locale.key === "en";
+      const slug = `contributors/${profile.slug}`;
+      seoPages.push({
+        kind: "contributor-profile",
+        profileId: profile.id,
+        profileSlug: profile.slug,
+        route: `${locale.routePrefix}/${slug}`,
+        slug,
+        locale: locale.key,
+        title: profile.displayName,
+        fullTitle: `${profile.displayName} – ${isEn ? "Contributor" : "কন্ট্রিবিউটর"}`,
+        description: descriptions[locale.key],
+        stub: false,
+        date: profile.lastAcceptedAt,
+        published: profile.contributorSince,
+        verified: null,
+        repoPath: null,
+      });
+    }
+  }
+  console.log(
+    `contributor profiles: ${contributorView.rankedProfiles.length * LOCALES.length} localized routes`,
   );
 }
 

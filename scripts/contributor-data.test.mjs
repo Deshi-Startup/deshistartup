@@ -3,35 +3,101 @@ import fs from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 import test from 'node:test'
+import { fileURLToPath } from 'node:url'
 import {
   buildContributorSnapshot,
+  buildTargetCatalog,
   fetchPaginated,
   parseInlineContributorName,
   refreshContributorFile,
   sizedAvatarUrl,
+  validateContributorLedger,
   validatePublicSnapshot
 } from './contributor-data.mjs'
 
-const policy = {
-  schemaVersion: 1,
-  repository: 'Deshi-Startup/deshistartup',
-  coreTeam: ['shamirislam'],
-  displayNameOverrides: { alice: 'Alice A.', shamirislam: 'Shamir Islam' },
-  inlineAttributionLinks: {},
-  exclusions: { githubLogins: ['excluded-user'], inlineNames: ['Hidden Person'] },
-  optOuts: { githubLogins: ['private-user'], inlineNames: ['Private Person'] }
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
+
+function profile(id, login = id, overrides = {}) {
+  return {
+    id,
+    slug: id,
+    displayName: id.split('-').map((word) => word[0].toUpperCase() + word.slice(1)).join(' '),
+    headline: null,
+    organizationId: null,
+    githubLogin: login,
+    links: [{ label: 'GitHub', url: `https://github.com/${login}` }],
+    avatar: { kind: 'monogram' },
+    proofCard: { image: 'monogram' },
+    confirmedAt: null,
+    visibility: 'public',
+    ...overrides
+  }
 }
 
-function pull(number, overrides = {}) {
+function policy(profiles = [], overrides = {}) {
+  return {
+    schemaVersion: 2,
+    repository: 'Deshi-Startup/deshistartup',
+    coreTeam: ['shamirislam'],
+    identityAliases: {
+      githubLogins: Object.fromEntries(profiles.filter((item) => item.githubLogin).map((item) => [item.githubLogin, item.id])),
+      inlineNames: {}
+    },
+    displayNameOverrides: { shamirislam: 'Shamir Islam' },
+    exclusions: { githubLogins: [], inlineNames: [], profileIds: [] },
+    optOuts: { githubLogins: [], inlineNames: [], profileIds: [] },
+    ...overrides
+  }
+}
+
+function targetCatalog(...paths) {
+  return new Map(paths.map((targetPath) => [targetPath, {
+    bn: `বাংলা ${targetPath}`,
+    en: `English ${targetPath}`
+  }]))
+}
+
+function event(number, profileId, overrides = {}) {
+  return {
+    id: `github-pr-${number}`,
+    acceptedAt: '2026-08-01',
+    sourceType: 'github-pr',
+    sourceRef: number,
+    evidenceUrl: `https://github.com/Deshi-Startup/deshistartup/pull/${number}`,
+    summary: { bn: `অবদান ${number}`, en: `Contribution ${number}` },
+    targetPaths: ['/guides/example'],
+    credits: [{ mode: 'person', profileId, roles: ['author'] }],
+    ...overrides
+  }
+}
+
+function editorialEvent(id, credits, overrides = {}) {
+  return {
+    id,
+    acceptedAt: '2026-08-01',
+    sourceType: 'editorial',
+    sourceRef: id,
+    evidenceUrl: `https://github.com/Deshi-Startup/deshistartup/issues/${id.replace(/\D/g, '') || 1}`,
+    summary: { bn: 'সম্পাদকীয় অবদান', en: 'Editorial contribution' },
+    targetPaths: ['/guides/example'],
+    credits,
+    ...overrides
+  }
+}
+
+function ledger(profiles = [], events = [], organizations = []) {
+  return { schemaVersion: 1, profiles, organizations, events }
+}
+
+function pull(number, login, overrides = {}) {
   return {
     number,
     title: `Contribution ${number}`,
     body: '',
     html_url: `https://github.com/Deshi-Startup/deshistartup/pull/${number}`,
-    merged_at: `2026-07-${String((number % 27) + 1).padStart(2, '0')}T10:00:00Z`,
-    updated_at: `2026-07-${String((number % 27) + 1).padStart(2, '0')}T11:00:00Z`,
+    merged_at: '2026-08-01T10:00:00Z',
     user: {
-      login: `user-${number}`,
+      login,
       type: 'User',
       avatar_url: `https://avatars.githubusercontent.com/u/${number}?v=4`
     },
@@ -54,11 +120,8 @@ function githubMock(pulls, calls = []) {
     calls.push({ url, options })
     const parsed = new URL(url)
     const page = Number(parsed.searchParams.get('page') || 1)
-    if (parsed.pathname.endsWith('/pulls')) {
-      const start = (page - 1) * 100
-      return response(pulls.slice(start, start + 100))
-    }
-    return response([], 404)
+    const start = (page - 1) * 100
+    return response(pulls.slice(start, start + 100))
   }
 }
 
@@ -78,35 +141,247 @@ test('paginates beyond 100 items and prevents duplicate PRs', async () => {
   assert.equal(result.at(-1).number, 101)
 })
 
-test('keeps merged PRs only and applies bots, core, exclusions, opt-outs and overrides', async () => {
-  const pulls = [
-    pull(1, { user: { login: 'alice', type: 'User', avatar_url: null } }),
-    pull(2, { merged_at: null }),
-    pull(3, { user: { login: 'dependabot[bot]', type: 'Bot', avatar_url: null } }),
-    pull(4, { user: { login: 'shamirislam', type: 'User', avatar_url: null } }),
-    pull(5, { user: { login: 'excluded-user', type: 'User', avatar_url: null } }),
-    pull(6, { user: { login: 'private-user', type: 'User', avatar_url: null } })
-  ]
-  const snapshot = await buildContributorSnapshot({
-    policy,
-    fetchImpl: githubMock(pulls),
-    now: new Date('2026-08-05T12:00:00Z')
-  })
-  assert.deepEqual(snapshot.rankedProfiles.map((profile) => profile.displayName), ['Alice A.'])
-  assert.deepEqual(snapshot.coreProfiles.map((profile) => profile.displayName), ['Shamir Islam'])
-  assert.deepEqual(snapshot.totals, { contributors: 1, mergedPullRequests: 1 })
-  assert.equal(snapshot.unattributedCount, 0)
+test('validates controlled roles and reviewer evidence', () => {
+  const alice = profile('alice')
+  const basePolicy = policy([alice])
+  const catalog = targetCatalog('/guides/example')
+  const unknownRole = ledger([alice], [editorialEvent('event-1', [
+    { mode: 'person', profileId: 'alice', roles: ['celebrity'] }
+  ])])
+  assert.throws(
+    () => validateContributorLedger({ ledger: unknownRole, policy: basePolicy, targetCatalog: catalog }),
+    /unknown role/
+  )
+
+  const reviewerWithoutScope = ledger([alice], [editorialEvent('event-2', [
+    { mode: 'person', profileId: 'alice', roles: ['reviewer'] }
+  ])])
+  assert.throws(
+    () => validateContributorLedger({ ledger: reviewerWithoutScope, policy: basePolicy, targetCatalog: catalog }),
+    /review scope/
+  )
 })
 
-test('reads the whole list with one request per page and never fetches PR files', async () => {
-  const calls = []
-  await buildContributorSnapshot({
-    policy,
-    fetchImpl: githubMock([pull(1), pull(2), pull(3)], calls),
+test('one accepted event can credit multiple people and multiple roles without extra points', async () => {
+  const alice = profile('alice')
+  const bob = profile('bob')
+  const sourceLedger = ledger([alice, bob], [event(1, 'alice', {
+    credits: [
+      { mode: 'person', profileId: 'alice', roles: ['author', 'researcher'] },
+      { mode: 'person', profileId: 'bob', roles: ['editor'] }
+    ]
+  })])
+  const snapshot = await buildContributorSnapshot({
+    policy: policy([alice, bob]),
+    ledger: sourceLedger,
+    targetCatalog: targetCatalog('/guides/example'),
+    fetchImpl: githubMock([pull(1, 'alice')]),
     now: new Date('2026-08-05T12:00:00Z')
   })
-  assert.equal(calls.length, 1)
-  assert.equal(calls.some((call) => call.url.includes('/files')), false)
+  assert.equal(snapshot.totals.acceptedEvents, 1)
+  assert.deepEqual(snapshot.rankedProfiles.map((item) => item.acceptedEventCount), [1, 1])
+  assert.deepEqual(snapshot.totals.roleCategories, {
+    author: 1,
+    editor: 1,
+    translator: 0,
+    researcher: 1,
+    'operational-insight': 0,
+    reviewer: 0,
+    product: 0
+  })
+})
+
+test('rejects duplicate target paths so bilingual mirrors and micro-edits stay bundled', () => {
+  const alice = profile('alice')
+  const sourceLedger = ledger([alice], [event(1, 'alice', {
+    targetPaths: ['/guides/example', '/guides/example']
+  })])
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: sourceLedger,
+      policy: policy([alice]),
+      targetCatalog: targetCatalog('/guides/example')
+    }),
+    /duplicate or invalid target path/
+  )
+})
+
+test('supports anonymous editorial contributions without creating profiles', async () => {
+  const sourceLedger = ledger([], [editorialEvent('event-3', [
+    { mode: 'anonymous', roles: ['operational-insight'] }
+  ])])
+  const snapshot = await buildContributorSnapshot({
+    policy: policy([]),
+    ledger: sourceLedger,
+    targetCatalog: targetCatalog('/guides/example'),
+    fetchImpl: githubMock([])
+  })
+  assert.equal(snapshot.totals.acceptedEvents, 1)
+  assert.equal(snapshot.totals.contributors, 0)
+  assert.equal(snapshot.events[0].credits[0].mode, 'anonymous')
+})
+
+test('supports person-plus-organization credit only with valid references and confirmation', async () => {
+  const organization = { id: 'example-lab', name: 'Example Lab', url: 'https://example.org/' }
+  const alice = profile('alice', 'alice', {
+    organizationId: 'example-lab',
+    confirmedAt: '2026-08-01'
+  })
+  const sourceLedger = ledger([alice], [event(1, 'alice', {
+    credits: [{ mode: 'person+organization', profileId: 'alice', organizationId: 'example-lab', roles: ['researcher'] }]
+  })], [organization])
+  const snapshot = await buildContributorSnapshot({
+    policy: policy([alice]),
+    ledger: sourceLedger,
+    targetCatalog: targetCatalog('/guides/example'),
+    fetchImpl: githubMock([pull(1, 'alice')])
+  })
+  assert.equal(snapshot.organizations[0].name, 'Example Lab')
+  assert.equal(snapshot.events[0].credits[0].organizationId, 'example-lab')
+})
+
+test('converts opted-out people to anonymous credit and removes their route identity', async () => {
+  const alice = profile('alice')
+  const basePolicy = policy([alice])
+  basePolicy.optOuts.profileIds = ['alice']
+  const snapshot = await buildContributorSnapshot({
+    policy: basePolicy,
+    ledger: ledger([alice], [event(1, 'alice')]),
+    targetCatalog: targetCatalog('/guides/example'),
+    fetchImpl: githubMock([pull(1, 'alice')])
+  })
+  assert.equal(snapshot.rankedProfiles.length, 0)
+  assert.equal(snapshot.events[0].credits[0].mode, 'anonymous')
+  assert.equal(JSON.stringify(snapshot).includes('Alice'), false)
+})
+
+test('enforces stable unique slugs and referential integrity', () => {
+  const alice = profile('alice')
+  const duplicate = profile('bob', 'bob', { slug: 'alice' })
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: ledger([alice, duplicate], []),
+      policy: policy([alice, duplicate]),
+      targetCatalog: new Map()
+    }),
+    /Duplicate or invalid contributor slug/
+  )
+
+  const missingProfile = ledger([alice], [event(1, 'missing')])
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: missingProfile,
+      policy: policy([alice]),
+      targetCatalog: targetCatalog('/guides/example')
+    }),
+    /unknown credited profile/
+  )
+})
+
+test('rejects unsafe URLs, emails, tokens, private evidence and raw consent fields', () => {
+  const alice = profile('alice')
+  const catalog = targetCatalog('/guides/example')
+  const cases = [
+    ledger([{ ...alice, links: [{ label: 'Email', url: 'mailto:alice@example.com' }] }], []),
+    ledger([{ ...alice, links: [{ label: 'WhatsApp', url: 'https://wa.me/8801712345678' }] }], []),
+    ledger([{ ...alice, headline: 'Call +880 1712 345678' }], []),
+    ledger([alice], [editorialEvent('event-4', [{ mode: 'person', profileId: 'alice', roles: ['author'] }], {
+      evidenceUrl: 'https://127.0.0.1/private'
+    })]),
+    { ...ledger([alice], []), consentRecord: 'yes' },
+    { ...ledger([alice], []), note: 'github_pat_do_not_publish' }
+  ]
+  for (const candidate of cases) {
+    assert.throws(() => validateContributorLedger({ ledger: candidate, policy: policy([alice]), targetCatalog: catalog }))
+  }
+})
+
+test('ranks by lifetime accepted events, then recency, then display name', async () => {
+  const alpha = profile('alpha')
+  const beta = profile('beta')
+  const zed = profile('zed')
+  const events = [
+    event(1, 'beta', { acceptedAt: '2026-08-01' }),
+    event(2, 'alpha', { acceptedAt: '2026-08-01' }),
+    event(3, 'zed', { acceptedAt: '2026-08-02' }),
+    event(4, 'zed', { acceptedAt: '2026-08-03' })
+  ]
+  const pulls = [
+    pull(1, 'beta'),
+    pull(2, 'alpha'),
+    pull(3, 'zed', { merged_at: '2026-08-02T10:00:00Z' }),
+    pull(4, 'zed', { merged_at: '2026-08-03T10:00:00Z' })
+  ]
+  const snapshot = await buildContributorSnapshot({
+    policy: policy([alpha, beta, zed]),
+    ledger: ledger([alpha, beta, zed], events),
+    targetCatalog: targetCatalog('/guides/example'),
+    fetchImpl: githubMock(pulls)
+  })
+  assert.deepEqual(snapshot.rankedProfiles.map((item) => item.displayName), ['Zed', 'Alpha', 'Beta'])
+  assert.deepEqual(snapshot.rankedProfiles.map((item) => item.rank), [1, 2, 3])
+})
+
+test('detects merged community pull requests missing from the ledger', async () => {
+  const alice = profile('alice')
+  await assert.rejects(
+    buildContributorSnapshot({
+      policy: policy([alice]),
+      ledger: ledger([alice], []),
+      targetCatalog: new Map(),
+      fetchImpl: githubMock([pull(99, 'alice')])
+    }),
+    /missing from contributor ledger: #99/
+  )
+})
+
+test('rejects ledger entries for unmerged or missing pull requests', async () => {
+  const alice = profile('alice')
+  await assert.rejects(
+    buildContributorSnapshot({
+      policy: policy([alice]),
+      ledger: ledger([alice], [event(1, 'alice')]),
+      targetCatalog: targetCatalog('/guides/example'),
+      fetchImpl: githubMock([])
+    }),
+    /unmerged or missing PRs: #1/
+  )
+})
+
+test('attributes inline-editor pull requests through a stable identity alias', async () => {
+  const muhaimin = profile('muhaimin', 'muhaiminulfahim')
+  const basePolicy = policy([muhaimin])
+  basePolicy.identityAliases.inlineNames['Muhaiminul Islam Khan'] = 'muhaimin'
+  const inlineBody = [
+    '**অবদানকারী / Contributor:** Muhaiminul Islam Khan',
+    '_Created via the Deshi Startup inline editor._'
+  ].join('\n')
+  assert.equal(parseInlineContributorName(inlineBody), 'Muhaiminul Islam Khan')
+  const snapshot = await buildContributorSnapshot({
+    policy: basePolicy,
+    ledger: ledger([muhaimin], [event(57, 'muhaimin')]),
+    targetCatalog: targetCatalog('/guides/example'),
+    fetchImpl: githubMock([pull(57, 'app/deshistartup', {
+      body: inlineBody,
+      user: { login: 'app/deshistartup', type: 'Bot', avatar_url: null }
+    })])
+  })
+  assert.equal(snapshot.rankedProfiles[0].id, 'muhaimin')
+})
+
+test('keeps bots out and core maintainers separate and unranked', async () => {
+  const snapshot = await buildContributorSnapshot({
+    policy: policy([]),
+    ledger: ledger([], []),
+    targetCatalog: new Map(),
+    fetchImpl: githubMock([
+      pull(1, 'dependabot[bot]', { user: { login: 'dependabot[bot]', type: 'Bot', avatar_url: null } }),
+      pull(2, 'shamirislam')
+    ])
+  })
+  assert.equal(snapshot.rankedProfiles.length, 0)
+  assert.equal(snapshot.coreProfiles.length, 1)
+  assert.equal(snapshot.coreProfiles[0].displayName, 'Shamir Islam')
 })
 
 test('requests a small avatar instead of the full-size default', () => {
@@ -118,65 +393,18 @@ test('requests a small avatar instead of the full-size default', () => {
   assert.equal(sizedAvatarUrl(null), null)
 })
 
-test('attributes inline-editor PRs by public body name and reports ambiguous work', async () => {
-  const inlineBody = [
-    '**অবদানকারী / Contributor:** Tasnim Rahman',
-    '_Created via the Deshi Startup inline editor._'
-  ].join('\n')
-  assert.equal(parseInlineContributorName(inlineBody), 'Tasnim Rahman')
-  const snapshot = await buildContributorSnapshot({
-    policy,
-    fetchImpl: githubMock([
-      pull(10, { body: inlineBody }),
-      pull(11, { body: '_Created via the Deshi Startup inline editor._' })
-    ]),
-    now: new Date('2026-08-05T12:00:00Z')
-  })
-  assert.equal(snapshot.rankedProfiles[0].displayName, 'Tasnim Rahman')
-  assert.equal(snapshot.rankedProfiles[0].avatarUrl, null)
-  assert.equal(snapshot.unattributedCount, 1)
-})
-
-test('ranks by count, then freshness, then display name deterministically', async () => {
-  const sameDate = '2026-08-01T10:00:00Z'
-  const snapshot = await buildContributorSnapshot({
-    policy: { ...policy, displayNameOverrides: { alpha: 'Alpha', beta: 'Beta', zed: 'Zed' } },
-    fetchImpl: githubMock([
-      pull(20, { merged_at: sameDate, user: { login: 'beta', type: 'User', avatar_url: null } }),
-      pull(21, { merged_at: sameDate, user: { login: 'alpha', type: 'User', avatar_url: null } }),
-      pull(22, { merged_at: '2026-08-02T10:00:00Z', user: { login: 'zed', type: 'User', avatar_url: null } })
-    ]),
-    now: new Date('2026-08-05T12:00:00Z')
-  })
-  assert.deepEqual(snapshot.rankedProfiles.map((profile) => profile.displayName), ['Zed', 'Alpha', 'Beta'])
-  assert.deepEqual(snapshot.rankedProfiles.map((profile) => profile.rank), [1, 2, 3])
-})
-
-test('counts every merged PR by the same person once and keeps the latest merge date', async () => {
-  const author = { login: 'alice', type: 'User', avatar_url: null }
-  const snapshot = await buildContributorSnapshot({
-    policy,
-    fetchImpl: githubMock([
-      pull(50, { merged_at: '2026-07-01T10:00:00Z', user: author }),
-      pull(51, { merged_at: '2026-07-20T10:00:00Z', user: author }),
-      pull(52, { merged_at: '2026-07-10T10:00:00Z', user: author })
-    ]),
-    now: new Date('2026-08-05T12:00:00Z')
-  })
-  assert.equal(snapshot.rankedProfiles.length, 1)
-  assert.equal(snapshot.rankedProfiles[0].mergedPullRequestCount, 3)
-  assert.equal(snapshot.rankedProfiles[0].lastMergedAt, '2026-07-20T10:00:00.000Z')
-})
-
 test('API failure preserves the last good snapshot', async () => {
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'deshi-contributors-'))
   const outputPath = path.join(directory, 'contributors.json')
   const original = '{"lastGood":true}\n'
+  const alice = profile('alice')
   await fs.writeFile(outputPath, original)
   try {
     await assert.rejects(
       refreshContributorFile({
-        policy,
+        policy: policy([alice]),
+        ledger: ledger([alice], [event(1, 'alice')]),
+        targetCatalog: targetCatalog('/guides/example'),
         outputPath,
         fetchImpl: async () => response({ message: 'rate limited' }, 403)
       }),
@@ -188,16 +416,51 @@ test('API failure preserves the last good snapshot', async () => {
   }
 })
 
-test('output is secret-free even when authenticated', async () => {
+test('output is secret-free even when GitHub refresh is authenticated', async () => {
   const secret = 'github_pat_never_publish_this'
   const calls = []
+  const alice = profile('alice')
   const snapshot = await buildContributorSnapshot({
-    policy,
+    policy: policy([alice]),
+    ledger: ledger([alice], [event(1, 'alice')]),
+    targetCatalog: targetCatalog('/guides/example'),
     token: secret,
-    fetchImpl: githubMock([pull(40)], calls),
-    now: new Date('2026-08-05T12:00:00Z')
+    fetchImpl: githubMock([pull(1, 'alice')], calls)
   })
   assert.equal(calls[0].options.headers.Authorization, `Bearer ${secret}`)
   assert.equal(JSON.stringify(validatePublicSnapshot(snapshot)).includes(secret), false)
   assert.equal(JSON.stringify(snapshot).includes('email'), false)
+})
+
+test('the authored current ledger reconciles to four contributors and thirteen events', async () => {
+  const [currentLedger, currentPolicy, catalog] = await Promise.all([
+    fs.readFile(path.join(root, 'data', 'contributor-ledger.json'), 'utf8').then(JSON.parse),
+    fs.readFile(path.join(root, 'data', 'contributors-policy.json'), 'utf8').then(JSON.parse),
+    buildTargetCatalog(root)
+  ])
+  const inlineBody = [
+    '**অবদানকারী / Contributor:** Muhaiminul Islam Khan',
+    '_Created via the Deshi Startup inline editor._'
+  ].join('\n')
+  const pulls = [
+    pull(7, 'niloy-biswas', { merged_at: '2026-07-09T12:30:21Z' }),
+    pull(32, 'niloy-biswas', { merged_at: '2026-07-16T12:14:18Z' }),
+    pull(41, 'niloy-biswas'),
+    pull(39, 'uttamdeb'),
+    pull(40, 'uttamdeb'),
+    pull(57, 'app/deshistartup', {
+      merged_at: '2026-08-10T21:59:38Z',
+      body: inlineBody,
+      user: { login: 'app/deshistartup', type: 'Bot', avatar_url: null }
+    })
+  ]
+  const snapshot = await buildContributorSnapshot({
+    policy: currentPolicy,
+    ledger: currentLedger,
+    targetCatalog: catalog,
+    fetchImpl: githubMock(pulls)
+  })
+  assert.equal(snapshot.totals.contributors, 4)
+  assert.equal(snapshot.totals.acceptedEvents, 13)
+  assert.equal(snapshot.totals.pagesImproved, 37)
 })

@@ -1,39 +1,698 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "repository": "Deshi-Startup/deshistartup",
-  "refreshedAt": "2026-08-18T04:42:32.550Z",
+  "refreshedAt": "2026-08-18T12:00:07.454Z",
   "totals": {
-    "contributors": 3,
-    "mergedPullRequests": 6
+    "contributors": 4,
+    "acceptedEvents": 13,
+    "pagesImproved": 37,
+    "roleCategories": {
+      "author": 11,
+      "editor": 1,
+      "translator": 0,
+      "researcher": 0,
+      "operational-insight": 0,
+      "reviewer": 0,
+      "product": 1
+    }
   },
   "unattributedCount": 0,
+  "organizations": [],
+  "events": [
+    {
+      "id": "github-pr-7",
+      "acceptedAt": "2026-07-09",
+      "sourceType": "github-pr",
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/7",
+      "summary": {
+        "bn": "রেজিস্ট্রেশন ও ট্যাক্সের ১১টি গাইড লেখা",
+        "en": "Authored 11 registration and tax guides"
+      },
+      "targets": [
+        {
+          "path": "/registration/board-meetings-agm",
+          "title": {
+            "bn": "বোর্ড মিটিং, এজিএম (AGM) ও মিনিটস বইয়ের নিয়মকানুন",
+            "en": "Board Meetings, AGM, and Minutes Book Basics"
+          }
+        },
+        {
+          "path": "/tax/e-tin",
+          "title": {
+            "bn": "e-TIN: কার নামে নেবেন, কীভাবে নেবেন",
+            "en": "e-TIN: Whose Name to Use and How to Apply"
+          }
+        },
+        {
+          "path": "/registration/moa-aoa",
+          "title": {
+            "bn": "এমওএ (MoA) ও এওএ (AoA): সই করার আগে যা জানা জরুরি",
+            "en": "MoA and AoA: What to Understand Before Signing"
+          }
+        },
+        {
+          "path": "/tax/mushak-63",
+          "title": {
+            "bn": "মূসক-৬.৩ চালান: কোন ঘরে কী লিখবেন",
+            "en": "Mushak-6.3 Tax Invoice: What Goes in Each Field"
+          }
+        },
+        {
+          "path": "/tax/personal-vs-company-tin",
+          "title": {
+            "bn": "পার্সোনাল ই-টিআইএন বনাম কোম্পানি টিআইএন: কোনটা ব্যবহার করবেন",
+            "en": "Personal e-TIN vs Company TIN: Which One to Use"
+          }
+        },
+        {
+          "path": "/registration/private-limited",
+          "title": {
+            "bn": "প্রাইভেট লিমিটেড কোম্পানি রেজিস্ট্রেশনের ধাপ",
+            "en": "Step-by-Step Private Limited Company Registration"
+          }
+        },
+        {
+          "path": "/registration/name-clearance",
+          "title": {
+            "bn": "কোম্পানির জন্য আরজেএসসি নেম ক্লিয়ারেন্স পাওয়ার উপায়",
+            "en": "How to Get RJSC Name Clearance for a Company"
+          }
+        },
+        {
+          "path": "/registration/shares-and-directors",
+          "title": {
+            "bn": "শেয়ার ক্যাপিটাল, ডিরেক্টর ও শেয়ারহোল্ডার: হিসাব মিলিয়ে নিন",
+            "en": "Share Capital, Directors, and Shareholders: Reconcile the Numbers"
+          }
+        },
+        {
+          "path": "/tax/vat-thresholds",
+          "title": {
+            "bn": "৩০ লাখ না ৫০ লাখ: টার্নওভার কর ও ভ্যাটের সীমা",
+            "en": "BDT 3 Million or 5 Million: Turnover Tax and VAT Thresholds"
+          }
+        },
+        {
+          "path": "/tax/vat-bin",
+          "title": {
+            "bn": "BIN আবেদন: মূসক-২.১ ফর্মে বসার আগে যা মেলাবেন",
+            "en": "Applying for a BIN: Reconcile These Records Before Mushak-2.1"
+          }
+        },
+        {
+          "path": "/tax/when-vat-required",
+          "title": {
+            "bn": "কখন ফুল ভ্যাট রেজিস্ট্রেশন বা টার্নওভার ট্যাক্স প্রযোজ্য",
+            "en": "When Full VAT Registration or Turnover Tax Applies"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "niloy-biswas",
+          "organizationId": null,
+          "roles": [
+            "author"
+          ],
+          "review": null
+        }
+      ]
+    },
+    {
+      "id": "github-pr-32",
+      "acceptedAt": "2026-07-16",
+      "sourceType": "github-pr",
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/32",
+      "summary": {
+        "bn": "আইডিয়া যাচাইয়ের ৮টি গাইড লেখা",
+        "en": "Authored 8 idea-validation guides"
+      },
+      "targets": [
+        {
+          "path": "/ideas/b2c-vs-b2b",
+          "title": {
+            "bn": "বাংলাদেশে B2C বনাম B2B বনাম B2B2C",
+            "en": "B2C vs B2B vs B2B2C in Bangladesh"
+          }
+        },
+        {
+          "path": "/ideas/copy-vs-localize",
+          "title": {
+            "bn": "নকল আইডিয়া বনাম বাংলাদেশে মানানো আইডিয়া",
+            "en": "Copied Ideas vs Localized Ideas"
+          }
+        },
+        {
+          "path": "/ideas/export-saas",
+          "title": {
+            "bn": "বাংলাদেশ থেকে রপ্তানিমুখী SaaS",
+            "en": "Export-Oriented SaaS from Bangladesh"
+          }
+        },
+        {
+          "path": "/ideas/ideation-basics",
+          "title": {
+            "bn": "বাংলাদেশি বাজারে আইডিয়া ও সমস্যা যাচাই",
+            "en": "Ideation and Problem Validation in the Bangladeshi Market"
+          }
+        },
+        {
+          "path": "/ideas/opportunity-sectors",
+          "title": {
+            "bn": "বাংলাদেশে স্টার্টআপের সুযোগ: ৬টি খাত",
+            "en": "Startup Opportunities in Bangladesh: 6 Sectors"
+          }
+        },
+        {
+          "path": "/ideas/problem-ranking-scorecard",
+          "title": {
+            "bn": "সমস্যা র‍্যাঙ্কিং স্কোরকার্ড",
+            "en": "Problem Ranking Scorecard"
+          }
+        },
+        {
+          "path": "/ideas/problem-to-opportunity",
+          "title": {
+            "bn": "সমস্যার তালিকা থেকে ব্যবসার সুযোগ বাছাই",
+            "en": "Turning a Problem List into a Business Opportunity"
+          }
+        },
+        {
+          "path": "/ideas/problem-validation-checklist",
+          "title": {
+            "bn": "সমস্যা যাচাইকরণ চেকলিস্ট",
+            "en": "Problem Validation Checklist"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "niloy-biswas",
+          "organizationId": null,
+          "roles": [
+            "author"
+          ],
+          "review": null
+        }
+      ]
+    },
+    {
+      "id": "github-pr-41",
+      "acceptedAt": "2026-08-01",
+      "sourceType": "github-pr",
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/41",
+      "summary": {
+        "bn": "স্টার্টআপ মেট্রিকসের ৯টি গাইড লেখা",
+        "en": "Authored 9 startup metrics guides"
+      },
+      "targets": [
+        {
+          "path": "/metrics/cac-ltv-churn",
+          "title": {
+            "bn": "CAC, LTV, রিটেনশন, চার্ন, পেব্যাক",
+            "en": "CAC, LTV, Retention, Churn, Payback"
+          }
+        },
+        {
+          "path": "/metrics/cashflow-vs-profit",
+          "title": {
+            "bn": "ক্যাশফ্লো বনাম মুনাফা: ফাউন্ডারদের জন্য সহজ ব্যাখ্যা",
+            "en": "Cashflow vs Profit: A Simple Explanation for Founders"
+          }
+        },
+        {
+          "path": "/metrics/cohort-retention",
+          "title": {
+            "bn": "বাংলাদেশের প্রেক্ষাপটে cohort retention",
+            "en": "Cohort Retention in the Bangladesh Context"
+          }
+        },
+        {
+          "path": "/metrics/e-commerce",
+          "title": {
+            "bn": "ই-কমার্স মেট্রিক্স",
+            "en": "E-commerce Metrics"
+          }
+        },
+        {
+          "path": "/metrics/founder-dashboard",
+          "title": {
+            "bn": "মাসিক ফাউন্ডার ড্যাশবোর্ড",
+            "en": "Monthly Founder Dashboard"
+          }
+        },
+        {
+          "path": "/metrics/marketplace",
+          "title": {
+            "bn": "মার্কেটপ্লেস মেট্রিক্স",
+            "en": "Marketplace Metrics"
+          }
+        },
+        {
+          "path": "/metrics/metrics-101",
+          "title": {
+            "bn": "স্টার্টআপ মেট্রিক্স ১০১",
+            "en": "Startup Metrics 101"
+          }
+        },
+        {
+          "path": "/metrics/ops-dashboard",
+          "title": {
+            "bn": "প্রাথমিক টিমের ম্যানুয়াল অপারেশনস ড্যাশবোর্ড",
+            "en": "Manual Operations Dashboard for Early Teams"
+          }
+        },
+        {
+          "path": "/metrics/saas",
+          "title": {
+            "bn": "SaaS মেট্রিক্স",
+            "en": "SaaS Metrics"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "niloy-biswas",
+          "organizationId": null,
+          "roles": [
+            "author"
+          ],
+          "review": null
+        }
+      ]
+    },
+    {
+      "id": "github-pr-39",
+      "acceptedAt": "2026-08-01",
+      "sourceType": "github-pr",
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/39",
+      "summary": {
+        "bn": "10 Minute School কেস স্টাডি লেখা",
+        "en": "Authored the 10 Minute School case study"
+      },
+      "targets": [
+        {
+          "path": "/case-studies/10-minute-school",
+          "title": {
+            "bn": "১০ মিনিট স্কুল",
+            "en": "10 Minute School"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "uttam-deb",
+          "organizationId": null,
+          "roles": [
+            "author"
+          ],
+          "review": null
+        }
+      ]
+    },
+    {
+      "id": "github-pr-40",
+      "acceptedAt": "2026-08-01",
+      "sourceType": "github-pr",
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/40",
+      "summary": {
+        "bn": "কন্ট্রিবিউশন ফ্লোর তিনটি সমস্যা ঠিক করা",
+        "en": "Fixed three issues in the contribution flow"
+      },
+      "targets": [],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "uttam-deb",
+          "organizationId": null,
+          "roles": [
+            "product"
+          ],
+          "review": null
+        }
+      ]
+    },
+    {
+      "id": "github-pr-57",
+      "acceptedAt": "2026-08-10",
+      "sourceType": "github-pr",
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/57",
+      "summary": {
+        "bn": "ব্যবসার কাঠামো বাছাইয়ের গাইডের বাংলা সম্পাদনা",
+        "en": "Edited the Bangla business-structure decision guide"
+      },
+      "targets": [
+        {
+          "path": "/registration/structure-decision-tree",
+          "title": {
+            "bn": "প্রাইভেট লিমিটেড, OPC নাকি একক মালিকানা: সিদ্ধান্ত নেওয়ার গাইড",
+            "en": "Private Limited, OPC, or Sole Proprietorship: A Decision Guide"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "muhaiminul-islam-khan",
+          "organizationId": null,
+          "roles": [
+            "editor"
+          ],
+          "review": null
+        }
+      ]
+    },
+    {
+      "id": "ss-notes-cap-table",
+      "acceptedAt": "2026-08-10",
+      "sourceType": "editorial",
+      "evidenceUrl": "https://shoumik.substack.com/p/understanding-cap-table",
+      "summary": {
+        "bn": "SS Notes-এর Understanding Cap Table লেখাটি অবলম্বনে গাইড",
+        "en": "Guide adapted from Understanding Cap Table on SS Notes"
+      },
+      "targets": [
+        {
+          "path": "/funding/cap-table",
+          "title": {
+            "bn": "সহজ বাংলায় Cap Table-এর বেসিক",
+            "en": "Cap Table Basics in Plain English"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "shoumik-shahriar",
+          "organizationId": null,
+          "roles": [
+            "author"
+          ],
+          "review": null
+        }
+      ]
+    },
+    {
+      "id": "ss-notes-term-sheets",
+      "acceptedAt": "2026-08-10",
+      "sourceType": "editorial",
+      "evidenceUrl": "https://shoumik.substack.com/p/term-sheet-101",
+      "summary": {
+        "bn": "SS Notes-এর Term Sheet 101 লেখাটি অবলম্বনে গাইড",
+        "en": "Guide adapted from Term Sheet 101 on SS Notes"
+      },
+      "targets": [
+        {
+          "path": "/funding/term-sheets",
+          "title": {
+            "bn": "সহজ বাংলায় টার্ম শিটের মূল বিষয়াবলী",
+            "en": "Term Sheet Basics in Plain English"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "shoumik-shahriar",
+          "organizationId": null,
+          "roles": [
+            "author"
+          ],
+          "review": null
+        }
+      ]
+    },
+    {
+      "id": "ss-notes-safe-notes",
+      "acceptedAt": "2026-08-10",
+      "sourceType": "editorial",
+      "evidenceUrl": "https://shoumik.substack.com/p/safe-note-101",
+      "summary": {
+        "bn": "SS Notes-এর SAFE Note 101 লেখাটি অবলম্বনে গাইড",
+        "en": "Guide adapted from SAFE Note 101 on SS Notes"
+      },
+      "targets": [
+        {
+          "path": "/funding/safe-convertible-notes",
+          "title": {
+            "bn": "SAFE, convertible note ও প্রাইসড রাউন্ড সহজ বাংলায়",
+            "en": "SAFE, Convertible Notes, and Priced Rounds in Plain English"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "shoumik-shahriar",
+          "organizationId": null,
+          "roles": [
+            "author"
+          ],
+          "review": null
+        }
+      ]
+    },
+    {
+      "id": "ss-notes-data-room",
+      "acceptedAt": "2026-08-10",
+      "sourceType": "editorial",
+      "evidenceUrl": "https://shoumik.substack.com/p/data-room-development-for-startup",
+      "summary": {
+        "bn": "SS Notes-এর Data Room Development for Startup লেখাটি অবলম্বনে গাইড",
+        "en": "Guide adapted from Data Room Development for Startup on SS Notes"
+      },
+      "targets": [
+        {
+          "path": "/funding/data-room",
+          "title": {
+            "bn": "তহবিল সংগ্রহের ডেটা রুমের চেকলিস্ট",
+            "en": "Fundraising Data Room Checklist"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "shoumik-shahriar",
+          "organizationId": null,
+          "roles": [
+            "author"
+          ],
+          "review": null
+        }
+      ]
+    },
+    {
+      "id": "ss-notes-investor-updates",
+      "acceptedAt": "2026-08-10",
+      "sourceType": "editorial",
+      "evidenceUrl": "https://shoumik.substack.com/p/guide-to-writing-investor-update",
+      "summary": {
+        "bn": "SS Notes-এর Guide to Writing Investor Update লেখাটি অবলম্বনে গাইড",
+        "en": "Guide adapted from Guide to Writing Investor Update on SS Notes"
+      },
+      "targets": [
+        {
+          "path": "/funding/investor-updates",
+          "title": {
+            "bn": "ইনভেস্টর আপডেট টেমপ্লেট",
+            "en": "Monthly Investor Update Template"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "shoumik-shahriar",
+          "organizationId": null,
+          "roles": [
+            "author"
+          ],
+          "review": null
+        }
+      ]
+    },
+    {
+      "id": "ss-notes-board-deck",
+      "acceptedAt": "2026-08-10",
+      "sourceType": "editorial",
+      "evidenceUrl": "https://shoumik.substack.com/p/the-board-deck-playbook",
+      "summary": {
+        "bn": "SS Notes-এর The Board Deck Playbook লেখাটি অবলম্বনে গাইড",
+        "en": "Guide adapted from The Board Deck Playbook on SS Notes"
+      },
+      "targets": [
+        {
+          "path": "/funding/board-report",
+          "title": {
+            "bn": "ইনভেস্টর বোর্ড রিপোর্ট টেমপ্লেট",
+            "en": "Investor Board Report Template"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "shoumik-shahriar",
+          "organizationId": null,
+          "roles": [
+            "author"
+          ],
+          "review": null
+        }
+      ]
+    },
+    {
+      "id": "ss-notes-bookkeeping",
+      "acceptedAt": "2026-08-10",
+      "sourceType": "editorial",
+      "evidenceUrl": "https://shoumik.substack.com/p/10-finance-and-accounting-suggestions",
+      "summary": {
+        "bn": "SS Notes-এর প্রাথমিক হিসাবরক্ষণ নিয়ে লেখাগুলো অবলম্বনে গাইড",
+        "en": "Guide adapted from the early-stage finance essays on SS Notes"
+      },
+      "targets": [
+        {
+          "path": "/tax/bookkeeping-basics",
+          "title": {
+            "bn": "একজন হিসাবরক্ষক নন এমন প্রতিষ্ঠাতার জন্য প্রয়োজনীয় প্রাথমিক হিসাবরক্ষণ/অ্যাকাউন্টিং।",
+            "en": "Basic Bookkeeping/Accounting for Non-Accountant Founders"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "shoumik-shahriar",
+          "organizationId": null,
+          "roles": [
+            "author"
+          ],
+          "review": null
+        }
+      ]
+    }
+  ],
   "rankedProfiles": [
     {
-      "displayName": "Niloy Biswas",
-      "githubLogin": "niloy-biswas",
-      "profileUrl": "https://github.com/niloy-biswas",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/28513863?v=4&s=160",
-      "mergedPullRequestCount": 3,
-      "lastMergedAt": "2026-08-01T22:30:58.000Z",
+      "id": "shoumik-shahriar",
+      "slug": "shoumik-shahriar",
+      "displayName": "Shoumik Shahriar",
+      "headline": null,
+      "organizationId": null,
+      "githubLogin": null,
+      "links": [
+        {
+          "label": "SS Notes",
+          "url": "https://shoumik.substack.com/"
+        }
+      ],
+      "avatarUrl": null,
+      "proofCardImage": "monogram",
+      "acceptedEventCount": 7,
+      "lastAcceptedAt": "2026-08-10",
+      "contributorSince": "2026-08-10",
+      "roleCategories": {
+        "author": 7,
+        "editor": 0,
+        "translator": 0,
+        "researcher": 0,
+        "operational-insight": 0,
+        "reviewer": 0,
+        "product": 0
+      },
       "rank": 1
     },
     {
-      "displayName": "Uttam Deb",
-      "githubLogin": "uttamdeb",
-      "profileUrl": "https://github.com/uttamdeb",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/105539415?v=4&s=160",
-      "mergedPullRequestCount": 2,
-      "lastMergedAt": "2026-08-01T16:20:50.000Z",
+      "id": "niloy-biswas",
+      "slug": "niloy-biswas",
+      "displayName": "Niloy Biswas",
+      "headline": null,
+      "organizationId": null,
+      "githubLogin": "niloy-biswas",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/niloy-biswas"
+        }
+      ],
+      "avatarUrl": "https://avatars.githubusercontent.com/u/28513863?v=4&s=160",
+      "proofCardImage": "monogram",
+      "acceptedEventCount": 3,
+      "lastAcceptedAt": "2026-08-01",
+      "contributorSince": "2026-07-09",
+      "roleCategories": {
+        "author": 3,
+        "editor": 0,
+        "translator": 0,
+        "researcher": 0,
+        "operational-insight": 0,
+        "reviewer": 0,
+        "product": 0
+      },
       "rank": 2
     },
     {
-      "displayName": "Muhaiminul Islam Khan",
-      "githubLogin": "muhaiminulfahim",
-      "profileUrl": "https://github.com/muhaiminulfahim",
-      "avatarUrl": null,
-      "mergedPullRequestCount": 1,
-      "lastMergedAt": "2026-08-10T21:59:38.000Z",
+      "id": "uttam-deb",
+      "slug": "uttam-deb",
+      "displayName": "Uttam Deb",
+      "headline": null,
+      "organizationId": null,
+      "githubLogin": "uttamdeb",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/uttamdeb"
+        }
+      ],
+      "avatarUrl": "https://avatars.githubusercontent.com/u/105539415?v=4&s=160",
+      "proofCardImage": "monogram",
+      "acceptedEventCount": 2,
+      "lastAcceptedAt": "2026-08-01",
+      "contributorSince": "2026-08-01",
+      "roleCategories": {
+        "author": 1,
+        "editor": 0,
+        "translator": 0,
+        "researcher": 0,
+        "operational-insight": 0,
+        "reviewer": 0,
+        "product": 1
+      },
       "rank": 3
+    },
+    {
+      "id": "muhaiminul-islam-khan",
+      "slug": "muhaiminul-islam-khan",
+      "displayName": "Muhaiminul Islam Khan",
+      "headline": null,
+      "organizationId": null,
+      "githubLogin": "muhaiminulfahim",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/muhaiminulfahim"
+        }
+      ],
+      "avatarUrl": null,
+      "proofCardImage": "monogram",
+      "acceptedEventCount": 1,
+      "lastAcceptedAt": "2026-08-10",
+      "contributorSince": "2026-08-10",
+      "roleCategories": {
+        "author": 0,
+        "editor": 1,
+        "translator": 0,
+        "researcher": 0,
+        "operational-insight": 0,
+        "reviewer": 0,
+        "product": 0
+      },
+      "rank": 4
     }
   ],
   "coreProfiles": [

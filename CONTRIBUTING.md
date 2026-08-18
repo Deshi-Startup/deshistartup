@@ -234,6 +234,8 @@ npm run build
 
 Architecture and repository rules live in [AGENTS.md](./AGENTS.md). Files under `app/generated/`
 and generated SEO outputs are build products; do not edit them by hand.
+Maintainers recording accepted public credit should follow the
+[contributor recognition policy](./docs/contributor-recognition.md).
 
 ## License
 

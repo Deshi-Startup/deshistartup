@@ -167,11 +167,13 @@ The authored media registries are the exception:
 - `app/generated/media.json`
 - `app/generated/media-retired.json`
 
-`app/generated/contributors.json` is committed too, but comes from its own command. It is a
-snapshot of merged pull requests read at build time, so the site never calls the GitHub API during
-a build or at runtime. Refresh it with `npm run contributors:refresh` when someone new lands work;
-a failed refresh leaves the previous snapshot in place. Who counts as core team, and any renames or
-opt-outs, live in `data/contributors-policy.json`.
+`data/contributor-ledger.json` is the authored record of accepted GitHub and non-GitHub work.
+`app/generated/contributors.json` is its committed schema-v3 public snapshot, reconciled against
+merged pull requests by its own command, so the site never calls the GitHub API during a build or
+at runtime. Refresh it with `npm run contributors:refresh` when accepted work lands; a failed
+refresh leaves the previous snapshot in place. Who counts as core team, identity aliases, renames,
+and opt-outs live in `data/contributors-policy.json`. Follow
+`docs/contributor-recognition.md` for event boundaries, consent, roles, and correction handling.
 
 ## Commands
 
