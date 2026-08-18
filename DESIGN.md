@@ -525,13 +525,29 @@ margin, the name and its middot line of roles in the reading column, and one rig
 column of accepted-work counts in tabular numerals, captioned once above the list and separated by
 a single hairline drawn down the whole list rather than repeated per row. The profile is the same
 idea turned on its side: a chronology whose acceptance dates hang in the margin against the same
-continuous rule, with the work itself owning the reading column.
+continuous rule, with the work itself owning the reading column. One date, however many entries it
+accepted; seven guides accepted the same day are one dateline, not the same date set seven times
+down the margin.
 
 Rank exists because public credit is the point, but it is never the row's headline number. The
 count is, because the count is what is actually being measured, and the copy beside it says plainly
-that the order is activity and not merit. The shareable proof card is sized like an artifact you
-take away, roughly 300px, not like a banner; at full column width it repeated the name and count
-directly above it and became the loudest thing on a page whose subject is the record underneath.
+that the order is activity and not merit. On a profile the count is read as a figure in tabular
+numerals beside the pages it reached, not buried mid-sentence in a meta line.
+
+A profile answers three questions at three altitudes, and never the same one twice: the masthead
+says who, the topic index says which parts of the guide exist because of this person, and the
+chronology says when each piece landed and where its proof is. The topic index is a ruled list
+borrowing the register's numeric column, one section a row, and it is what the chronology cannot
+say on its own. The published pages under an entry are listed rather than collapsed behind a
+count, because those pages are the record's whole substance; a disclosure there hid it. Hovering
+or focusing an entry lights the ledger's own continuous rule green beside it rather than drawing a
+second line next to it. Every profile closes on its own small print: the snapshot date, and the
+route to correct or remove a naming.
+
+There is no proof-card block on the page. A picture of a card repeated the name and count directly
+above it, out-shouted the record underneath, and cost the surface its only client component. The
+generated card survives as the profile's `og:image`, which is where a shared link actually needs
+it.
 
 Roles are a middot line, never bordered chips. Three type sizes carry a register row: name, meta,
 count. Avatars keep the system's circles, and a monogram avatar takes the structure wash rather

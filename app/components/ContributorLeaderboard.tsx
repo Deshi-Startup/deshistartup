@@ -281,7 +281,8 @@ export default function ContributorLeaderboard({ locale = 'bn' }: { locale?: Loc
         <p>{text.methodText}</p>
         <p>
           {text.correctionText}{' '}
-          <a href={correctionHref}>{text.correctionLink}</a>.
+          <a href={correctionHref}>{text.correctionLink}</a>
+          {locale === 'bn' ? '\u0964' : '.'}
         </p>
       </section>
     </section>

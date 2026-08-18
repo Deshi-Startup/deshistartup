@@ -123,7 +123,8 @@ high-trust profile claims. The generated
    refreshing contributors. Run `npm run contributors:refresh`, `npm run contributors:cards`,
    `npm run lint:media`, and `npm run test:contributors`.
 6. Run the production build. Check the index, both profile locales, affected page credits,
-   proof card, and structured data before release.
+   proof card, and structured data before release. The proof card is the profile's social
+   preview (`og:image`) only; it is not rendered on the profile page.
 
 An accepted contribution should be recorded within two working days. If evidence, naming
 permission, or organization permission is unresolved, keep the identity private until it is

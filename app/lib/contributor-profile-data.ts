@@ -58,6 +58,7 @@ export interface ContributorProfileView {
 const view = prepareContributorSnapshot(snapshotData) as {
   rankedProfiles: ContributorProfileView[]
   organizations: ContributorOrganization[]
+  refreshedAt: string | null
 }
 
 export function getContributorProfiles() {
@@ -70,4 +71,9 @@ export function getContributorProfile(slug: string) {
 
 export function getContributorOrganizations() {
   return view.organizations
+}
+
+/** The date the public record was last rebuilt, shown on every profile. */
+export function getContributorSnapshotDate() {
+  return view.refreshedAt
 }

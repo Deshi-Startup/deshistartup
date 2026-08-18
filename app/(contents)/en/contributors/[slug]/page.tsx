@@ -4,7 +4,8 @@ import ContributorProfile from '../../../../components/ContributorProfile'
 import {
   getContributorOrganizations,
   getContributorProfile,
-  getContributorProfiles
+  getContributorProfiles,
+  getContributorSnapshotDate
 } from '../../../../lib/contributor-profile-data'
 
 export const dynamicParams = false
@@ -35,5 +36,12 @@ export default async function EnglishContributorProfilePage({
   const { slug } = await params
   const profile = getContributorProfile(slug)
   if (!profile) notFound()
-  return <ContributorProfile profile={profile} organizations={getContributorOrganizations()} locale="en" />
+  return (
+    <ContributorProfile
+      profile={profile}
+      organizations={getContributorOrganizations()}
+      refreshedAt={getContributorSnapshotDate()}
+      locale="en"
+    />
+  )
 }

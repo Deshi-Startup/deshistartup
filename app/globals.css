@@ -2379,8 +2379,8 @@ a.is-stub-link:hover {
 
 .contributor-list,
 .contributor-core-list,
-.contributor-trail > ol,
-.contributor-event__targets {
+.contributor-trail ol,
+.contributor-event__pages ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
@@ -2579,7 +2579,7 @@ a.is-stub-link:hover {
   margin: 48px 0 0;
 }
 
-.contributor-proof h2,
+.contributor-topics h2,
 .contributor-trail h2 {
   margin: 0 0 6px;
   border: 0;
@@ -2637,9 +2637,7 @@ a.is-stub-link:hover {
   margin: 22px 0 0;
 }
 
-.contributor-cta a,
-.contributor-share-actions a,
-.contributor-share-actions button {
+.contributor-cta a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -2656,9 +2654,7 @@ a.is-stub-link:hover {
   cursor: pointer;
 }
 
-.contributor-cta a:hover,
-.contributor-share-actions a:hover,
-.contributor-share-actions button:hover {
+.contributor-cta a:hover {
   border-color: var(--green);
   background: var(--green-soft);
   color: var(--green-deep);
@@ -2715,7 +2711,8 @@ a.is-stub-link:hover {
 }
 
 .contributor-profile__designation,
-.contributor-profile__standing {
+.contributor-profile__standing,
+.contributor-profile__roles {
   margin: 5px 0 0;
 }
 
@@ -2725,9 +2722,44 @@ a.is-stub-link:hover {
   font-weight: var(--w-strong);
 }
 
+/* The count is the measured thing, so it is set as a figure and the words
+   around it stay quiet. Read as one muted middot line it was a mumble. */
 .contributor-profile__standing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 0;
+  margin-top: 9px;
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: 0.88rem;
+}
+
+/* The separator hangs off the item before it, so a wrap never opens a line
+   with a stray middot. */
+.contributor-profile__standing > *:not(:last-child)::after {
+  content: '\00b7';
+  margin: 0 9px;
+  color: var(--line);
+}
+
+.contributor-figure {
+  white-space: nowrap;
+}
+
+.contributor-profile__roles {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.contributor-figure b {
+  color: var(--ink);
+  font-weight: var(--w-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The Bangla classifier binds to the numeral, so only English buys a space. */
+:lang(en) .contributor-figure__unit {
+  margin-left: 0.3em;
 }
 
 .contributor-profile__links {
@@ -2738,60 +2770,55 @@ a.is-stub-link:hover {
   font-size: 0.82rem;
 }
 
-/* The card is an artifact you take away, so it is sized like one. At full
-   column width it repeated the name and count directly above it and became
-   the loudest thing on a page whose subject is the record below. */
-.contributor-proof {
-  display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
-  gap: 24px;
-  align-items: start;
-  margin-top: 28px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: var(--canvas-soft);
-  padding: 18px;
+/* ---- profile: where the work landed ---- */
+
+/* The chronology says when, and with what proof. This says which parts of the
+   guide exist because of this person, which no single row can answer. It is a
+   ruled index, not a panel: the register's numeric column, one section a row. */
+.contributor-topics {
+  margin-top: 30px;
 }
 
-.contributor-proof__card {
-  display: block;
-  border: 1px solid var(--line);
-  background: var(--canvas);
-}
-
-.contributor-proof__card img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.contributor-proof__copy > p {
+.contributor-topics > ul {
+  border-top: 1px solid var(--line);
   margin: 0;
-  color: var(--muted);
-  font-size: 0.86rem;
-  line-height: 1.62;
+  padding: 0;
+  list-style: none;
 }
 
-.contributor-share-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
+.contributor-topics li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0 20px;
+  align-items: baseline;
+  border-bottom: 1px solid var(--line-soft);
+  margin: 0;
+  padding: 10px 2px;
 }
 
-.contributor-share-actions [role='status'] {
-  flex-basis: 100%;
-  min-height: 1.2em;
+.contributor-topics li:last-child {
+  border-bottom-color: var(--line);
+}
+
+.contributor-topics li > a {
+  font-size: 0.95rem;
+}
+
+.contributor-topics .contributor-figure {
   color: var(--muted);
-  font-size: 0.76rem;
+  font-size: 0.82rem;
+  text-align: right;
 }
 
 /* ---- profile: the chronology ---- */
 
+/* A ledger, so the acceptance date hangs in the margin against one continuous
+   rule. Seven guides accepted the same day are one dateline with seven entries
+   under it, not the same date printed seven times down the margin. */
 .contributor-trail {
   --trail-date: 132px;
   --trail-gap: 22px;
-  margin-top: 38px;
+  margin-top: 40px;
 }
 
 .contributor-trail h2 {
@@ -2804,28 +2831,44 @@ a.is-stub-link:hover {
     left calc(var(--trail-date) + var(--trail-gap) / 2) top 0 / 1px 100% no-repeat;
 }
 
-.contributor-event {
+.contributor-trail__group {
   display: grid;
   grid-template-columns: var(--trail-date) minmax(0, 1fr);
   gap: 0 var(--trail-gap);
   margin: 0;
-  border-bottom: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line);
   padding: 22px 0;
 }
 
-.contributor-trail > ol > .contributor-event:last-child {
-  border-bottom-color: var(--line);
-}
-
-.contributor-event__date {
+.contributor-trail__date {
   margin: 0;
-  padding-top: 2px;
+  padding-top: 3px;
   color: var(--muted);
   font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
   line-height: 1.5;
 }
 
-.contributor-event__body > h3 {
+/* The entry's own rule is pulled back onto the ledger's continuous rule, so a
+   hover lights that rule up beside the entry instead of drawing a second line
+   beside it. It is structure, so it answers in green and never in a link blue. */
+.contributor-event {
+  margin: 0 0 0 calc(var(--trail-gap) / -2);
+  padding: 0 0 0 calc(var(--trail-gap) / 2 + 12px);
+  border-left: 1px solid transparent;
+  transition: border-color 120ms ease-out;
+}
+
+.contributor-event:hover,
+.contributor-event:focus-within {
+  border-left-color: var(--green);
+}
+
+.contributor-event + .contributor-event {
+  margin-top: 20px;
+}
+
+.contributor-event > h3 {
   margin: 0;
   font-size: 1.02rem;
   font-weight: var(--w-heading);
@@ -2847,82 +2890,74 @@ a.is-stub-link:hover {
 
 .contributor-event__affiliation,
 .contributor-event__review,
-.contributor-event__no-page,
-.contributor-event__single-target {
+.contributor-event__no-page {
   margin: 7px 0 0;
   color: var(--muted);
   font-size: 0.82rem;
   line-height: 1.55;
 }
 
-.contributor-event__single-target > span::after {
-  content: ':';
-  margin-right: 5px;
+/* The published pages are the record's substance, so they are listed, not
+   hidden behind a count. Wide columns keep eleven guides to a few lines. */
+.contributor-event__pages {
+  margin-top: 10px;
 }
 
-.contributor-event__targets {
-  display: inline;
+.contributor-event__pages-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.76rem;
 }
 
-.contributor-event__targets li {
-  display: inline;
+.contributor-event__pages ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 3px 22px;
+  margin-top: 4px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.contributor-event__pages li {
   margin: 0;
 }
 
-.contributor-event__targets li + li::before {
-  content: ' · ';
-  color: var(--line);
-}
-
-/* The site's stated open/closed sign, not the browser triangle. */
-.contributor-event__pages {
-  margin-top: 9px;
+/* A single page belongs on the label's own line; a grid track would break the
+   title in half while the rest of the column sat empty. */
+.contributor-event__pages--one {
+  margin: 7px 0 0;
   font-size: 0.82rem;
+  line-height: 1.55;
 }
 
-.contributor-event__pages > summary {
-  display: flex;
-  gap: 8px;
-  align-items: baseline;
+.contributor-event__pages--one ul,
+.contributor-event__pages--one li {
+  display: inline;
+  margin: 0;
+  font-size: inherit;
+}
+
+/* ---- profile: the record's own small print ---- */
+
+.contributor-record-note {
+  margin-top: 34px;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 14px;
   color: var(--muted);
-  cursor: pointer;
-  list-style: none;
+  font-size: 0.82rem;
+  line-height: 1.6;
 }
 
-.contributor-event__pages > summary::-webkit-details-marker {
-  display: none;
+.contributor-record-note p {
+  margin: 0;
 }
 
-.contributor-event__pages > summary::before {
-  content: '+';
-  flex: 0 0 auto;
-  width: 0.8em;
-  color: var(--green-deep);
-  font-weight: var(--w-strong);
+.contributor-record-note p + p {
+  margin-top: 5px;
 }
 
-.contributor-event__pages[open] > summary::before {
-  content: '–';
-}
-
-.contributor-event__pages > summary:hover {
-  color: var(--green-deep);
-}
-
-.contributor-event__pages .contributor-event__targets {
-  display: block;
-  margin-top: 8px;
-  padding-left: 18px;
-  list-style-type: disc;
-}
-
-.contributor-event__pages .contributor-event__targets li {
-  display: list-item;
-  margin: 4px 0;
-}
-
-.contributor-event__pages .contributor-event__targets li + li::before {
-  content: none;
+.contributor-record-note time {
+  font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 1180px) {
@@ -2933,13 +2968,6 @@ a.is-stub-link:hover {
 
   .contributor-trail {
     --trail-date: 118px;
-  }
-}
-
-@media (max-width: 860px) {
-  .contributor-proof {
-    grid-template-columns: 240px minmax(0, 1fr);
-    gap: 20px;
   }
 }
 
@@ -3025,28 +3053,35 @@ a.is-stub-link:hover {
     font-size: 1.25rem;
   }
 
-  .contributor-proof {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 16px;
-    padding: 16px;
-  }
-
-  .contributor-proof__card {
-    max-width: 320px;
-  }
-
+  /* The margin dateline and its rule are a wide-screen affordance. On a phone
+     the date moves above its group and the entries take the full column. */
   .contributor-trail > ol {
     background: none;
   }
 
-  .contributor-event {
+  .contributor-trail__group {
     grid-template-columns: minmax(0, 1fr);
-    gap: 5px;
+    gap: 6px;
+    padding: 18px 0;
   }
 
-  .contributor-event__date {
+  .contributor-trail__date {
     padding-top: 0;
     font-size: 0.76rem;
+  }
+
+  .contributor-event {
+    margin-left: 0;
+    padding-left: 10px;
+    border-left-color: var(--line-soft);
+  }
+
+  .contributor-event + .contributor-event {
+    margin-top: 16px;
+  }
+
+  .contributor-event__pages ul {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
