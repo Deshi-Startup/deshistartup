@@ -48,6 +48,7 @@ const errors = []
 const warnings = []
 const titleOwners = new Map()
 const descriptionOwners = new Map()
+const RETIRED_EXTERNAL_HOSTS = new Set(['ossbida.gov.bd'])
 
 const htmlFileFor = (route) => path.join(outDir, route === '/' ? 'index.html' : `${route.slice(1)}.html`)
 const record = (collection, message) => collection.push(message)
@@ -79,6 +80,16 @@ function normalizeInternalHref(href, sourceRoute) {
   if (route.length > 1) route = route.replace(/\/$/, '')
   if (/\.[a-z0-9]{2,8}$/i.test(route)) return null
   return route || '/'
+}
+
+function retiredExternalHost(href, sourceRoute) {
+  if (!href || href.startsWith('#') || /^(mailto:|tel:|javascript:|data:)/i.test(href)) return null
+  try {
+    const hostname = new URL(href, canonicalUrl(sourceRoute)).hostname.toLowerCase()
+    return RETIRED_EXTERNAL_HOSTS.has(hostname) ? hostname : null
+  } catch {
+    return null
+  }
 }
 
 for (const page of pages) {
@@ -439,6 +450,10 @@ for (const page of pages) {
 
   $('a[href]').each((_, element) => {
     const href = $(element).attr('href')
+    const retiredHost = retiredExternalHost(href, page.route)
+    if (retiredHost) {
+      record(errors, `${page.route}: link uses retired external host ${retiredHost} (${href})`)
+    }
     const route = normalizeInternalHref(href, page.route)
     if (!route) return
     if (!allRoutes.has(route)) {

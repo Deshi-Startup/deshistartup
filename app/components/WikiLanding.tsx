@@ -125,7 +125,7 @@ const bn: TranslationStrings = {
     ['RJSC', 'কোম্পানি, পার্টনারশিপ ব্যবসা বা সোসাইটি রেজিস্ট্রেশন', 'https://roc.gov.bd'],
     ['NBR e-TIN', 'ব্যক্তি বা প্রতিষ্ঠানের টিআইএন সংক্রান্ত কাজ', 'https://secure.incometax.gov.bd'],
     ['ভ্যাট অনলাইন', 'BIN/ভ্যাট রেজিস্ট্রেশন ও ভ্যাট রিটার্ন', 'https://vat.gov.bd'],
-    ['BIDA OSS', 'বিনিয়োগ, অনুমোদন ও সরকারি সেবার আবেদন', 'https://ossbida.gov.bd'],
+    ['BIDA OSS', 'বিনিয়োগ, অনুমোদন ও সরকারি সেবার আবেদন', 'https://bidaquickserv.org/'],
     ['বাংলাদেশ ব্যাংক', 'ব্যাংকিং, পেমেন্ট ও বৈদেশিক মুদ্রার নিয়ম', 'https://www.bb.org.bd']
   ],
   bandTitle: 'এই গাইডে অবদান রাখুন',
@@ -212,7 +212,7 @@ const en: TranslationStrings = {
     ['RJSC', 'Company, partnership and society registration', 'https://roc.gov.bd'],
     ['NBR e-TIN', 'Personal and company TIN services', 'https://secure.incometax.gov.bd'],
     ['VAT Online', 'BIN/VAT registration and VAT returns', 'https://vat.gov.bd'],
-    ['BIDA OSS', 'Investment approvals and government services', 'https://ossbida.gov.bd'],
+    ['BIDA OSS', 'Investment approvals and government services', 'https://bidaquickserv.org/'],
     ['Bangladesh Bank', 'Banking, payments and foreign exchange rules', 'https://www.bb.org.bd']
   ],
   bandTitle: 'Contribute to the guide',
