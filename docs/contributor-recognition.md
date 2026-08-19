@@ -110,6 +110,10 @@ emails, phone numbers, direct-messaging links, tokens, raw consent fields, and u
 high-trust profile claims. The generated
 `app/generated/contributors.json` snapshot is schema v3 and must never be edited by hand.
 
+Every public profile must include at least one confirmed GitHub or LinkedIn profile. Include both
+when both are known and confirmed. Other selected public links may appear alongside them, but do
+not satisfy this minimum on their own.
+
 ## Recording accepted work
 
 1. Confirm that the work is accepted and that its evidence URL is public.

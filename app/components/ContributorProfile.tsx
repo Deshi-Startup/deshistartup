@@ -40,7 +40,7 @@ const copy = {
     since: (date: string) => `Contributing since ${date}`,
     topicsTitle: 'Topics worked on',
     topicUnit: (count: number) => (count === 1 ? 'page' : 'pages'),
-    trailTitle: 'Published contribution trail',
+    trailTitle: 'Contribution history',
     evidence: 'View evidence',
     pagesLabel: (count: number) => (count === 1 ? 'Published page' : 'Published pages'),
     affiliation: 'Affiliation at the time',

@@ -70,7 +70,7 @@ const copy = {
     countCaption: 'Contributions',
     roleCaption: (count: number) => (count === 1 ? 'Role' : 'Roles'),
     latestLabel: 'Latest',
-    profileLabel: (name: string) => `View ${name}'s published contribution trail`,
+    profileLabel: (name: string) => `View ${name}'s contribution history`,
     coreTitle: 'Core team',
     coreText: 'Responsible for reviewing, publishing, and maintaining the project. This list is not ranked.',
     methodTitle: 'How the count works',

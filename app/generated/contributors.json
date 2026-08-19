@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "repository": "Deshi-Startup/deshistartup",
-  "refreshedAt": "2026-08-18T22:28:13.556Z",
+  "refreshedAt": "2026-08-18T23:46:38.403Z",
   "totals": {
     "contributors": 4,
     "acceptedEvents": 13,
@@ -591,7 +591,12 @@
       "headline": "Management Consultant",
       "organizationId": "lightcastle-partners",
       "githubLogin": null,
-      "links": [],
+      "links": [
+        {
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/shoumik11"
+        }
+      ],
       "avatarUrl": "/media/contributors/shoumik-shahriar.webp",
       "acceptedEventCount": 7,
       "lastAcceptedAt": "2026-08-10",
@@ -618,6 +623,10 @@
         {
           "label": "GitHub",
           "url": "https://github.com/niloy-biswas"
+        },
+        {
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/niloy--biswas"
         }
       ],
       "avatarUrl": "https://avatars.githubusercontent.com/u/28513863?v=4&s=160",
@@ -646,6 +655,10 @@
         {
           "label": "GitHub",
           "url": "https://github.com/uttamdeb"
+        },
+        {
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/uttam-deb"
         }
       ],
       "avatarUrl": "https://avatars.githubusercontent.com/u/105539415?v=4&s=160",

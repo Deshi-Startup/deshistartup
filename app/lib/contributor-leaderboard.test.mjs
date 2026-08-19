@@ -9,7 +9,8 @@ import {
   monogramForName,
   prepareContributorSnapshot,
   profileFromSnapshot,
-  safePublicUrl
+  safePublicUrl,
+  validatePublicSnapshot
 } from './contributor-leaderboard.mjs'
 
 test('keeps contributor roles distinct from page-level activity labels', () => {
@@ -102,11 +103,19 @@ test('prepares the committed four-person, thirteen-event baseline', () => {
     'Uttam Deb',
     'Muhaiminul Islam Khan'
   ])
+  assert.ok(view.rankedProfiles.every((entry) => entry.links.length > 0))
   assert.ok(view.coreProfiles.some((entry) => (
     entry.displayName === 'Mohammad Sultan Khaja' &&
     entry.githubLogin === 'M9S4K' &&
     entry.rank === null
   )))
+})
+
+test('rejects a public snapshot profile without GitHub or LinkedIn', () => {
+  const source = snapshot(1)
+  source.rankedProfiles[0].links = [{ label: 'Website', url: 'https://example.org/person-1' }]
+  assert.equal(prepareContributorSnapshot(source).rankedProfiles.length, 0)
+  assert.throws(() => validatePublicSnapshot(source), /unsafe or inconsistent public data/)
 })
 
 test('derives accepted-event counts, roles, pages and deterministic ranks from events', () => {
@@ -174,7 +183,10 @@ test('handles long Bangla, English and mixed-script names without unsafe fields'
     displayName: longName,
     githubLogin: 'not valid login',
     avatarUrl: 'javascript:alert(1)',
-    links: [{ label: 'Unsafe', url: 'https://github.com.evil.example/person' }]
+    links: [
+      { label: 'LinkedIn', url: 'https://www.linkedin.com/in/person-1' },
+      { label: 'Unsafe', url: 'https://github.com.evil.example/person' }
+    ]
   })
   const view = prepareContributorSnapshot(source)
   const [entry] = view.rankedProfiles
@@ -183,7 +195,7 @@ test('handles long Bangla, English and mixed-script names without unsafe fields'
   assert.equal(entry.monogram, 'শA')
   assert.equal(entry.githubLogin, null)
   assert.equal(entry.avatarUrl, null)
-  assert.equal(entry.links[0].url, 'https://github.com.evil.example/person')
+  assert.equal(entry.links[1].url, 'https://github.com.evil.example/person')
 })
 
 test('rejects private URLs and validates reproducible GitHub pull searches', () => {

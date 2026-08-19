@@ -358,7 +358,10 @@ test('rejects unconfirmed external profile links and profile text that the publi
   const catalog = targetCatalog('/guides/example')
   const unconfirmedLink = ledger([{
     ...alice,
-    links: [{ label: 'Newsletter', url: 'https://example.org/alice' }]
+    links: [
+      { label: 'GitHub', url: 'https://github.com/alice' },
+      { label: 'Newsletter', url: 'https://example.org/alice' }
+    ]
   }], [])
   assert.throws(
     () => validateContributorLedger({
@@ -381,6 +384,37 @@ test('rejects unconfirmed external profile links and profile text that the publi
     }),
     /oversized text/
   )
+})
+
+test('requires a GitHub or LinkedIn link on every public contributor profile', () => {
+  const alice = profile('alice')
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: ledger([{ ...alice, links: [] }]),
+      policy: policy([alice])
+    }),
+    /requires at least one GitHub or LinkedIn profile link/
+  )
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: ledger([{
+        ...alice,
+        links: [{ label: 'Website', url: 'https://example.org/alice' }],
+        confirmedAt: '2026-08-01'
+      }]),
+      policy: policy([alice])
+    }),
+    /requires at least one GitHub or LinkedIn profile link/
+  )
+  const linkedInOnly = profile('alice', null, {
+    githubLogin: null,
+    links: [{ label: 'LinkedIn', url: 'https://www.linkedin.com/in/alice' }],
+    confirmedAt: '2026-08-01'
+  })
+  assert.doesNotThrow(() => validateContributorLedger({
+    ledger: ledger([linkedInOnly]),
+    policy: policy([linkedInOnly])
+  }))
 })
 
 test('ranks by lifetime accepted events, then recency, then display name', async () => {
@@ -502,7 +536,7 @@ test('requires confirmation and a login before resolving a GitHub avatar', () =>
 
   const withoutLogin = profile('alice', null, {
     githubLogin: null,
-    links: [],
+    links: [{ label: 'LinkedIn', url: 'https://www.linkedin.com/in/alice' }],
     avatar: { kind: 'github' },
     confirmedAt: '2026-08-01'
   })
@@ -587,7 +621,7 @@ test('requires confirmed, registered media avatars and keeps their logical path 
   }
   const unconfirmed = profile('alice', null, {
     githubLogin: null,
-    links: [],
+    links: [{ label: 'LinkedIn', url: 'https://www.linkedin.com/in/alice' }],
     avatar: { kind: 'media', path: logicalPath }
   })
   assert.throws(
@@ -601,7 +635,7 @@ test('requires confirmed, registered media avatars and keeps their logical path 
 
   const alice = profile('alice', null, {
     githubLogin: null,
-    links: [],
+    links: [{ label: 'LinkedIn', url: 'https://www.linkedin.com/in/alice' }],
     avatar: { kind: 'media', path: logicalPath },
     confirmedAt: '2026-08-01'
   })
@@ -784,10 +818,21 @@ test('the authored current ledger reconciles to four contributors and thirteen c
   const uttam = snapshot.rankedProfiles.find((profile) => profile.id === 'uttam-deb')
   assert.equal(muhaimin.avatarUrl, 'https://avatars.githubusercontent.com/u/57?v=4&s=160')
   assert.equal(niloy.headline, 'Data & AI Professional')
+  assert.deepEqual(niloy.links, [
+    { label: 'GitHub', url: 'https://github.com/niloy-biswas' },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/niloy--biswas' }
+  ])
   assert.equal(shoumik.headline, 'Management Consultant')
   assert.equal(shoumik.organizationId, 'lightcastle-partners')
   assert.equal(shoumik.avatarUrl, '/media/contributors/shoumik-shahriar.webp')
+  assert.deepEqual(shoumik.links, [
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/shoumik11' }
+  ])
   assert.equal(uttam.headline, 'Data & AI Professional')
+  assert.deepEqual(uttam.links, [
+    { label: 'GitHub', url: 'https://github.com/uttamdeb' },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/uttam-deb' }
+  ])
   assert.deepEqual(snapshot.coreProfiles, [{
     displayName: 'Mohammad Sultan Khaja',
     githubLogin: 'M9S4K',

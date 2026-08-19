@@ -2688,7 +2688,7 @@ a.is-stub-link:hover {
 .contributor-profile__header {
   display: flex;
   gap: 22px;
-  align-items: center;
+  align-items: flex-start;
   border-bottom: 1px solid var(--line);
   padding-bottom: 24px;
 }
@@ -2696,6 +2696,7 @@ a.is-stub-link:hover {
 .contributor-profile__avatar {
   width: 96px;
   height: 96px;
+  margin-top: 6px;
   font-size: 1.6rem;
 }
 
@@ -3086,10 +3087,6 @@ a.is-stub-link:hover {
 }
 
 @media (max-width: 430px) {
-  .contributor-profile__header {
-    align-items: flex-start;
-  }
-
   .contributor-core-list {
     gap: 14px 22px;
   }

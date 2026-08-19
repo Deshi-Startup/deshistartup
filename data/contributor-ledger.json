@@ -12,6 +12,10 @@
         {
           "label": "GitHub",
           "url": "https://github.com/niloy-biswas"
+        },
+        {
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/niloy--biswas"
         }
       ],
       "avatar": {
@@ -32,6 +36,10 @@
         {
           "label": "GitHub",
           "url": "https://github.com/uttamdeb"
+        },
+        {
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/uttam-deb"
         }
       ],
       "avatar": {
@@ -67,12 +75,17 @@
       "headline": "Management Consultant",
       "organizationId": "lightcastle-partners",
       "githubLogin": null,
-      "links": [],
+      "links": [
+        {
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/shoumik11"
+        }
+      ],
       "avatar": {
         "kind": "media",
         "path": "/media/contributors/shoumik-shahriar.webp"
       },
-      "confirmedAt": "2026-08-18",
+      "confirmedAt": "2026-08-19",
       "visibility": "public"
     }
   ],

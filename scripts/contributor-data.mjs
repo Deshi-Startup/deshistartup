@@ -95,6 +95,15 @@ function isCanonicalGithubProfileLink(profile, value) {
     !url.hash
 }
 
+function isLinkedInProfileLink(value) {
+  const url = new URL(value)
+  const pathname = url.pathname.replace(/\/+$/, '')
+  return url.hostname === 'www.linkedin.com' &&
+    /^\/in\/[a-z\d][a-z\d-]{0,99}$/i.test(pathname) &&
+    !url.search &&
+    !url.hash
+}
+
 function assertNoPrivateFields(value, pathLabel = 'contributor data') {
   if (Array.isArray(value)) {
     value.forEach((item, index) => assertNoPrivateFields(item, `${pathLabel}[${index}]`))
@@ -275,10 +284,17 @@ export function validateContributorLedger({
       githubLogins.add(normalizedKey(profile.githubLogin))
     }
     let hasUnconfirmedExternalLink = false
+    let hasRecognizedProfileLink = false
     for (const [index, link] of (profile.links || []).entries()) {
       assertPublicText(link?.label, `profile ${profile.id} link ${index} label`, { maximum: 60 })
       assertProfileLinkUrl(link?.url, `profile ${profile.id} link ${index}`)
-      if (!isCanonicalGithubProfileLink(profile, link.url)) hasUnconfirmedExternalLink = true
+      const isGithubProfile = isCanonicalGithubProfileLink(profile, link.url)
+      const isLinkedInProfile = isLinkedInProfileLink(link.url)
+      if (isGithubProfile || isLinkedInProfile) hasRecognizedProfileLink = true
+      if (!isGithubProfile) hasUnconfirmedExternalLink = true
+    }
+    if (profile.visibility === 'public' && !hasRecognizedProfileLink) {
+      throw new Error(`Public profile ${profile.id} requires at least one GitHub or LinkedIn profile link`)
     }
     if (!['monogram', 'url', 'github', 'media'].includes(profile.avatar?.kind)) {
       throw new Error(`Invalid avatar preference: ${profile.id}`)

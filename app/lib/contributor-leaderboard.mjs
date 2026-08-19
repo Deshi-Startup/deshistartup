@@ -115,6 +115,22 @@ export function safePublicUrl(value, requiredHost = null) {
   }
 }
 
+function isRecognizedContributorProfileUrl(value, githubLogin) {
+  const safeUrl = safePublicUrl(value)
+  if (!safeUrl) return false
+  const url = new URL(safeUrl)
+  const pathname = url.pathname.replace(/\/+$/, '')
+  if (url.search || url.hash) return false
+  if (
+    githubLogin &&
+    url.hostname === 'github.com' &&
+    pathname.toLocaleLowerCase('en-US') === `/${githubLogin.toLocaleLowerCase('en-US')}`
+  ) {
+    return true
+  }
+  return url.hostname === 'www.linkedin.com' && /^\/in\/[a-z\d][a-z\d-]{0,99}$/i.test(pathname)
+}
+
 function safeAvatarUrl(value) {
   if (typeof value !== 'string') return null
   if (/^\/media\/[a-z\d][a-z\d/_-]*\.(?:png|jpe?g|webp)$/i.test(value)) return value
@@ -220,14 +236,15 @@ function prepareProfiles(source, organizations) {
     const displayName = safeText(profile?.displayName)
     if (!id || !slug || !displayName || seenIds.has(id) || seenSlugs.has(slug)) return []
 
+    const githubLogin = safeGithubLogin(profile?.githubLogin)
     const links = (Array.isArray(profile?.links) ? profile.links : []).flatMap((link) => {
       const label = safeText(link?.label, '', 60)
       const url = safePublicUrl(link?.url)
       return label && url ? [{ label, url }] : []
     })
+    if (!links.some((link) => isRecognizedContributorProfileUrl(link.url, githubLogin))) return []
     const organizationId = safeId(profile?.organizationId)
     const safeOrganizationId = organizationId && organizationIds.has(organizationId) ? organizationId : null
-    const githubLogin = safeGithubLogin(profile?.githubLogin)
     const profilePath = contributorProfilePath(slug, 'bn')
     if (!profilePath) return []
 
