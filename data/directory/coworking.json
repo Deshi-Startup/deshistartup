@@ -4,7 +4,7 @@
     "type": "Coworking space",
     "city": "Dhaka",
     "locations": "Banani 11, Dhanmondi 27, and Gulshan-Tejgaon Link Road.",
-    "priceRange": "Starter Pro membership BDT 12,000; annual membership BDT 10,000; Executive from BDT 800. Meeting rooms BDT 250–1,000 per hour by room size.",
+    "priceRange": "Starter membership BDT 5,000; Infinity all-location membership BDT 15,000; hour pass BDT 250; day pass BDT 1,000. Meeting rooms start at BDT 250–1,000 depending on capacity.",
     "facilities": [
       "Hot desks",
       "Dedicated offices",
@@ -13,18 +13,18 @@
       "Coworking pass"
     ],
     "hours": "8:00–22:00, six days a week; closed Fridays and government holidays.",
-    "applicationPath": "Book or enquire through the Moar site.",
+    "applicationPath": "Book a pass or meeting room online, or enquire about offices and memberships.",
     "website": "https://moarbd.com/",
     "sourceUrl": "https://moarbd.com/",
-    "lastVerified": "2026-08-08",
-    "notes": "The most transparent pricing of the spaces here, and the only one with three Dhaka locations. Third-party listings quote different rates — trust the site."
+    "lastVerified": "2026-08-19",
+    "notes": "A three-location coworking network offering hourly and daily access, memberships, meeting rooms, dedicated or private offices and event space. All-location membership suits people who need to move between Banani, Dhanmondi and the Gulshan–Tejgaon Link Road."
   },
   {
     "name": "Impact Hub Dhaka",
     "type": "Coworking space and innovation hub",
     "city": "Dhaka",
-    "locations": "Mirpur (Grameen Telecom Bhaban, Zoo Road) and Banani (Momen Bari Heights, Road 12).",
-    "priceRange": "Not publicly stated",
+    "locations": "Mirpur (9th Floor, Grameen Telecom Bhaban, Zoo Road) and Banani.",
+    "priceRange": "Coworking membership price not publicly stated. Private offices for one to six people are listed at BDT 52,000–115,000 per month, VAT included.",
     "facilities": [
       "Coworking space",
       "Private offices",
@@ -33,48 +33,30 @@
       "Consultancy"
     ],
     "hours": "Not publicly stated",
-    "applicationPath": "Book a space or enquire through the Impact Hub Dhaka site.",
+    "applicationPath": "Book a free tour or submit the Become an Impact Maker form for coworking or office membership.",
     "website": "https://dhaka.impacthub.net/",
-    "sourceUrl": "https://dhaka.impacthub.net/",
-    "lastVerified": "2026-08-08",
-    "notes": "Part of the global Impact Hub network, so the draw is the programmes, events and investor and partner network as much as the desk. Prices come on enquiry."
-  },
-  {
-    "name": "Ecommerce BD Business Center",
-    "type": "Serviced office and coworking",
-    "city": "Dhaka",
-    "locations": "Two Dhaka locations; addresses not stated on the coworking page.",
-    "priceRange": "Shared hot desk from BDT 11,000/month; dedicated executive desk from BDT 20,000/month; manager chamber from BDT 45,000; CEO/director room from BDT 55,000; meeting room BDT 15,000 per meeting.",
-    "facilities": [
-      "Hot desks",
-      "Dedicated desks",
-      "Private rooms",
-      "Meeting rooms",
-      "24-hour access",
-      "Business support"
-    ],
-    "hours": "24-hour access stated for hot desk plans.",
-    "applicationPath": "Enquire through the Ecommerce BD site.",
-    "website": "https://www.ecommerce.com.bd/coworking-space/",
-    "sourceUrl": "https://www.ecommerce.com.bd/coworking-space/",
-    "lastVerified": "2026-08-08",
-    "notes": "Serviced-office pricing with business support attached, rather than a community-first coworking floor. The page's own FAQ quotes a different dedicated-desk rate, so confirm before signing."
+    "sourceUrl": "https://dhaka.impacthub.net/co-working",
+    "lastVerified": "2026-08-19",
+    "notes": "A coworking and innovation hub for entrepreneurs, freelancers, professionals and impact-focused teams. Alongside desks and private offices, members can access community events, entrepreneurship programmes, consultancy and connections across the wider Impact Hub network."
   },
   {
     "name": "hubdhaka",
     "type": "Coworking space",
     "city": "Dhaka",
     "locations": "Mirpur 11 (Building 7, Road 3, Section 7).",
-    "priceRange": "Not publicly stated on the homepage; a plans page is linked.",
+    "priceRange": "Premium coworking BDT 9,000 per month; Basic Coworking is currently waitlisted; team rooms are quoted on enquiry.",
     "facilities": [
       "Shared workspace",
-      "Client meeting space"
+      "Client meeting space",
+      "Backup internet and power",
+      "Printing and lockers",
+      "Event space for up to 130 people"
     ],
     "hours": "Not publicly stated",
-    "applicationPath": "View plans and join through the hubdhaka site.",
+    "applicationPath": "Submit the membership application for evaluation, then schedule a visit and one-day trial if invited.",
     "website": "https://hubdhaka.com/",
-    "sourceUrl": "https://hubdhaka.com/",
-    "lastVerified": "2026-08-08",
-    "notes": "Aimed at freelancers and solo founders working alone at home. Mirpur location makes it one of the cheaper commutes if you live north."
+    "sourceUrl": "https://hubdhaka.com/take-the-test.html",
+    "lastVerified": "2026-08-19",
+    "notes": "A community-oriented Mirpur coworking space for freelancers, entrepreneurs and small teams. Membership includes workspace, backup internet and power, printing, lockers and event facilities without a long-term agreement; admission is application-based."
   }
 ]

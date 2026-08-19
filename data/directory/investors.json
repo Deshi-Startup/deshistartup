@@ -2,92 +2,190 @@
   {
     "name": "Bangladesh Angels Network",
     "type": "Angel network",
-    "stage": ["Pre-seed", "Seed", "Early stage"],
-    "sectors": ["Sector-agnostic", "Technology", "SME digitization"],
-    "chequeSize": "Not publicly stated",
-    "notableInvestments": ["Pathao", "Chaldal", "Shajgoj", "Chhaya", "PulseTech"],
-    "applicationPath": "Submit a pitch through the BAN site or monthly showcase process.",
+    "stage": [
+      "Pre-seed",
+      "Seed"
+    ],
+    "sectors": [
+      "Sector-agnostic",
+      "Digital products and services",
+      "Bangladesh-linked startups"
+    ],
+    "chequeSize": "Typically US$50,000–US$500,000; sweet spot US$100,000–US$250,000",
+    "notableInvestments": [
+      "Pathao",
+      "Chaldal",
+      "Shajgoj",
+      "Chhaya",
+      "PulseTech"
+    ],
+    "applicationPath": "Send a one-line company summary and PDF pitch deck through BAN's startup pitch form. Selected founders may be invited to a showcase and investor diligence.",
     "website": "https://bdangels.co/",
-    "sourceUrl": "https://bdangels.co/",
-    "lastVerified": "2026-07-07",
-    "notes": "BAN describes itself as Bangladesh's first and largest angel investment platform."
+    "sourceUrl": "https://bdangels.co/faq",
+    "lastVerified": "2026-08-19",
+    "notes": "A member-led angel network that syndicates investments into early-stage, Bangladesh-linked digital businesses. BAN helps selected founders prepare their deck, data room and fundraising strategy before presenting them to angels for diligence and a common term sheet."
   },
   {
     "name": "Bangladesh Women Investors Network",
     "type": "Angel network",
-    "stage": ["Pre-seed", "Seed"],
-    "sectors": ["Women-led startups", "Technology", "Impact"],
+    "stage": [
+      "Pre-seed",
+      "Seed"
+    ],
+    "sectors": [
+      "Sector-agnostic",
+      "Women-led startups",
+      "Women-focused startups"
+    ],
     "chequeSize": "Not publicly stated",
     "notableInvestments": [],
-    "applicationPath": "Reach BWIN through Bangladesh Angels Network.",
+    "applicationPath": "Submit a pitch through Bangladesh Angels Network's startup form; BWIN operates as BAN's gender-lens sister chapter.",
     "website": "https://bdangels.co/",
     "sourceUrl": "https://bdangels.co/",
-    "lastVerified": "2026-07-07",
-    "notes": "BAN describes BWIN as a women-led angel investing network and sister chapter."
+    "lastVerified": "2026-08-19",
+    "notes": "BAN's women-led sister chapter mobilises women angel investors and applies a gender lens to pre-seed and seed deals. It focuses on expanding capital, mentoring and investor access for women-led and women-focused ventures."
   },
   {
     "name": "Startup Bangladesh Limited",
     "type": "Government-backed venture capital",
-    "stage": ["Seed", "Early stage", "Growth"],
-    "sectors": ["Technology", "Innovation-driven startups", "Bangladesh-focused ventures"],
-    "chequeSize": "Not publicly stated",
-    "notableInvestments": [],
-    "applicationPath": "Apply through Startup Bangladesh's investment application page.",
+    "stage": [
+      "Seed",
+      "Early stage",
+      "Growth"
+    ],
+    "sectors": [
+      "Fintech",
+      "Healthtech",
+      "Enterprise software",
+      "E-commerce",
+      "Agritech",
+      "Frontier technology"
+    ],
+    "chequeSize": "BDT 25 lakh–5 crore per investment round",
+    "notableInvestments": [
+      "10 Minute School",
+      "Pathao",
+      "Chaldal",
+      "Shikho",
+      "Truck Lagbe"
+    ],
+    "applicationPath": "Complete Startup Bangladesh's online investment application with company, founder, traction and financial information.",
     "website": "https://www.startupbangladesh.vc/",
-    "sourceUrl": "https://www.startupbangladesh.vc/",
-    "lastVerified": "2026-07-07",
-    "notes": "Government-sponsored venture capital company with portfolio and fund-of-funds sections."
+    "sourceUrl": "https://www.startupbangladesh.vc/contact/faqs/",
+    "lastVerified": "2026-08-19",
+    "notes": "The ICT Division's government-owned venture-capital company invests equity or quasi-equity in Bangladesh-registered startups and impact enterprises with an MVP and evidence of customer or revenue growth. It can also provide governance and operational support and co-invest with other funders."
   },
   {
     "name": "Anchorless Bangladesh",
     "type": "Venture capital fund",
-    "stage": ["Early stage"],
-    "sectors": ["Bangladesh-linked startups", "Technology", "Export-capable startups"],
+    "stage": [
+      "Pre-seed",
+      "Seed",
+      "Post-seed"
+    ],
+    "sectors": [
+      "Sector-agnostic",
+      "Technology-enabled businesses"
+    ],
+    "chequeSize": "Not publicly stated",
+    "notableInvestments": [
+      "Agroshift",
+      "HypeScout",
+      "Loop Freight",
+      "Pathao",
+      "Shikho"
+    ],
+    "applicationPath": "No public application route is published.",
+    "website": "https://anchorless.vc/",
+    "sourceUrl": "https://www.anchorless.vc/portfolio",
+    "lastVerified": "2026-08-19",
+    "notes": "A Bangladesh-focused early-stage fund investing primarily in seed rounds, with selective pre-seed and post-seed deals. It looks for companies with a technology or data advantage, scalable models, international expansion potential and a credible path to follow-on funding and exit."
+  },
+  {
+    "name": "Bangladesh Startup Investment Company PLC (BSIC)",
+    "type": "Institutional venture capital",
+    "stage": [
+      "Late-seed",
+      "Series A",
+      "Series B"
+    ],
+    "sectors": [
+      "Sector-agnostic",
+      "Technology",
+      "Agriculture"
+    ],
     "chequeSize": "Not publicly stated",
     "notableInvestments": [],
-    "applicationPath": "Apply for investment through Anchorless Bangladesh's site.",
-    "website": "https://anchorless.vc/",
-    "sourceUrl": "https://anchorless.vc/",
-    "lastVerified": "2026-07-07",
-    "notes": "Anchorless describes itself as an early-stage venture investment fund for Bangladesh."
+    "applicationPath": "Submit company and round details, a pitch deck and cap table through the BSIC: Deals form.",
+    "website": "https://www.bsic.vc/",
+    "sourceUrl": "https://www.bsic.vc/",
+    "lastVerified": "2026-08-19",
+    "notes": "A permanent venture-capital vehicle funded by 39 Bangladeshi commercial banks. Its US$35 million ONKUR fund is designed to co-invest in high-growth Bangladesh startups alongside a credible global or regional lead investor."
   },
   {
     "name": "IDLC Venture Capital Fund",
     "type": "Institutional venture capital",
-    "stage": ["Early stage", "Growth"],
-    "sectors": ["Technology", "SME", "Financial services"],
+    "stage": [
+      "Early stage"
+    ],
+    "sectors": [
+      "Sector-agnostic",
+      "Technology",
+      "Technology-enabled businesses"
+    ],
     "chequeSize": "Not publicly stated",
-    "notableInvestments": [],
-    "applicationPath": "Contact IDLC through its official site.",
-    "website": "https://www.idlc.com/",
-    "sourceUrl": "https://www.idlc.com/",
-    "lastVerified": "2026-07-07",
-    "notes": "IDLC's official site is active; confirm fund-specific criteria before relying on this entry."
+    "notableInvestments": [
+      "Arogga",
+      "Barikoi",
+      "iFarmer",
+      "Truck Lagbe",
+      "Intelligent Machines",
+      "Pickaboo"
+    ],
+    "applicationPath": "Contact the investment team using the email published on the IDLC Venture Capital site.",
+    "website": "https://www.idlcvc.com/",
+    "sourceUrl": "https://www.idlcvc.com/thesis",
+    "lastVerified": "2026-08-19",
+    "notes": "A roughly US$4 million, BSEC-registered fund for early-stage Bangladeshi technology and technology-enabled companies. It backs committed teams solving fundamental local problems with clear business models and large addressable markets."
   },
   {
     "name": "YY Ventures",
     "type": "Impact investor and incubator",
-    "stage": ["Idea", "Pre-seed", "Seed"],
-    "sectors": ["Social business", "Impact", "Youth-led ventures"],
+    "stage": [
+      "Idea",
+      "Pre-seed",
+      "Seed"
+    ],
+    "sectors": [
+      "Social business",
+      "Climate and environment",
+      "Inclusive livelihoods"
+    ],
     "chequeSize": "Not publicly stated",
     "notableInvestments": [],
-    "applicationPath": "Check YY Ventures programs and funds pages.",
+    "applicationPath": "Email info@yy.ventures with a concise overview of the venture and its social or environmental impact.",
     "website": "https://yy.ventures/",
-    "sourceUrl": "https://yy.ventures/",
-    "lastVerified": "2026-07-07",
-    "notes": "YY Ventures describes itself as an incubation and investment social business company."
+    "sourceUrl": "https://yy.ventures/funds",
+    "lastVerified": "2026-08-19",
+    "notes": "An impact investor and venture-support company for early-stage social businesses addressing challenges such as carbon emissions, poverty and unemployment in Bangladesh. It combines capital with hands-on help securing partners, customers and follow-on investors."
   },
   {
     "name": "Accelerating Asia Ventures",
     "type": "Regional VC accelerator",
-    "stage": ["Pre-Series A", "Seed"],
-    "sectors": ["Southeast Asia", "South Asia", "Technology"],
-    "chequeSize": "Not publicly stated",
+    "stage": [
+      "Seed",
+      "Pre-Series A"
+    ],
+    "sectors": [
+      "Sector-agnostic",
+      "Technology-enabled startups"
+    ],
+    "chequeSize": "US$100,000 upfront; up to US$150,000 in follow-on funding",
     "notableInvestments": [],
-    "applicationPath": "Apply through Accelerating Asia's official site.",
+    "applicationPath": "Apply to the flagship accelerator through Accelerating Asia Ventures' Get Funded page; Cohort 14 applications are open.",
     "website": "https://www.acceleratingasia.com/",
-    "sourceUrl": "https://www.acceleratingasia.com/",
-    "lastVerified": "2026-07-07",
-    "notes": "Regional investor/accelerator with South Asia coverage; not Bangladesh-only."
+    "sourceUrl": "https://www.acceleratingasia.com/getfunded",
+    "lastVerified": "2026-08-19",
+    "notes": "A Singapore-based VC accelerator investing in high-growth, pre-Series A technology startups across South and Southeast Asia. Investment is tied to its 100-day accelerator; participating companies pay a US$35,000 programme fee and give 3% equity, separate from the post-money SAFE investment terms."
   }
 ]
