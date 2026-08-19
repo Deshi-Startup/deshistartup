@@ -16,6 +16,9 @@ colors:
   green-deep: "#065f46"
   green-soft: "#eaf4ef"
   green-ground: "#f8fbf7"
+  social-card-field: "#064e3b"
+  social-card-identity: "#fbfaf7"
+  social-card-monogram: "#f7f3e8"
   blue: "#3366cc"
   blue-hover: "#1f4fb2"
   blue-soft: "#eef5fc"
@@ -544,10 +547,24 @@ or focusing an entry lights the ledger's own continuous rule green beside it rat
 second line next to it. Every profile closes on its own small print: the snapshot date, and the
 route to correct or remove a naming.
 
-There is no proof-card block on the page. A picture of a card repeated the name and count directly
+There is no social-card block on the page. A picture of the card repeated the name and count directly
 above it, out-shouted the record underneath, and cost the surface its only client component. The
 generated card survives as the profile's `og:image`, which is where a shared link actually needs
 it.
+
+The social card is an editorial colophon, not a miniature profile. A full-height deep-green field
+carries only the contributor's architectural monogram; the project mark sits beside the English
+brand name in the warm-white masthead, where its green grid remains legible. That field also carries
+the person's name, `CONTRIBUTOR`, up to three English role labels, and the stable profile URL. It has
+no inset card, rounded frame, shadow, portrait, organization, count,
+date, rank, badge, or other changing statistic. The image therefore stays useful when activity or
+affiliation changes, while the profile page remains the complete evidence record.
+Its raster-only palette uses Social Card Field (`#064e3b`), Social Card Identity (`#fbfaf7`) and
+Social Card Monogram (`#f7f3e8`). These are documented output colors, not new interface tokens.
+At 1200×630, its own raster type ramp is 78px for a short one-line name, up to 62px over two lines,
+24px for the contributor label, 17–22px for roles, 18px for the URL, and 156px for the monogram.
+Names keep a 32px floor; only the documented 180-character edge case receives bounded horizontal
+compression to stay inside the 660px identity column.
 
 Roles are a middot line, never bordered chips. Three type sizes carry a register row: name, meta,
 count. Avatars keep the system's circles, and a monogram avatar takes the structure wash rather

@@ -121,9 +121,29 @@ function splitLongToken(token, maximumUnits) {
   return pieces
 }
 
-export function fitNameLines(name, maximumWidth = 820) {
+function measuredTextWidth(value, fontSize, font = null) {
+  if (!font) return textUnits(value) * fontSize
+  return scriptRuns(value).reduce((sum, run) => {
+    if (run.kind !== 'bengali') return sum + textUnits(run.value) * fontSize
+    const layout = font.layout(run.value, undefined, 'beng', 'bn', 'ltr')
+    return sum + layout.advanceWidth * (fontSize / font.unitsPerEm)
+  }, 0)
+}
+
+function finalizeNameFit(lines, fontSize, maximumWidth, font) {
+  const naturalWidths = lines.map((line) => measuredTextWidth(line, fontSize, font))
+  const textLength = naturalWidths.map((width) => width > maximumWidth ? maximumWidth : null)
+  return {
+    lines,
+    fontSize,
+    textLength,
+    renderedWidths: naturalWidths.map((width) => Math.min(width, maximumWidth))
+  }
+}
+
+export function fitNameLines(name, maximumWidth = 660, font = null) {
   const cleanName = String(name || '').replace(/\s+/g, ' ').trim() || '?'
-  const initialSize = 68
+  const initialSize = 78
   const maxUnitsAtInitialSize = maximumWidth / initialSize
   const words = cleanName
     .split(' ')
@@ -131,8 +151,14 @@ export function fitNameLines(name, maximumWidth = 820) {
       ? splitLongToken(word, maxUnitsAtInitialSize)
       : [word])
 
-  if (textUnits(cleanName) * initialSize <= maximumWidth) {
-    return { lines: [cleanName], fontSize: initialSize, textLength: [null] }
+  const singleLineSize = Math.floor(maximumWidth / textUnits(cleanName))
+  if (singleLineSize >= 56) {
+    return finalizeNameFit(
+      [cleanName],
+      Math.min(initialSize, singleLineSize),
+      maximumWidth,
+      font
+    )
   }
 
   let best = null
@@ -143,11 +169,8 @@ export function fitNameLines(name, maximumWidth = 820) {
   }
   if (!best) best = { lines: [cleanName], widest: textUnits(cleanName) }
 
-  const fontSize = Math.max(30, Math.min(58, Math.floor(maximumWidth / best.widest)))
-  const textLength = best.lines.map((line) =>
-    textUnits(line) * fontSize > maximumWidth ? maximumWidth : null
-  )
-  return { lines: best.lines, fontSize, textLength }
+  const fontSize = Math.max(32, Math.min(62, Math.floor(maximumWidth / best.widest)))
+  return finalizeNameFit(best.lines, fontSize, maximumWidth, font)
 }
 
 export function createContributorCardFont(fontData) {
@@ -160,18 +183,16 @@ export function createContributorCardFont(fontData) {
 }
 
 export function renderContributorCardSvg({ profile, font, markData }) {
-  const fitted = fitNameLines(profile.displayName)
-  const lineHeight = fitted.fontSize * 1.17
-  const nameStartY = fitted.lines.length === 1 ? 300 : 274
+  const fitted = fitNameLines(profile.displayName, 660, font)
+  const lineHeight = fitted.fontSize * 1.08
+  const nameStartY = fitted.lines.length === 1 ? 322 : 276
   const roleText = profile.roles
     .slice(0, 3)
-    .map((role) => `${ROLE_LABELS[role]?.bn || role} · ${ROLE_LABELS[role]?.en || role}`)
-    .join('   ')
-  const countBn = new Intl.NumberFormat('bn-BD').format(profile.acceptedEventCount)
-  const countEn = new Intl.NumberFormat('en-BD').format(profile.acceptedEventCount)
-  const organization = profile.organization?.name || ''
+    .map((role) => ROLE_LABELS[role]?.en || role)
+    .join(' · ')
+  const roleFontSize = Math.max(17, Math.min(22, Math.floor(660 / Math.max(textUnits(roleText), 1))))
   const nameNodes = fitted.lines.map((line, index) => outlinedTextNode({
-    x: 300,
+    x: 462,
     y: nameStartY + lineHeight * index,
     text: line,
     className: 'name',
@@ -183,34 +204,35 @@ export function renderContributorCardSvg({ profile, font, markData }) {
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${CARD_WIDTH}" height="${CARD_HEIGHT}" viewBox="0 0 ${CARD_WIDTH} ${CARD_HEIGHT}">
+  <!--
+    THESIS: A contributor social image is an editorial colophon, not a miniature profile or scoreboard.
+    OWN-WORLD: One deep-green monogram field faces a warm-white identity field; the mark and brand share the white colophon.
+    STORY: See the person first, understand their contributor role, then follow the stable profile URL.
+    FIRST VIEWPORT: Architectural initials on the left; mark, brand, name, contributor label, roles and URL on the right.
+    FORM: Split editorial colophon, assigned direction 7, seed 56236154.
+    FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md.
+  -->
   <style>
-    text{font-family:'Noto Sans','DejaVu Sans',sans-serif;fill:currentColor}
+    text{font-family:'Deshi Sans Bengali',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;fill:currentColor}
     path[data-bengali-glyph]{fill:currentColor;stroke:currentColor;paint-order:stroke fill}
-    .brand{color:#065f46;font-size:38px;font-weight:700}
-    .tagline{color:#54595d;font-size:21px;font-weight:450}
-    .name{color:#202122;font-size:${fitted.fontSize}px;font-weight:720}
-    .designation{color:#065f46;font-size:26px;font-weight:620}
-    .roles{color:#54595d;font-size:20px;font-weight:560}
-    .count{color:#202122;font-size:27px;font-weight:680}
-    .organization{color:#54595d;font-size:21px;font-weight:520}
-    .url{color:#3366cc;font-size:20px;font-weight:560}
-    .monogram{color:#065f46;font-size:44px;font-weight:720}
+    .brand{color:#065f46;font-size:22px;font-weight:720;letter-spacing:1.4px}
+    .name{color:#202122;font-size:${fitted.fontSize}px;font-weight:720;letter-spacing:-1.2px}
+    .designation{color:#065f46;font-size:24px;font-weight:700;letter-spacing:1.8px}
+    .roles{color:#54595d;font-size:${roleFontSize}px;font-weight:560}
+    .url{color:#065f46;font-size:18px;font-weight:600}
+    .monogram{color:#f7f3e8;font-size:156px;font-weight:720;letter-spacing:-4px}
   </style>
-  <rect width="1200" height="630" fill="#f5f3ee"/>
-  <rect x="42" y="38" width="1116" height="554" rx="4" fill="#ffffff"/>
-  <rect x="42" y="38" width="1116" height="10" fill="#065f46"/>
-  ${markData ? `<image href="data:image/png;base64,${markData}" x="82" y="78" width="86" height="86"/>` : ''}
-  ${outlinedTextNode({ x: 194, y: 112, text: 'দেশি স্টার্টআপ · Deshi Startup', className: 'brand', font, fontSize: 38, fontWeight: 700 })}
-  ${outlinedTextNode({ x: 194, y: 148, text: 'বাংলাদেশের উন্মুক্ত স্টার্টআপ গাইড', className: 'tagline', font, fontSize: 21, fontWeight: 450 })}
-  <line x1="82" y1="186" x2="1118" y2="186" stroke="#d9d5cd" stroke-width="1"/>
-  <circle cx="194" cy="302" r="76" fill="#eaf4ef" stroke="#c8ccd1" stroke-width="1"/>
-  ${outlinedTextNode({ x: 194, y: 318, text: profile.monogram, className: 'monogram', font, fontSize: 44, fontWeight: 720, anchor: 'middle' })}
+  <rect width="1200" height="630" fill="#fbfaf7"/>
+  <rect width="392" height="630" fill="#064e3b"/>
+  ${outlinedTextNode({ x: 196, y: 382, text: profile.monogram, className: 'monogram', font, fontSize: 156, fontWeight: 720, anchor: 'middle' })}
+  ${outlinedTextNode({ x: 462, y: 92, text: 'DESHI STARTUP', className: 'brand', font, fontSize: 22, fontWeight: 720 })}
+  ${markData ? `<image href="data:image/png;base64,${markData}" x="1070" y="48" width="68" height="68"/>` : ''}
+  <line x1="462" y1="130" x2="1138" y2="130" stroke="#d9d5cd" stroke-width="1"/>
   ${nameNodes}
-  ${outlinedTextNode({ x: 300, y: fitted.lines.length === 1 ? 346 : 378, text: 'কন্ট্রিবিউটর · Contributor', className: 'designation', font, fontSize: 26, fontWeight: 620 })}
-  ${roleText ? outlinedTextNode({ x: 300, y: fitted.lines.length === 1 ? 389 : 421, text: roleText, className: 'roles', font, fontSize: 20, fontWeight: 560, textLength: textUnits(roleText) * 20 > 800 ? 800 : null }) : ''}
-  ${outlinedTextNode({ x: 82, y: 490, text: `${countBn}টি অবদান · ${countEn} ${profile.acceptedEventCount === 1 ? 'contribution' : 'contributions'}`, className: 'count', font, fontSize: 27, fontWeight: 680 })}
-  ${organization ? outlinedTextNode({ x: 82, y: 528, text: organization, className: 'organization', font, fontSize: 21, fontWeight: 520, textLength: textUnits(organization) * 21 > 720 ? 720 : null }) : ''}
-  ${outlinedTextNode({ x: 82, y: 565, text: `deshistartup.com/contributors/${profile.slug}`, className: 'url', font, fontSize: 20, fontWeight: 560 })}
+  ${outlinedTextNode({ x: 462, y: fitted.lines.length === 1 ? 382 : 394, text: 'CONTRIBUTOR', className: 'designation', font, fontSize: 24, fontWeight: 700 })}
+  ${roleText ? outlinedTextNode({ x: 462, y: fitted.lines.length === 1 ? 424 : 436, text: roleText, className: 'roles', font, fontSize: roleFontSize, fontWeight: 560 }) : ''}
+  <line x1="462" y1="532" x2="1138" y2="532" stroke="#d9d5cd" stroke-width="1"/>
+  ${outlinedTextNode({ x: 462, y: 570, text: `deshistartup.com/contributors/${profile.slug}`, className: 'url', font, fontSize: 18, fontWeight: 600 })}
 </svg>`
 }
 
@@ -261,13 +283,13 @@ async function main() {
     markPath: path.join(root, 'public', 'deshi-mark.webp')
   })
   process.stdout.write(
-    `Contributor proof cards: generated ${result.generated}; removed ${result.removed} stale\n`
+    `Contributor social cards: generated ${result.generated}; removed ${result.removed} stale\n`
   )
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] || '').href) {
   main().catch((error) => {
-    process.stderr.write(`Contributor proof-card build failed: ${error.message}\n`)
+    process.stderr.write(`Contributor social-card build failed: ${error.message}\n`)
     process.exitCode = 1
   })
 }

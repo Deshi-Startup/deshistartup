@@ -696,7 +696,7 @@ for (const page of pages) {
     : DEFAULT_OG_IMAGE
   const socialImageAlt = contributorProfile
     ? (isEn
-        ? `${contributorProfile.displayName}'s Deshi Startup contributor proof card`
+        ? `${contributorProfile.displayName}'s Deshi Startup contributor card`
         : `${contributorProfile.displayName}-এর দেশি স্টার্টআপ কন্ট্রিবিউটর কার্ড`)
     : (isEn
         ? 'Deshi Startup, the Bangla-first startup guide for Bangladesh'

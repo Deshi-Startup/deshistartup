@@ -66,9 +66,10 @@ contribution history. These surfaces do not include email addresses, Google iden
 tokens, private Google profile data or private consent records.
 
 Each public contributor also has a generated 1200×630 PNG social preview at a stable public URL,
-used as the profile's `og:image`. The image contains the public name,
-up to three role labels, accepted-work count, profile URL and an optional confirmed organization.
-V1 cards use a letter monogram rather than fetching a contributor photo during the build.
+used as the profile's `og:image`. The image contains the public name, an English contributor label,
+up to three English role labels, the profile URL and a letter monogram. It does not contain
+contribution counts, dates, rank, organization or other activity statistics, and it does
+not fetch a contributor photo during the build.
 
 If you choose your public GitHub photo, maintainers look up the approved GitHub account only while
 refreshing the contributor record. The index and profile page then load that photo from GitHub's

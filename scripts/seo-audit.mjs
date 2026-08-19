@@ -572,7 +572,7 @@ for (const required of ['og-default.png', `${INDEXNOW_KEY}.txt`]) {
 }
 for (const profile of contributorView.rankedProfiles) {
   const card = path.join(staticDir, 'contributor-cards', `${profile.slug}.png`)
-  if (!fs.existsSync(card)) record(errors, `proof card is missing for ${profile.slug}`)
+  if (!fs.existsSync(card)) record(errors, `contributor card is missing for ${profile.slug}`)
 }
 if (fs.existsSync(htmlFileFor('/contributors/not-a-real-contributor'))) {
   record(errors, 'unknown contributor profile unexpectedly has an exported route')

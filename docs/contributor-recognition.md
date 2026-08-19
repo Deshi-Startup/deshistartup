@@ -83,7 +83,7 @@ monogram if the profile remains public), refresh the contributor snapshot, then 
 dry-run-first media prune process to retire and eventually delete the now-unreferenced R2 object.
 
 An opt-out removes the profile and ranked identity. The generator converts the person's retained
-events to anonymous credit and the next card build removes stale proof-card assets. Renames keep
+events to anonymous credit and the next card build removes stale social-card assets. Renames keep
 the stable profile ID and slug unless there is a safety reason to replace the slug.
 
 ## Canonical ledger schema
@@ -94,8 +94,9 @@ the stable profile ID and slug unless there is a safety reason to replace the sl
 - `profiles`: stable ID and ASCII slug, public display fields, optional confirmed organization,
   public links, one of the `monogram`, `github`, or `media` avatar choices, confirmation date, and
   visibility. The migration-only `url` form is controlled by the policy allowlist and is not a
-  supported choice for new profiles. V1 proof cards always use a monogram so card builds never
-  fetch a contributor image from a third-party host.
+  supported choice for new profiles. Contributor social cards always use a monogram so card builds
+  never fetch a contributor image from a third-party host. They show English contributor and role
+  labels plus the stable profile URL, but no count, date, rank or organization.
 - `organizations`: normalized public ID, name, and optional HTTPS URL.
 - `events`: stable ID, acceptance date, source type and reference, public evidence URL, bilingual
   summary, locale-neutral target paths, and one or more credits.
@@ -127,7 +128,7 @@ not satisfy this minimum on their own.
    refreshing contributors. Run `npm run contributors:refresh`, `npm run contributors:cards`,
    `npm run lint:media`, and `npm run test:contributors`.
 6. Run the production build. Check the index, both profile locales, affected page credits,
-   proof card, and structured data before release. The proof card is the profile's social
+   social card, and structured data before release. The social card is the profile's
    preview (`og:image`) only; it is not rendered on the profile page.
 
 An accepted contribution should be recorded within two working days. If evidence, naming

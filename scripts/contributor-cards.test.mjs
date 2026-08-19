@@ -42,41 +42,80 @@ function contrast(foreground, background) {
   return (lighter + 0.05) / (darker + 0.05)
 }
 
+function countRedPixels(data, channels) {
+  let count = 0
+  for (let index = 0; index < data.length; index += channels) {
+    const [red, green, blue] = data.subarray(index, index + 3)
+    if (red > 140 && red > green * 1.35 && red > blue * 1.2) count += 1
+  }
+  return count
+}
+
 test('long Bengali, English, and mixed-script names fit within two lines', () => {
+  const maximumWidth = 660
   const names = [
     'মোহাম্মদ মুশফিকুর রহমান চৌধুরী',
     'Alexandra Catherine Montgomery-Worthington',
-    'মোহাম্মদ Alexandra রহমান Montgomery-Worthington'
+    'মোহাম্মদ Alexandra রহমান Montgomery-Worthington',
+    'W'.repeat(180),
+    'ম'.repeat(180)
   ]
   for (const name of names) {
-    const fitted = fitNameLines(name)
+    const fitted = fitNameLines(name, maximumWidth, cardFont)
     assert.ok(fitted.lines.length >= 1 && fitted.lines.length <= 2)
-    assert.ok(fitted.fontSize >= 30)
+    assert.ok(fitted.fontSize >= 32)
     assert.equal(fitted.lines.join(' ').replace(/\s+/g, ''), name.replace(/\s+/g, ''))
+    assert.equal(fitted.renderedWidths.length, fitted.lines.length)
+    assert.ok(
+      fitted.renderedWidths.every((width) => width <= maximumWidth),
+      `${name} exceeds the ${maximumWidth}px identity column`
+    )
   }
+  assert.ok(
+    fitNameLines('W'.repeat(180), maximumWidth, cardFont).textLength.includes(maximumWidth),
+    'maximum-length names should use bounded horizontal compression'
+  )
 })
 
-test('card SVG outlines every Bengali run and omits optional affiliation cleanly', () => {
+test('card SVG keeps stable identity details and outlines every Bengali name run', () => {
   const svg = renderContributorCardSvg({ profile, font: cardFont, markData: '' })
   assert.match(svg, /data-card-text="সR"/)
-  assert.match(svg, /data-card-text="কন্ট্রিবিউটর · Contributor"/)
-  assert.match(svg, /xml:space="preserve"> · Contributor<\/text>/)
-  assert.match(svg, /xml:space="preserve"> · Deshi Startup<\/text>/)
-  assert.ok((svg.match(/data-bengali-glyph=/g) || []).length > 20)
+  assert.match(svg, /data-card-text="সাবরিনা Rahman"/)
+  assert.match(svg, /data-card-text="DESHI STARTUP"/)
+  assert.match(svg, /data-card-text="CONTRIBUTOR"/)
+  assert.match(svg, /data-card-text="Author · Researcher"/)
+  assert.match(svg, /data-card-text="deshistartup\.com\/contributors\/sabrina-rahman"/)
+  assert.ok((svg.match(/data-bengali-glyph=/g) || []).length > 5)
   assert.doesNotMatch(svg, /<text[^>]*>[^<]*\p{Script=Bengali}/u)
   assert.doesNotMatch(svg, /@font-face|data:font\/woff2/)
-  assert.doesNotMatch(svg, /Verified|Certified|Rank/)
+  assert.doesNotMatch(svg, /Verified|Certified|Rank|contributions|অবদান/)
   assert.doesNotMatch(svg, /data-card-text="Example Labs"/)
 })
 
-test('card SVG includes an optional organization without changing the proof claim', () => {
+test('card SVG stays English-only for an English name and excludes organization and changing statistics', () => {
   const svg = renderContributorCardSvg({
-    profile: { ...profile, organization: { id: 'example', name: 'Example Labs', url: null } },
+    profile: {
+      ...profile,
+      displayName: 'Shoumik Shahriar',
+      monogram: 'SS',
+      slug: 'shoumik-shahriar',
+      roles: ['author'],
+      acceptedEventCount: 999,
+      rank: 1,
+      lastAcceptedAt: '2026-08-19',
+      organization: { id: 'example', name: 'Example Labs', url: null }
+    },
     font: cardFont,
     markData: ''
   })
-  assert.match(svg, /data-card-text="Example Labs"/)
-  assert.doesNotMatch(svg, /Verified|Certified|Rank/)
+  assert.match(svg, /data-card-text="DESHI STARTUP"/)
+  assert.match(svg, /data-card-text="CONTRIBUTOR"/)
+  assert.match(svg, /data-card-text="Author"/)
+  assert.doesNotMatch(svg, /\p{Script=Bengali}/u)
+  assert.doesNotMatch(
+    svg,
+    /data-card-text="(?:Example Labs|999|2026-08-19|Rank|[^\"]*contributions|[^\"]*অবদান)/
+  )
 })
 
 test('card generation refuses to fall back to a host font', async () => {
@@ -94,11 +133,10 @@ test('card generation refuses to fall back to a host font', async () => {
 
 test('card text colors retain WCAG AA contrast on their rendered grounds', () => {
   for (const [foreground, background] of [
-    ['#202122', '#ffffff'],
-    ['#065f46', '#ffffff'],
-    ['#54595d', '#ffffff'],
-    ['#3366cc', '#ffffff'],
-    ['#065f46', '#eaf4ef']
+    ['#202122', '#fbfaf7'],
+    ['#065f46', '#fbfaf7'],
+    ['#54595d', '#fbfaf7'],
+    ['#f7f3e8', '#064e3b']
   ]) {
     assert.ok(contrast(foreground, background) >= 4.5, `${foreground} on ${background}`)
   }
@@ -120,13 +158,21 @@ test('card build creates 1200 by 630 PNGs, replaces cards, and removes stale ass
   assert.equal(card.format, 'png')
 
   const { data, info } = await sharp(path.join(outputDir, 'niloy-biswas.png'))
-    .extract({ left: 82, top: 78, width: 86, height: 86 })
+    .extract({ left: 1070, top: 48, width: 68, height: 68 })
     .raw()
     .toBuffer({ resolveWithObject: true })
-  let saturatedMarkPixels = 0
-  for (let index = 0; index < data.length; index += info.channels) {
-    const [red, green, blue] = data.subarray(index, index + 3)
-    if (red > 140 && red > green * 1.35 && red > blue * 1.2) saturatedMarkPixels += 1
-  }
-  assert.ok(saturatedMarkPixels > 100, 'embedded Deshi Startup mark is missing from the rendered card')
+  assert.ok(
+    countRedPixels(data, info.channels) > 100,
+    'embedded Deshi Startup mark is missing from the warm-white identity field'
+  )
+
+  const oldMarkArea = await sharp(path.join(outputDir, 'niloy-biswas.png'))
+    .extract({ left: 58, top: 54, width: 68, height: 68 })
+    .raw()
+    .toBuffer({ resolveWithObject: true })
+  assert.equal(
+    countRedPixels(oldMarkArea.data, oldMarkArea.info.channels),
+    0,
+    'Deshi Startup mark must not sit on the green monogram field'
+  )
 })
