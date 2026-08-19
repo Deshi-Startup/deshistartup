@@ -59,6 +59,9 @@ public/llms.txt
 public/llms-full.txt
 public/progress.json
 public/progress.en.json
+# Build-generated contributor proof cards. The committed recognition snapshot
+# is the source; every build replaces this directory and removes stale cards.
+/public/contributor-cards/
 # TypeScript incremental build cache
 tsconfig.tsbuildinfo
 *.tsbuildinfo

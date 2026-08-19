@@ -143,11 +143,8 @@ export async function POST(request: Request, env: CloudflareEnv): Promise<Respon
   }
 
   const ip = request.headers.get('CF-Connecting-IP') || 'unknown'
-  const [perIp, perLocation] = await Promise.all([
-    env.CONTACT_IP_RATE.limit({ key: ip }),
-    env.CONTACT_REGION_RATE.limit({ key: 'contact' })
-  ])
-  if (!perIp.success || !perLocation.success) {
+  const perIp = await env.CONTACT_IP_RATE.limit({ key: ip })
+  if (!perIp.success) {
     return json({ error: 'rate_limited' }, 429)
   }
 
@@ -183,6 +180,11 @@ export async function POST(request: Request, env: CloudflareEnv): Promise<Respon
     !isContactTopic(parsed.topic)
   ) {
     return json({ error: 'invalid_fields' }, 400)
+  }
+
+  const perLocation = await env.CONTACT_REGION_RATE.limit({ key: 'contact' })
+  if (!perLocation.success) {
+    return json({ error: 'rate_limited' }, 429)
   }
 
   const topicLabel = CONTACT_TOPIC_LABELS.en[parsed.topic]

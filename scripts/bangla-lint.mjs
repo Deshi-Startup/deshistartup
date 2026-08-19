@@ -340,6 +340,9 @@ const EXTRA_BN_SOURCES = [
   'data/glossary.json',
   'app/components/Glossary.tsx',
   'app/components/GlossaryControls.tsx',
+  // The contributor surfaces name real people in Bangla and were never swept.
+  'app/components/ContributorLeaderboard.tsx',
+  'app/components/ContributorProfile.tsx',
 ]
 
 const targets = fileArgs.length

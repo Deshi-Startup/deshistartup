@@ -11,6 +11,12 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { load } from 'cheerio'
+import snapshotData from '../app/generated/contributors.json' with { type: 'json' }
+import {
+  ROLE_ACTIVITY_LABELS,
+  contributorProfilePath,
+  prepareContributorSnapshot
+} from '../app/lib/contributor-leaderboard.mjs'
 import {
   CONTENT_LICENSE_URL,
   DEFAULT_DESCRIPTIONS,
@@ -27,11 +33,42 @@ import { resolveBuildOutput } from './build-output.mjs'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const { htmlDir: outDir } = resolveBuildOutput(root)
 const pages = JSON.parse(fs.readFileSync(path.join(root, 'app', 'generated', 'seo-pages.json'), 'utf8'))
+const contributorView = prepareContributorSnapshot(snapshotData)
+const contributorProfileById = new Map(
+  contributorView.rankedProfiles.map((profile) => [profile.id, profile])
+)
+const contributorOrganizationById = new Map(
+  contributorView.organizations.map((organization) => [organization.id, organization])
+)
+const contributionEventsByTarget = new Map()
+for (const event of contributorView.events) {
+  for (const target of event.targets) {
+    const events = contributionEventsByTarget.get(target.path) || []
+    events.push(event)
+    contributionEventsByTarget.set(target.path, events)
+  }
+}
 
 const pageByLocaleSlug = new Map(pages.map((page) => [`${page.locale}:${page.slug}`, page]))
 const pageByRoute = new Map(pages.map((page) => [page.route, page]))
 const writtenPages = pages.filter((page) => !page.stub)
 const UTILITY_SLUGS = new Set(['contribute', 'contact'])
+
+function isContributorProfile(page) {
+  return page.kind === 'contributor-profile'
+}
+
+function contributorProfileForPage(page) {
+  return isContributorProfile(page)
+    ? contributorProfileById.get(page.profileId) || null
+    : null
+}
+
+function contributionEventsForPage(page) {
+  if (isContributorProfile(page) || page.slug.includes('contributors')) return []
+  const target = `/${page.slug}`
+  return contributionEventsByTarget.get(target) || []
+}
 
 function isUtilityPage(page) {
   return UTILITY_SLUGS.has(page.slug)
@@ -40,6 +77,30 @@ function isUtilityPage(page) {
 function htmlFileFor(route) {
   return path.join(outDir, route === '/' ? 'index.html' : `${route.slice(1)}.html`)
 }
+
+/* Contributor media paths are resolved by app/lib/media.ts while Next renders
+   the static profile. Read that rendered src once, before enriching any page,
+   so ProfilePage and article Person nodes use the same delivery URL without a
+   second media-registry resolver in this postbuild pass. */
+function renderedContributorAvatarUrls() {
+  const avatars = new Map()
+  for (const page of pages) {
+    if (!isContributorProfile(page)) continue
+    const file = htmlFileFor(page.route)
+    if (!fs.existsSync(file)) continue
+    const $ = load(fs.readFileSync(file, 'utf8'))
+    const src = $('.contributor-profile__avatar img[src]').first().attr('src')
+    if (!src) continue
+    const existing = avatars.get(page.profileId)
+    if (existing && existing !== src) {
+      throw new Error(`Contributor ${page.profileId} rendered different avatar URLs across locales`)
+    }
+    avatars.set(page.profileId, src)
+  }
+  return avatars
+}
+
+const contributorAvatarUrlById = renderedContributorAvatarUrls()
 
 /**
  * The hashed URL of the self-hosted Bengali face, lifted out of the built
@@ -75,8 +136,147 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;')
 }
 
+function stripAuthorMetadata(html) {
+  // Next's root metadata cannot know which accepted author belongs to a route.
+  // Remove its generic author tags so this route-aware pass remains the only
+  // owner of meta author and rel=author in the exported document.
+  return html.replace(
+    /<(?:meta|link)\b(?=[^>]*\b(?:name|rel)=["']author["'])[^>]*\/?\s*>/gi,
+    ''
+  )
+}
+
 function jsonLd(value) {
   return JSON.stringify(value).replace(/</g, '\\u003c')
+}
+
+function contributorEntityId(profile) {
+  return `${canonicalUrl(contributorProfilePath(profile.slug, 'bn'))}#person`
+}
+
+function publicImageUrl(value) {
+  if (!value) return null
+  return value.startsWith('/') ? `${SITE_URL}${value}` : value
+}
+
+function contributorPersonNode(profile) {
+  const profileUrl = canonicalUrl(contributorProfilePath(profile.slug, 'bn'))
+  const node = {
+    '@type': 'Person',
+    '@id': contributorEntityId(profile),
+    name: profile.displayName,
+    url: profileUrl
+  }
+  if (profile.headline) node.description = profile.headline
+  const image = publicImageUrl(contributorAvatarUrlById.get(profile.id))
+  if (image) node.image = image
+  if (profile.links.length > 0) node.sameAs = profile.links.map((link) => link.url)
+  if (profile.organization) {
+    node.affiliation = {
+      '@type': 'Organization',
+      name: profile.organization.name,
+      ...(profile.organization.url ? { url: profile.organization.url } : {})
+    }
+  }
+  return node
+}
+
+function namedCreditsForEvents(events) {
+  return events.flatMap((event) => event.credits.flatMap((credit) => {
+    const profile = credit.profileId ? contributorProfileById.get(credit.profileId) : null
+    return profile ? [{ event, credit, profile }] : []
+  }))
+}
+
+function uniqueProfiles(credits) {
+  const seen = new Set()
+  return credits.flatMap(({ profile }) => {
+    if (seen.has(profile.id)) return []
+    seen.add(profile.id)
+    return [profile]
+  })
+}
+
+function basePathFromHtml(html) {
+  const match = html.match(/(?:src|href)="([^"]*\/_next\/)/)
+  if (!match) return ''
+  const prefix = match[1].slice(0, match[1].indexOf('/_next/'))
+  return prefix.startsWith('/') ? prefix : ''
+}
+
+function localBuildHref(route, basePath) {
+  if (!route.startsWith('/') || !basePath) return route
+  return route === '/' ? basePath : `${basePath}${route}`
+}
+
+function formatAcceptedDate(value, locale) {
+  const date = new Date(`${value}T00:00:00Z`)
+  if (Number.isNaN(date.valueOf())) return value
+  return new Intl.DateTimeFormat(locale === 'en' ? 'en-BD' : 'bn-BD', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC'
+  }).format(date)
+}
+
+function pageCreditsHtml(page, events, basePath) {
+  if (events.length === 0) return ''
+  const isEn = page.locale === 'en'
+  const locale = page.locale
+  const heading = isEn ? 'Contributions to this page' : 'এই পেজে অবদান'
+  const explanation = isEn
+    ? 'Accepted work is listed with its public evidence.'
+    : 'গৃহীত কাজের সঙ্গে তার পাবলিক প্রমাণও দেওয়া আছে।'
+  const anonymous = isEn ? 'Anonymous contributor' : 'নাম প্রকাশে অনিচ্ছুক কন্ট্রিবিউটর'
+  const evidence = isEn ? 'View evidence' : 'প্রমাণ দেখুন'
+  const accepted = isEn ? 'Accepted' : 'গৃহীত'
+  const affiliation = isEn ? 'Affiliation at the time' : 'তৎকালীন প্রতিষ্ঠান'
+  const reviewScope = isEn ? 'Review scope' : 'রিভিউয়ের পরিধি'
+
+  const rows = events.flatMap((event) => event.credits.map((credit, creditIndex) => {
+    const profile = credit.profileId ? contributorProfileById.get(credit.profileId) : null
+    const organization = credit.organizationId
+      ? contributorOrganizationById.get(credit.organizationId) || null
+      : null
+    const identity = profile
+      ? `<a href="${escapeHtml(localBuildHref(contributorProfilePath(profile.slug, locale), basePath))}">${escapeHtml(profile.displayName)}</a>`
+      : `<span>${anonymous}</span>`
+    const roles = credit.roles
+      .map((role) => ROLE_ACTIVITY_LABELS[role]?.[locale] || role)
+      .map((role) => `<span>${escapeHtml(role)}</span>`)
+      .join('')
+    const organizationHtml = organization
+      ? `<p class="page-credit__affiliation"><strong>${affiliation}:</strong> ${
+          organization.url
+            ? `<a href="${escapeHtml(organization.url)}" rel="noopener noreferrer">${escapeHtml(organization.name)}</a>`
+            : escapeHtml(organization.name)
+        }</p>`
+      : ''
+    const reviewHtml = credit.review
+      ? `<p class="page-credit__review"><strong>${reviewScope}:</strong> ${escapeHtml(credit.review.scope[locale])} · <time datetime="${credit.review.reviewedAt}">${escapeHtml(formatAcceptedDate(credit.review.reviewedAt, locale))}</time></p>`
+      : ''
+    return `<li class="page-credit" data-contribution-event="${escapeHtml(event.id)}" data-credit-index="${creditIndex}">
+      <div class="page-credit__line"><span class="page-credit__roles">${roles}</span><strong class="page-credit__person">${identity}</strong></div>
+      <p class="page-credit__scope">${escapeHtml(event.summary[locale])}</p>
+      ${organizationHtml}${reviewHtml}
+      <p class="page-credit__meta"><span>${accepted}: <time datetime="${event.acceptedAt}">${escapeHtml(formatAcceptedDate(event.acceptedAt, locale))}</time></span><a href="${escapeHtml(event.evidenceUrl)}" rel="noopener noreferrer">${evidence}</a></p>
+    </li>`
+  }))
+
+  return `<div class="page-contribution-credits__header"><h2>${heading}</h2><p>${explanation}</p></div><ol class="page-credit-list">${rows.join('')}</ol>`
+}
+
+function fillPageCredits(html, content) {
+  const slot = /(<section\b(?=[^>]*\bdata-deshi-credits="true")[^>]*>)[\s\S]*?(<\/section>)/i
+  return slot.test(html) ? html.replace(slot, `$1${content}$2`) : html
+}
+
+function excludeProfileFromPagefind(html) {
+  return html.replace(/<html\b([^>]*)>/i, (tag, attributes) => {
+    if (/\bdata-pagefind-ignore=/.test(attributes)) return tag
+    return `<html${attributes} data-pagefind-ignore="all">`
+  })
 }
 
 /**
@@ -85,7 +285,7 @@ function jsonLd(value) {
  * The shared client shell cannot know the route while the static HTML is
  * rendered, so it used to collect the article's h2s after hydration. That put a
  * collapsed accordion above the article a moment after first paint and pushed
- * the whole page down — a layout shift on every guide, charged to exactly the
+ * the whole page down, a layout shift on every guide, charged to exactly the
  * mid-range phone this site is read on. The lists are the same for every reader
  * and known here, so they are written into the HTML instead, and the shell
  * reproduces them on its first client render rather than adding them later.
@@ -209,14 +409,16 @@ function childrenFor(page) {
 
 function visibleCollectionItemsFor($, page) {
   if (page.slug === 'contributors') {
-    return $('.contributor-list .contributor-row')
+    return $('.contributor-list--ranked .contributor-row')
       .map((index, element) => {
-        const identity = $(element).find('.contributor-row__identity strong').first()
+        const row = $(element)
+        const identity = row.find('.contributor-row__identity strong').first()
         const name = identity.text().trim()
         if (!name) return null
-        const profileUrl = identity.find('a[href]').first().attr('href')
+        const profileSlug = row.attr('data-contributor-profile')
+        const profilePath = contributorProfilePath(profileSlug, page.locale)
         const item = { '@type': 'Person', name }
-        if (profileUrl) item.url = profileUrl
+        if (profilePath) item.url = canonicalUrl(profilePath)
         return { '@type': 'ListItem', position: index + 1, item }
       })
       .get()
@@ -243,7 +445,7 @@ function visibleCollectionItemsFor($, page) {
   return []
 }
 
-function schemaFor(page, wordCount, visibleCollectionItems = []) {
+function schemaFor(page, wordCount, visibleCollectionItems = [], contributionEvents = []) {
   if (page.stub) return null
 
   const isEn = page.locale === 'en'
@@ -253,6 +455,8 @@ function schemaFor(page, wordCount, visibleCollectionItems = []) {
   const children = childrenFor(page)
   const isHome = page.slug === ''
   const isAbout = page.slug === 'about'
+  const isProfile = isContributorProfile(page)
+  const contributorProfile = contributorProfileForPage(page)
   const isCollection =
     page.slug === 'sitemap' ||
     page.slug === 'contributors' ||
@@ -264,8 +468,14 @@ function schemaFor(page, wordCount, visibleCollectionItems = []) {
   // weigh, and marking them up as one would put a stale "last updated" beside
   // an address that has not changed.
   const isUtility = isUtilityPage(page)
-  const isArticle = !isHome && !isAbout && !isCollection && !isUtility
-  const pageType = isAbout ? 'AboutPage' : isCollection ? 'CollectionPage' : 'WebPage'
+  const isArticle = !isHome && !isAbout && !isCollection && !isUtility && !isProfile
+  const pageType = isProfile
+    ? 'ProfilePage'
+    : isAbout
+      ? 'AboutPage'
+      : isCollection
+        ? 'CollectionPage'
+        : 'WebPage'
   const pageName = isHome ? `${isEn ? SITE_NAME : SITE_NAME_BN} – ${page.fullTitle}` : page.fullTitle
 
   const organizationNode = {
@@ -337,7 +547,30 @@ function schemaFor(page, wordCount, visibleCollectionItems = []) {
   const graph = [organizationNode, websiteNode]
 
   graph.push(pageNode)
+  if (isProfile && contributorProfile) {
+    const personNode = contributorPersonNode(contributorProfile)
+    pageNode.mainEntity = { '@id': personNode['@id'] }
+    graph.push(personNode)
+  }
   if (isArticle) {
+    const namedCredits = namedCreditsForEvents(contributionEvents)
+    const namedAuthors = uniqueProfiles(
+      namedCredits.filter(({ credit }) => credit.roles.includes('author'))
+    )
+    const namedContributors = uniqueProfiles(
+      namedCredits.filter(({ credit }) => credit.roles.some((role) => role !== 'author'))
+    )
+    const hasAnonymousAuthor = contributionEvents.some((event) =>
+      event.credits.some((credit) => !credit.profileId && credit.roles.includes('author'))
+    )
+    const hasAnonymousContributor = contributionEvents.some((event) =>
+      event.credits.some((credit) => !credit.profileId && credit.roles.some((role) => role !== 'author'))
+    )
+    const anonymousPersonId = `${url}#anonymous-contributor`
+    const authorReferences = namedAuthors.map((profile) => ({ '@id': contributorEntityId(profile) }))
+    const contributorReferences = namedContributors.map((profile) => ({ '@id': contributorEntityId(profile) }))
+    if (hasAnonymousAuthor) authorReferences.push({ '@id': anonymousPersonId })
+    if (hasAnonymousContributor) contributorReferences.push({ '@id': anonymousPersonId })
     const articleNode = {
       '@type': 'Article',
       '@id': `${url}#article`,
@@ -347,7 +580,9 @@ function schemaFor(page, wordCount, visibleCollectionItems = []) {
       inLanguage: locale,
       mainEntityOfPage: { '@id': `${url}#webpage` },
       isPartOf: { '@id': `${SITE_URL}/#website` },
-      author: { '@id': `${SITE_URL}/#organization` },
+      author: authorReferences.length > 0
+        ? (authorReferences.length === 1 ? authorReferences[0] : authorReferences)
+        : { '@id': `${SITE_URL}/#organization` },
       publisher: { '@id': `${SITE_URL}/#organization` },
       image: {
         '@type': 'ImageObject',
@@ -361,11 +596,24 @@ function schemaFor(page, wordCount, visibleCollectionItems = []) {
       license: CONTENT_LICENSE_URL,
       copyrightHolder: { '@id': `${SITE_URL}/#organization` }
     }
+    if (contributorReferences.length > 0) {
+      articleNode.contributor = contributorReferences.length === 1
+        ? contributorReferences[0]
+        : contributorReferences
+    }
     if (page.published) articleNode.datePublished = page.published
     if (page.date) articleNode.dateModified = page.date
     if (wordCount > 0) articleNode.wordCount = wordCount
     pageNode.mainEntity = { '@id': articleNode['@id'] }
     graph.push(articleNode)
+    for (const profile of uniqueProfiles(namedCredits)) graph.push(contributorPersonNode(profile))
+    if (hasAnonymousAuthor || hasAnonymousContributor) {
+      graph.push({
+        '@type': 'Person',
+        '@id': anonymousPersonId,
+        name: isEn ? 'Anonymous contributor' : 'নাম প্রকাশে অনিচ্ছুক কন্ট্রিবিউটর'
+      })
+    }
   }
   const breadcrumbs = breadcrumbsFor(page)
   if (breadcrumbs) {
@@ -393,6 +641,7 @@ for (const page of pages) {
   // so a second run over the same output has to leave them alone.
   const headingsAlreadyWritten = html.includes('<meta name="deshi:toc"')
   html = html.replace(/\n?<!-- deshi-seo:start -->[\s\S]*?<!-- deshi-seo:end -->\n?/g, '')
+  html = stripAuthorMetadata(html)
 
   const $ = load(html)
   const documentTitle = $('title').first().text().trim() || page.fullTitle
@@ -400,6 +649,13 @@ for (const page of pages) {
   const articleText = $('.article').text().trim()
   const wordCount = articleText ? articleText.split(/\s+/).length : 0
   const isEn = page.locale === 'en'
+  const contributorProfile = contributorProfileForPage(page)
+  const pageContributionEvents = contributionEventsForPage(page)
+  const pageNamedCredits = namedCreditsForEvents(pageContributionEvents)
+  const pageNamedAuthors = uniqueProfiles(
+    pageNamedCredits.filter(({ credit }) => credit.roles.includes('author'))
+  )
+  const buildBasePath = basePathFromHtml(html)
   // The shell shows no page headings on the two landing pages, so neither does this.
   const shellHeadings = page.slug === '' ? [] : collectShellHeadings($)
   const htmlLanguage = isEn ? 'en' : 'bn'
@@ -423,16 +679,38 @@ for (const page of pages) {
     page.slug === 'directory' ||
     page.slug.startsWith('directory/') ||
     pageChildren.length > 0
-  const ogType = page.stub ||
-    page.slug === '' ||
-    isCollectionPage ||
-    page.slug === 'about' ||
-    isUtilityPage(page)
-    ? 'website'
-    : 'article'
+  const ogType = isContributorProfile(page)
+    ? 'profile'
+    : page.stub ||
+      page.slug === '' ||
+      isCollectionPage ||
+      page.slug === 'about' ||
+      isUtilityPage(page)
+      ? 'website'
+      : 'article'
   const robots = page.stub
     ? 'noindex, follow, noarchive'
     : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+  const socialImage = contributorProfile
+    ? `${SITE_URL}/contributor-cards/${contributorProfile.slug}.png`
+    : DEFAULT_OG_IMAGE
+  const socialImageAlt = contributorProfile
+    ? (isEn
+        ? `${contributorProfile.displayName}'s Deshi Startup contributor proof card`
+        : `${contributorProfile.displayName}-এর দেশি স্টার্টআপ কন্ট্রিবিউটর কার্ড`)
+    : (isEn
+        ? 'Deshi Startup, the Bangla-first startup guide for Bangladesh'
+        : 'দেশি স্টার্টআপ, বাংলাদেশে স্টার্টআপ গড়ার উন্মুক্ত গাইড')
+  const metaAuthor = contributorProfile?.displayName ||
+    (pageNamedAuthors.length > 0
+      ? pageNamedAuthors.map((profile) => profile.displayName).join(', ')
+      : `${SITE_NAME} contributors`)
+  const authorProfiles = contributorProfile ? [contributorProfile] : pageNamedAuthors
+  const authorLinks = authorProfiles.length > 0
+    ? authorProfiles.map((profile) =>
+        `<link rel="author" href="${canonicalUrl(contributorProfilePath(profile.slug, page.locale))}"/>`
+      )
+    : [`<link rel="author" href="${SITE_URL}/"/>`]
 
   const tags = [
     '<!-- deshi-seo:start -->',
@@ -447,7 +725,8 @@ for (const page of pages) {
       : []),
     `<meta name="robots" content="${robots}"/>`,
     `<meta http-equiv="content-language" content="${contentLanguage}"/>`,
-    `<meta name="author" content="${SITE_NAME} contributors"/>`,
+    `<meta name="author" content="${escapeHtml(metaAuthor)}"/>`,
+    ...authorLinks,
     `<link rel="license" href="${CONTENT_LICENSE_URL}"/>`
   ]
 
@@ -479,22 +758,30 @@ for (const page of pages) {
     `<meta property="og:site_name" content="${SITE_NAME}"/>`,
     `<meta property="og:locale" content="${ogLocale}"/>`,
     `<meta property="og:locale:alternate" content="${isEn ? 'bn_BD' : 'en_BD'}"/>`,
-    `<meta property="og:image" content="${DEFAULT_OG_IMAGE}"/>`,
+    `<meta property="og:image" content="${socialImage}"/>`,
     '<meta property="og:image:width" content="1200"/>',
     '<meta property="og:image:height" content="630"/>',
     '<meta property="og:image:type" content="image/png"/>',
-    `<meta property="og:image:alt" content="${escapeHtml(isEn ? 'Deshi Startup, the Bangla-first startup guide for Bangladesh' : 'দেশি স্টার্টআপ, বাংলাদেশে স্টার্টআপ গড়ার উন্মুক্ত গাইড')}"/>`,
+    `<meta property="og:image:alt" content="${escapeHtml(socialImageAlt)}"/>`,
     '<meta name="twitter:card" content="summary_large_image"/>',
     `<meta name="twitter:title" content="${escapeHtml(socialTitle)}"/>`,
     `<meta name="twitter:description" content="${escapeHtml(description)}"/>`,
-    `<meta name="twitter:image" content="${DEFAULT_OG_IMAGE}"/>`,
-    `<meta name="twitter:image:alt" content="${escapeHtml(isEn ? 'Deshi Startup, the Bangla-first startup guide for Bangladesh' : 'দেশি স্টার্টআপ, বাংলাদেশে স্টার্টআপ গড়ার উন্মুক্ত গাইড')}"/>`
+    `<meta name="twitter:image" content="${socialImage}"/>`,
+    `<meta name="twitter:image:alt" content="${escapeHtml(socialImageAlt)}"/>`
   )
 
   if (ogType === 'article') {
     if (page.published) tags.push(`<meta property="article:published_time" content="${page.published}"/>`)
     if (page.date) tags.push(`<meta property="article:modified_time" content="${page.date}"/>`)
-    tags.push(`<meta property="article:author" content="${SITE_URL}/"/>`)
+    if (pageNamedAuthors.length > 0) {
+      for (const profile of pageNamedAuthors) {
+        tags.push(
+          `<meta property="article:author" content="${canonicalUrl(contributorProfilePath(profile.slug, page.locale))}"/>`
+        )
+      }
+    } else {
+      tags.push(`<meta property="article:author" content="${SITE_URL}/"/>`)
+    }
   }
 
   // The client shell's meta bar reads these instead of downloading the
@@ -507,7 +794,12 @@ for (const page of pages) {
   // first client render reproduces them instead of adding them after paint.
   if (shellHeadings.length > 0) tags.push('<meta name="deshi:toc" content="1"/>')
 
-  const schema = schemaFor(page, wordCount, visibleCollectionItemsFor($, page))
+  const schema = schemaFor(
+    page,
+    wordCount,
+    visibleCollectionItemsFor($, page),
+    pageContributionEvents
+  )
   if (schema) tags.push(`<script type="application/ld+json" data-deshi-schema>${jsonLd(schema)}</script>`)
   tags.push('<!-- deshi-seo:end -->')
 
@@ -521,6 +813,11 @@ for (const page of pages) {
     html = insertSidebarToc(html, sidebarTocHtml(shellHeadings, isEn))
     html = insertPageToc(html, pageTocHtml(shellHeadings, isEn))
   }
+  html = fillPageCredits(
+    html,
+    pageCreditsHtml(page, pageContributionEvents, buildBasePath)
+  )
+  if (isContributorProfile(page)) html = excludeProfileFromPagefind(html)
   fs.writeFileSync(file, html)
   enriched += 1
   if (page.stub) noindexed += 1

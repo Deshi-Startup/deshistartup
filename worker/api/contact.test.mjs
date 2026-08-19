@@ -123,13 +123,14 @@ test('allows the loopback origin change made by the local Next proxy', async () 
   assert.equal(sent.length, 1)
 })
 
-test('applies rate limits before parsing the request body', async () => {
-  const { env, sent } = mockEnv({ ipAllowed: false })
+test('rejects an over-limit IP before parsing or spending regional capacity', async () => {
+  const { env, sent, limitCalls } = mockEnv({ ipAllowed: false })
   const response = await POST(request('{'), env)
 
   assert.equal(response.status, 429)
   assert.deepEqual(await responseBody(response), { error: 'rate_limited' })
   assert.equal(sent.length, 0)
+  assert.deepEqual(limitCalls, [{ limiter: 'ip', key: '203.0.113.10' }])
 })
 
 test('rejects declared and streamed bodies over the byte ceiling', async () => {
@@ -159,10 +160,11 @@ test('rejects declared and streamed bodies over the byte ceiling', async () => {
   const streamedResponse = await POST(streamRequest, streamed.env)
   assert.equal(streamedResponse.status, 413)
   assert.equal(streamed.sent.length, 0)
+  assert.deepEqual(streamed.limitCalls, [{ limiter: 'ip', key: '203.0.113.10' }])
 })
 
-test('rejects overlong fields instead of silently truncating the email', async () => {
-  const { env, sent } = mockEnv()
+test('rejects overlong fields without spending regional capacity', async () => {
+  const { env, sent, limitCalls } = mockEnv()
   const response = await POST(
     request(payload({ message: 'x'.repeat(CONTACT_FIELD_LIMITS.message + 1) })),
     env
@@ -171,13 +173,15 @@ test('rejects overlong fields instead of silently truncating the email', async (
   assert.equal(response.status, 400)
   assert.deepEqual(await responseBody(response), { error: 'invalid_fields' })
   assert.equal(sent.length, 0)
+  assert.deepEqual(limitCalls, [{ limiter: 'ip', key: '203.0.113.10' }])
 })
 
 test('returns silent success for a filled honeypot without sending mail', async () => {
-  const { env, sent } = mockEnv()
+  const { env, sent, limitCalls } = mockEnv()
   const response = await POST(request(payload({ website: 'bot-filled.example' })), env)
 
   assert.equal(response.status, 200)
   assert.deepEqual(await responseBody(response), { ok: true })
   assert.equal(sent.length, 0)
+  assert.deepEqual(limitCalls, [{ limiter: 'ip', key: '203.0.113.10' }])
 })

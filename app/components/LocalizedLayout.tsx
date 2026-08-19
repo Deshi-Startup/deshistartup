@@ -8,6 +8,7 @@ import SearchBox from './SearchBox'
 import type { SubmitResult } from './ContributionEditor'
 import { cleanRoute } from '../lib/clean-route'
 import { clearAuth, getStoredAuth, UserInfo } from '../lib/client-auth'
+import { pageChromePolicy } from '../lib/page-chrome'
 import {
   bnNav,
   DISCORD_URL,
@@ -72,7 +73,7 @@ function GitHubIcon() {
 
 function FacebookIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
+    <svg viewBox="2 2 20 20" aria-hidden="true">
       {/* One path, evenodd: the "f" is a hole punched through the disc, not a
           white shape painted on top. A knocked-out counter stays correct on
           whatever surface the header happens to be, so the icon never has to
@@ -291,7 +292,11 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   // lede has nothing true to say about it: "Home › Contributors" is a crumb to
   // nowhere, there is no edit date to report and a mistake belongs in a rename
   // request, not a content correction.
-  const isCredits = pathname === '/contributors' || pathname === '/en/contributors'
+  const isCredits =
+    pathname === '/contributors' ||
+    pathname.startsWith('/contributors/') ||
+    pathname === '/en/contributors' ||
+    pathname.startsWith('/en/contributors/')
   const isContact = pathname === '/contact' || pathname === '/en/contact'
   // One 404 document serves every unmatched URL, so the router reports the
   // synthetic `/_not-found` route. There is no source file behind it: an
@@ -300,6 +305,12 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   // a page nobody can read. Drop the page-contribution chrome; the 404 body
   // carries its own way out.
   const isNotFound = pathname === '/_not-found' || pathname === '/en/_not-found'
+  const { showContentTabs, showPageActions } = pageChromePolicy(pathname)
+  const showPageChrome =
+    !isPrivateReview &&
+    !isCredits &&
+    !isNotFound &&
+    (showContentTabs || showPageActions)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [headings, setHeadings] = useState<HeadingItem[]>(initialHeadings)
   const [pageTitle, setPageTitle] = useState('')
@@ -313,6 +324,14 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   const [exitSignal, setExitSignal] = useState(0)
   const [flash, setFlash] = useState<SubmitResult | null>(null)
   const [authOpen, setAuthOpen] = useState(false)
+  // Production HTML may already contain route-specific, postbuild-generated
+  // credits. Adopt that trusted static markup on the first client render so
+  // hydration preserves it. This reads the document once; it does not import
+  // the ledger, fetch data, or run contributor-specific code on guide pages.
+  const [staticCreditsHtml] = useState(() => {
+    if (typeof document === 'undefined') return ''
+    return document.querySelector<HTMLElement>('[data-deshi-credits="true"]')?.innerHTML || ''
+  })
   // Latched separately from `authOpen` so the dialog stays mounted through its
   // close, instead of being torn out mid-transition the first time it is used.
   const [authMounted, setAuthMounted] = useState(false)
@@ -331,7 +350,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
       setAuthToken(stored.token)
     }
     const wantsEdit = new URLSearchParams(window.location.search).get('action') === 'edit'
-    if (!wantsEdit || pathname === '/' || pathname === '/en' || isPrivateReview || isNotFound) return
+    if (!wantsEdit || pathname === '/' || pathname === '/en' || isPrivateReview || isCredits || isNotFound) return
     if (stored) setIsEditing(true)
     else openAuth()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -717,52 +736,56 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
         </div>
 
         <main className="content-canvas" id="main">
-          {!isPrivateReview && !isNotFound && <nav className="article-tabs" aria-label={isEn ? 'About this page' : 'এই পেজ নিয়ে'}>
-            <div className="tab-group">
-              <span className="tab active" aria-current="page">{tabs.article}</span>
-              <a
-                className="tab"
-                href={`${REPO_URL}/discussions`}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={isEn ? 'Discuss on GitHub' : 'গিটহাবে আলোচনা করুন'}
-              >
-                {tabs.talk}
-              </a>
-            </div>
-            <div className="article-actions">
-              {isEditing ? (
-                <button type="button" className="act-read tab-action-btn" onClick={handleRead}>
-                  {tabs.read}
-                </button>
-              ) : (
-                <span className="act-read is-current" aria-current="page">
-                  {tabs.read}
-                </span>
+          {showPageChrome && (
+            <nav
+              className={`article-tabs${showContentTabs ? '' : ' article-tabs--actions-only'}`}
+              aria-label={isEn ? 'About this page' : 'এই পেজ নিয়ে'}
+            >
+              {showContentTabs && (
+                <div className="tab-group">
+                  <span className="tab active" aria-current="page">{tabs.article}</span>
+                  <a
+                    className="tab"
+                    href={`${REPO_URL}/discussions`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={isEn ? 'Discuss on GitHub' : 'গিটহাবে আলোচনা করুন'}
+                  >
+                    {tabs.talk}
+                  </a>
+                </div>
               )}
+              {showPageActions && (
+                <div className="article-actions">
+                  {isEditing ? (
+                    <button type="button" className="act-read tab-action-btn" onClick={handleRead}>
+                      {tabs.read}
+                    </button>
+                  ) : (
+                    <span className="act-read is-current" aria-current="page">
+                      {tabs.read}
+                    </span>
+                  )}
 
-              {isLanding ? (
-                <a className="act-edit" href={`${REPO_URL}/edit/main/${file}`} target="_blank" rel="noopener noreferrer">
-                  <ActionPencil />
-                  {tabs.edit}
-                </a>
-              ) : isEditing ? (
-                <span className="act-edit is-current" aria-current="page">
-                  <ActionPencil />
-                  {tabs.edit}
-                </span>
-              ) : (
-                <button type="button" className="act-edit tab-action-btn" onClick={handleContribute}>
-                  <ActionPencil />
-                  {tabs.edit}
-                </button>
+                  {isEditing ? (
+                    <span className="act-edit is-current" aria-current="page">
+                      <ActionPencil />
+                      {tabs.edit}
+                    </span>
+                  ) : (
+                    <button type="button" className="act-edit tab-action-btn" onClick={handleContribute}>
+                      <ActionPencil />
+                      {tabs.edit}
+                    </button>
+                  )}
+
+                  <a className="act-history" href={`${REPO_URL}/commits/main/${file}`} target="_blank" rel="noopener noreferrer">
+                    {tabs.history}
+                  </a>
+                </div>
               )}
-
-              <a className="act-history" href={`${REPO_URL}/commits/main/${file}`} target="_blank" rel="noopener noreferrer">
-                {tabs.history}
-              </a>
-            </div>
-          </nav>}
+            </nav>
+          )}
 
           {flash && !isEditing && !isPrivateReview && (
             <div className="edit-flash" role="status">
@@ -866,7 +889,21 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             {children}
           </article>
 
-          {!isLanding && !isEditing && !isPrivateReview && !isNotFound && !isContact && (
+          {!isLanding && !isEditing && !isPrivateReview && !isCredits && !isNotFound && !isContact && (
+            <section
+              className="page-contribution-credits"
+              data-deshi-credits="true"
+              aria-label={isEn ? 'Contributions to this page' : 'এই পেজে অবদান'}
+              suppressHydrationWarning
+              // The production postbuild fills this static slot from the
+              // committed public ledger. The first client render adopts those
+              // existing children, preserving them without shipping the ledger
+              // or any route-specific contributor data to guide bundles.
+              dangerouslySetInnerHTML={{ __html: staticCreditsHtml }}
+            />
+          )}
+
+          {!isLanding && !isEditing && !isPrivateReview && !isCredits && !isNotFound && !isContact && (
             <footer className="article-footer">
               <h2>{isEn ? 'Help improve this page' : 'এই পেজ আরও ভালো করুন'}</h2>
               <div className="contrib-row">

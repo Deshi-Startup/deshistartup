@@ -14,6 +14,7 @@
  */
 import fs from 'node:fs'
 import path from 'node:path'
+import { classifyContributorMediaAvatars } from './lib/contributor-media.mjs'
 import {
   deleteObject,
   objectKeyMatchesLogicalPath,
@@ -21,11 +22,14 @@ import {
   readRetired,
   RETIREMENT_GRACE_DAYS,
   root,
+  validLogicalPath,
   writeRegistry,
   writeRetired
 } from './lib/media-lib.mjs'
 
 const contentRoot = path.join(root, 'app', '(contents)')
+const contributorLedgerFile = path.join(root, 'data', 'contributor-ledger.json')
+const contributorPolicyFile = path.join(root, 'data', 'contributors-policy.json')
 const apply = process.argv.includes('--apply')
 const retireUnreferenced = process.argv.includes('--retire-unreferenced')
 const unknown = process.argv
@@ -75,6 +79,20 @@ function references() {
       }
     }
   }
+
+  const ledger = JSON.parse(fs.readFileSync(contributorLedgerFile, 'utf8'))
+  const policy = JSON.parse(fs.readFileSync(contributorPolicyFile, 'utf8'))
+  const avatars = classifyContributorMediaAvatars(ledger, policy)
+  for (const avatar of avatars.active) {
+    const logicalPath = avatar.path
+    if (!validLogicalPath(logicalPath || '')) {
+      throw new Error(
+        `${path.relative(root, contributorLedgerFile)} profile ${avatar.profileId} has an invalid media avatar path`
+      )
+    }
+    used.add(logicalPath)
+  }
+
   return used
 }
 

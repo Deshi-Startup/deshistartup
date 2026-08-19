@@ -23,6 +23,7 @@
     "scrape": "node scripts/scrape.js",
     "manifest": "node scripts/build-manifest.mjs",
     "contributors:refresh": "node scripts/build-contributors.mjs",
+    "contributors:cards": "node scripts/build-contributor-cards.mjs",
     "media:upload": "node scripts/media-upload.mjs",
     "media:posters": "node scripts/fetch-youtube-posters.mjs",
     "media:prune": "node scripts/media-prune.mjs",
@@ -30,21 +31,21 @@
     "lint:glossary": "node scripts/glossary-lint.mjs",
     "lint:media": "node scripts/media-lint.mjs",
     "test:citations": "node --experimental-strip-types --test app/lib/rehype-footnotes.test.mjs app/lib/contribution-markdown.test.mjs scripts/citation-lint.test.mjs",
-    "test:media": "node --test scripts/media-lib.test.mjs",
+    "test:media": "node --test scripts/media-lib.test.mjs scripts/contributor-media.test.mjs",
     "test:contact": "node --experimental-strip-types --test worker/api/contact.test.mjs",
     "backlog:status": "npm run manifest && node scripts/backlog-status.mjs",
     "lint:bangla": "node scripts/bangla-lint.mjs",
     "lint:routes": "node scripts/route-lint.mjs",
     "lint:terms": "node scripts/apply-terms.mjs",
-    "test:contribute": "node --experimental-strip-types --test app/lib/contributable-path.test.mjs app/lib/contribution-markdown.test.mjs app/lib/contribution-draft.test.mjs app/lib/contribution-media.test.mjs app/lib/clean-route.test.mjs",
-    "test:contributors": "node --test scripts/contributor-data.test.mjs app/lib/contributor-leaderboard.test.mjs",
+    "test:contribute": "node --experimental-strip-types --test app/lib/contributable-path.test.mjs app/lib/contribution-markdown.test.mjs app/lib/contribution-draft.test.mjs app/lib/contribution-media.test.mjs app/lib/clean-route.test.mjs app/lib/page-chrome.test.mjs",
+    "test:contributors": "node --test scripts/contributor-data.test.mjs scripts/contributor-cards.test.mjs app/lib/contributor-leaderboard.test.mjs app/lib/contributor-topics.test.mjs",
     "test:analytics": "node --experimental-strip-types --test app/lib/search-analytics.test.mjs",
     "search:audit": "node scripts/search-audit.mjs",
     "seo:audit": "node scripts/seo-audit.mjs",
     "seo:indexnow": "node scripts/submit-indexnow.mjs",
     "seo:indexnow:dry": "node scripts/submit-indexnow.mjs --dry-run",
-    "predev": "node scripts/build-manifest.mjs",
-    "prebuild": "node scripts/route-lint.mjs && node scripts/media-lint.mjs && node scripts/citation-lint.mjs && node scripts/build-manifest.mjs && node scripts/glossary-lint.mjs",
+    "predev": "node scripts/build-manifest.mjs && node scripts/build-contributor-cards.mjs",
+    "prebuild": "node scripts/route-lint.mjs && node scripts/media-lint.mjs && node scripts/citation-lint.mjs && node scripts/build-manifest.mjs && node scripts/build-contributor-cards.mjs && node scripts/glossary-lint.mjs",
     "postbuild": "node scripts/postbuild-seo.mjs && node scripts/build-pagefind.mjs && node scripts/search-audit.mjs && node scripts/seo-audit.mjs"
   },
   "dependencies": {
@@ -61,10 +62,12 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "cheerio": "^1.2.0",
+    "fontkit": "^2.0.4",
     "pagefind": "^1.5.2",
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "robots-parser": "^3.0.1",
+    "sharp": "^0.35.3",
     "turndown": "^7.2.4",
     "typescript": "^5.9.3",
     "unified": "^11.0.5",
@@ -73,6 +76,7 @@
   "overrides": {
     "postcss": "^8.5.23",
     "dompurify": "^3.4.13",
-    "mermaid": "^11.16.1"
+    "mermaid": "^11.16.1",
+    "sharp": "$sharp"
   }
 }

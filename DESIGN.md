@@ -517,6 +517,42 @@ values are sentences (coverage areas, rate bands, application steps), a column g
 track too narrow to hold a word, and a new field should cost one more labelled line rather than one
 more squeezed column. There is no horizontal scroll at any width.
 
+### Contributor record
+
+The two recognition surfaces, `/contributors` and `/contributors/{slug}`, are set as a ruled
+ledger rather than a scoreboard. The register is a book index: a quiet ordinal hanging in the left
+margin, the name and its middot line of roles in the reading column, and one right-aligned numeric
+column of accepted-work counts in tabular numerals, captioned once above the list and separated by
+a single hairline drawn down the whole list rather than repeated per row. The profile is the same
+idea turned on its side: a chronology whose acceptance dates hang in the margin against the same
+continuous rule, with the work itself owning the reading column. One date, however many entries it
+accepted; seven guides accepted the same day are one dateline, not the same date set seven times
+down the margin.
+
+Rank exists because public credit is the point, but it is never the row's headline number. The
+count is, because the count is what is actually being measured, and the copy beside it says plainly
+that the order is activity and not merit. On a profile the count is read as a figure in tabular
+numerals beside the pages it reached, not buried mid-sentence in a meta line.
+
+A profile answers three questions at three altitudes, and never the same one twice: the masthead
+says who, the topic index says which parts of the guide exist because of this person, and the
+chronology says when each piece landed and where its proof is. The topic index is a ruled list
+borrowing the register's numeric column, one section a row, and it is what the chronology cannot
+say on its own. The published pages under an entry are listed rather than collapsed behind a
+count, because those pages are the record's whole substance; a disclosure there hid it. Hovering
+or focusing an entry lights the ledger's own continuous rule green beside it rather than drawing a
+second line next to it. Every profile closes on its own small print: the snapshot date, and the
+route to correct or remove a naming.
+
+There is no proof-card block on the page. A picture of a card repeated the name and count directly
+above it, out-shouted the record underneath, and cost the surface its only client component. The
+generated card survives as the profile's `og:image`, which is where a shared link actually needs
+it.
+
+Roles are a middot line, never bordered chips. Three type sizes carry a register row: name, meta,
+count. Avatars keep the system's circles, and a monogram avatar takes the structure wash rather
+than the near-white ground, so it carries the same weight as a photograph beside it.
+
 ### Contribution editor
 
 The inline editor extends the article canvas rather than opening a visually separate CMS. Its theme
@@ -573,6 +609,11 @@ second design system.
 - **Don't** embed raw YouTube or Facebook iframes; use the click-to-load facade components.
 - **Don't** add a heavy dependency for a small interaction or a calculator.
 - **Don't** let anything appear above the article after paint.
+- **Don't** suppress a list marker with `list-style: none` alone. `html[lang='bn'] ol` sets
+  `list-style-type` at a higher specificity, so the marker survives in Bangla only; add the list to
+  that rule's `:not()` instead.
+- **Don't** separate a Bengali numeral from its classifier. `৩টি` is one word, so a gap, a margin
+  or a flex `gap` between the number and its unit is a spelling error, not spacing.
 - **Don't** use an em dash in page content under `app/(contents)/`. Use an en dash, a comma, or two
   sentences; enforced by `npm run lint:bangla`.
 

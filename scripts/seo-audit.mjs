@@ -8,10 +8,17 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { load } from 'cheerio'
 import robotsParser from 'robots-parser'
+import snapshotData from '../app/generated/contributors.json' with { type: 'json' }
+import {
+  ROLE_LABELS,
+  contributorProfilePath,
+  prepareContributorSnapshot
+} from '../app/lib/contributor-leaderboard.mjs'
 import {
   DEFAULT_OG_IMAGE,
   INDEXNOW_KEY,
   ORGANIZATION_SAME_AS,
+  SITE_NAME,
   SITE_URL,
   canonicalUrl
 } from '../app/seo.config.mjs'
@@ -20,6 +27,18 @@ import { resolveBuildOutput } from './build-output.mjs'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const { htmlDir: outDir, staticDir } = resolveBuildOutput(root)
 const pages = JSON.parse(fs.readFileSync(path.join(root, 'app', 'generated', 'seo-pages.json'), 'utf8'))
+const contributorView = prepareContributorSnapshot(snapshotData)
+const contributorProfileById = new Map(
+  contributorView.rankedProfiles.map((profile) => [profile.id, profile])
+)
+const contributorEventsByTarget = new Map()
+for (const event of contributorView.events) {
+  for (const target of event.targets) {
+    const events = contributorEventsByTarget.get(target.path) || []
+    events.push(event)
+    contributorEventsByTarget.set(target.path, events)
+  }
+}
 const pageByLocaleSlug = new Map(pages.map((page) => [`${page.locale}:${page.slug}`, page]))
 const indexable = pages.filter((page) => !page.stub)
 const indexableRoutes = new Set(indexable.map((page) => page.route))
@@ -32,6 +51,16 @@ const descriptionOwners = new Map()
 
 const htmlFileFor = (route) => path.join(outDir, route === '/' ? 'index.html' : `${route.slice(1)}.html`)
 const record = (collection, message) => collection.push(message)
+
+function isContributorProfile(page) {
+  return page.kind === 'contributor-profile'
+}
+
+function referenceIds(value) {
+  return (Array.isArray(value) ? value : value ? [value] : [])
+    .map((reference) => reference?.['@id'])
+    .filter(Boolean)
+}
 
 function normalizeInternalHref(href, sourceRoute) {
   if (!href || href.startsWith('#') || /^(mailto:|tel:|javascript:|data:)/i.test(href)) return null
@@ -69,6 +98,27 @@ for (const page of pages) {
   const robots = $('meta[name="robots"]').attr('content') || ''
   const alternates = $('link[rel="alternate"][hreflang]')
   const schemaScripts = $('script[data-deshi-schema][type="application/ld+json"]')
+  const contributorProfile = isContributorProfile(page)
+    ? contributorProfileById.get(page.profileId) || null
+    : null
+  const expectedContributionEvents = isContributorProfile(page)
+    ? []
+    : contributorEventsByTarget.get(`/${page.slug}`) || []
+  const authorProfiles = contributorProfile
+    ? [contributorProfile]
+    : [...new Map(expectedContributionEvents.flatMap((event) =>
+        event.credits.flatMap((credit) => {
+          if (!credit.roles.includes('author') || !credit.profileId) return []
+          const profile = contributorProfileById.get(credit.profileId)
+          return profile ? [[profile.id, profile]] : []
+        })
+      )).values()]
+  const expectedMetaAuthor = authorProfiles.length > 0
+    ? authorProfiles.map((profile) => profile.displayName).join(', ')
+    : `${SITE_NAME} contributors`
+  const expectedAuthorLinks = authorProfiles.length > 0
+    ? authorProfiles.map((profile) => canonicalUrl(contributorProfilePath(profile.slug, page.locale)))
+    : [`${SITE_URL}/`]
 
   if ($('html').attr('lang') !== expectedLanguage) {
     record(errors, `${page.route}: html lang is ${$('html').attr('lang') || 'missing'}, expected ${expectedLanguage}`)
@@ -100,6 +150,20 @@ for (const page of pages) {
   })
   if (canonicals.length !== 1 || canonicals.first().attr('href') !== canonicalUrl(page.route)) {
     record(errors, `${page.route}: canonical is missing, duplicated, or incorrect`)
+  }
+  const metaAuthors = $('meta[name="author"]')
+  if (metaAuthors.length !== 1 || metaAuthors.first().attr('content') !== expectedMetaAuthor) {
+    record(errors, `${page.route}: meta author is missing, duplicated, or incorrect`)
+  }
+  const authorLinks = $('link[rel="author"]').toArray().map((node) => $(node).attr('href'))
+  if (
+    authorLinks.length !== expectedAuthorLinks.length ||
+    expectedAuthorLinks.some((href) => !authorLinks.includes(href))
+  ) {
+    record(errors, `${page.route}: rel=author does not match the route's accepted author`)
+  }
+  if (isContributorProfile(page) && $('html').attr('data-pagefind-ignore') !== 'all') {
+    record(errors, `${page.route}: contributor profile is not excluded from Pagefind`)
   }
 
   if (page.stub) {
@@ -148,8 +212,11 @@ for (const page of pages) {
   if ($('meta[property="og:url"]').attr('content') !== canonicalUrl(page.route)) {
     record(errors, `${page.route}: og:url does not match canonical`)
   }
-  if ($('meta[property="og:image"]').attr('content') !== DEFAULT_OG_IMAGE) {
-    record(errors, `${page.route}: wrong default Open Graph image`)
+  const expectedOgImage = contributorProfile
+    ? `${SITE_URL}/contributor-cards/${contributorProfile.slug}.png`
+    : DEFAULT_OG_IMAGE
+  if ($('meta[property="og:image"]').attr('content') !== expectedOgImage) {
+    record(errors, `${page.route}: wrong Open Graph image`)
   }
 
   if (!page.stub && schemaScripts.length === 1) {
@@ -157,7 +224,13 @@ for (const page of pages) {
       const schema = JSON.parse(schemaScripts.first().text())
       const graph = Array.isArray(schema['@graph']) ? schema['@graph'] : []
       const types = new Set(graph.map((node) => node['@type']))
-      if (!types.has('Article') && !types.has('AboutPage') && !types.has('CollectionPage') && !types.has('WebPage')) {
+      if (
+        !types.has('Article') &&
+        !types.has('AboutPage') &&
+        !types.has('CollectionPage') &&
+        !types.has('ProfilePage') &&
+        !types.has('WebPage')
+      ) {
         record(errors, `${page.route}: JSON-LD has no primary page type`)
       }
       if (!types.has('Organization') || !types.has('WebSite')) {
@@ -181,10 +254,23 @@ for (const page of pages) {
       if (page.slug.startsWith('directory/') && !types.has('CollectionPage')) {
         record(errors, `${page.route}: directory listing must use CollectionPage schema`)
       }
+      if (isContributorProfile(page)) {
+        const profilePage = graph.find((node) => node['@type'] === 'ProfilePage')
+        const person = graph.find((node) => node['@id'] === profilePage?.mainEntity?.['@id'])
+        if (!profilePage || person?.['@type'] !== 'Person' || person.name !== contributorProfile?.displayName) {
+          record(errors, `${page.route}: ProfilePage does not resolve to the expected Person`)
+        }
+        if ($('meta[property="og:type"]').attr('content') !== 'profile') {
+          record(errors, `${page.route}: contributor profile must use profile Open Graph type`)
+        }
+      }
       const article = graph.find((node) => node['@type'] === 'Article')
       if (article) {
-        if (article.author?.['@id'] !== `${SITE_URL}/#organization`) {
-          record(errors, `${page.route}: Article author does not resolve to the publisher Organization`)
+        const nodeIds = new Set(graph.map((node) => node['@id']).filter(Boolean))
+        const authorIds = referenceIds(article.author)
+        const contributorIds = referenceIds(article.contributor)
+        if (authorIds.length === 0 || authorIds.some((id) => !nodeIds.has(id))) {
+          record(errors, `${page.route}: Article author does not resolve to a public graph entity`)
         }
         if (article.publisher?.['@id'] !== `${SITE_URL}/#organization`) {
           record(errors, `${page.route}: Article publisher does not resolve to the publisher Organization`)
@@ -195,11 +281,45 @@ for (const page of pages) {
         if (!article.headline || !article.datePublished || !article.dateModified) {
           record(errors, `${page.route}: Article headline or publication dates are missing`)
         }
+        if (contributorIds.some((id) => !nodeIds.has(id))) {
+          record(errors, `${page.route}: Article contributor does not resolve to a public graph entity`)
+        }
+
+        const expectedNamedAuthors = new Set()
+        const expectedNamedContributors = new Set()
+        let expectsAnonymousAuthor = false
+        let expectsAnonymousContributor = false
+        for (const event of expectedContributionEvents) {
+          for (const credit of event.credits) {
+            const profile = credit.profileId ? contributorProfileById.get(credit.profileId) : null
+            if (credit.roles.includes('author')) {
+              if (profile) expectedNamedAuthors.add(`${canonicalUrl(contributorProfilePath(profile.slug, 'bn'))}#person`)
+              else expectsAnonymousAuthor = true
+            }
+            if (credit.roles.some((role) => role !== 'author')) {
+              if (profile) expectedNamedContributors.add(`${canonicalUrl(contributorProfilePath(profile.slug, 'bn'))}#person`)
+              else expectsAnonymousContributor = true
+            }
+          }
+        }
+        for (const id of expectedNamedAuthors) {
+          if (!authorIds.includes(id)) record(errors, `${page.route}: accepted author is missing from Article author`)
+        }
+        for (const id of expectedNamedContributors) {
+          if (!contributorIds.includes(id)) record(errors, `${page.route}: accepted non-author is missing from Article contributor`)
+        }
+        const anonymousId = `${canonicalUrl(page.route)}#anonymous-contributor`
+        if (expectsAnonymousAuthor && !authorIds.includes(anonymousId)) {
+          record(errors, `${page.route}: anonymous author credit is missing from Article author`)
+        }
+        if (expectsAnonymousContributor && !contributorIds.includes(anonymousId)) {
+          record(errors, `${page.route}: anonymous non-author credit is missing from Article contributor`)
+        }
       }
       const collection = graph.find((node) => node['@type'] === 'CollectionPage')
       if (collection && (page.slug === 'contributors' || page.slug.startsWith('directory/'))) {
         const visibleCount = page.slug === 'contributors'
-          ? $('.contributor-list .contributor-row').length
+          ? $('.contributor-list--ranked .contributor-row').length
           : $('.directory-card').length
         const items = collection.mainEntity?.itemListElement
         if (
@@ -214,6 +334,93 @@ for (const page of pages) {
       }
     } catch (error) {
       record(errors, `${page.route}: invalid JSON-LD (${error.message})`)
+    }
+  }
+
+  const renderedCredits = $('.page-credit')
+  const expectedCredits = expectedContributionEvents.flatMap((event) =>
+    event.credits.map((credit, index) => ({ event, credit, index }))
+  )
+  if (renderedCredits.length !== expectedCredits.length) {
+    record(
+      errors,
+      `${page.route}: page credits show ${renderedCredits.length} entries, expected ${expectedCredits.length}`
+    )
+  }
+  for (const { event, credit, index } of expectedCredits) {
+    const row = renderedCredits.filter(
+      `[data-contribution-event="${event.id}"][data-credit-index="${index}"]`
+    )
+    if (row.length !== 1) {
+      record(errors, `${page.route}: missing or duplicate visible credit for ${event.id}:${index}`)
+      continue
+    }
+    if (!row.text().includes(event.summary[page.locale])) {
+      record(errors, `${page.route}: visible credit for ${event.id} has the wrong localized scope`)
+    }
+    if (row.find(`a[href="${event.evidenceUrl}"]`).length !== 1) {
+      record(errors, `${page.route}: visible credit for ${event.id} has no exact evidence link`)
+    }
+    const profile = credit.profileId ? contributorProfileById.get(credit.profileId) : null
+    if (profile) {
+      const profileLink = row.find('.page-credit__person a[href]').attr('href')
+      const expectedProfileRoute = contributorProfilePath(profile.slug, page.locale)
+      if (normalizeInternalHref(profileLink, page.route) !== expectedProfileRoute) {
+        record(errors, `${page.route}: visible credit for ${event.id} links to the wrong contributor profile`)
+      }
+    } else if (row.find('.page-credit__person a').length > 0) {
+      record(errors, `${page.route}: anonymous credit for ${event.id} exposes a profile link`)
+    }
+  }
+
+  if (page.slug === 'contributors') {
+    const rankedRows = $('.contributor-list--ranked .contributor-row')
+    if (rankedRows.length !== contributorView.rankedProfiles.length) {
+      record(errors, `${page.route}: contributor register does not match the public snapshot`)
+    }
+    for (const profile of contributorView.rankedProfiles) {
+      const row = rankedRows.filter(`[data-contributor-profile="${profile.slug}"]`)
+      if (row.length !== 1) {
+        record(errors, `${page.route}: missing or duplicate contributor row for ${profile.slug}`)
+        continue
+      }
+      const confirmedIdentity = [profile.headline, profile.organization?.name].filter(Boolean)
+      const expectedProfessional = confirmedIdentity.length
+        ? confirmedIdentity.join(' · ')
+        : profile.githubLogin
+          ? `@${profile.githubLogin}`
+          : ''
+      const professional = row.find('.contributor-row__meta')
+      if (
+        professional.length !== (expectedProfessional ? 1 : 0) ||
+        professional.text().trim() !== expectedProfessional
+      ) {
+        record(errors, `${page.route}: professional identity is malformed for ${profile.slug}`)
+      }
+      const localizedRoles = profile.roles.map((role) => ROLE_LABELS[role]?.[page.locale] || role)
+      const roleCaption = page.locale === 'en'
+        ? localizedRoles.length === 1 ? 'Role' : 'Roles'
+        : 'ভূমিকা'
+      const expectedRoles = `${roleCaption}: ${localizedRoles.join(' · ')}`
+      const roleLine = row.find('.contributor-row__roles')
+      if (roleLine.length !== 1 || roleLine.text().replace(/\s+/g, ' ').trim() !== expectedRoles) {
+        record(errors, `${page.route}: contribution roles are malformed for ${profile.slug}`)
+      }
+    }
+
+    const correctionLinks = $('.contributor-method > p:last-of-type a[href]')
+    const expectedCorrectionRoute = page.locale === 'en' ? '/en/contact' : '/contact'
+    const expectedCorrectionLabel = page.locale === 'en' ? 'contact us' : 'যোগাযোগ করুন'
+    if (correctionLinks.length !== 1) {
+      record(errors, `${page.route}: expected exactly one contributor correction contact link`)
+    } else {
+      const correctionLink = correctionLinks.first()
+      if (normalizeInternalHref(correctionLink.attr('href'), page.route) !== expectedCorrectionRoute) {
+        record(errors, `${page.route}: contributor correction link does not point to the localized contact page`)
+      }
+      if (correctionLink.text().trim() !== expectedCorrectionLabel) {
+        record(errors, `${page.route}: contributor correction link has the wrong localized label`)
+      }
     }
   }
 
@@ -333,15 +540,27 @@ if (!fs.existsSync(llmsFullPath)) {
   record(errors, 'llms-full.txt is missing from production output')
 } else {
   const llmsFull = fs.readFileSync(llmsFullPath, 'utf8')
-  for (const page of indexable) {
+  for (const page of indexable.filter((candidate) => !isContributorProfile(candidate))) {
     if (!llmsFull.includes(`](${canonicalUrl(page.route)})`)) {
       record(errors, `llms-full.txt is missing ${canonicalUrl(page.route)}`)
+    }
+  }
+  for (const page of indexable.filter(isContributorProfile)) {
+    if (llmsFull.includes(`](${canonicalUrl(page.route)})`)) {
+      record(errors, `llms-full.txt should not mix contributor profiles into the founder-guide index`)
     }
   }
 }
 
 for (const required of ['og-default.png', `${INDEXNOW_KEY}.txt`]) {
   if (!fs.existsSync(path.join(staticDir, required))) record(errors, `${required} is missing from production output`)
+}
+for (const profile of contributorView.rankedProfiles) {
+  const card = path.join(staticDir, 'contributor-cards', `${profile.slug}.png`)
+  if (!fs.existsSync(card)) record(errors, `proof card is missing for ${profile.slug}`)
+}
+if (fs.existsSync(htmlFileFor('/contributors/not-a-real-contributor'))) {
+  record(errors, 'unknown contributor profile unexpectedly has an exported route')
 }
 
 const notFoundPath = [
