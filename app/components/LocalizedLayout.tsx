@@ -73,7 +73,7 @@ function GitHubIcon() {
 
 function FacebookIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
+    <svg viewBox="2 2 20 20" aria-hidden="true">
       {/* One path, evenodd: the "f" is a hole punched through the disc, not a
           white shape painted on top. A knocked-out counter stays correct on
           whatever surface the header happens to be, so the icon never has to
