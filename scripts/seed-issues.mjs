@@ -63,7 +63,7 @@ const csvRows = parseCsv(fs.readFileSync(path.join(root, 'plan', 'content-backlo
 const header = csvRows[0]
 const backlog = csvRows.slice(1).map((r) => Object.fromEntries(header.map((h, i) => [h, (r[i] ?? '').trim()])))
 
-const manifest = JSON.parse(fs.readFileSync(path.join(root, 'app', 'generated', 'manifest.bn.json'), 'utf8'))
+const manifest = JSON.parse(fs.readFileSync(path.join(root, 'app', 'generated', 'manifest.en.json'), 'utf8'))
 const stubBySlug = new Map()
 for (const section of Object.values(manifest.sections)) {
   for (const page of [section.index, ...section.children].filter(Boolean)) {
@@ -72,7 +72,7 @@ for (const section of Object.values(manifest.sections)) {
 }
 
 function stubSources(slug) {
-  const file = path.join(root, 'app', '(contents)', '(bn)', slug, 'page.mdx')
+  const file = path.join(root, 'app', '(contents)', 'en', slug, 'page.mdx')
   if (!fs.existsSync(file)) return []
   const source = fs.readFileSync(file, 'utf8')
   const links = [...source.matchAll(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g)]
@@ -118,15 +118,15 @@ for (const { row, slug } of picked) {
   const body = [
     `**বিষয়:** ${row['Topic (Bangla)']} *(English: ${row['Topic (English)']})*`,
     `**সেকশন:** ${row.Section} · **অগ্রাধিকার:** High · **ধরন:** ${row['Content type'] || 'Guide'}`,
-    `**স্টাব পেজ:** ${SITE}/${slug}`,
+    `**ইংরেজি স্টাব পেজ:** ${SITE}/en/${slug}`,
     '',
     row.Notes ? `**লেখার অ্যাঙ্গেল:** ${row.Notes}\n` : null,
     sources.length ? '### শুরু করার সূত্র\n\n' + sources.join('\n') + '\n' : null,
     '### কীভাবে লিখবেন',
     '',
     '1. এই ইস্যুতে **"আমি লিখছি"** মন্তব্য করুন – তাহলে আর কেউ একই বিষয়ে সময় দেবেন না।',
-    `2. [স্টাব পেজটি](${SITE}/${slug}) খুলে **"পেজটি লিখুন"** বা **"এডিট"** অপশনে ক্লিক করুন – ব্রাউজারেই লেখা যায়। বিস্তারিত ধাপ: [CONTRIBUTING.md](https://github.com/${REPO}/blob/main/CONTRIBUTING.md)।`,
-    '3. বাংলায় ভেবে নিজের ভাষায় লিখুন। আইন, ফি ও নিয়মের দাবিতে সূত্র দিন। বদলাতে পারে এমন সংখ্যায় সাল দিন। ভাষার জন্য [STYLE.md](https://github.com/' + REPO + '/blob/main/STYLE.md), গবেষণা ও শেখানোর জন্য [EDITORIAL.md](https://github.com/' + REPO + '/blob/main/EDITORIAL.md) দেখুন।',
+    `2. [ইংরেজি স্টাব পেজটি](${SITE}/en/${slug}) খুলে **"Write this page"** বা **"Edit"** অপশনে ক্লিক করুন – ব্রাউজারেই লেখা যায়। বিস্তারিত ধাপ: [CONTRIBUTING.md](https://github.com/${REPO}/blob/main/CONTRIBUTING.md)।`,
+    '3. ইংরেজি গাইডটিই মূল সংস্করণ, তাই আগে সেটিই পূর্ণ করে রিভিউয়ের জন্য পাঠান। আইন, ফি ও নিয়মের দাবিতে সূত্র দিন, আর বদলাতে পারে এমন সংখ্যার সঙ্গে সাল লিখুন। গবেষণা ও শেখানোর মানের জন্য [EDITORIAL.md](https://github.com/' + REPO + '/blob/main/EDITORIAL.md) দেখে নিন। ইংরেজি গাইডের রিভিউ শেষ হলে [STYLE.md](https://github.com/' + REPO + '/blob/main/STYLE.md) মেনে বাংলা সংস্করণ অনুবাদ করুন।',
     '4. পেজ পূর্ণাঙ্গ গাইড হলে শুরুর `<StubNotice ... />` লাইনটি মুছে PR দিন।',
     '',
     'ভাষা নিখুঁত না হলেও জমা দিন – রিভিউতে গুছিয়ে নেওয়া যাবে। প্রশ্ন থাকলে এখানেই করুন।'

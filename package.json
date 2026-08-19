@@ -20,7 +20,6 @@
     "pretypecheck:worker": "npm run cf:typegen",
     "typecheck:worker": "tsc -p tsconfig.worker.json",
     "start": "npm run preview:worker",
-    "scrape": "node scripts/scrape.js",
     "manifest": "node scripts/build-manifest.mjs",
     "contributors:refresh": "node scripts/build-contributors.mjs",
     "contributors:cards": "node scripts/build-contributor-cards.mjs",
@@ -68,7 +67,6 @@
     "remark-parse": "^11.0.0",
     "robots-parser": "^3.0.1",
     "sharp": "^0.35.3",
-    "turndown": "^7.2.4",
     "typescript": "^5.9.3",
     "unified": "^11.0.5",
     "wrangler": "^4.123.0"
