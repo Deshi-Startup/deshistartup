@@ -14,7 +14,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 25
 
     # main takes changes through pull requests, so the snapshot arrives as one
     # too: push the branch (contents), open it and let it merge itself
@@ -25,6 +25,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          # Validation should not inherit the job's write-capable Git credentials.
+          persist-credentials: false
 
       - uses: actions/setup-node@v7
         with:
@@ -35,26 +38,44 @@ jobs:
         run: npm ci
 
       - name: Refresh contributor snapshot
-        run: npm run contributors:refresh
+        id: refresh
+        run: |
+          npm run contributors:refresh
+          if git diff --quiet app/generated/contributors.json; then
+            echo "Snapshot unchanged — nothing to do."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Open a pull request if the snapshot changed
+      # A PR created or updated with the repository's GITHUB_TOKEN creates
+      # `pull_request` runs that wait for manual approval, so this unattended bot
+      # cannot rely on PR checks. The snapshot decides the contributor route set,
+      # manifest entries and proof cards, so validate it here before the push.
+      - name: Validate the refreshed snapshot
+        if: steps.refresh.outputs.changed == 'true'
+        run: |
+          npm run test:contributors
+          npm run build:worker
+          node scripts/check-static-assets.mjs
+        env:
+          NEXT_TELEMETRY_DISABLED: '1'
+
+      - name: Open a pull request with the snapshot
+        if: steps.refresh.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: chore/contributors
         run: |
-          git diff --quiet app/generated/contributors.json && {
-            echo "Snapshot unchanged — nothing to do."
-            exit 0
-          }
-
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B "$BRANCH"
           git add app/generated/contributors.json
           git commit -m "chore: refresh contributor snapshot"
           # The branch is disposable and always one commit ahead of main.
+          gh auth setup-git --hostname github.com
           git push --force origin "$BRANCH"
 
           if [ -z "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then

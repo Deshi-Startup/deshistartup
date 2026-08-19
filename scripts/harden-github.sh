@@ -61,11 +61,11 @@ gh api -X PATCH "repos/$REPO/code-scanning/default-setup" \
 
 # Ruleset notes
 #
-# No "required_status_checks" rule. The PR checks would never report on the
-# contributor-snapshot PR: GitHub does not start workflows for anything the
-# built-in GITHUB_TOKEN pushes or opens, so a required check would stay
-# "expected" forever and that PR would never merge. Every human and App PR
-# still runs PR checks, they are just not a hard gate.
+# No "required_status_checks" rule. A contributor-snapshot PR created or updated
+# with the repository's GITHUB_TOKEN creates `pull_request` runs that wait for
+# manual approval, so a required check would leave this unattended PR "expected"
+# forever. Every human and App PR still runs PR checks, they are just not a hard
+# gate.
 #
 # To make them a hard gate later: give the refresh-contributors workflow a
 # token from the org's GitHub App (actions/create-github-app-token, with

@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          # Don't leave the token in .git/config for the build steps to reach.
+          # Don't make checkout's Git credentials available to the build steps.
           persist-credentials: false
 
       - uses: actions/setup-node@v7
@@ -39,6 +39,12 @@ jobs:
 
       - name: Citation guardrail tests
         run: npm run test:citations
+
+      - name: Contributor recognition tests
+        run: npm run test:contributors
+
+      - name: Contribution flow tests
+        run: npm run test:contribute
 
       - name: Build Cloudflare deployment
         run: npm run build:worker
