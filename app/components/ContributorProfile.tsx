@@ -34,12 +34,12 @@ const copy = {
   en: {
     back: 'All contributors',
     publicLinks: 'Public links',
-    workUnit: (count: number) => (count === 1 ? 'contribution' : 'contributions'),
-    pageUnit: (count: number) => (count === 1 ? 'published page' : 'published pages'),
+    workUnit: (count: number) => (count === 1 ? '\u00a0contribution' : '\u00a0contributions'),
+    pageUnit: (count: number) => (count === 1 ? '\u00a0published page' : '\u00a0published pages'),
     roleCaption: (count: number) => (count === 1 ? 'Role' : 'Roles'),
     since: (date: string) => `Contributing since ${date}`,
     topicsTitle: 'Topics worked on',
-    topicUnit: (count: number) => (count === 1 ? 'page' : 'pages'),
+    topicUnit: (count: number) => (count === 1 ? '\u00a0page' : '\u00a0pages'),
     trailTitle: 'Contribution history',
     evidence: 'View evidence',
     pagesLabel: (count: number) => (count === 1 ? 'Published page' : 'Published pages'),
@@ -135,9 +135,9 @@ function TargetPages({
 
   if (targets.length === 1) {
     return (
-      <p className="contributor-event__pages contributor-event__pages--one">
+      <div className="contributor-event__pages contributor-event__pages--one">
         <span className="contributor-event__pages-label">{text.pagesLabel(1)}:</span> {pages}
-      </p>
+      </div>
     )
   }
 
@@ -153,12 +153,14 @@ export default function ContributorProfile({
   profile,
   organizations,
   refreshedAt,
-  locale
+  locale,
+  scopeClassName
 }: {
   profile: ContributorProfileView
   organizations: ContributorOrganization[]
   refreshedAt: string | null
   locale: ContributorLocale
+  scopeClassName: string
 }) {
   const text = copy[locale]
   const organizationById = new Map(organizations.map((organization) => [organization.id, organization]))
@@ -195,7 +197,7 @@ export default function ContributorProfile({
   }
 
   return (
-    <div className="contributor-profile" data-pagefind-ignore="all">
+    <div className={`${scopeClassName} contributor-profile`} data-pagefind-ignore="all">
       <a className="contributor-profile__back" href={localeHref('/contributors', locale)}>
         ← {text.back}
       </a>

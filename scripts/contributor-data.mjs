@@ -323,6 +323,9 @@ export function validateContributorLedger({
     if ((profile.headline || profile.organizationId || hasUnconfirmedExternalLink) && !profile.confirmedAt) {
       throw new Error(`Profile ${profile.id} contains unconfirmed public details`)
     }
+    if (profile.visibility === 'public' && !profile.confirmedAt) {
+      throw new Error(`Public profile ${profile.id} requires confirmation`)
+    }
     profileIds.add(profile.id)
     slugs.add(profile.slug)
   }
@@ -486,6 +489,7 @@ function githubIdentity(pull, indexes) {
   if (indexes.hiddenGitHub.has(loginKey)) return { status: 'excluded' }
 
   if (indexes.core.has(loginKey)) {
+    if (indexes.optedOutGitHub.has(loginKey)) return { status: 'excluded' }
     return {
       status: 'core',
       key: `github:${loginKey}`,
@@ -760,6 +764,11 @@ export async function buildContributorSnapshot({
     const githubKey = normalizedKey(profile.githubLogin)
     if (githubKey && (indexes.hiddenGitHub.has(githubKey) || indexes.optedOutGitHub.has(githubKey))) {
       hiddenProfileIds.add(normalizedKey(profile.id))
+    }
+  }
+  for (const [githubLogin, profileId] of indexes.githubAliases.entries()) {
+    if (indexes.hiddenGitHub.has(githubLogin) || indexes.optedOutGitHub.has(githubLogin)) {
+      hiddenProfileIds.add(normalizedKey(profileId))
     }
   }
   for (const [inlineName, profileId] of indexes.inlineAliases.entries()) {

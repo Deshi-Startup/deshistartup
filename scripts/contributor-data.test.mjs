@@ -27,7 +27,7 @@ function profile(id, login = id, overrides = {}) {
     githubLogin: login,
     links: [{ label: 'GitHub', url: `https://github.com/${login}` }],
     avatar: { kind: 'monogram' },
-    confirmedAt: null,
+    confirmedAt: '2026-08-01',
     visibility: 'public',
     ...overrides
   }
@@ -312,6 +312,22 @@ test('converts opted-out people to anonymous credit and removes their route iden
   assert.equal(JSON.stringify(snapshot).includes('Alice'), false)
 })
 
+test('applies a historical GitHub alias opt-out to the linked public profile', async () => {
+  const alice = profile('alice', 'alice-new')
+  const basePolicy = policy([alice])
+  basePolicy.identityAliases.githubLogins['alice-old'] = 'alice'
+  basePolicy.optOuts.githubLogins = ['ALICE-OLD']
+  const snapshot = await buildContributorSnapshot({
+    policy: basePolicy,
+    ledger: ledger([alice], [event(1, 'alice')]),
+    targetCatalog: targetCatalog('/guides/example'),
+    fetchImpl: githubMock([pull(1, 'alice-old')])
+  })
+  assert.equal(snapshot.rankedProfiles.length, 0)
+  assert.equal(snapshot.events[0].credits[0].mode, 'anonymous')
+  assert.equal(JSON.stringify(snapshot).includes('Alice'), false)
+})
+
 test('enforces stable unique slugs and referential integrity', () => {
   const alice = profile('alice')
   const duplicate = profile('bob', 'bob', { slug: 'alice' })
@@ -358,6 +374,7 @@ test('rejects unconfirmed external profile links and profile text that the publi
   const catalog = targetCatalog('/guides/example')
   const unconfirmedLink = ledger([{
     ...alice,
+    confirmedAt: null,
     links: [
       { label: 'GitHub', url: 'https://github.com/alice' },
       { label: 'Newsletter', url: 'https://example.org/alice' }
@@ -415,6 +432,17 @@ test('requires a GitHub or LinkedIn link on every public contributor profile', (
     ledger: ledger([linkedInOnly]),
     policy: policy([linkedInOnly])
   }))
+})
+
+test('requires confirmation before publishing a canonical GitHub identity', () => {
+  const alice = profile('alice', 'alice', { confirmedAt: null })
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: ledger([alice]),
+      policy: policy([alice])
+    }),
+    /Public profile alice requires confirmation/
+  )
 })
 
 test('ranks by lifetime accepted events, then recency, then display name', async () => {
@@ -524,7 +552,10 @@ test('resolves a confirmed GitHub avatar separately from an inline-editor bot id
 
 test('requires confirmation and a login before resolving a GitHub avatar', () => {
   const catalog = targetCatalog()
-  const withoutConfirmation = profile('alice', 'alice', { avatar: { kind: 'github' } })
+  const withoutConfirmation = profile('alice', 'alice', {
+    avatar: { kind: 'github' },
+    confirmedAt: null
+  })
   assert.throws(
     () => validateContributorLedger({
       ledger: ledger([withoutConfirmation]),
@@ -622,7 +653,8 @@ test('requires confirmed, registered media avatars and keeps their logical path 
   const unconfirmed = profile('alice', null, {
     githubLogin: null,
     links: [{ label: 'LinkedIn', url: 'https://www.linkedin.com/in/alice' }],
-    avatar: { kind: 'media', path: logicalPath }
+    avatar: { kind: 'media', path: logicalPath },
+    confirmedAt: null
   })
   assert.throws(
     () => validateContributorLedger({
@@ -671,6 +703,18 @@ test('keeps bots out and core maintainers separate and unranked', async () => {
   assert.equal(snapshot.rankedProfiles.length, 0)
   assert.equal(snapshot.coreProfiles.length, 1)
   assert.equal(snapshot.coreProfiles[0].displayName, 'Shamir Islam')
+})
+
+test('removes an opted-out core maintainer from the public core-team list', async () => {
+  const basePolicy = policy([])
+  basePolicy.optOuts.githubLogins = ['SHAMIRISLAM']
+  const snapshot = await buildContributorSnapshot({
+    policy: basePolicy,
+    ledger: ledger([], []),
+    targetCatalog: new Map(),
+    fetchImpl: githubMock([pull(1, 'shamirislam')])
+  })
+  assert.equal(snapshot.coreProfiles.length, 0)
 })
 
 test('requests a small avatar instead of the full-size default', () => {

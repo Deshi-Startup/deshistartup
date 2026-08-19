@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import ContributorProfile from '../../../../components/ContributorProfile'
+import styles from '../../../../components/ContributorRecognition.module.css'
 import {
   getContributorOrganizations,
   getContributorProfile,
@@ -42,6 +43,7 @@ export default async function BanglaContributorProfilePage({
       organizations={getContributorOrganizations()}
       refreshedAt={getContributorSnapshotDate()}
       locale="bn"
+      scopeClassName={styles.scope}
     />
   )
 }

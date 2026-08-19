@@ -69,14 +69,33 @@ for (const [list, expected] of [
   })
 }
 
-test('does not map a historical GitHub alias or another profile inline alias to this profile', () => {
+for (const [list, expected] of [
+  ['exclusions', 'exclusion-github'],
+  ['optOuts', 'opt-out-github']
+]) {
+  test(`withdraws media through a case-insensitive historical GitHub alias ${list === 'exclusions' ? 'exclusion' : 'opt-out'}`, () => {
+    const base = policy({
+      identityAliases: {
+        githubLogins: { 'old-alice': 'alice' },
+        inlineNames: { 'Bob Writer': 'bob' }
+      }
+    })
+    base[list].githubLogins = ['OLD-ALICE']
+    assert.deepEqual(contributorProfileWithdrawal(profile, base), {
+      kind: expected,
+      identity: 'old-alice'
+    })
+  })
+}
+
+test('does not map another profile inline alias to this profile', () => {
   const base = policy({
     identityAliases: {
-      githubLogins: { 'old-alice': 'alice' },
+      githubLogins: {},
       inlineNames: { 'Bob Writer': 'bob' }
     },
     exclusions: {
-      githubLogins: ['old-alice'],
+      githubLogins: [],
       inlineNames: ['Bob Writer'],
       profileIds: []
     }

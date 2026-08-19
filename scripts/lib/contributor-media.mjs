@@ -28,12 +28,25 @@ export function contributorProfileWithdrawal(profile, policy = {}) {
     return { kind: 'opt-out-profile' }
   }
 
+  const hiddenGitHub = policySet(policy.exclusions?.githubLogins)
+  const optedOutGitHub = policySet(policy.optOuts?.githubLogins)
   const githubLogin = normalizedKey(profile?.githubLogin)
-  if (githubLogin && policySet(policy.exclusions?.githubLogins).has(githubLogin)) {
+  if (githubLogin && hiddenGitHub.has(githubLogin)) {
     return { kind: 'exclusion-github', identity: profile.githubLogin }
   }
-  if (githubLogin && policySet(policy.optOuts?.githubLogins).has(githubLogin)) {
+  if (githubLogin && optedOutGitHub.has(githubLogin)) {
     return { kind: 'opt-out-github', identity: profile.githubLogin }
+  }
+
+  for (const [alias, aliasedProfileId] of Object.entries(policy.identityAliases?.githubLogins || {})) {
+    if (normalizedKey(aliasedProfileId) !== profileId) continue
+    const aliasKey = normalizedKey(alias)
+    if (hiddenGitHub.has(aliasKey)) {
+      return { kind: 'exclusion-github', identity: alias }
+    }
+    if (optedOutGitHub.has(aliasKey)) {
+      return { kind: 'opt-out-github', identity: alias }
+    }
   }
 
   const hiddenInline = policySet(policy.exclusions?.inlineNames)

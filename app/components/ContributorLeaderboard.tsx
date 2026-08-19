@@ -109,7 +109,7 @@ function formatDate(value: string | null | undefined, locale: Locale) {
    suffix rather than a separate word. */
 function countUnit(count: number, locale: Locale) {
   if (locale === 'bn') return 'টি অবদান'
-  return count === 1 ? 'contribution' : 'contributions'
+  return count === 1 ? '\u00a0contribution' : '\u00a0contributions'
 }
 
 function roleLabel(role: string, locale: Locale) {
@@ -197,7 +197,13 @@ function ContributorRow({ profile, locale }: { profile: ProfileView; locale: Loc
           <span className="contributor-row__unit">{countUnit(profile.acceptedEventCount || 0, locale)}</span>
         </span>
         {lastAccepted ? (
-          <time dateTime={profile.lastAcceptedAt || undefined}>{lastAccepted}</time>
+          <>
+            {' '}
+            <span className="contributor-row__date">
+              <span>{text.latestLabel}: </span>
+              <time dateTime={profile.lastAcceptedAt || undefined}>{lastAccepted}</time>
+            </span>
+          </>
         ) : null}
       </span>
     </li>
@@ -230,14 +236,20 @@ function CoreTeam({ profiles, locale }: { profiles: ProfileView[]; locale: Local
   )
 }
 
-export default function ContributorLeaderboard({ locale = 'bn' }: { locale?: Locale }) {
+export default function ContributorLeaderboard({
+  locale = 'bn',
+  scopeClassName = ''
+}: {
+  locale?: Locale
+  scopeClassName?: string
+}) {
   const text = copy[locale]
   const view = prepareContributorSnapshot(snapshotData) as LeaderboardView
   const refreshed = formatDate(view.refreshedAt, locale)
   const correctionHref = localHref(locale === 'en' ? '/en/contact' : '/contact')
 
   return (
-    <section className="contributor-board">
+    <section className={`${scopeClassName} contributor-board`.trim()}>
       {view.hasContributors ? (
         <div className="contributor-register">
           {/* One line, and only the fact the rows cannot give you: how far the
