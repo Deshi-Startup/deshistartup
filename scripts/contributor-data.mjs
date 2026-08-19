@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import { isDeepStrictEqual } from 'node:util'
 import {
   MAX_PROFILE_TEXT_LENGTH,
   ROLE_IDS,
@@ -854,8 +855,39 @@ export async function writeSnapshotAtomically(outputPath, snapshot) {
   }
 }
 
+async function readValidSnapshot(outputPath) {
+  let source
+  try {
+    source = await fs.readFile(outputPath, 'utf8')
+  } catch (error) {
+    if (error?.code === 'ENOENT') return null
+    throw error
+  }
+
+  try {
+    const snapshot = JSON.parse(source)
+    validatePublicSnapshot(snapshot)
+    const refreshedAt = new Date(snapshot.refreshedAt)
+    if (Number.isNaN(refreshedAt.valueOf()) || refreshedAt.toISOString() !== snapshot.refreshedAt) {
+      return null
+    }
+    return snapshot
+  } catch {
+    return null
+  }
+}
+
+function snapshotContents(snapshot) {
+  const { refreshedAt: _refreshedAt, ...contents } = snapshot
+  return contents
+}
+
 export async function refreshContributorFile(options) {
   const snapshot = await buildContributorSnapshot(options)
+  const current = await readValidSnapshot(options.outputPath)
+  if (current && isDeepStrictEqual(snapshotContents(current), snapshotContents(snapshot))) {
+    return current
+  }
   await writeSnapshotAtomically(options.outputPath, snapshot)
   return snapshot
 }

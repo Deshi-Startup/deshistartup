@@ -749,6 +749,108 @@ test('API failure preserves the last good snapshot', async () => {
   }
 })
 
+test('an unchanged refresh preserves the existing snapshot timestamp', async () => {
+  const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'deshi-contributors-unchanged-'))
+  const outputPath = path.join(directory, 'contributors.json')
+  const alice = profile('alice')
+  const options = {
+    policy: policy([alice]),
+    ledger: ledger([alice], [event(1, 'alice')]),
+    targetCatalog: targetCatalog('/guides/example'),
+    outputPath,
+    fetchImpl: githubMock([pull(1, 'alice')])
+  }
+  const original = await buildContributorSnapshot({
+    ...options,
+    now: new Date('2026-08-18T04:00:00Z')
+  })
+  const originalSource = `${JSON.stringify(original, null, 2)}\n`
+  const originalMtime = new Date('2026-08-18T04:00:00Z')
+  await fs.writeFile(outputPath, originalSource)
+  await fs.utimes(outputPath, originalMtime, originalMtime)
+
+  try {
+    const refreshed = await refreshContributorFile({
+      ...options,
+      now: new Date('2026-08-19T04:00:00Z')
+    })
+
+    assert.deepEqual(refreshed, original)
+    assert.equal(await fs.readFile(outputPath, 'utf8'), originalSource)
+    assert.equal((await fs.stat(outputPath)).mtimeMs, originalMtime.valueOf())
+  } finally {
+    await fs.rm(directory, { recursive: true, force: true })
+  }
+})
+
+test('a refresh repairs a malformed existing snapshot timestamp', async () => {
+  const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'deshi-contributors-timestamp-'))
+  const outputPath = path.join(directory, 'contributors.json')
+  const alice = profile('alice')
+  const options = {
+    policy: policy([alice]),
+    ledger: ledger([alice], [event(1, 'alice')]),
+    targetCatalog: targetCatalog('/guides/example'),
+    outputPath,
+    fetchImpl: githubMock([pull(1, 'alice')])
+  }
+  const malformed = await buildContributorSnapshot({
+    ...options,
+    now: new Date('2026-08-18T04:00:00Z')
+  })
+  malformed.refreshedAt = 'not-a-timestamp'
+  await fs.writeFile(outputPath, `${JSON.stringify(malformed, null, 2)}\n`)
+
+  try {
+    const refreshed = await refreshContributorFile({
+      ...options,
+      now: new Date('2026-08-19T04:00:00Z')
+    })
+    const saved = JSON.parse(await fs.readFile(outputPath, 'utf8'))
+
+    assert.equal(refreshed.refreshedAt, '2026-08-19T04:00:00.000Z')
+    assert.deepEqual(saved, refreshed)
+  } finally {
+    await fs.rm(directory, { recursive: true, force: true })
+  }
+})
+
+test('a substantive refresh replaces the snapshot and advances its timestamp', async () => {
+  const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'deshi-contributors-changed-'))
+  const outputPath = path.join(directory, 'contributors.json')
+  const alice = profile('alice')
+  const sourceLedger = ledger([alice], [event(1, 'alice')])
+  const options = {
+    policy: policy([alice]),
+    ledger: sourceLedger,
+    targetCatalog: targetCatalog('/guides/example'),
+    outputPath,
+    fetchImpl: githubMock([pull(1, 'alice')])
+  }
+
+  try {
+    await refreshContributorFile({
+      ...options,
+      now: new Date('2026-08-18T04:00:00Z')
+    })
+    sourceLedger.events[0].summary.en = 'Updated contribution'
+
+    const refreshed = await refreshContributorFile({
+      ...options,
+      now: new Date('2026-08-19T04:00:00Z')
+    })
+    const saved = JSON.parse(await fs.readFile(outputPath, 'utf8'))
+
+    assert.equal(refreshed.refreshedAt, '2026-08-19T04:00:00.000Z')
+    assert.equal(saved.events[0].summary.en, 'Updated contribution')
+    assert.deepEqual(saved, refreshed)
+    assert.doesNotThrow(() => validatePublicSnapshot(saved))
+    assert.deepEqual(await fs.readdir(directory), ['contributors.json'])
+  } finally {
+    await fs.rm(directory, { recursive: true, force: true })
+  }
+})
+
 test('a failed GitHub avatar lookup preserves the last good snapshot', async () => {
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'deshi-contributor-avatar-'))
   const outputPath = path.join(directory, 'contributors.json')
