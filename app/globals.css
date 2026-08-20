@@ -4515,6 +4515,11 @@ body.auth-open {
   font-size: 0.9rem;
 }
 
+.edit-publish__error:focus {
+  outline: 2px solid var(--green-deep);
+  outline-offset: 2px;
+}
+
 .edit-publish__error p {
   margin: 0;
 }
@@ -4896,9 +4901,9 @@ body.auth-open {
     padding: 10px 18px;
   }
 
-  /* One row while nothing is at stake: page name on the left, the two actions on
-     the right. The status line only claims a second row once there is something
-     to say, which on a 714px-tall phone is a row worth not spending. */
+  /* At compact tablet widths the page name and available actions share the
+     first row when they fit. The status only claims another row once there is
+     something to say; the narrower phone rule below groups actions explicitly. */
   .edit-bar__what {
     flex: 1 1 8rem;
   }
@@ -4919,6 +4924,14 @@ body.auth-open {
 
   .edit-flash__close {
     width: 44px;
+  }
+
+  /* A phone cannot hold four thumb-sized actions on a sticky bar without
+     spending a third row of a 714px screen. So the bar keeps the step that
+     comes first — look at what changed — and sends from inside that sheet or
+     from the publish panel, the way a mobile wiki editor already works. */
+  .edit-bar__actions .edit-btn--send {
+    display: none;
   }
 
   .edit-live {
@@ -5003,6 +5016,36 @@ body.auth-open {
   .media-review__summary > a {
     flex-basis: 100%;
     margin-left: 0;
+  }
+
+  /* Keep the sticky editor at two rows across narrow phones: identity and
+     status share the first, while the three available actions divide the
+     second. A dirty-state message must not create a third persistent row. */
+  .edit-bar__status {
+    order: 0;
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 48%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .edit-bar__actions {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .edit-bar__actions .edit-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: center;
+    padding-inline: 8px;
+    text-align: center;
+  }
+
+  .edit-bar__actions .edit-bar__warn {
+    flex: 1 1 100%;
   }
 }
 

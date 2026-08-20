@@ -1,0 +1,330 @@
+/* ------------------------------------------------- review changes dialog */
+/* The contributor edited rendered prose, never Markdown source, so this sheet
+   has to answer one question — "what did I actually change?" — without asking
+   them to read a patch. Line numbers are gone, the @@ header is gone, and the
+   words that moved carry the mark. What is left is the site's own paper: white
+   canvas, hairline rules, the green top edge every dialog here wears. */
+
+.card {
+  position: relative;
+  display: flex;
+  width: min(100%, 920px);
+  max-height: calc(100vh - 48px);
+  max-height: calc(100dvh - 48px);
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--green-deep);
+  background: var(--canvas);
+  animation: card-in 180ms ease-out both;
+}
+
+.card:focus {
+  outline: none;
+}
+
+.header {
+  flex: 0 0 auto;
+  padding: 24px 64px 18px 32px;
+}
+
+.header h2 {
+  margin: 0 0 7px;
+  border: 0;
+  padding: 0;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.08rem;
+}
+
+.header p {
+  max-width: var(--measure);
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* One line that both counts the edit and teaches the two colours used below,
+   so the rows need no separate key. */
+.summary {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin: 0;
+  background: var(--canvas-soft);
+  padding: 10px 32px;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.places {
+  margin-right: 4px;
+  color: var(--ink);
+  font-weight: var(--w-strong);
+}
+
+.chip {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-weight: var(--w-strong);
+  white-space: nowrap;
+}
+
+.chipAdd {
+  border-color: color-mix(in srgb, var(--green) 35%, var(--canvas));
+  background: var(--green-soft);
+  color: var(--green-deep);
+}
+
+.chipRemove {
+  border-color: var(--warn-line-soft);
+  background: var(--warn-bg);
+  color: var(--warn-ink);
+}
+
+.body {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 18px 32px 4px;
+}
+
+.notice {
+  margin: 0 0 16px;
+  border: 1px solid var(--line);
+  background: var(--canvas-soft);
+  padding: 14px 16px;
+  color: var(--muted);
+}
+
+.hunk {
+  margin: 0 0 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--canvas);
+}
+
+/* Where in the page this change sits. The nearest heading is the address a
+   contributor recognises; "@@ −41,7 +41,9 @@" is an address for a machine. */
+.hunkHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin: 0;
+  border-bottom: 1px solid var(--line-soft);
+  background: var(--canvas-soft);
+  padding: 8px 12px;
+  font-size: 0.82rem;
+}
+
+.hunkIndex {
+  flex: 0 0 auto;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.hunkWhere {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ink);
+  font-weight: var(--w-strong);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hunkWhere::before {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 0.8em;
+  margin-right: 10px;
+  background: var(--line);
+  vertical-align: -0.05em;
+}
+
+.rows {
+  overflow-x: auto;
+}
+
+/* Two columns, not four: an accent edge with its sign, then the text. On a
+   360px phone the old twin line-number gutters cost a quarter of the width
+   and told a prose editor nothing. */
+/* No rule between rows. Hairlines turn continuous prose into a ledger; the
+   two washes already say where a change starts and stops. */
+.row {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  min-width: 0;
+  border-left: 3px solid transparent;
+  line-height: 1.6;
+}
+
+/* An untouched blank line is a paragraph gap, not a line worth a whole row. */
+.blank .marker,
+.blank .code {
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 0;
+  line-height: 8px;
+}
+
+.context {
+  color: var(--muted);
+}
+
+.addition {
+  border-left-color: var(--green);
+  background: var(--green-soft);
+}
+
+.deletion {
+  border-left-color: var(--warn-border);
+  background: var(--warn-bg);
+}
+
+.marker,
+.code {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.marker {
+  color: var(--faint);
+  font-size: 0.85rem;
+  font-weight: var(--w-strong);
+  text-align: center;
+  user-select: none;
+}
+
+.addition .marker {
+  color: var(--green-deep);
+}
+
+.deletion .marker {
+  color: var(--warn-ink);
+}
+
+.code {
+  display: block;
+  padding-right: 12px;
+  font-family: var(--sans);
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.addition .code,
+.deletion .code {
+  color: var(--ink);
+}
+
+.syntax {
+  color: var(--faint);
+}
+
+/* The point of the whole dialog: a one-word fix should read as one word, not
+   as two near-identical paragraphs to compare by eye. */
+.mark {
+  border-radius: 3px;
+  padding: 1px 1px;
+  color: var(--ink);
+  font-weight: var(--w-strong);
+}
+
+.addition .mark {
+  background: color-mix(in srgb, var(--green) 26%, var(--canvas));
+}
+
+.deletion .mark {
+  background: color-mix(in srgb, var(--warn-border) 48%, var(--canvas));
+}
+
+.footer {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  border-top: 1px solid var(--line);
+  background: var(--canvas-soft);
+  padding: 12px 32px max(12px, env(safe-area-inset-bottom));
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    width: 100%;
+    max-height: calc(100vh - max(12px, env(safe-area-inset-top)));
+    max-height: calc(100dvh - max(12px, env(safe-area-inset-top)));
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+    animation-name: sheet-in;
+    animation-duration: 220ms;
+  }
+
+  .header {
+    padding: 22px 60px 14px 18px;
+  }
+
+  .header p {
+    font-size: 1rem;
+  }
+
+  .summary {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .body {
+    padding: 14px 0 2px;
+  }
+
+  .notice,
+  .hunk {
+    margin-right: 18px;
+    margin-left: 18px;
+  }
+
+  .code {
+    padding-right: 10px;
+  }
+
+  .footer {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  /* Thumb-sized, and the send action keeps the right-hand edge it has in the
+     publish panel, so the primary button never changes sides. */
+  .footer :global(.edit-btn) {
+    flex: 1 1 0;
+    min-height: 44px;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}

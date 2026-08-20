@@ -38,6 +38,9 @@ import {
   extractPendingMediaIds,
   rejectPendingMediaInMarkdown
 } from '../lib/contribution-media'
+import { buildContributionReview } from '../lib/contribution-diff'
+import type { ContributionReview } from '../lib/contribution-diff'
+import ContributionDiffDialog from './ContributionDiffDialog'
 
 /**
  * DIRECTION CONTRACT
@@ -207,10 +210,12 @@ export default function ContributionEditor({
   const [pendingMedia, setPendingMedia] = useState<PendingMedia[]>([])
   const [uploadingImage, setUploadingImage] = useState(false)
   const [uploadError, setUploadError] = useState<string | null>(null)
+  const [review, setReview] = useState<ContributionReview | null>(null)
   const [previewUrls, setPreviewUrls] = useState<Record<string, string>>({})
   const containerRef = useRef<HTMLDivElement>(null)
   const imageInputRef = useRef<HTMLInputElement>(null)
   const summaryRef = useRef<HTMLTextAreaElement>(null)
+  const submitErrorRef = useRef<HTMLDivElement>(null)
   const crepeRef = useRef<Crepe | null>(null)
   const markdownRef = useRef<string>('')
   const baselineRef = useRef<string | null>(null)
@@ -611,6 +616,21 @@ export default function ContributionEditor({
   useEffect(() => onReadyChange(ready), [ready, onReadyChange])
   useEffect(() => onDirtyChange(dirty), [dirty, onDirtyChange])
 
+  // A submission can start from the sticky review sheet while the publish
+  // panel is far below the viewport. If validation or the network rejects it,
+  // take both sighted and keyboard users to the existing actionable error.
+  useEffect(() => {
+    if (!submitError) return undefined
+    const focusFrame = window.requestAnimationFrame(() => {
+      const errorNode = submitErrorRef.current
+      // Reauthentication owns focus when its modal is open.
+      if (!errorNode || errorNode.closest('[inert]')) return
+      errorNode.scrollIntoView({ block: 'center' })
+      errorNode.focus({ preventScroll: true })
+    })
+    return () => window.cancelAnimationFrame(focusFrame)
+  }, [submitError])
+
   // The shell asks to leave (browser back). Never drop work silently.
   // Edge-triggered, not level-triggered: the counter lives in the shell and
   // keeps climbing across edit sessions, so a fresh editor must react to the
@@ -823,6 +843,21 @@ export default function ContributionEditor({
     }
   }
 
+  const closeReview = useCallback(() => setReview(null), [])
+
+  function openReview() {
+    if (baselineRef.current === null) return
+    let current = markdownRef.current
+    try {
+      current = readMarkdown(crepeRef.current)
+    } catch {
+      // markdownRef follows every successful editor serialization, so it is a
+      // safe last-known copy if Crepe is briefly between transactions.
+    }
+    markdownRef.current = current
+    setReview(buildContributionReview(baselineRef.current, current))
+  }
+
   const ghEditUrl = `${REPO_URL}/edit/main/${repoFileFor(pathname)}`
   const pageTitle = data?.frontmatter.title || data?.title || fallbackTitle
 
@@ -902,19 +937,38 @@ export default function ContributionEditor({
                 {error ? t(isEn, 'পড়ায় ফিরুন', 'Back to reading') : t(isEn, 'বাতিল', 'Cancel')}
               </button>
               {!error && (
-                <button
-                  type="button"
-                  className="edit-btn is-primary"
-                  onClick={handleSubmit}
-                  disabled={!ready || !dirty || submitting}
-                  title={
-                    ready && !dirty
-                      ? t(isEn, 'এখনো কিছু বদলাননি।', 'Nothing has changed yet.')
-                      : undefined
-                  }
-                >
-                  {t(isEn, 'রিভিউতে পাঠান', 'Send for review')}
-                </button>
+                <>
+                  {/* Always present, disabled while clean: a control that
+                      appears on the first keystroke pushes the primary button
+                      sideways under the reader's own cursor. */}
+                  <button
+                    type="button"
+                    className="edit-btn edit-btn--review"
+                    aria-haspopup="dialog"
+                    onClick={openReview}
+                    disabled={!ready || !dirty || submitting}
+                    title={
+                      ready && !dirty
+                        ? t(isEn, 'এখনো কিছু বদলাননি।', 'Nothing has changed yet.')
+                        : undefined
+                    }
+                  >
+                    {t(isEn, 'কী বদলেছে', 'Review changes')}
+                  </button>
+                  <button
+                    type="button"
+                    className="edit-btn is-primary edit-btn--send"
+                    onClick={handleSubmit}
+                    disabled={!ready || !dirty || submitting}
+                    title={
+                      ready && !dirty
+                        ? t(isEn, 'এখনো কিছু বদলাননি।', 'Nothing has changed yet.')
+                        : undefined
+                    }
+                  >
+                    {t(isEn, 'রিভিউতে পাঠান', 'Send for review')}
+                  </button>
+                </>
               )}
             </>
           )}
@@ -1257,7 +1311,12 @@ export default function ContributionEditor({
             />
 
             {submitError && (
-              <div className="edit-publish__error" role="alert">
+              <div
+                className="edit-publish__error"
+                ref={submitErrorRef}
+                role="alert"
+                tabIndex={-1}
+              >
                 <p>
                   {submitError === 'unauthorized'
                     ? t(
@@ -1372,6 +1431,15 @@ export default function ContributionEditor({
                 </button>
                 <button
                   type="button"
+                  className="edit-btn"
+                  aria-haspopup="dialog"
+                  onClick={openReview}
+                  disabled={!ready || !dirty || submitting}
+                >
+                  {t(isEn, 'কী বদলেছে', 'Review changes')}
+                </button>
+                <button
+                  type="button"
                   className="edit-btn is-primary"
                   onClick={handleSubmit}
                   disabled={!ready || !dirty || submitting}
@@ -1384,6 +1452,20 @@ export default function ContributionEditor({
             </div>
           </div>
         </>
+      )}
+      {review && (
+        <ContributionDiffDialog
+          review={review}
+          isEn={isEn}
+          onClose={closeReview}
+          // Close first: a submit error belongs on the publish panel, which
+          // this sheet would otherwise be covering.
+          onSubmit={() => {
+            closeReview()
+            void handleSubmit()
+          }}
+          canSubmit={ready && dirty && !submitting}
+        />
       )}
     </div>
   )

@@ -36,7 +36,7 @@
     "lint:bangla": "node scripts/bangla-lint.mjs",
     "lint:routes": "node scripts/route-lint.mjs",
     "lint:terms": "node scripts/apply-terms.mjs",
-    "test:contribute": "node --experimental-strip-types --test app/lib/contributable-path.test.mjs app/lib/contribution-markdown.test.mjs app/lib/contribution-draft.test.mjs app/lib/contribution-media.test.mjs app/lib/clean-route.test.mjs app/lib/page-chrome.test.mjs",
+    "test:contribute": "node --experimental-strip-types --test app/lib/contributable-path.test.mjs app/lib/contribution-markdown.test.mjs app/lib/contribution-diff.test.mjs app/lib/contribution-draft.test.mjs app/lib/contribution-media.test.mjs app/lib/clean-route.test.mjs app/lib/page-chrome.test.mjs",
     "test:contributors": "node --test scripts/contributor-data.test.mjs scripts/contributor-cards.test.mjs scripts/content-guide.test.mjs scripts/postbuild-contributors.test.mjs app/lib/contributor-event-locale.test.mjs app/lib/contributor-leaderboard.test.mjs app/lib/contributor-topics.test.mjs app/lib/page-byline.test.mjs app/lib/page-credits.test.mjs",
     "test:analytics": "node --experimental-strip-types --test app/lib/search-analytics.test.mjs",
     "search:audit": "node scripts/search-audit.mjs",
