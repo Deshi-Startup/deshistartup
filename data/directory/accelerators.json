@@ -151,6 +151,40 @@
     "notes": "A six-month accelerator and investment programme combining early-stage capital with founder leadership, company-building and Bangladesh-specific legal and financial support. It is sector-agnostic, prefers teams with some market traction and looks for businesses addressing socioeconomic challenges."
   },
   {
+    "name": "NSU Startups Next",
+    "type": "University startup incubator and accelerator",
+    "stage": [
+      "Idea",
+      "Pre-MVP",
+      "Early stage",
+      "Early traction"
+    ],
+    "sectors": [
+      "Technology-enabled startups",
+      "Scalable solutions"
+    ],
+    "benefits": [
+      "16-week Founders’ Lab or Flagship track",
+      "Weekly KPI tracking and progress reviews every two weeks",
+      "Industry mentorship and business support",
+      "NSU workspace plus programme tools and credits",
+      "Investor pitch and two months of post-programme support for Flagship teams"
+    ],
+    "cohortTiming": "Cohort 4 launched in May 2026 and was still active on 9 August 2026. Its 15 April application deadline has passed; the next intake has not been announced.",
+    "costOrEquity": "No programme fee, according to the official FAQ. Equity terms: Not publicly stated.",
+    "notableAlumni": [
+      "Thrive",
+      "ReShop",
+      "Kalke",
+      "HypeScout"
+    ],
+    "applicationPath": "Cohort 4 applications are closed. Follow the official website or LinkedIn page, or email nsu.sn@northsouth.edu, for the next intake. Eligibility varies by cohort.",
+    "website": "https://nsustartupsnext.org/",
+    "sourceUrl": "https://nsustartupsnext.org/programs/",
+    "lastVerified": "2026-08-20",
+    "notes": "North South University's cohort-based startup platform has two 16-week tracks. Founders’ Lab helps idea-stage teams validate a business model and develop an initial MVP. Flagship Incubation supports launched, technology-enabled startups with early traction as they work towards product-market fit and investor readiness. Support includes structured reviews, mentors, workspace, tools and credits, investor exposure and two months of post-programme support for Flagship graduates."
+  },
+  {
     "name": "Bangladesh Hi-Tech Park Authority (BHTPA)",
     "type": "Government technology infrastructure and incubation",
     "stage": [
