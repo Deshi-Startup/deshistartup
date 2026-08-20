@@ -29,12 +29,29 @@ function byline(events, locale = 'bn') {
    sentence, so a change to the break scaffolding cannot silently rewrite what
    the byline claims about a person. */
 function text(html) {
-  return html
-    .replace(/<[^>]+>/g, '')
+  let visible = ''
+  let insideTag = false
+  for (const character of html) {
+    if (character === '<') {
+      insideTag = true
+      continue
+    }
+    if (insideTag) {
+      if (character === '>') insideTag = false
+      continue
+    }
+    visible += character
+  }
+
+  return visible
     .replace(/ /g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
 }
+
+test('the test text extractor drops an unterminated tag', () => {
+  assert.equal(text('Visible<script'), 'Visible')
+})
 
 function links(html) {
   return [...html.matchAll(/<a\b[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g)].map(
