@@ -49,6 +49,23 @@ function sourceFileFor(pathname: string) {
   return `app/(contents)/(bn)${pathname === '/' ? '' : pathname}/page.mdx`
 }
 
+/**
+ * The server allowlist makes this a security-independent UX guard. These
+ * markers are rendered with the page, so the shell can avoid shipping a route
+ * catalogue merely to learn whether the visible content lives in the MDX.
+ */
+function articleSupportsInlineEdit(article: HTMLElement | null) {
+  if (!article) return true
+  if (article.querySelector('[data-pagefind-meta="stub"]')) return false
+
+  const directChildren = Array.from(article.children)
+  const hasSectionIndex = directChildren.some(
+    (child) => child.getAttribute('data-inline-edit-source') === 'section-index'
+  )
+  const hasAuthoredSection = directChildren.some((child) => child.tagName === 'H2')
+  return !hasSectionIndex || hasAuthoredSection
+}
+
 function formatDate(iso: string | null, isEn: boolean) {
   if (!iso) return null
   try {
@@ -305,7 +322,13 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   // a page nobody can read. Drop the page-contribution chrome; the 404 body
   // carries its own way out.
   const isNotFound = pathname === '/_not-found' || pathname === '/en/_not-found'
-  const { showContentTabs, showPageActions } = pageChromePolicy(pathname)
+  const {
+    showContentTabs,
+    showPageActions,
+    showEditAction: routeShowsEditAction
+  } = pageChromePolicy(pathname)
+  const [sourceSupportsEdit, setSourceSupportsEdit] = useState(true)
+  const showEditAction = routeShowsEditAction && sourceSupportsEdit
   const showPageChrome =
     !isPrivateReview &&
     !isCredits &&
@@ -356,13 +379,23 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
       setAuthToken(stored.token)
     }
     const wantsEdit = new URLSearchParams(window.location.search).get('action') === 'edit'
-    if (!wantsEdit || pathname === '/' || pathname === '/en' || isPrivateReview || isCredits || isNotFound) return
+    if (
+      !wantsEdit ||
+      !routeShowsEditAction ||
+      !articleSupportsInlineEdit(articleRef.current) ||
+      pathname === '/' ||
+      pathname === '/en' ||
+      isPrivateReview ||
+      isCredits ||
+      isNotFound
+    ) return
     if (stored) setIsEditing(true)
     else openAuth()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const enterEdit = useCallback(() => {
+    if (!routeShowsEditAction || !articleSupportsInlineEdit(articleRef.current)) return
     scrollBeforeEdit.current = window.scrollY
     setFlash(null)
     setIsEditing(true)
@@ -371,7 +404,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
       url.searchParams.set('action', 'edit')
       window.history.pushState({ editing: true }, '', url)
     }
-  }, [])
+  }, [routeShowsEditAction])
 
   const exitEdit = useCallback((result?: SubmitResult) => {
     setIsEditing(false)
@@ -390,6 +423,16 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   const handleExit = useCallback(() => exitEdit(), [exitEdit])
   const handleSubmitted = useCallback((result: SubmitResult) => exitEdit(result), [exitEdit])
 
+  // The route policy handles pages whose source ownership is known from the
+  // URL. Rendered markers cover stubs and thin SectionIndex shells without
+  // putting hundreds of route strings in every reader's JavaScript bundle.
+  useEffect(() => {
+    const supportsEdit = routeShowsEditAction && articleSupportsInlineEdit(articleRef.current)
+    setSourceSupportsEdit(supportsEdit)
+    const hasEditQuery = new URLSearchParams(window.location.search).get('action') === 'edit'
+    if (!supportsEdit && (isEditing || hasEditQuery)) exitEdit()
+  }, [exitEdit, isEditing, pathname, routeShowsEditAction])
+
   // The server rejected the stored token. Forget it here so the next press of
   // এডিট offers a fresh sign-in rather than the same failure again.
   const handleSessionExpired = useCallback(() => {
@@ -404,6 +447,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   }
 
   function handleContribute() {
+    if (!showEditAction || !articleSupportsInlineEdit(articleRef.current)) return
     if (session && authToken) enterEdit()
     else openAuth()
   }
@@ -411,7 +455,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   function handleAuthenticated(user: UserInfo, token: string) {
     setSession(user)
     setAuthToken(token)
-    if (!isEditing) enterEdit()
+    if (!isEditing && showEditAction) enterEdit()
   }
 
   function handleRead() {
@@ -762,7 +806,9 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
                 </div>
               )}
               {showPageActions && (
-                <div className="article-actions">
+                <div
+                  className={`article-actions${showEditAction ? '' : ' article-actions--without-edit'}`}
+                >
                   {isEditing ? (
                     <button type="button" className="act-read tab-action-btn" onClick={handleRead}>
                       {tabs.read}
@@ -773,16 +819,18 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
                     </span>
                   )}
 
-                  {isEditing ? (
-                    <span className="act-edit is-current" aria-current="page">
-                      <ActionPencil />
-                      {tabs.edit}
-                    </span>
-                  ) : (
-                    <button type="button" className="act-edit tab-action-btn" onClick={handleContribute}>
-                      <ActionPencil />
-                      {tabs.edit}
-                    </button>
+                  {showEditAction && (
+                    isEditing ? (
+                      <span className="act-edit is-current" aria-current="page">
+                        <ActionPencil />
+                        {tabs.edit}
+                      </span>
+                    ) : (
+                      <button type="button" className="act-edit tab-action-btn" onClick={handleContribute}>
+                        <ActionPencil />
+                        {tabs.edit}
+                      </button>
+                    )
                   )}
 
                   <a className="act-history" href={`${REPO_URL}/commits/main/${file}`} target="_blank" rel="noopener noreferrer">
@@ -827,7 +875,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             </div>
           )}
 
-          {isEditing && !isPrivateReview && (
+          {isEditing && showEditAction && !isPrivateReview && (
             <ContributionEditor
               pathname={pathname}
               isEn={isEn}
@@ -923,10 +971,17 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             <footer className="article-footer">
               <h2>{isEn ? 'Help improve this page' : 'এই পেজ আরও ভালো করুন'}</h2>
               <div className="contrib-row">
-                <a href={`${REPO_URL}/edit/main/${file}`} target="_blank" rel="noopener noreferrer">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /></svg>
-                  {isEn ? 'Edit on GitHub' : 'GitHub-এ এডিট করুন'}
-                </a>
+                {showEditAction && (
+                  <a
+                    className="contrib-edit"
+                    href={`${REPO_URL}/edit/main/${file}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /></svg>
+                    {isEn ? 'Edit on GitHub' : 'GitHub-এ এডিট করুন'}
+                  </a>
+                )}
                 <a href={issueUrl} target="_blank" rel="noopener noreferrer">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" /></svg>
                   {isEn ? 'Report a mistake' : 'ফিডব্যাক দিন'}
