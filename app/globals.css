@@ -615,6 +615,18 @@ a.tab {
   stroke-linejoin: round;
 }
 
+/* The route policy removes data-owned actions during SSR. These selectors are
+   the no-flash fallback for source states only the rendered article can reveal:
+   stubs and a SectionIndex shell with no authored section.
+   The client removes the same controls after hydration, and the API allowlist
+   independently rejects those routes. */
+.content-canvas:has(.article [data-pagefind-meta='stub'])
+  :is(.article-actions .act-edit, .article-footer .contrib-edit),
+.content-canvas:has(.article > [data-inline-edit-source='section-index']):not(:has(.article > h2))
+  :is(.article-actions .act-edit, .article-footer .contrib-edit) {
+  display: none;
+}
+
 /* --------------------------------------------------- breadcrumbs and meta */
 
 .article-lede {
@@ -3105,6 +3117,21 @@ a.is-stub-link:hover {
     gap: 12px;
     padding-bottom: 10px;
     font-size: 0.9rem;
+  }
+
+  /* Read is already the current view and History is intentionally desktop-only
+     here. Once Edit is ineligible, remove the otherwise empty mobile action
+     slot; an actions-only utility strip should disappear with it. */
+  .article-actions--without-edit,
+  .content-canvas:has(.article [data-pagefind-meta='stub']) .article-actions,
+  .content-canvas:has(.article > [data-inline-edit-source='section-index']):not(:has(.article > h2)) .article-actions {
+    display: none;
+  }
+
+  .article-tabs--actions-only:has(.article-actions--without-edit),
+  .content-canvas:has(.article [data-pagefind-meta='stub']) .article-tabs--actions-only,
+  .content-canvas:has(.article > [data-inline-edit-source='section-index']):not(:has(.article > h2)) .article-tabs--actions-only {
+    display: none;
   }
 
   .article-actions .act-history,

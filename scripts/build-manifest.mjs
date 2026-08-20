@@ -22,6 +22,7 @@ import {
   canonicalUrl,
 } from "../app/seo.config.mjs";
 import { prepareContributorSnapshot } from "../app/lib/contributor-leaderboard.mjs";
+import { sourceSupportsInlineEdit } from "../app/lib/inline-edit-policy.mjs";
 import { isWrittenGuide } from "./content-guide.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -154,6 +155,7 @@ const llmsPages = {};
 const localeCounts = {};
 const localeManifests = {};
 const seoPages = [];
+const inlineEditableRoutes = new Set();
 
 for (const locale of LOCALES) {
   if (!fs.existsSync(locale.dir)) continue;
@@ -168,6 +170,9 @@ for (const locale of LOCALES) {
       source.includes("<StubNotice") || rendersEmptyDirectory(source);
     const route =
       rel === "" ? locale.routePrefix || "/" : `${locale.routePrefix}/${rel}`;
+    if (sourceSupportsInlineEdit({ slug: rel, source, stub: isStub })) {
+      inlineEditableRoutes.add(route);
+    }
     const repoPath = path.relative(root, filePath).split(path.sep).join("/");
     const date = gitDates.modified.get(repoPath) || null;
     const published = gitDates.published.get(repoPath) || null;
@@ -286,13 +291,16 @@ if (fs.existsSync(contributorSnapshotPath)) {
 }
 
 // Route allowlist for the inline contribution editor. Source paths and locale
-// are derived only after a route passes this generated allowlist.
+// are derived only after a route passes this generated allowlist. Stubs keep
+// their purpose-built GitHub writing CTA; generated data views and thin section
+// shells do not pretend that their locked MDX contains the page readers see.
 // Landing pages ("/" and "/en") are excluded — they are hubs, not articles.
 {
   const contributable = [];
   for (const locale of LOCALES) {
     for (const page of llmsPages[locale.key] || []) {
       if (page.route === "/" || page.route === "/en") continue;
+      if (!inlineEditableRoutes.has(page.route)) continue;
       contributable.push(page.route);
     }
   }

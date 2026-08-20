@@ -71,7 +71,11 @@ export default function SectionIndex({ section, locale = 'bn' }: SectionIndexPro
   const remaining = total - written
 
   return (
-    <section className="section-index" data-pagefind-ignore>
+    <section
+      className="section-index"
+      data-inline-edit-source="section-index"
+      data-pagefind-ignore
+    >
       <h2 id={isDirectory ? (isEn ? 'all-directories' : 'সব-ডিরেক্টরি') : (isEn ? 'all-guides-in-this-section' : 'এই-বিভাগের-সব-গাইড')}>
         {isDirectory ? (isEn ? 'All directories' : 'সব ডিরেক্টরি') : (isEn ? 'All guides in this section' : 'এই বিভাগের সব গাইড')}
       </h2>
