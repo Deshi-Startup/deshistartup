@@ -118,7 +118,7 @@ const LATIN_ALLOW = new Set(
     // official body names & company suffixes legitimately written in Latin (§3.4 point 3)
     'Registrar', 'Joint', 'Stock', 'Companies', 'Firms', 'and', 'Ltd', 'Limited', 'com',
     'Canva', 'Wix', 'Framer', 'Notion', 'Trello', 'Slack', 'Zoom', 'Figma', 'Shikho',
-    'Shorts', 'Shop', 'Grameenphone', 'Robi', 'Banglalink', 'Fashol', 'iFarmer',
+    'Shorts', 'Shop', 'Grameenphone', 'Robi', 'Banglalink', 'Fashol', 'iFarmer', 'Revora',
   ].map((w) => w.toLowerCase()),
 )
 
