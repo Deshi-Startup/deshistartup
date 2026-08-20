@@ -2,7 +2,8 @@
 
 This document says what a page must teach, how it must prove it, and how it must put the reader to
 work. English is the canonical authoring edition; how the Bangla translation should sound lives in
-[STYLE.md](./STYLE.md). The workflow and visual toolkit live in
+[STYLE.md](./STYLE.md). Finished guides meet the same editorial standard in Bangla and English.
+The workflow and visual toolkit live in
 [plan/guide-playbook.md](./plan/guide-playbook.md).
 
 ## The main test

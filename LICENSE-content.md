@@ -22,10 +22,10 @@ including commercially, as long as you:
 
 ## Why CC BY-SA 4.0
 
-This project's mission is a Bangla-first knowledge base that anyone can use,
-copy, and improve — including other sites, courses, and translations. The
-share-alike clause keeps the knowledge open rather than letting a derivative
-work get relicensed and locked away.
+This project's mission is a free, open-source manual for building startups in
+Bangladesh that anyone can use, copy, and improve — including other sites,
+courses, and translations. The share-alike clause keeps the knowledge open
+rather than letting a derivative work get relicensed and locked away.
 
 ## Contributions
 

@@ -1,6 +1,6 @@
 ---
 name: Deshi Startup
-description: Bangla-first open guide to building a startup in Bangladesh, read on a phone while doing the work.
+description: Free, open-source manual for building startups in Bangladesh, available in Bangla and English.
 colors:
   page: "#f5f3ee"
   canvas: "#ffffff"

@@ -646,8 +646,8 @@ for (const page of pages) {
         ? `${contributorProfile.displayName}'s Deshi Startup contributor card`
         : `${contributorProfile.displayName}-এর দেশি স্টার্টআপ কন্ট্রিবিউটর কার্ড`)
     : (isEn
-        ? 'Deshi Startup, the Bangla-first startup guide for Bangladesh'
-        : 'দেশি স্টার্টআপ, বাংলাদেশে স্টার্টআপ গড়ার উন্মুক্ত গাইড')
+        ? 'Deshi Startup, the free, open-source manual for building startups in Bangladesh'
+        : 'দেশি স্টার্টআপ, বাংলাদেশে স্টার্টআপ গড়ার ফ্রি, ওপেন-সোর্স ম্যানুয়াল')
   const metaAuthor = contributorProfile?.displayName ||
     (pageNamedAuthors.length > 0
       ? pageNamedAuthors.map((profile) => profile.displayName).join(', ')

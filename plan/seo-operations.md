@@ -15,7 +15,7 @@ HTML is validated before Wrangler packages the deployment.
 - Honest content stubs remain accessible to contributors but emit `noindex, follow, noarchive`.
 - Stubs are excluded from the XML and human-readable sitemaps. Links to stubs use `rel="nofollow"`.
 - Every indexable locale pair self-canonicalizes and publishes reciprocal `bn-BD`, `en-BD`, and
-  `x-default` alternates. Bengali is the `x-default` source of truth.
+  `x-default` alternates. The Bengali root route owns `x-default`.
 - XML `<lastmod>` is the page's actual latest git commit date. Do not substitute the build date.
 
 ## Generated and postprocessed artifacts

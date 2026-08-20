@@ -623,7 +623,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   useEffect(() => {
     document.documentElement.lang = isEn ? 'en' : 'bn'
     if (pathname === '/en') {
-      document.title = 'Deshi Startup – The Bangla-first guide to building a startup in Bangladesh'
+      document.title = 'Deshi Startup – The free, open-source manual for building startups in Bangladesh'
     }
   }, [isEn, pathname])
 
@@ -705,7 +705,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             <img src={localHref('/deshi-mark.webp')} alt="" width="50" height="50" />
             <span>
               <strong>{isEn ? 'Deshi Startup' : 'দেশি স্টার্টআপ'}</strong>
-              <small>{isEn ? 'The Bangladeshi startup manual' : 'বাংলাদেশে স্টার্টআপ গড়ার গাইড'}</small>
+              <small>{isEn ? 'Startup manual for Bangladesh' : 'বাংলাদেশে স্টার্টআপ গড়ার ম্যানুয়াল'}</small>
             </span>
           </a>
 
@@ -716,7 +716,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
           <nav className="top-actions" aria-label={isEn ? 'Site actions' : 'সাইটের কাজ'}>
             {/* Both social links carry an aria-label: below 1180px the span is
                 display:none, which drops it from the accessibility tree, and
-                the icon is aria-hidden — without the label the link would have
+                the icon is aria-hidden; without the label the link would have
                 no accessible name at all in that range. */}
             <a
               className="social-link"

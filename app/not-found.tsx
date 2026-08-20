@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react'
 
 /**
  * One 404 document serves both trees, so the language cannot be decided at
- * build time. Render the Bengali source of truth first (it is the majority
- * case and the correct default), then correct to English after mount if the
+ * build time. Render the Bengali root-route locale first (it is the majority
+ * case), then correct to English after mount if the
  * reader actually landed under /en/. Reading the path in an effect rather
  * than during render keeps the server and first client pass identical, so
  * there is no hydration mismatch.

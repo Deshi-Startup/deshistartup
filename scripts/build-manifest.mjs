@@ -379,10 +379,9 @@ console.log(`seo-pages.json: ${seoPages.length} routes`);
   const preamble = (title) => [
     `# ${title}`,
     "",
-    "> Deshi Startup is a free, open-source, Bangla-first knowledge base and practical operating " +
-      "manual for founders building startups in Bangladesh. Some startup basics also help small " +
-      "businesses, but the focus is scalable new ventures. Completed guides are published in " +
-      "matching Bengali and English editions; Bengali is the public default and English is under /en/...",
+    "> Deshi Startup is the free, open-source manual for founders building startups in Bangladesh. " +
+      "Some startup basics also help small businesses, but the focus is scalable new ventures. " +
+      "Completed guides are published in Bangla and English, with English pages under /en/.",
     "",
     `Base URL: ${SITE_URL}`,
     `Canonical sitemap: ${canonicalUrl("/sitemap.xml")}`,
