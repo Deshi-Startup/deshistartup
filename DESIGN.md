@@ -570,6 +570,42 @@ Roles are a middot line, never bordered chips. Three type sizes carry a register
 count. Avatars keep the system's circles, and a monogram avatar takes the structure wash rather
 than the near-white ground, so it carries the same weight as a photograph beside it.
 
+### Guide byline
+
+Every written guide opens with one line of credit in the article meta row, ahead of the verified
+date and the repair link, so the row reads in a reference work's colophon order: who wrote it, when
+it was last checked, how to correct it. It is the same record as the `#credits` block below the
+article, compressed to a line and moved to where a reader is still deciding whether to trust the
+page. The record proves; the line credits.
+
+The verb comes from the strongest role on the page, so an editor-only guide reads
+`সম্পাদনা করেছেন` and never claims authorship. One or two people are named outright; past two the
+lead holds the line and the remainder becomes a counted link down to the record, which is what
+stops the line growing without limit on a phone. An adaptation states itself
+(`X-এর লেখা অবলম্বনে`) and keeps stating itself after other people contribute. A guide with nobody
+in the ledger names the team and links to the editorial policy, because a blank there cannot be
+told apart from "not recorded". Stubs and non-guide pages carry no byline at all.
+
+Contributor names are set in Reference Blue: they are links to a person, and looking like one is
+most of why the line is worth adding. The repair link beside them stays muted on purpose, and the
+visited violet is deliberately not extended here, because a person is not a guide you have read.
+No avatars, no role chips: faces would mean a third-party request on every guide view, and a chip
+would repeat what the verb already says at twice the width. Below 420px the byline takes its own
+row above the date's reserved one, which costs about 27px on the narrowest phones and is the only
+cost the feature has.
+
+Arriving at `#credits` from the byline, the record's header takes the site's one landing cue, the
+same `target-land` fade the glossary uses to answer "where did I land" once and then leave.
+
+The record itself is set as one tight left-aligned column. Its heading stands alone: a sentence
+beside it restating the heading in longer words was the only reason the block ever needed two
+columns, and the date and its source link were thrown to opposite edges of a 760px canvas for the
+same reason. Both splits are gone; the date and link now sit together behind a middot. Every label
+in this block is written for a first-time founder rather than for the process behind it, so it says
+"who worked on this page", "added", "see the source", and "worked at" rather than "contributions",
+"accepted", "view evidence", and "affiliation at the time". Any new label here follows the same
+test: the word a reader would use, not the word the system uses about itself.
+
 ### Contribution editor
 
 The inline editor extends the article canvas rather than opening a visually separate CMS. Its theme

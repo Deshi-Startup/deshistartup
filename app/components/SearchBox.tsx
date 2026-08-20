@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useEffect, useId, useRef, useState } from 'react'
-import { useRouter } from 'next/navigation'
 
 import {
   trackSearchOnce,
@@ -117,7 +116,6 @@ interface SearchBoxProps {
 }
 
 export default function SearchBox({ isEn = false }: SearchBoxProps) {
-  const router = useRouter()
   const inputRef = useRef<HTMLInputElement>(null)
   const searchReportRef = useRef<SearchReportState>({ term: null })
   const listboxId = `${useId()}listbox`
@@ -243,10 +241,12 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
       trackSearchOnce(searchReportRef.current, query, results.length, isEn)
       trackSearchResultSelect(query, { url: nextUrl, ...selected }, isEn)
     }
-    router.push(nextUrl)
-    setQuery('')
-    setIsOpen(false)
-    setActiveIndex(-1)
+    // Contributor bylines and page-credit records are written into each
+    // exported HTML document after Next renders. A client-router transition
+    // only receives Next's payload, so it cannot receive that postbuild markup
+    // and would leave the previous page's credit in the persistent root layout.
+    // Load the result document itself so the route gets its own static record.
+    window.location.assign(url)
   }
 
   const moveActive = (step: number) => {

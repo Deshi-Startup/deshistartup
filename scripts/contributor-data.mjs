@@ -8,6 +8,7 @@ import {
   safePublicUrl,
   validatePublicSnapshot
 } from '../app/lib/contributor-leaderboard.mjs'
+import { isWrittenGuide } from './content-guide.mjs'
 import { objectKeyMatchesLogicalPath } from './lib/media-lib.mjs'
 
 const API_ROOT = 'https://api.github.com'
@@ -32,6 +33,7 @@ const DIRECT_CONTACT_HOSTS = new Set([
   'web.whatsapp.com'
 ])
 const ROLE_SET = new Set(ROLE_IDS)
+const CONTRIBUTOR_LOCALE_SET = new Set(['bn', 'en'])
 const AVATAR_SIZE = 160
 const MEDIA_SHA_PATTERN = /^[a-f0-9]{12}$/
 
@@ -158,10 +160,16 @@ export async function buildTargetCatalog(root) {
   for (const [locale, directory] of locales) {
     for (const page of await walkPageFiles(directory)) {
       if (page.route === '/') continue
-      const title = parseFrontmatterTitle(await fs.readFile(page.full, 'utf8'))
+      const source = await fs.readFile(page.full, 'utf8')
+      const title = parseFrontmatterTitle(source)
       if (!title) continue
-      const entry = catalog.get(page.route) || { bn: null, en: null }
+      const entry = catalog.get(page.route) || { bn: null, en: null, guide: true }
       entry[locale] = title
+      entry.guide = entry.guide && isWrittenGuide({
+        slug: page.route.slice(1),
+        source,
+        stub: source.includes('<StubNotice')
+      })
       catalog.set(page.route, entry)
     }
   }
@@ -372,8 +380,30 @@ export function validateContributorLedger({
 
     assertPublicText(event.summary?.bn, `event ${event.id} Bangla summary`)
     assertPublicText(event.summary?.en, `event ${event.id} English summary`)
+    if (
+      event.locales != null &&
+      (!Array.isArray(event.locales) ||
+        event.locales.length === 0 ||
+        new Set(event.locales).size !== event.locales.length ||
+        event.locales.some((locale) => !CONTRIBUTOR_LOCALE_SET.has(locale)))
+    ) {
+      throw new Error(`Event ${event.id} has invalid locales`)
+    }
+    // Whether a guide is an adaptation is a fact about the work, not something
+    // to infer from the shape of an evidence URL. Declaring it here is what lets
+    // the page byline say "adapted from" and keep saying it once other people
+    // contribute to the same guide.
+    if (event.attribution != null && event.attribution !== 'adaptation') {
+      throw new Error(`Event ${event.id} has an unknown attribution: ${event.attribution}`)
+    }
+    if (event.attribution === 'adaptation' && event.sourceType !== 'editorial') {
+      throw new Error(`Event ${event.id} marks an adaptation but is not an editorial source`)
+    }
     if (!Array.isArray(event.targetPaths) || !Array.isArray(event.credits) || event.credits.length === 0) {
       throw new Error(`Event ${event.id} is missing targets or credits`)
+    }
+    if (event.attribution === 'adaptation' && event.targetPaths.length !== 1) {
+      throw new Error(`Event ${event.id} adaptation must target exactly one guide`)
     }
     const targetPaths = new Set()
     for (const targetPath of event.targetPaths) {
@@ -381,6 +411,9 @@ export function validateContributorLedger({
         throw new Error(`Event ${event.id} has a duplicate or invalid target path`)
       }
       targetTitle(targetCatalog, targetPath)
+      if (event.attribution === 'adaptation' && targetCatalog.get(targetPath)?.guide !== true) {
+        throw new Error(`Event ${event.id} adaptation must target a written guide`)
+      }
       targetPaths.add(targetPath)
     }
 
@@ -423,6 +456,12 @@ export function validateContributorLedger({
       }
     }
     if (anonymousCredits > 1) throw new Error(`Event ${event.id} must bundle anonymous credit into one entry`)
+    if (
+      event.attribution === 'adaptation' &&
+      !event.credits.some((credit) => credit.roles.includes('author'))
+    ) {
+      throw new Error(`Event ${event.id} adaptation must credit an author`)
+    }
     eventIds.add(event.id)
   }
 
@@ -625,6 +664,8 @@ function publicEventsFromLedger(ledger, targetCatalog, publicProfileIds, hiddenP
     id: event.id,
     acceptedAt: event.acceptedAt,
     sourceType: event.sourceType,
+    attribution: event.attribution || null,
+    locales: event.locales || ['bn', 'en'],
     evidenceUrl: event.evidenceUrl,
     summary: event.summary,
     targets: event.targetPaths.map((targetPath) => ({

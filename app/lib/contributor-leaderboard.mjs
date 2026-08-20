@@ -38,7 +38,7 @@ export const ROLE_LABELS = Object.freeze({
   editor: { bn: 'সম্পাদক', en: 'Editor' },
   translator: { bn: 'অনুবাদক', en: 'Translator' },
   researcher: { bn: 'গবেষক', en: 'Researcher' },
-  'operational-insight': { bn: 'মাঠের অভিজ্ঞতা', en: 'Operational insight' },
+  'operational-insight': { bn: 'মাঠের অভিজ্ঞতা', en: 'Field experience' },
   reviewer: { bn: 'রিভিউয়ার', en: 'Reviewer' },
   product: { bn: 'প্রোডাক্ট', en: 'Product' }
 })
@@ -51,12 +51,13 @@ export const ROLE_ACTIVITY_LABELS = Object.freeze({
   editor: { bn: 'সম্পাদনা', en: 'Editing' },
   translator: { bn: 'অনুবাদ', en: 'Translation' },
   researcher: { bn: 'গবেষণা', en: 'Research' },
-  'operational-insight': { bn: 'মাঠের অভিজ্ঞতা', en: 'Operational insight' },
+  'operational-insight': { bn: 'মাঠের অভিজ্ঞতা', en: 'Field experience' },
   reviewer: { bn: 'রিভিউ', en: 'Review' },
   product: { bn: 'প্রোডাক্ট', en: 'Product' }
 })
 
 const ROLE_SET = new Set(ROLE_IDS)
+const CONTRIBUTOR_LOCALE_SET = new Set(['bn', 'en'])
 
 function finiteNonNegativeInteger(value) {
   return Number.isSafeInteger(value) && value >= 0 ? value : 0
@@ -171,6 +172,17 @@ function safeRoles(value) {
   return [...new Set(Array.isArray(value) ? value.filter((role) => ROLE_SET.has(role)) : [])]
 }
 
+function safeEventLocales(value) {
+  if (value == null) return ['bn', 'en']
+  if (
+    !Array.isArray(value) ||
+    value.length === 0 ||
+    new Set(value).size !== value.length ||
+    value.some((locale) => !CONTRIBUTOR_LOCALE_SET.has(locale))
+  ) return []
+  return [...value]
+}
+
 export function monogramForName(displayName) {
   return safeText(displayName, '?')
     .split(/\s+/)
@@ -277,7 +289,9 @@ function prepareEvents(source, profiles, organizations) {
     const sourceType = event?.sourceType === 'github-pr' || event?.sourceType === 'editorial'
       ? event.sourceType
       : null
-    if (!id || seen.has(id) || !acceptedAt || !evidenceUrl || !sourceType) return []
+    const attribution = event?.attribution === 'adaptation' ? 'adaptation' : null
+    const locales = safeEventLocales(event?.locales)
+    if (!id || seen.has(id) || !acceptedAt || !evidenceUrl || !sourceType || locales.length === 0) return []
 
     const summary = safeLocalizedText(event.summary)
     if (!summary.bn || !summary.en) return []
@@ -325,7 +339,7 @@ function prepareEvents(source, profiles, organizations) {
     if (credits.length === 0) return []
 
     seen.add(id)
-    return [{ id, acceptedAt, sourceType, evidenceUrl, summary, targets, credits }]
+    return [{ id, acceptedAt, sourceType, attribution, locales, evidenceUrl, summary, targets, credits }]
   })
 }
 

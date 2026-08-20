@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "repository": "Deshi-Startup/deshistartup",
-  "refreshedAt": "2026-08-20T04:43:56.200Z",
+  "refreshedAt": "2026-08-20T12:18:15.241Z",
   "totals": {
     "contributors": 4,
     "acceptedEvents": 13,
@@ -29,6 +29,11 @@
       "id": "github-pr-7",
       "acceptedAt": "2026-07-09",
       "sourceType": "github-pr",
+      "attribution": null,
+      "locales": [
+        "bn",
+        "en"
+      ],
       "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/7",
       "summary": {
         "bn": "রেজিস্ট্রেশন ও ট্যাক্সের ১১টি গাইড লেখা",
@@ -129,6 +134,11 @@
       "id": "github-pr-32",
       "acceptedAt": "2026-07-16",
       "sourceType": "github-pr",
+      "attribution": null,
+      "locales": [
+        "bn",
+        "en"
+      ],
       "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/32",
       "summary": {
         "bn": "আইডিয়া যাচাইয়ের ৮টি গাইড লেখা",
@@ -208,6 +218,11 @@
       "id": "github-pr-41",
       "acceptedAt": "2026-08-01",
       "sourceType": "github-pr",
+      "attribution": null,
+      "locales": [
+        "bn",
+        "en"
+      ],
       "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/41",
       "summary": {
         "bn": "স্টার্টআপ মেট্রিকসের ৯টি গাইড লেখা",
@@ -294,6 +309,11 @@
       "id": "github-pr-39",
       "acceptedAt": "2026-08-01",
       "sourceType": "github-pr",
+      "attribution": null,
+      "locales": [
+        "bn",
+        "en"
+      ],
       "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/39",
       "summary": {
         "bn": "10 Minute School কেস স্টাডি লেখা",
@@ -324,6 +344,11 @@
       "id": "github-pr-40",
       "acceptedAt": "2026-08-01",
       "sourceType": "github-pr",
+      "attribution": null,
+      "locales": [
+        "bn",
+        "en"
+      ],
       "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/40",
       "summary": {
         "bn": "কন্ট্রিবিউশন ফ্লোর তিনটি সমস্যা ঠিক করা",
@@ -346,6 +371,10 @@
       "id": "github-pr-57",
       "acceptedAt": "2026-08-10",
       "sourceType": "github-pr",
+      "attribution": null,
+      "locales": [
+        "bn"
+      ],
       "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/57",
       "summary": {
         "bn": "ব্যবসার কাঠামো বাছাইয়ের গাইডের বাংলা সম্পাদনা",
@@ -376,6 +405,11 @@
       "id": "ss-notes-cap-table",
       "acceptedAt": "2026-08-10",
       "sourceType": "editorial",
+      "attribution": "adaptation",
+      "locales": [
+        "bn",
+        "en"
+      ],
       "evidenceUrl": "https://shoumik.substack.com/p/understanding-cap-table",
       "summary": {
         "bn": "SS Notes-এর Understanding Cap Table লেখাটি অবলম্বনে গাইড",
@@ -406,6 +440,11 @@
       "id": "ss-notes-term-sheets",
       "acceptedAt": "2026-08-10",
       "sourceType": "editorial",
+      "attribution": "adaptation",
+      "locales": [
+        "bn",
+        "en"
+      ],
       "evidenceUrl": "https://shoumik.substack.com/p/term-sheet-101",
       "summary": {
         "bn": "SS Notes-এর Term Sheet 101 লেখাটি অবলম্বনে গাইড",
@@ -436,6 +475,11 @@
       "id": "ss-notes-safe-notes",
       "acceptedAt": "2026-08-10",
       "sourceType": "editorial",
+      "attribution": "adaptation",
+      "locales": [
+        "bn",
+        "en"
+      ],
       "evidenceUrl": "https://shoumik.substack.com/p/safe-note-101",
       "summary": {
         "bn": "SS Notes-এর SAFE Note 101 লেখাটি অবলম্বনে গাইড",
@@ -466,6 +510,11 @@
       "id": "ss-notes-data-room",
       "acceptedAt": "2026-08-10",
       "sourceType": "editorial",
+      "attribution": "adaptation",
+      "locales": [
+        "bn",
+        "en"
+      ],
       "evidenceUrl": "https://shoumik.substack.com/p/data-room-development-for-startup",
       "summary": {
         "bn": "SS Notes-এর Data Room Development for Startup লেখাটি অবলম্বনে গাইড",
@@ -496,6 +545,11 @@
       "id": "ss-notes-investor-updates",
       "acceptedAt": "2026-08-10",
       "sourceType": "editorial",
+      "attribution": "adaptation",
+      "locales": [
+        "bn",
+        "en"
+      ],
       "evidenceUrl": "https://shoumik.substack.com/p/guide-to-writing-investor-update",
       "summary": {
         "bn": "SS Notes-এর Guide to Writing Investor Update লেখাটি অবলম্বনে গাইড",
@@ -526,6 +580,11 @@
       "id": "ss-notes-board-deck",
       "acceptedAt": "2026-08-10",
       "sourceType": "editorial",
+      "attribution": "adaptation",
+      "locales": [
+        "bn",
+        "en"
+      ],
       "evidenceUrl": "https://shoumik.substack.com/p/the-board-deck-playbook",
       "summary": {
         "bn": "SS Notes-এর The Board Deck Playbook লেখাটি অবলম্বনে গাইড",
@@ -556,6 +615,11 @@
       "id": "ss-notes-bookkeeping",
       "acceptedAt": "2026-08-10",
       "sourceType": "editorial",
+      "attribution": "adaptation",
+      "locales": [
+        "bn",
+        "en"
+      ],
       "evidenceUrl": "https://shoumik.substack.com/p/10-finance-and-accounting-suggestions",
       "summary": {
         "bn": "SS Notes-এর প্রাথমিক হিসাবরক্ষণ নিয়ে লেখাগুলো অবলম্বনে গাইড",

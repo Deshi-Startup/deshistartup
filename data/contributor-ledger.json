@@ -240,6 +240,9 @@
       "acceptedAt": "2026-08-10",
       "sourceType": "github-pr",
       "sourceRef": 57,
+      "locales": [
+        "bn"
+      ],
       "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/57",
       "summary": {
         "bn": "ব্যবসার কাঠামো বাছাইয়ের গাইডের বাংলা সম্পাদনা",
@@ -262,6 +265,7 @@
       "id": "ss-notes-cap-table",
       "acceptedAt": "2026-08-10",
       "sourceType": "editorial",
+      "attribution": "adaptation",
       "sourceRef": "ss-notes-cap-table",
       "evidenceUrl": "https://shoumik.substack.com/p/understanding-cap-table",
       "summary": {
@@ -285,6 +289,7 @@
       "id": "ss-notes-term-sheets",
       "acceptedAt": "2026-08-10",
       "sourceType": "editorial",
+      "attribution": "adaptation",
       "sourceRef": "ss-notes-term-sheets",
       "evidenceUrl": "https://shoumik.substack.com/p/term-sheet-101",
       "summary": {
@@ -308,6 +313,7 @@
       "id": "ss-notes-safe-notes",
       "acceptedAt": "2026-08-10",
       "sourceType": "editorial",
+      "attribution": "adaptation",
       "sourceRef": "ss-notes-safe-notes",
       "evidenceUrl": "https://shoumik.substack.com/p/safe-note-101",
       "summary": {
@@ -331,6 +337,7 @@
       "id": "ss-notes-data-room",
       "acceptedAt": "2026-08-10",
       "sourceType": "editorial",
+      "attribution": "adaptation",
       "sourceRef": "ss-notes-data-room",
       "evidenceUrl": "https://shoumik.substack.com/p/data-room-development-for-startup",
       "summary": {
@@ -354,6 +361,7 @@
       "id": "ss-notes-investor-updates",
       "acceptedAt": "2026-08-10",
       "sourceType": "editorial",
+      "attribution": "adaptation",
       "sourceRef": "ss-notes-investor-updates",
       "evidenceUrl": "https://shoumik.substack.com/p/guide-to-writing-investor-update",
       "summary": {
@@ -377,6 +385,7 @@
       "id": "ss-notes-board-deck",
       "acceptedAt": "2026-08-10",
       "sourceType": "editorial",
+      "attribution": "adaptation",
       "sourceRef": "ss-notes-board-deck",
       "evidenceUrl": "https://shoumik.substack.com/p/the-board-deck-playbook",
       "summary": {
@@ -400,6 +409,7 @@
       "id": "ss-notes-bookkeeping",
       "acceptedAt": "2026-08-10",
       "sourceType": "editorial",
+      "attribution": "adaptation",
       "sourceRef": "ss-notes-bookkeeping",
       "evidenceUrl": "https://shoumik.substack.com/p/10-finance-and-accounting-suggestions",
       "summary": {

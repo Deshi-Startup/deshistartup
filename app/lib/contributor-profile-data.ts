@@ -29,6 +29,7 @@ export interface ContributorEvent {
   id: string
   acceptedAt: string
   sourceType: 'github-pr' | 'editorial'
+  locales: ContributorLocale[]
   evidenceUrl: string
   summary: { bn: string; en: string }
   targets: ContributorTarget[]

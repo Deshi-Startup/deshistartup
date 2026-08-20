@@ -670,12 +670,46 @@ a.tab {
   font-weight: 600;
 }
 
-.article-meta a {
+.article-meta > a {
   color: var(--muted);
 }
 
-.article-meta a:hover {
+.article-meta > a:hover {
   color: var(--blue);
+}
+
+/* Postbuild fills this from the same events as the record below the article.
+   Until then it is empty, and an empty flex item would still spend the row's
+   18px gap, so it leaves the row entirely. */
+.article-byline:empty {
+  display: none;
+}
+
+.article-byline {
+  color: var(--muted);
+}
+
+/* A contributor's name is a link to a person, so it is set as one. The repair
+   link beside it stays muted on purpose: that is a utility, this is the credit,
+   and telling them apart is most of why the line is worth adding. */
+.article-byline a {
+  color: var(--blue);
+}
+
+.article-byline a:hover {
+  color: var(--blue-hover);
+  text-decoration: underline;
+}
+
+.article-byline .byline-sep {
+  color: var(--faint);
+}
+
+/* A verb, a name and the counted tail each stay whole when the line turns. The
+   browser was otherwise free to break inside them, and did: "Muhaiminul Islam /
+   Khan" on every phone width up to 414px. */
+.article-byline .byline-nb {
+  white-space: nowrap;
 }
 
 /* "ফিডব্যাক দিন" is the one repair action on every page, and at the meta line's
@@ -1851,16 +1885,30 @@ p:has(> .fb-video) {
 
 .page-contribution-credits {
   margin: 40px 48px 0;
+  /* The record closes the article, so it ends where the article's text ends.
+     Left uncapped it kept growing with the window while the prose stopped at
+     the measure, and on a wide monitor its rules ran ~240px past the last line
+     above them. */
+  max-width: var(--measure);
   border-top: 1px solid var(--line);
   padding: 18px 0 30px;
+  /* The byline sends readers here from the top of the page; land clear of the
+     sticky header rather than underneath it. */
+  scroll-margin-block-start: calc(var(--header-h) + 24px);
 }
 
-.page-contribution-credits__header {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 4px 24px;
-  align-items: baseline;
+.page-contribution-credits:target .page-contribution-credits__header {
+  border-radius: 3px;
+  padding: 4px 8px;
+  margin: -4px -8px;
+  animation: target-land 1800ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-contribution-credits:target .page-contribution-credits__header {
+    animation: none;
+    background-color: var(--green-ground);
+  }
 }
 
 .page-contribution-credits__header h2 {
@@ -1872,13 +1920,6 @@ p:has(> .fb-video) {
   color: var(--ink);
 }
 
-.page-contribution-credits__header p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.82rem;
-  line-height: 1.55;
-}
-
 .page-credit-list {
   margin: 15px 0 0;
   border-top: 1px solid var(--line-soft);
@@ -1886,18 +1927,41 @@ p:has(> .fb-video) {
   list-style-type: none;
 }
 
+/* One entry per accepted contribution. The people who share it are listed
+   inside it, above the one summary, date and evidence link they share. */
 .page-credit {
   margin: 0;
   border-bottom: 1px solid var(--line-soft);
   padding: 15px 0;
 }
 
+.page-credit__people {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-credit__credit {
+  margin: 0;
+}
+
+.page-credit__credit + .page-credit__credit {
+  margin-top: 7px;
+}
+
 .page-credit__line,
 .page-credit__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 3px 14px;
+  gap: 3px 10px;
   align-items: baseline;
+}
+
+/* The name leads. Reading the role first left every name starting wherever the
+   role word happened to end — a column that stepped 68px between rows in the
+   English edition, where "Author" and "Editing · Review" sit above each other. */
+.page-credit__line {
+  margin: 0;
 }
 
 .page-credit__roles {
@@ -1913,8 +1977,15 @@ p:has(> .fb-video) {
 
 .page-credit__person {
   font-family: var(--display);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: var(--w-heading);
+}
+
+/* Someone who asked not to be named is a fact about the credit, not a name.
+   Setting the sentence at a name's weight made it read as one. */
+.page-credit__anon {
+  font-size: 0.95rem;
+  color: var(--muted);
 }
 
 .page-credit__scope,
@@ -1927,6 +1998,7 @@ p:has(> .fb-video) {
 }
 
 .page-credit__scope {
+  margin-top: 8px;
   color: var(--ink);
 }
 
@@ -1937,13 +2009,31 @@ p:has(> .fb-video) {
 }
 
 .page-credit__meta {
-  justify-content: space-between;
+  gap: 3px 7px;
+}
+
+.page-credit__sep {
+  color: var(--faint);
+}
+
+/* Same 24px floor the meta row already gives its links: at this size a name
+   link stands 18px and the evidence link 20px, both under WCAG 2.2 SC 2.5.8.
+   Touch only, so the list keeps its weight under a mouse. */
+@media (pointer: coarse) {
+  .page-credit__person a,
+  .page-credit__affiliation a,
+  .page-credit__meta a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+  }
 }
 
 /* -------------------------------------------------------- article footer */
 
 .article-footer {
   margin: 0 48px;
+  max-width: var(--measure);
   border-top: 1px solid var(--line);
   padding: 18px 0 40px;
 }
@@ -3178,14 +3268,34 @@ a.is-stub-link:hover {
     grid-template-rows: minmax(1.5em, auto) auto;
     row-gap: 4px;
     column-gap: 0;
+    justify-items: start;
   }
 
   .article-meta .meta-date {
     grid-row: 1;
   }
 
-  .article-meta a {
+  .article-meta > a {
     grid-row: 2;
+  }
+
+  /* The byline is in the HTML at first paint, so it needs no reservation of its
+     own; only the client-formatted date does. Adding its track conditionally
+     keeps every page without a byline laid out exactly as before. */
+  .article-meta:has(.article-byline:not(:empty)) {
+    grid-template-rows: auto minmax(1.5em, auto) auto;
+  }
+
+  .article-meta:has(.article-byline:not(:empty)) .article-byline {
+    grid-row: 1;
+  }
+
+  .article-meta:has(.article-byline:not(:empty)) .meta-date {
+    grid-row: 2;
+  }
+
+  .article-meta:has(.article-byline:not(:empty)) > a {
+    grid-row: 3;
   }
 }
 
@@ -5600,10 +5710,13 @@ html:has(.glossary :target) {
    link, the reader has to find where they landed among eighty-eight entries; the
    ground answers that once and then gets out of the way. */
 .glossary-entry:target {
-  animation: glossary-land 1800ms ease-out;
+  animation: target-land 1800ms ease-out;
 }
 
-@keyframes glossary-land {
+/* The site's one landing cue, shared by the glossary entry and the page's
+   contribution record: both are places a reader arrives at by anchor and has to
+   find among everything else on the page. */
+@keyframes target-land {
   0%,
   35% {
     background-color: var(--green-soft);
@@ -5741,6 +5854,13 @@ html:has(.glossary :target) {
     background: transparent !important;
   }
 
+  /* The article loses its screen gutters in print, so its closing record must
+     lose the matching screen gutters and measure cap as well. */
+  .page-contribution-credits {
+    max-width: none !important;
+    margin-inline: 0 !important;
+  }
+
   h1, h2, h3, h4 {
     color: #000000 !important;
     page-break-after: avoid;
@@ -5758,6 +5878,7 @@ html:has(.glossary :target) {
   }
 
   /* Prevent awkward breaks inside components */
+  .page-credit,
   table,
   blockquote,
   .wiki-notice,

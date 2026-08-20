@@ -53,7 +53,8 @@ function policy(profiles = [], overrides = {}) {
 function targetCatalog(...paths) {
   return new Map(paths.map((targetPath) => [targetPath, {
     bn: `বাংলা ${targetPath}`,
-    en: `English ${targetPath}`
+    en: `English ${targetPath}`,
+    guide: true
   }]))
 }
 
@@ -218,6 +219,98 @@ test('rejects duplicate target paths so bilingual mirrors and micro-edits stay b
       targetCatalog: targetCatalog('/guides/example')
     }),
     /duplicate or invalid target path/
+  )
+})
+
+test('validates locale scope and preserves it in the public event', async () => {
+  const alice = profile('alice')
+  const basePolicy = policy([alice])
+  const catalog = targetCatalog('/guides/example')
+
+  for (const locales of [[], ['fr'], ['bn', 'bn'], 'bn']) {
+    assert.throws(
+      () => validateContributorLedger({
+        ledger: ledger([alice], [editorialEvent('locale-invalid', [
+          { mode: 'person', profileId: 'alice', roles: ['editor'] }
+        ], { locales })]),
+        policy: basePolicy,
+        targetCatalog: catalog
+      }),
+      /locales/
+    )
+  }
+
+  const snapshot = await buildContributorSnapshot({
+    policy: basePolicy,
+    ledger: ledger([alice], [
+      editorialEvent('bangla-only-41', [
+        { mode: 'person', profileId: 'alice', roles: ['editor'] }
+      ], { locales: ['bn'] }),
+      editorialEvent('both-locales-42', [
+        { mode: 'person', profileId: 'alice', roles: ['author'] }
+      ], { acceptedAt: '2026-08-02' })
+    ]),
+    targetCatalog: catalog,
+    fetchImpl: githubMock([]),
+    now: new Date('2026-08-05T12:00:00Z')
+  })
+
+  assert.deepEqual(snapshot.events.map((item) => item.locales), [['bn'], ['bn', 'en']])
+})
+
+test('an adaptation event represents one written guide and credits at least one author', async () => {
+  const alice = profile('alice')
+  const basePolicy = policy([alice])
+  const catalog = await buildTargetCatalog(root)
+  const credits = [{ mode: 'person', profileId: 'alice', roles: ['author'] }]
+
+  assert.doesNotThrow(
+    () => validateContributorLedger({
+      ledger: ledger([alice], [editorialEvent('adaptation-guide', credits, {
+        attribution: 'adaptation',
+        targetPaths: ['/funding/cap-table']
+      })]),
+      policy: basePolicy,
+      targetCatalog: catalog
+    })
+  )
+
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: ledger([alice], [editorialEvent('adaptation-glossary', credits, {
+        attribution: 'adaptation',
+        targetPaths: ['/start-here/glossary']
+      })]),
+      policy: basePolicy,
+      targetCatalog: catalog
+    }),
+    /adaptation must target a written guide/
+  )
+
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: ledger([alice], [editorialEvent('adaptation-many-guides', credits, {
+        attribution: 'adaptation',
+        targetPaths: ['/funding/cap-table', '/funding/data-room']
+      })]),
+      policy: basePolicy,
+      targetCatalog: catalog
+    }),
+    /adaptation must target exactly one guide/
+  )
+
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: ledger([alice], [editorialEvent('adaptation-without-author', [
+        { mode: 'person', profileId: 'alice', roles: ['editor'] }
+      ], {
+        attribution: 'adaptation',
+        targetPaths: ['/funding/cap-table']
+      })]),
+      policy: basePolicy,
+      targetCatalog: catalog
+    }),
+    /adaptation must credit an author/
   )
 })
 

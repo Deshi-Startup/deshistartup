@@ -21,6 +21,11 @@ The controlled roles are `author`, `editor`, `translator`, `researcher`,
 review date. Work that was not accepted, meeting attendance, introductions, promotion, and an
 uncleared source citation do not count.
 
+The page byline records provenance rather than ranking contribution volume. Adaptation authors
+lead ordinary authors permanently. Otherwise the strongest role present determines the lead
+group, and the earliest accepted work in that same role leads. When dates tie, authored ledger
+event and credit order are retained. More later events in the same role do not reorder the byline.
+
 The leaderboard is ordered by lifetime accepted-event count, then newest accepted event, then
 display name. There are no points or weights. Core maintainers are shown separately and are never
 ranked.
@@ -98,12 +103,18 @@ the stable profile ID and slug unless there is a safety reason to replace the sl
   never fetch a contributor image from a third-party host. They show English contributor and role
   labels plus the stable profile URL, but no count, date, rank or organization.
 - `organizations`: normalized public ID, name, and optional HTTPS URL.
-- `events`: stable ID, acceptance date, source type and reference, public evidence URL, bilingual
-  summary, locale-neutral target paths, and one or more credits.
+- `events`: stable ID, acceptance date, source type and reference, optional `attribution`, optional
+  `locales`, public evidence URL, bilingual summary, locale-neutral target paths, and one or more
+  credits. `attribution` currently accepts only `adaptation`. `locales` accepts `bn`, `en`, or both
+  and defaults to both editions; set it when an accepted event changed only one edition.
 
 Each credit contains a mode, controlled roles, and, unless anonymous, a profile reference.
 `person+organization` also contains an organization reference. A reviewer credit additionally
 contains bilingual `review.scope` and `review.reviewedAt`.
+
+An adaptation event must use an editorial source, target exactly one guide, and credit at least one
+author. This keeps the permanent adaptation byline tied to the writer and the specific guide it
+came from.
 
 The executable schema in `scripts/contributor-data.mjs` rejects duplicate identities and slugs,
 unknown roles, broken references, unsafe or private URLs, malformed dates, control characters,

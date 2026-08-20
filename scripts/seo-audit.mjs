@@ -23,6 +23,8 @@ import {
   canonicalUrl
 } from '../app/seo.config.mjs'
 import { resolveBuildOutput } from './build-output.mjs'
+import { scopeRepeatsRoles } from '../app/lib/page-credits.mjs'
+import { eventsForLocale } from './postbuild-contributors.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const { htmlDir: outDir, staticDir } = resolveBuildOutput(root)
@@ -114,7 +116,7 @@ for (const page of pages) {
     : null
   const expectedContributionEvents = isContributorProfile(page)
     ? []
-    : contributorEventsByTarget.get(`/${page.slug}`) || []
+    : eventsForLocale(contributorEventsByTarget.get(`/${page.slug}`) || [], page.locale)
   const authorProfiles = contributorProfile
     ? [contributorProfile]
     : [...new Map(expectedContributionEvents.flatMap((event) =>
@@ -348,39 +350,59 @@ for (const page of pages) {
     }
   }
 
+  // One entry per accepted contribution, one credit row per person inside it:
+  // the summary, date and evidence belong to the change, and the people who did
+  // it are listed under them.
   const renderedCredits = $('.page-credit')
-  const expectedCredits = expectedContributionEvents.flatMap((event) =>
-    event.credits.map((credit, index) => ({ event, credit, index }))
-  )
-  if (renderedCredits.length !== expectedCredits.length) {
+  if (renderedCredits.length !== expectedContributionEvents.length) {
     record(
       errors,
-      `${page.route}: page credits show ${renderedCredits.length} entries, expected ${expectedCredits.length}`
+      `${page.route}: page credits show ${renderedCredits.length} entries, expected ${expectedContributionEvents.length}`
     )
   }
-  for (const { event, credit, index } of expectedCredits) {
-    const row = renderedCredits.filter(
-      `[data-contribution-event="${event.id}"][data-credit-index="${index}"]`
-    )
-    if (row.length !== 1) {
-      record(errors, `${page.route}: missing or duplicate visible credit for ${event.id}:${index}`)
+  for (const event of expectedContributionEvents) {
+    const entry = renderedCredits.filter(`[data-contribution-event="${event.id}"]`)
+    if (entry.length !== 1) {
+      record(errors, `${page.route}: missing or duplicate visible entry for ${event.id}`)
       continue
     }
-    if (!row.text().includes(event.summary[page.locale])) {
-      record(errors, `${page.route}: visible credit for ${event.id} has the wrong localized scope`)
-    }
-    if (row.find(`a[href="${event.evidenceUrl}"]`).length !== 1) {
-      record(errors, `${page.route}: visible credit for ${event.id} has no exact evidence link`)
-    }
-    const profile = credit.profileId ? contributorProfileById.get(credit.profileId) : null
-    if (profile) {
-      const profileLink = row.find('.page-credit__person a[href]').attr('href')
-      const expectedProfileRoute = contributorProfilePath(profile.slug, page.locale)
-      if (normalizeInternalHref(profileLink, page.route) !== expectedProfileRoute) {
-        record(errors, `${page.route}: visible credit for ${event.id} links to the wrong contributor profile`)
+    // A summary that only repeats the role labels is dropped by the renderer,
+    // so the audit reads the same predicate rather than demanding the words.
+    const scopeShown = entry.find('.page-credit__scope').text()
+    if (scopeRepeatsRoles(event, page.locale)) {
+      if (scopeShown) {
+        record(errors, `${page.route}: visible entry for ${event.id} repeats its role labels as a scope`)
       }
-    } else if (row.find('.page-credit__person a').length > 0) {
-      record(errors, `${page.route}: anonymous credit for ${event.id} exposes a profile link`)
+    } else if (!scopeShown.includes(event.summary[page.locale])) {
+      record(errors, `${page.route}: visible entry for ${event.id} has the wrong localized scope`)
+    }
+    if (entry.find(`a[href="${event.evidenceUrl}"]`).length !== 1) {
+      record(errors, `${page.route}: visible entry for ${event.id} has no exact evidence link`)
+    }
+    const creditRows = entry.find('.page-credit__credit')
+    if (creditRows.length !== event.credits.length) {
+      record(
+        errors,
+        `${page.route}: entry for ${event.id} names ${creditRows.length} people, expected ${event.credits.length}`
+      )
+      continue
+    }
+    for (const [index, credit] of event.credits.entries()) {
+      const row = creditRows.filter(`[data-credit-index="${index}"]`)
+      if (row.length !== 1) {
+        record(errors, `${page.route}: missing or duplicate visible credit for ${event.id}:${index}`)
+        continue
+      }
+      const profile = credit.profileId ? contributorProfileById.get(credit.profileId) : null
+      if (profile) {
+        const profileLink = row.find('.page-credit__person a[href]').attr('href')
+        const expectedProfileRoute = contributorProfilePath(profile.slug, page.locale)
+        if (normalizeInternalHref(profileLink, page.route) !== expectedProfileRoute) {
+          record(errors, `${page.route}: visible credit for ${event.id} links to the wrong contributor profile`)
+        }
+      } else if (row.find('.page-credit__person, a[href*="/contributors/"]').length > 0) {
+        record(errors, `${page.route}: anonymous credit for ${event.id} exposes a profile link`)
+      }
     }
   }
 

@@ -58,7 +58,7 @@ const copy = {
     coreText: 'প্রজেক্ট রিভিউ, সাইটে পাবলিশ আর মেনটেইন্যান্সের দায়িত্ব এঁদের। এখানকার নামগুলো র‍্যাঙ্ক করা নয়।',
     methodTitle: 'হিসাবটা যেভাবে হয়',
     methodText:
-      'রিভিউ পেরিয়ে যেসব কাজ সাইটে লাইভ হয়, আমরা শুধু সেগুলোরই হিসাব রাখি। একটা লেখায় কারো একাধিক ভূমিকা থাকলেও কাউন্ট হবে একবারই – এমনকি কাজটা বাংলা-ইংরেজি দুই ভার্সনেই গেলেও। যাঁর কন্ট্রিবিউশন বেশি, তাঁর নাম তত উপরে থাকবে। সংখ্যা মিলে গেলে নতুন কাজ আগে, এরপর নাম অনুযায়ী সাজানো হয়। এখানকার সিরিয়াল দেখে কার দক্ষতা কতটা বা কাজের মান কেমন, সেটা বোঝার উপায় নেই।',
+      'রিভিউ পেরিয়ে যেসব কাজ সাইটে লাইভ হয়, আমরা শুধু সেগুলোরই হিসাব রাখি। একই সঙ্গে একাধিক পেজ বা ভূমিকা গৃহীত হলেও হিসাব হয় একবারই – এমনকি কাজটা বাংলা-ইংরেজি দুই ভার্সনেই গেলেও। গৃহীত কাজের সংখ্যা ধরে নাম সাজানো হয়। সংখ্যা মিলে গেলে নতুন কাজ আগে, এরপর নাম। এই সিরিয়াল দিয়ে কাজের পরিমাণ, দক্ষতা, মান বা প্রভাব মাপা যায় না।',
     correctionText: 'কন্ট্রিবিউটরের নাম, ক্রেডিট বা পরিচয় সংশোধন করতে কিংবা নাম সরাতে চাইলে',
     correctionLink: 'যোগাযোগ করুন',
     cta: 'দেশি স্টার্টআপে আপনার কাজও যোগ করুন',
@@ -75,7 +75,7 @@ const copy = {
     coreText: 'Responsible for reviewing, publishing, and maintaining the project. This list is not ranked.',
     methodTitle: 'How the count works',
     methodText:
-      'Only work that passes review and goes live on the site is counted here. One piece of work counts once, however many roles someone took in it, and even when it lands on both the Bengali and the English page. More contributions put a name higher up. When two counts tie, the newer work comes first, then the name. The order does not tell you how skilled someone is or how good the work was.',
+      'Only work that passes review and goes live on the site is counted here. One accepted event counts once, however many pages or roles it covers, and even when it lands on both the Bengali and English pages. The order follows accepted-event count. When two counts tie, the newer work comes first, then the name. The order does not measure volume, skill, quality, or impact.',
     correctionText: 'To correct or remove a contributor name, credit, or identity,',
     correctionLink: 'contact us',
     cta: 'Add your work to Deshi Startup',
