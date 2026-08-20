@@ -36,7 +36,7 @@ body:
     attributes:
       label: "লেখার মূল নিয়ম · Ground rules"
       options:
-        - label: "বাংলায় ভেবে স্বাভাবিক বাংলায় লিখব, ইংরেজি খসড়া অনুবাদ করব না · I will write the Bengali source directly in natural Bangla, not translate an English draft"
+        - label: "বাংলা বা ইংরেজি, যে ভাষায় লিখি সেই ভাষায় স্বাভাবিকভাবে লিখব। শব্দে শব্দে অনুবাদ করব না · I will write naturally in Bangla or English, not translate word for word"
           required: true
         - label: "আইন, ফি ও নিয়মের দাবিতে সূত্র দেব, আর অনুমানকে তথ্য বানাব না · I will source legal, fee and regulatory claims, and will not present guesses as facts"
           required: true

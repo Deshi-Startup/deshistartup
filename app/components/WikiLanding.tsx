@@ -53,7 +53,7 @@ interface TranslationStrings {
 }
 
 const bn: TranslationStrings = {
-  kicker: 'বাংলাদেশে স্টার্টআপ গড়ার উন্মুক্ত গাইড',
+  kicker: 'বাংলাদেশে স্টার্টআপ গড়ার ফ্রি, ওপেন-সোর্স ম্যানুয়াল',
   title: 'দেশি স্টার্টআপ',
   subtitle:
     'আইডিয়া থেকে প্রথম কাস্টমার, ট্রেড লাইসেন্স থেকে পেমেন্ট, ফান্ডিং থেকে স্কেল। কী করবেন, ধাপে ধাপে সহজ বাংলায়।',
@@ -77,11 +77,11 @@ const bn: TranslationStrings = {
     'আইন, কর, ভ্যাট, ব্যাংকিং বা লাইসেন্স নিয়ে লেখাগুলো আপনাকে সিদ্ধান্ত নিতে সাহায্য করবে, তবে এগুলো আইনি বা কর পরামর্শ নয়। ফি, ফর্ম ও প্রক্রিয়া বদলাতে পারে, তাই কাজে নামার আগে সরকারি সোর্স দেখে নিন। দরকার হলে চার্টার্ড অ্যাকাউন্ট্যান্ট বা আইনজীবীর সঙ্গে মিলিয়ে নিন।',
   infoboxTitle: 'এক নজরে',
   infoboxName: 'দেশি স্টার্টআপ',
-  infoboxTagline: 'বাংলাদেশে স্টার্টআপ গড়ার উন্মুক্ত গাইড',
+  infoboxTagline: 'বাংলাদেশে স্টার্টআপ গড়ার ফ্রি, ওপেন-সোর্স ম্যানুয়াল',
   infobox: (written, stubs) => [
     ['যাদের জন্য', 'নতুন ফাউন্ডার, শিক্ষার্থী ও নারী উদ্যোক্তা, স্টার্টআপ টিম, প্রবাসী ফাউন্ডার'],
     ['যা পাবেন', 'আইডিয়া যাচাই, রেজিস্ট্রেশন, পেমেন্ট, বিক্রি, নিয়োগ, ফান্ডিং'],
-    ['ভাষা', 'সহজ বাংলা, দরকারি ইংরেজি টার্ম ব্যাখ্যাসহ'],
+    ['ভাষা', 'বাংলা ও ইংরেজি'],
     ['মূল্য', 'সম্পূর্ণ ফ্রি ও ওপেন সোর্স'],
     ['গাইড', `${bengaliDigits(written)}টি লেখা হয়েছে · ${bengaliDigits(stubs)}টি লেখার অপেক্ষায়`]
   ],
@@ -141,7 +141,7 @@ const bn: TranslationStrings = {
 }
 
 const en: TranslationStrings = {
-  kicker: 'The Bangladeshi startup manual',
+  kicker: 'The free, open-source manual for building startups in Bangladesh',
   title: 'Deshi Startup',
   subtitle:
     'Step-by-step guidance in plain language – from idea to first customer, trade license to payments, funding to scale.',
@@ -164,11 +164,11 @@ const en: TranslationStrings = {
     'Articles about law, tax, VAT, banking or licensing help you decide, but they are not legal or tax advice. Fees, forms and processes change; confirm with official sources and, where needed, a chartered accountant or lawyer before acting.',
   infoboxTitle: 'At a glance',
   infoboxName: 'Deshi Startup',
-  infoboxTagline: 'The Bangladeshi startup manual',
+  infoboxTagline: 'The free, open-source manual for building startups in Bangladesh',
   infobox: (written, stubs) => [
     ['For', 'New and women founders, student founders, startup teams, diaspora founders'],
     ['Covers', 'Idea validation, registration, payments, sales, hiring, funding'],
-    ['Language', 'Simple Bangla; English terms explained'],
+    ['Language', 'Bangla and English'],
     ['Price', 'Completely free; open source'],
     ['Guides', `${written} written · ${stubs} waiting for writers`]
   ],

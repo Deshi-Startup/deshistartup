@@ -12,6 +12,7 @@ process-and-fees page, and the hub `/start-here`.
 - **The Bangla edition is a translation** of the finished English guide, produced with the
   `translate-bangla-guide` skill (which enforces `STYLE.md` and the `deshi-bangla` skill so the
   Bangla reads as if composed in Bangla, never as a word-for-word translation).
+- **Both editions pass the same finish gates.**
 - **Skip conditions:** never re-translate community-contributed guides or material adapted from
   expert contributors, for example, Shoumik Shahriar (the skill documents how to check).
 - **Citation parity:** `citation-lint` compares footnote identifiers *and* inline counts per

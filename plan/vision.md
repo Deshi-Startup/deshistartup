@@ -1,9 +1,9 @@
 # Vision
 
 Most startup guidance available to a founder in Bangladesh is scattered, written for another
-market/language or difficult to judge. Deshi Startup brings reliable sources and Bangladesh's practical
-experience together in one free, open manual, written in English with every guide available in
-natural Bangla.
+market or language, or difficult to judge. Deshi Startup brings reliable sources and Bangladesh's
+practical experience together in one free, open-source manual, published in matching Bangla and
+English editions.
 
 ## Mission
 
@@ -30,7 +30,10 @@ Every finished guide should be:
 
 - **Bangladesh-specific:** it accounts for local regulation, payments, sales behavior, logistics,
   trust, language and capital constraints.
-- **English-first, Bangla-native:** English is the canonical source edition; the Bangla edition is translated from the finished English guide and must read as if composed in Bangla, never as a word-for-word translation.
+- **Bangla and English:** every finished guide is published in matching English and Bangla
+  editions. English is the canonical authoring edition; the Bangla edition is translated from the
+  finished English guide and must read as if composed in Bangla, never as a word-for-word
+  translation. Both editions pass the same finish gates.
 - **Source-backed:** consequential claims use official or primary sources first, with dates where
   facts may change.
 - **Practical:** it helps the reader make a decision, complete a task or avoid a real mistake.
@@ -47,7 +50,8 @@ documents or harmful shortcuts.
 1. Start with a real founder question or task.
 2. Research official and primary sources for rules, fees and consequential claims.
 3. Use founder and specialist experience to explain what the formal sources do not show.
-4. Turn that evidence into a plain-English guide with a clear next action and, when useful, a checklist or tool; then translate it into natural Bangla.
+4. Turn that evidence into a plain-English guide with a clear next action and, when useful, a
+   checklist or tool; then produce the matching natural-Bangla edition and review both.
 5. Review the change publicly through a pull request. Credit people only with their permission.
 6. Re-check information that can change and correct it openly.
 
@@ -74,9 +78,10 @@ First make the manual useful, trusted and maintainable. Do not distract the team
 assistant, complex admin system, paid marketplace or legal automation. A future assistant may use
 only reviewed content, cite its sources, show freshness and admit uncertainty.
 
-Once the manual is strong, its material may support an open startup curriculum, original research
-and distribution through universities or other institutions. Those are extensions of the manual,
-not reasons to delay it.
+Alongside the manual, Deshi Startup may gradually grow a founder community, practical tools, shared
+infrastructure, an open startup curriculum and original research. Keep those extensions free and
+open source where practical, and use them to strengthen the manual rather than distract from or
+delay it.
 
 ## Success
 
@@ -85,6 +90,7 @@ Deshi Startup is working when:
 - a founder can reach a safe, useful next action without getting lost;
 - Bangladesh-specific realities are easier to understand and navigate;
 - important pages are cited, dated and corrected when circumstances change;
+- both editions remain accurate, useful and maintained;
 - Bengali explanations feel natural and usable;
 - founders and specialists make corrections, share experience and return to contribute again; and
 - the site remains free, fast, open and credible as it grows.

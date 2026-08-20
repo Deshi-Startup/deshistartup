@@ -7,14 +7,16 @@ Read this before changing the project. For priorities and planned content, start
 ## Mission and scope
 
 Deshi Startup is a free, open-source operating manual for founders building new, scalable
-businesses in Bangladesh, written in English with a Bangla translation of every guide.
+businesses in Bangladesh, published in Bangla and English. Each completed guide is available in
+both languages.
 Registration, tax, payments and hiring guides may also help small businesses, but the project
 does not broaden its scope to become a generic SME, family-business, import/export or online-seller
 portal.
 
 English is the canonical authoring edition; the Bangla edition is translated from the finished
-English guide with the `translate-bangla-guide` skill. A page counts as written only when it is a
-real guide without `<StubNotice />`; run `npm run backlog:status` for current counts.
+English guide with the `translate-bangla-guide` skill. Both editions use the same standards for
+evidence, accuracy and practical usefulness. A page counts as written only when it is a real guide
+without `<StubNotice />`; run `npm run backlog:status` for current counts.
 
 ## Architecture
 

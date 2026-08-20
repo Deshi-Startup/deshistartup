@@ -1,8 +1,9 @@
 # অবদান রাখুন · Contributing
 
-দেশি স্টার্টআপ সবার জন্য উন্মুক্ত একটি জ্ঞানভাণ্ডার, আর পাঠকেরাই এটিকে আরও ভালো করে
-তুলতে পারেন। পুরোনো ফি বদলে বর্তমান ফি লেখা, জটিল একটি বাক্য সহজ করা বা নিজের জানা
-একটি বিষয় নিয়ে পূর্ণ গাইড লেখা, সব ধরনের অবদানই কাজে লাগে।
+দেশি স্টার্টআপ বাংলাদেশে স্টার্টআপ গড়ার ফ্রি, ওপেন-সোর্স ম্যানুয়াল, বাংলা ও
+ইংরেজিতে। পাঠকেরাই ম্যানুয়ালটিকে আরও ভালো করে তুলতে পারেন। পুরোনো ফি বদলে বর্তমান
+ফি লেখা, জটিল একটি বাক্য সহজ করা বা নিজের জানা একটি বিষয় নিয়ে পূর্ণ গাইড লেখা,
+সব ধরনের অবদানই কাজে লাগে।
 
 লেখা বদলাতে কোড জানা বা নিজের কম্পিউটারে প্রজেক্ট চালানো লাগে না। সাইটের
 [অবদান পেজে](https://deshistartup.com/contribute) ব্রাউজার থেকে কাজ করার পুরো ধাপ আছে।
@@ -61,8 +62,9 @@ GitHub থেকে লিখলে দাবির পরে `[^source-name]` �
 ```
 
 শুরুর `<StubNotice ... />` শুধু পূর্ণ গাইড শেষ হলে সরান। অসম্পূর্ণ কাজও পাঠাতে পারেন,
-তবে সেটিকে শেষ লেখা হিসেবে দেখাবেন না। ইংরেজি পেজই মূল সংস্করণ। বাংলা পেজ পরে
-সেটির অনুবাদ হিসেবে লেখা হয়। যে ভাষায় সুবিধা হয়, সেই ভাষায় অবদান পাঠান।
+তবে সেটিকে শেষ লেখা হিসেবে দেখাবেন না। সম্পাদনার সুবিধার জন্য ইংরেজি গাইডটি আগে শেষ ও
+রিভিউ করা হয়, তারপর স্বাভাবিক বাংলা সংস্করণ তৈরি হয়। যে ভাষায় সুবিধা হয়, সেই ভাষায়
+অবদান পাঠান।
 
 ভাষার উদাহরণ ও শেষবার মিলিয়ে দেখার জন্য [STYLE.md](./STYLE.md), আর গবেষণা, সূত্র ও
 শেখানোর মানের জন্য [EDITORIAL.md](./EDITORIAL.md) পড়ুন।
@@ -123,9 +125,9 @@ SEO আউটপুট বিল্ডে তৈরি হয়। এগুল
 
 # Contributing
 
-Deshi Startup is an open manual that readers can improve. Correcting an outdated fee, simplifying
-a confusing sentence and writing a complete guide from your own knowledge are all useful
-contributions.
+Deshi Startup is the free, open-source manual for building startups in Bangladesh, published in
+Bangla and English. Readers can improve it by correcting an outdated fee, simplifying a confusing
+sentence or writing a complete guide from their own knowledge.
 
 You do not need to know GitHub, code or run the project locally to edit the writing. The
 [contribute page](https://deshistartup.com/en/contribute) explains the complete browser workflow.
@@ -185,9 +187,9 @@ starting shape:
 ```
 
 Remove `<StubNotice ... />` only when the guide is genuinely complete. Partial work is welcome,
-but do not present it as finished. English is the canonical edition; the Bangla version is
-translated from it after the English guide is reviewed. Contribute in whichever language you are
-comfortable with.
+but do not present it as finished. For a consistent editorial workflow, the English guide is
+completed and reviewed first, followed by the natural-Bangla edition. Contribute in whichever
+language you are comfortable with.
 
 Use [STYLE.md](./STYLE.md) for natural Bangla and [EDITORIAL.md](./EDITORIAL.md) for research,
 teaching and evidence standards. [/en/start-here](https://deshistartup.com/en/start-here) is a

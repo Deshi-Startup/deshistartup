@@ -1,12 +1,13 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Deshi Startup</title>
-  <desc id="desc">The Bangla-first startup guide for Bangladesh.</desc>
+  <desc id="desc">The free, open-source manual for building startups in Bangladesh.</desc>
   <rect width="1200" height="630" fill="#F7F2E8"/>
   <rect width="1200" height="18" fill="#047857"/>
   <image href="deshi-mark.webp" x="64" y="126" width="224" height="224" preserveAspectRatio="xMidYMid meet"/>
   <text x="340" y="235" fill="#12372A" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="700">Deshi Startup</text>
-  <text x="342" y="302" fill="#315548" font-family="Arial, Helvetica, sans-serif" font-size="34">Bangladesh's Bangla-first startup guide</text>
-  <line x1="342" y1="344" x2="1060" y2="344" stroke="#B8C5BC" stroke-width="2"/>
-  <text x="342" y="399" fill="#315548" font-family="Arial, Helvetica, sans-serif" font-size="27">Practical, source-backed, open and free</text>
+  <text x="342" y="290" fill="#315548" font-family="Arial, Helvetica, sans-serif" font-size="34">The free, open-source manual</text>
+  <text x="342" y="332" fill="#315548" font-family="Arial, Helvetica, sans-serif" font-size="34">for building startups in Bangladesh</text>
+  <line x1="342" y1="370" x2="1060" y2="370" stroke="#B8C5BC" stroke-width="2"/>
+  <text x="342" y="424" fill="#315548" font-family="Arial, Helvetica, sans-serif" font-size="27">Practical, source-backed, open and free</text>
   <text x="68" y="560" fill="#49665C" font-family="Arial, Helvetica, sans-serif" font-size="24">deshistartup.com</text>
 </svg>

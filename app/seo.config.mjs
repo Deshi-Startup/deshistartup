@@ -21,8 +21,8 @@ export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.png`
 export const INDEXNOW_KEY = 'e9aed4bed68feea1a2f4ffa5e9deddbc'
 
 export const DEFAULT_DESCRIPTIONS = {
-  bn: 'বাংলাদেশে স্টার্টআপ শুরু, চালু ও বড় করার ফ্রি, ওপেন সোর্স বাংলা গাইড: আইডিয়া যাচাই, রেজিস্ট্রেশন, কর/ভ্যাট, পেমেন্ট, গ্রাহক, টিম ও ফান্ডিং।',
-  en: 'A free, open-source operating manual for building a startup in Bangladesh, covering validation, registration, tax, payments, customers, teams and funding.'
+  bn: 'বাংলাদেশে স্টার্টআপ গড়ার ফ্রি, ওপেন-সোর্স ম্যানুয়াল, বাংলা ও ইংরেজিতে: আইডিয়া যাচাই, রেজিস্ট্রেশন, কর/ভ্যাট, পেমেন্ট, গ্রাহক, টিম ও ফান্ডিং।',
+  en: 'The free, open-source manual for building startups in Bangladesh, available in Bangla and English and covering validation, registration, tax, payments, customers, teams and funding.'
 }
 
 export function canonicalUrl(route = '/') {
