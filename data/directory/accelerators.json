@@ -2,121 +2,246 @@
   {
     "name": "Founder Institute Bangladesh",
     "type": "Company-builder / accelerator",
-    "stage": ["Idea", "Pre-seed", "First-time founders"],
-    "sectors": ["Sector-agnostic", "Technology"],
-    "benefits": ["Structured program", "Mentor network", "Founder methodology"],
-    "cohortTiming": "Check official site for current Bangladesh enrollment windows.",
-    "costOrEquity": "See official FI agreements and local program page.",
+    "stage": [
+      "Idea",
+      "Pre-seed",
+      "Early traction"
+    ],
+    "sectors": [
+      "Sector-agnostic",
+      "Technology",
+      "Scalable startups"
+    ],
+    "benefits": [
+      "Structured company-building sprints",
+      "Mentor and investor feedback",
+      "Peer working groups and office hours",
+      "Demo Day and post-program network"
+    ],
+    "cohortTiming": "Bangladesh Fall 2026: final application deadline 6 October; program runs from 27 October 2026 to Demo Day on 3 February 2027.",
+    "costOrEquity": "Bangladesh entrance fee: Not publicly stated. Participating companies that join FI's Equity Collective issue a 2.5% warrant to the collective.",
     "notableAlumni": [],
-    "applicationPath": "Apply through the Bangladesh Founder Institute page.",
+    "applicationPath": "Apply through the Bangladesh Fall 2026 program page before 6 October 2026.",
     "website": "https://fi.co/s/dhaka",
-    "sourceUrl": "https://fi.co/s/dhaka",
-    "lastVerified": "2026-07-07",
-    "notes": "Official page shows Bangladesh-region program information."
+    "sourceUrl": "https://fi.co/program/12756",
+    "lastVerified": "2026-08-19",
+    "notes": "A 15-week, in-person company-building programme for Bangladesh founders moving from an idea or early product towards traction and funding readiness. Weekly sprints cover customer validation, product development, launch, growth and fundraising, with recurring mentor reviews and investor feedback."
   },
   {
     "name": "Orange Corners Bangladesh",
-    "type": "Entrepreneurship incubation program",
-    "stage": ["Idea", "Early stage"],
-    "sectors": ["Youth entrepreneurship", "SME", "Impact"],
-    "benefits": ["Training", "Mentorship", "Network access"],
-    "cohortTiming": "Check official country page.",
-    "costOrEquity": "Not publicly stated on the verified page.",
+    "type": "Entrepreneurship incubation and acceleration programme",
+    "stage": [
+      "Post-launch",
+      "Early stage"
+    ],
+    "sectors": [
+      "Sector-agnostic",
+      "SDG-aligned businesses",
+      "Impact"
+    ],
+    "benefits": [
+      "Capacity-building workshops",
+      "One-to-one coaching and mentorship",
+      "Networking and investor access",
+      "Complimentary co-working space",
+      "Grants of up to €5,000 for selected participants"
+    ],
+    "cohortTiming": "Cohort 8 began on 29 July 2026; the next application window has not been announced.",
+    "costOrEquity": "No application fee; grants and soft loans do not take equity.",
     "notableAlumni": [],
-    "applicationPath": "Use the official Bangladesh country page.",
+    "applicationPath": "Wait for the next Bangladesh intake announcement before applying. At least one founder must be Bangladeshi, aged 18–35 and based in Bangladesh.",
     "website": "https://www.orangecorners.com/country/bangladesh/",
-    "sourceUrl": "https://www.orangecorners.com/country/bangladesh/",
-    "lastVerified": "2026-07-07",
-    "notes": "Official Orange Corners country page for Bangladesh was active."
+    "sourceUrl": "https://www.linkedin.com/posts/orangecornersbd_orangecorners-orangecornersbd-entrepreneurs-activity-7489666354472689664-aYPe",
+    "lastVerified": "2026-08-19",
+    "notes": "A Netherlands-backed programme helping young Bangladeshi founders build sustainable, investment-ready businesses that contribute to the Sustainable Development Goals. Its incubation track supports businesses that have already launched; graduates can progress to acceleration and financing support."
   },
   {
     "name": "YY Ventures Incubation",
     "type": "Impact incubator",
-    "stage": ["Idea", "Pre-seed", "Seed"],
-    "sectors": ["Social business", "Impact", "Youth-led ventures"],
-    "benefits": ["Incubation", "Consultation support", "Investor access"],
-    "cohortTiming": "Check YY Ventures programs page.",
-    "costOrEquity": "Not publicly stated on the verified homepage.",
-    "notableAlumni": [],
-    "applicationPath": "Check YY Ventures programs.",
-    "website": "https://yy.ventures/",
-    "sourceUrl": "https://yy.ventures/",
-    "lastVerified": "2026-07-07",
-    "notes": "YY Ventures describes incubation and investment activity."
+    "stage": [
+      "Idea",
+      "Pre-seed",
+      "Seed"
+    ],
+    "sectors": [
+      "Social business",
+      "Climate and environment",
+      "Inclusive livelihoods"
+    ],
+    "benefits": [
+      "Founder training and tailored consultation",
+      "Mentoring and community",
+      "Co-working space",
+      "Business support services",
+      "Investor access"
+    ],
+    "cohortTiming": "Programme-specific; applications for YY Goshthi are currently closed.",
+    "costOrEquity": "Current fee and equity terms: Not publicly stated. The now-closed YY Goshthi programme advertised BDT 1–1.5 million in pre-seed investment for selected businesses.",
+    "notableAlumni": [
+      "AmarLab",
+      "Avijatrik Tourism",
+      "GARBAGEMAN",
+      "Wizkit"
+    ],
+    "applicationPath": "Email info@yy.ventures about current incubation opportunities; the YY Goshthi application is closed.",
+    "website": "https://incubator.yy.ventures/",
+    "sourceUrl": "https://incubator.yy.ventures/",
+    "lastVerified": "2026-08-19",
+    "notes": "YY Ventures incubates early-stage, cause-driven businesses tackling social or environmental problems. Its model combines founder training, tailored consulting, workspace, business services and investor introductions to help teams launch an MVP and raise seed capital."
   },
   {
     "name": "Impact Hub Dhaka",
-    "type": "Innovation hub / community platform",
-    "stage": ["Idea", "Early stage", "Growth"],
-    "sectors": ["Impact", "Entrepreneurship", "Creative ventures"],
-    "benefits": ["Coworking", "Community", "Programs", "Partner network"],
-    "cohortTiming": "Program-specific; check official site.",
-    "costOrEquity": "Not publicly stated for all programs.",
+    "type": "Innovation hub and entrepreneurship platform",
+    "stage": [
+      "Idea",
+      "Early stage",
+      "Growth"
+    ],
+    "sectors": [
+      "Impact",
+      "Social innovation",
+      "Inclusive entrepreneurship"
+    ],
+    "benefits": [
+      "Co-working and private offices",
+      "Entrepreneurship programmes",
+      "Community events",
+      "Mentorship and capacity building",
+      "Partner and investor network"
+    ],
+    "cohortTiming": "No standing accelerator cohort; opportunities are announced programme by programme.",
+    "costOrEquity": "Workspace pricing and programme terms vary.",
     "notableAlumni": [],
-    "applicationPath": "Contact or sign up through Impact Hub Dhaka.",
+    "applicationPath": "No standing accelerator application is open; check the Projects page for partner-led programmes and apply through the relevant programme notice.",
     "website": "https://dhaka.impacthub.net/",
-    "sourceUrl": "https://dhaka.impacthub.net/",
-    "lastVerified": "2026-07-07",
-    "notes": "Official site describes a coworking and innovation hub in Dhaka."
+    "sourceUrl": "https://dhaka.impacthub.net/projects",
+    "lastVerified": "2026-08-19",
+    "notes": "A Dhaka-based workspace and innovation community connecting entrepreneurs and impact organisations with mentors, corporate partners, investors and public-sector institutions. It hosts partner-led incubation and acceleration programmes, but it is not itself a single recurring accelerator."
   },
   {
-    "name": "BYLC Ventures / BYLC entrepreneurship support",
-    "type": "Youth leadership and entrepreneurship support",
-    "stage": ["Idea", "Early stage", "Youth-led ventures"],
-    "sectors": ["Youth entrepreneurship", "Leadership", "Impact"],
-    "benefits": ["Training", "Leadership development", "Network access"],
-    "cohortTiming": "Check BYLC announcements and program pages.",
-    "costOrEquity": "Not publicly stated on the verified homepage.",
-    "notableAlumni": [],
-    "applicationPath": "Start from BYLC's official site and current program notices.",
-    "website": "https://bylc.org/",
-    "sourceUrl": "https://bylc.org/",
-    "lastVerified": "2026-07-07",
-    "notes": "BYLC's official site is active; verify the current Ventures intake before applying."
+    "name": "BYLC Ventures",
+    "type": "Early-stage accelerator and investor",
+    "stage": [
+      "Early stage",
+      "Market traction"
+    ],
+    "sectors": [
+      "Sector-agnostic",
+      "Youth-led businesses",
+      "Socioeconomic impact"
+    ],
+    "benefits": [
+      "Seed and potential scale-up funding",
+      "Accelerator curriculum and mentoring",
+      "Leadership development",
+      "Legal and virtual CFO support",
+      "Co-working space"
+    ],
+    "cohortTiming": "Cohort-based; no current application window is announced.",
+    "costOrEquity": "No application fee. A BDT 200,000 programme and professional-services fee is deducted from the BDT 800,000 seed funding. Equity terms: Not publicly stated.",
+    "notableAlumni": [
+      "InsureCow",
+      "Ecovia",
+      "Biotech Energy"
+    ],
+    "applicationPath": "Apply through the BYLC Ventures page when the next cohort opens; shortlisted teams enter a selection bootcamp.",
+    "website": "https://bylc.org/ventures/",
+    "sourceUrl": "https://bylc.org/ventures/",
+    "lastVerified": "2026-08-19",
+    "notes": "A six-month accelerator and investment programme combining early-stage capital with founder leadership, company-building and Bangladesh-specific legal and financial support. It is sector-agnostic, prefers teams with some market traction and looks for businesses addressing socioeconomic challenges."
   },
   {
-    "name": "Bangladesh Hi-Tech Park Authority programs",
-    "type": "Government incubation and technology support",
-    "stage": ["Idea", "Early stage", "Technology companies"],
-    "sectors": ["ICT", "IT/ITES", "Hardware", "Technology"],
-    "benefits": ["Incubation", "Facilities", "Government support"],
-    "cohortTiming": "Program-specific; check notices and services.",
-    "costOrEquity": "Government-program specific.",
+    "name": "Bangladesh Hi-Tech Park Authority (BHTPA)",
+    "type": "Government technology infrastructure and incubation",
+    "stage": [
+      "Idea",
+      "Early stage",
+      "Technology companies"
+    ],
+    "sectors": [
+      "ICT",
+      "IT/ITES",
+      "Hardware",
+      "Technology"
+    ],
+    "benefits": [
+      "Incubation and training facilities",
+      "Workspace and technology infrastructure",
+      "One Stop Service",
+      "Programme-specific mentoring and founder support"
+    ],
+    "cohortTiming": "Facility- and programme-specific; BHTPA does not run one standing national accelerator cohort.",
+    "costOrEquity": "Facility and programme terms vary.",
     "notableAlumni": [],
-    "applicationPath": "Use BHTPA official services and notices.",
+    "applicationPath": "Use BHTPA's One Stop Service for park and incubation services and follow BHTPA notices for cohort-based programmes.",
     "website": "https://bhtpa.gov.bd/",
-    "sourceUrl": "https://bhtpa.gov.bd/",
-    "lastVerified": "2026-07-07",
-    "notes": "Official BHTPA site was reachable and updated in July 2026."
+    "sourceUrl": "https://ossbhtpa.gov.bd/",
+    "lastVerified": "2026-08-19",
+    "notes": "The government authority that develops and manages hi-tech parks, software technology parks and IT incubation or training centres across Bangladesh. Startups and technology companies can access facility-based workspace, infrastructure and government services; training and accelerator support depends on the centre or project."
   },
   {
     "name": "iDEA Project",
-    "type": "Government startup support program",
-    "stage": ["Idea", "Pre-seed", "Early stage"],
-    "sectors": ["Innovation", "Technology", "Startup grants"],
-    "benefits": ["Grant support", "Mentorship", "Startup programming"],
-    "cohortTiming": "Check official iDEA announcements.",
-    "costOrEquity": "Government-program specific.",
-    "notableAlumni": [],
-    "applicationPath": "Use iDEA's official site and current notices.",
+    "type": "Government grants and startup support",
+    "stage": [
+      "Idea",
+      "Pre-seed",
+      "Early stage"
+    ],
+    "sectors": [
+      "ICT",
+      "Technology",
+      "Innovation"
+    ],
+    "benefits": [
+      "Non-equity startup grants",
+      "Mentoring and training",
+      "Networking",
+      "Free co-working space",
+      "Hardware prototyping through iDEA Lab"
+    ],
+    "cohortTiming": "No fixed cohort; grant and co-working applications run through the application portal, subject to current notices.",
+    "costOrEquity": "Startup grant: up to BDT 10 lakh, non-equity and non-repayable; co-working is free for up to six months.",
+    "notableAlumni": [
+      "Truck Lagbe",
+      "Markopolo AI",
+      "Moner Bondhu",
+      "Skoot"
+    ],
+    "applicationPath": "Apply through the iDEA portal. The startup-grant application asks for identity documents, a business description, short video, pitch deck and any available prototype or proof of concept.",
     "website": "https://idea.gov.bd/",
-    "sourceUrl": "https://idea.gov.bd/",
-    "lastVerified": "2026-07-07",
-    "notes": "Official root responded from this environment, but public content output was limited; confirm current program details before applying."
+    "sourceUrl": "https://idea.gov.bd/p/7/faq",
+    "lastVerified": "2026-08-19",
+    "notes": "An ICT Division and Bangladesh Computer Council programme providing non-dilutive pre-seed funding and technical support to innovative, scalable Bangladesh startups. Separate services include mentoring, networking, free co-working space and access to hardware prototyping facilities."
   },
   {
     "name": "Accelerating Asia Accelerator",
     "type": "Regional VC accelerator",
-    "stage": ["Seed", "Pre-Series A"],
-    "sectors": ["Southeast Asia", "South Asia", "Technology"],
-    "benefits": ["Capital", "Accelerator program", "Investor network"],
-    "cohortTiming": "Check official application page.",
-    "costOrEquity": "See official program terms.",
-    "notableAlumni": [],
-    "applicationPath": "Apply through Accelerating Asia's official site.",
+    "stage": [
+      "Seed",
+      "Pre-Series A"
+    ],
+    "sectors": [
+      "Sector-agnostic",
+      "Technology-enabled startups"
+    ],
+    "benefits": [
+      "US$100,000 initial investment",
+      "100-day tailored accelerator",
+      "One-to-one Entrepreneurs in Residence",
+      "Masterclasses and investor introductions",
+      "Potential follow-on funding up to US$150,000"
+    ],
+    "cohortTiming": "Cohort 14 applications are open; interviews begin in August 2026, the programme starts in October and Demo Day is planned for January 2027.",
+    "costOrEquity": "US$35,000 programme fee, deducted from the initial investment, plus 3% equity; the investment uses a post-money SAFE.",
+    "notableAlumni": [
+      "Markopolo.ai",
+      "TransTRACK",
+      "Kopi Date"
+    ],
+    "applicationPath": "Apply through Accelerating Asia Ventures' Get Funded page for Cohort 14.",
     "website": "https://www.acceleratingasia.com/",
-    "sourceUrl": "https://www.acceleratingasia.com/",
-    "lastVerified": "2026-07-07",
-    "notes": "Regional accelerator with South Asia scope; not Bangladesh-only."
+    "sourceUrl": "https://www.acceleratingasia.com/getfunded",
+    "lastVerified": "2026-08-19",
+    "notes": "A 100-day VC accelerator for high-growth, pre-Series A technology startups across South and Southeast Asia. It is designed for companies with evidence of execution or traction and combines capital with intensive growth, fundraising and regional-expansion support."
   }
 ]

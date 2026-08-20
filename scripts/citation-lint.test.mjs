@@ -33,6 +33,41 @@ test('accepts the Bangla sources heading', () => {
   assert.deepEqual(result.errors, [])
 })
 
+test('rejects manual source lists on completed guides', () => {
+  const result = inspectCitations(
+    [
+      '# Guide',
+      '',
+      '## Relevant Sources',
+      '',
+      '- [Source](https://example.com)'
+    ].join('\n'),
+    'page.mdx'
+  )
+
+  assert.ok(
+    result.errors.some((error) =>
+      /page\.mdx:5 completed guides must use inline GFM footnotes/.test(error)
+    )
+  )
+})
+
+test('allows manual source seeds on stubs', () => {
+  const result = inspectCitations(
+    [
+      '# Stub',
+      '',
+      '<StubNotice path="example" locale="en" />',
+      '',
+      '## Relevant Sources',
+      '',
+      '- [Starting source](https://example.com)'
+    ].join('\n')
+  )
+
+  assert.deepEqual(result.errors, [])
+})
+
 test('rejects unresolved citation syntax', () => {
   const result = inspectCitations('Claim.[^missing-source]', 'page.mdx')
   assert.match(result.errors[0], /page\.mdx:1 unresolved citation \[\^missing-source\]/)

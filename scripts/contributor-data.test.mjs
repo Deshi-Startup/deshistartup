@@ -53,7 +53,8 @@ function policy(profiles = [], overrides = {}) {
 function targetCatalog(...paths) {
   return new Map(paths.map((targetPath) => [targetPath, {
     bn: `বাংলা ${targetPath}`,
-    en: `English ${targetPath}`
+    en: `English ${targetPath}`,
+    guide: true
   }]))
 }
 
@@ -218,6 +219,98 @@ test('rejects duplicate target paths so bilingual mirrors and micro-edits stay b
       targetCatalog: targetCatalog('/guides/example')
     }),
     /duplicate or invalid target path/
+  )
+})
+
+test('validates locale scope and preserves it in the public event', async () => {
+  const alice = profile('alice')
+  const basePolicy = policy([alice])
+  const catalog = targetCatalog('/guides/example')
+
+  for (const locales of [[], ['fr'], ['bn', 'bn'], 'bn']) {
+    assert.throws(
+      () => validateContributorLedger({
+        ledger: ledger([alice], [editorialEvent('locale-invalid', [
+          { mode: 'person', profileId: 'alice', roles: ['editor'] }
+        ], { locales })]),
+        policy: basePolicy,
+        targetCatalog: catalog
+      }),
+      /locales/
+    )
+  }
+
+  const snapshot = await buildContributorSnapshot({
+    policy: basePolicy,
+    ledger: ledger([alice], [
+      editorialEvent('bangla-only-41', [
+        { mode: 'person', profileId: 'alice', roles: ['editor'] }
+      ], { locales: ['bn'] }),
+      editorialEvent('both-locales-42', [
+        { mode: 'person', profileId: 'alice', roles: ['author'] }
+      ], { acceptedAt: '2026-08-02' })
+    ]),
+    targetCatalog: catalog,
+    fetchImpl: githubMock([]),
+    now: new Date('2026-08-05T12:00:00Z')
+  })
+
+  assert.deepEqual(snapshot.events.map((item) => item.locales), [['bn'], ['bn', 'en']])
+})
+
+test('an adaptation event represents one written guide and credits at least one author', async () => {
+  const alice = profile('alice')
+  const basePolicy = policy([alice])
+  const catalog = await buildTargetCatalog(root)
+  const credits = [{ mode: 'person', profileId: 'alice', roles: ['author'] }]
+
+  assert.doesNotThrow(
+    () => validateContributorLedger({
+      ledger: ledger([alice], [editorialEvent('adaptation-guide', credits, {
+        attribution: 'adaptation',
+        targetPaths: ['/funding/cap-table']
+      })]),
+      policy: basePolicy,
+      targetCatalog: catalog
+    })
+  )
+
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: ledger([alice], [editorialEvent('adaptation-glossary', credits, {
+        attribution: 'adaptation',
+        targetPaths: ['/start-here/glossary']
+      })]),
+      policy: basePolicy,
+      targetCatalog: catalog
+    }),
+    /adaptation must target a written guide/
+  )
+
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: ledger([alice], [editorialEvent('adaptation-many-guides', credits, {
+        attribution: 'adaptation',
+        targetPaths: ['/funding/cap-table', '/funding/data-room']
+      })]),
+      policy: basePolicy,
+      targetCatalog: catalog
+    }),
+    /adaptation must target exactly one guide/
+  )
+
+  assert.throws(
+    () => validateContributorLedger({
+      ledger: ledger([alice], [editorialEvent('adaptation-without-author', [
+        { mode: 'person', profileId: 'alice', roles: ['editor'] }
+      ], {
+        attribution: 'adaptation',
+        targetPaths: ['/funding/cap-table']
+      })]),
+      policy: basePolicy,
+      targetCatalog: catalog
+    }),
+    /adaptation must credit an author/
   )
 })
 
@@ -783,6 +876,58 @@ test('an unchanged refresh preserves the existing snapshot timestamp', async () 
   }
 })
 
+test('a new core-maintainer merge leaves the public snapshot unchanged', async () => {
+  const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'deshi-contributors-core-noop-'))
+  const outputPath = path.join(directory, 'contributors.json')
+  const coreUser = {
+    login: 'shamirislam',
+    type: 'User',
+    avatar_url: 'https://avatars.githubusercontent.com/u/11095742?v=4'
+  }
+  const pulls = [pull(1, 'shamirislam', {
+    merged_at: '2026-08-18T04:00:00Z',
+    user: coreUser
+  })]
+  const options = {
+    policy: policy([]),
+    ledger: ledger([], []),
+    targetCatalog: new Map(),
+    outputPath,
+    fetchImpl: githubMock(pulls)
+  }
+
+  try {
+    const original = await refreshContributorFile({
+      ...options,
+      now: new Date('2026-08-18T05:00:00Z')
+    })
+    const originalSource = await fs.readFile(outputPath, 'utf8')
+    const originalMtime = new Date('2026-08-18T05:00:00Z')
+    await fs.utimes(outputPath, originalMtime, originalMtime)
+
+    pulls.unshift(pull(2, 'shamirislam', {
+      merged_at: '2026-08-19T04:00:00Z',
+      user: coreUser
+    }))
+    const refreshed = await refreshContributorFile({
+      ...options,
+      now: new Date('2026-08-19T05:00:00Z')
+    })
+
+    assert.deepEqual(refreshed, original)
+    assert.equal(await fs.readFile(outputPath, 'utf8'), originalSource)
+    assert.equal((await fs.stat(outputPath)).mtimeMs, originalMtime.valueOf())
+    assert.deepEqual(original.coreProfiles, [{
+      displayName: 'Shamir Islam',
+      githubLogin: 'shamirislam',
+      profileUrl: 'https://github.com/shamirislam',
+      avatarUrl: 'https://avatars.githubusercontent.com/u/11095742?v=4&s=160'
+    }])
+  } finally {
+    await fs.rm(directory, { recursive: true, force: true })
+  }
+})
+
 test('a refresh repairs a malformed existing snapshot timestamp', async () => {
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'deshi-contributors-timestamp-'))
   const outputPath = path.join(directory, 'contributors.json')
@@ -983,9 +1128,7 @@ test('the authored current ledger reconciles to four contributors and thirteen c
     displayName: 'Mohammad Sultan Khaja',
     githubLogin: 'M9S4K',
     profileUrl: 'https://github.com/M9S4K',
-    avatarUrl: 'https://avatars.githubusercontent.com/u/79?v=4&s=160',
-    mergedPullRequestCount: 1,
-    lastMergedAt: '2026-08-18T13:07:32.000Z'
+    avatarUrl: 'https://avatars.githubusercontent.com/u/79?v=4&s=160'
   }])
   assert.deepEqual(snapshot.organizations, [{
     id: 'lightcastle-partners',

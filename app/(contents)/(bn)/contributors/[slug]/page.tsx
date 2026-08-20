@@ -25,7 +25,7 @@ export async function generateMetadata({
   if (!profile) return { title: 'কন্ট্রিবিউটর পাওয়া যায়নি', robots: { index: false } }
   return {
     title: `${profile.displayName} – কন্ট্রিবিউটর`,
-    description: `দেশি স্টার্টআপে ${profile.displayName}-এর পাবলিশ হওয়া কাজ আর প্রমাণের রেকর্ড।`
+    description: `দেশি স্টার্টআপে ${profile.displayName} কী কী কাজ করেছেন, কোন পেজে করেছেন আর কবে করেছেন।`
   }
 }
 

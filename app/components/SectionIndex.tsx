@@ -35,6 +35,7 @@ interface SectionIndexProps {
  */
 export default function SectionIndex({ section, locale = 'bn' }: SectionIndexProps) {
   const isEn = locale === 'en'
+  const isDirectory = section === 'directory'
   const data = typedContentIndex[locale].sections[section]
   if (!data) return null
   const [, total, written, , groups] = data
@@ -58,7 +59,9 @@ export default function SectionIndex({ section, locale = 'bn' }: SectionIndexPro
         ) : (
           <>
             <a href={href(route)} className="is-stub-link" rel="nofollow">{title}</a>
-            <span className="stub-chip">{isEn ? 'to be written' : 'লেখা বাকি'}</span>
+            <span className="stub-chip">
+              {isDirectory ? (isEn ? 'coming soon' : 'শিগগিরই আসছে') : (isEn ? 'to be written' : 'লেখা বাকি')}
+            </span>
           </>
         )}
       </li>
@@ -69,32 +72,36 @@ export default function SectionIndex({ section, locale = 'bn' }: SectionIndexPro
 
   return (
     <section className="section-index" data-pagefind-ignore>
-      <h2 id={isEn ? 'all-guides-in-this-section' : 'এই-বিভাগের-সব-গাইড'}>
-        {isEn ? 'All guides in this section' : 'এই বিভাগের সব গাইড'}
+      <h2 id={isDirectory ? (isEn ? 'all-directories' : 'সব-ডিরেক্টরি') : (isEn ? 'all-guides-in-this-section' : 'এই-বিভাগের-সব-গাইড')}>
+        {isDirectory ? (isEn ? 'All directories' : 'সব ডিরেক্টরি') : (isEn ? 'All guides in this section' : 'এই বিভাগের সব গাইড')}
       </h2>
       <div className="section-stats">
         <span>
-          {isEn ? 'Total topics' : 'মোট বিষয়'} <b>{num(total)}</b>
+          {isDirectory ? (isEn ? 'Total directories' : 'মোট ডিরেক্টরি') : (isEn ? 'Total topics' : 'মোট বিষয়')} <b>{num(total)}</b>
         </span>
         <span>
-          {isEn ? 'Written' : 'লেখা হয়েছে'} <b>{num(written)}</b>
+          {isDirectory ? (isEn ? 'Available' : 'প্রকাশিত') : (isEn ? 'Written' : 'লেখা হয়েছে')} <b>{num(written)}</b>
         </span>
         {/* A "0 to be written" pill is noise, and the invitation below it would
             be pointing at nothing. A finished section should just say so. */}
         {remaining > 0 && (
           <span>
-            {isEn ? 'To be written' : 'লেখা বাকি'} <b>{num(remaining)}</b>
+            {isDirectory ? (isEn ? 'Coming soon' : 'শিগগিরই আসছে') : (isEn ? 'To be written' : 'লেখা বাকি')} <b>{num(remaining)}</b>
           </span>
         )}
       </div>
       <p className="index-desc section-index__note">
         {remaining > 0
-          ? isEn
-            ? 'Unwritten topics are marked – click one to see its sources and help write it.'
-            : 'যে বিষয়গুলো এখনো লেখা হয়নি সেগুলো চিহ্নিত করা আছে – চাইলে যেকোনোটিতে ঢুকে সোর্স দেখে লেখায় হাত লাগাতে পারেন।'
-          : isEn
-            ? 'Every topic in this section is written. Spotted something out of date? The edit link at the bottom of each guide is open to you.'
-            : 'এই বিভাগের সব বিষয়ই লেখা হয়েছে। কোথাও পুরোনো তথ্য চোখে পড়লে গাইডের নিচের এডিট অপশন থেকেই ঠিক করে দিতে পারেন।'}
+          ? isDirectory
+            ? (isEn ? 'Directories still being prepared are marked as coming soon.' : 'যে ডিরেক্টরিগুলো নিয়ে এখনো কাজ চলছে, সেগুলোতে ‘শিগগিরই আসছে’ লেখা আছে।')
+            : (isEn
+              ? 'Unwritten topics are marked – click one to see its sources and help write it.'
+              : 'যে বিষয়গুলো এখনো লেখা হয়নি সেগুলো চিহ্নিত করা আছে – চাইলে যেকোনোটিতে ঢুকে সোর্স দেখে লেখায় হাত লাগাতে পারেন।')
+          : isDirectory
+            ? (isEn ? 'All directories are available. Spotted outdated information? Use the edit link on the relevant directory page.' : 'সব ডিরেক্টরি প্রকাশিত হয়েছে। কোথাও পুরোনো তথ্য চোখে পড়লে পেজের নিচের এডিট অপশন থেকে ঠিক করে দিতে পারেন।')
+            : (isEn
+              ? 'Every topic in this section is written. Spotted something out of date? The edit link at the bottom of each guide is open to you.'
+              : 'এই বিভাগের সব বিষয়ই লেখা হয়েছে। কোথাও পুরোনো তথ্য চোখে পড়লে গাইডের নিচের এডিট অপশন থেকেই ঠিক করে দিতে পারেন।')}
       </p>
 
       {groups.map(([groupTitle, items]) => {
@@ -108,9 +115,9 @@ export default function SectionIndex({ section, locale = 'bn' }: SectionIndexPro
               (writtenItems.length > 0 ? (
                 <details>
                   <summary>
-                    {isEn
-                      ? `To be written (${num(stubItems.length)})`
-                      : `লেখা বাকি (${num(stubItems.length)})`}
+                    {isDirectory
+                      ? (isEn ? `Coming soon (${num(stubItems.length)})` : `শিগগিরই আসছে (${num(stubItems.length)})`)
+                      : (isEn ? `To be written (${num(stubItems.length)})` : `লেখা বাকি (${num(stubItems.length)})`)}
                   </summary>
                   <ul>{stubItems.map(renderItem)}</ul>
                 </details>

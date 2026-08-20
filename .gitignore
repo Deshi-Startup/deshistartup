@@ -19,7 +19,6 @@ _pagefind/
 .fseventsd/
 Icon?
 
-knowledge-bank/
 context/
 # Generated on demand (npm run backlog:status) — regenerable, do not commit
 plan/status-report.md

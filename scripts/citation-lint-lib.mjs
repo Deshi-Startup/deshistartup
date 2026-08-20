@@ -5,6 +5,8 @@ import { unified } from 'unified'
 const parser = unified().use(remarkParse).use(remarkGfm)
 const SAFE_IDENTIFIER = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 const UNRESOLVED_REFERENCE = /\[\^([^\]\n]+)\]/g
+const SOURCES_HEADING = /^##[ \t]+(?:প্রাসঙ্গিক সোর্স|Relevant Sources)[ \t]*$/
+const MANUAL_LIST_ITEM = /^(?:[-+*]|\d+[.)])[ \t]+/
 
 const lineOf = (node) => node?.position?.start?.line || 1
 
@@ -39,9 +41,32 @@ export function inspectCitations(source, file = '<content>') {
   visit(tree)
 
   const errors = []
+
+  if (!/<StubNotice\b/.test(source)) {
+    const lines = source.split(/\r?\n/)
+    let insideSources = false
+
+    for (let index = 0; index < lines.length; index += 1) {
+      const line = lines[index]
+      if (SOURCES_HEADING.test(line)) {
+        insideSources = true
+        continue
+      }
+      if (insideSources && /^##[ \t]+/.test(line)) {
+        insideSources = false
+      }
+      if (insideSources && MANUAL_LIST_ITEM.test(line)) {
+        errors.push(
+          `${file}:${index + 1} completed guides must use inline GFM footnotes instead of a manual list under Relevant Sources`
+        )
+        insideSources = false
+      }
+    }
+  }
+
   if (
     definitions.size > 0 &&
-    !/^##[ \t]+(?:প্রাসঙ্গিক সোর্স|Relevant Sources)[ \t]*$/m.test(source)
+    !new RegExp(SOURCES_HEADING.source, 'm').test(source)
   ) {
     errors.push(`${file}: cited pages must include a ## প্রাসঙ্গিক সোর্স or ## Relevant Sources heading`)
   }

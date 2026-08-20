@@ -332,6 +332,12 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     if (typeof document === 'undefined') return ''
     return document.querySelector<HTMLElement>('[data-deshi-credits="true"]')?.innerHTML || ''
   })
+  // Same contract, one line instead of a record: the meta row's byline is
+  // written into the HTML by postbuild, and adopted here so hydration keeps it.
+  const [staticBylineHtml] = useState(() => {
+    if (typeof document === 'undefined') return ''
+    return document.querySelector<HTMLElement>('[data-deshi-byline="true"]')?.innerHTML || ''
+  })
   // Latched separately from `authOpen` so the dialog stays mounted through its
   // close, instead of being torn out mid-transition the first time it is used.
   const [authMounted, setAuthMounted] = useState(false)
@@ -843,6 +849,15 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
               <Breadcrumbs isEn={isEn} pathname={pathname} pageTitle={pageTitle} />
               {!isContact && (
                 <div className="article-meta">
+                  {/* Who, then when, then how to correct it: a reference work's
+                      colophon order. The slot is empty until postbuild fills it,
+                      and empty on every page that is not a written guide. */}
+                  <div
+                    className="article-byline"
+                    data-deshi-byline="true"
+                    suppressHydrationWarning
+                    dangerouslySetInnerHTML={{ __html: staticBylineHtml }}
+                  />
                   {/* One date, not two. "Last updated" is the last commit, so a typo fix bumps it;
                       `verified:` means someone re-checked the claims against the official source.
                       Where a page carries the stronger signal, that is the one worth showing. */}
@@ -891,9 +906,10 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
 
           {!isLanding && !isEditing && !isPrivateReview && !isCredits && !isNotFound && !isContact && (
             <section
+              id="credits"
               className="page-contribution-credits"
               data-deshi-credits="true"
-              aria-label={isEn ? 'Contributions to this page' : 'এই পেজে অবদান'}
+              aria-labelledby="credits-heading"
               suppressHydrationWarning
               // The production postbuild fills this static slot from the
               // committed public ledger. The first client render adopts those

@@ -22,6 +22,7 @@ import {
   canonicalUrl,
 } from "../app/seo.config.mjs";
 import { prepareContributorSnapshot } from "../app/lib/contributor-leaderboard.mjs";
+import { isWrittenGuide } from "./content-guide.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const contentRoot = path.join(root, "app", "(contents)");
@@ -182,6 +183,7 @@ for (const locale of LOCALES) {
       fullTitle: title,
       description: fm.description || "",
       stub: isStub,
+      guide: isWrittenGuide({ slug: rel, source, stub: isStub }),
       date,
       published,
       verified,
@@ -253,8 +255,8 @@ if (fs.existsSync(contributorSnapshotPath)) {
   );
   for (const profile of contributorView.rankedProfiles) {
     const descriptions = {
-      bn: `${profile.displayName}-এর দেশি স্টার্টআপে প্রকাশিত অবদান, ভূমিকা ও প্রতিটি কাজের প্রমাণের তালিকা।`,
-      en: `${profile.displayName}'s published Deshi Startup contributions, roles, and evidence trail.`,
+      bn: `দেশি স্টার্টআপে ${profile.displayName} কী কী কাজ করেছেন, কোন পেজে করেছেন আর কবে করেছেন।`,
+      en: `What ${profile.displayName} has worked on at Deshi Startup, which pages, and when.`,
     };
     for (const locale of LOCALES) {
       const isEn = locale.key === "en";
@@ -270,6 +272,7 @@ if (fs.existsSync(contributorSnapshotPath)) {
         fullTitle: `${profile.displayName} – ${isEn ? "Contributor" : "কন্ট্রিবিউটর"}`,
         description: descriptions[locale.key],
         stub: false,
+        guide: false,
         date: profile.lastAcceptedAt,
         published: profile.contributorSince,
         verified: null,

@@ -13,10 +13,11 @@ import { fileURLToPath } from 'node:url'
 import { load } from 'cheerio'
 import snapshotData from '../app/generated/contributors.json' with { type: 'json' }
 import {
-  ROLE_ACTIVITY_LABELS,
   contributorProfilePath,
   prepareContributorSnapshot
 } from '../app/lib/contributor-leaderboard.mjs'
+import { pageBylineHtml } from '../app/lib/page-byline.mjs'
+import { pageCreditsHtml } from '../app/lib/page-credits.mjs'
 import {
   CONTENT_LICENSE_URL,
   DEFAULT_DESCRIPTIONS,
@@ -29,6 +30,11 @@ import {
   canonicalUrl
 } from '../app/seo.config.mjs'
 import { resolveBuildOutput } from './build-output.mjs'
+import {
+  eventsForLocale,
+  fillPageByline,
+  fillPageCredits
+} from './postbuild-contributors.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const { htmlDir: outDir } = resolveBuildOutput(root)
@@ -67,7 +73,7 @@ function contributorProfileForPage(page) {
 function contributionEventsForPage(page) {
   if (isContributorProfile(page) || page.slug.includes('contributors')) return []
   const target = `/${page.slug}`
-  return contributionEventsByTarget.get(target) || []
+  return eventsForLocale(contributionEventsByTarget.get(target) || [], page.locale)
 }
 
 function isUtilityPage(page) {
@@ -207,69 +213,6 @@ function basePathFromHtml(html) {
 function localBuildHref(route, basePath) {
   if (!route.startsWith('/') || !basePath) return route
   return route === '/' ? basePath : `${basePath}${route}`
-}
-
-function formatAcceptedDate(value, locale) {
-  const date = new Date(`${value}T00:00:00Z`)
-  if (Number.isNaN(date.valueOf())) return value
-  return new Intl.DateTimeFormat(locale === 'en' ? 'en-BD' : 'bn-BD', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-    timeZone: 'UTC'
-  }).format(date)
-}
-
-function pageCreditsHtml(page, events, basePath) {
-  if (events.length === 0) return ''
-  const isEn = page.locale === 'en'
-  const locale = page.locale
-  const heading = isEn ? 'Contributions to this page' : 'এই পেজে অবদান'
-  const explanation = isEn
-    ? 'Accepted work is listed with its public evidence.'
-    : 'গৃহীত কাজের সঙ্গে তার পাবলিক প্রমাণও দেওয়া আছে।'
-  const anonymous = isEn ? 'Anonymous contributor' : 'নাম প্রকাশে অনিচ্ছুক কন্ট্রিবিউটর'
-  const evidence = isEn ? 'View evidence' : 'প্রমাণ দেখুন'
-  const accepted = isEn ? 'Accepted' : 'গৃহীত'
-  const affiliation = isEn ? 'Affiliation at the time' : 'তৎকালীন প্রতিষ্ঠান'
-  const reviewScope = isEn ? 'Review scope' : 'রিভিউয়ের পরিধি'
-
-  const rows = events.flatMap((event) => event.credits.map((credit, creditIndex) => {
-    const profile = credit.profileId ? contributorProfileById.get(credit.profileId) : null
-    const organization = credit.organizationId
-      ? contributorOrganizationById.get(credit.organizationId) || null
-      : null
-    const identity = profile
-      ? `<a href="${escapeHtml(localBuildHref(contributorProfilePath(profile.slug, locale), basePath))}">${escapeHtml(profile.displayName)}</a>`
-      : `<span>${anonymous}</span>`
-    const roles = credit.roles
-      .map((role) => ROLE_ACTIVITY_LABELS[role]?.[locale] || role)
-      .map((role) => `<span>${escapeHtml(role)}</span>`)
-      .join('')
-    const organizationHtml = organization
-      ? `<p class="page-credit__affiliation"><strong>${affiliation}:</strong> ${
-          organization.url
-            ? `<a href="${escapeHtml(organization.url)}" rel="noopener noreferrer">${escapeHtml(organization.name)}</a>`
-            : escapeHtml(organization.name)
-        }</p>`
-      : ''
-    const reviewHtml = credit.review
-      ? `<p class="page-credit__review"><strong>${reviewScope}:</strong> ${escapeHtml(credit.review.scope[locale])} · <time datetime="${credit.review.reviewedAt}">${escapeHtml(formatAcceptedDate(credit.review.reviewedAt, locale))}</time></p>`
-      : ''
-    return `<li class="page-credit" data-contribution-event="${escapeHtml(event.id)}" data-credit-index="${creditIndex}">
-      <div class="page-credit__line"><span class="page-credit__roles">${roles}</span><strong class="page-credit__person">${identity}</strong></div>
-      <p class="page-credit__scope">${escapeHtml(event.summary[locale])}</p>
-      ${organizationHtml}${reviewHtml}
-      <p class="page-credit__meta"><span>${accepted}: <time datetime="${event.acceptedAt}">${escapeHtml(formatAcceptedDate(event.acceptedAt, locale))}</time></span><a href="${escapeHtml(event.evidenceUrl)}" rel="noopener noreferrer">${evidence}</a></p>
-    </li>`
-  }))
-
-  return `<div class="page-contribution-credits__header"><h2>${heading}</h2><p>${explanation}</p></div><ol class="page-credit-list">${rows.join('')}</ol>`
-}
-
-function fillPageCredits(html, content) {
-  const slot = /(<section\b(?=[^>]*\bdata-deshi-credits="true")[^>]*>)[\s\S]*?(<\/section>)/i
-  return slot.test(html) ? html.replace(slot, `$1${content}$2`) : html
 }
 
 function excludeProfileFromPagefind(html) {
@@ -688,6 +631,10 @@ for (const page of pages) {
       isUtilityPage(page)
       ? 'website'
       : 'article'
+  // The manifest classifies authored MDX before build output loses its source
+  // components. Do not infer a guide from SEO type or the number of written
+  // children: both misclassify empty section hubs and lookup pages.
+  const showsByline = page.guide === true
   const robots = page.stub
     ? 'noindex, follow, noarchive'
     : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
@@ -813,9 +760,26 @@ for (const page of pages) {
     html = insertSidebarToc(html, sidebarTocHtml(shellHeadings, isEn))
     html = insertPageToc(html, pageTocHtml(shellHeadings, isEn))
   }
+  html = fillPageByline(
+    html,
+    showsByline
+      ? pageBylineHtml({
+          events: pageContributionEvents,
+          locale: page.locale,
+          profileById: contributorProfileById,
+          href: (route) => localBuildHref(route, buildBasePath)
+        })
+      : ''
+  )
   html = fillPageCredits(
     html,
-    pageCreditsHtml(page, pageContributionEvents, buildBasePath)
+    pageCreditsHtml({
+      events: pageContributionEvents,
+      locale: page.locale,
+      profileById: contributorProfileById,
+      organizationById: contributorOrganizationById,
+      href: (route) => localBuildHref(route, buildBasePath)
+    })
   )
   if (isContributorProfile(page)) html = excludeProfileFromPagefind(html)
   fs.writeFileSync(file, html)

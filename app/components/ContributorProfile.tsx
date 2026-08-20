@@ -1,5 +1,6 @@
 import sectionTitles from '../generated/sections-lite.json'
 import { ROLE_LABELS } from '../lib/contributor-leaderboard.mjs'
+import { contributorEventTarget } from '../lib/contributor-event-locale.mjs'
 import { contributorTopics } from '../lib/contributor-topics.mjs'
 import { mediaUrl } from '../lib/media'
 import type {
@@ -21,10 +22,10 @@ const copy = {
     topicsTitle: 'যেসব বিষয়ে কাজ করেছেন',
     topicUnit: (_count: number) => 'টি পেজ',
     trailTitle: 'পাবলিশ হওয়া কাজের রেকর্ড',
-    evidence: 'প্রমাণ দেখে নিন',
+    evidence: 'সোর্স দেখে নিন',
     pagesLabel: (_count: number) => 'পাবলিশ হওয়া পেজ',
-    affiliation: 'সে সময়ের প্রতিষ্ঠান',
-    reviewScope: 'রিভিউয়ের পরিধি',
+    affiliation: 'তখন কাজ করতেন',
+    reviewScope: 'যা দেখেছেন',
     noPage: 'সাইটের প্রোডাক্ট বা ইনফ্রাস্ট্রাকচারের কাজ',
     refreshed: 'শেষ আপডেট',
     correctionText: 'এখানে নাম, ক্রেডিট বা পরিচয়ে ভুল থাকলে, কিংবা নামটা সরাতে চাইলে',
@@ -41,10 +42,10 @@ const copy = {
     topicsTitle: 'Topics worked on',
     topicUnit: (count: number) => (count === 1 ? '\u00a0page' : '\u00a0pages'),
     trailTitle: 'Contribution history',
-    evidence: 'View evidence',
+    evidence: 'See the source',
     pagesLabel: (count: number) => (count === 1 ? 'Published page' : 'Published pages'),
-    affiliation: 'Affiliation at the time',
-    reviewScope: 'Review scope',
+    affiliation: 'Worked at',
+    reviewScope: 'Checked',
     noPage: 'Product or infrastructure work on the site',
     refreshed: 'Data updated',
     correctionText: 'To correct a name, credit, or identity on this page, or to have it removed,',
@@ -111,10 +112,12 @@ function Figure({ value, unit }: { value: string; unit: string }) {
 
 function TargetPages({
   targets,
-  locale
+  locale,
+  eventLocales
 }: {
   targets: ContributorTarget[]
   locale: ContributorLocale
+  eventLocales: ContributorLocale[]
 }) {
   const text = copy[locale]
   if (!targets.length) return <p className="contributor-event__no-page">{text.noPage}</p>
@@ -125,11 +128,20 @@ function TargetPages({
      block above them. */
   const pages = (
     <ul>
-      {targets.map((target) => (
-        <li key={target.path}>
-          <a href={localeHref(target.path, locale)}>{target.title[locale]}</a>
-        </li>
-      ))}
+      {targets.map((target) => {
+        const destination = contributorEventTarget(target.path, eventLocales, locale)
+        return (
+          <li key={target.path}>
+            <a
+              href={localHref(destination.path)}
+              hrefLang={destination.locale}
+              lang={destination.locale}
+            >
+              {target.title[destination.locale as ContributorLocale]}
+            </a>
+          </li>
+        )
+      })}
     </ul>
   )
 
@@ -308,7 +320,7 @@ export default function ContributorProfile({
                           <time dateTime={credit.review.reviewedAt}>{formatDate(credit.review.reviewedAt, locale)}</time>
                         </p>
                       ) : null}
-                      <TargetPages targets={event.targets} locale={locale} />
+                      <TargetPages targets={event.targets} locale={locale} eventLocales={event.locales} />
                     </li>
                   )
                 })}

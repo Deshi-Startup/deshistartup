@@ -175,6 +175,15 @@ refresh leaves the previous snapshot in place. Who counts as core team, identity
 and opt-outs live in `data/contributors-policy.json`. Follow
 `docs/contributor-recognition.md` for event boundaries, consent, roles, and correction handling.
 
+Every guide shows that record twice: a one-line byline in the article meta row, and the full
+`#credits` record below the article. Both are written into the static HTML by
+`scripts/postbuild-seo.mjs` from the same events, so they cannot disagree, and neither ships
+contributor data to the reader. The byline's compression and verb rules live in
+`app/lib/page-byline.mjs` and are covered by `app/lib/page-byline.test.mjs`. Neither appears under
+`next dev`, which runs no postbuild pass. Set `"attribution": "adaptation"` on a ledger event when
+a guide is adapted from someone's published work; the byline then says so permanently, instead of
+that fact living in a hand-written sentence on the page.
+
 ## Commands
 
 ```bash

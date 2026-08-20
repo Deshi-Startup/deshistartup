@@ -25,7 +25,7 @@ export async function generateMetadata({
   if (!profile) return { title: 'Contributor not found', robots: { index: false } }
   return {
     title: `${profile.displayName} – Contributor`,
-    description: `${profile.displayName}'s published Deshi Startup contributions and evidence trail.`
+    description: `What ${profile.displayName} has worked on at Deshi Startup, which pages, and when.`
   }
 }
 
