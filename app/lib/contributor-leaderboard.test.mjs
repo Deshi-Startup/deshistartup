@@ -218,19 +218,18 @@ test('creates stable locale-aware profile routes and returns null for unknown pr
   assert.equal(profileFromSnapshot(source, 'missing'), null)
 })
 
-test('numbers ranked entries but leaves the core team unranked', () => {
+test('numbers ranked entries but leaves the core team unranked and uncounted', () => {
   const view = prepareContributorSnapshot(snapshot(2, {
     coreProfiles: [{
       displayName: 'Shamir Islam',
       githubLogin: 'shamirislam',
-      avatarUrl: null,
-      mergedPullRequestCount: 3,
-      lastMergedAt: '2026-08-01T10:00:00.000Z'
+      avatarUrl: null
     }]
   }))
   assert.deepEqual(view.rankedProfiles.map((entry) => entry.rank), [1, 2])
   assert.equal(view.coreProfiles[0].rank, null)
-  assert.equal(view.coreProfiles[0].mergedPullRequestCount, 3)
+  assert.equal('mergedPullRequestCount' in view.coreProfiles[0], false)
+  assert.equal('lastMergedAt' in view.coreProfiles[0], false)
 })
 
 test('creates Unicode-safe monograms', () => {

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "repository": "Deshi-Startup/deshistartup",
-  "refreshedAt": "2026-08-20T12:18:15.241Z",
+  "refreshedAt": "2026-08-20T12:19:27.514Z",
   "totals": {
     "contributors": 4,
     "acceptedEvents": 13,
@@ -774,33 +774,25 @@
       "displayName": "Anwarul Islam",
       "githubLogin": "anwarulislam",
       "profileUrl": "https://github.com/anwarulislam",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/26295990?v=4&s=160",
-      "mergedPullRequestCount": 1,
-      "lastMergedAt": "2026-07-26T05:04:12.000Z"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/26295990?v=4&s=160"
     },
     {
       "displayName": "Mohammad Sultan Khaja",
       "githubLogin": "M9S4K",
       "profileUrl": "https://github.com/M9S4K",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/20677421?v=4&s=160",
-      "mergedPullRequestCount": 1,
-      "lastMergedAt": "2026-08-18T13:07:32.000Z"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/20677421?v=4&s=160"
     },
     {
       "displayName": "Sagar",
       "githubLogin": "sagar290",
       "profileUrl": "https://github.com/sagar290",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/7631656?v=4&s=160",
-      "mergedPullRequestCount": 3,
-      "lastMergedAt": "2026-08-10T21:43:18.000Z"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/7631656?v=4&s=160"
     },
     {
       "displayName": "Shamir Islam",
       "githubLogin": "shamirislam",
       "profileUrl": "https://github.com/shamirislam",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/11095742?v=4&s=160",
-      "mergedPullRequestCount": 9,
-      "lastMergedAt": "2026-08-19T12:26:21.000Z"
+      "avatarUrl": "https://avatars.githubusercontent.com/u/11095742?v=4&s=160"
     }
   ]
 }

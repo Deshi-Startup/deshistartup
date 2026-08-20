@@ -876,6 +876,58 @@ test('an unchanged refresh preserves the existing snapshot timestamp', async () 
   }
 })
 
+test('a new core-maintainer merge leaves the public snapshot unchanged', async () => {
+  const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'deshi-contributors-core-noop-'))
+  const outputPath = path.join(directory, 'contributors.json')
+  const coreUser = {
+    login: 'shamirislam',
+    type: 'User',
+    avatar_url: 'https://avatars.githubusercontent.com/u/11095742?v=4'
+  }
+  const pulls = [pull(1, 'shamirislam', {
+    merged_at: '2026-08-18T04:00:00Z',
+    user: coreUser
+  })]
+  const options = {
+    policy: policy([]),
+    ledger: ledger([], []),
+    targetCatalog: new Map(),
+    outputPath,
+    fetchImpl: githubMock(pulls)
+  }
+
+  try {
+    const original = await refreshContributorFile({
+      ...options,
+      now: new Date('2026-08-18T05:00:00Z')
+    })
+    const originalSource = await fs.readFile(outputPath, 'utf8')
+    const originalMtime = new Date('2026-08-18T05:00:00Z')
+    await fs.utimes(outputPath, originalMtime, originalMtime)
+
+    pulls.unshift(pull(2, 'shamirislam', {
+      merged_at: '2026-08-19T04:00:00Z',
+      user: coreUser
+    }))
+    const refreshed = await refreshContributorFile({
+      ...options,
+      now: new Date('2026-08-19T05:00:00Z')
+    })
+
+    assert.deepEqual(refreshed, original)
+    assert.equal(await fs.readFile(outputPath, 'utf8'), originalSource)
+    assert.equal((await fs.stat(outputPath)).mtimeMs, originalMtime.valueOf())
+    assert.deepEqual(original.coreProfiles, [{
+      displayName: 'Shamir Islam',
+      githubLogin: 'shamirislam',
+      profileUrl: 'https://github.com/shamirislam',
+      avatarUrl: 'https://avatars.githubusercontent.com/u/11095742?v=4&s=160'
+    }])
+  } finally {
+    await fs.rm(directory, { recursive: true, force: true })
+  }
+})
+
 test('a refresh repairs a malformed existing snapshot timestamp', async () => {
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'deshi-contributors-timestamp-'))
   const outputPath = path.join(directory, 'contributors.json')
@@ -1076,9 +1128,7 @@ test('the authored current ledger reconciles to four contributors and thirteen c
     displayName: 'Mohammad Sultan Khaja',
     githubLogin: 'M9S4K',
     profileUrl: 'https://github.com/M9S4K',
-    avatarUrl: 'https://avatars.githubusercontent.com/u/79?v=4&s=160',
-    mergedPullRequestCount: 1,
-    lastMergedAt: '2026-08-18T13:07:32.000Z'
+    avatarUrl: 'https://avatars.githubusercontent.com/u/79?v=4&s=160'
   }])
   assert.deepEqual(snapshot.organizations, [{
     id: 'lightcastle-partners',

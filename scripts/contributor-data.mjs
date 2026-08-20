@@ -690,14 +690,12 @@ function publicEventsFromLedger(ledger, targetCatalog, publicProfileIds, hiddenP
   }))
 }
 
-function coreProfileFromGroup(identity, mergeDates) {
+function coreProfileFromIdentity(identity) {
   return {
     displayName: identity.displayName,
     githubLogin: identity.githubLogin,
     profileUrl: identity.profileUrl,
-    avatarUrl: identity.avatarUrl,
-    mergedPullRequestCount: mergeDates.length,
-    lastMergedAt: [...mergeDates].sort().at(-1) || null
+    avatarUrl: identity.avatarUrl
   }
 }
 
@@ -726,7 +724,7 @@ export async function buildContributorSnapshot({
   )
   const seenLedgerPulls = new Set()
   const missingLedgerPulls = []
-  const coreGroups = new Map()
+  const coreIdentities = new Map()
   let unattributedCount = 0
 
   for (const pull of pulls) {
@@ -753,9 +751,7 @@ export async function buildContributorSnapshot({
       continue
     }
     if (identity.status === 'core') {
-      const group = coreGroups.get(identity.key) || { identity, mergeDates: [] }
-      group.mergeDates.push(new Date(pull.merged_at).toISOString())
-      coreGroups.set(identity.key, group)
+      if (!coreIdentities.has(identity.key)) coreIdentities.set(identity.key, identity)
       continue
     }
 
@@ -845,8 +841,8 @@ export async function buildContributorSnapshot({
     ...events.flatMap((event) => event.credits.map((credit) => credit.organizationId).filter(Boolean))
   ])
   const organizations = ledger.organizations.filter((organization) => usedOrganizationIds.has(organization.id))
-  const coreProfiles = [...coreGroups.values()]
-    .map(({ identity, mergeDates }) => coreProfileFromGroup(identity, mergeDates))
+  const coreProfiles = [...coreIdentities.values()]
+    .map(coreProfileFromIdentity)
     .sort((a, b) => a.displayName.localeCompare(b.displayName, 'en', { sensitivity: 'base' }))
 
   const provisional = {

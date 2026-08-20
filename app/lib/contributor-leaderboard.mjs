@@ -358,8 +358,6 @@ function prepareCoreProfiles(source, repository) {
       profileUrl: githubLogin ? safePublicUrl(`https://github.com/${githubLogin}`, 'github.com') : null,
       avatarUrl: safeAvatarUrl(profile?.avatarUrl),
       monogram: monogramForName(displayName),
-      mergedPullRequestCount: finiteNonNegativeInteger(profile?.mergedPullRequestCount),
-      lastMergedAt: safeTimestamp(profile?.lastMergedAt),
       pullsUrl: mergedPullsUrl(repository, githubLogin)
     }]
   })

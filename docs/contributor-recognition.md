@@ -28,7 +28,8 @@ event and credit order are retained. More later events in the same role do not r
 
 The leaderboard is ordered by lifetime accepted-event count, then newest accepted event, then
 display name. There are no points or weights. Core maintainers are shown separately and are never
-ranked.
+ranked. Their public snapshot records identity and avatar details, not pull-request totals or
+last-merge dates, so ordinary maintainer activity does not trigger a contributor-data release.
 
 ## Identity, organizations, and privacy
 
