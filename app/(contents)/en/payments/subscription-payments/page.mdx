@@ -6,7 +6,7 @@ verified: 2026-07-29
 
 # Subscription Payments: Will the Money Actually Pull Itself?
 
-> **Key Takeaway:** The whole arithmetic of a monthly plan rests on one assumption — that next month's payment can be taken without the customer doing anything. In Bangladesh that assumption does not pass unexamined. bKash's tokenized checkout, the one with published documentation, does store the customer's wallet, but a PIN is required on every payment. bKash's product list names a separate Subscriptions service, yet publishes no technical documentation for it. SSLCommerz's v4 documentation contains nothing called recurring or subscription at all. So get it in writing from your provider before you set a price, and until that written answer arrives, assume a person has to do the job every month.
+> **Key Takeaway:** The whole arithmetic of a monthly plan rests on one assumption — that next month's payment can be taken without the customer doing anything. In Bangladesh that assumption does not pass unexamined. bKash's tokenized checkout, the one with published documentation, does store the customer's wallet, but a PIN is required on every payment. bKash's product list names a separate Subscriptions service, yet publishes no technical documentation for it. SSLCOMMERZ's v4 documentation contains nothing called recurring or subscription at all. So get it in writing from your provider before you set a price, and until that written answer arrives, assume a person has to do the job every month.
 
 ## Three Things That Get Confused
 
@@ -38,7 +38,7 @@ That gap is not a developer's problem, it is a founder's problem. No documentati
 
 ## Card EMI Is Not Your Monthly Bill
 
-Search SSLCommerz's v4 documentation and you will find no API named recurring or subscription. What you will find is EMI — switch on `emi_option` when you send the transaction and the customer sees 3, 6, or 9 instalment choices on the gateway page.[^sslcommerz-emi]
+Search SSLCOMMERZ's v4 documentation and you will find no API named recurring or subscription. What you will find is EMI — switch on `emi_option` when you send the transaction and the customer sees 3, 6, or 9 instalment choices on the gateway page.[^sslcommerz-emi]
 
 Do not read the two as the same thing. EMI means the customer bought once, and the bank that issued their card split that single price into instalments. The money reaches you in one go. From where you sit, that is one sale, not a twelve-month relationship.
 
@@ -112,5 +112,5 @@ Rule of thumb: **Until the written answer arrives, assume the customer has to pa
 
 [^bkash-tokenized-checkout]: [bKash Developer – Tokenized Checkout Process](https://developer.bka.sh/docs/tokenized-checkout-process), accessed 29 July 2026.
 
-[^sslcommerz-emi]: [SSLCommerz – Developer Documentation v4 (EMI parameters)](https://developer.sslcommerz.com/doc/v4/), accessed 29 July 2026.
+[^sslcommerz-emi]: [SSLCOMMERZ – Developer Documentation v4 (EMI parameters)](https://developer.sslcommerz.com/doc/v4/), accessed 29 July 2026.
 

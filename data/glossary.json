@@ -1370,7 +1370,7 @@
       "bn": "যে সিস্টেমের সাহায্যে আপনার ওয়েবসাইট বা অ্যাপ কাস্টমারের কাছ থেকে কার্ড বা মোবাইলে পেমেন্ট নিতে পারে। যেমন এসএসএলকমার্জ বা আমারপে।"
     },
     "example": {
-      "en": "When you buy a bus ticket on Shohoz and select bKash, a screen pops up to enter your PIN. That secure system connecting the website to bKash is the payment gateway, like SSLCommerz or aamarPay.",
+      "en": "When you buy a bus ticket on Shohoz and select bKash, a screen pops up to enter your PIN. That secure system connecting the website to bKash is the payment gateway, like SSLCOMMERZ or aamarPay.",
       "bn": "সহজ ডটকমে বাসের টিকিট কাটার সময় বিকাশ সিলেক্ট করলে যে স্ক্রিনটা এসে পিন নম্বর চায়, সেটাই পেমেন্ট গেটওয়ে। যেমন এসএসএলকমার্জ বা আমারপের মতো সিস্টেমগুলো ওয়েবসাইট আর বিকাশের মাঝে একটা ব্রিজ হিসেবে কাজ করে।"
     },
     "watchOut": {

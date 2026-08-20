@@ -1,16 +1,16 @@
 ---
 title: "Gateway Integration: What to Tell Your Developer"
-description: "A success page is not proof of payment. The verification APIs, IPN, sandbox addresses and go-live checklist for SSLCommerz, aamarPay and PortPos, taken from their own documentation. Verified 29 July 2026."
+description: "A success page is not proof of payment. The verification APIs, IPN, sandbox addresses and go-live checklist for SSLCOMMERZ, aamarPay and PortPos, taken from their own documentation. Verified 29 July 2026."
 verified: 2026-07-29
 ---
 
 # Gateway Integration: What to Tell Your Developer
 
-> **Key Takeaway:** One mistake costs more than any other when wiring up a gateway: treating the success page the customer lands on as proof that the money arrived. That redirect happens in the customer's browser, and a browser cannot be trusted. All three gateways expose a separate API your server can call to ask whether the money genuinely came in, and how much. SSLCommerz says it outright in its documentation — you must validate the transaction and the amount through the Order Validation API.[^sslcommerz-docs] Put that condition in writing when you brief a developer: no order gets confirmed without a server-side check.
+> **Key Takeaway:** One mistake costs more than any other when wiring up a gateway: treating the success page the customer lands on as proof that the money arrived. That redirect happens in the customer's browser, and a browser cannot be trusted. All three gateways expose a separate API your server can call to ask whether the money genuinely came in, and how much. SSLCOMMERZ says it outright in its documentation — you must validate the transaction and the amount through the Order Validation API.[^sslcommerz-docs] Put that condition in writing when you brief a developer: no order gets confirmed without a server-side check.
 
 ## First, Check Whether You Need Code at All
 
-If your shop runs on a familiar platform — WooCommerce, Shopify, Magento, PrestaShop — look for the plugin before anyone writes code. SSLCommerz's documentation lists plugins for Magento, Shopify, WooCommerce, and WHMCS, plus sample code for PHP, Laravel, React, Next.js, Python, Flutter, Android, and iOS, all published on their GitHub.[^sslcommerz-docs][^sslcommerz-github] PortPos also advertises ready-made integrations for WooCommerce, PrestaShop, and several other platforms.[^portpos-docs]
+If your shop runs on a familiar platform — WooCommerce, Shopify, Magento, PrestaShop — look for the plugin before anyone writes code. SSLCOMMERZ's documentation lists plugins for Magento, Shopify, WooCommerce, and WHMCS, plus sample code for PHP, Laravel, React, Next.js, Python, Flutter, Android, and iOS, all published on their GitHub.[^sslcommerz-docs][^sslcommerz-github] PortPos also advertises ready-made integrations for WooCommerce, PrestaShop, and several other platforms.[^portpos-docs]
 
 Do not assume installing the plugin ends the job. Even with a plugin, the IPN or callback address is yours to configure, and before going live you still need one real order paid with your own money. A custom site or app leaves you no choice but the API, and then every step below is your responsibility.
 
@@ -26,7 +26,7 @@ The three gateways use different names and different parameters, but the shape i
 
 Step five is the one most often skipped, and it is the one that matters most.
 
-|  | SSLCommerz | aamarPay | PortPos |
+|  | SSLCOMMERZ | aamarPay | PortPos |
 |---|---|---|---|
 | Sandbox | `sandbox.sslcommerz.com` | `sandbox.aamarpay.com` | `api-sandbox.portpos.com` |
 | Live | `securepay.sslcommerz.com` | `secure.aamarpay.com` | `api.portpos.com` |
@@ -34,13 +34,13 @@ Step five is the one most often skipped, and it is the one that matters most.
 | Verification API | Order Validation API | Search Transaction API | IPN validate |
 | To start testing | Separate registration on the developer site | Published test credentials work immediately | Generate sandbox credentials in the panel |
 
-The three routes into a sandbox differ, and that matters on day one. aamarPay leaves its test credentials open in the documentation, so a developer can start writing code before you even have an account.[^aamarpay-docs] SSLCommerz requires a separate developer registration.[^sslcommerz-registration] PortPos has you log into the panel to generate your own sandbox credentials, and states that test-mode data never reaches the card networks.[^portpos-docs]
+The three routes into a sandbox differ, and that matters on day one. aamarPay leaves its test credentials open in the documentation, so a developer can start writing code before you even have an account.[^aamarpay-docs] SSLCOMMERZ requires a separate developer registration.[^sslcommerz-registration] PortPos has you log into the panel to generate your own sandbox credentials, and states that test-mode data never reaches the card networks.[^portpos-docs]
 
 ## A Success Page Is Not Proof
 
 The problem comes from both directions. The customer pays, then the connection drops or the tab closes before the redirect completes — the money has left their account and your order sheet shows nothing. The other direction is worse. Someone edits the URL, walks straight onto your success page, and the site confirms an order on the spot.
 
-SSLCommerz sets this out plainly. On IPN, it says the data travels from their server to your server, so the customer's session plays no part in it. And in the integration steps: you must validate your transaction and amount by calling the Order Validation API.
+SSLCOMMERZ sets this out plainly. On IPN, it says the data travels from their server to your server, so the customer's session plays no part in it. And in the integration steps: you must validate your transaction and amount by calling the Order Validation API.
 
 The other two provide the same facility. aamarPay's Search Transaction API takes your own order number and returns `status_code` and `pay_status` — `2` and "Successful" for a completed payment. Their documentation says specifically to check `status_code` together with the `amount` field.[^aamarpay-docs] PortPos's IPN validate call takes the invoice number and the original amount together, so a mismatched amount fails verification by construction.[^portpos-docs]
 
@@ -48,7 +48,7 @@ The lesson is the same in all three places. The amount the gateway reports is no
 
 ## Orders Have More Than Two States
 
-Sorting everything into "paid" and "not paid" will scramble your records. SSLCommerz's IPN sends five states, each meaning something different.[^sslcommerz-docs]
+Sorting everything into "paid" and "not paid" will scramble your records. SSLCOMMERZ's IPN sends five states, each meaning something different.[^sslcommerz-docs]
 
 | Status | Meaning | Your move |
 |---|---|---|
@@ -62,7 +62,7 @@ Tell your developer one more thing explicitly. Word about the same order can arr
 
 ## When a Risk Flag Arrives
 
-SSLCommerz attaches a `risk_level` field to every transaction — 0 for safe, 1 for risky. For risky ones, the documentation says to hold the service and collect customer verification documents.[^sslcommerz-docs] The final call is yours, but the signal should not go unseen.
+SSLCOMMERZ attaches a `risk_level` field to every transaction — 0 for safe, 1 for risky. For risky ones, the documentation says to hold the service and collect customer verification documents.[^sslcommerz-docs] The final call is yours, but the signal should not go unseen.
 
 Build something small around it. A flagged order goes to a separate list, somebody phones the customer, and only then does it ship. On high-value items and foreign cards, that one step removes much of the [chargeback](/en/payments/refunds-chargebacks) trouble before it starts.
 
@@ -72,8 +72,8 @@ Working in the sandbox is no guarantee of working in production. What changes, a
 
 - **Both the addresses and the credentials change.** Sandbox URLs and keys written into the code have to be hunted down on launch day. Keep them in environment variables from the start.
 - **Check that your IPN address is reachable from the internet.** The gateway cannot post to an address on your laptop.
-- **TLS 1.2 is required.** SSLCommerz says it accepts nothing below TLS 1.2,[^sslcommerz-docs] and PortPos says only TLS 1.2 is supported.[^portpos-docs] SSLCommerz also publishes a test command to run from your server, which returns "TLS is okay" when the server is fine.
-- **There are amount limits.** SSLCommerz's documentation puts the transaction amount between BDT 10 and BDT 500,000.[^sslcommerz-docs] If you raise large B2B invoices, find that ceiling out in advance.
+- **TLS 1.2 is required.** SSLCOMMERZ says it accepts nothing below TLS 1.2,[^sslcommerz-docs] and PortPos says only TLS 1.2 is supported.[^portpos-docs] SSLCOMMERZ also publishes a test command to run from your server, which returns "TLS is okay" when the server is fine.
+- **There are amount limits.** SSLCOMMERZ's documentation puts the transaction amount between BDT 10 and BDT 500,000.[^sslcommerz-docs] If you raise large B2B invoices, find that ceiling out in advance.
 - **Secrets must stay out of front-end code.** If `store_passwd` or `signature_key` reaches the browser, anyone can create transactions in your name. Committing them to git is the same exposure.
 
 On launch day, place one small order with your own money, then refund it. Confirmation, the IPN arriving, the sale appearing in your records, and the money going back — you want to watch all four happen once.
@@ -126,11 +126,11 @@ Rule of thumb: **What the browser says is news; what the server verifies is proo
 
 ## Relevant Sources
 
-[^sslcommerz-docs]: [SSLCommerz – Developer Documentation v4](https://developer.sslcommerz.com/doc/v4/) – Order Validation API, IPN, `risk_level`, TLS, and transaction-limit terms
+[^sslcommerz-docs]: [SSLCOMMERZ – Developer Documentation v4](https://developer.sslcommerz.com/doc/v4/) – Order Validation API, IPN, `risk_level`, TLS, and transaction-limit terms
 
-[^sslcommerz-registration]: [SSLCommerz – sandbox registration](https://developer.sslcommerz.com/registration/)
+[^sslcommerz-registration]: [SSLCOMMERZ – sandbox registration](https://developer.sslcommerz.com/registration/)
 
-[^sslcommerz-github]: [SSLCommerz – GitHub libraries and sample code](https://github.com/sslcommerz)
+[^sslcommerz-github]: [SSLCOMMERZ – GitHub libraries and sample code](https://github.com/sslcommerz)
 
 [^aamarpay-docs]: [aamarPay – Developer Reference (Initiate Payment, Search Transaction)](https://aamarpay.readme.io/reference/overview) – test credentials and the `status_code`-`amount` matching rule
 

@@ -42,7 +42,7 @@ Phase 1: Starting,Company Registration,স্মারকলিপি এবং 
 Phase 1: Starting,Company Registration,আরজেএসসি ফি এবং সময়সীমা সংক্রান্ত প্রত্যাশা,RJSC fees and timeline expectations,/registration/rjsc-fees,Guide / Checklist,High,Breakdown of official costs. Tip: Keep extra budget for miscellaneous processing fees.
 Phase 1: Starting,Company Registration,আরজেএসসি-এর সাধারণ ভুলগুলো,Common RJSC mistakes,/registration/rjsc-mistakes,Guide / Checklist,High,Pitfalls during registration. Tip: Double-check all NID details before submission.
 Phase 1: Starting,Company Registration,ডিজিটাল ব্যবসায়িক পরিচয় (ডিবিআইডি),Digital Business Identity (DBID),/registration/dbid,Guide / Checklist,High,Guide on mandatory e-commerce registration. Tip: Required for all online sellers.
-Phase 1: Starting,Company Registration,সত্যায়িত অনুলিপি এবং রিটার্ন দাখিলের প্রাথমিক বিষয়াবলী,Certified copies and returns filing basics,/registration/certified-copies,Guide / Checklist,High,Post-registration compliance. Tip: Set calendar reminders for annual filings.
+Phase 1: Starting,Company Registration,"আরজেএসসি থেকে সার্টিফাইড কপি: কী পাওয়া যায় আর কী পাওয়া যায় না","Certified copies from RJSC: what you can get, and what you cannot",/registration/certified-copies,Guide / Checklist,High,Post-registration compliance. Tip: Set calendar reminders for annual filings.
 Phase 1: Starting,Company Registration,আইনসম্মতভাবে একটি কোম্পানি বন্ধ করে দেওয়া,Closing down a company legally,/registration/closing-a-company,Guide / Checklist,High,"Process for winding up. Tip: Do not just abandon the company, it can lead to legal issues."
 Phase 1: Starting,Local Licenses & Tax,ট্রেড লাইসেন্স নির্দেশিকা,Trade license guide,/trade-license,Guide / Tracker,High,How to get a basic business license. Tip: Apply at the local city corporation or union parishad.
 Phase 1: Starting,Local Licenses & Tax,ট্রেড লাইসেন্সের খরচ এবং নবায়ন প্রক্রিয়া,Trade license costs and renewal process,/licenses/trade-license-renewal,Guide / Tracker,High,Fee structures and deadlines. Tip: Renew before July to avoid penalties.
@@ -59,11 +59,11 @@ Phase 1: Starting,Banking & Payments Setup,কর্পোরেট ব্যা
 Phase 1: Starting,Banking & Payments Setup,"বিকাশ, নগদ ও পেমেন্ট গেটওয়ে: কোনটা কখন লাগে","bKash, Nagad, and payment gateways: which one you actually need",/payments/mfs-and-gateways,Guide / Checklist,High,
 Phase 1: Starting,Banking & Payments Setup,গেটওয়ে ইন্টিগ্রেশন: ডেভেলপারকে যা বলে দিতে হবে,Gateway integration: what to tell your developer,/payments/gateway-integration,Guide / Checklist,High,
 Phase 1: Starting,Banking & Payments Setup,"কার্ড আছে, কার্ডে কেনাকাটা নেই: টাকা নেওয়ার পথ যেভাবে সাজাবেন","Cards are common, card purchases are not: how to set up payments",/payments/low-card-penetration,Guide / Checklist,High,
-Phase 1: Starting,Banking & Payments Setup,"SaaS রপ্তানি, রেমিটেন্স এবং বিদেশী শেয়ারহোল্ডারদের জন্য বৈদেশিক মুদ্রা বিনিময়ের প্রাথমিক বিষয়াবলী","Foreign exchange basics for SaaS export, remittance, and foreign shareholders",/trade/foreign-exchange,Guide / Checklist,High,
-Phase 1: Starting,Import / Export / IP,আমদানি/রপ্তানি নিবন্ধনের প্রাথমিক বিষয়াবলী,Import/export registration basics,/trade/import-export-registration,Guide,Medium,
+Phase 1: Starting,Banking & Payments Setup,"SaaS রপ্তানি, রেমিট্যান্স ও বিদেশি শেয়ারহোল্ডারের বৈদেশিক মুদ্রার নিয়ম","Foreign exchange basics for SaaS export, remittance, and foreign shareholders",/trade/foreign-exchange,Guide / Checklist,High,
+Phase 1: Starting,Import / Export / IP,আমদানি-রপ্তানি নিবন্ধনের প্রাথমিক ধারণা,Import/export registration basics,/trade/import-export-registration,Guide,Medium,
 Phase 1: Starting,Import / Export / IP,আইআরসি/ইআরসি চেকলিস্ট,IRC/ERC checklist,/trade/irc-erc-checklist,Guide,Medium,
 Phase 1: Starting,Import / Export / IP,বাংলাদেশ থেকে রপ্তানিমুখী SaaS,Export-oriented SaaS from Bangladesh,/ideas/export-saas,Guide,Medium,
-Phase 1: Starting,Import / Export / IP,মেধাস্বত্ব এবং ট্রেডমার্কের প্রাথমিক বিষয়াবলী,Intellectual property and trademark basics,/ip/basics,Guide,Medium,
+Phase 1: Starting,Import / Export / IP,মেধাস্বত্ব ও ট্রেডমার্কের প্রাথমিক ধারণা,Intellectual property and trademark basics,/ip/basics,Guide,Medium,
 Phase 1: Starting,Import / Export / IP,"কপিরাইট, পেটেন্ট, ডিজাইন এবং ট্রেডমার্ক","Copyright, patents, designs, and trademarks",/ip/copyright-patent-design,Guide,Medium,
 Phase 1: Starting,Import / Export / IP,ইসলামী অর্থায়ন / হালাল ব্যবসা সংক্রান্ত বিবেচ্য বিষয়সমূহ (যেখানে প্রাসঙ্গিক),Islamic finance / halal business considerations where relevant,/funding/islamic-finance,Guide,Medium,
 Phase 1: Starting,Idea & Validation,সমস্যার তালিকা থেকে ব্যবসার সুযোগ বাছাই,Turning a problem list into a business opportunity,/ideas/problem-to-opportunity,Guide / Template,High,Practical ideation workflow.
@@ -117,9 +117,9 @@ Phase 1: Starting,Local Licenses & Tax,"অডিট, হিসাব ও বু
 Phase 1: Starting,Local Licenses & Tax,a-Chalan ও অনলাইন কর পেমেন্টের কাজের ধাপ,a-Chalan and online tax payment workflow,/tax/a-chalan,Guide,Medium,Source lead: NBR / a-Chalan.
 Phase 1: Starting,Local Licenses & Tax,প্রতি জুনে বাজেট চেঞ্জলগ কীভাবে আপডেট করবেন,How to update the budget changelog every June,/tax/budget-changelog,Process,High,Keep compliance content fresh.
 Phase 1: Starting,Banking & Payments Setup,মার্চেন্ট অ্যাকাউন্ট খুলতে কী কী লাগে,What you need to open a merchant account,/payments/merchant-account,Checklist,High,Bank and payment gateway docs.
-Phase 1: Starting,Banking & Payments Setup,"পেমেন্ট গেটওয়ে তুলনা: SSLCommerz, aamarPay, PortPos ও ShurjoPay","Payment gateway comparison: SSLCommerz, aamarPay, PortPos and ShurjoPay",/payments/gateway-comparison,Comparison,High,"Gateway selection framework. PortWallet rebranded to PortPos; keep rates dated."
+Phase 1: Starting,Banking & Payments Setup,"পেমেন্ট গেটওয়ে তুলনা: SSLCOMMERZ, aamarPay, PortPos ও ShurjoPay","Payment gateway comparison: SSLCOMMERZ, aamarPay, PortPos and ShurjoPay",/payments/gateway-comparison,Comparison,High,"Gateway selection framework. PortWallet rebranded to PortPos; keep rates dated."
 Phase 1: Starting,Banking & Payments Setup,"বিকাশ ব্যক্তিগত বনাম মার্চেন্ট অ্যাকাউন্ট: দেয়ালটা কোথায়",bKash personal vs merchant account: where the wall is,/payments/bkash-merchant,Guide,High,Keep brand name intact.
-Phase 1: Starting,Banking & Payments Setup,Nagad ও Rocket মার্চেন্ট সেটআপ চেকলিস্ট,Nagad and Rocket merchant setup checklist,/payments/nagad-rocket-merchant,Checklist,Medium,Wallet acceptance path.
+Phase 1: Starting,Banking & Payments Setup,নগদ ও রকেট মার্চেন্ট সেটআপ চেকলিস্ট,Nagad and Rocket merchant setup checklist,/payments/nagad-rocket-merchant,Checklist,Medium,Wallet acceptance path.
 Phase 1: Starting,Banking & Payments Setup,"পেমেন্ট মিলানো: গেটওয়ে, ওয়ালেট, ব্যাংক ও COD","Payment reconciliation across gateway, wallet, bank and COD",/payments/reconciliation,Guide / Template,High,Ops-critical topic.
 Phase 1: Starting,Banking & Payments Setup,"রিফান্ড, চার্জব্যাক ও বিরোধ সামলানো","Refunds, chargebacks and dispute handling",/payments/refunds-chargebacks,Guide,High,Trust and finance ops.
 Phase 1: Starting,Banking & Payments Setup,সাবস্ক্রিপশন পেমেন্ট: টাকা কি নিজে থেকেই কাটবে?,Subscription payments: will the money pull itself?,/payments/subscription-payments,Guide,High,"Cards, wallets, invoices and manual renewal."
@@ -160,12 +160,12 @@ Phase 2: Building,Hiring,প্রথম কর্মী কীভাবে ন�
 Phase 2: Building,Hiring,প্রথম কর্মী বনাম ফ্রিল্যান্সার বনাম ইন্টার্ন নিয়োগ,Hiring first employee vs freelancer vs intern,/team/employee-vs-freelancer,Guide / Template,High,
 Phase 2: Building,Hiring,ইন্টার্ন এবং ছাত্র প্রতিভা,Interns and student talent,/team/interns,Guide / Template,High,
 Phase 2: Building,Hiring,রিমোট টিমের কাজের নিয়ম,Remote team norms,/team/remote-team-norms,Guide / Template,High,
-Phase 2: Building,Hiring,বুটস্ট্র্যাপিং কৌশল হিসেবে remote/outsourced hiring,Remote/outsourced hiring as a bootstrapping tactic,/team/remote-outsourced-hiring,Guide / Template,High,
+Phase 2: Building,Hiring,কম খরচে শুরু করতে রিমোট কর্মী নিয়োগ বা কাজ আউটসোর্স করা,Remote/outsourced hiring as a bootstrapping tactic,/team/remote-outsourced-hiring,Guide / Template,High,
 Phase 2: Building,Hiring,শ্রম আইনের প্রাথমিক ধারণা: বাংলাদেশ শ্রম আইন ২০০৬,Labor law basics: Bangladesh Labour Act 2006,/team/labor-law,Guide / Template,High,
 Phase 2: Building,Hiring,কর্মসংস্থান চুক্তি,Employment contracts,/team/employment-contracts,Guide / Template,High,
-Phase 2: Building,Hiring,"ইপিএফ, গ্র্যাচুইটি এবং অন্যান্য সুবিধার প্রাথমিক বিষয়াবলী","EPF, gratuity, and benefits basics",/team/benefits-gratuity,Guide / Template,High,
+Phase 2: Building,Hiring,"ইপিএফ, গ্র্যাচুইটি ও অন্যান্য কর্মী সুবিধা","EPF, gratuity, and benefits basics",/team/benefits-gratuity,Guide / Template,High,
 Phase 2: Building,Hiring,বেতনের মানদণ্ড গবেষণা পরিকল্পনা,Salary benchmarks research plan,/team/salary-benchmarks,Guide / Template,High,
-Phase 2: Building,Hiring,"প্রতিভা কোথায় খুঁজে পাবেন: লিঙ্কডইন, ফেসবুক গ্রুপ, চাকরি.কম, বিডিজবস, বিশ্ববিদ্যালয়ের ক্যারিয়ার অফিস","Where to find talent: LinkedIn, Facebook groups, Chakri.com, BDJobs, university career offices",/team/find-talent,Guide / Template,High,
+Phase 2: Building,Hiring,"প্রতিভা কোথায় খুঁজে পাবেন: লিঙ্কডইন, ফেসবুক গ্রুপ, চাকরি.কম, বিডিজবস.কম, বিশ্ববিদ্যালয়ের ক্যারিয়ার অফিস","Where to find talent: LinkedIn, Facebook groups, Chakri.com, Bdjobs.com, university career offices",/team/find-talent,Guide / Template,High,
 Phase 2: Building,Hiring,বাংলাদেশি স্টার্টআপগুলোতে সাংস্কৃতিক ভুল,Culture mistakes in Bangladeshi startups,/team/culture-mistakes,Guide / Template,High,
 Phase 2: Building,Hiring,প্রতিভা ধরে রাখা এবং মেধা পাচার,Talent retention and brain drain,/team/retention,Guide / Template,High,
 Phase 2: Building,Hiring,নিয়োগ স্কোরকার্ড,Hiring scorecard,/team/hiring-scorecard,Guide / Template,High,
@@ -228,7 +228,7 @@ Phase 3: Launching & Growing,Sales & Distribution,এসএমই ডিজি�
 Phase 3: Launching & Growing,Logistics & Commerce,"ক্যাশ অন ডেলিভারির ঝুঁকি: কত ফেরত পর্যন্ত পোষায়","Cash on delivery risk: how many returns you can absorb",/operations/cod-risk,Guide / Checklist,High,
 Phase 3: Launching & Growing,Logistics & Commerce,ক্যাশ-অন-ডেলিভারি ঝুঁকি চেকলিস্ট,Cash-on-delivery risk checklist,/operations/cod-risk-checklist,Guide / Checklist,High,
 Phase 3: Launching & Growing,Logistics & Commerce,কুরিয়ার/লজিস্টিক বিকল্পগুলি,Courier/logistics options,/operations/courier-options,Guide / Checklist,High,
-Phase 3: Launching & Growing,Logistics & Commerce,"Pathao, Steadfast, RedX, Paperfly এবং এই জাতীয় অন্যান্য পরিষেবা প্রদানকারীদের সাথে কাজ করা","Working with Pathao, Steadfast, RedX, Paperfly and similar providers",/operations/courier-partners,Guide / Checklist,High,
+Phase 3: Launching & Growing,Logistics & Commerce,"পাঠাও, স্টেডফাস্ট, রেডএক্স ও পেপারফ্লাইয়ের মতো কুরিয়ার সেবার সঙ্গে কাজ করা","Working with Pathao, Steadfast, REDX, Paperfly and similar providers",/operations/courier-partners,Guide / Checklist,High,
 Phase 3: Launching & Growing,Logistics & Commerce,শেষ ধাপের ডেলিভারির সীমাবদ্ধতা,Last-mile delivery constraints,/operations/last-mile-delivery,Guide / Checklist,High,
 Phase 3: Launching & Growing,Logistics & Commerce,ডিজিটাল কমার্স নীতিমালা এবং একটি অনলাইন শপের জন্য এতে কী কী প্রয়োজন,Digital Commerce Policy and what it requires of an online shop,/customers/digital-commerce-policy,Guide / Checklist,High,
 Phase 3: Launching & Growing,Logistics & Commerce,মূল্য সংবেদনশীলতা এবং অর্থ প্রদানের ইচ্ছা,Price sensitivity and willingness to pay,/customers/willingness-to-pay,Guide / Checklist,High,
@@ -278,14 +278,14 @@ Phase 3: Launching & Growing,Local Market Playbooks,TikTok ও YouTube Shorts �
 Phase 3: Launching & Growing,Local Market Playbooks,"কমিউনিটি সিডিং: পাবলিক গ্রুপ, ক্যাম্পাস ও নিশ কমিউনিটি","Community seeding in public groups, campuses and niches",/customers/community-seeding,Playbook,Medium,Founder-led distribution.
 Phase 3: Launching & Growing,Local Market Playbooks,বাংলাদেশের জন্য রেফারেল প্রোগ্রাম,Referral programs for Bangladesh,/customers/referral-programs,Guide / Template,Medium,Trust-driven acquisition.
 Phase 3: Launching & Growing,Local Market Playbooks,বাংলায় কাস্টমার সাপোর্ট স্ক্রিপ্ট,Bangla customer support scripts,/customers/support-scripts,Script,High,Trust and retention.
-Phase 3: Launching & Growing,Local Market Playbooks,"মিডিয়া পিচ: Future Startup, Daily Star, TBS, Prothom Alo","Media pitch guide: Future Startup, Daily Star, TBS and Prothom Alo",/customers/media-pitch,Template,Medium,Startup PR.
+Phase 3: Launching & Growing,Local Market Playbooks,"মিডিয়া পিচ: Future Startup, দ্য ডেইলি স্টার, টিবিএস ও প্রথম আলো","Media pitch guide: Future Startup, The Daily Star, TBS and Prothom Alo",/customers/media-pitch,Template,Medium,Startup PR.
 Phase 3: Launching & Growing,Sales & Distribution,ডিলার ও ডিস্ট্রিবিউটর মডেল,Dealer and distributor model,/growth/dealer-distributor-model,Guide,High,Physical products and regional sales.
 Phase 3: Launching & Growing,Sales & Distribution,রিটেইল শেলফে পণ্য বসাবেন কীভাবে,How to get retail shelf placement,/growth/retail-shelf-placement,Guide,Medium,For consumer products.
 Phase 3: Launching & Growing,Sales & Distribution,কর্পোরেট পাইলট থেকে পেইড কনট্রাক্ট,From corporate pilot to paid contract,/b2b/pilot-to-contract,Playbook,High,B2B Bangladesh reality.
 Phase 3: Launching & Growing,Sales & Distribution,NGO ও উন্নয়ন খাতের পার্টনারশিপ,NGO and development-sector partnerships,/b2b/ngo-partnerships,Guide,Medium,Relevant for impact startups.
 Phase 3: Launching & Growing,Sales & Distribution,"পারচেজ অর্ডার, ইনভয়েস ও টাকা তোলার কাজের ধাপ","Purchase order, invoice and collection workflow",/b2b/invoice-collection,Guide / Template,High,SME and B2B sales ops.
 Phase 3: Launching & Growing,Logistics & Commerce,"রিটার্ন, রিফান্ড ও এক্সচেঞ্জ নীতির টেমপ্লেট","Return, refund and exchange policy template",/customers/return-policy-template,Template,High,E-commerce trust topic.
-Phase 3: Launching & Growing,Logistics & Commerce,কুরিয়ার SLA তুলনা স্কোরকার্ড,Courier SLA comparison scorecard,/operations/courier-sla-scorecard,Scorecard,High,"Pathao, Steadfast, RedX, Paperfly etc."
+Phase 3: Launching & Growing,Logistics & Commerce,কুরিয়ার SLA তুলনা স্কোরকার্ড,Courier SLA comparison scorecard,/operations/courier-sla-scorecard,Scorecard,High,"Pathao, Steadfast, REDX, Paperfly etc."
 Phase 3: Launching & Growing,Logistics & Commerce,ঢাকার বাইরে ডেলিভারি জোন পরিকল্পনা,Delivery zone plan outside Dhaka,/growth/delivery-zone-plan,Template,High,Operational planning.
 Phase 3: Launching & Growing,Logistics & Commerce,ফেরত আসা ও ব্যর্থ ডেলিভারি কমানোর উপায়,Reducing return-to-origin and failed delivery,/operations/reducing-rto,Guide,High,COD-heavy market issue.
 Phase 3: Launching & Growing,Logistics & Commerce,COD জালিয়াতি ও ভুয়া অর্ডার সামলানোর প্লেবুক,COD fraud and fake-order response playbook,/operations/cod-fraud-playbook,Playbook,High,Commerce risk.
@@ -293,7 +293,7 @@ Phase 3: Launching & Growing,Metrics & Operations,ক্যাশফ্লো �
 Phase 3: Launching & Growing,Metrics & Operations,"নিচ থেকে গড়া আর্থিক পূর্বাভাস: রেভিনিউ, খরচ ও ক্যাশ রানওয়ে","Bottom-up financial projections: revenue, cost and cash runway",/metrics/financial-projections,Guide / Calculator,High,"Monthly revenue drivers, COGS, payroll, cash runway, base/downside/upside cases, actual-vs-plan review. AI may help with formulas and scenarios, never with business assumptions or authoritative-sounding forecasts. Keep valuation itself on /funding/valuation. Source lead: Accelerating Bangladesh, Financial Projection and Startup Valuation Using AI."
 Phase 3: Launching & Growing,Metrics & Operations,ওয়ার্কিং ক্যাপিটাল সাইকেল ক্যালকুলেটর,Working capital cycle calculator,/tools/working-capital-calculator,Calculator,High,Inventory and B2B payment cycles.
 Phase 3: Launching & Growing,Metrics & Operations,ইনভেন্টরি টার্নওভার ক্যালকুলেটর,Inventory turnover calculator,/tools/inventory-turnover-calculator,Calculator,Medium,Commerce/physical product metrics.
-Phase 3: Launching & Growing,Metrics & Operations,বাংলাদেশের প্রেক্ষাপটে cohort retention,Cohort retention in the Bangladesh context,/metrics/cohort-retention,Guide,Medium,Retention education.
+Phase 3: Launching & Growing,Metrics & Operations,বাংলাদেশে কোহোর্ট ধরে গ্রাহক ধরে রাখার হিসাব,Cohort retention in the Bangladesh context,/metrics/cohort-retention,Guide,Medium,Retention education.
 Phase 3: Launching & Growing,Metrics & Operations,প্রাথমিক টিমের ম্যানুয়াল অপারেশনস ড্যাশবোর্ড,Manual ops dashboard for early teams,/metrics/ops-dashboard,Template,High,Google Sheets-first operator tool.
 Phase 3: Launching & Growing,Funding,গ্রান্ট আবেদন ক্যালেন্ডার,Grant application calendar,/funding/grant-calendar,Calendar,High,"iDEA, BIG, Startup Bangladesh and accelerators."
 Phase 3: Launching & Growing,Funding,BIG আবেদন গাইড,Bangabandhu Innovation Grant application guide,/funding/big-application,Guide,Medium,Source lead: iDEA / BIG.
@@ -369,30 +369,30 @@ Case Studies,Success Stories,শেয়ারট্রিপ,ShareTrip,/case-s
 Case Studies,Success Stories,যাত্রী,Jatri,/case-studies/jatri,Case Study,Medium,
 Case Studies,Success Stories,শাটল,Shuttle,/case-studies/shuttle,Case Study,Medium,
 Case Studies,Success Stories,প্রিয়শপ,PriyoShop,/case-studies/priyoshop,Case Study,Medium,
-Case Studies,Success Stories,শাজগোজ,Shajgoj,/case-studies/shajgoj,Case Study,Medium,
+Case Studies,Success Stories,সাজগোজ,Shajgoj,/case-studies/shajgoj,Case Study,Medium,
 Case Studies,Success Stories,মায়া,Maya,/case-studies/maya,Case Study,Medium,
 Case Studies,Success Stories,প্রাভা হেলথ,Praava Health,/case-studies/praava-health,Case Study,Medium,
-Case Studies,Success Stories,আরোগা,Arogga,/case-studies/arogga,Case Study,Medium,
+Case Studies,Success Stories,আরোগ্য,Arogga,/case-studies/arogga,Case Study,Medium,
 Case Studies,Success Stories,মেডইজি,MedEasy,/case-studies/medeasy,Case Study,Medium,
 Case Studies,Success Stories,মার্কোপোলো এআই,Markopolo AI,/case-studies/markopolo-ai,Case Study,Medium,
-Case Studies,Success Stories,মাইঅ্যালিস,MyAlice,/case-studies/myalice,Case Study,Medium,
-Case Studies,Success Stories,গোজায়ান,GoZayaan,/case-studies/gozayaan,Case Study,Medium,
-Case Studies,Success Stories,রোকোমারি,Rokomari,/case-studies/rokomari,Case Study,Medium,
-Case Studies,Success Stories,বিডিজবস,Bdjobs,/case-studies/bdjobs,Case Study,Medium,
+Case Studies,Success Stories,Revora (আগের নাম MyAlice),Revora (formerly MyAlice),/case-studies/myalice,Case Study,Medium,Rebranded from MyAlice to Revora in June 2026; keep the legacy route.
+Case Studies,Success Stories,গোযায়ান,GoZayaan,/case-studies/gozayaan,Case Study,Medium,
+Case Studies,Success Stories,রকমারি,Rokomari,/case-studies/rokomari,Case Study,Medium,
+Case Studies,Success Stories,বিডিজবস.কম,Bdjobs.com,/case-studies/bdjobs,Case Study,Medium,
 Case Studies,Success Stories,পিকাবু,Pickaboo,/case-studies/pickaboo,Case Study,Medium,
 Case Studies,Success Stories,পেপারফ্লাই,Paperfly,/case-studies/paperfly,Case Study,Medium,
 Case Studies,Success Stories,খাস ফুড,Khaas Food,/case-studies/khaas-food,Case Study,Medium,
-Case Studies,Success Stories,অন্নরোকম গ্রুপ,OnnoRokom Group,/case-studies/onnorokom-group,Case Study,Medium,
-Case Studies,Failure & Lessons,Failure post-mortem-কে আলাদা কনটেন্ট ক্যাটাগরি হিসেবে রাখা,Failure post-mortems as a separate content category,/case-studies/failure-post-mortems,Case Study / Post-mortem,High,
-Case Studies,Failure & Lessons,সফলতার কেস স্টাডিগুলো যা বাদ দেয়,What success case studies leave out,/case-studies/what-success-case-studies-leave-out,Case Study / Post-mortem,High,
-Case Studies,Failure & Lessons,বাংলাদেশি স্টার্টআপ ব্যর্থ হওয়ার সাধারণ কারণগুলো,Common reasons Bangladeshi startups fail,/case-studies/why-startups-fail,Case Study / Post-mortem,High,
-Case Studies,Failure & Lessons,কী কাজ করেনি এবং কেন,What did not work and why,/case-studies/what-did-not-work-and-why,Case Study / Post-mortem,High,
-Case Studies,Success Stories,Fashol কেস স্টাডি,Fashol case study,/case-studies/fashol,Case Study,Medium,Agritech/physical distribution.
+Case Studies,Success Stories,অন্যরকম গ্রুপ,OnnoRokom Group,/case-studies/onnorokom-group,Case Study,Medium,
+Case Studies,Failure & Lessons,ব্যর্থতার পোস্টমর্টেম: আলাদা ধরনের কেস স্টাডি,Failure post-mortems as a separate content category,/case-studies/failure-post-mortems,Case Study / Post-mortem,High,
+Case Studies,Failure & Lessons,সফল কেস স্টাডিতে যেসব তথ্য বাদ পড়ে,What success case studies leave out,/case-studies/what-success-case-studies-leave-out,Case Study / Post-mortem,High,
+Case Studies,Failure & Lessons,বাংলাদেশি স্টার্টআপ ব্যর্থ হয় কেন,Common reasons Bangladeshi startups fail,/case-studies/why-startups-fail,Case Study / Post-mortem,High,
+Case Studies,Failure & Lessons,"কোন কৌশল কাজে লাগেনি, আর কেন",What did not work and why,/case-studies/what-did-not-work-and-why,Case Study / Post-mortem,High,
+Case Studies,Success Stories,ফসল কেস স্টাডি,Fashol case study,/case-studies/fashol,Case Study,Medium,Agritech/physical distribution.
 Case Studies,Success Stories,SOLshare কেস স্টাডি,SOLshare case study,/case-studies/solshare,Case Study,Medium,Energy/climate tech.
-Case Studies,Success Stories,Fabrilife কেস স্টাডি,Fabrilife case study,/case-studies/fabrilife,Case Study,Medium,D2C apparel and social commerce.
+Case Studies,Success Stories,ফ্যাব্রিলাইফ কেস স্টাডি,Fabrilife case study,/case-studies/fabrilife,Case Study,Medium,D2C apparel and social commerce.
 Case Studies,Success Stories,Apon Wellbeing কেস স্টাডি,Apon Wellbeing case study,/case-studies/apon-wellbeing,Case Study,Medium,Worker benefits and B2B2C.
-Case Studies,Success Stories,Fashol বনাম iFarmer: অ্যাগ্রিটেকের প্রথম বাজার দখলের তুলনা,Fashol vs iFarmer: agritech wedge comparison,/case-studies/fashol-vs-ifarmer,Case Study / Comparison,Medium,Compare market entry strategies.
-Case Studies,Failure & Lessons,আগাম পেমেন্ট ই-কমার্স ব্যর্থতা থেকে শিক্ষা,Lessons from advance-payment e-commerce failures in Bangladesh,/case-studies/advance-payment-failures,Post-mortem,High,"Trust, escrow, refunds and regulation."
-Case Studies,Failure & Lessons,মার্কেটপ্লেসে আস্থা ভাঙার ব্যর্থতা-পর্যালোচনা টেমপ্লেট,Marketplace trust-collapse post-mortem template,/case-studies/marketplace-trust-collapse,Template,High,Reusable failure format.
-Case Studies,Failure & Lessons,গ্রাহকের টাকা ধরে রাখার ব্যবসায়িক মডেল কেন ঝুঁকিপূর্ণ,Why holding customer money is a risky business model,/case-studies/holding-customer-money,Guide / Post-mortem,High,Relevant to commerce and fintech.
+Case Studies,Success Stories,ফসল বনাম আইফার্মার: শুরুর গ্রাহক বাছাইয়ের কৌশল,Fashol vs iFarmer: agritech wedge comparison,/case-studies/fashol-vs-ifarmer,Case Study / Comparison,Medium,Compare market entry strategies.
+Case Studies,Failure & Lessons,অগ্রিম পেমেন্ট নেওয়া ই-কমার্সের ব্যর্থতা থেকে শিক্ষা,Lessons from advance-payment e-commerce failures in Bangladesh,/case-studies/advance-payment-failures,Post-mortem,High,"Trust, escrow, refunds and regulation."
+Case Studies,Failure & Lessons,মার্কেটপ্লেসে ভরসা ভেঙে পড়ার পোস্টমর্টেম টেমপ্লেট,Marketplace trust-collapse post-mortem template,/case-studies/marketplace-trust-collapse,Template,High,Reusable failure format.
+Case Studies,Failure & Lessons,গ্রাহকের টাকা ধরে রাখা ব্যবসার মডেল কেন ঝুঁকিপূর্ণ,Why holding customer money is a risky business model,/case-studies/holding-customer-money,Guide / Post-mortem,High,Relevant to commerce and fintech.
 Phase 3: Launching & Growing,Funding,ফান্ডিং রোডম্যাপ – বাংলাদেশে স্টার্টআপের টাকা কোথা থেকে আসে,Funding roadmap: where startup money comes from in Bangladesh,/funding,Guide,High,Top-level orientation page at /funding-roadmap (added 2026-07-08); homepage funding card and sidebar funding group point here instead of the phase-three stub wall.

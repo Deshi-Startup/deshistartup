@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "repository": "Deshi-Startup/deshistartup",
-  "refreshedAt": "2026-08-20T12:19:27.514Z",
+  "refreshedAt": "2026-08-20T17:00:34.875Z",
   "totals": {
     "contributors": 4,
     "acceptedEvents": 13,
@@ -246,7 +246,7 @@
         {
           "path": "/metrics/cohort-retention",
           "title": {
-            "bn": "বাংলাদেশের প্রেক্ষাপটে cohort retention",
+            "bn": "বাংলাদেশে কোহোর্ট ধরে গ্রাহক ধরে রাখার হিসাব",
             "en": "Cohort Retention in the Bangladesh Context"
           }
         },
@@ -489,7 +489,7 @@
         {
           "path": "/funding/safe-convertible-notes",
           "title": {
-            "bn": "SAFE, convertible note ও প্রাইসড রাউন্ড সহজ বাংলায়",
+            "bn": "SAFE, কনভার্টিবল নোট ও প্রাইসড রাউন্ড সহজ বাংলায়",
             "en": "SAFE, Convertible Notes, and Priced Rounds in Plain English"
           }
         }
