@@ -251,7 +251,10 @@ instead.
 
 **The Frugal-Yellow Rule.** Yellow belongs to cautions and the one toggle thumb. It is never a
 highlight or a decoration. Its scarcity is what lets a stub banner read as unfinished rather than
-broken.
+broken. The on-demand contribution diff is the sole semantic exception: Notice Gold and Notice
+Cream identify removed text, always paired with a minus marker and a spoken “removed” label so
+color never carries the meaning alone. This exception does not make yellow available as a general
+highlight.
 
 **The Earned-Violet Rule.** The violet is the only color in this palette justified by a reader
 behavior rather than a role. It may not be borrowed for anything that is not literally "you have
