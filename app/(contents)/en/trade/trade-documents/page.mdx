@@ -1,13 +1,285 @@
 ---
-title: "Proforma Invoice, Commercial Invoice, and Packing List"
-description: "Proforma Invoice, Commercial Invoice, and Packing List – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "Proforma Invoice, Commercial Invoice and Packing List"
+description: "Copy-ready templates for the three documents every export shipment needs, plus the Bangladesh rules that decide what value you may write on them and which Incoterms you are allowed to use."
+verified: 2026-08-21
 ---
 
-# Proforma Invoice, Commercial Invoice, and Packing List
+# Proforma Invoice, Commercial Invoice and Packing List
 
-<StubNotice path="trade/trade-documents" locale="en" />
+> **In short:** These three papers are not sales paperwork. They are declarations. Customs, your bank and Bangladesh Bank all read them against each other, so the cheapest way to lose a shipment is to let them disagree. Two rules decide what value you may write. Your invoice value can **never** be lower than the value you declare to customs. And you may **not** subtract a foreign agent's commission before you declare it. Copy the three templates below, fill them from one set of numbers, and check that every figure matches on all three before anything is packed.
+
+Say Shafayet makes stoneware tableware in Bogura. A UK homeware buyer has confirmed a first order. It is 900 dinner plates and 600 mugs, USD 4,140 worth of goods, going by sea to Felixstowe. The buyer asks him to "send the PI so we can raise the LC".
+
+He sends a quotation on his letterhead. Two weeks later the LC arrives describing a different quantity. His C&F agent asks for a packing list he does not have. Then the buyer's bank rejects the documents over a weight that does not match.
+
+Nothing here was dishonest. All of it came from writing three documents separately instead of once.
+
+---
+
+## The three templates
+
+Copy these. Replace everything in capitals. Keep them in one spreadsheet so you only type each number once.
+
+### 1. Proforma invoice, before the order
+
+A proforma invoice is a quotation shaped like an invoice. The buyer's bank uses it to open a letter of credit. In Bangladesh, an importer's bank must also get one before starting an import.[^customs-hub-docs]
+
+```
+PROFORMA INVOICE
+
+Exporter:  YOUR COMPANY LTD
+           FULL ADDRESS, BANGLADESH
+           ERC No.: ................  BIN: ................
+           TIN: ................
+
+Buyer:     BUYER COMPANY NAME, FULL ADDRESS, COUNTRY
+
+PI No.:  PI-2026-001        Date:  DD MMM YYYY
+Valid until:  DD MMM YYYY   (quote validity)
+
+Item | Description        | HS code | Qty | Unit | Unit price | Amount
+-----+--------------------+---------+-----+------+------------+--------
+ 1   | ...                | ....    | ... | pcs  | USD ...    | USD ...
+ 2   | ...                | ....    | ... | pcs  | USD ...    | USD ...
+                                              Subtotal  USD ......
+                                              Freight   USD ......
+                                              Insurance USD ......
+                                              TOTAL     USD ......
+
+Currency:              USD
+Incoterm:              CFR FELIXSTOWE (Incoterms 2020)
+Country of origin:     Bangladesh
+Port of loading:       Chattogram, Bangladesh
+Port of discharge:     ....................
+Lead time:             ... days from receipt of LC / advance
+Payment terms:         .....................................
+Partial shipment:      Allowed / Not allowed
+Transhipment:          Allowed / Not allowed
+Packing:               ... pcs per carton, ... cartons
+Beneficiary bank:      BANK NAME, BRANCH, SWIFT, ACCOUNT NO.
+
+Authorised signature and company seal
+```
+
+### 2. Commercial invoice, with the shipment
+
+The commercial invoice is the real bill. Customs uses it to value the shipment. Bangladesh Customs lists it as a required export document under the product declaration, assessment and re-assessment rules, 2024.[^customs-hub-docs]
+
+```
+COMMERCIAL INVOICE
+
+Exporter:   YOUR COMPANY LTD, ADDRESS, BANGLADESH
+            ERC No.: ................  BIN: ................
+
+Consignee:  BUYER COMPANY NAME, ADDRESS, COUNTRY
+Notify party: (if different from consignee)
+
+Invoice No.: INV-2026-001     Date:  DD MMM YYYY
+Against:     PI No. .......... / LC No. .......... dated ..........
+Marks and numbers: ..............................
+
+Item | Description        | HS code | Qty | Unit price | Amount
+-----+--------------------+---------+-----+------------+--------
+ 1   | ...                | ....    | ... | USD ...    | USD ...
+ 2   | ...                | ....    | ... | USD ...    | USD ...
+                                       FOB value    USD ......
+                                       Freight      USD ......
+                                       Insurance    USD ......
+                                       INVOICE TOTAL USD ......
+
+Incoterm:            CFR FELIXSTOWE (Incoterms 2020)
+Country of origin:   Bangladesh
+Net weight:  ...... kg      Gross weight:  ...... kg
+Total packages:  ...... cartons
+Vessel / flight:  ..........  Port of loading: Chattogram
+Port of discharge:  ..........  Shipment date:  ..........
+
+We certify that this invoice is true and correct, and that the
+value stated is the full value contracted with the buyer.
+[Origin clause: add only if the goods actually qualify. See below.]
+
+Authorised signature and company seal
+```
+
+> **Warning:** Do not add "the goods are of Bangladesh origin" to your invoice as a matter of habit. Origin is a legal test, not a description of where you packed the box. Goods assembled here from imported parts may not qualify, and the test differs by destination and by trade agreement. Work out whether your goods qualify before you certify anything, then get the [certificate of origin](/en/trade/certificate-of-origin) from the body that issues it. A false origin statement can cost your buyer their tariff preference and cost you the customer.
+
+### 3. Packing list, what is in each box
+
+```
+PACKING LIST
+
+Exporter / Consignee / Invoice No. / Date: as per commercial invoice
+Shipping marks: 1/70 up
+
+Cartons | Contents    | Qty/ctn | Net kg | Gross kg | Size cm  | CBM
+--------+-------------+---------+--------+----------+----------+------
+ 1-45   | ..........  |      20 |   8.40 |     9.60 | 40x30x25 | 0.030
+46-70   | ..........  |      24 |   7.20 |     8.30 | 40x30x22 | 0.026
+
+TOTAL cartons: ......   Total net: ...... kg
+Total gross: ...... kg  Total volume: ...... CBM
+Packing: export cartons; ISPM-15 treated pallets if wood is used
+
+Authorised signature and company seal
+```
+
+> **Keep in mind:** Build all three from one spreadsheet tab holding your raw numbers. Quantity, unit price, unit weight, carton count, carton size. Let the documents read from that tab. Every mismatch story in this guide starts with someone retyping a weight.
+
+---
+
+## What each document is for
+
+The three look alike. Completely different people read them, at different moments.
+
+| Document | Written when | Who acts on it | What goes wrong |
+|---|---|---|---|
+| **Proforma invoice** | Before the order is confirmed | The buyer's bank opens the LC from it. The buyer's finance team budgets from it | A vague description, or no validity date. The LC then arrives describing goods you never quoted |
+| **Commercial invoice** | At shipment | Customs values the export from it. Your bank checks it against the EXP declaration. The buyer's bank pays against it | A value or description that does not match the LC, the customs declaration, or the packing list |
+| **Packing list** | At shipment | The C&F agent, the carrier, and customs inspection at both ends | Weights and carton counts that do not match the transport document, which holds up release |
+
+The order runs one way. The proforma invoice sets the terms. The commercial invoice must follow them. The packing list must physically match the commercial invoice.
+
+Some facts only exist later, and that is fine. You cannot know the vessel name, the shipment date or the exact weight of a packed carton when you write the proforma invoice. The rule is narrower than "nothing new". A later document may **add** a fact that did not exist yet. It must never **contradict** one that did, such as the price, the quantity, the description or the Incoterm.
+
+---
+
+## Two value rules you cannot bend
+
+The rest of this page is craft. These two are law. Both come from Bangladesh Bank's export circular.
+
+> **Rule 1:** Declare the **full invoice value** of the goods. Do **not** adjust it for foreign agent commission or other trade charges.[^bb-export-consolidated]
+
+Say your buyer's local agent takes 4%. You disclose that 4% and settle it separately. You never take it off before you write the invoice total. You may deduct commission or brokerage owed to a foreign importer or agent from the bill, or send it after the full payment arrives, **up to 5% of the value of the goods**. Above 5% you need a standing authority from Bangladesh Bank, which you apply for through your bank.[^bb-export-consolidated]
+
+> **Rule 2:** **The invoice value must never be less than the value you declare to customs.**[^bb-export-consolidated]
+
+Your bank is told to compare the invoice against the export declaration and satisfy itself the declaration is correct. It must take special care to spot mis-invoicing and report anything suspicious to Bangladesh Bank.[^bb-export-consolidated] Small differences are allowed if they are genuine trade charges, but only when the details are written on the form and the bank stamps and signs them.[^bb-export-consolidated]
+
+This is not only a banking problem. Under-invoicing or over-invoicing goods or services is a listed reason to **suspend or cancel your export registration** under the Importers, Exporters and Indentors (Registration) Order, 2023.[^reg-order-2023] Shading an invoice risks the certificate your whole business runs on.
+
+There is one narrow exception, worth knowing if it applies to you. Exporters of books, journals and magazines published in Bangladesh may give a discount of up to 33.5% of the invoice value without asking Bangladesh Bank first.[^bb-export-consolidated]
+
+---
+
+## Which Incoterm you may use
+
+An Incoterm is a three-letter code that says where your responsibility for cost and risk ends. Only eight are allowed for exports from Bangladesh, and only when the letter of credit or the contract says so:
+
+**EXW, FCA, FOB, FAS, CFR, CIF, CPT and CIP.**[^bb-export-consolidated]
+
+That is shorter than the full Incoterms 2020 list. **DAP, DPU and DDP are missing.** So if a buyer asks you to quote "delivered duty paid to our warehouse", they are asking for a term Bangladesh Bank's export instructions do not list. Raise it with your bank before you agree, not after the LC is open. If the terms used turn out to be inconsistent, the circular tells banks to get the LC amended straight away.[^bb-export-consolidated]
+
+For what each term means for your costs and risk, see [Incoterms](/en/trade/incoterms). For this page the rule is narrow. Whatever term you use must appear the same way on the proforma invoice, the commercial invoice, the LC or contract, and the EXP declaration.
+
+---
+
+## Worked example: Shafayet's shipment
+
+One order, one set of numbers, three documents.
+
+**The goods**
+
+```
+900 stoneware dinner plates  @ USD 3.20  =  USD 2,880
+600 stoneware mugs           @ USD 2.10  =  USD 1,260
+                              FOB value  =  USD 4,140
+Sea freight, Chattogram to Felixstowe    =  USD   610
+Insurance (buyer's risk under CFR)       =  USD     0
+                       CFR invoice total =  USD 4,750
+```
+
+**The packing**
+
+```
+Plates: 20 per carton x 45 cartons
+        net  8.40 kg/ctn = 378.0 kg   gross 9.60 kg/ctn = 432.0 kg
+        40 x 30 x 25 cm = 0.030 CBM/ctn = 1.35 CBM
+Mugs:   24 per carton x 25 cartons
+        net  7.20 kg/ctn = 180.0 kg   gross 8.30 kg/ctn = 207.5 kg
+        40 x 30 x 22 cm = 0.026 CBM/ctn = 0.66 CBM
+
+Total: 70 cartons   net 558.0 kg   gross 639.5 kg   2.01 CBM
+```
+
+**The agent's commission**
+
+The buyer's UK agent takes 4% of the goods value:
+
+```
+4% x USD 4,140  =  USD 165.60
+Check against the ceiling: 165.60 / 4,140 = 4.0%, under the 5% limit
+```
+
+So the commercial invoice reads **USD 4,750**. Not USD 4,584.40. The commission is disclosed separately and settled under the contract. It can come off the bill, or be sent after payment arrives. Either way it stays under the 5% ceiling and it never hides inside the price.[^bb-export-consolidated]
+
+**Where the same numbers show up again**
+
+Shafayet's bank will declare this shipment on an **<Term name="exp-form">EXP form</Term>**. That form asks for the commodity, destination country and port, quantity by unit and by weight, the currency, **the Incoterm used**, the invoice value split into FOB, insurance and freight, the terms of sale, the importer's name and address, the carrying vessel, the transport document number and date, the port of shipment, the shipment date, and his **CCI&E registration number**.[^bb-export-consolidated]
+
+Use that list as a checklist for your own paperwork. Every one of those fields has to come off the commercial invoice, the packing list or the transport document. If a field on the EXP form has no source in your papers, your papers are incomplete. And your signature on the form declares that the invoice value is the full value you agreed with the buyer.[^bb-export-consolidated]
+
+---
+
+## What else travels with the three
+
+The three invoices are the core, not the whole file. For a normal goods export, Bangladesh Customs also expects the ERC, the VAT (BIN) certificate, the export LC or sales contract, the EXP form, the transport document (bill of lading, airway bill, truck receipt or rail receipt), the certificate of origin, and a detailed packing list under the Customs Act, 2023. You need a proforma invoice and an insurance cover note to open the LC at the bank.[^customs-hub-docs] If you ship on wooden pallets, check whether the destination country requires ISPM-15 treatment. That is the importing country's rule, not a Bangladesh export requirement.
+
+Two deadlines hold the whole set together:
+
+- **Within 14 days of shipment**, every shipping document covering goods declared on an EXP form must go through your bank, so the bank can report to Bangladesh Bank inside the same 14 days.[^bb-export-consolidated]
+- Your bank must **keep the signed EXP form for five years** for inspection.[^bb-export-consolidated]
+
+Fourteen days is short. It counts from the shipment date, not from the day your C&F agent gets round to sending you scans. Agree that handover deadline with the agent in writing before the container leaves. See [C&F agents](/en/trade/cnf-agents) and [freight forwarders](/en/trade/freight-forwarders).
+
+---
+
+## Common mistakes
+
+| Mistake | What happens | What to do instead |
+|---|---|---|
+| Subtracting the agent's commission from the invoice | Your declaration is short of the value you agreed, against the export circular[^bb-export-consolidated] | Invoice the full value. Disclose the commission separately, inside the 5% ceiling |
+| An invoice value below the customs value | Your bank must not accept it, and mis-invoicing can cost you your ERC[^bb-export-consolidated] [^reg-order-2023] | One value, everywhere |
+| Vague descriptions on the proforma invoice | The LC arrives describing goods you cannot ship, and amending an LC costs money and weeks | Describe the goods on the PI exactly as they will appear on the invoice and the LC |
+| Agreeing DDP or DAP terms with a buyer | A term outside the eight Bangladesh Bank lists for exports[^bb-export-consolidated] | Quote one of the eight allowed terms, or check with your bank first |
+| Guessing weights for the packing list | Documents rejected at the buyer's bank, or a hold at customs on either side | Weigh a filled carton, multiply, and state net and gross separately |
+| No validity date on the proforma invoice | The buyer accepts a three-month-old price after your clay and freight costs have moved | Put a "valid until" date on every PI |
+| Waiting for the C&F agent to send documents | The 14-day window closes on your bank, not on the agent[^bb-export-consolidated] | Write the handover deadline into the agent's contract |
+
+Rows one, two and four can cost you your registration. The rest cost you time. Founders usually worry about the delays and find the legal ones late.
+
+---
+
+## Checklist before anything is packed
+
+- [ ] One spreadsheet holds quantity, unit price, unit weight, cartons and carton size
+- [ ] Proforma invoice has a number, a date, a validity date, HS codes and an Incoterm
+- [ ] The goods are described identically on the PI, the LC or contract, and the commercial invoice
+- [ ] The Incoterm is one of EXW, FCA, FOB, FAS, CFR, CIF, CPT, CIP, and appears on every document
+- [ ] The invoice total is the full agreed value, with no commission taken off
+- [ ] Any foreign agent commission is disclosed and is 5% or less of goods value
+- [ ] The invoice value is not below the value declared to customs
+- [ ] FOB, freight and insurance are shown separately and match the Incoterm
+- [ ] Packing list carton count, net weight, gross weight and CBM agree with the invoice
+- [ ] ERC number and BIN printed on the invoice
+- [ ] Country of origin stated, and a [certificate of origin](/en/trade/certificate-of-origin) arranged if the buyer claims a tariff preference
+- [ ] Document handover deadline agreed with the C&F agent, inside 14 days of shipment
+
+**You are done when:** you can hand the three documents to someone who has never seen the order, and they can work out how many cartons there are, what is in them, what they weigh, what they cost and on what terms, without asking you a single question.
+
+---
+
+## What to do next
+
+- Classifying the goods: [HS codes](/en/trade/hs-codes).
+- Choosing the delivery term: [Incoterms](/en/trade/incoterms).
+- Getting paid against these documents: [LC and bank documentation basics](/en/trade/lc-basics), then [export proceeds](/en/trade/export-proceeds).
+- Proving origin for a tariff preference: [certificate of origin](/en/trade/certificate-of-origin).
+- No ERC yet: [import and export registration](/en/trade/import-export-registration) and [the step-by-step application](/en/trade/irc-erc-steps).
+- Checking quality before the goods leave: [pre-shipment inspection](/en/trade/pre-shipment-inspection).
+---
 
 ## Relevant Sources
 
-- [Bangladesh Trade Portal](https://www.bangladeshtradeportal.gov.bd)
-- [Chief Controller of Imports and Exports (CCIE)](http://www.ccie.gov.bd)
+[^bb-export-consolidated]: [Bangladesh Bank](https://www.bb.org.bd/mediaroom/circulars/fepd/jul302026fepd-126e.pdf) – *FEPD-1 Circular No. 26, 30 July 2026: consolidated circular on foreign exchange regulations for export trade transactions.* Part-A paragraph 6 (declare the full invoice value without adjusting for foreign agent commission or other trade charges, and the exporter's undertaking to repatriate); paragraph 19(4) to 19(8) (all shipping documents to pass through the authorised dealer within 14 days of shipment, comparison of the bill against the EXP form, the instruction that the invoice value should in no case be less than the value declared for customs purposes, the treatment of small legitimate differences, and five-year retention of the signed EXP form); paragraph 20 (commission or brokerage to foreign importers or agents up to a maximum of 5% of the value of the goods, higher rates only under a Bangladesh Bank standing authority, and up to 33.5% discount for books, journals and magazines published in Bangladesh); paragraph 21 (EXW, FCA, FOB, FAS, CFR, CIF, CPT and CIP permitted for export from Bangladesh where stipulated in the LC or contract); and Appendix-1 (the EXP form's field list). The circular is valid for one year from issue and is amended by later FEPD-1 circulars, so check the department's circular list before relying on a figure. Accessed 21 August 2026.
+[^customs-hub-docs]: [Bangladesh Customs, National Board of Revenue](https://hub.bangladeshcustoms.gov.bd/hs-code/details/description/general-documents) – *Import Export Hub: general documents.* Lists the documents required for export and import declarations with their stated legal basis: the commercial invoice, packing list and waybill under the product declaration, assessment and re-assessment rules, 2024; the detailed packing list under the Customs Act, 2023; the EXP form under the Foreign Exchange Regulation Act, 1947; the ERC and certificate of origin under the Export Policy 2024-2027; the BIN certificate under the VAT and Supplementary Duty Act, 2012; and the proforma invoice and insurance cover note as requirements for opening an LC at the bank. The page still cites the 1981 registration order, which the 2023 order repealed. Accessed 21 August 2026.
+[^reg-order-2023]: [Ministry of Commerce](https://mincom.gov.bd/pages/policies/%E0%A6%86%E0%A6%AE%E0%A6%A6%E0%A6%BE%E0%A6%A8%E0%A6%BF%E0%A6%95%E0%A6%BE%E0%A6%B0%E0%A6%95-%E0%A6%B0%E0%A6%AA%E0%A7%8D%E0%A6%A4%E0%A6%BE%E0%A6%A8%E0%A6%BF%E0%A6%95%E0%A6%BE%E0%A6%B0%E0%A6%95-%E0%A6%8F%E0%A6%AC%E0%A6%82-%E0%A6%87%E0%A6%A8%E0%A7%8D%E0%A6%A1%E0%A7%87%E0%A6%A8%E0%A7%8D%E0%A6%9F%E0%A6%B0-%E0%A6%A8%E0%A6%BF%E0%A6%AC%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%A8-%E0%A6%86%E0%A6%A6%E0%A7%87%E0%A6%B6-%E0%A7%A8%E0%A7%A6%E0%A7%A8%E0%A7%A9-2134ed-69403137c4774958d7b41a59) – *Importers, Exporters and Indentors (Registration) Order, 2023*, S.R.O. No. 326-Law/2023 dated 29 November 2023, Bangladesh Gazette Extraordinary, 3 January 2024, linked as a PDF from this policy page. Article 10(1)(গ) lists under-invoicing or over-invoicing the price of imported or exported goods or services as a ground for suspending or cancelling a registration, subject to a reasonable hearing under article 10(2). Bangla text prevails over any English translation. Accessed 21 August 2026.

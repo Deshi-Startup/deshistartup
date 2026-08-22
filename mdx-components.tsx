@@ -7,6 +7,7 @@ import DataBars from './app/components/DataBars'
 import Waterfall from './app/components/Waterfall'
 import Timeline from './app/components/Timeline'
 import CodRiskCalculator from './app/components/CodRiskCalculator'
+import FinancialProjectionsCalculator from './app/components/FinancialProjectionsCalculator'
 import YouTube from './app/components/YouTube'
 import FacebookVideo from './app/components/FacebookVideo'
 import OfficialSocialLinks from './app/components/OfficialSocialLinks'
@@ -49,6 +50,7 @@ export function useMDXComponents(components: Record<string, any>): Record<string
     Waterfall,
     Timeline,
     CodRiskCalculator,
+    FinancialProjectionsCalculator,
     YouTube,
     FacebookVideo,
     OfficialSocialLinks,

@@ -702,6 +702,40 @@
       "bn": "ধরুন দুই বন্ধু মিলে একটা টেক কোম্পানি শুরু করল এবং মালিকানা সমানভাবে ভাগ করে নিল, তার মানে তাদের প্রত্যেকের কাছে ৫০% ইকুইটি আছে। পরে কোনো অ্যাঞ্জেল ইনভেস্টর যদি ১০% মালিকানার বিনিময়ে ১০ লাখ টাকা দেয়, তবে সে ওই অংশের ইকুইটি পাবে। কে কোম্পানির কতটুকু অংশের আসল মালিক, এটাই তার হিসাব।"
     }
   },
+  "erc": {
+    "head": "ERC",
+    "bn": "ইআরসি",
+    "group": "paperwork",
+    "def": {
+      "bn": "বাংলাদেশে বৈধভাবে যেকোনো পণ্য বিদেশে রপ্তানি করার জন্য সরকারের দেওয়া একটি বাধ্যতামূলক লাইসেন্স।",
+      "en": "A mandatory government license required to legally export any commercial goods from Bangladesh."
+    },
+    "example": {
+      "bn": "আপনি যদি দেশি পাটজাত পণ্য বা চামড়ার ব্যাগ ইউরোপে রপ্তানি করতে চান, তবে কাস্টমসের মাধ্যমে পণ্য পাঠানোর আগেই আপনার কোম্পানির নামে একটি ইআরসি (ERC) থাকতে হবে।",
+      "en": "If you want to export jute products or leather bags to Europe, your company must have an ERC before customs will clear your shipment."
+    },
+    "watchOut": {
+      "bn": "অনেকেই মনে করেন ট্রেড লাইসেন্স থাকলেই রপ্তানি করা যায়, কিন্তু ইআরসি ছাড়া কোনো ব্যাংক আপনার এক্সপোর্ট এলসি (LC) বা পেমেন্ট প্রসেস করবে না। এর জন্য প্রতি বছর রিনিউ ফি দিতে হয়।",
+      "en": "Many think a trade license is enough to export, but no bank will process your export LC or payments without an ERC. You must renew it and pay the fee every year."
+    }
+  },
+  "erq": {
+    "head": "ERQ",
+    "bn": "ইআরকিউ",
+    "group": "money",
+    "def": {
+      "bn": "এক্সপোর্টার্স রিটেনশন কোটা। রপ্তানি করে পাওয়া বিদেশি মুদ্রার একটি নির্দিষ্ট অংশ ডলারে নিজের কাছে জমা রাখার সুবিধা।",
+      "en": "Exporters' Retention Quota. A facility that allows exporters to keep a certain percentage of their foreign currency earnings in dollars."
+    },
+    "example": {
+      "bn": "আপনি যদি সফটওয়্যার বা আইটি সেবা রপ্তানি করেন, তবে আপনার আয়ের একটি বড় অংশ (বর্তমানে প্রায় ৭০%) আপনি ইআরকিউ অ্যাকাউন্টে ডলারে জমা রাখতে পারবেন।",
+      "en": "If you export software or IT services, you can keep a large portion (currently around 70%) of your earnings in dollars in your ERQ account."
+    },
+    "watchOut": {
+      "bn": "ডলারে আন্তর্জাতিক পেমেন্ট দেওয়ার (যেমন- সার্ভার বিল বা মার্কেটিং খরচ) জন্য এই অ্যাকাউন্টটি দারুণ কাজের। তবে এটি সাধারণ অ্যাকাউন্টের মতো নয়, এর ব্যবহারের কিছু নির্দিষ্ট নিয়ম ও সীমা রয়েছে।",
+      "en": "This account is highly useful for making international payments in dollars (like server bills or marketing). However, it's not a regular account and has specific rules and limits on its use."
+    }
+  },
   "esop": {
     "head": "ESOP",
     "bn": "ইএসওপি",
@@ -749,6 +783,23 @@
     "example": {
       "en": "Think of Pathao or Chaldal becoming so massive that a global giant buys them out. The founders and early investors sell their shares and walk away with life-changing amounts of money.",
       "bn": "ধরুন পাঠাও বা চালডাল এত বড় হলো যে বিদেশি কোনো বড় কোম্পানি তাদের কিনে নিলো। তখন ফাউন্ডার আর প্রথম দিকের ইনভেস্টররা নিজেদের শেয়ার বিক্রি করে একসাথে অনেক টাকা তুলে নেন।"
+    }
+  },
+  "exp-form": {
+    "head": "EXP form",
+    "bn": "ইএক্সপি ফর্ম",
+    "group": "paperwork",
+    "def": {
+      "bn": "বাংলাদেশ থেকে কোনো পণ্য রপ্তানি করার আগে বাংলাদেশ ব্যাংক ও কাস্টমসের কাছে দেওয়া একটি আইনি ঘোষণা, যেখানে পণ্যের দাম এবং পেমেন্টের তথ্য থাকে।",
+      "en": "A legal declaration submitted to Bangladesh Bank and Customs before exporting goods, detailing the value of the goods and payment terms."
+    },
+    "example": {
+      "bn": "শিপমেন্ট পাঠানোর আগে আপনাকে বা আপনার সিঅ্যান্ডএফ এজেন্টকে (C&F Agent) একটি ইএক্সপি ফর্ম পূরণ করতে হবে। এতে লেখা থাকে যে আপনি কত টাকার পণ্য পাঠাচ্ছেন এবং সেই টাকা কবে দেশে আসবে।",
+      "en": "Before sending a shipment, you or your C&F Agent must fill out an EXP form. It states the value of the goods and when the payment will arrive in the country."
+    },
+    "watchOut": {
+      "bn": "এই ফর্মে ঘোষণা করা নির্দিষ্ট সময়ের মধ্যে (সাধারণত ১২০ দিন) যদি বিদেশি ক্রেতার পেমেন্ট দেশে না আসে, তবে বাংলাদেশ ব্যাংক আপনার কাছে এর জবাব চাইবে।",
+      "en": "If the foreign buyer's payment doesn't arrive in the country within the declared timeframe (usually 120 days), Bangladesh Bank will hold you accountable."
     }
   },
   "form-117": {
@@ -916,6 +967,23 @@
       "break-even"
     ]
   },
+  "hs-code": {
+    "head": "HS code",
+    "bn": "এইচএস কোড",
+    "group": "paperwork",
+    "def": {
+      "bn": "হারমোনাইজড সিস্টেম কোড। আন্তর্জাতিক বাণিজ্যে প্রতিটি পণ্যকে চেনার জন্য বিশ্বব্যাপী ব্যবহৃত একটি নির্দিষ্ট নম্বরের কোড।",
+      "en": "Harmonized System Code. A specific numbered code used globally in international trade to identify every single product."
+    },
+    "example": {
+      "bn": "আপনি যখন দেশে স্মার্টফোন আমদানি করবেন, তখন কাস্টমসের ফর্মে লিখতে হবে স্মার্টফোনের এইচএস কোড কত। এই কোডের ওপর ভিত্তি করেই সরকার ট্যাক্স বা ডিউটি বসায়।",
+      "en": "When importing smartphones, you must write the HS code for smartphones on the customs form. The government applies taxes and duties based on this specific code."
+    },
+    "watchOut": {
+      "bn": "ভুল এইচএস কোড ব্যবহার করলে আপনার পণ্য কাস্টমসে আটকে যেতে পারে অথবা আপনাকে ভুল ট্যাক্স দিতে হতে পারে, যা আইনত দণ্ডনীয়।",
+      "en": "Using the wrong HS code can result in your goods getting stuck at customs or paying the wrong tax rate, which is legally punishable."
+    }
+  },
   "hypothesis": {
     "head": "Hypothesis",
     "bn": "হাইপোথিসিস",
@@ -968,6 +1036,23 @@
       "bn": "কোম্পানির নামে ব্যাংক অ্যাকাউন্ট খোলা বা ট্রেড লাইসেন্স করার সময় সবাই এই কাগজটি দেখতে চাইবে। এটাই একমাত্র প্রমাণ যে কোম্পানিটির বাস্তবে অস্তিত্ব আছে।"
     }
   },
+  "incoterms": {
+    "head": "Incoterms",
+    "bn": "ইনকোটার্মস",
+    "group": "paperwork",
+    "def": {
+      "bn": "আন্তর্জাতিক বাণিজ্যে ব্যবহৃত কিছু স্ট্যান্ডার্ড নিয়ম, যা ঠিক করে দেয় পণ্য পাঠানো, খরচ এবং ঝুঁকির দায়িত্ব ক্রেতা ও বিক্রেতার মধ্যে কার কতটুকু।",
+      "en": "Standard rules used in international trade that define the responsibilities of buyers and sellers regarding the delivery, costs, and risks of goods."
+    },
+    "example": {
+      "bn": "আপনি যদি 'FOB' (ফ্রি অন বোর্ড) শর্তে পণ্য রপ্তানি করেন, তার মানে পণ্য জাহাজে তুলে দেওয়া পর্যন্ত সব খরচ ও ঝুঁকি আপনার। এরপরের দায়িত্ব ক্রেতার।",
+      "en": "If you export goods on 'FOB' (Free on Board) terms, it means you bear all costs and risks until the goods are loaded onto the ship. After that, it's the buyer's responsibility."
+    },
+    "watchOut": {
+      "bn": "ইনকোটার্মস ঠিকমতো না বুঝলে আপনি হয়তো নিজের অজান্তেই শিপিং বা ইন্স্যুরেন্সের বিশাল খরচের দায় নিয়ে নিতে পারেন। চুক্তিতে সাইন করার আগে এই টার্মগুলো পরিষ্কার করে নিন।",
+      "en": "If you don't understand Incoterms correctly, you might unknowingly take on massive shipping or insurance costs. Clear these terms before signing any contract."
+    }
+  },
   "incubator": {
     "head": "Incubator",
     "bn": "ইনকিউবেটর",
@@ -1009,6 +1094,23 @@
     "example": {
       "en": "If you build an AI model that understands Bangla dialects perfectly, that code is your startup's core IP. It is the secret sauce that makes your company valuable to buyers.",
       "bn": "আপনি যদি এমন একটা এআই বানান যা বাংলার সব আঞ্চলিক ভাষা বুঝতে পারে, ওই কোডটাই হলো আপনার আইপি। এটাই সেই গোপন জাদু, যার জন্য বড় কোম্পানিগুলো আপনার স্টার্টআপ কিনতে চাইবে।"
+    }
+  },
+  "irc": {
+    "head": "IRC",
+    "bn": "আইআরসি",
+    "group": "paperwork",
+    "def": {
+      "bn": "বিদেশ থেকে বাণিজ্যিক উদ্দেশ্যে যেকোনো পণ্য বাংলাদেশে আনার জন্য সরকারের দেওয়া একটি অপরিহার্য লাইসেন্স।",
+      "en": "An essential government license required to import commercial goods into Bangladesh from abroad."
+    },
+    "example": {
+      "bn": "আপনি যদি চীন থেকে ইলেকট্রনিক্স বা কাঁচামাল এনে দেশে বিক্রি করতে চান, তবে আপনার কোম্পানির নামে একটি আইআরসি (IRC) থাকতে হবে।",
+      "en": "If you plan to import electronics or raw materials from China to sell locally, your company must hold an IRC."
+    },
+    "watchOut": {
+      "bn": "আইআরসি ছাড়া ব্যাংক ইমপোর্ট এলসি খুলবে না এবং কাস্টমসও পণ্য ছাড়বে না। মনে রাখবেন, ব্যক্তিগত ব্যবহারের জন্য পণ্য আনলে আইআরসি লাগে না, কিন্তু ব্যবসার জন্য এটি বাধ্যতামূলক।",
+      "en": "Without an IRC, banks won't open an import LC and customs won't release your goods. Remember, you don't need it for personal items, but it's mandatory for business imports."
     }
   },
   "k-factor": {
@@ -1460,6 +1562,23 @@
       "retention",
       "mvp"
     ]
+  },
+  "prc": {
+    "head": "PRC",
+    "bn": "পিআরসি",
+    "group": "paperwork",
+    "def": {
+      "bn": "প্রসিডস রিয়েলাইজেশন সার্টিফিকেট। ব্যাংক থেকে দেওয়া একটি সনদ, যা প্রমাণ করে যে আপনার রপ্তানি করা পণ্যের টাকা বৈধভাবে দেশে এসেছে।",
+      "en": "Proceeds Realization Certificate. A certificate issued by a bank proving that the payment for your exported goods has legally arrived in the country."
+    },
+    "example": {
+      "bn": "আপনি যখন ফ্রিল্যান্সিং বা কোনো সেবা রপ্তানি করে ব্যাংকের মাধ্যমে টাকা পান, তখন ব্যাংক আপনাকে একটি পিআরসি দেয়। এটি সরকারি নগদ সহায়তা বা ক্যাশ ইনসেনটিভ পাওয়ার জন্য লাগে।",
+      "en": "When you receive money through a bank for freelancing or exporting a service, the bank gives you a PRC. This is required to claim government cash incentives."
+    },
+    "watchOut": {
+      "bn": "পিআরসি ছাড়া আপনি প্রমাণ করতে পারবেন না যে আপনার আয়ের উৎস রপ্তানি। ফলে আপনি আইটি রপ্তানির জন্য ১০% নগদ সহায়তা বা অন্য কোনো সুবিধা থেকে বঞ্চিত হতে পারেন।",
+      "en": "Without a PRC, you cannot prove that your income is from exports. As a result, you might miss out on the 10% cash incentive for IT exports or other benefits."
+    }
   },
   "pro-rata": {
     "head": "Pro-rata",

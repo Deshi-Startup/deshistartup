@@ -1,0 +1,325 @@
+---
+title: "Bottom-Up Financial Projections: Revenue, Cost and Cash Runway"
+description: "Build a monthly model from numbers you can actually count, three honest cases, and a runway figure that survives reality. Plus where AI helps and where it makes your business up."
+verified: 2026-08-21
+---
+
+# Bottom-Up Financial Projections: Revenue, Cost and Cash Runway
+
+> **In short:** A projection does not predict the future. It writes down what you believe about a handful of numbers, in a way that lets you see within a month if you were wrong. Build it **bottom-up**, from customers you can count and prices you actually charge. Never top-down from a share of a market. The runway figure most founders quote is wrong in both directions, because dividing cash by this month's burn ignores that both sides keep moving. Your next step is the five-block worksheet at the end of this page, filled with your own numbers.
+
+Say Sadia runs a six-person company selling scheduling software to tuition centres in Dhaka, at BDT 2,000 a month. Forty centres pay today. She has BDT 42 lakh in the bank.
+
+Ask her how long that lasts and she divides 42 lakh by last month's <Term name="burn-rate">burn</Term> and says "about thirteen months". Once her growing revenue is in the model, the real answer is closer to seventeen. And the model tells her something far more useful than either number. On her current assumptions, she never reaches <Term name="break-even">break-even</Term> before the money runs out.
+
+That is what a projection is for. Not to impress an investor. To find the sentence you did not want to hear, while there is still time to act on it.
+
+---
+
+## Who needs this, and when
+
+- **You are raising, and someone asked for a three-year model.** This page builds it. Keep the valuation conversation separate. That is [valuation](/en/funding/valuation).
+- **You are not raising, but you spend money every month.** This case matters more. A model nobody else ever sees is still the thing that tells you when to hire and when to stop.
+- **You have revenue and no idea whether you are profitable.** Start with [cashflow vs profit](/en/metrics/cashflow-vs-profit), then come back.
+- **You do not know what one sale earns you.** Start with [unit economics](/en/metrics/unit-economics). This page assumes you know your contribution per customer.
+- **You have no product and no customers.** A model would be fiction. Go to [demand without building](/en/validation/demand-without-building).
+
+By the end you will have a monthly model in five blocks, three cases, a runway date, and a review you can run in twenty minutes a month.
+
+---
+
+## Bottom-up, and why top-down fails
+
+There are two ways to project revenue, and only one of them is honest.
+
+**Top-down** starts from a market. "The market is BDT 900 crore, we will take 0.5% in year two." It is fast, it sounds confident, and nothing in it can be checked next month.
+
+**Bottom-up** starts from things you can count. How many customers you have, how many you add, how many leave, and what each one pays. Every line is a number somebody in the company is responsible for, and every one of them can be proved wrong within thirty days.
+
+> **Rule:** If a line in your model cannot be checked against reality inside one month, it is not a projection. It is a wish with a decimal point.
+
+Market sizing does have a real job. It tells you whether the opportunity is big enough to be worth years of your life. That job belongs to [market sizing](/en/ideas/market-sizing) and [TAM, SAM and SOM](/en/ideas/tam-sam-som). It does not belong in the revenue line of your model.
+
+---
+
+## The five blocks
+
+Every bottom-up model has the same five blocks, in this order. Build them as five sections of one monthly spreadsheet, with months across the top.
+
+### Block 1: revenue drivers
+
+This is the only block where assumptions live. Everything after it is arithmetic.
+
+A subscription business needs three drivers:
+
+- **Customers at the start of the month**
+- **New customers added**, worked out from your own funnel, not from ambition
+- **Churn rate**, the percentage who leave each month
+
+Sadia's drivers: 40 centres today, 8 new a month, 3% monthly churn. The 8 is not a hope. It comes from two salespeople closing four each, which she has measured. The 3% comes from her last six months.
+
+```
+Centres at month end = start - (start x churn) + new
+
+Month 1:  40 - 1.2 + 8  =  46.8  ->  47
+Month 2:  47 - 1.4 + 8  =  53.6  ->  54
+Month 3:  54 - 1.6 + 8  =  60.4  ->  60
+Month 6:  72 - 2.2 + 8  =  77.8  ->  78
+
+Revenue month 6 = 78 x BDT 2,000 = BDT 1,56,000
+```
+
+If you sell products or transactions, your drivers are orders per month, average order value and repeat rate. If you sell B2B services, they are deals closed, average contract value and delivery capacity. The block changes shape. Its job does not.
+
+### Block 2: cost of goods sold
+
+The cost that moves with each customer. For software that means hosting, SMS, payment gateway fees and support tools. For physical products it means the product, the packaging and the delivery.
+
+```
+Sadia's COGS = BDT 180 per centre per month
+Month 6 COGS = 78 x 180 = BDT 14,040
+
+Contribution per centre = 2,000 - 180 = BDT 1,820
+```
+
+That BDT 1,820 is the number the whole model runs on. If you do not have its equivalent, stop and read [unit economics](/en/metrics/unit-economics) first.
+
+### Block 3: payroll
+
+List every person and their gross monthly salary. Then add the line most Bangladeshi models forget.
+
+```
+2 engineers @ 70,000            140,000
+1 designer  @ 55,000             55,000
+2 sales     @ 35,000             70,000
+1 founder-operations @ 40,000    40,000
+                               --------
+Monthly payroll             BDT 305,000
+
+Festival bonus set aside:
+one month's payroll per year = 305,000 / 12 = BDT 25,417 a month
+```
+
+**Set the festival bonus aside every month.** It is customary, it is often one or two months' salary a year, and treating it as a surprise in one month is how a company that looked fine in April cannot make payroll in May. Put a monthly amount aside and pay it when it falls due. Do the same with any statutory contributions your company owes, and check what applies to you rather than copying a template.
+
+### Block 4: everything else
+
+Fixed running costs that do not move with customer numbers.
+
+```
+Office rent                      45,000
+Internet and utilities           12,000
+Software subscriptions            8,000
+Accounting and legal             10,000
+Travel and miscellaneous          8,000
+                               --------
+Monthly operating cost      BDT  83,000
+```
+
+```
+Total fixed cost per month
+  = payroll 305,000 + bonus set-aside 25,417 + operating 83,000
+  = BDT 413,417
+```
+
+### Block 5: cash and runway
+
+Now the two numbers that decide things.
+
+```
+Monthly net burn = fixed cost - contribution
+
+Month 1:  413,417 - (47 x 1,820)  =  413,417 -  85,540 = BDT 327,877
+Month 6:  413,417 - (78 x 1,820)  =  413,417 - 141,960 = BDT 271,457
+Month 12: 413,417 - (109 x 1,820) =  413,417 - 198,380 = BDT 215,037
+```
+
+Burn falls every month, because contribution rises. So the runway most founders quote is wrong.
+
+```
+Quick runway  = cash / this month's burn
+              = 42,00,000 / 327,877  =  about 13 months
+
+Modelled runway = the month your cash balance hits zero,
+                  with revenue and costs both moving
+                  =  about 17 months
+```
+
+| Month | Centres | Contribution | Net burn | Cash left |
+|---|---|---|---|---|
+| Start | 40 | — | — | 42,00,000 |
+| 1 | 47 | 85,540 | 327,877 | 38,72,123 |
+| 6 | 78 | 141,960 | 271,457 | 24,05,638 |
+| 12 | 109 | 198,380 | 215,037 | 9,78,916 |
+| 17 | 131 | 238,420 | 174,997 | 29,311 |
+
+Figures in taka, using the base-case drivers above, with the customer count rounded to a whole number each month and carried forward. Rebuild it in a spreadsheet and you should get these same numbers. Watch the shape rather than the decimals. Cash falls fast early and slowly late, so a straight-line estimate is wrong at both ends.
+
+**And here is the finding that matters.** Break-even needs contribution to cover fixed cost.
+
+```
+Break-even centres = 413,417 / 1,820 = 228 centres
+```
+
+Sadia reaches 109 by month 12 and 131 by month 17, when the cash runs out. **On these assumptions she never gets there.** Her model has done its job. In month one it has told her that adding eight centres a month does not end well, and that she has to raise money, raise the price, cut fixed cost, or find a faster way to get customers. For the last of those, see [first 100 customers](/en/customers/first-100-customers).
+
+### Your own numbers
+
+Sadia's figures are loaded below. Replace them with yours. The calculator runs the same month-by-month walk the table above does, so a spreadsheet built from block 1 should agree with it.
+
+<FinancialProjectionsCalculator locale="en" />
+
+Two runway figures appear on purpose. The first is cash divided by this month's burn, which is what most founders quote. The second walks the model forward with revenue and costs both moving. When they disagree, the second one is the one to plan against.
+
+---
+
+## Three cases, set honestly
+
+One set of numbers is a guess. Three become a decision tool, but only if the cases differ in **drivers** and not in confidence.
+
+| Case | New per month | Monthly churn | What it means |
+|---|---|---|---|
+| **Downside** | 5 | 5% | One salesperson leaves and is not replaced quickly |
+| **Base** | 8 | 3% | The last six months carry on |
+| **Upside** | 11 | 2% | The referral loop starts working |
+
+Each case is a named story about the business, which is what makes it arguable. Run the same model on each set of drivers and Sadia's runway is about 13 months in the downside and about 17 in the base case. The upside is the only one that reaches 228 centres. It gets there in month 23, with 231 centres, before the cash runs out.
+
+Two rules keep the cases honest.
+
+- **Change drivers, not outcomes.** "Downside: revenue 30% lower" is a haircut, not a case. "Downside: five new a month because we lose a salesperson" is a case, because you can tell the day it starts happening.
+- **Your base case is your last six months, not your best month.** If you cannot show six months, say so, and use the shortest honest history you have.
+
+> **Warning:** Do not show the upside case as the plan and keep the downside in a private file. Investors read three cases as a sign that you understand your own business. They read one hockey stick as a sign that you do not. The [data room](/en/funding/data-room) is where this gets checked.
+
+---
+
+## Where AI helps, and where it invents your business
+
+AI tools are really useful here. They also fail in one specific way that is easy to miss.
+
+In a 2025 Accelerating Bangladesh session on financial projection and valuation using AI, Muhammad Arifur Rahman, National Program Coordinator at Accelerating Bangladesh and an independent economist and financial consultant, showed the audience how to prompt an AI tool for a startup forecast. It came back with a five-year customer projection climbing from a few hundred to a few thousand, and a five-year revenue forecast starting under a thousand dollars and rising steeply.[^ab-ai-projection]
+
+Look at what happened. The tool was given a description of a business and produced growth rates. None of those rates came from the company's funnel, its churn, its sales capacity or its market. The AI supplied a **shape**, and the shape it supplies is the one that appears most often in its training data, which is up and to the right.
+
+| Use AI for | Do not use AI for |
+|---|---|
+| Writing the spreadsheet formulas and checking them | Deciding how many customers you will add |
+| Building the mechanics that switch between cases | Choosing your <Term name="churn">churn rate</Term> |
+| Getting a plain-English explanation of a term you do not know | Deciding an accounting treatment. Ask your accountant |
+| Checking arithmetic and finding circular references | Anything you will present as evidence |
+| Turning your model into a readable summary | Filling a gap where you have no data |
+
+The line is simple. **AI may touch anything downstream of your assumptions, and nothing upstream of them.** Every driver in block 1 has to come from something you counted, and you have to be able to say where it came from.
+
+---
+
+## Actual against plan: the only review that matters
+
+A model written once and never opened again is decoration. The discipline is a monthly check, and it takes twenty minutes.
+
+Each month, put your actual numbers next to the plan for four lines only.
+
+| Line | Plan | Actual | Difference | Why |
+|---|---|---|---|---|
+| New customers | 8 | 5 | −3 | One salesperson on leave for two weeks |
+| Churn | 3% | 4.1% | +1.1pp | Three centres closed for exam season |
+| Contribution | 141,960 | 121,940 | −20,020 | Follows the two lines above |
+| Cash at month end | 24,05,638 | 23,15,400 | −90,238 | Burn, plus a one-off legal fee |
+
+Then answer one question in writing. **Is this noise, or is it the new normal?** One bad month on a driver is noise. Two months in the same direction means the driver has changed, and the model has to change with it.
+
+Update the drivers, not the outcomes. If churn has really moved from 3% to 4%, change the churn cell. Do not adjust the revenue line to make the total look right. The whole value of a bottom-up model is that you always know which assumption moved. Your actual numbers come from your [founder dashboard](/en/metrics/founder-dashboard).
+
+---
+
+## The copy-ready worksheet
+
+One tab. Months across the top, five blocks down the side.
+
+```
+BLOCK 1: DRIVERS            M1    M2    M3   ...
+  Customers, opening        ....  ....  ....
+  New customers added       ....  ....  ....
+  Churn rate (%)            ....  ....  ....
+  Customers lost            = opening x churn
+  Customers, closing        = opening - lost + new
+  Price per customer        ....
+  REVENUE                   = closing x price
+
+BLOCK 2: COGS
+  Variable cost per customer ....
+  TOTAL COGS                = closing x variable cost
+  CONTRIBUTION              = revenue - COGS
+
+BLOCK 3: PAYROLL
+  (one row per person, gross monthly)
+  Festival bonus set aside  = annual bonus / 12
+  TOTAL PAYROLL
+
+BLOCK 4: OPERATING COST
+  Rent / utilities / software / professional / other
+  TOTAL OPERATING COST
+
+BLOCK 5: CASH
+  FIXED COST                = payroll + operating
+  NET BURN                  = fixed cost - contribution
+  Cash, opening             ....
+  Cash, closing             = opening - net burn
+  BREAK-EVEN CUSTOMERS      = fixed cost / contribution per customer
+```
+
+Copy the tab three times, for downside, base and upside, and change only the driver rows. If you find yourself editing something outside block 1 to make a case work, it is not a case.
+
+---
+
+## Common mistakes
+
+| Mistake | What happens | What to do instead |
+|---|---|---|
+| Top-down revenue from a share of a market | A number nobody can check, including you | Build from customers, price and churn |
+| Cash divided by this month's burn | Runway wrong in both directions | Model the month your cash hits zero |
+| Festival bonus treated as a surprise | A payroll month you cannot fund | Set money aside monthly, pay when due |
+| Cases that differ by confidence, not drivers | Three versions of the same guess | Make each case a named story about the business |
+| Adopting an AI-generated growth rate | A forecast that describes training data, not your company | Keep AI downstream of your assumptions |
+| A model built once for a deck and never reopened | You learn you were wrong from your bank balance | Twenty-minute review, every month |
+| Adjusting outcomes when actuals miss | You lose the ability to see which assumption moved | Update the driver cell, never the total |
+| No break-even customer count | You cannot tell whether the plan ends anywhere good | Fixed cost divided by contribution per customer, on the front page |
+
+The last row is the cheapest line in the model and the one most often missing. It turns a spreadsheet into an answer.
+
+---
+
+## Checklist
+
+- [ ] Model is monthly, with months across the top, for at least 18 months
+- [ ] Every revenue driver traces to something you counted, and you can say where
+- [ ] Contribution per customer worked out and written down
+- [ ] Every person on payroll listed at gross salary
+- [ ] Festival bonus set aside monthly, and any statutory contributions checked
+- [ ] Total fixed cost visible as one number
+- [ ] Net burn worked out per month, not assumed flat
+- [ ] Runway written as a month, not a ratio
+- [ ] Break-even customer count on the front page
+- [ ] Three cases that differ only in the driver rows
+- [ ] Base case reflects the last six months, not the best month
+- [ ] Monthly review scheduled, with the noise-or-new-normal question written down
+- [ ] Nothing upstream of your assumptions produced by an AI tool
+
+**You are done when:** you can name the month your cash hits zero under each of three cases, the number of customers that covers your fixed cost, and which single driver you would change first.
+
+---
+
+## What to do next
+
+- Not sure what one customer earns you: [unit economics](/en/metrics/unit-economics).
+- Profitable on paper but short of cash: [cashflow vs profit](/en/metrics/cashflow-vs-profit).
+- The model says you need customers faster: [first 100 customers](/en/customers/first-100-customers) and [CAC, LTV and churn](/en/metrics/cac-ltv-churn).
+- Running the monthly actuals: [founder dashboard](/en/metrics/founder-dashboard).
+- Turning the model into a raise: [valuation](/en/funding/valuation), [pitch deck](/en/funding/pitch-deck) and [investor due diligence](/en/funding/data-room).
+- Choosing between debt and equity to close the gap: [loan or equity](/en/funding/loan-or-equity).
+---
+
+## Relevant Sources
+
+[^ab-ai-projection]: [Accelerating Bangladesh](https://acceleratingbangladesh.com/courses/financial-projection-and-startup-valuation-using-ai/) – *Financial Projection and Startup Valuation using AI*, a Monday webinar with Muhammad Arifur Rahman, National Program Coordinator at Accelerating Bangladesh and an independent economist and financial consultant; the [recording](https://www.youtube.com/watch?v=EljKLQHCi5U) was published on 13 May 2025 and runs 1 hour 41 minutes, in Bangla. Referenced here only for the live demonstration in which an AI tool was prompted for a startup forecast and returned a multi-year customer and revenue projection, which this page uses to illustrate that such tools supply a growth shape rather than evidence. The session's valuation methods are outside this page's scope and belong to [valuation](/en/funding/valuation). Read from YouTube's machine-generated Bangla captions, a discovery aid rather than a publishable transcript, so the demonstration is described rather than quoted. Accelerating Bangladesh has no involvement in Deshi Startup and has not reviewed this guide. Accessed 21 August 2026.
