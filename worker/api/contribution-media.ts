@@ -3,6 +3,7 @@ import {
   MAX_BYTES_PER_USER_PER_DAY,
   MAX_IMAGES_PER_USER_PER_DAY,
   MAX_QUARANTINE_BYTES,
+  PENDING_MEDIA_ID,
   QUARANTINE_TTL_SECONDS,
   validateContributionImage
 } from '../../app/lib/contribution-media'
@@ -20,17 +21,14 @@ import {
 } from '../lib/contribution-guard'
 import { resolveContributable } from '../../app/lib/contributable-registry'
 import { requireUser } from '../lib/google-token'
-
-function json(data: unknown, status = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: {
-      'Cache-Control': 'private, no-store',
-      'Content-Type': 'application/json',
-      Vary: 'Authorization'
-    }
-  })
-}
+import {
+  SMALL_JSON_BODY_MAX_BYTES,
+  isRecord,
+  readBoundedBytes,
+  readBoundedJson
+} from '../lib/request-body.ts'
+import { logError } from '../lib/logging.ts'
+import { authenticatedJson as json } from '../lib/http.ts'
 
 function safeFileName(header: string | null): string {
   if (!header) return ''
@@ -41,36 +39,12 @@ function safeFileName(header: string | null): string {
   }
 }
 
-async function readBoundedBody(req: Request): Promise<Uint8Array | null> {
-  if (!req.body) return new Uint8Array()
-  const reader = req.body.getReader()
-  const chunks: Uint8Array[] = []
-  let total = 0
-  while (true) {
-    const { done, value } = await reader.read()
-    if (done) break
-    total += value.byteLength
-    if (total > MAX_CONTRIBUTION_IMAGE_BYTES) {
-      await reader.cancel().catch(() => {})
-      return null
-    }
-    chunks.push(value)
-  }
-  const bytes = new Uint8Array(total)
-  let offset = 0
-  for (const chunk of chunks) {
-    bytes.set(chunk, offset)
-    offset += chunk.byteLength
-  }
-  return bytes
-}
-
 export async function POST(req: Request, env: CloudflareEnv) {
   let user
   try {
     user = await requireUser(req, env)
   } catch (error) {
-    console.error('[contribution-media] Google authentication unavailable:', error)
+    logError('contribution_media', 'google_authentication_unavailable', error)
     return json({ error: 'auth_unavailable' }, 503)
   }
   if (!user) return json({ error: 'unauthorized' }, 401)
@@ -79,7 +53,7 @@ export async function POST(req: Request, env: CloudflareEnv) {
   try {
     bindings = getContributionBindings(env)
   } catch (error) {
-    console.error('[contribution-media] Cloudflare bindings unavailable:', error)
+    logError('contribution_media', 'bindings_unavailable', error)
     return json({ error: 'media_unavailable' }, 503)
   }
 
@@ -103,13 +77,14 @@ export async function POST(req: Request, env: CloudflareEnv) {
     return json({ error: 'file_too_large' }, 413)
   }
 
-  let bytes: Uint8Array | null
-  try {
-    bytes = await readBoundedBody(req)
-  } catch {
-    return json({ error: 'invalid_upload' }, 400)
+  const body = await readBoundedBytes(req, MAX_CONTRIBUTION_IMAGE_BYTES)
+  if (!body.ok) {
+    return json(
+      { error: body.error === 'body_too_large' ? 'file_too_large' : 'invalid_upload' },
+      body.error === 'body_too_large' ? 413 : 400
+    )
   }
-  if (!bytes) return json({ error: 'file_too_large' }, 413)
+  const bytes = body.value
   const validation = validateContributionImage(bytes, fileName, declaredType)
   if (validation.errors.length || !validation.mime || !validation.ext || !validation.size) {
     return json({ error: validation.errors[0] || 'invalid_image', errors: validation.errors }, 400)
@@ -171,7 +146,7 @@ export async function POST(req: Request, env: CloudflareEnv) {
       QUARANTINE_TTL_SECONDS + 24 * 60 * 60
     )
   } catch (error) {
-    console.error('[contribution-media] Quarantine write failed:', error)
+    logError('contribution_media', 'quarantine_write_failed', error)
     await bindings.quarantine.delete(objectKey).catch(() => {})
     return json({ error: 'upload_failed' }, 502)
   }
@@ -191,13 +166,17 @@ export async function DELETE(req: Request, env: CloudflareEnv) {
   const user = await requireUser(req, env).catch(() => null)
   if (!user) return json({ error: 'unauthorized' }, 401)
 
-  let body: { id?: string } = {}
-  try {
-    body = await req.json()
-  } catch {
-    return json({ error: 'invalid_json' }, 400)
+  const body = await readBoundedJson(req, SMALL_JSON_BODY_MAX_BYTES)
+  if (!body.ok) {
+    return json(
+      { error: body.error === 'body_too_large' ? 'body_too_large' : 'invalid_json' },
+      body.error === 'body_too_large' ? 413 : 400
+    )
   }
-  if (!body.id) return json({ error: 'media_id_required' }, 400)
+  const id = isRecord(body.value) && typeof body.value.id === 'string'
+    ? body.value.id
+    : ''
+  if (!PENDING_MEDIA_ID.test(id)) return json({ error: 'media_id_required' }, 400)
 
   let bindings
   try {
@@ -207,7 +186,7 @@ export async function DELETE(req: Request, env: CloudflareEnv) {
   }
   const record = await readJson<QuarantineMediaRecord>(
     bindings.guards,
-    mediaRecordKey(body.id)
+    mediaRecordKey(id)
   )
   if (!record) return json({ ok: true })
   if (record.ownerHash !== (await contributorHash(user))) {

@@ -146,6 +146,47 @@ for (const page of pages) {
     record(errors, `${page.route}: expected exactly one non-empty meta description, found ${descriptions.length}`)
   }
   if ($('h1').length !== 1) record(errors, `${page.route}: expected one H1, found ${$('h1').length}`)
+
+  // The postbuild pass writes the two shell TOCs into static HTML, then the
+  // client shell reproduces the same nodes on its first render. If either copy
+  // is missing or differs, React discards the server tree during hydration.
+  const shellHeadings = $('.article').first().find('h2').slice(0, 16)
+    .map((_, heading) => ({
+      href: `#${$(heading).attr('id') || ''}`,
+      text: $(heading).text().trim()
+    }))
+    .get()
+    .filter((heading) => heading.href !== '#' && heading.text)
+  const tocMarkers = $('meta[name="deshi:toc"]')
+  const expectedMarkerCount = page.slug && shellHeadings.length > 0 ? 1 : 0
+  if (tocMarkers.length !== expectedMarkerCount) {
+    record(
+      errors,
+      `${page.route}: shell TOC marker count is ${tocMarkers.length}, expected ${expectedMarkerCount}`
+    )
+  }
+  if (expectedMarkerCount === 1) {
+    const sidebarHeadings = $('.sidebar-group--toc a').map((_, link) => ({
+      href: $(link).attr('href') || '',
+      text: $(link).text().trim()
+    })).get()
+    if (JSON.stringify(sidebarHeadings) !== JSON.stringify(shellHeadings)) {
+      record(errors, `${page.route}: static sidebar TOC does not match the article headings`)
+    }
+
+    const expectsPageToc = shellHeadings.length > 2 && $('.article-lede').length === 1
+    const pageHeadings = $('.article-lede > .page-toc a').map((_, link) => ({
+      href: $(link).attr('href') || '',
+      text: $(link).text().trim()
+    })).get()
+    if (
+      (expectsPageToc && JSON.stringify(pageHeadings) !== JSON.stringify(shellHeadings)) ||
+      (!expectsPageToc && pageHeadings.length > 0)
+    ) {
+      record(errors, `${page.route}: static in-article TOC does not match the client shell policy`)
+    }
+  }
+
   $('article img').each((_, image) => {
     const alt = $(image).attr('alt')
     const contributorRow = $(image).closest('.contributor-row')

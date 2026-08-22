@@ -7,16 +7,10 @@ import {
   readJson
 } from '../lib/contribution-guard'
 import { requireUser } from '../lib/google-token'
+import { authenticatedJson } from '../lib/http.ts'
 
 function json(error: string, status: number) {
-  return new Response(JSON.stringify({ error }), {
-    status,
-    headers: {
-      'Cache-Control': 'private, no-store',
-      'Content-Type': 'application/json',
-      Vary: 'Authorization'
-    }
-  })
+  return authenticatedJson({ error }, status)
 }
 
 export async function GET(

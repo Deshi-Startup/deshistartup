@@ -37,24 +37,24 @@ typography:
     lineHeight: 1.3
     letterSpacing: "0"
   headline:
-    fontFamily: "{typography.display.fontFamily}"
+    fontFamily: "'Deshi Sans Bengali', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
     fontSize: "1.55rem"
     fontWeight: 600
     lineHeight: 1.25
     letterSpacing: "0"
   title:
-    fontFamily: "{typography.display.fontFamily}"
+    fontFamily: "'Deshi Sans Bengali', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
     fontSize: "1.08rem"
     fontWeight: 600
     lineHeight: 1.25
   body:
-    fontFamily: "{typography.display.fontFamily}"
+    fontFamily: "'Deshi Sans Bengali', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.72
     letterSpacing: "0"
   label:
-    fontFamily: "{typography.display.fontFamily}"
+    fontFamily: "'Deshi Sans Bengali', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
     fontSize: "0.82rem"
     fontWeight: 600
     lineHeight: 1.5
@@ -108,7 +108,6 @@ components:
     textColor: "{colors.ink}"
     rounded: "{rounded.edge}"
     padding: "12px 16px"
-    height: "44px"
   card:
     backgroundColor: "{colors.canvas}"
     textColor: "{colors.ink}"

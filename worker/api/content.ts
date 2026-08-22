@@ -10,8 +10,12 @@ import {
   moderationFor,
   readJson
 } from '../lib/contribution-guard'
+import { logError } from '../lib/logging.ts'
+import { readBoundedText } from '../lib/request-body.ts'
+import { authenticatedJson as json } from '../lib/http.ts'
 
 const RAW_BASE = 'https://raw.githubusercontent.com'
+const RAW_MDX_BODY_MAX_BYTES = 1024 * 1024
 
 interface CacheEntry {
   source: string
@@ -22,17 +26,6 @@ interface CacheEntry {
 // GitHub raw limit when many contributors open the editor in the same isolate.
 const _cache = new Map<string, CacheEntry>()
 const CACHE_TTL = 5 * 60 * 1000
-
-function json(data: any, status = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: {
-      'Cache-Control': 'private, no-store',
-      'Content-Type': 'application/json',
-      Vary: 'Authorization'
-    }
-  })
-}
 
 function splitFrontmatter(source: string) {
   const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/)
@@ -67,8 +60,13 @@ async function fetchRawMdx(
     cache: 'no-store',
     headers: { 'User-Agent': 'deshistartup-contributor-bot' }
   })
-  if (!res.ok) throw new Error(`raw fetch ${res.status}`)
-  const source = await res.text()
+  if (!res.ok) {
+    await res.body?.cancel().catch(() => {})
+    throw new Error(`raw fetch ${res.status}`)
+  }
+  const body = await readBoundedText(res, RAW_MDX_BODY_MAX_BYTES)
+  if (!body.ok) throw new Error(`raw fetch ${body.error}`)
+  const source = body.value
   _cache.set(cacheKey, { source, t: Date.now() })
   if (_cache.size > 200) {
     // evict oldest
@@ -83,7 +81,7 @@ export async function GET(req: Request, env: CloudflareEnv) {
   try {
     user = await requireUser(req, env)
   } catch (err) {
-    console.error('[content] Google authentication is unavailable:', err)
+    logError('content', 'google_authentication_unavailable', err)
     return json({ error: 'auth_unavailable' }, 503)
   }
   if (!user) return json({ error: 'unauthorized' }, 401)
@@ -92,7 +90,7 @@ export async function GET(req: Request, env: CloudflareEnv) {
   try {
     bindings = getContributionBindings(env)
   } catch (err) {
-    console.error('[content] Cloudflare contribution bindings unavailable:', err)
+    logError('content', 'contribution_bindings_unavailable', err)
     return json({ error: 'contribution_unavailable' }, 503)
   }
   const ownerHash = await contributorHash(user)
@@ -122,18 +120,18 @@ export async function GET(req: Request, env: CloudflareEnv) {
       // immediately instead of a five-minute-old branch response.
       ref = contrib.headSha
     }
-  } catch (err: any) {
+  } catch (err) {
     // Loading main here could overwrite a newer draft on the contribution
     // branch. Fail visibly and let the contributor retry instead.
-    console.error('[content] Contribution lookup failed:', err)
+    logError('content', 'contribution_lookup_failed', err)
     return json({ error: 'fetch_failed' }, 502)
   }
 
   let source: string
   try {
     source = await fetchRawMdx(env, entry.repoPath, ref)
-  } catch (err: any) {
-    console.error('[content] Source fetch failed:', err)
+  } catch (err) {
+    logError('content', 'source_fetch_failed', err)
     return json({ error: 'fetch_failed' }, 502)
   }
 

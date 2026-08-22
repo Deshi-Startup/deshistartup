@@ -284,9 +284,12 @@ function insertPageToc(html, toc) {
   if (ledeStart === -1) return html
   const articleStart = html.indexOf('<article class="article', ledeStart)
   if (articleStart === -1) return html
-  const closers = '</div></div>'
-  if (html.slice(articleStart - closers.length, articleStart) !== closers) return html
-  return `${html.slice(0, articleStart - closers.length)}</div>${toc}</div>${html.slice(articleStart)}`
+  // The lede's final child varies by route: guides end with article metadata,
+  // while utility pages such as /contact deliberately omit that nested row.
+  // The lede itself is always the last closing div before the article.
+  const ledeEnd = html.lastIndexOf('</div>', articleStart)
+  if (ledeEnd < ledeStart) return html
+  return `${html.slice(0, ledeEnd)}${toc}${html.slice(ledeEnd)}`
 }
 
 /** The sidebar's last group, immediately before the standing contribution note. */

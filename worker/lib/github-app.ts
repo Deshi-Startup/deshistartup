@@ -9,11 +9,78 @@
  * PKCS#8 PEM format — GitHub App keys can be either).
  */
 
-import { createPrivateKey, sign as nodeSign, createHash, KeyObject } from 'node:crypto'
+import { createPrivateKey, sign as nodeSign, createHash, type KeyObject } from 'node:crypto'
+import {
+  GITHUB_JSON_BODY_MAX_BYTES,
+  UPSTREAM_ERROR_BODY_MAX_BYTES,
+  isRecord,
+  readBoundedJson,
+  readBoundedText
+} from './request-body.ts'
 
 const API = 'https://api.github.com'
 
 const enc = new TextEncoder()
+
+interface GitHubPullRequest {
+  htmlUrl: string
+  number: number
+  body: string
+  headSha?: string
+}
+
+function githubRecord(value: unknown, context: string): Record<string, unknown> {
+  if (!isRecord(value)) throw new Error(`GitHub ${context} response is not an object`)
+  return value
+}
+
+function requiredString(
+  value: Record<string, unknown>,
+  field: string,
+  context: string
+): string {
+  const result = value[field]
+  if (typeof result !== 'string' || !result) {
+    throw new Error(`GitHub ${context} response is missing ${field}`)
+  }
+  return result
+}
+
+function optionalString(value: Record<string, unknown>, field: string): string | undefined {
+  return typeof value[field] === 'string' ? value[field] : undefined
+}
+
+function objectSha(value: unknown, context: string): string {
+  const record = githubRecord(value, context)
+  return requiredString(githubRecord(record.object, `${context}.object`), 'sha', `${context}.object`)
+}
+
+function parsePullRequest(value: unknown, context: string): GitHubPullRequest {
+  const record = githubRecord(value, context)
+  const number = record.number
+  if (typeof number !== 'number' || !Number.isSafeInteger(number) || number <= 0) {
+    throw new Error(`GitHub ${context} response has an invalid pull request number`)
+  }
+  const head = isRecord(record.head) ? optionalString(record.head, 'sha') : undefined
+  return {
+    htmlUrl: requiredString(record, 'html_url', context),
+    number,
+    body: typeof record.body === 'string' ? record.body : '',
+    ...(head ? { headSha: head } : {})
+  }
+}
+
+async function responseDetail(response: Response): Promise<string> {
+  const body = await readBoundedText(response, UPSTREAM_ERROR_BODY_MAX_BYTES)
+  if (!body.ok) return body.error
+  return body.value
+}
+
+async function responseJson(response: Response, context: string): Promise<unknown> {
+  const body = await readBoundedJson(response, GITHUB_JSON_BODY_MAX_BYTES)
+  if (!body.ok) throw new Error(`GitHub ${context} response ${body.error}`)
+  return body.value
+}
 
 function repoName(env: CloudflareEnv): string {
   return env.GITHUB_REPO || 'Deshi-Startup/deshistartup'
@@ -109,16 +176,22 @@ export async function installationToken(env: CloudflareEnv): Promise<string> {
     headers: apiHeaders(jwt)
   })
   if (!res.ok) {
-    const text = await res.text()
+    const text = await responseDetail(res)
     throw new Error(`Failed to create installation token (${res.status}): ${text}`)
   }
-  const data = (await res.json()) as { token: string; expires_at?: string }
+  const data = githubRecord(
+    await responseJson(res, 'installation token'),
+    'installation token'
+  )
+  const token = requiredString(data, 'token', 'installation token')
+  const expiresAt = optionalString(data, 'expires_at')
+  const parsedExpiresAt = expiresAt ? Date.parse(expiresAt) : Number.NaN
   _tokenCache = {
     key: cacheKey,
-    token: data.token,
-    expiresAt: data.expires_at ? new Date(data.expires_at).getTime() : now + 50 * 60 * 1000
+    token,
+    expiresAt: Number.isFinite(parsedExpiresAt) ? parsedExpiresAt : now + 50 * 60 * 1000
   }
-  return _tokenCache.token!
+  return token
 }
 
 // --- PR creation ---
@@ -146,7 +219,7 @@ function contribBranchName(pagePath: string, contributorEmail: string): string {
 
 interface GhOptions {
   method?: string
-  body?: any
+  body?: unknown
   token: string
 }
 
@@ -167,13 +240,13 @@ async function ghJson(
   env: CloudflareEnv,
   path: string,
   opts: GhOptions
-): Promise<any> {
+): Promise<unknown> {
   const res = await gh(env, path, opts)
   if (!res.ok) {
-    const text = await res.text()
+    const text = await responseDetail(res)
     throw new Error(`GitHub API ${opts?.method || 'GET'} ${path} → ${res.status}: ${text}`)
   }
-  return res.json()
+  return responseJson(res, `${opts.method || 'GET'} ${path}`)
 }
 
 /**
@@ -193,13 +266,19 @@ export async function findOpenContribution(
   const refRes = await fetch(repoApi(env, `/git/ref/heads/${branchName}`), {
     headers: apiHeaders(token)
   })
-  if (refRes.status === 404) return null
-  if (!refRes.ok) {
-    throw new Error(`GitHub API GET branch reference failed (${refRes.status})`)
+  if (refRes.status === 404) {
+    await refRes.body?.cancel().catch(() => {})
+    return null
   }
-  const ref = (await refRes.json()) as { object?: { sha?: string } }
-  const headSha = ref?.object?.sha
-  if (!headSha) throw new Error('GitHub branch reference is missing its head SHA')
+  if (!refRes.ok) {
+    throw new Error(
+      `GitHub API GET branch reference failed (${refRes.status}): ${await responseDetail(refRes)}`
+    )
+  }
+  const headSha = objectSha(
+    await responseJson(refRes, 'branch reference'),
+    'branch reference'
+  )
 
   // 2. Is there an open PR for it?
   const params = new URLSearchParams({ state: 'open', head: `${owner}:${branchName}`, per_page: '1' })
@@ -207,15 +286,16 @@ export async function findOpenContribution(
     headers: apiHeaders(token)
   })
   if (!prRes.ok) {
-    throw new Error(`GitHub API GET pull requests failed (${prRes.status})`)
+    throw new Error(
+      `GitHub API GET pull requests failed (${prRes.status}): ${await responseDetail(prRes)}`
+    )
   }
-  const prs = (await prRes.json()) as Array<{
-    html_url: string
-    head?: { sha?: string }
-  }>
+  const rawPrs = await responseJson(prRes, 'pull requests')
+  if (!Array.isArray(rawPrs)) throw new Error('GitHub pull requests response is not an array')
+  const prs = rawPrs.map((value, index) => parsePullRequest(value, `pull requests[${index}]`))
   if (!prs.length) return { branchName, prUrl: null, headSha }
 
-  return { branchName, prUrl: prs[0].html_url, headSha: prs[0]?.head?.sha || headSha }
+  return { branchName, prUrl: prs[0].htmlUrl, headSha: prs[0].headSha || headSha }
 }
 
 interface CreateContributionPRProps {
@@ -268,31 +348,39 @@ export async function createContributionPR(
     headers: apiHeaders(token)
   })
   if (!refRes.ok && refRes.status !== 404) {
-    throw new Error(`GitHub API GET branch reference failed (${refRes.status})`)
+    throw new Error(
+      `GitHub API GET branch reference failed (${refRes.status}): ${await responseDetail(refRes)}`
+    )
   }
   const branchExists = refRes.ok
+  await refRes.body?.cancel().catch(() => {})
 
   // 2. Is there an open PR for it?
-  let existingPR: any = null
+  let existingPR: GitHubPullRequest | null = null
   if (branchExists) {
     const params = new URLSearchParams({ state: 'open', head: `${owner}:${branchName}`, per_page: '1' })
     const prRes = await fetch(repoApi(env, `/pulls?${params}`), {
       headers: apiHeaders(token)
     })
     if (!prRes.ok) {
-      throw new Error(`GitHub API GET pull requests failed (${prRes.status})`)
+      throw new Error(
+        `GitHub API GET pull requests failed (${prRes.status}): ${await responseDetail(prRes)}`
+      )
     }
-    const prs = (await prRes.json()) as any[]
+    const rawPrs = await responseJson(prRes, 'pull requests')
+    if (!Array.isArray(rawPrs)) throw new Error('GitHub pull requests response is not an array')
+    const prs = rawPrs.map((value, index) => parsePullRequest(value, `pull requests[${index}]`))
     if (prs.length > 0) existingPR = prs[0]
   }
 
   // 3. Prepare the branch
   if (!branchExists) {
     const mainRef = await ghJson(env, '/git/ref/heads/main', { token })
+    const mainSha = objectSha(mainRef, 'main branch reference')
     await ghJson(env, '/git/refs', {
       method: 'POST',
       token,
-      body: { ref: `refs/heads/${branchName}`, sha: mainRef.object.sha }
+      body: { ref: `refs/heads/${branchName}`, sha: mainSha }
     })
   }
 
@@ -300,11 +388,15 @@ export async function createContributionPR(
   //    Existing branches can contain a recoverable draft from an interrupted
   //    request, so always read their file SHA before updating them.
   const fileRef = branchExists ? branchName : 'main'
-  const fileInfo = await ghJson(
-    env,
-    `/contents/${repoPath}?ref=${encodeURIComponent(fileRef)}`,
-    { token }
+  const fileInfo = githubRecord(
+    await ghJson(
+      env,
+      `/contents/${repoPath}?ref=${encodeURIComponent(fileRef)}`,
+      { token }
+    ),
+    'content file'
   )
+  const fileSha = optionalString(fileInfo, 'sha')
 
   await ghJson(env, `/contents/${repoPath}`, {
     method: 'PUT',
@@ -313,7 +405,7 @@ export async function createContributionPR(
       message: `chore: update "${pageTitle}" via inline editor`,
       content: utf8ToBase64(content),
       branch: branchName,
-      ...(fileInfo?.sha ? { sha: fileInfo.sha } : {})
+      ...(fileSha ? { sha: fileSha } : {})
     }
   })
 
@@ -336,7 +428,7 @@ export async function createContributionPR(
       }
     }
     return {
-      prUrl: existingPR.html_url,
+      prUrl: existingPR.htmlUrl,
       prNumber: existingPR.number,
       branchName,
       updated: true
@@ -367,19 +459,22 @@ export async function createContributionPR(
     .filter(Boolean)
     .join('\n')
 
-  const pr = await ghJson(env, '/pulls', {
-    method: 'POST',
-    token,
-    body: {
-      title: `Update: ${pageTitle}`,
-      head: branchName,
-      base: 'main',
-      body: prBody
-    }
-  })
+  const pr = parsePullRequest(
+    await ghJson(env, '/pulls', {
+      method: 'POST',
+      token,
+      body: {
+        title: `Update: ${pageTitle}`,
+        head: branchName,
+        base: 'main',
+        body: prBody
+      }
+    }),
+    'create pull request'
+  )
 
   return {
-    prUrl: pr.html_url,
+    prUrl: pr.htmlUrl,
     prNumber: pr.number,
     branchName,
     updated: false
@@ -392,15 +487,19 @@ export async function readContributionFile(
   repoPath: string
 ): Promise<string> {
   const token = await installationToken(env)
-  const file = await ghJson(
-    env,
-    `/contents/${repoPath}?ref=${encodeURIComponent(branchName)}`,
-    { token }
+  const file = githubRecord(
+    await ghJson(
+      env,
+      `/contents/${repoPath}?ref=${encodeURIComponent(branchName)}`,
+      { token }
+    ),
+    `content ${repoPath}`
   )
-  if (typeof file?.content !== 'string' || file?.encoding !== 'base64') {
+  const content = optionalString(file, 'content')
+  if (!content || file.encoding !== 'base64') {
     throw new Error(`GitHub did not return ${repoPath} as base64 content`)
   }
-  return base64ToUtf8(file.content)
+  return base64ToUtf8(content)
 }
 
 interface CommitContributionFilesProps {
@@ -420,40 +519,56 @@ export async function commitContributionFiles(
 ): Promise<string> {
   const token = await installationToken(env)
   const ref = await ghJson(env, `/git/ref/heads/${branchName}`, { token })
-  const parentSha = ref?.object?.sha
-  if (!parentSha) throw new Error('Contribution branch has no head SHA')
-  const parent = await ghJson(env, `/git/commits/${parentSha}`, { token })
-  const baseTree = parent?.tree?.sha
-  if (!baseTree) throw new Error('Contribution branch head has no tree SHA')
+  const parentSha = objectSha(ref, 'contribution branch reference')
+  const parent = githubRecord(
+    await ghJson(env, `/git/commits/${parentSha}`, { token }),
+    'contribution branch commit'
+  )
+  const baseTree = requiredString(
+    githubRecord(parent.tree, 'contribution branch commit.tree'),
+    'sha',
+    'contribution branch commit.tree'
+  )
 
   const entries = []
   for (const file of files) {
-    const blob = await ghJson(env, '/git/blobs', {
-      method: 'POST',
-      token,
-      body: { content: utf8ToBase64(file.content), encoding: 'base64' }
-    })
+    const blob = githubRecord(
+      await ghJson(env, '/git/blobs', {
+        method: 'POST',
+        token,
+        body: { content: utf8ToBase64(file.content), encoding: 'base64' }
+      }),
+      'create blob'
+    )
     entries.push({
       path: file.path,
       mode: '100644',
       type: 'blob',
-      sha: blob.sha
+      sha: requiredString(blob, 'sha', 'create blob')
     })
   }
-  const tree = await ghJson(env, '/git/trees', {
-    method: 'POST',
-    token,
-    body: { base_tree: baseTree, tree: entries }
-  })
-  const commit = await ghJson(env, '/git/commits', {
-    method: 'POST',
-    token,
-    body: { message, tree: tree.sha, parents: [parentSha] }
-  })
+  const tree = githubRecord(
+    await ghJson(env, '/git/trees', {
+      method: 'POST',
+      token,
+      body: { base_tree: baseTree, tree: entries }
+    }),
+    'create tree'
+  )
+  const treeSha = requiredString(tree, 'sha', 'create tree')
+  const commit = githubRecord(
+    await ghJson(env, '/git/commits', {
+      method: 'POST',
+      token,
+      body: { message, tree: treeSha, parents: [parentSha] }
+    }),
+    'create commit'
+  )
+  const commitSha = requiredString(commit, 'sha', 'create commit')
   await ghJson(env, `/git/refs/heads/${branchName}`, {
     method: 'PATCH',
     token,
-    body: { sha: commit.sha, force: false }
+    body: { sha: commitSha, force: false }
   })
-  return commit.sha
+  return commitSha
 }

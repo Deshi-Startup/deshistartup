@@ -1,4 +1,4 @@
-import { jwtVerify, createRemoteJWKSet } from 'jose'
+import { jwtVerify, createRemoteJWKSet, type JWTPayload } from 'jose'
 
 /**
  * Verifies a Google ID token obtained client-side via Google Identity
@@ -37,7 +37,7 @@ export async function verifyIdToken(
   }
   if (!token || typeof token !== 'string') return null
 
-  let payload: any
+  let payload: JWTPayload
   try {
     const result = await jwtVerify(token, GOOGLE_JWKS, {
       issuer: VALID_ISSUERS,
@@ -49,14 +49,16 @@ export async function verifyIdToken(
     return null
   }
 
-  if (payload.email_verified !== true) return null
-  if (!payload.email) return null
+  const email = typeof payload.email === 'string' ? payload.email : ''
+  if (payload.email_verified !== true || !email) return null
+  const name = typeof payload.name === 'string' && payload.name ? payload.name : email
+  const picture = typeof payload.picture === 'string' ? payload.picture : ''
 
   return {
     sub: String(payload.sub || ''),
-    name: payload.name || payload.email,
-    email: payload.email,
-    picture: payload.picture || ''
+    name,
+    email,
+    picture
   }
 }
 

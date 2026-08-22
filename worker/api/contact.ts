@@ -4,6 +4,8 @@ import {
   CONTACT_TOPIC_LABELS,
   isContactTopic
 } from '../../app/lib/contact.ts'
+import { isRecord, readBoundedText } from '../lib/request-body.ts'
+import { logError } from '../lib/logging.ts'
 
 /**
  * The contact endpoint accepts only same-origin JSON and always sends to the
@@ -19,10 +21,6 @@ const SENDER = 'contact@deshistartup.com'
 const SENDER_NAME = 'Deshi Startup contact form'
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
-
-type BodyResult =
-  | { ok: true; text: string }
-  | { ok: false; error: 'body_too_large' | 'invalid_body' }
 
 function json(data: Record<string, unknown>, status = 200): Response {
   return Response.json(data, {
@@ -75,59 +73,6 @@ function isJsonRequest(request: Request): boolean {
   )
 }
 
-async function readBoundedBody(request: Request): Promise<BodyResult> {
-  const declaredLength = request.headers.get('Content-Length')
-  if (declaredLength && Number(declaredLength) > CONTACT_BODY_MAX_BYTES) {
-    return { ok: false, error: 'body_too_large' }
-  }
-  if (!request.body) return { ok: false, error: 'invalid_body' }
-
-  const reader = request.body.getReader()
-  const chunks: Uint8Array[] = []
-  let size = 0
-
-  try {
-    while (true) {
-      const { done, value } = await reader.read()
-      if (done) break
-      size += value.byteLength
-      if (size > CONTACT_BODY_MAX_BYTES) {
-        try {
-          await reader.cancel()
-        } catch {
-          // The response is already decided; cancellation is only cleanup.
-        }
-        return { ok: false, error: 'body_too_large' }
-      }
-      chunks.push(value)
-    }
-  } catch {
-    return { ok: false, error: 'invalid_body' }
-  } finally {
-    reader.releaseLock()
-  }
-
-  const bytes = new Uint8Array(size)
-  let offset = 0
-  for (const chunk of chunks) {
-    bytes.set(chunk, offset)
-    offset += chunk.byteLength
-  }
-
-  try {
-    return {
-      ok: true,
-      text: new TextDecoder('utf-8', { fatal: true, ignoreBOM: false }).decode(bytes)
-    }
-  } catch {
-    return { ok: false, error: 'invalid_body' }
-  }
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return Boolean(value) && typeof value === 'object' && !Array.isArray(value)
-}
-
 export async function POST(request: Request, env: CloudflareEnv): Promise<Response> {
   if (!isAllowedOrigin(request)) return json({ error: 'forbidden_origin' }, 403)
   if (!isJsonRequest(request)) return json({ error: 'unsupported_media_type' }, 415)
@@ -138,7 +83,7 @@ export async function POST(request: Request, env: CloudflareEnv): Promise<Respon
   }
 
   if (!env.CONTACT_EMAIL || !env.CONTACT_INBOX) {
-    console.error('[contact] Email binding or inbox secret is not configured')
+    logError('contact', 'configuration_unavailable')
     return json({ error: 'contact_unavailable' }, 503)
   }
 
@@ -148,14 +93,14 @@ export async function POST(request: Request, env: CloudflareEnv): Promise<Respon
     return json({ error: 'rate_limited' }, 429)
   }
 
-  const body = await readBoundedBody(request)
+  const body = await readBoundedText(request, CONTACT_BODY_MAX_BYTES)
   if (!body.ok) {
     return json({ error: body.error }, body.error === 'body_too_large' ? 413 : 400)
   }
 
   let parsed: unknown
   try {
-    parsed = JSON.parse(body.text)
+    parsed = JSON.parse(body.value)
   } catch {
     return json({ error: 'invalid_body' }, 400)
   }
@@ -207,7 +152,7 @@ export async function POST(request: Request, env: CloudflareEnv): Promise<Respon
       text: emailBody
     })
   } catch (error) {
-    console.error('[contact] Send failed', error)
+    logError('contact', 'send_failed', error)
     return json({ error: 'send_failed' }, 502)
   }
 

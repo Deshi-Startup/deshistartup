@@ -23,20 +23,16 @@ import {
   commitContributionFiles,
   readContributionFile
 } from '../lib/github-app'
+import {
+  SMALL_JSON_BODY_MAX_BYTES,
+  isRecord,
+  readBoundedJson
+} from '../lib/request-body.ts'
+import { logError } from '../lib/logging.ts'
+import { authenticatedJson as json } from '../lib/http.ts'
 
 const REGISTRY_PATH = 'app/generated/media.json'
 const CACHE_CONTROL = 'public, max-age=31536000, immutable'
-
-function json(data: unknown, status = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: {
-      'Cache-Control': 'private, no-store',
-      'Content-Type': 'application/json',
-      Vary: 'Authorization'
-    }
-  })
-}
 
 async function reviewer(req: Request, env: CloudflareEnv) {
   const user = await requireUser(req, env).catch(() => null)
@@ -85,7 +81,7 @@ export async function GET(
   try {
     loaded = await loadRecord(env, id)
   } catch (error) {
-    console.error('[contribution-review] Bindings unavailable:', error)
+    logError('contribution_review', 'bindings_unavailable', error)
     return json({ error: 'review_unavailable' }, 503)
   }
   if (!loaded.record) return json({ error: 'review_expired' }, 404)
@@ -95,6 +91,26 @@ export async function GET(
 
 function sortedRegistry(registry: Record<string, unknown>): Record<string, unknown> {
   return Object.fromEntries(Object.entries(registry).sort(([left], [right]) => left.localeCompare(right)))
+}
+
+function parseRegistry(source: string): Record<string, unknown> {
+  const value = JSON.parse(source) as unknown
+  if (!isRecord(value)) throw new Error('media_registry_invalid')
+  return value
+}
+
+function registryByteTotal(registry: Record<string, unknown>): number {
+  let total = 0
+  for (const entry of Object.values(registry)) {
+    if (!isRecord(entry) || typeof entry.bytes !== 'number' || !Number.isSafeInteger(entry.bytes)) {
+      throw new Error('media_registry_invalid')
+    }
+    if (entry.bytes < 0 || total > Number.MAX_SAFE_INTEGER - entry.bytes) {
+      throw new Error('media_registry_invalid')
+    }
+    total += entry.bytes
+  }
+  return total
 }
 
 function objectKeyFor(logicalPath: string, sha: string): string {
@@ -191,11 +207,8 @@ async function decideImage(
     validation.ext
   )
   const objectKey = objectKeyFor(publicPath, sha)
-  const registry = JSON.parse(registryText) as Record<string, any>
-  const trackedBytes = Object.values(registry).reduce(
-    (sum: number, entry: any) => sum + Number(entry?.bytes || 0),
-    0
-  )
+  const registry = parseRegistry(registryText)
+  const trackedBytes = registryByteTotal(registry)
   if (trackedBytes + bytes.byteLength > PUBLIC_MEDIA_STORAGE_CEILING_BYTES) {
     throw new Error('public_media_storage_full')
   }
@@ -268,17 +281,14 @@ export async function POST(
   const auth = await reviewer(req, env)
   if (auth.error || !auth.user) return auth.error
 
-  let body: {
-    action?: string
-    mediaId?: string
-    reason?: string
-    durationDays?: number
+  const body = await readBoundedJson(req, SMALL_JSON_BODY_MAX_BYTES)
+  if (!body.ok) {
+    return json(
+      { error: body.error === 'body_too_large' ? 'body_too_large' : 'invalid_json' },
+      body.error === 'body_too_large' ? 413 : 400
+    )
   }
-  try {
-    body = await req.json()
-  } catch {
-    return json({ error: 'invalid_json' }, 400)
-  }
+  if (!isRecord(body.value)) return json({ error: 'invalid_json' }, 400)
 
   let loaded
   try {
@@ -289,37 +299,43 @@ export async function POST(
   if (!loaded.record) return json({ error: 'review_expired' }, 404)
   let record = loaded.record
   const reason =
-    typeof body.reason === 'string' ? body.reason.trim().slice(0, 200) : undefined
+    typeof body.value.reason === 'string'
+      ? body.value.reason.trim().slice(0, 200)
+      : undefined
 
-  if (body.action === 'mute') {
-    const durationDays = body.durationDays === 30 ? 30 : 7
+  if (body.value.action === 'mute') {
+    const durationDays = body.value.durationDays === 30 ? 30 : 7
     await setModeration(loaded.bindings, record.ownerHash, {
       status: 'muted',
       until: new Date(Date.now() + durationDays * 24 * 60 * 60 * 1000).toISOString(),
       ...(reason ? { reason } : {})
     })
-  } else if (body.action === 'ban') {
+  } else if (body.value.action === 'ban') {
     await setModeration(loaded.bindings, record.ownerHash, {
       status: 'banned',
       ...(reason ? { reason } : {})
     })
-  } else if (body.action === 'unmute') {
+  } else if (body.value.action === 'unmute') {
     await setModeration(loaded.bindings, record.ownerHash, { status: 'active' })
   } else if (
-    (body.action === 'approve' || body.action === 'reject') &&
-    typeof body.mediaId === 'string'
+    (body.value.action === 'approve' || body.value.action === 'reject') &&
+    typeof body.value.mediaId === 'string'
   ) {
     try {
       record = await decideImage(
         env,
         record,
-        body.mediaId,
-        body.action,
+        body.value.mediaId,
+        body.value.action,
         auth.user.email,
         reason
       )
     } catch (error) {
-      console.error('[contribution-review] Decision failed:', error)
+      logError('contribution_review', 'decision_failed', error, {
+        reviewId: id,
+        mediaId: body.value.mediaId,
+        action: body.value.action
+      })
       const code = error instanceof Error ? error.message : 'review_decision_failed'
       return json({ error: code }, code === 'public_media_storage_full' ? 507 : 409)
     }

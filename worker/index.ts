@@ -10,6 +10,7 @@ import {
   GET as getContributionReview,
   POST as updateContributionReview
 } from './api/contribution-review'
+import { logError } from './lib/logging'
 
 const OPAQUE_ID = /^[a-f0-9]{32}$/
 
@@ -100,10 +101,9 @@ export default {
 
       return env.ASSETS.fetch(request)
     } catch (error) {
-      console.error('[worker] Unhandled request failure', {
+      logError('worker', 'unhandled_request_failure', error, {
         method: request.method,
-        pathname: url.pathname,
-        error
+        pathname: url.pathname
       })
       return json('internal_error', 500)
     }

@@ -23,24 +23,20 @@ import {
   reviewRecordKey,
   writeJson
 } from '../lib/contribution-guard'
-
-function json(data: any, status = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: {
-      'Cache-Control': 'private, no-store',
-      'Content-Type': 'application/json',
-      Vary: 'Authorization'
-    }
-  })
-}
+import {
+  CONTRIBUTION_JSON_BODY_MAX_BYTES,
+  isRecord,
+  readBoundedJson
+} from '../lib/request-body.ts'
+import { logError } from '../lib/logging.ts'
+import { authenticatedJson as json } from '../lib/http.ts'
 
 export async function POST(req: Request, env: CloudflareEnv) {
   let user
   try {
     user = await requireUser(req, env)
   } catch (err) {
-    console.error('[contribute] Google authentication is unavailable:', err)
+    logError('contribute', 'google_authentication_unavailable', err)
     return json({ error: 'auth_unavailable' }, 503)
   }
   if (!user) return json({ error: 'unauthorized' }, 401)
@@ -49,7 +45,7 @@ export async function POST(req: Request, env: CloudflareEnv) {
   try {
     bindings = getContributionBindings(env)
   } catch (err) {
-    console.error('[contribute] Cloudflare contribution bindings unavailable:', err)
+    logError('contribute', 'contribution_bindings_unavailable', err)
     return json({ error: 'contribution_unavailable' }, 503)
   }
   const ownerHash = await contributorHash(user)
@@ -65,14 +61,16 @@ export async function POST(req: Request, env: CloudflareEnv) {
   // Bearer-token auth is not vulnerable to CSRF (the token isn't sent
   // automatically by the browser like a cookie), so no Origin check needed.
 
-  let body: any
-  try {
-    body = await req.json()
-  } catch {
-    return json({ error: 'invalid_json' }, 400)
+  const body = await readBoundedJson(req, CONTRIBUTION_JSON_BODY_MAX_BYTES)
+  if (!body.ok) {
+    return json(
+      { error: body.error === 'body_too_large' ? 'content_too_large' : 'invalid_json' },
+      body.error === 'body_too_large' ? 413 : 400
+    )
   }
+  if (!isRecord(body.value)) return json({ error: 'invalid_json' }, 400)
 
-  const { path, content, summary, media } = body || {}
+  const { path, content, summary, media } = body.value
   if (!path || typeof path !== 'string') return json({ error: 'path_required' }, 400)
 
   const entry = resolveContributable(path)
@@ -197,12 +195,12 @@ export async function POST(req: Request, env: CloudflareEnv) {
         )
       )
     } catch (err) {
-      console.error('[contribute] Could not reserve media review:', err)
+      logError('contribute', 'media_review_reservation_failed', err)
       return json({ error: 'media_review_unavailable' }, 503)
     }
   }
 
-  let result: any
+  let result: Awaited<ReturnType<typeof createContributionPR>>
   try {
     result = await createContributionPR(env, {
       repoPath: entry.repoPath,
@@ -214,8 +212,8 @@ export async function POST(req: Request, env: CloudflareEnv) {
       pagePath: path,
       reviewId
     })
-  } catch (err: any) {
-    console.error('[contribute] PR creation failed:', err)
+  } catch (err) {
+    logError('contribute', 'pr_creation_failed', err)
     if (reviewRecord) {
       await Promise.allSettled([
         bindings.guards.delete(reviewRecordKey(reviewRecord.id)),
@@ -251,7 +249,9 @@ export async function POST(req: Request, env: CloudflareEnv) {
       // The PR contains private markers, so CI remains failed and nothing can
       // publish accidentally. A reviewer can retry after the transient store
       // issue rather than an unapproved image slipping through.
-      console.error('[contribute] PR created but review record finalization failed:', err)
+      logError('contribute', 'review_record_finalization_failed', err, {
+        prUrl: result.prUrl
+      })
       return json({ error: 'media_review_unavailable', prUrl: result.prUrl }, 503)
     }
   }
