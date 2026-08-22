@@ -707,16 +707,19 @@
     "bn": "ইআরসি",
     "group": "paperwork",
     "def": {
-      "bn": "বাংলাদেশে বৈধভাবে যেকোনো পণ্য বিদেশে রপ্তানি করার জন্য সরকারের দেওয়া একটি বাধ্যতামূলক লাইসেন্স।",
-      "en": "A mandatory government license required to legally export any commercial goods from Bangladesh."
+      "bn": "বাংলাদেশ থেকে বাণিজ্যিক পণ্য বা সেবা রপ্তানির জন্য সিসিআইঅ্যান্ডই-এর বাধ্যতামূলক নিবন্ধন।",
+      "en": "A mandatory CCI&E registration for exporting commercial goods or services from Bangladesh."
     },
+    "guide": "/trade/import-export-registration",
+    "sourceUrl": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-mincom/2024/12/1d03310e37514efb86ae6aa6bb8b9804.pdf",
+    "verified": "2026-08-22",
     "example": {
       "bn": "আপনি যদি দেশি পাটজাত পণ্য বা চামড়ার ব্যাগ ইউরোপে রপ্তানি করতে চান, তবে কাস্টমসের মাধ্যমে পণ্য পাঠানোর আগেই আপনার কোম্পানির নামে একটি ইআরসি (ERC) থাকতে হবে।",
       "en": "If you want to export jute products or leather bags to Europe, your company must have an ERC before customs will clear your shipment."
     },
     "watchOut": {
-      "bn": "অনেকেই মনে করেন ট্রেড লাইসেন্স থাকলেই রপ্তানি করা যায়, কিন্তু ইআরসি ছাড়া কোনো ব্যাংক আপনার এক্সপোর্ট এলসি (LC) বা পেমেন্ট প্রসেস করবে না। এর জন্য প্রতি বছর রিনিউ ফি দিতে হয়।",
-      "en": "Many think a trade license is enough to export, but no bank will process your export LC or payments without an ERC. You must renew it and pay the fee every year."
+      "bn": "ট্রেড লাইসেন্স থাকলেই রপ্তানির নিবন্ধন সম্পূর্ণ হয় না। বাণিজ্যিক পণ্য বা সেবা রপ্তানির জন্য ইআরসি আলাদা নিবন্ধন। মেয়াদ শেষ হওয়ার আগে এক থেকে পাঁচ বছরের জন্য নবায়ন বেছে নেওয়া যায়।",
+      "en": "A trade license does not complete export registration. ERC is a separate registration for commercial goods or services, and you can choose a one-to-five-year renewal before it expires."
     }
   },
   "erq": {
@@ -724,16 +727,19 @@
     "bn": "ইআরকিউ",
     "group": "money",
     "def": {
-      "bn": "এক্সপোর্টার্স রিটেনশন কোটা। রপ্তানি করে পাওয়া বিদেশি মুদ্রার একটি নির্দিষ্ট অংশ ডলারে নিজের কাছে জমা রাখার সুবিধা।",
-      "en": "Exporters' Retention Quota. A facility that allows exporters to keep a certain percentage of their foreign currency earnings in dollars."
+      "bn": "এক্সপোর্টার্স রিটেনশন কোটা। যোগ্য রপ্তানি আয় থেকে নির্ধারিত অংশ বৈদেশিক মুদ্রায় নিজের ইআরকিউ অ্যাকাউন্টে রাখার সুবিধা।",
+      "en": "Exporters' Retention Quota. A facility that lets exporters keep a permitted share of eligible export earnings in foreign currency in an ERQ account."
     },
+    "guide": "/trade/export-proceeds",
+    "sourceUrl": "https://www.bb.org.bd/mediaroom/circulars/fepd/jul222026fepd-122e.pdf",
+    "verified": "2026-08-21",
     "example": {
-      "bn": "আপনি যদি সফটওয়্যার বা আইটি সেবা রপ্তানি করেন, তবে আপনার আয়ের একটি বড় অংশ (বর্তমানে প্রায় ৭০%) আপনি ইআরকিউ অ্যাকাউন্টে ডলারে জমা রাখতে পারবেন।",
-      "en": "If you export software or IT services, you can keep a large portion (currently around 70%) of your earnings in dollars in your ERQ account."
+      "bn": "আপনি সফটওয়্যার বা আইটি সেবা রপ্তানি করলে বর্তমানে দেশে ফেরত আনা নিট আয়ের সর্বোচ্চ ৫০% ইআরকিউ অ্যাকাউন্টে বৈদেশিক মুদ্রায় রাখতে পারেন।",
+      "en": "If you export software or IT services, you can currently keep up to 50% of the net amount repatriated in foreign currency in your ERQ account."
     },
     "watchOut": {
-      "bn": "ডলারে আন্তর্জাতিক পেমেন্ট দেওয়ার (যেমন- সার্ভার বিল বা মার্কেটিং খরচ) জন্য এই অ্যাকাউন্টটি দারুণ কাজের। তবে এটি সাধারণ অ্যাকাউন্টের মতো নয়, এর ব্যবহারের কিছু নির্দিষ্ট নিয়ম ও সীমা রয়েছে।",
-      "en": "This account is highly useful for making international payments in dollars (like server bills or marketing). However, it's not a regular account and has specific rules and limits on its use."
+      "bn": "এটি সাধারণ বৈদেশিক মুদ্রার অ্যাকাউন্ট নয়। কত অংশ রাখা যাবে এবং কোন খরচে ব্যবহার করা যাবে, তা রপ্তানির ধরন ও বাংলাদেশ ব্যাংকের বর্তমান নিয়মের ওপর নির্ভর করে। পেমেন্টের আগে ব্যাংকের অনুমোদিত ব্যবহার যাচাই করুন।",
+      "en": "This is not an ordinary foreign-currency account. The retention rate and permitted uses depend on the export category and current Bangladesh Bank rules, so confirm the intended payment with your bank first."
     }
   },
   "esop": {
@@ -790,16 +796,19 @@
     "bn": "ইএক্সপি ফর্ম",
     "group": "paperwork",
     "def": {
-      "bn": "বাংলাদেশ থেকে কোনো পণ্য রপ্তানি করার আগে বাংলাদেশ ব্যাংক ও কাস্টমসের কাছে দেওয়া একটি আইনি ঘোষণা, যেখানে পণ্যের দাম এবং পেমেন্টের তথ্য থাকে।",
-      "en": "A legal declaration submitted to Bangladesh Bank and Customs before exporting goods, detailing the value of the goods and payment terms."
+      "bn": "বাংলাদেশ থেকে সাধারণ নিয়মে পণ্য রপ্তানির আগে বাংলাদেশ ব্যাংক ও কাস্টমসের কাছে দেওয়া একটি আইনি ঘোষণা, যেখানে পণ্যের দাম এবং পেমেন্টের তথ্য থাকে।",
+      "en": "A legal declaration used for an ordinary goods export and submitted to Bangladesh Bank and Customs before shipment, detailing the value of the goods and payment terms."
     },
+    "guide": "/trade/export-proceeds",
+    "sourceUrl": "https://www.bb.org.bd/mediaroom/circulars/fepd/jul302026fepd-126e.pdf",
+    "verified": "2026-08-21",
     "example": {
-      "bn": "শিপমেন্ট পাঠানোর আগে আপনাকে বা আপনার সিঅ্যান্ডএফ এজেন্টকে (C&F Agent) একটি ইএক্সপি ফর্ম পূরণ করতে হবে। এতে লেখা থাকে যে আপনি কত টাকার পণ্য পাঠাচ্ছেন এবং সেই টাকা কবে দেশে আসবে।",
-      "en": "Before sending a shipment, you or your C&F Agent must fill out an EXP form. It states the value of the goods and when the payment will arrive in the country."
+      "bn": "সাধারণ পণ্য রপ্তানির আগে রপ্তানিকারক তাঁর ব্যাংকের মাধ্যমে অনলাইন এক্সপোর্ট মনিটরিং সিস্টেমে ইএক্সপি ঘোষণা জমা দেন। এতে চালানের মূল্য ও পেমেন্টের তথ্য থাকে।",
+      "en": "Before an ordinary goods shipment, the exporter submits the EXP declaration through its bank in the Online Export Monitoring System. It records the shipment value and payment details."
     },
     "watchOut": {
-      "bn": "এই ফর্মে ঘোষণা করা নির্দিষ্ট সময়ের মধ্যে (সাধারণত ১২০ দিন) যদি বিদেশি ক্রেতার পেমেন্ট দেশে না আসে, তবে বাংলাদেশ ব্যাংক আপনার কাছে এর জবাব চাইবে।",
-      "en": "If the foreign buyer's payment doesn't arrive in the country within the declared timeframe (usually 120 days), Bangladesh Bank will hold you accountable."
+      "bn": "সাধারণ নিয়মে চালানের তারিখ থেকে চার ক্যালেন্ডার মাসের মধ্যে রপ্তানি মূল্য দেশে আনতে হয়। আগাম টাকা পাওয়া সর্বোচ্চ ১,০০০ মার্কিন ডলারের কিছু B2C ই-কমার্স রপ্তানিতে আলাদা ইএক্সপি-বিহীন পথ আছে। চালানের আগে ব্যাংকের কাছে শর্তগুলো মিলিয়ে নিন।",
+      "en": "The general rule is to repatriate the export value within four calendar months of shipment. Some prepaid B2C e-commerce exports up to USD 1,000 use a separate no-EXP route, so confirm its conditions with your bank before shipping."
     }
   },
   "form-117": {
@@ -972,17 +981,20 @@
     "bn": "এইচএস কোড",
     "group": "paperwork",
     "def": {
-      "bn": "হারমোনাইজড সিস্টেম কোড। আন্তর্জাতিক বাণিজ্যে প্রতিটি পণ্যকে চেনার জন্য বিশ্বব্যাপী ব্যবহৃত একটি নির্দিষ্ট নম্বরের কোড।",
-      "en": "Harmonized System Code. A specific numbered code used globally in international trade to identify every single product."
+      "bn": "হারমোনাইজড সিস্টেম কোড। আন্তর্জাতিক বাণিজ্যে পণ্যের শ্রেণি চিহ্নিত করার জন্য বিশ্বজুড়ে ব্যবহৃত নম্বরভিত্তিক কোড।",
+      "en": "Harmonized System Code. A globally used numbered classification for groups of traded goods."
     },
     "example": {
-      "bn": "আপনি যখন দেশে স্মার্টফোন আমদানি করবেন, তখন কাস্টমসের ফর্মে লিখতে হবে স্মার্টফোনের এইচএস কোড কত। এই কোডের ওপর ভিত্তি করেই সরকার ট্যাক্স বা ডিউটি বসায়।",
-      "en": "When importing smartphones, you must write the HS code for smartphones on the customs form. The government applies taxes and duties based on this specific code."
+      "bn": "স্মার্টফোন আমদানির সময় কাস্টমসের নথিতে প্রযোজ্য এইচএস কোড লিখতে হবে। শুল্ক ও কর নির্ধারণের সময় কর্তৃপক্ষ ওই কোড দিয়ে পণ্যটির শ্রেণি চিহ্নিত করে।",
+      "en": "When importing smartphones, declare the applicable HS code on the customs documents. Authorities use that code to classify the goods when applying duties and taxes."
     },
     "watchOut": {
-      "bn": "ভুল এইচএস কোড ব্যবহার করলে আপনার পণ্য কাস্টমসে আটকে যেতে পারে অথবা আপনাকে ভুল ট্যাক্স দিতে হতে পারে, যা আইনত দণ্ডনীয়।",
-      "en": "Using the wrong HS code can result in your goods getting stuck at customs or paying the wrong tax rate, which is legally punishable."
-    }
+      "bn": "ভুল এইচএস কোড দিলে পণ্য কাস্টমসে আটকে যেতে পারে বা ডিউটির হিসাব ভুল হতে পারে। ডিক্লারেশন দেওয়ার আগে পণ্যের বর্ণনা ও কোড কাস্টমসের বর্তমান ট্যারিফের সঙ্গে মিলিয়ে নিন।",
+      "en": "A wrong HS code can hold goods at customs or produce the wrong duty assessment. Check the product description and code against the current Customs tariff before declaring it."
+    },
+    "guide": "/trade/trade-documents",
+    "sourceUrl": "https://www.wcoomd.org/en/topics/nomenclature/overview/what-is-the-harmonized-system.aspx?p=1",
+    "verified": "2026-08-22"
   },
   "hypothesis": {
     "head": "Hypothesis",
@@ -1051,7 +1063,10 @@
     "watchOut": {
       "bn": "ইনকোটার্মস ঠিকমতো না বুঝলে আপনি হয়তো নিজের অজান্তেই শিপিং বা ইন্স্যুরেন্সের বিশাল খরচের দায় নিয়ে নিতে পারেন। চুক্তিতে সাইন করার আগে এই টার্মগুলো পরিষ্কার করে নিন।",
       "en": "If you don't understand Incoterms correctly, you might unknowingly take on massive shipping or insurance costs. Clear these terms before signing any contract."
-    }
+    },
+    "guide": "/trade/trade-documents",
+    "sourceUrl": "https://iccwbo.org/business-solutions/incoterms-rules/incoterms-2020/",
+    "verified": "2026-08-22"
   },
   "incubator": {
     "head": "Incubator",
@@ -1104,6 +1119,9 @@
       "bn": "বিদেশ থেকে বাণিজ্যিক উদ্দেশ্যে যেকোনো পণ্য বাংলাদেশে আনার জন্য সরকারের দেওয়া একটি অপরিহার্য লাইসেন্স।",
       "en": "An essential government license required to import commercial goods into Bangladesh from abroad."
     },
+    "guide": "/trade/import-export-registration",
+    "sourceUrl": "https://ccie.gov.bd/pages/static-pages/6922dc11933eb65569e0e42e",
+    "verified": "2026-08-21",
     "example": {
       "bn": "আপনি যদি চীন থেকে ইলেকট্রনিক্স বা কাঁচামাল এনে দেশে বিক্রি করতে চান, তবে আপনার কোম্পানির নামে একটি আইআরসি (IRC) থাকতে হবে।",
       "en": "If you plan to import electronics or raw materials from China to sell locally, your company must hold an IRC."
@@ -1568,16 +1586,19 @@
     "bn": "পিআরসি",
     "group": "paperwork",
     "def": {
-      "bn": "প্রসিডস রিয়েলাইজেশন সার্টিফিকেট। ব্যাংক থেকে দেওয়া একটি সনদ, যা প্রমাণ করে যে আপনার রপ্তানি করা পণ্যের টাকা বৈধভাবে দেশে এসেছে।",
-      "en": "Proceeds Realization Certificate. A certificate issued by a bank proving that the payment for your exported goods has legally arrived in the country."
+      "bn": "প্রসিডস রিয়েলাইজেশন সার্টিফিকেট। ব্যাংক থেকে দেওয়া একটি সনদ, যা প্রমাণ করে যে আপনার রপ্তানি করা পণ্য বা সেবার টাকা বৈধভাবে দেশে এসেছে।",
+      "en": "Proceeds Realization Certificate. A bank certificate showing that payment for exported goods or services has been repatriated through the banking channel."
     },
+    "guide": "/trade/export-proceeds",
+    "sourceUrl": "https://www.bb.org.bd/mediaroom/circulars/fepd/jul302026fepd-126e.pdf",
+    "verified": "2026-08-22",
     "example": {
       "bn": "আপনি যখন ফ্রিল্যান্সিং বা কোনো সেবা রপ্তানি করে ব্যাংকের মাধ্যমে টাকা পান, তখন ব্যাংক আপনাকে একটি পিআরসি দেয়। এটি সরকারি নগদ সহায়তা বা ক্যাশ ইনসেনটিভ পাওয়ার জন্য লাগে।",
       "en": "When you receive money through a bank for freelancing or exporting a service, the bank gives you a PRC. This is required to claim government cash incentives."
     },
     "watchOut": {
-      "bn": "পিআরসি ছাড়া আপনি প্রমাণ করতে পারবেন না যে আপনার আয়ের উৎস রপ্তানি। ফলে আপনি আইটি রপ্তানির জন্য ১০% নগদ সহায়তা বা অন্য কোনো সুবিধা থেকে বঞ্চিত হতে পারেন।",
-      "en": "Without a PRC, you cannot prove that your income is from exports. As a result, you might miss out on the 10% cash incentive for IT exports or other benefits."
+      "bn": "২০২৬-২৭ অর্থবছরের তালিকায় যোগ্য সফটওয়্যার, আইটিইএস ও হার্ডওয়্যার রপ্তানিতে ৬% এবং ব্যক্তিগত ফ্রিল্যান্সারের যোগ্য সফটওয়্যার ও আইটিইএস আয়ে ২.৫% নগদ সহায়তা আছে। হার ও যোগ্যতা বদলাতে পারে। দাবি করার আগে বর্তমান সার্কুলার ও পিআরসির শর্ত যাচাই করুন।",
+      "en": "For FY 2026-27, eligible software, ITES and hardware exports carry a 6% incentive, while eligible software and ITES earnings of individual freelancers carry 2.5%. Rates and eligibility can change, so check the current circular and PRC requirements before claiming."
     }
   },
   "pro-rata": {

@@ -4,13 +4,15 @@ description: "Build a monthly model from numbers you can actually count, three h
 verified: 2026-08-21
 ---
 
+import FinancialProjectionsCalculator from '../../../../components/FinancialProjectionsCalculator'
+
 # Bottom-Up Financial Projections: Revenue, Cost and Cash Runway
 
-> **In short:** A projection does not predict the future. It writes down what you believe about a handful of numbers, in a way that lets you see within a month if you were wrong. Build it **bottom-up**, from customers you can count and prices you actually charge. Never top-down from a share of a market. The runway figure most founders quote is wrong in both directions, because dividing cash by this month's burn ignores that both sides keep moving. Your next step is the five-block worksheet at the end of this page, filled with your own numbers.
+> **In short:** A projection does not predict the future. It writes down what you believe about a handful of numbers, in a way that lets you see within a month if you were wrong. Build it **bottom-up**, from customers you can count and prices you actually charge. Never top-down from a share of a market. <Term name="runway">Runway</Term> means the number of full months your cash can fund. The figure most founders quote is wrong in both directions, because dividing cash by this month's <Term name="burn-rate">burn</Term>, the cash lost during that month, ignores that both cash and burn keep moving. Your next step is the five-block worksheet at the end of this page, filled with your own numbers.
 
 Say Sadia runs a six-person company selling scheduling software to tuition centres in Dhaka, at BDT 2,000 a month. Forty centres pay today. She has BDT 42 lakh in the bank.
 
-Ask her how long that lasts and she divides 42 lakh by last month's <Term name="burn-rate">burn</Term> and says "about thirteen months". Once her growing revenue is in the model, the real answer is closer to seventeen. And the model tells her something far more useful than either number. On her current assumptions, she never reaches <Term name="break-even">break-even</Term> before the money runs out.
+Ask her how long that lasts and she divides 42 lakh by last month's burn and says "about thirteen months". Once her growing revenue is in the model, the real answer is seventeen complete months. And the model tells her something far more useful than either number. On her current assumptions, she never reaches <Term name="break-even">break-even</Term>, the point where monthly contribution covers fixed cost, before the money runs out.
 
 That is what a projection is for. Not to impress an investor. To find the sentence you did not want to hear, while there is still time to act on it.
 
@@ -96,11 +98,11 @@ List every person and their gross monthly salary. Then add the line most Banglad
                                --------
 Monthly payroll             BDT 305,000
 
-Festival bonus set aside:
+Festival-bonus model assumption:
 one month's payroll per year = 305,000 / 12 = BDT 25,417 a month
 ```
 
-**Set the festival bonus aside every month.** It is customary, it is often one or two months' salary a year, and treating it as a surprise in one month is how a company that looked fine in April cannot make payroll in May. Put a monthly amount aside and pay it when it falls due. Do the same with any statutory contributions your company owes, and check what applies to you rather than copying a template.
+**Treat the festival-bonus line as a model assumption, not a benchmark.** This worked example assumes one month's payroll per year and spreads it across 12 months. Replace it with the amount and timing in your employment terms and current legal obligations. Add any employer-paid statutory contributions as separate lines after confirming what applies to your company.
 
 ### Block 4: everything else
 
@@ -140,10 +142,12 @@ Burn falls every month, because contribution rises. So the runway most founders 
 Quick runway  = cash / this month's burn
               = 42,00,000 / 327,877  =  about 13 months
 
-Modelled runway = the month your cash balance hits zero,
+Modelled runway = complete months funded before cash turns negative,
                   with revenue and costs both moving
-                  =  about 17 months
+                  =  17 complete months; cash turns negative in month 18
 ```
+
+Walking the base case forward month by month produces this cash path:
 
 | Month | Centres | Contribution | Net burn | Cash left |
 |---|---|---|---|---|
@@ -152,6 +156,7 @@ Modelled runway = the month your cash balance hits zero,
 | 6 | 78 | 141,960 | 271,457 | 24,05,638 |
 | 12 | 109 | 198,380 | 215,037 | 9,78,916 |
 | 17 | 131 | 238,420 | 174,997 | 29,311 |
+| 18 | 135 | 245,700 | 167,717 | −1,38,406 |
 
 Figures in taka, using the base-case drivers above, with the customer count rounded to a whole number each month and carried forward. Rebuild it in a spreadsheet and you should get these same numbers. Watch the shape rather than the decimals. Cash falls fast early and slowly late, so a straight-line estimate is wrong at both ends.
 
@@ -161,7 +166,7 @@ Figures in taka, using the base-case drivers above, with the customer count roun
 Break-even centres = 413,417 / 1,820 = 228 centres
 ```
 
-Sadia reaches 109 by month 12 and 131 by month 17, when the cash runs out. **On these assumptions she never gets there.** Her model has done its job. In month one it has told her that adding eight centres a month does not end well, and that she has to raise money, raise the price, cut fixed cost, or find a faster way to get customers. For the last of those, see [first 100 customers](/en/customers/first-100-customers).
+Sadia reaches 109 by month 12 and 131 by month 17, finishing that month with BDT 29,311. In month 18 she reaches 135 centres and the balance turns negative. **On these assumptions she does not reach 228 before the cash runs out.** Her model has done its job. In month one it has told her that adding eight centres a month does not end well, and that she has to raise money, raise the price, cut fixed cost, or find a faster way to get customers. For the last of those, see [first 100 customers](/en/customers/first-100-customers).
 
 ### Your own numbers
 
@@ -227,7 +232,7 @@ Each month, put your actual numbers next to the plan for four lines only.
 | Contribution | 141,960 | 121,940 | −20,020 | Follows the two lines above |
 | Cash at month end | 24,05,638 | 23,15,400 | −90,238 | Burn, plus a one-off legal fee |
 
-Then answer one question in writing. **Is this noise, or is it the new normal?** One bad month on a driver is noise. Two months in the same direction means the driver has changed, and the model has to change with it.
+Then answer one question in writing. **Is this noise, or is it the new normal?** As an editorial review trigger, treat one monthly miss as a reason to investigate and two consecutive misses in the same direction as a reason to test the driver again. This is not a statistical rule. Update the model only when the evidence shows that the assumption has changed.
 
 Update the drivers, not the outcomes. If churn has really moved from 3% to 4%, change the churn cell. Do not adjust the revenue line to make the total look right. The whole value of a bottom-up model is that you always know which assumption moved. Your actual numbers come from your [founder dashboard](/en/metrics/founder-dashboard).
 
@@ -274,6 +279,8 @@ Copy the tab three times, for downside, base and upside, and change only the dri
 ---
 
 ## Common mistakes
+
+Use this table to spot the modelling choice that caused a projection to stop matching reality.
 
 | Mistake | What happens | What to do instead |
 |---|---|---|

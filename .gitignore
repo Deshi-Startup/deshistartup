@@ -70,4 +70,3 @@ opencode.json
 
 # Media staging. Bytes live in R2, never in git — see AGENTS.md "Media".
 /media/
-media/

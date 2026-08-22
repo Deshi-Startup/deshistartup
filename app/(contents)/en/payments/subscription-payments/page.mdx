@@ -6,7 +6,7 @@ verified: 2026-08-22
 
 # Can You Charge Customers Automatically Every Month?
 
-> **In short:** Say you want to sell something for BDT 500 a month. Your whole plan rests on one thing: next month's 500 taka arriving without you asking for it. In Bangladesh that usually does not happen. bKash can save a customer's wallet so paying is faster, but the customer still has to type their PIN every single time. bKash lists a separate "Subscriptions" product that would do the automatic pulling, but publishes no instructions for it. SSLCOMMERZ's documentation has nothing for it at all. So before you announce a monthly price, email your provider and ask. Until they answer in writing, plan on a person collecting the money by hand every month, and count those hours as a cost.
+> **In short:** Say you want to sell something for BDT 500 a month. Your whole plan rests on one thing: next month's 500 taka arriving without you asking for it. In Bangladesh that usually does not happen. bKash can save a customer's wallet so paying is faster, but the customer still has to type their PIN every single time. bKash lists a separate "Subscriptions" product that would do the automatic pulling, but publishes no instructions for it. SSLCOMMERZ's public v4 API documentation exposes EMI but no recurring-payment or subscription API. So before you announce a monthly price, email your provider and ask. Until they answer in writing, plan on a person collecting the money by hand every month, and count those hours as a cost.
 
 ## What this page is about
 
@@ -71,13 +71,13 @@ So email your account manager before you announce a monthly price. Ask for the a
 
 ## Card EMI is not a monthly subscription
 
-Search SSLCOMMERZ's documentation and you will not find recurring payments or subscriptions. You will find EMI. Switch on the `emi_option` setting and your customer sees a choice of 3, 6 or 9 instalments on the payment page.[^sslcommerz-emi]
+SSLCOMMERZ's public v4 API documentation exposes no recurring-payment or subscription API. It does expose EMI: switch on the `emi_option` setting and the payment page can show 3, 6 or 9 instalments.[^sslcommerz-emi]
 
 These are not the same thing, and mixing them up is expensive.
 
-EMI means the customer bought **once**. Their bank split that single price into instalments. The full amount reaches you in one payment, and the bank collects from the customer over time. From where you sit, that is one sale, not a year-long relationship.
+EMI still begins with **one initiated checkout for one purchase**. The public documentation does not say when the merchant is settled, whether an acquiring bank pays the merchant up front, or who carries the financing. Confirm those terms in writing with SSLCOMMERZ and the acquiring bank. Whatever the settlement arrangement, EMI does not authorise a new charge for your service next month.
 
-EMI also needs a credit card. There are about **19.32 lakh** active credit cards in Bangladesh, so the number of people who can pay this way is capped before you start. The figures are on [cards are common, card purchases are not](/en/payments/low-card-penetration).
+The public page also does not define which customers or payment instruments qualify across every merchant setup. Ask that in writing too; do not treat EMI as a substitute for recurring billing.
 
 ---
 
@@ -136,6 +136,8 @@ Send these before you announce a price. Ask for written answers.
 
 ## Common mistakes
 
+Use this table before setting the price or promising automatic collection to customers.
+
 | Mistake | What happens |
 |---|---|
 | Setting a monthly price assuming auto-debit works | You end up collecting by hand, every month |
@@ -144,6 +146,8 @@ Send these before you announce a price. Ask for written answers.
 | Leaving collection hours out of your costs | Your margin quietly shrinks as you grow |
 | No way to hear about a cancelled permission | The service runs on, the money stops |
 | Offering only a monthly plan | You lose both the cash up front and the lighter workload |
+
+Every row points to the same control: get the payment flow in writing, then price the human work that remains.
 
 ---
 
@@ -175,4 +179,4 @@ Send these before you announce a price. Ask for written answers.
 
 [^bkash-tokenized-checkout]: [bKash Developer – Tokenized Checkout Process](https://developer.bka.sh/docs/tokenized-checkout-process), accessed 22 August 2026. Sets out the agreement flow and states that on subsequent payments the customer enters their bKash wallet PIN.
 
-[^sslcommerz-emi]: [SSLCOMMERZ – Developer Documentation v4](https://developer.sslcommerz.com/doc/v4/), accessed 22 August 2026. The v4 sections cover overview, payment initiation, IPN validation, order validation, easy checkout, refund, transaction query and common issues, with a dedicated "Parameters to Handle EMI Transaction" section using `emi_option` and instalment options of 3, 6 or 9. There is no recurring-payment, subscription or standing-instruction API.
+[^sslcommerz-emi]: [SSLCOMMERZ – Developer Documentation v4](https://developer.sslcommerz.com/doc/v4/), accessed 22 August 2026. The public v4 sections cover overview, payment initiation, IPN validation, order validation, easy checkout, refund, transaction query and common issues, with a dedicated "Parameters to Handle EMI Transaction" section using `emi_option` and instalment options of 3, 6 or 9. They expose no recurring-payment, subscription or standing-instruction API, but do not state merchant settlement timing or rule out a separately contracted facility; confirm both in writing.

@@ -8,7 +8,8 @@
  *   app/generated/manifest.bn.json  – full locale tree for build/reporting
  *   app/generated/manifest.en.json
  *   app/generated/content-index.json – compact tree used by rendered hub UI
- *   public/page-dates.json          – route -> last git commit date (client meta bar)
+ *   public/page-dates.json          – route -> last git update, or verified-date fallback
+ *   public/page-published.json      – route -> oldest git commit date
  */
 import { execSync } from "node:child_process";
 import fs from "node:fs";
@@ -109,7 +110,8 @@ function collectGitDates() {
       published.set(file, current);
     }
   } catch {
-    // No git available (fresh tarball) – dates stay empty, UI hides them.
+    // No git available (fresh tarball): publication dates stay empty. A page's
+    // verified frontmatter may still supply its last-updated fallback below.
   }
   return { modified, published };
 }
@@ -176,7 +178,7 @@ for (const locale of LOCALES) {
     const repoPath = path.relative(root, filePath).split(path.sep).join("/");
     const verified = fm.verified ? String(fm.verified) : null;
     const date = gitDates.modified.get(repoPath) || verified;
-    const published = gitDates.published.get(repoPath) || verified;
+    const published = gitDates.published.get(repoPath) || null;
     if (date) allDates[route] = date;
     if (published) allPublished[route] = published;
     if (verified) allVerified[route] = verified;
