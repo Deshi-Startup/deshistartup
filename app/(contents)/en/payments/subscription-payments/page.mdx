@@ -1,116 +1,178 @@
 ---
-title: "Subscription Payments: Will the Money Actually Pull Itself?"
-description: "bKash's tokenized checkout asks for a PIN every time, its Subscriptions product has no documentation, and card EMI is not your monthly bill. What to settle before you price a monthly plan. Verified 29 July 2026."
-verified: 2026-07-29
+title: "Can You Charge Customers Automatically Every Month?"
+description: "You want to sell a monthly plan. Will next month's payment arrive on its own? In Bangladesh, usually not. What actually works, what it costs to collect by hand, and what to ask your provider."
+verified: 2026-08-22
 ---
 
-# Subscription Payments: Will the Money Actually Pull Itself?
+# Can You Charge Customers Automatically Every Month?
 
-> **Key Takeaway:** The whole arithmetic of a monthly plan rests on one assumption — that next month's payment can be taken without the customer doing anything. In Bangladesh that assumption does not pass unexamined. bKash's tokenized checkout, the one with published documentation, does store the customer's wallet, but a PIN is required on every payment. bKash's product list names a separate Subscriptions service, yet publishes no technical documentation for it. SSLCOMMERZ's v4 documentation contains nothing called recurring or subscription at all. So get it in writing from your provider before you set a price, and until that written answer arrives, assume a person has to do the job every month.
+> **In short:** Say you want to sell something for BDT 500 a month. Your whole plan rests on one thing: next month's 500 taka arriving without you asking for it. In Bangladesh that usually does not happen. bKash can save a customer's wallet so paying is faster, but the customer still has to type their PIN every single time. bKash lists a separate "Subscriptions" product that would do the automatic pulling, but publishes no instructions for it. SSLCOMMERZ's documentation has nothing for it at all. So before you announce a monthly price, email your provider and ask. Until they answer in writing, plan on a person collecting the money by hand every month, and count those hours as a cost.
 
-## Three Things That Get Confused
+## What this page is about
 
-Ask whether you can take subscriptions on bKash and you will get three different answers, because three separate things travel under one name.
+A subscription business sounds simple. The customer pays you every month, and you build once and earn many times.
 
-|  | What it does | Does the customer act each time? |
+That only works if the money moves on its own. Somebody has to be able to take BDT 500 out of the customer's account on the first of the month while the customer is asleep. That is called **auto-debit**, or a recurring payment.
+
+In most countries you switch it on and forget it. In Bangladesh it is hard to get, and most founders find that out after they have already promised customers a monthly price.
+
+This page tells you what you can and cannot do here, what it costs to collect the money by hand instead, and the exact questions to send your payment provider.
+
+---
+
+## Who needs this
+
+- **You are about to sell a monthly or yearly plan.** Read this before you set the price.
+- **You already sell one and collect payments by hand.** Skip to [what it costs](#collecting-by-hand-is-a-real-cost) and [what to do instead](#if-you-cannot-charge-automatically).
+- **You sell one-off items.** You do not need this. See [gateway comparison](/en/payments/gateway-comparison) instead.
+- **A developer told you "bKash supports subscriptions".** They may be right about the name and wrong about what you get. Read the next section.
+
+By the end you will know whether to build a monthly plan, what to budget for collecting it, and what to ask your provider.
+
+---
+
+## Three different things share one name
+
+Ask whether you can take subscriptions on bKash and you will get three different answers. That is because three separate things travel under the same word.
+
+| Service | What it does | Does the customer have to do anything each month? |
 |---|---|---|
-| Tokenized checkout | Wallet details are stored, payment gets faster | Yes, a PIN is required |
-| Subscription or auto-debit | Permission is taken once, money is pulled later | No |
-| Card EMI | One purchase is split into instalments | No, but this is the bank's instalment plan |
+| Tokenized checkout | Saves the customer's wallet so paying is faster | **Yes.** They must type their PIN |
+| Subscription, or auto-debit | You get permission once, then pull the money later | **No.** This is the one you want |
+| Card EMI | Splits one purchase into instalments | No, but this is the bank's instalment plan, not your monthly bill |
 
-The middle one is what you need, and it is the least documented of the three.
+You want the middle row. It is also the one with the least information available.
 
-## What Tokenized Checkout Does, and What It Does Not
+---
 
-bKash's developer documentation lays out the tokenized checkout steps. The first time, the customer clicks "Add bKash Account", lands on a bKash page, enters their wallet number, agrees to the terms, then types the 6-digit OTP that arrives by SMS. Once that matches, an agreement is created, and it is stored against that customer's account in your system.
+## What "saved wallet" actually saves you
 
-What happens after that is the point. The documentation states it plainly: for further payments the customer will only use their bKash wallet PIN.[^bkash-tokenized-checkout] Which means the customer has to be on your site at payment time, pick their saved account, and enter the PIN.
+bKash's tokenized checkout works like this. The first time, your customer clicks "Add bKash Account", goes to a bKash page, types their wallet number, agrees to the terms, and enters the six-digit code sent by SMS. After that an agreement is created and saved against their account on your side.
 
-The facility is useful, just for a different job. It removes the chore of retyping a wallet number, shortens checkout, and can lift completion rates. But pulling money on the first of the month while the customer sleeps is not something this arrangement does.
+Here is the part that matters. For every payment after that, the customer still has to enter their bKash PIN.[^bkash-tokenized-checkout] So they must be on your site, choose their saved account, and type the PIN.
 
-## The Product That Exists but Is Not Documented
+That is genuinely useful. It saves them retyping a wallet number, makes checkout faster, and fewer people abandon halfway. But it does not take money on the first of the month while nobody is watching. It is a faster front door, not an automatic one.
 
-bKash's payment gateway product list carries a service called Subscriptions, marked "Available". The description says that after one-time authorization by a customer, subscription-based merchants will be able to collect recurring payments, with EMI and insurance premiums given as examples.[^bkash-subscriptions]
+---
 
-The service is named; the instructions for using it are not there. Tokenized checkout, checkout, auth and capture, refund, disbursement, webhooks — each has its own page. Subscriptions does not.[^bkash-subscriptions]
+## The product that exists but has no manual
 
-That gap is not a developer's problem, it is a founder's problem. No documentation means you do not know who qualifies for the service, on what terms, how long approval takes, or what it costs. So email your account manager before you announce the price of a monthly plan, and ask for the answer in email too.
+bKash does list a product called **Subscriptions**, marked "Available". Its description says that after a customer authorises it once, subscription-based merchants can collect recurring payments, giving EMI and insurance premiums as examples.[^bkash-subscriptions]
 
-## Card EMI Is Not Your Monthly Bill
+That is exactly what you want. The problem is what comes next.
 
-Search SSLCOMMERZ's v4 documentation and you will find no API named recurring or subscription. What you will find is EMI — switch on `emi_option` when you send the transaction and the customer sees 3, 6, or 9 instalment choices on the gateway page.[^sslcommerz-emi]
+Every other product has its own instructions page. Checkout has one. Tokenized checkout has one. So do auth and capture, refunds, payouts and webhooks. Subscriptions does not.[^bkash-subscriptions]
 
-Do not read the two as the same thing. EMI means the customer bought once, and the bank that issued their card split that single price into instalments. The money reaches you in one go. From where you sit, that is one sale, not a twelve-month relationship.
+That is not just a headache for your developer. Without instructions you do not know which businesses qualify, what it costs, how long approval takes, or what the conditions are. None of that is something you can guess.
 
-EMI also requires a credit card. There are a little over 19 lakh active credit cards in the country, so the ceiling on how many people can come down this route is already fixed. The figures are set out separately on [cards are common, card purchases are not](/en/payments/low-card-penetration).
+So email your account manager before you announce a monthly price. Ask for the answer by email, not on a phone call.
 
-## Renewal Work Is a Cost
+---
 
-Without auto-debit, renewal means human work — reminding, sending a link, checking whether the money landed, phoning again when it did not. It sounds like a small task, but multiply it and the picture changes.
+## Card EMI is not a monthly subscription
 
-Say you have 200 customers on a BDT 500 monthly plan. Reminding each one and collecting the money takes 3 minutes on average, once a month. That is 200 × 3 = 600 minutes, or 10 hours a month. One person can absorb that.
+Search SSLCOMMERZ's documentation and you will not find recurring payments or subscriptions. You will find EMI. Switch on the `emi_option` setting and your customer sees a choice of 3, 6 or 9 instalments on the payment page.[^sslcommerz-emi]
 
-At 1,000 customers the same arithmetic gives 3,000 minutes, or 50 hours a month. That is no longer a job squeezed between other jobs; it is one person's job. Monthly revenue is BDT 5 lakh at that point, and collecting it costs you a salary.
+These are not the same thing, and mixing them up is expensive.
 
-So when you price a monthly plan, put those renewal hours in the cost column. They feed straight into the calculation on [unit economics](/en/metrics/unit-economics).
+EMI means the customer bought **once**. Their bank split that single price into instalments. The full amount reaches you in one payment, and the bank collects from the customer over time. From where you sit, that is one sale, not a year-long relationship.
 
-## If You Cannot Get Auto-Debit
+EMI also needs a credit card. There are about **19.32 lakh** active credit cards in Bangladesh, so the number of people who can pay this way is capped before you start. The figures are on [cards are common, card purchases are not](/en/payments/low-card-penetration).
 
-- **Sell packages up front.** Offer 3, 6, or 12-month packages beside the monthly one, at a discount. Take the money once and the renewal work for those months disappears.
-- **Bring renewal dates together.** If everyone is billed on the first, the work finishes in a day. Spread across the month, it bleeds a little time every day.
-- **Automate the reminding.** You may not be able to automate the pulling, but you can automate the messaging. One message three days before the date, one on the day, one three days after — that alone cuts the chasing calls sharply.
-- **Keep the payment link short.** If the customer can pay from the message in one tap, the delay shrinks. This is where tokenized checkout earns its place.
-- **If you charge before you deliver, look at auth and capture.** bKash's list marks this one "Available" too — hold the money now, take it later. Useful where delivery lags the order, though it is not a substitute for a monthly bill either.
+---
 
-## What to Get in Writing
+## Collecting by hand is a real cost
 
-Before you announce the price of a monthly plan, get these six answers by email.
+If you cannot charge automatically, somebody has to do it manually. Remind the customer, send a payment link, check whether the money arrived, then chase the ones who did not pay.
 
-1. Whether my business can pull money every month without the customer acting.
-2. If so, on what conditions — business type, transaction volume, or separate approval.
-3. Whether the rate differs for it, and whether setup costs extra.
-4. How we will know when a customer cancels their authorization.
-5. Whether a failed month is retried, and how many times.
-6. How many days it takes to switch on.
+Each one is a small job. The problem is that you do it again for every customer, every month.
 
-Number four is the one most people forget. The authorization is cancelled and your system does not know — so the service stays on and the money stops.
+Say you have 200 customers on a BDT 500 monthly plan, and each one takes about 3 minutes to remind and collect from:
 
-## Common Mistakes
+```
+200 customers x 3 minutes  =  600 minutes  =  10 hours a month
+```
 
-| Mistake | What follows |
+Ten hours a month is fine. One person fits that around their other work.
+
+Now grow to 1,000 customers:
+
+```
+1,000 customers x 3 minutes  =  3,000 minutes  =  50 hours a month
+```
+
+Fifty hours a month is not a side task any more. It is somebody's job. At that point you are earning BDT 5,00,000 a month and paying a salary just to collect it.
+
+So put those hours in your costs before you set a price. They belong in your [unit economics](/en/metrics/unit-economics).
+
+---
+
+## If you cannot charge automatically
+
+You still have a business. You just run it differently.
+
+- **Sell longer plans up front.** Offer 3, 6 and 12-month packages next to the monthly one, at a discount. Take the money once and the collecting work for those months disappears.
+- **Bill everyone on the same day.** If every customer is due on the first, the work is done in a day. Spread across the month, it eats a little time every single day.
+- **Automate the reminders even if you cannot automate the payment.** One message three days before, one on the day, one three days after. That alone cuts the chasing calls sharply.
+- **Make paying a one-tap job.** Put a payment link straight in the reminder. This is where a saved wallet earns its place, because the PIN is all that stands between the message and the money.
+- **If you get paid before you deliver, look at auth and capture.** bKash lists this one as available too. You hold the money now and take it later. Useful when delivery comes after the order, though it is still not a monthly bill.
+
+---
+
+## Six questions to email your provider
+
+Send these before you announce a price. Ask for written answers.
+
+1. Can my business pull money every month without the customer doing anything?
+2. If yes, what are the conditions? Business type, transaction volume, separate approval?
+3. Is the rate different for it, and is there a setup cost?
+4. How will we find out when a customer cancels their permission?
+5. If a month's payment fails, is it retried? How many times?
+6. How many days does it take to switch on?
+
+**Question four is the one people forget.** The customer cancels their permission, your system never hears about it, so your service stays switched on and the money quietly stops. Ask how you will be told.
+
+---
+
+## Common mistakes
+
+| Mistake | What happens |
 |---|---|
-| Pricing a monthly plan on assumed auto-debit | You collect by hand every month |
-| Reading tokenized checkout as auto-debit | The customer has to enter a PIN every time |
-| Treating card EMI as a monthly subscription | It is one sale, on the bank's instalment terms |
-| Leaving renewal hours out of the costing | Margin quietly falls as customers grow |
-| No mechanism to hear about a cancelled authorization | The service runs, the money does not arrive |
-| Offering only a monthly plan | You lose both the up-front cash and the lighter workload |
+| Setting a monthly price assuming auto-debit works | You end up collecting by hand, every month |
+| Thinking a saved wallet means automatic payment | The customer still types a PIN every time |
+| Treating card EMI as a subscription | It is one sale on the bank's instalment terms, not a monthly plan |
+| Leaving collection hours out of your costs | Your margin quietly shrinks as you grow |
+| No way to hear about a cancelled permission | The service runs on, the money stops |
+| Offering only a monthly plan | You lose both the cash up front and the lighter workload |
+
+---
 
 ## Checklist
 
-- [ ] Asked the provider by email whether auto-debit is available to me
-- [ ] If not, decided who does the renewal work
-- [ ] Counted the renewal hours as a cost
-- [ ] Offered an up-front package alongside the monthly plan
-- [ ] Written down the renewal dates and the reminder schedule
-- [ ] Know how I will learn that a customer cancelled their authorization
-- [ ] Policy states when service stops if the money does not arrive
+- [ ] Emailed your provider to ask whether auto-debit is available to you
+- [ ] If it is not, decided who does the collecting each month
+- [ ] Counted those hours as a cost in your pricing
+- [ ] Offered a 3, 6 or 12-month package next to the monthly plan
+- [ ] Set the billing dates and written the reminder schedule
+- [ ] Know how you will learn that a customer cancelled their permission
+- [ ] Written down when service stops if the money does not arrive
 
-Rule of thumb: **Until the written answer arrives, assume the customer has to pay you by hand each month, and price and staff accordingly.**
+**Rule of thumb:** until the written answer arrives, assume a person has to collect the money by hand every month. Price for that, and staff for that.
 
-## What to Do Next
+---
 
-- For the numbers on how buyers actually pay: [cards are common, card purchases are not](/en/payments/low-card-penetration)
-- To understand the wiring work: [gateway integration](/en/payments/gateway-integration)
-- To match rates and terms: [payment gateway comparison](/en/payments/gateway-comparison)
-- To work out what each customer really leaves you: [unit economics](/en/metrics/unit-economics)
-- For the rules on giving money back: [refunds, chargebacks, and dispute handling](/en/payments/refunds-chargebacks)
+## What to do next
+
+- How people here actually pay: [cards are common, card purchases are not](/en/payments/low-card-penetration)
+- Wiring a gateway into your product: [gateway integration](/en/payments/gateway-integration)
+- Comparing rates and terms: [payment gateway comparison](/en/payments/gateway-comparison)
+- What each customer really leaves you: [unit economics](/en/metrics/unit-economics)
+- Giving money back: [refunds, chargebacks and disputes](/en/payments/refunds-chargebacks)
 
 ## Relevant Sources
 
-[^bkash-subscriptions]: [bKash Developer – Product Overview (product list and Subscriptions)](https://developer.bka.sh/docs), accessed 29 July 2026. This is the company's own documentation.
+[^bkash-subscriptions]: [bKash Developer – Product Overview (product list and Subscriptions)](https://developer.bka.sh/docs), accessed 22 August 2026. The product list names Subscriptions as "Available" and describes it as letting subscription-based merchants collect recurring payments after one-time customer authorization, but no technical documentation page is published for it, unlike checkout, tokenized checkout, auth and capture, refund, disbursement and webhooks. This is the company's own documentation.
 
-[^bkash-tokenized-checkout]: [bKash Developer – Tokenized Checkout Process](https://developer.bka.sh/docs/tokenized-checkout-process), accessed 29 July 2026.
+[^bkash-tokenized-checkout]: [bKash Developer – Tokenized Checkout Process](https://developer.bka.sh/docs/tokenized-checkout-process), accessed 22 August 2026. Sets out the agreement flow and states that on subsequent payments the customer enters their bKash wallet PIN.
 
-[^sslcommerz-emi]: [SSLCOMMERZ – Developer Documentation v4 (EMI parameters)](https://developer.sslcommerz.com/doc/v4/), accessed 29 July 2026.
-
+[^sslcommerz-emi]: [SSLCOMMERZ – Developer Documentation v4](https://developer.sslcommerz.com/doc/v4/), accessed 22 August 2026. The v4 sections cover overview, payment initiation, IPN validation, order validation, easy checkout, refund, transaction query and common issues, with a dedicated "Parameters to Handle EMI Transaction" section using `emi_option` and instalment options of 3, 6 or 9. There is no recurring-payment, subscription or standing-instruction API.
