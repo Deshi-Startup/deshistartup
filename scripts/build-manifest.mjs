@@ -174,11 +174,11 @@ for (const locale of LOCALES) {
       inlineEditableRoutes.add(route);
     }
     const repoPath = path.relative(root, filePath).split(path.sep).join("/");
-    const date = gitDates.modified.get(repoPath) || null;
-    const published = gitDates.published.get(repoPath) || null;
+    const verified = fm.verified ? String(fm.verified) : null;
+    const date = gitDates.modified.get(repoPath) || verified;
+    const published = gitDates.published.get(repoPath) || verified;
     if (date) allDates[route] = date;
     if (published) allPublished[route] = published;
-    const verified = fm.verified || null;
     if (verified) allVerified[route] = verified;
     return {
       route,
