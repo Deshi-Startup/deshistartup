@@ -3,7 +3,8 @@
  * bangla-lint.mjs — advisory linter for the Bangla style guide (STYLE.md).
  *
  * Scans Bengali content pages for the *mechanical* tells of translated Bangla:
- * banned calques, officialese, em dashes (hard), semicolons in Bangla prose, raw Latin-script English
+ * banned calques, officialese, em dashes (hard), Bengali-numeral list markers (hard),
+ * semicolons in Bangla prose, raw Latin-script English
  * words mid-sentence, stray Devanagari characters, English digits in Bangla prose,
  * formal suffixes (-সমূহ / -ীকরণ), self-description tics (চেষ্টা করি, "আপনার জন্য এর মানে" mold),
  * sentence-rhythm (over-long or drum-machine-uniform sentences),
@@ -280,6 +281,18 @@ function lintFile(file) {
     // NB: দাঁড়ি (। U+0964) and ॥ live in the Devanagari block but are correct Bangla — excluded.
     const dev = line.match(/[ऀ-ॣ०-ॿ]+/)
     if (dev) hard.push([no, `দেবনাগরী অক্ষর "${dev[0]}" — MT artifact, ঠিক করুন`])
+
+    // Bengali numerals as an ordered-list marker. remark-parse reads `১. ` as
+    // paragraph text, so the list never becomes an <ol> and the numbering is
+    // dead. globals.css already renders ASCII markers as ০-৯ under
+    // html[lang='bn'], so `1. ` is both correct and shows the right digits.
+    // preprocess() blanks fenced code, so worksheets and ASCII cards are safe.
+    const bnList = line.match(/^\s{0,6}([০-৯]+)[.)]\s/)
+    if (bnList)
+      hard.push([
+        no,
+        `"${bnList[1]}." দিয়ে লিস্ট — remark একে প্যারাগ্রাফ ধরে, <ol> হয় না; ASCII "1." লিখুন, CSS বাংলা সংখ্যা দেখাবে`
+      ])
 
     if (!hasBangla) return
 
