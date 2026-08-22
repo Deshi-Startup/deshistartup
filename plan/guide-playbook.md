@@ -14,7 +14,7 @@ process-and-fees page, and the hub `/start-here`.
   Bangla reads as if composed in Bangla, never as a word-for-word translation).
 - **Both editions pass the same finish gates.**
 - **Skip conditions:** never re-translate community-contributed guides or material adapted from
-  expert contributors, for example, Shoumik Shahriar (the skill documents how to check).
+  expert contributors, for example, Shoumik Shahriar, **unless the English page has been substantially rewritten and re-translation is required to maintain parity.** (the skill documents how to check).
 - **Citation parity:** `citation-lint` compares footnote identifiers *and* inline counts per
   route, so the two editions must always agree. Adding, removing or renaming a source is therefore
   never an English-only change: mirror that footnote into the Bangla page in the same commit, or
