@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "repository": "Deshi-Startup/deshistartup",
-  "refreshedAt": "2026-08-20T17:00:34.875Z",
+  "refreshedAt": "2026-08-23T04:45:18.104Z",
   "totals": {
     "contributors": 4,
     "acceptedEvents": 13,
@@ -524,8 +524,8 @@
         {
           "path": "/funding/data-room",
           "title": {
-            "bn": "তহবিল সংগ্রহের ডেটা রুমের চেকলিস্ট",
-            "en": "Fundraising Data Room Checklist"
+            "bn": "ইনভেস্টর ডিউ ডিলিজেন্স এবং আপনার ডেটা রুম",
+            "en": "Investor Due Diligence and Your Data Room"
           }
         }
       ],
