@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "repository": "Deshi-Startup/deshistartup",
-  "refreshedAt": "2026-08-23T04:45:18.104Z",
+  "refreshedAt": "2026-08-24T04:53:36.976Z",
   "totals": {
     "contributors": 4,
     "acceptedEvents": 13,
@@ -629,7 +629,7 @@
         {
           "path": "/tax/bookkeeping-basics",
           "title": {
-            "bn": "একজন হিসাবরক্ষক নন এমন প্রতিষ্ঠাতার জন্য প্রয়োজনীয় প্রাথমিক হিসাবরক্ষণ/অ্যাকাউন্টিং।",
+            "bn": "ফাউন্ডারদের জন্য বুককিপিং ও প্রাথমিক অ্যাকাউন্টিং",
             "en": "Basic Bookkeeping/Accounting for Non-Accountant Founders"
           }
         }
