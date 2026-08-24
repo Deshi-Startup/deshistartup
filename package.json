@@ -57,7 +57,7 @@
   "dependencies": {
     "@milkdown/crepe": "^7.22.1",
     "@milkdown/kit": "^7.21.2",
-    "jose": "^6.2.8",
+    "jose": "^6.2.9",
     "next": "^15.5.23",
     "nextra": "^4.6.1",
     "react": "^19.2.8",
@@ -76,7 +76,7 @@
     "sharp": "^0.35.3",
     "typescript": "^5.9.3",
     "unified": "^11.0.5",
-    "wrangler": "^4.123.0"
+    "wrangler": "^4.125.0"
   },
   "overrides": {
     "postcss": "^8.5.23",
