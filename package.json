@@ -58,8 +58,8 @@
   "dependencies": {
     "@milkdown/crepe": "^7.22.1",
     "@milkdown/kit": "^7.21.2",
-    "jose": "^6.2.8",
-    "next": "^15.5.23",
+    "jose": "^6.2.10",
+    "next": "^15.5.24",
     "nextra": "^4.6.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
@@ -74,10 +74,10 @@
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "robots-parser": "^3.0.1",
-    "sharp": "^0.35.3",
+    "sharp": "^0.35.4",
     "typescript": "^5.9.3",
     "unified": "^11.0.5",
-    "wrangler": "^4.123.0"
+    "wrangler": "^4.127.0"
   },
   "overrides": {
     "postcss": "^8.5.23",
