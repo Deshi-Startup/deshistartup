@@ -1,5 +1,7 @@
 'use client'
 
+import './DirectoryFilterTable.css'
+
 import React, { useMemo, useState } from 'react'
 
 const bengaliDigits = (value: number | string) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[Number(d)])

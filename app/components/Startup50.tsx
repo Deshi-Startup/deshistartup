@@ -1,4 +1,5 @@
 import React from 'react'
+import './Startup50.css'
 import startup50Data from '../../data/startup-50.json'
 import startup50Logos from '../../data/startup-50-logos.json'
 import { mediaSource } from '../lib/media'

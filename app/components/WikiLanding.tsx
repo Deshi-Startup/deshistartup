@@ -1,4 +1,5 @@
 import React from 'react'
+import './WikiLanding.css'
 import contentIndex from '../generated/content-index.json'
 
 type RecentPage = [route: string, title: string, date: string]

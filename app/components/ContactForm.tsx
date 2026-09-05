@@ -1,5 +1,7 @@
 'use client'
 
+import './ContactForm.css'
+
 import { useEffect, useRef, useState } from 'react'
 import {
   CONTACT_FIELD_LIMITS,

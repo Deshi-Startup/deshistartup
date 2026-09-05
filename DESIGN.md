@@ -751,6 +751,9 @@ second design system.
 - **Do** keep hash-named build output cached immutably in `public/_headers`. Every navigation here
   is a full document load, so a revalidation round-trip is charged to the reader on every click.
 - **Do** prefer semantic HTML and CSS over client state.
+- **Do** import feature styles from the component that uses them. Keep the shared shell and
+  article styles in `app/globals.css`; editor and dialog styles load with their lazy components.
+  Page-specific MDX widgets use explicit imports so their styles and scripts stay off other pages.
 
 ### Don't:
 

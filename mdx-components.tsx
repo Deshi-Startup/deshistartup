@@ -6,17 +6,13 @@ import Figure, { MarkdownImage } from './app/components/Figure'
 import DataBars from './app/components/DataBars'
 import Waterfall from './app/components/Waterfall'
 import Timeline from './app/components/Timeline'
-import CodRiskCalculator from './app/components/CodRiskCalculator'
 import YouTube from './app/components/YouTube'
 import FacebookVideo from './app/components/FacebookVideo'
 import OfficialSocialLinks from './app/components/OfficialSocialLinks'
 import Term from './app/components/Term'
-import Glossary from './app/components/Glossary'
 import ExpertReview from './app/components/ExpertReview'
 import ContributorLeaderboard from './app/components/ContributorLeaderboard'
 import ContributionInvite from './app/components/ContributionInvite'
-import ContactForm from './app/components/ContactForm'
-import Startup50 from './app/components/Startup50'
 import contentIndex from './app/generated/content-index.json'
 
 type IndexedPage = [route: string, title: string, stub: number, description: string | null]
@@ -72,6 +68,8 @@ function BasePathAnchor({ href = '', children, className, rel, ...props }: Ancho
 }
 
 export function useMDXComponents(components: Record<string, any>): Record<string, any> {
+  // Only shared guide primitives belong here. Page-specific widgets import
+  // their components directly in MDX so Next can split their scripts and CSS.
   return {
     ...components,
     a: BasePathAnchor,
@@ -85,16 +83,12 @@ export function useMDXComponents(components: Record<string, any>): Record<string
     DataBars,
     Waterfall,
     Timeline,
-    CodRiskCalculator,
     YouTube,
     FacebookVideo,
     OfficialSocialLinks,
     Term,
-    Glossary,
     ExpertReview,
     ContributorLeaderboard,
-    ContributionInvite,
-    ContactForm,
-    Startup50
+    ContributionInvite
   }
 }

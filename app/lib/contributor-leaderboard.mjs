@@ -445,12 +445,6 @@ export function prepareContributorSnapshot(snapshot) {
   }
 }
 
-export function profileFromSnapshot(snapshot, slug) {
-  const safe = safeSlug(slug)
-  if (!safe) return null
-  return prepareContributorSnapshot(snapshot).rankedProfiles.find((profile) => profile.slug === safe) || null
-}
-
 export function validatePublicSnapshot(snapshot) {
   if (snapshot?.schemaVersion !== 3) throw new Error('Unsupported contributor snapshot schema')
   if (

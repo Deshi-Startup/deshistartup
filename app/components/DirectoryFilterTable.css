@@ -1,0 +1,230 @@
+/* --------------------------------------------------------------- directory */
+
+.directory-list {
+  margin: 22px 0;
+}
+
+/* Filter count varies by directory category, so the track list is keyed off a
+   data attribute rather than an inline style: an inline grid-template-columns
+   outranks the mobile collapse below and pushes the Reset button off-screen. */
+
+.directory-controls {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.4fr) repeat(3, minmax(150px, 1fr)) auto;
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+  background: var(--canvas-soft);
+  padding: 12px;
+}
+
+.directory-controls[data-filters='1'] {
+  grid-template-columns: minmax(220px, 1.4fr) minmax(150px, 1fr) auto;
+}
+
+.directory-controls[data-filters='2'] {
+  grid-template-columns: minmax(220px, 1.4fr) repeat(2, minmax(150px, 1fr)) auto;
+}
+
+.directory-controls label {
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: var(--w-strong);
+}
+
+.directory-controls input,
+.directory-controls select {
+  min-height: 36px;
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  padding: 6px 9px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.directory-controls input:focus,
+.directory-controls select:focus {
+  outline: 2px solid color-mix(in srgb, var(--green-deep), transparent 70%);
+  outline-offset: 1px;
+}
+
+.directory-controls button {
+  min-height: 36px;
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  padding: 6px 12px;
+  color: var(--green-deep);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+
+.directory-controls button:hover {
+  border-color: var(--green-deep);
+  background: var(--green-ground);
+}
+
+.directory-list__summary {
+  display: inline-flex;
+  margin-bottom: 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--canvas-soft);
+  padding: 4px 12px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: var(--w-strong);
+}
+
+/* One card per entry instead of a wide table. Directory values are sentences —
+   coverage areas, rate bands, application steps — and a column grid gave each of
+   them a track too narrow to hold a word, so text broke mid-character. Cards
+   also mean a new field costs one more labelled line, not one more squeezed
+   column, and there is no horizontal scroll at any width. */
+
+.directory-cards {
+  display: grid;
+  gap: 12px;
+}
+
+.directory-card {
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  padding: 16px 18px;
+}
+
+.directory-card h2 {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: var(--w-strong);
+}
+
+.directory-card__note {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.directory-card dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px 20px;
+  margin: 14px 0 0;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.directory-card dt {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: var(--w-strong);
+  letter-spacing: 0.02em;
+}
+
+.directory-card dd {
+  margin: 2px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.directory-card__source {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+  margin: 12px 0 0;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  font-size: 0.82rem;
+}
+
+.directory-card__source span {
+  color: var(--muted);
+}
+
+.directory-empty {
+  margin: 0;
+  padding: 22px;
+  color: var(--muted);
+  font-weight: var(--w-strong);
+}
+
+@media (max-width: 860px) {
+
+  /* Matches the specificity of the per-count rules above and comes later, so
+     every directory collapses to one column here. */
+  .directory-controls,
+  .directory-controls[data-filters] {
+    grid-template-columns: 1fr;
+  }
+
+  .directory-controls input,
+  .directory-controls select,
+  .directory-controls button {
+    min-height: 44px;
+  }
+
+  /* A one-column grid track still floors at the widest thing inside it, and a
+     <select> reports its longest option as min-content. On a 320px screen that
+     pushed the whole filter panel 24px past the canvas. The label is a grid of
+     its own, so the floor has to be released on both. */
+  .directory-controls label {
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .directory-controls input,
+  .directory-controls select,
+  .directory-controls button {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .directory-card {
+    padding: 14px;
+  }
+}
+
+/* ------------------------------------------------------ touch input floor */
+
+/* iOS Safari zooms the viewport when a focused control renders text under 16px
+   and never zooms back out, which leaves a reader scrolling sideways through
+   the rest of the page. Every control below runs a deliberately small label at
+   desktop width; on a touch pointer it gets the body size back instead. Last in
+   the file and selector-for-selector with the rules above, so each one is
+   overridden where it is set rather than at a specificity nobody can predict. */
+
+@media (pointer: coarse) {
+  /* Search inherits the body, which now holds 16px on a phone. It stays on the
+     list because it is the one control every reader touches first, and it
+     should not become a zoom trap again if the body size is ever revisited. */
+  .directory-controls input,
+  .directory-controls select {
+    font-size: 1rem;
+  }
+
+  /* Named in DESIGN.md: the important mobile actions are at least 44px. The
+     directory filters are the whole interface on that page. */
+  .directory-controls input,
+  .directory-controls select,
+  .directory-controls button {
+    min-height: 44px;
+  }
+}
+
+/* Preserve the shared article's mobile prose rhythm after this route's CSS loads. */
+@media (max-width: 860px) {
+  .directory-card p,
+  .directory-card li,
+  .directory-card dd,
+  .directory-card blockquote {
+    line-height: 1.78;
+  }
+}

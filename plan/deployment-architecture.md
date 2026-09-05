@@ -28,6 +28,9 @@ Worker version, and 25 MiB per individual asset. The repository applies earlier 
 - Static Asset upload entries: 18,000
 - Static Asset warning: 15,000
 - Individual asset: 25 MiB
+- Ordinary guide assets: 48 KiB CSS before compression, 12 KiB CSS gzip, and 140 KiB JavaScript gzip.
+  `check-static-assets.mjs` measures the exported unit-economics guide and rejects editor, dialog,
+  or private-review styles in its initial CSS. JavaScript excludes the legacy `nomodule` fallback.
 
 `npm run check:worker` uses Wrangler's real dry-run bundle, measures its gzip size, counts the
 static deployment conservatively, and fails before either project budget is crossed. At the

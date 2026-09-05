@@ -321,7 +321,22 @@ interface LocalizedLayoutProps {
 }
 
 export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
-  const pathname = cleanRoute(usePathname())
+  const routerPathname = cleanRoute(usePathname())
+  // A static 404 is rendered for /_not-found but served at arbitrary URLs.
+  // Adopt its marker on the first client pass so the router's requested URL
+  // cannot turn it into article chrome and force React to rebuild the page.
+  const [notFoundPath, setNotFoundPath] = useState<string | null>(() =>
+    typeof document !== 'undefined' && document.querySelector('[data-deshi-not-found]')
+      ? '/_not-found'
+      : null
+  )
+  const pathname = notFoundPath || routerPathname
+
+  useEffect(() => {
+    if (!notFoundPath) return
+    const requested = cleanRoute(window.location.pathname, process.env.NEXT_PUBLIC_BASE_PATH || '')
+    setNotFoundPath(requested === '/en' || requested.startsWith('/en/') ? '/en/_not-found' : '/_not-found')
+  }, [notFoundPath])
   const isEn = pathname.startsWith('/en/') || pathname === '/en'
   const isLanding = pathname === '/' || pathname === '/en'
   const isPrivateReview =
@@ -703,6 +718,10 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
       return
     }
 
+    // Missing dates are legitimate on utility pages and the 404. Only dev
+    // needs the site-wide maps: exported pages already carry their own dates.
+    if (process.env.NODE_ENV === 'production') return
+
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
     let active = true
     Promise.all(
@@ -775,7 +794,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
               <FacebookIcon />
               <span>{isEn ? 'Community' : 'কমিউনিটি'}</span>
             </a>
-            {!isPrivateReview && <LanguageSwitcher />}
+            {!isPrivateReview && <LanguageSwitcher pathname={pathname} />}
             <button
               className={`nav-toggle${isWidePage ? ' nav-toggle--always' : ''}`}
               type="button"

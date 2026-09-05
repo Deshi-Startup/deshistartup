@@ -1,0 +1,1063 @@
+@media (max-width: 520px) {
+
+  /* At this width the pencil and the page name carry it; the words in front of
+     them are what pushes the title into an ellipsis. */
+  .edit-bar__what > span {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------ in-canvas editing */
+/* The wiki move: pressing এডিট does not hand you an editor, it turns the
+   page into one. The text keeps its column, its measure and its faces, so the
+   paragraph a founder was reading is still exactly where they left it, now with
+   a caret in it. Edit mode adds two objects and no new colour: a bar on the
+   panel neutral that pins under the header, and a ruled publish panel that
+   closes the canvas. */
+
+.edit-bar {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+  border-bottom: 1px solid var(--line);
+  background: var(--canvas-soft);
+  padding: 10px 48px;
+}
+
+.edit-bar__what {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.edit-bar__what strong {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 0.95rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.edit-pencil {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: var(--green-deep);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.edit-bar__status {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--faint);
+  font-size: 0.85rem;
+}
+
+.edit-bar__status:empty {
+  display: none;
+}
+
+.edit-bar__actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.edit-bar__warn {
+  color: var(--warn-ink);
+  font-size: 0.85rem;
+}
+
+.edit-live {
+  padding-top: 22px;
+  animation: edit-canvas-in 160ms ease-out both;
+}
+
+.edit-live.is-mounting {
+  display: none;
+}
+
+@keyframes edit-canvas-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Crepe's own chrome (slash menu, block handle, link tooltip, selection
+   toolbar) is driven entirely by these custom properties. Pointing them at the
+   site tokens is what stops the editor from arriving in someone else's theme. */
+.edit-live .milkdown {
+  --crepe-color-background: var(--canvas);
+  --crepe-color-on-background: var(--ink);
+  --crepe-color-surface: var(--canvas);
+  --crepe-color-surface-low: var(--canvas-soft);
+  --crepe-color-on-surface: var(--ink);
+  --crepe-color-on-surface-variant: var(--muted);
+  --crepe-color-outline: var(--line);
+  --crepe-color-primary: var(--green-deep);
+  --crepe-color-secondary: var(--green-soft);
+  --crepe-color-on-secondary: var(--green-deep);
+  --crepe-color-inverse: var(--ink);
+  --crepe-color-on-inverse: var(--canvas);
+  --crepe-color-inline-code: var(--green-deep);
+  --crepe-color-error: var(--error);
+  --crepe-color-hover: var(--green-soft);
+  --crepe-color-selected: var(--green-soft);
+  --crepe-color-inline-area: var(--line-soft);
+  --crepe-font-title: var(--display);
+  --crepe-font-default: var(--sans);
+  --crepe-font-code: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  --crepe-shadow-1: 0 2px 10px rgb(var(--ink-channels) / 10%);
+  --crepe-shadow-2: var(--shadow);
+
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--sans);
+}
+
+/* Crepe ships a full page-editor look of its own: a 120px writing gutter, 36px
+   headings, a 4px quote bar, 24px line-height. All of it is set at
+   `.milkdown .ProseMirror x` and injected after this file, so every rule below
+   carries `.edit-live .milkdown` to outrank it. The values are the article's own,
+   restated deliberately: if one of them drifts, the text jumps when you press
+   এডিট, and the whole point of this mode is that it does not. */
+
+.edit-live .milkdown .ProseMirror {
+  --prosemirror-virtual-cursor-color: var(--green-deep);
+
+  min-height: 46vh;
+  padding: 0;
+  outline: none;
+  caret-color: var(--green-deep);
+  caret-animation: manual;
+  caret-shape: bar;
+  cursor: text;
+  font-size: inherit;
+  line-height: 1.72;
+}
+
+.edit-live .milkdown .ProseMirror-gapcursor::after {
+  border-top: 2px solid var(--green-deep);
+}
+
+.edit-live .milkdown .ProseMirror > :is(p, ul, ol, dl, blockquote, h1, h2, h3, h4) {
+  max-width: var(--measure);
+}
+
+.edit-live .milkdown .ProseMirror p {
+  margin: 0 0 1em;
+  padding: 0;
+  font-size: inherit;
+  line-height: 1.72;
+}
+
+.edit-live .milkdown .ProseMirror :is(h1, h2, h3, h4, h5, h6) {
+  padding: 0;
+  color: var(--ink);
+  font-family: var(--display);
+  font-weight: var(--w-heading);
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.edit-live .milkdown .ProseMirror h1 {
+  margin: 0 0 18px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+  font-size: clamp(2.1rem, 3vw, 3.2rem);
+  line-height: 1.3;
+}
+
+.edit-live .milkdown .ProseMirror h2 {
+  margin: 34px 0 12px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 7px;
+  font-size: 1.55rem;
+}
+
+.edit-live .milkdown .ProseMirror h3 {
+  margin: 24px 0 10px;
+  font-family: var(--sans);
+  font-size: 1.08rem;
+}
+
+.edit-live .milkdown .ProseMirror :is(h4, h5, h6) {
+  margin: 20px 0 8px;
+  font-family: var(--sans);
+  font-size: 1rem;
+}
+
+/* Keep the summary box pixel-for-pixel with reading mode. The former editor
+   override removed its horizontal padding, which put a line-start caret
+   directly on top of the green border and made it effectively invisible. */
+.edit-live .milkdown .ProseMirror blockquote {
+  margin: 26px 0;
+  border: 1px solid var(--green);
+  background: var(--green-ground);
+  padding: 16px 20px;
+  color: var(--ink);
+}
+
+.edit-live .milkdown .ProseMirror blockquote::before {
+  content: none;
+}
+
+.edit-live .milkdown .ProseMirror blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.edit-live .milkdown .ProseMirror hr {
+  height: 0;
+  max-width: var(--measure);
+  margin: 32px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  background: none;
+  padding: 0;
+}
+
+.edit-live .milkdown .ProseMirror :is(ul, ol) {
+  margin: 0 0 1em;
+  padding-left: 24px;
+}
+
+.edit-live .milkdown .ProseMirror li {
+  margin: 6px 0;
+}
+
+/* Crepe hangs its bullets on a fixed 32px block, which floats the marker above a
+   1.72 Bangla line. Sit it on the first line instead. */
+.edit-live .milkdown .milkdown-list-item-block li .label-wrapper,
+.edit-live .milkdown .milkdown-list-item-block li .label-wrapper .label {
+  height: auto;
+  min-height: 1.72em;
+  padding: 0;
+  line-height: 1.72;
+}
+
+.edit-live .milkdown .ProseMirror table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+  background: var(--canvas);
+  font-size: 0.9rem;
+}
+
+.edit-live .milkdown .ProseMirror :is(th, td) {
+  border: 1px solid var(--line);
+  padding: 11px 13px;
+  vertical-align: top;
+  text-align: left;
+}
+
+.edit-live .milkdown .ProseMirror th {
+  background: var(--shade);
+  font-weight: var(--w-strong);
+}
+
+/* Blue is this site's link colour and nothing else's; Crepe would paint links in
+   its primary accent, which here is the structural green. */
+.edit-live .milkdown .ProseMirror a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+/* The reading view flags outbound links with an arrow. Inside a contenteditable
+   it would sit between the caret and the text, so it stays off here. */
+.edit-live .milkdown .ProseMirror a[href^='http']::after {
+  content: none;
+}
+
+.edit-live .milkdown .ProseMirror code {
+  display: inline;
+  border-radius: 3px;
+  background: var(--shade);
+  padding: 1px 4px;
+  color: var(--ink);
+  font-family: var(--crepe-font-code);
+  font-size: 0.92em;
+  line-height: inherit;
+}
+
+.edit-live .milkdown .ProseMirror pre {
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--canvas-soft);
+  padding: 16px;
+}
+
+/* Locked MDX components (<StubNotice/>, <SectionIndex/>, …) ride through the
+   markdown round-trip as internal fenced blocks. Crepe renders those through
+   CodeMirror, so the editor tags exact protected source blocks with data-locked.
+   This selector dresses that tag.
+   Caution family, full hairline, named by a label: the same way every other aside
+   on this site is marked. */
+.edit-live .milkdown .milkdown-code-block[data-locked] {
+  margin: 18px 0;
+  border: 1px solid var(--warn-border);
+  border-radius: 0;
+  background: var(--warn-bg);
+  padding: 10px 12px 4px;
+  cursor: not-allowed;
+}
+
+.edit-live .milkdown .milkdown-code-block[data-locked]::before {
+  content: 'সাইটের নিজস্ব উপাদান, বদলাবেন না / locked component';
+  display: block;
+  margin-bottom: 6px;
+  color: var(--warn-ink);
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: var(--w-strong);
+}
+
+.edit-live .milkdown .milkdown-code-block[data-locked] .cm-editor {
+  background: transparent;
+  pointer-events: none;
+}
+
+/* Images stay part of the article while editing. Crepe owns the resize/caption
+   mechanics; these rules keep the block in the reference-work visual language. */
+.edit-live .milkdown .milkdown-image-block {
+  max-width: var(--measure);
+  margin: 24px 0;
+}
+
+.edit-live .milkdown .milkdown-image-block > .image-wrapper {
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--canvas-soft);
+}
+
+.edit-live .milkdown .milkdown-image-block > .image-wrapper img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.edit-live .milkdown .milkdown-image-block > .caption-input {
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  padding: 8px 2px;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.88rem;
+}
+
+/* A pasted video becomes a real editor block, not source code. The large
+   preview confirms what will appear in the article; the quiet fields below it
+   expose only metadata a contributor may reasonably want to improve. */
+.edit-live .milkdown .milkdown-video-block {
+  max-width: var(--measure);
+  margin: 24px 0;
+  border: 1px solid var(--line);
+  background: var(--canvas-soft);
+}
+
+.edit-live .milkdown .milkdown-video-block[data-selected] {
+  outline: 2px solid var(--green-deep);
+  outline-offset: 2px;
+}
+
+.edit-video__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: #202328;
+}
+
+.edit-video__poster {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.edit-video__empty-poster {
+  position: absolute;
+  top: -0.2em;
+  right: 0.08em;
+  color: rgb(255 255 255 / 9%);
+  font-family: var(--sans);
+  font-size: clamp(9rem, 30vw, 18rem);
+  font-weight: var(--w-strong);
+  line-height: 1;
+}
+
+.edit-video__provider {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  border: 1px solid rgb(255 255 255 / 42%);
+  background: rgb(var(--ink-channels) / 76%);
+  padding: 3px 7px;
+  color: #fff;
+  font-size: 0.76rem;
+  font-weight: var(--w-strong);
+}
+
+.edit-video__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.edit-video__play svg {
+  display: block;
+}
+
+.edit-video__play circle {
+  fill: rgb(var(--ink-channels) / 78%);
+}
+
+.edit-video__play path {
+  fill: #fff;
+}
+
+.edit-video__fields {
+  padding: 14px 16px 12px;
+}
+
+.edit-video__field {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.edit-video__field-name {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: var(--w-strong);
+}
+
+.edit-live .milkdown .edit-video__field input,
+.edit-live .milkdown .edit-video__details input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 40px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--canvas);
+  padding: 7px 9px;
+  color: var(--ink);
+  font: inherit;
+}
+
+.edit-live .milkdown .edit-video__title {
+  font-weight: var(--w-strong);
+}
+
+.edit-live .milkdown .edit-video__field input:focus,
+.edit-live .milkdown .edit-video__details input:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 1px;
+}
+
+.edit-live .milkdown .edit-video__field input[aria-invalid] {
+  border-bottom-color: var(--error);
+}
+
+.edit-video__status {
+  margin: 2px 0 10px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.edit-video__details {
+  border-top: 1px solid var(--line);
+  padding: 9px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.edit-video__details summary {
+  min-height: 32px;
+  color: var(--green-deep);
+  cursor: pointer;
+  font-weight: var(--w-strong);
+}
+
+.edit-video__details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 4px 0 12px;
+}
+
+.edit-video__details-grid label > span {
+  display: block;
+  min-height: 2.8em;
+  margin-bottom: 4px;
+}
+
+.edit-video__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+
+.edit-live .milkdown .edit-video__action {
+  min-height: 36px;
+  border: 0;
+  background: transparent;
+  padding: 6px 0;
+  color: var(--blue);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: var(--w-strong);
+  text-decoration: none;
+}
+
+.edit-live .milkdown .edit-video__action:hover {
+  text-decoration: underline;
+}
+
+.edit-live .milkdown .edit-video__action:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.edit-live .milkdown .edit-video__action.is-remove {
+  margin-left: auto;
+  color: var(--error);
+}
+
+@media (max-width: 560px) {
+  .edit-video__details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-live .milkdown .edit-video__action.is-remove {
+    width: 100%;
+    margin-left: 0;
+    text-align: left;
+  }
+}
+
+.edit-image-icon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+/* Proposed-media metadata follows the article rather than interrupting it with
+   a modal. Each ruled row binds one private preview to the information a
+   reviewer and a screen-reader user actually need. */
+.edit-media {
+  border-top: 1px solid var(--line);
+  background: var(--canvas-soft);
+  padding: 22px 48px 28px;
+}
+
+.edit-media__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 58rem;
+}
+
+.edit-media__heading h2 {
+  margin: 0 0 4px;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 1.25rem;
+}
+
+.edit-media__heading p {
+  max-width: var(--measure);
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.edit-media__heading > span {
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--canvas);
+  padding: 3px 9px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.edit-media__error {
+  max-width: var(--measure);
+  margin: 14px 0 0;
+  border: 1px solid var(--warn-border);
+  background: var(--warn-bg);
+  padding: 10px 12px;
+  color: var(--warn-ink);
+  font-size: 0.9rem;
+}
+
+.edit-media__list {
+  max-width: 58rem;
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.edit-media-item {
+  display: grid;
+  grid-template-columns: minmax(150px, 240px) minmax(0, 1fr);
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+  padding: 20px 0;
+}
+
+.edit-media-item__preview {
+  display: grid;
+  place-items: center;
+  min-height: 140px;
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  color: var(--faint);
+  font-size: 0.82rem;
+}
+
+.edit-media-item__preview img {
+  display: block;
+  width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+}
+
+.edit-media-item__fields {
+  min-width: 0;
+}
+
+.edit-media-item__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+  margin-bottom: 10px;
+}
+
+.edit-media-item__title strong {
+  color: var(--ink);
+}
+
+.edit-media-item__title span {
+  color: var(--faint);
+  font-size: 0.82rem;
+}
+
+.edit-media-item__fields > label,
+.edit-media-item__optional label {
+  display: grid;
+  gap: 5px;
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: var(--w-strong);
+}
+
+.edit-media-item :is(input, textarea) {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--canvas);
+  padding: 8px 10px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.edit-media-item textarea {
+  resize: vertical;
+}
+
+.edit-media-item :is(input, textarea):focus-visible {
+  border-color: var(--green);
+  outline: 2px solid var(--green-deep);
+  outline-offset: 2px;
+}
+
+.edit-media-item__hint {
+  margin: 5px 0 12px;
+  color: var(--faint);
+  font-size: 0.82rem;
+}
+
+.edit-media-item__optional {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.edit-media-item__optional label:last-child {
+  grid-column: 1 / -1;
+  max-width: 16rem;
+}
+
+.edit-media-item__notice {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.edit-media-item__notice.is-error {
+  color: var(--error);
+}
+
+.edit-media-item__remove {
+  margin-top: 12px;
+  border: 0;
+  background: none;
+  padding: 5px 0;
+  color: var(--blue);
+  font: inherit;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.edit-media-item__remove:hover {
+  color: var(--blue-hover);
+  text-decoration: underline;
+}
+
+/* -------------------------------------------------------- publish panel */
+
+.edit-publish {
+  border-top: 1px solid var(--line);
+  background: var(--canvas-soft);
+  padding: 20px 48px 30px;
+}
+
+.edit-publish__label {
+  display: block;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: var(--w-strong);
+}
+
+.edit-publish__hint {
+  max-width: var(--measure);
+  margin: 2px 0 10px;
+  color: var(--faint);
+  font-size: 0.85rem;
+}
+
+.edit-publish__summary {
+  display: block;
+  width: 100%;
+  max-width: var(--measure);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--canvas);
+  padding: 10px 12px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+.edit-publish__summary:focus {
+  border-color: var(--green);
+  box-shadow: inset 0 0 0 1px var(--green);
+  outline: none;
+}
+
+/* The global focus ring covers a, button, input, select and summary but not
+   textarea, and a keyboard contributor lands here every time. */
+.edit-publish__summary:focus-visible {
+  outline: 2px solid var(--green-deep);
+  outline-offset: 2px;
+}
+
+.edit-publish__summary:disabled {
+  color: var(--muted);
+}
+
+.edit-publish__error {
+  max-width: var(--measure);
+  margin: 12px 0 0;
+  border: 1px solid var(--warn-border);
+  background: var(--warn-bg);
+  padding: 10px 12px;
+  color: var(--warn-ink);
+  font-size: 0.9rem;
+}
+
+.edit-publish__error:focus {
+  outline: 2px solid var(--green-deep);
+  outline-offset: 2px;
+}
+
+.edit-publish__error p {
+  margin: 0;
+}
+
+.edit-publish__error .edit-btn {
+  margin-top: 10px;
+}
+
+.edit-publish__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-top: 16px;
+}
+
+.edit-publish__by {
+  flex: 1 1 22rem;
+  max-width: 46rem;
+  margin: 0;
+  color: var(--faint);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.edit-publish__actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* --------------------------------------------------- notices and states */
+
+.edit-state {
+  border-bottom: 1px solid var(--line);
+  padding: 30px 48px 32px;
+}
+
+.edit-state strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink);
+  font-size: 1.08rem;
+}
+
+.edit-state p {
+  max-width: var(--measure);
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.edit-state__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.edit-draft-notice {
+  margin: 18px 48px 0;
+  border: 1px solid var(--warn-border);
+  background: var(--warn-bg);
+  padding: 14px 16px;
+  color: var(--warn-ink);
+}
+
+.edit-draft-notice strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
+.edit-draft-notice p {
+  max-width: var(--measure);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* The two answers to "we found unsent work". Both are ordinary edit buttons,
+   because neither is the safe one: restoring and discarding each throw
+   something away, and ranking one of them would be picking for the reader. */
+.edit-draft-notice__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* ------------------------------------------------------------ responsive */
+
+@media (max-width: 1180px) {
+  .edit-bar,
+  .edit-media,
+  .edit-publish,
+  .edit-state {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .edit-draft-notice {
+    margin-left: 32px;
+    margin-right: 32px;
+  }
+}
+
+@media (max-width: 860px) {
+  .edit-bar {
+    gap: 6px 10px;
+    padding: 10px 18px;
+  }
+
+  /* At compact tablet widths the page name and available actions share the
+     first row when they fit. The status only claims another row once there is
+     something to say; the narrower phone rule below groups actions explicitly. */
+  .edit-bar__what {
+    flex: 1 1 8rem;
+  }
+
+  .edit-bar__status {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .edit-bar__warn {
+    flex-basis: 100%;
+  }
+
+  /* A phone cannot hold four thumb-sized actions on a sticky bar without
+     spending a third row of a 714px screen. So the bar keeps the step that
+     comes first — look at what changed — and sends from inside that sheet or
+     from the publish panel, the way a mobile wiki editor already works. */
+  .edit-bar__actions .edit-btn--send {
+    display: none;
+  }
+
+  .edit-live {
+    padding-top: 18px;
+  }
+
+  .edit-publish,
+  .edit-media,
+  .edit-state {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .edit-draft-notice {
+    margin-left: 18px;
+    margin-right: 18px;
+  }
+
+  .edit-publish__actions {
+    flex: 1 1 100%;
+  }
+
+  .edit-publish__actions .edit-btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .edit-media-item {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+
+  .edit-media-item__optional {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-media-item__optional label:last-child {
+    grid-column: auto;
+  }
+
+  /* Keep the sticky editor at two rows across narrow phones: identity and
+     status share the first, while the three available actions divide the
+     second. A dirty-state message must not create a third persistent row. */
+  .edit-bar__status {
+    order: 0;
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 48%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .edit-bar__actions {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .edit-bar__actions .edit-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: center;
+    padding-inline: 8px;
+    text-align: center;
+  }
+
+  .edit-bar__actions .edit-bar__warn {
+    flex: 1 1 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edit-live {
+    animation: none;
+    transition: none;
+  }
+}
+
+@media print {
+  .edit-bar,
+  .edit-media,
+  .edit-publish {
+    display: none !important;
+  }
+}
+
+/* ------------------------------------------------------ touch input floor */
+
+/* iOS Safari zooms the viewport when a focused control renders text under 16px
+   and never zooms back out, which leaves a reader scrolling sideways through
+   the rest of the page. Every control below runs a deliberately small label at
+   desktop width; on a touch pointer it gets the body size back instead. Last in
+   the file and selector-for-selector with the rules above, so each one is
+   overridden where it is set rather than at a specificity nobody can predict. */
+
+@media (pointer: coarse) {
+  /* Search inherits the body, which now holds 16px on a phone. It stays on the
+     list because it is the one control every reader touches first, and it
+     should not become a zoom trap again if the body size is ever revisited. */
+  .edit-media-item :is(input, textarea),
+  .edit-publish__summary,
+  .edit-live .milkdown .milkdown-image-block > .caption-input {
+    font-size: 1rem;
+  }
+}

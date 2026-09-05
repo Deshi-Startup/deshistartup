@@ -1,0 +1,788 @@
+/* --------------------------------------------------------- Deshi Startup 50 */
+
+/* A wide, quiet watchlist: one oversized 50, then a flat ruled list. */
+
+/* One ramp for the seam, from the phone masthead up to the widest canvas.
+   There is no per-breakpoint override below: the folio is sized from this
+   track rather than from the viewport, so the number cannot outgrow its own
+   column at any width. The old 112px seam paired with a 19vw numeral did
+   exactly that between 681px and 860px, printing the 50 over the body copy. */
+.startup50 {
+  --startup50-seam: clamp(150px, 21vw, 300px);
+  width: 100%;
+  color: var(--ink);
+}
+
+/* The hero and the edition band below it are one masthead. The spine runs the
+   full height of both, a hairline divides them, and the heavy green rule
+   closes the block at the bottom rather than bisecting it. Height comes from
+   the content and the padding stated here; there is no min-height inventing
+   space that nobody authored. */
+.startup50-hero {
+  display: grid;
+  grid-template-columns: var(--startup50-seam) minmax(0, 1fr);
+  border-bottom: 1px solid var(--line);
+}
+
+.startup50-hero__folio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  border-right: 2px solid var(--green-deep);
+  padding: 24px 18px 24px 0;
+  color: var(--green-deep);
+}
+
+.startup50-hero__folio strong {
+  display: block;
+  /* Cancels the numeral's left side bearing, so the folio starts on the same
+     edge as the edition line under it instead of a dozen pixels inside it. */
+  margin: 0 0 0 -0.05em;
+  /* Sized from the seam, never the viewport. At 0.8 of the track the wider of
+     the two numerals still clears the rule by about 7% of the track, so the
+     folio can never reach the spine, whichever face the platform serves the
+     Latin digits from. */
+  font-size: min(15rem, calc(var(--startup50-seam) * 0.8));
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+  letter-spacing: -0.09em;
+  line-height: 1;
+  /* A 240px line box carries only about 175px of ink, so centring the box left
+     the number sitting low in its own column. Trimming to cap and baseline
+     centres what a reader actually sees. Unsupported engines keep the
+     untrimmed box, which is the behaviour this replaces. */
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
+/* Bengali numerals are already tightly drawn by the self-hosted face. The
+   Latin display tracking above makes 50 feel like one folio mark, but applying
+   the same ten-pixel collision to ৫০ deforms the open counters.
+   They also stop about 0.035em short of the cap line the box is trimmed to,
+   where Latin figures overshoot it slightly, so ৫০ centred eight pixels low in
+   its column. Half the difference comes off the top and the mark sits on the
+   same axis in both editions. */
+html[lang='bn'] .startup50-hero__folio strong {
+  margin-block: -0.07em 0;
+  letter-spacing: -0.02em;
+}
+
+.startup50-hero__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: 44px 0 48px 48px;
+}
+
+/* Title, deck, description and actions are four levels, so the intervals
+   between them are four steps rather than one repeated value. The title and
+   its deck are a pair and sit tight; every gap below opens. */
+.startup50-hero__copy h1 {
+  max-width: 47rem;
+  margin: 0 0 10px;
+  border: 0;
+  padding: 0;
+  font-size: clamp(2.35rem, 4.3vw, 4.7rem);
+  font-weight: 580;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+}
+
+.startup50-hero__promise {
+  max-width: 44rem;
+  margin: 0;
+  font-size: clamp(1.12rem, 1.6vw, 1.42rem);
+  font-weight: var(--w-strong);
+  line-height: 1.45;
+}
+
+/* Narrower than the deck above it on purpose: at 680px this ran past 90
+   characters a line and broke 91/37, which is a hard line to track back to on
+   a phone-sized reading habit. */
+.startup50-hero__description {
+  max-width: 36rem;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.startup50-hero__actions,
+.startup50-methodology__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.startup50-hero__actions {
+  margin-top: 32px;
+}
+
+.startup50-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--canvas);
+  padding: 10px 18px;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: var(--w-strong);
+  text-decoration: none;
+}
+
+.article .startup50-action:visited {
+  color: var(--ink);
+}
+
+.startup50-action:hover {
+  border-color: var(--green-deep);
+  background: var(--green-ground);
+  color: var(--green-deep);
+  text-decoration: none;
+}
+
+.startup50-action--primary {
+  border-color: var(--green-deep);
+  background: var(--green-ground);
+  color: var(--green-deep);
+}
+
+.article .startup50-action--primary:visited {
+  color: var(--green-deep);
+}
+
+.startup50-register-section,
+.startup50-methodology {
+  scroll-margin-top: 112px;
+}
+
+/* The second row of the masthead, and the rule that closes it. */
+.startup50-register-heading {
+  display: grid;
+  grid-template-columns: var(--startup50-seam) minmax(0, 1fr);
+  border-bottom: 2px solid var(--green-deep);
+}
+
+/* Left, like the folio above it and like everything else on this site. Centred
+   text here gave the seam column two alignments in the space of 200px, which
+   read as an accident rather than as a masthead. */
+.startup50-register-heading__rail {
+  min-width: 0;
+  border-right: 2px solid var(--green-deep);
+  padding: 26px 18px 28px 0;
+}
+
+.startup50-register-heading__rail h2 {
+  margin: 0;
+}
+
+.startup50-register-heading h2,
+.startup50-methodology > h2 {
+  border: 0;
+  font-size: 1.55rem;
+}
+
+.startup50-register-heading__updated {
+  margin: 6px 0 0;
+  color: var(--faint);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+/* Same top padding as the rail. The heading and this line then start on the
+   same cap, because the smaller line carries proportionally more of its own
+   leading and the two cancel out. Nothing here has to be kept in step with a
+   font size by hand. */
+.startup50-register-heading > p {
+  max-width: 34rem;
+  margin: 0;
+  padding: 26px 0 28px 48px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.startup50-filters {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.4fr) minmax(190px, 0.8fr) auto;
+  gap: 10px;
+  align-items: end;
+  margin: 18px 0;
+  border: 1px solid var(--line);
+  background: var(--canvas-soft);
+  padding: 12px;
+}
+
+.startup50-filters label {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: var(--w-strong);
+}
+
+.startup50-filters input,
+.startup50-filters select,
+.startup50-filters button {
+  min-width: 0;
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--canvas);
+  padding: 7px 10px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.startup50-filters input:focus,
+.startup50-filters select:focus,
+.startup50-filters button:focus-visible {
+  border-color: var(--green);
+  outline: 2px solid color-mix(in srgb, var(--green-deep), transparent 72%);
+  outline-offset: 1px;
+}
+
+.startup50-filters button {
+  padding-inline: 16px;
+  color: var(--green-deep);
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+
+.startup50-filters button:hover {
+  border-color: var(--green-deep);
+  background: var(--green-ground);
+}
+
+.startup50-filters__count {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.startup50-filters__empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 10px;
+  color: var(--ink);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+/* The row is sized by the canvas it sits in, not by the window, because those
+   two are not the same measurement here. The navigation rail keeps its full
+   width until 860px, so a 900px window leaves this list a 598px canvas while
+   an 860px window leaves it 824px. Keyed to the window, the row asked for
+   718px of columns inside 559px and pushed the whole page sideways between
+   861px and 1019px. Keyed to the canvas it simply drops a column.
+   Stacked is the base and the columns are layered on with min-width queries,
+   so an engine without container queries still gets a readable row rather than
+   a grid three times wider than the phone it is on. */
+.startup50-register {
+  container: startup50-list / inline-size;
+  margin: 0;
+  border-top: 2px solid var(--green-deep);
+  padding: 0;
+  list-style: none;
+}
+
+.startup50-register > li {
+  margin: 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.startup50-register > li[hidden] {
+  display: none;
+}
+
+.startup50-entry {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  padding: 16px 0;
+  background: var(--canvas);
+}
+
+.startup50-entry:hover,
+.startup50-entry:focus-within {
+  background: var(--green-ground);
+}
+
+.startup50-entry__mark {
+  display: flex;
+  grid-column: 1;
+  grid-row: 1;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+  padding: 2px 8px 12px 0;
+}
+
+.startup50-entry__mark img {
+  display: block;
+  width: 80px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.startup50-entry__identity,
+.startup50-entry__description,
+.startup50-entry__lesson,
+.startup50-details {
+  min-width: 0;
+  margin: 0;
+}
+
+.startup50-entry__identity {
+  grid-column: 2;
+  grid-row: 1;
+  padding: 2px 0 12px 12px;
+}
+
+.startup50-entry__description,
+.startup50-entry__lesson,
+.startup50-details,
+.startup50-details[open] {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--line-soft);
+  padding: 13px 0 0;
+}
+
+.startup50-entry__lesson,
+.startup50-details,
+.startup50-details[open] {
+  margin-top: 13px;
+}
+
+.startup50-entry__identity h2 {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.startup50-entry__identity h2 a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.article .startup50-entry__identity h2 a:visited {
+  color: var(--ink);
+}
+
+.startup50-entry__identity h2 a:hover {
+  color: var(--blue-hover);
+  text-decoration: underline;
+}
+
+.startup50-entry__identity p,
+.startup50-entry__description,
+.startup50-entry__lesson p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.56;
+}
+
+.startup50-entry__identity p {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.startup50-entry__description {
+  color: var(--ink);
+}
+
+.startup50-entry__lesson > span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--ink);
+  font-size: 0.76rem;
+  font-weight: var(--w-strong);
+  line-height: 1.35;
+}
+
+.startup50-entry__lesson p {
+  color: var(--muted);
+}
+
+.startup50-details {
+  align-self: stretch;
+}
+
+.startup50-details summary {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  padding: 8px 10px;
+  color: var(--green-deep);
+  font-size: 0.82rem;
+  font-weight: var(--w-strong);
+  line-height: 1.35;
+  cursor: pointer;
+  list-style: none;
+}
+
+.startup50-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.startup50-details summary::after {
+  content: '+';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.startup50-details[open] {
+  padding-top: 13px;
+}
+
+.startup50-details[open] summary::after {
+  content: '−';
+}
+
+.startup50-details dl {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px 24px;
+  margin: 16px 0 0;
+}
+
+.startup50-details dl > div {
+  min-width: 0;
+}
+
+.startup50-details dt {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: var(--w-strong);
+  line-height: 1.35;
+}
+
+.startup50-details dd {
+  margin: 4px 0 0;
+  font-size: 0.83rem;
+  line-height: 1.55;
+}
+
+.startup50-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.startup50-sources > span {
+  font-weight: var(--w-strong);
+}
+
+.startup50-sources a {
+  overflow-wrap: anywhere;
+}
+
+/* Each threshold is the sum of that layout's own column minimums plus a few
+   pixels, so a tier is never asked to draw itself into less room than it
+   needs: 636px for the four-column row, 718px compact, 796px roomy. */
+@container startup50-list (min-width: 660px) {
+  .startup50-entry {
+    grid-template-columns: 96px minmax(150px, 0.82fr) minmax(190px, 1fr) minmax(200px, 1.08fr);
+    min-height: 126px;
+    padding: 0;
+  }
+
+  .startup50-entry__mark {
+    align-items: flex-start;
+    padding: 22px 8px;
+  }
+
+  .startup50-entry__mark img {
+    width: 88px;
+    height: 52px;
+  }
+
+  .startup50-entry__identity,
+  .startup50-entry__description,
+  .startup50-entry__lesson,
+  .startup50-details {
+    border-left: 1px solid var(--line-soft);
+    padding: 16px 12px;
+  }
+
+  .startup50-entry__identity {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .startup50-entry__description,
+  .startup50-entry__lesson {
+    grid-column: auto;
+    border-top: 0;
+    margin-top: 0;
+  }
+
+  /* The disclosure keeps the fourth column while it is shut and takes the
+     whole width under the row once it is open, which is the one place this
+     row genuinely changes shape on a click. */
+  .startup50-details {
+    grid-column: 2 / -1;
+    border-top: 1px solid var(--line-soft);
+    border-left: 0;
+    margin-top: 0;
+    padding: 16px 12px;
+  }
+
+  .startup50-details[open] {
+    grid-column: 2 / -1;
+    padding-top: 16px;
+  }
+
+  .startup50-details dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container startup50-list (min-width: 730px) {
+  .startup50-entry {
+    grid-template-columns: 96px minmax(135px, 0.75fr) minmax(170px, 1fr) minmax(185px, 1.1fr) minmax(132px, 0.68fr);
+  }
+
+  .startup50-details {
+    grid-column: auto;
+    border-top: 0;
+    border-left: 1px solid var(--line-soft);
+    align-self: stretch;
+    padding: 16px 12px;
+  }
+
+  .startup50-details[open] {
+    grid-column: 2 / -1;
+    border-top: 1px solid var(--line-soft);
+    padding-top: 14px;
+  }
+}
+
+@container startup50-list (min-width: 810px) {
+  .startup50-entry {
+    grid-template-columns: 108px minmax(150px, 0.78fr) minmax(190px, 1.08fr) minmax(210px, 1.24fr) minmax(138px, 0.7fr);
+  }
+
+  .startup50-entry__mark {
+    padding-inline: 10px;
+  }
+
+  .startup50-entry__identity,
+  .startup50-entry__description,
+  .startup50-entry__lesson,
+  .startup50-details {
+    padding: 18px 16px;
+  }
+}
+
+.startup50-methodology {
+  margin-top: 54px;
+  border-top: 2px solid var(--green-deep);
+  padding-top: 30px;
+}
+
+.startup50-methodology > h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.startup50-methodology__lede {
+  max-width: 830px;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.startup50-methodology__body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 26px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.startup50-methodology__body > section {
+  padding: 20px 28px 20px 0;
+}
+
+.startup50-methodology__body > section + section {
+  border-left: 1px solid var(--line);
+  padding-right: 0;
+  padding-left: 28px;
+}
+
+.startup50-methodology__body h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.startup50-methodology__body ul {
+  margin: 0;
+  padding-inline-start: 24px;
+}
+
+.startup50-methodology__body li,
+.startup50-methodology__body p {
+  margin-top: 0;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.startup50-methodology__body li + li {
+  margin-top: 7px;
+}
+
+.startup50-methodology__body p + p {
+  margin-top: 10px;
+}
+
+@media (max-width: 1120px) {
+  .startup50-hero__copy {
+    padding: 38px 0 42px 32px;
+  }
+
+  .startup50-register-heading > p {
+    padding-left: 32px;
+  }
+
+}
+
+@media (max-width: 860px) {
+  .startup50-hero__folio {
+    padding-right: 14px;
+  }
+
+  .startup50-hero__copy {
+    padding: 32px 0 36px 26px;
+  }
+
+  .startup50-hero__copy h1 {
+    font-size: clamp(2.15rem, 7vw, 3.5rem);
+  }
+
+  .startup50-hero__actions {
+    margin-top: 26px;
+  }
+
+  .startup50-register-heading__rail {
+    padding: 22px 14px 24px 0;
+  }
+
+  .startup50-register-heading > p {
+    padding: 22px 0 24px 26px;
+  }
+}
+
+/* Below the two-column masthead the spine turns on its side: the folio takes
+   its own band closed by the same green rule, and the rest of the block reads
+   straight down in one column. */
+@media (max-width: 680px) {
+  .startup50-hero {
+    display: block;
+  }
+
+  .startup50-hero__folio {
+    display: block;
+    border-right: 0;
+    border-bottom: 2px solid var(--green-deep);
+    padding: 6px 0 16px;
+  }
+
+  /* The stacked masthead authors its own band padding, so the centring
+     correction above has nothing left to correct. */
+  .startup50-hero__folio strong {
+    margin-block: 0;
+    font-size: clamp(5.2rem, 22vw, 7.6rem);
+  }
+
+  .startup50-hero__copy {
+    padding: 26px 0 30px;
+  }
+
+  .startup50-hero__actions {
+    margin-top: 26px;
+  }
+
+  /* Two abreast while the canvas can hold them, one when it cannot. A single
+     full-bleed column turned a 44px control into a 540px slab at 600px. */
+  .startup50-hero__actions,
+  .startup50-methodology__actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  }
+
+  .startup50-register-heading {
+    display: block;
+  }
+
+  .startup50-register-heading__rail {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 22px 0 18px;
+  }
+
+  .startup50-register-heading > p {
+    padding: 16px 0 22px;
+  }
+
+  .startup50-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .startup50-filters input,
+  .startup50-filters select,
+  .startup50-filters button {
+    min-height: 44px;
+    max-width: 100%;
+  }
+
+  .startup50-methodology__body {
+    grid-template-columns: 1fr;
+  }
+
+  .startup50-methodology__body > section,
+  .startup50-methodology__body > section + section {
+    border-left: 0;
+    padding: 18px 0;
+  }
+
+  .startup50-methodology__body > section + section {
+    border-top: 1px solid var(--line-soft);
+  }
+}
+
+/* Preserve the shared article's mobile prose rhythm after this route's CSS loads. */
+@media (max-width: 860px) {
+  .startup50 p,
+  .startup50 li,
+  .startup50 dd,
+  .startup50 blockquote {
+    line-height: 1.78;
+  }
+}

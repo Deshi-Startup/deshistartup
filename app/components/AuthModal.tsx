@@ -1,5 +1,7 @@
 'use client'
 
+import './Dialog.css'
+
 import React, { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { decodeIdToken, storeAuth, UserInfo } from '../lib/client-auth'
