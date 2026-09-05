@@ -105,5 +105,13 @@
     "retiredAt": "2026-08-25T10:15:44.512Z",
     "reason": "superseded",
     "replacementKey": "startup-50/airwork.1f4d476f4565.webp"
+  },
+  {
+    "logicalPath": "/media/og/en/startup-50.png",
+    "key": "og/en/startup-50.94e9c57fe2b5.png",
+    "bytes": 54742,
+    "retiredAt": "2026-09-05T20:54:43.033Z",
+    "reason": "superseded",
+    "replacementKey": "og/en/startup-50.565d5ce9f7be.png"
   }
 ]
