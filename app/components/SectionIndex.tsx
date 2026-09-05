@@ -79,58 +79,56 @@ export default function SectionIndex({ section, locale = 'bn' }: SectionIndexPro
       <h2 id={isDirectory ? (isEn ? 'all-directories' : 'সব-ডিরেক্টরি') : (isEn ? 'all-guides-in-this-section' : 'এই-বিভাগের-সব-গাইড')}>
         {isDirectory ? (isEn ? 'All directories' : 'সব ডিরেক্টরি') : (isEn ? 'All guides in this section' : 'এই বিভাগের সব গাইড')}
       </h2>
-      <div className="section-stats">
+      <p className="section-stats">
         <span>
-          {isDirectory ? (isEn ? 'Total directories' : 'মোট ডিরেক্টরি') : (isEn ? 'Total topics' : 'মোট বিষয়')} <b>{num(total)}</b>
+          <b>{num(written)}{!isEn && 'টি'}</b> {isDirectory
+            ? (isEn ? `${written === 1 ? 'directory' : 'directories'} available` : 'ডিরেক্টরি প্রকাশিত')
+            : (isEn ? `${written === 1 ? 'guide' : 'guides'} available` : 'গাইড পড়তে পারবেন')}
         </span>
-        <span>
-          {isDirectory ? (isEn ? 'Available' : 'প্রকাশিত') : (isEn ? 'Written' : 'লেখা হয়েছে')} <b>{num(written)}</b>
-        </span>
-        {/* A "0 to be written" pill is noise, and the invitation below it would
-            be pointing at nothing. A finished section should just say so. */}
-        {remaining > 0 && (
-          <span>
-            {isDirectory ? (isEn ? 'Coming soon' : 'শিগগিরই আসছে') : (isEn ? 'To be written' : 'লেখা বাকি')} <b>{num(remaining)}</b>
-          </span>
-        )}
-      </div>
-      <p className="index-desc section-index__note">
-        {remaining > 0
-          ? isDirectory
-            ? (isEn ? 'Directories still being prepared are marked as coming soon.' : 'যে ডিরেক্টরিগুলো নিয়ে এখনো কাজ চলছে, সেগুলোতে ‘শিগগিরই আসছে’ লেখা আছে।')
-            : (isEn
-              ? 'Unwritten topics are marked – click one to see its sources and help write it.'
-              : 'যে বিষয়গুলো এখনো লেখা হয়নি সেগুলো চিহ্নিত করা আছে – চাইলে যেকোনোটিতে ঢুকে সোর্স দেখে লেখায় হাত লাগাতে পারেন।')
-          : isDirectory
-            ? (isEn ? 'All directories are available. Spotted outdated information? Use the edit link on the relevant directory page.' : 'সব ডিরেক্টরি প্রকাশিত হয়েছে। কোথাও পুরোনো তথ্য চোখে পড়লে পেজের নিচের এডিট অপশন থেকে ঠিক করে দিতে পারেন।')
-            : (isEn
-              ? 'Every topic in this section is written. Spotted something out of date? The edit link at the bottom of each guide is open to you.'
-              : 'এই বিভাগের সব বিষয়ই লেখা হয়েছে। কোথাও পুরোনো তথ্য চোখে পড়লে গাইডের নিচের এডিট অপশন থেকেই ঠিক করে দিতে পারেন।')}
+        {remaining > 0 && <span>{num(remaining)} {isEn ? 'to be written' : 'বিষয় লেখা বাকি'}</span>}
       </p>
+
+      {written === 0 && (
+        <p className="index-desc section-index__note">
+          {isEn
+            ? 'The detailed guides are still to be written. You can explore the planned topics and their starting sources below.'
+            : 'বিস্তারিত গাইডগুলো এখনো লেখা হয়নি। নিচে পরিকল্পিত বিষয় ও সেগুলোর প্রাথমিক সোর্স দেখতে পারেন।'}
+        </p>
+      )}
 
       {groups.map(([groupTitle, items]) => {
         const writtenItems = items.filter((page) => !page[2])
-        const stubItems = items.filter((page) => page[2])
+        if (writtenItems.length === 0) return null
         return (
           <div key={groupTitle}>
             <h3>{groupTitle}</h3>
-            {writtenItems.length > 0 && <ul>{writtenItems.map(renderItem)}</ul>}
-            {stubItems.length > 0 &&
-              (writtenItems.length > 0 ? (
-                <details>
-                  <summary>
-                    {isDirectory
-                      ? (isEn ? `Coming soon (${num(stubItems.length)})` : `শিগগিরই আসছে (${num(stubItems.length)})`)
-                      : (isEn ? `To be written (${num(stubItems.length)})` : `লেখা বাকি (${num(stubItems.length)})`)}
-                  </summary>
-                  <ul>{stubItems.map(renderItem)}</ul>
-                </details>
-              ) : (
-                <ul>{stubItems.map(renderItem)}</ul>
-              ))}
+            <ul>{writtenItems.map(renderItem)}</ul>
           </div>
         )
       })}
+
+      {remaining > 0 && (
+        <details className="section-index__planned">
+          <summary>
+            {isEn ? `Topics still to be written (${num(remaining)})` : `যে বিষয়গুলো লেখা বাকি (${num(remaining)})`}
+          </summary>
+          <p className="index-desc section-index__note">
+            {isEn
+              ? 'These pages have starting sources, but no finished guide yet. Open a topic to help write it.'
+              : 'এই পেজগুলোতে প্রাথমিক সোর্স আছে, পূর্ণাঙ্গ গাইড নেই। লিখতে সাহায্য করতে চাইলে বিষয়টি খুলে দেখুন।'}
+          </p>
+          {groups.map(([groupTitle, items]) => {
+            const stubItems = items.filter((page) => page[2])
+            if (stubItems.length === 0) return null
+            return (
+              <div key={groupTitle}>
+                <h3 data-toc-ignore>{groupTitle}</h3>
+                <ul>{stubItems.map(renderItem)}</ul>
+              </div>
+            )
+          })}
+        </details>
+      )}
     </section>
   )
 }

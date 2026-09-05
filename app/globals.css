@@ -446,24 +446,85 @@ p {
 
 .nav-toggle {
   display: none;
+  place-items: center;
   width: 44px;
   height: 44px;
   border: 1px solid var(--line);
   border-radius: 3px;
   background: var(--canvas);
+  color: var(--ink);
   cursor: pointer;
 }
 
-.nav-toggle span {
+.nav-toggle__icon {
+  display: block;
+}
+
+.nav-toggle__icon span {
   display: block;
   width: 18px;
   height: 2px;
   margin: 4px auto;
-  background: var(--ink);
+  background: currentColor;
+}
+
+.nav-toggle__label {
+  display: none;
+}
+
+.nav-toggle--always {
+  display: grid;
+}
+
+.nav-toggle--always[aria-expanded='true'] {
+  border-color: var(--green-deep);
+  background: var(--green-ground);
+  color: var(--green-deep);
+}
+
+@media (min-width: 1181px) {
+  .nav-toggle--always {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: auto;
+    padding: 0 12px;
+  }
+
+  .nav-toggle--always .nav-toggle__label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: var(--w-strong);
+    white-space: nowrap;
+  }
 }
 
 .sidebar-close {
   display: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: 0 0 10px auto;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--canvas);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.sidebar-close:hover {
+  border-color: var(--green);
+  background: var(--green-soft);
+}
+
+.sidebar-close svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
 }
 
 /* ---------------------------------------------------------------- layout */
@@ -475,13 +536,91 @@ p {
   margin: 0 auto;
 }
 
+.page-shell.page-shell--full-width {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.page-shell--full-width .content-canvas,
+.page-shell--full-width .footer-column {
+  grid-column: 1;
+}
+
+.page-shell--wide-page .article,
+.page-shell--wide-page .footer-inner {
+  max-width: 1360px;
+  margin-inline: auto;
+}
+
+body.nav-open {
+  overflow: hidden;
+}
+
 .sidebar-backdrop {
   display: none;
 }
 
+.sidebar-backdrop.is-open {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 18;
+  background: rgb(var(--ink-channels) / 32%);
+}
+
+/* Phones use the drawer. Desktop pages show a rail when their layout allows it. */
 .sidebar-wrap {
   grid-column: 1;
   min-width: 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 19;
+  width: min(320px, 86vw);
+  background: var(--canvas);
+  box-shadow: 12px 0 40px rgb(var(--ink-channels) / 20%);
+  transform: translateX(-104%);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 200ms ease, visibility 0s linear 200ms;
+  overflow-y: auto;
+}
+
+.sidebar-wrap.is-open {
+  transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+@media (min-width: 861px) {
+  .page-shell:not(.page-shell--full-width) .sidebar-wrap {
+    position: static;
+    z-index: auto;
+    width: auto;
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+    visibility: visible;
+    pointer-events: auto;
+    transition: none;
+    overflow: visible;
+  }
+
+  /* An optional rail must appear beside the current company even when opened
+     halfway down the list. Long expanded groups scroll without a visible bar. */
+  .page-shell--wide-page:not(.page-shell--full-width) .sidebar-wrap {
+    position: sticky;
+    top: 96px;
+    align-self: start;
+    max-height: calc(100dvh - 112px);
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .page-shell--wide-page .sidebar-wrap::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .sidebar {
@@ -489,8 +628,9 @@ p {
 }
 
 .sidebar nav {
-  position: sticky;
-  top: 96px;
+  /* Follow the document scroll so long menus and page contents remain
+     reachable without a second scroll surface on desktop. The mobile
+     drawer owns its scrolling through .sidebar-wrap. */
   font-size: 0.9rem;
 }
 
@@ -521,6 +661,53 @@ p {
 .sidebar-group a.is-active {
   color: var(--green-deep);
   font-weight: var(--w-strong);
+  text-decoration: none;
+}
+
+.sidebar-group a.is-active:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.sidebar-topics summary {
+  min-height: 36px;
+  padding: 6px 0;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.sidebar-topics summary:hover {
+  color: var(--blue-hover);
+}
+
+.sidebar-topics[open] {
+  padding-bottom: 4px;
+}
+
+.sidebar-topics > summary,
+.section-index__planned > summary {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  list-style: none;
+}
+
+.sidebar-topics > summary::-webkit-details-marker,
+.section-index__planned > summary::-webkit-details-marker {
+  display: none;
+}
+
+.sidebar-topics > summary::before,
+.section-index__planned > summary::before {
+  content: '+';
+  flex: 0 0 0.8em;
+  color: var(--green-deep);
+  font-weight: var(--w-strong);
+}
+
+.sidebar-topics[open] > summary::before,
+.section-index__planned[open] > summary::before {
+  content: '–';
 }
 
 .sidebar-note {
@@ -818,8 +1005,7 @@ h3 {
   font-weight: var(--w-heading);
 }
 
-.lead,
-.wiki-lead {
+.lead {
   margin-top: 0;
 }
 
@@ -2151,23 +2337,13 @@ a.is-stub-link:hover {
 .section-index .section-stats {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 14px 0 6px;
-}
-
-.section-stats span {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--canvas-soft);
-  padding: 3px 12px;
+  gap: 4px 20px;
+  margin: 14px 0;
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
 }
 
-.section-stats span b {
+.section-stats b {
   color: var(--green-deep);
 }
 
@@ -2219,12 +2395,16 @@ a.is-stub-link:hover {
   font-size: 0.9rem;
 }
 
-.section-index details {
-  margin-top: 8px;
+.section-index .section-index__planned {
+  margin-top: 28px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 4px 0;
 }
 
 .section-index details summary {
-  padding: 6px 0;
+  min-height: 44px;
+  padding: 10px 0;
   color: var(--muted);
   font-size: 0.95rem;
   font-weight: 600;
@@ -3180,22 +3360,20 @@ html[lang='bn'] .startup50-hero__folio strong {
 
 .wiki-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
-  gap: 54px;
-  align-items: flex-start;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  grid-template-areas: 'intro facts' 'paths paths';
+  gap: 32px;
+  align-items: start;
 }
 
 .wiki-hero__main {
+  grid-area: intro;
   min-width: 0;
 }
 
 .wiki-title-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
-  align-items: flex-start;
   border-bottom: 1px solid var(--line);
-  margin-bottom: 18px;
+  padding-bottom: 18px;
 }
 
 .wiki-title-row h1 {
@@ -3208,6 +3386,11 @@ html[lang='bn'] .startup50-hero__folio strong {
   margin: 0 0 4px;
   color: var(--green-deep);
   font-weight: var(--w-strong);
+}
+
+.wiki-hero #learning-paths {
+  grid-area: paths;
+  margin: 0;
 }
 
 /* The one ranked pair of actions on the site. Kept inside the flat, bordered
@@ -3256,23 +3439,15 @@ html[lang='bn'] .startup50-hero__folio strong {
 }
 
 .wiki-subtitle {
-  margin: 0 0 14px;
+  margin: 0;
+  max-width: 48ch;
   color: var(--muted);
-  font-family: var(--display);
   font-size: 1.08rem;
-}
-
-.wiki-language-pill {
-  display: inline-flex;
-  align-items: center;
-  margin-top: 16px;
-  color: var(--ink);
-  font-size: 0.9rem;
-  white-space: nowrap;
+  line-height: 1.7;
 }
 
 .wiki-notice {
-  margin: 28px 0;
+  margin: 18px 0;
   border: 1px solid var(--warn-border);
   background: var(--warn-bg);
   padding: 16px 18px;
@@ -3292,6 +3467,7 @@ html[lang='bn'] .startup50-hero__folio strong {
 }
 
 .wiki-infobox {
+  grid-area: facts;
   border: 1px solid var(--line);
   background: var(--canvas);
   font-size: 0.9rem;
@@ -3308,37 +3484,13 @@ html[lang='bn'] .startup50-hero__folio strong {
   font-size: 1.12rem;
 }
 
-.wiki-infobox img {
-  display: block;
-  width: 112px;
-  height: 112px;
-  margin: 20px auto 14px;
-}
-
-.wiki-infobox strong {
-  display: block;
-  text-align: center;
-  font-family: var(--display);
-  font-size: 1.08rem;
-}
-
-.wiki-infobox > p {
-  margin: 12px 0 0;
-  border-top: 1px solid var(--line-soft);
-  border-bottom: 1px solid var(--line-soft);
-  padding: 9px 12px;
-  color: var(--muted);
-  text-align: center;
-  font-size: 0.82rem;
-}
-
 .wiki-infobox dl {
   margin: 0;
 }
 
 .wiki-infobox dl div {
   display: grid;
-  grid-template-columns: 112px 1fr;
+  grid-template-columns: 88px minmax(0, 1fr);
   border-bottom: 1px solid var(--line-soft);
 }
 
@@ -3358,7 +3510,30 @@ html[lang='bn'] .startup50-hero__folio strong {
 }
 
 .wiki-section {
-  margin-top: 34px;
+  margin-top: 40px;
+}
+
+.wiki-section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 20px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 12px;
+}
+
+.wiki-section-heading h2 {
+  margin: 0;
+  border: 0;
+}
+
+.wiki-section-heading > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: 0.95rem;
 }
 
 .wiki-section > h2 {
@@ -3380,6 +3555,10 @@ html[lang='bn'] .startup50-hero__folio strong {
 .wiki-scope-grid,
 .wiki-source-list {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.wiki-scope-grid {
+  gap: 0 32px;
 }
 
 /* A last row holding one lone card reads as an accident. When the item count
@@ -3416,7 +3595,6 @@ html[lang='bn'] .startup50-hero__folio strong {
 }
 
 .wiki-path-card,
-.wiki-scope-card,
 .wiki-source-list article {
   border: 1px solid var(--line);
   background: var(--canvas);
@@ -3427,12 +3605,40 @@ html[lang='bn'] .startup50-hero__folio strong {
 /* Hover answers on the whole surface, not just the outline: the ground warms
    and the title deepens, so the card reads as one target. */
 .wiki-path-card:hover,
-.wiki-scope-card:hover,
-.wiki-path-card:focus-visible,
-.wiki-scope-card:focus-visible {
+.wiki-path-card:focus-visible {
   border-color: var(--green);
   background: var(--green-ground);
   text-decoration: none;
+}
+
+.wiki-scope-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-content: center;
+  gap: 4px 16px;
+  border-bottom: 1px solid var(--line-soft);
+  padding: 16px 4px;
+  color: var(--blue);
+}
+
+.wiki-scope-card::after {
+  content: '→';
+  grid-column: 2;
+  grid-row: 1 / 3;
+  align-self: center;
+  color: var(--green-deep);
+}
+
+.wiki-scope-card:hover,
+.wiki-scope-card:focus-visible {
+  background: var(--green-ground);
+  text-decoration: none;
+}
+
+.wiki-scope-card h3,
+.wiki-scope-card p {
+  grid-column: 1;
 }
 
 .wiki-path-card {
@@ -3482,6 +3688,10 @@ html[lang='bn'] .startup50-hero__folio strong {
 .wiki-scope-card h3,
 .wiki-source-list h3 {
   margin-top: 0;
+}
+
+.wiki-scope-card h3 {
+  color: var(--blue);
 }
 
 /* FAQ accordion (kept from redesign, wiki styling) */
@@ -3608,36 +3818,50 @@ html[lang='bn'] .startup50-hero__folio strong {
 
 /* ---------------------------------------------------------------- footer */
 
-/* The footer is a sibling of .page-shell, not a child, so it cannot inherit the
-   grid: the left padding is the sidebar column (282px) plus the 28px gutter,
-   hand-computed to line the footer text up with the content canvas. That makes
-   it a magic number tied to .page-shell's first column — every breakpoint that
-   resizes or removes that column has to re-state this padding below. */
+/* The divider spans the shell; footer content shares the article's column. */
 .site-footer {
-  width: min(1660px, 100%);
-  margin: 0 auto;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: inherit;
+  min-width: 0;
+  width: 100%;
   border-top: 1px solid var(--line);
-  padding: 24px 28px 32px 310px;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.footer-column {
+  grid-column: 2;
+  min-width: 0;
+  border-inline: 1px solid transparent;
+}
+
+.footer-inner {
+  margin-inline: auto;
+  padding: 24px 48px 32px;
+}
+
+.site-footer .footer-intro {
+  margin: 0;
 }
 
 .site-footer .footer-nav {
   display: grid;
   gap: 4px;
-  margin: 10px 0 12px;
+  margin: 16px 0 0;
 }
 
 .site-footer .footer-link-group {
   display: grid;
-  grid-template-columns: 9rem minmax(0, 1fr);
-  column-gap: 20px;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: 20px;
   align-items: baseline;
+  min-width: 0;
 }
 
 .site-footer .footer-link-label {
   margin: 0;
-  color: var(--faint);
+  color: var(--green-deep);
   font-size: 0.82rem;
   font-weight: var(--w-strong);
   line-height: 1.7;
@@ -3646,23 +3870,20 @@ html[lang='bn'] .startup50-hero__folio strong {
 .site-footer .footer-link-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 2px 20px;
+  gap: 0 20px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+.site-footer .footer-link-list li {
+  margin: 0;
+}
+
 .site-footer .footer-link-list a {
   display: inline-flex;
   align-items: center;
-  min-height: 28px;
-}
-
-.site-footer .footer-legal {
-  color: var(--faint);
-  font-size: 0.82rem;
-  line-height: 1.7;
-  max-width: 72ch;
+  min-height: 32px;
 }
 
 /* ------------------------------------------------------------ responsive */
@@ -3690,9 +3911,8 @@ html[lang='bn'] .startup50-hero__folio strong {
     grid-template-columns: 238px minmax(0, 1fr);
   }
 
-  /* Follows the narrower sidebar column above: 238px + the 28px gutter. */
-  .site-footer {
-    padding-left: 266px;
+  .footer-inner {
+    padding-inline: 32px;
   }
 
   .sidebar {
@@ -3719,10 +3939,11 @@ html[lang='bn'] .startup50-hero__folio strong {
 
   .wiki-hero {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'intro' 'paths' 'facts';
   }
 
   .wiki-infobox {
-    width: min(440px, 100%);
+    width: 100%;
   }
 
   .wiki-path-grid {
@@ -3774,7 +3995,7 @@ html[lang='bn'] .startup50-hero__folio strong {
   }
 
   .nav-toggle {
-    display: block;
+    display: grid;
   }
 
   /* One-handed reach: keep the painted pill at its designed size, widen only
@@ -3789,45 +4010,10 @@ html[lang='bn'] .startup50-hero__folio strong {
     transform: translate(-50%, -50%);
   }
 
-  body.nav-open {
-    overflow: hidden;
-  }
-
   .page-shell {
     display: block;
     width: 100%;
     max-width: 100vw;
-  }
-
-  .sidebar-backdrop.is-open {
-    display: block;
-    position: fixed;
-    inset: 0;
-    z-index: 18;
-    background: rgb(var(--ink-channels) / 32%);
-  }
-
-  .sidebar-wrap {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 19;
-    width: min(320px, 86vw);
-    background: var(--canvas);
-    box-shadow: 12px 0 40px rgb(var(--ink-channels) / 20%);
-    transform: translateX(-104%);
-    visibility: hidden;
-    pointer-events: none;
-    transition: transform 200ms ease, visibility 0s linear 200ms;
-    overflow-y: auto;
-  }
-
-  .sidebar-wrap.is-open {
-    transform: translateX(0);
-    visibility: visible;
-    pointer-events: auto;
-    transition-delay: 0s;
   }
 
   .sidebar {
@@ -3836,39 +4022,16 @@ html[lang='bn'] .startup50-hero__folio strong {
 
   .sidebar-close {
     display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
-    margin: 0 0 10px auto;
-    border: 1px solid var(--line);
-    border-radius: 3px;
-    background: var(--canvas);
-    color: var(--ink);
-    cursor: pointer;
-  }
-
-  .sidebar-close:hover {
-    border-color: var(--green);
-    background: var(--green-soft);
-  }
-
-  .sidebar-close svg {
-    width: 20px;
-    height: 20px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-  }
-
-  .sidebar nav {
-    position: static;
-    max-height: none;
   }
 
   /* This drawer is the whole navigation on a phone, and DESIGN.md puts the
      important mobile actions at 44px. At the desktop density these rows are
      29px, which is a thumb-width target for the site's primary menu. */
+  .sidebar-topics summary {
+    min-height: 44px;
+    padding: 10px 0;
+  }
+
   .sidebar-group a {
     display: flex;
     align-items: center;
@@ -3977,11 +4140,24 @@ html[lang='bn'] .startup50-hero__folio strong {
     margin-right: 18px;
   }
 
-  /* The sidebar is an off-canvas drawer from here down, so there is no column
-     to clear: the 310px reserved for it would otherwise squeeze the footer into
-     a ~50px strip on a phone. Match the article's 18px gutters instead. */
   .site-footer {
+    display: block;
+  }
+
+  .footer-column {
+    border-inline: 0;
+  }
+
+  .footer-inner {
     padding: 24px 18px 32px;
+  }
+
+  .site-footer .footer-nav {
+    gap: 12px;
+  }
+
+  .site-footer .footer-link-list a {
+    min-height: 44px;
   }
 
   h1 {
@@ -4021,10 +4197,6 @@ html[lang='bn'] .startup50-hero__folio strong {
     display: block;
   }
 
-  .wiki-language-pill {
-    margin: 0 0 14px;
-  }
-
   /* Matches the specificity of the per-count rules above and comes later, so
      every directory collapses to one column here. */
   .directory-controls,
@@ -4057,7 +4229,7 @@ html[lang='bn'] .startup50-hero__folio strong {
   }
 
   .wiki-infobox dl div {
-    grid-template-columns: 104px 1fr;
+    grid-template-columns: 88px minmax(0, 1fr);
   }
 
   .directory-card {
@@ -4105,29 +4277,14 @@ html[lang='bn'] .startup50-hero__folio strong {
   }
 }
 
-@media (max-width: 520px) {
-  .site-footer .footer-nav {
-    gap: 10px;
-    margin-top: 12px;
-  }
-
+@media (max-width: 620px) {
   .site-footer .footer-link-group {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: 1px;
+    gap: 0;
   }
+}
 
-  .site-footer .footer-link-label {
-    line-height: 1.5;
-  }
-
-  .site-footer .footer-link-list {
-    column-gap: 18px;
-  }
-
-  .site-footer .footer-link-list a {
-    min-height: 36px;
-  }
-
+@media (max-width: 520px) {
   .brand strong {
     max-width: 10rem;
     overflow: hidden;
@@ -4164,14 +4321,6 @@ html[lang='bn'] .startup50-hero__folio strong {
 
   .wiki-path-card {
     min-height: 0;
-  }
-
-  .wiki-infobox dl div {
-    display: block;
-  }
-
-  .wiki-infobox dt {
-    padding-bottom: 0;
   }
 
   th,

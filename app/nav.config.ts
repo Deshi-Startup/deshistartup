@@ -16,6 +16,7 @@ export const YOUTUBE_URL = SOCIAL_PROFILE_URLS.youtube
 
 export interface NavSection {
   label: string
+  disclosureLabel?: string
   items: [string, string][]
 }
 
@@ -23,20 +24,23 @@ export const bnNav: NavSection[] = [
   {
     label: 'শুরু করুন',
     items: [
-      ['/start-here', 'শুরুটা হোক এখান থেকে'],
-      ['/roadmap', 'সাজানো রোডম্যাপগুলো দেখুন'],
+      ['/start-here', 'প্রথমবার? শুরু করুন'],
+      ['/roadmap', 'ধাপে ধাপে রোডম্যাপ'],
       ['/ecosystem', 'বাংলাদেশের স্টার্টআপ ইকোসিস্টেম']
     ]
   },
   {
-    label: 'টপিক ধরে খুঁজুন',
+    label: 'গাইড',
+    disclosureLabel: 'বিষয় ধরে খুঁজুন',
     items: [
       ['/guides', 'সব টপিকের তালিকা'],
       ['/ideas', 'আইডিয়া ও মার্কেট রিসার্চ'],
       ['/validation', 'আইডিয়া ভ্যালিডেশন'],
       ['/registration', 'ব্যবসা রেজিস্ট্রেশন'],
       ['/tax', 'ট্যাক্স, ভ্যাট ও অ্যাকাউন্টিং'],
-      ['/payments', 'পেমেন্ট ও অপারেশন'],
+      ['/payments', 'পেমেন্ট'],
+      ['/operations', 'ডেলিভারি ও অপারেশন'],
+      ['/metrics', 'মেট্রিকস ও হিসাব'],
       ['/customers', 'কাস্টমার ও সেলস'],
       ['/team', 'টিম ও নিয়োগ'],
       ['/funding', 'ফান্ডিং ও স্কেলিং'],
@@ -44,31 +48,23 @@ export const bnNav: NavSection[] = [
     ]
   },
   {
-    label: 'টেমপ্লেট ও টুলস',
-    items: [['/tools', 'চেকলিস্ট, স্ক্রিপ্ট ও ক্যালকুলেটর']]
-  },
-  {
-    label: 'কেস স্টাডি',
-    items: [['/case-studies', 'বাংলাদেশি স্টার্টআপের গল্প']]
-  },
-  {
-    label: 'ডিরেক্টরি',
+    label: 'রিসোর্স',
     items: [
+      ['/tools', 'টেমপ্লেট ও টুলস'],
+      ['/case-studies', 'কেস স্টাডি'],
       ['/directory', 'ইকোসিস্টেম ডিরেক্টরি'],
-      ['/startup-50', 'দেশি স্টার্টআপ ৫০']
+      ['/startup-50', 'দেশি স্টার্টআপ ৫০'],
+      ['/start-here/glossary', 'স্টার্টআপ শব্দকোষ']
     ]
   },
   {
     label: 'আমাদের সম্পর্কে',
+    disclosureLabel: 'যোগাযোগ ও কন্ট্রিবিউশন',
     items: [
       ['/about', 'দেশি স্টার্টআপ ও সম্পাদকীয় নীতি'],
       ['/contact', 'যোগাযোগ করুন'],
       ['/contribute', 'কন্ট্রিবিউট করুন'],
-      ['/contributors', 'কন্ট্রিবিউটরস্‌'],
-      [REPO_URL, 'GitHub রিপোজিটরি'],
-      [FACEBOOK_GROUP_URL, 'ফেসবুক কমিউনিটিতে যোগ দিন'],
-      [DISCORD_URL, 'কন্ট্রিবিউটর ডিসকর্ড'],
-      [`${REPO_URL}/issues/new?template=report-mistake.yml`, 'ফিডব্যাক দিন']
+      ['/contributors', 'কন্ট্রিবিউটর'],
     ]
   }
 ]
@@ -84,13 +80,16 @@ export const enNav: NavSection[] = [
   },
   {
     label: 'Guides',
+    disclosureLabel: 'Browse by topic',
     items: [
       ['/en/guides', 'All topics'],
       ['/en/ideas', 'Ideas & market research'],
       ['/en/validation', 'Idea validation'],
       ['/en/registration', 'Business registration'],
       ['/en/tax', 'Tax, VAT & accounting'],
-      ['/en/payments', 'Payments & operations'],
+      ['/en/payments', 'Payments'],
+      ['/en/operations', 'Delivery & operations'],
+      ['/en/metrics', 'Metrics & finances'],
       ['/en/customers', 'Customers & sales'],
       ['/en/team', 'Team & hiring'],
       ['/en/funding', 'Funding & scaling'],
@@ -98,31 +97,23 @@ export const enNav: NavSection[] = [
     ]
   },
   {
-    label: 'Templates & Tools',
-    items: [['/en/tools', 'Checklists, scripts & calculators']]
-  },
-  {
-    label: 'Case Studies',
-    items: [['/en/case-studies', 'Bangladeshi startup stories']]
-  },
-  {
-    label: 'Directory',
+    label: 'Resources',
     items: [
+      ['/en/tools', 'Templates & tools'],
+      ['/en/case-studies', 'Case studies'],
       ['/en/directory', 'Ecosystem directory'],
-      ['/en/startup-50', 'Deshi Startup 50']
+      ['/en/startup-50', 'Deshi Startup 50'],
+      ['/en/start-here/glossary', 'Startup glossary']
     ]
   },
   {
     label: 'About & Community',
+    disclosureLabel: 'Contact & contribute',
     items: [
       ['/en/about', 'About & editorial policy'],
       ['/en/contact', 'Contact us'],
       ['/en/contribute', 'Contribute'],
       ['/en/contributors', 'Contributors'],
-      [REPO_URL, 'View on GitHub'],
-      [FACEBOOK_GROUP_URL, 'Join the Facebook community'],
-      [DISCORD_URL, 'Contributor Discord'],
-      [`${REPO_URL}/issues/new?template=report-mistake.yml`, 'Report a mistake']
     ]
   }
 ]

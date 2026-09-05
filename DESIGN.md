@@ -344,7 +344,7 @@ Responsive behavior, by the breakpoints that actually exist:
   becomes an off-canvas drawer behind a toggle, scroll clearance rises to 152px, and simple tables
   switch to a fixed layout so the column settles first and the text wraps inside it.
 - **620px / 560px / 520px**: single-column filter panels and footers, tabs scroll horizontally,
-  the brand tagline truncates, the infobox definition rows stop being a two-column grid.
+  the brand tagline truncates; the compact infobox keeps its label/value columns.
 - **420px**: the meta row reserves its exact two-row grid before the client-formatted date arrives,
   so nothing shifts after paint.
 
@@ -366,6 +366,18 @@ twice, so a change to either side has to be made on both.
 Pages print. The header, rail, tabs, footers, breadcrumbs, meta row and table of contents are
 removed, the canvas loses its border and shadow, body drops to 11pt, links become underlined ink,
 and the external-link marker is suppressed.
+
+### Footer
+
+The everyday guide layout sets the footer's alignment and density. It occupies the reading column
+of the page grid, below the canvas, with matching 48px / 32px / 18px gutters on warm paper. A thin
+separator spans the full page grid above the footer, including beneath the sidebar. A short
+project description leads into compact, labeled rows of links: Project, Community, and Help &
+policies. Footer copy uses the available width rather than a prose measure that forces short lines.
+The full disclaimer remains in Terms and About instead of repeating below every page. At 620px
+and below the labels sit above their links; targets are at least 44px high from 860px down.
+Wide collections use the same structure within their 1360px article boundary. The shared page grid
+keeps the footer aligned with its content when the sidebar opens or closes.
 
 ## Elevation & Depth
 
@@ -428,7 +440,9 @@ nothing is lifted. A control should look like it will still be there in five yea
 - **External:** an `↗` marker is appended after any `http` link in an article. Most external links
   here are government portals, and a founder should know before the tab changes. Suppressed in print.
 - **Stub link:** muted ink with a dashed hairline underline offset 3px, plus a pill chip reading
-  "লেখা বাকি". It is deliberately not styled as visited-able.
+  "লেখা বাকি". It is deliberately not styled as visited-able. Markdown links resolve readiness
+  from the generated content index too, including curated lists that link across sections. The
+  status label stays outside the link text and search index; unfinished links carry `nofollow`.
 
 ### Buttons
 
@@ -483,9 +497,15 @@ border color, ground tint, weight and the arrow, in that order.
 
 ### Navigation
 
-- **Rail:** 0.9rem, sticky at 96px, grouped under muted 0.82rem labels separated by warm hairlines.
-  The active link is Deep Deshi Green at weight 600. Below 860px the rail becomes an off-canvas
-  drawer with a backdrop and its own heavier shadow.
+- **Rail:** 0.9rem, grouped under muted 0.82rem labels separated by warm hairlines.
+  Start links, all topics and resources stay visible. Topic and contact links use native
+  disclosures, with the current section open on arrival. The most specific matching destination
+  takes strong deep-green text. The paper stays unfilled and the text keeps its alignment,
+  with no marker beside it. Underlining appears on hover; weight distinguishes the current
+  location beyond color, and a parent uses `aria-current="location"`.
+  The desktop rail follows the document scroll, with no independent scrollbar or height cap.
+  Below 860px it becomes the existing off-canvas drawer with a backdrop, its own scrolling
+  and its own heavier shadow.
 - **Tabs:** the article/edit pair. The active tab takes a hairline border, a 3px Bangladesh Emerald
   top rule and the canvas ground; whichever view you are in is set in ink and the other stays a
   link.
@@ -495,11 +515,27 @@ border color, ground tint, weight and the arrow, in that order.
 
 ### Infobox
 
-The one encyclopedia-style signature card, and the only place a saturated ground appears: a Deep
-Deshi Green header bar with canvas-white text, a centered 112px mark, a centered name, a centered
-caption between soft hairlines, and a definition list on a 112px label column that collapses to
-104px below 860px and to stacked blocks below 520px. It earns its weight by being singular. Nothing
-else in the system gets a filled header.
+The encyclopedia-style signature card keeps its Deep Deshi Green header and canvas-white text.
+Its compact definition list answers three questions: languages, access and how much is written.
+An 88px label column stays beside the value on phones. The masthead already carries the mark and
+name, so the infobox does not repeat them. It sits beside the homepage introduction on desktop and
+after the starting choices below 1180px. Nothing else in the system gets a filled header.
+
+### Homepage discovery
+
+One short introduction leads directly to the starting choices. The four situation cards retain
+flat borders and the green response on hover. Topic browsing uses blue links in paired rows,
+separated by hairlines, with one direct link to the complete topic index. Recent updates follow
+those routes into the library. FAQs, official portals and contribution information come afterward;
+the legal note sits with the official portals, and the site-wide footer keeps its own disclaimer.
+
+### Section indexes
+
+Finished guides appear first, in their existing editorial groups. A single native disclosure
+below them contains all unwritten topics, grouped by the same source data and still marked as
+unfinished. Empty sections say that the detailed guides have yet to be written. Counts are a
+plain line of available and unwritten items; a redundant total does not need a third badge.
+The generated content index owns availability, so this presentation updates when a guide lands.
 
 ### Glossary
 
@@ -567,16 +603,18 @@ The complete list is server-rendered. A small client component only filters the 
 name and sector, so every company and link remains available without JavaScript. At narrow widths,
 the folio becomes a compact masthead and each row stacks in reading order without horizontal scroll.
 
-The company row is the one place on this site sized by its container rather than by the window, and
-the reason is specific: the navigation rail keeps its full width until 860px, so a 900px window
-leaves this list a narrower canvas than an 860px window does. A window-keyed row therefore asked for
-its widest layout exactly where the least room existed and pushed the page sideways by up to 128px
-between 861px and 1019px. The row is stacked by default and layers its columns back on with
-container min-width queries whose thresholds are each that layout's own column minimums plus a
-margin, so a tier is never drawn into less room than it needs and an engine without container
-queries still gets the readable stacked row. Any future change to the rail width or the canvas
-gutters is absorbed by this automatically; reintroducing a window-keyed breakpoint here would not
-be.
+Both `/startup-50` and `/en/startup-50` start with the sidebar hidden. Content is centered within
+a 1360px article boundary, including its gutters, so company rows stay comfortable on large screens.
+The header's Sidebar control shows or hides a docked rail on desktop; it remains reachable when
+opened partway down the list and can scroll without a visible scrollbar. Phones retain the existing
+modal drawer, with focus containment, Escape dismissal and focus return. Search and the language
+switch stay in the header, and the footer follows the same content column and gutters. Other pages keep their usual
+desktop rail; additional collections can opt into this layout.
+
+Company rows respond to their container rather than the window. They stack by default and add
+columns only when their minimum widths and spacing fit. This keeps the list usable when canvas
+gutters or the surrounding layout change, and browsers without container queries retain the
+readable stacked row.
 
 Green is used for structure, rules, hover and focus; blue remains for links. Company marks are
 reviewed before use, stored in R2 through the site's media pipeline and linked to their source in the

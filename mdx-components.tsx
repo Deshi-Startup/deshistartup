@@ -17,13 +17,33 @@ import ContributorLeaderboard from './app/components/ContributorLeaderboard'
 import ContributionInvite from './app/components/ContributionInvite'
 import ContactForm from './app/components/ContactForm'
 import Startup50 from './app/components/Startup50'
+import contentIndex from './app/generated/content-index.json'
+
+type IndexedPage = [route: string, title: string, stub: number, description: string | null]
+type IndexedSection = [string, number, number, IndexedPage | null, [string, IndexedPage[]][]]
+
+// A curated Markdown list can link across sections. Use the same readiness
+// source as SectionIndex so an unfinished tool cannot look ready to use.
+// This module renders on the server; the index is not sent to the reader.
+const unfinishedRoutes = new Set<string>()
+for (const locale of Object.values(contentIndex)) {
+  for (const entry of Object.values(locale.sections)) {
+    const [, , , index, groups] = entry as unknown as IndexedSection
+    for (const page of [...(index ? [index] : []), ...groups.flatMap(([, pages]) => pages)]) {
+      if (page[2] === 1) unfinishedRoutes.add(page[0])
+    }
+  }
+}
 
 interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href?: string
 }
 
-function BasePathAnchor({ href = '', ...props }: AnchorProps) {
+function BasePathAnchor({ href = '', children, className, rel, ...props }: AnchorProps) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+  const withoutBase = basePath && href.startsWith(`${basePath}/`) ? href.slice(basePath.length) : href
+  const route = withoutBase.split(/[?#]/)[0].replace(/\/$/, '') || '/'
+  const isStub = unfinishedRoutes.has(route)
   const shouldPrefix =
     basePath &&
     href.startsWith('/') &&
@@ -32,7 +52,23 @@ function BasePathAnchor({ href = '', ...props }: AnchorProps) {
     href !== basePath
   const resolvedHref = shouldPrefix ? `${basePath}${href}` : href
 
-  return <a {...props} href={resolvedHref} />
+  return (
+    <>
+      <a
+        {...props}
+        href={resolvedHref}
+        className={[className, isStub && 'is-stub-link'].filter(Boolean).join(' ') || undefined}
+        rel={isStub ? [...new Set([...(rel?.split(/\s+/) || []), 'nofollow'])].join(' ') : rel}
+      >
+        {children}
+      </a>
+      {isStub && (
+        <span className="stub-chip" data-pagefind-ignore>
+          {route.startsWith('/en/') ? 'to be written' : 'লেখা বাকি'}
+        </span>
+      )}
+    </>
+  )
 }
 
 export function useMDXComponents(components: Record<string, any>): Record<string, any> {
