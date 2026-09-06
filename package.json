@@ -67,7 +67,7 @@
   "devDependencies": {
     "@types/node": "^22.20.1",
     "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.5",
+    "@types/react-dom": "^19.2.7",
     "cheerio": "^1.2.0",
     "fontkit": "^2.0.4",
     "pagefind": "^1.5.2",
