@@ -59,7 +59,7 @@
     "@milkdown/crepe": "^7.22.1",
     "@milkdown/kit": "^7.21.2",
     "jose": "^6.2.10",
-    "next": "^15.5.24",
+    "next": "^15.5.25",
     "nextra": "^4.6.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
@@ -77,7 +77,7 @@
     "sharp": "^0.35.4",
     "typescript": "^5.9.3",
     "unified": "^11.0.5",
-    "wrangler": "^4.127.0"
+    "wrangler": "^4.129.0"
   },
   "overrides": {
     "speech-rule-engine": {
