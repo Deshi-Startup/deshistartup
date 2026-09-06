@@ -52,9 +52,6 @@
 
 # Stable brand and content assets. Unhashed, so they revalidate daily and may
 # be served stale for a week while the new copy is fetched in the background.
-/deshi-mark.svg
-  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
-
 /deshi-mark.webp
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 

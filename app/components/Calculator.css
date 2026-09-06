@@ -1,0 +1,115 @@
+/* --- Calculator --- */
+
+/* A small client island: the inputs edit the worked example the server already
+   rendered, so nothing depends on JavaScript to show the default numbers. */
+.calc {
+  margin: 22px auto;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--canvas-soft);
+}
+
+.calc__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.calc__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.calc__label {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.calc__input {
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--canvas);
+  color: var(--ink);
+  font: inherit;
+}
+
+.calc__hint {
+  color: var(--faint);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.calc__results {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 14px 0 0;
+}
+
+.calc__result {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--canvas);
+}
+
+.calc__result dt {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.calc__result dd {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: var(--w-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.calc__result--main {
+  border-color: var(--green);
+  background: var(--green-soft);
+}
+
+.calc__result--main dd {
+  color: var(--green-deep);
+  font-size: 1.2rem;
+}
+
+.calc__verdict {
+  margin: 12px 0 0;
+  color: var(--warn-ink);
+  font-size: 0.92rem;
+}
+
+/* --- Calculator: small screens --- */
+
+/* Single-column inputs stay readable on narrow phones. */
+@media (max-width: 620px) {
+  .calc {
+    padding: 14px;
+  }
+
+  .calc__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* --- Calculator: print --- */
+@media print {
+
+  .calc {
+    break-inside: avoid;
+  }
+
+  .calc__input {
+    border-color: #999;
+  }
+}

@@ -1,5 +1,7 @@
 'use client'
 
+import './ContributionImageReview.css'
+
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import AuthModal from './AuthModal'

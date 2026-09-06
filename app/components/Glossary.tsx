@@ -1,4 +1,5 @@
 import React from 'react'
+import './Glossary.css'
 import glossaryData from '../../data/glossary.json'
 import contentIndex from '../generated/content-index.json'
 import GlossaryControls from './GlossaryControls'

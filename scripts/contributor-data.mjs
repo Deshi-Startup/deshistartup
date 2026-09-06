@@ -570,20 +570,6 @@ export function identityForPull(pull, policyOrIndexes, profiles = []) {
     : githubIdentity(pull, indexes)
 }
 
-export function rankProfiles(profiles) {
-  return [...profiles]
-    .sort((a, b) => {
-      const countOrder = (b.acceptedEventCount ?? b.mergedPullRequestCount ?? 0) -
-        (a.acceptedEventCount ?? a.mergedPullRequestCount ?? 0)
-      const recentOrder = (b.lastAcceptedAt || b.lastMergedAt || '').localeCompare(
-        a.lastAcceptedAt || a.lastMergedAt || ''
-      )
-      const nameOrder = a.displayName.localeCompare(b.displayName, 'en', { sensitivity: 'base' })
-      return countOrder || recentOrder || nameOrder
-    })
-    .map((profile, index) => ({ ...profile, rank: index + 1 }))
-}
-
 async function githubJson(fetchImpl, url, token) {
   const headers = {
     Accept: 'application/vnd.github+json',

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useId, useRef, useState } from 'react'
+import { createPagefindLoader } from '../lib/pagefind-loader'
 
 import {
   trackSearchOnce,
@@ -8,71 +9,13 @@ import {
   type SearchReportState
 } from '../lib/search-analytics'
 
-interface PagefindItem {
-  id: string
-  data: () => Promise<{
-    url: string
-    meta?: {
-      title?: string
-      stub?: boolean | string | number
-    }
-    title?: string
-    excerpt?: string
-    content?: string
-  }>
-}
-
-interface Pagefind {
-  search: (query: string) => Promise<{
-    results: PagefindItem[]
-  }>
-  options: (opts: {
-    baseUrl: string
-    ranking?: {
-      metaWeights?: Record<string, number>
-    }
-  }) => Promise<void>
-}
-
-// Extend global window interface
-declare global {
-  interface Window {
-    pagefind?: Pagefind
-  }
-}
-
-let pagefindPromise: Promise<Pagefind> | null = null
+const loadPagefind = createPagefindLoader(
+  // Pagefind is generated after the build and stays out of the page bundle.
+  (url) => import(/* webpackIgnore: true */ url),
+  process.env.NEXT_PUBLIC_BASE_PATH || ''
+)
 
 const bengaliDigits = (value: number | string) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[Number(d)])
-
-async function loadPagefind(basePath = ''): Promise<Pagefind | null> {
-  if (typeof window === 'undefined') return null
-
-  if (!window.pagefind) {
-    if (!pagefindPromise) {
-      const pagefindUrl = `${basePath}/_pagefind/pagefind.js`
-      // @ts-ignore
-      pagefindPromise = import(/* webpackIgnore: true */ pagefindUrl).then((module) => {
-        window.pagefind = module
-        return window.pagefind!
-          .options({
-            baseUrl: basePath || '/',
-            ranking: {
-              // The translated page title is a search alias, not a second
-              // result title. Keep the visible title's built-in 5x lead while
-              // making an equivalent query in the other site language rank
-              // well above an incidental body-text match.
-              metaWeights: { 'alternate-title': 4 }
-            }
-          })
-          .then(() => window.pagefind!)
-      })
-    }
-    await pagefindPromise
-  }
-
-  return window.pagefind || null
-}
 
 function cleanTitle(data: any) {
   return data?.meta?.title || data?.title || data?.url || ''
@@ -90,7 +33,7 @@ function stripTitleEcho(excerpt: string, title: string) {
   for (let start = 0; start < words.length; start += 1) {
     const candidate = words.slice(start).join(' ')
     if (candidate.length > 3 && excerpt.startsWith(candidate)) {
-      return excerpt.slice(candidate.length).replace(/^[\s.।,–—-]+/, '')
+      return excerpt.slice(candidate.length).replace(/^[\s.।,–\u2014-]+/, '')
     }
   }
   return excerpt
@@ -111,6 +54,12 @@ interface SearchResult {
   isStub: boolean
 }
 
+interface SearchResponse {
+  query: string
+  status: 'idle' | 'loading' | 'ready' | 'error'
+  results: SearchResult[]
+}
+
 interface SearchBoxProps {
   isEn?: boolean
 }
@@ -120,11 +69,15 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
   const searchReportRef = useRef<SearchReportState>({ term: null })
   const listboxId = `${useId()}listbox`
   const [query, setQuery] = useState('')
-  const [results, setResults] = useState<SearchResult[]>([])
+  const [response, setResponse] = useState<SearchResponse>({ query: '', status: 'idle', results: [] })
+  const [retryCount, setRetryCount] = useState(0)
   const [activeIndex, setActiveIndex] = useState(-1)
-  const [isLoading, setIsLoading] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
-  const [error, setError] = useState(false)
+  const trimmedQuery = query.trim()
+  const matchesQuery = response.query === trimmedQuery
+  const results = matchesQuery && response.status === 'ready' ? response.results : []
+  const isLoading = Boolean(trimmedQuery) && (!matchesQuery || response.status === 'loading')
+  const error = matchesQuery && response.status === 'error'
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
   const optionId = (index: number) => `${listboxId}-option-${index}`
   // The popup only counts as a combobox listbox when it actually holds options;
@@ -133,8 +86,12 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.defaultPrevented || event.isComposing) return
+      const active = document.activeElement
+      if (active instanceof HTMLElement && active.isContentEditable) return
       const isSearchShortcut =
-        (event.key === '/' && !/^(INPUT|TEXTAREA)$/.test(document.activeElement?.tagName || '')) ||
+        (event.key === '/' && !event.ctrlKey && !event.metaKey && !event.altKey &&
+          !/^(INPUT|TEXTAREA|SELECT)$/.test(active?.tagName || '')) ||
         (event.key.toLowerCase() === 'k' && (event.ctrlKey || event.metaKey) && !event.shiftKey)
 
       if (isSearchShortcut) {
@@ -154,23 +111,22 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
     setActiveIndex(-1)
 
     if (!trimmedQuery) {
-      setResults([])
+      setResponse({ query: '', status: 'idle', results: [] })
       setIsOpen(false)
-      setError(false)
       return undefined
     }
 
+    setResponse({ query: trimmedQuery, status: 'loading', results: [] })
     let isActive = true
     let reportTimeout = 0
     const timeout = window.setTimeout(async () => {
-      setIsLoading(true)
-      setError(false)
-
       try {
-        const pagefind = await loadPagefind(basePath)
-        if (!pagefind || !isActive) return
+        const pagefind = await loadPagefind()
+        if (!isActive) return
 
         const response = await pagefind.search(trimmedQuery)
+        // A superseded query must not download ten unused result fragments.
+        if (!isActive) return
         const searchResults = await Promise.all(
           response.results.slice(0, 10).map(async (item) => {
             const data = await item.data()
@@ -192,9 +148,8 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
         ].slice(0, 8)
 
         if (isActive) {
-          setResults(ranked)
+          setResponse({ query: trimmedQuery, status: 'ready', results: ranked })
           setActiveIndex(-1)
-          setIsOpen(true)
 
           /* Typing "ট্রেড লাইসেন্স" would otherwise report eleven searches, one
              per keystroke, and bury the query the reader actually meant under
@@ -207,12 +162,8 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
         }
       } catch {
         if (isActive) {
-          setError(true)
-          setResults([])
-          setIsOpen(true)
+          setResponse({ query: trimmedQuery, status: 'error', results: [] })
         }
-      } finally {
-        if (isActive) setIsLoading(false)
       }
     }, 180)
 
@@ -221,7 +172,7 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
       window.clearTimeout(timeout)
       window.clearTimeout(reportTimeout)
     }
-  }, [query, basePath, isEn])
+  }, [query, retryCount, isEn])
 
   // Keep the arrow-selected option inside the scrolling popover.
   useEffect(() => {
@@ -258,6 +209,13 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
       if (next > results.length - 1) return 0
       return next
     })
+  }
+
+  const retrySearch = () => {
+    setResponse({ query: trimmedQuery, status: 'loading', results: [] })
+    setRetryCount((count) => count + 1)
+    setIsOpen(true)
+    inputRef.current?.focus()
   }
 
   // Focus stays on the input throughout (aria-activedescendant), so the popover
@@ -323,9 +281,17 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
       }}
       onSubmit={(event) => {
         event.preventDefault()
+        if (error) {
+          retrySearch()
+          return
+        }
         const targetIndex = activeIndex >= 0 ? activeIndex : 0
         const target = results[targetIndex]
         if (target) goTo(target.url, { index: targetIndex, isStub: target.isStub })
+        else {
+          setIsOpen(Boolean(trimmedQuery))
+          inputRef.current?.focus()
+        }
       }}
     >
       <input
@@ -338,11 +304,17 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
         aria-expanded={hasListbox}
         aria-controls={hasListbox ? listboxId : undefined}
         aria-autocomplete="list"
-        aria-activedescendant={activeIndex >= 0 ? optionId(activeIndex) : undefined}
+        aria-activedescendant={hasListbox && activeIndex >= 0 ? optionId(activeIndex) : undefined}
         autoComplete="off"
-        onChange={(event) => setQuery(event.target.value)}
+        onChange={(event) => {
+          setQuery(event.target.value)
+          setActiveIndex(-1)
+          setIsOpen(Boolean(event.target.value.trim()))
+        }}
         onKeyDown={handleKeyDown}
         onFocus={() => {
+          // Warm only after search intent. Normal reading downloads no index.
+          void loadPagefind().catch(() => {})
           if (query.trim()) setIsOpen(true)
         }}
       />
@@ -365,6 +337,9 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
           {!isLoading && error && (
             <p className="search-status is-error">
               {isEn ? 'Search is unavailable right now.' : 'সার্চ এখন কাজ করছে না। একটু পরে চেষ্টা করুন।'}
+              <button type="button" className="search-retry" onClick={retrySearch}>
+                {isEn ? 'Try again' : 'আবার চেষ্টা করুন'}
+              </button>
             </p>
           )}
 

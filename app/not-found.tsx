@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import { cleanRoute } from './lib/clean-route'
 
 /**
  * One 404 document serves both trees, so the language cannot be decided at
@@ -15,7 +16,7 @@ export default function NotFound() {
   const [isEn, setIsEn] = useState(false)
 
   useEffect(() => {
-    const path = window.location.pathname.slice(basePath.length) || '/'
+    const path = cleanRoute(window.location.pathname, basePath)
     setIsEn(path === '/en' || path.startsWith('/en/'))
   }, [basePath])
 
@@ -23,7 +24,7 @@ export default function NotFound() {
   const prefix = `${basePath}${isEn ? '/en' : ''}`
 
   return (
-    <div style={{ maxWidth: '36rem', margin: '0 auto', padding: '56px 20px', textAlign: 'center' }}>
+    <div data-deshi-not-found style={{ maxWidth: '36rem', margin: '0 auto', padding: '56px 20px', textAlign: 'center' }}>
       <p className="wiki-kicker">{isEn ? '404' : '৪০৪'}</p>
       <h1 style={{ fontFamily: 'var(--display)' }}>
         {isEn ? 'This page could not be found' : 'পেজটি পাওয়া যায়নি'}

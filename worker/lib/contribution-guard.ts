@@ -7,7 +7,6 @@ import type {
 export type GuardNamespace = CloudflareEnv['CONTRIBUTION_GUARDS']
 export type ContributionR2Bucket = CloudflareEnv['MEDIA_QUARANTINE']
 export type ContributionR2Object = R2Object
-export type ContributionR2Body = R2ObjectBody
 
 export interface ContributionBindings {
   guards: CloudflareEnv['CONTRIBUTION_GUARDS']

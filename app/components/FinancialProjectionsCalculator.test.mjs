@@ -24,7 +24,8 @@ const compiled = ts.transpileModule(source, {
 const calculatorModule = { exports: {} }
 new Function('exports', 'require', 'module', '__filename', '__dirname', compiled)(
   calculatorModule.exports,
-  require,
+  // The calculation tests do not execute browser stylesheets.
+  (specifier) => specifier.endsWith('.css') ? undefined : require(specifier),
   calculatorModule,
   componentPath,
   path.dirname(componentPath)

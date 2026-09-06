@@ -48,6 +48,26 @@ typography:
     fontSize: "1.08rem"
     fontWeight: 600
     lineHeight: 1.25
+  home-display:
+    fontSize: "clamp(2.5rem, 5.2vw, 4.75rem)"
+    fontWeight: 500
+    lineHeight: 1.2
+  home-entry:
+    fontSize: "1.125rem"
+    fontWeight: 500
+    lineHeight: 1.5
+  home-situation:
+    fontSize: "1.0625rem"
+    fontWeight: 500
+    lineHeight: 1.5
+  home-action:
+    fontSize: "0.95rem"
+    fontWeight: 400
+    lineHeight: 1.72
+  home-meta:
+    fontSize: "0.9rem"
+    fontWeight: 400
+    lineHeight: 1.72
   body:
     fontFamily: "'Deshi Sans Bengali', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
     fontSize: "16px"
@@ -336,7 +356,7 @@ mid-grapheme.
 Responsive behavior, by the breakpoints that actually exist:
 
 - **1180px**: the rail narrows to 238px, gutters drop to 32px, social labels collapse to icons,
-  the homepage hero stacks and the path grid halves from four columns to two.
+  and the homepage hero stacks. The homepage path grid halves from four columns to two at 1280px.
 - **1024px / 1023px**: exactly one "on this page" list at every width. The rail owns it above,
   the inline accordion owns it below. The two rules are a pair; move one and the other has to move
   with it.
@@ -344,7 +364,7 @@ Responsive behavior, by the breakpoints that actually exist:
   becomes an off-canvas drawer behind a toggle, scroll clearance rises to 152px, and simple tables
   switch to a fixed layout so the column settles first and the text wraps inside it.
 - **620px / 560px / 520px**: single-column filter panels and footers, tabs scroll horizontally,
-  the brand tagline truncates, the infobox definition rows stop being a two-column grid.
+  the brand tagline truncates; the compact infobox keeps its label/value columns.
 - **420px**: the meta row reserves its exact two-row grid before the client-formatted date arrives,
   so nothing shifts after paint.
 
@@ -366,6 +386,18 @@ twice, so a change to either side has to be made on both.
 Pages print. The header, rail, tabs, footers, breadcrumbs, meta row and table of contents are
 removed, the canvas loses its border and shadow, body drops to 11pt, links become underlined ink,
 and the external-link marker is suppressed.
+
+### Footer
+
+The everyday guide layout sets the footer's alignment and density. It occupies the reading column
+of the page grid, below the canvas, with matching 48px / 32px / 18px gutters on warm paper. A thin
+separator spans the full page grid above the footer, including beneath the sidebar. A short
+project description leads into compact, labeled rows of links: Project, Community, and Help &
+policies. Footer copy uses the available width rather than a prose measure that forces short lines.
+The full disclaimer remains in Terms and About instead of repeating below every page. At 620px
+and below the labels sit above their links; targets are at least 44px high from 860px down.
+Wide collections use the same structure within their 1360px article boundary. The shared page grid
+keeps the footer aligned with its content when the sidebar opens or closes.
 
 ## Elevation & Depth
 
@@ -428,7 +460,9 @@ nothing is lifted. A control should look like it will still be there in five yea
 - **External:** an `↗` marker is appended after any `http` link in an article. Most external links
   here are government portals, and a founder should know before the tab changes. Suppressed in print.
 - **Stub link:** muted ink with a dashed hairline underline offset 3px, plus a pill chip reading
-  "লেখা বাকি". It is deliberately not styled as visited-able.
+  "লেখা বাকি". It is deliberately not styled as visited-able. Markdown links resolve readiness
+  from the generated content index too, including curated lists that link across sections. The
+  status label stays outside the link text and search index; unfinished links carry `nofollow`.
 
 ### Buttons
 
@@ -441,8 +475,8 @@ nothing is lifted. A control should look like it will still be there in five yea
 - **Disabled:** soft hairline, faint ink, weight back to 400, default cursor.
 - **Focus:** a 2px Deep Deshi Green outline at 3px offset, site-wide, on every link, button, input,
   select and summary.
-- **Touch:** important mobile actions are at least 44px; directory controls grow from 36px to 44px
-  below 860px.
+- **Touch:** important mobile actions are at least 44px; directory controls keep that height
+  at every width.
 
 **The No-Saturated-Fill Rule.** A button is never a solid brand-colored slab. Rank is expressed by
 border color, ground tint, weight and the arrow, in that order.
@@ -478,14 +512,25 @@ border color, ground tint, weight and the arrow, in that order.
   focus additionally gets the site focus ring, drawn inset so it closes rather than cutting across
   the adjacent button.
 - **Placeholder:** stated explicitly in Faint Ink at full opacity, never left to the browser.
+- **Filters:** glossary, directory and Startup 50 text fields use normal-weight 1rem text and
+  at least 44px height. Labels stay distinct from the values the reader enters or selects.
 - **Validation:** messages sit beside the control they belong to. Error Red carries text, never a
   fill.
+- **Search:** focusing the field prepares the index; reading a page does not download it. Results
+  belong to the current query only, and late responses cannot reopen a dismissed panel. A failed
+  download offers an inline retry that keeps the query and the reader's place.
 
 ### Navigation
 
-- **Rail:** 0.9rem, sticky at 96px, grouped under muted 0.82rem labels separated by warm hairlines.
-  The active link is Deep Deshi Green at weight 600. Below 860px the rail becomes an off-canvas
-  drawer with a backdrop and its own heavier shadow.
+- **Rail:** 0.9rem, grouped under muted 0.82rem labels separated by warm hairlines.
+  Start links, all topics and resources stay visible. Topic and contact links use native
+  disclosures, with the current section open on arrival. The most specific matching destination
+  takes strong deep-green text. The paper stays unfilled and the text keeps its alignment,
+  with no marker beside it. Underlining appears on hover; weight distinguishes the current
+  location beyond color, and a parent uses `aria-current="location"`.
+  The desktop rail follows the document scroll, with no independent scrollbar or height cap.
+  Below 860px it becomes the existing off-canvas drawer with a backdrop, its own scrolling
+  and its own heavier shadow.
 - **Tabs:** the article/edit pair. The active tab takes a hairline border, a 3px Bangladesh Emerald
   top rule and the canvas ground; whichever view you are in is set in ink and the other stays a
   link.
@@ -495,11 +540,43 @@ border color, ground tint, weight and the arrow, in that order.
 
 ### Infobox
 
-The one encyclopedia-style signature card, and the only place a saturated ground appears: a Deep
-Deshi Green header bar with canvas-white text, a centered 112px mark, a centered name, a centered
-caption between soft hairlines, and a definition list on a 112px label column that collapses to
-104px below 860px and to stacked blocks below 520px. It earns its weight by being singular. Nothing
-else in the system gets a filled header.
+The encyclopedia-style signature card keeps its Deep Deshi Green header and centered canvas-white text.
+Its paper-toned definition list answers three questions: languages, access and how much is written.
+A single hairline frames the box. Written and unwritten guide counts are stated separately
+without turning them into a scoreboard. A 6rem label column stays beside the value on phones.
+It sits beside the homepage introduction on desktop and after the starting
+choices below 1180px, where the facts use three columns until the phone layout stacks them.
+Nothing else in the system gets a filled header.
+
+### Homepage discovery
+
+The homepage is the manual's cover: a larger charcoal masthead, the existing short
+introduction and one framed starting action beside a blue topic link. Its display size ranges
+from 2.5rem to 4.75rem; Bangla keeps its natural tracking. Four starting situations form a joined,
+ruled index with a complete outer border and small line icons. Hover and keyboard focus fill a
+brief green rule across the chosen entry; reduced motion makes the response immediate. There is no entrance animation or
+additional client JavaScript.
+
+The masthead uses weight 500, with size carrying its emphasis. Section headings keep weight 600;
+situation titles use 1.0625rem and topic and portal titles use 1.125rem, all at weight 500 with
+1.5 line height. The situation cards have 16px side padding and a 6px icon gap to give longer
+Bangla headings room. Destination
+cues, fact labels and closed FAQ questions use normal weight. Opening a question gives it medium
+weight and aligns its answer with the question text, within a 72ch reading measure.
+
+Topic browsing uses blue links in paired rows, separated by hairlines, with one direct link to
+the complete topic index. Recent updates pair titles with right-aligned dates when space allows.
+FAQs, official portals and contribution information follow in the same order; the legal note
+sits with the official portals. The contribution action sits beside its explanation on desktop
+and below it on phones. Homepage styles remain scoped to the landing component.
+
+### Section indexes
+
+Finished guides appear first, in their existing editorial groups. A single native disclosure
+below them contains all unwritten topics, grouped by the same source data and still marked as
+unfinished. Empty sections say that the detailed guides have yet to be written. Counts are a
+plain line of available and unwritten items; a redundant total does not need a third badge.
+The generated content index owns availability, so this presentation updates when a guide lands.
 
 ### Glossary
 
@@ -518,7 +595,9 @@ once and then leaves.
 ### Directory
 
 Utilitarian by design. A bordered cool-white filter panel on a data-attribute-keyed grid, a pill
-summary of the result count, and one flat card per entry. Cards rather than a wide table: directory
+summary of the result count, and one flat card per entry. The filter grid responds to the article's
+available width, including the sidebar: one row when roomy, two columns below 820px with search
+across the top, and one column below 480px. Cards rather than a wide table: directory
 values are sentences (coverage areas, rate bands, application steps), a column grid gave each a
 track too narrow to hold a word, and a new field should cost one more labelled line rather than one
 more squeezed column. There is no horizontal scroll at any width.
@@ -567,16 +646,18 @@ The complete list is server-rendered. A small client component only filters the 
 name and sector, so every company and link remains available without JavaScript. At narrow widths,
 the folio becomes a compact masthead and each row stacks in reading order without horizontal scroll.
 
-The company row is the one place on this site sized by its container rather than by the window, and
-the reason is specific: the navigation rail keeps its full width until 860px, so a 900px window
-leaves this list a narrower canvas than an 860px window does. A window-keyed row therefore asked for
-its widest layout exactly where the least room existed and pushed the page sideways by up to 128px
-between 861px and 1019px. The row is stacked by default and layers its columns back on with
-container min-width queries whose thresholds are each that layout's own column minimums plus a
-margin, so a tier is never drawn into less room than it needs and an engine without container
-queries still gets the readable stacked row. Any future change to the rail width or the canvas
-gutters is absorbed by this automatically; reintroducing a window-keyed breakpoint here would not
-be.
+Both `/startup-50` and `/en/startup-50` start with the sidebar hidden. Content is centered within
+a 1360px article boundary, including its gutters, so company rows stay comfortable on large screens.
+The header's Sidebar control shows or hides a docked rail on desktop; it remains reachable when
+opened partway down the list and can scroll without a visible scrollbar. Phones retain the existing
+modal drawer, with focus containment, Escape dismissal and focus return. Search and the language
+switch stay in the header, and the footer follows the same content column and gutters. Other pages keep their usual
+desktop rail; additional collections can opt into this layout.
+
+Company rows respond to their container rather than the window. They stack by default and add
+columns only when their minimum widths and spacing fit. This keeps the list usable when canvas
+gutters or the surrounding layout change, and browsers without container queries retain the
+readable stacked row.
 
 Green is used for structure, rules, hover and focus; blue remains for links. Company marks are
 reviewed before use, stored in R2 through the site's media pipeline and linked to their source in the
@@ -713,6 +794,9 @@ second design system.
 - **Do** keep hash-named build output cached immutably in `public/_headers`. Every navigation here
   is a full document load, so a revalidation round-trip is charged to the reader on every click.
 - **Do** prefer semantic HTML and CSS over client state.
+- **Do** import feature styles from the component that uses them. Keep the shared shell and
+  article styles in `app/globals.css`; editor and dialog styles load with their lazy components.
+  Page-specific MDX widgets use explicit imports so their styles and scripts stay off other pages.
 
 ### Don't:
 

@@ -80,6 +80,9 @@
     "wrangler": "^4.127.0"
   },
   "overrides": {
+    "speech-rule-engine": {
+      "@xmldom/xmldom": "^0.9.12"
+    },
     "postcss": "^8.5.23",
     "dompurify": "^3.4.13",
     "mermaid": "^11.16.1",

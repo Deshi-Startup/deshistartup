@@ -47,9 +47,7 @@ interface RootLayoutProps {
   children?: React.ReactNode
 }
 
-export default async function RootLayout({ children }: RootLayoutProps) {
-  const safeChildren = children || <></>
-
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="bn" dir="ltr" suppressHydrationWarning>
       <body>
@@ -71,7 +69,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
-        <LocalizedLayout>{safeChildren}</LocalizedLayout>
+        <LocalizedLayout>{children}</LocalizedLayout>
       </body>
     </html>
   )

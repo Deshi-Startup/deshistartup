@@ -1,8 +1,6 @@
 'use client'
 
 import React from 'react'
-import { usePathname } from 'next/navigation'
-import { cleanRoute } from '../lib/clean-route'
 
 /**
  * Real, crawlable link between the Bengali and English mirrors. Keep this as a
@@ -10,10 +8,9 @@ import { cleanRoute } from '../lib/clean-route'
  * written into the exported HTML by the postbuild pass, outside Next's client
  * navigation payload.
  */
-export default function LanguageSwitcher() {
-  // Clean spelling, or /en.html reads as the Bengali side and this links to
-  // /en/en.html. See app/lib/clean-route.ts.
-  const pathname = cleanRoute(usePathname())
+export default function LanguageSwitcher({ pathname }: { pathname: string }) {
+  // The shell supplies the same cleaned route it uses for its own chrome,
+  // including the stable synthetic path when a static 404 is being hydrated.
   const isEn = pathname.startsWith('/en/') || pathname === '/en'
   // One 404 document serves every unmatched URL, so the router reports the
   // synthetic `/_not-found` route rather than the address the reader typed.

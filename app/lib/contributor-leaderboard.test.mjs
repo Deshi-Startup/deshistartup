@@ -8,7 +8,6 @@ import {
   mergedPullsUrl,
   monogramForName,
   prepareContributorSnapshot,
-  profileFromSnapshot,
   safePublicUrl,
   validatePublicSnapshot
 } from './contributor-leaderboard.mjs'
@@ -209,13 +208,10 @@ test('rejects private URLs and validates reproducible GitHub pull searches', () 
   assert.equal(mergedPullsUrl('not a repo', 'someone'), null)
 })
 
-test('creates stable locale-aware profile routes and returns null for unknown profiles', () => {
-  const source = snapshot(1)
+test('creates stable locale-aware profile routes and rejects unsafe slugs', () => {
   assert.equal(contributorProfilePath('person-1', 'bn'), '/contributors/person-1')
   assert.equal(contributorProfilePath('person-1', 'en'), '/en/contributors/person-1')
   assert.equal(contributorProfilePath('../escape', 'en'), null)
-  assert.equal(profileFromSnapshot(source, 'person-1').displayName, 'Contributor 1')
-  assert.equal(profileFromSnapshot(source, 'missing'), null)
 })
 
 test('numbers ranked entries but leaves the core team unranked and uncounted', () => {

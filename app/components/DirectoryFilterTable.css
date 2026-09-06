@@ -1,0 +1,206 @@
+/* --------------------------------------------------------------- directory */
+
+.directory-list {
+  container: directory-list / inline-size;
+  margin: 22px 0;
+}
+
+/* Filter count varies by directory category, so the track list is keyed off a
+   data attribute rather than an inline style: an inline grid-template-columns
+   outranks the mobile collapse below and pushes the Reset button off-screen. */
+
+.directory-controls {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.4fr) repeat(3, minmax(150px, 1fr)) auto;
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+  background: var(--canvas-soft);
+  padding: 12px;
+}
+
+.directory-controls[data-filters='1'] {
+  grid-template-columns: minmax(220px, 1.4fr) minmax(150px, 1fr) auto;
+}
+
+.directory-controls[data-filters='2'] {
+  grid-template-columns: minmax(220px, 1.4fr) repeat(2, minmax(150px, 1fr)) auto;
+}
+
+.directory-controls label {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: var(--w-strong);
+}
+
+.directory-controls input,
+.directory-controls select {
+  min-width: 0;
+  max-width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  padding: 6px 9px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.directory-controls input:focus,
+.directory-controls select:focus {
+  outline: 2px solid var(--green-deep);
+  outline-offset: 1px;
+}
+
+.directory-controls input::placeholder {
+  color: var(--faint);
+  opacity: 1;
+}
+
+.directory-controls button {
+  min-width: 0;
+  max-width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  padding: 6px 12px;
+  color: var(--green-deep);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: var(--w-strong);
+  cursor: pointer;
+}
+
+.directory-controls button:hover {
+  border-color: var(--green-deep);
+  background: var(--green-ground);
+}
+
+.directory-list__summary {
+  display: inline-flex;
+  margin-bottom: 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--canvas-soft);
+  padding: 4px 12px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: var(--w-strong);
+}
+
+/* One card per entry instead of a wide table. Directory values are sentences —
+   coverage areas, rate bands, application steps — and a column grid gave each of
+   them a track too narrow to hold a word, so text broke mid-character. Cards
+   also mean a new field costs one more labelled line, not one more squeezed
+   column, and there is no horizontal scroll at any width. */
+
+.directory-cards {
+  display: grid;
+  gap: 12px;
+}
+
+.directory-card {
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  padding: 16px 18px;
+}
+
+.directory-card h2 {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: var(--w-strong);
+}
+
+.directory-card__note {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.directory-card dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px 20px;
+  margin: 14px 0 0;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.directory-card dt {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: var(--w-strong);
+  letter-spacing: 0.02em;
+}
+
+.directory-card dd {
+  margin: 2px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.directory-card__source {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+  margin: 12px 0 0;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  font-size: 0.82rem;
+}
+
+.directory-card__source span {
+  color: var(--muted);
+}
+
+.directory-empty {
+  margin: 0;
+  padding: 22px;
+  color: var(--muted);
+  font-weight: var(--w-strong);
+}
+
+/* Use the article's available width: a visible sidebar leaves less room for
+   filters than the viewport breakpoint suggests. */
+@container directory-list (max-width: 820px) {
+  .directory-controls,
+  .directory-controls[data-filters] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .directory-search {
+    grid-column: 1 / -1;
+  }
+}
+
+@container directory-list (max-width: 480px) {
+  .directory-controls,
+  .directory-controls[data-filters] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .directory-card {
+    padding: 14px;
+  }
+}
+
+/* Preserve the shared article's mobile prose rhythm after this route's CSS loads. */
+@media (max-width: 860px) {
+  .directory-card p,
+  .directory-card li,
+  .directory-card dd,
+  .directory-card blockquote {
+    line-height: 1.78;
+  }
+}

@@ -185,6 +185,10 @@ interface SidebarProps {
 
 function Sidebar({ isEn, pathname, headings, onNavigate, onClose, closeButtonRef, isOpen }: SidebarProps) {
   const nav = isEn ? enNav : bnNav
+  const currentHref = nav.flatMap((group) => group.items)
+    .map(([href]) => href)
+    .filter((href) => href.startsWith('/') && (pathname === href || pathname.startsWith(`${href}/`)))
+    .sort((a, b) => b.length - a.length)[0]
 
   return (
     <aside
@@ -206,28 +210,45 @@ function Sidebar({ isEn, pathname, headings, onNavigate, onClose, closeButtonRef
         </svg>
       </button>
       <nav>
-        {nav.map((group) => (
-          <div className="sidebar-group" key={group.label}>
-            <p>{group.label}</p>
-            {group.items.map(([href, label]) => {
-              const external = !href.startsWith('/')
-              const isActive = !external && pathname === href
-              return (
-                <a
-                  href={localHref(href)}
-                  key={href}
-                  className={isActive ? 'is-active' : undefined}
-                  aria-current={isActive ? 'page' : undefined}
-                  target={external ? '_blank' : undefined}
-                  rel={external ? 'noopener noreferrer' : undefined}
-                  onClick={onNavigate}
-                >
-                  {label}
-                </a>
-              )
-            })}
-          </div>
-        ))}
+        {nav.map((group) => {
+          const renderLink = ([href, label]: [string, string]) => {
+            const external = !href.startsWith('/')
+            const isCurrentPage = !external && pathname === href
+            const isCurrentSection = !isCurrentPage && href === currentHref
+            const isActive = isCurrentPage || isCurrentSection
+            return (
+              <a
+                href={localHref(href)}
+                key={href}
+                className={isActive ? 'is-active' : undefined}
+                aria-current={isCurrentPage ? 'page' : isCurrentSection ? 'location' : undefined}
+                target={external ? '_blank' : undefined}
+                rel={external ? 'noopener noreferrer' : undefined}
+                onClick={onNavigate}
+              >
+                {label}
+              </a>
+            )
+          }
+          const [first, ...rest] = group.items
+          const containsCurrentRoute = rest.some(([href]) =>
+            pathname === href || pathname.startsWith(`${href}/`)
+          )
+          return (
+            <div className="sidebar-group" key={group.label}>
+              <p>{group.label}</p>
+              {group.disclosureLabel ? (
+                <>
+                  {renderLink(first)}
+                  <details className="sidebar-topics" open={containsCurrentRoute}>
+                    <summary>{group.disclosureLabel}</summary>
+                    {rest.map(renderLink)}
+                  </details>
+                </>
+              ) : group.items.map(renderLink)}
+            </div>
+          )
+        })}
 
         {headings.length > 0 && (
           <div className="sidebar-group sidebar-group--toc">
@@ -300,7 +321,22 @@ interface LocalizedLayoutProps {
 }
 
 export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
-  const pathname = cleanRoute(usePathname())
+  const routerPathname = cleanRoute(usePathname())
+  // A static 404 is rendered for /_not-found but served at arbitrary URLs.
+  // Adopt its marker on the first client pass so the router's requested URL
+  // cannot turn it into article chrome and force React to rebuild the page.
+  const [notFoundPath, setNotFoundPath] = useState<string | null>(() =>
+    typeof document !== 'undefined' && document.querySelector('[data-deshi-not-found]')
+      ? '/_not-found'
+      : null
+  )
+  const pathname = notFoundPath || routerPathname
+
+  useEffect(() => {
+    if (!notFoundPath) return
+    const requested = cleanRoute(window.location.pathname, process.env.NEXT_PUBLIC_BASE_PATH || '')
+    setNotFoundPath(requested === '/en' || requested.startsWith('/en/') ? '/en/_not-found' : '/_not-found')
+  }, [notFoundPath])
   const isEn = pathname.startsWith('/en/') || pathname === '/en'
   const isLanding = pathname === '/' || pathname === '/en'
   const isPrivateReview =
@@ -314,8 +350,9 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     pathname.startsWith('/contributors/') ||
     pathname === '/en/contributors' ||
     pathname.startsWith('/en/contributors/')
-  const isStandaloneFeature =
-    isCredits || pathname === '/startup-50' || pathname === '/en/startup-50'
+  // Wide collections start without the rail; readers can show it when needed.
+  const isWidePage = pathname === '/startup-50' || pathname === '/en/startup-50'
+  const isStandaloneFeature = isCredits || isWidePage
   const isContact = pathname === '/contact' || pathname === '/en/contact'
   // One 404 document serves every unmatched URL, so the router reports the
   // synthetic `/_not-found` route. There is no source file behind it: an
@@ -337,6 +374,12 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     !isNotFound &&
     (showContentTabs || showPageActions)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isMobileNavigation, setIsMobileNavigation] = useState(false)
+  const isFullWidth = isWidePage && !isSidebarOpen
+  const isDrawerOpen = isSidebarOpen && isMobileNavigation
+  const sidebarToggleLabel = isEn
+    ? (isSidebarOpen ? 'Hide sidebar' : 'Show sidebar')
+    : (isSidebarOpen ? 'সাইডবার লুকান' : 'সাইডবার দেখান')
   const [headings, setHeadings] = useState<HeadingItem[]>(initialHeadings)
   const [pageTitle, setPageTitle] = useState('')
   const [lastUpdated, setLastUpdated] = useState<string | null>(null)
@@ -555,10 +598,23 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   }
 
   useEffect(() => {
-    if (!isSidebarOpen) return undefined
-
     const mobileQuery = window.matchMedia('(max-width: 860px)')
-    if (!mobileQuery.matches) return undefined
+    const updateNavigationMode = () => {
+      setIsMobileNavigation(mobileQuery.matches)
+      if (!mobileQuery.matches) {
+        if (!isWidePage) setIsSidebarOpen(false)
+        else if (document.activeElement === sidebarCloseRef.current) {
+          window.requestAnimationFrame(() => navToggleRef.current?.focus())
+        }
+      }
+    }
+    updateNavigationMode()
+    mobileQuery.addEventListener('change', updateNavigationMode)
+    return () => mobileQuery.removeEventListener('change', updateNavigationMode)
+  }, [isWidePage])
+
+  useEffect(() => {
+    if (!isDrawerOpen) return undefined
 
     const backgroundElements = [
       document.querySelector('.skip-link'),
@@ -586,7 +642,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
       if (event.key !== 'Tab') return
 
       const focusable = [
-        ...(sidebarRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') || [])
+        ...(sidebarRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), summary') || [])
       ].filter((element) => element.offsetParent !== null)
 
       if (focusable.length === 0) return
@@ -603,12 +659,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
       }
     }
 
-    const handleViewportChange = (event: MediaQueryListEvent) => {
-      if (!event.matches) setIsSidebarOpen(false)
-    }
-
     window.addEventListener('keydown', handleKeyDown)
-    mobileQuery.addEventListener('change', handleViewportChange)
 
     return () => {
       document.body.classList.remove('nav-open')
@@ -618,9 +669,8 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
         element.removeAttribute('aria-hidden')
       })
       window.removeEventListener('keydown', handleKeyDown)
-      mobileQuery.removeEventListener('change', handleViewportChange)
     }
-  }, [isSidebarOpen])
+  }, [isDrawerOpen])
 
   useEffect(() => {
     document.documentElement.lang = isEn ? 'en' : 'bn'
@@ -667,6 +717,10 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
       setLastVerified(verified)
       return
     }
+
+    // Missing dates are legitimate on utility pages and the 404. Only dev
+    // needs the site-wide maps: exported pages already carry their own dates.
+    if (process.env.NODE_ENV === 'production') return
 
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
     let active = true
@@ -740,13 +794,14 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
               <FacebookIcon />
               <span>{isEn ? 'Community' : 'কমিউনিটি'}</span>
             </a>
-            {!isPrivateReview && <LanguageSwitcher />}
+            {!isPrivateReview && <LanguageSwitcher pathname={pathname} />}
             <button
-              className="nav-toggle"
+              className={`nav-toggle${isWidePage ? ' nav-toggle--always' : ''}`}
               type="button"
               ref={navToggleRef}
+              title={isWidePage ? sidebarToggleLabel : undefined}
               aria-label={
-                isSidebarOpen
+                isWidePage ? sidebarToggleLabel : isSidebarOpen
                   ? isEn
                     ? 'Close navigation'
                     : 'মেনু বন্ধ করুন'
@@ -758,17 +813,20 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
               aria-controls="sidebar"
               onClick={() => (isSidebarOpen ? closeSidebar() : setIsSidebarOpen(true))}
             >
-              <span />
-              <span />
-              <span />
+              <span className="nav-toggle__icon" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </span>
+              {isWidePage && <span className="nav-toggle__label">{isEn ? 'Sidebar' : 'সাইডবার'}</span>}
             </button>
           </nav>
         </div>
       </header>
 
-      <div className="page-shell">
+      <div className={`page-shell${isWidePage ? ' page-shell--wide-page' : ''}${isFullWidth ? ' page-shell--full-width' : ''}`}>
         <div
-          className={isSidebarOpen ? 'sidebar-backdrop is-open' : 'sidebar-backdrop'}
+          className={isDrawerOpen ? 'sidebar-backdrop is-open' : 'sidebar-backdrop'}
           aria-hidden="true"
           onClick={() => closeSidebar(true)}
         />
@@ -780,10 +838,10 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             isEn={isEn}
             pathname={pathname}
             headings={isLanding || isPrivateReview ? [] : headings}
-            onNavigate={() => closeSidebar()}
+            onNavigate={() => { if (isMobileNavigation) closeSidebar() }}
             onClose={() => closeSidebar(true)}
             closeButtonRef={sidebarCloseRef}
-            isOpen={isSidebarOpen}
+            isOpen={isDrawerOpen}
           />
         </div>
 
@@ -995,107 +1053,106 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
             </footer>
           )}
         </main>
-      </div>
 
-      <footer className="site-footer">
-        <div>
-          {isEn
-            ? 'Deshi Startup – an open, Bangladesh-specific founder operating manual, written together, free for everyone.'
-            : 'দেশি স্টার্টআপ – বাংলাদেশি ফাউন্ডারদের জন্য উন্মুক্ত, বাস্তব গাইড। সবাই মিলে লেখা, সবার জন্য ফ্রি।'}
-        </div>
-        <nav className="footer-nav" aria-label={isEn ? 'Footer navigation' : 'আরও লিংক'}>
-          <div className="footer-link-group">
-            <p className="footer-link-label" id="footer-project-label">
-              {isEn ? 'Project' : 'প্রজেক্ট'}
-            </p>
-            <ul className="footer-link-list" aria-labelledby="footer-project-label">
-              <li>
-                <a href={localHref(isEn ? '/en/start-here' : '/start-here')}>
-                  {isEn ? 'Start here' : 'শুরু করুন'}
-                </a>
-              </li>
-              <li>
-                <a href={localHref(isEn ? '/en/about' : '/about')}>
-                  {isEn ? 'About & editorial policy' : 'পরিচিতি ও সম্পাদকীয় নীতি'}
-                </a>
-              </li>
-              <li>
-                <a href={localHref(isEn ? '/en/contact' : '/contact')}>
-                  {isEn ? 'Contact us' : 'যোগাযোগ করুন'}
-                </a>
-              </li>
-              <li>
-                <a href={localHref(isEn ? '/en/contribute' : '/contribute')}>
-                  {isEn ? 'How to contribute' : 'কীভাবে অবদান রাখবেন'}
-                </a>
-              </li>
-              <li>
-                <a href={localHref(isEn ? '/en/sitemap' : '/sitemap')}>
-                  {isEn ? 'Sitemap' : 'সাইটম্যাপ'}
-                </a>
-              </li>
-            </ul>
+        <footer className="site-footer">
+          <div className="footer-column">
+            <div className="footer-inner">
+              <p className="footer-intro">
+                {isEn
+                  ? 'Deshi Startup – a free, open-source manual for founders in Bangladesh.'
+                  : 'দেশি স্টার্টআপ – বাংলাদেশের ফাউন্ডারদের জন্য ফ্রি, ওপেন সোর্স গাইড।'}
+              </p>
+              <nav className="footer-nav" aria-label={isEn ? 'Footer navigation' : 'আরও লিংক'}>
+                <div className="footer-link-group">
+                  <p className="footer-link-label" id="footer-project-label">
+                    {isEn ? 'Project' : 'প্রজেক্ট'}
+                  </p>
+                  <ul className="footer-link-list" aria-labelledby="footer-project-label">
+                    <li>
+                      <a href={localHref(isEn ? '/en/start-here' : '/start-here')}>
+                        {isEn ? 'Start here' : 'শুরু করুন'}
+                      </a>
+                    </li>
+                    <li>
+                      <a href={localHref(isEn ? '/en/about' : '/about')}>
+                        {isEn ? 'About & editorial policy' : 'পরিচিতি ও সম্পাদকীয় নীতি'}
+                      </a>
+                    </li>
+                    <li>
+                      <a href={localHref(isEn ? '/en/contact' : '/contact')}>
+                        {isEn ? 'Contact us' : 'যোগাযোগ করুন'}
+                      </a>
+                    </li>
+                    <li>
+                      <a href={localHref(isEn ? '/en/contribute' : '/contribute')}>
+                        {isEn ? 'How to contribute' : 'কীভাবে অবদান রাখবেন'}
+                      </a>
+                    </li>
+                    <li>
+                      <a href={localHref(isEn ? '/en/sitemap' : '/sitemap')}>
+                        {isEn ? 'Sitemap' : 'সাইটম্যাপ'}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div className="footer-link-group">
+                  <p className="footer-link-label" id="footer-community-label">
+                    {isEn ? 'Community' : 'কমিউনিটি'}
+                  </p>
+                  <ul className="footer-link-list" aria-labelledby="footer-community-label">
+                    <li>
+                      <a href={FACEBOOK_GROUP_URL} target="_blank" rel="noopener noreferrer">
+                        {isEn ? 'Join the Facebook community' : 'ফেসবুক কমিউনিটিতে যোগ দিন'}
+                      </a>
+                    </li>
+                    <li>
+                      <a href={FACEBOOK_URL} target="_blank" rel="me noopener noreferrer">
+                        {isEn ? 'Facebook page' : 'ফেসবুক পেজ'}
+                      </a>
+                    </li>
+                    <li>
+                      <a href={LINKEDIN_URL} target="_blank" rel="me noopener noreferrer">LinkedIn</a>
+                    </li>
+                    <li>
+                      <a href={YOUTUBE_URL} target="_blank" rel="me noopener noreferrer">YouTube</a>
+                    </li>
+                    <li>
+                      <a href={REPO_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
+                    </li>
+                    <li>
+                      <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer">
+                        {isEn ? 'Contributor Discord' : 'কন্ট্রিবিউটর ডিসকর্ড'}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div className="footer-link-group">
+                  <p className="footer-link-label" id="footer-help-label">
+                    {isEn ? 'Help & policies' : 'সহায়তা ও নীতি'}
+                  </p>
+                  <ul className="footer-link-list" aria-labelledby="footer-help-label">
+                    <li>
+                      <a href={`${REPO_URL}/issues`} target="_blank" rel="noopener noreferrer">
+                        {isEn ? 'Report a mistake' : 'ফিডব্যাক দিন'}
+                      </a>
+                    </li>
+                    <li>
+                      <a href={localHref(isEn ? '/en/privacy' : '/privacy')}>
+                        {isEn ? 'Privacy' : 'গোপনীয়তা'}
+                      </a>
+                    </li>
+                    <li>
+                      <a href={localHref(isEn ? '/en/terms' : '/terms')}>
+                        {isEn ? 'Terms' : 'ব্যবহারের শর্ত'}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
           </div>
-          <div className="footer-link-group">
-            <p className="footer-link-label" id="footer-community-label">
-              {isEn ? 'Community' : 'কমিউনিটি'}
-            </p>
-            <ul className="footer-link-list" aria-labelledby="footer-community-label">
-              <li>
-                <a href={FACEBOOK_GROUP_URL} target="_blank" rel="noopener noreferrer">
-                  {isEn ? 'Join the Facebook community' : 'ফেসবুক কমিউনিটিতে যোগ দিন'}
-                </a>
-              </li>
-              <li>
-                <a href={FACEBOOK_URL} target="_blank" rel="me noopener noreferrer">
-                  {isEn ? 'Facebook page' : 'ফেসবুক পেজ'}
-                </a>
-              </li>
-              <li>
-                <a href={LINKEDIN_URL} target="_blank" rel="me noopener noreferrer">LinkedIn</a>
-              </li>
-              <li>
-                <a href={YOUTUBE_URL} target="_blank" rel="me noopener noreferrer">YouTube</a>
-              </li>
-              <li>
-                <a href={REPO_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
-              </li>
-              <li>
-                <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer">
-                  {isEn ? 'Contributor Discord' : 'কন্ট্রিবিউটর ডিসকর্ড'}
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer-link-group">
-            <p className="footer-link-label" id="footer-help-label">
-              {isEn ? 'Help & policies' : 'সহায়তা ও নীতি'}
-            </p>
-            <ul className="footer-link-list" aria-labelledby="footer-help-label">
-              <li>
-                <a href={`${REPO_URL}/issues`} target="_blank" rel="noopener noreferrer">
-                  {isEn ? 'Report a mistake' : 'ফিডব্যাক দিন'}
-                </a>
-              </li>
-              <li>
-                <a href={localHref(isEn ? '/en/privacy' : '/privacy')}>
-                  {isEn ? 'Privacy' : 'গোপনীয়তা'}
-                </a>
-              </li>
-              <li>
-                <a href={localHref(isEn ? '/en/terms' : '/terms')}>
-                  {isEn ? 'Terms' : 'ব্যবহারের শর্ত'}
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-        <p className="footer-legal">
-          {isEn
-            ? 'This site is general guidance, not legal or tax advice. Fees, forms and rules change – always confirm with official government sources (RJSC, NBR, Bangladesh Bank) before acting.'
-            : 'এই সাইট সাধারণ গাইড দেয়। আইনি বা কর পরামর্শ নয়। ফি, ফর্ম ও নিয়ম বদলায়। কাজের আগে সরকারি সোর্স (RJSC, NBR, বাংলাদেশ ব্যাংক) থেকে যাচাই করে নিন।'}
-        </p>
-      </footer>
+        </footer>
+      </div>
 
       {authMounted && (
         <AuthModal

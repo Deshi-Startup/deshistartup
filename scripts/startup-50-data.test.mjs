@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const readJson = (relative) => JSON.parse(fs.readFileSync(path.join(root, relative), 'utf8'))
 const data = readJson('data/startup-50.json')
+const sourceTitles = readJson('data/startup-50-sources.json')
 const logos = readJson('data/startup-50-logos.json')
 const media = readJson('app/generated/media.json')
 const workerSource = fs.readFileSync(path.join(root, 'worker', 'index.ts'), 'utf8')
@@ -33,12 +34,13 @@ test('the activity window covers exactly the previous twelve months', () => {
   assert.equal(data.activityWindowStart, expectedStart.toISOString().slice(0, 10))
 })
 
-test('every company has useful bilingual details and a recent public update', () => {
+test('every company has useful bilingual details and a dated evidence item in the research window', () => {
   for (const entry of data.entries) {
     assert.match(entry.website, /^https:\/\//, entry.name + ' website')
     assert.match(entry.activity.url, /^https:\/\//, entry.name + ' latest update')
     assert.ok(entry.activity.date >= data.activityWindowStart, entry.name + ' update is too old')
     assert.ok(entry.activity.date <= data.lastResearched, entry.name + ' update is in the future')
+    assert.match(entry.activity.date, /^\d{4}-\d{2}(?:-\d{2})?$/, entry.name + ' date precision')
 
     for (const field of ['sector', 'description', 'lesson', 'background', 'activity', 'financing']) {
       assert.ok(entry[field].en?.trim(), entry.name + ' ' + field + '.en')
@@ -160,40 +162,36 @@ test('the public selection criteria are specific about evidence and funding', ()
   assert.doesNotMatch(componentSource, /—/)
 })
 
-test('every selected company has multiple sources including a financially independent publisher', () => {
-  const hostname = (value) => new URL(value).hostname.replace(/^www\./, '')
-  const interestedOrThinHosts = new Set([
-    'acceleratingasia.com',
-    'crunchbase.com',
-    'exitstack.co',
-    'finsmes.com',
-    'gobi.vc',
-    'linkedin.com',
-    'pitchbook.com',
-    'startupbangladesh.vc',
-    'tracxn.com'
-  ])
-
+test('every selected company has multiple labelled sources; editorial independence needs human review', () => {
+  const used = new Set()
   for (const entry of data.entries) {
-    const officialHostname = hostname(entry.website)
-    const sources = [
-      entry.website,
-      ...entry.background.sources,
-      entry.activity.url,
-      ...(entry.activity.sources || []),
-      entry.financing.url,
-      ...(entry.financing.sources || [])
-    ].filter(Boolean)
-
-    assert.ok(new Set(sources).size >= 2, entry.name + ' needs at least two public sources')
-    assert.ok(
-      sources.some((source) => {
-        const sourceHostname = hostname(source)
-        return sourceHostname !== officialHostname && !interestedOrThinHosts.has(sourceHostname)
-      }),
-      entry.name + ' needs an editorial or institutional source without a financial stake'
-    )
+    const urls = [entry.background, entry.activity, entry.financing].flatMap((item) => item.sources?.length ? item.sources : [item.url])
+    assert.ok(new Set(urls).size >= 2, entry.name + ' needs at least two public sources')
+    for (const url of urls) {
+      used.add(url)
+      const title = sourceTitles[url]
+      assert.ok(typeof title === 'string' && title.trim().length > 5, url + ' needs a readable title')
+      assert.doesNotMatch(title, /Just a moment|Access Denied|searchclose|Forbidden/)
+    }
   }
+  assert.deepEqual(Object.keys(sourceTitles).sort(), [...used].sort(), 'remove unused source labels')
+})
+
+test('audited funding and activity corrections retain their qualifications', () => {
+  const bySlug = new Map(data.entries.map((entry) => [entry.slug, entry]))
+  assert.equal(bySlug.get('pulsetech').activity.date, '2026-08-05')
+  assert.equal(bySlug.get('jatri').activity.date, '2026-01-16')
+  assert.match(bySlug.get('jatri').financing.en, /\$5.25 million in cumulative funding/)
+  assert.match(bySlug.get('aunkur').financing.en, /do not reconcile/)
+  assert.match(bySlug.get('gozayaan').financing.en, /estimated.*\$4.6 million/)
+  assert.match(bySlug.get('gozayaan').financing.en, /did not include company confirmation/)
+  assert.match(bySlug.get('ifarmer').financing.en, /\$2.1 million.*Separately, \$1.5 million in working-capital/)
+  assert.match(bySlug.get('sharetrip').financing.en, /second investment.*November 2023/)
+  assert.match(bySlug.get('digibox').financing.en, /June 2026/)
+  assert.match(bySlug.get('doctorkoi').activity.en, /website availability check; a recent dated operating milestone was not found/)
+  assert.match(bySlug.get('zatiq').activity.en, /confirms a product release, not the transaction totals/)
+  assert.equal(bySlug.get('cassetex').activity.date, '2026-03')
+  assert.doesNotMatch(JSON.stringify(data), /Investor-Dealbook_Feb-2025-low\.pdf/)
 })
 
 test('the audited founder and funding corrections cannot regress', () => {

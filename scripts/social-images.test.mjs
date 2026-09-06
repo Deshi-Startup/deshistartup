@@ -34,7 +34,8 @@ test('Startup 50 social copy and logical paths are explicit for both locales', (
   assert.deepEqual(Object.keys(definition.locales).sort(), ['bn', 'en'])
   assert.equal(definition.locales.en.src, '/media/og/en/startup-50.png')
   assert.equal(definition.locales.bn.src, '/media/og/bn/startup-50.png')
-  assert.equal(definition.locales.en.tagline.join(' '), 'Top 50 Bangladeshi startups to watch in 2026.')
+  assert.equal(definition.locales.en.tagline.join(' '), '50 Bangladeshi startups to watch in 2026.')
+  assert.doesNotMatch(definition.locales.en.alt, /\btop\s+50\b|\branked\b/i)
   assert.equal(definition.locales.bn.tagline.join(' '), '২০২৬ সালে নজরে রাখার মতো ৫০টি বাংলাদেশি স্টার্টআপ।')
 })
 

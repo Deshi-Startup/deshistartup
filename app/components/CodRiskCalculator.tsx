@@ -1,5 +1,7 @@
 'use client'
 
+import './Calculator.css'
+
 import React, { useState } from 'react'
 
 interface CodRiskCalculatorProps {

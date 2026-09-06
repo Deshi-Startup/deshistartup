@@ -1,4 +1,5 @@
 import React from 'react'
+import './WikiLanding.css'
 import contentIndex from '../generated/content-index.json'
 
 type RecentPage = [route: string, title: string, date: string]
@@ -19,19 +20,13 @@ function localHref(href: string) {
 }
 
 interface TranslationStrings {
-  kicker: string
   title: string
   subtitle: string
-  pill: string
-  lead: React.ReactNode
-  lead2: string
   start: [string, string][]
   noticeLabel: string
   notice: string
   infoboxTitle: string
-  infoboxName: string
-  infoboxTagline: string
-  infobox: (written: number, stubs: number) => [string, string][]
+  infobox: (written: number, stubs: number) => [string, React.ReactNode][]
   stageTitle: string
   stageSub: string
   stages: [string, string, string, string][]
@@ -53,59 +48,49 @@ interface TranslationStrings {
 }
 
 const bn: TranslationStrings = {
-  kicker: 'বাংলাদেশে স্টার্টআপ গড়ার উন্মুক্ত গাইড',
   title: 'দেশি স্টার্টআপ',
   subtitle:
-    'আইডিয়া থেকে প্রথম কাস্টমার, ট্রেড লাইসেন্স থেকে পেমেন্ট, ফান্ডিং থেকে স্কেল। জানুন ধাপে ধাপে, বাংলায়।',
-  pill: 'বাংলা',
-  lead: (
-    <>
-      মাথায় একটা স্টার্টআপ আইডিয়া আছে, কিন্তু বুঝতে পারছেন না আগে কাস্টমার খুঁজবেন, প্রোডাক্ট বানাবেন,
-      ট্রেড লাইসেন্স করবেন, নাকি কোম্পানি খুলবেন? “এখন আমি কী করব?” বা "এখন আমার কী করা উচিত?"–
-      এই প্রশ্নের উত্তরের খোঁজেই দেশি স্টার্টআপের জন্ম।
-    </>
-  ),
-  lead2:
-    'বাংলাদেশের বাস্তবতা অন্য দেশের চেয়ে আলাদা। কাস্টমারের ভরসা তৈরি করা, ক্যাশ অন ডেলিভারি সামলানো, ফেসবুক পেজ বা ইনবক্সের অর্ডার গুছিয়ে রাখা আর সরকারি কাগজপত্র বোঝা: এসব কাজ বাংলাদেশের বাজার ও নিয়ম মাথায় রেখেই করতে হয়। তাই দেশি স্টার্টআপে আমরা বিদেশি পরামর্শ সরাসরি কপি না করে বাংলাদেশের প্রেক্ষাপটে কোন কাজ কীভাবে করবেন, সেটা সহজ করে বলি।',
+    'বাংলাদেশে স্টার্টআপ গড়ার ফ্রি, উন্মুক্ত গাইড। আইডিয়া থেকে প্রথম কাস্টমার, ট্রেড লাইসেন্স থেকে পেমেন্ট, ফান্ডিং থেকে স্কেল, আপনার পরের ধাপ খুঁজে নিন।',
   start: [
     ['শুরুটা হোক এখান থেকে', '/start-here'],
-    ['সাজানো রোডম্যাপগুলো দেখুন', '/roadmap']
+    ['টপিক ধরে খুঁজুন', '#guide-scope']
   ],
   noticeLabel: 'জেনে রাখুন',
   notice:
     'ভ্যাট, ট্যাক্স, আইন, ব্যাংক বা লাইসেন্সিং সম্পর্কিত তথ্যগুলো শুধুই আপনাকে ধারণা দেবার জন্য। এগুলো কোনো অবস্থাতেই আইনি বা করসংক্রান্ত পরামর্শ নয়। সময়ের সাথে ফি, আইনি কাঠামো বা প্রক্রিয়ায় পরিবর্তন স্বাভাবিক, তাই দয়া করে সিদ্ধান্ত গ্রহণের পূর্বে অফিশিয়াল সোর্সে নিশ্চিত হয়ে একজন বিজনেস বা আইনি পরামর্শদাতার পরামর্শ গ্রহণ করুন।',
   infoboxTitle: 'এক নজরে',
-  infoboxName: 'দেশি স্টার্টআপ',
-  infoboxTagline: 'বাংলাদেশে স্টার্টআপ গড়ার উন্মুক্ত গাইড',
   infobox: (written, stubs) => [
-    ['যাদের জন্য', 'উঠতি উদ্যোক্তা, শিক্ষার্থী, নারী উদ্যোক্তা, স্টার্টআপ টিম, প্রবাসী উদ্যোক্তা'],
-    ['যা পাবেন', 'আইডিয়া যাচাই, রেজিস্ট্রেশন, পেমেন্ট, বিক্রি, নিয়োগ, ফান্ডিং ও সংশ্লিষ্ট জ্ঞান'],
     ['ভাষা', 'বাংলা ও ইংরেজি'],
     ['মূল্য', 'সম্পূর্ণ ফ্রি ও ওপেনসোর্স'],
-    ['গাইড', `${bengaliDigits(written)}টি লেখা হয়েছে · ${bengaliDigits(stubs)}টি লেখার অপেক্ষায়`]
+    ['গাইড', (
+      <React.Fragment key="guides">
+        <span className="wiki-infobox-written"><b>{bengaliDigits(written)}</b>টি লেখা হয়েছে</span>
+        <span className="wiki-infobox-pending">{bengaliDigits(stubs)}টি লেখার অপেক্ষায়</span>
+      </React.Fragment>
+    )]
   ],
   stageTitle: 'আপনি এখন কোন অবস্থায় আছেন?',
   stageSub:
-    'আপনার লক্ষ্য ও বর্তমান অবস্থান বুঝে রোডম্যাপ ধরে আগান, অথবা ওপরের সার্চ বক্সে সার্চ করুন।',
+    'যেখানে আছেন, সেখান থেকে শুরু করুন।',
   stages: [
     ['আমি একদম নতুন', 'শুরুর পুরো পথটা আগে এক নজরে বুঝে নিন। কী আগে, কী পরে।', 'শুরু করুন', '/start-here'],
-    ['আমার একটা আইডিয়া আছে', 'বিল্ড করবার আগে সমস্যার প্রকৃত চিত্র সম্পর্কে জানুন।', 'আইডিয়া যাচাই করুন', '/validation'],
-    ['স্টার্টআপ চালু করতে চাই', 'ট্রেড লাইসেন্স, কোম্পানি, TIN, ভ্যাট, ব্যাংকিং প্রসেস - ধাপে ধাপে জানুন।', 'প্রসেসগুলো জেনে নিন', '/legal-roadmap'],
-    ['কাস্টমার আর বিক্রি চাই', 'ফেসবুক, ম্যাসেঞ্জার, হোয়াটসঅ্যাপ, রেফারাল – প্রথম ১০০ কাস্টমার অর্জনের পথ।', 'আরো জানুন', '/customers']
+    ['আমার একটা আইডিয়া আছে', 'প্রোডাক্ট বানানোর আগে কাস্টমারের সমস্যাটা বুঝে নিন।', 'আইডিয়া যাচাই করুন', '/validation'],
+    ['স্টার্টআপ চালু করতে চাই', 'কোন কাগজ কখন লাগবে, ধাপে ধাপে জানুন।', 'আইনি রোডম্যাপ দেখুন', '/legal-roadmap'],
+    ['কাস্টমার আর বিক্রি চাই', 'প্রথম কাস্টমার খুঁজুন, বিক্রি ও ভরসা তৈরির উপায় জানুন।', 'বিক্রির গাইড পড়ুন', '/customers']
   ],
   topicTitle: 'টপিক ধরে খুঁজুন',
-  topicSub: 'যে কাজটা এখন করতে চাইছেন, সেই বিষয়ের গাইডে ঢুকে পড়ুন। প্রতিটি বিভাগের পেজে সেই বিষয়ের সব গাইডের তালিকা আছে।',
+  topicSub: 'আপনার এখনকার কাজের জন্য গাইড খুঁজে নিন।',
   topics: [
     ['আইডিয়া ও মার্কেট রিসার্চ', 'সমস্যা খোঁজা · মার্কেট আন্ডারস্ট্যান্ডিং · ডেটার সোর্স · কম্পিটিটরস্‌', '/ideas'],
     ['আইডিয়া ভ্যালিডেশন', 'কাস্টমারের সঙ্গে আলাপ · চাহিদার পরীক্ষা · MVP', '/validation'],
     ['আইন, কর ও রেজিস্ট্রেশন', 'ট্রেড লাইসেন্স · কোম্পানি · RJSC · e-TIN · ভ্যাট/BIN', '/legal-roadmap'],
-    ['পেমেন্ট ও অপারেশন', 'বিকাশ/নগদ · গেটওয়ে · ক্যাশ অন ডেলিভারি · কুরিয়ার · রিফান্ড', '/payments'],
+    ['পেমেন্ট', 'ব্যাংক, বিকাশ/নগদ, গেটওয়ে ও রিফান্ড', '/payments'],
     ['কাস্টমার ও সেলস', 'ফেসবুক কমার্স · মেসেঞ্জার/হোয়াটসঅ্যাপ · B2B বিক্রি · প্রথম ১০০ কাস্টমার', '/customers'],
-    ['টিম ও উদ্যোক্তার জীবন', 'কো-ফাউন্ডার · প্রথম নিয়োগ · পারিবারিক চাপ · বার্নআউট', '/founder-life'],
+    ['ফাউন্ডার লাইফ', 'পরিবার, কাজের চাপ ও নিজের যত্ন', '/founder-life'],
     ['ফান্ডিং ও স্কেলিং', 'গ্র্যান্ট · অ্যাঞ্জেল · ভিসি · পিচ ডেক · সরকারি সুবিধা', '/funding'],
     ['টেমপ্লেট ও টুলস', 'চেকলিস্ট · স্ক্রিপ্ট · ক্যালকুলেটর · ট্র্যাকার', '/tools'],
     ['ডিরেক্টরি', 'ইনভেস্টর · অ্যাক্সেলারেটর · প্রোগ্রাম · ইকোসিস্টেম', '/directory'],
-    ['সব বিষয়', 'রেজিস্ট্রেশন থেকে বিষয়ভিত্তিক গাইডলাইন – এক পেজে', '/guides']
+    ['মেট্রিকস ও হিসাব', 'ইউনিট ইকোনমিকস, ক্যাশ ফ্লো ও রানওয়ে', '/metrics']
   ],
   faqTitle: 'সচরাচর জিজ্ঞাসা',
   faqSub: 'কিছু খুবই কমন প্রশ্ন ও উত্তর, যা প্রাথমিক সিদ্ধান্ত নিতে কাজে লাগবে।',
@@ -139,59 +124,49 @@ const bn: TranslationStrings = {
 }
 
 const en: TranslationStrings = {
-  kicker: 'The free, open-source manual for building startups in Bangladesh',
   title: 'Deshi Startup',
   subtitle:
-    'Step-by-step guidance in plain language – from idea to first customer, trade license to payments, funding to scale.',
-  pill: 'English',
-  lead: (
-    <>
-      You have a startup idea, but can&apos;t tell what comes first – finding customers, building the
-      product, getting a trade license, or opening a company? <strong>Deshi Startup</strong> organizes
-      plain answers to that “what do I do now?” question – actionable work, not motivational stories.
-    </>
-  ),
-  lead2:
-    'Bangladesh works differently: customer trust takes time, cash on delivery still matters, Facebook/Messenger are major sales channels, and government paperwork needs care. So this site doesn\'t copy foreign advice; it explains how things actually work in Bangladesh.',
+    'A free, open-source guide to building a startup in Bangladesh. From idea to first customer, trade license to payments, and funding to scale, find your next step.',
   start: [
     ['Start here', '/en/start-here'],
-    ['See the roadmap', '/en/roadmap']
+    ['Browse by topic', '#guide-scope']
   ],
   noticeLabel: 'Please note',
   notice:
     'Articles about law, tax, VAT, banking or licensing help you decide, but they are not legal or tax advice. Fees, forms and processes change; confirm with official sources and, where needed, a chartered accountant or lawyer before acting.',
   infoboxTitle: 'At a glance',
-  infoboxName: 'Deshi Startup',
-  infoboxTagline: 'The free, open-source manual for building startups in Bangladesh',
   infobox: (written, stubs) => [
-    ['For', 'New founders, women founders, student founders, startup teams and diaspora founders'],
-    ['Covers', 'Idea validation, registration, payments, sales, hiring, funding'],
     ['Language', 'Bangla and English'],
     ['Price', 'Completely free; open source'],
-    ['Guides', `${written} written · ${stubs} waiting for writers`]
+    ['Guides', (
+      <React.Fragment key="guides">
+        <span className="wiki-infobox-written"><b>{written}</b> written</span>
+        <span className="wiki-infobox-pending">{stubs} waiting for writers</span>
+      </React.Fragment>
+    )]
   ],
   stageTitle: 'Where are you right now?',
   stageSub:
-    'Nobody starts from the same place. Some are at the idea stage, some already run a Facebook page, some are stuck on registration. Pick the card that matches your situation, or type your question in the search above.',
+    'Pick the situation that matches yours.',
   stages: [
     ['I\'m completely new', 'See the whole journey first – what comes first, what can wait.', 'Start here', '/en/start-here'],
-    ['I have an idea', 'Before building, check that people feel the problem strongly enough to pay for a solution.', 'Validate your idea', '/en/validation'],
-    ['I want to launch', 'Trade license, company, TIN, VAT, bank – which paper when, step by step.', 'See the legal path', '/en/legal-roadmap'],
-    ['I need customers', 'Facebook, Messenger, WhatsApp, referrals – real paths to your first 100 customers.', 'Start selling', '/en/customers']
+    ['I have an idea', 'Understand the customer and test demand before you build.', 'Validate your idea', '/en/validation'],
+    ['I want to launch', 'Find out which paperwork you need, and when.', 'See the legal path', '/en/legal-roadmap'],
+    ['I need customers', 'Find your first customers and build trust in your business.', 'Start selling', '/en/customers']
   ],
   topicTitle: 'Browse by topic',
-  topicSub: 'Jump into the guide for the job you\'re doing right now. Every section page lists all of its guides.',
+  topicSub: 'Find a guide for the work in front of you.',
   topics: [
     ['Ideas & market research', 'Finding problems · market research · data sources · competitors', '/en/ideas'],
     ['Idea validation', 'Customer interviews · demand tests · MVPs', '/en/validation'],
     ['Legal, tax & registration', 'Trade license · company · RJSC · e-TIN · VAT/BIN', '/en/legal-roadmap'],
-    ['Payments & operations', 'bKash/Nagad · gateways · cash on delivery · couriers · refunds', '/en/payments'],
+    ['Payments', 'Banking, bKash/Nagad, gateways and refunds', '/en/payments'],
     ['Customers & sales', 'Facebook commerce · Messenger/WhatsApp · B2B sales · first 100 customers', '/en/customers'],
-    ['Team & founder life', 'Co-founders · first hires · family pressure · burnout', '/en/founder-life'],
+    ['Founder life', 'Family, work pressure and looking after yourself', '/en/founder-life'],
     ['Funding & scaling', 'Grants · angels · VC · pitch decks · government support', '/en/funding'],
     ['Templates & tools', 'Checklists · scripts · calculators · trackers', '/en/tools'],
     ['Directory', 'Investors · accelerators · programs · ecosystem', '/en/directory'],
-    ['All topics', 'Every topic hub on one page – registration to sector playbooks', '/en/guides']
+    ['Metrics & finances', 'Unit economics, cash flow and runway', '/en/metrics']
   ],
   faqTitle: 'Common beginner questions',
   faqSub: 'Everything feels urgent at the start, but not everything happens on day one – these answers help with the first decisions.',
@@ -228,6 +203,50 @@ interface WikiLandingProps {
   locale?: 'bn' | 'en'
 }
 
+function PathIcon({ href }: { href: string }) {
+  const icons: Record<string, React.ReactNode> = {
+    '/start-here': <path d="M12 6v15m0-15C9 4 6 3 3 3v15c3 0 6 1 9 3 3-2 6-3 9-3V3c-3 0-6 1-9 3Z" />,
+    '/validation': (
+      <>
+        <path d="M9 18h6m-5 3h4M8.5 14.5a6 6 0 1 1 7 0c-.9.7-1.5 1.8-1.5 3.5h-4c0-1.7-.6-2.8-1.5-3.5Z" />
+        <path d="m10 10 2 2 2-2m-2 2v5" />
+      </>
+    ),
+    '/legal-roadmap': (
+      <>
+        <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6Zm0 0v6h6" />
+        <path d="m8 15 3 3 5-6" />
+      </>
+    ),
+    '/customers': (
+      <>
+        <circle cx="9" cy="8" r="3" />
+        <path d="M3 21v-2a6 6 0 0 1 12 0v2m1-16a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 4v2" />
+      </>
+    )
+  }
+  const icon = icons[href.replace(/^\/en(?=\/)/, '')]
+  if (!icon) return null
+
+  return (
+    <svg
+      className="wiki-path-icon"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      {icon}
+    </svg>
+  )
+}
+
 export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
   const isEn = locale === 'en'
   const t = isEn ? en : bn
@@ -242,20 +261,13 @@ export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
     })
 
   return (
-    <div className="wiki-landing">
+    <div className="wiki-landing" lang={locale}>
       <section className="wiki-hero" aria-labelledby="wiki-title">
         <div className="wiki-hero__main">
           <div className="wiki-title-row">
-            <div>
-              <p className="wiki-kicker">{t.kicker}</p>
-              <h1 id="wiki-title">{t.title}</h1>
-              <p className="wiki-subtitle">{t.subtitle}</p>
-            </div>
-            <span className="wiki-language-pill">{t.pill}</span>
+            <h1 id="wiki-title">{t.title}</h1>
+            <p className="wiki-subtitle">{t.subtitle}</p>
           </div>
-
-          <p className="wiki-lead">{t.lead}</p>
-          <p>{t.lead2}</p>
 
           <div className="wiki-start">
             {t.start.map(([label, href], index) => (
@@ -268,18 +280,27 @@ export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
               </a>
             ))}
           </div>
-
-          <aside className="wiki-notice" role="note">
-            <strong>{t.noticeLabel}</strong>
-            <p>{t.notice}</p>
-          </aside>
         </div>
+
+        <section id="learning-paths" className="wiki-section" aria-labelledby="learning-paths-title">
+          <h2 id="learning-paths-title">{t.stageTitle}</h2>
+          <p>{t.stageSub}</p>
+          <div className="wiki-path-grid">
+            {t.stages.map(([title, body, cta, href]) => (
+              <a className="wiki-path-card" href={localHref(href)} key={title}>
+                <span className="wiki-path-card__heading">
+                  <PathIcon href={href} />
+                  <strong>{title}</strong>
+                </span>
+                <span>{body}</span>
+                <span className="wiki-path-card__go">{cta}</span>
+              </a>
+            ))}
+          </div>
+        </section>
 
         <aside className="wiki-infobox" aria-label={isEn ? 'Deshi Startup infobox' : 'দেশি স্টার্টআপ তথ্যছক'}>
           <p className="wiki-infobox-title">{t.infoboxTitle}</p>
-          <img src={localHref('/deshi-mark.webp')} alt="" aria-hidden="true" width="112" height="112" />
-          <strong>{t.infoboxName}</strong>
-          <p>{t.infoboxTagline}</p>
           <dl>
             {t.infobox(written, stubs).map(([dt, dd]) => (
               <div key={dt}>
@@ -291,22 +312,13 @@ export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
         </aside>
       </section>
 
-      <section id="learning-paths" className="wiki-section">
-        <h2>{t.stageTitle}</h2>
-        <p>{t.stageSub}</p>
-        <div className="wiki-path-grid">
-          {t.stages.map(([title, body, cta, href]) => (
-            <a className="wiki-path-card" href={localHref(href)} key={title}>
-              <strong>{title}</strong>
-              <span>{body}</span>
-              <span className="wiki-path-card__go">{cta}</span>
-            </a>
-          ))}
-        </div>
-      </section>
-
       <section id="guide-scope" className="wiki-section">
-        <h2>{t.topicTitle}</h2>
+        <div className="wiki-section-heading">
+          <h2>{t.topicTitle}</h2>
+          <a href={localHref(isEn ? '/en/guides' : '/guides')}>
+            {isEn ? 'All topics' : 'সব বিষয় দেখুন'}<span aria-hidden="true"> →</span>
+          </a>
+        </div>
         <p>{t.topicSub}</p>
         <div className="wiki-scope-grid">
           {t.topics.map(([title, body, href]) => (
@@ -317,6 +329,20 @@ export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
           ))}
         </div>
       </section>
+
+      {recent.length > 0 && (
+        <section className="wiki-section" aria-labelledby="recent-title">
+          <h2 id="recent-title">{t.recentTitle}</h2>
+          <ul className="recent-list">
+            {recent.map(([route, title, date]) => (
+              <li key={route}>
+                <a href={localHref(route)}>{title}</a>
+                <time dateTime={date}>{formatDate(date)}</time>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <section id="beginner-questions" className="wiki-section">
         <h2>{t.faqTitle}</h2>
@@ -334,6 +360,10 @@ export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
       <section className="wiki-section">
         <h2>{t.govTitle}</h2>
         <p>{t.govSub}</p>
+        <aside className="wiki-notice" role="note">
+          <strong>{t.noticeLabel}</strong>
+          <p>{t.notice}</p>
+        </aside>
         <div className="wiki-source-list">
           {t.gov.map(([label, body, href]) => (
             <article key={href}>
@@ -363,20 +393,6 @@ export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
           </div>
         </div>
       </section>
-
-      {recent.length > 0 && (
-        <section className="wiki-section" aria-labelledby="recent-title">
-          <h2 id="recent-title">{t.recentTitle}</h2>
-          <ul className="recent-list">
-            {recent.map(([route, title, date]) => (
-              <li key={route}>
-                <a href={localHref(route)}>{title}</a>
-                <time dateTime={date}>{formatDate(date)}</time>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
     </div>
   )
 }
