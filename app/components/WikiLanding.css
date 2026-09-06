@@ -42,7 +42,7 @@
   padding-bottom: 0;
   color: var(--ink);
   font-size: clamp(2.5rem, 5.2vw, 4.75rem);
-  font-weight: var(--w-strong);
+  font-weight: var(--w-display);
   line-height: 1.2;
 }
 
@@ -87,7 +87,7 @@
   background: var(--green-ground);
   padding: 10px 18px;
   color: var(--green-deep);
-  font-weight: var(--w-strong);
+  font-weight: 500;
   transition: background-color var(--home-response);
 }
 
@@ -132,6 +132,7 @@
   display: block;
   margin-bottom: 4px;
   font-size: 1rem;
+  font-weight: 500;
 }
 
 .wiki-notice p {
@@ -153,7 +154,7 @@
   text-align: center;
   font-family: var(--sans);
   font-size: 1.08rem;
-  font-weight: var(--w-strong);
+  font-weight: 500;
 }
 
 .wiki-infobox dl {
@@ -162,7 +163,7 @@
 
 .wiki-infobox dl div {
   display: grid;
-  grid-template-columns: 88px minmax(0, 1fr);
+  grid-template-columns: 6rem minmax(0, 1fr);
   border-bottom: 1px solid var(--line-warm);
 }
 
@@ -178,7 +179,7 @@
 
 .wiki-infobox dt {
   color: var(--muted);
-  font-weight: var(--w-strong);
+  font-weight: 400;
 }
 
 .wiki-infobox-written,
@@ -191,7 +192,7 @@
 }
 
 .wiki-infobox-written b {
-  font-weight: var(--w-strong);
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
 
@@ -355,7 +356,7 @@
   display: flex;
   flex-direction: column;
   border-inline-end: 1px solid var(--line);
-  padding: 22px 20px;
+  padding: 22px 16px;
   color: var(--ink);
   transition: background-color var(--home-response);
 }
@@ -377,7 +378,7 @@
 .wiki-path-card__heading {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 6px;
   margin-bottom: 12px;
 }
 
@@ -389,7 +390,8 @@
 
 .wiki-path-card strong {
   display: block;
-  font-size: 1.05rem;
+  font-size: 1.0625rem;
+  font-weight: 500;
   line-height: 1.5;
   color: var(--green-deep);
 }
@@ -413,8 +415,8 @@
   margin-top: auto;
   padding-top: 18px;
   color: var(--green-deep);
-  font-size: 0.9rem;
-  font-weight: var(--w-strong);
+  font-size: 0.95rem;
+  font-weight: 400;
 }
 
 .wiki-path-card__go::after {
@@ -430,6 +432,9 @@
 .wiki-scope-card h3,
 .wiki-source-list h3 {
   margin-top: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .wiki-scope-card h3 {
@@ -463,7 +468,7 @@
   align-items: baseline;
   gap: 10px;
   padding: 13px 18px;
-  font-weight: var(--w-strong);
+  font-weight: 400;
   cursor: pointer;
   list-style: none;
 }
@@ -492,14 +497,19 @@
 .home-faq details[open] > summary {
   background: var(--green-ground);
   color: var(--green-deep);
+  font-weight: 500;
+}
+
+.home-faq details[open] {
+  background: var(--green-ground);
 }
 
 .home-faq details p {
   margin: 0;
-  padding: 0 18px 16px;
+  max-width: 72ch;
+  padding: 0 18px 16px calc(18px + 0.8em + 10px);
   color: var(--muted);
-  font-size: 0.95rem;
-  background: var(--green-ground);
+  font-size: 1rem;
 }
 
 /* contribution section (wiki styling) */
@@ -541,7 +551,7 @@
 
 .contrib-section .contrib-stats b {
   color: var(--green-deep);
-  font-weight: var(--w-strong);
+  font-weight: 500;
 }
 
 .contrib-section .contrib-row {
@@ -590,6 +600,21 @@
 
 /* ------------------------------------------------------------ responsive */
 
+/* Two roomy choices per row until the desktop canvas can fit all four. */
+@media (max-width: 1280px) {
+  .wiki-path-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wiki-path-card:nth-child(even) {
+    border-inline-end: 0;
+  }
+
+  .wiki-path-card:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+}
+
 @media (max-width: 1180px) {
 
   .wiki-hero {
@@ -622,18 +647,6 @@
 
   .wiki-infobox dd {
     padding-top: 4px;
-  }
-
-  .wiki-path-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .wiki-path-card:nth-child(even) {
-    border-inline-end: 0;
-  }
-
-  .wiki-path-card:nth-child(n + 3) {
-    border-top: 1px solid var(--line);
   }
 }
 
@@ -709,7 +722,7 @@
 
   .wiki-infobox dl div {
     display: grid;
-    grid-template-columns: 88px minmax(0, 1fr);
+    grid-template-columns: 6rem minmax(0, 1fr);
     border-inline-end: 0;
     border-bottom: 1px solid var(--line-warm);
   }
@@ -717,10 +730,6 @@
   .wiki-infobox dt,
   .wiki-infobox dd {
     padding: 12px 14px;
-  }
-
-  .home-faq details p {
-    font-size: 1rem;
   }
 }
 

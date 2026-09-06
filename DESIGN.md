@@ -48,6 +48,26 @@ typography:
     fontSize: "1.08rem"
     fontWeight: 600
     lineHeight: 1.25
+  home-display:
+    fontSize: "clamp(2.5rem, 5.2vw, 4.75rem)"
+    fontWeight: 500
+    lineHeight: 1.2
+  home-entry:
+    fontSize: "1.125rem"
+    fontWeight: 500
+    lineHeight: 1.5
+  home-situation:
+    fontSize: "1.0625rem"
+    fontWeight: 500
+    lineHeight: 1.5
+  home-action:
+    fontSize: "0.95rem"
+    fontWeight: 400
+    lineHeight: 1.72
+  home-meta:
+    fontSize: "0.9rem"
+    fontWeight: 400
+    lineHeight: 1.72
   body:
     fontFamily: "'Deshi Sans Bengali', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
     fontSize: "16px"
@@ -336,7 +356,7 @@ mid-grapheme.
 Responsive behavior, by the breakpoints that actually exist:
 
 - **1180px**: the rail narrows to 238px, gutters drop to 32px, social labels collapse to icons,
-  the homepage hero stacks and the path grid halves from four columns to two.
+  and the homepage hero stacks. The homepage path grid halves from four columns to two at 1280px.
 - **1024px / 1023px**: exactly one "on this page" list at every width. The rail owns it above,
   the inline accordion owns it below. The two rules are a pair; move one and the other has to move
   with it.
@@ -518,7 +538,7 @@ border color, ground tint, weight and the arrow, in that order.
 The encyclopedia-style signature card keeps its Deep Deshi Green header and centered canvas-white text.
 Its paper-toned definition list answers three questions: languages, access and how much is written.
 A single hairline frames the box. Written and unwritten guide counts are stated separately
-without turning them into a scoreboard. An 88px label column stays beside the value on phones.
+without turning them into a scoreboard. A 6rem label column stays beside the value on phones.
 It sits beside the homepage introduction on desktop and after the starting
 choices below 1180px, where the facts use three columns until the phone layout stacks them.
 Nothing else in the system gets a filled header.
@@ -531,6 +551,13 @@ from 2.5rem to 4.75rem; Bangla keeps its natural tracking. Four starting situati
 ruled index with a complete outer border and small line icons. Hover and keyboard focus fill a
 brief green rule across the chosen entry; reduced motion makes the response immediate. There is no entrance animation or
 additional client JavaScript.
+
+The masthead uses weight 500, with size carrying its emphasis. Section headings keep weight 600;
+situation titles use 1.0625rem and topic and portal titles use 1.125rem, all at weight 500 with
+1.5 line height. The situation cards have 16px side padding and a 6px icon gap to give longer
+Bangla headings room. Destination
+cues, fact labels and closed FAQ questions use normal weight. Opening a question gives it medium
+weight and aligns its answer with the question text, within a 72ch reading measure.
 
 Topic browsing uses blue links in paired rows, separated by hairlines, with one direct link to
 the complete topic index. Recent updates pair titles with right-aligned dates when space allows.
