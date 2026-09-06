@@ -322,6 +322,24 @@ p {
   list-style: none;
 }
 
+.search-retry {
+  display: block;
+  min-height: 44px;
+  margin-top: 8px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--canvas);
+  padding: 6px 12px;
+  color: var(--blue);
+  font: inherit;
+  cursor: pointer;
+}
+
+.search-retry:hover {
+  border-color: var(--green);
+  background: var(--green-ground);
+}
+
 .search-result {
   margin: 0;
   border-radius: 4px;

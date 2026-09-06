@@ -475,8 +475,8 @@ nothing is lifted. A control should look like it will still be there in five yea
 - **Disabled:** soft hairline, faint ink, weight back to 400, default cursor.
 - **Focus:** a 2px Deep Deshi Green outline at 3px offset, site-wide, on every link, button, input,
   select and summary.
-- **Touch:** important mobile actions are at least 44px; directory controls grow from 36px to 44px
-  below 860px.
+- **Touch:** important mobile actions are at least 44px; directory controls keep that height
+  at every width.
 
 **The No-Saturated-Fill Rule.** A button is never a solid brand-colored slab. Rank is expressed by
 border color, ground tint, weight and the arrow, in that order.
@@ -512,8 +512,13 @@ border color, ground tint, weight and the arrow, in that order.
   focus additionally gets the site focus ring, drawn inset so it closes rather than cutting across
   the adjacent button.
 - **Placeholder:** stated explicitly in Faint Ink at full opacity, never left to the browser.
+- **Filters:** glossary, directory and Startup 50 text fields use normal-weight 1rem text and
+  at least 44px height. Labels stay distinct from the values the reader enters or selects.
 - **Validation:** messages sit beside the control they belong to. Error Red carries text, never a
   fill.
+- **Search:** focusing the field prepares the index; reading a page does not download it. Results
+  belong to the current query only, and late responses cannot reopen a dismissed panel. A failed
+  download offers an inline retry that keeps the query and the reader's place.
 
 ### Navigation
 
@@ -590,7 +595,9 @@ once and then leaves.
 ### Directory
 
 Utilitarian by design. A bordered cool-white filter panel on a data-attribute-keyed grid, a pill
-summary of the result count, and one flat card per entry. Cards rather than a wide table: directory
+summary of the result count, and one flat card per entry. The filter grid responds to the article's
+available width, including the sidebar: one row when roomy, two columns below 820px with search
+across the top, and one column below 480px. Cards rather than a wide table: directory
 values are sentences (coverage areas, rate bands, application steps), a column grid gave each a
 track too narrow to hold a word, and a new field should cost one more labelled line rather than one
 more squeezed column. There is no horizontal scroll at any width.

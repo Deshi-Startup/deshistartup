@@ -43,13 +43,13 @@
 }
 
 .glossary-search input {
-  min-height: 40px;
+  min-height: 44px;
   border: 1px solid var(--line);
   background: var(--canvas);
   padding: 6px 10px;
   color: var(--ink);
   font: inherit;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 400;
 }
 

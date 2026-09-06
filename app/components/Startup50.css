@@ -232,7 +232,7 @@ html[lang='bn'] .startup50-hero__folio strong {
 .startup50-filters select,
 .startup50-filters button {
   min-width: 0;
-  min-height: 40px;
+  min-height: 44px;
   border: 1px solid var(--line);
   border-radius: 0;
   background: var(--canvas);
@@ -242,12 +242,23 @@ html[lang='bn'] .startup50-hero__folio strong {
   font-size: 0.9rem;
 }
 
+.startup50-filters input,
+.startup50-filters select {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
 .startup50-filters input:focus,
 .startup50-filters select:focus,
 .startup50-filters button:focus-visible {
   border-color: var(--green);
-  outline: 2px solid color-mix(in srgb, var(--green-deep), transparent 72%);
+  outline: 2px solid var(--green-deep);
   outline-offset: 1px;
+}
+
+.startup50-filters input::placeholder {
+  color: var(--faint);
+  opacity: 1;
 }
 
 .startup50-filters button {

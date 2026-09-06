@@ -1,6 +1,7 @@
 /* --------------------------------------------------------------- directory */
 
 .directory-list {
+  container: directory-list / inline-size;
   margin: 22px 0;
 }
 
@@ -29,6 +30,8 @@
 
 .directory-controls label {
   display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
   gap: 4px;
   color: var(--muted);
   font-size: 0.82rem;
@@ -37,23 +40,33 @@
 
 .directory-controls input,
 .directory-controls select {
-  min-height: 36px;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 44px;
   border: 1px solid var(--line);
   background: var(--canvas);
   padding: 6px 9px;
   color: var(--ink);
   font: inherit;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .directory-controls input:focus,
 .directory-controls select:focus {
-  outline: 2px solid color-mix(in srgb, var(--green-deep), transparent 70%);
+  outline: 2px solid var(--green-deep);
   outline-offset: 1px;
 }
 
+.directory-controls input::placeholder {
+  color: var(--faint);
+  opacity: 1;
+}
+
 .directory-controls button {
-  min-height: 36px;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 44px;
   border: 1px solid var(--line);
   background: var(--canvas);
   padding: 6px 12px;
@@ -156,66 +169,29 @@
   font-weight: var(--w-strong);
 }
 
-@media (max-width: 860px) {
-
-  /* Matches the specificity of the per-count rules above and comes later, so
-     every directory collapses to one column here. */
+/* Use the article's available width: a visible sidebar leaves less room for
+   filters than the viewport breakpoint suggests. */
+@container directory-list (max-width: 820px) {
   .directory-controls,
   .directory-controls[data-filters] {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .directory-controls input,
-  .directory-controls select,
-  .directory-controls button {
-    min-height: 44px;
-  }
-
-  /* A one-column grid track still floors at the widest thing inside it, and a
-     <select> reports its longest option as min-content. On a 320px screen that
-     pushed the whole filter panel 24px past the canvas. The label is a grid of
-     its own, so the floor has to be released on both. */
-  .directory-controls label {
-    min-width: 0;
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .directory-controls input,
-  .directory-controls select,
-  .directory-controls button {
-    min-width: 0;
-    max-width: 100%;
-  }
-
-  .directory-card {
-    padding: 14px;
+  .directory-search {
+    grid-column: 1 / -1;
   }
 }
 
-/* ------------------------------------------------------ touch input floor */
-
-/* iOS Safari zooms the viewport when a focused control renders text under 16px
-   and never zooms back out, which leaves a reader scrolling sideways through
-   the rest of the page. Every control below runs a deliberately small label at
-   desktop width; on a touch pointer it gets the body size back instead. Last in
-   the file and selector-for-selector with the rules above, so each one is
-   overridden where it is set rather than at a specificity nobody can predict. */
-
-@media (pointer: coarse) {
-  /* Search inherits the body, which now holds 16px on a phone. It stays on the
-     list because it is the one control every reader touches first, and it
-     should not become a zoom trap again if the body size is ever revisited. */
-  .directory-controls input,
-  .directory-controls select {
-    font-size: 1rem;
+@container directory-list (max-width: 480px) {
+  .directory-controls,
+  .directory-controls[data-filters] {
+    grid-template-columns: minmax(0, 1fr);
   }
+}
 
-  /* Named in DESIGN.md: the important mobile actions are at least 44px. The
-     directory filters are the whole interface on that page. */
-  .directory-controls input,
-  .directory-controls select,
-  .directory-controls button {
-    min-height: 44px;
+@media (max-width: 860px) {
+  .directory-card {
+    padding: 14px;
   }
 }
 
