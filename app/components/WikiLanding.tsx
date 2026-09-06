@@ -26,7 +26,7 @@ interface TranslationStrings {
   noticeLabel: string
   notice: string
   infoboxTitle: string
-  infobox: (written: number, stubs: number) => [string, string][]
+  infobox: (written: number, stubs: number) => [string, React.ReactNode][]
   stageTitle: string
   stageSub: string
   stages: [string, string, string, string][]
@@ -62,11 +62,16 @@ const bn: TranslationStrings = {
   infobox: (written, stubs) => [
     ['ভাষা', 'বাংলা ও ইংরেজি'],
     ['মূল্য', 'সম্পূর্ণ ফ্রি ও ওপেনসোর্স'],
-    ['গাইড', `${bengaliDigits(written)}টি লেখা হয়েছে · ${bengaliDigits(stubs)}টি লেখার অপেক্ষায়`]
+    ['গাইড', (
+      <React.Fragment key="guides">
+        <span className="wiki-infobox-written"><b>{bengaliDigits(written)}</b>টি লেখা হয়েছে</span>
+        <span className="wiki-infobox-pending">{bengaliDigits(stubs)}টি লেখার অপেক্ষায়</span>
+      </React.Fragment>
+    )]
   ],
   stageTitle: 'আপনি এখন কোন অবস্থায় আছেন?',
   stageSub:
-    'যে কথাটি আপনার সঙ্গে মেলে, সেখান থেকে শুরু করুন।',
+    'যেখানে আছেন, সেখান থেকে শুরু করুন।',
   stages: [
     ['আমি একদম নতুন', 'শুরুর পুরো পথটা আগে এক নজরে বুঝে নিন। কী আগে, কী পরে।', 'শুরু করুন', '/start-here'],
     ['আমার একটা আইডিয়া আছে', 'প্রোডাক্ট বানানোর আগে কাস্টমারের সমস্যাটা বুঝে নিন।', 'আইডিয়া যাচাই করুন', '/validation'],
@@ -133,7 +138,12 @@ const en: TranslationStrings = {
   infobox: (written, stubs) => [
     ['Language', 'Bangla and English'],
     ['Price', 'Completely free; open source'],
-    ['Guides', `${written} written · ${stubs} waiting for writers`]
+    ['Guides', (
+      <React.Fragment key="guides">
+        <span className="wiki-infobox-written"><b>{written}</b> written</span>
+        <span className="wiki-infobox-pending">{stubs} waiting for writers</span>
+      </React.Fragment>
+    )]
   ],
   stageTitle: 'Where are you right now?',
   stageSub:
@@ -193,6 +203,50 @@ interface WikiLandingProps {
   locale?: 'bn' | 'en'
 }
 
+function PathIcon({ href }: { href: string }) {
+  const icons: Record<string, React.ReactNode> = {
+    '/start-here': <path d="M12 6v15m0-15C9 4 6 3 3 3v15c3 0 6 1 9 3 3-2 6-3 9-3V3c-3 0-6 1-9 3Z" />,
+    '/validation': (
+      <>
+        <path d="M9 18h6m-5 3h4M8.5 14.5a6 6 0 1 1 7 0c-.9.7-1.5 1.8-1.5 3.5h-4c0-1.7-.6-2.8-1.5-3.5Z" />
+        <path d="m10 10 2 2 2-2m-2 2v5" />
+      </>
+    ),
+    '/legal-roadmap': (
+      <>
+        <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6Zm0 0v6h6" />
+        <path d="m8 15 3 3 5-6" />
+      </>
+    ),
+    '/customers': (
+      <>
+        <circle cx="9" cy="8" r="3" />
+        <path d="M3 21v-2a6 6 0 0 1 12 0v2m1-16a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 4v2" />
+      </>
+    )
+  }
+  const icon = icons[href.replace(/^\/en(?=\/)/, '')]
+  if (!icon) return null
+
+  return (
+    <svg
+      className="wiki-path-icon"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      {icon}
+    </svg>
+  )
+}
+
 export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
   const isEn = locale === 'en'
   const t = isEn ? en : bn
@@ -207,7 +261,7 @@ export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
     })
 
   return (
-    <div className="wiki-landing">
+    <div className="wiki-landing" lang={locale}>
       <section className="wiki-hero" aria-labelledby="wiki-title">
         <div className="wiki-hero__main">
           <div className="wiki-title-row">
@@ -234,7 +288,10 @@ export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
           <div className="wiki-path-grid">
             {t.stages.map(([title, body, cta, href]) => (
               <a className="wiki-path-card" href={localHref(href)} key={title}>
-                <strong>{title}</strong>
+                <span className="wiki-path-card__heading">
+                  <PathIcon href={href} />
+                  <strong>{title}</strong>
+                </span>
                 <span>{body}</span>
                 <span className="wiki-path-card__go">{cta}</span>
               </a>

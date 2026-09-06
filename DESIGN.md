@@ -515,19 +515,28 @@ border color, ground tint, weight and the arrow, in that order.
 
 ### Infobox
 
-The encyclopedia-style signature card keeps its Deep Deshi Green header and canvas-white text.
-Its compact definition list answers three questions: languages, access and how much is written.
-An 88px label column stays beside the value on phones. The masthead already carries the mark and
-name, so the infobox does not repeat them. It sits beside the homepage introduction on desktop and
-after the starting choices below 1180px. Nothing else in the system gets a filled header.
+The encyclopedia-style signature card keeps its Deep Deshi Green header and centered canvas-white text.
+Its paper-toned definition list answers three questions: languages, access and how much is written.
+A single hairline frames the box. Written and unwritten guide counts are stated separately
+without turning them into a scoreboard. An 88px label column stays beside the value on phones.
+It sits beside the homepage introduction on desktop and after the starting
+choices below 1180px, where the facts use three columns until the phone layout stacks them.
+Nothing else in the system gets a filled header.
 
 ### Homepage discovery
 
-One short introduction leads directly to the starting choices. The four situation cards retain
-flat borders and the green response on hover. Topic browsing uses blue links in paired rows,
-separated by hairlines, with one direct link to the complete topic index. Recent updates follow
-those routes into the library. FAQs, official portals and contribution information come afterward;
-the legal note sits with the official portals, and the site-wide footer keeps its own disclaimer.
+The homepage is the manual's cover: a larger charcoal masthead, the existing short
+introduction and one framed starting action beside a blue topic link. Its display size ranges
+from 2.5rem to 4.75rem; Bangla keeps its natural tracking. Four starting situations form a joined,
+ruled index with a complete outer border and small line icons. Hover and keyboard focus fill a
+brief green rule across the chosen entry; reduced motion makes the response immediate. There is no entrance animation or
+additional client JavaScript.
+
+Topic browsing uses blue links in paired rows, separated by hairlines, with one direct link to
+the complete topic index. Recent updates pair titles with right-aligned dates when space allows.
+FAQs, official portals and contribution information follow in the same order; the legal note
+sits with the official portals. The contribution action sits beside its explanation on desktop
+and below it on phones. Homepage styles remain scoped to the landing component.
 
 ### Section indexes
 

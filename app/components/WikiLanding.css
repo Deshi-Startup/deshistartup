@@ -14,14 +14,21 @@
 
 .wiki-landing {
   margin: 0;
+  --home-response: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wiki-landing ::selection {
+  background: var(--green-soft);
+  color: var(--green-deep);
 }
 
 .wiki-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
+  grid-template-columns: minmax(0, 1fr) 304px;
   grid-template-areas: 'intro facts' 'paths paths';
-  gap: 32px;
+  gap: 40px 36px;
   align-items: start;
+  padding-top: 12px;
 }
 
 .wiki-hero__main {
@@ -29,15 +36,18 @@
   min-width: 0;
 }
 
-.wiki-title-row {
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 18px;
-}
-
 .wiki-title-row h1 {
-  margin: 0 0 12px;
+  margin: 0 0 18px;
   border-bottom: 0;
   padding-bottom: 0;
+  color: var(--ink);
+  font-size: clamp(2.5rem, 5.2vw, 4.75rem);
+  font-weight: var(--w-strong);
+  line-height: 1.2;
+}
+
+.wiki-title-row h1:lang(en) {
+  letter-spacing: -0.035em;
 }
 
 .wiki-hero #learning-paths {
@@ -45,56 +55,66 @@
   margin: 0;
 }
 
-/* The one ranked pair of actions on the site. Kept inside the flat, bordered
-   vocabulary – the primary is distinguished by a green ground, a green rule and
-   the arrow, never by a saturated fill. */
+/* The cover has one framed action. Topic browsing stays a blue text link,
+   leaving enough room for both choices beside each other on most phones. */
 .wiki-start {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin: 22px 0 0;
+  align-items: center;
+  gap: 8px 22px;
+  margin: 24px 0 0;
 }
 
 .wiki-start a {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   gap: 8px;
-  border: 1px solid var(--line);
+  min-height: 46px;
+  border: 1px solid transparent;
   border-radius: 3px;
-  background: var(--canvas);
-  padding: 10px 18px;
-  color: var(--ink);
+  padding: 8px 0;
+  color: var(--blue);
   font-size: 0.95rem;
+  text-underline-offset: 0.2em;
 }
 
-.wiki-start a:hover {
-  border-color: var(--green);
-  background: var(--green-soft);
-  color: var(--green-deep);
-  text-decoration: none;
+.wiki-start a:not(.is-primary):hover {
+  color: var(--blue-hover);
 }
 
 .wiki-start .is-primary {
   border-color: var(--green-deep);
   background: var(--green-ground);
+  padding: 10px 18px;
   color: var(--green-deep);
   font-weight: var(--w-strong);
+  transition: background-color var(--home-response);
+}
+
+.wiki-start .is-primary:visited {
+  color: var(--green-deep);
+}
+
+.wiki-start .is-primary:is(:hover, :focus-visible) {
+  background: var(--green-soft);
+  color: var(--green-deep);
+  text-decoration: none;
 }
 
 .wiki-start .is-primary::after {
   content: '→';
-  transition: transform 140ms ease-out;
+  transition: transform var(--home-response);
 }
 
-.wiki-start .is-primary:hover::after {
+.wiki-start .is-primary:is(:hover, :focus-visible)::after {
   transform: translateX(3px);
 }
 
 .wiki-subtitle {
   margin: 0;
-  max-width: 48ch;
+  max-width: 53ch;
   color: var(--muted);
-  font-size: 1.08rem;
+  font-size: 1.125rem;
   line-height: 1.7;
 }
 
@@ -120,20 +140,20 @@
 
 .wiki-infobox {
   grid-area: facts;
-  border: 1px solid var(--line);
-  background: var(--canvas);
+  border: 1px solid var(--line-warm);
+  background: var(--page);
   font-size: 0.9rem;
 }
 
 .wiki-infobox .wiki-infobox-title {
   margin: 0;
-  border-bottom: 1px solid var(--line);
   background: var(--green-deep);
-  padding: 14px 16px;
+  padding: 15px 18px;
   color: var(--canvas);
   text-align: center;
   font-family: var(--sans);
-  font-size: 1.12rem;
+  font-size: 1.08rem;
+  font-weight: var(--w-strong);
 }
 
 .wiki-infobox dl {
@@ -143,7 +163,7 @@
 .wiki-infobox dl div {
   display: grid;
   grid-template-columns: 88px minmax(0, 1fr);
-  border-bottom: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-warm);
 }
 
 .wiki-infobox dl div:last-child {
@@ -153,7 +173,7 @@
 .wiki-infobox dt,
 .wiki-infobox dd {
   margin: 0;
-  padding: 10px 12px;
+  padding: 12px 14px;
 }
 
 .wiki-infobox dt {
@@ -161,8 +181,27 @@
   font-weight: var(--w-strong);
 }
 
+.wiki-infobox-written,
+.wiki-infobox-pending {
+  display: block;
+}
+
+.wiki-infobox-written {
+  color: var(--green-deep);
+}
+
+.wiki-infobox-written b {
+  font-weight: var(--w-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.wiki-infobox-pending {
+  margin-top: 3px;
+  color: var(--muted);
+}
+
 .wiki-section {
-  margin-top: 40px;
+  margin-top: 44px;
 }
 
 .wiki-section-heading {
@@ -192,6 +231,11 @@
   margin: 0 0 12px;
 }
 
+.wiki-section > p {
+  margin: 0;
+  color: var(--muted);
+}
+
 .wiki-path-grid,
 .wiki-scope-grid,
 .wiki-source-list {
@@ -202,6 +246,9 @@
 
 .wiki-path-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  border: 1px solid var(--line);
+  background: var(--green-ground);
 }
 
 .wiki-scope-grid,
@@ -213,10 +260,7 @@
   gap: 0 32px;
 }
 
-/* A last row holding one lone card reads as an accident. When the item count
-   leaves a remainder, the final card takes the whole row instead – the row is
-   then deliberate rather than ragged, whatever the content count grows to. */
-.wiki-path-grid > :last-child:nth-child(4n + 1),
+/* A final unpaired directory entry uses the whole ruled row. */
 .wiki-scope-grid > :last-child:nth-child(2n + 1),
 .wiki-source-list > :last-child:nth-child(2n + 1) {
   grid-column: 1 / -1;
@@ -224,7 +268,6 @@
 
 /* Given a whole row, the card reads across it rather than leaving the right
    two thirds empty: title, description and destination sit on one line. */
-.wiki-path-grid > .wiki-path-card:last-child:nth-child(4n + 1),
 .wiki-source-list > article:last-child:nth-child(2n + 1) {
   display: flex;
   flex-flow: row wrap;
@@ -232,21 +275,10 @@
   gap: 4px 18px;
 }
 
-.wiki-path-grid > .wiki-path-card:last-child:nth-child(4n + 1) > strong,
 .wiki-source-list > article:last-child:nth-child(2n + 1) > h3 {
   margin-bottom: 0;
 }
 
-.wiki-path-grid > .wiki-path-card:last-child:nth-child(4n + 1) > span:not([class]) {
-  flex: 1 1 16rem;
-}
-
-.wiki-path-grid > .wiki-path-card:last-child:nth-child(4n + 1) .wiki-path-card__go {
-  margin: 0 0 0 auto;
-  padding-top: 0;
-}
-
-.wiki-path-card,
 .wiki-source-list article {
   border: 1px solid var(--line);
   background: var(--canvas);
@@ -254,13 +286,27 @@
   color: var(--ink);
 }
 
-/* Hover answers on the whole surface, not just the outline: the ground warms
-   and the title deepens, so the card reads as one target. */
+/* A brief ink rule marks the index entry being explored. It responds to
+   pointer and keyboard intent; nothing moves or plays on page load. */
 .wiki-path-card:hover,
 .wiki-path-card:focus-visible {
-  border-color: var(--green);
-  background: var(--green-ground);
+  background: var(--green-soft);
   text-decoration: none;
+}
+
+.wiki-path-card::before {
+  position: absolute;
+  inset: -1px 0 auto;
+  height: 2px;
+  background: var(--green);
+  content: '';
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--home-response);
+}
+
+.wiki-path-card:is(:hover, :focus-visible)::before {
+  transform: scaleX(1);
 }
 
 .wiki-scope-card {
@@ -280,6 +326,7 @@
   grid-row: 1 / 3;
   align-self: center;
   color: var(--green-deep);
+  transition: transform var(--home-response);
 }
 
 .wiki-scope-card:hover,
@@ -288,19 +335,62 @@
   text-decoration: none;
 }
 
+.wiki-scope-card:is(:hover, :focus-visible)::after {
+  transform: translateX(3px);
+}
+
+.wiki-scope-card:is(:hover, :focus-visible) h3 {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
 .wiki-scope-card h3,
 .wiki-scope-card p {
   grid-column: 1;
 }
 
 .wiki-path-card {
+  position: relative;
   display: flex;
   flex-direction: column;
+  border-inline-end: 1px solid var(--line);
+  padding: 22px 20px;
+  color: var(--ink);
+  transition: background-color var(--home-response);
+}
+
+.wiki-path-card:last-child {
+  border-inline-end: 0;
+}
+
+/* Share the title, description and destination tracks within each index row.
+   Longer Bangla titles then keep the neighboring descriptions aligned. */
+@supports (grid-template-rows: subgrid) {
+  .wiki-path-card {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+  }
+}
+
+.wiki-path-card__heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.wiki-path-icon {
+  flex: 0 0 24px;
+  margin-top: 2px;
+  color: var(--green-deep);
 }
 
 .wiki-path-card strong {
   display: block;
-  margin-bottom: 8px;
+  font-size: 1.05rem;
+  line-height: 1.5;
   color: var(--green-deep);
 }
 
@@ -321,7 +411,7 @@
   align-items: baseline;
   gap: 6px;
   margin-top: auto;
-  padding-top: 14px;
+  padding-top: 18px;
   color: var(--green-deep);
   font-size: 0.9rem;
   font-weight: var(--w-strong);
@@ -329,7 +419,7 @@
 
 .wiki-path-card__go::after {
   content: '→';
-  transition: transform 140ms ease-out;
+  transition: transform var(--home-response);
 }
 
 .wiki-path-card:hover .wiki-path-card__go::after,
@@ -344,6 +434,11 @@
 
 .wiki-scope-card h3 {
   color: var(--blue);
+  margin-bottom: 4px;
+}
+
+.wiki-scope-card:visited h3 {
+  color: var(--visited);
 }
 
 /* FAQ accordion (kept from redesign, wiki styling) */
@@ -389,12 +484,13 @@
   content: '–';
 }
 
-.home-faq summary:hover {
+.home-faq summary:is(:hover, :focus-visible) {
   background: var(--green-soft);
   color: var(--green-deep);
 }
 
 .home-faq details[open] > summary {
+  background: var(--green-ground);
   color: var(--green-deep);
 }
 
@@ -403,18 +499,24 @@
   padding: 0 18px 16px;
   color: var(--muted);
   font-size: 0.95rem;
+  background: var(--green-ground);
 }
 
 /* contribution section (wiki styling) */
 .contrib-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px 32px;
   margin-top: 18px;
   border: 1px solid var(--line);
   background: var(--green-ground);
-  padding: 20px 22px;
+  padding: 24px;
 }
 
 .contrib-section p {
-  margin: 0 0 14px;
+  grid-column: 1;
+  margin: 0;
   color: var(--ink);
 }
 
@@ -425,7 +527,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 4px 24px;
-  margin: 0 0 16px;
+  grid-column: 1;
+  margin: 0;
   color: var(--muted);
   font-size: 0.9rem;
 }
@@ -441,6 +544,22 @@
   font-weight: var(--w-strong);
 }
 
+.contrib-section .contrib-row {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  margin: 0;
+}
+
+.contrib-section .contrib-row a {
+  min-height: 44px;
+  border-color: var(--green-deep);
+  color: var(--green-deep);
+}
+
+.contrib-section .contrib-row a:visited {
+  color: var(--green-deep);
+}
+
 /* recently updated */
 .recent-list {
   margin: 14px 0 0;
@@ -452,10 +571,11 @@
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
+  justify-content: space-between;
   gap: 4px 12px;
   margin: 0;
   border-bottom: 1px solid var(--line-soft);
-  padding: 7px 2px;
+  padding: 10px 2px;
 }
 
 .recent-list li:last-child {
@@ -481,15 +601,47 @@
     width: 100%;
   }
 
+  .wiki-infobox dl {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .wiki-infobox dl div {
+    display: block;
+    border-bottom: 0;
+    border-inline-end: 1px solid var(--line-warm);
+  }
+
+  .wiki-infobox dl div:last-child {
+    border-inline-end: 0;
+  }
+
+  .wiki-infobox dt {
+    padding-bottom: 0;
+  }
+
+  .wiki-infobox dd {
+    padding-top: 4px;
+  }
+
   .wiki-path-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wiki-path-card:nth-child(even) {
+    border-inline-end: 0;
+  }
+
+  .wiki-path-card:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
   }
 }
 
 @media (max-width: 860px) {
 
-  .wiki-title-row {
-    display: block;
+  .wiki-hero {
+    gap: 32px;
+    padding-top: 0;
   }
 
   /* Matches the specificity of the per-count rules above and comes later, so
@@ -499,15 +651,35 @@
     grid-template-columns: 1fr;
   }
 
-  .wiki-infobox dl div {
-    grid-template-columns: 88px minmax(0, 1fr);
+  .contrib-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .contrib-section .contrib-row {
+    grid-column: 1;
+    grid-row: auto;
   }
 }
 
 @media (max-width: 520px) {
 
-  .wiki-notice {
-    grid-template-columns: 1fr;
+  .wiki-subtitle {
+    font-size: 1.08rem;
+  }
+
+  .wiki-start {
+    column-gap: 18px;
+    margin-top: 20px;
+  }
+
+  .wiki-start .is-primary {
+    padding-inline: 14px;
+  }
+
+  .wiki-section {
+    margin-top: 36px;
   }
 
   .wiki-path-grid {
@@ -515,18 +687,51 @@
   }
 
   .wiki-path-card {
-    min-height: 0;
+    border-inline-end: 0;
+    padding: 18px;
+  }
+
+  .wiki-path-card + .wiki-path-card {
+    border-top: 1px solid var(--line);
+  }
+
+  .wiki-path-card__heading {
+    margin-bottom: 8px;
+  }
+
+  .wiki-path-card__go {
+    padding-top: 12px;
+  }
+
+  .wiki-infobox dl {
+    display: block;
+  }
+
+  .wiki-infobox dl div {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    border-inline-end: 0;
+    border-bottom: 1px solid var(--line-warm);
+  }
+
+  .wiki-infobox dt,
+  .wiki-infobox dd {
+    padding: 12px 14px;
+  }
+
+  .home-faq details p {
+    font-size: 1rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
 
-  .wiki-start .is-primary::after,
-  .wiki-path-card__go::after {
-    transition: none;
+  .wiki-landing {
+    --home-response: 0s;
   }
 
-  .wiki-start .is-primary:hover::after,
+  .wiki-start .is-primary:is(:hover, :focus-visible)::after,
+  .wiki-scope-card:is(:hover, :focus-visible)::after,
   .wiki-path-card:hover .wiki-path-card__go::after,
   .wiki-path-card:focus-visible .wiki-path-card__go::after {
     transform: none;
