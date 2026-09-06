@@ -127,7 +127,7 @@
 
 .directory-card dl {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: 10px 20px;
   margin: 14px 0 0;
   border-top: 1px solid var(--line);
@@ -145,6 +145,7 @@
   margin: 2px 0 0;
   font-size: 0.9rem;
   line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .directory-card__source {

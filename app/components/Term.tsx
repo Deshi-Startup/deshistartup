@@ -80,12 +80,14 @@ export default function Term({ name, def, children }: TermProps) {
                 <a
                   className="glossary-copy glossary-copy--bn"
                   href={`${basePath}${entryPath}`}
+                  hrefLang="bn"
                 >
                   বিস্তারিত দেখুন
                 </a>
                 <a
                   className="glossary-copy glossary-copy--en"
                   href={`${basePath}/en${entryPath}`}
+                  hrefLang="en"
                 >
                   View details
                 </a>

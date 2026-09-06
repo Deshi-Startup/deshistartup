@@ -224,7 +224,7 @@ const LABELS: Record<'bn' | 'en', Labels> = {
     verified: 'Verified',
     search: 'Search',
     reset: 'Reset',
-    showing: (shown, total) => `Showing ${shown} of ${total} verified entries.`,
+    showing: (shown, total) => `Showing ${shown} of ${total} entries.`,
     noResults: 'No matching entries.'
   }
 }
@@ -348,7 +348,11 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
               // Two entries can share a name, and directory data is edited by
               // hand: index keeps a collision from silently dropping a row.
               <article className="directory-card" key={`${row.name}-${index}`}>
-                <h2 data-toc-ignore="">{row.name}</h2>
+                <h2 data-toc-ignore="">
+                  {typeof row.website === 'string' && row.website ? (
+                    <a href={row.website} target="_blank" rel="noopener noreferrer">{row.name}</a>
+                  ) : row.name}
+                </h2>
                 {row.notes && <p className="directory-card__note">{row.notes}</p>}
                 <dl>
                   {config.columns.map((column) => (

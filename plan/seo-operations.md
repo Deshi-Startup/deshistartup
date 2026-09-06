@@ -23,6 +23,12 @@ HTML is validated before Wrangler packages the deployment.
 
 ## Generated and postprocessed artifacts
 
+Retired public guide URLs live in `public/_redirects`. Keep exact, permanent redirects to the
+equivalent current page in the same language. Cloudflare applies these at the static-asset layer;
+adding them only to the Worker would miss asset-first requests. Check both locale mappings,
+query-string retention and a final 200 response in a local Worker preview. Do not redirect a
+removed guide to the homepage or validate a production indexing fix before it is deployed.
+
 `npm run manifest` creates:
 
 - `app/generated/manifest.bn.json` and `manifest.en.json`
@@ -47,7 +53,10 @@ HTML is validated before Wrangler packages the deployment.
 
 The final `seo:audit` build step fails on missing or duplicate titles/descriptions, wrong
 canonicals or languages, bad hreflang clusters, indexable stubs, invalid JSON-LD, sitemap drift,
-broken internal links, or orphaned published pages.
+broken internal links, accidental English-to-Bengali article links, or orphaned published pages.
+English guides should link to the English edition of other guides. Deliberate alternate-language
+links must declare `hreflang="bn"`; the shared bilingual glossary popover marks both language
+links explicitly so the audit can distinguish those from an authored link to the wrong edition.
 
 ## Crawl policy
 
@@ -83,11 +92,16 @@ when an advisory `robots.txt` rule is not enough.
 - Titles must be unique, descriptive, concise, and in the page's own language. There is no fixed
   Google character limit; the audit warns on unusually long titles rather than enforcing an
   invented 60-character rule.
+- Both homepage titles are compiled as Next.js `title.absolute` values by
+  `app/lib/rehype-home-title.mjs`. Check the title after hydration as well as in the initial
+  HTML: a postbuild-only title correction can be overwritten by Next's metadata payload.
 - Descriptions must be page-specific and useful. Google has no fixed description length limit;
   snippets are truncated to fit the result surface.
 - Do not add meta-keywords or repeat keyword variants.
 - Do not generate FAQ or HowTo markup unless the visible page genuinely has that structure.
   Structured data describes content; it is never added only to chase a rich result.
+  Google stopped displaying FAQ rich results on May 7, 2026; adding FAQ markup is not a
+  Google rich-result growth tactic.
 - The shared social card is `public/og-default.png` (1200×630). Replace it only with another
   crawlable image of the same dimensions and update `app/seo.config.mjs` if the path changes.
 
@@ -106,6 +120,39 @@ and eligible for a normal Search snippet. For all answer engines, the durable wo
   guarantee or a substitute for crawlable HTML and a standard XML sitemap;
 - publish `rel="describedby"` links from indexable HTML pages to the root `llms.txt`, while keeping
   stubs out of both LLM-facing indexes.
+
+### Measure actual discovery
+
+Use Search Console's **Performance → Generative AI features** report for AI Overviews and AI
+Mode impressions. Google completed its worldwide rollout on August 31, 2026. It reports
+impressions by page, country, device and date, not separate AI clicks or queries. Its impressions
+are already included in the Web performance report; do not add the two totals together. Check
+**Settings → Search generative AI** to confirm the property is included. This control is separate
+from model-training crawler policy.
+
+Review a rolling 28-day period each week: Web clicks, useful query/page impressions, AI
+impressions, and indexing coverage of **submitted** URLs. Record the report's last-update date.
+Compare the same pages and query groups; a changing mix of branded and non-branded searches can
+move aggregate CTR and position without any individual page improving or declining.
+
+Prioritize completed pages with relevant impressions and few clicks. Use the searcher's task and
+Bangladesh context naturally in titles and descriptions, while keeping the page's actual scope.
+Do not create near-duplicate pages for keyword variants or rename established routes for keywords.
+Validate content, citations and internal links before requesting a recrawl. Keep intentional stubs
+excluded. A successful sitemap submission or recrawl request does not guarantee indexing.
+
+Use Bing Webmaster Tools' **AI Performance** report for citations, cited pages and grounding
+queries across Microsoft Copilot and its reported partners. The preview also offers intent,
+topic and citation-share views; its query data is a sample, and citation share is not traffic
+share. Keep its date range and metric definitions separate from Google's AI impressions.
+
+Use GA4's **AI Assistant** default channel and **Session source / medium** for actual visits.
+Recognized AI referrals receive the `ai-assistant` medium automatically. Check other source rows
+for classification gaps too; attribution requires an identifiable source and does not measure
+every exposure to an AI answer. Compare engaged sessions as well as visit totals.
+
+Keep a small fixed set of Bangla and English questions for manual citation checks. Record the
+date, engine, prompt and linked page; one answer is a sample, not a ranking.
 
 ## Release checklist
 
@@ -139,6 +186,7 @@ These actions require the domain owner's accounts and cannot be completed by a r
 5. Set `GOOGLE_SITE_VERIFICATION` and/or `BING_SITE_VERIFICATION` at build time only when HTML-token
    verification is preferred to DNS. The root metadata emits those tokens when present.
 6. Check Search Console Page Indexing, Core Web Vitals, Enhancements, and manual actions monthly.
+   Use the Web and Generative AI performance reports weekly as described above.
 7. Check Bing Site Scan, URL Inspection, crawl errors, and IndexNow status monthly.
 8. Track a fixed set of Bangla and English founder questions monthly in Google, ChatGPT,
    Perplexity, and Copilot. Record which Deshi Startup URL, if any, is cited.
@@ -148,16 +196,22 @@ These actions require the domain owner's accounts and cannot be completed by a r
 ## Primary documentation
 
 - [Google: AI features and your website](https://developers.google.com/search/docs/appearance/ai-features)
+- [Google: Generative AI performance report](https://support.google.com/webmasters/answer/16984139?hl=en)
+- [Google: Search generative AI control](https://support.google.com/webmasters/answer/16908024?hl=en)
+- [Google: Search Console data anomalies and FAQ rich-result retirement](https://support.google.com/webmasters/answer/6211453?hl=en)
 - [Google: build and submit a sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)
 - [Google: localized versions and hreflang](https://developers.google.com/search/docs/specialty/international/localized-versions)
 - [Google: title links](https://developers.google.com/search/docs/appearance/title-link)
 - [Google: snippets and meta descriptions](https://developers.google.com/search/docs/appearance/snippet)
 - [Google: structured-data policies](https://developers.google.com/search/docs/appearance/structured-data/sd-policies)
+- [Google Analytics: AI Assistant traffic measurement](https://support.google.com/analytics/answer/9164320#05132026)
 - [OpenAI crawler documentation](https://developers.openai.com/api/docs/bots)
 - [Perplexity crawler documentation](https://docs.perplexity.ai/docs/resources/perplexity-crawlers)
 - [Anthropic crawler documentation](https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler)
 - [Bing Webmaster Guidelines](https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a)
+- [Bing: AI Performance intents, topics and citation share](https://blogs.bing.com/search/June-2026/New-AI-Visibility-Insights-in-Bing-Webmaster-Tools-Intents-Topics-Citation-Share-Compare)
 - [IndexNow protocol](https://www.indexnow.org/documentation)
 - [Schema.org](https://schema.org/)
 - [llms.txt proposal](https://llmstxt.org/)
 - [Cloudflare: managed robots.txt](https://developers.cloudflare.com/bots/additional-configurations/managed-robots-txt/)
+- [Cloudflare: static asset redirects](https://developers.cloudflare.com/workers/static-assets/redirects/)

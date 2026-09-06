@@ -674,10 +674,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
 
   useEffect(() => {
     document.documentElement.lang = isEn ? 'en' : 'bn'
-    if (pathname === '/en') {
-      document.title = 'Deshi Startup – The free, open-source manual for building startups in Bangladesh'
-    }
-  }, [isEn, pathname])
+  }, [isEn])
 
   useEffect(() => {
     setIsSidebarOpen(false)

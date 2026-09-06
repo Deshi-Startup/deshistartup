@@ -1,16 +1,26 @@
 ---
-title: "Mushak-6.3 Tax Invoice: What Goes in Each Field"
-description: "Know when to issue Mushak-6.3, the buyer-information rule above BDT 25,000, VAT calculation, copies, serials, and related Mushak forms."
+title: "Mushak 6.3 VAT Invoice: How to Fill It In"
+description: "A field-by-field guide to the Mushak 6.3 tax invoice in Bangladesh, with a worked example, VAT calculation, buyer details and recordkeeping checks."
 verified: 2026-07-10
 ---
 
 # Mushak-6.3 Tax Invoice: What Goes in Each Field
 
-> **Key Takeaway:** A fully VAT-registered person issues a Mushak-6.3 tax invoice for each supply. It shows the actual issue date and time, supplier's name, address and <Term name="vat-bin">BIN</Term>, description, value excluding VAT, rate, VAT amount, and total including VAT. For a supply above BDT 25,000, include the buyer's name, address, and BIN where applicable. Number invoices sequentially by fiscal year, make at least two copies, and keep the records for five years.
+> **In short:** Mushak-6.3 is the tax invoice a fully VAT-registered business issues for a supply. Show the value before VAT, the applicable rate, VAT amount and final total separately. Check your <Term name="vat-bin">BIN</Term> certificate first: turnover-tax enlistment uses Mushak-6.9 instead.
 
 Suppose a software company provides BDT 100,000 of setup services. Its ordinary invoice says only “Total BDT 115,000 including VAT.” The reader cannot see the base value, VAT rate, or VAT amount. Mushak-6.3 must separate those figures.
 
 This guide is for fully VAT-registered businesses. If Mushak-2.3 says “turnover-tax enlistment,” issue Mushak-6.9 rather than Mushak-6.3. See the [BIN Application Guide](/en/tax/vat-bin) to check the status.
+
+## Fill the Invoice in This Order
+
+1. Copy the supplier's legal name, address and BIN from the registration record.
+2. Assign the next invoice number for the fiscal year and place of supply. Record the actual issue date and time.
+3. Add the buyer details required for the transaction, then describe what was supplied.
+4. Enter the price before VAT, applicable rate and VAT amount. Check that the total adds up.
+5. Give the buyer the original, keep your copy and record the sale. The detailed field and copy rules are below.
+
+Have the contract or order, registration details and the applicable VAT rate beside you before entering the figures. This avoids trying to reconstruct the transaction after sending the invoice.
 
 ---
 
@@ -56,7 +66,43 @@ Total including VAT = 100,000 + 15,000 = BDT 115,000
 
 Show all three figures. Do not stop at “BDT 115,000 including VAT.” Do not assume every service carries 15% either. Check the exact service code, exemption, and applicable rate.
 
-If the contract price of BDT 115,000 is VAT-inclusive, adding VAT again would bill BDT 130,000. State whether the contract price is VAT-exclusive or VAT-inclusive before signing.
+### If the Price Already Includes VAT
+
+For the same example, a VAT-inclusive BDT 115,000 price at 15% breaks down as follows:
+
+```text
+Value excluding VAT = 115,000 ÷ 1.15 = BDT 100,000
+VAT already included = 115,000 − 100,000 = BDT 15,000
+Customer total = BDT 115,000
+```
+
+Adding another 15% to BDT 115,000 would incorrectly charge BDT 132,250. Agree whether the contract price includes VAT before issuing the invoice.
+
+### Transfer the Figures into Your Invoice
+
+These are illustrative entries for that service, not a substitute for the prescribed form. Fill the identity and timing fields from the actual transaction.
+
+| Entry | Worked example |
+|---|---|
+| Description | Software setup service under the agreed order |
+| Value excluding VAT | BDT 100,000 |
+| Applicable rate, assumed for this example | 15% |
+| VAT amount | BDT 15,000 |
+| Total including VAT | BDT 115,000 |
+
+Use the field list above for the supplier, buyer, serial and timing details. Do not copy a sample BIN or an assumed rate into a real invoice.
+
+For your own calculation, copy and complete:
+
+```text
+Agreed price: BDT ___; includes VAT: yes / no
+Applicable VAT rate: ___%; source or service code: ___
+If exclusive: VAT = price × rate ÷ 100
+If inclusive: base = price ÷ (1 + rate ÷ 100)
+Value excluding VAT: BDT ___
+VAT: BDT ___
+Total including VAT: BDT ___
+```
 
 ---
 
@@ -68,7 +114,7 @@ If the contract price of BDT 115,000 is VAT-inclusive, adding VAT again would bi
 - When goods are transported, the original invoice accompanies the goods.
 - If a number is cancelled, preserve the record and reason instead of deleting it.
 
-You may use your own software or invoice design if it includes the Mushak-6.3 form name, all prescribed information, and the minimum copies.[^mushak-invoice-rules] A polished PDF cannot omit the legal fields.
+You may use your own invoice design if it includes the Mushak-6.3 form name, all prescribed information, and the minimum copies.[^mushak-invoice-rules] A polished PDF cannot omit the legal fields.
 
 ---
 
@@ -162,4 +208,3 @@ Rule of thumb: **An invoice should answer four questions in one minute: what was
 [^mushak-invoice-rules]: [NBR: Ten taxpayer responsibilities](https://nbr.gov.bd/taxtypes/vat-compliance-guides/details/8/eng), [NBR VAT FAQ: tax-invoice information](https://nbr.gov.bd/faq/vat-faq/en), and the [VAT and Supplementary Duty Rules, 2016, English text amended through 2025](https://nbr.gov.bd/uploads/rules/Authentic_English_Text_VAT_Rules_2016.pdf), rule 40.
 
 [^vat-record-retention]: [Value Added Tax and Supplementary Duty Act, 2012](https://nbr.gov.bd/uploads/acts/18.pdf), section 107.
-

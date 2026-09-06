@@ -584,6 +584,11 @@ for (const page of pages) {
       record(errors, `${page.route}: broken internal link ${href} resolves to ${route}`)
       return
     }
+    if (page.locale === 'en' && $(element).closest('.article').length
+      && route !== '/en' && !route.startsWith('/en/')
+      && $(element).attr('hreflang') !== 'bn') {
+      record(errors, `${page.route}: English article links to Bengali content (${href})`)
+    }
     if (!page.stub && indexableRoutes.has(route) && route !== page.route) {
       inbound.set(route, (inbound.get(route) || 0) + 1)
     }
