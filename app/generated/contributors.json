@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "repository": "Deshi-Startup/deshistartup",
-  "refreshedAt": "2026-08-25T15:27:09.386Z",
+  "refreshedAt": "2026-09-07T09:13:37.451Z",
   "totals": {
     "contributors": 4,
     "acceptedEvents": 14,
@@ -64,8 +64,8 @@
         {
           "path": "/tax/mushak-63",
           "title": {
-            "bn": "মূসক-৬.৩ চালান: কোন ঘরে কী লিখবেন",
-            "en": "Mushak-6.3 Tax Invoice: What Goes in Each Field"
+            "bn": "মূসক ৬.৩ লেখার নিয়ম: ভ্যাটের চালান ও হিসাব",
+            "en": "Mushak 6.3 VAT Invoice: How to Fill It In"
           }
         },
         {
@@ -79,14 +79,14 @@
           "path": "/registration/private-limited",
           "title": {
             "bn": "প্রাইভেট লিমিটেড কোম্পানি রেজিস্ট্রেশনের ধাপ",
-            "en": "Step-by-Step Private Limited Company Registration"
+            "en": "Private Limited Company Registration in Bangladesh"
           }
         },
         {
           "path": "/registration/name-clearance",
           "title": {
-            "bn": "কোম্পানির জন্য আরজেএসসি নেম ক্লিয়ারেন্স পাওয়ার উপায়",
-            "en": "How to Get RJSC Name Clearance for a Company"
+            "bn": "RJSC নেম ক্লিয়ারেন্স: আবেদন, ফি ও মেয়াদ",
+            "en": "RJSC Name Clearance: Application, Fees and Validity"
           }
         },
         {
