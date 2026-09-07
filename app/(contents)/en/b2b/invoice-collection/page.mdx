@@ -1,13 +1,155 @@
 ---
-title: "Purchase Order, Invoice, and Collection Workflow Steps"
-description: "Purchase Order, Invoice, and Collection Workflow Steps – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "Invoice Collection: From Approved Work to Money in the Bank"
+description: "Organize purchase orders, delivery acceptance, invoices and follow-ups so B2B payments do not get lost. Includes a receivables register, worked balance and collection messages."
 ---
 
-# Purchase Order, Invoice, and Collection Workflow Steps
+# Invoice Collection: From Approved Work to Money in the Bank
 
-<StubNotice path="b2b/invoice-collection" locale="en" />
+> **In short:** Before you do the work, agree how you will get paid. Find out who approves the purchase, who accepts the work and who handles the bill. Track what is still owed and what to do next. A sent bill, a promise or a payment screenshot is not enough. Check that the money reached your account.
+
+## Start one register
+
+Use this if other firms pay you after delivery or after a stage of work is done. <Term name="accounts-receivable">Accounts receivable</Term> means money customers owe you. The list below helps you track it. You still need proper accounts and any tax invoices required for the sale.
+
+Copy one record per invoice. Keep individual receipts in a linked payment log when there is more than one.
+
+```text
+Customer legal/billing name:
+Sales owner and customer sponsor:
+Accounts contact and approved submission method:
+
+Contract or purchase-order reference:
+Delivery/milestone and acceptance evidence:
+Invoice number, version and issue date:
+Invoice total and currency:
+Customer's invoice-receipt confirmation:
+Payment terms, start trigger and due date:
+
+Receipts applied, including advances: date / amount / bank reference
+Advance reference, if any (included above, not a second deduction):
+Approved credit note or adjustment: amount / reason / reference
+Open balance:
+
+Status: not due / overdue / disputed / partly paid / settled
+Specific blocker:
+Next action, responsible person and date:
+Customer's promised payment date:
+Actual settlement date:
+```
+
+Keep access limited to people who handle sales or finance. Use a stable invoice number so a customer can identify the document even if the person handling it changes.
+
+## Learn the payment route before agreeing the work
+
+A **purchase order (PO)** is a record from the buyer that approves a purchase. Some buyers use a PO. Others use a signed contract or another record. Ask which they need. A friendly message from a user does not prove that they can spend the firm's money.
+
+Confirm four things before starting:
+
+1. **Who is buying?** Get the correct billing entity and address. A brand name, branch and legal payer may differ.
+2. **What authorizes the work?** Record the agreement or PO, scope, amount and who approved it.
+3. **What proves delivery?** Agree the deliverable and the person who can accept it. For services, name a review period and a way to resolve disputed items.
+4. **What starts the payment clock?** Is it invoice receipt, delivery acceptance or another agreed event? Write the trigger and terms together.
+
+Ask if the buyer must first add you to its supplier list. Check whether you need to upload the bill, add a PO number or send proof of delivery. Use the agreed channel and send only what is needed. If bank details change, check them with a contact you already know.
+
+ACCA's guide stresses clear payment terms, correct invoices sent on time and regular checks on unpaid bills.[^acca-receivables] The steps here help a small team put that advice to work.
+
+## Build a billing pack that accounts can process
+
+The documents answer different questions. Use this table to check that none of the questions is left unanswered.
+
+| Record | Question it answers | What to check |
+|---|---|---|
+| Agreement or PO | Was this purchase approved? | Scope, price, buyer and reference |
+| Delivery or acceptance record | Was the agreed work received? | Date, deliverable and approving person |
+| Invoice | What amount is being requested? | Correct entity, unique number, currency and agreed treatment of taxes |
+| Receipt confirmation | Did the right team receive a processable pack? | Date, missing items and payment schedule |
+
+An invoice cannot repair missing scope approval. If the work changed, first get the change and its price agreed, then bill consistently with that agreement.
+
+For a sale in Bangladesh, ask an accountant which invoice and tax records you need. Check VAT and whether the buyer must keep back tax from your payment. These rules depend on the sale. Do not copy another supplier's tax rate. If the buyer pays less than the bill, ask why before closing the balance.
+
+## Send, confirm, follow up
+
+Send the invoice by the agreed method as soon as the billing trigger occurs. Keep evidence of submission and ask the recipient to identify missing items promptly.
+
+```text
+Subject: Invoice [number] — [milestone or delivery]
+
+Attached/submitted: invoice [number] for [currency and total],
+against [agreement/PO reference], with [acceptance evidence].
+Under our agreed terms, payment is due on [date].
+Please confirm receipt and whether anything is missing for processing.
+If another person handles payment, please connect us.
+```
+
+Set reminders around the due date. You could check a few working days before it and follow up when the bill is late. If the problem remains, ask the person who ordered the work to help. This is a suggested routine, not a legal deadline.
+
+Do not repeat “just following up” every day. Each contact should resolve something: an absent PO, a disputed line, a missed payment run or an unallocated transfer.
+
+```text
+Invoice [number] has [amount] outstanding and was due on [date].
+Our last discussion identified [blocker]. Has that been resolved?
+Please confirm the next action, who owns it and the payment date.
+If you dispute an item, please identify the line and reason so we can
+resolve it while discussing payment of the undisputed amount.
+```
+
+## Worked example: the last BDT 5,000
+
+Imagine a startup setting up reports for a factory in Gazipur. These figures are made up. Assume an accountant has already checked the tax treatment of the invoice total.
+
+The invoice totals BDT 100,000. The buyer already paid BDT 30,000 in advance for this work. Both sides then agree to cut the work by BDT 5,000. The startup issues a **credit note**, a record that reduces the amount owed, for that sum. The buyer later sends BDT 60,000.
+
+The balance is **100,000 − 30,000 − 5,000 − 60,000 = BDT 5,000**. The advance must not be deducted again as a new receipt when the invoice is reconciled.
+
+Here is the record behind that result.
+
+| Entry | BDT | Evidence |
+|---|---:|---|
+| Invoice total | 100,000 | Issued invoice |
+| Advance applied | −30,000 | Earlier bank receipt, linked once |
+| Credit note | −5,000 | Approved scope reduction |
+| Later receipt | −60,000 | Matched bank transaction |
+| Still open | **5,000** | Requires resolution |
+
+The accounts contact says the payment is complete. The founder sends the reconciliation rather than arguing from memory. If the customer identifies an agreed deduction, obtain the supporting record and have it checked before adjusting the balance. If no explanation exists, the BDT 5,000 stays open.
+
+Use this formula for your own register:
+
+```text
+Open balance = invoice total
+               - all receipts allocated to this invoice, including advances once
+               - approved credit notes
+               - separately verified accounting adjustments
+
+Cash received this week = actual matched receipts dated this week
+```
+
+The two numbers serve different purposes. Applying last month's advance reduces today's open balance but does not create cash this week.
+
+## Separate a dispute from a timing problem
+
+If the customer disagrees with the work, record the disputed item, amount, evidence and resolution owner. If they accept the work but missed the payment run, obtain a new date and reflect it in your cash forecast. If the payer cannot be reached, escalate through the agreed business contacts.
+
+Set a limit on how much unpaid work you can carry. Add what the buyer already owes to the new costs you will take on. This is your **credit exposure**, or money at risk. Check whether you can still pay staff and suppliers if the next invoice is late.
+
+For example, two BDT 80,000 unpaid invoices plus BDT 40,000 of new delivery cost can expose BDT 200,000 before another payment arrives. That is a planning warning, not a reason to breach an existing contract. Review your agreement and seek appropriate advice before suspending service, imposing charges or taking recovery action.
+
+## A weekly collection routine
+
+Each week, add new payments to the list. Separate bills that are due later from bills that are late. Count days late from the agreed due date. Start with the largest or oldest amount you cannot explain. A small list may take 30 minutes to review. A long list needs more time and a named owner.
+
+- [ ] Every invoice has an approval reference and delivery evidence.
+- [ ] The correct accounts team confirmed receipt.
+- [ ] Due dates follow agreed terms and triggers.
+- [ ] Advances and partial payments are allocated once.
+- [ ] Credits and deductions have supporting records.
+- [ ] Each open balance has an owner and next action.
+- [ ] Cash expectations reflect payment evidence, not sales optimism.
+
+You are done for this week when no overdue invoice is simply labeled “waiting.” Start with the oldest unexplained balance, then bring the revised collection dates into your [cash projections](/en/metrics/financial-projections).
 
 ## Relevant Sources
 
-- [BSCIC (Bangladesh Small and Cottage Industries Corporation)](http://www.bscic.gov.bd)
-- [Dhaka Chamber of Commerce & Industry (DCCI)](https://www.dhakachamber.com)
+[^acca-receivables]: [ACCA — Accounts receivable management](https://www.accaglobal.com/ie/en/student/exam-support-resources/fundamentals-exams-study-resources/f9/technical-articles/arm.html), William Parrott, sections on credit terms, monitoring and cash collection. Accounting practice reference; not authority for Bangladesh tax rates or debt-recovery rights. The register, messages and example are original. Accessed 7 September 2026.

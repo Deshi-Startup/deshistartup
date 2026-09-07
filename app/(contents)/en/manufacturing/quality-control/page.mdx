@@ -1,12 +1,143 @@
 ---
-title: "Quality Control Checklist for First Production Batch"
-description: "Quality Control Checklist for First Production Batch – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "First-Batch Quality Checklist: Check Before You Sell"
+description: "Set clear product checks, inspect a first batch and record what can be sold, fixed or held. Includes an inspection sheet and the real cost of usable units."
 ---
 
-# Quality Control Checklist for First Production Batch
+# First-Batch Quality Checklist: Check Before You Sell
 
-<StubNotice path="manufacturing/quality-control" locale="en" />
+> **In short:** Agree what a good item must be before production starts. Check the batch against that rule and keep failed goods separate. Record what can be sold, repaired or returned. A few good samples do not prove that every item is good, and a visual check does not prove that a product is safe.
+
+## Copy the inspection sheet
+
+Use this for an early batch of ordinary physical goods. **Quality control** means checking whether the goods meet the agreed requirements. This sheet organizes the checks; it does not supply the tests needed for food, medicine, electrical products or other safety-sensitive goods.
+
+```text
+Product, item code and spec version:
+Supplier and order reference:
+Batch code, quantity and arrival date:
+Approved sample/reference:
+Person checking and date:
+
+Check:
+Required result and allowed variation:
+How it is checked and with what tool:
+Units checked and how they were chosen:
+Result: passed / failed / not checked
+Number of affected units:
+Evidence or photo reference:
+
+Batch decision: hold / release approved units / rework / return
+Units approved for sale:
+Units kept separate and reason:
+Person allowed to approve release:
+Supplier follow-up and due date:
+Recheck result after any repair:
+```
+
+A **batch** is a group made or delivered together. Give it a code you can link to the supplier and customer orders. That helps you find which goods share a problem later.
+
+## Decide the checks before the goods arrive
+
+Write checks for the job the item must do. “Looks good” is too vague. For a cloth storage pouch, you might check size, zip movement, seams, stains and the item count.
+
+Here is an example for a simple pouch. The sizes and tests are invented for teaching and are not an industry standard.
+
+| Check | Agreed rule | How to record it |
+|---|---|---|
+| Width | 20 cm, with up to 0.5 cm difference either way | Measured width |
+| Zip | Opens and closes without catching during 10 test cycles | Pass or the observed fault |
+| Seams | No open seam on the checked item | Fault location and photo if useful |
+| Appearance | No stain on the outside | Type and location |
+| Pack count | Quantity matches the order and counted receipt | Actual count and shortage |
+
+The ten zip cycles only check that limited action. They do not prove years of use or safety. Choose stronger, suitable tests when the product's use requires them.
+
+Ohmtech's founder described how missing parts specifications make quality hard to judge.[^ohmtech-quality] A clear spec gives you something to compare with the goods. It also helps the supplier know what to make.
+
+## Choose what to inspect
+
+For a small batch, checking every unit for simple visible defects may be practical. It still takes time and can miss faults. Some tests need trained people or lab equipment. Some damage the item being tested.
+
+For larger batches, a proper sampling plan may be useful. **Sampling** means checking some units to make a decision about the batch. NIST explains that acceptance sampling is used to accept or reject a batch; its main purpose is not to estimate the batch's quality level.[^nist-sampling]
+
+Do not invent a rule such as “check five items, then approve everything.” A formal plan needs the right selection method, risks, pass/fail rules and product context. Get qualified help to choose one. The supplier choosing its five best units is not a random sample.
+
+If the check is informal, say so. “We checked 20 items and found two with an open seam” is an honest result. It is not proof that exactly 10% of the whole batch is faulty.
+
+## Keep status clear at the workbench
+
+Set aside separate, labeled places for goods waiting for checks, goods that passed, goods needing work and goods that must not be sold. Do not rely on someone remembering which pile is which.
+
+Use the same spec and tools for the checks. Record who checked, how many units and what they found. If the spec changed, keep the old and new batch separate until the change is approved.
+
+If you find a possible safety problem, hold the affected goods and get the right technical help. Do not sell them as discounted stock or keep testing them on customers.
+
+## Worked example: 500 received does not mean 500 sellable
+
+Imagine a startup in Dhaka receives 500 cloth pouches. It checks every unit against its basic visible and zip rules. All figures below are made up.
+
+The first check gives this result:
+
+| Status | Units |
+|---|---:|
+| Pass the agreed checks | 390 |
+| Can be reworked and checked again | 80 |
+| Rejected | 30 |
+| **Total received** | **500** |
+
+After rework, 60 of the 80 units pass. The other 20 fail again. Final sellable quantity is **390 + 60 = 450 units**. Rejected quantity is **30 + 20 = 50 units**. The numbers still add to 500.
+
+The startup needed 500 sellable units, so it is still 50 short. It must arrange a checked replacement batch or change its delivery plan. It cannot promise the original quantity based on the receipt count.
+
+## Calculate cost using usable units
+
+Suppose the goods and inbound delivery cost BDT 35,000. Rework costs BDT 10 for each of the 80 attempted repairs, or BDT 800. Inspection adds BDT 500. No supplier credit or refund has been agreed.
+
+```text
+Total batch cost = 35,000 + 800 + 500 = BDT 36,300
+Sellable units = 450
+Cost per sellable unit = 36,300 / 450 = about BDT 80.67
+```
+
+Dividing the original BDT 35,000 by all 500 units gives BDT 70. That misses rework, checking and the goods you cannot sell. Use the updated cost when reviewing your price. This is part of <Term name="unit-economics">unit economics</Term>: the money earned and spent for one product or order.
+
+The example covers the listed batch costs only. It leaves out selling costs, later delivery, overhead and any further replacement order. Count a supplier credit only when it is agreed and recorded, and keep its cash timing separate.
+
+## Close the problem with the supplier
+
+Send the batch reference, spec, counts, observed faults and the remedy you want under your agreement. Use clear records rather than “the whole shipment is bad.”
+
+```text
+For batch [code] against spec [version], we checked [method and quantity].
+We found [fault and affected count]. These units are held separately.
+Please confirm [repair/replacement/return/credit request] under our terms
+and the next action by [date].
+No material or process change is approved without our written agreement.
+```
+
+Recheck repaired goods before releasing them. A repair note from the supplier is not the same as a passed check. Record the final quantity and update stock so the sales team sees only what is available to sell.
+
+## Improve the next batch
+
+Look for repeated faults and where they begin. Was the spec unclear? Was the material changed? Did the first sample use a different process? Did packing cause the damage?
+
+Fix the cause, then check whether the fix worked on the next batch. Do not lower the standard just to clear unsold stock. If the product or use changes, review the checks too.
+
+To estimate time, try the inspection process on a few units, measure the time and allow for recording and breaks. For example, one minute per unit means 500 units need about 8.3 hours of checking alone. Faster inspection is not useful if it misses the main fault.
+
+## Before releasing goods
+
+- [ ] The spec and required tests are clear and suitable for the product.
+- [ ] Checked quantities and selection methods are recorded honestly.
+- [ ] Passed, held and rejected goods are kept separate.
+- [ ] Safety concerns have gone to the right qualified person.
+- [ ] Repaired units pass a new check before sale.
+- [ ] Stock and cost figures use the final usable quantity.
+- [ ] Supplier actions and the next review are recorded.
+
+Start with the check most likely to prevent a customer problem. If your supplier brief is still vague, use the [supplier sourcing checklist](/en/manufacturing/supplier-sourcing) before ordering another batch.
 
 ## Relevant Sources
 
-- [BASIS](https://www.basis.org.bd)
+[^ohmtech-quality]: [Future Startup — Building an Electronics Products Manufacturing Business in Bangladesh: An Interview with Wasiul Haque Bhuiyan, Ohmtech Electronics](https://futurestartup.com/2024/09/19/wasiul-haque-bhuiyan-ohmtech-electronics/), 19 September 2024, difficulty assessing parts without specifications. Dated founder experience. Accessed 7 September 2026.
+[^nist-sampling]: [NIST/SEMATECH e-Handbook — What is Acceptance Sampling?](https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc21.htm). Primary technical reference for lot acceptance and the purpose of sampling. It does not validate this page's illustrative product tests. The sheet and 500-unit example are original. Accessed 7 September 2026.

@@ -1,14 +1,153 @@
 ---
 title: "COD Cash Reconciliation Template"
-description: "COD Cash Reconciliation Template – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+description: "Match orders, courier statements and bank receipts. A COD reconciliation template with worked examples for fees, prepaid parcels, returns, split payouts and missing money."
+verified: 2026-09-07
 ---
 
 # COD Cash Reconciliation Template
 
-<StubNotice path="payments/cod-reconciliation" locale="en" />
+> **In short:** Check three records: your orders, the courier's payment statement and your bank or wallet receipts. Work out what the courier should pay, then compare it with what arrived. Explain each fee or delay. Count each payment once, including money paid before delivery.
+
+## Copy the reconciliation sheet
+
+Use this if your startup ships with <Term name="cod">cash on delivery (COD)</Term>. The buyer pays the courier, which later sends the money to you. **Reconciliation** means checking that the records agree and explaining any gaps. Do not change a number just to make the totals match.
+
+A **settlement statement** lists the orders and charges in a courier's payment batch. The **payout** is the money it sends. Keep the statement and the actual receipt so you can compare them.
+
+Keep three tabs or sections. One payment can contain many parcels, so do not paste the full bank deposit into every parcel row.
+
+```text
+PARCELS — one row per courier consignment
+Order ID | Courier | Consignment ID | Dispatch date | Delivery/return date
+Payment type: COD / prepaid / mixed
+Order total | Advance paid directly to us | COD amount due at the door
+Actual amount collected | Parcel status | Settlement ID
+Courier charge lines | Charge treatment: netted / separately billed
+Evidence link | Exception and owner
+
+SETTLEMENTS — one row per payment statement
+Courier | Settlement ID | Statement date | Included consignment IDs
+Collections included | Itemized deductions | Credits/adjustments
+Expected payout | Transfer reference | Expected arrival date
+Actual receipt allocated | Difference | Reason | Next action/date
+
+RECEIPTS — one row per bank or wallet transaction
+Account | Date | Transaction reference | Amount | Settlement ID(s)
+Amount allocated | Amount still unallocated
+```
+
+The order ID is your shop's order number. The consignment ID is the courier's parcel number. Keep both. One order may have several parcels, or you may send it again after a return.
+
+## Get the source records first
+
+Start with one courier and one small payment batch. Get the parcel report, payout statement and list of agreed fees. Open your bank or wallet statement. Check older unpaid batches too. Money received this week may be for last week's deliveries.
+
+Pathao's Bangladesh terms describe two ways to charge merchants. In one, it takes fees from the money it collected. In the other, it pays the full amount and sends a separate bill for fees. The terms also cover payment statements and taking non-COD delivery fees from a COD balance.[^pathao-merchant]
+
+Your formula depends on which method you use. Check your agreement and statement. Another merchant may have different terms. The public terms were checked on 7 September 2026. Check your own agreement and any new provider notices before using them.
+
+## Step 1: separate parcel status from payment status
+
+A delivered parcel may be awaiting settlement. A settlement marked sent may not yet be credited to your account. A returned parcel may have charges without any cash collected.
+
+These are the combinations the sheet must handle.
+
+| Parcel situation | Collection treatment | What to verify |
+|---|---|---|
+| Delivered COD | Record actual courier collection | Agreed amount and payment batch |
+| Customer prepaid you | No second COD collection | Courier charge and original receipt |
+| Part paid before dispatch | Only the balance is COD | Advance and door amount add correctly |
+| Returned or cancelled | Do not invent a sale or collection | Actual charges and stock return |
+
+For a mixed-payment example, a BDT 1,500 order with BDT 300 already received directly leaves BDT 1,200 for the courier to collect. The BDT 300 is not part of the courier payout.
+
+## Step 2: build the expected settlement
+
+If the courier takes fees from a payout, start with the cash it collected. Subtract only the fees and other charges listed for that batch. Check whether you have already paid any of them. This helps you spot a fee charged twice.
+
+```text
+Expected net payout = collections included in this settlement
+                      - documented deductions in this settlement
+                      + documented credits in this settlement
+
+Unexplained difference = expected net payout - matched receipt
+```
+
+If fees arrive in a separate bill, compare the full collection amount with your bank receipt. Record the fee bill as money you owe. Do not take that fee off the payout again. The fee still reduces profit even though you pay it separately.
+
+Give refunds, payments for lost goods, advances and old balances their own lines. Keep a reason and source record for each. A vague “other” fee can hide a mistake that keeps happening.
+
+## Worked example: four parcels, one payment
+
+Imagine a Dhaka clothing startup checking a payout. Its courier takes all fees from the money collected. The charges below are made up and include all fees for this exercise. They are not Pathao prices. This batch has no loans, courier advances, refunds or old balances.
+
+Two COD parcels collected BDT 3,000 in total. One returned parcel and one prepaid parcel also generated fees in this settlement.
+
+| Consignment | Collected (BDT) | Charge in this batch (BDT) | Net effect (BDT) |
+|---|---:|---:|---:|
+| C101: delivered COD | 1,200 | 90 | 1,110 |
+| C102: delivered COD | 1,800 | 110 | 1,690 |
+| R103: returned | 0 | 80 | −80 |
+| P104: prepaid | 0 | 60 | −60 |
+| **Total** | **3,000** | **340** | **2,660** |
+
+Expected payout is **3,000 − 340 = BDT 2,660**. If the linked bank receipt is BDT 2,560, the unresolved difference is **BDT 100**. The prepaid order's earlier customer payment belongs in your sales/payment records but not in this courier collection total.
+
+First look for another BDT 100 receipt for the same batch. Then check for a fee you missed on the statement. The courier may also have sent too little. Keep the gap open until you know the reason. Do not add BDT 100 to the sheet just to make it balance.
+
+## Step 3: distinguish delay from a discrepancy
+
+Use the settlement's transfer reference and expected arrival date. Match the real credit in the correct account. If several settlements are combined in one deposit, allocate that deposit across them once. If one settlement arrives in parts, attach each receipt to the same settlement.
+
+Keep a simple status: awaiting statement, transfer sent, receipt matched, or disputed. Follow your provider's actual processing schedule and agreement; weekends, payment rails and service products can differ. Do not use the delivery date as proof that a payout is already overdue.
+
+Pathao Advance is a separate service that can pay you early against assigned orders.[^pathao-advance] Track the advance receipt and the amount later taken back. You cannot spend both the advance and the full order value as if they were two payments.
+
+## Step 4: close the period with a balance bridge
+
+If fees come out of your payouts and you have no advances or special terms, use:
+
+```text
+Closing unsettled amount = opening unsettled amount
+                           + new courier collections
+                           - charges netted against those collections
+                           + documented credits
+                           - documented other deductions
+                           - payouts actually received
+```
+
+For example, opening BDT 500 + new collections BDT 3,000 − charges BDT 340 − received BDT 2,560 = **BDT 600 unsettled**. Explain it as the BDT 500 older balance plus the BDT 100 current discrepancy if those are the matching underlying records. Do not add a separate “current discrepancy” on top of that BDT 600; it is already included.
+
+Check returns against stock as well as cash. An unsold item coming back is not money received. A compensation payment for lost goods is a separate event and needs its own record.
+
+## Send a traceable query
+
+```text
+Please check settlement [ID], statement dated [date].
+Collections: BDT [amount]; documented deductions: BDT [amount].
+Expected payout: BDT [amount].
+Receipt in our [bank/wallet], reference [reference]: BDT [amount].
+Unexplained difference: BDT [amount].
+Attached: relevant statement lines and consignment IDs, with unrelated
+customer and account details removed. Please confirm the adjustment
+or transfer reference needed to reconcile this amount.
+```
+
+Use the provider's support route and keep the ticket/reference. Never send PINs, OTPs or full unrelated statements to establish a missing payout.
+
+## Weekly checklist
+
+- [ ] Order and consignment IDs are linked.
+- [ ] Prepaid and returned parcels are treated correctly.
+- [ ] The settlement model and actual fee lines are checked.
+- [ ] Each bank receipt is allocated once.
+- [ ] Advances, refunds and compensation are separately explained.
+- [ ] Opening and closing unsettled balances reconcile.
+- [ ] Every overdue or disputed item has an owner and next date.
+
+Allow an hour for the first small batch, then measure how long your actual volume takes. Use the oldest unresolved settlement as your next task. For profitability after delivery and returns, work separately through [COD risk](/en/operations/cod-risk); a reconciled payout does not by itself prove a profitable order.
 
 ## Relevant Sources
 
-- [Bangladesh Trade Portal](https://www.bangladeshtradeportal.gov.bd)
-- [Chief Controller of Imports and Exports (CCIE)](http://www.ccie.gov.bd)
-- [RJSC](https://roc.gov.bd)
+[^pathao-merchant]: [Pathao Bangladesh — Terms of Service: Merchant](https://pathao.com/terms-of-service-merchant/), especially clauses 3.21–3.28 on collection, payment statements and service-fee recovery models. Provider terms, not a guarantee of every merchant's settlement timing. Accessed 7 September 2026.
+[^pathao-advance]: [Pathao Bangladesh — Terms of Service: Pathao Advance](https://pathao.com/terms-of-service-pathao-advance/), definitions and advance assignment/recovery provisions. Used to distinguish advances from ordinary settlements; no advance price or eligibility claim is made here. Accessed 7 September 2026.
