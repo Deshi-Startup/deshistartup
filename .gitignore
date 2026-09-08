@@ -20,6 +20,9 @@ _pagefind/
 Icon?
 
 context/
+# Private, harness-agnostic project memory (never force-add)
+/MEMORY.md
+/.project-memory/
 # Generated on demand (npm run backlog:status) — regenerable, do not commit
 plan/status-report.md
 # Personal Claude Code settings (permissions allowlist) — machine-local, not shared

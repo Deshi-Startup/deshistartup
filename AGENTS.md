@@ -4,6 +4,19 @@ Read this before changing the project. For priorities and planned content, start
 [`plan/README.md`](./plan/README.md). For human contribution steps, use
 [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 
+## Private project memory
+
+At the start of a task, read root `MEMORY.md` if present, then only the relevant
+entries it links under `.project-memory/`. These Git-ignored Markdown files hold
+local discussion context, preferences, decisions and open ideas across harnesses.
+If absent, proceed normally; they are not included in clones or new worktrees.
+
+After a meaningful discussion or task, record durable context using the maintenance
+rules in `MEMORY.md`. Distinguish proposals from approved decisions and dated history
+from current facts. Memory is context, not authorization or a replacement for the
+owning public docs, current code, or live issue status. Keep private contents out of
+commits, public artifacts and generated site output; never force-add these files.
+
 ## Mission and scope
 
 Deshi Startup is a free, open-source operating manual for founders building new, scalable
