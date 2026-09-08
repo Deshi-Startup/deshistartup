@@ -1,25 +1,33 @@
 ---
 title: "Cashflow vs Profit: A Simple Explanation for Founders"
-description: "Profit is what the ledger records; cash flow is the money actually reaching the bank. See how COD payouts and B2B receivables create the gap, and adopt one weekly habit for tracking cash."
+description: "See how a profitable project can run short of cash. Change payment dates in a 14-day simulation, compare the results, and build a simple cash calendar."
 ---
+
+import CashTimingLab from '../../../../components/CashTimingLab'
+
+{/* English learning pilot. Job: identify the first cash shortfall and compare payment arrangements. Main misconception: ending cash or profit proves every earlier bill was affordable. Scenario amounts and dates are fictional. Reader walkthrough pending. */}
 
 # Cashflow vs Profit: A Simple Explanation for Founders
 
-> **In short:** Profit is what your accounting ledger says you made. Cash flow is what's actually moving in and out of your bank account. When the day a sale is booked and the day its money actually arrives don't match, a ledger can show profit while the bank shows nothing. Courier payouts on <Term name="cod">COD</Term> orders lag by days; B2B sales run on 30-60 day credit terms. Both create this same gap. So don't judge a month by the ledger; check the cash sitting in the bank, every week.
+> **In short:** Profit tells you what remains after costs. Cash flow tells you when money actually arrives and leaves. A profitable project can still leave a bill unpaid. Try the simulation below: keep profit fixed at BDT 10,000, move the payment dates, and find the first cash shortfall.
+
+Use this when sales look healthy but you are unsure whether upcoming bills can be paid. [Jump to the cash timing simulation](#try-it-change-the-dates-keep-the-profit) to practise, then use the calendar below for your own dates.
 
 ## Why profit and cash flow aren't the same thing
 
-**Profit** is what's left on the ledger once costs are subtracted from a sale. **Cash flow** is the real money moving through your bank account or your hand. The two diverge for a simple reason: a sale gets booked the moment an order is placed or shipped. But the actual money from that sale can take days, sometimes months, to land in the bank. It's in that gap that businesses get into trouble.
+In the examples on this page, **profit** means earned revenue minus the costs of earning it. **Cash flow** tracks receipts and payments when the money moves. Opening cash is not new revenue, and receiving money owed from an earlier sale does not mean earning that revenue a second time.
 
-For you this means: don't relax just because the ledger shows a profit at month's end. The real question is what's sitting in the bank right now, and what's due to leave next week.
+Do not automatically count an order or a dispatched parcel as earned revenue. What has actually been delivered under the agreement matters. For the simplified examples below, assume the goods or service have been delivered and the stated revenue earned. Payment may still arrive later.
+
+That leaves two separate questions: did this work earn more than it cost, and will cash be available when each bill is due?
 
 ## The first gap: COD orders and courier delay
 
-Say Nasrin runs a cosmetics page on Facebook out of Sylhet, entirely cash-on-delivery (COD). On Monday she ships 30 orders worth 45,000 taka in total. The ledger books that 45,000 as revenue the same Monday. But the courier company only collects the cash from customers after delivery, and pays Nasrin out 5 to 7 days later, sometimes longer.
+**Fictional example:** Nasrin runs a cosmetics page in Sylhet. Thirty <Term name="cod">cash-on-delivery (COD)</Term> orders worth BDT 45,000 are delivered on Monday. Assume that is earned revenue and the courier remits the full amount the following Monday. To isolate timing, this example leaves out courier fees, returns, and taxes. Actual settlement dates and deductions depend on the service and transactions.
 
 | Day | On the ledger | In the bank |
 |---|---|---|
-| Monday, orders shipped | 45,000 taka | 0 taka |
+| Monday, orders delivered | 45,000 taka | 0 taka |
 | The following Monday, courier pays out | 45,000 taka | 45,000 taka |
 
 <Timeline
@@ -32,37 +40,84 @@ Say Nasrin runs a cosmetics page on Facebook out of Sylhet, entirely cash-on-del
     {
       label: "In the bank",
       spans: [
-        { start: 0, end: 7, tone: "gap", label: "no cash for six days — the gap" },
+        { start: 0, end: 7, tone: "gap", label: "awaiting courier settlement" },
         { start: 7, end: 8, label: "45,000 lands the next Monday" },
       ],
     },
   ]}
 />
 
-Now say a 20,000 taka supplier bill is due that Wednesday. Monday's sale sits on the ledger, but the money isn't in the bank yet; it's still with the courier. The ledger says the business is profitable, yet there's no cash in hand to pay the supplier. That's the cash flow gap: the sale happened, the profit is booked, but the money is still on its way.
+Now suppose a BDT 20,000 supplier bill falls due that Wednesday and Nasrin has no other available cash. The receivable cannot pay that bill until the courier transfers it. Revenue alone does not tell us her profit, because we have not listed all her costs. It does show why a completed sale and available cash are different things.
 
 ## The second gap: B2B receivables
 
-In B2B sales, this gap grows wider. Selling to a shop or an organisation on credit usually means offering 30 to 60 day payment terms. ShopUp's Mokam platform, for instance, lets grocery shops take stock on credit through its Baki feature, precisely because shop owners run short on cash even while selling steadily[^shopup-baki]. The fuller comparison of these two models is in [B2C vs B2B](/en/ideas/b2c-vs-b2b).
+A **receivable** is money a customer owes you. For a fictional business-to-business sale with 30-day payment terms, the supplier may have to cover costs before the customer pays. The agreed term and actual payment date need separate attention. Credit is also part of Bangladesh's retail supply chain: Future Startup's September 2021 account described Baki as ShopUp's embedded finance product within Mokam. That is historical context, not a statement of today's eligibility or terms.[^shopup-baki]
 
-Sell this way, and the ledger books the full amount as revenue on the day of the sale. The actual money lands 30 or 60 days later. If rent, salaries, and supplier payments fall due before that cash arrives, a business that looks profitable on the ledger can still find itself unable to pay its bills.
+An invoice is not cash in the bank. If a customer pays late, a calendar based only on the promised date will be too optimistic. Keep the expected date visible and check what happens if it slips.
+
+## Try it: change the dates, keep the profit
+
+This is a different fictional example: a small service startup has completed a project. Try the late-payment case first, then compare earlier customer payment with an agreed later supplier payment. These are arrangements to explore, not outcomes you can assume a customer or supplier will accept.
+
+<CashTimingLab locale="en" />
+
+## Check what you learned
+
+Before opening the explanation, decide: **the project ends day 14 with BDT 20,000. Does that mean every earlier bill could be paid?**
+
+<details>
+<summary>Reveal the explanation</summary>
+
+No. In the default case, opening cash is BDT 10,000. The BDT 30,000 supplier bill on day 3 creates a BDT 20,000 shortfall. Another BDT 5,000 is due on day 5, increasing the gap to BDT 25,000. The BDT 45,000 receipt on day 8 improves the ending position, but arrives too late for those earlier due dates.
+
+The project earns BDT 10,000 after its stated costs. An additional BDT 25,000 available from the start would cover the timing gap in this example. Earlier receipts or agreed later payments can also change that gap. Check the dates before deciding what action is practical.
+
+</details>
+
+Now try a second prediction: set opening cash to zero and move customer payment to day 2. The day-3 bill is still covered. Restore payment to day 8 and see what changes. Explain the difference without using the word “profit.”
+
+## Make a cash calendar for your own business
+
+Copy this small worksheet into a notebook or spreadsheet. Start with money you can actually use, then add expected receipts and bills in date order. You do not need to enter personal financial information on this site.
+
+```text
+Opening available cash: BDT ______
+
+Date | Receipt and expected clearing date | Payment due | Projected balance
+____ | _________________________________ | ___________ | _________________
+____ | _________________________________ | ___________ | _________________
+____ | _________________________________ | ___________ | _________________
+
+Each balance = previous balance + receipts - payments
+First date with uncovered payments:
+Largest shortfall:
+Receipt that could be delayed:
+What happens if it is delayed:
+Action to discuss, with whom, and by when:
+Next review date:
+```
+
+Treat an uncertain receipt as uncertain. Make a second version with it delayed, and check the first shortfall in both versions. Include every relevant bill, not just the costs in the teaching example. A daily total can also hide a payment due in the morning before a receipt clears that afternoon.
+
+You are done when you can name the first date you may be short, the amount, and one action to discuss before that date. A positive closing balance alone is not enough.
 
 ## Build one lasting habit
 
-You can't close the gap between profit and cash flow entirely; some credit or delay is part of running a business. But one habit manages the risk: on the same day every week, write down exactly how much cash is in the bank, whatever the sales ledger says. Alongside that, know your runway, how many months your cash in hand will last. The full method for working out runway is in the [Monthly Founder Dashboard](/en/metrics/founder-dashboard).
+Review the calendar on the same day each week and whenever a material receipt or bill changes. Replace expected receipts with actual receipts, and check upcoming due dates against available cash. For a broader weekly review, use the [Monthly Founder Dashboard](/en/metrics/founder-dashboard).
 
-Keep in mind, how much profit one order or one customer actually leaves you is a separate question, covered in [Unit Economics](/en/metrics/unit-economics). This page's question is when that profit's cash actually lands in the bank.
+Keep in mind, how much profit one order or one customer actually leaves you is a separate question, covered in [Unit Economics](/en/metrics/unit-economics). This page asks whether receipts arrive in time to cover payments.
 
 ## Checklist
 
 - Write down the cash in the bank on the same day every week
-- Know the gap between when a COD order is booked and when the courier pays out
+- Separate COD orders, completed deliveries, and actual courier settlements
 - For B2B credit sales, know the credit term and when the cash actually lands
 - Match supplier, rent, and salary payment dates against when cash actually arrives
-- Know your runway, how many months your cash in hand will last
+- Check the first shortfall as well as the ending balance
+- Recalculate with an important receipt delayed
 
 Rule of thumb: **Whatever the ledger says about profit, what matters before a bill is due is how much cash is actually in the bank.**
 
 ## Relevant Sources
 
-[^shopup-baki]: [Future Startup](https://futurestartup.com).
+[^shopup-baki]: [Future Startup – ShopUp and the Rise of B2B Commerce](https://futurestartup.com/2021/09/11/shopup-and-b2b-commerce-pathao-pay/), 11 September 2021. Historical description of Baki and Mokam, not current credit terms. For the revenue-recognition distinction used earlier, see the [IFRS Foundation – IFRS 15 overview](https://www.ifrs.org/issued-standards/list-of-standards/ifrs-15-revenue-from-contracts-with-customers/): recognition follows satisfaction of the relevant obligation, rather than an order or payment alone. Sources checked 8 September 2026. The simulation uses fictional inputs and is not a statutory accounting calculator.

@@ -1,0 +1,70 @@
+.demand-tool,
+.demand-practice__case {
+  margin: 1.5rem 0;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--canvas-soft);
+  overflow-wrap: anywhere;
+}
+
+.demand-tool__notice { margin-top: 0; }
+.demand-tool__fields { display: grid; gap: 1.5rem; }
+.demand-tool__field label { display: flex; align-items: baseline; gap: .6rem; font-weight: var(--w-strong); }
+.demand-tool__number { color: var(--muted); font-variant-numeric: tabular-nums; }
+.demand-tool__field p { margin: .4rem 0 .6rem; color: var(--muted); font-size: .9rem; }
+.demand-tool__field textarea {
+  display: block;
+  width: 100%;
+  min-height: 6rem;
+  padding: .7rem;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--canvas);
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+.demand-tool__field textarea:focus-visible,
+.demand-tool a:focus-visible,
+.demand-tool summary:focus-visible,
+.demand-practice summary:focus-visible { outline: 2px solid var(--green-deep); outline-offset: 3px; }
+.demand-tool__status { color: var(--muted); font-size: .9rem; }
+.demand-tool__actions { margin: 1rem 0; }
+.demand-tool .demand-tool__download {
+  display: inline-block;
+  padding: .7rem 1rem;
+  border: 1px solid var(--green);
+  border-radius: 5px;
+  background: var(--green-soft);
+  color: var(--green-deep);
+  font-weight: var(--w-strong);
+  text-decoration: none;
+}
+.demand-tool summary,
+.demand-practice summary { padding: .8rem .2rem; cursor: pointer; }
+.demand-practice details { border-top: 1px solid var(--line); }
+.demand-practice details[open] { padding-bottom: .5rem; }
+.demand-practice details p { margin: .25rem 0 .5rem; }
+.demand-practice__case h3 { margin-top: 0; }
+.demand-tool__preview pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: inherit;
+  font-size: .9rem;
+  background: var(--canvas);
+  padding: 1rem;
+}
+@media print {
+  .demand-tool__fields,
+  .demand-tool__notice,
+  .demand-tool__actions,
+  .demand-tool__status { display: none; }
+  .demand-tool__preview > pre,
+  .demand-practice details > p { display: block !important; }
+  .demand-tool__preview::details-content,
+  .demand-practice details::details-content { content-visibility: visible; }
+  .demand-tool, .demand-practice__case { background: white; border-color: #999; }
+}

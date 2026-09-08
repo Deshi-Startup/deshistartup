@@ -73,7 +73,7 @@ const bn: TranslationStrings = {
   stageSub:
     'যেখানে আছেন, সেখান থেকে শুরু করুন।',
   stages: [
-    ['আমি একদম নতুন', 'শুরুর পুরো পথটা আগে এক নজরে বুঝে নিন। কী আগে, কী পরে।', 'শুরু করুন', '/start-here'],
+    ['আমি একদম নতুন', 'আইডিয়া, সময় ও অভিজ্ঞতার সাথে মানানসই একটি প্রথম কাজ বেছে নিন।', 'শুরু করুন', '/start-here'],
     ['আমার একটা আইডিয়া আছে', 'প্রোডাক্ট বানানোর আগে কাস্টমারের সমস্যাটা বুঝে নিন।', 'আইডিয়া যাচাই করুন', '/validation'],
     ['স্টার্টআপ চালু করতে চাই', 'কোন কাগজ কখন লাগবে, ধাপে ধাপে জানুন।', 'আইনি রোডম্যাপ দেখুন', '/legal-roadmap'],
     ['কাস্টমার আর বিক্রি চাই', 'প্রথম কাস্টমার খুঁজুন, বিক্রি ও ভরসা তৈরির উপায় জানুন।', 'বিক্রির গাইড পড়ুন', '/customers']
@@ -95,11 +95,11 @@ const bn: TranslationStrings = {
   faqTitle: 'সচরাচর জিজ্ঞাসা',
   faqSub: 'কিছু খুবই কমন প্রশ্ন ও উত্তর, যা প্রাথমিক সিদ্ধান্ত নিতে কাজে লাগবে।',
   faq: [
-    ['শুরুতেই কি কোম্পানি খুলতে হবে?', 'না, সবসময় নয়। আগে আইডিয়া ভ্যালিডেশন দরকার, কাস্টমার যাচাই, পেমেন্ট এবং অপারেশনগুলো সম্পর্কে জেনে নেওয়া জরুরি। বিস্তারিত জানুন আইনি রোডম্যাপ গাইডে।'],
+    ['শুরুতেই কি কোম্পানি খুলতে হবে?', 'না, সবসময় নয়। কোম্পানি তৈরি করা আর কোনো কাজ করার অনুমতি পাওয়া আলাদা বিষয়। টেস্ট বা পেমেন্ট নেওয়ার আগে আইনি রোডম্যাপ থেকে জেনে নিন আপনার কাজের জন্য কী কী দরকার।'],
     ['শুধু ফেসবুক পেজ দিয়ে শুরু করা কি ভুল?', 'না। বাংলাদেশে অনেক ব্যবসা ফেসবুক পেজ বা ইনবক্স থেকেই শুরু হয়। তবে অর্ডার, পেমেন্ট, ডেলিভারি ও রিফান্ডের হিসাব গুছিয়ে না রাখলে পরে সমস্যা হতে পারে।'],
-    ['ফান্ডিং ছাড়া স্টার্টআপ করা যায়?', 'অধিকাংশ সময়ই সম্ভব। তবে পুরোদমে ফান্ড-সিকিং (Fund Seeking)-এর আগে ছোট ছোট পরীক্ষা, পেইড কাস্টমার আর রিপিট অর্ডারের ইকোসিস্টেম তৈরি করে নিন। এতে আলোচনার টেবিলে এগিয়ে থাকবেন।'],
-    ['আইন/কর না বুঝলে কী করব?', 'ভয়ে থেমে যাবেন না। প্রাধান্য নিশ্চিত করতে শিখুন। কোন কাজটি জরুরি, কোন কাজটি প্রয়োজনীয় সেটা আগে বুঝুন। যেকোনো সিদ্ধান্ত নেবার পূর্বে সরকারি সোর্স ও পেশাদার পরামর্শ গ্রহণ করুন।'],
-    ['এই সাইট কি সত্যিই ফ্রি?', 'হ্যাঁ, সম্পূর্ণ ফ্রি ও ওপেনসোর্স কনটেন্ট। পুরো সাইটের লেখা GitHub-এ উন্মুক্ত।'],
+    ['ফান্ডিং ছাড়া স্টার্টআপ করা যায়?', 'অধিকাংশ সময়ই সম্ভব। তবে পুরোদমে ফান্ড-সিকিং (Fund Seeking)-এর আগে ছোট ছোট পরীক্ষা, পেইড কাস্টমার আর রিপিট অর্ডারের প্রমাণ জোগাড় করে নিন। এতে আলোচনার টেবিলে এগিয়ে থাকবেন।'],
+    ['আইন/কর না বুঝলে কী করব?', 'ভয়ে থেমে যাবেন না। কী আগে আর কী পরে, তা বুঝতে শিখুন। কোন কাজটি জরুরি, কোন কাজটি প্রয়োজনীয় সেটা আগে বুঝুন। যেকোনো সিদ্ধান্ত নেবার পূর্বে সরকারি সোর্স ও পেশাদার পরামর্শ গ্রহণ করুন।'],
+    ['এই সাইট কি সত্যিই ফ্রি?', 'হ্যাঁ – পড়া এবং শেখার টুলগুলো একদম ফ্রি, আর কোনো অ্যাকাউন্টের প্রয়োজন নেই। লেখা এডিট করতে চাইলে সাইন-ইন করে রিভিউয়ের জন্য পাঠাতে হবে। পুরো সাইটের লেখা GitHub-এ উন্মুক্ত।'],
     ['এই লেখাগুলো কারা লেখে?', 'দেশি স্টার্টআপ কন্ট্রিবিউটরগণ লিখে থাকেন। প্রতিটি পেজের “এডিট” অপশন থেকে যে কেউ ভুল ঠিক করতে বা নতুন লেখা যোগ করতে পারেন। রিভিউয়াররা যাচাই করে পাবলিশ করেন।']
   ],
   govTitle: 'দরকারি সরকারি লিংক',
@@ -149,7 +149,7 @@ const en: TranslationStrings = {
   stageSub:
     'Pick the situation that matches yours.',
   stages: [
-    ['I\'m completely new', 'See the whole journey first – what comes first, what can wait.', 'Start here', '/en/start-here'],
+    ['I\'m completely new', 'Choose a first task that fits your idea, time and experience.', 'Start here', '/en/start-here'],
     ['I have an idea', 'Understand the customer and test demand before you build.', 'Validate your idea', '/en/validation'],
     ['I want to launch', 'Find out which paperwork you need, and when.', 'See the legal path', '/en/legal-roadmap'],
     ['I need customers', 'Find your first customers and build trust in your business.', 'Start selling', '/en/customers']
@@ -171,11 +171,11 @@ const en: TranslationStrings = {
   faqTitle: 'Common beginner questions',
   faqSub: 'Everything feels urgent at the start, but not everything happens on day one – these answers help with the first decisions.',
   faq: [
-    ['Do I need a company from day one?', 'Not always. Often it matters more to validate demand, set up a simple way to take payments, and keep basic records first. Details in the legal roadmap.'],
+    ['Do I need a company from day one?', 'Not always. Incorporation and permission to carry out an activity are different questions. Before testing or taking payments, check the requirements for your activity through the legal roadmap.'],
     ['Is starting with just a Facebook page wrong?', 'No. Many Bangladeshi businesses start on Facebook/Messenger. But keep orders, payments, delivery and refunds organized from the start.'],
     ['Can I build a startup without funding?', 'Very often, yes. Gather proof first – small tests, paying customers, repeat orders – and funding conversations get much easier.'],
     ['What if I don\'t understand law/tax?', 'Don\'t freeze. First understand what\'s needed now versus later. For big decisions, combine official sources with professional advice.'],
-    ['Is this site really free?', 'Yes – completely free and open source. No courses for sale, no login. All the writing is open on GitHub.'],
+    ['Is this site really free?', 'Yes – reading and learning tools are free and need no account. Submitting an edit requires sign-in and review. The writing is open on GitHub.'],
     ['Who writes these guides?', 'The community – founders, students, professionals. Anyone can improve any page via its “Edit” link; reviewers check every change.']
   ],
   govTitle: 'Essential government links',

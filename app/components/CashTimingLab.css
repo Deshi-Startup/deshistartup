@@ -1,0 +1,54 @@
+.cash-lab {
+  margin: 1.5rem 0;
+  padding: clamp(.8rem, 3vw, 1.5rem);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--canvas-soft);
+  overflow-wrap: anywhere;
+}
+.cash-lab__intro { margin-top: 0; }
+.cash-lab__presets { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+.cash-lab button, .cash-lab input, .cash-lab select {
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--canvas);
+  padding: .65rem;
+  min-height: 44px;
+}
+.cash-lab button { cursor: pointer; text-align: left; }
+.cash-lab button[aria-pressed="true"] { background: var(--green-soft); border-color: var(--green); color: var(--green-deep); }
+.cash-lab :is(button,input,select,summary):focus-visible { outline: 2px solid var(--green-deep); outline-offset: 3px; }
+.cash-lab__controls { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
+.cash-lab__controls label { display: block; margin-bottom: .4rem; font-weight: var(--w-strong); }
+.cash-lab__controls :is(input,select) { width: 100%; }
+.cash-lab__verdict { padding-left: .8rem; border-left: 3px solid var(--green); }
+.cash-lab__results { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .7rem; }
+.cash-lab__results div { padding: .8rem; border: 1px solid var(--line); background: var(--canvas); }
+.cash-lab__results dt { font-size: .85rem; color: var(--muted); }
+.cash-lab__results dd { margin: .4rem 0 0; font-weight: var(--w-strong); font-variant-numeric: tabular-nums; }
+.cash-lab__chart { margin: 1rem 0; }
+.cash-lab__chart svg { display: block; width: 100%; height: auto; }
+.cash-lab__chart text { fill: var(--muted); font-size: 12px; }
+.cash-lab__zero { stroke: var(--muted); stroke-dasharray: 4 4; }
+.cash-lab__path { fill: none; stroke: var(--green-deep); stroke-width: 2.5; }
+.cash-lab__negative { fill: var(--warn-ink); }
+.cash-lab__positive { fill: var(--green-deep); }
+.cash-lab__chart figcaption, .cash-lab caption { color: var(--muted); font-size: .85rem; text-align: left; }
+.cash-lab__table table { width: 100%; font-size: .9rem; font-variant-numeric: tabular-nums; }
+.cash-lab__table :is(td,th) { padding: .45rem; text-align: right; }
+.cash-lab__table :is(td,th):first-child { text-align: left; }
+.cash-lab__assumptions summary { cursor: pointer; padding: .6rem 0; }
+@media (max-width: 620px) {
+  .cash-lab__controls, .cash-lab__results { grid-template-columns: minmax(0,1fr); }
+  .cash-lab__results div { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; }
+  .cash-lab__results dd { margin: 0; }
+}
+@media print {
+  .cash-lab__presets { display: none; }
+  .cash-lab__assumptions > p { display: block !important; }
+  .cash-lab__assumptions::details-content { content-visibility: visible; }
+  .cash-lab__results, .cash-lab__chart { break-inside: avoid; }
+}
