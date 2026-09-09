@@ -262,8 +262,8 @@ function pageTocHtml(headings, isEn) {
   const items = headings
     .map((h) => `<li><a href="#${escapeHtml(h.id)}">${escapeHtml(h.text)}</a></li>`)
     .join('')
-  return `<details class="page-toc"><summary>${
-    isEn ? 'On this page' : 'এই পেজে'
+  return `<details class="page-toc" name="page-navigation"><summary>${
+    isEn ? 'Contents' : 'সূচিপত্র'
   }</summary><ul>${items}</ul></details>`
 }
 
@@ -288,8 +288,6 @@ function insertPageToc(html, toc) {
   if (ledeStart === -1) return html
   const articleStart = html.indexOf('<article class="article', ledeStart)
   if (articleStart === -1) return html
-  // The lede's final child varies by route: guides end with article metadata,
-  // while utility pages such as /contact deliberately omit that nested row.
   // The lede itself is always the last closing div before the article.
   const ledeEnd = html.lastIndexOf('</div>', articleStart)
   if (ledeEnd < ledeStart) return html
@@ -761,9 +759,6 @@ for (const page of pages) {
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(expectedDocumentTitle)}</title>`)
   html = html.replace(/(<html\b[^>]*\blang=)["'][^"']*["']/i, `$1"${htmlLanguage}"`)
   html = html.replace('</head>', `${tags.join('')}\n</head>`)
-  // The client shell discovers the page title after hydration; give the static
-  // HTML the real breadcrumb leaf (the component suppresses the hydration diff).
-  html = html.replace('<li aria-current="page">…</li>', `<li aria-current="page">${escapeHtml(page.title)}</li>`)
   if (shellHeadings.length > 0 && !headingsAlreadyWritten) {
     html = insertSidebarToc(html, sidebarTocHtml(shellHeadings, isEn))
     html = insertPageToc(html, pageTocHtml(shellHeadings, isEn))

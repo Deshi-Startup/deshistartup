@@ -2,9 +2,9 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { cleanRoute } from './clean-route.ts'
 import { sourceSupportsInlineEdit } from './inline-edit-policy.mjs'
-import { pageChromePolicy } from './page-chrome.ts'
+import { breadcrumbAncestors, pageChromePolicy } from './page-chrome.ts'
 
-test('utility and policy pages do not present Guide and Discussion as content tabs', () => {
+test('utility and policy pages do not offer a discussion action', () => {
   for (const route of [
     '/about',
     '/contact',
@@ -21,7 +21,7 @@ test('utility and policy pages do not present Guide and Discussion as content ta
     '/en/sitemap',
     '/en/startup-50'
   ]) {
-    assert.equal(pageChromePolicy(route).showContentTabs, false, route)
+    assert.equal(pageChromePolicy(route).showDiscussionAction, false, route)
   }
 })
 
@@ -29,7 +29,7 @@ test('home, contact, and Startup 50 omit the whole page-chrome strip', () => {
   for (const route of ['/', '/en', '/en/', '/contact', '/en/contact', '/startup-50', '/en/startup-50']) {
     assert.deepEqual(
       pageChromePolicy(route),
-      { showContentTabs: false, showPageActions: false, showEditAction: false },
+      { showDiscussionAction: false, showPageActions: false, showEditAction: false },
       route
     )
   }
@@ -39,13 +39,13 @@ test('authored non-guide pages retain edit and history actions', () => {
   for (const route of ['/about', '/contribute', '/privacy', '/terms', '/en/privacy']) {
     assert.deepEqual(
       pageChromePolicy(route),
-      { showContentTabs: false, showPageActions: true, showEditAction: true },
+      { showDiscussionAction: false, showPageActions: true, showEditAction: true },
       route
     )
   }
 })
 
-test('guides and authored collections retain the established content chrome', () => {
+test('guides and authored collections retain discussion, editing and history', () => {
   for (const route of [
     '/registration/private-limited',
     '/en/registration/private-limited',
@@ -56,7 +56,7 @@ test('guides and authored collections retain the established content chrome', ()
   ]) {
     assert.deepEqual(
       pageChromePolicy(route),
-      { showContentTabs: true, showPageActions: true, showEditAction: true },
+      { showDiscussionAction: true, showPageActions: true, showEditAction: true },
       route
     )
   }
@@ -87,7 +87,7 @@ test('static-export spellings resolve to the same page-chrome policy', () => {
   ]) {
     assert.deepEqual(
       pageChromePolicy(cleanRoute(route)),
-      { showContentTabs: false, showPageActions: true, showEditAction: true },
+      { showDiscussionAction: false, showPageActions: true, showEditAction: true },
       route
     )
   }
@@ -97,7 +97,7 @@ test('utility route names are exact rather than prefix matches', () => {
   for (const route of ['/privacy/notice-template', '/contact/customer-support', '/en/terms/term-sheets']) {
     assert.deepEqual(
       pageChromePolicy(route),
-      { showContentTabs: true, showPageActions: true, showEditAction: true },
+      { showDiscussionAction: true, showPageActions: true, showEditAction: true },
       route
     )
   }
@@ -171,4 +171,18 @@ test('Markdown headings inside code fences do not make a thin hub editable', () 
     }),
     false
   )
+})
+
+
+test('breadcrumbs contain short ancestors, never the current article title', () => {
+  const labels = { '/validation': 'আইডিয়া ভ্যালিডেশন', '/en/validation': 'Idea validation' }
+  assert.deepEqual(breadcrumbAncestors('/validation/interview-scripts', labels), [
+    { href: '/', label: 'হোম' }, { href: '/validation', label: 'আইডিয়া ভ্যালিডেশন' }
+  ])
+  assert.deepEqual(breadcrumbAncestors(cleanRoute('/en/validation/interview-scripts.html'), labels), [
+    { href: '/en', label: 'Home' }, { href: '/en/validation', label: 'Idea validation' }
+  ])
+  assert.deepEqual(breadcrumbAncestors('/en/validation', labels), [{ href: '/en', label: 'Home' }])
+  assert.deepEqual(breadcrumbAncestors('/en', labels), [])
+  assert.deepEqual(breadcrumbAncestors('/', labels), [])
 })

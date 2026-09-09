@@ -756,72 +756,15 @@ body.nav-open {
   box-shadow: var(--shadow);
 }
 
-/* ------------------------------------------------------------ article tabs */
+/* --------------------------------------------------------- reading controls */
 
-.article-tabs {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  border-bottom: 1px solid var(--line);
-  padding: 28px 48px 0;
-}
-
-.article-tabs--actions-only {
-  justify-content: flex-end;
-}
-
-.tab-group {
-  display: flex;
-}
-
-.tab {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid transparent;
-  border-bottom: 0;
-  background: transparent;
-  padding: 13px 22px;
-  color: var(--muted);
-  text-decoration: none;
-}
-
-a.tab {
-  cursor: pointer;
-}
-
-.tab.active {
-  border-color: var(--line);
-  border-top: 3px solid var(--green);
-  background: var(--canvas);
-  color: var(--ink);
-  font-weight: var(--w-strong);
-}
-
-.article-actions {
-  display: flex;
-  gap: 28px;
-  padding-bottom: 12px;
-  font-size: 0.95rem;
-}
-
-.article-actions > * {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* Read and Edit swap the way they do on a wiki: whichever view you are in is
-   the current one, set in ink, and the other stays a link. */
-.article-actions .is-current {
-  color: var(--ink);
-  font-weight: var(--w-strong);
-  cursor: default;
+.editor-toolbar {
+  padding: 18px 48px 0;
 }
 
 .act-pencil {
-  display: none;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
@@ -829,56 +772,84 @@ a.tab {
   stroke-linejoin: round;
 }
 
-/* The route policy removes data-owned actions during SSR. These selectors are
-   the no-flash fallback for source states only the rendered article can reveal:
-   stubs and a SectionIndex shell with no authored section.
-   The client removes the same controls after hydration, and the API allowlist
-   independently rejects those routes. */
+/* Match the source-aware editor policy before hydration as well. */
 .content-canvas:has(.article [data-pagefind-meta='stub'])
-  :is(.article-actions .act-edit, .article-footer .contrib-edit),
+  :is(.page-tools .act-edit, .article-footer .contrib-edit),
 .content-canvas:has(.article > [data-inline-edit-source='section-index']):not(:has(.article > h2))
-  :is(.article-actions .act-edit, .article-footer .contrib-edit) {
+  :is(.page-tools .act-edit, .article-footer .contrib-edit) {
   display: none;
 }
 
-/* --------------------------------------------------- breadcrumbs and meta */
-
 .article-lede {
-  padding: 18px 48px 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 48px 0;
 }
 
 .breadcrumbs {
-  color: var(--faint);
+  flex: 1;
+  min-width: 0;
+  color: var(--muted);
   font-size: 0.85rem;
 }
 
 .breadcrumbs ol {
   display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
+  align-items: center;
+  gap: 8px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .breadcrumbs li {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+  min-width: 0;
   margin: 0;
+}
+
+.breadcrumbs li:first-child {
+  flex-shrink: 0;
 }
 
 .breadcrumbs li + li::before {
   content: '›';
-  color: var(--line);
+  color: var(--muted);
 }
 
 .breadcrumbs a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 44px;
   color: var(--muted);
+}
+
+.breadcrumbs a span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .breadcrumbs a:hover {
   color: var(--blue);
+}
+
+.breadcrumb-back {
+  display: none;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .article-meta {
@@ -886,22 +857,15 @@ a.tab {
   flex-wrap: wrap;
   align-items: center;
   gap: 4px 18px;
-  margin-top: 6px;
-  color: var(--faint);
+  margin: 0 48px 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
   font-size: 0.85rem;
 }
 
 .article-meta .meta-date {
-  color: var(--green-deep);
-  font-weight: 600;
-}
-
-.article-meta > a {
   color: var(--muted);
-}
-
-.article-meta > a:hover {
-  color: var(--blue);
 }
 
 /* Postbuild fills this from the same events as the record below the article.
@@ -1710,53 +1674,83 @@ p:has(> .fb-video) {
   }
 }
 
-/* mobile "on this page" accordion */
-.page-toc {
-  margin: 12px 0 18px;
-  border: 1px solid var(--line);
-  background: var(--canvas-soft);
-  font-size: 0.9rem;
+/* Compact disclosures share the reading row; their panels open on demand. */
+.page-toc,
+.page-tools {
+  flex-shrink: 0;
+  margin: 0;
+  font-size: 0.85rem;
 }
 
-/* The site's stated open/closed sign, the same one .home-faq uses. The browser
-   triangle was the only disclosure control on the site still drawn by the
-   browser, and it read as a different family from the accordions beside it. */
-.page-toc summary {
+.page-toc { order: 1; }
+.page-tools { order: 2; }
+
+:is(.page-toc, .page-tools) > summary {
   display: flex;
-  align-items: baseline;
-  gap: 10px;
-  padding: 9px 14px;
-  color: var(--green-deep);
-  font-weight: var(--w-strong);
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 2px;
+  color: var(--muted);
   cursor: pointer;
   list-style: none;
+  white-space: nowrap;
 }
 
-.page-toc summary::-webkit-details-marker {
+:is(.page-toc, .page-tools) > summary::-webkit-details-marker {
   display: none;
 }
 
-.page-toc summary::before {
-  content: '+';
-  flex: 0 0 auto;
-  width: 0.8em;
+:is(.page-toc, .page-tools) > summary::after { content: '+'; }
+:is(.page-toc, .page-tools)[open] > summary::after { content: '–'; }
+
+:is(.page-toc, .page-tools) > summary:hover {
+  color: var(--blue);
 }
 
-.page-toc[open] > summary::before {
-  content: '–';
-}
-
-.page-toc summary:hover {
-  background: var(--green-soft);
-}
-
-.page-toc ul {
+.page-toc > ul,
+.page-tools-panel {
+  position: absolute;
+  z-index: 5;
+  top: 100%;
+  right: 48px;
+  width: min(32rem, calc(100% - 96px));
+  max-height: min(65vh, 32rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   margin: 0;
-  padding: 2px 16px 12px 30px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: var(--canvas);
 }
 
-.page-toc li {
-  margin: 4px 0;
+.page-tools-panel { width: min(19rem, calc(100% - 96px)); }
+.page-toc > ul { padding-left: 32px; }
+.page-toc li { margin: 0; }
+
+.page-toc li a,
+.page-tools-panel :is(a, button) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px;
+  color: var(--blue);
+}
+
+.page-tools-panel button {
+  width: 100%;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.page-toc li a:hover,
+.page-tools-panel :is(a, button):hover {
+  background: var(--green-soft);
+  text-decoration: underline;
 }
 
 /* Exactly one "on this page" at every width: the sidebar owns it from 1024px
@@ -2233,7 +2227,7 @@ a.is-stub-link:hover {
   }
 
   .article,
-  .article-tabs {
+  .editor-toolbar {
     padding-left: 32px;
     padding-right: 32px;
   }
@@ -2243,6 +2237,13 @@ a.is-stub-link:hover {
     padding-right: 32px;
   }
 
+  .page-toc > ul,
+  .page-tools-panel {
+    right: 32px;
+    max-width: calc(100% - 64px);
+  }
+
+  .article-meta,
   .page-contribution-credits,
   .article-footer {
     margin-left: 32px;
@@ -2346,61 +2347,21 @@ a.is-stub-link:hover {
     box-shadow: none;
   }
 
-  .article-tabs {
-    padding: 14px 18px 0;
+  .article-lede,
+  .editor-toolbar {
+    padding: 10px 18px 0;
   }
 
-  /* The row collapses to the one control a phone reader can act on. "পড়ুন" is
-     the view they are already in, and commit history is a poor thing to open on
-     a phone – but the founder who spots a wrong fee on the bus is exactly the
-     person this editor is for, so এডিট stays, drawn as something tappable. */
-  .article-actions {
-    gap: 12px;
-    padding-bottom: 10px;
-    font-size: 0.9rem;
-  }
+  .article-lede { gap: 12px; }
+  .breadcrumbs li:not(:last-child) { display: none; }
+  .breadcrumbs li + li::before { display: none; }
+  .breadcrumb-back { display: block; }
 
-  /* Read is already the current view and History is intentionally desktop-only
-     here. Once Edit is ineligible, remove the otherwise empty mobile action
-     slot; an actions-only utility strip should disappear with it. */
-  .article-actions--without-edit,
-  .content-canvas:has(.article [data-pagefind-meta='stub']) .article-actions,
-  .content-canvas:has(.article > [data-inline-edit-source='section-index']):not(:has(.article > h2)) .article-actions {
-    display: none;
-  }
-
-  .article-tabs--actions-only:has(.article-actions--without-edit),
-  .content-canvas:has(.article [data-pagefind-meta='stub']) .article-tabs--actions-only,
-  .content-canvas:has(.article > [data-inline-edit-source='section-index']):not(:has(.article > h2)) .article-tabs--actions-only {
-    display: none;
-  }
-
-  .article-actions .act-history,
-  .article-actions .act-read.is-current {
-    display: none;
-  }
-
-  .article-actions .act-pencil {
-    display: inline-block;
-  }
-
-  .article-actions .act-edit {
-    gap: 7px;
-    border: 1px solid var(--line);
-    border-radius: 3px;
-    background: var(--canvas);
-    padding: 8px 13px;
-    min-height: 44px;
-  }
-
-  .article-actions .act-edit.is-current {
-    border-color: var(--green);
-    background: var(--green-soft);
-    color: var(--green-deep);
-  }
-
-  .article-lede {
-    padding: 14px 18px 0;
+  .page-toc > ul,
+  .page-tools-panel {
+    right: 18px;
+    width: calc(100% - 36px);
+    max-width: none;
   }
 
   .article {
@@ -2433,6 +2394,7 @@ a.is-stub-link:hover {
     table-layout: fixed;
   }
 
+  .article-meta,
   .page-contribution-credits,
   .article-footer {
     margin-left: 18px;
@@ -2493,46 +2455,6 @@ a.is-stub-link:hover {
   }
 }
 
-/* The production date arrives from postbuild metadata after hydration. On a
-   narrow phone it occupies the first line and the repair link the second, so
-   reserve that exact grid before the date arrives and keep the article still. */
-@media (max-width: 420px) {
-  .article-meta {
-    display: grid;
-    grid-template-rows: minmax(1.5em, auto) auto;
-    row-gap: 4px;
-    column-gap: 0;
-    justify-items: start;
-  }
-
-  .article-meta .meta-date {
-    grid-row: 1;
-  }
-
-  .article-meta > a {
-    grid-row: 2;
-  }
-
-  /* The byline is in the HTML at first paint, so it needs no reservation of its
-     own; only the client-formatted date does. Adding its track conditionally
-     keeps every page without a byline laid out exactly as before. */
-  .article-meta:has(.article-byline:not(:empty)) {
-    grid-template-rows: auto minmax(1.5em, auto) auto;
-  }
-
-  .article-meta:has(.article-byline:not(:empty)) .article-byline {
-    grid-row: 1;
-  }
-
-  .article-meta:has(.article-byline:not(:empty)) .meta-date {
-    grid-row: 2;
-  }
-
-  .article-meta:has(.article-byline:not(:empty)) > a {
-    grid-row: 3;
-  }
-}
-
 @media (max-width: 620px) {
   .site-footer .footer-link-group {
     grid-template-columns: minmax(0, 1fr);
@@ -2551,14 +2473,6 @@ a.is-stub-link:hover {
 
   .brand small {
     font-size: 0.82rem;
-  }
-
-  .article-tabs {
-    overflow-x: auto;
-  }
-
-  .tab {
-    padding: 10px 15px;
   }
 
   th,
@@ -2583,7 +2497,8 @@ a.is-stub-link:hover {
 @media print {
   .site-header,
   .sidebar-wrap,
-  .article-tabs,
+  .article-lede,
+  .editor-toolbar,
   .article-footer,
   .site-footer,
   .breadcrumbs,
@@ -2611,20 +2526,6 @@ a.is-stub-link:hover {
   .article a[href^='http']::after {
     content: none;
   }
-}
-
-.tab-action-btn {
-  background: none;
-  border: 0;
-  padding: 0;
-  font: inherit;
-  color: var(--blue);
-  cursor: pointer;
-}
-
-.tab-action-btn:hover {
-  color: var(--blue-hover);
-  text-decoration: underline;
 }
 
 /* Same geometry as every other action on the site: hairline, 3px, white ground,
@@ -3113,7 +3014,8 @@ html[lang='en'] .glossary-copy--en {
   .site-header,
   .sidebar-wrap,
   .sidebar-backdrop,
-  .article-tabs,
+  .article-lede,
+  .editor-toolbar,
   .skip-link,
   .top-actions,
   .edit-flash,

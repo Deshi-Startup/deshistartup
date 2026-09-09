@@ -363,10 +363,9 @@ Responsive behavior, by the breakpoints that actually exist:
 - **860px**: the phone layout. Header stacks to two rows and search takes the second, the rail
   becomes an off-canvas drawer behind a toggle, scroll clearance rises to 152px, and simple tables
   switch to a fixed layout so the column settles first and the text wraps inside it.
-- **620px / 560px / 520px**: single-column filter panels and footers, tabs scroll horizontally,
-  the brand tagline truncates; the compact infobox keeps its label/value columns.
-- **420px**: the meta row reserves its exact two-row grid before the client-formatted date arrives,
-  so nothing shifts after paint.
+- **620px / 560px / 520px**: single-column filter panels and footers, the brand tagline
+  truncates; the compact infobox keeps its label/value columns. Page metadata follows the article,
+  so its date cannot shift the headline after paint.
 
 **The Phone-Is-The-Reader Rule.** The narrow column gets the larger body, not the smaller one.
 Bangla carries matra above the line and conjuncts below it, and at 15px the stacked forms are where
@@ -383,7 +382,7 @@ page" lists are written into the HTML by `scripts/postbuild-seo.mjs`, marked `de
 reproduced exactly by the shell's first client render. The rule is stated once and implemented
 twice, so a change to either side has to be made on both.
 
-Pages print. The header, rail, tabs, footers, breadcrumbs, meta row and table of contents are
+Pages print. The header, rail, reading controls, footers, metadata and table of contents are
 removed, the canvas loses its border and shadow, body drops to 11pt, links become underlined ink,
 and the external-link marker is suppressed.
 
@@ -531,9 +530,15 @@ border color, ground tint, weight and the arrow, in that order.
   The desktop rail follows the document scroll, with no independent scrollbar or height cap.
   Below 860px it becomes the existing off-canvas drawer with a backdrop, its own scrolling
   and its own heavier shadow.
-- **Tabs:** the article/edit pair. The active tab takes a hairline border, a 3px Bangladesh Emerald
-  top rule and the canvas ground; whichever view you are in is set in ink and the other stays a
-  link.
+- **Reading controls:** one compact row above the headline. Breadcrumbs use short navigation
+  labels and list ancestors only; on phones, show just the parent link with a back arrow. Long
+  fallback labels stay on one line, with their full text available to assistive technology and
+  in the link title. The article headline is never repeated in this row.
+- **Page tools:** a native disclosure holds editing, discussion, history and mistake reporting.
+  Contents uses the same row below 1024px; the desktop sidebar retains its contents list.
+  Opening either disclosure closes the other. Escape returns focus to its trigger; clicking
+  outside or following a link closes the panel. Both work as native disclosures without JavaScript.
+  While editing, a single Back to guide control invokes the existing unsaved-work protection.
 - **Disclosure:** one open/closed sign across the site, a `+` that becomes `–`. The browser's own
   triangle is suppressed, because it was the last control on the site drawn in a different family
   from the accordions beside it.
@@ -724,11 +729,11 @@ than the near-white ground, so it carries the same weight as a photograph beside
 
 ### Guide byline
 
-Every written guide opens with one line of credit in the article meta row, ahead of the verified
-date and the repair link, so the row reads in a reference work's colophon order: who wrote it, when
-it was last checked, how to correct it. It is the same record as the `#credits` block below the
-article, compressed to a line and moved to where a reader is still deciding whether to trust the
-page. The record proves; the line credits.
+Every written guide keeps its short byline and verified or updated date after the article,
+just before the full `#credits` record. Reading begins with the headline and guide content;
+credit, freshness and contribution details remain available below it. Mistake reporting is
+available in Page tools and the contribution footer. The byline and full record still use the
+same committed contributor events.
 
 The verb comes from the strongest role on the page, so an editor-only guide reads
 `সম্পাদনা করেছেন` and never claims authorship. One or two people are named outright; past two the
@@ -739,12 +744,9 @@ in the ledger names the team and links to the editorial policy, because a blank 
 told apart from "not recorded". Stubs and non-guide pages carry no byline at all.
 
 Contributor names are set in Reference Blue: they are links to a person, and looking like one is
-most of why the line is worth adding. The repair link beside them stays muted on purpose, and the
-visited violet is deliberately not extended here, because a person is not a guide you have read.
+most of why the line is worth adding. The visited violet is deliberately not extended here, because a person is not a guide you have read.
 No avatars, no role chips: faces would mean a third-party request on every guide view, and a chip
-would repeat what the verb already says at twice the width. Below 420px the byline takes its own
-row above the date's reserved one, which costs about 27px on the narrowest phones and is the only
-cost the feature has.
+would repeat what the verb already says at twice the width. The byline and date wrap naturally on narrow screens, below the reading content.
 
 Arriving at `#credits` from the byline, the record's header takes the site's one landing cue, the
 same `target-land` fade the glossary uses to answer "where did I land" once and then leave.

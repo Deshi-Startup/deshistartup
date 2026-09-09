@@ -9,7 +9,7 @@ import type { SubmitResult } from './ContributionEditor'
 import { cleanRoute } from '../lib/clean-route'
 import { decodeFragment } from '../lib/url-fragment'
 import { clearAuth, getStoredAuth, UserInfo } from '../lib/client-auth'
-import { pageChromePolicy } from '../lib/page-chrome'
+import { breadcrumbAncestors, pageChromePolicy } from '../lib/page-chrome'
 import {
   bnNav,
   DISCORD_URL,
@@ -104,8 +104,7 @@ function FacebookIcon() {
   )
 }
 
-/* Carried by the এডিট action so it still reads as "edit" on a phone, where
-   the row collapses to that one control and the neighbouring words are gone. */
+/* A small familiar cue beside the explicitly labelled edit action. */
 function ActionPencil() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className="act-pencil">
@@ -275,46 +274,34 @@ function Sidebar({ isEn, pathname, headings, onNavigate, onClose, closeButtonRef
 interface BreadcrumbsProps {
   isEn: boolean
   pathname: string
-  pageTitle: string
 }
 
-function Breadcrumbs({ isEn, pathname, pageTitle }: BreadcrumbsProps) {
-  const segments = pathname.split('/').filter(Boolean)
-  const rest = isEn ? segments.slice(1) : segments
-  if (rest.length === 0) return null
-
-  const sectionTitles = (isEn ? typedSectionsLite.en : typedSectionsLite.bn) || {}
-  const crumbs = [{ href: isEn ? '/en' : '/', label: isEn ? 'Home' : 'হোম' }]
-
-  if (rest.length > 1) {
-    const sectionSlug = rest[0]
-    crumbs.push({
-      href: `${isEn ? '/en' : ''}/${sectionSlug}`,
-      label: sectionTitles[sectionSlug] || sectionSlug
-    })
+function Breadcrumbs({ isEn, pathname }: BreadcrumbsProps) {
+  const sections = (isEn ? typedSectionsLite.en : typedSectionsLite.bn) || {}
+  const labels = Object.fromEntries(Object.entries(sections).map(([slug, title]) => [
+    `${isEn ? '/en' : ''}/${slug}`, title
+  ]))
+  // Navigation labels are intentionally short; article titles explain the subject.
+  for (const group of isEn ? enNav : bnNav) {
+    for (const [route, label] of group.items) labels[route] = label
   }
+  const crumbs = breadcrumbAncestors(pathname, labels)
+  if (!crumbs.length) return null
 
   return (
     <nav className="breadcrumbs" aria-label={isEn ? 'Breadcrumb' : 'অবস্থান'}>
       <ol>
         {crumbs.map((crumb) => (
           <li key={crumb.href}>
-            <a href={localHref(crumb.href)}>{crumb.label}</a>
+            <a href={localHref(crumb.href)} title={crumb.label}>
+              <svg className="breadcrumb-back" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5-7 7 7 7M2 12h20" /></svg>
+              <span>{crumb.label}</span>
+            </a>
           </li>
         ))}
-        <li aria-current="page" suppressHydrationWarning>{pageTitle || '…'}</li>
       </ol>
     </nav>
   )
-}
-
-const enTabs = { article: 'Article', talk: 'Talk', read: 'Read', edit: 'Edit', history: 'View history' }
-const bnTabs = {
-  article: 'গাইড',
-  talk: 'আলোচনা',
-  read: 'পড়ুন',
-  edit: 'এডিট',
-  history: 'কী বদলেছে'
 }
 
 interface LocalizedLayoutProps {
@@ -363,7 +350,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   // carries its own way out.
   const isNotFound = pathname === '/_not-found' || pathname === '/en/_not-found'
   const {
-    showContentTabs,
+    showDiscussionAction,
     showPageActions,
     showEditAction: routeShowsEditAction
   } = pageChromePolicy(pathname)
@@ -373,7 +360,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     !isPrivateReview &&
     !isStandaloneFeature &&
     !isNotFound &&
-    (showContentTabs || showPageActions)
+    (showDiscussionAction || showPageActions)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [isMobileNavigation, setIsMobileNavigation] = useState(false)
   const isFullWidth = isWidePage && !isSidebarOpen
@@ -414,6 +401,27 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   const sidebarRef = useRef<HTMLDivElement>(null)
   const sidebarCloseRef = useRef<HTMLButtonElement>(null)
   const articleRef = useRef<HTMLElement>(null)
+  const ledeRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const closePanels = (event: PointerEvent | KeyboardEvent) => {
+      const lede = ledeRef.current
+      if (!lede) return
+      const escape = event instanceof KeyboardEvent && event.key === 'Escape'
+      if (!escape && (event instanceof KeyboardEvent || lede.contains(event.target as Node))) return
+      lede.querySelectorAll<HTMLDetailsElement>('details[open]').forEach((panel) => {
+        const restoreFocus = escape && panel.contains(document.activeElement)
+        panel.open = false
+        if (restoreFocus) panel.querySelector('summary')?.focus()
+      })
+    }
+    document.addEventListener('pointerdown', closePanels)
+    document.addEventListener('keydown', closePanels)
+    return () => {
+      document.removeEventListener('pointerdown', closePanels)
+      document.removeEventListener('keydown', closePanels)
+    }
+  }, [pathname])
   const scrollBeforeEdit = useRef(0)
 
   // Restore a still-valid Google ID token from localStorage on mount, and honour
@@ -684,16 +692,15 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     if (!article) return
 
     const h1 = article.querySelector('h1')
-    // Short form for chrome (breadcrumb leaf, issue titles): cut at the em dash.
+    // Short form for issue titles: cut at the en dash.
     setPageTitle(h1 ? h1.textContent?.split('–')[0].trim() || '' : '')
 
     setHeadings(collectHeadings(!hasServerRenderedToc()))
   }, [pathname])
 
   // Both dates for this route, read from the meta tags the postbuild pass writes
-  // into every prerendered page (same reason the breadcrumb leaf is injected
-  // there: the shared client shell cannot know the route during the static
-  // root-layout render). Navigation is full document loads, so the tags always
+  // into every prerendered page. The shared client shell cannot know the route
+  // during the static root-layout render. Navigation is full document loads, so the tags always
   // describe the page on screen.
   //
   // Fetching the site-wide maps instead cost every first-time reader ~40 KB to
@@ -737,8 +744,6 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
       active = false
     }
   }, [pathname, isLanding])
-
-  const tabs = isEn ? enTabs : bnTabs
 
   const file = sourceFileFor(pathname)
   const dateLabel = formatDate(lastUpdated, isEn)
@@ -844,59 +849,12 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
         </div>
 
         <main className="content-canvas" id="main">
-          {showPageChrome && (
-            <nav
-              className={`article-tabs${showContentTabs ? '' : ' article-tabs--actions-only'}`}
-              aria-label={isEn ? 'About this page' : 'এই পেজ নিয়ে'}
-            >
-              {showContentTabs && (
-                <div className="tab-group">
-                  <span className="tab active" aria-current="page">{tabs.article}</span>
-                  <a
-                    className="tab"
-                    href={`${REPO_URL}/discussions`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={isEn ? 'Discuss on GitHub' : 'গিটহাবে আলোচনা করুন'}
-                  >
-                    {tabs.talk}
-                  </a>
-                </div>
-              )}
-              {showPageActions && (
-                <div
-                  className={`article-actions${showEditAction ? '' : ' article-actions--without-edit'}`}
-                >
-                  {isEditing ? (
-                    <button type="button" className="act-read tab-action-btn" onClick={handleRead}>
-                      {tabs.read}
-                    </button>
-                  ) : (
-                    <span className="act-read is-current" aria-current="page">
-                      {tabs.read}
-                    </span>
-                  )}
-
-                  {showEditAction && (
-                    isEditing ? (
-                      <span className="act-edit is-current" aria-current="page">
-                        <ActionPencil />
-                        {tabs.edit}
-                      </span>
-                    ) : (
-                      <button type="button" className="act-edit tab-action-btn" onClick={handleContribute}>
-                        <ActionPencil />
-                        {tabs.edit}
-                      </button>
-                    )
-                  )}
-
-                  <a className="act-history" href={`${REPO_URL}/commits/main/${file}`} target="_blank" rel="noopener noreferrer">
-                    {tabs.history}
-                  </a>
-                </div>
-              )}
-            </nav>
+          {showPageChrome && isEditing && (
+            <div className="editor-toolbar">
+              <button type="button" className="edit-btn" onClick={handleRead}>
+                {isEn ? 'Back to guide' : 'গাইডে ফিরুন'}
+              </button>
+            </div>
           )}
 
           {flash && !isEditing && !isPrivateReview && (
@@ -951,13 +909,73 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
           )}
 
           {!isLanding && !isEditing && !isPrivateReview && !isStandaloneFeature && !isNotFound && (
-            <div className="article-lede">
-              <Breadcrumbs isEn={isEn} pathname={pathname} pageTitle={pageTitle} />
-              {!isContact && (
+            <div
+              className="article-lede"
+              ref={ledeRef}
+              onClick={(event) => {
+                const action = (event.target as Element).closest('.page-tools-panel a, .page-tools-panel button, .page-toc a')
+                if (!action) return
+                ledeRef.current?.querySelectorAll<HTMLDetailsElement>('details[open]').forEach((panel) => {
+                  panel.open = false
+                  // The sign-in dialog remembers its opener. Give it a visible
+                  // return target before the clicked Edit button is hidden.
+                  if (action.closest('.page-tools-panel')) panel.querySelector('summary')?.focus()
+                })
+              }}
+            >
+              <Breadcrumbs isEn={isEn} pathname={pathname} />
+              {showPageChrome && (
+                <details className="page-tools" name="page-navigation">
+                  <summary>{isEn ? 'Page tools' : 'পেজের অপশন'}</summary>
+                  <div className="page-tools-panel">
+                    {showEditAction && (
+                      <button type="button" className="act-edit" onClick={handleContribute}>
+                        <ActionPencil />{isEn ? 'Edit this page' : 'এই পেজ এডিট করুন'}
+                      </button>
+                    )}
+                    {showDiscussionAction && (
+                      <a href={`${REPO_URL}/discussions`} target="_blank" rel="noopener noreferrer">
+                        {isEn ? 'Discuss on GitHub' : 'গিটহাবে আলোচনা করুন'}
+                      </a>
+                    )}
+                    <a href={`${REPO_URL}/commits/main/${file}`} target="_blank" rel="noopener noreferrer">
+                      {isEn ? 'View history' : 'কী বদলেছে'}
+                    </a>
+                    <a href={issueUrl} target="_blank" rel="noopener noreferrer">
+                      {isEn ? 'Report a mistake' : 'ফিডব্যাক দিন'}
+                    </a>
+                  </div>
+                </details>
+              )}
+              {headings.length > 2 && (
+                <details className="page-toc" name="page-navigation">
+                  <summary>{isEn ? 'Contents' : 'সূচিপত্র'}</summary>
+                  <ul>
+                    {headings.map((heading) => (
+                      <li key={heading.id}>
+                        <a href={`#${heading.id}`}>{heading.text}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+            </div>
+          )}
+
+          <article
+            className={`${isEditing && !editorReady ? 'article is-yielding' : 'article'}${isPrivateReview ? ' article--utility' : ''}`}
+            data-pagefind-body={isPrivateReview ? undefined : ''}
+            data-pagefind-ignore={isPrivateReview ? 'all' : undefined}
+            ref={articleRef}
+            hidden={editorReady}
+          >
+            {children}
+          </article>
+
+          {!isLanding && !isEditing && !isPrivateReview && !isStandaloneFeature && !isNotFound && !isContact && (
                 <div className="article-meta">
-                  {/* Who, then when, then how to correct it: a reference work's
-                      colophon order. The slot is empty until postbuild fills it,
-                      and empty on every page that is not a written guide. */}
+                  {/* Credit and freshness remain available after the guide,
+                      without delaying the headline. Postbuild supplies the credit. */}
                   <div
                     className="article-byline"
                     data-deshi-byline="true"
@@ -980,35 +998,8 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
                       </span>
                     )
                   )}
-                  <a href={issueUrl} target="_blank" rel="noopener noreferrer">
-                    {isEn ? 'Report a mistake' : 'ফিডব্যাক দিন'}
-                  </a>
                 </div>
-              )}
-              {headings.length > 2 && (
-                <details className="page-toc">
-                  <summary>{isEn ? 'On this page' : 'এই পেজে'}</summary>
-                  <ul>
-                    {headings.map((heading) => (
-                      <li key={heading.id}>
-                        <a href={`#${heading.id}`}>{heading.text}</a>
-                      </li>
-                    ))}
-                  </ul>
-                </details>
-              )}
-            </div>
           )}
-
-          <article
-            className={`${isEditing && !editorReady ? 'article is-yielding' : 'article'}${isPrivateReview ? ' article--utility' : ''}`}
-            data-pagefind-body={isPrivateReview ? undefined : ''}
-            data-pagefind-ignore={isPrivateReview ? 'all' : undefined}
-            ref={articleRef}
-            hidden={editorReady}
-          >
-            {children}
-          </article>
 
           {!isLanding && !isEditing && !isPrivateReview && !isStandaloneFeature && !isNotFound && !isContact && (
             <section
