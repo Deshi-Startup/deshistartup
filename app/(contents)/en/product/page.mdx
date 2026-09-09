@@ -1,54 +1,50 @@
 ---
-title: "Product & Technology – Building for Bangladesh Realities"
-description: "Planned guides for no-code MVPs, tech stack, Bangla UX, low-end Android, SMS/OTP costs, cybersecurity and data protection."
+title: "Product & Technology – Building Something Customers Can Use"
+description: "How to choose the first task your product should handle, try it with customers and decide what to build or fix next."
 ---
 
-# Product: Turn a Customer Task into Something Usable
+# Product: Build Around the Job a Customer Needs Done
 
-> **In short:** Define the task a customer needs to complete, then test the smallest useful version of that experience. Building more features is not evidence that the task works.
+> **In short:** Before commissioning an app or choosing its features, describe one job a customer needs to finish. Make a small version they can try, watch where they get stuck, and fix that obstacle. A successful demonstration is a reason to continue testing; it does not yet prove demand, reliability or a viable business.
 
-## Choose what needs testing
+You may already have a list of things your product could do. A customer has asked for reports, another wants reminders, and a developer needs to know what to build first. The difficulty is deciding which of those requests belongs in the first version and which can wait.
 
-| Uncertainty | Useful next step |
-|---|---|
-| Is this a real problem? | [Customer interviews](/en/validation/customer-interviews) |
-| Will anyone take a meaningful next step? | [Test demand](/en/journeys/test-demand) |
-| What could a first version look like? | [MVP examples](/en/validation/mvp-examples) |
-| How should we define the experiment? | [MVP experiment planner](/en/validation/mvp-experiment-planner) |
+Start with the work behind the request. Someone asking for reminders may be trying to avoid missed appointments. Someone asking for reports may need to find unpaid invoices before calling customers. The feature is only useful if it helps them finish that work. Understanding the job gives you a way to choose between requests without treating every suggestion as another item to build.
 
-A sketch, manual service or demonstration may answer a question before you build a full product. State honestly what works and what is simulated; do not promise capabilities you cannot deliver.
+This section is for founders turning a customer problem into a usable product, especially when a small team has to make the first version. If you still do not know who has the problem or how they handle it today, begin with [customer interviews](/en/validation/customer-interviews). You can learn the work before committing to software. For a physical product that needs samples and production, use [manufacturing](/en/manufacturing).
 
-## Example: watch a customer complete one task
+## Describe what should happen, before drawing the screens
 
-A **prototype** lets you demonstrate or test an experience before completing the product. **Usability** is whether the intended person can complete the task in the relevant conditions. Praise for the screen does not tell you whether the task works.
+Pick a particular person and a task they already recognise. Write down what starts the task, what information they have, and what should be different when they finish. “An administrator can change a class time and see which learners need notice” is easier to design and check than “a complete training-centre management app.” It also exposes a question a feature list can hide: does changing the time itself send a message, or does the administrator review and send it separately?
 
-Imagine a fictional appointment tool for a Sylhet training centre. The task is “move a class and identify who needs to be informed.” A paper or clickable prototype with made-up names is enough for an initial usability check.
+Use that description when speaking with a designer or developer. Include the conditions in which the work happens: the device, language, internet connection and any assistance the person needs. Check these with the intended users rather than assuming every customer has the same phone or reads the same language comfortably.
 
-```text
-User: administrator who changes timetables.
-Start: a class is currently listed for Tuesday morning.
-Task: move it to Wednesday and find which participants need notice.
-Success: the new time and affected group are correctly identified without prompting.
-Observation: the administrator changes the time but cannot find the affected group.
-Interpretation: the relationship between a class change and notification is unclear.
-Revision: show the affected group and a separate confirmation step beside the change.
-Retest: another suitable administrator attempts the same task with dummy data.
-```
+For the first version, keep the parts required to finish the chosen task. Put other requests aside with a short explanation of why they can wait. This makes the scope small enough to inspect, while keeping the experience complete enough to be useful.
 
-Do not guide the person through the exact clicks while claiming the design worked unaided. Record where help was necessary. Also check the device, connection, language and accessibility conditions that actually matter for that group.
+## Let someone try it without explaining every click
 
-The first test is complete when you have an observed outcome and a reason for the revision. It does not prove that messages will be delivered reliably in a real system. Before using real contacts, payments or sensitive records, resolve the relevant data practices, consent, security and operating requirements.
+You do not always need working software to find a confusing step. A **prototype** is an early representation of the experience, such as paper screens or a clickable mock-up. It lets someone try the sequence before you pay to build everything behind it. Use made-up records at this stage and explain what the prototype can and cannot do.
 
-## Write a one-task product brief
+Suppose you are testing the class-time change described above. Give an administrator the starting timetable and ask them to move a class from Tuesday to Wednesday, then identify who needs to hear about it. Let them attempt the task. If you point to every button, you are checking whether they can follow your directions, rather than whether the design makes sense to them.
 
-Describe **who / starting situation / task / successful outcome / likely failure / how you will observe it**. Add the device, connection, language and accessibility needs you must investigate with the intended users.
+They might change the time successfully but overlook the learners affected by the change. That tells you where to work next: perhaps the affected group needs to appear beside the new time, with a clear review step. Make that change and try the task again. Keep a note of what happened and where you helped, so a smooth retest does not erase the earlier difficulty.
 
-Ask someone from that group to try the task. Observe where they hesitate, need help or fail. Record what happened separately from your proposed solution. Fix the most important obstacle and try again.
+This is a **usability test**: checking whether the intended person can use the design to complete the job. It does not show that real messages will arrive, or that customers will pay for the service. Those need separate checks.
 
-Before handling real payments or sensitive information, identify the necessary permissions, data practices and safeguards. Start with the [legal roadmap](/en/legal-roadmap) for questions to resolve.
+## Decide what the next version must prove
 
-## Detailed product topics
+Once people can complete the task, try a limited working version. The smallest useful version may combine software with work you do by hand. For instance, an administrator could review a message in the product while you handle delivery through an agreed existing channel. Be honest about that arrangement, and measure the time it takes you. A service that works only because you spend an hour behind each request may need a different price or a different process before it can grow.
 
-The dedicated product and technology articles below are planned. The completed validation guides above can help you make progress now.
+Real use also introduces responsibilities that a mock-up avoids. Before adding customer contacts, payments or sensitive records, settle who can access them, what permission is needed and how you will recover from mistakes. The [legal roadmap](/en/legal-roadmap) helps identify the questions to resolve; the relevant provider or specialist must confirm the requirements for your situation.
+
+Choose your next step according to what remains uncertain:
+
+- To compare manual services, simple websites and other first versions, use [MVP examples](/en/validation/mvp-examples).
+- To find out whether someone will book a trial or pay for a stated offer, follow [testing demand](/en/journeys/test-demand).
+- To set the question, participants, time and spending limit for a test, use the [experiment planner](/en/validation/mvp-experiment-planner).
+
+If you are about to brief a developer, begin with the task description and what you observed when someone tried it. That gives the conversation a concrete starting point: what must work, where the difficulty lies and which extra features can wait.
+
+The product and technology articles below are planned. The completed guides linked above can help with the first product decisions now.
 
 <SectionIndex section="product" locale="en" />

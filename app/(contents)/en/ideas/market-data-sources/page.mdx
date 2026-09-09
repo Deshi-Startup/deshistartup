@@ -6,7 +6,7 @@ verified: 2026-07-30
 
 # Where to Find Bangladesh Market Data, and What to Check First
 
-> **Key Takeaway:** Most questions about the Bangladesh market are answered somewhere in a government publication, and it can be downloaded free. The hard part is not finding a number, it is working out what the number counts. BTRC reports 18.98 crore mobile subscribers in June 2026[^btrc-mobile-subscribers], while the 2022 census puts the country's adjusted population at 16,98,28,911.[^bbs-census-2022] There are roughly 2 crore more connections than people, because BTRC states the definition right under the table: a subscriber is a connection active at least once in 90 days, not a person. So before a number goes into a deck or a report, read the line under the table, and keep the file with a date on it.
+> **Key Takeaway:** Most questions about the Bangladesh market are answered somewhere in a government publication, and it can be downloaded free. The hard part is not finding a number, it is working out what the number counts. BTRC reports 18.98 crore mobile subscribers in June 2026[^btrc-mobile-subscribers], while the 2022 census puts the country's adjusted population at 16,98,28,911.[^bbs-census-2022] These figures refer to different years, so their difference is not a same-year excess of connections over people. More importantly, BTRC states the definition right under the table: a subscriber is a connection active at least once in 90 days, not a person. So before a number goes into a deck or a report, read the line under the table, and keep the file with a date on it.
 
 ## Which Question Is Answered Where
 
@@ -18,7 +18,7 @@ Plenty of founders estimate the market because they assume the data does not exi
 | How many businesses, in which sectors | BBS, Economic Census 2024 | Roughly once a decade |
 | Mobile and internet subscribers | BTRC statistics pages | Monthly |
 | Cards, <Term name="mfs">MFS</Term>, and transaction value | Bangladesh Bank, Digital Financial Statistics | Monthly |
-| Inflation and wage indices | BBS, CPI and industrial production index | Monthly |
+| Inflation and wage indices | BBS, Consumer Price Index and Wage Rate Index | Monthly |
 | Export volumes and destinations | EPB export data | Monthly |
 | Per capita income and long-run comparisons | World Bank Open Data | Yearly |
 | Which companies are registered | RJSC | Continuously |
@@ -37,7 +37,7 @@ BTRC publishes subscriber counts by operator every month. June 2026:[^btrc-mobil
 | Teletalk | 68 lakh |
 | **Total** | **18.98 crore** |
 
-The total exceeds the country's population, and that is not an error. BTRC gives the definition under the table: a subscriber is a biometric-verified connection that has been used at least once in the preceding 90 days. So someone running two SIMs is counted twice, and a SIM idle for three months drops off the list.
+Connections can exceed the number of people because one person may hold several; use a matching-year population estimate for an actual comparison. BTRC gives the definition under the table: a subscriber is a biometric-verified connection that has been used at least once in the preceding 90 days. So someone running two SIMs is counted twice, and a SIM idle for three months drops off the list.
 
 The internet rows work the same way. June 2026 shows 13.59 crore internet subscribers in total. Of those, mobile accounts for 12.08 crore and ISP plus PSTN for 1.51 crore.[^btrc-internet-subscribers] Here a subscriber means a connection that accessed the internet at least once in the preceding 90 days.
 
@@ -51,7 +51,7 @@ The reason is not hidden. After the census, a check survey establishes who was m
 
 Your job is simple then. Name the one you used. If you calculate anything per capita, write down which figure sits in the denominator, or you will not be able to reconcile it yourself six months later.
 
-The same report holds other figures that bear directly on reading a market. Of the adjusted population, 68.34% live in rural areas and 31.66% in urban. Literacy among those aged 7 and above is 74.80%. The annual population growth rate fell from 1.47% in 2011 to 1.22% in 2022.[^bbs-census-2022] By division, Dhaka is highest at 4,42,15,759 people and Barishal lowest at 91,00,104.
+The same report holds other figures that bear directly on reading a market. The census reports a rural share of 68.34% and an urban share of 31.66%. Literacy among those aged 7 and above is 74.80%. The annual population growth rate fell from 1.47% in 2011 to 1.22% in 2022.[^bbs-census-2022] By division, Dhaka is highest at 4,42,15,759 people and Barishal lowest at 91,00,104.
 
 ## Numbers Do Not Only Go Up
 
@@ -82,19 +82,20 @@ The sector split shows what business in Bangladesh actually consists of.
 | Accommodation and food service | 9,49,096 | 8.1% |
 | Education | 2,98,991 | 2.6% |
 | Information and communication | 45,668 | 0.4% |
+| Other sectors combined | 5,87,899 | 5.0% |
 | **Total** | **1,17,02,792** | **100%** |
 
-Look at that second-to-last row again. Information and communication holds 45,668 units in the whole country, 0.4% of the total. If you run a software or digital services business, that is your competitor count, and it is small.
+Information and communication includes 45,668 units, about 0.4% of the total. This broad sector is not a count of competitors for a particular software product: some units sell different services, and competing products can come from other classifications or countries.
 
 There is a column for computer use too, but the census publishes it only for the industry sector. Of that sector's 11,68,349 units, 28,151 use a computer or IT, which is 2.41%. Narrow it to manufacturing and it is 27,277 out of 11,19,401, while for urban manufacturing units the rate is 4.04%.[^bbs-economic-census-2024]
 
 ### Say You Are Building Billing Software for Shops
 
-You start with 1.17 crore units in hand. That is not your market. Drop into the wholesale and retail row and you get 48,94,610, which is not it either. Now the third step, and this is where the number really cuts. Units that use any online or e-commerce system in their business come to 1,15,948 nationally, under 1% of all units.[^bbs-economic-census-2024]
+The census counts 1.17 crore economic units overall and 48,94,610 in wholesale and retail trade and repair. Separately, 1,15,948 units across **all sectors** report using an online or e-commerce system.[^bbs-economic-census-2024] That online count is not a subset of the retail row supplied by this table, so do not present the three figures as a narrowing funnel.
 
-Here is the honest part. The next two steps have no number in any report. How many such shops sit in your district, and how many of them will pay you monthly, is not something the census tells you. Those two you have to go and count, and if you assume them instead, the whole calculation stays on paper.
+For billing software, define the shop types and geography you serve. Obtain the overlap between those shops and the relevant workflow, through an appropriate cross-tabulation or your own fieldwork. A shop does not have to sell online to need billing software.
 
-There is still a gain. Across those three steps you came down from 1.17 crore to about 1.16 lakh, and each step rests on a government table. That calculation holds up in front of an investor. "Bangladesh has 1.17 crore businesses" does not.
+Then test how many have the problem, can use the product and will pay the proposed price. Keep the national counts as context and mark the missing local figures explicitly. A shorter list supported by real checks is more useful than an invalid funnel with precise-looking numbers.
 
 ## Two Different Percentages in One Table
 

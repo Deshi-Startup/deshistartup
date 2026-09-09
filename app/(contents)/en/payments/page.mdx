@@ -6,18 +6,11 @@ verified: 2026-07-07
 
 # Payments: MFS, Bank, Cards and Cash on Delivery
 
-> **TL;DR:** Payments in Bangladesh are not limited to cards. One customer may prefer bKash or Nagad, another may pay on delivery, while a B2B customer may ask for a bank transfer and invoice. Compare customer convenience, settlement time, charges and reconciliation work before choosing a method.
+> **In short:** Payments in Bangladesh are not limited to cards. One customer may prefer bKash or Nagad, another may pay on delivery, while a B2B customer may ask for a bank transfer and invoice. Compare customer convenience, settlement time, charges and reconciliation work before choosing a method.
 
 Founders often leave payment design until the end. The product and Facebook page are ready, but there is no clean way to connect an order with its payment, refund and accounting record. Set up that connection before volume grows.
 
-## Choose the setup task
-
-- Compare options with [MFS and gateways](/en/payments/mfs-and-gateways).
-- Prepare onboarding with [merchant accounts](/en/payments/merchant-account).
-- Match money to orders with [reconciliation](/en/payments/reconciliation).
-- Plan exceptions with [refunds and chargebacks](/en/payments/refunds-chargebacks).
-
-Leave with one documented payment flow: **order → confirmed payment → settlement → reconciliation → refund if needed**. Assign an owner to unmatched transactions. Confirm current provider terms directly before choosing a service.
+A payment has several stages: the customer pays, the provider records it, and the money reaches your account after any agreed delay or deduction. A refund may create another transaction later. You need to connect these stages to the original order, not just mark it “paid.”
 
 ## Start with the Customer and the Record
 
@@ -125,21 +118,11 @@ Give every order one row:
 
 Reconcile the sheet with bank, MFS, gateway and courier reports at least weekly. Unmatched money is not a reliable business record.
 
-## Match one payment all the way through
+For example, suppose a customer pays BDT 1,000 and the provider's statement shows a BDT 20 fee. You expect **1,000 − 20 = BDT 980** in the bank. These are teaching figures, not a provider's current charges. If only BDT 950 arrives, the remaining BDT 30 needs explaining from the statement or provider response; do not silently record it as another fee.
 
-**Fictional example:** Invoice INV-014 is for BDT 1,000. A provider confirms collecting BDT 1,000, deducts an illustrative BDT 20 fee and transfers BDT 980. These are invented transaction amounts, not a provider's current pricing.
+Keep the gross customer payment, the documented deduction and the bank receipt separately, linked by the order and transaction references. If you later refund part of the payment, add that outgoing transaction too. Another person should be able to follow the money without guessing why it differs from the sale amount. The [reconciliation guide](/en/payments/reconciliation) explains how to investigate unmatched entries.
 
-| Record | Amount | Evidence |
-|---|---:|---|
-| Customer invoice | BDT 1,000 | INV-014 and agreed order |
-| Gross collection | BDT 1,000 | Provider transaction reference |
-| Fee | BDT 20 | Provider statement |
-| Net settlement received | BDT 980 | Matching bank entry |
-| Later partial refund | BDT 200 | Approved refund and confirmed outgoing transaction |
-
-The first bank receipt is BDT 980 because **1,000 − 20 = 980**. After the separate BDT 200 refund, these cash movements net to BDT 780. The fee and refund need separate records; neither should disappear inside a single “paid” tick. Accounting and tax treatment require the appropriate records beyond this cash example.
-
-If the bank shows only BDT 950, the unexplained BDT 30 is a discrepancy to investigate against the statement, not automatically another fee. Your completed record should let another person connect the order, customer payment, deductions, bank receipt and any refund without guessing.
+Once you have chosen the customer payment method, use [merchant accounts](/en/payments/merchant-account) for onboarding and [MFS and gateways](/en/payments/mfs-and-gateways) to compare provider terms. Prepare the [refund and chargeback process](/en/payments/refunds-chargebacks) before a complaint arrives.
 
 ## Checklist
 

@@ -53,6 +53,30 @@ const backlinkLabel = (numbers, isEnglish) => {
 }
 
 export function transformFootnotes(tree, { isEnglish = false } = {}) {
+  // GFM appends definitions to the document, even when authored beneath a
+  // sources heading. Keep the rendered list with that heading when a hub's
+  // directory or other closing content follows the definitions.
+  const textContent = (node) => node.type === 'text'
+    ? node.value
+    : (node.children || []).map(textContent).join('')
+  const attachSources = (parent) => {
+    if (!parent.children) return
+    const children = parent.children
+    const heading = children.find((node) =>
+      node.type === 'element' && node.tagName === 'h2' &&
+      /^(Relevant Sources|প্রাসঙ্গিক সোর্স)$/.test(textContent(node).trim())
+    )
+    const notes = children.find((node) =>
+      node.type === 'element' && node.tagName === 'section' && hasProperty(node, 'dataFootnotes')
+    )
+    if (heading && notes) {
+      children.splice(children.indexOf(notes), 1)
+      children.splice(children.indexOf(heading) + 1, 0, notes)
+    }
+    for (const child of children) attachSources(child)
+  }
+  attachSources(tree)
+
   const visit = (node, parent, inFootnotes = false) => {
     if (!node || typeof node !== 'object') return
 

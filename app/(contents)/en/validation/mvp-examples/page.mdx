@@ -1,12 +1,12 @@
 ---
 title: "What the First Version Looks Like: Seven MVP Shapes"
-description: "Your customer works on a phone, not a desktop, and pays over MFS. Seven shapes for a first version built on that reality, with tools, costs, and where each one breaks. Verified 30 July 2026."
+description: "Check the devices and payment methods your target customers actually use before building. Seven first-version shapes, with tools, costs, and where each breaks."
 verified: 2026-07-30
 ---
 
 # What the First Version Looks Like: Seven MVP Shapes
 
-> **Key Takeaway:** Assume two things before you build a first version, because the numbers back both. One, your customer works on a phone. BTRC counts 12.08 crore mobile internet connections in June 2026, against 1.51 crore across ISP and PSTN combined.[^btrc-internet-subscribers] Two, a business customer probably has no computer on the premises: per the Economic Census 2024, only 2.41% of industry-sector units use a computer or IT at all.[^bbs-economic-census-2024] So build the first version for a phone, take money over bKash or Nagad, and do by hand whatever can be done by hand. Any of the seven shapes below can be standing inside a week or two.
+> **Key Takeaway:** Check the devices and payment methods your target customers actually use before building. BTRC counts 12.08 crore mobile internet connections in June 2026 versus 1.51 crore ISP/PSTN connections; connections are not unique people or devices.[^btrc-internet-subscribers] The Economic Census reports computer or IT use in 2.41% of industry-sector units, not all shops and offices.[^bbs-economic-census-2024] Start with the smallest format that can test your assumption, using the seven examples below as options.
 
 ## An MVP Is Not a Small Product
 
@@ -28,7 +28,7 @@ The difference is easy to see. An app with ten half-features cannot tell you whi
 | Brokering | Matching two sides by hand | Which side is hard to find |
 | A stall or counter | A seven-day stall at a fair, campus, or market | Whether people stay once they hear the price |
 
-Remember the difference between the first two. With work done by hand, the customer does not know who is working inside, and there is nothing wrong with that. With one feature, the software does the work, but only one job of it.
+With manual fulfilment, people perform the work; a one-feature product automates one job. Be truthful about what the service does and who can access customer data. Do not claim automated or private processing while secretly exposing data to manual reviewers.
 
 The last one earns its place for online businesses too. A seven-day stall shows you things a website cannot catch. Which sentence makes people stop, which question everybody asks, and what their face does when they hear the price.
 
@@ -36,15 +36,15 @@ The last one earns its place for online businesses too. A seven-day stall shows 
 
 The most expensive decision in a first version is not about features, it is about assumptions. What will the customer run your thing on?
 
-The numbers all point one way. June 2026 has 12.08 crore mobile internet connections in the country against 1.51 crore broadband-type connections.[^btrc-internet-subscribers] On the business side it is starker still. The Economic Census 2024 counts 11,68,349 units in the industry sector, of which 28,151 use a computer or IT, or 2.41%.[^bbs-economic-census-2024]
+Use these figures as context, not a substitute for observing your segment. June 2026 has 12.08 crore mobile internet connections in the country against 1.51 crore broadband-type connections.[^btrc-internet-subscribers] On the business side it is starker still. The Economic Census 2024 counts 11,68,349 units in the industry sector, of which 28,151 use a computer or IT, or 2.41%.[^bbs-economic-census-2024]
 
-Which turns into a few working decisions:
+The industry-only statistic does not establish device access across every business, and a shared broadband connection can serve several people. Check these design choices with your customers:
 
 - **Build for the small screen.** Start with a dashboard that looks good on a desktop and the customer will never open it.
 - **Web or messaging before an app.** An app needs storage and willingness, and it puts an obstacle in place on day one.
 - **Keep typing to a minimum.** Bangla on a phone keyboard is slow, so get the job done with choices and buttons.
-- **Do not send Excel files.** Sending a file that will not open on a phone means the job does not happen. Send the report as an image or a message.
-- **Take money over MFS.** The Economic Census shows 50.89% of units using online systems transact through mobile banking.[^bbs-economic-census-2024] A first version needs no gateway, and the comparison is on [bKash, Nagad, and payment gateways](/en/payments/mfs-and-gateways).
+- **Test report formats.** Excel files can open in mobile apps, but a large workbook may be awkward. Offer a PDF, image or message if that better fits the task.
+- **Take money over MFS.** The Economic Census shows 50.89% of units using online systems transact through mobile banking.[^bbs-economic-census-2024] A simple test may not need a gateway, but payment integration may itself be part of what you must test; and the comparison is on [bKash, Nagad, and payment gateways](/en/payments/mfs-and-gateways).
 
 ## Tools and Costs
 
@@ -63,12 +63,12 @@ The money side is secondary here. The real cost of a first version is your time,
 
 ## Where Each One Breaks
 
-Every shape has a limit, and knowing the limit in advance means not panicking when you reach it. Breaking is not failure, it is the signal that it is time for the next step.
+Capacity depends on the task and team. These are warning signs to measure, not universal customer or order limits. Breaking is not failure, it is the signal that it is time for the next step.
 
 | Shape | Where it jams |
 |---|---|
-| Done by hand | Past 10 customers your own time runs out |
-| Facebook page and phone | Past 20 to 30 orders a day, messages start getting lost |
+| Done by hand | Time per customer exceeds the hours you have available |
+| Facebook page and phone | Untracked messages lead to missed orders; measure this before expanding |
 | Google Sheet | Errors creep in once several people write at once |
 | WhatsApp group | As members grow, the important messages disappear |
 | Brokering | Matching stops being possible as both sides grow |
@@ -89,10 +89,10 @@ What you have after seven days is not available from any survey. Who ordered and
 | Mistake | What follows |
 |---|---|
 | Building half of the whole product | Ten weak features and not one answer |
-| Building for the desktop | The customer never opens it |
+| Building for the desktop | May exclude phone-first customers |
 | Asking for an app install on day one | Most people drop out at the download step |
-| Adding a gateway to a first version | Setup money and setup time both go early |
-| Sending reports as Excel files | They will not open on a phone, so the job does not happen |
+| Adding an unnecessary gateway before testing the core assumption | Setup money and setup time both go early |
+| Sending reports as Excel files | A format untested on the customer’s device can block the task |
 | Being embarrassed to do the work by hand | You give up your best chance to learn |
 | Staying manual after the breaking signal | Customers start dropping and the reason stays unknown |
 
@@ -101,7 +101,7 @@ What you have after seven days is not available from any survey. Who ordered and
 - [ ] The biggest risk is written in one line
 - [ ] Picked the shape among the seven that matches that risk
 - [ ] Built for the small screen
-- [ ] Did not ask the customer to install an app
+- [ ] Checked whether an app install is necessary for this test
 - [ ] bKash or Nagad is available as a payment route
 - [ ] Reports go out in a form that opens on a phone
 - [ ] Measuring which task eats most of my time

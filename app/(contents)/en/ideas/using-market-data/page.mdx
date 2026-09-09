@@ -6,7 +6,7 @@ verified: 2026-08-04
 
 # Understanding the Market with BBS, BTRC, World Bank, and DataReportal
 
-> **In short:** Don't see "64 million users" on Facebook and assume that's the country's internet-user count. That figure is DataReportal's "social media user" statistic, and it's actually Meta's own advertising platform telling you how many people it could theoretically show an ad to. [The previous page](/en/ideas/market-data-sources) covers the gaps in BBS, BTRC, and Bangladesh Bank's official numbers. This one covers the other two sources — World Bank and DataReportal — and how to combine all four into a real estimate.
+> **In short:** Don't see "64 million users" on Facebook and assume that's the country's internet-user count. Facebook ad reach and social-media user identities are different measures; neither is a count of unique internet users. Read the label and methodology of the specific series. [The previous page](/en/ideas/market-data-sources) covers the gaps in BBS, BTRC, and Bangladesh Bank's official numbers. This one covers the other two sources — World Bank and DataReportal — and how to combine all four into a real estimate.
 
 What actually happens when someone picks a number for a pitch deck's market-size slide? Often it's whatever comes up first in a Google search, without checking what the source is actually measuring. This page exists to help you avoid that.
 
@@ -18,7 +18,7 @@ What actually happens when someone picks a number for a pitch deck's market-size
 |---|---|---|
 | BBS, BTRC, Bangladesh Bank | Official government counts and registrations | The base number, for anchoring market size |
 | World Bank | Globally comparable development indicators | Seeing where Bangladesh sits against peer or neighboring countries |
-| DataReportal | Ad platforms' potential-audience estimates | A directional signal on online behavior, not a final number |
+| DataReportal | A compilation of population, internet, connection and platform-audience estimates | Digital context; preserve each series’ own definition |
 
 The first row is covered in detail on [where to find market data](/en/ideas/market-data-sources). The other two are below.
 
@@ -28,23 +28,23 @@ The first row is covered in detail on [where to find market data](/en/ideas/mark
 
 Two World Bank databases matter most. World Development Indicators (WDI) carries large economic figures — GDP, poverty, internet-related development indicators. The Global Findex database carries financial inclusion, bank account, and mobile money usage numbers; the 2025 edition shows 79% of adults globally now have some kind of account.[^wb-findex]
 
-The real strength of these two databases is comparison, not one Bangladesh number in isolation. Global Findex data shows Bangladesh, Brazil, and Paraguay — outside Sub-Saharan Africa — all saw mobile money account growth between 2014 and 2021, an example of placing Bangladesh alongside peer economies.[^wb-findex-2021] But this data only refreshes every few years, so for the most current picture, BTRC's or Bangladesh Bank's monthly statistics are more reliable.
+The real strength of these two databases is comparison, not one Bangladesh number in isolation. Global Findex data shows Bangladesh, Brazil, and Paraguay — outside Sub-Saharan Africa — all saw mobile money account growth between 2014 and 2021, an example of placing Bangladesh alongside peer economies.[^wb-findex-2021] But this data only refreshes every few years, monthly BTRC and Bangladesh Bank statistics can add recent activity context. Their connection or account counts do not replace a survey of unique adults.
 
 ---
 
 ## What DataReportal Is Actually Counting
 
-DataReportal doesn't run its own survey. It combines Meta's, Google's, and TikTok's advertising planning tools with GSMA Intelligence and Ookla data, and publishes an annual "Digital: Bangladesh" report, analyzed by a firm called Kepios.[^datareportal-bd] By their own stated methodology, a "social media user" figure is based on the single platform with the largest ad-reach audience in the country.[^datareportal-methodology] That means it's not a census — it's an estimate of how many people an advertiser could theoretically reach.
+DataReportal doesn't run its own survey. It combines Meta's, Google's, and TikTok's advertising planning tools with GSMA Intelligence and Ookla data, and publishes an annual "Digital: Bangladesh" report, analyzed by a firm called Kepios.[^datareportal-bd] Social-media user identities may not represent unique people. Where deduplication is limited, the methodology may rely on the largest platform; it does not always do so.[^datareportal-methodology] The same report also publishes population estimates, individual internet use and connection speeds, which are not advertising audiences.
 
-The October 2025 DataReportal report puts Facebook's "users" in Bangladesh at 64.0 million, YouTube's at 49.8 million, and TikTok's (among users aged 18+) at 56.2 million.[^datareportal-bd] These three numbers look close but are actually measuring three different things — different age floors, different platform definitions, different counting methods. Meta's own advertising tools carry this exact caveat: "Estimated audience size is not a proxy for monthly or daily active users... Estimates aren't designed to match population, census estimates or other sources."[^datareportal-bd]
+The October 2025 DataReportal report puts Facebook's "users" in Bangladesh at 64.0 million, YouTube's at 49.8 million, and TikTok's (among users aged 18+) at 56.2 million.[^datareportal-bd] These three numbers look close but are actually measuring three different things — different age floors, different platform definitions, different counting methods. The report warns that advertising audience estimates should not be treated as monthly or daily active user counts or reconciled directly with census figures.[^datareportal-bd]
 
-So if you use a DataReportal number in a pitch deck or market research, write "X million potential ad reach (DataReportal, 2026)," not "X million users." The gap between those two phrasings looks small, but to a careful reader they're completely different claims.
+So if you use a DataReportal platform ad-reach number in a pitch deck or market research, write "X million potential ad reach (DataReportal, 2026)," not "X million users." The gap between those two phrasings looks small, but to a careful reader they're completely different claims.
 
 ---
 
 ## Two Population Numbers, Two Different Reasons
 
-[The previous page](/en/ideas/market-data-sources) explains why BTRC's connection count exceeds the population. Here's a different gap: Bangladesh's 2022 census counted an adjusted population of 169,828,911 — a direct count. Based on UN data, DataReportal put Bangladesh's population at 176 million as of October 2025 — a projection built from births, deaths, and migration between census years, not a direct count.[^datareportal-bd] Both are built with sound methods, but one is a count and the other a projection, so it's normal for them not to match. State clearly in your own report which one you're using.
+[The previous page](/en/ideas/market-data-sources) explains why BTRC's connection count exceeds the population. Here's a different gap: Bangladesh's 2022 census counted an adjusted population of 169,828,911 — an estimate adjusted after enumeration. Based on UN data, DataReportal put Bangladesh's population at 176 million as of October 2025 — a projection built from births, deaths, and migration between census years, not a direct count.[^datareportal-bd] Both are built with sound methods, but one is a census-based adjusted estimate and the other a later population estimate, so it's normal for them not to match. State clearly in your own report which one you're using.
 
 ---
 
@@ -63,8 +63,8 @@ Keep these four steps in mind before copying a number straight out of any one so
 
 ## Checklist
 
-- [ ] Population or market base comes from BBS or BTRC, not DataReportal
-- [ ] Any DataReportal number is labeled "potential ad reach," not "users"
+- [ ] The base measures the right unit: people, businesses, subscriptions or spending
+- [ ] Platform advertising figures are labelled potential ad reach; other series retain their actual definitions
 - [ ] World Bank figures are used for comparison, not as the sole source
 - [ ] Every number carries its source, date, and what it actually measures
 - [ ] When two sources' numbers don't match, I understand why (count vs. projection, ad reach vs. users)

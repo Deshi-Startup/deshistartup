@@ -1,45 +1,48 @@
 ---
 title: "Metrics & Dashboards – Understanding Your Numbers"
-description: "CAC, LTV, retention, unit economics, e-commerce/SaaS/marketplace metrics and founder dashboard guides."
+description: "Choose the numbers that answer your business questions, define them consistently and understand why orders, profit and cash tell different stories."
 ---
 
 # Metrics: Numbers That Help You Decide
 
-> **In short:** Start with a business question, then choose the measure that can change your decision. A dashboard is useful when someone knows what to do with the result.
+> **In short:** Choose a business question before choosing a metric. Define exactly what you are counting and over what period, then use the result to investigate a problem or decide what to do. Keep sales, contribution and collected cash separate.
 
-| Your question | Start here | Useful output |
-|---|---|---|
-| Can we pay bills on time? | [Cash flow versus profit](/en/metrics/cashflow-vs-profit) | A cash-timing scenario and the gap to investigate |
-| Does each sale help cover costs? | [Unit economics](/en/metrics/unit-economics) | Contribution per completed sale with costs stated |
-| Do customers return? | [Cohort retention](/en/metrics/cohort-retention) | Repeat behaviour for comparable customer groups |
-| What should we review weekly? | [Founder dashboard](/en/metrics/founder-dashboard) | A short set of measures with owners |
-| What might happen under different assumptions? | [Financial projections](/en/metrics/financial-projections) | A forecast with explicit assumptions |
-| These terms are new to me | [Metrics basics](/en/metrics/metrics-101) | A working vocabulary for the numbers |
+Your orders are increasing, yet the bank balance is falling. Or people sign up for your product, but you do not know whether they come back. A dashboard full of numbers can leave both questions unanswered if it measures activity without showing what happens next.
 
-## Work through one weekly record
+A **metric** is a defined measure of something in the business: completed deliveries, customers returning next month or cash collected this week. This section helps you choose the measure that fits the question in front of you. You do not need to track every metric used by an investor or another startup to begin understanding your own business.
 
-Define the event before calculating a rate. An **order placed** may be cancelled or returned. A **completed sale** is not necessarily a cash receipt. **Contribution** is revenue less the variable costs explicitly included; **profit** also depends on other costs. **Retention** measures whether a defined group returns over a defined period.
+## Decide which question needs an answer
 
-Suppose a fictional shop reviews one week's 50 orders after their delivery outcomes are known. Forty were delivered and kept; ten were cancelled or returned. Delivered sales earned BDT 40,000, and total specified variable costs for the whole batch—including failed-order costs—were BDT 28,000.
+If you are worried about paying salaries or suppliers, begin with when money comes in and goes out. If selling more seems to leave little behind, examine the costs attached to each sale. If new customers arrive but total usage does not grow, look at whether earlier customers are leaving.
 
-- Delivery completion rate: 40 ÷ 50 × 100 = **80%**.
-- Contribution for the batch: 40,000 − 28,000 = **BDT 12,000** before fixed costs.
-- Contribution per completed sale: 12,000 ÷ 40 = **BDT 300**.
+These questions connect, but their answers are different. **Revenue** records sales under the relevant accounting rules. **Cash collected** tells you what has actually been received. A sale can add revenue before the customer or courier pays you.
 
-If only BDT 25,000 of those sales has been collected, the remaining BDT 15,000 is not available cash. It is a separate collection question, not a reason to change the completion-rate denominator.
+To see what a sale leaves towards the rest of the business's bills, calculate **contribution**: revenue minus the variable costs included in your calculation. Variable costs change with sales or activity, such as goods and delivery costs. What remains must help cover fixed costs, such as an agreed monthly rent that does not change with each extra order within the period you are considering. Contribution is therefore not final **profit**, which also depends on the business's other costs.
 
-The founder records one next action: inspect the ten failed orders by reason before increasing acquisition spend. A different business may need another measure. The useful part is the chain from definition to calculation to action—not the example's 80% as a target.
+You can start with [cash flow versus profit](/en/metrics/cashflow-vs-profit) for a payment-timing problem, or [unit economics](/en/metrics/unit-economics) to calculate what an order or customer contributes. The distinction matters before you start dividing one total by another.
 
-Your first metric record can be: **question / definition / period / numerator / denominator / data source / result / owner / decision**. Include unresolved or still-pending outcomes instead of silently counting them as successes or failures.
+## Be precise about what happened
 
-## Make one number trustworthy
+An order placed, an order delivered and a payment received are separate events. Define the one you need and keep that definition when comparing periods. Otherwise an apparent improvement may only mean that you changed how you counted.
 
-Write its definition, time period, source and owner. For a rate, record both the numerator and denominator. Separate orders placed from orders delivered, and invoices issued from cash collected.
+Suppose a shop reviews 50 orders from one week after all their delivery outcomes are known. Forty were delivered and kept; ten were cancelled or returned. Its delivery completion rate is **40 ÷ 50 × 100 = 80%**. Forty is the number of successes being measured, and fifty is the full group those successes came from. In a rate, these are the **numerator** and **denominator**.
 
-Then add: “If this changes, we will investigate **[cause]** or decide **[action]**.” If no decision follows, the number may not belong in your regular review.
+The 80% is an illustrative result, not a target for another business. It also would not be a final completion rate if some of the fifty parcels were still in transit. In that case, show the pending orders separately and return to the group when their outcomes are known. Do not count unresolved orders as successful just to finish the weekly report.
 
-Compare like with like. A small test, a forecast and an established operating result are different kinds of evidence. None is a universal benchmark for a Bangladesh startup.
+## Follow the question through to money
 
-## Explore this section
+Continue the same example. Suppose the forty completed sales earned BDT 40,000, while specified variable costs for all fifty orders, including the failed ones, totalled BDT 28,000. The batch contributed **40,000 − 28,000 = BDT 12,000**, before fixed costs. Dividing that contribution across the forty completed sales gives **12,000 ÷ 40 = BDT 300 per completed sale**.
 
-<SectionIndex section="metrics" locale="en" />
+That calculation includes the failed-order costs even though it reports an average per completed sale. If you instead divided by all fifty attempted orders, the result would be BDT 240 per attempted order. Both can be useful; the label and comparison must use the same basis.
+
+Now suppose only BDT 25,000 of the sales has been collected. The remaining **40,000 − 25,000 = BDT 15,000** is still to be collected, not available cash. That does not change the 80% completion rate or the stated contribution calculation. It raises another question: which payments are outstanding and when are they due?
+
+## Use the result to choose the next investigation
+
+For this shop, reviewing why ten orders failed may reveal a delivery or order-confirmation problem. Reviewing the outstanding BDT 15,000 may reveal a collection delay. The two investigations use different records, and fixing one does not automatically fix the other.
+
+For a product people use repeatedly, also examine **retention**: whether customers return for a defined activity over a defined period. The [cohort-retention guide](/en/metrics/cohort-retention) follows groups that started at the same time, so you can compare their behaviour without new customers hiding the loss of older ones.
+
+Once a few measures are reliable, use the [founder dashboard](/en/metrics/founder-dashboard) to bring them into a regular review. Keep the definition, period and source alongside each number so another person can reproduce it. When you need to explore what might happen next, [financial projections](/en/metrics/financial-projections) treats those future numbers as assumptions to test, rather than results you have already achieved.
+
+<SectionIndex section="metrics" locale="en" id="explore-this-section" />

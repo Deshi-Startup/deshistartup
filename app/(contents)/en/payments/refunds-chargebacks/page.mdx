@@ -6,7 +6,7 @@ verified: 2026-07-29
 
 # Refunds, Chargebacks, and Dispute Handling
 
-> **Key Takeaway:** If you take payment up front and then miss the delivery deadline, the Digital Commerce Operation Guidelines 2021 require you to return the full amount within 10 days, through the same channel the customer paid by. Any charge incurred in making that refund is yours to absorb, not the customer's. None of this is tied to cards — it applies just as much when the money came through bKash, and just as much when you sell from a Facebook page. A chargeback is a different animal. There the decision sits with the customer's bank, and one document stands between you and the loss: proof of delivery. Without it you lose the money and the goods.
+> **Key Takeaway:** If you take payment up front and then miss the delivery deadline, the Digital Commerce Operation Guidelines 2021 require you to return the full amount within 10 days, through the same channel the customer paid by. Any charge incurred in making that refund is yours to absorb, not the customer's. None of this is tied to cards — it applies just as much when the money came through bKash, and just as much when you sell from a Facebook page. A chargeback is a different animal. There the decision sits with the customer's bank, and you need evidence that answers the actual dispute reason. Delivery proof matters for non-receipt claims, but is not a complete defence to every dispute.
 
 ## Three Ways the Money Goes Back
 
@@ -67,15 +67,17 @@ A chargeback means the customer skipped you entirely, complained to the bank tha
 
 The difference is not only who starts it. On a refund you send the money. On a chargeback the money is taken, and you learn about it afterwards.
 
-### The Whole Defence Rests on One Document
+### Match evidence to the dispute reason
 
 SSLCOMMERZ sets the process out in its FAQ. When a chargeback request arrives from the bank, they ask you for proof that the product or service was delivered — a delivery receipt, or other tangible evidence that the customer received it. They pass that to the acquiring bank, and if the bank finds it sufficient, the claim is denied.[^gateway-chargeback-guides]
 
-So the entire defence rests on a receipt. No proof of delivery and the fight is over before it starts.
+Ask the gateway for the reason code, required evidence and deadline. A delivery receipt may answer a non-receipt claim, but unauthorized use, duplicate charges or goods not as described need different evidence. Keep payment records and relevant customer communications as well; no single document guarantees the outcome.[^visa-disputes]
 
 ### What Losing Costs
 
 Say Nafisa sells skincare from her own website in Dhaka. A set she bought for BDT 800 sells for BDT 1,200, the customer pays by card, and the gateway rate is 2.5%.
+
+In this example only, assume the refund returns saleable stock while the lost chargeback does not. Neither outcome is automatic.
 
 |  | Refund, goods returned | Chargeback, lost |
 |---|---|---|
@@ -147,7 +149,7 @@ The guidelines also say what non-compliance can cost. Under clause 3.4.5 the aut
 |---|---|
 | Deducting the gateway fee and refunding the rest | Breaks clause 3.5.1 — the charge is the seller's |
 | Offering store credit or an adjustment on the next order | Fails the same-channel requirement |
-| Not keeping proof of delivery | Nothing to fight a chargeback with, and the goods are gone too |
+| Not keeping proof of delivery | A non-receipt dispute becomes harder to answer |
 | Publishing the refund policy only in English | Clause 3.1.17 requires it recorded in Bangla |
 | Taking the full price for stock you do not hold | Clause 3.2.10 caps the advance at 10% |
 | Letting complaints sit | The 72-hour deadline passes |
@@ -165,7 +167,7 @@ The guidelines also say what non-compliance can cost. Under clause 3.4.5 the aut
 - [ ] You know whether a refund returns the gateway fee
 - [ ] You are not taking more than a 10% advance on stock you do not hold
 
-Rule of thumb: **on a refund you set the terms; on a chargeback you can only produce evidence. So get the evidence in order first.**
+Rule of thumb: **refund terms must respect applicable law; a chargeback response must address the actual dispute reason. So get the evidence in order first.**
 
 ## What to Do Next
 
@@ -175,6 +177,8 @@ Rule of thumb: **on a refund you set the terms; on a chargeback you can only pro
 - To handle returns on <Term name="cod">cash on delivery</Term>: [Cash on Delivery Risk](/en/operations/cod-risk)
 
 ## Relevant Sources
+
+[^visa-disputes]: [Visa – Chargebacks](https://corporate.visa.com/en/solutions/acceptance/chargebacks.html), checked 9 September 2026. Disputes can concern fraud, non-receipt or quality; merchants respond with relevant records and communications.
 
 [^digital-commerce-guidelines]: [Digital Commerce Operation Guidelines 2021, Bangladesh Gazette, 4 July 2021 (PDF)](https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-mincom/2024/12/13ad70feb24d40b3b2ec98d40c7b8f82.pdf) and the [Ministry of Commerce notice page for the guidelines](https://mincom.gov.bd/pages/notices/6940322335ce18e1c055a68a).
 

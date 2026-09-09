@@ -14,7 +14,7 @@ When you’re just starting out with an idea or a rough MVP, haggling over your 
 
 In a traditional **Priced Round**, you set a price per share and issue equity right away. This means drafting a massive Shareholders' Agreement, spending weeks negotiating terms, and paying hefty legal fees.
 
-Y Combinator created the **SAFE (Simple Agreement for Future Equity)** to bypass this headache. It’s not debt, so you don't have to worry about interest rates or maturity dates. It’s simply a promise: when your company raises a larger, formal priced round later on, this investment will convert into shares. Check out our [Funding Hub](/en/funding) for more on how fundraising works.[^shoumik-safe-convertible-notes]
+Y Combinator created the **SAFE (Simple Agreement for Future Equity)** to bypass this headache. It’s not debt, so you don't have to worry about interest rates or maturity dates. It’s simply a promise: conversion follows the equity-financing trigger in the contract; the standard YC form has no minimum round-size threshold. Check out our [Funding Hub](/en/funding) for more on how fundraising works.[^shoumik-safe-convertible-notes]
 
 ## The Four Levers of a SAFE
 
@@ -22,17 +22,16 @@ A SAFE contract uses a few simple mechanics to figure out how many shares the in
 
 1. **Valuation Cap:** Think of this as a safety net for early investors. If they invest with a cap of BDT 10 Crore, and your next round values the company at BDT 50 Crore, the early investor still gets their shares priced as if the company was only worth 10 Crore.
 2. **Discount Rate:** This gives the SAFE holder a percentage discount (usually 15% to 20%) on the share price paid by new investors in the upcoming priced round.
-3. **Cap and Discount:** Many SAFEs include both. When it converts, the math is run for both options, and the investor gets whichever gives them more shares.
-4. **Post-money vs. Pre-money:** Most founders today use the Post-money SAFE. It makes the math crystal clear—both you and the investor know exactly what percentage of the company they are locking in the moment the paper is signed.
+3. **Cap and Discount:** A negotiated instrument may include both; YC’s published standard forms separate cap-only and discount-only versions. When it converts, the math is run for both options, and the investor gets whichever gives them more shares.
+4. **Post-money vs. Pre-money:** In a valuation-cap post-money SAFE, investment divided by the cap estimates ownership if the cap determines conversion. That is before the priced round’s new money and any new option-pool increase dilute it; it is not a permanently fixed stake.[^yc-safe]
 
 ## How the Math Works: A Quick Example
 
-Let's walk through the numbers. Imagine a SaaS startup in Dhaka raises BDT 50 Lakh on a SAFE with a valuation cap of BDT 10 Crore.
+For a simplified example, Tk 50 lakh invested on a Tk 10 crore **post-money cap** implies 5% before new-round dilution, if the cap applies. Assume there are no other instruments or pool changes affecting this calculation.
 
-A year and a half later, the startup raises a priced round at a BDT 30 Crore pre-money valuation. 
-The new investors will buy shares based on the 30 Crore valuation. But because your early investor took a bet on you on day one, their SAFE converts at the 10 Crore cap. 
+If a later priced round issues 20% of the post-round ownership to new investors and there is no pool increase, that 5% becomes 5% × 80% = 4%. A lower priced-round valuation or different contract can change the conversion result.
 
-This means the early investor gets their shares at a third of the price the new investors are paying. Always run these numbers in your [cap table](/en/funding/cap-table) spreadsheet before signing anything so you know exactly where you stand.
+Run the actual share-price definitions and all instruments in your [cap table](/en/funding/cap-table). A ratio of two headline valuations alone does not establish the price per share.
 
 ### The Danger of SAFE Stacking
 
@@ -40,30 +39,32 @@ If you raise money on 3 or 4 different SAFEs before ever doing a priced round, y
 
 ## SAFE vs. Convertible Note
 
-| Feature | SAFE Note | Convertible Note |
+| Feature | SAFE | Convertible Note |
 |---|---|---|
 | **What is it?** | A straightforward agreement for future equity | A debt instrument (essentially a loan) |
-| **Interest Rate** | None | Accrues annual interest (usually 5%–8%) |
+| **Interest Rate** | None | Interest as agreed in the debt terms |
 | **Maturity Date** | No deadline | Must convert or be repaid by a specific date |
-| **Overhead** | Cheap, fast, and simple | Involves debt terms and heavier legal paperwork |
+| **Overhead** | Potentially simpler documentation; local implementation still needs review | Involves debt terms and heavier legal paperwork |
 
 ## How SAFEs Work in Bangladesh
 
 Instead of raising funds directly into a local Bangladeshi entity, many local startups use a "flip structure." They set up a holding company in US Delaware or Singapore and raise money from foreign investors using SAFEs at the holding company level.
 
-- **The Flip Structure Advantage:** Issuing a SAFE under Delaware or Singapore law is incredibly fast. You don't have to wait on the Registrar of Joint Stock Companies and Firms (RJSC) to process share allotments or capital increases every time a check comes in.
-- **Converting at RJSC:** If you do issue a SAFE directly from your Bangladeshi entity to local investors, converting it requires filing the proper share allotment paperwork and board resolutions with the RJSC. 
+- **Holding-company structure:** A foreign entity may issue an instrument governed by its own jurisdiction. That does not waive Bangladesh rules on creating or funding it, transferring IP, receiving operating-company investment or reporting. Review the full structure before acting.
+- **Local conversion:** First confirm that the proposed instrument and transaction are lawful for the Bangladeshi issuer. Share issuance then needs the applicable corporate approvals, registers and RJSC filings; filing a form alone does not validate the instrument.
 - **Foreign funds and Invest Bangladesh:** When foreign investment reaches a Bangladeshi bank account, preserve the Bangladesh Bank reporting trail and check whether the operating project also falls within Invest Bangladesh's registration or approval scope.
-- **Bangladesh Bank's Stance:** The central bank doesn't have an explicit ban on convertible instruments like SAFEs. However, when those instruments convert into equity, your bank will scrutinize the valuation reports and inward remittance documents to ensure everything is legitimate.
+- **Confirm the lawful route before receiving money:** We have not established a general Bangladesh approval for a SAFE from the absence of an express prohibition. Ask Bangladesh counsel and the authorised-dealer bank to confirm instrument classification, approvals, remittance, conversion and reporting for the exact transaction.
 
 ## Action Plan
 
 - [ ] Confirm with your investor whether you're agreeing to a Valuation Cap, a Discount Rate, or both. Read our [Term Sheets Guide](/en/funding/term-sheets) to learn more.
-- [ ] Download the standard [Post-money SAFE Template](https://www.ycombinator.com/documents) from Y Combinator and read through the terms.
-- [ ] Build a spreadsheet to model how much your shares will dilute once the SAFE converts. 
+- [ ] Read Y Combinator’s [SAFE forms](https://www.ycombinator.com/safe) as jurisdiction-specific examples, not Bangladesh-ready contracts; obtain advice for the issuer’s country before signing.
+- [ ] Build a spreadsheet to model how much your shares will dilute once the SAFE converts.
 
 ---
 
 ## Relevant Sources
 
 [^shoumik-safe-convertible-notes]: Shoumik Shahriar, "[SAFE Note 101](https://shoumik.substack.com/p/safe-note-101)," SS Notes (Substack).
+
+[^yc-safe]: [Y Combinator — SAFE forms and user guide](https://www.ycombinator.com/safe), checked 9 September 2026. Distinguishes post-money SAFE ownership from later priced-round and option-pool dilution, and publishes jurisdiction-specific forms.

@@ -44,7 +44,7 @@ SSLCOMMERZ sets this out plainly. On IPN, it says the data travels from their se
 
 The other two provide the same facility. aamarPay's Search Transaction API takes your own order number and returns `status_code` and `pay_status` — `2` and "Successful" for a completed payment. Their documentation says specifically to check `status_code` together with the `amount` field.[^aamarpay-docs] PortPos's IPN validate call takes the invoice number and the original amount together, so a mismatched amount fails verification by construction.[^portpos-docs]
 
-The lesson is the same in all three places. The amount the gateway reports is not enough on its own — set it beside the price recorded for that order in your own database and check that the two match.
+The lesson is the same in all three places. The amount the gateway reports is not enough on its own — match the verified transaction to your server-created order ID, expected amount and currency, and an accepted payment status. A gateway transaction ID must not fulfil more than one order; process retries idempotently.
 
 ## Orders Have More Than Two States
 

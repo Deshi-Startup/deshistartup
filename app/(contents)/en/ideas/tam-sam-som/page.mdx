@@ -1,12 +1,12 @@
 ---
 title: "Easy Method for Calculating TAM/SAM/SOM in Bangladesh"
-description: "A fill-in worksheet for TAM, SAM, and SOM, a full worked example using DataReportal and BBS numbers, and why you should never say \"just 1% of the market.\" Verified 4 August 2026."
+description: "A fill-in worksheet for TAM, SAM, and SOM, a clearly labelled hypothetical worked example, and why you should never say \"just 1% of the market.\" Verified 4 August 2026."
 verified: 2026-08-04
 ---
 
 # Easy Method for Calculating TAM/SAM/SOM in Bangladesh
 
-> **Key Takeaway:** TAM, SAM, and SOM are three named layers of the same top-down narrowing you'd do anyway. TAM is everyone who could conceivably spend money on this problem. SAM is who you can actually reach with your product, price, and channel. SOM is how many of them you can realistically capture in year one. The most common mistake in Bangladesh happens at the very first layer: seeing a population of over 17 crore and using that as TAM, when more than half the country still isn't online.
+> **Key Takeaway:** TAM is the total market for a defined need and buyer. SAM is the portion your product, price and service geography can serve. SOM is a defensible estimate of the business you can win in a stated period. Internet access and ad reach help plan channels; they do not establish demand. Capacity limits sales, but it does not guarantee them.
 
 ## A One-Page Worksheet
 
@@ -21,43 +21,48 @@ What the base number measures (people/businesses/money):
 Source and year:
 Number:
 
-SAM (actually reachable through your channel)
+SAM (eligible segment your product can serve)
 Filter 1 (channel or platform):
 Filter 2 (region, age, or income):
 Source and year:
 Number:
 
 SOM (realistic in the first 12 months)
-Capacity constraint (ad budget, production, or delivery):
+Reachable qualified prospects and measured conversion:
+Retention and time period:
+Capacity constraint (production or delivery):
 Assumption:
 Number:
 ```
 
 ## How to Fill in Each Row
 
-**TAM's base number.** This is where the biggest mistake happens. Before starting from total population, think about what a person actually needs in order to buy your product. For an online product, internet users are the real base, not total population. As of October 2025, Bangladesh had 8.28 crore internet users, 47.0% of the population.[^datareportal-2026] The remaining 53% are offline, and there's no way to reach them with a Facebook ad.
+**TAM's base number.** Define the buyer, problem, ability to pay and unit: customers or annual spending. An internet-user count may be a broad context for an online service, but most internet users will not need any particular product. DataReportal estimated 82.8 million internet users in October 2025; that is not the TAM for a meal plan.[^datareportal-2026]
 
-**SAM's two filters.** The first filter is your sales channel, the second is your target segment. Set both with a number, not a feeling. National survey data is rarely broken down by city, so at this layer you multiply a national rate by a regional share to arrive at an approximate number. It isn't exact, but it rests on far more than a guess.
+**SAM's filters.** Use evidence for the intersection of the conditions: customers with the need, in your delivery area, at your price. Multiplying Facebook's national ad audience by the national urban share assumes that audience has the same geography as the whole population. The report does not establish that intersection.[^datareportal-2026] Use local counts or label the missing intersection as unknown.
 
-**SOM is where the data runs out.** SOM appears in no government table; it's your own capacity ceiling. Your ad budget, how much your kitchen or warehouse can handle per day, how many people are on your sales team — these set SOM. No matter how big the market is, you won't sell beyond your own capacity.
+**SOM's evidence.** Estimate qualified prospects reached, conversion, retention and the time it takes to acquire them. Compare the result with production, delivery and support capacity. Capacity is a ceiling, not evidence that buyers will fill it.
 
 ## A Filled-In Example
 
-Say you're launching a healthy meal-plan subscription for urban office workers. You'll sell on Facebook, and delivery will start in urban areas only.
+**All counts, prices and conversion rates below are hypothetical. They teach the arithmetic; they are not measured Bangladesh market data.** Suppose you sell a monthly meal plan to office workers.
 
-TAM is set as the country's internet users, since nobody can order without seeing a Facebook ad first. DataReportal and Kepios put this at 8.28 crore as of October 2025.
+| Layer | Assumption and calculation | Meaning |
+|---|---|---|
+| TAM | 100,000 eligible workers × Tk 3,000/month × 12 = Tk 360 crore/year | Hypothetical spending if every eligible worker bought |
+| SAM | 10,000 eligible workers inside the actual delivery area × Tk 3,000 × 12 = Tk 36 crore/year | Portion this service can serve |
+| Sales scenario | 2,000 qualified prospects reached × 10% conversion = 200 paying customers | Assumed acquisitions, before churn |
+| Capacity ceiling | 6,000 meals/month ÷ 15 meals/customer = 400 concurrent customers | Maximum service capacity at this usage |
 
-SAM needs two filters. First, how many people can actually be reached with a Facebook ad — that's 6.4 crore, 36.3% of the population.[^datareportal-2026] Second, since delivery is urban-only, apply the urban population share of 42.2%: 64,000,000 × 42.2% ≈ 2.7 crore. That second filter is an approximation, since Facebook doesn't publish its user count by city; the national urban rate stands in as a proxy here.
+The sales scenario is 200 customers, below the 400-customer capacity ceiling. At Tk 3,000 each, 200 active customers would produce Tk 6 lakh of monthly revenue, or a Tk 72 lakh annual run rate. That is not automatically first-year revenue: acquisition dates, churn, pauses and refunds change the year's total.
 
-At SOM, government and platform numbers run out entirely. Say your ad budget and kitchen capacity together can produce a maximum of 6,000 meals a month in year one. If the average customer buys 15 meals a month, that capacity supports 6,000 ÷ 15 = 400 active customers at any one time. SOM is therefore 400, less than 0.002% of SAM's 2.7 crore.
-
-There's no reason to be discouraged by a small number. A small SOM is normal — you're not meant to capture a large share of the market in year one. The real work is planning how much that 400 can grow next year by expanding kitchen capacity or ad spend.
+If conversion is 5%, the same reach produces 100 acquisitions. If it is 20%, it produces 400, reaching the capacity ceiling before allowing for churn. A small paid pilot should replace these assumptions with observations before you invest in more capacity.
 
 ## Never Say "Just 1% of the Market"
 
 One line shows up in nearly every pitch deck: "If we capture just 1% of the market, we'll make this many crore taka." It sounds modest, but it isn't a plan at all. There's no reason given for why 1%, rather than 0.5% or 5%. Investors have heard this line so often that it now works as a warning sign rather than a selling point.
 
-The real question isn't a percentage, it's capacity. In the example above, SOM came out to 400 from an ad budget and a kitchen limit, not from any percentage of SAM. Writing "1% of SAM is 2.7 lakh customers" makes the number look impressive, but if your kitchen can't produce more than 6,000 meals a month, that number stays on paper.
+The useful questions are how many qualified prospects you can reach, why they will pay, whether they remain customers and whether you can serve them. In the example, 400 is a capacity limit; 200 is a sales assumption that still needs testing. Neither comes from choosing an impressive percentage of a national audience.
 
 ## Common Mistakes
 
@@ -67,19 +72,19 @@ The real question isn't a percentage, it's capacity. In the example above, SOM c
 | Not stating the source for a SAM filter | Can't tell if the number is data or a guess |
 | Setting SOM as a percentage of SAM | Ignores your own actual capacity limits |
 | Saying "just 1% of the market" instead of stating SOM | Reads as a warning sign to investors |
-| Treating a national rate applied to a city as exact | An approximation gets presented as data |
+| Multiplying unrelated national percentages | An unverified intersection gets presented as data |
 | Skipping one of the three layers and jumping straight to a revenue projection | No layer is left that can be checked |
 
 ## Checklist
 
 - [ ] Checked that TAM's base number fits the product (not total population)
 - [ ] Wrote SAM's two filters separately, with sources
-- [ ] Made clear that any city-level filter is an approximation
-- [ ] Set SOM from actual capacity (budget, production, delivery)
+- [ ] Identified missing local data and avoided unsupported intersections
+- [ ] Estimated reach, conversion and retention, then checked capacity
 - [ ] Did not replace SOM with a percentage ("1% of the market")
 - [ ] Recorded the year next to all three numbers
 
-Rule of thumb: **SOM doesn't come from data. It comes from your own capacity.**
+Rule of thumb: **SOM needs evidence of sales and retention, constrained by capacity.**
 
 ## What to Do Next
 

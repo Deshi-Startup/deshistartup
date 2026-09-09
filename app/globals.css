@@ -997,6 +997,7 @@ h2,
 h3,
 h4 {
   text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 h1,

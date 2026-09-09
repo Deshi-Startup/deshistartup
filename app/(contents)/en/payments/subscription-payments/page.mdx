@@ -6,13 +6,13 @@ verified: 2026-08-22
 
 # Can You Charge Customers Automatically Every Month?
 
-> **In short:** Say you want to sell something for BDT 500 a month. Your whole plan rests on one thing: next month's 500 taka arriving without you asking for it. In Bangladesh that usually does not happen. bKash can save a customer's wallet so paying is faster, but the customer still has to type their PIN every single time. bKash lists a separate "Subscriptions" product that would do the automatic pulling, but publishes no instructions for it. SSLCOMMERZ's public v4 API documentation exposes EMI but no recurring-payment or subscription API. So before you announce a monthly price, email your provider and ask. Until they answer in writing, plan on a person collecting the money by hand every month, and count those hours as a cost.
+> **In short:** Say you want to sell something for BDT 500 a month. Do not assume next month's 500 taka will be deducted automatically on its own — in Bangladesh, seamless auto-debit usually does not happen out of the box. While manual customer renewal is a valid subscription model, manual collection work has an operational cost. bKash can save a customer's wallet so paying is faster, but the customer still has to type their PIN every single time. bKash lists a separate "Subscriptions" product that would do the automatic pulling, but publishes no instructions for it. SSLCOMMERZ's public v4 API documentation exposes EMI but no recurring-payment or subscription API. So before you announce a monthly price, email your provider and ask. Until they answer in writing, plan on a person collecting the money by hand every month, and count those hours as a cost.
 
 ## What this page is about
 
 A subscription business sounds simple. The customer pays you every month, and you build once and earn many times.
 
-That only works if the money moves on its own. Somebody has to be able to take BDT 500 out of the customer's account on the first of the month while the customer is asleep. That is called **auto-debit**, or a recurring payment.
+For automatic collection, the provider must support taking the agreed BDT 500 on the due date with the customer's prior authorisation; that mechanism is called **auto-debit**, or a recurring payment. If that feature is unavailable, customers must renew by manually completing each payment themselves.
 
 In most countries you switch it on and forget it. In Bangladesh it is hard to get, and most founders find that out after they have already promised customers a monthly price.
 
@@ -49,7 +49,7 @@ You want the middle row. It is also the one with the least information available
 
 bKash's tokenized checkout works like this. The first time, your customer clicks "Add bKash Account", goes to a bKash page, types their wallet number, agrees to the terms, and enters the six-digit code sent by SMS. After that an agreement is created and saved against their account on your side.
 
-Here is the part that matters. For every payment after that, the customer still has to enter their bKash PIN.[^bkash-tokenized-checkout] So they must be on your site, choose their saved account, and type the PIN.
+Here is the part that matters. For every payment after that, the customer still has to enter their bKash PIN.[^bkash-tokenized-checkout] They choose the saved account and enter the PIN only in the provider’s authorised checkout interface. Never collect or store a wallet PIN in your own form.
 
 That is genuinely useful. It saves them retyping a wallet number, makes checkout faster, and fewer people abandon halfway. But it does not take money on the first of the month while nobody is watching. It is a faster front door, not an automatic one.
 
@@ -101,7 +101,7 @@ Now grow to 1,000 customers:
 1,000 customers x 3 minutes  =  3,000 minutes  =  50 hours a month
 ```
 
-Fifty hours a month is not a side task any more. It is somebody's job. At that point you are earning BDT 5,00,000 a month and paying a salary just to collect it.
+Fifty hours a month is substantial work, but not automatically a full-time role. At BDT 5,00,000 in monthly billings, cost those 50 hours at the actual staff rate and allow for supervision and difficult cases.
 
 So put those hours in your costs before you set a price. They belong in your [unit economics](/en/metrics/unit-economics).
 
@@ -112,7 +112,7 @@ So put those hours in your costs before you set a price. They belong in your [un
 You still have a business. You just run it differently.
 
 - **Sell longer plans up front.** Offer 3, 6 and 12-month packages next to the monthly one, at a discount. Take the money once and the collecting work for those months disappears.
-- **Bill everyone on the same day.** If every customer is due on the first, the work is done in a day. Spread across the month, it eats a little time every single day.
+- **Bill everyone on the same day.** A common billing date can make reminders and reconciliation easier to batch, but late payments and exceptions still need follow-up. Spread across the month, it eats a little time every single day.
 - **Automate the reminders even if you cannot automate the payment.** One message three days before, one on the day, one three days after. That alone cuts the chasing calls sharply.
 - **Make paying a one-tap job.** Put a payment link straight in the reminder. This is where a saved wallet earns its place, because the PIN is all that stands between the message and the money.
 - **If you get paid before you deliver, look at auth and capture.** bKash lists this one as available too. You hold the money now and take it later. Useful when delivery comes after the order, though it is still not a monthly bill.

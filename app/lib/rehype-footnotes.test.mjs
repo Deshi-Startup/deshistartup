@@ -113,3 +113,26 @@ test('keeps English numerals and provides English accessible labels', () => {
   assert.equal(backlink.properties.ariaLabel, 'Back to citation 1, occurrence 2')
   assert.equal(backlink.children[1].children[0].value, '2')
 })
+
+for (const title of ['Relevant Sources', 'প্রাসঙ্গিক সোর্স']) {
+  test(`keeps ${title} attached to its definitions before a hub directory`, () => {
+    const tree = fixture()
+    const notes = tree.children.pop()
+    const heading = { type: 'element', tagName: 'h2', properties: {}, children: [{ type: 'text', value: title }] }
+    const directory = { type: 'mdxJsxFlowElement', name: 'SectionIndex', children: [] }
+    tree.children.push(heading, directory, notes)
+    transformFootnotes(tree)
+    assert.equal(tree.children[2], notes)
+    assert.equal(tree.children[3], directory)
+    transformFootnotes(tree)
+    assert.equal(tree.children[2], notes)
+    assert.equal(tree.children[3], directory)
+  })
+}
+
+test('preserves footnote placement when there is no authored sources heading', () => {
+  const tree = fixture()
+  const notes = tree.children.at(-1)
+  transformFootnotes(tree)
+  assert.equal(tree.children.at(-1), notes)
+})

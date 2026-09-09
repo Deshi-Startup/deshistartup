@@ -26,6 +26,10 @@ const bengaliDigits = (value: number) => String(value).replace(/\d/g, (d) => '�
 interface SectionIndexProps {
   section: string
   locale?: 'bn' | 'en'
+  /** A page-specific listing title; the component owns the single heading. */
+  heading?: string
+  /** Preserve an older authored heading's fragment when consolidating it. */
+  id?: string
 }
 
 /**
@@ -33,7 +37,7 @@ interface SectionIndexProps {
  * manifest, so it never needs hand-maintenance: adding a page.mdx under the
  * section automatically lists it here after the next build.
  */
-export default function SectionIndex({ section, locale = 'bn' }: SectionIndexProps) {
+export default function SectionIndex({ section, locale = 'bn', heading, id }: SectionIndexProps) {
   const isEn = locale === 'en'
   const isDirectory = section === 'directory'
   const data = typedContentIndex[locale].sections[section]
@@ -69,15 +73,20 @@ export default function SectionIndex({ section, locale = 'bn' }: SectionIndexPro
   }
 
   const remaining = total - written
+  const writtenGroups = groups.filter(([, items]) => items.some((page) => !page[2]))
+  const plannedGroups = groups.filter(([, items]) => items.some((page) => page[2]))
+  const showGroupHeading = (title: string, groupCount: number) =>
+    groupCount > 1 || (title !== heading && !['More guides', 'আরও গাইড'].includes(title))
 
   return (
     <section
+      id={id}
       className="section-index"
       data-inline-edit-source="section-index"
       data-pagefind-ignore
     >
       <h2 id={isDirectory ? (isEn ? 'all-directories' : 'সব-ডিরেক্টরি') : (isEn ? 'all-guides-in-this-section' : 'এই-বিভাগের-সব-গাইড')}>
-        {isDirectory ? (isEn ? 'All directories' : 'সব ডিরেক্টরি') : (isEn ? 'All guides in this section' : 'এই বিভাগের সব গাইড')}
+        {heading || (isDirectory ? (isEn ? 'All directories' : 'সব ডিরেক্টরি') : (isEn ? 'All guides in this section' : 'এই বিভাগের সব গাইড'))}
       </h2>
       <p className="section-stats">
         <span>
@@ -96,12 +105,12 @@ export default function SectionIndex({ section, locale = 'bn' }: SectionIndexPro
         </p>
       )}
 
-      {groups.map(([groupTitle, items]) => {
+      {writtenGroups.map(([groupTitle, items]) => {
         const writtenItems = items.filter((page) => !page[2])
         if (writtenItems.length === 0) return null
         return (
           <div key={groupTitle}>
-            <h3>{groupTitle}</h3>
+            {showGroupHeading(groupTitle, writtenGroups.length) && <h3>{groupTitle}</h3>}
             <ul>{writtenItems.map(renderItem)}</ul>
           </div>
         )
@@ -117,12 +126,12 @@ export default function SectionIndex({ section, locale = 'bn' }: SectionIndexPro
               ? 'These pages have starting sources, but no finished guide yet. Open a topic to help write it.'
               : 'এই পেজগুলোতে প্রাথমিক সোর্স আছে, পূর্ণাঙ্গ গাইড নেই। লিখতে সাহায্য করতে চাইলে বিষয়টি খুলে দেখুন।'}
           </p>
-          {groups.map(([groupTitle, items]) => {
+          {plannedGroups.map(([groupTitle, items]) => {
             const stubItems = items.filter((page) => page[2])
             if (stubItems.length === 0) return null
             return (
               <div key={groupTitle}>
-                <h3 data-toc-ignore>{groupTitle}</h3>
+                {showGroupHeading(groupTitle, plannedGroups.length) && <h3 data-toc-ignore>{groupTitle}</h3>}
                 <ul>{stubItems.map(renderItem)}</ul>
               </div>
             )

@@ -28,7 +28,7 @@ Use the table to decide whether foreign venture equity fits the kind of company 
 |---|---|---|
 | **Venture-Scale Tech (SaaS, FinTech, B2B, Logistics)** | **High** | LightCastle reported only USD 6 million of startup funding in H1 2026, all from global investors. Its USD 124 million total for 2025 was dominated by one USD 110 million merger.[^lightcastle-investors] That concentration is why an institutional raise often means speaking to foreign funds. |
 | **Global Export Software & AI** | **High** | Foreign investors bring USD capital plus commercial distribution networks across Southeast Asia, Europe, and North America. |
-| **Traditional SME / Lifestyle Business** | **Low** | Venture funds are built for outlier returns, so a sound traditional business may still lack a plausible fund-returning outcome. Look instead at [bank loans](/en/funding/bb-startup-fund) or [revenue-share financing](/en/funding/islamic-finance). |
+| **Traditional SME / Lifestyle Business** | **Low** | Venture funds are built for outlier returns, so a sound traditional business may still lack a plausible fund-returning outcome. Look instead at [bank loans](/en/funding/bb-startup-fund) or [Shariah-compliant financing](/en/funding/islamic-finance). |
 
 The dividing line in that table is not company quality. It is whether a fund can plausibly return its whole fund from your one deal. A profitable BDT 4-crore-a-year business is a better company than most startups and still a bad fit for a venture fund — those two facts are not in conflict, and hearing "no" is not a judgement on the business.
 
@@ -98,13 +98,13 @@ Deshi Startup's preparation card uses seven numbers. Learn them well enough to a
 
 | Metric | Plain Meaning | Planning prompt, not a rule |
 |---|---|---|
-| **Monthly gross revenue / GMV** | Total transaction value processed on your platform per month. | Show the recent month-over-month sequence, including flat or down months. |
-| **Monthly net revenue** | Gross revenue minus refunds, discounts, and platform or gateway fees. | Shows real monetisation, not just volume. |
-| **Gross margin (%)** | (Net revenue − direct delivery and server costs) ÷ net revenue. | Show your actual margin and name the direct costs; do not borrow another sector's target. |
+| **Monthly GMV (where relevant)** | Total transaction value processed on your platform per month. | Show the recent month-over-month sequence, including flat or down months. |
+| **Monthly net revenue** | Recognised sales or earned platform fees, net of sales refunds and discounts; exclude VAT collected for government. GMV is not an agent marketplace’s revenue. Keep gateway fees in costs, without deducting twice. | Shows real monetisation, not just volume. |
+| **Gross margin (%)** | (Net revenue − cost of goods or services sold) ÷ net revenue. State cost classification, including any payment fees, consistently. | Show your actual margin and name the direct costs; do not borrow another sector's target. |
 | **Customer acquisition cost (CAC)** | Total sales and marketing spend divided by new paying customers won. | Count all ad spend and sales commissions. Details in [Unit Economics](/en/metrics/unit-economics). |
 | **LTV to CAC ratio** | Lifetime gross profit per customer divided by CAC. | State the ratio from your own cohorts and every assumption behind lifetime value. |
-| **Monthly net cash burn** | Total cash out minus total cash in, per month. | State a clear figure, e.g. "$4,500 a month". |
-| **Cash runway** | Total bank balance divided by monthly net burn. | State the exact months left and the month in which fundraising must start. |
+| **Monthly net cash burn** | Operating cash outflows minus operating cash receipts, excluding new loans and equity. | State a clear figure, e.g. "$4,500 a month". |
+| **Cash runway** | Unrestricted available cash divided by positive monthly net cash burn; forecast separately if burn is zero or negative. | State the estimated months left and the month in which fundraising must start. |
 
 Investors are not testing recall for its own sake. Each number is a proxy for a habit: knowing your burn means you watch the bank account, knowing your CAC means you measure marketing rather than trust it, and knowing your gross margin means you understand what you actually sell. That last one is where Sami came apart, so it is worth taking apart properly.
 
@@ -126,7 +126,7 @@ Gross margin         = 13,000 / 20,000       = 65%
 
 Note what is *not* in that list: Sami's own salary, office rent, and the two engineers building next quarter's features. Those costs exist whether or not this clinic signs, so they sit below the gross margin line. Founders routinely include them, report a much worse margin than they have, and confuse everyone including themselves.
 
-**5. What Sami says next time.** *"Gross margin is 65%, mostly cloud and gateway fees. Net burn is $4,200 a month against $29,000 in the bank, so about seven months of runway — which is why I'm raising now rather than in December."*
+**5. What Sami says next time.** *"Gross margin is 65%, mostly cloud and gateway fees. Net burn is $4,200 a month against $29,000 in unrestricted available cash, so about seven months of runway — which is why I'm raising now rather than in December."*
 
 That is fourteen seconds. It answers the question asked, volunteers the follow-up question, and demonstrates the habit the investor was actually testing for.
 
@@ -167,9 +167,9 @@ The full folder list, what each reviewer checks your documents against, and the 
 - **The foreign company's papers.** <Term name="incorp-certificate">Certificate of Incorporation</Term> and <Term name="moa-aoa">Articles of Association</Term> for the [Singapore Pte. Ltd. or Delaware C-Corp](/en/funding/fdi-rules), not just the Bangladeshi operating company.
 - **The inward-equity trail.** Keep AD bank-issued encashment certificates for capital remittances already received and evidence that each share issue was intimated or reported through Bangladesh Bank's FEID route. Include Invest Bangladesh registration — or BEPZA, BHTPA or BSCIC registration where that separate authority applies — only when the project falls within its scope; it is not a universal foreign-investment document.[^bb-inward-equity] [^bida-registration-scope]
 - **A fully diluted [cap table](/en/funding/cap-table).** Show ordinary shares, preferred shares and the **ESOP pool**, the shares set aside for employee options. Check it against every signed [SAFE, convertible note or earlier term sheet](/en/funding/safe-convertible-notes).
-- **IP assignment agreements** signed by all founders, employees and contractors, assigning the work to the entity the investor is buying into.
+- **IP assignment agreements** signed by all founders, employees and contractors, documenting ownership or usage rights in the appropriate group entity. The investing entity need not directly own every asset; the group structure and licences must support the business.
 
-That last line is an ownership risk. If the contractor who wrote your first version in 2023 never signed an assignment, your company may be unable to show clearly that it owns the product. In a holding-company structure, the assignment must also name the entity the investor is buying into. Check and correct this before sharing the data room.
+That last line is an ownership risk. If the contractor who wrote your first version in 2023 never signed an assignment, your company may be unable to show clearly that it owns the product. In a holding-company structure, document the rights-holding entity and any intercompany licences; direct ownership by the entity receiving investment is not universal. Check and correct this before sharing the data room.
 
 ---
 
@@ -195,9 +195,9 @@ Fill this in and keep it open on a second screen during every investor call, unt
 ```text
   Month:  ____________
 
-  1. Monthly gross revenue / GMV:        BDT/USD ____________
+  1. Monthly GMV (where relevant):        BDT/USD ____________
      MoM growth vs last month:           ____________ %
-  2. Monthly net revenue:                BDT/USD ____________
+  2. Monthly net revenue (not GMV):                BDT/USD ____________
   3. Gross margin:                       ____________ %
      (what the direct costs are:  ____________________________)
   4. CAC:                                BDT/USD ____________

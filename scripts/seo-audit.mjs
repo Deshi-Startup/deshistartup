@@ -29,6 +29,7 @@ import {
   pageSocialImage
 } from '../app/lib/page-social-image.mjs'
 import { eventsForLocale } from './postbuild-contributors.mjs'
+import { inspectRenderedContent } from './rendered-content-audit.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const { htmlDir: outDir, staticDir } = resolveBuildOutput(root)
@@ -118,6 +119,7 @@ for (const page of pages) {
 
   const html = fs.readFileSync(file, 'utf8')
   const $ = load(html)
+  for (const issue of inspectRenderedContent($, { route: page.route })) record(errors, `${page.route}: ${issue}`)
   const expectedLanguage = page.locale === 'en' ? 'en' : 'bn'
   const titles = $('title')
   const descriptions = $('meta[name="description"]')

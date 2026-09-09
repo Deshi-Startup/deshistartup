@@ -189,7 +189,7 @@ const en: TranslationStrings = {
     ['Invest Bangladesh OSS', 'Investment approvals and government services', 'https://bidaquickserv.org/'],
     ['Bangladesh Bank', 'Banking, payments and foreign exchange rules', 'https://www.bb.org.bd']
   ],
-  bandTitle: 'Contribute to the guide',
+  bandTitle: 'Contribute to Deshi Startup',
   bandBody:
     'Fix a mistake, write a guide, join the contributor team, or share relevant work and resources. Contribute once or work with us regularly.',
   bandStats: (written, stubs) => [

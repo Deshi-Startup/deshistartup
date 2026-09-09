@@ -334,6 +334,7 @@ export default function Startup50({ locale = 'bn' }: Startup50Props) {
             </ul>
             <p>{isEn ? 'Funding notes preserve older disclosed amounts when a newer transaction is undisclosed, and distinguish equity, grants and financing facilities when the sources allow it.' : 'নতুন কোনো বিনিয়োগের পরিমাণ গোপন থাকলে আগের প্রকাশিত অঙ্ক বাদ দেওয়া হয় না। সোর্সে তথ্য থাকলে ইকুইটি, গ্র্যান্ট আর অর্থায়ন সুবিধাও আলাদা করে লেখা হয়।'}</p>
             <p>{isEn ? 'Meeting these requirements does not guarantee a place on the list.' : 'এই শর্তগুলো পূরণ করলেই তালিকায় জায়গা নিশ্চিত হয় না।'}</p>
+            <p>{isEn ? 'Evidence gap: DoctorKoi remains a provisional inclusion. Its profile records a website check, not a dated operating milestone within the past 12 months. That recent-activity criterion has not been confirmed.' : 'প্রমাণের ঘাটতি: DoctorKoi-কে আপাতত তালিকায় রাখা হয়েছে। প্রোফাইলে ওয়েবসাইট দেখে নেওয়ার কথা আছে, গত ১২ মাসে কাজ এগোনোর তারিখসহ প্রমাণ নেই। সাম্প্রতিক কাজের শর্তটি তাই এখনো নিশ্চিত করা যায়নি।'}</p>
           </section>
           <section>
             <h3>{isEn ? 'Keeping it current' : 'তালিকা যেভাবে আপডেট হয়'}</h3>

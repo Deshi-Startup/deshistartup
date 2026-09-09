@@ -42,11 +42,11 @@ This is where most new marketplaces struggle. The table below shows what happens
 
 Same requests, same take rate, but a better matching rate lifts revenue by roughly half. The reverse is just as true: pour money into ads to push requests up to 200 while the number of tutors stays the same, and fill rate collapses, GMV may stay flat or fall, and bad reviews pile up. So before chasing more requests early on, check how much of what's already coming in actually gets matched. Plenty of listings with poor matching isn't a working marketplace, it's just a directory.
 
-## Repeat GMV: does either side come back
+## Buyer repeat rate: does the same group come back
 
-Making one match is easy; keeping both sides coming back is hard. **Repeat GMV** is the share of a given month's GMV that comes from existing buyers or sellers, not new ones.
+Track **buyer repeat rate** by cohort: of the distinct buyers matched last month, how many make another request this month? Keep this separate from repeat GMV, which measures the value of current transactions from existing buyers, and from seller retention.
 
-Say that in February, 12 of January's 55 families come back wanting a second tutor, for another child or another subject. That's a repeat rate of 12 out of 55, roughly 22%. A low number here means the platform is satisfying one-time curiosity, not becoming a trusted habit. The same question applies to tutors: does the same tutor keep getting matched to new families, or does a tutor and family, once matched, leave the app and deal directly from then on.
+Say that in February, 12 of January's 55 families come back wanting a second tutor, for another child or another subject. That's a repeat rate of 12 out of 55, roughly 22%. Whether 22% is good depends on how often families actually need another tutor. A successful long-term match may reduce their need to return next month; track continued service and platform payments separately. The same question applies to tutors: does the same tutor keep getting matched to new families, or does a tutor and family, once matched, leave the app and deal directly from then on.
 
 ## Why two-sided cold start is harder than a normal launch
 
@@ -67,7 +67,7 @@ In one row of a Google Sheet, per month, fill in these columns:
 | Take rate | The percentage you deduct as commission from GMV |
 | Revenue | GMV times take rate |
 | Fill rate (liquidity) | What percentage of total requests actually got matched |
-| Repeat rate | What percentage of this month's matched transactions came from existing buyers or sellers |
+| Buyer repeat rate | Buyers matched last month who requested again this month ÷ distinct buyers matched last month × 100 |
 
 Fill this row in for three or four months and you'll see whether GMV is growing, whether that growth comes from better fill rate or just more ad spend, and whether repeat rate is climbing or stuck where it started.
 
@@ -77,7 +77,7 @@ Fill this row in for three or four months and you'll see whether GMV is growing,
 - Entered take rate and worked out real revenue as GMV times take rate
 - Measured fill rate, the share of total requests that actually got matched
 - If fill rate is low, put fixing it ahead of just buying more requests through ads
-- Worked out repeat rate, the share of this month's transactions from existing buyers or sellers
+- Worked out buyer repeat rate for the previous month's cohort, keeping requests separate from completed matches
 - Logging GMV, take rate, fill rate and repeat rate in the same sheet every month
 
 Rule of thumb: **Don't take pride in GMV, survive on GMV times take rate, and fixing a broken fill rate matters more than growing GMV around it.**

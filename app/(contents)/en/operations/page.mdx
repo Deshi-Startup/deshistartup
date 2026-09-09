@@ -1,44 +1,44 @@
 ---
 title: "Delivery, Couriers & Cash on Delivery"
-description: "Choosing couriers, SLA comparison, last-mile delivery, COD risk, fake orders and reducing returns."
+description: "Follow parcel orders through delivery, returns and courier payment, then choose the right guide for the problem holding up your operation."
 ---
 
 # Delivery, Returns and Order Operations
 
-> **In short:** An order is not finished when it leaves your hands. Track delivery, customer problems, returns and collected money together so you can see what actually happened.
+> **In short:** Follow an order until you know both what happened to the parcel and what happened to the money. Check the courier's service and charges for your actual deliveries, and keep returns and unsettled payments visible until they are resolved.
 
-## Start with the failure you need to fix
+Once you start sending physical products to customers, selling and delivering become closely connected. A late parcel can become a cancelled order. A successful delivery can still leave you waiting for the courier's payment. More orders mean more of these details to handle, so relying on memory soon becomes difficult.
 
-- **Orders look profitable but returns consume the margin:** work through [cash-on-delivery risk](/en/operations/cod-risk).
-- **You need to compare couriers or review service:** use the [courier SLA scorecard](/en/operations/courier-sla-scorecard).
-- **Courier payments do not match your records:** use [COD reconciliation](/en/payments/cod-reconciliation).
-- **Customers keep asking for updates:** adapt the [support scripts](/en/customers/support-scripts).
+This section is for parcel-based businesses choosing couriers or improving the work between taking an order and closing it. If you deliver software or professional services instead, [product](/en/product) and [B2B sales](/en/b2b) are more relevant starting points.
 
-## Example: close the delivery and money questions separately
+## Check what you are promising before dispatch
 
-**Settlement** is the transfer of collected money to you. **Reconciliation** means matching that transfer and its deductions to your own records. A delivered order can remain unsettled; a returned order can still incur costs.
+The customer needs to know what will arrive, the amount to pay and when to expect it. Confirm the details that can prevent a delivery: the item and variant, contact number, usable address and availability where relevant. If an item is unavailable or the date changes, tell the customer before sending something different from what they agreed to buy.
 
-Here is a fictional two-order review. Assume BDT 1,000 sale value per order, seller-paid BDT 80 outward delivery, and an additional BDT 40 if returned. These are illustrative amounts, not courier rates.
+Your courier choice needs to support that promise. Compare the routes you use, parcel size and weight, collection arrangements, delivery attempts and the way problems are reported. A low headline charge says little about a service that does not reliably reach your customers. Use the [courier directory](/en/directory/couriers) to make a shortlist, then confirm the current terms directly for your parcels. The [courier SLA scorecard](/en/operations/courier-sla-scorecard) helps you compare the service commitments and your observed results.
 
-| Record | Delivery evidence | Money evidence and next action |
-|---|---|---|
-| Order A | Delivered; no return reported | Expect BDT 920 after the agreed BDT 80 charge. No receipt yet: owner follows up on the promised settlement date. |
-| Order B | Returned and stock inspected | No completed sale. Record BDT 120 delivery/return costs and check how they are invoiced or deducted. |
+## Keep delivery and payment as separate questions
 
-If the courier remits BDT 800, it may equal A's BDT 920 less B's BDT 120 charges. That is a hypothesis until the statement shows those entries. Do not call the BDT 120 a lost collection or silently ignore it; match the reported deductions before closing the review.
+With **cash on delivery (COD)**, the customer pays when the parcel arrives and the courier later passes the collected money to you. That later transfer is **settlement**. A parcel marked delivered therefore does not necessarily mean its money is already in your account.
 
-Use **order / status evidence / expected collection / charges / actual settlement / difference / owner / next action**. A zero unexplained difference plus documented delivery or return handling lets you close these particular exceptions. Keep later refunds or disputes as new events rather than erasing the original record.
+Record the order ID, dispatch and delivery outcome, expected collection, agreed charges and actual receipt together. When a parcel returns, record that too, inspect the goods and decide whether they can be sold again. A return produces no completed sale, but delivery and other costs may still remain. The [COD risk guide](/en/operations/cod-risk) shows how those costs affect the amount of returns your margin can absorb.
 
-## Follow one order from start to finish
+These distinctions matter when the courier pays several orders together. **Reconciliation** means matching the payment and its deductions to your own order records. Without that matching, a smaller bank receipt might look like missing money even when the courier has deducted a legitimate charge from another order.
 
-Record its order ID, promised date, dispatch, delivery or return outcome, charges, expected settlement, actual receipt and unresolved issue. Assign a person and next action to every exception.
+## Understand a settlement before calling it short
 
-Keep delivery status separate from payment status. A delivered parcel can still have an unsettled collection; a returned parcel can still create charges. Review both before treating the order as complete.
+Consider two illustrative orders worth BDT 1,000 each. Assume the seller pays BDT 80 outward delivery per order and a further BDT 40 when an order returns. These are teaching amounts, not a courier's current rates, and the simplified example assumes no other charges.
 
-Start with a manageable group of real orders. Find one recurring failure, change the process and check whether the same failure reduces. Use the [courier directory](/en/directory/couriers) to prepare a shortlist, then confirm service for your actual route and parcel type.
+Order A is delivered, so you expect **1,000 − 80 = BDT 920** after its delivery charge. Order B returns, so there is no sale to collect and its delivery costs are **80 + 40 = BDT 120**. If the courier deducts B's charges from A's collection, the transfer would be **920 − 120 = BDT 800**.
 
-If you deliver software or services rather than parcels, start with [product](/en/product) or [B2B delivery and contracts](/en/b2b).
+A BDT 800 receipt could therefore be correct, but the arithmetic alone does not prove it. Check that the courier statement actually identifies those two orders and those deductions, and that the deduction method matches your terms. If it does not, keep the difference open and raise it with the order IDs and relevant records. The [COD reconciliation guide](/en/payments/cod-reconciliation) takes you through that matching work.
 
-## Explore this section
+## Use recurring problems to improve the next batch
 
-<SectionIndex section="operations" locale="en" />
+After resolving individual orders, look for a pattern. Repeated address failures call for different action from parcels damaged in transit or money arriving after the agreed date. Grouping the reasons helps you change the part of the process responsible, rather than asking everyone to “be more careful.”
+
+Give unresolved cases to a named person and agree when to follow up. Tell customers what is known and what you are doing, without promising a delivery or refund that has not been confirmed. The [support scripts](/en/customers/support-scripts) can help you explain delays and next steps clearly.
+
+Start with a group of recent orders you can trace from sale to delivery or return and payment. Once you can see where they stopped, choose the relevant guide below and fix that part of the process before adding more volume.
+
+<SectionIndex section="operations" locale="en" id="explore-this-section" />

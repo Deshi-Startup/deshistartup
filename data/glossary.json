@@ -163,8 +163,8 @@
       "early-adopter"
     ],
     "example": {
-      "en": "Before Pathao opened up their ride-sharing app to everyone in Dhaka, they let a small group of friends test it out. This beta test helped them figure out where the map was glitching or why the app was crashing.",
-      "bn": "পাঠাও যখন ঢাকায় সবার জন্য রাইড-শেয়ারিং অ্যাপ ওপেন করে, তার আগেই তারা ছোট একটি বন্ধু মহলের মাঝে এটি টেস্ট করেছিল। এই বেটা টেস্টের কারণেই তারা বুঝতে পেরেছিল ম্যাপ কোথায় ভুল দেখাচ্ছে বা অ্যাপ কেন ক্র্যাশ করছে।"
+      "en": "For example, a delivery startup might give a test version to 20 users, ask them to place trial orders and record map errors or crashes before a wider release. This is an illustrative beta test.",
+      "bn": "উদাহরণ হিসেবে, একটি ডেলিভারি স্টার্টআপ ২০ জনকে পরীক্ষামূলক ভার্সন দিয়ে ট্রায়াল অর্ডার করতে বলতে পারে। বড় পরিসরে ছাড়ার আগে ম্যাপের ভুল বা অ্যাপ ক্র্যাশের তথ্য নেবে। এটি বেটা টেস্টের একটি কাল্পনিক উদাহরণ।"
     }
   },
   "bida-oss": {
@@ -192,8 +192,8 @@
     "bn": "বোর্ড রেজল্যুশন",
     "group": "paperwork",
     "def": {
-      "bn": "কোম্পানির পরিচালনা পর্ষদের মিটিংয়ে নেওয়া যেকোনো বড় সিদ্ধান্তের লিখিত দলিল। ব্যাংক বা সরকারি অফিসে প্রমাণের জন্য এটা খুব জরুরি।",
-      "en": "A written document that records official decisions made by a company's board of directors. It's basically proof that everyone agreed on something important."
+      "en": "A formal record of a decision validly made by the board under the company’s governing rules. It does not necessarily mean every director agreed.",
+      "bn": "কোম্পানির নিয়ম মেনে পরিচালনা পর্ষদ যে সিদ্ধান্ত নিয়েছে, তার আনুষ্ঠানিক লিখিত রেকর্ড। এর মানে এই নয় যে সব পরিচালককে একমত হতেই হবে।"
     },
     "see": [
       "moa-aoa",
@@ -202,8 +202,8 @@
     "sourceUrl": "https://bdlaws.minlaw.gov.bd/act-print-788.html",
     "verified": "2026-07-28",
     "example": {
-      "en": "If your startup wants to open a new corporate bank account or take out a large business loan, the bank won't just take the CEO's word for it. They will ask for a board resolution showing that all the directors formally agreed to this decision.",
-      "bn": "আপনার স্টার্টআপ যদি নতুন কোনো কর্পোরেট ব্যাংক অ্যাকাউন্ট খুলতে চায় বা বড় কোনো লোন নিতে চায়, ব্যাংক শুধু সিইওর কথায় রাজি হবে না। তারা বোর্ড রেজল্যুশন চাইবে, যা প্রমাণ করে যে কোম্পানির সব ডিরেক্টর মিলে এই সিদ্ধান্ত নিয়েছেন।"
+      "en": "For a company bank account, the board may approve opening the account and name the authorised signatories. Record the decision with the quorum, voting and certification requirements that apply.",
+      "bn": "কোম্পানির ব্যাংক অ্যাকাউন্ট খুলতে পর্ষদ অ্যাকাউন্ট খোলার অনুমোদন দিতে পারে এবং কারা সই করবেন তা ঠিক করতে পারে। প্রযোজ্য কোরাম, ভোট ও সত্যায়নের নিয়ম মেনে সিদ্ধান্তটি লিখিতভাবে রাখুন।"
     },
     "watchOut": {
       "en": "Don't forge signatures or create fake board resolutions just to save time on paperwork. If a dispute happens between founders later on, these legal documents can be used against you in court.",
@@ -237,12 +237,12 @@
     "bn": "ব্রেক-ইভেন",
     "group": "money",
     "def": {
-      "bn": "এমন একটি ম্যাজিক পয়েন্ট, যেখানে আপনার বিক্রি থেকে আসা আয় আর মাসের মোট খরচ একদম সমান হয়। এরপর থেকে যা বিক্রি হবে, সবই আপনার লাভ!",
-      "en": "That magic moment when your business finally makes exactly enough money to cover all its expenses. Anything you make after this is pure profit!"
+      "en": "The sales level at which total revenue equals total costs, including both fixed and variable costs.",
+      "bn": "বিক্রি যে পর্যায়ে পৌঁছালে মোট আয় ও মোট খরচ সমান হয়। খরচের মধ্যে স্থায়ী খরচ এবং বিক্রির সঙ্গে বাড়ে এমন খরচ দুটোই ধরতে হবে।"
     },
     "example": {
-      "en": "If it costs you 50,000 Taka a month to run your cloud kitchen, the day you finally make exactly 50,000 Taka in sales is your break-even point. Any biryani you sell after that point means real money going into your pocket.",
-      "bn": "আপনার ক্লাউড কিচেন চালাতে যদি মাসে ৫০,০০০ টাকা খরচ হয়, তবে যেদিন আপনার বিক্রিও ঠিক ৫০,০০০ টাকায় পৌঁছাবে, সেটাই আপনার ব্রেক-ইভেন পয়েন্ট। এরপর আপনি যত প্লেট বিরিয়ানি বেচবেন, তার লাভের টাকাটা সরাসরি আপনার পকেটেই যাবে।"
+      "en": "Suppose an item sells for Tk 300, its variable cost is Tk 200, and monthly fixed costs are Tk 50,000. Each sale contributes Tk 100, so break-even is 500 items. Additional sales still incur variable costs.",
+      "bn": "ধরুন, একটি পণ্যের দাম ৩০০ টাকা, পণ্যপ্রতি পরিবর্তনশীল খরচ ২০০ টাকা এবং মাসের স্থায়ী খরচ ৫০,০০০ টাকা। প্রতিটি বিক্রি থেকে স্থায়ী খরচ মেটাতে থাকে ১০০ টাকা। তাই ৫০০টি বিক্রিতে ব্রেক-ইভেন হবে। এরপরও প্রতিটি পণ্যের পরিবর্তনশীল খরচ দিতে হবে।"
     },
     "guide": "/start-here/one-page-startup-plan",
     "see": [
@@ -261,12 +261,12 @@
     "group": "money",
     "starter": true,
     "def": {
-      "bn": "প্রতি মাসে আপনার আয়ের চেয়ে খরচের পাল্লা কতটুকু ভারী, তার হিসাব। সোজা কথায়, মাসে আপনার কত টাকা 'বার্ন' বা খরচ হয়ে যাচ্ছে।",
-      "en": "The amount of cash your startup is losing or 'burning' through every single month."
+      "en": "Net operating cash burn is operating cash paid out minus operating cash received over a period. Gross burn counts operating cash outflows alone.",
+      "bn": "নির্দিষ্ট সময়ে ব্যবসা চালাতে যত নগদ টাকা বের হয়েছে, তা থেকে পরিচালন কার্যক্রমে পাওয়া নগদ টাকা বাদ দিলে নেট বার্ন পাওয়া যায়। শুধু পরিচালন কাজে বের হওয়া টাকা ধরলে সেটি গ্রস বার্ন।"
     },
     "example": {
-      "en": "If your tech startup makes 2 lakh Taka this month but you spend 5 lakh Taka on salaries, server costs, and marketing, your burn rate is 3 lakh Taka. This is exactly how much money vanished from your bank account this month.",
-      "bn": "আপনার টেক স্টার্টআপে যদি এই মাসে ২ লাখ টাকা আয় হয়, কিন্তু কর্মচারীর বেতন, সার্ভার বিল আর মার্কেটিং মিলিয়ে খরচ হয় ৫ লাখ টাকা, তবে আপনার বার্ন রেট হলো ৩ লাখ টাকা। অর্থাৎ, এই মাসে ঠিক এই পরিমাণ টাকাই আপনার ব্যাংক থেকে গায়েব হয়ে গেছে।"
+      "en": "If operating cash receipts are Tk 200,000 and operating cash payments are Tk 500,000 this month, net burn is Tk 300,000. A new loan or investment can raise the bank balance without reducing that operating burn.",
+      "bn": "এই মাসে পরিচালন কার্যক্রমে ২ লাখ টাকা হাতে এলো এবং ৫ লাখ টাকা দেওয়া হলো। নেট বার্ন ৩ লাখ টাকা। নতুন ঋণ বা বিনিয়োগে ব্যাংকের টাকা বাড়তে পারে, কিন্তু তাতে পরিচালন কাজে এই বার্ন কমে না।"
     },
     "watchOut": {
       "en": "Keep a close eye on this! The higher your burn rate, the faster you'll run completely out of money. Many promising startups die simply because the founders hired too many people before the revenue could catch up.",
@@ -285,12 +285,12 @@
     "group": "growth",
     "starter": true,
     "def": {
-      "bn": "মার্কেটিং বা অ্যাড দিয়ে নতুন একজন কাস্টমার জোগাড় করতে আপনার গড়ে কত টাকা খরচ হচ্ছে।",
-      "en": "How much money you have to spend on marketing and ads just to get one brand new customer."
+      "en": "Total acquisition spending for a period divided by the number of new paying customers acquired in that period. State which sales and marketing costs you include.",
+      "bn": "একটি সময়ে নতুন পেইং কাস্টমার আনতে মোট যত খরচ হয়েছে, তাকে ওই সময়ে পাওয়া নতুন পেইং কাস্টমারের সংখ্যা দিয়ে ভাগ করলে CAC পাওয়া যায়। সেলস ও মার্কেটিংয়ের কোন খরচগুলো ধরেছেন, তা লিখে রাখুন।"
     },
     "example": {
-      "en": "If you spend 10,000 Taka boosting a promotional video on Facebook and it gets you 50 brand new app downloads, your CAC is 200 Taka per user. In highly competitive markets like food delivery, this cost can go up very quickly.",
-      "bn": "ফেসবুকে ১০,০০০ টাকা দিয়ে একটি প্রমোশনাল ভিডিও বুস্ট করার পর যদি আপনার অ্যাপে ৫০ জন নতুন ইউজার আসে, তবে আপনার ক্যাক (CAC) হলো ইউজার প্রতি ২০০ টাকা। ফুড ডেলিভারির মতো প্রতিযোগিতামূলক মার্কেটে এই খরচ খুব দ্রুত বেড়ে যেতে পারে।"
+      "en": "Suppose all acquisition costs for a campaign total Tk 10,000 and it brings 50 new paying customers. CAC is Tk 200. Fifty app downloads would measure cost per download, not CAC.",
+      "bn": "ধরুন, একটি ক্যাম্পেইনে কাস্টমার আনার সব খরচ মিলিয়ে ১০,০০০ টাকা লেগেছে। সেখান থেকে ৫০ জন নতুন পেইং কাস্টমার এলে CAC হবে ২০০ টাকা। ৫০টি অ্যাপ ডাউনলোড হলে সেই হিসাব হবে ডাউনলোডপ্রতি খরচ, CAC নয়।"
     },
     "watchOut": {
       "en": "If it costs you 500 Taka to get a customer, but they only buy 300 Taka worth of products from you before leaving, your business is bleeding cash. Always make sure your customer's lifetime value is significantly higher than what you spent to acquire them.",
@@ -334,12 +334,12 @@
     "bn": "ক্যাশ ফ্লো",
     "group": "money",
     "def": {
-      "bn": "আপনার বিজনেসে টাকা ঢোকা আর বের হওয়ার যে স্রোত। সোজা কথায়, পকেটে কত টাকা আসছে আর কত টাকা যাচ্ছে।",
-      "en": "The constant stream of money flowing into your business (from sales) and flowing out (to pay expenses)."
+      "en": "Actual cash moving into and out of a business through operating, investing and financing activities.",
+      "bn": "ব্যবসার পরিচালন, বিনিয়োগ ও অর্থায়ন কার্যক্রমে বাস্তবে নগদ টাকা আসা এবং বের হওয়া।"
     },
     "watchOut": {
-      "en": "You could be making lots of 'profit' on paper, but if your corporate clients haven't paid you yet and you have no cash to pay office rent, your business is in serious trouble. Bad cash flow management kills more businesses than a bad product does.",
-      "bn": "আপনি বাকিতে প্রচুর মাল বেচে কাগজের হিসাবে দারুণ লাভে থাকতে পারেন, কিন্তু ক্লায়েন্টরা টাকা না দিলে কর্মচারীর বেতন বা ভাড়া দিতে পারবেন না। প্রোডাক্ট খারাপ হওয়ার চেয়েও শুধু ক্যাশ ফ্লো ঠিকমতো ম্যানেজ না করতে পারার কারণে বেশি ব্যবসা বন্ধ হয়ে যায়।"
+      "en": "Profit on credit sales cannot pay today’s rent until customers pay. Track the timing of receipts and payments as well as profit.",
+      "bn": "বাকিতে বিক্রির লাভ দিয়ে আজকের ভাড়া দেওয়া যাবে না, যতক্ষণ কাস্টমার টাকা না দেন। লাভের পাশাপাশি টাকা আসা ও দেওয়ার সময়ও হিসাব করুন।"
     },
     "guide": "/metrics/cashflow-vs-profit",
     "see": [
@@ -409,12 +409,12 @@
     ],
     "group": "money",
     "def": {
-      "en": "The direct cost of making or buying the product you are selling, like materials, packaging, and delivery.",
-      "bn": "আপনি যে জিনিসটা বিক্রি করছেন, সেটা বানানো বা কেনার সরাসরি খরচ। যেমন: কাঁচামাল, প্যাকেজিং আর ডেলিভারি খরচ।"
+      "en": "The cost of inventory sold, including purchase and production costs and costs of bringing inventory to its present location and condition.",
+      "bn": "বিক্রি হওয়া পণ্যের ক্রয় ও উৎপাদন খরচ এবং পণ্যকে বর্তমান অবস্থান ও অবস্থায় আনার খরচ।"
     },
     "watchOut": {
-      "en": "A common trap is forgetting to include hidden costs like packaging tape, labels, or delivery platform commissions in your COGS. If your COGS is too high, you might actually lose money on every sale without even realizing it. Office rent or your own salary doesn’t count here, but tracking every direct material cost is crucial.",
-      "bn": "অনেক সময় প্যাকেজিংয়ের টেপ, লেবেল বা ডেলিভারি কোম্পানির কমিশন কগস-এ হিসাব করতে ভুলে যান অনেকেই। কগস বেশি হয়ে গেলে আপনি হয়তো টেরই পাবেন না যে প্রতিটা সেল থেকেই আপনার লস হচ্ছে। অফিস ভাড়া বা আপনার বেতন এখানে না পড়লেও, প্রোডাক্ট বানানোর প্রতিটা ছোট খরচ হিসাব করাটা খুব জরুরি।"
+      "en": "Do not omit production labour or overhead, and do not count a cost twice. Track selling costs such as delivery and commissions when calculating contribution even where they are outside COGS.",
+      "bn": "উৎপাদনের শ্রম ও ওভারহেড বাদ দেবেন না, আবার একই খরচ দুবারও ধরবেন না। ডেলিভারি ও কমিশনের মতো বিক্রয় খরচ COGS-এর বাইরে রাখলেও কন্ট্রিবিউশন হিসাবের সময় ধরতে হবে।"
     },
     "guide": "/metrics/unit-economics",
     "see": [
@@ -422,8 +422,8 @@
       "unit-economics"
     ],
     "example": {
-      "en": "If you run a cloud kitchen selling kacchi biryani, your COGS includes the meat, rice, spices, and the premium packaging boxes. It also covers the direct delivery cost to send it to the customer. It does not include the money you spent on Facebook ads to get that order.",
-      "bn": "ধরুন আপনার একটা ক্লাউড কিচেন আছে যেখানে আপনি কাচ্চি বিরিয়ানি বিক্রি করেন। আপনার কগস-এর মধ্যে পড়বে মাংস, চাল, মশলা আর সুন্দর প্যাকেজিং বক্সের খরচ। কাস্টমারকে খাবারটা ডেলিভারি দেওয়ার সরাসরি খরচটাও এর ভেতরেই থাকবে। তবে ফেসবুক অ্যাডের খরচটা কিন্তু এর মধ্যে পড়বে না।"
+      "en": "A kitchen’s cost of food sold includes ingredients, production packaging, cooking labour and applicable production overhead. Customer delivery and advertising are normally tracked separately as selling costs.",
+      "bn": "রান্নাঘরে বিক্রি হওয়া খাবারের খরচে উপকরণ, উৎপাদনের প্যাকেজিং, রান্নার শ্রম এবং প্রযোজ্য উৎপাদন ওভারহেড থাকে। কাস্টমারের কাছে ডেলিভারি ও বিজ্ঞাপনের খরচ সাধারণত বিক্রয় খরচ হিসেবে আলাদা রাখা হয়।"
     }
   },
   "cohort": {
@@ -496,23 +496,23 @@
     "bn": "করপোরেট কর",
     "group": "paperwork",
     "def": {
-      "en": "The income tax a business has to pay on its yearly profit. The exact percentage depends on the type of business.",
-      "bn": "কোম্পানির সারা বছরের লাভের ওপর সরকারকে যে ট্যাক্স দিতে হয়। কোম্পানির ধরনের ওপর ভিত্তি করে এই ট্যাক্সের হার আলাদা হয়।"
+      "en": "Income tax payable by a company on taxable income under the rules for its category. Accounting profit and taxable income can differ, and minimum-tax provisions may apply.",
+      "bn": "কোম্পানির করযোগ্য আয়ের ওপর প্রযোজ্য শ্রেণির নিয়মে দেওয়া আয়কর। হিসাবের লাভ আর করযোগ্য আয় এক নাও হতে পারে; ন্যূনতম করও প্রযোজ্য হতে পারে।"
     },
     "see": [
       "withholding-tax",
       "e-tin",
       "compliance"
     ],
-    "sourceUrl": "https://nbr.gov.bd/",
+    "sourceUrl": "https://nbr.gov.bd/uploads/acts/Income_tax_act_2023.pdf",
     "verified": "2026-07-28",
     "example": {
-      "en": "If your tech startup makes a net profit of 10 lakh Taka at the end of the year, you have to pay a certain percentage of that profit to the NBR. This is your corporate tax. The exact percentage depends on whether your company is publicly listed, private, or in a special tax-exempt sector.",
-      "bn": "বছর শেষে আপনার টেক স্টার্টআপ যদি ১০ লাখ টাকা নিট লাভ করে, তবে সেই লাভের একটা নির্দিষ্ট অংশ এনবিআর-কে দিতে হবে। এটাই হলো আপনার করপোরেট কর। আপনার কোম্পানি পাবলিক, প্রাইভেট নাকি আইটি খাতের মতো কোনো ট্যাক্স-মুক্ত খাতের, তার ওপর ভিত্তি করে এই ট্যাক্সের হার আলাদা হয়।"
+      "en": "A company reports 10 lakh taka of accounting profit. It must reconcile disallowed expenses, depreciation and any eligible exemptions before computing taxable income, then compare the applicable minimum-tax rules and deduct eligible tax already paid. A tech label alone does not establish an exemption.",
+      "bn": "হিসাবের খাতায় কোম্পানির লাভ ১০ লাখ টাকা। করযোগ্য আয় বের করতে আগে কর হিসাবে অগ্রহণযোগ্য খরচ, অবচয় ও প্রযোজ্য অব্যাহতি মেলাতে হবে। এরপর ন্যূনতম করের নিয়ম দেখুন এবং আগে দেওয়া প্রাপ্য কর বাদ দিন। শুধু টেক কোম্পানি বলেই অব্যাহতি পাওয়া যায় না।"
     },
     "watchOut": {
-      "en": "Many founders confuse the company's money with their own personal money. You must keep corporate tax aside from your profits before planning any expansions or declaring dividends. Failing to pay on time will result in severe penalties and ruin your chances of raising institutional investment.",
-      "bn": "অনেক ফাউন্ডার কোম্পানির টাকা আর নিজের টাকাকে এক করে ফেলেন। নতুন ইনভেস্টমেন্ট বা লভ্যাংশ ঘোষণার আগেই লাভের টাকা থেকে করপোরেট ট্যাক্সের অংশটা আলাদা করে রাখা উচিত। ঠিক সময়ে ট্যাক্স না দিলে যেমন জরিমানা হবে, তেমনি বড় কোনো ইনভেস্টমেন্ট পাওয়ার রাস্তাও বন্ধ হয়ে যেতে পারে।"
+      "en": "Keep company and personal tax obligations separate. Reserve cash for the assessed liability before spending or distributing it; late filing or payment can create additional costs and diligence problems.",
+      "bn": "কোম্পানি আর ব্যক্তিগত করের দায় আলাদা রাখুন। খরচ বা লভ্যাংশ দেওয়ার আগে করের দায় মেটানোর টাকা রাখুন। দেরিতে রিটার্ন বা কর দিলে বাড়তি খরচ ও ডিউ ডিলিজেন্সে সমস্যা হতে পারে।"
     }
   },
   "data-room": {
@@ -567,8 +567,8 @@
       "bn": "কোম্পানি যখন নতুন শেয়ার ছাড়ে, তখন পুরোনো মালিকদের মালিকানার হার একটু কমে যায়। একেই ডাইল্যুশন বলে।"
     },
     "example": {
-      "en": "Imagine owning 50% of a small pizza startup worth 10 lakh Taka. When a new investor comes in, they buy new shares, so your ownership drops to 40%. But because of their investment, the whole pizza is now worth 1 crore Taka, making your smaller slice far more valuable.",
-      "bn": "ধরুন, ১০ লাখ টাকার একটা স্টার্টআপে আপনার ৫০% শেয়ার আছে। নতুন একজন ইনভেস্টর এসে নতুন শেয়ার কিনলে আপনার মালিকানা কমে হয়তো ৪০% হয়ে যাবে। কিন্তু তাদের ইনভেস্টমেন্টের কারণে কোম্পানির ভ্যালু যদি ১ কোটি টাকা হয়ে যায়, তবে আপনার ওই ছোট পার্সেন্টেজটার দামই আসলে অনেক বেড়ে গেল।"
+      "en": "You hold 50 of 100 shares. If an outside investor receives 25 newly issued shares, you then hold 50 of 125, or 40%. Whether your holding is worth more depends on the agreed valuation and subsequent business performance.",
+      "bn": "১০০টি শেয়ারের মধ্যে আপনার ৫০টি আছে। বাইরের ইনভেস্টরকে নতুন ২৫টি শেয়ার দিলে মোট ১২৫টির মধ্যে আপনার থাকে ৫০টি, অর্থাৎ ৪০%। আপনার অংশের দাম বাড়ল কি না, তা সম্মত মূল্যায়ন ও পরের ব্যবসায়িক ফলের ওপর নির্ভর করে।"
     },
     "watchOut": {
       "en": "While dilution is a normal part of growing a massive company, giving away too much too early is dangerous. If you get diluted too much in the seed stage, you might lose motivation or control of the board later on. Always calculate how future funding rounds will impact your final ownership.",
@@ -614,12 +614,12 @@
     ],
     "group": "paperwork",
     "def": {
-      "en": "A unique 12-digit digital ID number given by the government to track tax payments for people and businesses.",
-      "bn": "ট্যাক্স দেওয়ার জন্য সরকার থেকে দেওয়া ১২ ডিজিটের একটা ইউনিক নম্বর। ব্যক্তি বা কোম্পানি, সবার জন্যই এটা লাগে।"
+      "en": "A 12-digit taxpayer identification number used for tax administration. Registration requirements depend on the person, entity and applicable law.",
+      "bn": "কর ব্যবস্থাপনায় ব্যবহৃত ১২ অঙ্কের করদাতা শনাক্তকরণ নম্বর। কার নিবন্ধন লাগবে, তা ব্যক্তি বা প্রতিষ্ঠানের অবস্থা এবং প্রযোজ্য আইনের ওপর নির্ভর করে।"
     },
     "watchOut": {
-      "en": "Do not use your personal e-TIN for your company's official business or vice versa. Your business needs its very own corporate e-TIN, and as the owner or director, you need a separate personal one too. Mixing these up will create severe legal and tax complications down the line.",
-      "bn": "কোম্পানির কাজের জন্য কখনোই নিজের ব্যক্তিগত ই-টিআইএন ব্যবহার করবেন না। কোম্পানির নামে একটা আলাদা ই-টিআইএন লাগবে, আর মালিক বা ডিরেক্টর হিসেবে আপনার নিজেরও একটা আলাদা টিআইএন থাকতে হবে। এই দুইটা মিলিয়ে ফেললে পরবর্তীতে ট্যাক্স আর আইনি ঝামেলায় পড়তে হবে।"
+      "en": "Distinguish an incorporated company from a sole proprietorship. TIN registration, filing a return and paying tax are separate obligations; obtaining a TIN does not settle all three.",
+      "bn": "নিবন্ধিত কোম্পানি ও একক মালিকানার ব্যবসার পার্থক্য মাথায় রাখুন। টিআইএন নেওয়া, রিটার্ন দেওয়া এবং কর দেওয়া আলাদা দায়িত্ব। টিআইএন নিলেই তিনটি কাজ সম্পন্ন হয় না।"
     },
     "guide": "/e-tin-vat-bin",
     "see": [
@@ -630,8 +630,8 @@
     "sourceUrl": "https://secure.incometax.gov.bd/TINHome",
     "verified": "2026-07-28",
     "example": {
-      "en": "When you officially register your startup as a Limited Company at RJSC, one of the first things you need is an e-TIN for the business. Without it, you cannot open a corporate bank account, get a trade license, or import raw materials. It is the basic digital identity required for all financial activities.",
-      "bn": "আরজেএসসি-তে আপনার স্টার্টআপকে লিমিটেড কোম্পানি হিসেবে রেজিস্ট্রেশন করার পর সবার আগে কোম্পানির জন্য একটা ই-টিআইএন লাগবে। এটা ছাড়া আপনি কোম্পানির নামে ব্যাংক অ্যাকাউন্ট খোলা, ট্রেড লাইসেন্স পাওয়া বা কাঁচামাল ইমপোর্টের মতো কোনো কাজই করতে পারবেন না। আর্থিক সব কাজের জন্যই এই ডিজিটাল পরিচয়পত্রটা বাধ্যতামূলক।"
+      "en": "A limited company obtains its own TIN, separate from its founders’ personal TINs. A sole proprietorship uses its proprietor’s tax identity; check the documents required for the particular account or application.",
+      "bn": "লিমিটেড কোম্পানি ফাউন্ডারদের ব্যক্তিগত টিআইএন থেকে আলাদা নিজস্ব টিআইএন নেয়। একক মালিকানার ব্যবসায় মালিকের কর পরিচয় ব্যবহৃত হয়। নির্দিষ্ট অ্যাকাউন্ট বা আবেদনে কী কাগজ লাগবে, তা দেখে নিন।"
     }
   },
   "early-adopter": {
@@ -714,8 +714,8 @@
     "sourceUrl": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-mincom/2024/12/1d03310e37514efb86ae6aa6bb8b9804.pdf",
     "verified": "2026-08-22",
     "example": {
-      "bn": "আপনি যদি দেশি পাটজাত পণ্য বা চামড়ার ব্যাগ ইউরোপে রপ্তানি করতে চান, তবে কাস্টমসের মাধ্যমে পণ্য পাঠানোর আগেই আপনার কোম্পানির নামে একটি ইআরসি (ERC) থাকতে হবে।",
-      "en": "If you want to export jute products or leather bags to Europe, your company must have an ERC before customs will clear your shipment."
+      "bn": "আপনি যদি দেশি পাটজাত পণ্য বা চামড়ার ব্যাগ ইউরোপে রপ্তানি করতে চান, তবে কাস্টমসের মাধ্যমে পণ্য পাঠানোর আগেই আপনার ব্যবসার নামে একটি ইআরসি (ERC) থাকতে হবে।",
+      "en": "If you want to export jute products or leather bags to Europe, your business must have an ERC before customs will clear your shipment."
     },
     "watchOut": {
       "bn": "ট্রেড লাইসেন্স থাকলেই রপ্তানির নিবন্ধন সম্পূর্ণ হয় না। বাণিজ্যিক পণ্য বা সেবা রপ্তানির জন্য ইআরসি আলাদা নিবন্ধন। মেয়াদ শেষ হওয়ার আগে এক থেকে পাঁচ বছরের জন্য নবায়ন বেছে নেওয়া যায়।",
@@ -752,12 +752,12 @@
     ],
     "group": "equity",
     "def": {
-      "en": "Shares set aside as a reward for employees so they can own a piece of the company later.",
-      "bn": "কোম্পানির কিছু শেয়ার আলাদা করে রাখা, যাতে কর্মীরা ভবিষ্যতে কোম্পানির মালিকানার একটা অংশ পেতে পারেন।"
+      "en": "An employee share option plan gives employees rights to acquire shares later, subject to its terms. An option is not itself an issued share.",
+      "bn": "এমপ্লয়ি শেয়ার অপশন প্ল্যান কর্মীদের শর্ত অনুযায়ী ভবিষ্যতে শেয়ার নেওয়ার অধিকার দেয়। অপশন পেলেই সঙ্গে সঙ্গে শেয়ার পাওয়া হয় না।"
     },
     "watchOut": {
-      "en": "It's a great way to attract top talent, but remember, these shares usually come out of the founders' own pockets. If you give away too much too early, you might lose control of your own company.",
-      "bn": "এর মাধ্যমে খুব ভালো মানুষ টিমে টানা যায়। তবে মনে রাখবেন, এই শেয়ার সাধারণত ফাউন্ডারদের নিজেদের ভাগ থেকেই দিতে হয়। শুরুর দিকে খুব বেশি শেয়ার দিয়ে ফেললে পরে নিজের কোম্পানির ওপরই কন্ট্রোল হারাতে পারেন।"
+      "en": "Check vesting, exercise price, expiry and approvals. Issuing new shares for options can dilute all existing shareholders; a transfer of a founder’s existing shares affects that founder’s holding instead.",
+      "bn": "ভেস্টিং, শেয়ার নেওয়ার দাম, মেয়াদ ও অনুমোদনের শর্ত দেখুন। অপশনের জন্য নতুন শেয়ার ইস্যু হলে বর্তমান সব শেয়ারহোল্ডারের শতাংশ কমতে পারে। কোনো ফাউন্ডারের বিদ্যমান শেয়ার হস্তান্তর হলে তাঁর ভাগ থেকে শেয়ার যায়।"
     },
     "guide": "/cofounders/equity-and-vesting",
     "see": [
@@ -766,8 +766,8 @@
       "dilution"
     ],
     "example": {
-      "en": "Imagine starting a small delivery app where you can't pay high salaries. You give early engineers a small slice of ESOP so when the app becomes huge, they become wealthy too.",
-      "bn": "ধরুন, আপনি নতুন একটা ডেলিভারি অ্যাপ শুরু করেছেন, কিন্তু বেশি বেতন দিতে পারছেন না। তখন আপনি প্রথম দিকের ইঞ্জিনিয়ারদের ইএসওপি হিসেবে সামান্য কিছু শেয়ার দিলেন, যাতে কোম্পানি বড় হলে তারাও লাভবান হন।"
+      "en": "An early engineer receives options that vest over four years. The employee becomes a shareholder only after the applicable exercise and share-issuance or transfer steps are completed. The shares may gain or lose value.",
+      "bn": "শুরুর দিকের একজন ইঞ্জিনিয়ার চার বছরে ভেস্ট হবে এমন অপশন পেলেন। প্রযোজ্য নিয়মে অপশন ব্যবহার এবং শেয়ার ইস্যু বা হস্তান্তর সম্পন্ন হলে তিনি শেয়ারহোল্ডার হবেন। শেয়ারের দাম বাড়তেও পারে, কমতেও পারে।"
     }
   },
   "exit": {
@@ -936,21 +936,21 @@
     "bn": "গ্রান্ট",
     "group": "funding",
     "def": {
-      "en": "Free money given to support your work. You usually don't have to pay it back or give up any shares.",
-      "bn": "এমন ফান্ড বা টাকা, যার বিনিময়ে কোনো লোন শোধ করতে হয় না বা কোম্পানির কোনো শেয়ারও দিতে হয় না।"
+      "en": "Funding awarded for an approved purpose that generally does not require equity or repayment when its conditions are met.",
+      "bn": "অনুমোদিত উদ্দেশ্যে দেওয়া অর্থ, যার শর্ত পূরণ করলে সাধারণত শেয়ার ছাড়তে বা টাকা ফেরত দিতে হয় না।"
     },
     "watchOut": {
-      "en": "It comes with rules about how you spend it and report it. Break the rules or fail to show receipts, and the funding will stop immediately.",
-      "bn": "তবে এই টাকা কোথায় কীভাবে খরচ করবেন, তার কড়া নিয়ম থাকে। নিয়ম না মানলে বা ঠিকমতো খরচের হিসাব দিতে না পারলে অনুদান সাথে সাথেই বন্ধ হয়ে যেতে পারে।"
+      "en": "Read eligible spending, reporting, milestones and repayment or clawback conditions. A startup loan is not a grant merely because its interest rate is subsidised.",
+      "bn": "অনুমোদিত খরচ, রিপোর্ট, মাইলফলক এবং টাকা ফেরত নেওয়ার শর্ত পড়ুন। সুদে ভর্তুকি থাকলেই স্টার্টআপ ঋণ অনুদান হয়ে যায় না।"
     },
-    "guide": "/funding/bb-startup-fund",
+    "guide": "/funding",
     "see": [
       "equity",
       "funding-rounds"
     ],
     "example": {
-      "en": "Programs like IDEA project or foreign NGOs sometimes give startups 10 lakh taka to build a prototype. You get to keep full ownership of your company and use the money to grow.",
-      "bn": "মাঝে মাঝে আইডিয়া প্রজেক্ট বা বিদেশি কোনো এনজিও স্টার্টআপকে প্রোটোটাইপ বানানোর জন্য ১০ লাখ টাকা দেয়। এর জন্য কোম্পানির কোনো শেয়ার ছাড়তে হয় না, আবার টাকাটাও শোধ করতে হয় না।"
+      "en": "Suppose a programme awards Tk 10 lakh for prototype development without taking shares. That is a grant if its agreement treats it as an award rather than a repayable loan.",
+      "bn": "ধরুন, একটি প্রোগ্রাম শেয়ার না নিয়ে প্রোটোটাইপ তৈরির জন্য ১০ লাখ টাকা দিল। চুক্তিতে এটি ফেরতযোগ্য ঋণের বদলে অনুদান হিসেবে দেওয়া হলে সেটি গ্রান্ট।"
     }
   },
   "gross-margin": {
@@ -1123,8 +1123,8 @@
     "sourceUrl": "https://ccie.gov.bd/pages/static-pages/6922dc11933eb65569e0e42e",
     "verified": "2026-08-21",
     "example": {
-      "bn": "আপনি যদি চীন থেকে ইলেকট্রনিক্স বা কাঁচামাল এনে দেশে বিক্রি করতে চান, তবে আপনার কোম্পানির নামে একটি আইআরসি (IRC) থাকতে হবে।",
-      "en": "If you plan to import electronics or raw materials from China to sell locally, your company must hold an IRC."
+      "bn": "আপনি যদি চীন থেকে ইলেকট্রনিক্স বা কাঁচামাল এনে দেশে বিক্রি করতে চান, তবে আপনার ব্যবসার নামে একটি আইআরসি (IRC) থাকতে হবে।",
+      "en": "If you plan to import electronics or raw materials from China to sell locally, your business must hold an IRC."
     },
     "watchOut": {
       "bn": "আইআরসি ছাড়া ব্যাংক ইমপোর্ট এলসি খুলবে না এবং কাস্টমসও পণ্য ছাড়বে না। মনে রাখবেন, ব্যক্তিগত ব্যবহারের জন্য পণ্য আনলে আইআরসি লাগে না, কিন্তু ব্যবসার জন্য এটি বাধ্যতামূলক।",
@@ -1140,20 +1140,20 @@
     ],
     "group": "growth",
     "def": {
-      "en": "A number showing how many new friends each of your current customers invites.",
-      "bn": "আপনার বর্তমান একজন কাস্টমার গড়ে কতজন নতুন কাস্টমার ডেকে আনছেন, তার হিসাব।"
+      "en": "The average number of new users each existing user brings through invitations in a defined referral cycle: invitations per user multiplied by the conversion rate of those invitations.",
+      "bn": "নির্দিষ্ট একটি রেফারেল চক্রে পুরোনো একজন ইউজারের আমন্ত্রণ থেকে গড়ে কতজন নতুন ইউজার আসে। ইউজারপ্রতি আমন্ত্রণের সংখ্যাকে আমন্ত্রণ থেকে নতুন ইউজার হওয়ার হার দিয়ে গুণ করলে K-factor পাওয়া যায়।"
     },
     "watchOut": {
-      "en": "If this number is more than 1, your app will spread like magic without paying for ads! But if it drops below 1, you'll eventually have to spend a lot of money to keep growing.",
-      "bn": "এই সংখ্যাটি যদি ১-এর বেশি হয়, তবে কোনো অ্যাড ছাড়াই আপনার ব্যবসা জাদুর মতো ছড়াতে থাকবে! কিন্তু ১-এর নিচে নেমে গেলে নতুন ইউজার আনতে আপনাকে প্রচুর টাকা খরচ করতে হবে।"
+      "en": "A value above 1 does not guarantee sustained growth: users may leave and referral cycles may be slow. Below 1, referrals can still help alongside other acquisition channels.",
+      "bn": "এই মান ১-এর বেশি হলেই টানা প্রবৃদ্ধি নিশ্চিত নয়। ইউজার চলে যেতে পারেন, আবার রেফারেল থেকে নতুন ইউজার আসতে সময়ও লাগতে পারে। মান ১-এর কম হলেও অন্য চ্যানেলের সঙ্গে রেফারেল কাজে আসতে পারে।"
     },
     "see": [
       "referral",
       "organic-vs-paid"
     ],
     "example": {
-      "en": "If every 10 users on your ride-sharing app invite 15 new friends to get a promo code, your K-factor is 1.5. This means your user base is multiplying rapidly on its own.",
-      "bn": "আপনার রাইড শেয়ারিং অ্যাপে প্রোমো কোডের জন্য যদি প্রতি ১০ জন ইউজার ১৫ জন নতুন বন্ধুকে ইনভাইট করে, তবে আপনার কে-ফ্যাক্টর হলো ১.৫। এর মানে হলো আপনার ইউজার দ্রুত জ্যামিতিক হারে বাড়ছে।"
+      "en": "If 10 users send 30 invitations and 15 recipients become users, the K-factor is (30 ÷ 10) × (15 ÷ 30) = 1.5. Invitations alone are not new users.",
+      "bn": "১০ জন ইউজার ৩০টি আমন্ত্রণ পাঠালেন, আর আমন্ত্রিতদের মধ্যে ১৫ জন ইউজার হলেন। তাহলে K-factor = (৩০ ÷ ১০) × (১৫ ÷ ৩০) = ১.৫। শুধু আমন্ত্রণ পাঠালেই নতুন ইউজার এসেছে বলা যায় না।"
     }
   },
   "kyc": {
@@ -1175,8 +1175,8 @@
       "payment-gateway"
     ],
     "example": {
-      "en": "Before a customer can invest in mutual funds through your app, they must upload their NID and a selfie. This KYC step proves they are a real person and not a fraudster.",
-      "bn": "আপনার অ্যাপ দিয়ে মিউচুয়াল ফান্ড কেনার আগে একজন কাস্টমারকে নিজের এনআইডি ও সেলফি দিতে হয়। এই কেওয়াইসি ধাপটি নিশ্চিত করে যে সে কোনো প্রতারক নয়, বরং সত্যিকারের একজন মানুষ।"
+      "en": "An account provider may check an NID and photograph as part of identity verification. That reduces identity risk; it does not prove the customer cannot commit fraud or replace other required checks.",
+      "bn": "অ্যাকাউন্টদাতা পরিচয় যাচাইয়ের অংশ হিসেবে এনআইডি ও ছবি পরীক্ষা করতে পারে। এতে পরিচয় নিয়ে ঝুঁকি কমে; কিন্তু ওই ব্যক্তি প্রতারণা করবেন না, তা প্রমাণ হয় না। অন্য প্রয়োজনীয় যাচাইও বাদ দেওয়া যায় না।"
     }
   },
   "lead": {
@@ -1209,8 +1209,8 @@
       "bn": "আপনার কোম্পানি বিক্রি হয়ে গেলে সবার আগে কে টাকা ফেরত পাবে, তার একটা নিয়ম।"
     },
     "example": {
-      "en": "Imagine a tech startup is sold for a modest amount. With a liquidation preference, the investors get their initial money back before the founders see a single taka.",
-      "bn": "ধরুন একটা টেক স্টার্টআপ বেশ কম দামে বিক্রি হলো। লিকুইডেশন প্রেফারেন্স থাকলে, ফাউন্ডাররা এক টাকা পাওয়ার আগেই ইনভেস্টররা তাদের দেওয়া পুরো টাকাটা আগে ফেরত পেয়ে যাবেন।"
+      "en": "Suppose an investor has a 1× non-participating preference on Tk 10 lakh invested. Subject to the agreement, the investor can take up to Tk 10 lakh before ordinary shareholders, or convert for the ordinary share payout. Only proceeds available after higher-ranking claims can be distributed.",
+      "bn": "ধরুন, ১০ লাখ টাকা বিনিয়োগে একজন ইনভেস্টরের ১× নন-পার্টিসিপেটিং প্রেফারেন্স আছে। চুক্তি অনুযায়ী তিনি সাধারণ শেয়ারহোল্ডারদের আগে সর্বোচ্চ ১০ লাখ টাকা নিতে পারেন, অথবা সাধারণ শেয়ারে রূপান্তর করে সেই ভাগ নিতে পারেন। তবে আগে মেটাতে হয় এমন দাবি বাদ দেওয়ার পর যত টাকা থাকে, তার মধ্যেই বণ্টন হবে।"
     },
     "watchOut": {
       "en": "If you sell the company for a low price, investors with high preferences might take almost all the money, leaving you empty-handed. Always review term sheets carefully with a lawyer!",
@@ -1262,8 +1262,8 @@
       "bn": "আপনার ফেসবুক শপ থেকে কেউ যখন ক্যাশের বদলে বিকাশ বা নগদে পেমেন্ট করে একটা জামা কেনে, তখন তারা এমএফএস ব্যবহার করছে। আমাদের দেশের প্রতিদিনের কেনাকাটায় এটা এখন সবচেয়ে বেশি কাজে লাগে।"
     },
     "watchOut": {
-      "en": "Most of the digital money in our country moves through these platforms, so you definitely need to accept them. If you only take cash or cards, you will lose a huge chunk of potential buyers.",
-      "bn": "আমাদের দেশের বেশিরভাগ মানুষই অনলাইনে কেনাকাটায় এসব দিয়ে পেমেন্ট করে। তাই আপনার বিজনেসে এগুলো না থাকলে আপনি অনেক সম্ভাব্য কাস্টমার হারাবেন!"
+      "en": "Check which payment methods your customers can and want to use. MFS is one option alongside cash, cards and bank transfers; national aggregate figures do not establish the best mix for your business.",
+      "bn": "আপনার কাস্টমার কোন উপায়ে টাকা দিতে পারেন এবং দিতে চান, তা দেখুন। নগদ, কার্ড ও ব্যাংক ট্রান্সফারের পাশাপাশি MFS একটি বিকল্প। জাতীয় মোট লেনদেনের সংখ্যা দিয়ে আপনার ব্যবসার সেরা পেমেন্ট ব্যবস্থা নির্ধারণ করা যায় না।"
     },
     "guide": "/payments",
     "see": [
@@ -1338,12 +1338,12 @@
     ],
     "group": "money",
     "def": {
-      "en": "The steady, predictable income you get every single month (MRR) or year (ARR) from subscriptions.",
-      "bn": "আপনার সাবস্ক্রিপশন বিজনেস থেকে প্রতি মাসে বা বছরে যে নিশ্চিত আয়টা আসে।"
+      "en": "The monthly or annual run rate of recurring subscription revenue. ARR is commonly 12 times MRR; neither is a guarantee of future cash receipts.",
+      "bn": "সাবস্ক্রিপশনের নিয়মিত আয়কে মাস বা বছরের হিসাবে প্রকাশ করা। সাধারণ হিসাবে MRR-এর ১২ গুণ ARR। কোনোটিই ভবিষ্যতে ওই টাকা হাতে পাওয়ার নিশ্চয়তা নয়।"
     },
     "example": {
-      "en": "If a local SaaS company charges 1,000 Taka per month for their accounting software and has 100 users, their MRR is 100,000 Taka. This steady pulse lets them plan salaries and expenses comfortably.",
-      "bn": "একটা দেশি সফটওয়্যার কোম্পানি যদি তাদের অ্যাকাউন্টিং সফটওয়্যারের জন্য ১০০ জন কাস্টমারের কাছ থেকে মাসে ১০০০ টাকা করে নেয়, তবে তাদের এমআরআর হলো ১ লক্ষ টাকা। এই নিশ্চিত আয়টা দিয়ে তারা প্রতি মাসের খরচ খুব সহজেই প্ল্যান করতে পারে।"
+      "en": "One hundred paying subscriptions at Tk 1,000 per month give MRR of Tk 100,000 and annualised ARR of Tk 1,200,000. Cancellations or plan changes can change that run rate.",
+      "bn": "মাসে ১,০০০ টাকা দামের ১০০টি পেইং সাবস্ক্রিপশন থাকলে MRR ১ লাখ টাকা এবং বার্ষিক হিসাবে ARR ১২ লাখ টাকা। সাবস্ক্রিপশন বাতিল বা প্যাকেজ বদল হলে এই অঙ্কও বদলাবে।"
     },
     "watchOut": {
       "en": "This only counts recurring payments like subscriptions. Do not include one-off setup fees or consulting charges in your MRR, otherwise you'll overestimate your regular income!",
@@ -1411,16 +1411,16 @@
     "bn": "নর্থ স্টার মেট্রিক",
     "group": "growth",
     "def": {
-      "en": "The single most important number that shows if your business is truly growing and giving value to customers.",
-      "bn": "এমন একটা জাদুকরী নম্বর, যেটা বাড়লে বোঝা যায় আপনার কাস্টমাররা সত্যি সত্যিই খুশি আর আপনার বিজনেসও বড় হচ্ছে।"
+      "en": "A primary metric chosen to represent recurring customer value. It needs supporting measures and guardrails; one rising number cannot prove that the whole business is healthy.",
+      "bn": "কাস্টমার নিয়মিত কতটা মূল্য পাচ্ছেন, তা বোঝার জন্য বেছে নেওয়া প্রধান মেট্রিক। সঙ্গে সহায়ক হিসাব ও ঝুঁকির সীমাও দেখতে হয়। একটি সংখ্যা বাড়লেই পুরো ব্যবসা ভালো চলছে প্রমাণ হয় না।"
     },
     "example": {
-      "en": "For a ride-sharing service, the north star metric could be the 'number of completed rides per week'. If that number goes up, it means riders are happy, drivers are earning, and the company is growing.",
-      "bn": "রাইড-শেয়ারিং সার্ভিসের জন্য এই জাদুকরী নম্বর হতে পারে 'প্রতি সপ্তাহে সম্পন্ন হওয়া রাইডের সংখ্যা'। এই সংখ্যাটা বাড়লে বুঝতে হবে কাস্টমাররা সার্ভিস পাচ্ছে, ড্রাইভাররা টাকা কামাচ্ছে আর কোম্পানিও বড় হচ্ছে।"
+      "en": "A ride service might track completed rides per week, alongside repeat use, complaints, safety, driver earnings and contribution per ride. More rides alone do not prove satisfied users or profitable growth.",
+      "bn": "রাইড সেবা সপ্তাহে সম্পন্ন রাইডের সংখ্যা দেখতে পারে। সঙ্গে পুনরায় ব্যবহার, অভিযোগ, নিরাপত্তা, চালকের আয় ও রাইডপ্রতি কন্ট্রিবিউশনও দেখবে। শুধু রাইড বাড়া দিয়ে কাস্টমারের সন্তুষ্টি বা লাভজনক প্রবৃদ্ধি প্রমাণ হয় না।"
     },
     "watchOut": {
-      "en": "Focus entirely on improving this one core number instead of getting distracted by vanity metrics like app downloads or Facebook likes, which don't directly pay the bills.",
-      "bn": "শুধু অ্যাপ ডাউনলোড বা ফেসবুক লাইকের মতো দশ রকম হিসাবের পেছনে না ছুটে, আপনার এই একটা মূল নম্বর কীভাবে বাড়ানো যায় সেই দিকেই সবার মনোযোগ দেওয়া উচিত।"
+      "en": "Choose a metric tied to the value customers receive, and check that improving it does not worsen safety, service quality or cash sustainability.",
+      "bn": "কাস্টমার যে মূল্য পান, তার সঙ্গে সম্পর্কিত মেট্রিক বাছুন। সেটি বাড়াতে গিয়ে নিরাপত্তা, সেবার মান বা টাকার জোগান খারাপ হচ্ছে কি না, দেখুন।"
     },
     "guide": "/metrics",
     "see": [
@@ -1462,16 +1462,16 @@
     ],
     "group": "equity",
     "def": {
-      "en": "The actual money that shareholders have given the company in exchange for their shares.",
-      "bn": "শেয়ারের বদলে ফাউন্ডার বা ইনভেস্টররা বাস্তবে যে পরিমাণ টাকা কোম্পানির ব্যাংক অ্যাকাউন্টে জমা করেছেন।"
+      "en": "The nominal value paid or credited as paid on issued shares. Share premium is separate, and lawful non-cash consideration may also count.",
+      "bn": "ইস্যু করা শেয়ারের অভিহিত মূল্যের যে অংশ পরিশোধ করা হয়েছে বা পরিশোধিত হিসেবে গণ্য হয়েছে। শেয়ার প্রিমিয়াম আলাদা; আইনসম্মত নগদবহির্ভূত বিনিময়েও শেয়ার পরিশোধিত হতে পারে।"
     },
     "example": {
-      "en": "If you and your co-founder start a company and each deposit 50,000 Taka into the company's bank account for your shares, your paid-up capital is 100,000 Taka. This shows the initial real money invested.",
-      "bn": "আপনি আর আপনার কো-ফাউন্ডার যদি নতুন কোম্পানি খোলার সময় নিজেদের শেয়ারের জন্য কোম্পানির ব্যাংক অ্যাকাউন্টে ৫০ হাজার করে টাকা জমা দেন, তবে আপনাদের পেইড-আপ ক্যাপিটাল হবে ১ লক্ষ টাকা। এটাই আপনাদের প্রাথমিক আসল বিনিয়োগ।"
+      "en": "If two founders each pay Tk 50,000 for shares with that nominal value and no premium, paid-up capital is Tk 100,000. Payment above nominal value would be accounted for separately as premium.",
+      "bn": "দুই ফাউন্ডার প্রত্যেকে ৫০ হাজার টাকা অভিহিত মূল্যের শেয়ারের জন্য ৫০ হাজার টাকা দিলেন, কোনো প্রিমিয়াম নেই। পেইড-আপ ক্যাপিটাল ১ লাখ টাকা। অভিহিত মূল্যের বেশি টাকা দিলে সেই বাড়তি অংশ প্রিমিয়াম হিসেবে আলাদা হিসাব হবে।"
     },
     "watchOut": {
-      "en": "You must actually deposit this money into the company account and show bank proof during RJSC registration. Do not just write a big number on paper without having the actual funds!",
-      "bn": "RJSC-তে রেজিস্ট্রেশন করার সময় কোম্পানির অ্যাকাউন্টে সত্যি সত্যিই এই টাকাটা জমা করে ব্যাংকের প্রমাণ দেখাতে হবে। তাই অ্যাকাউন্টে টাকা না থাকলে শুধু কাগজপত্রে বড় কোনো অঙ্ক বসিয়ে দেবেন না!"
+      "en": "Do not claim capital has been paid when it has not. Evidence and timing requirements depend on the company structure and transaction; confirm the applicable RJSC and banking requirements rather than assuming every local company needs the same pre-incorporation deposit.",
+      "bn": "পরিশোধ না করেই মূলধন পরিশোধিত দেখাবেন না। কোম্পানির ধরন ও লেনদেন অনুযায়ী প্রমাণ এবং সময়ের নিয়ম ভিন্ন হতে পারে। সব স্থানীয় কোম্পানির নিবন্ধনের আগে একইভাবে ব্যাংকে টাকা জমা দিতে হয় ধরে না নিয়ে, প্রযোজ্য RJSC ও ব্যাংকের নিয়ম নিশ্চিত করুন।"
     },
     "guide": "/company-types",
     "see": [
@@ -1567,8 +1567,8 @@
       "bn": "এমন অবস্থা যেখানে মানুষ আপনার প্রোডাক্ট এতটাই পছন্দ করে যে তারা বারবার কেনে আর অন্যদেরও বলে।"
     },
     "example": {
-      "en": "You know you have it when you can barely keep up with customer demand! For example, when Pathao first launched, people were so desperate to beat Dhaka traffic that riders were downloading the app faster than they could onboard drivers. It felt like the product was selling itself.",
-      "bn": "যখন দেখবেন কাস্টমাররা একরকম কাড়াকাড়ি করে আপনার প্রোডাক্ট নিচ্ছে, বুঝবেন আপনি সঠিক পথে আছেন। যেমন ধরুন, পাঠাও যখন প্রথম বাজারে আসে, ঢাকার জ্যাম থেকে বাঁচতে মানুষ পাগলের মতো অ্যাপ ডাউনলোড করছিল। রাইডারদের চেয়ে ইউজারের সংখ্যা এত দ্রুত বাড়ছিল যে মনে হচ্ছিল প্রোডাক্ট যেন নিজেই নিজেকে বিক্রি করছে।"
+      "en": "Suppose customers repeatedly pay for a delivery service, keep using it after discounts end and recommend it to others. Those behaviours are evidence of demand; one burst of downloads alone is not.",
+      "bn": "ধরুন, কাস্টমাররা একটি ডেলিভারি সেবায় বারবার টাকা দিয়ে অর্ডার করছেন, ছাড় শেষ হওয়ার পরও ব্যবহার করছেন এবং অন্যদের বলছেন। এসব আচরণ চাহিদার প্রমাণ। শুধু একবার অনেক ডাউনলোড হওয়া সেই প্রমাণ নয়।"
     },
     "watchOut": {
       "en": "There's no single magic number to prove it, you just feel the pull from the market. Many founders mistake a temporary spike in sales from heavy Facebook ads for true PMF, only to see it drop when the marketing budget dries up.",
@@ -1662,8 +1662,8 @@
       "cac"
     ],
     "example": {
-      "en": "Giving a user a $5 discount for bringing in a friend is a classic referral program. Think about how bKash or Chaldal grew so fast–they offered you 50 taka in your wallet for every new person you convinced to sign up. It turns your users into your sales team.",
-      "bn": "বন্ধুকে ইনভাইট করলে ৫০ টাকা ডিসকাউন্ট–এমন অফারগুলোই হলো রেফারেল প্রোগ্রাম। মনে করে দেখুন, বিকাশ বা চালডাল শুরুর দিকে কীভাবে এত দ্রুত ছড়িয়ে পড়েছিল। তারা আপনাকে বন্ধু রেফার করার জন্য বোনাস দিত, যার ফলে ইউজাররাই একরকম তাদের সেলস টিমের মতো কাজ করত।"
+      "en": "For example, a business might offer Tk 50 credit when a referred friend completes a first paid order. This is a hypothetical programme: track the reward cost, fraud and whether referred customers return.",
+      "bn": "উদাহরণ হিসেবে, রেফার করা বন্ধু প্রথম পেইড অর্ডার সম্পন্ন করলে একটি ব্যবসা ৫০ টাকা ক্রেডিট দিতে পারে। এটি কাল্পনিক প্রোগ্রাম। পুরস্কারের খরচ, জালিয়াতি এবং রেফারেল থেকে আসা কাস্টমার আবার কেনেন কি না, দেখুন।"
     }
   },
   "repeat-rate": {
@@ -1717,8 +1717,8 @@
     "bn": "রেভিনিউ",
     "group": "money",
     "def": {
-      "en": "All the money you bring in from sales, before taking out any of your costs or bills.",
-      "bn": "বিক্রি থেকে আসা মোট টাকা। এর থেকে কোনো খরচ বা বিল তখনো বাদ দেওয়া হয়নি।"
+      "en": "Revenue is income earned from supplying goods or services, before related expenses. Cash received in advance and VAT collected for the government are not automatically revenue.",
+      "bn": "পণ্য বা সেবা সরবরাহ করে অর্জিত আয়, সংশ্লিষ্ট খরচ বাদ দেওয়ার আগে। অগ্রিম পাওয়া টাকা বা সরকারের জন্য আদায় করা ভ্যাট স্বয়ংক্রিয়ভাবে রেভিনিউ হয়ে যায় না।"
     },
     "watchOut": {
       "en": "Revenue isn't profit! You can make a million dollars in revenue and still lose money if your costs are too high. A startup can proudly announce huge revenue numbers while secretly bleeding cash on high delivery subsidies and crazy discounts.",
@@ -1731,8 +1731,8 @@
       "gmv"
     ],
     "example": {
-      "en": "If you sell 10 shirts for $20 each, your revenue is $200. Imagine running an F-commerce page selling panjabis before Eid; your revenue is the total amount of money customers sent to your merchant account for all the orders.",
-      "bn": "আপনি ২০০ টাকা করে ১০টি শার্ট বিক্রি করলে, আপনার রেভিনিউ হবে ২,০০০ টাকা। ঈদের আগে ফেসবুকে পাঞ্জাবি বিক্রির কথা চিন্তা করুন। কাস্টমাররা যতগুলো অর্ডারের জন্য আপনার মার্চেন্ট অ্যাকাউন্টে যত টাকা পাঠিয়েছে, তার পুরো যোগফলটাই হলো আপনার রেভিনিউ।"
+      "en": "If you fulfil 10 shirt sales at Tk 200 each, with no discounts, returns or VAT in that price, revenue is Tk 2,000. A deposit for shirts you still owe a customer is not yet earned sales revenue.",
+      "bn": "প্রতিটি ২০০ টাকা দামে ১০টি শার্টের বিক্রি সম্পন্ন করলেন। দামে ভ্যাট নেই এবং কোনো ছাড় বা ফেরতও নেই। রেভিনিউ ২,০০০ টাকা। যে শার্ট এখনো কাস্টমারকে দেওয়ার বাকি, তার জন্য পাওয়া অগ্রিম টাকা তখনই অর্জিত বিক্রয় আয় হয়ে যায় না।"
     }
   },
   "rjsc": {
@@ -1798,16 +1798,16 @@
     ],
     "group": "commerce",
     "def": {
-      "en": "When a customer orders something with cash-on-delivery but refuses to take it when it arrives, so it comes back to you.",
-      "bn": "ক্যাশ-অন-ডেলিভারির পার্সেল, যা কাস্টমার নিতে না চাওয়ায় আবার আপনার কাছেই ফেরত আসে।"
+      "en": "Return to origin: a dispatched parcel comes back to the sender after delivery cannot be completed. It can happen with prepaid or COD orders for several reasons, including an unavailable customer or incorrect address.",
+      "bn": "রিটার্ন টু অরিজিন: ডেলিভারি সম্পন্ন না হওয়ায় পাঠানো পার্সেল প্রেরকের কাছে ফেরত আসা। প্রিপেইড ও COD দু ধরনের অর্ডারেই হতে পারে। কাস্টমারকে না পাওয়া বা ভুল ঠিকানাসহ নানা কারণ থাকতে পারে।"
     },
     "example": {
       "en": "Sending a package out and getting it returned unopened is an RTO. You ship an expensive gadget to Sylhet via courier, but the customer's phone is switched off for three days, so the courier brings the box all the way back to your Dhaka office.",
       "bn": "পার্সেল পাঠালেন, কিন্তু কাস্টমার ফোন ধরল না। পার্সেলটা আবার ব্যাক এলো–এটাই RTO। ধরুন আপনি কুরিয়ারে ঢাকা থেকে সিলেটে একটা দামি গ্যাজেট পাঠালেন। কিন্তু কাস্টমার তিন দিন ধরে ফোন বন্ধ রাখায় কুরিয়ার পার্সেলটা আবার আপনার ঢাকার অফিসে ফেরত নিয়ে এলো।"
     },
     "watchOut": {
-      "en": "This is a huge money-drain in e-commerce because you end up paying for shipping both ways without making a sale. In Bangladesh, where cash-on-delivery is king, high RTO rates can quickly bankrupt a small online business.",
-      "bn": "দেশের ই-কমার্সে টাকা নষ্ট হওয়ার সবচেয়ে বড় জায়গা এটা, কারণ আপনাকে যাওয়া-আসা দু-দিকের কুরিয়ার খরচই গুনতে হয় অথচ কোনো বিক্রি হয় না। বাংলাদেশে ক্যাশ-অন-ডেলিভারি বেশি চলায়, এই RTO রেট বেশি হলে ছোটখাটো অনলাইন ব্যবসা দ্রুত পথে বসে যায়।"
+      "en": "A failed delivery can leave you paying outward freight and any applicable return charge without a completed sale. Use your courier’s actual terms and include damage, packaging and acquisition costs in the relevant contribution calculation.",
+      "bn": "ডেলিভারি ব্যর্থ হলে বিক্রি সম্পন্ন না করেও পাঠানোর ভাড়া এবং প্রযোজ্য ফেরত ভাড়া দিতে হতে পারে। কুরিয়ারের আসল শর্ত দেখুন। সংশ্লিষ্ট কন্ট্রিবিউশন হিসাবে ক্ষতি, প্যাকেজিং ও কাস্টমার আনার খরচও ধরুন।"
     },
     "guide": "/operations/cod-risk",
     "see": [
@@ -1826,12 +1826,12 @@
       "bn": "আপনার ব্যাংকে যে টাকা আছে, তা দিয়ে কোম্পানি আর কত মাস টিকিয়ে রাখতে পারবেন, তার হিসেব।"
     },
     "example": {
-      "en": "If you have $10,000 left and spend $2,000 a month, your runway is 5 months. Imagine you raised some seed money from a local angel investor to build your ed-tech app. This metric tells you exactly how many months you can keep paying your developers before you go broke.",
-      "bn": "মাসে যদি ২ লাখ টাকা খরচ হয় আর ব্যাংকে ১০ লাখ টাকা থাকে, তবে আপনার রানওয়ে ৫ মাস। ধরুন, আপনি পরিচিত একজনের কাছ থেকে কিছু ফান্ড নিয়ে এড-টেক অ্যাপ বানাচ্ছেন। এই হিসেবটাই আপনাকে বলে দেবে আর কত মাস আপনি আপনার ডেভেলপারদের বেতন দিয়ে টিকে থাকতে পারবেন।"
+      "en": "With Tk 1,000,000 of available cash and a steady monthly net cash burn of Tk 200,000, estimated runway is five months. This assumes the burn remains unchanged.",
+      "bn": "হাতে ব্যবহারযোগ্য নগদ ১০ লাখ টাকা এবং মাসে নেট ক্যাশ বার্ন ২ লাখ টাকা হলে আনুমানিক রানওয়ে পাঁচ মাস। এই হিসাবে ধরে নেওয়া হচ্ছে, মাসিক বার্ন একই থাকবে।"
     },
     "watchOut": {
-      "en": "Keep a close eye on this! Before it hits zero, you need to either make more money or raise new funds. A common rookie mistake is waiting until you only have one month of runway left to start fundraising, which takes months to close in Bangladesh.",
-      "bn": "এটা শেষ হওয়ার আগেই আপনাকে বিক্রি বাড়াতে হবে, নাহলে নতুন ফান্ড জোগাড় করতে হবে। নইলে কোম্পানি বন্ধ হয়ে যাবে। অনেক নতুন ফাউন্ডার ব্যাংকের টাকা প্রায় শেষের দিকে এলে ফান্ড খোঁজা শুরু করেন। অথচ বাংলাদেশে ফান্ড জোগাড় করতে কয়েক মাস সময় লেগে যায়, আর মাঝখান থেকে কোম্পানি বিপদে পড়ে।"
+      "en": "Use available cash and positive net burn, not total expenses. If net burn is zero or negative, this division does not give a useful runway; forecast future cash payments, receipts and one-off commitments instead.",
+      "bn": "মোট খরচ দিয়ে নয়, ব্যবহারযোগ্য নগদ টাকাকে পজিটিভ নেট বার্ন দিয়ে ভাগ করুন। নেট বার্ন শূন্য বা নেগেটিভ হলে এই ভাগ করে কার্যকর রানওয়ে পাওয়া যায় না। তখন ভবিষ্যতের টাকা আসা, দেওয়া এবং এককালীন দায় মেটানোর সময় ধরে পূর্বাভাস করুন।"
     },
     "see": [
       "burn-rate",
@@ -1849,16 +1849,16 @@
     ],
     "group": "funding",
     "def": {
-      "en": "A simple investment agreement where someone gives you money today, and it turns into company shares later on.",
-      "bn": "এমন একটা চুক্তি যেখানে ইনভেস্টর আজ আপনাকে টাকা দেয়, আর সেই টাকাটা পরে কোনো একসময় কোম্পানির শেয়ারে বদলে যায়।"
+      "en": "A SAFE is an agreement for future equity under specified triggers. A convertible note is a debt instrument that may convert into shares and normally has interest and maturity terms; they are not the same instrument.",
+      "bn": "SAFE নির্দিষ্ট শর্তে ভবিষ্যতে ইকুইটি পাওয়ার চুক্তি। কনভার্টেবল নোট ঋণ, যা শেয়ারে রূপান্তরিত হতে পারে এবং সাধারণত সুদ ও মেয়াদের শর্ত থাকে। দুটো একই ধরনের চুক্তি নয়।"
     },
     "example": {
-      "en": "Instead of pricing the company right now, investors hand over cash quickly and get their shares during the next big funding round. It's a quick way to get early backing from Bangladeshi angels without spending months arguing over exactly how much your day-old idea is worth.",
-      "bn": "কোম্পানির দাম আজই ঠিক না করে, দ্রুত টাকা নিয়ে কাজ শুরু করার জন্য এই চুক্তি বেশ জনপ্রিয়। আপনার আইডিয়ার আজ কত দাম হতে পারে সেটা নিয়ে মাসের পর মাস তর্ক না করে, দেশি অ্যাঞ্জেল ইনভেস্টরদের থেকে খুব দ্রুত ফান্ডিং নেওয়ার জন্য এটা একটা দারুণ উপায়।"
+      "en": "An investor might fund a startup now under terms that determine shares at a later priced round. The outcome depends on conversion triggers, cap, discount and other terms, not an automatic promise of a fixed ownership percentage.",
+      "bn": "ইনভেস্টর এখন টাকা দিতে পারেন, আর পরের মূল্যায়ন নির্ধারিত রাউন্ডে কত শেয়ার পাবেন তা চুক্তি অনুযায়ী ঠিক হতে পারে। রূপান্তরের শর্ত, ক্যাপ, ডিসকাউন্ট ও অন্য শর্তের ওপর ফল নির্ভর করে। নির্দিষ্ট শতাংশ মালিকানা স্বয়ংক্রিয়ভাবে নিশ্চিত হয় না।"
     },
     "watchOut": {
-      "en": "It seems short and sweet, but you're giving away future ownership. Always have a lawyer look at it. If you sign a SAFE with terrible terms, you might end up giving away a massive chunk of your company to early investors without even realizing it.",
-      "bn": "দেখতে সাদামাটা লাগলেও এর ভেতরে কোম্পানির ভবিষ্যতের মালিকানা জড়িয়ে থাকে। তাই ভালো আইনজীবীর পরামর্শ ছাড়া সই করবেন না। শর্ত না বুঝে সই করলে দেখা যাবে, শুরুর দিকের ইনভেস্টররাই আপনার কোম্পানির বিশাল একটা অংশ নিয়ে বসে আছে আর আপনার হাতে কিছুই নেই।"
+      "en": "Have a Bangladesh-qualified adviser check the instrument, approvals, tax and any foreign-exchange requirements. A US template is not automatically suitable or valid for a Bangladesh company. Model dilution before signing.",
+      "bn": "চুক্তির ধরন, অনুমোদন, কর ও প্রযোজ্য বৈদেশিক মুদ্রার নিয়ম বাংলাদেশের যোগ্য পরামর্শককে দিয়ে দেখান। যুক্তরাষ্ট্রের টেমপ্লেট বাংলাদেশের কোম্পানির জন্য স্বয়ংক্রিয়ভাবে উপযুক্ত বা বৈধ ধরে নেবেন না। সইয়ের আগে ডাইল্যুশন হিসাব করুন।"
     },
     "guide": "/funding/safe-convertible-notes",
     "see": [
@@ -1947,8 +1947,8 @@
       "en": "The cut or percentage a platform keeps for itself from every sale made through it."
     },
     "example": {
-      "bn": "ধরুন আপনি পাঠাওয়ের মতো একটা অ্যাপ চালান। কোনো রাইডার যদি ১০০ টাকার ট্রিপ দেয়, আর আপনি তার থেকে ১০ টাকা কমিশন হিসেবে কেটে রাখেন। এই যে ১০ টাকা আপনার পকেটে ঢুকল, এটাই আপনার টেক রেট বা প্ল্যাটফর্মের আসল ইনকাম।",
-      "en": "Imagine you run an app like Pathao. If a rider completes a 100 taka trip and you keep 10 taka as commission, that's your take rate. It's essentially the actual revenue your platform earns from each transaction."
+      "en": "If a marketplace retains Tk 10 from a Tk 100 transaction, its take rate is 10 ÷ 100 = 10%. Tk 10 is the commission amount, not the percentage.",
+      "bn": "১০০ টাকার লেনদেন থেকে মার্কেটপ্লেস ১০ টাকা রাখলে টেক রেট হবে ১০ ÷ ১০০ = ১০%। ১০ টাকা হলো কমিশনের অঙ্ক, শতাংশ হার নয়।"
     },
     "watchOut": {
       "bn": "আপনি যদি টেক রেট খুব বেশি রাখেন, তবে সাপ্লায়াররা আপনার প্ল্যাটফর্ম ছেড়ে চলে যাবে। আবার খুব কম রাখলে দিনশেষে আপনার নিজের খরচই উঠবে না।",
@@ -1985,8 +1985,8 @@
       "traction"
     ],
     "example": {
-      "bn": "ধরুন আপনি ঢাকায় একটা প্রিমিয়াম বেকারি বানাচ্ছেন। সারা দেশের সব মানুষ আপনার ট্যাম, ঢাকার যে এলাকায় আপনি ডেলিভারি দিতে পারবেন তারা আপনার স্যাম। আর প্রথম বছরে যে মানুষগুলো আসলেই আপনার কেক কিনবে, তারাই আপনার সম।",
-      "en": "Suppose you're starting a premium bakery in Dhaka. The whole country is your TAM, while the areas where you can actually deliver form your SAM. The people who will realistically buy your cakes in the first year make up your SOM."
+      "en": "For a premium bakery, TAM concerns demand for its relevant bakery products, not every person in Bangladesh. SAM narrows that demand to the locations and customers the business can serve; SOM estimates the share it can realistically win in a stated period.",
+      "bn": "একটি প্রিমিয়াম বেকারির TAM হবে তার উপযোগী বেকারি পণ্যের সম্ভাব্য চাহিদা; বাংলাদেশের সব মানুষ নয়। ব্যবসাটি যেসব এলাকা ও কাস্টমারকে সেবা দিতে পারবে, তাদের চাহিদা ধরে SAM নির্ধারণ করুন। নির্দিষ্ট সময়ে বাস্তবে কতটুকু পাওয়া সম্ভব, তার হিসাব SOM।"
     }
   },
   "term-sheet": {
@@ -2057,8 +2057,8 @@
       "vat-bin"
     ],
     "example": {
-      "bn": "আপনি যদি একটা ছোট মুদি দোকান বা টেক স্টার্টআপ, যাই শুরু করুন না কেন, সিটি করপোরেশন থেকে এই অনুমতিপত্রটা নিতেই হবে। এটা ছাড়া ব্যবসা করা সম্পূর্ণ বেআইনি।",
-      "en": "Whether you're starting a small grocery shop or a tech startup, you must get this permission slip from the city corporation. Operating without it is completely illegal."
+      "en": "For a shop or startup, check the licence requirements of the city corporation, municipality or union parishad responsible for the business address. A trade licence does not replace any applicable sector approval.",
+      "bn": "দোকান বা স্টার্টআপের ঠিকানার দায়িত্বে থাকা সিটি করপোরেশন, পৌরসভা বা ইউনিয়ন পরিষদের লাইসেন্সের নিয়ম দেখুন। ট্রেড লাইসেন্স নিলেও প্রযোজ্য খাতভিত্তিক অনুমোদন আলাদা করে লাগতে পারে।"
     }
   },
   "unit-economics": {
@@ -2248,12 +2248,12 @@
     "bn": "ওয়ার্কিং ক্যাপিটাল",
     "group": "money",
     "def": {
-      "bn": "প্রতিদিনের ব্যবসা চালানোর জন্য আপনার হাতে যে নগদ টাকা থাকা দরকার। যেমন- মালপত্র কেনা, কর্মচারীর বেতন দেওয়া বা দোকান ভাড়া দেওয়া।",
-      "en": "The ready cash you need to keep your business running smoothly every single day, like paying rent and buying supplies."
+      "en": "Current assets minus current liabilities. It includes items such as cash, inventory and receivables, less short-term obligations; it is not all available cash.",
+      "bn": "চলতি সম্পদ থেকে চলতি দায় বাদ দিলে যা থাকে। নগদ টাকা, মজুত পণ্য ও পাওনা চলতি সম্পদের মধ্যে থাকতে পারে। তাই ওয়ার্কিং ক্যাপিটালের পুরোটাই হাতে খরচ করার মতো নগদ টাকা নয়।"
     },
     "watchOut": {
-      "bn": "নগদ টাকায় মাল কিনে যদি বাকিতে বিক্রি করেন, তবে আপনার প্রতিদিনের ব্যবসা চালানোর এই টাকা কিন্তু আটকে যাবে। ওয়ার্কিং ক্যাপিটাল ফুরিয়ে গেলে লাভজনক ব্যবসাও হুট করে বন্ধ হয়ে যেতে পারে।",
-      "en": "If you pay cash for your supplies but let customers buy on credit, your daily cash flow will get stuck. Running out of working capital can kill even a profitable business."
+      "en": "Positive working capital does not guarantee that cash arrives before bills fall due. Track inventory, customer collections and supplier payment dates separately.",
+      "bn": "ওয়ার্কিং ক্যাপিটাল পজিটিভ হলেও বিল দেওয়ার আগে টাকা হাতে আসবে, এমন নিশ্চয়তা নেই। মজুত পণ্য, কাস্টমারের কাছ থেকে টাকা আদায় এবং সরবরাহকারীকে টাকা দেওয়ার তারিখ আলাদা করে দেখুন।"
     },
     "guide": "/metrics/cashflow-vs-profit",
     "see": [
@@ -2262,8 +2262,8 @@
       "runway"
     ],
     "example": {
-      "bn": "একটা গার্মেন্টসের কথা ভাবুন, যেখানে শ্রমিকদের বেতন দিতে হয় আর কাঁচামাল কিনতে হয়। মাস শেষে বায়ার টাকা দেওয়ার আগ পর্যন্ত এই প্রতিদিনের খরচ চালানোর জন্য যে নগদ টাকাটা হাতে রাখতে হয়, সেটাই ওয়ার্কিং ক্যাপিটাল।",
-      "en": "Think of a garment factory that needs to pay workers and buy raw materials. The cash they must keep on hand to cover these daily expenses until the buyer finally pays them is their working capital."
+      "en": "If current assets total Tk 300,000 and current liabilities total Tk 180,000, working capital is Tk 120,000. Some of that value may be tied up in stock or unpaid customer invoices.",
+      "bn": "চলতি সম্পদ ৩ লাখ টাকা এবং চলতি দায় ১ লাখ ৮০ হাজার টাকা হলে ওয়ার্কিং ক্যাপিটাল ১ লাখ ২০ হাজার টাকা। এর একটি অংশ মজুত পণ্য বা কাস্টমারের কাছে পাওনায় আটকে থাকতে পারে।"
     }
   }
 }
