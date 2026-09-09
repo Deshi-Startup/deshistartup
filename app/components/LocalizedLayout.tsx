@@ -1003,7 +1003,6 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
 
           {!isLanding && !isEditing && !isPrivateReview && !isStandaloneFeature && !isNotFound && !isContact && (
             <section
-              id="credits"
               className="page-contribution-credits"
               data-deshi-credits="true"
               aria-labelledby="credits-heading"
@@ -1018,7 +1017,6 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
 
           {!isLanding && !isEditing && !isPrivateReview && !isStandaloneFeature && !isNotFound && !isContact && (
             <footer className="article-footer">
-              <h2>{isEn ? 'Help improve this page' : 'এই পেজ আরও ভালো করুন'}</h2>
               <div className="contrib-row">
                 {showEditAction && (
                   <a
@@ -1027,12 +1025,10 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /></svg>
                     {isEn ? 'Edit on GitHub' : 'GitHub-এ এডিট করুন'}
                   </a>
                 )}
                 <a href={issueUrl} target="_blank" rel="noopener noreferrer">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" /></svg>
                   {isEn ? 'Report a mistake' : 'ফিডব্যাক দিন'}
                 </a>
                 <a href={localHref(isEn ? '/en/contribute' : '/contribute')}>

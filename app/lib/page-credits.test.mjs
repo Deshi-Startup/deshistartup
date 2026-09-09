@@ -43,11 +43,11 @@ test('a page with no accepted events renders nothing at all', () => {
   assert.equal(credits([]), '')
 })
 
-test('the visible heading can name the credits region', () => {
+test('the closed disclosure names the credits region and contains the fragment target', () => {
   const html = credits([event({ summary: SUMMARY, credits: [credit('niloy')] })])
-  assert.match(html, /<h2 id="credits-heading">এই পেজে কারা কাজ করেছেন<\/h2>/)
+  assert.match(html, /^<details><summary id="credits-heading">অবদানের বিস্তারিত<\/summary><ol id="credits"/)
   assert.match(credits([event({ summary: SUMMARY, credits: [credit('niloy')] })], 'en'),
-    /<h2 id="credits-heading">Who worked on this page<\/h2>/)
+    /<summary id="credits-heading">Contribution details<\/summary>/)
 })
 
 test('a contribution is one entry however many people were credited on it', () => {

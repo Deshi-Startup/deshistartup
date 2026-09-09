@@ -1,6 +1,6 @@
 // The record of accepted work that closes a guide.
 //
-// The byline at the top names the strongest thing one person did. This is the
+// The byline names the strongest thing one person did. This disclosure is the
 // full account: every accepted contribution to the page, who was credited for
 // it, and the public evidence. Both surfaces are generated from the same
 // events during the static build, so they cannot disagree, and neither ships
@@ -96,7 +96,7 @@ export function pageCreditsHtml({ events, locale, profileById, organizationById,
   // Plain words a first-time founder reads without slowing down. "Evidence",
   // "accepted work" and "affiliation at the time" are the words a process uses
   // about itself; these are the words a reader would use about the page.
-  const heading = isEn ? 'Who worked on this page' : 'এই পেজে কারা কাজ করেছেন'
+  const heading = isEn ? 'Contribution details' : 'অবদানের বিস্তারিত'
   const anonymousLabel = isEn ? 'Chose not to be named' : 'নাম প্রকাশ করেননি'
   const evidence = isEn ? 'See the source' : 'সোর্স দেখে নিন'
   const added = isEn ? 'Added' : 'যোগ হয়েছে'
@@ -134,7 +134,8 @@ export function pageCreditsHtml({ events, locale, profileById, organizationById,
     return `<li class="page-credit" data-contribution-event="${escapeHtml(event.id)}"><ul class="page-credit__people">${people.join('')}</ul>${scopeHtml}<p class="page-credit__meta"><span>${added} <time datetime="${event.acceptedAt}">${escapeHtml(formatAcceptedDate(event.acceptedAt, locale))}</time></span><span class="page-credit__sep" aria-hidden="true">·</span><a href="${escapeHtml(event.evidenceUrl)}" rel="noopener noreferrer">${evidence}</a></p></li>`
   })
 
-  // The heading says what the list is. A sentence beside it saying the same
-  // thing in longer words was the only reason this block needed two columns.
-  return `<div class="page-contribution-credits__header"><h2 id="credits-heading">${heading}</h2></div><ol class="page-credit-list">${rows.join('')}</ol>`
+  // Keep the byline visible and reveal the full history only on request.
+  // The fragment target lives inside the disclosure so a native #credits link
+  // opens it automatically, including when JavaScript is unavailable.
+  return `<details><summary id="credits-heading">${heading}</summary><ol id="credits" class="page-credit-list">${rows.join('')}</ol></details>`
 }

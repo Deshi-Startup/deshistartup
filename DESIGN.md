@@ -730,7 +730,8 @@ than the near-white ground, so it carries the same weight as a photograph beside
 ### Guide byline
 
 Every written guide keeps its short byline and verified or updated date after the article,
-just before the full `#credits` record. Reading begins with the headline and guide content;
+followed by a closed contribution-details disclosure containing the full `#credits` record.
+Reading begins with the headline and guide content;
 credit, freshness and contribution details remain available below it. Mistake reporting is
 available in Page tools and the contribution footer. The byline and full record still use the
 same committed contributor events.
@@ -748,17 +749,16 @@ most of why the line is worth adding. The visited violet is deliberately not ext
 No avatars, no role chips: faces would mean a third-party request on every guide view, and a chip
 would repeat what the verb already says at twice the width. The byline and date wrap naturally on narrow screens, below the reading content.
 
-Arriving at `#credits` from the byline, the record's header takes the site's one landing cue, the
-same `target-land` fade the glossary uses to answer "where did I land" once and then leave.
+The byline, disclosure and footer links form one compact closing area, aligned to the article's
+text measure with a single rule above it. Names are visible once until the reader opens the full
+record. Edit, feedback and contribution links are plain underlined text with comfortable touch
+targets; they do not need a separate heading or a row of bordered buttons.
 
-The record itself is set as one tight left-aligned column. Its heading stands alone: a sentence
-beside it restating the heading in longer words was the only reason the block ever needed two
-columns, and the date and its source link were thrown to opposite edges of a 760px canvas for the
-same reason. Both splits are gone; the date and link now sit together behind a middot. Every label
-in this block is written for a first-time founder rather than for the process behind it, so it says
-"who worked on this page", "added", "see the source", and "worked at" rather than "contributions",
-"accepted", "view evidence", and "affiliation at the time". Any new label here follows the same
-test: the word a reader would use, not the word the system uses about itself.
+The `#credits` target lives inside the native disclosure, so following the counted byline link
+reveals the record without JavaScript. The summary takes the same `target-land` cue as the glossary.
+The expanded record is one left-aligned column, with a shared date and source link for each accepted
+change. Its labels use the reader's language: "added", "see the source", and "worked at". The full
+record also remains available when printing.
 
 ### Contribution editor
 

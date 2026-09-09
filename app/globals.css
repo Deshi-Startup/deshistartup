@@ -857,7 +857,8 @@ body.nav-open {
   flex-wrap: wrap;
   align-items: center;
   gap: 4px 18px;
-  margin: 0 48px 24px;
+  margin: 0 48px;
+  max-width: var(--measure);
   padding-top: 16px;
   border-top: 1px solid var(--line);
   color: var(--muted);
@@ -879,9 +880,7 @@ body.nav-open {
   color: var(--muted);
 }
 
-/* A contributor's name is a link to a person, so it is set as one. The repair
-   link beside it stays muted on purpose: that is a utility, this is the credit,
-   and telling them apart is most of why the line is worth adding. */
+/* Keep contributor names distinct from the quieter page utilities. */
 .article-byline a {
   color: var(--blue);
 }
@@ -902,9 +901,7 @@ body.nav-open {
   white-space: nowrap;
 }
 
-/* "ফিডব্যাক দিন" is the one repair action on every page, and at the meta line's
-   0.85rem it lands at 23px tall – a pixel under WCAG 2.2 SC 2.5.8. Give it the
-   24px on touch only, so the line keeps its weight under a mouse. */
+/* Keep the small byline links usable on touch screens. */
 @media (pointer: coarse) {
   .article-meta a {
     display: inline-flex;
@@ -917,6 +914,10 @@ body.nav-open {
 
 .article {
   padding: 26px 48px 64px;
+}
+
+.article:has(+ .article-meta) {
+  padding-bottom: 32px;
 }
 
 .article--utility {
@@ -1785,20 +1786,28 @@ p:has(> .fb-video) {
 }
 
 .page-contribution-credits {
-  margin: 40px 48px 0;
-  /* The record closes the article, so it ends where the article's text ends.
-     Left uncapped it kept growing with the window while the prose stopped at
-     the measure, and on a wide monitor its rules ran ~240px past the last line
-     above them. */
+  margin: 4px 48px 0;
   max-width: var(--measure);
-  border-top: 1px solid var(--line);
-  padding: 18px 0 30px;
-  /* The byline sends readers here from the top of the page; land clear of the
-     sticky header rather than underneath it. */
+}
+
+.page-contribution-credits summary {
+  width: fit-content;
+  min-height: 44px;
+  align-content: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.page-contribution-credits summary:hover {
+  color: var(--blue-hover);
+}
+
+#credits {
   scroll-margin-block-start: calc(var(--header-h) + 24px);
 }
 
-.page-contribution-credits:target .page-contribution-credits__header {
+.page-contribution-credits:has(:target) summary {
   border-radius: 3px;
   padding: 4px 8px;
   margin: -4px -8px;
@@ -1806,23 +1815,14 @@ p:has(> .fb-video) {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-contribution-credits:target .page-contribution-credits__header {
+  .page-contribution-credits:has(:target) summary {
     animation: none;
     background-color: var(--green-ground);
   }
 }
 
-.page-contribution-credits__header h2 {
-  margin: 0;
-  border: 0;
-  padding: 0;
-  font-family: var(--sans);
-  font-size: 0.95rem;
-  color: var(--ink);
-}
-
 .page-credit-list {
-  margin: 15px 0 0;
+  margin: 0 0 8px;
   border-top: 1px solid var(--line-soft);
   padding: 0;
   list-style-type: none;
@@ -1834,6 +1834,10 @@ p:has(> .fb-video) {
   margin: 0;
   border-bottom: 1px solid var(--line-soft);
   padding: 15px 0;
+}
+
+.page-credit:last-child {
+  border-bottom: 0;
 }
 
 .page-credit__people {
@@ -1935,52 +1939,27 @@ p:has(> .fb-video) {
 .article-footer {
   margin: 0 48px;
   max-width: var(--measure);
-  border-top: 1px solid var(--line);
-  padding: 18px 0 40px;
-}
-
-.article-footer h2 {
-  margin: 0 0 12px;
-  border: 0;
-  padding: 0;
-  font-family: var(--sans);
-  font-size: 0.95rem;
-  color: var(--muted);
+  padding: 4px 0 32px;
 }
 
 .contrib-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 0 20px;
 }
 
 .contrib-row a {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: var(--canvas);
-  padding: 7px 14px;
-  color: var(--ink);
-  font-size: 0.9rem;
+  min-height: 44px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .contrib-row a:hover {
-  border-color: var(--green);
-  background: var(--green-soft);
-  color: var(--green-deep);
-  text-decoration: none;
-}
-
-.contrib-row svg {
-  width: 15px;
-  height: 15px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  color: var(--blue-hover);
 }
 
 /* ---------------------------------------------------------- stub notice */
@@ -3050,6 +3029,11 @@ html[lang='en'] .glossary-copy--en {
   .page-contribution-credits {
     max-width: none !important;
     margin-inline: 0 !important;
+  }
+
+  .page-contribution-credits details::details-content {
+    content-visibility: visible;
+    display: block;
   }
 
   h1,
