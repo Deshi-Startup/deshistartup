@@ -14,6 +14,21 @@ description: "Choosing couriers, SLA comparison, last-mile delivery, COD risk, f
 - **Courier payments do not match your records:** use [COD reconciliation](/en/payments/cod-reconciliation).
 - **Customers keep asking for updates:** adapt the [support scripts](/en/customers/support-scripts).
 
+## Example: close the delivery and money questions separately
+
+**Settlement** is the transfer of collected money to you. **Reconciliation** means matching that transfer and its deductions to your own records. A delivered order can remain unsettled; a returned order can still incur costs.
+
+Here is a fictional two-order review. Assume BDT 1,000 sale value per order, seller-paid BDT 80 outward delivery, and an additional BDT 40 if returned. These are illustrative amounts, not courier rates.
+
+| Record | Delivery evidence | Money evidence and next action |
+|---|---|---|
+| Order A | Delivered; no return reported | Expect BDT 920 after the agreed BDT 80 charge. No receipt yet: owner follows up on the promised settlement date. |
+| Order B | Returned and stock inspected | No completed sale. Record BDT 120 delivery/return costs and check how they are invoiced or deducted. |
+
+If the courier remits BDT 800, it may equal A's BDT 920 less B's BDT 120 charges. That is a hypothesis until the statement shows those entries. Do not call the BDT 120 a lost collection or silently ignore it; match the reported deductions before closing the review.
+
+Use **order / status evidence / expected collection / charges / actual settlement / difference / owner / next action**. A zero unexplained difference plus documented delivery or return handling lets you close these particular exceptions. Keep later refunds or disputes as new events rather than erasing the original record.
+
 ## Follow one order from start to finish
 
 Record its order ID, promised date, dispatch, delivery or return outcome, charges, expected settlement, actual receipt and unresolved issue. Assign a person and next action to every exception.

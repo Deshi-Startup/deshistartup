@@ -39,6 +39,8 @@ bKash, Nagad, Rocket and Upay are familiar MFS options. They may suit small orde
 
 Using a personal account for regular business receipts mixes personal and business money. Provider terms may also distinguish personal and merchant use. Before accepting business payments, check the current provider conditions and the account type available for your activity.
 
+For example, bKash has a dedicated merchant application that asks about identity, trade-license and bank information. Confirm which business account and requirements apply to you directly with the provider.[^merchant-setup]
+
 For each payment, record the order ID, payer, amount, transaction reference, date and refund status.
 
 Official sites:
@@ -123,6 +125,22 @@ Give every order one row:
 
 Reconcile the sheet with bank, MFS, gateway and courier reports at least weekly. Unmatched money is not a reliable business record.
 
+## Match one payment all the way through
+
+**Fictional example:** Invoice INV-014 is for BDT 1,000. A provider confirms collecting BDT 1,000, deducts an illustrative BDT 20 fee and transfers BDT 980. These are invented transaction amounts, not a provider's current pricing.
+
+| Record | Amount | Evidence |
+|---|---:|---|
+| Customer invoice | BDT 1,000 | INV-014 and agreed order |
+| Gross collection | BDT 1,000 | Provider transaction reference |
+| Fee | BDT 20 | Provider statement |
+| Net settlement received | BDT 980 | Matching bank entry |
+| Later partial refund | BDT 200 | Approved refund and confirmed outgoing transaction |
+
+The first bank receipt is BDT 980 because **1,000 − 20 = 980**. After the separate BDT 200 refund, these cash movements net to BDT 780. The fee and refund need separate records; neither should disappear inside a single “paid” tick. Accounting and tax treatment require the appropriate records beyond this cash example.
+
+If the bank shows only BDT 950, the unexplained BDT 30 is a discrepancy to investigate against the statement, not automatically another fee. Your completed record should let another person connect the order, customer payment, deductions, bank receipt and any refund without guessing.
+
 ## Checklist
 
 - [ ] Identified the methods customers are comfortable using
@@ -132,5 +150,9 @@ Reconcile the sheet with bank, MFS, gateway and courier reports at least weekly.
 - [ ] Published return and refund terms
 - [ ] Checked gateway or merchant-account requirements
 - [ ] Kept bank, tax and VAT records
+
+## Relevant Sources
+
+[^merchant-setup]: [bKash — Merchant account application](https://www.bkash.com/en/business/merchant), checked 9 September 2026. This is one provider’s application, not a universal eligibility list or price quote.
 
 <SectionIndex section="payments" locale="en" />
