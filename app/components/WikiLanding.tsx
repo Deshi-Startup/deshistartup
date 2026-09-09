@@ -67,7 +67,8 @@ const bn: TranslationStrings = {
         <span className="wiki-infobox-written"><b>{bengaliDigits(written)}</b>টি লেখা হয়েছে</span>
         <span className="wiki-infobox-pending">{bengaliDigits(stubs)}টি লেখার অপেক্ষায়</span>
       </React.Fragment>
-    )]
+    )],
+    ['লাইসেন্স', 'CC BY-SA 4.0']
   ],
   stageTitle: 'আপনি এখন কোন অবস্থায় আছেন?',
   stageSub:
@@ -84,13 +85,13 @@ const bn: TranslationStrings = {
     ['আইডিয়া ও মার্কেট রিসার্চ', 'সমস্যা খোঁজা · মার্কেট আন্ডারস্ট্যান্ডিং · ডেটার সোর্স · কম্পিটিটরস্‌', '/ideas'],
     ['আইডিয়া ভ্যালিডেশন', 'কাস্টমারের সঙ্গে আলাপ · চাহিদার পরীক্ষা · MVP', '/validation'],
     ['আইন, কর ও রেজিস্ট্রেশন', 'ট্রেড লাইসেন্স · কোম্পানি · RJSC · e-TIN · ভ্যাট/BIN', '/legal-roadmap'],
-    ['পেমেন্ট', 'ব্যাংক, বিকাশ/নগদ, গেটওয়ে ও রিফান্ড', '/payments'],
+    ['পেমেন্ট', 'ব্যাংক · বিকাশ/নগদ · গেটওয়ে ও রিফান্ড', '/payments'],
     ['কাস্টমার ও সেলস', 'ফেসবুক কমার্স · মেসেঞ্জার/হোয়াটসঅ্যাপ · B2B বিক্রি · প্রথম ১০০ কাস্টমার', '/customers'],
-    ['ফাউন্ডার লাইফ', 'পরিবার, কাজের চাপ ও নিজের যত্ন', '/founder-life'],
+    ['ফাউন্ডার লাইফ', 'পরিবার · কাজের চাপ · নিজের যত্ন', '/founder-life'],
     ['ফান্ডিং ও স্কেলিং', 'গ্র্যান্ট · অ্যাঞ্জেল · ভিসি · পিচ ডেক · সরকারি সুবিধা', '/funding'],
     ['টেমপ্লেট ও টুলস', 'চেকলিস্ট · স্ক্রিপ্ট · ক্যালকুলেটর · ট্র্যাকার', '/tools'],
     ['ডিরেক্টরি', 'ইনভেস্টর · অ্যাক্সেলারেটর · প্রোগ্রাম · ইকোসিস্টেম', '/directory'],
-    ['মেট্রিকস ও হিসাব', 'ইউনিট ইকোনমিকস, ক্যাশ ফ্লো ও রানওয়ে', '/metrics']
+    ['মেট্রিকস ও হিসাব', 'ইউনিট ইকোনমিকস · ক্যাশ ফ্লো · রানওয়ে', '/metrics']
   ],
   faqTitle: 'সচরাচর জিজ্ঞাসা',
   faqSub: 'কিছু খুবই কমন প্রশ্ন ও উত্তর, যা প্রাথমিক সিদ্ধান্ত নিতে কাজে লাগবে।',
@@ -143,7 +144,8 @@ const en: TranslationStrings = {
         <span className="wiki-infobox-written"><b>{written}</b> written</span>
         <span className="wiki-infobox-pending">{stubs} waiting for writers</span>
       </React.Fragment>
-    )]
+    )],
+    ['License', 'CC BY-SA 4.0']
   ],
   stageTitle: 'Where are you right now?',
   stageSub:
@@ -160,13 +162,13 @@ const en: TranslationStrings = {
     ['Ideas & market research', 'Finding problems · market research · data sources · competitors', '/en/ideas'],
     ['Idea validation', 'Customer interviews · demand tests · MVPs', '/en/validation'],
     ['Legal, tax & registration', 'Trade license · company · RJSC · e-TIN · VAT/BIN', '/en/legal-roadmap'],
-    ['Payments', 'Banking, bKash/Nagad, gateways and refunds', '/en/payments'],
+    ['Payments', 'Banking · bKash/Nagad · gateways · refunds', '/en/payments'],
     ['Customers & sales', 'Facebook commerce · Messenger/WhatsApp · B2B sales · first 100 customers', '/en/customers'],
-    ['Founder life', 'Family, work pressure and looking after yourself', '/en/founder-life'],
+    ['Founder life', 'Family · work pressure · personal resilience', '/en/founder-life'],
     ['Funding & scaling', 'Grants · angels · VC · pitch decks · government support', '/en/funding'],
     ['Templates & tools', 'Checklists · scripts · calculators · trackers', '/en/tools'],
     ['Directory', 'Investors · accelerators · programs · ecosystem', '/en/directory'],
-    ['Metrics & finances', 'Unit economics, cash flow and runway', '/en/metrics']
+    ['Metrics & finances', 'Unit economics · cash flow · runway', '/en/metrics']
   ],
   faqTitle: 'Common beginner questions',
   faqSub: 'Everything feels urgent at the start, but not everything happens on day one – these answers help with the first decisions.',
@@ -312,9 +314,9 @@ export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
         </aside>
       </section>
 
-      <section id="guide-scope" className="wiki-section">
+      <section id="guide-scope" className="wiki-section" aria-labelledby="guide-scope-title">
         <div className="wiki-section-heading">
-          <h2>{t.topicTitle}</h2>
+          <h2 id="guide-scope-title">{t.topicTitle}</h2>
           <a href={localHref(isEn ? '/en/guides' : '/guides')}>
             {isEn ? 'All topics' : 'সব বিষয় দেখুন'}<span aria-hidden="true"> →</span>
           </a>
@@ -344,21 +346,26 @@ export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
         </section>
       )}
 
-      <section id="beginner-questions" className="wiki-section">
-        <h2>{t.faqTitle}</h2>
+      <section id="beginner-questions" className="wiki-section" aria-labelledby="beginner-questions-title">
+        <h2 id="beginner-questions-title">{t.faqTitle}</h2>
         <p>{t.faqSub}</p>
         <div className="home-faq">
           {t.faq.map(([question, answer]) => (
             <details key={question}>
-              <summary>{question}</summary>
-              <p>{answer}</p>
+              <summary>
+                <span className="home-faq__icon" aria-hidden="true" />
+                <span className="home-faq__question">{question}</span>
+              </summary>
+              <div className="home-faq__content">
+                <p>{answer}</p>
+              </div>
             </details>
           ))}
         </div>
       </section>
 
-      <section className="wiki-section">
-        <h2>{t.govTitle}</h2>
+      <section id="gov-sources" className="wiki-section" aria-labelledby="gov-sources-title">
+        <h2 id="gov-sources-title">{t.govTitle}</h2>
         <p>{t.govSub}</p>
         <aside className="wiki-notice" role="note">
           <strong>{t.noticeLabel}</strong>
@@ -366,9 +373,13 @@ export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
         </aside>
         <div className="wiki-source-list">
           {t.gov.map(([label, body, href]) => (
-            <article key={href}>
+            <article key={href} className="wiki-source-card">
               <h3>
-                <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+                <a href={href} target="_blank" rel="noopener noreferrer">
+                  {label}
+                  <span className="wiki-ext-arrow" aria-hidden="true"> ↗</span>
+                  <span className="sr-only"> {isEn ? '(opens in a new tab)' : '(নতুন ট্যাবে খুলবে)'}</span>
+                </a>
               </h3>
               <p>{body}</p>
             </article>
@@ -376,8 +387,8 @@ export default function WikiLanding({ locale = 'bn' }: WikiLandingProps) {
         </div>
       </section>
 
-      <section id="contribute" className="wiki-section">
-        <h2>{t.bandTitle}</h2>
+      <section id="contribute" className="wiki-section" aria-labelledby="contribute-title">
+        <h2 id="contribute-title">{t.bandTitle}</h2>
         <div className="contrib-section">
           <p>{t.bandBody}</p>
           <div className="contrib-stats">

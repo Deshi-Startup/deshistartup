@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import { decodeFragment } from '../lib/url-fragment'
 
 type Locale = 'bn' | 'en'
 
@@ -94,7 +95,7 @@ export default function GlossaryControls({ locale, total, groups }: GlossaryCont
   // The link wins: the filter clears and the entry is where it says it is.
   useEffect(() => {
     const onHashChange = () => {
-      const id = decodeURIComponent(window.location.hash.slice(1))
+      const id = decodeFragment(window.location.hash)
       if (!id) return
       const target = document.getElementById(id)
       if (!target?.hidden) return

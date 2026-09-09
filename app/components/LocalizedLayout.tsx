@@ -7,6 +7,7 @@ import LanguageSwitcher from './LanguageSwitcher'
 import SearchBox from './SearchBox'
 import type { SubmitResult } from './ContributionEditor'
 import { cleanRoute } from '../lib/clean-route'
+import { decodeFragment } from '../lib/url-fragment'
 import { clearAuth, getStoredAuth, UserInfo } from '../lib/client-auth'
 import { pageChromePolicy } from '../lib/page-chrome'
 import {
@@ -519,7 +520,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
   // position, and it scrolls instantly rather than animating the length of the
   // document past the reader.
   useEffect(() => {
-    const id = decodeURIComponent(window.location.hash.slice(1))
+    const id = decodeFragment(window.location.hash)
     if (!id) return undefined
     let frame = 0
     const settle = () => {

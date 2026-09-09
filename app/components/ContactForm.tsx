@@ -51,6 +51,7 @@ const copy = {
       messageTooShort: 'আরেকটু বিস্তারিত লিখুন, অন্তত ১০ অক্ষর।',
       messageTooLong: 'মেসেজ ৫,০০০ অক্ষরের বেশি হয়ে গেছে।',
       rateLimited: `অনেক বেশি মেসেজ পাঠানো হয়েছে। একটু পর আবার চেষ্টা করুন, অথবা সরাসরি ${CONTACT_EMAIL}-এ মেইল করুন।`,
+      unconfirmed: 'মেসেজ পৌঁছেছে কি না নিশ্চিত হওয়া যায়নি। আপনার লেখা এখানেই আছে। আবার পাঠানোর আগে ইন্টারনেট সংযোগ দেখে নিন।',
       failed: `মেসেজ পাঠানো যায়নি। সরাসরি ${CONTACT_EMAIL}-এ মেইল করে দিন।`
     }
   },
@@ -75,6 +76,7 @@ const copy = {
       messageTooShort: 'Add a little more detail, at least 10 characters.',
       messageTooLong: 'The message is longer than 5,000 characters.',
       rateLimited: `Too many messages from here just now. Try again in a few minutes, or email ${CONTACT_EMAIL}.`,
+      unconfirmed: 'Delivery could not be confirmed. Your message is still here. Check your connection before trying again.',
       failed: `The message did not send. Email ${CONTACT_EMAIL} instead and we will get it.`
     }
   }
@@ -102,6 +104,7 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
   }
   const panel = useRef<HTMLDivElement>(null)
   const returning = useRef(false)
+  const submitting = useRef(false)
 
   /* Submitting removes the button the reader was standing on, and returning to
      the form removes the panel. Without this the caret lands on <body> and a
@@ -150,7 +153,7 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (status === 'sending') return
+    if (submitting.current) return
 
     const trimmed = {
       name: name.trim(),
@@ -175,10 +178,14 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
     setFieldError('')
     setFormError('')
     setStatus('sending')
+    submitting.current = true
 
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+    const controller = new AbortController()
+    const timeout = window.setTimeout(() => controller.abort(), 30_000)
     try {
       const res = await fetch(`${basePath}/api/contact`, {
+        signal: controller.signal,
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -197,7 +204,10 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
       setStatus('sent')
     } catch {
       setStatus('idle')
-      setFormError(t.errors.failed)
+      setFormError(t.errors.unconfirmed)
+    } finally {
+      window.clearTimeout(timeout)
+      submitting.current = false
     }
   }
 
@@ -221,7 +231,7 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
   const sending = status === 'sending'
 
   return (
-    <form className="contact-form" onSubmit={submit} noValidate>
+    <form className="contact-form" onSubmit={submit} noValidate aria-busy={sending}>
       <div className="contact-form__grid">
         <div className="contact-form__field">
           <label className="contact-form__label" htmlFor="contact-name">
@@ -233,6 +243,7 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
             name="name"
             type="text"
             autoComplete="name"
+            readOnly={sending}
             ref={fields.name}
             aria-invalid={invalid === 'name' || undefined}
             aria-describedby={errorId('name')}
@@ -261,6 +272,7 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
             type="email"
             inputMode="email"
             autoComplete="email"
+            readOnly={sending}
             ref={fields.email}
             aria-invalid={invalid === 'email' || undefined}
             aria-describedby={errorId('email')}
@@ -288,6 +300,7 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
           id="contact-topic"
           className="contact-form__input contact-form__select"
           name="topic"
+          disabled={sending}
           value={topic}
           onChange={(event) => setTopic(event.target.value as ContactTopic)}
         >
@@ -311,6 +324,7 @@ export default function ContactForm({ locale = 'bn' }: ContactFormProps) {
           className="contact-form__input contact-form__textarea"
           name="message"
           rows={6}
+          readOnly={sending}
           ref={fields.message}
           aria-invalid={invalid === 'message' || undefined}
           value={message}

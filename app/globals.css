@@ -309,7 +309,9 @@ p {
   right: 0;
   z-index: 30;
   max-height: min(420px, 60vh);
+  max-height: min(420px, 60dvh);
   overflow-y: auto;
+  overscroll-behavior-y: contain;
   border: 1px solid var(--line);
   background: var(--canvas);
   box-shadow: var(--shadow);
@@ -351,6 +353,13 @@ p {
 .search-result.is-active,
 .search-result:hover {
   background: var(--green-soft);
+}
+
+@media (forced-colors: active) {
+  .search-result.is-active {
+    outline: 2px solid Highlight;
+    outline-offset: -2px;
+  }
 }
 
 .search-result .result-title {

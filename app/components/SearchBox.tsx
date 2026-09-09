@@ -69,6 +69,8 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
   const searchReportRef = useRef<SearchReportState>({ term: null })
   const listboxId = `${useId()}listbox`
   const [query, setQuery] = useState('')
+  const [isComposing, setIsComposing] = useState(false)
+  const composingRef = useRef(false)
   const [response, setResponse] = useState<SearchResponse>({ query: '', status: 'idle', results: [] })
   const [retryCount, setRetryCount] = useState(0)
   const [activeIndex, setActiveIndex] = useState(-1)
@@ -76,7 +78,7 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
   const trimmedQuery = query.trim()
   const matchesQuery = response.query === trimmedQuery
   const results = matchesQuery && response.status === 'ready' ? response.results : []
-  const isLoading = Boolean(trimmedQuery) && (!matchesQuery || response.status === 'loading')
+  const isLoading = Boolean(trimmedQuery) && (isComposing || !matchesQuery || response.status === 'loading')
   const error = matchesQuery && response.status === 'error'
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
   const optionId = (index: number) => `${listboxId}-option-${index}`
@@ -106,7 +108,7 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
   }, [])
 
   useEffect(() => {
-    const trimmedQuery = query.trim()
+    if (isComposing) return undefined
     searchReportRef.current.term = null
     setActiveIndex(-1)
 
@@ -172,7 +174,7 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
       window.clearTimeout(timeout)
       window.clearTimeout(reportTimeout)
     }
-  }, [query, retryCount, isEn])
+  }, [trimmedQuery, retryCount, isEn, isComposing])
 
   // Keep the arrow-selected option inside the scrolling popover.
   useEffect(() => {
@@ -221,6 +223,7 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
   // Focus stays on the input throughout (aria-activedescendant), so the popover
   // closes on focusout only when focus actually leaves the whole widget.
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.nativeEvent.isComposing || composingRef.current) return
     switch (event.key) {
       case 'ArrowDown':
         event.preventDefault()
@@ -281,6 +284,7 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
       }}
       onSubmit={(event) => {
         event.preventDefault()
+        if (composingRef.current) return
         if (error) {
           retrySearch()
           return
@@ -306,6 +310,16 @@ export default function SearchBox({ isEn = false }: SearchBoxProps) {
         aria-autocomplete="list"
         aria-activedescendant={hasListbox && activeIndex >= 0 ? optionId(activeIndex) : undefined}
         autoComplete="off"
+        onCompositionStart={() => {
+          composingRef.current = true
+          setIsComposing(true)
+          setActiveIndex(-1)
+        }}
+        onCompositionEnd={(event) => {
+          composingRef.current = false
+          setIsComposing(false)
+          setQuery(event.currentTarget.value)
+        }}
         onChange={(event) => {
           setQuery(event.target.value)
           setActiveIndex(-1)
