@@ -32,6 +32,8 @@ interface SectionIndexProps {
   id?: string
   /** A collection may present manifest-owned pages visually, retaining their stub status. */
   renderCollection?: (pages: PageInfo[]) => React.ReactNode
+  /** Show only the planned-topic disclosure when written resources are presented elsewhere. */
+  plannedOnly?: boolean
 }
 
 /**
@@ -39,7 +41,7 @@ interface SectionIndexProps {
  * manifest, so it never needs hand-maintenance: adding a page.mdx under the
  * section automatically lists it here after the next build.
  */
-export default function SectionIndex({ section, locale = 'bn', heading, id, renderCollection }: SectionIndexProps) {
+export default function SectionIndex({ section, locale = 'bn', heading, id, renderCollection, plannedOnly = false }: SectionIndexProps) {
   const isEn = locale === 'en'
   const isDirectory = section === 'directory'
   const isCaseStudy = section === 'case-studies'
@@ -76,6 +78,7 @@ export default function SectionIndex({ section, locale = 'bn', heading, id, rend
   }
 
   const remaining = total - written
+  if (plannedOnly && remaining === 0) return null
   const writtenGroups = groups.filter(([, items]) => items.some((page) => !page[2]))
   const plannedGroups = groups.filter(([, items]) => items.some((page) => page[2]))
   const showGroupHeading = (title: string, groupCount: number) =>
@@ -88,50 +91,54 @@ export default function SectionIndex({ section, locale = 'bn', heading, id, rend
       data-inline-edit-source="section-index"
       data-pagefind-ignore
     >
-      <h2 id={isDirectory ? (isEn ? 'all-directories' : 'সব-ডিরেক্টরি') : (isEn ? 'all-guides-in-this-section' : 'এই-বিভাগের-সব-গাইড')}>
-        {heading || (isDirectory ? (isEn ? 'All directories' : 'সব ডিরেক্টরি') : (isEn ? 'All guides in this section' : 'এই বিভাগের সব গাইড'))}
-      </h2>
-      <p className="section-stats">
-        <span>
-          <b>{num(written)}{!isEn && 'টি'}</b> {isDirectory
-            ? (isEn ? `${written === 1 ? 'directory' : 'directories'} available` : 'ডিরেক্টরি প্রকাশিত')
-            : isCaseStudy
-              ? (isEn ? `${written === 1 ? 'case study' : 'case studies'} published` : 'কেস স্টাডি প্রকাশিত')
-              : (isEn ? `${written === 1 ? 'guide' : 'guides'} available` : 'গাইড পড়তে পারবেন')}
-        </span>
-        {remaining > 0 && (
-          <span>
-            {isEn ? (
-              `${num(remaining)} ${isCaseStudy ? (remaining === 1 ? 'case study to be written' : 'case studies to be written') : 'to be written'}`
-            ) : (
-              `${num(remaining)}টি ${isCaseStudy ? 'কেস স্টাডি লেখা বাকি' : 'বিষয় লেখা বাকি'}`
+      {!plannedOnly && (
+        <>
+          <h2 id={isDirectory ? (isEn ? 'all-directories' : 'সব-ডিরেক্টরি') : (isEn ? 'all-guides-in-this-section' : 'এই-বিভাগের-সব-গাইড')}>
+            {heading || (isDirectory ? (isEn ? 'All directories' : 'সব ডিরেক্টরি') : (isEn ? 'All guides in this section' : 'এই বিভাগের সব গাইড'))}
+          </h2>
+          <p className="section-stats">
+            <span>
+              <b>{num(written)}{!isEn && 'টি'}</b> {isDirectory
+                ? (isEn ? `${written === 1 ? 'directory' : 'directories'} available` : 'ডিরেক্টরি প্রকাশিত')
+                : isCaseStudy
+                  ? (isEn ? `${written === 1 ? 'case study' : 'case studies'} published` : 'কেস স্টাডি প্রকাশিত')
+                  : (isEn ? `${written === 1 ? 'guide' : 'guides'} available` : 'গাইড পড়তে পারবেন')}
+            </span>
+            {remaining > 0 && (
+              <span>
+                {isEn ? (
+                  `${num(remaining)} ${isCaseStudy ? (remaining === 1 ? 'case study to be written' : 'case studies to be written') : 'to be written'}`
+                ) : (
+                  `${num(remaining)}টি ${isCaseStudy ? 'কেস স্টাডি লেখা বাকি' : 'বিষয় লেখা বাকি'}`
+                )}
+              </span>
             )}
-          </span>
-        )}
-      </p>
+          </p>
 
-      {written === 0 && (
-        <p className="index-desc section-index__note">
-          {isEn
-            ? (isCaseStudy
-                ? 'The detailed case studies are still to be written. You can explore the planned companies and their starting sources below.'
-                : 'The detailed guides are still to be written. You can explore the planned topics and their starting sources below.')
-            : (isCaseStudy
-                ? 'বিস্তারিত কেস স্টাডিগুলো এখনো লেখা হয়নি। নিচে পরিকল্পিত কোম্পানি ও সেগুলোর প্রাথমিক সোর্স দেখতে পারেন।'
-                : 'বিস্তারিত গাইডগুলো এখনো লেখা হয়নি। নিচে পরিকল্পিত বিষয় ও সেগুলোর প্রাথমিক সোর্স দেখতে পারেন।')}
-        </p>
+          {written === 0 && (
+            <p className="index-desc section-index__note">
+              {isEn
+                ? (isCaseStudy
+                    ? 'The detailed case studies are still to be written. You can explore the planned companies and their starting sources below.'
+                    : 'The detailed guides are still to be written. You can explore the planned topics and their starting sources below.')
+                : (isCaseStudy
+                    ? 'বিস্তারিত কেস স্টাডিগুলো এখনো লেখা হয়নি। নিচে পরিকল্পিত কোম্পানি ও সেগুলোর প্রাথমিক সোর্স দেখতে পারেন।'
+                    : 'বিস্তারিত গাইডগুলো এখনো লেখা হয়নি। নিচে পরিকল্পিত বিষয় ও সেগুলোর প্রাথমিক সোর্স দেখতে পারেন।')}
+            </p>
+          )}
+
+          {renderCollection ? renderCollection(groups.flatMap(([, items]) => items)) : writtenGroups.map(([groupTitle, items]) => {
+            const writtenItems = items.filter((page) => !page[2])
+            if (writtenItems.length === 0) return null
+            return (
+              <div key={groupTitle}>
+                {showGroupHeading(groupTitle, writtenGroups.length) && <h3>{groupTitle}</h3>}
+                <ul>{writtenItems.map(renderItem)}</ul>
+              </div>
+            )
+          })}
+        </>
       )}
-
-      {renderCollection ? renderCollection(groups.flatMap(([, items]) => items)) : writtenGroups.map(([groupTitle, items]) => {
-        const writtenItems = items.filter((page) => !page[2])
-        if (writtenItems.length === 0) return null
-        return (
-          <div key={groupTitle}>
-            {showGroupHeading(groupTitle, writtenGroups.length) && <h3>{groupTitle}</h3>}
-            <ul>{writtenItems.map(renderItem)}</ul>
-          </div>
-        )
-      })}
 
       {remaining > 0 && (
         <details className="section-index__planned">

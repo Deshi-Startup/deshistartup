@@ -707,6 +707,36 @@ the normal article measure; neither titles nor explanations inherit the prototyp
 The gallery and article additions are server-rendered and require no client JavaScript. Reduced
 motion, visible keyboard focus, mobile wrapping and the printed article remain supported.
 
+### Tools and Templates
+
+The bilingual Tools hub uses six previews of the resources themselves: interview sheets,
+a cash-timing chart, a hiring scorecard, a worked COD receipt, a sales message and data-room
+folders. Each preview links to its existing guide or calculator. The paper, green, lavender,
+salmon and ochre grounds belong to these previews; the surrounding page keeps the manual's
+normal canvas, typography and navigation. Preview values and excerpts come from the linked
+guides and are labelled as examples, never presented as the reader's own results.
+
+The gallery uses two columns, then one when the content area becomes narrow. Titles use the
+full card width and aim for two lines. Each whole card links to its resource; the preview,
+title and description need no separate CTA or repeated subject labels. Six previews are easy to scan
+directly, so the hub has no separate filter toolbar or resource-search island. The site-wide search
+remains available.
+The page title, Featured Resources and Browse by Task use the site's standard heading dividers.
+The planned-topics disclosure retains its standard top and bottom rules.
+Cards and the software link use space rather than rules; adjacent task rows retain their separators.
+Lines inside the resource illustrations remain part of their artwork.
+
+A compact link introduces the software guide. Below it, six native disclosures organize the
+full resource catalogue by task. Each opens to a two-column list on desktop and a single column
+on mobile. The lists remain in the static HTML and expand for printing. Usage instructions live
+in the linked resources; the existing section index shows only its planned-topic disclosure,
+avoiding a second listing of the software guide. Planned items must not imply that implementation
+has started.
+
+The entire hub is server-rendered and needs no page-specific client JavaScript. Readiness comes
+from the content manifest. The public editor protects the layout tags and their category labels
+while keeping the resource links and descriptions editable.
+
 ### Contributor record
 
 The two recognition surfaces, `/contributors` and `/contributors/{slug}`, are set as a ruled

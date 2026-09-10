@@ -74,6 +74,23 @@ test('paired component examples and unrelated locked fences are not decoded as m
   assert.equal(decodeLockedMdx(unrelated), unrelated)
 })
 
+test('resource layouts survive edits while their Markdown links and descriptions stay editable', () => {
+  const source = [
+    '<ToolsResourceGallery locale="en" />', '',
+    '<ToolsResourceGroups>', '', '<ToolsResourceGroup title="Customer research">', '',
+    '- [Interview scripts](/en/validation/interview-scripts): original description.', '',
+    '</ToolsResourceGroup>', '', '</ToolsResourceGroups>'
+  ].join('\n')
+  const encoded = encodeLockedMdx(source)
+  assert.equal(lockedMdxBlocks(source).length, 5)
+  assert.equal(decodeLockedMdx(encoded), source)
+  const edited = decodeLockedMdx(encoded.replace('original description', 'updated description'))
+  assert.equal(edited, source.replace('original description', 'updated description'))
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited)), true)
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace('title="Customer research"', 'title="Changed"'))), false)
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace('</ToolsResourceGroup>', ''))), false)
+})
+
 test('tilde fences and indented component blocks are preserved', () => {
   const source = [
     '~~~mdx',
