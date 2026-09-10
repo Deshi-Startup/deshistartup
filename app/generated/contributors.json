@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "repository": "Deshi-Startup/deshistartup",
-  "refreshedAt": "2026-09-07T09:13:37.451Z",
+  "refreshedAt": "2026-09-10T08:52:32.673Z",
   "totals": {
     "contributors": 4,
     "acceptedEvents": 14,
@@ -85,7 +85,7 @@
         {
           "path": "/registration/name-clearance",
           "title": {
-            "bn": "RJSC নেম ক্লিয়ারেন্স: আবেদন, ফি ও মেয়াদ",
+            "bn": "RJSC নেম ক্লিয়ারেন্স: আবেদন, ফি ও মেয়াদ",
             "en": "RJSC Name Clearance: Application, Fees and Validity"
           }
         },
@@ -197,7 +197,7 @@
         {
           "path": "/ideas/problem-validation-checklist",
           "title": {
-            "bn": "সমস্যা যাচাইকরণ চেকলিস্ট",
+            "bn": "সমস্যা যাচাইয়ের চেকলিস্ট",
             "en": "Problem Validation Checklist"
           }
         }
@@ -239,7 +239,7 @@
         {
           "path": "/metrics/cashflow-vs-profit",
           "title": {
-            "bn": "ক্যাশফ্লো বনাম মুনাফা: ফাউন্ডারদের জন্য সহজ ব্যাখ্যা",
+            "bn": "ক্যাশফ্লো বনাম প্রফিট: ফাউন্ডারদের জন্য সহজ ব্যাখ্যা",
             "en": "Cashflow vs Profit: A Simple Explanation for Founders"
           }
         },
@@ -384,7 +384,7 @@
         {
           "path": "/registration/structure-decision-tree",
           "title": {
-            "bn": "প্রাইভেট লিমিটেড, OPC নাকি একক মালিকানা: সিদ্ধান্ত নেওয়ার গাইড",
+            "bn": "প্রাইভেট লিমিটেড, ওপিসি নাকি সোল প্রপ্রাইটরশিপ: সিদ্ধান্ত নেওয়ার গাইড",
             "en": "Private Limited, OPC, or Sole Proprietorship: A Decision Guide"
           }
         }
@@ -630,7 +630,7 @@
           "path": "/tax/bookkeeping-basics",
           "title": {
             "bn": "ফাউন্ডারদের জন্য বুককিপিং ও প্রাথমিক অ্যাকাউন্টিং",
-            "en": "Basic Bookkeeping/Accounting for Non-Accountant Founders"
+            "en": "Basic Bookkeeping for Non-Accountant Founders"
           }
         }
       ],
