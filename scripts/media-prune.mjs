@@ -31,6 +31,7 @@ const contentRoot = path.join(root, 'app', '(contents)')
 const contributorLedgerFile = path.join(root, 'data', 'contributor-ledger.json')
 const contributorPolicyFile = path.join(root, 'data', 'contributors-policy.json')
 const startup50LogoFile = path.join(root, 'data', 'startup-50-logos.json')
+const caseStudyLogoFile = path.join(root, 'data', 'case-study-logos.json')
 const socialImagesFile = path.join(root, 'data', 'social-images.json')
 const apply = process.argv.includes('--apply')
 const retireUnreferenced = process.argv.includes('--retire-unreferenced')
@@ -104,8 +105,9 @@ function references() {
     }
   }
 
-  if (fs.existsSync(startup50LogoFile)) {
-    const logoData = JSON.parse(fs.readFileSync(startup50LogoFile, 'utf8'))
+  for (const logoFile of [startup50LogoFile, caseStudyLogoFile]) {
+    if (!fs.existsSync(logoFile)) continue
+    const logoData = JSON.parse(fs.readFileSync(logoFile, 'utf8'))
     for (const logo of logoData.entries || []) {
       if (validLogicalPath(logo?.src || '')) used.add(logo.src)
     }

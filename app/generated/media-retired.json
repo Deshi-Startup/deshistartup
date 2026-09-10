@@ -113,5 +113,117 @@
     "retiredAt": "2026-09-05T20:54:43.033Z",
     "reason": "superseded",
     "replacementKey": "og/en/startup-50.565d5ce9f7be.png"
+  },
+  {
+    "logicalPath": "/media/startup-50/agricore.webp",
+    "key": "startup-50/agricore.8be2f4bb6098.webp",
+    "bytes": 12826,
+    "retiredAt": "2026-09-10T13:09:09.196Z",
+    "reason": "superseded",
+    "replacementKey": "startup-50/agricore.87b6c8d6b441.webp"
+  },
+  {
+    "logicalPath": "/media/startup-50/agroshift.webp",
+    "key": "startup-50/agroshift.2d28e5cfc1e3.webp",
+    "bytes": 7334,
+    "retiredAt": "2026-09-10T13:09:11.407Z",
+    "reason": "superseded",
+    "replacementKey": "startup-50/agroshift.452924918608.webp"
+  },
+  {
+    "logicalPath": "/media/startup-50/amarlab.webp",
+    "key": "startup-50/amarlab.2c8a55dbec42.webp",
+    "bytes": 5710,
+    "retiredAt": "2026-09-10T13:09:13.776Z",
+    "reason": "superseded",
+    "replacementKey": "startup-50/amarlab.2b5dc62f59ae.webp"
+  },
+  {
+    "logicalPath": "/media/startup-50/aunkur.webp",
+    "key": "startup-50/aunkur.491f2f981b65.webp",
+    "bytes": 7082,
+    "retiredAt": "2026-09-10T13:09:16.002Z",
+    "reason": "superseded",
+    "replacementKey": "startup-50/aunkur.0c149f618971.webp"
+  },
+  {
+    "logicalPath": "/media/startup-50/barikoi.webp",
+    "key": "startup-50/barikoi.0a0744865056.webp",
+    "bytes": 6820,
+    "retiredAt": "2026-09-10T13:09:18.112Z",
+    "reason": "superseded",
+    "replacementKey": "startup-50/barikoi.6ec721d1da32.webp"
+  },
+  {
+    "logicalPath": "/media/startup-50/dubotech.webp",
+    "key": "startup-50/dubotech.7ee234090123.webp",
+    "bytes": 4442,
+    "retiredAt": "2026-09-10T13:09:20.272Z",
+    "reason": "superseded",
+    "replacementKey": "startup-50/dubotech.1c40d88db1a9.webp"
+  },
+  {
+    "logicalPath": "/media/startup-50/ecovia.webp",
+    "key": "startup-50/ecovia.5df14167c414.webp",
+    "bytes": 10968,
+    "retiredAt": "2026-09-10T13:09:22.336Z",
+    "reason": "superseded",
+    "replacementKey": "startup-50/ecovia.eeba89c37729.webp"
+  },
+  {
+    "logicalPath": "/media/startup-50/gozayaan.webp",
+    "key": "startup-50/gozayaan.334146aa6c6d.webp",
+    "bytes": 4948,
+    "retiredAt": "2026-09-10T13:09:24.443Z",
+    "reason": "superseded",
+    "replacementKey": "startup-50/gozayaan.b6095f85d28f.webp"
+  },
+  {
+    "logicalPath": "/media/startup-50/ifarmer.webp",
+    "key": "startup-50/ifarmer.1d490d42dea4.webp",
+    "bytes": 7794,
+    "retiredAt": "2026-09-10T13:09:26.806Z",
+    "reason": "superseded",
+    "replacementKey": "startup-50/ifarmer.0e4e3fc00ed7.webp"
+  },
+  {
+    "logicalPath": "/media/startup-50/markopolo-ai.webp",
+    "key": "startup-50/markopolo-ai.22869d613ce3.webp",
+    "bytes": 872,
+    "retiredAt": "2026-09-10T13:09:29.163Z",
+    "reason": "superseded",
+    "replacementKey": "startup-50/markopolo-ai.55b8e1e5cb92.webp"
+  },
+  {
+    "logicalPath": "/media/startup-50/medeasy.webp",
+    "key": "startup-50/medeasy.0e037de62e48.webp",
+    "bytes": 3524,
+    "retiredAt": "2026-09-10T13:09:31.250Z",
+    "reason": "superseded",
+    "replacementKey": "startup-50/medeasy.83270e3e18e6.webp"
+  },
+  {
+    "logicalPath": "/media/startup-50/revora.webp",
+    "key": "startup-50/revora.591d67fc9ce1.webp",
+    "bytes": 1786,
+    "retiredAt": "2026-09-10T13:09:33.430Z",
+    "reason": "superseded",
+    "replacementKey": "startup-50/revora.8e7eadae261a.webp"
+  },
+  {
+    "logicalPath": "/media/startup-50/sharetrip.webp",
+    "key": "startup-50/sharetrip.0a9d4f601730.webp",
+    "bytes": 4574,
+    "retiredAt": "2026-09-10T13:09:35.534Z",
+    "reason": "superseded",
+    "replacementKey": "startup-50/sharetrip.064c075f5122.webp"
+  },
+  {
+    "logicalPath": "/media/startup-50/tiger-new-energy.webp",
+    "key": "startup-50/tiger-new-energy.6f3a36f7e03d.webp",
+    "bytes": 17250,
+    "retiredAt": "2026-09-10T13:09:37.764Z",
+    "reason": "superseded",
+    "replacementKey": "startup-50/tiger-new-energy.803eb6a47a75.webp"
   }
 ]

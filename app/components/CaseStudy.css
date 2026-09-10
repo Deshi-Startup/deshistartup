@@ -1,0 +1,75 @@
+.case-theme--pathao { --case-ground: #c82c25; --case-ink: #fff7ef; --case-soft: #ffe9d6; }
+.case-theme--school { --case-ground: #153e32; --case-ink: #fff7e7; --case-soft: #ead99b; }
+
+.case-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 122px;
+  height: 46px;
+  padding: 8px 10px;
+  flex: 0 0 auto;
+  border-radius: 3px;
+  background: #fff;
+}
+.case-logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.case-company {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 28px;
+  margin: 24px 0;
+  border-radius: 9px;
+  background: var(--case-ground);
+  color: var(--case-ink);
+}
+.article .case-company p { margin: 0; color: inherit; line-height: 1.65; }
+.case-company p span { display: block; }
+.case-company p span + span { color: var(--case-soft); font-size: .875rem; }
+.article:has(.case-company) > h1 { max-width: none; text-wrap: wrap; }
+
+.article .case-timeline {
+  list-style: none;
+  margin: 24px 0 36px;
+  padding: 0;
+}
+html[lang] .article .case-timeline { list-style-type: none; }
+.article .case-timeline > li {
+  display: grid;
+  grid-template-columns: 128px minmax(0, 1fr);
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+}
+.case-timeline__date { padding: 2px 0 28px; font-size: .875rem; color: var(--muted); }
+.case-timeline__moment { position: relative; padding: 0 0 28px 28px; border-left: 1px solid var(--line); }
+.case-timeline__moment::before {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: -5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--green-deep);
+}
+.case-timeline > li:last-child .case-timeline__moment { border-color: transparent; padding-bottom: 0; }
+.article .case-timeline h3 { margin: 0 0 8px; padding: 0; border: 0; font-size: 1.125rem; text-wrap: wrap; }
+.article .case-timeline p { margin: 0; }
+.case-detail { margin: 28px 0; padding: 24px 28px; border: 1px solid var(--line); background: var(--green-ground); }
+.article .case-detail h3 { margin: 0 0 12px; text-wrap: wrap; }
+.article .case-detail p:last-child { margin-bottom: 0; }
+
+@media (max-width: 600px) {
+  .case-company { padding: 20px; gap: 16px; flex-wrap: wrap; }
+  .article .case-timeline > li { grid-template-columns: minmax(0, 1fr); gap: 6px; padding-left: 18px; border-left: 1px solid var(--line); }
+  .case-timeline__date { padding: 0; }
+  .case-timeline__moment { padding: 0 0 28px; border: 0; }
+  .case-timeline__moment::before { left: -23px; }
+  .case-detail { padding: 20px; }
+}
+@media print {
+  .case-company { background: none; color: #000; border: 1px solid #aaa; }
+  .case-company p span + span { color: #333; }
+  .case-timeline > li, .case-detail { break-inside: avoid; }
+}

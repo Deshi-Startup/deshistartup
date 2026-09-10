@@ -1,5 +1,7 @@
 const LOCKED_FENCE = 'deshi-locked-mdx'
-const SELF_CLOSING_COMPONENT = /<([A-Z][\w]*)\b[^>]*?\/>/g
+// Case-study wrappers protect their markup while the paragraphs and citations
+// between the tags remain ordinary, editable Markdown.
+const LOCKED_COMPONENT = /<([A-Z][\w]*)\b[^>]*?\/>|<\/?(CaseTimeline|CaseMilestone|CaseDetail)\b[^>]*>/g
 const EDITABLE_COMPONENTS = new Set(['YouTube', 'FacebookVideo'])
 
 function isEditableVideoComponent(name: string): boolean {
@@ -46,13 +48,13 @@ function mapOutsideCodeFences(source: string, transform: (segment: string) => st
   return output.join('')
 }
 
-/** Protect self-closing MDX components while the body passes through Crepe. */
+/** Protect MDX markup while the body passes through Crepe. */
 export function encodeLockedMdx(body: string): string {
   return mapOutsideCodeFences(body, (segment) =>
     segment.replace(
-      SELF_CLOSING_COMPONENT,
-      (match, name: string) =>
-        isEditableVideoComponent(name)
+      LOCKED_COMPONENT,
+      (match, name: string, pairedName: string) =>
+        isEditableVideoComponent(name || pairedName)
           ? match
           : `\`\`\`${LOCKED_FENCE}\n${match}\n\`\`\``
     )
@@ -62,16 +64,19 @@ export function encodeLockedMdx(body: string): string {
 /** Restore only fences created by encodeLockedMdx, never an author's real mdx example. */
 export function decodeLockedMdx(markdown: string): string {
   return markdown.replace(
-    /```deshi-locked-mdx\r?\n(<[A-Z][\w]*\b[\s\S]*?\/>)\r?\n```/g,
-    (_match, component: string) => component
+    /```deshi-locked-mdx\r?\n([\s\S]*?)\r?\n```/g,
+    (match, component: string) => {
+      const blocks = lockedMdxBlocks(component)
+      return blocks.length === 1 && blocks[0] === component ? component : match
+    }
   )
 }
 
 export function lockedMdxBlocks(body: string): string[] {
   const blocks: string[] = []
   mapOutsideCodeFences(body, (segment) => {
-    for (const match of segment.matchAll(SELF_CLOSING_COMPONENT)) {
-      if (!isEditableVideoComponent(match[1])) blocks.push(match[0])
+    for (const match of segment.matchAll(LOCKED_COMPONENT)) {
+      if (!isEditableVideoComponent(match[1] || match[2])) blocks.push(match[0])
     }
     return segment
   })

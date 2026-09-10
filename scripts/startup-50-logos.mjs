@@ -35,17 +35,31 @@ const reviewedOverrides = {
     url: 'https://cdn.10minuteschool.com/images/svg/10mslogo-svg.svg',
     kind: 'official-site logo'
   },
+  agricore: {
+    url: 'https://media.licdn.com/dms/image/v2/D560BAQEriWDP_dcnAw/company-logo_200_200/B56ZvO5nIlK4AI-/0/1768702768617?e=2147483647&v=beta&t=vmw8c493KKxzPvQAGP1FLHVpJBJ7qZoZ-wIA7aZz7PE',
+    kind: 'official company LinkedIn wordmark'
+  },
   agroshift: {
-    url: 'https://cdn.prod.website-files.com/682b2e509c06fb31d9d240ce/682f6cead76dd449a7745a25_68106fb648460e8b171e0059_AS-Logo%20(1)%201.svg',
-    kind: 'official-site header logo'
+    url: 'https://cdn.prod.website-files.com/682b2e509c06fb31d9d240ce/682f5acc8720c510947ec3c0_Frame%2035.avif',
+    kind: 'official-site header wordmark'
   },
   airwork: {
     url: 'https://framerusercontent.com/images/fgjDgpjChrJQt0wUvMb3hLOvd9A.svg',
     kind: 'official-site header logo'
   },
   amarlab: {
-    url: 'https://amarlab.com/logo.png',
-    kind: 'official-site logo'
+    url: 'https://amarlab.com/',
+    kind: 'official-site embedded header wordmark',
+    manual: 'Export the data-image from img.mobile-logo in the rendered header; the standalone logo.png is only the symbol.'
+  },
+  aunkur: {
+    url: 'https://aunkur.ai/assets/images/resources/footer-logo.aunkuai.png',
+    kind: 'official-site footer wordmark',
+    background: '#0e2207'
+  },
+  barikoi: {
+    url: 'https://barikoi.com/lovable-uploads/fa94013f-be2a-4dce-bcde-091677f4213d.png',
+    kind: 'official-site header wordmark'
   },
   bkash: {
     url: 'https://payment.bkash.com/bKash-logo.png',
@@ -57,20 +71,37 @@ const reviewedOverrides = {
     background: '#192a3d'
   },
   dubotech: {
-    url: 'https://dubotech.com/favicon/apple-touch-icon.png',
-    kind: 'official-site icon'
+    url: 'https://dubotech.com/assets/logo.webp',
+    kind: 'official-site header wordmark',
+    background: '#0a1425'
   },
   doctorkoi: {
     url: 'https://doctorkoi.com/assets/doctorkoi_logo-BFjc43J7.png',
     kind: 'official-site logo image'
   },
+  ecovia: {
+    url: 'https://ecoviaglobal.com/',
+    kind: 'official-site inline header wordmark',
+    selector: 'a.nav_logo_wrap svg'
+  },
   fashol: {
     url: 'https://fashol.com/fashol-logo-full.png',
     kind: 'official-site logo image'
   },
+  gozayaan: {
+    url: 'https://gozayaan.com/',
+    kind: 'official-site inline header wordmark',
+    manual: 'Export svg.logo from the rendered header; the full wordmark is loaded by the client.'
+  },
   hishabee: {
     url: 'https://www.hishabee.io/hishabee.webp',
     kind: 'official-site logo'
+  },
+  ifarmer: {
+    url: 'https://www.ifarmer.asia/',
+    kind: 'official-site inline header wordmark',
+    selector: '#svg-894505730_7294',
+    background: '#215c42'
   },
   jatri: {
     url: 'https://jatri.co/_nuxt/jatri-logo.sAXW7P9b.svg',
@@ -80,6 +111,16 @@ const reviewedOverrides = {
     url: 'https://loopfreight.io/static/media/logo-white.e51aa633.png',
     kind: 'official-site logo',
     background: '#202122'
+  },
+  'markopolo-ai': {
+    url: 'https://markopolo.ai/',
+    kind: 'official-site embedded header wordmark',
+    selector: 'img[data-framer-name="Group 1171274535"]',
+    background: '#101616'
+  },
+  medeasy: {
+    url: 'https://dashboard.medeasy.health/medeasy.svg',
+    kind: 'official dashboard wordmark'
   },
   nuport: {
     url: 'https://www.nuport.io/images/nuport-logo.png',
@@ -98,6 +139,15 @@ const reviewedOverrides = {
     url: 'https://relaxy.com.bd/logo.webp',
     kind: 'official-site logo'
   },
+  revora: {
+    url: 'https://userevora.com/_astro/rl-2026-tagline-on-light.DckFnMxv_2iD5ae.svg',
+    kind: 'official-site header wordmark'
+  },
+  sharetrip: {
+    url: 'https://sharetrip.net/',
+    kind: 'official-site inline header wordmark',
+    selector: 'a[href="/"] svg'
+  },
   shomvob: {
     url: 'https://shomvob.com/assets/images/logos/shomvob_logo_white.png',
     kind: 'official-site logo',
@@ -110,6 +160,10 @@ const reviewedOverrides = {
   sokrio: {
     url: 'https://sokrio.com/wp-content/themes/sokrio/assets/images/logo.png',
     kind: 'official-site header logo'
+  },
+  'tiger-new-energy': {
+    url: 'https://www.tigernewenergy.com/imgs/logo.svg',
+    kind: 'official-site header wordmark'
   },
   zatiq: {
     url: 'https://zatiq.com/images/zatiq/Zatiq_Logo.svg',
@@ -220,8 +274,23 @@ async function fetchWithTimeout(url, timeoutMs = 18_000) {
 async function inspectCandidate(candidate) {
   const response = await fetchWithTimeout(candidate.url)
   if (!response.ok) throw new Error(`HTTP ${response.status}`)
-  const buffer = Buffer.from(await response.arrayBuffer())
+  let buffer = Buffer.from(await response.arrayBuffer())
   if (!buffer.length || buffer.length > 5 * 1024 * 1024) throw new Error('empty or larger than 5 MB')
+
+  // Some official wordmarks are inline SVGs or data images, not separate files.
+  // Only extract the explicitly reviewed element; never execute page scripts.
+  if (candidate.selector) {
+    const $ = cheerio.load(buffer.toString('utf8'))
+    const node = $(candidate.selector).first()
+    if (node.is('svg')) {
+      node.attr('xmlns', 'http://www.w3.org/2000/svg')
+      buffer = Buffer.from($.html(node))
+    } else {
+      const dataImage = node.attr('src')?.match(/^data:image\/(?:svg\+xml|png|webp);?(base64)?,([\s\S]+)$/)
+      if (!dataImage) throw new Error(`No reviewed SVG or data image at ${candidate.selector}`)
+      buffer = dataImage[1] ? Buffer.from(dataImage[2], 'base64') : Buffer.from(decodeURIComponent(dataImage[2]))
+    }
+  }
 
   const image = sharp(buffer, { density: 288, failOn: 'none' })
   const metadata = await image.metadata()
@@ -238,7 +307,8 @@ async function inspectCandidate(candidate) {
 async function processEntry(entry) {
   const reviewed = reviewedOverrides[entry.slug]
   if (reviewed) {
-    const chosen = await inspectCandidate({ url: reviewed.url, kind: reviewed.kind, priority: 120 })
+    if (reviewed.manual) throw new Error(`Manual logo extraction required at ${reviewed.url}: ${reviewed.manual} Keep the existing staged logo until it has been reviewed.`)
+    const chosen = await inspectCandidate({ url: reviewed.url, kind: reviewed.kind, selector: reviewed.selector, priority: 120 })
     const output = path.join(outputDir, `${entry.slug}.webp`)
     const normalized = await sharp(chosen.buffer, { density: 288, failOn: 'none' })
       .trim({ background: { r: 255, g: 255, b: 255, alpha: 0 } })

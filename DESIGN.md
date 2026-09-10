@@ -677,6 +677,36 @@ in `data/social-images.json`; `npm run social:images` renders the bytes into the
 content-addressed R2 URL. The SEO pass uses a configured image only after its registry entry confirms
 that the object is remote, otherwise it safely falls back to the site-wide card.
 
+### Case-study gallery and articles
+
+The case-study gallery has an approved, scoped exception to the manual's flat list treatment:
+portrait covers with company-specific grounds, cream lettering, reviewed company marks and crisp
+vector artwork. Pathao uses a red route map; 10 Minute School uses a deep-green ground with stacked
+lesson pages. These covers retain the approved prototype's composition, 9px corners and a small
+hover lift. Other pages keep the existing palette and geometry.
+
+The gallery keeps Pathao, 10 Minute School and bKash in its first desktop row. ShopUp / SILQ,
+Revora and Shikho follow in the second row; Truck Lagbe, Chaldal and Shohoz form the third.
+Dorik, Arogga and iFarmer retain their approved covers below. Order stays stable as studies are
+completed. Finished studies link directly to their articles.
+Unwritten studies use "To be written" in the bottom CTA and link to their starting sources.
+There is no duplicate status beside the company name. Readiness comes from the content manifest,
+so a completed study automatically gets the reading link.
+Reviewed marks come from the media registry. Full wordmarks for the covers are recorded in
+`data/case-study-logos.json`, with the Startup 50 marks as the fallback. Official white artwork
+keeps its original colour on a contrasting logo plate. A company name is used only where no
+reviewed logo is available. Revora keeps the permanent `myalice` route.
+
+Headings use the available width, aiming for two lines without truncation or narrow character-count
+limits. The grid fits three columns when space allows, then two, then one. The full writing list
+remains a native disclosure driven by the existing content manifest.
+
+Inside a study, the original company-name H1 and complete body remain. A horizontal company banner,
+a cited decision timeline and a highlighted existing decision passage add structure. Prose keeps
+the normal article measure; neither titles nor explanations inherit the prototype's narrow widths.
+The gallery and article additions are server-rendered and require no client JavaScript. Reduced
+motion, visible keyboard focus, mobile wrapping and the printed article remain supported.
+
 ### Contributor record
 
 The two recognition surfaces, `/contributors` and `/contributors/{slug}`, are set as a ruled

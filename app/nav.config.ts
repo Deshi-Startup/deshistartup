@@ -54,7 +54,7 @@ export const bnNav: NavSection[] = [
       ['/case-studies', 'কেস স্টাডি'],
       ['/directory', 'ইকোসিস্টেম ডিরেক্টরি'],
       ['/startup-50', 'দেশি স্টার্টআপ ৫০'],
-      ['/start-here/glossary', 'স্টার্টআপ শব্দকোষ']
+      ['/start-here/glossary', 'স্টার্টআপ ডিকশনারি']
     ]
   },
   {

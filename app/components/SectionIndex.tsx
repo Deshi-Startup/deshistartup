@@ -1,7 +1,7 @@
 import React from 'react'
 import contentIndex from '../generated/content-index.json'
 
-type PageInfo = [
+export type PageInfo = [
   route: string,
   title: string,
   stub: 0 | 1,
@@ -30,6 +30,8 @@ interface SectionIndexProps {
   heading?: string
   /** Preserve an older authored heading's fragment when consolidating it. */
   id?: string
+  /** A collection may present manifest-owned pages visually, retaining their stub status. */
+  renderCollection?: (pages: PageInfo[]) => React.ReactNode
 }
 
 /**
@@ -37,9 +39,10 @@ interface SectionIndexProps {
  * manifest, so it never needs hand-maintenance: adding a page.mdx under the
  * section automatically lists it here after the next build.
  */
-export default function SectionIndex({ section, locale = 'bn', heading, id }: SectionIndexProps) {
+export default function SectionIndex({ section, locale = 'bn', heading, id, renderCollection }: SectionIndexProps) {
   const isEn = locale === 'en'
   const isDirectory = section === 'directory'
+  const isCaseStudy = section === 'case-studies'
   const data = typedContentIndex[locale].sections[section]
   if (!data) return null
   const [, total, written, , groups] = data
@@ -81,7 +84,7 @@ export default function SectionIndex({ section, locale = 'bn', heading, id }: Se
   return (
     <section
       id={id}
-      className="section-index"
+      className={isCaseStudy ? 'section-index section-index--case-studies' : 'section-index'}
       data-inline-edit-source="section-index"
       data-pagefind-ignore
     >
@@ -92,20 +95,34 @@ export default function SectionIndex({ section, locale = 'bn', heading, id }: Se
         <span>
           <b>{num(written)}{!isEn && 'টি'}</b> {isDirectory
             ? (isEn ? `${written === 1 ? 'directory' : 'directories'} available` : 'ডিরেক্টরি প্রকাশিত')
-            : (isEn ? `${written === 1 ? 'guide' : 'guides'} available` : 'গাইড পড়তে পারবেন')}
+            : isCaseStudy
+              ? (isEn ? `${written === 1 ? 'case study' : 'case studies'} published` : 'কেস স্টাডি প্রকাশিত')
+              : (isEn ? `${written === 1 ? 'guide' : 'guides'} available` : 'গাইড পড়তে পারবেন')}
         </span>
-        {remaining > 0 && <span>{num(remaining)} {isEn ? 'to be written' : 'বিষয় লেখা বাকি'}</span>}
+        {remaining > 0 && (
+          <span>
+            {isEn ? (
+              `${num(remaining)} ${isCaseStudy ? (remaining === 1 ? 'case study to be written' : 'case studies to be written') : 'to be written'}`
+            ) : (
+              `${num(remaining)}টি ${isCaseStudy ? 'কেস স্টাডি লেখা বাকি' : 'বিষয় লেখা বাকি'}`
+            )}
+          </span>
+        )}
       </p>
 
       {written === 0 && (
         <p className="index-desc section-index__note">
           {isEn
-            ? 'The detailed guides are still to be written. You can explore the planned topics and their starting sources below.'
-            : 'বিস্তারিত গাইডগুলো এখনো লেখা হয়নি। নিচে পরিকল্পিত বিষয় ও সেগুলোর প্রাথমিক সোর্স দেখতে পারেন।'}
+            ? (isCaseStudy
+                ? 'The detailed case studies are still to be written. You can explore the planned companies and their starting sources below.'
+                : 'The detailed guides are still to be written. You can explore the planned topics and their starting sources below.')
+            : (isCaseStudy
+                ? 'বিস্তারিত কেস স্টাডিগুলো এখনো লেখা হয়নি। নিচে পরিকল্পিত কোম্পানি ও সেগুলোর প্রাথমিক সোর্স দেখতে পারেন।'
+                : 'বিস্তারিত গাইডগুলো এখনো লেখা হয়নি। নিচে পরিকল্পিত বিষয় ও সেগুলোর প্রাথমিক সোর্স দেখতে পারেন।')}
         </p>
       )}
 
-      {writtenGroups.map(([groupTitle, items]) => {
+      {renderCollection ? renderCollection(groups.flatMap(([, items]) => items)) : writtenGroups.map(([groupTitle, items]) => {
         const writtenItems = items.filter((page) => !page[2])
         if (writtenItems.length === 0) return null
         return (
@@ -119,12 +136,18 @@ export default function SectionIndex({ section, locale = 'bn', heading, id }: Se
       {remaining > 0 && (
         <details className="section-index__planned">
           <summary>
-            {isEn ? `Topics still to be written (${num(remaining)})` : `যে বিষয়গুলো লেখা বাকি (${num(remaining)})`}
+            {isEn
+              ? (isCaseStudy ? `Case studies still to be written (${num(remaining)})` : `Topics still to be written (${num(remaining)})`)
+              : (isCaseStudy ? `যে কেস স্টাডিগুলো লেখা বাকি (${num(remaining)})` : `যে বিষয়গুলো লেখা বাকি (${num(remaining)})`)}
           </summary>
           <p className="index-desc section-index__note">
             {isEn
-              ? 'These pages have starting sources, but no finished guide yet. Open a topic to help write it.'
-              : 'এই পেজগুলোতে প্রাথমিক সোর্স আছে, পূর্ণাঙ্গ গাইড নেই। লিখতে সাহায্য করতে চাইলে বিষয়টি খুলে দেখুন।'}
+              ? (isCaseStudy
+                  ? 'These pages have starting sources, but no finished case study yet. Open a case study to help write it.'
+                  : 'These pages have starting sources, but no finished guide yet. Open a topic to help write it.')
+              : (isCaseStudy
+                  ? 'এই পেজগুলোতে প্রাথমিক সোর্স আছে, তবে পূর্ণাঙ্গ কেস স্টাডি এখনো লেখা হয়নি। লিখতে সাহায্য করতে চাইলে কেস স্টাডিটি খুলে দেখুন।'
+                  : 'এই পেজগুলোতে প্রাথমিক সোর্স আছে, পূর্ণাঙ্গ গাইড নেই। লিখতে সাহায্য করতে চাইলে বিষয়টি খুলে দেখুন।')}
           </p>
           {plannedGroups.map(([groupTitle, items]) => {
             const stubItems = items.filter((page) => page[2])

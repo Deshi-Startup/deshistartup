@@ -13,15 +13,18 @@
       "slug": "agricore",
       "name": "AgriCore (formerly InsureCow)",
       "src": "/media/startup-50/agricore.webp",
-      "source": "https://insurecow.com/favicon.ico?favicon.b5c73edd.ico",
-      "sourceKind": "site icon"
+      "source": "https://media.licdn.com/dms/image/v2/D560BAQEriWDP_dcnAw/company-logo_200_200/B56ZvO5nIlK4AI-/0/1768702768617?e=2147483647&v=beta&t=vmw8c493KKxzPvQAGP1FLHVpJBJ7qZoZ-wIA7aZz7PE",
+      "sourceKind": "official company LinkedIn wordmark",
+      "reviewedAt": "2026-09-10",
+      "sourcePage": "https://www.linkedin.com/company/agricoreasia/"
     },
     {
       "slug": "agroshift",
       "name": "Agroshift",
       "src": "/media/startup-50/agroshift.webp",
-      "source": "https://cdn.prod.website-files.com/682b2e509c06fb31d9d240ce/682f6cead76dd449a7745a25_68106fb648460e8b171e0059_AS-Logo%20(1)%201.svg",
-      "sourceKind": "official-site header logo"
+      "source": "https://cdn.prod.website-files.com/682b2e509c06fb31d9d240ce/682f5acc8720c510947ec3c0_Frame%2035.avif",
+      "sourceKind": "official-site header wordmark",
+      "reviewedAt": "2026-09-10"
     },
     {
       "slug": "airwork",
@@ -34,8 +37,9 @@
       "slug": "amarlab",
       "name": "AmarLab",
       "src": "/media/startup-50/amarlab.webp",
-      "source": "https://amarlab.com/logo.png",
-      "sourceKind": "official-site logo"
+      "source": "https://amarlab.com/",
+      "sourceKind": "official-site embedded header wordmark",
+      "reviewedAt": "2026-09-10"
     },
     {
       "slug": "apploye",
@@ -55,15 +59,17 @@
       "slug": "aunkur",
       "name": "Aunkur",
       "src": "/media/startup-50/aunkur.webp",
-      "source": "https://aunkur.ai/assets/images/favicons/apple-touch-icon.png",
-      "sourceKind": "apple touch icon"
+      "source": "https://aunkur.ai/assets/images/resources/footer-logo.aunkuai.png",
+      "sourceKind": "official-site footer wordmark",
+      "reviewedAt": "2026-09-10"
     },
     {
       "slug": "barikoi",
       "name": "Barikoi",
       "src": "/media/startup-50/barikoi.webp",
-      "source": "https://barikoi.com/lovable-uploads/03d24b15-45b3-4023-8b96-84c6a7a64267.png",
-      "sourceKind": "apple touch icon"
+      "source": "https://barikoi.com/lovable-uploads/fa94013f-be2a-4dce-bcde-091677f4213d.png",
+      "sourceKind": "official-site header wordmark",
+      "reviewedAt": "2026-09-10"
     },
     {
       "slug": "bimafy",
@@ -118,15 +124,17 @@
       "slug": "dubotech",
       "name": "Dubotech",
       "src": "/media/startup-50/dubotech.webp",
-      "source": "https://dubotech.com/favicon/apple-touch-icon.png",
-      "sourceKind": "official-site icon"
+      "source": "https://dubotech.com/assets/logo.webp",
+      "sourceKind": "official-site header wordmark",
+      "reviewedAt": "2026-09-10"
     },
     {
       "slug": "ecovia",
       "name": "Ecovia",
       "src": "/media/startup-50/ecovia.webp",
-      "source": "https://cdn.prod.website-files.com/6709161cf99db2549fda7a27/69c7b178459471bea91d24a9_Ecovia%20Fav%20(7).png",
-      "sourceKind": "apple touch icon"
+      "source": "https://ecoviaglobal.com/",
+      "sourceKind": "official-site inline header wordmark",
+      "reviewedAt": "2026-09-10"
     },
     {
       "slug": "ezycourse",
@@ -146,8 +154,9 @@
       "slug": "gozayaan",
       "name": "GoZayaan",
       "src": "/media/startup-50/gozayaan.webp",
-      "source": "https://gozayaan.com/gz-favicon.svg",
-      "sourceKind": "site icon"
+      "source": "https://gozayaan.com/",
+      "sourceKind": "official-site inline header wordmark",
+      "reviewedAt": "2026-09-10"
     },
     {
       "slug": "hishabee",
@@ -160,8 +169,9 @@
       "slug": "ifarmer",
       "name": "iFarmer",
       "src": "/media/startup-50/ifarmer.webp",
-      "source": "https://framerusercontent.com/images/xLYkgyfP9RcxFdqFQBFVZxS0MBc.png",
-      "sourceKind": "site icon"
+      "source": "https://www.ifarmer.asia/",
+      "sourceKind": "official-site inline header wordmark",
+      "reviewedAt": "2026-09-10"
     },
     {
       "slug": "jatri",
@@ -181,15 +191,17 @@
       "slug": "markopolo-ai",
       "name": "Markopolo.ai",
       "src": "/media/startup-50/markopolo-ai.webp",
-      "source": "https://framerusercontent.com/images/ha4kYkWvG1CQYDQWIG6MqCXASL0.png",
-      "sourceKind": "site icon"
+      "source": "https://markopolo.ai/",
+      "sourceKind": "official-site embedded header wordmark",
+      "reviewedAt": "2026-09-10"
     },
     {
       "slug": "medeasy",
       "name": "MedEasy",
       "src": "/media/startup-50/medeasy.webp",
-      "source": "https://medeasy.health/assets/images/medEasyIcon.svg",
-      "sourceKind": "official-site logo image"
+      "source": "https://dashboard.medeasy.health/medeasy.svg",
+      "sourceKind": "official dashboard wordmark",
+      "reviewedAt": "2026-09-10"
     },
     {
       "slug": "monsha",
@@ -258,15 +270,17 @@
       "slug": "revora",
       "name": "Revora",
       "src": "/media/startup-50/revora.webp",
-      "source": "https://userevora.com/favicon.svg",
-      "sourceKind": "json-ld logo"
+      "source": "https://userevora.com/_astro/rl-2026-tagline-on-light.DckFnMxv_2iD5ae.svg",
+      "sourceKind": "official-site header wordmark",
+      "reviewedAt": "2026-09-10"
     },
     {
       "slug": "sharetrip",
       "name": "ShareTrip",
       "src": "/media/startup-50/sharetrip.webp",
-      "source": "https://assets.sharetrip.net/b2c-web-public/public/images/safari-pinned-tab.svg",
-      "sourceKind": "json-ld logo"
+      "source": "https://sharetrip.net/",
+      "sourceKind": "official-site inline header wordmark",
+      "reviewedAt": "2026-09-10"
     },
     {
       "slug": "shikho",
@@ -321,8 +335,9 @@
       "slug": "tiger-new-energy",
       "name": "Tiger New Energy",
       "src": "/media/startup-50/tiger-new-energy.webp",
-      "source": "https://www.tigernewenergy.com/imgs/footer-logo.svg",
-      "sourceKind": "official-site logo image"
+      "source": "https://www.tigernewenergy.com/imgs/logo.svg",
+      "sourceKind": "official-site header wordmark",
+      "reviewedAt": "2026-09-10"
     },
     {
       "slug": "togumogu",

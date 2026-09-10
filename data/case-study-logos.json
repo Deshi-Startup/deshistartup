@@ -1,0 +1,34 @@
+{
+  "reviewedAt": "2026-09-10",
+  "entries": [
+    {
+      "slug": "revora",
+      "name": "Revora",
+      "src": "/media/case-studies/logos/revora.webp",
+      "source": "https://userevora.com/_astro/rl-2026-tagline-on-light.DckFnMxv_2iD5ae.svg",
+      "sourceKind": "official-site header logo"
+    },
+    {
+      "slug": "chaldal",
+      "name": "Chaldal",
+      "src": "/media/case-studies/logos/chaldal.webp",
+      "source": "https://i.chaldn.com/asset/egg-chaldal-web-release-id-29483/https/Default/components/header/Header/images/logo-small-v2.svg?q=best",
+      "sourceKind": "official-site header logo"
+    },
+    {
+      "slug": "ifarmer",
+      "name": "iFarmer",
+      "src": "/media/case-studies/logos/ifarmer.webp",
+      "source": "https://www.ifarmer.asia/#svg-894505730_7294",
+      "sourceKind": "official-site header logo (inline SVG)",
+      "background": "#215c42"
+    },
+    {
+      "slug": "shohoz",
+      "name": "Shohoz",
+      "src": "/media/case-studies/logos/shohoz.webp",
+      "source": "https://www.shohoz.com/assets/img/shohoz_logo_new.png?v=1.0.4",
+      "sourceKind": "official-site header logo"
+    }
+  ]
+}

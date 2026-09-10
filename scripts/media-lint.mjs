@@ -46,6 +46,7 @@ const publicMedia = path.join(root, 'public', 'media')
 const contributorLedgerFile = path.join(root, 'data', 'contributor-ledger.json')
 const contributorPolicyFile = path.join(root, 'data', 'contributors-policy.json')
 const startup50LogoFile = path.join(root, 'data', 'startup-50-logos.json')
+const caseStudyLogoFile = path.join(root, 'data', 'case-study-logos.json')
 const socialImagesFile = path.join(root, 'data', 'social-images.json')
 
 const ALLOWED = new Set(Object.keys(CONTENT_TYPES))
@@ -189,13 +190,13 @@ function checkSocialImageReferences() {
 checkContributorAvatarReferences()
 checkSocialImageReferences()
 
-function checkStartup50LogoReferences() {
-  const fileName = path.relative(root, startup50LogoFile)
+function checkCompanyLogoReferences(logoFile) {
+  const fileName = path.relative(root, logoFile)
   let logoData
   try {
-    logoData = JSON.parse(fs.readFileSync(startup50LogoFile, 'utf8'))
+    logoData = JSON.parse(fs.readFileSync(logoFile, 'utf8'))
   } catch (error) {
-    errors.push(`${fileName}: could not read Startup 50 logo references (${error.message}).`)
+    errors.push(`${fileName}: could not read company logo references (${error.message}).`)
     return
   }
 
@@ -213,7 +214,8 @@ function checkStartup50LogoReferences() {
   }
 }
 
-checkStartup50LogoReferences()
+checkCompanyLogoReferences(startup50LogoFile)
+checkCompanyLogoReferences(caseStudyLogoFile)
 
 function validFacebookVideoUrl(value) {
   let url

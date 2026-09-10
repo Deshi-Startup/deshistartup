@@ -48,6 +48,32 @@ test('an author-written mdx code example remains a code example', () => {
   assert.deepEqual(lockedMdxBlocks(source), [])
 })
 
+test('case-study markup is protected while its prose and citations stay editable', () => {
+  const source = [
+    '<CaseTimeline>', '',
+    '<CaseMilestone date="2015" title="The first customers">', '',
+    'Original account.[^interview]', '',
+    '</CaseMilestone>', '', '</CaseTimeline>', '',
+    '<CaseDetail title="The pilot">', '', 'Original lesson.', '', '</CaseDetail>'
+  ].join('\n')
+  const encoded = encodeLockedMdx(source)
+  assert.equal((encoded.match(/```deshi-locked-mdx/g) || []).length, 6)
+  assert.match(encoded, /```\n\nOriginal account\.\[\^interview\]\n\n```deshi-locked-mdx/)
+  const edited = decodeLockedMdx(encoded.replace('Original account.', 'Corrected account.'))
+  assert.equal(edited, source.replace('Original account.', 'Corrected account.'))
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited)), true)
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace('</CaseDetail>', ''))), false)
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace('date="2015"', 'date="2016"'))), false)
+})
+
+test('paired component examples and unrelated locked fences are not decoded as markup', () => {
+  const example = '```mdx\n<CaseTimeline>\n\nAn example.\n\n</CaseTimeline>\n```'
+  assert.equal(encodeLockedMdx(example), example)
+  assert.deepEqual(lockedMdxBlocks(example), [])
+  const unrelated = '```deshi-locked-mdx\nOrdinary text\n```'
+  assert.equal(decodeLockedMdx(unrelated), unrelated)
+})
+
 test('tilde fences and indented component blocks are preserved', () => {
   const source = [
     '~~~mdx',

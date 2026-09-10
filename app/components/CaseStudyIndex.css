@@ -1,0 +1,110 @@
+.case-theme--bkash { --case-ground: #a50950; --case-ink: #fff7ef; --case-soft: #ffcae0; }
+.case-theme--shopup { --case-ground: #174d6a; --case-ink: #fff3dc; --case-soft: #c5e1ed; }
+.case-theme--revora { --case-ground: #293425; --case-ink: #f4f1df; --case-soft: #d1dbb9; }
+.case-theme--shikho { --case-ground: #542963; --case-ink: #fff2f1; --case-soft: #edd2ed; }
+.case-theme--truck-lagbe { --case-ground: #622a24; --case-ink: #fff0d8; --case-soft: #f3c7a9; }
+.case-theme--chaldal { --case-ground: #f3d685; --case-ink: #4e371e; --case-soft: #69502f; }
+.case-theme--shohoz { --case-ground: #254b3c; --case-ink: #f2f2d8; --case-soft: #c5dcac; }
+.case-theme--dorik { --case-ground: #292654; --case-ink: #fff7ef; --case-soft: #ddd8ff; }
+.case-theme--arogga { --case-ground: #13554c; --case-ink: #fff7ef; --case-soft: #c3eee0; }
+.case-theme--ifarmer { --case-ground: #efdfa4; --case-ink: #29392b; --case-soft: #425530; }
+
+.section-index--case-studies { container-type: inline-size; margin-bottom: 24px; }
+
+.case-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  gap: 24px;
+  margin: 28px 0 36px;
+}
+@container (min-width: 544px) {
+  .case-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container (min-width: 828px) {
+  .case-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.section-index .case-cover,
+.section-index .case-cover:visited {
+  min-width: 0;
+  width: 100%;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  border-radius: 9px;
+  background: var(--case-ground);
+  color: var(--case-ink);
+  text-decoration: none;
+  transition: transform 240ms cubic-bezier(.16, 1, .3, 1), box-shadow 240ms ease;
+}
+.case-cover__head { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.case-cover__head > span:last-child { color: var(--case-soft); font-size: .75rem; text-align: right; }
+.case-logo--text { color: #202122; font-size: 1.2rem; font-weight: 700; letter-spacing: -.025em; }
+.case-cover__art { margin: 18px 0 10px; }
+.case-cover__art svg { display: block; width: 100%; height: auto; aspect-ratio: 330 / 200; }
+.case-cover__copy { margin-top: auto; }
+.section-index .case-cover .case-cover__company { margin: 0 0 10px; font-size: .875rem; color: var(--case-soft); }
+.section-index .case-cover h3 {
+  max-width: none;
+  margin: 0 0 16px;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font-size: 1.65rem;
+  font-size: clamp(1.25rem, 7.5cqi, 2.65rem);
+  font-weight: 600;
+  letter-spacing: -.025em;
+  line-height: 1.22;
+  text-wrap: wrap;
+  overflow-wrap: normal;
+}
+.case-cover h3 span { display: block; }
+.section-index .case-cover .case-cover__summary {
+  max-width: none;
+  margin: 0;
+  color: var(--case-soft);
+  font-size: .9375rem;
+  line-height: 1.6;
+  text-wrap: wrap;
+}
+.case-cover__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid color-mix(in srgb, var(--case-ink) 28%, transparent);
+  font-size: .8125rem;
+}
+.case-cover__arrow { width: 24px; height: 24px; flex: 0 0 auto; }
+/* Cover lettering must stay legible over its company ground after a visit. */
+.section-index .case-gallery a.case-cover:visited,
+.section-index .case-gallery a.case-cover:visited:hover { color: var(--case-ink); }
+.section-index .case-cover:focus-visible { outline: 3px solid var(--green-deep); outline-offset: 5px; }
+.case-cover--plain { min-height: 420px; justify-content: space-between; gap: 24px; }
+.case-cover--plain h3 { margin-top: auto; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .section-index .case-cover:hover { transform: translateY(-4px); box-shadow: 0 16px 30px #132b221f; }
+}
+@media (max-width: 480px) {
+  .section-index .case-cover { padding: 22px; }
+  .case-gallery { gap: 20px; }
+  .case-cover__head { gap: 12px; }
+  .case-cover__head .case-logo { width: 112px; }
+}
+@media (prefers-reduced-motion: reduce) { .section-index .case-cover { transition: none; } }
+@media print {
+  .case-gallery { display: block; }
+  .section-index .case-cover {
+    /* Visited-link rules also read these colours. */
+    --case-ground: transparent;
+    --case-ink: #000;
+    --case-soft: #333;
+    break-inside: avoid;
+    border: 1px solid #aaa;
+    margin-bottom: 20px;
+  }
+  .case-cover__art { display: none; }
+}

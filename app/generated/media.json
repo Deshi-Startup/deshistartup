@@ -1,4 +1,40 @@
 {
+  "/media/case-studies/logos/chaldal.webp": {
+    "key": "case-studies/logos/chaldal.853fc1ff5cda.webp",
+    "w": 480,
+    "h": 133,
+    "bytes": 20080,
+    "sha": "853fc1ff5cda",
+    "remote": true,
+    "uploadedAt": "2026-09-10T12:30:25.146Z"
+  },
+  "/media/case-studies/logos/ifarmer.webp": {
+    "key": "case-studies/logos/ifarmer.9567368b5713.webp",
+    "w": 480,
+    "h": 139,
+    "bytes": 7136,
+    "sha": "9567368b5713",
+    "remote": true,
+    "uploadedAt": "2026-09-10T12:30:27.845Z"
+  },
+  "/media/case-studies/logos/revora.webp": {
+    "key": "case-studies/logos/revora.3d10986592b8.webp",
+    "w": 480,
+    "h": 145,
+    "bytes": 22378,
+    "sha": "3d10986592b8",
+    "remote": true,
+    "uploadedAt": "2026-09-10T12:30:23.026Z"
+  },
+  "/media/case-studies/logos/shohoz.webp": {
+    "key": "case-studies/logos/shohoz.5cbb762a5ec7.webp",
+    "w": 170,
+    "h": 38,
+    "bytes": 1562,
+    "sha": "5cbb762a5ec7",
+    "remote": true,
+    "uploadedAt": "2026-09-10T12:30:30.030Z"
+  },
   "/media/contributors/shoumik-shahriar.webp": {
     "key": "contributors/shoumik-shahriar.860da7a3d696.webp",
     "w": 384,
@@ -36,22 +72,22 @@
     "uploadedAt": "2026-08-23T18:12:52.122Z"
   },
   "/media/startup-50/agricore.webp": {
-    "key": "startup-50/agricore.8be2f4bb6098.webp",
-    "w": 138,
-    "h": 160,
-    "bytes": 12826,
-    "sha": "8be2f4bb6098",
+    "key": "startup-50/agricore.87b6c8d6b441.webp",
+    "w": 320,
+    "h": 75,
+    "bytes": 4058,
+    "sha": "87b6c8d6b441",
     "remote": true,
-    "uploadedAt": "2026-08-23T18:12:54.244Z"
+    "uploadedAt": "2026-09-10T13:09:09.197Z"
   },
   "/media/startup-50/agroshift.webp": {
-    "key": "startup-50/agroshift.2d28e5cfc1e3.webp",
-    "w": 304,
-    "h": 160,
-    "bytes": 7334,
-    "sha": "2d28e5cfc1e3",
+    "key": "startup-50/agroshift.452924918608.webp",
+    "w": 320,
+    "h": 56,
+    "bytes": 9052,
+    "sha": "452924918608",
     "remote": true,
-    "uploadedAt": "2026-08-23T18:12:56.947Z"
+    "uploadedAt": "2026-09-10T13:09:11.407Z"
   },
   "/media/startup-50/airwork.webp": {
     "key": "startup-50/airwork.1f4d476f4565.webp",
@@ -63,13 +99,13 @@
     "uploadedAt": "2026-08-25T10:15:44.514Z"
   },
   "/media/startup-50/amarlab.webp": {
-    "key": "startup-50/amarlab.2c8a55dbec42.webp",
-    "w": 149,
-    "h": 160,
-    "bytes": 5710,
-    "sha": "2c8a55dbec42",
+    "key": "startup-50/amarlab.2b5dc62f59ae.webp",
+    "w": 320,
+    "h": 71,
+    "bytes": 7804,
+    "sha": "2b5dc62f59ae",
     "remote": true,
-    "uploadedAt": "2026-08-24T17:36:19.440Z"
+    "uploadedAt": "2026-09-10T13:09:13.776Z"
   },
   "/media/startup-50/apploye.webp": {
     "key": "startup-50/apploye.eeb85b9c3f75.webp",
@@ -90,22 +126,22 @@
     "uploadedAt": "2026-08-23T18:13:03.413Z"
   },
   "/media/startup-50/aunkur.webp": {
-    "key": "startup-50/aunkur.491f2f981b65.webp",
-    "w": 140,
+    "key": "startup-50/aunkur.0c149f618971.webp",
+    "w": 320,
     "h": 160,
-    "bytes": 7082,
-    "sha": "491f2f981b65",
+    "bytes": 5742,
+    "sha": "0c149f618971",
     "remote": true,
-    "uploadedAt": "2026-08-23T18:13:05.686Z"
+    "uploadedAt": "2026-09-10T13:09:16.002Z"
   },
   "/media/startup-50/barikoi.webp": {
-    "key": "startup-50/barikoi.0a0744865056.webp",
-    "w": 106,
-    "h": 160,
-    "bytes": 6820,
-    "sha": "0a0744865056",
+    "key": "startup-50/barikoi.6ec721d1da32.webp",
+    "w": 320,
+    "h": 91,
+    "bytes": 7912,
+    "sha": "6ec721d1da32",
     "remote": true,
-    "uploadedAt": "2026-08-23T18:13:08.152Z"
+    "uploadedAt": "2026-09-10T13:09:18.112Z"
   },
   "/media/startup-50/bimafy.webp": {
     "key": "startup-50/bimafy.bc5405cbeb3e.webp",
@@ -171,22 +207,22 @@
     "uploadedAt": "2026-08-23T18:13:23.682Z"
   },
   "/media/startup-50/dubotech.webp": {
-    "key": "startup-50/dubotech.7ee234090123.webp",
-    "w": 160,
+    "key": "startup-50/dubotech.1c40d88db1a9.webp",
+    "w": 320,
     "h": 160,
-    "bytes": 4442,
-    "sha": "7ee234090123",
+    "bytes": 4818,
+    "sha": "1c40d88db1a9",
     "remote": true,
-    "uploadedAt": "2026-08-23T18:13:28.057Z"
+    "uploadedAt": "2026-09-10T13:09:20.272Z"
   },
   "/media/startup-50/ecovia.webp": {
-    "key": "startup-50/ecovia.5df14167c414.webp",
-    "w": 127,
-    "h": 160,
-    "bytes": 10968,
-    "sha": "5df14167c414",
+    "key": "startup-50/ecovia.eeba89c37729.webp",
+    "w": 320,
+    "h": 86,
+    "bytes": 5436,
+    "sha": "eeba89c37729",
     "remote": true,
-    "uploadedAt": "2026-08-23T18:13:30.194Z"
+    "uploadedAt": "2026-09-10T13:09:22.336Z"
   },
   "/media/startup-50/ezycourse.webp": {
     "key": "startup-50/ezycourse.b1fb23e4cdec.webp",
@@ -207,13 +243,13 @@
     "uploadedAt": "2026-08-24T17:36:21.736Z"
   },
   "/media/startup-50/gozayaan.webp": {
-    "key": "startup-50/gozayaan.334146aa6c6d.webp",
-    "w": 160,
-    "h": 160,
-    "bytes": 4948,
-    "sha": "334146aa6c6d",
+    "key": "startup-50/gozayaan.b6095f85d28f.webp",
+    "w": 320,
+    "h": 99,
+    "bytes": 10422,
+    "sha": "b6095f85d28f",
     "remote": true,
-    "uploadedAt": "2026-08-23T18:13:34.207Z"
+    "uploadedAt": "2026-09-10T13:09:24.443Z"
   },
   "/media/startup-50/hishabee.webp": {
     "key": "startup-50/hishabee.ea5dc28bbb11.webp",
@@ -225,13 +261,13 @@
     "uploadedAt": "2026-08-24T17:07:05.776Z"
   },
   "/media/startup-50/ifarmer.webp": {
-    "key": "startup-50/ifarmer.1d490d42dea4.webp",
-    "w": 221,
+    "key": "startup-50/ifarmer.0e4e3fc00ed7.webp",
+    "w": 320,
     "h": 160,
-    "bytes": 7794,
-    "sha": "1d490d42dea4",
+    "bytes": 3120,
+    "sha": "0e4e3fc00ed7",
     "remote": true,
-    "uploadedAt": "2026-08-23T18:13:36.300Z"
+    "uploadedAt": "2026-09-10T13:09:26.806Z"
   },
   "/media/startup-50/jatri.webp": {
     "key": "startup-50/jatri.8768d080af18.webp",
@@ -252,22 +288,22 @@
     "uploadedAt": "2026-08-23T18:13:57.554Z"
   },
   "/media/startup-50/markopolo-ai.webp": {
-    "key": "startup-50/markopolo-ai.22869d613ce3.webp",
-    "w": 160,
+    "key": "startup-50/markopolo-ai.55b8e1e5cb92.webp",
+    "w": 320,
     "h": 160,
-    "bytes": 872,
-    "sha": "22869d613ce3",
+    "bytes": 2596,
+    "sha": "55b8e1e5cb92",
     "remote": true,
-    "uploadedAt": "2026-08-23T18:13:59.623Z"
+    "uploadedAt": "2026-09-10T13:09:29.163Z"
   },
   "/media/startup-50/medeasy.webp": {
-    "key": "startup-50/medeasy.0e037de62e48.webp",
-    "w": 163,
-    "h": 160,
-    "bytes": 3524,
-    "sha": "0e037de62e48",
+    "key": "startup-50/medeasy.83270e3e18e6.webp",
+    "w": 320,
+    "h": 54,
+    "bytes": 9720,
+    "sha": "83270e3e18e6",
     "remote": true,
-    "uploadedAt": "2026-08-23T18:14:01.776Z"
+    "uploadedAt": "2026-09-10T13:09:31.250Z"
   },
   "/media/startup-50/monsha.webp": {
     "key": "startup-50/monsha.53250aac253a.webp",
@@ -351,22 +387,22 @@
     "uploadedAt": "2026-08-24T17:07:10.353Z"
   },
   "/media/startup-50/revora.webp": {
-    "key": "startup-50/revora.591d67fc9ce1.webp",
-    "w": 160,
-    "h": 160,
-    "bytes": 1786,
-    "sha": "591d67fc9ce1",
+    "key": "startup-50/revora.8e7eadae261a.webp",
+    "w": 320,
+    "h": 97,
+    "bytes": 11934,
+    "sha": "8e7eadae261a",
     "remote": true,
-    "uploadedAt": "2026-08-23T18:14:25.442Z"
+    "uploadedAt": "2026-09-10T13:09:33.430Z"
   },
   "/media/startup-50/sharetrip.webp": {
-    "key": "startup-50/sharetrip.0a9d4f601730.webp",
-    "w": 160,
-    "h": 160,
-    "bytes": 4574,
-    "sha": "0a9d4f601730",
+    "key": "startup-50/sharetrip.064c075f5122.webp",
+    "w": 320,
+    "h": 86,
+    "bytes": 14156,
+    "sha": "064c075f5122",
     "remote": true,
-    "uploadedAt": "2026-08-23T18:14:29.751Z"
+    "uploadedAt": "2026-09-10T13:09:35.534Z"
   },
   "/media/startup-50/shikho.webp": {
     "key": "startup-50/shikho.9acfd504b3a5.webp",
@@ -432,13 +468,13 @@
     "uploadedAt": "2026-08-23T18:14:42.476Z"
   },
   "/media/startup-50/tiger-new-energy.webp": {
-    "key": "startup-50/tiger-new-energy.6f3a36f7e03d.webp",
+    "key": "startup-50/tiger-new-energy.803eb6a47a75.webp",
     "w": 320,
-    "h": 125,
-    "bytes": 17250,
-    "sha": "6f3a36f7e03d",
+    "h": 120,
+    "bytes": 17526,
+    "sha": "803eb6a47a75",
     "remote": true,
-    "uploadedAt": "2026-08-23T18:14:44.640Z"
+    "uploadedAt": "2026-09-10T13:09:37.764Z"
   },
   "/media/startup-50/togumogu.webp": {
     "key": "startup-50/togumogu.7498805b5b9e.webp",

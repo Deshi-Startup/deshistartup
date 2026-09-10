@@ -80,3 +80,19 @@ enough to learn what the project needs next.
 - Observed reader or contributor blockers are resolved.
 
 Page count, raw traffic and a large backlog are not success by themselves.
+
+## Case-study presentation and deferred work
+
+The approved direction is a gallery of company-specific portrait covers. Pathao, 10 Minute School
+and bKash stay in the first desktop row. ShopUp / SILQ, Revora and Shikho follow in the second;
+Truck Lagbe, Chaldal and Shohoz form the third. Dorik, Arogga and iFarmer keep their covers below.
+Finished studies link to the full article, and unwritten studies use "To be written" in the
+bottom CTA, linking to starting sources. Preserve the existing full articles while adding
+company banners, sourced
+turning-point timelines and a closer look at a decision or experiment. Background, setbacks,
+lessons, evidence limits and interview links remain part of the articles. The Startup 50 companies
+are included in `content-backlog.csv`; listing a company does not mean its case study is written.
+
+**Deferred, 10 September 2026:** transferable exercises and reader-designed experiments are not
+part of the current case-study update. Revisit them after the presentation and existing articles
+have been reviewed. They would supplement the stories, not replace their body content.
