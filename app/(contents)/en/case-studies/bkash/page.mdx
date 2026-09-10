@@ -1,16 +1,269 @@
 ---
 title: "bKash"
-description: "bKash – this case study is planned for Deshi Startup, but it has not been written yet."
+description: "How bKash built a nationwide mobile financial network, expanded into payments, savings and bank-partnered credit, and pursued a digital-bank licence."
+verified: 2026-09-10
 ---
+
+import { CaseCompany, CaseTimeline, CaseMilestone, CaseDetail } from '../../../../components/CaseStudy'
 
 # bKash
 
-<StubNotice path="case-studies/bkash" locale="en" />
+<CaseCompany slug="bkash" locale="en" />
+
+> **In short:** bKash did not win by starting with a feature-rich app. It started by making one basic job easier: moving money for people who had a mobile phone but little practical access to a bank branch. The company used USSD, a phone-code menu that works without mobile internet, so feature-phone users could participate, built a dense agent network so cash could move in and out of the system, and worked inside Bangladesh Bank's bank-led mobile financial services (MFS) model. Once that habit and distribution network were established, bKash added merchant payments, remittance, savings and bank-partnered digital loans. The founder lesson is less about copying a wallet and more about sequencing: solve the infrastructure problem first, build trust around the transaction, and only then add higher-value financial products.[^world-bank-2017][^bkash-about]
+
+## At a glance
+
+| Field | Detail |
+|---|---|
+| Company | bKash |
+| Category | Mobile financial services and fintech |
+| Company formation | 2010 as a joint venture between BRAC Bank and US-based Money in Motion |
+| Commercial launch | 2011[^bkash-about] |
+| Founding team | Kamal Quadir and Iqbal Quadir were central to the original Money in Motion/bKash effort; Kamal Quadir became founder-CEO[^world-bank-2017][^mit-sloan-2023] |
+| First wedge | Domestic money transfer and cash-in/cash-out for people outside convenient branch banking |
+| Early distribution | BRAC helped recruit and manage roughly 5,000 agents in the first year before bKash shifted to regional distributors[^world-bank-2014] |
+| 2018 product shift | bKash launched its smartphone app and added Ant as a strategic investor[^bkash-about][^future-startup-history] |
+| 2021 milestone | SoftBank Vision Fund II agreed to invest $250 million; reporting at the time put bKash's valuation, the company value implied by its share price, around $2 billion[^softbank-2021] |
+| Current scale | bKash says it had more than 83 million customers, 350,000+ agents and about 900,000 merchants as of 2026[^bkash-about] |
+| Recent financial result | 2025 revenue was Tk 6,565.56 crore and net profit Tk 676.33 crore; Q1 2026 net profit was Tk 184.09 crore[^bkash-financials-2025][^bkash-financials-q1-2026] |
+| Verification | Founder interviews, company information, World Bank/IFC material and independent reporting checked on 10 September 2026 |
+
+## Turning points
+
+<CaseTimeline>
+<CaseMilestone date="2008–2010" title="The structure is designed before launch">
+
+The Quadir brothers explored mobile money in Bangladesh and began discussions with BRAC founder Fazle Hasan Abed. Bangladesh's bank-led regulatory model meant the venture needed a licensed bank at the center, so BRAC Bank and Money in Motion formed bKash as a joint venture.[^world-bank-2017]
+
+</CaseMilestone>
+<CaseMilestone date="2011" title="Commercial service begins">
+
+bKash launched as a Bangladesh Bank-regulated MFS provider. The first product was not a super app; it was basic mobile money designed to work on ordinary phones.[^bkash-about]
+
+</CaseMilestone>
+<CaseMilestone date="2012–2013" title="Distribution creates scale">
+
+bKash passed 2 million registered customers in 2012. By 2013 it reported 10 million customers and 50,000 agent points nationwide.[^bkash-about]
+
+</CaseMilestone>
+<CaseMilestone date="2018" title="The smartphone era arrives">
+
+The bKash app launched as smartphone adoption increased. Ant joined the shareholder group, bringing a strategic relationship with a large Asian digital-payments operator.[^bkash-about][^future-startup-history]
+
+</CaseMilestone>
+<CaseMilestone date="2021" title="Unicorn-scale capital arrives">
+
+SoftBank Vision Fund II agreed to inject $250 million. The investment was reported to take bKash's valuation to around $2 billion, after the company had already crossed the $1 billion unicorn threshold.[^softbank-2021][^mit-sloan-2023]
+
+</CaseMilestone>
+<CaseMilestone date="2021–2026" title="Payments become a broader financial platform">
+
+bKash added or expanded products such as digital loans with City Bank, savings with regulated financial institutions, international remittance, and services for Bangladeshis abroad.[^bkash-loan][^bkash-savings][^bkash-remittance][^bkash-abroad]
+
+</CaseMilestone>
+<CaseMilestone date="2025–2026" title="Profit grows and digital banking becomes the next question">
+
+The company reported strong profitability in 2025 and Q1 2026. At the same time, bKash applied for a digital bank licence, while Bangladesh Bank's latest licensing process was still unresolved as of August 2026.[^bkash-financials-2025][^bkash-financials-q1-2026][^digital-bank-2026]
+
+</CaseMilestone>
+</CaseTimeline>
+
+## Problem
+
+The original problem was simple to describe but hard to solve. Millions of Bangladeshis had mobile phones, yet many did not have convenient access to formal banking. Sending money home, receiving wages, paying someone in another district or storing small amounts of money could still depend on cash and physical travel.[^world-bank-2017]
+
+Traditional bank branches were expensive to build and operate everywhere, especially for customers making small transactions. Kamal Quadir later described financial inclusion as the core reason for building bKash: the economics of conventional banking did not fit many low-income customers' transaction sizes.[^mit-sloan-2023]
+
+## Why the problem was Bangladesh-specific
+
+Bangladesh already had wide mobile-phone use, a large cash economy and a huge population that needed frequent small-value transactions. That created the demand side. But the solution could not simply copy Kenya's M-PESA model because Bangladesh Bank chose a bank-led structure for mobile financial services.[^world-bank-2017]
+
+That regulatory choice shaped the company itself. BRAC Bank remained the licensed-bank anchor, while Money in Motion brought mobile-money experience. The structure was not a paperwork detail added later; it was part of the product architecture from the beginning.[^world-bank-2014]
+
+## Founding insight
+
+The founding insight was that the phone alone was not enough. A digital balance is useful only if people can easily turn cash into electronic money and electronic money back into cash.
+
+So bKash built both sides at once: a simple phone interface and a physical agent network. The early service used USSD, which meant customers did not need a smartphone or mobile internet. At the same time, local shops and other agents became the places where users could cash in and cash out.[^world-bank-2014]
+
+<CaseDetail title="The agent network was part of the product">
+
+In bKash's first year, BRAC helped recruit and manage about 5,000 agents. After that early phase, bKash moved toward a distribution-company model that could manage far larger networks of local retailers.[^world-bank-2014]
+
+For a digital startup, that is easy to miss. bKash's early moat was not only software. It was software plus liquidity, local retailers, compliance and a repeatable way to keep agents supplied with cash and electronic float.
+
+</CaseDetail>
+
+## First wedge
+
+The first wedge was not loans, savings, QR payments or a digital bank. It was the most basic movement of money: cash-in, send money and cash-out.
+
+That narrow starting point mattered because it gave customers an immediate reason to use the service. A worker in Dhaka could send money to family elsewhere. The recipient did not need a bank branch nearby; they needed a bKash account and an agent who could provide cash.
+
+Once that behavior became familiar, the same account could support more jobs. bKash gradually added mobile recharge, bill payment, merchant payment, bank integration and remittance. The smartphone app arrived in 2018 after the company had already built a large user and agent base.[^bkash-about]
+
+## Early customers
+
+bKash's early customer acquisition was tied closely to physical distribution. It needed agents in places where customers already bought airtime, medicine or everyday goods. The 2014 World Bank case study describes how the first BRAC-supported agents gave bKash a starting network before it shifted toward regional distribution companies.[^world-bank-2014]
+
+This created a useful loop. More agents made the service easier to use. More users gave retailers a reason to become agents. And more transaction volume made the network more valuable to both sides.
+
+The lesson for founders is important: sometimes acquisition is not mainly an advertising problem. If customers cannot use the product where and when they need it, distribution has to be solved before marketing can work.
+
+## Trust building
+
+Money is a high-trust product. bKash benefited from being structured around BRAC Bank and operating under Bangladesh Bank's MFS rules. It also put a familiar local person between the digital system and first-time users: the neighborhood agent.[^world-bank-2017]
+
+Over time, trust moved from the counter into the product. The app, digital identity verification (e-KYC), bank connections, merchant payments and other digital services made more transactions possible without visiting an agent. bKash says the word itself has become everyday shorthand for sending digital money in Bangladesh.[^bkash-about]
+
+That brand strength is real, but founders should not confuse brand love with permanent protection. In financial services, one major fraud, compliance or availability failure can damage trust very quickly.
+
+## Local lessons
+
+**Design for the device people already have.** In 2011, insisting on smartphones would have excluded much of the target market. USSD let bKash reach feature-phone users first.[^world-bank-2014]
+
+**Cash is not the opposite of fintech.** In a cash-heavy economy, a fintech may need physical cash infrastructure to make the digital layer useful. Agents acted like distributed human ATMs.
+
+**Regulation can be a distribution advantage.** The bank-led model looked restrictive, but it also gave customers and partners a clearer regulated structure. bKash worked inside that constraint rather than treating it as something to bypass.[^world-bank-2017]
+
+**Sequence products around an existing habit.** Send money came before a broad financial ecosystem. Loans and savings became more practical only after millions of people already had accounts and transaction histories.
+
+## Constraints, tradeoffs and competitive pressure
+
+**Agent liquidity is operational work.** A large agent number means little if an agent does not have enough cash or electronic balance when a customer arrives. The system therefore needs distribution, liquidity management and incentives in addition to software.[^world-bank-2014]
+
+**Cash-out fees create tension.** bKash historically earned meaningful revenue from transaction and cash-out charges, but lower-priced competitors made fees a visible customer issue. Bangladesh Bank also changes MFS transaction limits and rules over time, so pricing and product design sit inside a regulated boundary.[^daily-star-market-2025][^limits-2025]
+
+**Competition forced bKash to keep expanding utility.** Nagad's rapid growth and lower pricing showed that network leadership could be challenged. Recent reporting still places bKash as the largest player by several measures, but the exact market-share number depends on whether the comparison uses registered accounts, active accounts, transaction count or transaction value.[^daily-star-market-2025]
+
+**Growth was not always profitable.** TBS reported that bKash faced significant losses from 2019 through 2021 and returned to profit in the July–September quarter of 2022. That matters because large user numbers do not automatically produce a healthy business.[^tbs-q1-2026]
+
+**MFS rules limit what bKash can do directly.** A wallet is not the same thing as a bank. For products such as savings and lending, bKash often works with regulated banks or financial institutions instead of holding deposits or underwriting every loan itself.[^bkash-loan][^bkash-savings]
+
+## From wallet to financial platform
+
+The biggest strategic change is that bKash is no longer useful only when someone wants to send money and cash it out.
+
+With City Bank, eligible users can receive collateral-free digital loans through the bKash app. The lending bank provides the regulated credit while the bKash account and transaction history help make the digital process possible.[^bkash-loan] Reporting on the programme shows that the loan ceiling was later raised to Tk 50,000, reflecting both demand and regulatory approval.[^prothom-loan]
+
+Savings follows a similar partnership model. Customers can open savings products through the app, but the money is held with regulated partner institutions rather than turning bKash itself into a deposit-taking bank.[^bkash-savings]
+
+Remittance is another extension of the same account. bKash connects with international money-transfer partners, and the company now lets eligible Bangladeshis abroad operate bKash accounts using supported foreign mobile numbers.[^bkash-remittance][^bkash-abroad]
+
+The strategic point is not "add more features." It is that each new product is attached to the same financial identity, account balance, transaction history and distribution network.
+
+## Business model
+
+bKash earns from financial transactions and services around its network, including cash-out and transfer-related charges, merchant payments and other regulated service relationships. The exact revenue mix by product is not publicly broken out in enough detail to show which service contributes how much profit.
+
+A more useful way to think about the model is the movement from **cash-heavy transactions** toward **digital loops**. If money enters bKash as salary or remittance, moves to another person, pays a merchant, pays a bill or goes into a savings product without being cashed out, the ecosystem becomes more useful while depending less on physical cash handling.
+
+That is why merchant acceptance, bank integration, remittance, savings and credit matter strategically. They increase the number of reasons for a customer to keep value and activity inside the system.[^bkash-remittance][^bkash-savings]
+
+## Capital and strategic investors
+
+bKash began with BRAC Bank and Money in Motion as the founding shareholders. IFC joined in 2013 and the Gates Foundation in 2014. Ant later joined the shareholder group, followed by SoftBank.[^world-bank-2014][^bkash-about]
+
+The investors did more than add capital. BRAC Bank brought the regulated banking structure and local institutional base. IFC and the Gates Foundation added credibility around governance and financial inclusion. Ant brought a relationship with a major digital-payments ecosystem. SoftBank brought very large growth capital.
+
+The most visible financing event came in 2021. TBS reported that SoftBank Vision Fund II would invest $250 million for more than a 10% stake and that the transaction would take bKash's valuation to around $2 billion.[^softbank-2021]
+
+bKash has also said that it has attracted $381 million of investment from BRAC Bank, Money in Motion, IFC, Gates Foundation, Ant Group and SoftBank.[^bkash-investment] That figure is a company-reported total, and public articles do not provide a clean round-by-round reconstruction of every dollar.
+
+## Financial performance
+
+The later financial story is very different from the loss-making period around 2019–2021.
+
+The 2025 audited financial statement records revenue of Tk 6,565.56 crore and net profit of Tk 676.33 crore. Year-end total assets were Tk 16,221 crore, while total liabilities were Tk 12,089.73 crore, including Tk 11,004.59 crore of e-money in circulation.[^bkash-financials-2025]
+
+The statement separately reports total comprehensive income of Tk 661.16 crore. That figure includes an updated estimate of employee-benefit obligations recorded outside net profit. It should not be presented as net profit.[^bkash-financials-2025]
+
+The momentum continued into 2026. The unaudited Q1 statement records revenue after VAT of Tk 1,802.43 crore and profit after tax of Tk 184.09 crore.[^bkash-financials-q1-2026]
+
+These numbers show that the company has reached a very different economic stage from its early venture years. They do not, however, tell us the profit contribution of each product, the economics of individual customer cohorts or how much future credit expansion could change risk.
+
+## The next question: digital banking
+
+bKash has applied for a digital bank licence under the name bKash Digital Bank. But as of August 2026, Bangladesh Bank had not completed the latest digital-bank licensing process.[^digital-bank-2026]
+
+That distinction matters. It would be wrong to describe bKash as a licensed digital bank today. The current business remains an MFS provider, while a separate digital-bank licence could open a different regulatory and product model if approved.
+
+For founders, the lesson is useful: even a company with more than a decade of scale cannot assume that the next regulated category is automatic. New licences can require new capital, governance, technology and regulator approval.
+
+## Where bKash stands now
+
+bKash says its customer base passed 83 million by April 2026, supported by more than 350,000 agents and around 900,000 merchants.[^bkash-about] Independent reporting based on 2025 financial information put the customer base at roughly 82 million at year-end, including about 47 million users active within the previous 90 days.[^bonikbarta-2026]
+
+The difference between registered and active users is important. A founder should not use the biggest available account number as the only measure of product health.
+
+The stronger conclusion is that bKash built a distribution and trust network large enough to support multiple financial products, then converted that scale into sustained profitability. The next challenge is not simply acquiring more accounts. It is increasing useful activity while managing regulation, fraud, credit risk, fees and competition.
+
+## What to copy
+
+- Start with one frequent, painful job rather than a long feature list.
+- Design for the technology customers already have, not the technology you wish they had.
+- Treat distribution as part of the product. For bKash, the agent network mattered as much as the interface.
+- Work with regulation early when the business touches money, identity or customer deposits.
+- Add adjacent products only when the existing account, trust or data gives you a real advantage.
+- Use strategic investors for capabilities and credibility, not only valuation.
+- Measure active users and transaction quality, not only registered accounts.
+- Separate product growth from business health; large scale can still lose money.
+
+## What not to copy
+
+- Do not assume a digital product can ignore physical operations in a cash-heavy market.
+- Do not treat a regulatory licence as a formality that can be solved after launch.
+- Do not assume the largest network can stop competing on price, reliability or product quality.
+- Do not describe partner-bank loans or savings as if bKash itself were already a bank.
+- Do not use registered-customer totals as a substitute for active usage.
+- Do not assume past profitability guarantees that credit expansion or a new banking model will be low-risk.
+- Do not turn "super app" into a strategy by itself. Every added financial product still needs a clear customer job.
+
+## Still unknown
+
+Public information does not show each product's revenue, costs and profit margin separately. We also lack a complete picture of how much each channel costs to bring in a customer, how many customers who joined in the same period keep using the service, or how much is lost to fraud. The cost of keeping agents supplied with cash and e-money, and the losses on loans issued through partner banks, are also unclear.
+
+The public funding history is also incomplete. The company names its major investors and reports a cumulative investment figure, but not every round has a fully disclosed amount, valuation and ownership change.[^bkash-investment]
+
+The digital-bank outcome also remains open. Bangladesh Bank was still evaluating the latest applications in August 2026, so any claim about what bKash Digital Bank will eventually be able to offer is still conditional on licensing and final rules.[^digital-bank-2026]
 
 ## Relevant Sources
 
-- [bKash](https://www.bkash.com)
-- [Future Startup](https://futurestartup.com)
-- [The Daily Star – Tech & Startup](https://www.thedailystar.net/tech-startup)
-- [The Business Standard](https://www.tbsnews.net)
-- [LightCastle Partners – Insights](https://lightcastlepartners.com/insights)
+[^world-bank-2017]: [World Bank / IFC – bKash: Built for Change](https://documents1.worldbank.org/curated/en/560181506580665929/pdf/119870-BRI-PUBLIC-bKash-Builtforchangereport.pdf). Case study on the founding partnership, market context and early operating model.
+
+[^world-bank-2014]: [World Bank – bKash Bangladesh](https://documents1.worldbank.org/curated/en/750881468206353481/pdf/909520BRI0Box30Bangladesh0July02014.pdf), July 2014. Early ownership, USSD and agent-network structure.
+
+[^bkash-about]: [bKash – About](https://www.bkash.com/en/about), accessed 10 September 2026. Company history, current customer, agent and merchant figures, and shareholder list.
+
+[^mit-sloan-2023]: [MIT Sloan – bKash Founder and CEO on the Transformative Impact of Financial Inclusion](https://mitsloan.mit.edu/alumni/bkash-founder-and-ceo-transformative-impact-financial-inclusion), 8 May 2023. Founder interview and unicorn context.
+
+[^future-startup-history]: [Future Startup – A Brief History of bKash: Trajectory, Funding, and Lessons](https://futurestartup.com/2025/04/22/a-brief-history-of-bkash-trajectory-funding-and-lessons/), 22 April 2025. Secondary history used for the 2018 strategic-investor context.
+
+[^softbank-2021]: [The Business Standard – SoftBank investment to raise bKash's valuation to $2b](https://www.tbsnews.net/economy/softbank-investment-raise-bkashs-valuation-2bn-329299), 14 November 2021. SoftBank amount, stake and reported valuation.
+
+[^bkash-investment]: [bKash – Fintech Pioneer Award](https://www.bkash.com/en/blog/fintech-pioneer-award-from-prime-minister), company article published 19 August 2024 about the 2023 award. Includes bKash's cumulative investment claim and investor list.
+
+[^daily-star-market-2025]: [The Daily Star – Tk 6000cr moves daily. But not every wallet is winning](https://www.thedailystar.net/business/news/tk-6000cr-moves-daily-not-every-wallet-winning-4220811). Reporting on MFS competition, activity and market-share measures.
+
+[^limits-2025]: [Dhaka Tribune – bKash raises daily, monthly account transaction limits](https://www.dhakatribune.com/business/377554/bkash-raises-daily-monthly-account-transaction), 2025. Updated MFS transaction limits.
+
+[^bkash-loan]: [bKash – Loan](https://www.bkash.com/en/products-services/loan), accessed 10 September 2026. Current company description of bank-partnered digital loans.
+
+[^prothom-loan]: [Prothom Alo English – Digital loan of Tk 7bn disbursed using bKash app](https://en.prothomalo.com/corporate/local/yb2ju9mv5i). Reporting on the City Bank-bKash digital-loan programme.
+
+[^bkash-savings]: [bKash – DPS](https://www.bkash.com/en/products-services/savings/general-dps), accessed 10 September 2026. Current savings products and partner-institution model.
+
+[^bkash-remittance]: [bKash – Money Transfer Service](https://www.bkash.com/en/products-services/money-transfer-service), accessed 10 September 2026. International transfer partners and service model.
+
+[^bkash-abroad]: [bKash – Use the bKash App from Abroad](https://www.bkash.com/en/products-services/bkash-app-frn2), accessed 10 September 2026. Current service for eligible Bangladeshis using supported foreign mobile numbers.
+
+[^bkash-financials-2025]: [bKash Limited – Audited financial statements for 2025](https://brackweb.s3.ap-southeast-1.amazonaws.com/uploads/all/bKash_Financial_Statement_31_December_2025__Final_Signed69eef8eaa1285.pdf), published by BRAC Bank. Statements of financial position and profit or loss, printed pages 3–4. Net profit and total comprehensive income are distinct figures. Checked 11 September 2026.
+
+[^bkash-financials-q1-2026]: [bKash Limited – Unaudited financial statements for Q1 2026](https://brackweb.s3.ap-southeast-1.amazonaws.com/uploads/all/bKash_Limited_Signed_Financial_Statement_Q16a0367f194da9.pdf), published by BRAC Bank. Statement of profit or loss, printed page 2. Checked 11 September 2026.
+
+[^bonikbarta-2026]: [Bonik Barta – How bKash became a BDT 160 billion enterprise from a startup](https://en.bonikbarta.com/business/dt2VlJjSIXS99Mic), 7 June 2026. Used for year-end registered and active-user figures. Financial figures above use the original statements instead.
+
+[^tbs-q1-2026]: [The Business Standard – bKash reports Tk184cr profit in Jan-Mar](https://www.tbsnews.net/economy/stocks/bkash-reports-tk184cr-profit-jan-mar-1438551), 13 May 2026. Q1 2026 unaudited financial results and profitability history.
+
+[^digital-bank-2026]: [bdnews24.com – When will digital banks launch in Bangladesh?](https://bdnews24.com/economy/4f9b66d43787), 6 August 2026. Latest status of the digital-bank licensing process and bKash's position.
