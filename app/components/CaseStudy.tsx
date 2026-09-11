@@ -6,6 +6,25 @@ import './CaseStudy.css'
 
 export type CaseLocale = 'bn' | 'en'
 
+const companies = {
+  '10-minute-school': {
+    theme: 'school',
+    sector: { en: 'Education', bn: 'শিক্ষা' }
+  },
+  pathao: {
+    theme: 'pathao',
+    sector: { en: 'Mobility & logistics', bn: 'যাতায়াত ও লজিস্টিকস' }
+  },
+  bkash: {
+    theme: 'bkash',
+    sector: { en: 'Mobile financial services & fintech', bn: 'মোবাইল আর্থিক সেবা ও ফিনটেক' }
+  },
+  ifarmer: {
+    theme: 'ifarmer',
+    sector: { en: 'Agriculture', bn: 'কৃষি' }
+  }
+} as const
+
 export function CaseLogo({ slug, fallback }: { slug: string; fallback?: string }) {
   const logo = fullLogos.entries.find((entry) => entry.slug === slug)
     || logos.entries.find((entry) => entry.slug === slug)
@@ -15,14 +34,14 @@ export function CaseLogo({ slug, fallback }: { slug: string; fallback?: string }
   return <span className="case-logo" style={background ? { background } : undefined}><img src={mediaUrl(logo.src)} width={size?.w} height={size?.h} alt={logo.name} decoding="async" /></span>
 }
 
-export function CaseCompany({ slug, locale = 'bn' }: { slug: string; locale?: CaseLocale }) {
+export function CaseCompany({ slug, locale = 'bn' }: { slug: keyof typeof companies; locale?: CaseLocale }) {
   const en = locale === 'en'
-  const education = slug === '10-minute-school'
+  const company = companies[slug]
   return (
-    <div className={`case-company case-theme--${education ? 'school' : 'pathao'}`}>
+    <div className={`case-company case-theme--${company.theme}`}>
       <CaseLogo slug={slug} />
       <p>
-        <span>{education ? (en ? 'Education' : 'শিক্ষা') : (en ? 'Mobility & logistics' : 'যাতায়াত ও লজিস্টিকস')} · {en ? 'Bangladesh' : 'বাংলাদেশ'}</span>
+        <span>{company.sector[locale]} · {en ? 'Bangladesh' : 'বাংলাদেশ'}</span>
         <span>{en ? 'Case study based on public sources' : 'পাবলিক তথ্যের ভিত্তিতে তৈরি কেস স্টাডি'}</span>
       </p>
     </div>

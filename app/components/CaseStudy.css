@@ -1,5 +1,7 @@
 .case-theme--pathao { --case-ground: #c82c25; --case-ink: #fff7ef; --case-soft: #ffe9d6; }
 .case-theme--school { --case-ground: #153e32; --case-ink: #fff7e7; --case-soft: #ead99b; }
+.case-theme--bkash { --case-ground: #a50950; --case-ink: #fff7ef; --case-soft: #ffcae0; }
+.case-theme--ifarmer { --case-ground: #efdfa4; --case-ink: #29392b; --case-soft: #425530; }
 
 .case-logo {
   display: inline-flex;
