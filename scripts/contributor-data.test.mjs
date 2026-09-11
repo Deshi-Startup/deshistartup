@@ -1067,7 +1067,7 @@ test('public snapshot validation rejects a profile value that would be silently 
   )
 })
 
-test('the authored current ledger reconciles to four contributors and fourteen community events', async () => {
+test('the authored current ledger reconciles to five contributors and sixteen community events', async () => {
   const [currentLedger, currentPolicy, catalog] = await Promise.all([
     fs.readFile(path.join(root, 'data', 'contributor-ledger.json'), 'utf8').then(JSON.parse),
     fs.readFile(path.join(root, 'data', 'contributors-policy.json'), 'utf8').then(JSON.parse),
@@ -1091,9 +1091,11 @@ test('the authored current ledger reconciles to four contributors and fourteen c
       body: inlineBody,
       user: { login: 'app/deshistartup', type: 'Bot', avatar_url: null }
     }),
-    pull(92, 'shamirislam', { merged_at: '2026-08-25T15:23:42Z' })
+    pull(92, 'shamirislam', { merged_at: '2026-08-25T15:23:42Z' }),
+    pull(105, 'sajidhasan054', { merged_at: '2026-09-10T23:18:44Z' }),
+    pull(106, 'sajidhasan054', { merged_at: '2026-09-10T23:55:08Z' })
   ]
-  const shoumikMedia = {
+  const contributorMedia = {
     '/media/contributors/shoumik-shahriar.webp': {
       key: 'contributors/shoumik-shahriar.860da7a3d696.webp',
       w: 384,
@@ -1102,13 +1104,22 @@ test('the authored current ledger reconciles to four contributors and fourteen c
       sha: '860da7a3d696',
       remote: true,
       uploadedAt: '2026-08-18T21:34:09.801Z'
+    },
+    '/media/contributors/sajid-hasan-sifat.webp': {
+      key: 'contributors/sajid-hasan-sifat.276de2464889.webp',
+      w: 384,
+      h: 384,
+      bytes: 13532,
+      sha: '276de2464889',
+      remote: true,
+      uploadedAt: '2026-09-11T09:45:28.886Z'
     }
   }
   const snapshot = await buildContributorSnapshot({
     policy: currentPolicy,
     ledger: currentLedger,
     targetCatalog: catalog,
-    mediaManifest: shoumikMedia,
+    mediaManifest: contributorMedia,
     fetchImpl: githubUsersMock(pulls, {
       muhaiminulfahim: {
         login: 'MuhaiminulFahim',
@@ -1116,16 +1127,29 @@ test('the authored current ledger reconciles to four contributors and fourteen c
       }
     })
   })
-  assert.equal(snapshot.totals.contributors, 4)
-  assert.equal(snapshot.totals.acceptedEvents, 14)
-  assert.equal(snapshot.totals.pagesImproved, 37)
+  assert.equal(snapshot.totals.contributors, 5)
+  assert.equal(snapshot.totals.acceptedEvents, 16)
+  assert.equal(snapshot.totals.pagesImproved, 39)
   const muhaimin = snapshot.rankedProfiles.find((profile) => profile.id === 'muhaiminul-islam-khan')
   const niloy = snapshot.rankedProfiles.find((profile) => profile.id === 'niloy-biswas')
   const shoumik = snapshot.rankedProfiles.find((profile) => profile.id === 'shoumik-shahriar')
   const uttam = snapshot.rankedProfiles.find((profile) => profile.id === 'uttam-deb')
+  const sajid = snapshot.rankedProfiles.find((profile) => profile.id === 'sajid-hasan-sifat')
+  assert.equal(sajid.avatarUrl, '/media/contributors/sajid-hasan-sifat.webp')
+  assert.equal(sajid.acceptedEventCount, 2)
+  assert.equal(sajid.rank, 3)
+  assert.deepEqual(sajid.roleCategories, {
+    author: 1,
+    editor: 1,
+    translator: 2,
+    researcher: 2,
+    'operational-insight': 0,
+    reviewer: 0,
+    product: 0
+  })
   assert.equal(muhaimin.avatarUrl, 'https://avatars.githubusercontent.com/u/57?v=4&s=160')
   assert.equal(muhaimin.acceptedEventCount, 2)
-  assert.equal(muhaimin.rank, 3)
+  assert.equal(muhaimin.rank, 4)
   assert.equal(niloy.headline, 'Data & AI Professional')
   assert.deepEqual(niloy.links, [
     { label: 'GitHub', url: 'https://github.com/niloy-biswas' },

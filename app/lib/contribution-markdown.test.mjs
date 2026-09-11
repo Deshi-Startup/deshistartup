@@ -422,3 +422,13 @@ test('every current content page is already in the normalized table shape', () =
     )
   }
 })
+
+test('roadmap and journey markup survives edits without locking the instructions', () => {
+  const source = '<RoadmapPath>\n\n<RoadmapStage number="1" title="Validate" href="/en/roadmap/validate">\n\nAn editable question.\n\n</RoadmapStage>\n\n</RoadmapPath>\n\n<JourneySteps locale="en">\n\n1. Original instruction.\n\n</JourneySteps>'
+  const encoded = encodeLockedMdx(source)
+  const edited = decodeLockedMdx(encoded.replace('Original instruction.', 'Updated instruction.'))
+  assert.equal(edited, source.replace('Original instruction.', 'Updated instruction.'))
+  assert.equal(lockedMdxBlocks(source).length, 6)
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited)), true)
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace('</JourneySteps>', ''))), false)
+})

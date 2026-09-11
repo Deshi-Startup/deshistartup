@@ -50,5 +50,5 @@ export default function DirectoryList({ category = 'investors', locale = 'bn' }:
     throw new Error(`Unknown directory category: ${category}`)
   }
 
-  return <DirectoryFilterTable category={category} locale={locale} rows={rows} />
+  return <DirectoryFilterTable key={`${category}-${locale}`} category={category} locale={locale} rows={rows} />
 }

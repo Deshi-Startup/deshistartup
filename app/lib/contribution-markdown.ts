@@ -1,7 +1,7 @@
 const LOCKED_FENCE = 'deshi-locked-mdx'
 // Content-layout wrappers protect their markup while the headings, lists,
 // paragraphs and citations between the tags remain editable Markdown.
-const LOCKED_COMPONENT = /<([A-Z][\w]*)\b[^>]*?\/>|<\/?(CaseTimeline|CaseMilestone|CaseDetail|ToolsResourceGroups|ToolsResourceGroup)\b[^>]*>/g
+const LOCKED_COMPONENT = /<([A-Z][\w]*)\b[^>]*?\/>|<\/?(CaseTimeline|CaseMilestone|CaseDetail|ToolsResourceGroups|ToolsResourceGroup|RoadmapPath|RoadmapStage|JourneySteps)\b[^>]*>/g
 const EDITABLE_COMPONENTS = new Set(['YouTube', 'FacebookVideo'])
 
 function isEditableVideoComponent(name: string): boolean {

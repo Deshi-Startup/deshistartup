@@ -1,16 +1,16 @@
 {
   "schemaVersion": 3,
   "repository": "Deshi-Startup/deshistartup",
-  "refreshedAt": "2026-09-10T08:52:32.673Z",
+  "refreshedAt": "2026-09-11T09:46:07.979Z",
   "totals": {
-    "contributors": 4,
-    "acceptedEvents": 14,
-    "pagesImproved": 37,
+    "contributors": 5,
+    "acceptedEvents": 16,
+    "pagesImproved": 39,
     "roleCategories": {
-      "author": 11,
-      "editor": 2,
-      "translator": 0,
-      "researcher": 0,
+      "author": 12,
+      "editor": 3,
+      "translator": 2,
+      "researcher": 2,
       "operational-insight": 0,
       "reviewer": 0,
       "product": 2
@@ -673,6 +673,80 @@
           "review": null
         }
       ]
+    },
+    {
+      "id": "github-pr-105",
+      "acceptedAt": "2026-09-10",
+      "sourceType": "github-pr",
+      "attribution": null,
+      "locales": [
+        "bn",
+        "en"
+      ],
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/105",
+      "summary": {
+        "bn": "পাঠাওয়ের ২০১৯ সালের সংকট ও পরের ফিনটেক সেবা নিয়ে নতুন তথ্য যোগ করা এবং বাংলা সংস্করণ নতুন করে লেখা",
+        "en": "Expanded the Pathao case study with research on its 2019 restructuring and fintech expansion; rewrote the Bangla edition"
+      },
+      "targets": [
+        {
+          "path": "/case-studies/pathao",
+          "title": {
+            "bn": "পাঠাও",
+            "en": "Pathao"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "sajid-hasan-sifat",
+          "organizationId": null,
+          "roles": [
+            "editor",
+            "researcher",
+            "translator"
+          ],
+          "review": null
+        }
+      ]
+    },
+    {
+      "id": "github-pr-106",
+      "acceptedAt": "2026-09-10",
+      "sourceType": "github-pr",
+      "attribution": null,
+      "locales": [
+        "bn",
+        "en"
+      ],
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/106",
+      "summary": {
+        "bn": "এজেন্ট নেটওয়ার্ক থেকে ব্যাংকের সঙ্গে আর্থিক সেবা দেওয়া পর্যন্ত বিকাশের যাত্রা নিয়ে ইংরেজি ও বাংলায় কেস স্টাডি লেখা",
+        "en": "Authored and translated the bKash case study, tracing its growth from an agent network to bank-partnered financial services"
+      },
+      "targets": [
+        {
+          "path": "/case-studies/bkash",
+          "title": {
+            "bn": "বিকাশ",
+            "en": "bKash"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "sajid-hasan-sifat",
+          "organizationId": null,
+          "roles": [
+            "author",
+            "researcher",
+            "translator"
+          ],
+          "review": null
+        }
+      ]
     }
   ],
   "rankedProfiles": [
@@ -737,6 +811,38 @@
       "rank": 2
     },
     {
+      "id": "sajid-hasan-sifat",
+      "slug": "sajid-hasan-sifat",
+      "displayName": "Sajid Hasan Sifat",
+      "headline": "Data & Business Intelligence Professional",
+      "organizationId": null,
+      "githubLogin": "sajidhasan054",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/sajidhasan054"
+        },
+        {
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/sajid-hasan-analyst"
+        }
+      ],
+      "avatarUrl": "/media/contributors/sajid-hasan-sifat.webp",
+      "acceptedEventCount": 2,
+      "lastAcceptedAt": "2026-09-10",
+      "contributorSince": "2026-09-10",
+      "roleCategories": {
+        "author": 1,
+        "editor": 1,
+        "translator": 2,
+        "researcher": 2,
+        "operational-insight": 0,
+        "reviewer": 0,
+        "product": 0
+      },
+      "rank": 3
+    },
+    {
       "id": "muhaiminul-islam-khan",
       "slug": "muhaiminul-islam-khan",
       "displayName": "Muhaiminul Islam Khan",
@@ -762,7 +868,7 @@
         "reviewer": 0,
         "product": 1
       },
-      "rank": 3
+      "rank": 4
     },
     {
       "id": "uttam-deb",
@@ -794,7 +900,7 @@
         "reviewer": 0,
         "product": 1
       },
-      "rank": 4
+      "rank": 5
     }
   ],
   "coreProfiles": [

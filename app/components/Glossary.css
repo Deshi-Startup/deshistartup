@@ -14,6 +14,7 @@
 .glossary {
   max-width: var(--measure);
   margin-top: 20px;
+  margin-bottom: 28px;
 }
 
 /* Controls: the same cool-white utility panel as the directory filters, because
@@ -190,7 +191,7 @@
 .glossary-entry,
 .glossary-xref {
   display: grid;
-  grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 21%) minmax(0, 1fr);
   gap: 8px 32px;
   margin-inline: -12px;
   border-bottom: 1px solid var(--line-soft);

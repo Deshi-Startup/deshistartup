@@ -1,0 +1,58 @@
+.concept-figure { margin: 1.25rem 0; padding: 1.1rem; background: var(--canvas-soft); border-radius: 12px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.concept-figure .concept-figure__title { margin: 0 0 1rem; font-size: 1rem; font-weight: var(--w-strong); }
+.concept-figure figcaption { margin: .9rem 0 0; color: var(--muted); font-size: .85rem; line-height: 1.65; }
+.concept-ownership__row + .concept-ownership__row { margin-top: 1rem; }
+.concept-ownership__row p { margin: 0 0 .4rem; font-size: .85rem; }
+.concept-ownership__bar { display: flex; gap: 2px; }
+.concept-ownership__bar > span { display: flex; flex-direction: column; justify-content: center; min-width: 0; padding: .6rem 0; text-align: center; font-size: .75rem; overflow-wrap: anywhere; }
+.concept-ownership__bar strong { display: block; font-size: 1.15rem; font-weight: var(--w-heading); }
+.concept-ownership__you { background: var(--green-deep); color: var(--canvas); }
+.concept-ownership__others { background: var(--line-soft); color: var(--ink); }
+.concept-ownership__new { background: var(--yellow); color: var(--warn-ink); }
+.concept-runway__months { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .6rem; list-style: none; padding: 0; margin: 0; }
+.concept-runway__months li { display: flex; flex-direction: column; gap: .35rem; text-align: center; margin: 0; }
+.concept-runway__amount { font-size: .75rem; font-weight: var(--w-strong); white-space: nowrap; }
+.concept-runway__track { display: flex; align-items: flex-end; height: 6rem; border-bottom: 1px solid var(--line); }
+.concept-runway__track > span { width: 100%; background: var(--green); }
+.concept-runway__month { font-size: .75rem; color: var(--muted); }
+.concept-vesting svg { width: 100%; height: auto; display: block; overflow: visible; }
+.concept-vesting__axis { stroke: var(--line); fill: none; }
+.concept-vesting__line { stroke: var(--green-deep); stroke-width: 2.5; fill: none; }
+.concept-vesting circle { fill: var(--green-deep); }
+.concept-vesting text { fill: var(--ink); font: 13px 'Deshi Sans Bengali', sans-serif; }
+.concept-break-even svg { display: block; width: 100%; height: auto; }
+.concept-break-even text { fill: var(--ink); font: 18px 'Deshi Sans Bengali', sans-serif; }
+.concept-break-even__grid { fill: none; stroke: var(--line); }
+.concept-break-even__revenue { fill: none; stroke: var(--green-deep); stroke-width: 3; }
+.concept-break-even__cost { fill: none; stroke: var(--blue); stroke-width: 3; stroke-dasharray: 7 4; }
+.concept-break-even__marker { fill: none; stroke: var(--muted); stroke-dasharray: 3 4; }
+.concept-break-even circle { fill: var(--ink); }
+.concept-break-even__data { margin-top: 12px; font-size: .85rem; }
+.concept-break-even__data summary { cursor: pointer; padding: 6px 0; color: var(--blue); }
+.concept-break-even__data table { width: 100%; margin: 8px 0 0; font-size: .85rem; }
+.concept-break-even__data caption { text-align: left; color: var(--muted); padding: 6px 0; }
+.concept-break-even__data :is(th,td) { text-align: right; padding: 6px; }
+.concept-break-even__data :is(th,td):first-child { text-align: left; }
+.concept-funnel table { width: 100%; margin: 0; font-size: 1rem; line-height: 1.5; border: 0; border-collapse: collapse; background: transparent; }
+.concept-funnel caption { padding: 0 0 12px; text-align: left; color: var(--ink); font-weight: var(--w-strong); }
+.concept-funnel :is(th,td) { padding: 8px 0; border: 0; background: transparent; text-align: left; }
+.concept-funnel thead th { border-bottom: 1px solid var(--line); font-size: .85rem; color: var(--muted); }
+.concept-funnel tbody th { width: 32%; padding-right: 20px; font-weight: 400; }
+.concept-funnel td { width: 68%; font-variant-numeric: tabular-nums; }
+.concept-funnel__track { display: block; width: 100%; height: 8px; margin-top: 4px; background: var(--line-soft); }
+.concept-funnel__track > span { display: block; height: 100%; background: var(--green-deep); }
+.concept-market__scope { border: 1px solid var(--line); padding: 16px; background: var(--canvas); }
+.concept-market__scope .concept-market__scope { margin-top: 16px; margin-left: 16px; border-color: var(--green); background: var(--green-ground); }
+.concept-market__scope .concept-market__scope .concept-market__scope { background: var(--green-soft); }
+.concept-market__scope p { display: flex; flex-direction: column; gap: 4px; margin: 0; font-size: 1rem; line-height: 1.65; }
+.concept-market__scope strong { color: var(--green-deep); font-weight: var(--w-strong); }
+@media (max-width: 450px) {
+  .concept-market__scope { padding: 12px; }
+  .concept-market__scope .concept-market__scope { margin-top: 12px; margin-left: 4px; }
+}
+@media (max-width: 450px) { .concept-break-even text { font-size: 22px; } }
+@media (max-width: 450px) { .concept-figure { padding: .8rem; } .concept-runway__months { gap: .35rem; } }
+@media print { .concept-figure { break-inside: avoid; print-color-adjust: exact; } }
+@media print { .concept-break-even__data::details-content { content-visibility: visible; } }
+
+@media (max-width: 450px) { .concept-vesting text { font-size: 20px; } }

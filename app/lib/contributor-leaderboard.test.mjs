@@ -79,18 +79,18 @@ test('prepares empty, one-person, two-person and 250-person snapshots', () => {
   }
 })
 
-test('prepares the committed four-person, fourteen-event baseline', () => {
+test('prepares the committed five-person, sixteen-event baseline', () => {
   const current = JSON.parse(fs.readFileSync(new URL('../generated/contributors.json', import.meta.url), 'utf8'))
   const view = prepareContributorSnapshot(current)
   assert.deepEqual(view.totals, {
-    contributors: 4,
-    acceptedEvents: 14,
-    pagesImproved: 37,
+    contributors: 5,
+    acceptedEvents: 16,
+    pagesImproved: 39,
     roleCategories: {
-      author: 11,
-      editor: 2,
-      translator: 0,
-      researcher: 0,
+      author: 12,
+      editor: 3,
+      translator: 2,
+      researcher: 2,
       'operational-insight': 0,
       reviewer: 0,
       product: 2
@@ -99,6 +99,7 @@ test('prepares the committed four-person, fourteen-event baseline', () => {
   assert.deepEqual(view.rankedProfiles.map((entry) => entry.displayName), [
     'Shoumik Shahriar',
     'Niloy Biswas',
+    'Sajid Hasan Sifat',
     'Muhaiminul Islam Khan',
     'Uttam Deb'
   ])

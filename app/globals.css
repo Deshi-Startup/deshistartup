@@ -2789,7 +2789,9 @@ html[lang='bn'] ol:not(
     .breadcrumbs ol,
     .contributor-list,
     .contributor-trail ol,
-    .page-credit-list
+    .page-credit-list,
+    .journey-steps > ol,
+    .roadmap-nav ol
   ),
 html[lang='bn'] .reference-list {
   list-style-type: bengali-decimal;

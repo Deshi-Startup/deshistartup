@@ -2,7 +2,7 @@
 
 import './DirectoryFilterTable.css'
 
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useId, useMemo, useRef, useState } from 'react'
 
 const bengaliDigits = (value: number | string) => String(value).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[Number(d)])
 
@@ -272,6 +272,38 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
   const config = CATEGORY_CONFIG[category]
   const fallback = labels.notStated
   const [query, setQuery] = useState('')
+  const [selected, setSelected] = useState<number[]>([])
+  const [comparing, setComparing] = useState(false)
+  const comparisonId = useId()
+  const comparisonHeading = useRef<HTMLHeadingElement>(null)
+  const compareButton = useRef<HTMLButtonElement>(null)
+  const searchInput = useRef<HTMLInputElement>(null)
+  useEffect(() => {
+    if (comparing) {
+      comparisonHeading.current?.focus({ preventScroll: true })
+      comparisonHeading.current?.scrollIntoView({ block: 'start', behavior: 'instant' })
+    } else {
+      compareButton.current?.focus({ preventScroll: true })
+    }
+  }, [comparing])
+  const toggleSelection = (index: number) => {
+    if (selected.includes(index) && selected.length <= 2) setComparing(false)
+    setSelected(current => current.includes(index) ? current.filter(value => value !== index) : current.length < 3 ? [...current, index] : current)
+  }
+  const removeSelection = (index: number) => {
+    if (selected.length <= 2) {
+      setComparing(false)
+      searchInput.current?.focus()
+    }
+    setSelected(current => current.filter(value => value !== index))
+  }
+  const clearSelection = () => {
+    setSelected([])
+    setComparing(false)
+    searchInput.current?.focus()
+  }
+  const selectedRows = selected.map(index => ({ index, row: rows[index] }))
+  const checkDate = (row: DirectoryRow) => row.lastVerified ? (isEn ? row.lastVerified : formatBanglaDate(row.lastVerified)) : fallback
   const [activeFilters, setActiveFilters] = useState<Record<string, string>>({})
 
   const filterOptions = useMemo(
@@ -309,6 +341,7 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
         <label className="directory-search">
           <span>{labels.search}</span>
           <input
+            ref={searchInput}
             type="search"
             value={query}
             placeholder={isEn ? config.searchPlaceholder.en : config.searchPlaceholder.bn}
@@ -318,6 +351,7 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
         {filterOptions.map(({ filter, options }) => (
           <label key={filter.key}>
             <span>{isEn ? filter.label.en : filter.label.bn}</span>
+            <span className="directory-select">
             <select
               value={activeFilters[filter.key] || ''}
               onChange={(event) =>
@@ -329,14 +363,37 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
                 <option key={option} value={option}>{option}</option>
               ))}
             </select>
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m4 6 4 4 4-4" /></svg>
+            </span>
           </label>
         ))}
-        <button type="button" onClick={resetFilters}>{labels.reset}</button>
+        {(query || Object.values(activeFilters).some(Boolean)) && <button type="button" onClick={resetFilters}>{labels.reset}</button>}
       </div>
 
-      <div className="directory-list__summary" aria-live="polite">
-        {labels.showing(shownCount, totalCount)}
+      <div className="directory-list__summary">
+        <span role="status">{labels.showing(shownCount, totalCount)}</span>
+        <span>{isEn ? 'Select up to 3 to compare.' : 'তুলনা করতে সর্বোচ্চ ৩টি বেছে নিন।'}</span>
       </div>
+      {comparing && selected.length >= 2 && <section className="directory-comparison" aria-labelledby={comparisonId}>
+        <div className="directory-comparison__heading">
+          <h2 id={comparisonId} ref={comparisonHeading} tabIndex={-1} data-toc-ignore="">{isEn ? 'Compare your shortlist' : 'বাছাই করা প্রতিষ্ঠানগুলোর তুলনা'}</h2>
+          <button type="button" onClick={() => setComparing(false)}>{isEn ? 'Close comparison' : 'তুলনা বন্ধ করুন'}</button>
+        </div>
+        <p className="directory-comparison__intro" id={`${comparisonId}-description`}>{isEn ? 'Compare the same fields. Confirm current terms with each organisation; an unstated detail is not a negative answer.' : 'একই তথ্য পাশাপাশি মিলিয়ে দেখুন। বর্তমান শর্ত প্রতিটি প্রতিষ্ঠানের কাছে জেনে নিন। কোনো তথ্য দেওয়া না থাকলে ধরে নেবেন না যে সুবিধাটি নেই।'}</p>
+        <div className="directory-comparison__scroll" role="region" aria-label={isEn ? 'Organisation comparison' : 'প্রতিষ্ঠানের তুলনা'} tabIndex={0}>
+          <table aria-labelledby={comparisonId} aria-describedby={`${comparisonId}-description`}>
+            <thead><tr><th scope="col">{isEn ? 'Details' : 'তথ্য'}</th>{selectedRows.map(({ index, row }) => <th scope="col" key={index}>
+              {typeof row.website === 'string' && row.website ? <a href={row.website} target="_blank" rel="noopener noreferrer">{row.name}</a> : row.name}
+              <button type="button" aria-label={isEn ? `Remove ${row.name} from comparison` : `${row.name} তুলনা থেকে সরান`} onClick={() => removeSelection(index)}>{isEn ? 'Remove' : 'সরান'}</button>
+            </th>)}</tr></thead>
+            <tbody>
+              {config.columns.map(column => <tr key={column.key}><th scope="row">{column.key === 'applicationPath' ? (isEn ? 'Contact' : 'যোগাযোগ') : (isEn ? column.label.en : column.label.bn)}</th>{selectedRows.map(({ index, row }) => <td key={index}>{asText(row[column.key], fallback)}</td>)}</tr>)}
+              <tr><th scope="row">{isEn ? 'Notes' : 'আরও তথ্য'}</th>{selectedRows.map(({ index, row }) => <td key={index}>{row.notes || fallback}</td>)}</tr>
+              <tr><th scope="row">{labels.source}</th>{selectedRows.map(({ index, row }) => <td key={index}>{row.sourceUrl ? <a href={row.sourceUrl} target="_blank" rel="noopener noreferrer">{labels.source}</a> : fallback}<span className="directory-comparison__date">{labels.verified}: {checkDate(row)}</span></td>)}</tr>
+            </tbody>
+          </table>
+        </div>
+      </section>}
       <div className="directory-results">
         {filteredRows.length > 0 ? (
           // Most values here are sentences, not tokens. A nine-column grid gave
@@ -344,15 +401,25 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
           // card per entry, with the fields as a labelled definition list, reads
           // at any width and takes a new field without squeezing the rest.
           <div className="directory-cards">
-            {filteredRows.map((row, index) => (
-              // Two entries can share a name, and directory data is edited by
-              // hand: index keeps a collision from silently dropping a row.
-              <article className="directory-card" key={`${row.name}-${index}`}>
+            {filteredRows.map(row => {
+              // Selection uses the source-array position, never the filtered
+              // position or name: duplicate names and filtering stay distinct.
+              const index = rows.indexOf(row)
+              const chosen = selected.includes(index)
+              return <article className="directory-card" key={index} data-selected={chosen || undefined}>
+                <div className="directory-card__heading">
                 <h2 data-toc-ignore="">
                   {typeof row.website === 'string' && row.website ? (
                     <a href={row.website} target="_blank" rel="noopener noreferrer">{row.name}</a>
                   ) : row.name}
                 </h2>
+                <label className="directory-card__select">
+                  <input type="checkbox" checked={chosen} disabled={!chosen && selected.length >= 3}
+                    aria-label={isEn ? `Compare ${row.name}` : `${row.name} তুলনার জন্য বেছে নিন`}
+                    onChange={() => toggleSelection(index)} />
+                  <span>{isEn ? 'Compare' : 'তুলনা করুন'}</span>
+                </label>
+                </div>
                 {row.notes && <p className="directory-card__note">{row.notes}</p>}
                 <dl>
                   {config.columns.map((column) => (
@@ -371,16 +438,22 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
                     labels.source
                   )}
                   <span>
-                    {labels.verified}: {isEn ? row.lastVerified : formatBanglaDate(row.lastVerified)}
+                    {labels.verified}: {checkDate(row)}
                   </span>
                 </p>
               </article>
-            ))}
+            })}
           </div>
         ) : (
           <p className="directory-empty">{labels.noResults}</p>
         )}
       </div>
+      {selected.length > 0 && !comparing && <div className="directory-shortlist">
+        <span role="status">{isEn ? `${selected.length} selected` : `${bengaliDigits(selected.length)}টি বাছাই করা হয়েছে`}{selected.length === 1 && (isEn ? ' · Choose one more' : ' · আরও একটা বেছে নিন')}</span>
+        <button type="button" ref={compareButton} disabled={selected.length < 2}
+          onClick={() => setComparing(true)}>{isEn ? 'Compare' : 'তুলনা করুন'}</button>
+        <button type="button" onClick={clearSelection}>{isEn ? 'Clear' : 'সব সরান'}</button>
+      </div>}
     </div>
   )
 }

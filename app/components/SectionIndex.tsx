@@ -28,6 +28,8 @@ interface SectionIndexProps {
   locale?: 'bn' | 'en'
   /** A page-specific listing title; the component owns the single heading. */
   heading?: string
+  /** A gallery directly under the page title can supply its own heading hierarchy. */
+  showHeader?: boolean
   /** Preserve an older authored heading's fragment when consolidating it. */
   id?: string
   /** A collection may present manifest-owned pages visually, retaining their stub status. */
@@ -41,7 +43,7 @@ interface SectionIndexProps {
  * manifest, so it never needs hand-maintenance: adding a page.mdx under the
  * section automatically lists it here after the next build.
  */
-export default function SectionIndex({ section, locale = 'bn', heading, id, renderCollection, plannedOnly = false }: SectionIndexProps) {
+export default function SectionIndex({ section, locale = 'bn', heading, id, renderCollection, plannedOnly = false, showHeader = true }: SectionIndexProps) {
   const isEn = locale === 'en'
   const isDirectory = section === 'directory'
   const isCaseStudy = section === 'case-studies'
@@ -87,12 +89,14 @@ export default function SectionIndex({ section, locale = 'bn', heading, id, rend
   return (
     <section
       id={id}
+      aria-label={!showHeader ? heading : undefined}
       className={isCaseStudy ? 'section-index section-index--case-studies' : 'section-index'}
       data-inline-edit-source="section-index"
       data-pagefind-ignore
     >
       {!plannedOnly && (
         <>
+          {showHeader && <>
           <h2 id={isDirectory ? (isEn ? 'all-directories' : 'সব-ডিরেক্টরি') : (isEn ? 'all-guides-in-this-section' : 'এই-বিভাগের-সব-গাইড')}>
             {heading || (isDirectory ? (isEn ? 'All directories' : 'সব ডিরেক্টরি') : (isEn ? 'All guides in this section' : 'এই বিভাগের সব গাইড'))}
           </h2>
@@ -114,6 +118,7 @@ export default function SectionIndex({ section, locale = 'bn', heading, id, rend
               </span>
             )}
           </p>
+          </>}
 
           {written === 0 && (
             <p className="index-desc section-index__note">

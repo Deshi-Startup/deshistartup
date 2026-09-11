@@ -35,6 +35,15 @@
     "remote": true,
     "uploadedAt": "2026-09-10T12:30:30.030Z"
   },
+  "/media/contributors/sajid-hasan-sifat.webp": {
+    "key": "contributors/sajid-hasan-sifat.276de2464889.webp",
+    "w": 384,
+    "h": 384,
+    "bytes": 13532,
+    "sha": "276de2464889",
+    "remote": true,
+    "uploadedAt": "2026-09-11T09:45:28.886Z"
+  },
   "/media/contributors/shoumik-shahriar.webp": {
     "key": "contributors/shoumik-shahriar.860da7a3d696.webp",
     "w": 384,

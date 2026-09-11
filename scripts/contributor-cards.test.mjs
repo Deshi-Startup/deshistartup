@@ -149,7 +149,7 @@ test('card build creates 1200 by 630 PNGs, replaces cards, and removes stale ass
   await fs.writeFile(path.join(outputDir, 'niloy-biswas.png'), 'old')
 
   const result = await buildContributorCards({ snapshot: snapshotData, outputDir, fontPath, markPath })
-  assert.deepEqual(result, { generated: 4, removed: 1 })
+  assert.deepEqual(result, { generated: snapshotData.rankedProfiles.length, removed: 1 })
   await assert.rejects(fs.access(path.join(outputDir, 'stale.png')))
 
   const card = await sharp(path.join(outputDir, 'niloy-biswas.png')).metadata()

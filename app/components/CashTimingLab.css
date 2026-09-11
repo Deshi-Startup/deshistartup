@@ -1,8 +1,7 @@
 .cash-lab {
   margin: 1.5rem 0;
   padding: clamp(.8rem, 3vw, 1.5rem);
-  border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--canvas-soft);
   overflow-wrap: anywhere;
 }
@@ -24,12 +23,12 @@
 .cash-lab__controls { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
 .cash-lab__controls label { display: block; margin-bottom: .4rem; font-weight: var(--w-strong); }
 .cash-lab__controls :is(input,select) { width: 100%; }
-.cash-lab__verdict { padding-left: .8rem; border-left: 3px solid var(--green); }
+.cash-lab__verdict { color: var(--ink); }
 .cash-lab__results { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .7rem; }
-.cash-lab__results div { padding: .8rem; border: 1px solid var(--line); background: var(--canvas); }
+.cash-lab__results div { padding: .8rem 0; }
 .cash-lab__results dt { font-size: .85rem; color: var(--muted); }
 .cash-lab__results dd { margin: .4rem 0 0; font-weight: var(--w-strong); font-variant-numeric: tabular-nums; }
-.cash-lab__chart { margin: 1rem 0; }
+.cash-lab__chart { margin: 1.25rem 0; padding: 1rem; background: var(--canvas); border-radius: 8px; }
 .cash-lab__chart svg { display: block; width: 100%; height: auto; }
 .cash-lab__chart text { fill: var(--muted); font-size: 12px; }
 .cash-lab__zero { stroke: var(--muted); stroke-dasharray: 4 4; }
@@ -40,7 +39,7 @@
 .cash-lab__table table { width: 100%; font-size: .9rem; font-variant-numeric: tabular-nums; }
 .cash-lab__table :is(td,th) { padding: .45rem; text-align: right; }
 .cash-lab__table :is(td,th):first-child { text-align: left; }
-.cash-lab__assumptions summary { cursor: pointer; padding: .6rem 0; }
+.cash-lab :is(.cash-lab__assumptions, .cash-lab__table) summary { cursor: pointer; padding: .6rem 0; }
 @media (max-width: 620px) {
   .cash-lab__controls, .cash-lab__results { grid-template-columns: minmax(0,1fr); }
   .cash-lab__results div { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; }
@@ -52,3 +51,24 @@
   .cash-lab__assumptions::details-content { content-visibility: visible; }
   .cash-lab__results, .cash-lab__chart { break-inside: avoid; }
 }
+
+.cash-lab__shortfall-area { fill: var(--warn-bg); }
+.cash-lab__events { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); list-style: none; gap: 1rem; padding: 0; margin: 1rem 0; }
+.cash-lab__events li { display: flex; flex-direction: column; gap: .2rem; margin: 0; font-size: .85rem; line-height: 1.5; }
+.cash-lab__events li > span:first-child { color: var(--muted); }
+.cash-lab__events strong { font-weight: var(--w-strong); }
+.cash-lab__events li > span:last-child { font-variant-numeric: tabular-nums; }
+.cash-lab__in { color: var(--green-deep); }
+.cash-lab__table { font-size: .9rem; }
+@media (max-width: 450px) {
+  .cash-lab__chart { padding: .7rem; }
+  .cash-lab__events { grid-template-columns: minmax(0,1fr); gap: .75rem; }
+  .cash-lab__events li { display: grid; grid-template-columns: 3.5rem 1fr auto; gap: .5rem; align-items: baseline; }
+}
+@media print {
+  .cash-lab__table::details-content { content-visibility: visible; }
+  .cash-lab__table > :not(summary) { display: block !important; }
+  .cash-lab__shortfall-area { print-color-adjust: exact; }
+}
+
+@media (max-width: 450px) { .cash-lab__chart text { font-size: 20px; } }

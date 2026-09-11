@@ -1,4 +1,5 @@
 import React from 'react'
+import ConceptIllustration from './ConceptIllustration'
 import './Glossary.css'
 import glossaryData from '../../data/glossary.json'
 import contentIndex from '../generated/content-index.json'
@@ -232,6 +233,9 @@ export default function Glossary({ locale = 'bn' }: GlossaryProps) {
               <span className="glossary-entry__label">{labels.example}</span>
               {entry.example[locale]}
             </p>
+          )}
+          {(row.id === 'dilution' || row.id === 'runway' || row.id === 'vesting' || row.id === 'break-even' || row.id === 'funnel' || row.id === 'tam-sam-som') && (
+            <ConceptIllustration concept={row.id} locale={locale} />
           )}
           {entry.watchOut && (
             <p className="glossary-entry__note glossary-entry__note--warn">

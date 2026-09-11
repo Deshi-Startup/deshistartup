@@ -87,6 +87,30 @@
       },
       "confirmedAt": "2026-08-19",
       "visibility": "public"
+    },
+    {
+      "id": "sajid-hasan-sifat",
+      "slug": "sajid-hasan-sifat",
+      "displayName": "Sajid Hasan Sifat",
+      "headline": "Data & Business Intelligence Professional",
+      "organizationId": null,
+      "githubLogin": "sajidhasan054",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/sajidhasan054"
+        },
+        {
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/sajid-hasan-analyst"
+        }
+      ],
+      "avatar": {
+        "kind": "media",
+        "path": "/media/contributors/sajid-hasan-sifat.webp"
+      },
+      "confirmedAt": "2026-09-11",
+      "visibility": "public"
     }
   ],
   "organizations": [
@@ -447,6 +471,64 @@
           "roles": [
             "editor",
             "product"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "github-pr-105",
+      "acceptedAt": "2026-09-10",
+      "sourceType": "github-pr",
+      "sourceRef": 105,
+      "locales": [
+        "bn",
+        "en"
+      ],
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/105",
+      "summary": {
+        "bn": "পাঠাওয়ের ২০১৯ সালের সংকট ও পরের ফিনটেক সেবা নিয়ে নতুন তথ্য যোগ করা এবং বাংলা সংস্করণ নতুন করে লেখা",
+        "en": "Expanded the Pathao case study with research on its 2019 restructuring and fintech expansion; rewrote the Bangla edition"
+      },
+      "targetPaths": [
+        "/case-studies/pathao"
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "sajid-hasan-sifat",
+          "roles": [
+            "editor",
+            "researcher",
+            "translator"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "github-pr-106",
+      "acceptedAt": "2026-09-10",
+      "sourceType": "github-pr",
+      "sourceRef": 106,
+      "locales": [
+        "bn",
+        "en"
+      ],
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/106",
+      "summary": {
+        "bn": "এজেন্ট নেটওয়ার্ক থেকে ব্যাংকের সঙ্গে আর্থিক সেবা দেওয়া পর্যন্ত বিকাশের যাত্রা নিয়ে ইংরেজি ও বাংলায় কেস স্টাডি লেখা",
+        "en": "Authored and translated the bKash case study, tracing its growth from an agent network to bank-partnered financial services"
+      },
+      "targetPaths": [
+        "/case-studies/bkash"
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "sajid-hasan-sifat",
+          "roles": [
+            "author",
+            "researcher",
+            "translator"
           ]
         }
       ]
