@@ -1,16 +1,16 @@
 {
   "schemaVersion": 3,
   "repository": "Deshi-Startup/deshistartup",
-  "refreshedAt": "2026-09-11T09:46:07.979Z",
+  "refreshedAt": "2026-09-11T11:24:31.221Z",
   "totals": {
     "contributors": 5,
-    "acceptedEvents": 16,
-    "pagesImproved": 39,
+    "acceptedEvents": 17,
+    "pagesImproved": 40,
     "roleCategories": {
-      "author": 12,
+      "author": 13,
       "editor": 3,
-      "translator": 2,
-      "researcher": 2,
+      "translator": 3,
+      "researcher": 3,
       "operational-insight": 0,
       "reviewer": 0,
       "product": 2
@@ -747,6 +747,43 @@
           "review": null
         }
       ]
+    },
+    {
+      "id": "github-pr-107",
+      "acceptedAt": "2026-09-11",
+      "sourceType": "github-pr",
+      "attribution": null,
+      "locales": [
+        "bn",
+        "en"
+      ],
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/107",
+      "summary": {
+        "bn": "iFarmer নিয়ে ইংরেজি ও বাংলায় কেস স্টাডি লেখা",
+        "en": "Researched, authored and translated the iFarmer case study"
+      },
+      "targets": [
+        {
+          "path": "/case-studies/ifarmer",
+          "title": {
+            "bn": "আইফার্মার",
+            "en": "iFarmer"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "sajid-hasan-sifat",
+          "organizationId": null,
+          "roles": [
+            "author",
+            "researcher",
+            "translator"
+          ],
+          "review": null
+        }
+      ]
     }
   ],
   "rankedProfiles": [
@@ -779,6 +816,38 @@
       "rank": 1
     },
     {
+      "id": "sajid-hasan-sifat",
+      "slug": "sajid-hasan-sifat",
+      "displayName": "Sajid Hasan Sifat",
+      "headline": "Data & Business Intelligence Professional",
+      "organizationId": null,
+      "githubLogin": "sajidhasan054",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/sajidhasan054"
+        },
+        {
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/sajid-hasan-analyst"
+        }
+      ],
+      "avatarUrl": "/media/contributors/sajid-hasan-sifat.webp",
+      "acceptedEventCount": 3,
+      "lastAcceptedAt": "2026-09-11",
+      "contributorSince": "2026-09-10",
+      "roleCategories": {
+        "author": 2,
+        "editor": 1,
+        "translator": 3,
+        "researcher": 3,
+        "operational-insight": 0,
+        "reviewer": 0,
+        "product": 0
+      },
+      "rank": 2
+    },
+    {
       "id": "niloy-biswas",
       "slug": "niloy-biswas",
       "displayName": "Niloy Biswas",
@@ -804,38 +873,6 @@
         "editor": 0,
         "translator": 0,
         "researcher": 0,
-        "operational-insight": 0,
-        "reviewer": 0,
-        "product": 0
-      },
-      "rank": 2
-    },
-    {
-      "id": "sajid-hasan-sifat",
-      "slug": "sajid-hasan-sifat",
-      "displayName": "Sajid Hasan Sifat",
-      "headline": "Data & Business Intelligence Professional",
-      "organizationId": null,
-      "githubLogin": "sajidhasan054",
-      "links": [
-        {
-          "label": "GitHub",
-          "url": "https://github.com/sajidhasan054"
-        },
-        {
-          "label": "LinkedIn",
-          "url": "https://www.linkedin.com/in/sajid-hasan-analyst"
-        }
-      ],
-      "avatarUrl": "/media/contributors/sajid-hasan-sifat.webp",
-      "acceptedEventCount": 2,
-      "lastAcceptedAt": "2026-09-10",
-      "contributorSince": "2026-09-10",
-      "roleCategories": {
-        "author": 1,
-        "editor": 1,
-        "translator": 2,
-        "researcher": 2,
         "operational-insight": 0,
         "reviewer": 0,
         "product": 0

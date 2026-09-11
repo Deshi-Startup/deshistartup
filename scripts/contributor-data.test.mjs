@@ -1067,7 +1067,7 @@ test('public snapshot validation rejects a profile value that would be silently 
   )
 })
 
-test('the authored current ledger reconciles to five contributors and sixteen community events', async () => {
+test('the authored current ledger reconciles to five contributors and seventeen community events', async () => {
   const [currentLedger, currentPolicy, catalog] = await Promise.all([
     fs.readFile(path.join(root, 'data', 'contributor-ledger.json'), 'utf8').then(JSON.parse),
     fs.readFile(path.join(root, 'data', 'contributors-policy.json'), 'utf8').then(JSON.parse),
@@ -1093,7 +1093,8 @@ test('the authored current ledger reconciles to five contributors and sixteen co
     }),
     pull(92, 'shamirislam', { merged_at: '2026-08-25T15:23:42Z' }),
     pull(105, 'sajidhasan054', { merged_at: '2026-09-10T23:18:44Z' }),
-    pull(106, 'sajidhasan054', { merged_at: '2026-09-10T23:55:08Z' })
+    pull(106, 'sajidhasan054', { merged_at: '2026-09-10T23:55:08Z' }),
+    pull(107, 'sajidhasan054', { merged_at: '2026-09-11T10:59:43Z' })
   ]
   const contributorMedia = {
     '/media/contributors/shoumik-shahriar.webp': {
@@ -1128,21 +1129,21 @@ test('the authored current ledger reconciles to five contributors and sixteen co
     })
   })
   assert.equal(snapshot.totals.contributors, 5)
-  assert.equal(snapshot.totals.acceptedEvents, 16)
-  assert.equal(snapshot.totals.pagesImproved, 39)
+  assert.equal(snapshot.totals.acceptedEvents, 17)
+  assert.equal(snapshot.totals.pagesImproved, 40)
   const muhaimin = snapshot.rankedProfiles.find((profile) => profile.id === 'muhaiminul-islam-khan')
   const niloy = snapshot.rankedProfiles.find((profile) => profile.id === 'niloy-biswas')
   const shoumik = snapshot.rankedProfiles.find((profile) => profile.id === 'shoumik-shahriar')
   const uttam = snapshot.rankedProfiles.find((profile) => profile.id === 'uttam-deb')
   const sajid = snapshot.rankedProfiles.find((profile) => profile.id === 'sajid-hasan-sifat')
   assert.equal(sajid.avatarUrl, '/media/contributors/sajid-hasan-sifat.webp')
-  assert.equal(sajid.acceptedEventCount, 2)
-  assert.equal(sajid.rank, 3)
+  assert.equal(sajid.acceptedEventCount, 3)
+  assert.equal(sajid.rank, 2)
   assert.deepEqual(sajid.roleCategories, {
-    author: 1,
+    author: 2,
     editor: 1,
-    translator: 2,
-    researcher: 2,
+    translator: 3,
+    researcher: 3,
     'operational-insight': 0,
     reviewer: 0,
     product: 0

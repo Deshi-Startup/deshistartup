@@ -532,6 +532,35 @@
           ]
         }
       ]
+    },
+    {
+      "id": "github-pr-107",
+      "acceptedAt": "2026-09-11",
+      "sourceType": "github-pr",
+      "sourceRef": 107,
+      "locales": [
+        "bn",
+        "en"
+      ],
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/107",
+      "summary": {
+        "bn": "iFarmer নিয়ে ইংরেজি ও বাংলায় কেস স্টাডি লেখা",
+        "en": "Researched, authored and translated the iFarmer case study"
+      },
+      "targetPaths": [
+        "/case-studies/ifarmer"
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "sajid-hasan-sifat",
+          "roles": [
+            "author",
+            "researcher",
+            "translator"
+          ]
+        }
+      ]
     }
   ]
 }
