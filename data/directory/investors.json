@@ -223,5 +223,35 @@
     "sourceUrl": "https://www.acceleratingasia.com/getfunded",
     "lastVerified": "2026-08-19",
     "notes": "A Singapore-based VC accelerator investing in high-growth, pre-Series A technology startups across South and Southeast Asia. Investment is tied to its 100-day accelerator; participating companies pay a US$35,000 programme fee and give 3% equity, separate from the post-money SAFE investment terms."
+  },
+  {
+    "name": "IDLC Venture Capital",
+    "type": "Venture capital fund",
+    "stage": [
+      "Early stage"
+    ],
+    "sectors": [
+      "Sector-agnostic",
+      "Technology-enabled startups"
+    ],
+    "chequeSize": "Not publicly stated",
+    "notableInvestments": [
+      "Arogga",
+      "Barikoi",
+      "iFarmer",
+      "Truck Lagbe",
+      "Intelligent Machines",
+      "Pickaboo"
+    ],
+    "applicationPath": "Applications are closed. IDLC says Fund I is exhausted and it is not currently investing. Follow the official application page for a future reopening.",
+    "website": "https://www.idlcvc.com/",
+    "sourceUrl": "https://www.idlcvc.com/coming-soon-03",
+    "sourceUrls": [
+      "https://www.idlcvc.com/thesis",
+      "https://www.idlcvc.com/"
+    ],
+    "lastVerified": "2026-09-11",
+    "notes": "A Bangladesh-focused investor in early-stage technology and technology-enabled companies. Its published portfolio remains useful for research, but it is not a current funding route. The manager says it plans another fund in 2027; that is a plan, not an open call.",
+    "eligibility": "Its published thesis targets scalable technology businesses solving problems in Bangladesh. New applications are currently closed."
   }
 ]

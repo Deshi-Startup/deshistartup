@@ -607,6 +607,20 @@ values are sentences (coverage areas, rate bands, application steps), a column g
 track too narrow to hold a word, and a new field should cost one more labelled line rather than one
 more squeezed column. There is no horizontal scroll at any width.
 
+### Ecosystem overview and help chooser
+
+The ecosystem page starts with a need-based chooser, then explains the customer–startup
+relationship and the supporting roles. `EcosystemHelp` uses native radio inputs and CSS to show
+the matching contact, question, preparation and useful outcome. The whole label is a touch target;
+the selected wash and focus outline use structural green. It needs no client script. Browsers
+without `:has()` show every path as a readable reference, and print includes all four paths.
+
+Prose, heading rules, the chooser and the map share the site's `--measure`; this page must not add
+a separate paragraph-only width cap. On phones the chooser becomes one column, its label/value
+rows stack, and the map keeps customers and the startup side by side with their exchange below.
+The role links remain ordinary in-page anchors. Official links sit with the government-office
+rows, and the first-contact section provides a reusable message before the detailed precautions.
+
 ### Startup 50 watchlist
 
 The Startup 50 opens with one large folio number and continues into a flat, ruled company list.

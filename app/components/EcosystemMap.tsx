@@ -15,7 +15,8 @@ const copy = {
       ['Funding', 'Investors, lenders and grant programmes', '#funding'],
       ['Public bodies', 'Registration, rules and specific approvals', '#government-offices'],
     ],
-    note: 'Choose a role to read more below. Looking for organisations?',
+    instruction: 'Choose a role to read what it does and when to approach it.',
+    organisations: 'Looking for organisations?',
     directory: 'Browse the directory',
   },
   bn: {
@@ -30,7 +31,8 @@ const copy = {
       ['ফান্ডিং', 'ইনভেস্টর, ঋণদাতা ও অনুদান প্রোগ্রাম', '#ফান্ডিং'],
       ['সরকারি দপ্তর', 'রেজিস্ট্রেশন, নিয়মকানুন ও নির্দিষ্ট অনুমোদন', '#সরকারি-দপ্তর'],
     ],
-    note: 'বিস্তারিত জানতে নিচের যেকোনো টপিকে ক্লিক করুন। প্রতিষ্ঠান খুঁজছেন?',
+    instruction: 'কার কী ভূমিকা আর কখন কার কাছে যাবেন, জানতে নিচে বেছে নিন।',
+    organisations: 'প্রতিষ্ঠান খুঁজছেন?',
     directory: 'ডিরেক্টরি দেখুন',
   },
 }
@@ -40,6 +42,7 @@ export default function EcosystemMap({ locale = 'bn' }: { locale?: Locale }) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
   return <section className="ecosystem-map" aria-labelledby="ecosystem-map-title">
     <h2 id="ecosystem-map-title" data-toc-ignore>{t.title}</h2>
+    <p className="ecosystem-map__instruction">{t.instruction}</p>
     <nav aria-label={t.title}>
       <div className="ecosystem-map__core">
         <a className="ecosystem-map__customer" href={t.customers[2]}>
@@ -63,6 +66,6 @@ export default function EcosystemMap({ locale = 'bn' }: { locale?: Locale }) {
         </a>)}
       </div>
     </nav>
-    <p className="ecosystem-map__caption">{t.note} <a href={`${basePath}${locale === 'en' ? '/en' : ''}/directory`}>{t.directory}</a>{locale === 'en' ? '.' : '।'}</p>
+    <p className="ecosystem-map__caption">{t.organisations} <a href={`${basePath}${locale === 'en' ? '/en' : ''}/directory`}>{t.directory}</a>{locale === 'en' ? '.' : '।'}</p>
   </section>
 }

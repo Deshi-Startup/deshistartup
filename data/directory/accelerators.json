@@ -302,5 +302,126 @@
     "sourceUrl": "https://www.acceleratingasia.com/getfunded",
     "lastVerified": "2026-08-19",
     "notes": "A 100-day VC accelerator for high-growth, pre-Series A technology startups across South and Southeast Asia. It is designed for companies with evidence of execution or traction and combines capital with intensive growth, fundraising and regional-expansion support."
+  },
+  {
+    "name": "Grameenphone Accelerator",
+    "type": "Corporate accelerator",
+    "stage": [
+      "MVP",
+      "Early stage"
+    ],
+    "sectors": [
+      "Technology",
+      "Fintech",
+      "Healthtech",
+      "Edtech",
+      "Enterprise software"
+    ],
+    "benefits": [
+      "Mentoring and business-building curriculum",
+      "Office space at GP House",
+      "Equity-free grants and investor access"
+    ],
+    "cohortTiming": "The official page says the next application and selection dates will be announced later.",
+    "costOrEquity": "The published programme takes no equity and provides workspace without rent. Confirm the terms of the next intake.",
+    "notableAlumni": [
+      "Sheba.xyz",
+      "CMED Health",
+      "Cramstack",
+      "Barikoi"
+    ],
+    "eligibility": "A Bangladesh-registered technology startup, preferably with a prototype, MVP or early users. At least one cofounder must work full-time. The FAQ describes a minimum of two cofounders.",
+    "applicationPath": "Check the official programme page for the next call. No current application window is published.",
+    "website": "https://www.grameenphone.com/about/gp-accelerator",
+    "sourceUrl": "https://www.grameenphone.com/about/gp-accelerator",
+    "lastVerified": "2026-09-11",
+    "notes": "For Bangladesh-registered technology startups, preferably with a prototype or MVP. The FAQ requires at least two cofounders, with one working full-time. Teams are expected to work mainly from GP House. The published programme takes no equity and charges no workspace rent. The next intake has not been announced."
+  },
+  {
+    "name": "Turtle Venture Sprint",
+    "type": "Regional accelerator",
+    "stage": [
+      "MVP",
+      "Early stage"
+    ],
+    "sectors": [
+      "Technology-enabled startups"
+    ],
+    "benefits": [
+      "Product and revenue-development support",
+      "Pitch deck and fundraising preparation",
+      "Online sessions and an overseas immersion"
+    ],
+    "cohortTiming": "The page still advertises a June 2026 cohort. That date has passed; confirm the next intake.",
+    "costOrEquity": "Published one-time programme fee: US$3,000. No equity taken. Confirm travel, accommodation and other extra costs before paying.",
+    "notableAlumni": [],
+    "eligibility": "Targets startup founders in South and Southeast Asia. Detailed stage and selection requirements for a new intake should be confirmed with the organiser.",
+    "applicationPath": "Contact Turtle Venture through the programme page to confirm the next intake and full written terms.",
+    "website": "https://turtleventure.com/venture-sprint/",
+    "sourceUrl": "https://turtleventure.com/venture-sprint/",
+    "lastVerified": "2026-09-11",
+    "notes": "For founders in South and Southeast Asia. The ten-week programme includes eight online weeks and eight days overseas. The published fee is US$3,000, with no equity taken. Confirm travel, accommodation and other extra costs before paying. The page still advertises the past June 2026 cohort; confirm the next intake. Investor introductions do not guarantee investment."
+  },
+  {
+    "name": "Biniyog Briddhi Voucher Scheme",
+    "type": "Impact investment-readiness support",
+    "stage": [
+      "Market traction",
+      "Growth"
+    ],
+    "sectors": [
+      "Social business",
+      "Climate and environment",
+      "Impact"
+    ],
+    "benefits": [
+      "Subsidised impact investment-readiness support",
+      "Impact measurement and management support",
+      "Work with a certified service provider"
+    ],
+    "cohortTiming": "The page describes the 2025 call. Confirm whether a new call is available.",
+    "costOrEquity": "The published scheme requires an enterprise contribution of 20% of service fees within the voucher limit, or 5% for qualifying rural enterprises; fees above the limit are paid in full.",
+    "notableAlumni": [],
+    "eligibility": "A Bangladesh-registered impact enterprise with a product and customers. At least two years of operation for investment-readiness support, or one year for impact-management support. Apply jointly with a certified provider.",
+    "applicationPath": "Choose a certified provider and ask about the next call before jointly preparing a training plan and application.",
+    "website": "https://www.sie-b.org/vouchers/",
+    "sourceUrl": "https://www.sie-b.org/vouchers/",
+    "lastVerified": "2026-09-11",
+    "notes": "For Bangladesh-registered impact enterprises with a product and customers: at least two years of operation for investment-readiness support, or one year for impact-management support. Enterprises pay 20% of service fees within the voucher limit, or 5% for qualifying rural enterprises, plus all fees above the limit. This subsidises advisory services; it is not an unrestricted cash grant. The page describes the 2025 call; confirm current availability."
+  },
+  {
+    "name": "Iterative",
+    "type": "Regional VC accelerator",
+    "stage": [
+      "Idea",
+      "MVP",
+      "Early stage",
+      "Growth"
+    ],
+    "sectors": [
+      "Sector-agnostic"
+    ],
+    "benefits": [
+      "US$150,000–500,000 investment on admission",
+      "Partner office hours and fundraising support",
+      "Three-month programme and investor demo day"
+    ],
+    "cohortTiming": "Winter 2027 applications are advertised as open; the batch runs February–May 2027. No final deadline is published on the application page.",
+    "costOrEquity": "No programme fee. The published investment uses a post-money SAFE for approximately 10–15% of the company; confirm the offered terms.",
+    "notableAlumni": [
+      "Go Zayaan"
+    ],
+    "eligibility": "The company must be based in Southeast Asia or focus on a Southeast Asian market. A Bangladesh-only business does not meet that published geography rule. Solo founders and idea-stage teams may apply.",
+    "applicationPath": "Read the geography requirement, then use the official Winter 2027 application page.",
+    "website": "https://www.iterative.vc/",
+    "sourceUrl": "https://www.iterative.vc/getting-into-iterative",
+    "sourceUrls": [
+      "https://www.iterative.vc/what-happens-at-iterative",
+      "https://www.iterative.vc/apply",
+      "https://www.iterative.vc/"
+    ],
+    "lastVerified": "2026-09-11",
+    "notes": "The company must be based in Southeast Asia or focus on a Southeast Asian market; a Bangladesh-only business does not meet this geography rule. There is no programme fee, but the investment uses a post-money SAFE for approximately 10–15% of the company. Confirm your offered terms. The programme starts with an in-person orientation, followed by remote participation.",
+    "chequeSize": "US$150,000–500,000 on admission"
   }
 ]
