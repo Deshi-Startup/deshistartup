@@ -18,6 +18,10 @@ const companies = {
   bkash: {
     theme: 'bkash',
     sector: { en: 'Mobile financial services & fintech', bn: 'মোবাইল আর্থিক সেবা ও ফিনটেক' }
+  },
+  ifarmer: {
+    theme: 'ifarmer',
+    sector: { en: 'Agriculture', bn: 'কৃষি' }
   }
 } as const
 
