@@ -1201,7 +1201,9 @@ export default function MapsExperience({
                               {value(selected, id)}
                               <small>
                                 {words(layerById(id).unit, locale)} ·{" "}
-                                {observation(layerById(id), locale)}
+                                <span className="maps-observation-period">
+                                  {observation(layerById(id), locale)}
+                                </span>
                               </small>
                               {id === "internet" && (
                                 <SurveyInterval
@@ -1404,7 +1406,7 @@ export default function MapsExperience({
                   onClick={() => toggleDetails("sources")}
                 >
                   <Icon name="info" />
-                  {sourceName}
+                  <span>{sourceName}</span>
                   <Icon name="arrow" />
                 </button>
               </>
