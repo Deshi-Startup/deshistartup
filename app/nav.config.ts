@@ -54,6 +54,7 @@ export const bnNav: NavSection[] = [
       ['/case-studies', 'কেস স্টাডি'],
       ['/directory', 'ইকোসিস্টেম ডিরেক্টরি'],
       ['/startup-50', 'দেশি স্টার্টআপ ৫০'],
+      ['/maps', 'বাংলাদেশের মানচিত্র'],
       ['/start-here/glossary', 'স্টার্টআপ ডিকশনারি']
     ]
   },
@@ -103,6 +104,7 @@ export const enNav: NavSection[] = [
       ['/en/case-studies', 'Case studies'],
       ['/en/directory', 'Ecosystem directory'],
       ['/en/startup-50', 'Deshi Startup 50'],
+      ['/en/maps', 'Bangladesh maps'],
       ['/en/start-here/glossary', 'Startup glossary']
     ]
   },

@@ -51,14 +51,16 @@
     "seo:audit": "node scripts/seo-audit.mjs",
     "seo:indexnow": "node scripts/submit-indexnow.mjs",
     "seo:indexnow:dry": "node scripts/submit-indexnow.mjs --dry-run",
-    "predev": "node scripts/build-manifest.mjs && node scripts/build-contributor-cards.mjs",
-    "prebuild": "node scripts/route-lint.mjs && node scripts/media-lint.mjs && node scripts/citation-lint.mjs && node scripts/build-manifest.mjs && node scripts/build-contributor-cards.mjs && node scripts/glossary-lint.mjs",
-    "postbuild": "node scripts/postbuild-seo.mjs && node scripts/build-pagefind.mjs && node scripts/search-audit.mjs && node scripts/seo-audit.mjs"
+    "predev": "npm run maps:prepare && node scripts/build-manifest.mjs && node scripts/build-contributor-cards.mjs",
+    "prebuild": "npm run maps:prepare && node scripts/route-lint.mjs && node scripts/media-lint.mjs && node scripts/citation-lint.mjs && node scripts/build-manifest.mjs && node scripts/build-contributor-cards.mjs && node scripts/glossary-lint.mjs",
+    "postbuild": "node scripts/postbuild-seo.mjs && node scripts/build-pagefind.mjs && node scripts/search-audit.mjs && node scripts/seo-audit.mjs",
+    "maps:prepare": "node scripts/prepare-map-assets.mjs"
   },
   "dependencies": {
     "@milkdown/crepe": "^7.22.1",
     "@milkdown/kit": "^7.21.2",
     "jose": "^6.2.10",
+    "maplibre-gl": "^6.9.0",
     "next": "^15.5.25",
     "nextra": "^4.6.1",
     "react": "^19.2.8",
@@ -71,10 +73,13 @@
     "cheerio": "^1.2.0",
     "fontkit": "^2.0.4",
     "pagefind": "^1.5.2",
+    "polylabel": "2.0.1",
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "robots-parser": "^3.0.1",
     "sharp": "^0.35.4",
+    "topojson-client": "3.1.0",
+    "topojson-server": "3.0.1",
     "typescript": "^5.9.3",
     "unified": "^11.0.5",
     "wrangler": "^4.129.0"

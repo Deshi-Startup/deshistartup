@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import LanguageSwitcher from './LanguageSwitcher'
 import SearchBox from './SearchBox'
+import SiteBrand from './SiteBrand'
 import type { SubmitResult } from './ContributionEditor'
 import { cleanRoute } from '../lib/clean-route'
 import { decodeFragment } from '../lib/url-fragment'
@@ -339,7 +340,8 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     pathname === '/en/contributors' ||
     pathname.startsWith('/en/contributors/')
   // Wide collections start without the rail; readers can show it when needed.
-  const isWidePage = pathname === '/startup-50' || pathname === '/en/startup-50'
+  const isMaps = pathname === '/maps' || pathname === '/en/maps'
+  const isWidePage = isMaps || pathname === '/startup-50' || pathname === '/en/startup-50'
   const isStandaloneFeature = isCredits || isWidePage
   const isContact = pathname === '/contact' || pathname === '/en/contact'
   // One 404 document serves every unmatched URL, so the router reports the
@@ -754,19 +756,15 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     (isEn ? 'Mistake: ' : 'ভুল: ') + (pageTitle || pathname)
   )}&page=${encodeURIComponent(pageUrl)}`
 
+  if (isMaps) return <div className="maps-route-shell">{children}</div>
+
   return (
     <>
       <a className="skip-link" href="#main">{isEn ? 'Skip to content' : 'মূল লেখায় যান'}</a>
 
       <header className="site-header">
         <div className="header-inner">
-          <a className="brand" href={localHref(isEn ? '/en' : '/')} aria-label={isEn ? 'Deshi Startup home' : 'দেশি স্টার্টআপ হোম'}>
-            <img src={localHref('/deshi-mark.webp')} alt="" width="50" height="50" />
-            <span>
-              <strong>{isEn ? 'Deshi Startup' : 'দেশি স্টার্টআপ'}</strong>
-              <small>{isEn ? 'Startup manual for Bangladesh' : 'বাংলাদেশে স্টার্টআপ গড়ার ম্যানুয়াল'}</small>
-            </span>
-          </a>
+          <SiteBrand isEn={isEn} />
 
           <div className="header-search">
             <SearchBox isEn={isEn} />

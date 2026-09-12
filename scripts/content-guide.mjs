@@ -6,6 +6,7 @@ const NON_GUIDE_SLUGS = new Set([
   'contributors',
   'directory',
   'guides',
+  'maps',
   'privacy',
   'roadmap',
   'sitemap',

@@ -62,7 +62,7 @@ for (const event of contributorView.events) {
 const pageByLocaleSlug = new Map(pages.map((page) => [`${page.locale}:${page.slug}`, page]))
 const pageByRoute = new Map(pages.map((page) => [page.route, page]))
 const writtenPages = pages.filter((page) => !page.stub)
-const UTILITY_SLUGS = new Set(['contribute', 'contact'])
+const UTILITY_SLUGS = new Set(['contribute', 'contact', 'maps'])
 
 function isContributorProfile(page) {
   return page.kind === 'contributor-profile'

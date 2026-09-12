@@ -607,6 +607,98 @@ values are sentences (coverage areas, rate bands, application steps), a column g
 track too narrow to hold a word, and a new field should cost one more labelled line rather than one
 more squeezed column. There is no horizontal scroll at any width.
 
+### Maps exploration
+
+`/maps` and `/en/maps` use a full-viewport map with a compact Deshi Startup
+header, replacing article chrome only on these routes. The manual's global palette, typography
+tokens and reading layouts remain unchanged. Its wordmark reuses the main site's shared brand
+component and typography. The header contains search, locale, a quiet comparison toggle and a
+deep-green share action; there are no separate Manual or Maps navigation links.
+
+The map fills the space below an 80px desktop header. Two topic groups, layer controls and a
+map/data switch float above it; a compact legend sits near the bottom. The left layer panel and
+right insights panel start closed at every width. Restoring a shared region or comparison opens
+the relevant details unless the shared view is the data table. Data view closes both panels. At
+1100px and below, layers and details are mutually exclusive; selecting a layer on a phone returns
+to the map. Below 760px, the header has a 64px minimum height, 44px icon actions and search collapsed
+behind its own action; opening search adds a full-width second row. Topic selection moves into
+the layer sheet. Below 360px, the wordmark and emblem become smaller within the same row. The
+share action becomes a quiet icon on phones. Scrollable bottom sheets are capped at 58% of the map
+height, or 62% for comparison. The legend hides while a phone sheet is open; when visible, its
+quantitative scale is always shown. Phone search, map controls, panel-close actions and the
+map/data switch retain at least 44px targets; the top map toolbar uses 52px-high buttons.
+
+White panels use 14px corners and a soft ambient shadow; mobile sheets use 18px upper corners.
+Controls use compact rounded corners, with pill-shaped question groups and green-tinted selection.
+These curved, floating surfaces are a Maps exception to the manual's square, flat reading controls.
+The local palette uses muted green ink, pale cream land and subdued teal water, with sequential
+statistical ramps carrying the data. It keeps the existing Deshi Sans Bengali and system Latin
+stack, with font synthesis disabled inside the map workspace. Base text is 14px; compact controls
+are 12–13px. Detail titles use 28px/600 with 1.2 leading, reducing to 26px on phones; Bangla titles
+use 25px/600 with 1.5 leading and natural tracking. Panel headings are 17px/600; section headings
+are 12px/600, with source headings at 13px. Comparison panel headings use 20px/600 and the national
+Bangladesh heading uses 22px/600. Buttons use weight 500, layer options and ranked names 400, field
+labels 600 and selects 400. Overview figures are 29px/500 and primary values 32px/500;
+supporting facts use 600 and comparative numbers remain tabular. Bangla figures retain natural
+tracking. Evidence qualifiers and comparison units use 12px; the overview measure and legend
+measure heading use 14px. English legend labels use 11px. Bangla legend labels and evidence qualifiers use 12px with 1.6
+leading and natural tracking. Map chrome inherits the same family, with 12px/1.5 popup text and
+9px/16px attribution.
+These sizes and colors belong to this workspace, not to the article type ramp or global token
+registry; the shared wordmark keeps its main-site typography.
+The insights close control sits beside the first heading line, leaving the full panel width
+available to the lines below it. A hairline and 16px top padding separate overview figures from
+the active measure; ranked rows use 10px by 8px padding. Zoom buttons form one vertical group, with
+reset separated below. Panel scrollbars are thin with transparent tracks. Phone zoom/reset
+controls sit near the upper-right, clear of the toolbar; Explore and the legend sit above the
+attribution at the bottom.
+
+Control color, border and background feedback takes 140ms with ease-out. Panel entrances and
+layer-chevron rotation take 180ms with the local easing curve; desktop panels enter 8px from
+their side and mobile sheets rise 14px. Reduced motion disables these transitions and animations.
+Changing the detail content returns its scroll to the top. Search results close on blur, share
+feedback clears after five seconds and map movement dismisses hover tooltips. A visually hidden
+heading preserves the route's single h1 whenever the insights heading is absent.
+
+Full map credits start collapsed behind the native information disclosure; a small visible
+© OpenStreetMap link remains beside it. Provider and boundary-source credits remain inside the
+disclosure, which also closes on map drag. Expanded credits are bounded to 320px and the viewport,
+above desktop insights and beneath mobile sheets. Attribution keeps its 9px text; the information
+control has a 20px symbol inside a 28px desktop or 36px phone target.
+
+The analytical outlines retain the pinned district geometry. A restrained green national
+perimeter is dissolved from those same districts and becomes quieter at deeper zoom; it is an
+orientation aid, not a surveyed boundary. Small coastal components receive thinner, quieter
+strokes at country overview so the main perimeter stays clear; styling retains every source
+coordinate. Water and roads remain above thematic fills, whose
+opacity decreases as the reader zooms in. Optional hosted context can fail without replacing
+the country with an incompatible coarse silhouette: the fallback is a neutral background with
+the local analytical outlines.
+
+Count symbols and their legends share proportional area; fixed bands do not change when filtered.
+Source period, unit, geographic level and original-source access stay with the active layer.
+The legend pairs the quantitative scale with compact symbols, coverage and snapshot date for
+enabled context layers; definitions and methods open in Sources. Search, comparison and the data
+table provide text access to the same records. Comparison shows up to five distinct measures,
+with units and observation periods beside row names and source links on values. Division-level
+context identifies the parent division in each cell; missing values remain explicit.
+
+Trade & connections is one optional group beneath the analytical controls. Major roads use a
+muted ochre solid line, railways a slate dashed line, and industrial/port anchors use factory,
+anchor, gate and plane symbols. Markers have transparent 44px targets surrounding 30px visible symbols;
+nearby sites group without losing their individual source links. The same sites remain available
+as text in Insights. Their categorical colors belong to the map encoding, not the brand palette.
+Optional transport loading or failure uses 13px recovery copy and a Retry action at least 44px
+high, without replacing regional data.
+
+Initial framing is set when the map is constructed, without a startup flight. The desktop
+country view uses the full workspace with 24px top/side and 32px bottom padding. The phone fit
+clears the persistent toolbar and legend. Opening panels or changing overlays preserves the
+camera; explicit region/comparison, division, geographic-level and reset actions can fit the map.
+Selection fitting accounts for open panels and respects reduced motion. Meaningful state survives
+share and locale links. The implementation, source register and data-maintenance contract
+live in `docs/maps.md`.
+
 ### Startup 50 watchlist
 
 The Startup 50 opens with one large folio number and continues into a flat, ruled company list.

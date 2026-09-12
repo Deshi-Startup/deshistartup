@@ -1,0 +1,1336 @@
+{
+  "schemaVersion": 1,
+  "indicator": "internetUse",
+  "unit": "percent",
+  "observation": {
+    "label": "2024–25",
+    "periodType": "survey-year",
+    "note": "Annual survey observations labelled 2024–25 by BBS; retrieval and publication dates are not observation dates."
+  },
+  "publication": {
+    "status": "final",
+    "reportDate": null,
+    "registerUploadDate": "2026-04-20",
+    "registerUrl": "https://bbs.gov.bd/pages/static-pages/6922e07a933eb65569e27407",
+    "landingPageUpdatedDate": "2026-07-22",
+    "note": "The title page labels this Final Report and the cover Annual Report. No publication date is stated on the inspected title/imprint pages. The register upload and landing-page update dates are distinct events."
+  },
+  "retrievedAt": "2026-09-12",
+  "transcription": {
+    "verifiedAt": "2026-09-12",
+    "method": "Separate visual transcription of main and statistical-annex tables; all 64 district estimates reconciled between the two tables. Published intervals were visually checked and preserved.",
+    "importer": "scripts/import-map-ict.py",
+    "inputSHA256": {
+      "metadata.json": "42039ef0f903fad0c187293d004cf2b3667208903af3e81fbc75f926a0bd6390",
+      "internet-estimates.csv": "01a6189653a392085ed2713021f894e615a9160b3beacd6ed256d9f6824568c4",
+      "internet-uncertainty.csv": "6ba6b2530aea76a0216eeeeba0a69875b51086114a5fe50a07b862c413e5c964"
+    },
+    "districtEstimatesReconciled": 64,
+    "divisionEstimates": 8,
+    "nationalEstimatesReconciled": 1,
+    "unresolvedCells": 0
+  },
+  "source": {
+    "title": "ICT Access and Use by Households and Individuals Survey 2024–25: Annual Report",
+    "publisher": "Bangladesh Bureau of Statistics (BBS)",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/6/d3fd947e-bfbe-4d23-9a46-6436bc50f126.pdf",
+    "landingUrl": "https://bbs.gov.bd/pages/files/6a609418b859b8767ff841e0",
+    "indexUrl": "https://bbs.gov.bd/pages/static-pages/6922e012933eb65569e25543",
+    "pdfSHA256": "478d66b66cc37c0cc81fe404f9a6636124819d8fb211ec8c8fb449a360783446",
+    "pdfBytes": 151376823,
+    "pdfPages": 324,
+    "isbn": "978-984-475-394-5",
+    "definition": "Percentage of individuals aged 5 years and above in private households who used the Internet in the last three months, from any location and using any device.",
+    "denominator": "Usual private-household members aged 5 years and above in each published geographic domain, represented by the final calibrated survey weights.",
+    "universe": "Private households and their usual members aged 5 years and above living in Bangladesh at the time of the survey; all 64 districts and eight divisions, including rural areas, other urban areas and city corporations.",
+    "recallPeriod": "The last three months before the survey response.",
+    "excludedPopulations": [
+      "Residents of collective or institutional households, including hostels, hotels, hospitals, military barracks, prisons, monasteries and boarding schools.",
+      "Homeless persons and residents of makeshift dwellings not listed in the sampling frame.",
+      "Foreign diplomatic and consular staff living in Bangladesh."
+    ],
+    "method": "Two-stage stratified cluster household survey. Published estimates use final calibrated weights, with adjustments for non-response. Standard errors and confidence intervals account for stratification, clustering and weighting.",
+    "confidenceLevel": 0.95,
+    "uncertaintyMethod": "Linearized standard errors and 95% confidence limits transcribed from the published statistical annex. Estimates are printed to one decimal place; SE and limits to three decimal places. Limits are preserved as published, not recomputed from the rounded estimates.",
+    "uncertaintyCoverage": "Published Internet uncertainty is included for all 64 districts and the national estimate. Division uncertainty is not supplied by the imported tables and is omitted, not imputed.",
+    "limitations": [
+      "Survey estimates have sampling and non-sampling error, including self-reporting and recall error.",
+      "The private-household survey universe differs from a population census; do not present its comparison with Census 2022 as a seamless time series.",
+      "Internet use does not measure household subscription, service quality, purchasing power or the share of national Internet users living in an area.",
+      "National and division rates are published estimates, not unweighted averages of district rates. Do not convert them into counts using the 2022 Census population.",
+      "District confidence intervals may be wide; small differences between point estimates do not establish statistically meaningful rankings.",
+      "Other indicators and narrative benchmarks within the report require separate reconciliation; this import validates only Internet use."
+    ],
+    "reuse": "BBS permits use and publication of the report's data with source acknowledgment. Commercial copying or reproduction of the book is restricted. These source terms are distinct from this repository's code and content licenses.",
+    "definitionSource": {
+      "pdfPage": 46,
+      "printedPage": 10
+    },
+    "coverageSource": {
+      "pdfPage": 53,
+      "printedPage": 17
+    },
+    "methodSources": [
+      {
+        "pdfPage": 53,
+        "printedPage": 17
+      },
+      {
+        "pdfPage": 58,
+        "printedPage": 22
+      },
+      {
+        "pdfPage": 59,
+        "printedPage": 23
+      }
+    ],
+    "reuseSource": {
+      "pdfPage": 2,
+      "printedPage": null
+    }
+  },
+  "national": {
+    "estimate": 53.4,
+    "estimateSource": {
+      "table": "7.1.1",
+      "pdfPage": 133,
+      "printedPage": 97,
+      "sourceName": "Total"
+    },
+    "se": 0.373,
+    "low": 52.642,
+    "high": 54.106,
+    "uncertaintySource": {
+      "table": "SE.2",
+      "pdfPage": 285,
+      "printedPage": 249,
+      "sourceName": "Proportion of individuals who used internet in last 3 months"
+    }
+  },
+  "regions": {
+    "division-barishal": {
+      "estimate": 42.2,
+      "estimateSource": {
+        "table": "7.1.1",
+        "pdfPage": 133,
+        "printedPage": 97,
+        "sourceName": "Barishal"
+      }
+    },
+    "district-barguna": {
+      "estimate": 49.5,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Barguna"
+      },
+      "se": 4.494,
+      "low": 40.68,
+      "high": 58.306,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Barguna"
+      }
+    },
+    "district-barishal": {
+      "estimate": 41.9,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Barishal"
+      },
+      "se": 2.57,
+      "low": 36.814,
+      "high": 46.891,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Barishal"
+      }
+    },
+    "district-bhola": {
+      "estimate": 38.8,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Bhola"
+      },
+      "se": 2.745,
+      "low": 33.428,
+      "high": 44.195,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Bhola"
+      }
+    },
+    "district-jhalokati": {
+      "estimate": 32.0,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Jhalokati"
+      },
+      "se": 2.887,
+      "low": 26.291,
+      "high": 37.612,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Jhalokati"
+      }
+    },
+    "district-patuakhali": {
+      "estimate": 44.9,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Patuakhali"
+      },
+      "se": 2.754,
+      "low": 39.534,
+      "high": 50.335,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Patuakhali"
+      }
+    },
+    "district-pirojpur": {
+      "estimate": 43.6,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Pirojpur"
+      },
+      "se": 3.245,
+      "low": 37.256,
+      "high": 49.983,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Pirojpur"
+      }
+    },
+    "division-chattogram": {
+      "estimate": 65.4,
+      "estimateSource": {
+        "table": "7.1.1",
+        "pdfPage": 133,
+        "printedPage": 97,
+        "sourceName": "Chattogram"
+      }
+    },
+    "district-bandarban": {
+      "estimate": 46.9,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Bandarban"
+      },
+      "se": 4.42,
+      "low": 38.264,
+      "high": 55.599,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Bandarban"
+      }
+    },
+    "district-brahmanbaria": {
+      "estimate": 60.0,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Brahmanbaria"
+      },
+      "se": 1.999,
+      "low": 56.112,
+      "high": 63.952,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Brahmanbaria"
+      }
+    },
+    "district-chandpur": {
+      "estimate": 57.8,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Chandpur"
+      },
+      "se": 2.632,
+      "low": 52.597,
+      "high": 62.918,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Chandpur"
+      }
+    },
+    "district-chattogram": {
+      "estimate": 69.8,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Chattogram"
+      },
+      "se": 1.677,
+      "low": 66.496,
+      "high": 73.072,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Chattogram"
+      }
+    },
+    "district-cumilla": {
+      "estimate": 72.7,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Cumilla"
+      },
+      "se": 1.838,
+      "low": 69.082,
+      "high": 76.289,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Cumilla"
+      }
+    },
+    "district-coxs-bazar": {
+      "estimate": 49.1,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Cox's Bazar"
+      },
+      "se": 2.424,
+      "low": 44.325,
+      "high": 53.833,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Cox's Bazar"
+      }
+    },
+    "district-feni": {
+      "estimate": 72.1,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Feni"
+      },
+      "se": 1.954,
+      "low": 68.223,
+      "high": 75.885,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Feni"
+      }
+    },
+    "district-khagrachhari": {
+      "estimate": 57.7,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Khagrachhari"
+      },
+      "se": 3.454,
+      "low": 50.879,
+      "high": 64.424,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Khagrachhari"
+      }
+    },
+    "district-lakshmipur": {
+      "estimate": 55.4,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Lakshmipur"
+      },
+      "se": 2.594,
+      "low": 50.332,
+      "high": 60.506,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Lakshmipur"
+      }
+    },
+    "district-noakhali": {
+      "estimate": 70.3,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Noakhali"
+      },
+      "se": 1.747,
+      "low": 66.912,
+      "high": 73.762,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Noakhali"
+      }
+    },
+    "district-rangamati": {
+      "estimate": 61.7,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Rangamati"
+      },
+      "se": 3.45,
+      "low": 54.899,
+      "high": 68.429,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Rangamati"
+      }
+    },
+    "division-dhaka": {
+      "estimate": 66.1,
+      "estimateSource": {
+        "table": "7.1.1",
+        "pdfPage": 133,
+        "printedPage": 97,
+        "sourceName": "Dhaka"
+      }
+    },
+    "district-dhaka": {
+      "estimate": 80.3,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Dhaka"
+      },
+      "se": 1.275,
+      "low": 77.773,
+      "high": 82.775,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Dhaka"
+      }
+    },
+    "district-faridpur": {
+      "estimate": 70.1,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Faridpur"
+      },
+      "se": 2.013,
+      "low": 66.189,
+      "high": 74.084,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Faridpur"
+      }
+    },
+    "district-gazipur": {
+      "estimate": 68.7,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Gazipur"
+      },
+      "se": 2.547,
+      "low": 63.729,
+      "high": 73.72,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Gazipur"
+      }
+    },
+    "district-gopalganj": {
+      "estimate": 46.6,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Gopalganj"
+      },
+      "se": 3.672,
+      "low": 39.402,
+      "high": 53.801,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Gopalganj"
+      }
+    },
+    "district-kishoreganj": {
+      "estimate": 63.8,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Kishoreganj"
+      },
+      "se": 3.664,
+      "low": 56.65,
+      "high": 71.02,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Kishoreganj"
+      }
+    },
+    "district-madaripur": {
+      "estimate": 56.2,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Madaripur"
+      },
+      "se": 2.752,
+      "low": 50.816,
+      "high": 61.608,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Madaripur"
+      }
+    },
+    "district-manikganj": {
+      "estimate": 55.7,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Manikganj"
+      },
+      "se": 2.995,
+      "low": 49.818,
+      "high": 61.563,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Manikganj"
+      }
+    },
+    "district-munshiganj": {
+      "estimate": 52.4,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Munshiganj"
+      },
+      "se": 1.867,
+      "low": 48.77,
+      "high": 56.091,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Munshiganj"
+      }
+    },
+    "district-narayanganj": {
+      "estimate": 69.8,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Narayanganj"
+      },
+      "se": 2.506,
+      "low": 64.909,
+      "high": 74.736,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Narayanganj"
+      }
+    },
+    "district-narsingdi": {
+      "estimate": 56.3,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Narsingdi"
+      },
+      "se": 2.739,
+      "low": 50.95,
+      "high": 61.692,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Narsingdi"
+      }
+    },
+    "district-rajbari": {
+      "estimate": 65.4,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Rajbari"
+      },
+      "se": 1.361,
+      "low": 62.746,
+      "high": 68.083,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Rajbari"
+      }
+    },
+    "district-shariatpur": {
+      "estimate": 53.4,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Shariatpur"
+      },
+      "se": 3.409,
+      "low": 46.668,
+      "high": 60.039,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Shariatpur"
+      }
+    },
+    "district-tangail": {
+      "estimate": 39.6,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Tangail"
+      },
+      "se": 2.542,
+      "low": 34.616,
+      "high": 44.586,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Tangail"
+      }
+    },
+    "division-khulna": {
+      "estimate": 52.8,
+      "estimateSource": {
+        "table": "7.1.1",
+        "pdfPage": 133,
+        "printedPage": 97,
+        "sourceName": "Khulna"
+      }
+    },
+    "district-bagerhat": {
+      "estimate": 46.7,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Bagerhat"
+      },
+      "se": 2.714,
+      "low": 41.33,
+      "high": 51.975,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Bagerhat"
+      }
+    },
+    "district-chuadanga": {
+      "estimate": 51.1,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Chuadanga"
+      },
+      "se": 3.544,
+      "low": 44.184,
+      "high": 58.081,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Chuadanga"
+      }
+    },
+    "district-jashore": {
+      "estimate": 66.0,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Jashore"
+      },
+      "se": 3.526,
+      "low": 59.131,
+      "high": 72.958,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Jashore"
+      }
+    },
+    "district-jhenaidah": {
+      "estimate": 56.8,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Jhenaidah"
+      },
+      "se": 2.177,
+      "low": 52.543,
+      "high": 61.08,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Jhenaidah"
+      }
+    },
+    "district-khulna": {
+      "estimate": 51.1,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Khulna"
+      },
+      "se": 3.058,
+      "low": 45.124,
+      "high": 57.117,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Khulna"
+      }
+    },
+    "district-kushtia": {
+      "estimate": 45.9,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Kushtia"
+      },
+      "se": 2.96,
+      "low": 40.091,
+      "high": 51.7,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Kushtia"
+      }
+    },
+    "district-magura": {
+      "estimate": 59.4,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Magura"
+      },
+      "se": 3.152,
+      "low": 53.252,
+      "high": 65.616,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Magura"
+      }
+    },
+    "district-meherpur": {
+      "estimate": 52.9,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Meherpur"
+      },
+      "se": 2.939,
+      "low": 47.113,
+      "high": 58.639,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Meherpur"
+      }
+    },
+    "district-narail": {
+      "estimate": 60.9,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Narail"
+      },
+      "se": 4.041,
+      "low": 53.006,
+      "high": 68.856,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Narail"
+      }
+    },
+    "district-satkhira": {
+      "estimate": 37.4,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Satkhira"
+      },
+      "se": 3.356,
+      "low": 30.818,
+      "high": 43.98,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Satkhira"
+      }
+    },
+    "division-mymensingh": {
+      "estimate": 43.5,
+      "estimateSource": {
+        "table": "7.1.1",
+        "pdfPage": 133,
+        "printedPage": 97,
+        "sourceName": "Mymensingh"
+      }
+    },
+    "district-jamalpur": {
+      "estimate": 37.0,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Jamalpur"
+      },
+      "se": 2.727,
+      "low": 31.67,
+      "high": 42.366,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Jamalpur"
+      }
+    },
+    "district-mymensingh": {
+      "estimate": 47.0,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Mymensingh"
+      },
+      "se": 2.217,
+      "low": 42.63,
+      "high": 51.325,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Mymensingh"
+      }
+    },
+    "district-netrakona": {
+      "estimate": 44.5,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Netrakona"
+      },
+      "se": 2.319,
+      "low": 39.919,
+      "high": 49.014,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Netrakona"
+      }
+    },
+    "district-sherpur": {
+      "estimate": 38.8,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Sherpur"
+      },
+      "se": 2.927,
+      "low": 33.077,
+      "high": 44.556,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Sherpur"
+      }
+    },
+    "division-rajshahi": {
+      "estimate": 41.2,
+      "estimateSource": {
+        "table": "7.1.1",
+        "pdfPage": 133,
+        "printedPage": 97,
+        "sourceName": "Rajshahi"
+      }
+    },
+    "district-bogura": {
+      "estimate": 42.4,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Bogura"
+      },
+      "se": 3.08,
+      "low": 36.379,
+      "high": 48.457,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Bogura"
+      }
+    },
+    "district-joypurhat": {
+      "estimate": 38.8,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Joypurhat"
+      },
+      "se": 2.207,
+      "low": 34.518,
+      "high": 43.173,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Joypurhat"
+      }
+    },
+    "district-naogaon": {
+      "estimate": 45.1,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Naogaon"
+      },
+      "se": 2.46,
+      "low": 40.311,
+      "high": 49.959,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Naogaon"
+      }
+    },
+    "district-natore": {
+      "estimate": 47.1,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Natore"
+      },
+      "se": 3.309,
+      "low": 40.619,
+      "high": 53.595,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Natore"
+      }
+    },
+    "district-chapainawabganj": {
+      "estimate": 37.9,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Chapainababganj"
+      },
+      "se": 2.911,
+      "low": 32.22,
+      "high": 43.637,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Chapainababganj"
+      }
+    },
+    "district-pabna": {
+      "estimate": 39.7,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Pabna"
+      },
+      "se": 2.528,
+      "low": 34.712,
+      "high": 44.625,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Pabna"
+      }
+    },
+    "district-rajshahi": {
+      "estimate": 50.0,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Rajshahi"
+      },
+      "se": 3.511,
+      "low": 43.094,
+      "high": 56.862,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Rajshahi"
+      }
+    },
+    "district-sirajganj": {
+      "estimate": 29.2,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Sirajganj"
+      },
+      "se": 2.779,
+      "low": 23.8,
+      "high": 34.699,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Sirajganj"
+      }
+    },
+    "division-rangpur": {
+      "estimate": 36.9,
+      "estimateSource": {
+        "table": "7.1.1",
+        "pdfPage": 133,
+        "printedPage": 97,
+        "sourceName": "Rangpur"
+      }
+    },
+    "district-dinajpur": {
+      "estimate": 36.4,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Dinajpur"
+      },
+      "se": 3.022,
+      "low": 30.475,
+      "high": 42.326,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Dinajpur"
+      }
+    },
+    "district-gaibandha": {
+      "estimate": 33.7,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Gaibandha"
+      },
+      "se": 2.847,
+      "low": 28.068,
+      "high": 39.234,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Gaibandha"
+      }
+    },
+    "district-kurigram": {
+      "estimate": 39.2,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Kurigram"
+      },
+      "se": 3.858,
+      "low": 31.662,
+      "high": 46.794,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Kurigram"
+      }
+    },
+    "district-lalmonirhat": {
+      "estimate": 46.3,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Lalmonirhat"
+      },
+      "se": 2.715,
+      "low": 40.946,
+      "high": 51.592,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Lalmonirhat"
+      }
+    },
+    "district-nilphamari": {
+      "estimate": 43.1,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Nilphamari"
+      },
+      "se": 3.634,
+      "low": 35.964,
+      "high": 50.216,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Nilphamari"
+      }
+    },
+    "district-panchagarh": {
+      "estimate": 25.3,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Panchagarh"
+      },
+      "se": 2.394,
+      "low": 20.588,
+      "high": 29.977,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Panchagarh"
+      }
+    },
+    "district-rangpur": {
+      "estimate": 37.7,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Rangpur"
+      },
+      "se": 3.333,
+      "low": 31.124,
+      "high": 44.197,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Rangpur"
+      }
+    },
+    "district-thakurgaon": {
+      "estimate": 30.3,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Thakurgaon"
+      },
+      "se": 3.078,
+      "low": 24.245,
+      "high": 36.317,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Thakurgaon"
+      }
+    },
+    "division-sylhet": {
+      "estimate": 39.4,
+      "estimateSource": {
+        "table": "7.1.1",
+        "pdfPage": 133,
+        "printedPage": 97,
+        "sourceName": "Sylhet"
+      }
+    },
+    "district-habiganj": {
+      "estimate": 37.4,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Habiganj"
+      },
+      "se": 2.489,
+      "low": 32.471,
+      "high": 42.232,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 305,
+        "printedPage": 269,
+        "sourceName": "Habiganj"
+      }
+    },
+    "district-moulvibazar": {
+      "estimate": 40.5,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 283,
+        "printedPage": 247,
+        "sourceName": "Moulvibazar"
+      },
+      "se": 2.566,
+      "low": 35.465,
+      "high": 45.53,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Moulvibazar"
+      }
+    },
+    "district-sunamganj": {
+      "estimate": 40.1,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Sunamganj"
+      },
+      "se": 2.813,
+      "low": 34.597,
+      "high": 45.63,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Sunamganj"
+      }
+    },
+    "district-sylhet": {
+      "estimate": 39.7,
+      "estimateSource": {
+        "table": "B-2",
+        "pdfPage": 284,
+        "printedPage": 248,
+        "sourceName": "Sylhet"
+      },
+      "se": 2.954,
+      "low": 33.886,
+      "high": 45.471,
+      "uncertaintySource": {
+        "table": "SE.4",
+        "pdfPage": 306,
+        "printedPage": 270,
+        "sourceName": "Sylhet"
+      }
+    }
+  }
+}

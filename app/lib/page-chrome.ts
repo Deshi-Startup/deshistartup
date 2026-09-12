@@ -16,11 +16,12 @@ const NON_CONTENT_ROUTES = new Set([
   '/contribute',
   '/privacy',
   '/startup-50',
+  '/maps',
   '/terms',
   '/sitemap'
 ])
 
-const CHROMELESS_ROUTES = new Set(['/', '/contact', '/startup-50'])
+const CHROMELESS_ROUTES = new Set(['/', '/contact', '/startup-50', '/maps'])
 
 /**
  * Discussion belongs to editorial content, not project, policy, or task pages.

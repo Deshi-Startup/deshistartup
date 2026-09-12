@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 1,
+  "checked": "2026-09-12",
+  "scope": "Eight passenger-airport reference locations. Excludes military, restricted-use, inactive and proposed airfields. Not a live operating-status, flight-route or freight-capacity dataset.",
+  "authoritySource": "https://ops.caab.gov.bd/group-menu-content/12/105",
+  "authoritySourceUpdated": "2022-05-28",
+  "authoritySourceBodyDated": "2018-07-23",
+  "selectionVerification": {
+    "url": "https://www.tbsnews.net/economy/aviation/how-many-domestic-airports-does-bangladesh-have-how-many-are-operational-1420191",
+    "published": "2026-04-24",
+    "note": "Independent contemporary cross-check of the same eight passenger airports, not a substitute for flight verification."
+  },
+  "recentRouteEvidence": {
+    "url": "https://www.bssnews.net/others/418015",
+    "published": "2026-08-25",
+    "note": "Reports airline announcement for Jashore resumption and other domestic destinations; scheduled service does not establish flights actually operated."
+  },
+  "coordinateLicense": "ODbL 1.0",
+  "reuse": "Attributed authority facts only; no authority prose or imagery republished. OSM coordinates retain ODbL attribution.",
+  "coordinateMethod": "OSM aerodrome bounding-box centres; overview anchors, not entrances, aerodrome reference points or routing destinations.",
+  "coordinateAcquisition": {
+    "retrieved": "2026-09-12",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "query": "[out:json][timeout:60];nwr[\"aeroway\"=\"aerodrome\"][\"iata\"](20.7,88,26.7,92.8);out center tags;",
+    "inputSha256": "092a3eb08e8348dcb2a132091fb4ffd60db7e8e75d313be6ff18ef9f6cb6e3e9",
+    "snapshot": "2026-09-12T11:51:36Z"
+  },
+  "limitations": [
+    "Source-page dates are distinct from retrieval dates. CAAB profiles contain older information; no international certification, terminal commissioning, current capacity or flight frequency is asserted.",
+    "Documented cargo infrastructure at Dhaka, Chattogram and Sylhet does not imply cargo capability is absent elsewhere, nor establish available freight services."
+  ],
+  "sites": [
+    {
+      "id": "airport-dac",
+      "name": {
+        "en": "Hazrat Shahjalal airport",
+        "bn": "হজরত শাহজালাল বিমানবন্দর"
+      },
+      "kind": "airport",
+      "code": "DAC",
+      "district": "district-dhaka",
+      "division": "dhaka",
+      "location": {
+        "en": "Dhaka",
+        "bn": "ঢাকা"
+      },
+      "source": "https://www.hsia.gov.bd/content-details/5/Terminals",
+      "sourcePageUpdated": null,
+      "checked": "2026-09-12",
+      "role": {
+        "en": "Passenger airport; authority documents cargo facilities.",
+        "bn": "যাত্রীবাহী বিমানবন্দর। কর্তৃপক্ষের তথ্যে কার্গো সুবিধার উল্লেখ আছে।"
+      },
+      "point": [
+        90.4017289,
+        23.8423316
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/622496483",
+      "coordinateSnapshot": "2026-09-12T11:51:36Z",
+      "coordinateMethod": "aerodrome-area-centre",
+      "osmName": "হযরত শাহজালাল আন্তর্জাতিক বিমানবন্দর",
+      "sourceNote": {
+        "en": "Source page undated here; current services require verification.",
+        "bn": "উৎসের পাতার তারিখ নিশ্চিত নয়। বর্তমান সেবা যাচাই করুন।"
+      }
+    },
+    {
+      "id": "airport-cgp",
+      "name": {
+        "en": "Shah Amanat airport",
+        "bn": "শাহ আমানত বিমানবন্দর"
+      },
+      "kind": "airport",
+      "code": "CGP",
+      "district": "district-chattogram",
+      "division": "chattogram",
+      "location": {
+        "en": "Chattogram",
+        "bn": "চট্টগ্রাম"
+      },
+      "source": "https://ops.caab.gov.bd/group-menu-content/12/96",
+      "sourcePageUpdated": "2022-07-28",
+      "checked": "2026-09-12",
+      "role": {
+        "en": "Passenger airport; authority documents cargo facilities.",
+        "bn": "যাত্রীবাহী বিমানবন্দর। কর্তৃপক্ষের তথ্যে কার্গো সুবিধার উল্লেখ আছে।"
+      },
+      "point": [
+        91.8137057,
+        22.2536446
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/480343344",
+      "coordinateSnapshot": "2026-09-12T11:51:36Z",
+      "coordinateMethod": "aerodrome-area-centre",
+      "osmName": "শাহ আমানত আন্তর্জাতিক বিমানবন্দর",
+      "sourceNote": {
+        "en": "CAAB profile updated in 2022; current services require verification.",
+        "bn": "বেবিচকের পাতা ২০২২ সালে হালনাগাদ। বর্তমান সেবা যাচাই করুন।"
+      }
+    },
+    {
+      "id": "airport-zyl",
+      "name": {
+        "en": "Osmani airport",
+        "bn": "ওসমানী বিমানবন্দর"
+      },
+      "kind": "airport",
+      "code": "ZYL",
+      "district": "district-sylhet",
+      "division": "sylhet",
+      "location": {
+        "en": "Sylhet",
+        "bn": "সিলেট"
+      },
+      "source": "https://ops.caab.gov.bd/group-menu-content/12/97",
+      "sourcePageUpdated": "2022-05-28",
+      "checked": "2026-09-12",
+      "role": {
+        "en": "Passenger airport; authority documents cargo facilities.",
+        "bn": "যাত্রীবাহী বিমানবন্দর। কর্তৃপক্ষের তথ্যে কার্গো সুবিধার উল্লেখ আছে।"
+      },
+      "point": [
+        91.8625004,
+        24.9637995
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/519013184",
+      "coordinateSnapshot": "2026-09-12T11:51:36Z",
+      "coordinateMethod": "aerodrome-area-centre",
+      "osmName": "এম এ জি ওসমানী আন্তর্জাতিক বিমানবন্দর",
+      "sourceNote": {
+        "en": "CAAB profile updated in 2022; current services require verification.",
+        "bn": "বেবিচকের পাতা ২০২২ সালে হালনাগাদ। বর্তমান সেবা যাচাই করুন।"
+      }
+    },
+    {
+      "id": "airport-cxb",
+      "name": {
+        "en": "Cox’s Bazar airport",
+        "bn": "কক্সবাজার বিমানবন্দর"
+      },
+      "kind": "airport",
+      "code": "CXB",
+      "district": "district-coxs-bazar",
+      "division": "chattogram",
+      "location": {
+        "en": "Cox’s Bazar",
+        "bn": "কক্সবাজার"
+      },
+      "source": "https://ops.caab.gov.bd/group-menu-content/12/105",
+      "sourcePageUpdated": "2022-05-28",
+      "checked": "2026-09-12",
+      "role": {
+        "en": "Passenger airport. Cargo capability not established here.",
+        "bn": "যাত্রীবাহী বিমানবন্দর। এখানে কার্গো সুবিধার তথ্য যাচাই করা হয়নি।"
+      },
+      "point": [
+        91.9629203,
+        21.456287
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/127625837",
+      "coordinateSnapshot": "2026-09-12T11:51:36Z",
+      "coordinateMethod": "aerodrome-area-centre",
+      "osmName": "কক্সবাজার বিমানবন্দর",
+      "sourceNote": {
+        "en": "CAAB profile updated in 2022; current services require verification.",
+        "bn": "বেবিচকের পাতা ২০২২ সালে হালনাগাদ। বর্তমান সেবা যাচাই করুন।"
+      }
+    },
+    {
+      "id": "airport-jsr",
+      "name": {
+        "en": "Jashore airport",
+        "bn": "যশোর বিমানবন্দর"
+      },
+      "kind": "airport",
+      "code": "JSR",
+      "district": "district-jashore",
+      "division": "khulna",
+      "location": {
+        "en": "Jashore",
+        "bn": "যশোর"
+      },
+      "source": "https://ops.caab.gov.bd/group-menu-content/12/99",
+      "sourcePageUpdated": null,
+      "checked": "2026-09-12",
+      "role": {
+        "en": "Passenger airport. Cargo capability not established here.",
+        "bn": "যাত্রীবাহী বিমানবন্দর। এখানে কার্গো সুবিধার তথ্য যাচাই করা হয়নি।"
+      },
+      "point": [
+        89.1587553,
+        23.1845786
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/533133982",
+      "coordinateSnapshot": "2026-09-12T11:51:36Z",
+      "coordinateMethod": "aerodrome-area-centre",
+      "osmName": "যশোর বিমানবন্দর",
+      "sourceNote": {
+        "en": "Source page undated here; current services require verification.",
+        "bn": "উৎসের পাতার তারিখ নিশ্চিত নয়। বর্তমান সেবা যাচাই করুন।"
+      }
+    },
+    {
+      "id": "airport-spd",
+      "name": {
+        "en": "Saidpur airport",
+        "bn": "সৈয়দপুর বিমানবন্দর"
+      },
+      "kind": "airport",
+      "code": "SPD",
+      "district": "district-nilphamari",
+      "division": "rangpur",
+      "location": {
+        "en": "Saidpur, Nilphamari",
+        "bn": "সৈয়দপুর, নীলফামারী"
+      },
+      "source": "https://ops.caab.gov.bd/group-menu-content/12/103",
+      "sourcePageUpdated": null,
+      "checked": "2026-09-12",
+      "role": {
+        "en": "Passenger airport. Cargo capability not established here.",
+        "bn": "যাত্রীবাহী বিমানবন্দর। এখানে কার্গো সুবিধার তথ্য যাচাই করা হয়নি।"
+      },
+      "point": [
+        88.9091955,
+        25.7583609
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/398163337",
+      "coordinateSnapshot": "2026-09-12T11:51:36Z",
+      "coordinateMethod": "aerodrome-area-centre",
+      "osmName": "সৈয়দপুর বিমানবন্দর",
+      "sourceNote": {
+        "en": "Source page undated here; current services require verification.",
+        "bn": "উৎসের পাতার তারিখ নিশ্চিত নয়। বর্তমান সেবা যাচাই করুন।"
+      }
+    },
+    {
+      "id": "airport-rjh",
+      "name": {
+        "en": "Shah Makhdum airport",
+        "bn": "শাহ মখদুম বিমানবন্দর"
+      },
+      "kind": "airport",
+      "code": "RJH",
+      "district": "district-rajshahi",
+      "division": "rajshahi",
+      "location": {
+        "en": "Rajshahi",
+        "bn": "রাজশাহী"
+      },
+      "source": "https://ops.caab.gov.bd/group-menu-content/12/100",
+      "sourcePageUpdated": null,
+      "checked": "2026-09-12",
+      "role": {
+        "en": "Passenger airport. Cargo capability not established here.",
+        "bn": "যাত্রীবাহী বিমানবন্দর। এখানে কার্গো সুবিধার তথ্য যাচাই করা হয়নি।"
+      },
+      "point": [
+        88.6150528,
+        24.4378802
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/499091931",
+      "coordinateSnapshot": "2026-09-12T11:51:36Z",
+      "coordinateMethod": "aerodrome-area-centre",
+      "osmName": "শাহ মখদুম বিমানবন্দর",
+      "sourceNote": {
+        "en": "Source page undated here; current services require verification.",
+        "bn": "উৎসের পাতার তারিখ নিশ্চিত নয়। বর্তমান সেবা যাচাই করুন।"
+      }
+    },
+    {
+      "id": "airport-bzl",
+      "name": {
+        "en": "Barishal airport",
+        "bn": "বরিশাল বিমানবন্দর"
+      },
+      "kind": "airport",
+      "code": "BZL",
+      "district": "district-barishal",
+      "division": "barishal",
+      "location": {
+        "en": "Barishal",
+        "bn": "বরিশাল"
+      },
+      "source": "https://ops.caab.gov.bd/group-menu-content/12/105",
+      "sourcePageUpdated": "2022-05-28",
+      "checked": "2026-09-12",
+      "role": {
+        "en": "Passenger airport. Cargo capability not established here.",
+        "bn": "যাত্রীবাহী বিমানবন্দর। এখানে কার্গো সুবিধার তথ্য যাচাই করা হয়নি।"
+      },
+      "point": [
+        90.3002559,
+        22.803678
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/528002522",
+      "coordinateSnapshot": "2026-09-12T11:51:36Z",
+      "coordinateMethod": "aerodrome-area-centre",
+      "osmName": "বরিশাল বিমানবন্দর",
+      "sourceNote": {
+        "en": "CAAB profile updated in 2022; current services require verification.",
+        "bn": "বেবিচকের পাতা ২০২২ সালে হালনাগাদ। বর্তমান সেবা যাচাই করুন।"
+      }
+    }
+  ]
+}

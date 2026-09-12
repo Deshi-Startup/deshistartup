@@ -1,0 +1,231 @@
+{
+  "checked": "2026-09-12",
+  "scope": "Three seaports and six selected BLPA land ports. A geographic reference sample, not a ranking or complete port/terminal/customs inventory.",
+  "selection": "Authority identity and locality matched to an identifiable OSM facility. Land ports sample northern, western and eastern crossings; selection does not assert trade volume or importance.",
+  "operationScope": "BLPA lists the six land ports among its 17 operating ports. Seaport authority publications document port facilities/activities. These are authority-checked reference locations, not live operating status, terminal commissioning, entry access or route availability.",
+  "publicationDates": {
+    "payra-terminal": "2026-08-19",
+    "payra-handling": "2026-09-03",
+    "mongla-history": "2019-04-16",
+    "akhaura": "2026-05-05",
+    "banglabandha": "2026-05-07"
+  },
+  "coordinateLicense": "ODbL 1.0",
+  "reuse": "Attributed authority facts; no prose, photographs or authority licence assertion. OSM coordinate data retains ODbL attribution.",
+  "coordinateMethod": "OSM bounding-box centre of the feature specified on each record; approximate overview anchors, not boundaries or routing entrances. Source tags never establish operating status.",
+  "inputs": [
+    {
+      "name": "osm",
+      "sha256": "5e3c14ea8d2e5b887d507985625bc936910dffdea5956d3f793dff7b81dbfb61",
+      "snapshot": "2026-09-12T09:28:20Z",
+      "query": "[out:json][timeout:90];\n(\n  nwr[\"industrial\"=\"port\"](20.7,88,26.7,92.8);\n  nwr[\"harbour\"](20.7,88,26.7,92.8);\n  nwr[\"amenity\"=\"customs\"](20.7,88,26.7,92.8);\n  nwr[\"name\"~\"[Ll]and [Pp]ort|স্থলবন্দর|[Pp]ayra [Pp]ort|পায়রা বন্দর|পায়রা বন্দর\"](20.7,88,26.7,92.8);\n);\nout center tags;\n"
+    },
+    {
+      "name": "crossings",
+      "sha256": "f2489c0d902b835ca989e68a8868dce28d3e82159637faa08522e6aaf0111c67",
+      "snapshot": "2026-09-12T09:30:20Z",
+      "query": "[out:json][timeout:90];\n(\n nwr[\"name\"~\"স্থল ?বন্দর|Land ?[Pp]ort|land ?port|Benapole|Bhomra|Akhaura|Tamabil|Banglabandha|বেনাপোল|ভোমরা|আখাউড়া|তামাবিল|বাংলাবান্ধা\"](20.7,88,26.7,92.8);\n nwr[\"barrier\"=\"border_control\"](20.7,88,26.7,92.8);\n nwr[\"office\"=\"customs\"](20.7,88,26.7,92.8);\n);\nout center tags;\n"
+    }
+  ],
+  "sites": [
+    {
+      "id": "chattogram-port",
+      "name": {
+        "en": "Chattogram port",
+        "bn": "চট্টগ্রাম বন্দর"
+      },
+      "kind": "seaport",
+      "district": "district-chattogram",
+      "division": "chattogram",
+      "location": {
+        "en": "Chattogram · port area",
+        "bn": "চট্টগ্রাম · বন্দর এলাকা"
+      },
+      "source": "https://cpa.gov.bd/",
+      "activitySource": "https://cpa.gov.bd/pages/static-pages/6922dc23933eb65569e0e979",
+      "checked": "2026-09-12",
+      "point": [91.8035462, 22.3109231],
+      "coordinateSource": "https://www.openstreetmap.org/way/1077266571",
+      "coordinateSnapshot": "2026-09-12T09:28:20Z",
+      "coordinateMethod": "port-area",
+      "osmName": "চট্টগ্রাম বন্দর"
+    },
+    {
+      "id": "mongla-port",
+      "name": {
+        "en": "Mongla port",
+        "bn": "মোংলা বন্দর"
+      },
+      "kind": "seaport",
+      "district": "district-bagerhat",
+      "division": "khulna",
+      "location": {
+        "en": "Mongla, Bagerhat · port area",
+        "bn": "মোংলা, বাগেরহাট · বন্দর এলাকা"
+      },
+      "source": "https://mpa.gov.bd/site/page/2fa934e2-3601-4fa5-b877-bd9bd4f04aa4/",
+      "activitySource": "https://mpa.gov.bd/pages/common-documents",
+      "checked": "2026-09-12",
+      "point": [89.5920145, 22.4901234],
+      "coordinateSource": "https://www.openstreetmap.org/way/245395959",
+      "coordinateSnapshot": "2026-09-12T09:28:20Z",
+      "coordinateMethod": "port-area",
+      "osmName": "মোংলা সমুদ্র বন্দর"
+    },
+    {
+      "id": "payra-port",
+      "name": {
+        "en": "Payra port",
+        "bn": "পায়রা বন্দর"
+      },
+      "kind": "seaport",
+      "district": "district-patuakhali",
+      "division": "barishal",
+      "location": {
+        "en": "Kalapara, Patuakhali · first-terminal area",
+        "bn": "কলাপাড়া, পটুয়াখালী · প্রথম টার্মিনাল এলাকা"
+      },
+      "source": "https://ppa.gov.bd/pages/static-pages/6922e05a933eb65569e26a61",
+      "activitySource": "https://ppa.gov.bd/pages/static-pages/6922de60933eb65569e1a3b3",
+      "checked": "2026-09-12",
+      "point": [90.2930267, 21.9501185],
+      "coordinateSource": "https://www.openstreetmap.org/way/1537259305",
+      "coordinateSnapshot": "2026-09-12T09:28:20Z",
+      "coordinateMethod": "terminal-area",
+      "osmName": "Payra Port 1st Terminal"
+    },
+    {
+      "id": "benapole-port",
+      "name": {
+        "en": "Benapole land port",
+        "bn": "বেনাপোল স্থলবন্দর"
+      },
+      "kind": "landport",
+      "district": "district-jashore",
+      "division": "khulna",
+      "location": {
+        "en": "Benapole, Jashore · port area",
+        "bn": "বেনাপোল, যশোর · বন্দর এলাকা"
+      },
+      "source": "https://benapole.blpa.gov.bd/",
+      "activitySource": "https://blpa.gov.bd/",
+      "checked": "2026-09-12",
+      "point": [88.892851, 23.0412278],
+      "coordinateSource": "https://www.openstreetmap.org/relation/8229450",
+      "coordinateSnapshot": "2026-09-12T09:30:20Z",
+      "coordinateMethod": "port-area",
+      "osmName": "বেনাপোল স্থল বন্দর"
+    },
+    {
+      "id": "burimari-port",
+      "name": {
+        "en": "Burimari land port",
+        "bn": "বুড়িমারী স্থলবন্দর"
+      },
+      "kind": "landport",
+      "district": "district-lalmonirhat",
+      "division": "rangpur",
+      "location": {
+        "en": "Burimari, Lalmonirhat · commercial port area",
+        "bn": "বুড়িমারী, লালমনিরহাট · বাণিজ্যিক বন্দর এলাকা"
+      },
+      "source": "https://burimari.blpa.gov.bd/",
+      "activitySource": "https://blpa.gov.bd/",
+      "checked": "2026-09-12",
+      "point": [88.924515, 26.4043239],
+      "coordinateSource": "https://www.openstreetmap.org/way/542039355",
+      "coordinateSnapshot": "2026-09-12T09:30:20Z",
+      "coordinateMethod": "port-area",
+      "osmName": "বুড়িমারী স্থল বন্দর"
+    },
+    {
+      "id": "banglabandha-port",
+      "name": {
+        "en": "Banglabandha land port",
+        "bn": "বাংলাবান্ধা স্থলবন্দর"
+      },
+      "kind": "landport",
+      "district": "district-panchagarh",
+      "division": "rangpur",
+      "location": {
+        "en": "Tetulia, Panchagarh · port area",
+        "bn": "তেঁতুলিয়া, পঞ্চগড় · বন্দর এলাকা"
+      },
+      "source": "https://blpa.gov.bd/pages/office-contents/6922d89d933eb65569df9327",
+      "activitySource": "https://blpa.gov.bd/",
+      "checked": "2026-09-12",
+      "point": [88.4126754, 26.6296349],
+      "coordinateSource": "https://www.openstreetmap.org/way/539400757",
+      "coordinateSnapshot": "2026-09-12T09:30:20Z",
+      "coordinateMethod": "port-area",
+      "osmName": "বাংলাবান্ধা স্থল বন্দর"
+    },
+    {
+      "id": "bhomra-port",
+      "name": {
+        "en": "Bhomra land port",
+        "bn": "ভোমরা স্থলবন্দর"
+      },
+      "kind": "landport",
+      "district": "district-satkhira",
+      "division": "khulna",
+      "location": {
+        "en": "Bhomra, Satkhira · crossing building shown",
+        "bn": "ভোমরা, সাতক্ষীরা · সীমান্ত পারাপারের ভবন"
+      },
+      "source": "https://bhomra.blpa.gov.bd/",
+      "activitySource": "https://blpa.gov.bd/",
+      "checked": "2026-09-12",
+      "point": [88.9466358, 22.6694484],
+      "coordinateSource": "https://www.openstreetmap.org/way/794829044",
+      "coordinateSnapshot": "2026-09-12T09:30:20Z",
+      "coordinateMethod": "crossing-building",
+      "osmName": "Bhomra Border Crossing",
+      "boundaryNote": "OSM crossing-building centre lies approximately 23 metres outside the simplified 2020 Satkhira polygon. Source position retained; this regional map does not resolve the legal border."
+    },
+    {
+      "id": "tamabil-port",
+      "name": {
+        "en": "Tamabil land port",
+        "bn": "তামাবিল স্থলবন্দর"
+      },
+      "kind": "landport",
+      "district": "district-sylhet",
+      "division": "sylhet",
+      "location": {
+        "en": "Tamabil, Sylhet · mapped port parking area",
+        "bn": "তামাবিল, সিলেট · বন্দরের পার্কিং এলাকা"
+      },
+      "source": "https://tamabil.blpa.gov.bd/",
+      "activitySource": "https://blpa.gov.bd/",
+      "checked": "2026-09-12",
+      "point": [92.0366978, 25.1815321],
+      "coordinateSource": "https://www.openstreetmap.org/way/908135267",
+      "coordinateSnapshot": "2026-09-12T09:30:20Z",
+      "coordinateMethod": "port-parking-area",
+      "osmName": "তামাবিল ল্যান্ড পোর্ট"
+    },
+    {
+      "id": "akhaura-port",
+      "name": {
+        "en": "Akhaura land port",
+        "bn": "আখাউড়া স্থলবন্দর"
+      },
+      "kind": "landport",
+      "district": "district-brahmanbaria",
+      "division": "chattogram",
+      "location": {
+        "en": "Akhaura, Brahmanbaria · check-post building",
+        "bn": "আখাউড়া, ব্রাহ্মণবাড়িয়া · চেকপোস্ট ভবন"
+      },
+      "source": "https://blpa.gov.bd/pages/office-contents/6922d89d933eb65569df92ee",
+      "activitySource": "https://blpa.gov.bd/",
+      "checked": "2026-09-12",
+      "point": [91.2524442, 23.8403944],
+      "coordinateSource": "https://www.openstreetmap.org/way/1232103543",
+      "coordinateSnapshot": "2026-09-12T09:30:20Z",
+      "coordinateMethod": "crossing-building",
+      "osmName": "Akhaura Check Post"
+    }
+  ]
+}

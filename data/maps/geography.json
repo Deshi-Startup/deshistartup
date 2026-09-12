@@ -1,0 +1,330 @@
+[
+  {
+    "id": "bagerhat",
+    "en": "Bagerhat",
+    "bn": "বাগেরহাট"
+  },
+  {
+    "id": "bandarban",
+    "en": "Bandarban",
+    "bn": "বান্দরবান"
+  },
+  {
+    "id": "barguna",
+    "en": "Barguna",
+    "bn": "বরগুনা"
+  },
+  {
+    "id": "barishal",
+    "en": "Barishal",
+    "bn": "বরিশাল",
+    "boundaryName": "Barisal"
+  },
+  {
+    "id": "bhola",
+    "en": "Bhola",
+    "bn": "ভোলা"
+  },
+  {
+    "id": "bogura",
+    "en": "Bogura",
+    "bn": "বগুড়া",
+    "boundaryName": "Bogra"
+  },
+  {
+    "id": "brahmanbaria",
+    "en": "Brahmanbaria",
+    "bn": "ব্রাহ্মণবাড়িয়া",
+    "boundaryName": "Brahamanbaria"
+  },
+  {
+    "id": "chandpur",
+    "en": "Chandpur",
+    "bn": "চাঁদপুর"
+  },
+  {
+    "id": "chattogram",
+    "en": "Chattogram",
+    "bn": "চট্টগ্রাম",
+    "boundaryName": "Chittagong"
+  },
+  {
+    "id": "chuadanga",
+    "en": "Chuadanga",
+    "bn": "চুয়াডাঙ্গা"
+  },
+  {
+    "id": "cumilla",
+    "en": "Cumilla",
+    "bn": "কুমিল্লা",
+    "boundaryName": "Comilla"
+  },
+  {
+    "id": "coxs-bazar",
+    "en": "Cox's Bazar",
+    "bn": "কক্সবাজার"
+  },
+  {
+    "id": "dhaka",
+    "en": "Dhaka",
+    "bn": "ঢাকা"
+  },
+  {
+    "id": "dinajpur",
+    "en": "Dinajpur",
+    "bn": "দিনাজপুর"
+  },
+  {
+    "id": "faridpur",
+    "en": "Faridpur",
+    "bn": "ফরিদপুর"
+  },
+  {
+    "id": "feni",
+    "en": "Feni",
+    "bn": "ফেনী"
+  },
+  {
+    "id": "gaibandha",
+    "en": "Gaibandha",
+    "bn": "গাইবান্ধা"
+  },
+  {
+    "id": "gazipur",
+    "en": "Gazipur",
+    "bn": "গাজীপুর"
+  },
+  {
+    "id": "gopalganj",
+    "en": "Gopalganj",
+    "bn": "গোপালগঞ্জ"
+  },
+  {
+    "id": "habiganj",
+    "en": "Habiganj",
+    "bn": "হবিগঞ্জ"
+  },
+  {
+    "id": "jamalpur",
+    "en": "Jamalpur",
+    "bn": "জামালপুর"
+  },
+  {
+    "id": "jashore",
+    "en": "Jashore",
+    "bn": "যশোর",
+    "boundaryName": "Jessore"
+  },
+  {
+    "id": "jhalokati",
+    "en": "Jhalokati",
+    "bn": "ঝালকাঠি"
+  },
+  {
+    "id": "jhenaidah",
+    "en": "Jhenaidah",
+    "bn": "ঝিনাইদহ"
+  },
+  {
+    "id": "joypurhat",
+    "en": "Joypurhat",
+    "bn": "জয়পুরহাট"
+  },
+  {
+    "id": "khagrachhari",
+    "en": "Khagrachhari",
+    "bn": "খাগড়াছড়ি"
+  },
+  {
+    "id": "khulna",
+    "en": "Khulna",
+    "bn": "খুলনা"
+  },
+  {
+    "id": "kishoreganj",
+    "en": "Kishoreganj",
+    "bn": "কিশোরগঞ্জ"
+  },
+  {
+    "id": "kurigram",
+    "en": "Kurigram",
+    "bn": "কুড়িগ্রাম"
+  },
+  {
+    "id": "kushtia",
+    "en": "Kushtia",
+    "bn": "কুষ্টিয়া"
+  },
+  {
+    "id": "lakshmipur",
+    "en": "Lakshmipur",
+    "bn": "লক্ষ্মীপুর"
+  },
+  {
+    "id": "lalmonirhat",
+    "en": "Lalmonirhat",
+    "bn": "লালমনিরহাট"
+  },
+  {
+    "id": "madaripur",
+    "en": "Madaripur",
+    "bn": "মাদারীপুর"
+  },
+  {
+    "id": "magura",
+    "en": "Magura",
+    "bn": "মাগুরা"
+  },
+  {
+    "id": "manikganj",
+    "en": "Manikganj",
+    "bn": "মানিকগঞ্জ"
+  },
+  {
+    "id": "moulvibazar",
+    "en": "Moulvibazar",
+    "bn": "মৌলভীবাজার",
+    "boundaryName": "Maulvibazar"
+  },
+  {
+    "id": "meherpur",
+    "en": "Meherpur",
+    "bn": "মেহেরপুর"
+  },
+  {
+    "id": "munshiganj",
+    "en": "Munshiganj",
+    "bn": "মুন্সীগঞ্জ"
+  },
+  {
+    "id": "mymensingh",
+    "en": "Mymensingh",
+    "bn": "ময়মনসিংহ"
+  },
+  {
+    "id": "naogaon",
+    "en": "Naogaon",
+    "bn": "নওগাঁ"
+  },
+  {
+    "id": "narail",
+    "en": "Narail",
+    "bn": "নড়াইল"
+  },
+  {
+    "id": "narayanganj",
+    "en": "Narayanganj",
+    "bn": "নারায়ণগঞ্জ"
+  },
+  {
+    "id": "narsingdi",
+    "en": "Narsingdi",
+    "bn": "নরসিংদী"
+  },
+  {
+    "id": "natore",
+    "en": "Natore",
+    "bn": "নাটোর"
+  },
+  {
+    "id": "chapainawabganj",
+    "en": "Chapainawabganj",
+    "bn": "চাঁপাইনবাবগঞ্জ",
+    "boundaryName": "Nawabganj"
+  },
+  {
+    "id": "netrakona",
+    "en": "Netrakona",
+    "bn": "নেত্রকোনা"
+  },
+  {
+    "id": "nilphamari",
+    "en": "Nilphamari",
+    "bn": "নীলফামারী"
+  },
+  {
+    "id": "noakhali",
+    "en": "Noakhali",
+    "bn": "নোয়াখালী"
+  },
+  {
+    "id": "pabna",
+    "en": "Pabna",
+    "bn": "পাবনা"
+  },
+  {
+    "id": "panchagarh",
+    "en": "Panchagarh",
+    "bn": "পঞ্চগড়"
+  },
+  {
+    "id": "patuakhali",
+    "en": "Patuakhali",
+    "bn": "পটুয়াখালী"
+  },
+  {
+    "id": "pirojpur",
+    "en": "Pirojpur",
+    "bn": "পিরোজপুর"
+  },
+  {
+    "id": "rajbari",
+    "en": "Rajbari",
+    "bn": "রাজবাড়ী"
+  },
+  {
+    "id": "rajshahi",
+    "en": "Rajshahi",
+    "bn": "রাজশাহী"
+  },
+  {
+    "id": "rangamati",
+    "en": "Rangamati",
+    "bn": "রাঙামাটি"
+  },
+  {
+    "id": "rangpur",
+    "en": "Rangpur",
+    "bn": "রংপুর"
+  },
+  {
+    "id": "satkhira",
+    "en": "Satkhira",
+    "bn": "সাতক্ষীরা"
+  },
+  {
+    "id": "shariatpur",
+    "en": "Shariatpur",
+    "bn": "শরীয়তপুর"
+  },
+  {
+    "id": "sherpur",
+    "en": "Sherpur",
+    "bn": "শেরপুর"
+  },
+  {
+    "id": "sirajganj",
+    "en": "Sirajganj",
+    "bn": "সিরাজগঞ্জ"
+  },
+  {
+    "id": "sunamganj",
+    "en": "Sunamganj",
+    "bn": "সুনামগঞ্জ"
+  },
+  {
+    "id": "sylhet",
+    "en": "Sylhet",
+    "bn": "সিলেট"
+  },
+  {
+    "id": "tangail",
+    "en": "Tangail",
+    "bn": "টাঙ্গাইল"
+  },
+  {
+    "id": "thakurgaon",
+    "en": "Thakurgaon",
+    "bn": "ঠাকুরগাঁও"
+  }
+]

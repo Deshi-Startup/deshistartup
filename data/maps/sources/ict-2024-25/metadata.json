@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "indicator": "internetUse",
+  "unit": "percent",
+  "observation": {
+    "label": "2024–25",
+    "periodType": "survey-year",
+    "note": "Annual survey observations labelled 2024–25 by BBS; retrieval and publication dates are not observation dates."
+  },
+  "publication": {
+    "status": "final",
+    "reportDate": null,
+    "registerUploadDate": "2026-04-20",
+    "registerUrl": "https://bbs.gov.bd/pages/static-pages/6922e07a933eb65569e27407",
+    "landingPageUpdatedDate": "2026-07-22",
+    "note": "The title page labels this Final Report and the cover Annual Report. No publication date is stated on the inspected title/imprint pages. The register upload and landing-page update dates are distinct events."
+  },
+  "retrievedAt": "2026-09-12",
+  "transcription": {
+    "verifiedAt": "2026-09-12",
+    "method": "Separate visual transcription of main and statistical-annex tables; all 64 district estimates reconciled between the two tables. Published intervals were visually checked and preserved."
+  },
+  "source": {
+    "title": "ICT Access and Use by Households and Individuals Survey 2024–25: Annual Report",
+    "publisher": "Bangladesh Bureau of Statistics (BBS)",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/6/d3fd947e-bfbe-4d23-9a46-6436bc50f126.pdf",
+    "landingUrl": "https://bbs.gov.bd/pages/files/6a609418b859b8767ff841e0",
+    "indexUrl": "https://bbs.gov.bd/pages/static-pages/6922e012933eb65569e25543",
+    "pdfSHA256": "478d66b66cc37c0cc81fe404f9a6636124819d8fb211ec8c8fb449a360783446",
+    "pdfBytes": 151376823,
+    "pdfPages": 324,
+    "isbn": "978-984-475-394-5",
+    "definition": "Percentage of individuals aged 5 years and above in private households who used the Internet in the last three months, from any location and using any device.",
+    "denominator": "Usual private-household members aged 5 years and above in each published geographic domain, represented by the final calibrated survey weights.",
+    "universe": "Private households and their usual members aged 5 years and above living in Bangladesh at the time of the survey; all 64 districts and eight divisions, including rural areas, other urban areas and city corporations.",
+    "recallPeriod": "The last three months before the survey response.",
+    "excludedPopulations": [
+      "Residents of collective or institutional households, including hostels, hotels, hospitals, military barracks, prisons, monasteries and boarding schools.",
+      "Homeless persons and residents of makeshift dwellings not listed in the sampling frame.",
+      "Foreign diplomatic and consular staff living in Bangladesh."
+    ],
+    "method": "Two-stage stratified cluster household survey. Published estimates use final calibrated weights, with adjustments for non-response. Standard errors and confidence intervals account for stratification, clustering and weighting.",
+    "confidenceLevel": 0.95,
+    "uncertaintyMethod": "Linearized standard errors and 95% confidence limits transcribed from the published statistical annex. Estimates are printed to one decimal place; SE and limits to three decimal places. Limits are preserved as published, not recomputed from the rounded estimates.",
+    "uncertaintyCoverage": "Published Internet uncertainty is included for all 64 districts and the national estimate. Division uncertainty is not supplied by the imported tables and is omitted, not imputed.",
+    "limitations": [
+      "Survey estimates have sampling and non-sampling error, including self-reporting and recall error.",
+      "The private-household survey universe differs from a population census; do not present its comparison with Census 2022 as a seamless time series.",
+      "Internet use does not measure household subscription, service quality, purchasing power or the share of national Internet users living in an area.",
+      "National and division rates are published estimates, not unweighted averages of district rates. Do not convert them into counts using the 2022 Census population.",
+      "District confidence intervals may be wide; small differences between point estimates do not establish statistically meaningful rankings.",
+      "Other indicators and narrative benchmarks within the report require separate reconciliation; this import validates only Internet use."
+    ],
+    "reuse": "BBS permits use and publication of the report's data with source acknowledgment. Commercial copying or reproduction of the book is restricted. These source terms are distinct from this repository's code and content licenses.",
+    "definitionSource": { "pdfPage": 46, "printedPage": 10 },
+    "coverageSource": { "pdfPage": 53, "printedPage": 17 },
+    "methodSources": [
+      { "pdfPage": 53, "printedPage": 17 },
+      { "pdfPage": 58, "printedPage": 22 },
+      { "pdfPage": 59, "printedPage": 23 }
+    ],
+    "reuseSource": { "pdfPage": 2, "printedPage": null }
+  }
+}

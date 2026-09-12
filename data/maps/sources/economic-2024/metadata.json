@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "observation": 2024,
+  "observationPeriod": {
+    "start": "2024-12-10",
+    "end": "2024-12-26",
+    "note": "Census enumeration period: 10–26 December 2024, excluding 16 and 25 December."
+  },
+  "publication": {
+    "status": "final",
+    "volumeI": "2026-03",
+    "volumeII": "2026-06",
+    "volumeIUpload": "2026-04-07",
+    "volumeIIUpload": "2026-07-23",
+    "xlsxUpload": "2026-05-18",
+    "note": "Volume publication months are printed on their title pages. Upload dates are separate events listed by BBS; file-storage path months are not observation dates."
+  },
+  "retrievedAt": "2026-09-12",
+  "source": {
+    "title": "Economic Census 2024: National Report, final Volumes I and II",
+    "publisher": "Bangladesh Bureau of Statistics (BBS)",
+    "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/3/5c074dc0-09bd-41a5-9068-308e67afe931.pdf",
+    "indexUrl": "https://bbs.gov.bd/pages/static-pages/695b97c8c4774958d7b702b7",
+    "definition": "Counts of economic units and total persons engaged enumerated by the Economic Census 2024. Economic units comprise permanent establishments, temporary establishments and economic households; they are not a count of registered companies or unique corporate owners.",
+    "coverage": "National, eight divisions and 64 districts, including rural and urban areas. Government and non-government units serving profit-making or community-service purposes are included. The scope includes household enterprises and specified farm-based livestock, poultry, fishery and nursery establishments; agricultural production households are excluded.",
+    "excludedCoverage": "The report excludes BSIC sections T and U and other specified activities/populations. Households whose members only earn wages or depend on remittances, rent, interest or pensions are not household economic units on that basis. See Volume I scope pages 3–4 for the complete exclusions.",
+    "permanentEstablishmentDefinition": "An establishment with a permanent structure at a fixed location; it may be owned by an individual, group, community or the state.",
+    "temporaryEstablishmentDefinition": "An establishment without a permanent structure/building, including qualifying regular activities under temporary sheds or enclosures at fixed locations.",
+    "economicHouseholdDefinition": "A household carrying out an economic activity at home or through members' qualifying mobile or itinerant activities, such as a home-based enterprise, vending or own-account transport.",
+    "personsEngagedDefinition": "Total persons working in or for an economic unit, full-time or part-time, including working proprietors, unpaid family workers, casual workers and apprentices. The imported S2/S5 totals include the report's male, female and hijra categories; this is not a count of salaried employees or a wage measure.",
+    "sectorClassification": "BSIC 2020 sections B–S, in the published S4/S5 column order. The imported sector tables cover permanent establishments only.",
+    "sectorShareDenominator": "permanentEstablishments",
+    "sectorPersonsDenominator": "permanentPersonsEngaged",
+    "limitations": [
+      "Historical enumeration counts describe activity in 2024, not live business openings, current customers, revenue, GDP or addressable spending.",
+      "Economic units include government bodies and non-profit/community-service establishments; counts must not be labelled registered private businesses.",
+      "An enterprise with multiple establishments may contribute multiple units. Counts do not identify distinct corporate owners or buyers.",
+      "Sector establishment shares use permanent establishments as the denominator. Temporary establishments and economic households are not assigned sector counts by this imported table.",
+      "Persons engaged include owners and unpaid workers. Dividing TPE by units measures persons engaged per unit, not average salary or full-time-equivalent employment.",
+      "Census coverage, classification and non-sampling errors remain possible; no sampling confidence intervals are supplied by these tables.",
+      "Volume I Table S4 is deliberately excluded: its district labels are misaligned and its male-plus-female totals omit hijra persons. S2, S3 and Volume II S4/S5 were reconciled independently.",
+      "The report's Bengali edition prevails if the two language versions disagree."
+    ],
+    "reuse": "BBS allows use and publication for research or experimental purposes with proper source citation. Commercial copying, microfilming or republication of the report is restricted. These source terms are distinct from the repository's code and content licenses.",
+    "definitionSources": [
+      { "volume": "I", "pdfPage": 27, "printedPage": 3, "topic": "Scope, including specified agricultural establishments" },
+      { "volume": "I", "pdfPage": 28, "printedPage": 4, "topic": "Exclusions and geographic coverage" },
+      { "volume": "I", "pdfPage": 39, "printedPage": 15, "topic": "Census period and economic unit" },
+      { "volume": "I", "pdfPage": 40, "printedPage": 16, "topic": "Permanent/temporary establishments and economic households" },
+      { "volume": "I", "pdfPage": 42, "printedPage": 18, "topic": "Total persons engaged" }
+    ],
+    "reuseSources": [
+      { "volume": "I", "pdfPage": 6, "printedPage": "II" },
+      { "volume": "II", "pdfPage": 2, "printedPage": "ii" }
+    ],
+    "volumes": {
+      "I": {
+        "title": "Economic Census 2024 National Report, Volume I",
+        "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/3/5c074dc0-09bd-41a5-9068-308e67afe931.pdf",
+        "pdfSHA256": "0a027190fd9f2c5b93dd2ae5c9663d65d0e96d668314489b5e56516380781e80",
+        "pdfPages": 185,
+        "detailXlsxUrl": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/806d8a74-5bcf-4c06-bc1f-1aaf7dea3a1d.xlsx",
+        "overviewXlsxUrl": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/e13d7929-4912-444c-a176-c9342a6f4c2c.xlsx"
+      },
+      "II": {
+        "title": "Economic Census 2024 National Report, Volume II",
+        "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/6/c349ddf7-fe70-4c4e-8062-7cc1c468f84b.pdf",
+        "landingUrl": "https://bbs.gov.bd/pages/files/6a6205046668036aac00fc43",
+        "pdfSHA256": "7286f4833e893f8b8fbc2b3674687ff48caa54be36d18cd809f88851c947f3f9",
+        "pdfPages": 1010
+      }
+    },
+    "textExtraction": { "tool": "pdftotext", "version": "26.03.0", "options": ["-layout"] },
+    "inputFiles": {
+      "economic-final.pdf": { "bytes": 5117990, "sha256": "0a027190fd9f2c5b93dd2ae5c9663d65d0e96d668314489b5e56516380781e80" },
+      "economic-final.txt": { "bytes": 999666, "sha256": "6247568731a8b9cde9508d9d397556d4f55702397fb79f980ab320e6b5754aa5", "derivedFrom": "economic-final.pdf", "command": "pdftotext -layout economic-final.pdf economic-final.txt" },
+      "economic-vol2.pdf": { "bytes": 62885761, "sha256": "7286f4833e893f8b8fbc2b3674687ff48caa54be36d18cd809f88851c947f3f9" },
+      "economic-vol2.txt": { "bytes": 6175516, "sha256": "1c0515426adb9ef2ac086c990d5173c044b0eb632ae599f383a7f972d1a6c54c", "derivedFrom": "economic-vol2.pdf", "command": "pdftotext -layout economic-vol2.pdf economic-vol2.txt" },
+      "economic-detail.xlsx": { "bytes": 104258, "sha256": "79a741aed02dbe1425a211e0dac1d8f33f378bf3375e48f902fb83bd2cbe08cf" },
+      "economic-overview.xlsx": { "bytes": 49919, "sha256": "4e3295ae14b8e786c5f6f620ffffa5902420190066d210079d73f677afa10e56" }
+    }
+  },
+  "sectors": {
+    "B": { "name": "Mining and quarrying" },
+    "C": { "name": "Manufacturing" },
+    "D": { "name": "Electricity, gas, steam and air conditioning supply" },
+    "E": { "name": "Water supply; sewerage, waste management and remediation" },
+    "F": { "name": "Construction" },
+    "G": { "name": "Wholesale and retail trade; repair of motor vehicles and motorcycles" },
+    "H": { "name": "Transportation and storage" },
+    "I": { "name": "Accommodation and food service activities" },
+    "J": { "name": "Information and communication" },
+    "K": { "name": "Financial and insurance activities" },
+    "L": { "name": "Real estate activities" },
+    "M": { "name": "Professional, scientific and technical activities" },
+    "N": { "name": "Administrative and support service activities" },
+    "O": { "name": "Public administration and defence; compulsory social security" },
+    "P": { "name": "Education" },
+    "Q": { "name": "Human health and social work activities" },
+    "R": { "name": "Arts, entertainment and recreation" },
+    "S": { "name": "Other service activities" }
+  },
+  "validation": {
+    "verifiedAt": "2026-09-12",
+    "method": "Volume I S2 XLSX cells matched to the final PDF's complete eight-count rows and cross-checked against S3 and division overview 3.3. Volume II S4/S5 sector totals reconciled to S2; all row, rural/urban, district/division and national sums checked. Selected first, middle and final table pages and definitions visually inspected.",
+    "importer": "scripts/import-map-economy.py"
+  }
+}
