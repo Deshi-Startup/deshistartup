@@ -21,7 +21,7 @@ import {
 } from "./layers";
 import type { Region, Locale } from "./types";
 import { countRadius, nationalOutline } from "./cartography";
-import { matchingAnchors, groupSites, siteKind } from "./industry";
+import { matchingAnchors, groupSites, siteKind, isIndustrialSite } from "./industry";
 import "maplibre-gl/dist/maplibre-gl.css";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 setWorkerUrl(`${basePath}/maps/worker/maplibre-gl-worker.mjs`);
@@ -589,7 +589,7 @@ export default function MapCanvas(props: Props) {
       )) {
         const element = document.createElement("button");
         element.className = "maps-industry-pin";
-        if (sites.every((s) => s.kind !== "epz"))
+        if (sites.every((s) => !isIndustrialSite(s)))
           element.classList.add("maps-port-pin");
         element.type = "button";
         element.setAttribute(
@@ -605,7 +605,7 @@ export default function MapCanvas(props: Props) {
             ? "M4 21V8h16v13M2 8l10-5 10 5M8 21v-7h8v7M2 21h20"
             : sites.every((s) => s.kind === "airport")
               ? "M12 2c-1 0-2 2-2 4v3L2 14v2l8-2v4l-3 2v1l5-1 5 1v-1l-3-2v-4l8 2v-2l-8-5V6c0-2-1-4-2-4Z"
-              : sites.every((s) => s.kind === "epz")
+              : sites.every(isIndustrialSite)
                 ? "M3 21V10l6 3V7l6 4V3h4l2 18H3ZM7 17h1m4 0h1m4 0h1"
                 : "M12 3 2 8l10 5 10-5-10-5ZM2 12l10 5 10-5M2 16l10 5 10-5";
         element.innerHTML = `<span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${shape}"/></svg></span>`;
@@ -637,6 +637,11 @@ export default function MapCanvas(props: Props) {
               " · " +
               site.location[props.locale];
             body.append(link, location);
+            if ("statusNote" in site) {
+              const status = document.createElement("p");
+              status.textContent = site.statusNote[props.locale];
+              body.append(status);
+            }
             if ("role" in site) {
               const role = document.createElement("p");
               role.textContent = site.role[props.locale];
@@ -645,11 +650,16 @@ export default function MapCanvas(props: Props) {
               age.textContent = site.sourceNote[props.locale];
               body.append(age);
             }
+            if ("evidenceNote" in site) {
+              const age = document.createElement("small");
+              age.textContent = site.evidenceNote[props.locale];
+              body.append(age);
+            }
           }
           const note = document.createElement("small");
           note.textContent = t(
-            "Authority sources checked 12 Sep 2026. Approximate OSM facility positions, 12 Sep 2026. Not entrances or live operating status.",
-            "কর্তৃপক্ষের তথ্য যাচাই ১২ সেপ্টেম্বর ২০২৬। OSM-এর আনুমানিক অবস্থান, ১২ সেপ্টেম্বর ২০২৬। প্রবেশপথ বা এই মুহূর্তের কার্যক্রম বোঝায় না।",
+            "Authority/operator sources checked 12 Sep 2026. Approximate OSM facility positions, 12 Sep 2026. Not entrances, site boundaries or live operating status.",
+            "কর্তৃপক্ষ ও পরিচালনাকারীর তথ্য যাচাই ১২ সেপ্টেম্বর ২০২৬। OSM-এর আনুমানিক অবস্থান, ১২ সেপ্টেম্বর ২০২৬। প্রবেশপথ, এলাকার সীমানা বা এই মুহূর্তের কার্যক্রম বোঝায় না।",
           );
           body.append(note);
           popup

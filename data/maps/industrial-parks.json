@@ -1,0 +1,815 @@
+{
+  "checked": "2026-09-12",
+  "scope": "Selected BSCIC estates, public technology parks and economic zones whose identities/localities were checked against authority or operator sources and matched to named OSM facilities. Not a national census or a measure of activity, capacity, occupancy or investment suitability.",
+  "coordinateLicense": "ODbL 1.0",
+  "reuse": "Coordinates derived from OpenStreetMap under ODbL. Authority/operator identity and status facts are paraphrased with source links; original reports, prose, photography and personal contact information are not redistributed. No open-data license identified for authority/operator pages.",
+  "coordinateAcquisitions": [
+    {
+      "id": "industrial-areas",
+      "retrieved": "2026-09-12",
+      "snapshot": "2026-09-12T14:50:20Z",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "method": "GET",
+      "query": "[out:json][timeout:45];(way[\"landuse\"=\"industrial\"](20.7,88,26.7,92.8);relation[\"landuse\"=\"industrial\"](20.7,88,26.7,92.8););out center tags;",
+      "inputSha256": "0210c0d01b9b4ce6fd428c423d77e391f873d257b2d836e51dc750da94f1a079"
+    },
+    {
+      "id": "sylhet-park",
+      "retrieved": "2026-09-12",
+      "endpoint": "https://www.openstreetmap.org/api/0.6/way/1093942003/full.json",
+      "method": "GET",
+      "inputSha256": "240ff9db2ce3066bbc1e8109b299253b13f0e8a48e925b18f41e1a816a5e64e2",
+      "featureVersion": 3,
+      "featureEdited": "2023-10-21T13:30:06Z",
+      "coordinateMethod": "Bounding-box centre calculated from the named park way nodes. OSM edit date is not a park opening or source-observation date."
+    }
+  ],
+  "sources": [
+    {
+      "id": "bepza-ez",
+      "url": "https://bepza.gov.bd/pages/bepza-epz",
+      "publicationDate": null,
+      "observationPeriod": null,
+      "retrieved": "2026-09-12",
+      "inputSha256": "29e924d92bd64f40f981a963abb03e53ed095ba1a816df60dd4ed35f05d5f3e3"
+    },
+    {
+      "id": "meghna-industrial",
+      "url": "https://www.mgi.org/businessverticals/miez",
+      "publicationDate": null,
+      "observationPeriod": null,
+      "retrieved": "2026-09-12",
+      "inputSha256": "61dc675f6cd27bb0419d08b4ef0dcb7dc8257cd31bc4d91840a075a2a6b892d9"
+    },
+    {
+      "id": "bsez",
+      "url": "https://bsezltd.com/about-bsez/",
+      "publicationDate": null,
+      "observationPeriod": "2022-12",
+      "retrieved": "2026-09-12",
+      "method": "Operator About page inspected directly; Phase 1 opening history only."
+    },
+    {
+      "id": "bscic-july-2026",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf",
+      "landingPage": "https://bscic.gov.bd/pages/static-pages/6922df55933eb65569e2141e",
+      "title": "BSCIC industrial estate plots and industrial units, July 2026",
+      "publicationDate": null,
+      "observationPeriod": "2026-07",
+      "retrieved": "2026-09-12",
+      "inputSha256": "0f66afb68544ad013f90576013caee4539d03f65403276dbf599659afca84e6c",
+      "reuse": "Authority facts paraphrased with attribution. No explicit open-data license identified; source PDF is not redistributed. Counts, rents and employment totals are not imported."
+    },
+    {
+      "id": "kaliakoir",
+      "url": "https://bhtpa.gov.bd/pages/static-pages/6922e01d933eb65569e25897",
+      "publicationDate": null,
+      "observationPeriod": null,
+      "retrieved": "2026-09-12",
+      "inputSha256": "d4f55247e924c424d3784840e2c2c744767fb217d65bd5d0e4ffbfed67d4e7ea",
+      "pageUpdated": "2026-05-14"
+    },
+    {
+      "id": "sylhet",
+      "url": "https://bhtpa.gov.bd/pages/static-pages/6922dbba933eb65569e0c228",
+      "publicationDate": null,
+      "observationPeriod": "2016-01/2023-06",
+      "retrieved": "2026-09-12",
+      "inputSha256": "31fce9ab005796d6ef87fcd7043a8de8994ca9f275d06e460ed9684eddb6a9db",
+      "note": "Page reports primary infrastructure project implementation through June 2023; allotment and ongoing tenant construction are separate.",
+      "pageUpdated": "2026-06-29"
+    }
+  ],
+  "sites": [
+    {
+      "id": "estate-sirajganj",
+      "name": {
+        "en": "Sirajganj BSCIC Industrial Estate",
+        "bn": "সিরাজগঞ্জ বিসিক শিল্পনগরী"
+      },
+      "location": {
+        "en": "Sirajganj",
+        "bn": "সিরাজগঞ্জ"
+      },
+      "district": "district-sirajganj",
+      "division": "rajshahi",
+      "kind": "estate",
+      "source": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf#page=3",
+      "sourceId": "bscic-july-2026",
+      "checked": "2026-09-12",
+      "point": [
+        89.6722951,
+        24.4463318
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/237683759",
+      "osmName": "BSCIC Industrial Area",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "production-reported",
+      "observationPeriod": "2026-07",
+      "sourceRow": 59,
+      "sourcePage": 3,
+      "statusNote": {
+        "en": "Production reported in July 2026; activity varies by factory.",
+        "bn": "জুলাই ২০২৬-এর হিসাবে উৎপাদনরত কারখানা আছে। সব কারখানার অবস্থা এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BSCIC estate register · July 2026",
+        "bn": "বিসিক শিল্পনগরীর তালিকা · জুলাই ২০২৬"
+      }
+    },
+    {
+      "id": "estate-bogura",
+      "name": {
+        "en": "Bogura BSCIC Industrial Estate",
+        "bn": "বগুড়া বিসিক শিল্পনগরী"
+      },
+      "location": {
+        "en": "Bogura",
+        "bn": "বগুড়া"
+      },
+      "district": "district-bogura",
+      "division": "rajshahi",
+      "kind": "estate",
+      "source": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf#page=3",
+      "sourceId": "bscic-july-2026",
+      "checked": "2026-09-12",
+      "point": [
+        89.3663482,
+        24.8726345
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/243668974",
+      "osmName": "BSCIC Industrial Estate",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "production-reported",
+      "observationPeriod": "2026-07",
+      "sourceRow": 61,
+      "sourcePage": 3,
+      "statusNote": {
+        "en": "Production reported in July 2026; activity varies by factory.",
+        "bn": "জুলাই ২০২৬-এর হিসাবে উৎপাদনরত কারখানা আছে। সব কারখানার অবস্থা এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BSCIC estate register · July 2026",
+        "bn": "বিসিক শিল্পনগরীর তালিকা · জুলাই ২০২৬"
+      }
+    },
+    {
+      "id": "estate-tangail",
+      "name": {
+        "en": "Tangail BSCIC Industrial Estate",
+        "bn": "টাঙ্গাইল বিসিক শিল্পনগরী"
+      },
+      "location": {
+        "en": "Tangail",
+        "bn": "টাঙ্গাইল"
+      },
+      "district": "district-tangail",
+      "division": "dhaka",
+      "kind": "estate",
+      "source": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf#page=1",
+      "sourceId": "bscic-july-2026",
+      "checked": "2026-09-12",
+      "point": [
+        89.9460605,
+        24.2390781
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/248410354",
+      "osmName": "BSSIC",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "production-reported",
+      "observationPeriod": "2026-07",
+      "sourceRow": 7,
+      "sourcePage": 1,
+      "statusNote": {
+        "en": "Production reported in July 2026; activity varies by factory.",
+        "bn": "জুলাই ২০২৬-এর হিসাবে উৎপাদনরত কারখানা আছে। সব কারখানার অবস্থা এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BSCIC estate register · July 2026",
+        "bn": "বিসিক শিল্পনগরীর তালিকা · জুলাই ২০২৬"
+      }
+    },
+    {
+      "id": "estate-bagerhat",
+      "name": {
+        "en": "Bagerhat BSCIC Industrial Estate",
+        "bn": "বাগেরহাট বিসিক শিল্পনগরী"
+      },
+      "location": {
+        "en": "Bagerhat",
+        "bn": "বাগেরহাট"
+      },
+      "district": "district-bagerhat",
+      "division": "khulna",
+      "kind": "estate",
+      "source": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf#page=3",
+      "sourceId": "bscic-july-2026",
+      "checked": "2026-09-12",
+      "point": [
+        89.7978436,
+        22.644235
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/335884171",
+      "osmName": "BSCIC Industrial Estate",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "production-reported",
+      "observationPeriod": "2026-07",
+      "sourceRow": 72,
+      "sourcePage": 3,
+      "statusNote": {
+        "en": "Production reported in July 2026; activity varies by factory.",
+        "bn": "জুলাই ২০২৬-এর হিসাবে উৎপাদনরত কারখানা আছে। সব কারখানার অবস্থা এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BSCIC estate register · July 2026",
+        "bn": "বিসিক শিল্পনগরীর তালিকা · জুলাই ২০২৬"
+      }
+    },
+    {
+      "id": "estate-tongi",
+      "name": {
+        "en": "Tongi BSCIC Industrial Estate",
+        "bn": "টঙ্গী বিসিক শিল্পনগরী"
+      },
+      "location": {
+        "en": "Tongi, Gazipur",
+        "bn": "টঙ্গী, গাজীপুর"
+      },
+      "district": "district-gazipur",
+      "division": "dhaka",
+      "kind": "estate",
+      "source": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf#page=1",
+      "sourceId": "bscic-july-2026",
+      "checked": "2026-09-12",
+      "point": [
+        90.4126441,
+        23.8944779
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/345695251",
+      "osmName": "বিসিক শিল্প এলাকা",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "production-reported",
+      "observationPeriod": "2026-07",
+      "sourceRow": 23,
+      "sourcePage": 1,
+      "statusNote": {
+        "en": "Production reported in July 2026; activity varies by factory.",
+        "bn": "জুলাই ২০২৬-এর হিসাবে উৎপাদনরত কারখানা আছে। সব কারখানার অবস্থা এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BSCIC estate register · July 2026",
+        "bn": "বিসিক শিল্পনগরীর তালিকা · জুলাই ২০২৬"
+      }
+    },
+    {
+      "id": "estate-barishal",
+      "name": {
+        "en": "Barishal BSCIC Industrial Estate",
+        "bn": "বরিশাল বিসিক শিল্পনগরী"
+      },
+      "location": {
+        "en": "Barishal",
+        "bn": "বরিশাল"
+      },
+      "district": "district-barishal",
+      "division": "barishal",
+      "kind": "estate",
+      "source": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf#page=4",
+      "sourceId": "bscic-july-2026",
+      "checked": "2026-09-12",
+      "point": [
+        90.358831,
+        22.7213669
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/349697898",
+      "osmName": "বিসিক শিল্প নগরী",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "production-reported",
+      "observationPeriod": "2026-07",
+      "sourceRow": 78,
+      "sourcePage": 4,
+      "statusNote": {
+        "en": "Production reported in July 2026; activity varies by factory.",
+        "bn": "জুলাই ২০২৬-এর হিসাবে উৎপাদনরত কারখানা আছে। সব কারখানার অবস্থা এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BSCIC estate register · July 2026",
+        "bn": "বিসিক শিল্পনগরীর তালিকা · জুলাই ২০২৬"
+      }
+    },
+    {
+      "id": "estate-jhenaidah",
+      "name": {
+        "en": "Jhenaidah BSCIC Industrial Estate",
+        "bn": "ঝিনাইদহ বিসিক শিল্পনগরী"
+      },
+      "location": {
+        "en": "Jhenaidah",
+        "bn": "ঝিনাইদহ"
+      },
+      "district": "district-jhenaidah",
+      "division": "khulna",
+      "kind": "estate",
+      "source": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf#page=3",
+      "sourceId": "bscic-july-2026",
+      "checked": "2026-09-12",
+      "point": [
+        89.1973607,
+        23.5398547
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/353001792",
+      "osmName": "Jhenaidah BSCIC",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "production-reported",
+      "observationPeriod": "2026-07",
+      "sourceRow": 75,
+      "sourcePage": 3,
+      "statusNote": {
+        "en": "Production reported in July 2026; activity varies by factory.",
+        "bn": "জুলাই ২০২৬-এর হিসাবে উৎপাদনরত কারখানা আছে। সব কারখানার অবস্থা এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BSCIC estate register · July 2026",
+        "bn": "বিসিক শিল্পনগরীর তালিকা · জুলাই ২০২৬"
+      }
+    },
+    {
+      "id": "estate-rajshahi",
+      "name": {
+        "en": "Rajshahi BSCIC Industrial Estate",
+        "bn": "রাজশাহী বিসিক শিল্পনগরী"
+      },
+      "location": {
+        "en": "Rajshahi",
+        "bn": "রাজশাহী"
+      },
+      "district": "district-rajshahi",
+      "division": "rajshahi",
+      "kind": "estate",
+      "source": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf#page=3",
+      "sourceId": "bscic-july-2026",
+      "checked": "2026-09-12",
+      "point": [
+        88.6033853,
+        24.3869915
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/498603771",
+      "osmName": "Bangladesh Small and Cottage Industries Corporation (BSCIC)",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "production-reported",
+      "observationPeriod": "2026-07",
+      "sourceRow": 53,
+      "sourcePage": 3,
+      "statusNote": {
+        "en": "Production reported in July 2026; activity varies by factory.",
+        "bn": "জুলাই ২০২৬-এর হিসাবে উৎপাদনরত কারখানা আছে। সব কারখানার অবস্থা এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BSCIC estate register · July 2026",
+        "bn": "বিসিক শিল্পনগরীর তালিকা · জুলাই ২০২৬"
+      }
+    },
+    {
+      "id": "estate-patiya",
+      "name": {
+        "en": "Patiya BSCIC Industrial Estate",
+        "bn": "পটিয়া বিসিক শিল্পনগরী"
+      },
+      "location": {
+        "en": "Patiya, Chattogram",
+        "bn": "পটিয়া, চট্টগ্রাম"
+      },
+      "district": "district-chattogram",
+      "division": "chattogram",
+      "kind": "estate",
+      "source": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf#page=2",
+      "sourceId": "bscic-july-2026",
+      "checked": "2026-09-12",
+      "point": [
+        91.9923603,
+        22.2850312
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/530175317",
+      "osmName": "Potiya BSCIC",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "production-reported",
+      "observationPeriod": "2026-07",
+      "sourceRow": 32,
+      "sourcePage": 2,
+      "statusNote": {
+        "en": "Production reported in July 2026; activity varies by factory.",
+        "bn": "জুলাই ২০২৬-এর হিসাবে উৎপাদনরত কারখানা আছে। সব কারখানার অবস্থা এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BSCIC estate register · July 2026",
+        "bn": "বিসিক শিল্পনগরীর তালিকা · জুলাই ২০২৬"
+      }
+    },
+    {
+      "id": "estate-khagrachhari",
+      "name": {
+        "en": "Khagrachhari BSCIC Industrial Estate",
+        "bn": "খাগড়াছড়ি বিসিক শিল্পনগরী"
+      },
+      "location": {
+        "en": "Khagrachhari",
+        "bn": "খাগড়াছড়ি"
+      },
+      "district": "district-khagrachhari",
+      "division": "chattogram",
+      "kind": "estate",
+      "source": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf#page=2",
+      "sourceId": "bscic-july-2026",
+      "checked": "2026-09-12",
+      "point": [
+        91.9704588,
+        23.0954397
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/531421370",
+      "osmName": "BSCIC Khagrachari",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "production-reported",
+      "observationPeriod": "2026-07",
+      "sourceRow": 46,
+      "sourcePage": 2,
+      "statusNote": {
+        "en": "Production reported in July 2026; activity varies by factory.",
+        "bn": "জুলাই ২০২৬-এর হিসাবে উৎপাদনরত কারখানা আছে। সব কারখানার অবস্থা এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BSCIC estate register · July 2026",
+        "bn": "বিসিক শিল্পনগরীর তালিকা · জুলাই ২০২৬"
+      }
+    },
+    {
+      "id": "estate-netrakona",
+      "name": {
+        "en": "Netrakona BSCIC Industrial Estate",
+        "bn": "নেত্রকোনা বিসিক শিল্পনগরী"
+      },
+      "location": {
+        "en": "Netrakona",
+        "bn": "নেত্রকোনা"
+      },
+      "district": "district-netrakona",
+      "division": "mymensingh",
+      "kind": "estate",
+      "source": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf#page=1",
+      "sourceId": "bscic-july-2026",
+      "checked": "2026-09-12",
+      "point": [
+        90.6934154,
+        24.869559
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/604357757",
+      "osmName": "BSCIC Estate",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "production-reported",
+      "observationPeriod": "2026-07",
+      "sourceRow": 12,
+      "sourcePage": 1,
+      "statusNote": {
+        "en": "Production reported in July 2026; activity varies by factory.",
+        "bn": "জুলাই ২০২৬-এর হিসাবে উৎপাদনরত কারখানা আছে। সব কারখানার অবস্থা এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BSCIC estate register · July 2026",
+        "bn": "বিসিক শিল্পনগরীর তালিকা · জুলাই ২০২৬"
+      }
+    },
+    {
+      "id": "estate-khulna",
+      "name": {
+        "en": "Khulna (Shiromoni) BSCIC Industrial Estate",
+        "bn": "খুলনা (শিরোমণি) বিসিক শিল্পনগরী"
+      },
+      "location": {
+        "en": "Shiromoni, Khulna",
+        "bn": "শিরোমণি, খুলনা"
+      },
+      "district": "district-khulna",
+      "division": "khulna",
+      "kind": "estate",
+      "source": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf#page=3",
+      "sourceId": "bscic-july-2026",
+      "checked": "2026-09-12",
+      "point": [
+        89.5050041,
+        22.9165439
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/607951820",
+      "osmName": "BSCIC Industrial Estate",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "production-reported",
+      "observationPeriod": "2026-07",
+      "sourceRow": 71,
+      "sourcePage": 3,
+      "statusNote": {
+        "en": "Production reported in July 2026; activity varies by factory.",
+        "bn": "জুলাই ২০২৬-এর হিসাবে উৎপাদনরত কারখানা আছে। সব কারখানার অবস্থা এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BSCIC estate register · July 2026",
+        "bn": "বিসিক শিল্পনগরীর তালিকা · জুলাই ২০২৬"
+      }
+    },
+    {
+      "id": "estate-coxs-bazar",
+      "name": {
+        "en": "Cox’s Bazar BSCIC Industrial Estate",
+        "bn": "কক্সবাজার বিসিক শিল্পনগরী"
+      },
+      "location": {
+        "en": "Cox's Bazar",
+        "bn": "কক্সবাজার"
+      },
+      "district": "district-coxs-bazar",
+      "division": "chattogram",
+      "kind": "estate",
+      "source": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf#page=2",
+      "sourceId": "bscic-july-2026",
+      "checked": "2026-09-12",
+      "point": [
+        92.0273342,
+        21.4199003
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/792347602",
+      "osmName": "BSCIC Industrial Zone",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "production-reported",
+      "observationPeriod": "2026-07",
+      "sourceRow": 44,
+      "sourcePage": 2,
+      "statusNote": {
+        "en": "Production reported in July 2026; activity varies by factory.",
+        "bn": "জুলাই ২০২৬-এর হিসাবে উৎপাদনরত কারখানা আছে। সব কারখানার অবস্থা এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BSCIC estate register · July 2026",
+        "bn": "বিসিক শিল্পনগরীর তালিকা · জুলাই ২০২৬"
+      }
+    },
+    {
+      "id": "estate-jhalokati",
+      "name": {
+        "en": "Jhalokati BSCIC Industrial Estate",
+        "bn": "ঝালকাঠি বিসিক শিল্পনগরী"
+      },
+      "location": {
+        "en": "Jhalokati",
+        "bn": "ঝালকাঠি"
+      },
+      "district": "district-jhalokati",
+      "division": "barishal",
+      "kind": "estate",
+      "source": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf#page=4",
+      "sourceId": "bscic-july-2026",
+      "checked": "2026-09-12",
+      "point": [
+        90.2243686,
+        22.6471601
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/865976229",
+      "osmName": "বিসিক শিল্প নগরী",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "production-reported",
+      "observationPeriod": "2026-07",
+      "sourceRow": 82,
+      "sourcePage": 4,
+      "statusNote": {
+        "en": "Production reported in July 2026; activity varies by factory.",
+        "bn": "জুলাই ২০২৬-এর হিসাবে উৎপাদনরত কারখানা আছে। সব কারখানার অবস্থা এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BSCIC estate register · July 2026",
+        "bn": "বিসিক শিল্পনগরীর তালিকা · জুলাই ২০২৬"
+      }
+    },
+    {
+      "id": "estate-gaibandha",
+      "name": {
+        "en": "Gaibandha BSCIC Industrial Estate",
+        "bn": "গাইবান্ধা বিসিক শিল্পনগরী"
+      },
+      "location": {
+        "en": "Gaibandha",
+        "bn": "গাইবান্ধা"
+      },
+      "district": "district-gaibandha",
+      "division": "rangpur",
+      "kind": "estate",
+      "source": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bscic/2026/6/676de10b-cd60-4be2-8a82-78c6766a505c.pdf#page=3",
+      "sourceId": "bscic-july-2026",
+      "checked": "2026-09-12",
+      "point": [
+        89.5087125,
+        25.3243433
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/1282931077",
+      "osmName": "BESIC",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "production-reported",
+      "observationPeriod": "2026-07",
+      "sourceRow": 64,
+      "sourcePage": 3,
+      "statusNote": {
+        "en": "Production reported in July 2026; activity varies by factory.",
+        "bn": "জুলাই ২০২৬-এর হিসাবে উৎপাদনরত কারখানা আছে। সব কারখানার অবস্থা এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BSCIC estate register · July 2026",
+        "bn": "বিসিক শিল্পনগরীর তালিকা · জুলাই ২০২৬"
+      }
+    },
+    {
+      "id": "ez-bepza",
+      "name": {
+        "en": "BEPZA Economic Zone",
+        "bn": "বেপজা অর্থনৈতিক অঞ্চল"
+      },
+      "location": {
+        "en": "Mirsharai, Chattogram",
+        "bn": "মীরসরাই, চট্টগ্রাম"
+      },
+      "district": "district-chattogram",
+      "division": "chattogram",
+      "kind": "economiczone",
+      "source": "https://bepza.gov.bd/pages/bepza-epz",
+      "sourceId": "bepza-ez",
+      "checked": "2026-09-12",
+      "point": [
+        91.473253,
+        22.7342603
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/1042087036",
+      "osmName": "বেপজা অর্থনৈতিক অঞ্চল",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "operations-reported",
+      "observationPeriod": null,
+      "statusNote": {
+        "en": "Operating factories reported; current occupancy of every plot is not verified.",
+        "bn": "চালু কারখানার তথ্য আছে। প্রতিটি প্লটের বর্তমান অবস্থা যাচাই করা হয়নি।"
+      },
+      "evidenceNote": {
+        "en": "BEPZA profile · observation date unspecified",
+        "bn": "বেপজার তথ্য · হিসাবের তারিখ উল্লেখ নেই"
+      }
+    },
+    {
+      "id": "ez-meghna-industrial",
+      "name": {
+        "en": "Meghna Industrial Economic Zone",
+        "bn": "মেঘনা ইন্ডাস্ট্রিয়াল ইকোনমিক জোন"
+      },
+      "location": {
+        "en": "Tripordi, Sonargaon, Narayanganj",
+        "bn": "ত্রিপর্দী, সোনারগাঁ, নারায়ণগঞ্জ"
+      },
+      "district": "district-narayanganj",
+      "division": "dhaka",
+      "kind": "economiczone",
+      "source": "https://www.mgi.org/businessverticals/miez",
+      "sourceId": "meghna-industrial",
+      "checked": "2026-09-12",
+      "point": [
+        90.5878103,
+        23.6435839
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/1372941215",
+      "osmName": "Meghna Industrial Economic Zone",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "developed",
+      "observationPeriod": null,
+      "statusNote": {
+        "en": "Developed zone listed by its operator; tenant activity is not verified.",
+        "bn": "পরিচালনাকারীর তথ্যে গড়ে ওঠা অঞ্চল। প্রতিটি প্রতিষ্ঠানের কার্যক্রম যাচাই করা হয়নি।"
+      },
+      "evidenceNote": {
+        "en": "MGI zone profile · observation date unspecified",
+        "bn": "এমজিআইয়ের তথ্য · হিসাবের তারিখ উল্লেখ নেই"
+      }
+    },
+    {
+      "id": "ez-bsez",
+      "name": {
+        "en": "Bangladesh Special Economic Zone",
+        "bn": "বাংলাদেশ স্পেশাল ইকোনমিক জোন"
+      },
+      "location": {
+        "en": "Araihazar, Narayanganj",
+        "bn": "আড়াইহাজার, নারায়ণগঞ্জ"
+      },
+      "district": "district-narayanganj",
+      "division": "dhaka",
+      "kind": "economiczone",
+      "source": "https://bsezltd.com/about-bsez/",
+      "sourceId": "bsez",
+      "checked": "2026-09-12",
+      "point": [
+        90.617795,
+        23.8255246
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/1511293436",
+      "osmName": "বাংলাদেশ স্পেশাল ইকোনোমিক জোন",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "phase-one-open",
+      "observationPeriod": "2022-12",
+      "statusNote": {
+        "en": "Phase 1 opened in December 2022; this does not describe all phases or tenants.",
+        "bn": "প্রথম ধাপ চালু হয় ডিসেম্বর ২০২২-এ। সব ধাপ বা প্রতিষ্ঠানের অবস্থা এতে বোঝা যায় না।"
+      },
+      "evidenceNote": {
+        "en": "BSEZ operator history · December 2022 opening",
+        "bn": "বিএসইজেডের তথ্য · চালু হওয়ার সময় ডিসেম্বর ২০২২"
+      }
+    },
+    {
+      "id": "park-kaliakoir",
+      "name": {
+        "en": "Kaliakoir Hi-Tech Park",
+        "bn": "কালিয়াকৈর হাই-টেক পার্ক"
+      },
+      "location": {
+        "en": "Kaliakoir, Gazipur",
+        "bn": "কালিয়াকৈর, গাজীপুর"
+      },
+      "district": "district-gazipur",
+      "division": "dhaka",
+      "kind": "technologypark",
+      "source": "https://bhtpa.gov.bd/pages/static-pages/6922e01d933eb65569e25897",
+      "sourceId": "kaliakoir",
+      "checked": "2026-09-12",
+      "point": [
+        90.2289138,
+        24.0662707
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/1487031464",
+      "osmName": "Kaliakair Hi Tech Park",
+      "coordinateAcquisition": "industrial-areas",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "developed",
+      "observationPeriod": null,
+      "statusNote": {
+        "en": "Developed park with investor buildings; activity varies by site.",
+        "bn": "পার্কে বিনিয়োগকারী প্রতিষ্ঠানের ভবন আছে। সব অংশের কার্যক্রম এক নয়।"
+      },
+      "evidenceNote": {
+        "en": "BHTPA profile updated 14 May 2026; underlying observation date unspecified.",
+        "bn": "হাইটেক পার্ক কর্তৃপক্ষের পাতা হালনাগাদ ১৪ মে ২০২৬। মূল তথ্যের সময়কাল উল্লেখ নেই।"
+      }
+    },
+    {
+      "id": "park-sylhet",
+      "name": {
+        "en": "Sylhet Hi-Tech Park",
+        "bn": "সিলেট হাই-টেক পার্ক"
+      },
+      "location": {
+        "en": "Companiganj, Sylhet",
+        "bn": "কোম্পানীগঞ্জ, সিলেট"
+      },
+      "district": "district-sylhet",
+      "division": "sylhet",
+      "kind": "technologypark",
+      "source": "https://bhtpa.gov.bd/pages/static-pages/6922dbba933eb65569e0c228",
+      "sourceId": "sylhet",
+      "checked": "2026-09-12",
+      "point": [
+        91.791072,
+        25.0626184
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/1093942003",
+      "osmName": "Bangabandhu sheikh mujib Hi Tech Park",
+      "coordinateAcquisition": "sylhet-park",
+      "coordinateMethod": "mapped-area-centre",
+      "status": "developed",
+      "observationPeriod": "2016-01/2023-06",
+      "statusNote": {
+        "en": "Primary infrastructure completed; tenant construction and operations vary.",
+        "bn": "প্রাথমিক অবকাঠামোর কাজ শেষ। বিভিন্ন প্রতিষ্ঠানের নির্মাণ ও কার্যক্রমের অবস্থা আলাদা।"
+      },
+      "evidenceNote": {
+        "en": "BHTPA: infrastructure project through June 2023; page updated 29 June 2026.",
+        "bn": "হাইটেক পার্ক কর্তৃপক্ষ: অবকাঠামো প্রকল্প জুন ২০২৩ পর্যন্ত। পাতা হালনাগাদ ২৯ জুন ২০২৬।"
+      }
+    }
+  ]
+}

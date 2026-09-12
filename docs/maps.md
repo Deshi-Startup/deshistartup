@@ -19,8 +19,8 @@ region selection, division focus, geographic-level changes and reset navigate
 explicitly. Initial bounds are applied before revealing the map.
 
 People & markets and Education & access contain 12 analytical measures. Trade &
-connections contains optional major roads/railways, eight EPZs, nine selected ports
-and eight passenger airports. Regional business profiles show census unit types
+connections contains optional major roads/railways, 28 selected industrial sites,
+nine selected ports and eight passenger airports. Regional business profiles show census unit types
 and permanent-establishment sector composition. Comparison presents up to five
 distinct measures, with parent-division household budgets identified separately.
 The map/data switch provides a keyboard-accessible table. Share and locale links
@@ -186,7 +186,7 @@ For normal development use Node 22 and `npm run dev`; Maps is under `/maps` and 
 
 ## Trade & connections
 
-Context layers are optional and never accumulate automatically when switching analytical topics. The first view prioritizes regional market conditions. A single context group holds major transport, EPZs, selected ports and airports; active context can be cleared together. Regional comparison and clearly attributed measures are the primary analytical workflow.
+Context layers are optional and never accumulate automatically when switching analytical topics. The first view prioritizes regional market conditions. A single context group holds major transport, industrial zones and parks, selected ports and airports; active context can be cleared together. Regional comparison and clearly attributed measures are the primary analytical workflow.
 
 ### Major transport connections
 
@@ -210,7 +210,46 @@ Update the acquisition manifest from the actual request, response hash and retri
 
 Coordinates are independently attributed OpenStreetMap industrial-area bounding-box centres, from a **2026-09-12 08:45:06 UTC** extract. They are approximate overview positions, not entrances or legal zone boundaries. Dhaka uses its mapped **new area**; two Karnaphuli polygons were deduplicated to one official zone. All eight positions were checked to lie within their stated district geometry. Nearby markers group at 44 screen pixels, with both names and source links retained in the popup. The insights list supplies the same sites as text; a division filter limits both list and markers. Selecting a region narrows the list, with an explicit coverage limitation.
 
-To update a site, open its official profile, confirm identity, locality and operating status, then open the record's linked OSM way. Check its tags and position against the official locality; preserve both sources and their separate observation/check dates. Changes to a named region or geometry must pass the district-containment test. The field `osmName` preserves the original spelling for reconciliation. Do not substitute a district centre for an unverified facility location. New categories need a documented scope and status vocabulary before publication.
+`industrial-parks.json` extends that same optional layer with **15 BSCIC estates,
+three economic zones and two technology parks**. Combined with the EPZs, the 28
+sites span all eight divisions. This is a verified selection, not a census. The
+absence or number of markers cannot establish industrial activity, unmet demand
+or market size. One factory symbol covers industrial sites; categories, dated
+status notes and source links appear in marker details and the text list. The
+legend count follows the division filter. The layer stays off by default.
+
+| Selection | Evidence and observation period | Status meaning |
+| --- | --- | --- |
+| BSCIC estates in Sirajganj, Bogura, Tangail, Bagerhat, Tongi, Barishal, Jhenaidah, Rajshahi, Patiya, Khagrachhari, Netrakona, Khulna (Shiromoni), Cox's Bazar, Jhalokati and Gaibandha | [BSCIC estate register](https://bscic.gov.bd/pages/static-pages/6922df55933eb65569e2141e), linked table headed **July 2026**, inspected on all four PDF pages. Each record retains the PDF URL, page and numbered row. Publication date is unspecified. | `production-reported`: the July table reports producing units at the estate. Individual factory status, employment, rents and plot availability are not imported. Extensions are not separately counted as another estate. |
+| Kaliakoir and Sylhet Hi-Tech Parks | [Kaliakoir profile](https://bhtpa.gov.bd/pages/static-pages/6922e01d933eb65569e25897), page updated **14 May 2026**, underlying observation date unspecified. [Sylhet profile](https://bhtpa.gov.bd/pages/static-pages/6922dbba933eb65569e0c228), updated **29 June 2026**, reports primary infrastructure implemented in **January 2016–June 2023**. | `developed`: built park infrastructure is documented. This does not mean all plots or tenants operate. Current BHTPA names are displayed; former OSM names remain in `osmName` for reconciliation. |
+| BEPZA Economic Zone, Meghna Industrial Economic Zone and Bangladesh Special Economic Zone | [BEPZA profile](https://bepza.gov.bd/pages/bepza-epz) reports operating factories; an undated count cannot establish current occupancy. [MGI operator profile](https://www.mgi.org/businessverticals/miez) identifies its developed Tripordi/Sonargaon zone. Both have unspecified observation/publication dates. [BSEZ operator history](https://bsezltd.com/about-bsez/) documents its **December 2022** Phase 1 opening in Araihazar. | `operations-reported`, `developed` and `phase-one-open`, respectively. The BEPZA site is not the whole National Special Economic Zone. BSEZ's milestone does not describe all phases or current tenants. |
+
+All sources were retrieved/checked **12 September 2026**. Source dates are separate
+from retrieval. The 19 industrial-area positions use the Overpass snapshot at
+**14:50:20 UTC** that day; Sylhet uses the exact OSM way/node response retrieved
+that day, way version 3 last edited **21 October 2023**. Coordinates are
+bounding-box centres of named facility areas, not entrances or administrative
+boundaries. Every added position passes its named district-containment check.
+Acquisition endpoints, requests and response SHA-256 values are in the dataset.
+No source coordinates are moved to satisfy a join.
+
+Coordinate derivatives retain **ODbL 1.0** attribution. Authority/operator facts
+are paraphrased and linked; no explicit open-data license was identified for
+those publications. The source PDFs, original prose, photographs, tenant lists
+and personal contact details are not redistributed or relicensed as site code.
+
+To update a site, open its official or operator profile, confirm identity,
+locality and the specific status evidence, then inspect its linked OSM way. Match
+the facility itself, not a similarly named office, bank or locality. Retain source
+observation/publication dates, retrieval date and exact table row where available.
+Refresh the coordinate acquisition from actual response bytes and record its
+hash; do not relabel an old snapshot as new. `sourceId` and
+`coordinateAcquisition` join each site to the metadata in `industrial-parks.json`.
+Keep unknown observation dates null. Status is a bounded source statement, never
+a live feed. Changes must pass `app/components/maps/context.test.mjs`, including
+unique site/OSM identities and named-district containment. Update displayed dates
+and documented coverage when refreshing. Do not substitute a district centre for
+an unverified facility location.
 
 ### Ports and crossings
 

@@ -18,6 +18,7 @@ const census = JSON.parse(read("../../../data/maps/census.json"));
 const ports = JSON.parse(read("../../../data/maps/ports.json"));
 const airports = JSON.parse(read("../../../data/maps/airports.json"));
 const industry = JSON.parse(read("../../../data/maps/industry.json"));
+const parks = JSON.parse(read("../../../data/maps/industrial-parks.json"));
 const geometry = JSON.parse(
   read("../../../public/maps/bangladesh-2020.geojson"),
 );
@@ -110,6 +111,55 @@ test("eight EPZs have distinct sourced positions inside their named districts", 
       site.id,
     );
   }
+});
+
+test("industrial parks retain verified identities, dated status evidence and correct district joins", () => {
+  const all = [...industry.sites, ...parks.sites, ...ports.sites, ...airports.sites];
+  assert.equal(new Set(all.map((s) => s.id)).size, all.length);
+  assert.equal(new Set(all.map((s) => s.coordinateSource)).size, all.length);
+  assert.equal(parks.sites.length, 20);
+  assert.equal(parks.sites.filter((s) => s.kind === "estate").length, 15);
+  assert.equal(parks.sites.filter((s) => s.kind === "technologypark").length, 2);
+  assert.equal(parks.sites.filter((s) => s.kind === "economiczone").length, 3);
+  assert.equal(new Set([...industry.sites, ...parks.sites].map((s) => s.division)).size, 8);
+  assert.equal(parks.coordinateLicense, "ODbL 1.0");
+  for (const acquisition of parks.coordinateAcquisitions) {
+    assert.match(acquisition.inputSha256, /^[a-f0-9]{64}$/);
+    assert.equal(acquisition.retrieved, "2026-09-12");
+    assert.ok(acquisition.query || acquisition.featureVersion);
+  }
+  for (const site of parks.sites) {
+    const source = parks.sources.find((s) => s.id === site.sourceId);
+    assert.ok(source, site.id);
+    assert.equal(site.source.split("#")[0], source.url);
+    assert.equal(site.checked, source.retrieved);
+    assert.equal(site.observationPeriod, source.observationPeriod);
+    assert.ok(parks.coordinateAcquisitions.some((a) => a.id === site.coordinateAcquisition));
+    assert.match(site.coordinateSource, /^https:\/\/www.openstreetmap.org\/way\/\d+$/);
+    assert.ok(site.osmName);
+    for (const locale of ["en", "bn"])
+      assert.ok(site.name[locale] && site.location[locale] && site.statusNote[locale] && site.evidenceNote[locale]);
+    const region = regions.find((r) => r.id === site.district);
+    assert.equal(site.division, region.division);
+    const g = geometry.features.find((f) => f.properties.id === site.district).geometry;
+    const polygons = g.type === "Polygon" ? [g.coordinates] : g.coordinates;
+    assert.ok(polygons.some((p) => insideRing(site.point, p[0]) && !p.slice(1).some((r) => insideRing(site.point, r))), site.id);
+    if (site.kind === "estate") {
+      assert.equal(site.observationPeriod, "2026-07");
+      assert.equal(site.status, "production-reported");
+      assert.ok(site.sourceRow >= 1 && site.sourceRow <= 84);
+      assert.ok(site.sourcePage >= 1 && site.sourcePage <= 4);
+    } else {
+      assert.ok(["developed", "operations-reported", "phase-one-open"].includes(site.status));
+    }
+    for (const unsupported of ["capacity", "availablePlots", "exports", "employment", "opportunityScore"])
+      assert.equal(site[unsupported], undefined);
+  }
+  assert.equal(parks.sources.find((s) => s.id === "sylhet").publicationDate, null);
+  // Historical milestones are not silently dated to the latest page retrieval.
+  assert.equal(parks.sites.find((s) => s.id === "ez-bsez").observationPeriod, "2022-12");
+  assert.equal(parks.sources.find((s) => s.id === "sylhet").pageUpdated, "2026-06-29");
+  assert.equal(parks.sites.find((s) => s.id === "park-sylhet").observationPeriod, "2016-01/2023-06");
 });
 
 test("transport snapshot contains valid road and rail lines within a bounded payload", () => {

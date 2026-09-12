@@ -7,7 +7,7 @@ import BusinessProfile from "./BusinessProfile";
 import type { Region, Locale } from "./types";
 import { interval, regionMatches } from "./model";
 import { countRadius } from "./cartography";
-import { matchingAnchors, siteKind } from "./industry";
+import { matchingAnchors, matchingSites, siteKind } from "./industry";
 import {
   comparisonRows,
   layers,
@@ -700,12 +700,12 @@ export default function MapsExperience({
                   checked={state.industry}
                   onChange={(e) => change({ industry: e.target.checked })}
                 />
-                {t("Operating EPZs", "চালু ইপিজেড")}
+                {t("Industrial zones & parks", "শিল্পাঞ্চল ও প্রযুক্তি পার্ক")}
               </label>
               <p className="maps-small">
                 {t(
-                  "8 BEPZA zones. Other industrial zones and parks are not yet covered.",
-                  "বেপজার ৮টি অঞ্চল। অন্য শিল্পাঞ্চল ও পার্কের তথ্য এখনো যোগ হয়নি।",
+                  "EPZs, selected BSCIC estates, economic zones and technology parks. Select a site for its source and status.",
+                  "ইপিজেড, বাছাই করা বিসিক শিল্পনগরী, অর্থনৈতিক অঞ্চল ও প্রযুক্তি পার্ক। কোনো স্থান বেছে নিলে তথ্যের উৎস ও কার্যক্রমের অবস্থা পাবেন।",
                 )}
               </p>
               <label className="maps-check">
@@ -856,16 +856,20 @@ export default function MapsExperience({
                 )}
                 {state.industry && (
                   <>
-                    <h3>{t("Industry & trade", "শিল্প ও বাণিজ্য")}</h3>
+                    <h3>{t("Industrial zones & parks", "শিল্পাঞ্চল ও প্রযুক্তি পার্ক")}</h3>
                     <p>
                       {t(
-                        "Eight operational EPZs identified by BEPZA, checked 12 September 2026. Positions are OSM industrial-area centres, not entrances or legal boundaries. Dhaka EPZ is represented by its new area. No claim of available plots, capacity or investment suitability.",
-                        "বেপজার তথ্য অনুযায়ী চালু আটটি ইপিজেড, যাচাই ১২ সেপ্টেম্বর ২০২৬। OSM থেকে এলাকার আনুমানিক কেন্দ্র নেওয়া হয়েছে, প্রবেশপথ বা আইনি সীমানা নয়। ঢাকা ইপিজেডের নতুন অংশ দেখানো হয়েছে। খালি প্লট বা বিনিয়োগের উপযোগিতা বোঝানো হয়নি।",
+                        "Eight BEPZA EPZs plus selected BSCIC estates, economic zones and technology parks. Checked 12 September 2026 against authority/operator records and named OSM facilities. BSCIC status uses its July 2026 register; other source dates are shown per site. Developed, allotted and operating are different states. Coverage is partial: no marker does not mean no industry. Positions are approximate, not entrances or legal boundaries; no plot availability, capacity or investment suitability is implied.",
+                        "বেপজার আটটি ইপিজেডের সঙ্গে বাছাই করা বিসিক শিল্পনগরী, অর্থনৈতিক অঞ্চল ও প্রযুক্তি পার্ক। কর্তৃপক্ষ ও পরিচালনাকারীর তথ্য OSM-এর অবস্থানের সঙ্গে মিলিয়ে যাচাই ১২ সেপ্টেম্বর ২০২৬। বিসিকের কার্যক্রমের তথ্য জুলাই ২০২৬-এর, অন্য স্থানের উৎস ও সময়কাল আলাদা করে দেওয়া আছে। অবকাঠামো তৈরি, বরাদ্দ ও কার্যক্রম চালু হওয়া এক বিষয় নয়। তথ্য অসম্পূর্ণ, চিহ্ন নেই মানে শিল্প নেই এমন নয়। অবস্থান আনুমানিক। প্রবেশপথ, আইনি সীমানা, খালি প্লট বা বিনিয়োগের উপযোগিতা বোঝায় না।",
                       )}
                     </p>
                     <a href="https://bepza.gov.bd/pages/who-we-are">
                       BEPZA · {t("Operating zones", "চালু অঞ্চল")}
                     </a>
+                    {" · "}
+                    <a href="https://bscic.gov.bd/pages/static-pages/6922df55933eb65569e2141e">BSCIC</a>
+                    {" · "}
+                    <a href="https://bhtpa.gov.bd/">BHTPA</a>
                   </>
                 )}
                 {state.ports && (
@@ -1350,8 +1354,8 @@ export default function MapsExperience({
                     </summary>
                     <p className="maps-small">
                       {t(
-                        "Authority sources checked 12 September 2026. Approximate OSM facility locations.",
-                        "কর্তৃপক্ষের তথ্য যাচাই ১২ সেপ্টেম্বর ২০২৬। অবস্থান OSM-এর আনুমানিক হিসাব।",
+                        "Authority/operator sources checked 12 September 2026. Approximate OSM facility locations.",
+                        "কর্তৃপক্ষ ও পরিচালনাকারীর তথ্য যাচাই ১২ সেপ্টেম্বর ২০২৬। অবস্থান OSM-এর আনুমানিক হিসাব।",
                       )}
                     </p>
                     {matchingAnchors(state)
@@ -1375,6 +1379,9 @@ export default function MapsExperience({
                               {siteKind(site.kind, locale)} ·{" "}
                               {site.location[locale]}
                             </small>
+                            {"statusNote" in site && (
+                              <small>{site.statusNote[locale]} {site.evidenceNote[locale]}</small>
+                            )}
                             {"role" in site && (
                               <small>
                                 {site.role[locale]} {site.sourceNote[locale]}
@@ -1386,8 +1393,8 @@ export default function MapsExperience({
                       ))}
                     <p className="maps-small">
                       {t(
-                        "Selected ports, airports and the eight BEPZA EPZs only. An empty list does not mean no local activity.",
-                        "বাছাই করা বন্দর, বিমানবন্দর ও বেপজার আটটি ইপিজেডের তথ্য। তালিকা খালি মানে এখানে কাজকর্ম নেই, এমন নয়।",
+                        "Selected facilities only. An empty list does not mean no local activity. Site counts cannot measure market size or demand.",
+                        "বাছাই করা কিছু স্থানের তথ্য। তালিকা খালি মানে এখানে কাজকর্ম নেই, এমন নয়। স্থানের সংখ্যা দিয়ে বাজারের আকার বা চাহিদা মাপা যায় না।",
                       )}
                     </p>
                   </details>
@@ -1503,7 +1510,8 @@ export default function MapsExperience({
                           <i>
                             <Icon name="factory" />
                           </i>
-                          {t("8 EPZs", "৮টি ইপিজেড")}
+                          {t("Zones & parks", "শিল্পাঞ্চল ও পার্ক")} ·{" "}
+                          {num(matchingSites(state).length)}
                         </span>
                       )}
                       {state.ports && (
