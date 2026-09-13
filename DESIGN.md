@@ -360,12 +360,13 @@ Responsive behavior, by the breakpoints that actually exist:
 - **1024px / 1023px**: exactly one "on this page" list at every width. The rail owns it above,
   the inline accordion owns it below. The two rules are a pair; move one and the other has to move
   with it.
-- **860px**: the phone layout. Header stacks to two rows and search takes the second, the rail
-  becomes an off-canvas drawer behind a toggle, scroll clearance rises to 152px, and simple tables
-  switch to a fixed layout so the column settles first and the text wraps inside it.
-- **620px / 560px / 520px**: single-column filter panels and footers, the brand tagline
-  truncates; the compact infobox keeps its label/value columns. Page metadata follows the article,
-  so its date cannot shift the headline after paint.
+- **860px**: the phone layout. The brand tagline is hidden, the header stacks to two rows and search
+  takes the second. The rail becomes an off-canvas drawer behind a toggle, scroll clearance is
+  144px, and simple tables switch to a fixed layout so the column settles first and the text wraps
+  inside it.
+- **620px / 560px / 520px**: single-column filter panels and footers, the brand name
+  truncates when needed; the compact infobox keeps its label/value columns. Page metadata follows
+  the article, so its date cannot shift the headline after paint.
 
 **The Phone-Is-The-Reader Rule.** The narrow column gets the larger body, not the smaller one.
 Bangla carries matra above the line and conjuncts below it, and at 15px the stacked forms are where
