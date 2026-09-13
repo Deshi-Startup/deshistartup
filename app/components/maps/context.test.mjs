@@ -46,7 +46,7 @@ test("airport references join the correct districts, with reproducible OSM acqui
   assert.equal(airports.coordinateAcquisition.snapshot, "2026-09-12T11:51:36Z");
   for (const site of airports.sites) {
     assert.ok(site.name.en && site.name.bn && site.role.en && site.role.bn);
-    assert.match(site.source, /^https:\/\/(ops.caab|www.hsia).gov.bd\//);
+    assert.match(site.source, /^https:\/\/(ops\.caab|www\.hsia)\.gov\.bd\//);
     const region = regions.find((r) => r.id === site.district);
     assert.equal(site.division, region.division);
     const g = geometry.features.find(
@@ -90,10 +90,10 @@ test("eight EPZs have distinct sourced positions inside their named districts", 
   assert.equal(new Set(industry.sites.map((s) => s.coordinateSource)).size, 8);
   for (const site of industry.sites) {
     assert.equal(site.status, "operating");
-    assert.match(site.source, /^https:\/\/bepza.gov.bd\/pages\/[a-z]+-epz$/);
+    assert.match(site.source, /^https:\/\/bepza\.gov\.bd\/pages\/[a-z]+-epz$/);
     assert.match(
       site.coordinateSource,
-      /^https:\/\/www.openstreetmap.org\/way\/\d+$/,
+      /^https:\/\/www\.openstreetmap\.org\/way\/\d+$/,
     );
     assert.ok(site.name.en && site.name.bn);
     const region = regions.find((r) => r.id === site.district);
@@ -135,7 +135,7 @@ test("industrial parks retain verified identities, dated status evidence and cor
     assert.equal(site.checked, source.retrieved);
     assert.equal(site.observationPeriod, source.observationPeriod);
     assert.ok(parks.coordinateAcquisitions.some((a) => a.id === site.coordinateAcquisition));
-    assert.match(site.coordinateSource, /^https:\/\/www.openstreetmap.org\/way\/\d+$/);
+    assert.match(site.coordinateSource, /^https:\/\/www\.openstreetmap\.org\/way\/\d+$/);
     assert.ok(site.osmName);
     for (const locale of ["en", "bn"])
       assert.ok(site.name[locale] && site.location[locale] && site.statusNote[locale] && site.evidenceNote[locale]);
@@ -257,7 +257,7 @@ test("selected ports have distinct official sources and verified district joins"
     );
     assert.match(
       site.coordinateSource,
-      /^https:\/\/www.openstreetmap.org\/(way|relation)\/\d+$/,
+      /^https:\/\/www\.openstreetmap\.org\/(way|relation)\/\d+$/,
     );
     const region = regions.find((r) => r.id === site.district);
     assert.equal(region.division, site.division);
