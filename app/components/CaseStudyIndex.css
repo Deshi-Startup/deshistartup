@@ -1,10 +1,6 @@
-.case-theme--shopup { --case-ground: #174d6a; --case-ink: #fff3dc; --case-soft: #c5e1ed; }
 .case-theme--revora { --case-ground: #293425; --case-ink: #f4f1df; --case-soft: #d1dbb9; }
-.case-theme--truck-lagbe { --case-ground: #622a24; --case-ink: #fff0d8; --case-soft: #f3c7a9; }
 .case-theme--chaldal { --case-ground: #f3d685; --case-ink: #4e371e; --case-soft: #69502f; }
 .case-theme--shohoz { --case-ground: #254b3c; --case-ink: #f2f2d8; --case-soft: #c5dcac; }
-.case-theme--dorik { --case-ground: #292654; --case-ink: #fff7ef; --case-soft: #ddd8ff; }
-.case-theme--arogga { --case-ground: #13554c; --case-ink: #fff7ef; --case-soft: #c3eee0; }
 .case-theme--ifarmer { --case-ground: #efdfa4; --case-ink: #29392b; --case-soft: #425530; }
 
 .section-index--case-studies { container-type: inline-size; margin-bottom: 24px; }

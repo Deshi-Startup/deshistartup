@@ -91,6 +91,22 @@ test('case-study learning diagrams preserve their steps while captions remain ed
   assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace('</CaseProcess>', ''))), false)
 })
 
+for (const [component, props] of [
+  ['CaseExchange', 'lanes={[{ label: "Orders", stops: [{ title: "Buyer", detail: "Places an order." }] }]}'],
+  ['CaseContrast', 'sides={[{ title: "Cash", points: ["Paid once."] }]}']
+]) {
+  test(`${component} protects its structure while allowing citation-caption edits`, () => {
+    const source = `<${component} title="How it works" ${props}>\n\nOriginal caption.[^source]\n\n</${component}>`
+    const encoded = encodeLockedMdx(source)
+    assert.equal((encoded.match(/```deshi-locked-mdx/g) || []).length, 2)
+    const edited = decodeLockedMdx(encoded.replace('Original caption.', 'Updated caption.'))
+    assert.equal(edited, source.replace('Original caption.', 'Updated caption.'))
+    assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited)), true)
+    assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace('How it works', 'Changed structure'))), false)
+    assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace(`</${component}>`, ''))), false)
+  })
+}
+
 test('resource layouts survive edits while their Markdown links and descriptions stay editable', () => {
   const source = [
     '<ToolsResourceGallery locale="en" />', '',

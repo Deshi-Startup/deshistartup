@@ -26,6 +26,30 @@ const companies = {
   shikho: {
     theme: 'shikho',
     sector: { en: 'Education', bn: 'শিক্ষা' }
+  },
+  dorik: {
+    theme: 'dorik',
+    sector: { en: 'Software', bn: 'সফটওয়্যার' }
+  },
+  'shopup-silq': {
+    theme: 'shopup',
+    sector: { en: 'B2B & logistics', bn: 'বিটুবি ও লজিস্টিকস' }
+  },
+  'truck-lagbe': {
+    theme: 'truck-lagbe',
+    sector: { en: 'Freight & logistics', bn: 'পণ্য পরিবহন' }
+  },
+  arogga: {
+    theme: 'arogga',
+    sector: { en: 'Health', bn: 'স্বাস্থ্য' }
+  },
+  solshare: {
+    theme: 'solshare',
+    sector: { en: 'Energy', bn: 'জ্বালানি' }
+  },
+  agroshift: {
+    theme: 'agroshift',
+    sector: { en: 'Agriculture', bn: 'কৃষি' }
   }
 } as const
 
@@ -87,6 +111,43 @@ export function CaseProcess({ title, steps, children, locale = 'en' }: {
           </li>
         ))}
       </ol>
+      <figcaption>{children}</figcaption>
+    </figure>
+  )
+}
+
+export function CaseExchange({ title, lanes, children }: {
+  title: string
+  lanes: { label: string; stops: { title: string; detail: string }[] }[]
+  children: ReactNode
+}) {
+  return (
+    <figure className="case-exchange">
+      <p className="case-exchange__title"><strong>{title}</strong></p>
+      {lanes.map((lane) => (
+        <div className="case-exchange__lane" key={lane.label}>
+          <p className="case-exchange__label">{lane.label}</p>
+          <ol role="list">
+            {lane.stops.map((stop) => <li key={stop.title}><strong>{stop.title}</strong><p>{stop.detail}</p></li>)}
+          </ol>
+        </div>
+      ))}
+      <figcaption>{children}</figcaption>
+    </figure>
+  )
+}
+
+export function CaseContrast({ title, sides, children }: {
+  title: string
+  sides: { title: string; points: string[] }[]
+  children: ReactNode
+}) {
+  return (
+    <figure className="case-contrast">
+      <p className="case-contrast__title"><strong>{title}</strong></p>
+      <div className="case-contrast__sides">
+        {sides.map((side) => <div key={side.title}><h3 data-toc-ignore>{side.title}</h3><ul>{side.points.map((point) => <li key={point}>{point}</li>)}</ul></div>)}
+      </div>
       <figcaption>{children}</figcaption>
     </figure>
   )

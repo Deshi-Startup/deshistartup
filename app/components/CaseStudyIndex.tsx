@@ -5,17 +5,17 @@ import './CaseStudyIndex.css'
 const covers = {
   pathao: {
     theme: 'pathao',
-    sector: { en: 'Mobility & logistics', bn: 'যাতায়াত ও লজিস্টিকস' },
-    title: { en: ['A small start.', 'A costly expansion.'], bn: ['ছোট করে শুরু।', 'দ্রুত বাড়ার ধাক্কা।'] },
+    sector: { en: 'Mobility & logistics', bn: 'যাতায়াত ও লজিস্টিকস' },
+    title: { en: ['A small start.', 'A costly expansion.'], bn: ['ছোট করে শুরু,', 'দ্রুত বাড়ার ধাক্কা।'] },
     summary: {
       en: 'Manual delivery, the move into rides, and the cost of losing focus.',
-      bn: 'ডেলিভারি দিয়ে শুরু, রাইডে বড় সাফল্য আর সুপার অ্যাপ বানাতে গিয়ে মূল ব্যবসায় ফোকাস হারানোর গল্প।'
+      bn: 'ডেলিভারি দিয়ে শুরু, রাইডে বড় সাফল্য আর সুপার অ্যাপ বানাতে গিয়ে মূল ফোকাস হারানোর গল্প।'
     }
   },
   '10-minute-school': {
     theme: 'school',
     sector: { en: 'Education', bn: 'শিক্ষা' },
-    title: { en: ['Free lessons.', 'A test of paid demand.'], bn: ['ফ্রি ক্লাস।', 'পেইড মডেলের পরীক্ষা।'] },
+    title: { en: ['Free lessons.', 'A test of paid demand.'], bn: ['ফ্রি ক্লাস,', 'পেইড মডেলের পরীক্ষা।'] },
     summary: {
       en: 'Free teaching, fragile sponsorship and a small test of willingness to pay.',
       bn: 'স্পন্সরের টাকায় ফ্রি ক্লাস, স্পন্সরশিপ বন্ধের ধাক্কা আর বই বিক্রি করে পেইড মডেল যাচাইয়ের গল্প।'
@@ -27,7 +27,7 @@ const covers = {
     title: { en: ['How trust travels', 'through a network.'], bn: ['এজেন্ট নেটওয়ার্কে', 'ভরসা এলো কীভাবে?'] },
     summary: {
       en: 'How agent networks and everyday small transactions built financial trust across Bangladesh.',
-      bn: 'এজেন্ট নেটওয়ার্ক আর প্রতিদিনের ছোট লেনদেন দিয়ে দেশজুড়ে মানুষের ভরসা তৈরির গল্প।'
+      bn: 'পাড়ার এজেন্ট নেটওয়ার্ক আর প্রতিদিনের ছোট লেনদেন দিয়ে দেশজুড়ে মানুষের ভরসা তৈরির গল্প।'
     }
   },
   'shopup-silq': {
@@ -35,7 +35,7 @@ const covers = {
     sector: { en: 'B2B & logistics', bn: 'বিটুবি ও লজিস্টিকস' },
     title: { en: ['From local shops', 'to cross-border scale.'], bn: ['পাড়ার দোকান থেকে', 'সীমানা ছাড়িয়ে।'] },
     summary: {
-      en: 'Retailer supply, MSME financing and the regional merger to form SILQ.',
+      en: 'Small-shop supply, the wait for cash and the merger that formed SILQ.',
       bn: 'মুদি দোকানে পাইকারি সাপ্লাই, ছোট ব্যবসায়ীদের লোন আর Sary-র সাথে মার্জার করে SILQ হয়ে ওঠার গল্প।'
     }
   },
@@ -43,11 +43,11 @@ const covers = {
     theme: 'revora',
     logoSlug: 'revora',
     name: 'Revora',
-    sector: { en: 'Commerce software', bn: 'ব্যবসার সফটওয়্যার' },
+    sector: { en: 'Commerce software', bn: 'ব্যবসার সফটওয়্যার' },
     title: { en: ['From scattered chats', 'to one shared inbox.'], bn: ['এলোমেলো চ্যাট থেকে', 'এক ইনবক্সে।'] },
     summary: {
       en: 'Customer conversations, merchant workflows and the move from MyAlice to Revora.',
-      bn: 'কাস্টমার চ্যাট, সেলারদের কাজের ঝামেলা কমানো আর MyAlice থেকে Revora হয়ে ওঠার গল্প।'
+      bn: 'কাস্টমার চ্যাট সামলানো, সেলারদের কাজের ঝামেলা কমানো আর MyAlice থেকে Revora হয়ে ওঠার গল্প।'
     }
   },
   shikho: {
@@ -61,17 +61,17 @@ const covers = {
   },
   'truck-lagbe': {
     theme: 'truck-lagbe',
-    sector: { en: 'Freight & logistics', bn: 'পণ্য পরিবহন' },
-    title: { en: ['A truck to book.', 'A load to move.'], bn: ['পণ্য যাবে দূরে।', 'ট্রাক মিলবে সহজে।'] },
+    sector: { en: 'Freight & logistics', bn: 'পণ্য পরিবহন ও লজিস্টিকস' },
+    title: { en: ['A truck to book.', 'A load to move.'], bn: ['পণ্য যাবে দূরে,', 'ট্রাক মিলবে সহজে।'] },
     summary: {
       en: 'Digitising freight, matching shippers with drivers and tackling empty return trips.',
-      bn: 'ডিজিটাল ফ্রেইট প্ল্যাটফর্ম, পণ্যমালিকদের সাথে ট্রাক ড্রাইভার মেলানো আর ফিরতি ট্রিপে লোড পাওয়ার লড়াই।'
+      bn: 'ডিজিটাল ফ্রেইট প্ল্যাটফর্ম, পণ্যমালিকের সাথে ট্রাক ড্রাইভার মেলানো আর ফিরতি ট্রিপে লোড পাওয়ার লড়াই।'
     }
   },
   chaldal: {
     theme: 'chaldal',
     sector: { en: 'Online grocery', bn: 'অনলাইন গ্রোসারি' },
-    title: { en: ['Fresh groceries.', 'Dark-store speed.'], bn: ['তাজা বাজার।', 'দ্রুত ডেলিভারি।'] },
+    title: { en: ['Fresh groceries.', 'Dark-store speed.'], bn: ['তাজা বাজার,', 'দ্রুত ডেলিভারি।'] },
     summary: {
       en: 'Micro-warehouses, cold-chain operations and the daily race of grocery delivery.',
       bn: 'মাইক্রো-ওয়্যারহাউজ নেটওয়ার্ক, কোল্ড চেইন আর ঘরে ঘরে প্রতিদিনের বাজার পৌঁছে দেওয়ার লড়াই।'
@@ -80,44 +80,78 @@ const covers = {
   shohoz: {
     theme: 'shohoz',
     sector: { en: 'Travel & ticketing', bn: 'ভ্রমণ ও টিকিট' },
-    title: { en: ['A ticket booked.', 'A journey started.'], bn: ['অনলাইনে টিকিট।', 'ঝামেলাহীন যাত্রা।'] },
+    title: { en: ['A ticket booked.', 'A journey started.'], bn: ['অনলাইনে টিকিট,', 'ঝামেলাহীন যাত্রা।'] },
     summary: {
       en: 'Bus ticketing scale, the battle in ride-hailing and operating railway reservations.',
-      bn: 'বাসের টিকিটিংয়ে দাপট, রাইড-হেইলিংয়ের লড়াই আর ট্রেনের অনলাইন টিকিট সামলানোর গল্প।'
+      bn: 'বাসের টিকিটিংয়ে দাপট, রাইড শেয়ারিংয়ের তুমুল লড়াই আর ট্রেনের অনলাইন টিকিট সামলানোর গল্প।'
     }
   },
   dorik: {
     theme: 'dorik',
-    sector: { en: 'Software', bn: 'সফটওয়্যার' },
-    title: { en: ['Build in Sylhet.', 'Sell to the world.'], bn: ['সিলেটে তৈরি,', 'বিশ্বজুড়ে বিক্রি।'] },
+    sector: { en: 'Software', bn: 'সফটওয়্যার' },
+    title: { en: ['Build in Sylhet.', 'Sell to the world.'], bn: ['সিলেটে তৈরি,', 'বিশ্বজুড়ে বিক্রি।'] },
     summary: {
-      en: 'How a lean team in Sylhet built a global no-code website platform.',
+      en: 'The first paid offer, lifetime pricing and building websites for clients.',
       bn: 'সিলেটে বসে ছোট একটা টিম কীভাবে গ্লোবাল নো-কোড ওয়েবসাইট প্ল্যাটফর্ম গড়ে তুলল।'
     }
   },
   arogga: {
     theme: 'arogga',
-    sector: { en: 'Health', bn: 'স্বাস্থ্য' },
-    title: { en: ['Genuine medicine.', 'Doorstep care.'], bn: ['আসল ওষুধ।', 'ঘরে বসেই ভরসা।'] },
+    sector: { en: 'Health', bn: 'স্বাস্থ্যসেবা' },
+    title: { en: ['Genuine medicine.', 'Doorstep care.'], bn: ['আসল ওষুধ,', 'ঘরে বসেই ভরসা।'] },
     summary: {
-      en: 'Prescription verification, licensed supply chains and winning patient trust in healthcare.',
-      bn: 'প্রেসক্রিপশন যাচাই, লাইসেন্সপ্রাপ্ত সাপ্লাই চেইন আর স্বাস্থ্যসেবায় রোগীদের ভরসা তৈরির গল্প।'
+      en: 'Direct sourcing, pharmacist review and the cost of dependable delivery.',
+      bn: 'প্রেসক্রিপশন যাচাই, লাইসেন্স করা সাপ্লাই চেইন আর স্বাস্থ্যসেবায় রোগীদের ভরসা তৈরির গল্প।'
     }
   },
   ifarmer: {
     theme: 'ifarmer',
-    sector: { en: 'Agriculture', bn: 'কৃষি' },
-    title: { en: ['Where finance', 'meets the field.'], bn: ['পুঁজি থেকে', 'মাঠের ফসল।'] },
+    sector: { en: 'Agriculture', bn: 'কৃষি ও এগ্রিটেক' },
+    title: { en: ['Where finance', 'meets the field.'], bn: ['কৃষকের পুঁজি,', 'মাঠের ফসল।'] },
     summary: {
       en: 'Connecting retail capital with farm inputs, advisory and direct market access.',
-      bn: 'খামারিদের জন্য পুঁজির ব্যবস্থা, কৃষি উপকরণ, পরামর্শ সেবা আর সরাসরি বাজারে ফসল বিক্রির মডেল।'
+      bn: 'খামারিদের জন্য পুঁজির ব্যবস্থা, মানসম্মত উপকরণ, পরামর্শ সেবা আর সরাসরি বাজারে ফসল বিক্রির মডেল।'
+    }
+  },
+  solshare: {
+    theme: 'solshare',
+    sector: { en: 'Energy', bn: 'জ্বালানি' },
+    title: { en: ['Spare power.', 'A new connection.'], bn: ['বাড়তি বিদ্যুৎ,', 'নতুন সংযোগ।'] },
+    summary: {
+      en: 'Trading solar electricity, connecting to the grid and financing vehicle batteries.',
+      bn: 'সোলার বিদ্যুৎ বেচাকেনা, জাতীয় গ্রিডে সংযোগ আর গাড়ির ব্যাটারিতে ফাইন্যান্সিংয়ের গল্প।'
+    }
+  },
+  agroshift: {
+    theme: 'agroshift',
+    sector: { en: 'Agriculture', bn: 'কৃষি' },
+    title: { en: ['Orders together.', 'Groceries at work.'], bn: ['অর্ডার একসাথে,', 'বাজার ফ্যাক্টরিতে।'] },
+    summary: {
+      en: 'Factory pickup points, grouped demand and the trade-offs behind a cheaper delivery.',
+      bn: 'ফ্যাক্টরি পিকআপ পয়েন্ট, সবার চাহিদা এক করা আর কম খরচে ডেলিভারির পেছনের সুবিধা-অসুবিধার হিসাব।'
     }
   }
 } as const
 
-
-
 const additionalArtwork = {
+  solshare: (
+    <svg viewBox="0 0 330 200" fill="none" focusable="false">
+      <path d="M74 62h182M74 138h182" stroke="#f1d594" strokeWidth="2" />
+      <path d="m241 55 8 7-8 7m-152 62-8 7 8 7" stroke="#f1d594" strokeWidth="2" />
+      {[44, 256].map((x) => <g key={x}><rect x={x} y="40" width="30" height="120" rx="3" fill="#fff7e7"/><path d={`M${x + 8} 53h14m-14 12h14m-14 12h14`} stroke="#213b43" strokeWidth="2"/></g>)}
+      <circle cx="165" cy="100" r="28" fill="#f1d594" />
+      <path d="m168 82-15 20h11l-2 16 15-22h-12z" fill="#213b43" />
+    </svg>
+  ),
+  agroshift: (
+    <svg viewBox="0 0 330 200" fill="none" focusable="false">
+      <path d="M67 45h63v110H67m63-55h68" stroke="#d7e5b0" strokeWidth="2" />
+      {[45, 100, 155].map((y) => <g key={y}><rect x="30" y={y - 15} width="42" height="30" rx="3" fill="#fff7e7"/><path d={`M40 ${y - 4}h22m-22 8h14`} stroke="#294c39" strokeWidth="2"/></g>)}
+      <rect x="198" y="55" width="95" height="90" rx="4" fill="#d7e5b0" />
+      <path d="M211 72h69m-69 16h69m-69 16h69m-69 16h45" stroke="#294c39" strokeWidth="2" />
+      <path d="m182 93 8 7-8 7" stroke="#d7e5b0" strokeWidth="2" />
+    </svg>
+  ),
   shopup: (
     <svg viewBox="0 0 330 200" fill="none" focusable="false">
       <path d="M165 76v30M57 132v-26h216v26M165 106v26" stroke="#b1d8ef" strokeWidth="2" />
@@ -236,13 +270,14 @@ function CaseCover({ page, locale }: { page: PageInfo; locale: CaseLocale }) {
   const [route, title, stub, description] = page
   const action = stub
     ? (locale === 'en' ? 'To be written' : 'লেখা বাকি')
-    : (locale === 'en' ? 'Read the case study' : 'কেস স্টাডি পড়ুন')
+    : (locale === 'en' ? 'Read the case study' : 'কেস স্টাডি পড়ুন')
   const slug = route.split('/').filter(Boolean).at(-1) || ''
   const cover = covers[slug as keyof typeof covers]
+  const copy = cover ? { theme: cover.theme, sector: cover.sector[locale], title: cover.title[locale], summary: cover.summary[locale] } : undefined
   const company = cover && 'name' in cover ? cover.name : title.replace(/(?: case study| কেস স্টাডি)$/, '')
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
   // A newly finished study remains discoverable before custom artwork is commissioned.
-  if (!cover) return (
+  if (!copy) return (
     <a className="case-cover case-theme--school case-cover--plain" href={`${basePath}${route}`}>
       <CaseLogo slug={slug} />
       <h3>{company}</h3>
@@ -251,14 +286,14 @@ function CaseCover({ page, locale }: { page: PageInfo; locale: CaseLocale }) {
     </a>
   )
   return (
-    <a className={`case-cover case-theme--${cover.theme}`} href={`${basePath}${route}`} rel={stub ? 'nofollow' : undefined} data-case-status={stub ? 'planned' : 'published'}
-      aria-label={`${company}: ${cover.title[locale].join(' ')}${stub ? (locale === 'en' ? ' Case study to be written. View starting sources.' : ' কেস স্টাডি লেখা বাকি। প্রাথমিক সোর্স দেখুন।') : ''}`}>
-      <div className="case-cover__head"><CaseLogo slug={'logoSlug' in cover ? cover.logoSlug : slug} fallback={company} /><span>{cover.sector[locale]}</span></div>
-      <CoverArt theme={cover.theme} locale={locale} />
+    <a className={`case-cover case-theme--${copy.theme}`} href={`${basePath}${route}`} rel={stub ? 'nofollow' : undefined} data-case-status={stub ? 'planned' : 'published'}
+      aria-label={`${company}: ${copy.title.join(' ')}${stub ? (locale === 'en' ? ' Case study to be written. View starting sources.' : ' কেস স্টাডি লেখা বাকি। প্রাথমিক সোর্স দেখুন।') : ''}`}>
+      <div className="case-cover__head"><CaseLogo slug={cover && 'logoSlug' in cover ? cover.logoSlug : slug} fallback={company} /><span>{copy.sector}</span></div>
+      <CoverArt theme={copy.theme} locale={locale} />
       <div className="case-cover__copy">
         <p className="case-cover__company">{company}</p>
-        <h3>{cover.title[locale].map((line) => <span key={line}>{line}</span>)}</h3>
-        <p className="case-cover__summary">{cover.summary[locale]}</p>
+        <h3>{copy.title.map((line) => <span key={line}>{line}</span>)}</h3>
+        <p className="case-cover__summary">{copy.summary}</p>
       </div>
       <span className="case-cover__bottom">{action}<Arrow /></span>
     </a>
@@ -273,7 +308,8 @@ export default function CaseStudyIndex({ locale = 'bn' }: { locale?: CaseLocale 
   return (
     <SectionIndex section="case-studies" locale={locale} heading={locale === 'en' ? 'Explore case studies' : 'কেস স্টাডিগুলো দেখুন'}
       renderCollection={(pages) => {
-        const featured = Object.keys(covers).flatMap((slug) => pages.filter((page) => page[0].endsWith(`/${slug}`)))
+        const featuredSlugs = Object.keys(covers)
+        const featured = featuredSlugs.flatMap((slug) => pages.filter((page) => page[0].endsWith(`/${slug}`)))
         const otherWritten = pages.filter((page) => !page[2] && !featured.includes(page))
         // Put completed studies first, preserving the curated order within each group.
         const galleryPages = [...featured, ...otherWritten].sort((a, b) => a[2] - b[2])

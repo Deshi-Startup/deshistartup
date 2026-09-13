@@ -1,16 +1,245 @@
 ---
 title: "Truck Lagbe"
-description: "Truck Lagbe – this case study is planned for Deshi Startup, but it has not been written yet."
+seoTitle: "Truck Lagbe Case Study: The Business Behind a Better Truck Match"
+description: "How Truck Lagbe found value in empty return trips, learned to earn truck owners' trust and built a second business around enterprise logistics."
+verified: 2026-09-13
 ---
+
+import { CaseCompany, CaseTimeline, CaseMilestone, CaseDetail, CaseExchange } from '../../../../components/CaseStudy'
 
 # Truck Lagbe
 
-<StubNotice path="case-studies/truck-lagbe" locale="en" />
+<CaseCompany slug="truck-lagbe" locale="en" />
+
+> **In short:** Truck Lagbe began with a price puzzle: the cost of moving goods depended partly on where the truck needed to go next.[^early] Matching loads more carefully could reduce wasted travel. Building a business around that insight required much more: trust on both sides, useful booking details, dependable payment and support when a trip went wrong.
+
+A truck that has finished a delivery still has to go somewhere. If it returns empty, that travel earns nothing. If another load fits the route, timing and vehicle, the same journey can become paid work.
+
+Truck Lagbe connects shippers - the people or businesses sending goods - with truck owners and drivers. It also arranges transport for larger businesses.[^ifc-review] Its story is useful for anyone building a marketplace around work that happens offline. The real product is a completed job, not a match on a screen.
+
+## At a glance
+
+| Item | Detail |
+|---|---|
+| Founders | Anayet Rashid and Mir Hossain Ekram.[^early] |
+| Start | Planning in late 2016; the business began in 2017.[^early] |
+| Initial opportunity | Help shippers find suitable trucks, including vehicles seeking a return load.[^rates] |
+| Two customer jobs | Book a particular trip, or manage a large company's recurring transport needs.[^evolution] |
+| Business model | Fees on bookings and separately priced services for larger companies.[^evolution] |
+| Capital milestones | A US$4 million investment round in 2021; a further, undisclosed round led by PSA International in 2023.[^later-funding] |
+
+## Turning points
+
+<CaseTimeline>
+<CaseMilestone date="2016-17" title="Investigate why the same route costs different amounts">
+
+The founders research the market and begin building the service.[^early]
+
+</CaseMilestone>
+<CaseMilestone date="2017" title="An award brings attention before the team is ready">
+
+Winning a government startup competition leads to calls from shippers and truck owners.[^early]
+
+</CaseMilestone>
+<CaseMilestone date="2020" title="Make unfamiliar customers less risky for truck owners">
+
+A company explanation describes checking shippers, including their contact details.[^verification]
+
+</CaseMilestone>
+<CaseMilestone date="2020-21" title="Build around repeat use and enterprise work">
+
+A new app adds practical booking features. A separate service handles larger customers' transport arrangements.[^evolution]
+
+</CaseMilestone>
+<CaseMilestone date="September 2021" title="Bring in capital and operating scrutiny">
+
+IFC announces US$2.5 million in investment. Its separate review identifies driver-safety and monitoring improvements the platform needs.[^ifc][^ifc-review]
+
+</CaseMilestone>
+<CaseMilestone date="July 2023" title="Connect the platform with a wider logistics network">
+
+PSA, a global port and supply-chain operator, leads the next funding round.[^psa]
+
+</CaseMilestone>
+</CaseTimeline>
+
+## A price puzzle led to the company
+
+Anayet Rashid had seen transport costs affect an existing family business. In an IDLC interview, he described how truck hire could change the profit on the goods being moved.[^idlc]
+
+His 2018 founding account describes two shipments to Jessore a week apart. One truck expected to return empty. The other was already heading home. That difference changed the price.[^early]
+
+<CaseExchange
+  title="The destination was the same. The next journey was not."
+  lanes={[
+    { label: 'Truck expecting an empty return - BDT 35,000', stops: [
+      { title: 'Dhaka', detail: 'Collect the shipment.' },
+      { title: 'Jessore', detail: 'Deliver the goods.' },
+      { title: 'Return empty', detail: 'The quote must account for unpaid travel.' },
+    ] },
+    { label: 'Truck already heading home - BDT 8,000', stops: [
+      { title: 'Dhaka', detail: 'Find a load for the return journey.' },
+      { title: 'Jessore', detail: 'Earn from a trip it needed to make.' },
+    ] },
+  ]}
+>
+
+Rashid's historical example, simplified.[^early] These were two reported shipments, not a controlled price comparison or today's rates.
+
+</CaseExchange>
+
+The business opportunity was to make that fit easier to find. A cheaper trip need not always mean taking money away from the owner. It can come from making travel that would otherwise earn nothing more useful.
+
+But the conditions matter. A truck may be empty and still be unsuitable. Its capacity may be wrong. The load may be ready too late. Waiting for it may cost more than taking another job. A marketplace has to solve the whole match, not just find an empty vehicle.
+
+## Early interest was easier to find than a working service
+
+Research in transport markets was followed by unexpected publicity: the competition win brought enquiries before the service was ready.[^early]
+
+That sequence gave them attention, but also a deadline. People now expected to use the service. The team had to turn a promising idea into something that could handle real cargo and real disagreements.
+
+A later example shows the role Truck Lagbe could play for another young company. In March 2021, iFarmer described using Truck Lagbe for logistics as it built its own agricultural supply business.[^ifarmer] A growing business could use an outside network instead of first assembling its own fleet.
+
+This is a useful way to understand demand for the service. A founder may not want “a trucking app.” They may want to fulfil the next wholesale order without spending the day calling drivers. The value appears in the customer's own business getting its work done.
+
+## The trust problem existed on both sides
+
+The founders initially expected shippers to worry about the safety of their goods. Rashid told IDLC that a different concern surprised them: truck owners were worried about losing their vehicles. The response was to verify both customers and suppliers, then help people learn the app through people who could teach others.[^idlc]
+
+Truck Lagbe's September 2020 explanation of shipper verification makes the owner's concern concrete. An unknown customer could post a false trip, waste the driver's journey or ask for illegal goods to be moved. The company described checking contact details and making separate agreements with some business shippers.[^verification]
+
+The customer is not the only party taking a risk. The owner puts a valuable asset on the road; the driver gives time and takes responsibility for the journey. If either side distrusts the transaction, the match will not happen.
+
+For a marketplace founder, this changes onboarding. Making it effortless for buyers to post requests may look good in a conversion chart. If those requests waste providers' time, the supply side becomes less willing to respond. A little justified friction can protect the quality of the network.
+
+## Useful details beat a generic booking form
+
+The current booking FAQ asks for the load and unload points, vehicle category, date, time and product type. Owners then bid, and the shipper chooses a suitable offer.[^booking]
+
+Those fields do different jobs. Location narrows the route. Timing checks whether both sides are ready. Product details help prevent a vehicle arriving for cargo it cannot carry.
+
+Rashid's 2021 interview adds two revealing product choices: using familiar local place names and letting a customer hire a driver they had used before.[^evolution] These are small features with a clear purpose. A landmark may be more useful on the road than an official address. A known driver may be more valuable than a fresh list of strangers.
+
+The rehire feature also exposes a marketplace risk. Once two people meet, they may deal directly next time. Helping them work together again means competing on continuing usefulness, rather than hoping they never exchange phone numbers.
+
+A platform earns its place when the booking record, support, payment process or access to other jobs makes staying worthwhile. Charging for the introduction alone becomes harder after the introduction has happened.
+
+## Different trips need different pricing
+
+Truck Lagbe's May 2021 product explanation described both bidding and fixed pricing for one-ton pickups within Dhaka.[^rates]
+
+The combination makes sense. Bidding can reflect the changing circumstances of a longer or less standard trip. A fixed price can make a familiar, repeated job quicker to book. The choice is not simply between “manual” and “automated.” It depends on how much uncertainty the business can responsibly remove.
+
+| A trip needs an answer to… | Why it matters |
+|---|---|
+| Can this vehicle carry this load? | Size alone may not establish safe carrying capacity. |
+| Can it reach the pickup at the agreed time? | A delayed truck or delayed cargo ties up the other side. |
+| What work does the price include? | Waiting, extra stops and loading arrangements can change the job. |
+| What can the vehicle do afterward? | The next useful trip affects the owner's overall earnings. |
+
+This is our explanation of the matching problem, based on the service's booking and pricing model.[^booking][^rates]
+
+The useful network measure is therefore quite narrow: how often can the platform provide a suitable vehicle for a specific job at the required time? A large registration count cannot answer that by itself.
+
+## Enterprise customers brought a second business
+
+In 2021, Rashid separated the open marketplace from an enterprise service he called brokerage. Large customers could need a dedicated account manager, agreed routes and prices, monthly bills and invoices in their own format.[^evolution]
+
+An enterprise is buying relief from coordination work as well as transport. One person may have to organise vehicles across several sites, track deliveries and get bills approved. A dependable contact and a correct invoice can matter as much as the booking screen.
+
+That service has different economics. It requires staff time. It may also require cash before payment arrives. Rashid told IDLC that some larger customers received time to pay while owners were paid promptly.[^idlc]
+
+<CaseDetail title="No owned trucks does not mean no cash tied up">
+
+Imagine a transport platform pays owners BDT 10,000 for each of 20 completed jobs while it waits for a business customer's monthly payment.
+
+**20 × BDT 10,000 = BDT 200,000 paid out before collection.**
+
+That is an illustrative cash gap, not Truck Lagbe's actual fares or payment terms. The fee it expects to earn does not supply the cash needed today. Late or disputed invoices can extend the gap.
+
+</CaseDetail>
+
+This is working capital: money needed to keep everyday operations moving while payments are still on the way. A business can avoid buying trucks and still need substantial working capital.
+
+It also explains why a marketplace and an enterprise service should not be judged with identical measures. One may need fast, reliable matches. The other also needs accurate billing, collection and a cost-effective account team. See [cash flow versus profit](/en/metrics/cashflow-vs-profit) for the underlying money flow.
+
+## The role of brokers became more complicated
+
+A simple marketplace pitch often promises to remove middlemen. By 2021, Rashid was explaining why Truck Lagbe wanted to work with brokers too: they could reach truck owners who were not yet using digital tools.[^evolution]
+
+That is a meaningful change in how to think about the market. An intermediary can add an unnecessary charge. The same person can also supply local knowledge, a trusted relationship or access to a vehicle that never appears in an app.
+
+Removing the person does not automatically remove the work. A platform must either do that work better or find a fair way to include the people already doing it.
+
+The current owner page still promotes direct trips without a middleman.[^owners] The distinction is between giving users a direct route and assuming every intermediary in the wider system has no value. A good case study has to leave room for both.
+
+## Some digital progress still needed paper
+
+Rashid told IDLC in October 2021 that digital challans were not widely accepted, so the company still supplied physical copies.[^idlc] A challan is the document accompanying a delivery and recording the goods being sent.
+
+This is a familiar constraint in Bangladesh: a process can be digital at one end and paper-based at the next. The customer still needs the goods accepted. Refusing to support the paper step would make the software cleaner while making the service less useful.
+
+The same period produced a different surprise. Rashid said owners adopted an automated collection process within a month, faster than the team expected.[^evolution] People could accept one digital change while still needing paper elsewhere.
+
+“Not ready for technology” is too broad a label. Readiness depends on the task, the benefit and who else has to accept the change.
+
+## Growth has to work for drivers too
+
+IFC's 2021 review is more useful than a funding headline alone. Based on remote interviews and document review, it noted gaps in monitoring driver hours, accident statistics and vehicle condition. Its action plan called for stronger procedures, training and oversight.[^ifc-review]
+
+The same disclosure later marked the code of conduct and operations manual completed in January 2022.[^ifc-review] That records a response to the review. It does not, by itself, establish current driver earnings or safety.
+
+A separate Fairwork study supplies a later, independent check. Its 2023 report awarded Truck Lagbe no points under its evidence-based labour standards. It raised concerns about accident liability and the availability of Bangla contracts. It also reported that the Truck Lagbe workers interviewed said they received full payment on time.[^fairwork]
+
+These are dated findings, not a claim about every driver or today's conditions. They show why lower fares and more bookings are not enough to establish a good outcome for the people doing the work.
+
+Truck Lagbe has also advertised a paid life-insurance option with Guardian Life.[^insurance] The existence of an offer is different from knowing how many drivers hold a policy, understand its exclusions or receive help after an accident.
+
+For a durable marketplace, the supplier's economics belong in the product review. Fuel, maintenance, waiting time, vehicle payments and risk determine whether another trip is worth taking. A platform that makes the buyer's price attractive while leaving the driver worse off may weaken the very supply it needs.
+
+## What the investors added
+
+IFC announced US$2.5 million in equity, meaning investment in exchange for ownership, in September 2021. It also offered logistics experience and prospective customer connections.[^ifc] This was part of the US$4 million round later reported in the funding history.[^later-funding]
+
+In 2023, PSA International led a further round. PSA described the fit with its ports and supply-chain work, including the potential to reduce empty trips and connect with other logistics services.[^psa] The amount was not disclosed in TBS's report.[^later-funding]
+
+The strategic fit is clear: a trucking network can help connect the movement of goods beyond a port. The result still depends on execution. An investment announcement does not establish that a particular route is profitable or that empty travel has fallen by a measured amount.
+
+## What founders can take from Truck Lagbe
+
+**Follow unused capacity to its cause.** An empty truck may reflect a missing match, but the route, load and timing still have to fit.
+
+**Earn the provider's trust as carefully as the buyer's.** A false request or unclear responsibility can drive good providers away.
+
+**Keep improving the transaction after the first match.** Rehiring, billing, support and collection give people a reason to keep using the service.
+
+**Separate customer types when the work differs.** An occasional booking and an enterprise transport account can share a network while needing different people, processes and cash.
+
+Do not copy the “asset-light” label without mapping who gets paid when. Do not judge driver outcomes from trip volume. And do not discard familiar practices merely because they do not fit an all-digital story.
+
+Truck Lagbe's original insight was about the return journey. Its deeper lesson is to follow every journey to the end: the goods arriving, the owner being paid, the driver bearing the costs and the platform collecting enough to keep serving them.
+
+## Evidence and open questions
+
+The founder interviews explain the decisions; IFC and Fairwork provide different forms of outside scrutiny. Product pages describe the offer, while the iFarmer account shows use by another business. None provides a complete view of current operations.
+
+Public sources reviewed here do not establish audited profit, active trucks by route, cancellation rates, driver earnings after costs, cargo-claim outcomes or enterprise collection times. Historical fares and the illustrative cash calculation should not be used as current quotes.
 
 ## Relevant Sources
 
-- [Truck Lagbe](https://trucklagbe.com)
-- [Future Startup](https://futurestartup.com)
-- [The Daily Star – Tech & Startup](https://www.thedailystar.net/tech-startup)
-- [The Business Standard](https://www.tbsnews.net)
-- [LightCastle Partners – Insights](https://lightcastlepartners.com/insights)
+Sources checked on 13 September 2026. For deeper reading, start with the two founder interviews, then compare their account with the IFC and Fairwork reviews.
+
+[^early]: [Anayet Rashid on starting Truck Lagbe - Future Startup, 13 August 2018](https://futurestartup.com/2018/08/13/how-truck-lagbe-is-taking-on-an-age-old-transportation-industry-with-anayet-rashid/).
+[^idlc]: [Interview with Anayet Rashid - IDLC Monthly Business Review, October 2021, printed pages 15-16](https://idlc.com/mbr/images/public/EDDdw8i2qIlfJu7HmHSXZe.pdf).
+[^verification]: [Verified Shipper - Truck Lagbe, 21 September 2020](https://blog.trucklagbe.com/verified-shipper).
+[^evolution]: [Truck Lagbe's evolution and ambitions - Future Startup, 14 June 2021](https://futurestartup.com/2021/06/14/truck-lagbe-co-founder-and-ceo-anayet-rashid-reflects-on-the-evolution-and-ambition-of-truck-lagbe/).
+[^booking]: [Booking questions and bidding - Truck Lagbe's official FAQ](https://trucklagbe.com/en/frequently-asked-question-en/).
+[^rates]: [Best Rate: bidding, fixed pricing and return trips - Truck Lagbe, 4 May 2021](https://blog.trucklagbe.com/best-rate).
+[^ifarmer]: [iFarmer's supply-chain work and use of Truck Lagbe - Future Startup, 23 March 2021](https://futurestartup.com/2021/03/23/ifarmers-tech-enabled-supply-chain-network-improves-access-to-the-market-for-the-farmers/).
+[^ifc-review]: [Environmental and Social Review Summary and action-plan updates, project 44987 - IFC, disclosed February 2021, with completion records through January 2022](https://disclosures.ifc.org/project-detail/ESRS/44987/truck-lagbe).
+[^ifc]: [IFC supports Truck Lagbe - IFC, 20 September 2021](https://www.ifc.org/en/pressroom/2021/ifc-supports-truck-lagbe-to-expand-logistics-services-amid-covid-19).
+[^fairwork]: [Fairwork Bangladesh Ratings 2023 - Oxford Internet Institute / Fairwork, accessible report, especially pages 19-23](https://fair.work/wp-content/uploads/sites/17/2024/01/Fairwork-Bangladesh-Ratings-2023-Accessible-EN.pdf).
+[^insurance]: [Life-insurance offer for truck drivers - Truck Lagbe](https://trucklagbe.com/affordable-life-insurance-for-truck-drivers/).
+[^owners]: [Services for truck owners - Truck Lagbe](https://trucklagbe.com/en/owner-en/).
+[^psa]: [PSA explains its investment in Truck Lagbe - PSA International, July 2023](https://www.linkedin.com/posts/globalpsa_investing-into-connectivity-psa-international-activity-7086993415908839424-tzqN).
+[^later-funding]: [Singapore company invests in Truck Lagbe - The Business Standard, 13 July 2023](https://www.tbsnews.net/bangladesh/singapore-co-invests-truck-lagbe-664910).
