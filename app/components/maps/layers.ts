@@ -1,4 +1,4 @@
-import type { Locale, Region, Level } from "./types.ts";
+import type { Locale, Region, Level, UrbanPlace } from "./types.ts";
 const REPORT_URL =
   "https://socialprotection.gov.bd/wp-content/uploads/2025/08/Paper-4-Poverty-Map-of-Bangladesh.pdf";
 export const CENSUS_URL =
@@ -68,7 +68,6 @@ export type Layer = {
   name: Words;
   unit: Words;
   definition: Words;
-  question: Words;
   breaks: number[];
   colors: string[];
   symbols?: typeof countInk;
@@ -81,7 +80,6 @@ const census = (
   name: Words,
   unit: Words,
   definition: Words,
-  question: Words,
   breaks: number[],
   national: number,
   kind: "rate" | "count" = "rate",
@@ -91,7 +89,6 @@ const census = (
   name,
   unit,
   definition,
-  question,
   breaks,
   national,
   kind,
@@ -107,10 +104,6 @@ export const layers: Layer[] = [
       "Census population per square kilometre of administrative area. Not built-up density.",
       "প্রশাসনিক এলাকার প্রতি বর্গকিলোমিটারে জনশুমারিতে গণনা করা মানুষ। শুধু বসতি এলাকার ঘনত্ব নয়।",
     ],
-    [
-      "Where could customers be reached within a smaller service area? Check settlement patterns and road access next.",
-      "কম জায়গার মধ্যে কোথায় বেশি মানুষের কাছে পৌঁছানো সম্ভব? এরপর বসতির ধরন ও সড়ক যোগাযোগ যাচাই করুন।",
-    ],
     [500, 900, 1200, 1700, 3000],
     1119,
   ),
@@ -121,10 +114,6 @@ export const layers: Layer[] = [
     [
       "Total enumerated population, including general and institutional households and floating people; not the post-enumeration adjusted total.",
       "সাধারণ ও প্রাতিষ্ঠানিক খানার মানুষ এবং ভাসমান মানুষসহ গণনা করা মোট জনসংখ্যা। শুমারি-পরবর্তী যাচাই দিয়ে সমন্বয় করা সংখ্যা নয়।",
-    ],
-    [
-      "A large population is a potential audience. Which people have the problem your product solves?",
-      "বেশি জনসংখ্যা মানে সম্ভাব্য কাস্টমারও বেশি হতে পারে। তাঁদের মধ্যে কারা আপনার পণ্যের মাধ্যমে সমাধান পাওয়ার মতো সমস্যায় আছেন?",
     ],
     [],
     165158616,
@@ -138,10 +127,6 @@ export const layers: Layer[] = [
       [
         "Permanent and temporary establishments plus economic households, Economic Census 2024. Includes businesses, public and nonprofit establishments. A count of activity, not revenue, GDP or paying customers.",
         "অর্থনৈতিক শুমারি ২০২৪-এ স্থায়ী ও অস্থায়ী প্রতিষ্ঠান এবং অর্থনৈতিক কর্মকাণ্ডে যুক্ত খানা। ব্যবসার পাশাপাশি সরকারি ও অলাভজনক প্রতিষ্ঠানও আছে। এটি কাজকর্মের সংখ্যা, আয়, জিডিপি বা টাকা দিতে প্রস্তুত কাস্টমারের হিসাব নয়।",
-      ],
-      [
-        "Which of these activities could need your service? Check the sector mix, then interview owners about their current tools, budgets and alternatives.",
-        "এসব কাজের কোনটিতে আপনার সেবা লাগতে পারে? খাতের ধরন দেখুন, তারপর মালিকদের বর্তমান ব্যবস্থা, বাজেট ও বিকল্প নিয়ে কথা বলুন।",
       ],
       [],
       11702792,
@@ -157,10 +142,6 @@ export const layers: Layer[] = [
       "Urban residents divided by all enumerated residents. Calculated from Census Table P02.",
       "জনশুমারির P02 টেবিলের শহরাঞ্চলের জনসংখ্যাকে মোট জনসংখ্যা দিয়ে ভাগ করে হিসাব করা।",
     ],
-    [
-      "How much of the market is outside urban areas? Test whether a city-focused delivery model would reach it.",
-      "আপনার টার্গেট কাস্টমারদের কতজন শহরের বাইরে আছেন? শহরভিত্তিক ডেলিভারি দিয়ে তাঁদের কাছে পৌঁছানো যাবে কি না যাচাই করুন।",
-    ],
     [15, 20, 30, 40, 60],
     (52049459 / 165158616) * 100,
   ),
@@ -172,10 +153,6 @@ export const layers: Layer[] = [
       [
         "Estimated consumption poverty (CensusEB), using HIES and Census 2022. Not income, wealth or an opportunity ranking.",
         "HIES ও জনশুমারি ২০২২ দিয়ে CensusEB পদ্ধতিতে ভোগব্যয়ভিত্তিক দারিদ্র্যের প্রাক্কলন। আয়, সম্পদ বা ব্যবসার সুযোগের র‍্যাঙ্কিং নয়।",
-      ],
-      [
-        "What price and payment schedule would fit local constraints? Small differences between estimates may be statistical noise.",
-        "স্থানীয় কাস্টমারদের সামর্থ্য অনুযায়ী দাম ও পেমেন্টের শিডিউল কেমন হওয়া উচিত? প্রাক্কলনের সামান্য পার্থক্য স্ট্যাটিস্টিকাল নয়েজ থেকেও হতে পারে।",
       ],
       [10, 15, 20, 25, 35],
       19.2,
@@ -191,10 +168,6 @@ export const layers: Layer[] = [
       "Literacy rate among people aged seven and above. Not a measure of job-specific skills.",
       "৭ বছর বা বেশি বয়সীদের সাক্ষরতার হার। নির্দিষ্ট কাজের দক্ষতার পরিমাপ নয়।",
     ],
-    [
-      "Would a text-heavy product be usable here? Test Bangla, audio and assisted onboarding with actual users.",
-      "টেক্সট-নির্ভর প্রোডাক্ট এখানকার ইউজাররা কতটা সহজে ব্যবহার করতে পারবেন? বাংলা, অডিও ও অ্যাসিস্টেড অনবোর্ডিং দিয়ে টেস্ট করে দেখুন।",
-    ],
     [65, 70, 75, 80, 85],
     74.8,
     "rate",
@@ -208,10 +181,6 @@ export const layers: Layer[] = [
       [
         "People aged 5–29 currently studying, summed from the male and female columns in Census Table P16.",
         "জনশুমারির P16 টেবিলে বর্তমানে পড়াশোনা করছেন এমন ৫–২৯ বছর বয়সী নারী ও পুরুষের যোগফল।",
-      ],
-      [
-        "Which age group and learning need would you serve? The total does not measure paid education demand.",
-        "কোন বয়সের শিক্ষার্থীর কোন শেখার চাহিদা পূরণ করবেন? মোট সংখ্যা দিয়ে টাকা খরচ করে শেখার চাহিদা বোঝা যায় না।",
       ],
       [],
       41518866,
@@ -229,10 +198,6 @@ export const layers: Layer[] = [
         "Survey estimate of people aged 5+ in private households who used the internet in the last three months, ICT Survey 2024–25. Not network coverage, speed or device ownership.",
         "আইসিটি জরিপ ২০২৪–২৫ অনুযায়ী সাধারণ খানার ৫ বছর বা বেশি বয়সীদের মধ্যে গত তিন মাসে ইন্টারনেট ব্যবহারের প্রাক্কলিত হার। নেটওয়ার্কের আওতা, গতি বা ডিভাইসের মালিকানা নয়।",
       ],
-      [
-        "Can users complete the task online? Explore low-data and assisted options before assuming an app-only service.",
-        "ইউজাররা কি কাজটা অনলাইনেই শেষ করতে পারবেন? শুধু অ্যাপ ধরে এগোনোর আগে কম ডেটায় ও কারও সাহায্য নিয়ে ব্যবহারের অপশনগুলো টেস্ট করে দেখুন।",
-      ],
       [30, 40, 50, 60, 70],
       53.4,
       "rate",
@@ -248,10 +213,6 @@ export const layers: Layer[] = [
       "People with an account at a bank, insurer, microcredit institution, post office or other financial institution. Not balances or active use.",
       "ব্যাংক, বিমা, ক্ষুদ্রঋণ প্রতিষ্ঠান, ডাকঘর বা অন্য আর্থিক প্রতিষ্ঠানে হিসাব আছে এমন মানুষের হার। জমা টাকা বা নিয়মিত ব্যবহার বোঝায় না।",
     ],
-    [
-      "Which payment and support channels do people already use? Verify account activity and trust locally.",
-      "মানুষ কোন মাধ্যমে পেমেন্ট করেন ও সাহায্য নেন? অ্যাকাউন্টের অ্যাক্টিভিটি ও আস্থার বিষয়টি স্থানীয়ভাবে যাচাই করে নিন।",
-    ],
     [15, 20, 25, 30, 35],
     25.35,
     "rate",
@@ -264,10 +225,6 @@ export const layers: Layer[] = [
     [
       "People aged 15+ reporting a mobile banking account. Not transaction volume, active customers or agent coverage.",
       "১৫ বছর বা বেশি বয়সীদের মধ্যে মোবাইল ব্যাংকিং হিসাব আছে এমন মানুষের হার। লেনদেনের পরিমাণ, সক্রিয় কাস্টমার বা এজেন্টের আওতা নয়।",
-    ],
-    [
-      "Would mobile payments reduce friction here? Investigate active use, cash-out costs and available agents.",
-      "মোবাইল পেমেন্টে কি ইউজারদের কাজ সহজ হবে? নিয়মিত ব্যবহার, ক্যাশ-আউট খরচ ও এজেন্টের উপস্থিতি যাচাই করে দেখুন।",
     ],
     [30, 35, 40, 45, 50],
     39.11,
@@ -290,10 +247,6 @@ export const layers: Layer[] = [
             "Mean monthly nominal household consumption expenditure, HIES 2022 Table 4.5. Distinct from income and total expenditure. Division estimates only.",
             "HIES ২০২২-এর টেবিল ৪.৫ অনুযায়ী খানার মাসিক গড় ভোগব্যয়, সেই বছরের টাকার মূল্যে। আয় ও মোট ব্যয় থেকে আলাদা। শুধু বিভাগের হিসাব।",
           ],
-      [
-        "How does a proposed price fit household budgets? Validate your customer segment; a regional average hides wide differences.",
-        "আপনার প্রাইজ পয়েন্ট সাধারণ ফ্যামিলির বাজেটের সঙ্গে কতটা মেলে? নির্দিষ্ট কাস্টমার সেগমেন্টের সামর্থ্য যাচাই করে নিন, কারণ অঞ্চলের গড়ে অনেক বড় পার্থক্য ঢাকা পড়ে যায়।",
-      ],
       [24000, 28000, 32000, 36000, 40000],
       id === "income" ? 32422 : 30603,
     ),
@@ -403,6 +356,9 @@ export type ExplorerState = {
   transport: boolean;
   industry: boolean;
   ports: boolean;
+  urban: string;
+  place: string;
+  urbanCompare: string;
 };
 export const initialExplorer: ExplorerState = {
   lens: "people",
@@ -416,10 +372,14 @@ export const initialExplorer: ExplorerState = {
   transport: false,
   industry: false,
   ports: false,
+  urban: "",
+  place: "",
+  urbanCompare: "",
 };
 export function parseExplorer(
   search: string,
   regions: Region[],
+  urbanPlaces: UrbanPlace[] = [],
 ): ExplorerState {
   const q = new URLSearchParams(search);
   const candidate =
@@ -446,18 +406,30 @@ export function parseExplorer(
   const compare = valid(q.get("compare"));
   const min = Number(q.get("min"));
   const minimum = Number.isFinite(min) && min >= 0 ? Math.min(min, 1e9) : 0;
+  const urban = urbanPlaces.some((p) => p.district === q.get("urban"))
+    ? q.get("urban")!
+    : "";
+  const urbanPlace = (key: string) =>
+    urbanPlaces.find((p) => p.district === urban && p.id === q.get(key))?.id ||
+    "";
+  const place = urbanPlace("place"),
+    urbanCompare =
+      urbanPlaces.find((p) => p.id === q.get("urbanCompare"))?.id || "";
   return {
-    lens: lens.id,
-    layer: layer.id,
-    level,
-    region,
-    compare: region && compare !== region ? compare : "",
-    division,
-    minimum,
+    lens: urban ? "people" : lens.id,
+    layer: urban ? "density" : layer.id,
+    level: urban ? "district" : level,
+    region: urban || region,
+    compare: !urban && region && compare !== region ? compare : "",
+    division: urban ? "" : division,
+    minimum: urban ? 0 : minimum,
     view: q.get("view") === "table" ? "table" : "map",
-    transport: q.get("transport") === "true",
-    industry: q.get("industry") === "true",
-    ports: q.get("ports") === "true",
+    transport: !urban && q.get("transport") === "true",
+    industry: !urban && q.get("industry") === "true",
+    ports: !urban && q.get("ports") === "true",
+    urban,
+    place,
+    urbanCompare: place && urbanCompare !== place ? urbanCompare : "",
   };
 }
 export function explorerUrl(s: ExplorerState) {

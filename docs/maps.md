@@ -24,8 +24,8 @@ nine selected ports and eight passenger airports. Regional business profiles sho
 and permanent-establishment sector composition. Comparison presents up to five
 distinct measures, with parent-division household budgets identified separately.
 The map/data switch provides a keyboard-accessible table. Share and locale links
-preserve meaningful state. Sources and definitions accompany each measure;
-field questions link to the manual's customer-interview guidance.
+preserve meaningful state. Source links, definitions and coverage details stay
+with each measure, with longer explanations behind disclosure controls.
 
 The implementation separates these responsibilities:
 
@@ -289,3 +289,88 @@ published district intervals and marks unavailable division intervals. Survey
 intervals, census counts and modelled poverty uncertainty have different meanings.
 Do not interpret small differences as significant or infer service gaps from
 incomplete facility records.
+
+## Cities and towns
+
+Every district profile offers **Explore cities & towns**. The dataset covers the
+12 city corporations and 320 of the 326 municipalities tabulated in Census 2022,
+across all 64 districts. These are census jurisdictions, not an inventory of current
+legal status. The national district view remains the default. Search labels identify
+the place type and parent district; the existing urban panel supports selection,
+two-place comparison across districts, a data list and shareable `urban`, `place`
+and `urbanCompare` parameters. Only the selected district or comparison pair creates
+map markers. A municipality appearing in two upazila references is counted once.
+
+`data/maps/urban.json` is separate from district statistics. Its observation year is
+**2022**; the [BBS Urban Area Report](https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2024/12/fe6eeb0c1f364676877a4a7ef77989cc.pdf)
+is dated **January 2025**, checked **13 September 2026**. P23 (PDF pages 259–268)
+and P25 (273–334) supply general households (column 3), mean general-household size
+(column 12) and literacy among people aged 7+ (column 13). General households
+exclude institutional, other and floating households; cantonment-area populations
+are reported separately. Population is not derived from rounded household size.
+The report permits data publication with source acknowledgement; this does not
+relicense the publication or grant unrestricted commercial reproduction.
+
+Every extracted household total reconciles with its ward rows. Before exclusions,
+the national general-household totals reconcile: 5,199,182 in city corporations and
+4,314,126 in municipalities. Each displayed metric also matches the corresponding
+report name, table and page. Stable application IDs preserve existing shared links;
+`sourceName` retains the report spelling. Names, type and parent district must agree
+before a census reference code can be used. Bangla labels are reviewed OSM names or
+editorial transliterations, not an additional statistical source.
+
+Six municipal entries are excluded, explicitly listed under `coverageByDistrict`:
+Gosairhat (Shariatpur), Bakshiganj (Jamalpur), Talora (Bogura), Khetlal (Joypurhat),
+Gopalpur in Lalpur (Natore), and an unnamed “Paurashava” row in Jamalpur. The first
+five lack a verified reference location; the unnamed row must not be assigned an
+inferred town identity. Source details show the mapped and report counts per
+district, so absence is distinguishable from zero activity.
+
+The map uses **equal-sized reference markers**, not urban polygons or density
+shading. Named OSM nodes use ODbL; their IDs, edit versions and extract timestamps
+are retained. Dhaka North and South use distinct, source-linked city corporation
+**office locations**, explicitly identified in the panel. Other reference points
+are rounded interior points of licensed [BBS/OCHA geoBoundaries ADM4 features](https://www.geoboundaries.org/api/current/gbOpen/BGD/ADM4/),
+release commit `9469f09`, CC BY 3.0 IGO. Unnamed legacy municipal features are used
+only after an unambiguous spatial match. The [2022 census GIS mirror](https://github.com/justinelliotmeyers/bangladesh_2022_census_gis)
+is a secondary check for parent IDs and containment, never the source of displayed
+statistics or coordinates; none of its geometry ships. Bogura spans two reference
+records, both retained. Older open polygons differ from census extents and must not
+be shaded with these statistics. Points do not establish a legal boundary, built-up
+footprint or service catchment.
+
+Location collection is an offline maintainer task. Source query bounds, response
+hashes, licences and dates are retained in the dataset. The app makes no Overpass
+or Nominatim requests. Hosted service policies are distinct from geographic data
+licences; respect their quotas and cache responses when refreshing locations.
+
+To update or expand coverage:
+
+1. Recheck the official report, observation year, definitions and reuse terms.
+   Preserve the source PDF outside the repository. The extractor requires Poppler
+   (`pdftotext`) and checks the stored SHA-256 before accepting the PDF:
+
+   ```bash
+   python3 scripts/extract-map-urban-census.py /path/to/urban.pdf > /tmp/urban-rows.json
+   ```
+
+   It verifies household categories, ward totals, national totals and record counts,
+   and emits reviewable rows. It never overwrites the final dataset or assigns
+   coordinates. A changed report requires explicit review of extraction assumptions.
+
+2. Match each report name, type and district to a reference code. Resolve wrapped
+   names, transliteration variants, repeated town names and multi-upazila records.
+   Do not infer missing names or promote district measures to urban jurisdictions.
+3. Verify a licensed point within the matching census jurisdiction; retain its
+   source and role. Only add polygons after verifying reuse rights and matching
+   statistical extents. Never substitute a place-search bounding box.
+4. Update `places`, `coverageByDistrict`, source dates and coverage counts together.
+   Preserve old IDs. Run the urban tests, `npm test` and `npm run build:worker`.
+   Check both locales, search, comparison, source details, URL restoration and
+   marker density in districts with many municipalities on desktop and phones.
+
+`UrbanMarkets.tsx` owns the panel; `urban.ts` owns labels, search matching and source
+links. The existing `MapCanvas.tsx` renders only the relevant small marker set.
+Full collection metadata stays in the source dataset; the server sends only fields
+used by the interface. No additional provider, client dependency or nationwide
+urban-boundary payload is required.

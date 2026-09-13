@@ -492,9 +492,20 @@
   background: transparent;
   justify-content: space-between;
   width: 100%;
-  padding: 12px 0;
+  min-height: 44px;
+  padding: 12px;
   font-size: 12px;
   color: #176148;
+  text-align: left;
+}
+/* The parent owns spacing, regardless of control type or conditional content. */
+.maps-action-stack {
+  display: grid;
+  gap: 12px;
+}
+.maps-action-stack > * {
+  min-width: 0;
+  margin-block: 0;
 }
 .maps-refine {
   margin-top: 20px;
@@ -624,29 +635,6 @@
 .maps-ranked strong {
   font-size: 12px;
   font-variant-numeric: tabular-nums;
-}
-.maps-next-question {
-  margin-top: 23px;
-  border-top: 1px solid var(--maps-line);
-  padding-top: 20px;
-}
-.maps-next-question p {
-  margin-top: 8px;
-  font-size: 12px;
-  line-height: 1.8;
-  color: var(--maps-muted);
-}
-.maps-investigation-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 44px;
-  margin-block: 4px 12px;
-  padding-block: 8px;
-  font-size: 12px;
-  line-height: 1.6;
-  text-decoration: underline;
 }
 .deshi-maps .maps-source-link {
   width: 100%;
@@ -1389,7 +1377,6 @@
     bottom: 2px;
   }
   .maps-source-body p,
-  .maps-next-question p,
   .maps-comparison > p {
     font-size: 13px;
   }
@@ -2027,4 +2014,187 @@
     top: 124px;
     bottom: auto;
   }
+}
+
+/* Urban drilldown keeps the existing map shell and a single contextual panel. */
+.maps-urban-list-title small {
+  display: block;
+  color: var(--maps-muted);
+  font-size: 11px;
+  font-weight: 400;
+  margin-top: 4px;
+}
+.deshi-maps .maps-urban-back {
+  border: 0;
+  padding: 8px 12px;
+  min-height: 44px;
+  margin-bottom: 8px;
+  background: transparent;
+  color: var(--maps-green);
+  font-size: 12px;
+}
+.maps-urban-panel h1 {
+  clear: both;
+  max-width: 20ch;
+}
+.maps-urban-list-heading {
+  display: flex;
+  justify-content: space-between;
+  color: var(--maps-muted);
+  font-size: 11px;
+  margin: 24px 0 8px;
+}
+.deshi-maps .maps-urban-list {
+  list-style: none;
+  margin: 0;
+}
+.deshi-maps .maps-urban-list button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 16px 8px;
+  border-width: 0 0 1px;
+  border-radius: 0;
+}
+.maps-urban-list-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+.maps-urban-list-title strong {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.maps-urban-bar {
+  display: block;
+  height: 4px;
+  margin-top: 12px;
+}
+.maps-urban-bar i {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: #729d88;
+}
+.maps-urban-compare-label {
+  display: block;
+  font-size: 12px;
+}
+.maps-urban-compare-label select {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  min-height: 44px;
+}
+.maps-urban-comparison table {
+  table-layout: fixed;
+  width: 100%;
+  font-size: 11px;
+  border-collapse: collapse;
+}
+.maps-urban-comparison :is(th, td) {
+  background: transparent;
+  border: 0;
+  text-align: right;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--maps-line);
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+.maps-urban-comparison th:first-child {
+  width: 38%;
+  text-align: left;
+  font-weight: 400;
+}
+.maps-urban-comparison th small {
+  display: block;
+  font-size: 10px;
+  color: var(--maps-muted);
+  font-weight: 400;
+}
+.maps-urban-comparison caption {
+  text-align: left;
+  margin-bottom: 8px;
+  color: var(--maps-muted);
+}
+.maps-urban-geography {
+  margin-top: 20px !important;
+  color: var(--maps-muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+.maps-urban-sources {
+  margin-top: 16px;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.maps-urban-sources summary {
+  cursor: pointer;
+  padding-block: 8px;
+  font-size: 12px;
+}
+.maps-urban-sources p {
+  margin-top: 12px;
+}
+.deshi-maps .maps-urban-marker {
+  justify-content: flex-start;
+  padding: 6px 12px 6px 8px;
+  min-height: 44px;
+  border-radius: 24px;
+  font-size: 12px;
+  box-shadow: 0 2px 8px #173b2c20;
+  white-space: nowrap;
+}
+.maps-urban-marker-dot {
+  flex-shrink: 0;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background: var(--maps-green);
+}
+.deshi-maps .maps-urban-marker.is-compact:not(:hover):not(:focus-visible) {
+  width: 44px;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+.maps-urban-marker.is-compact:not(:hover):not(:focus-visible)
+  > span:last-child {
+  display: none;
+}
+.deshi-maps .maps-urban-marker:is(:hover, :focus-visible) {
+  z-index: 2;
+}
+.deshi-maps .maps-urban-marker[aria-pressed="true"] {
+  color: #fff;
+  background: var(--maps-green);
+  border-color: var(--maps-green);
+}
+.maps-urban-marker[aria-pressed="true"] .maps-urban-marker-dot {
+  background: #fff;
+}
+.is-urban .maps-overlays-toolbar {
+  top: 24px;
+}
+@media (max-width: 759px) {
+  .is-urban .maps-overlays-toolbar {
+    top: 12px;
+  }
+  .deshi-maps .maps-urban-toolbar {
+    gap: 6px;
+  }
+  .deshi-maps .maps-urban-toolbar button {
+    font-size: 11px;
+  }
+}
+
+.is-urban .maps-overlays-toolbar .maps-view-toggle {
+  top: 0;
+}
+
+.maps-urban-comparison td,
+.maps-urban-list-title strong,
+.maps-urban-toolbar button {
+  white-space: nowrap;
 }

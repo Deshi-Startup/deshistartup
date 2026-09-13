@@ -1,10 +1,12 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import SiteBrand from "../SiteBrand";
 import SurveyInterval from "./SurveyInterval";
 import BusinessProfile from "./BusinessProfile";
-import type { Region, Locale } from "./types";
+import UrbanMarkets from "./UrbanMarkets";
+import { urbanName, urbanSource, urbanMatches } from "./urban";
+import type { Region, Locale, UrbanPlace, UrbanCoverage } from "./types";
 import { interval, regionMatches } from "./model";
 import { countRadius } from "./cartography";
 import { matchingAnchors, matchingSites, siteKind } from "./industry";
@@ -82,9 +84,13 @@ function Icon({
 export default function MapsExperience({
   locale,
   regions,
+  urbanPlaces,
+  urbanCoverage,
 }: {
   locale: Locale;
   regions: Region[];
+  urbanPlaces: UrbanPlace[];
+  urbanCoverage: Record<string, UrbanCoverage>;
 }) {
   const t = (en: string, bn: string) => (locale === "en" ? en : bn);
   const [state, setState] = useState<ExplorerState>(initialExplorer),
@@ -115,9 +121,49 @@ export default function MapsExperience({
     visible = matchingRegions(regions, state);
   const selected = regions.find((r) => r.id === state.region),
     compared = regions.find((r) => r.id === state.compare);
+  const towns = useMemo(
+    () =>
+      urbanPlaces
+        .filter((p) => p.district === state.urban)
+        .sort((a, b) => b.households - a.households),
+    [urbanPlaces, state.urban],
+  );
+  const mapTowns = useMemo(
+    () =>
+      state.place && state.urbanCompare
+        ? urbanPlaces.filter(
+            (p) => p.id === state.place || p.id === state.urbanCompare,
+          )
+        : towns,
+    [urbanPlaces, towns, state.place, state.urbanCompare],
+  );
+  const urbanResults = query.trim()
+    ? urbanPlaces.filter((p) => urbanMatches(p, query)).slice(0, 5)
+    : [];
   const results = regions
     .filter((r) => r.level === state.level && regionMatches(r, query))
     .slice(0, 8);
+  const searchItems = [
+    ...results.map((r) => ({
+      id: r.id,
+      name: r.name[locale],
+      detail:
+        r.level === "division" ? t("Division", "বিভাগ") : t("District", "জেলা"),
+      district: "",
+    })),
+    ...urbanResults.map((p) => ({
+      id: p.id,
+      name: p.name[locale],
+      detail: `${urbanName(p, locale).split(" · ")[1]} · ${regions.find((r) => r.id === p.district)?.name[locale]}`,
+      district: p.district,
+    })),
+  ];
+  function chooseSearch(index: number) {
+    const item = searchItems[index];
+    if (!item) return;
+    if (item.district) openUrban(item.district, item.id);
+    else choose(item.id);
+  }
   const num = (v: number) =>
     new Intl.NumberFormat(locale === "bn" ? "bn-BD" : "en-GB", {
       maximumFractionDigits: 0,
@@ -128,7 +174,7 @@ export default function MapsExperience({
     setState((s) => ({ ...s, ...next }));
   useEffect(() => {
     const read = () => {
-      const restored = parseExplorer(location.search, regions);
+      const restored = parseExplorer(location.search, regions, urbanPlaces);
       setState(restored);
       setLayersOpen(false);
       setPanel(restored.compare ? "compare" : "insights");
@@ -140,10 +186,10 @@ export default function MapsExperience({
     read();
     addEventListener("popstate", read);
     return () => removeEventListener("popstate", read);
-  }, [regions]);
+  }, [regions, urbanPlaces]);
   useEffect(() => {
     detailPanel.current?.scrollTo({ top: 0 });
-  }, [panel, state.region, state.layer, detailOpen]);
+  }, [panel, state.region, state.layer, state.place, state.urban, detailOpen]);
   useEffect(() => {
     const compact = matchMedia("(max-width: 1100px)");
     const closeLayers = () => {
@@ -207,7 +253,13 @@ export default function MapsExperience({
     if (detailOpen && panel === "compare" && selected && id !== selected.id)
       change({ compare: id });
     else {
-      change({ region: id, compare: "" });
+      change({
+        region: id,
+        compare: "",
+        urban: "",
+        place: "",
+        urbanCompare: "",
+      });
       setPanel("insights");
     }
     setQuery("");
@@ -215,6 +267,52 @@ export default function MapsExperience({
     setSearchVisible(false);
     setDetailOpen(true);
     if (innerWidth <= 1100) setLayersOpen(false);
+  }
+  function openUrban(district: string, place = "") {
+    rememberDetailOpener();
+    change({
+      urban: district,
+      place,
+      urbanCompare: "",
+      region: district,
+      compare: "",
+      lens: "people",
+      layer: "density",
+      level: "district",
+      division: "",
+      minimum: 0,
+      view: "map",
+      transport: false,
+      industry: false,
+      ports: false,
+    });
+    setPanel("insights");
+    setDetailOpen(true);
+    setLayersOpen(false);
+    setQuery("");
+    setSearchOpen(false);
+    setSearchVisible(false);
+    focusUrbanHeading();
+  }
+  function focusUrbanHeading() {
+    requestAnimationFrame(() =>
+      detailPanel.current?.querySelector<HTMLHeadingElement>("h1")?.focus(),
+    );
+  }
+  function chooseUrban(place: string) {
+    const target = urbanPlaces.find((p) => p.id === place);
+    if (target && target.district !== state.urban) {
+      openUrban(target.district, place);
+      return;
+    }
+    change({ place, urbanCompare: "", view: "map" });
+    setDetailOpen(true);
+    focusUrbanHeading();
+  }
+  function leaveUrban() {
+    change({ urban: "", place: "", urbanCompare: "", view: "map" });
+    setPanel("insights");
+    setDetailOpen(true);
   }
   function chooseLayer(id: LayerId, lensId?: LensId, keepOpen = false) {
     const next = layerById(id),
@@ -230,12 +328,15 @@ export default function MapsExperience({
       region: level === state.level ? state.region : "",
       compare: level === state.level ? state.compare : "",
       minimum: 0,
+      urban: "",
+      place: "",
+      urbanCompare: "",
     });
     if (innerWidth < 760 && !keepOpen) setLayersOpen(false);
   }
   function toggleDetails(next: "insights" | "sources" | "compare") {
     rememberDetailOpener();
-    setPanel(next);
+    setPanel(state.urban ? "insights" : next);
     setDetailOpen(true);
     if (innerWidth <= 1100) setLayersOpen(false);
   }
@@ -268,37 +369,12 @@ export default function MapsExperience({
         getComputedStyle(opener).visibility !== "hidden" &&
         !opener.closest(".maps-text-alternative");
       if (visible && opener !== document.body) opener.focus();
-      else if (innerWidth < 760) mobileDetailTrigger.current?.focus();
+      else if (innerWidth < 760 && mobileDetailTrigger.current)
+        mobileDetailTrigger.current.focus();
       else detailTrigger.current?.focus();
     });
   }
   const sourceName = sourceLabel(layer);
-  const interviewGuideLink = (
-    <a
-      className="maps-investigation-link"
-      href={
-        basePath +
-        (locale === "en"
-          ? "/en/validation/interview-scripts"
-          : "/validation/interview-scripts")
-      }
-    >
-      {t(
-        "Prepare customer interviews",
-        "কাস্টমারের সঙ্গে কথা বলার প্রশ্ন সাজান",
-      )}
-      <Icon name="arrow" />
-    </a>
-  );
-  const fieldQuestion = (
-    <section className="maps-next-question">
-      <h3>
-        {t("A question to take into the field", "মাঠে যাচাই করার প্রশ্ন")}
-      </h3>
-      <p>{words(layer.question, locale)}</p>
-      {interviewGuideLink}
-    </section>
-  );
   const table = (items: Region[]) => (
     <table>
       <caption>
@@ -366,15 +442,15 @@ export default function MapsExperience({
             ref={searchRef}
             role="combobox"
             aria-label={t(
-              "Search districts and divisions",
-              "জেলা ও বিভাগ খুঁজুন",
+              "Search districts, divisions, cities and towns",
+              "জেলা, বিভাগ ও বাছাই করা শহর খুঁজুন",
             )}
-            placeholder={t("Search a place…", "জেলা বা বিভাগ খুঁজুন…")}
+            placeholder={t("Search a place…", "জায়গা খুঁজুন…")}
             aria-expanded={searchOpen && !!query.trim()}
             aria-controls="maps-results"
             aria-activedescendant={
-              searchOpen && query.trim() && results[activeResult]
-                ? `result-${results[activeResult].id}`
+              searchOpen && query.trim() && searchItems[activeResult]
+                ? `result-${searchItems[activeResult].id}`
                 : undefined
             }
             value={query}
@@ -388,15 +464,19 @@ export default function MapsExperience({
             onKeyDown={(e) => {
               if (e.key === "ArrowDown") {
                 e.preventDefault();
-                setActiveResult((a) => Math.min(a + 1, results.length - 1));
+                setActiveResult((a) => Math.min(a + 1, searchItems.length - 1));
               }
               if (e.key === "ArrowUp") {
                 e.preventDefault();
                 setActiveResult((a) => Math.max(a - 1, 0));
               }
-              if (e.key === "Enter" && query.trim() && results[activeResult]) {
+              if (
+                e.key === "Enter" &&
+                query.trim() &&
+                searchItems[activeResult]
+              ) {
                 e.preventDefault();
-                choose(results[activeResult].id);
+                chooseSearch(activeResult);
               }
               if (e.key === "Escape") setSearchOpen(false);
             }}
@@ -404,23 +484,18 @@ export default function MapsExperience({
           <kbd>/</kbd>
           {searchOpen && query.trim() && (
             <ul id="maps-results" role="listbox">
-              {results.length ? (
-                results.map((r, i) => (
+              {searchItems.length ? (
+                searchItems.map((r, i) => (
                   <li
                     role="option"
                     id={`result-${r.id}`}
                     key={r.id}
                     aria-selected={activeResult === i}
                     onMouseDown={(e) => e.preventDefault()}
-                    onClick={() => choose(r.id)}
+                    onClick={() => chooseSearch(i)}
                   >
-                    {r.name[locale]}
-                    <small>
-                      {r.level === "division"
-                        ? t("Division", "বিভাগ")
-                        : divisionRegions.find((d) => d.key === r.division)
-                            ?.name[locale]}
-                    </small>
+                    {r.name}
+                    <small>{r.detail}</small>
                   </li>
                 ))
               ) : (
@@ -462,20 +537,22 @@ export default function MapsExperience({
           >
             {t("বাংলা", "EN")}
           </a>
-          <button
-            className="maps-compare-trigger"
-            aria-label={t("Compare regions", "অঞ্চলের তুলনা")}
-            aria-expanded={detailOpen && panel === "compare"}
-            aria-controls="maps-details"
-            onClick={() =>
-              detailOpen && panel === "compare"
-                ? closeDetails()
-                : toggleDetails("compare")
-            }
-          >
-            <Icon name="compare" />
-            <span>{t("Compare", "তুলনা")}</span>
-          </button>
+          {!state.urban && (
+            <button
+              className="maps-compare-trigger"
+              aria-label={t("Compare regions", "অঞ্চলের তুলনা")}
+              aria-expanded={detailOpen && panel === "compare"}
+              aria-controls="maps-details"
+              onClick={() =>
+                detailOpen && panel === "compare"
+                  ? closeDetails()
+                  : toggleDetails("compare")
+              }
+            >
+              <Icon name="compare" />
+              <span>{t("Compare", "তুলনা")}</span>
+            </button>
+          )}
           <button
             className="maps-share"
             aria-label={t("Share this view", "এই ভিউ শেয়ার করুন")}
@@ -488,7 +565,7 @@ export default function MapsExperience({
       </header>
       <main
         id="main"
-        className={`maps-workspace ${layersOpen ? "has-layers" : ""} ${detailOpen ? "has-detail" : ""}`}
+        className={`maps-workspace ${state.urban ? "is-urban" : ""} ${layersOpen ? "has-layers" : ""} ${detailOpen ? "has-detail" : ""}`}
         aria-label={t("Deshi Startup map explorer", "দেশি স্টার্টআপ মানচিত্র")}
       >
         {(!detailOpen || panel !== "insights") && (
@@ -498,6 +575,8 @@ export default function MapsExperience({
         )}
         <MapCanvas
           regions={regions}
+          urbanPlaces={mapTowns}
+          onUrbanSelect={chooseUrban}
           locale={locale}
           state={state}
           onSelect={choose}
@@ -507,54 +586,71 @@ export default function MapsExperience({
           opacity={opacity}
           labels={labels}
         />
-        <nav
-          className="maps-lenses"
-          aria-label={t("Explore by question", "বিষয় বেছে নিন")}
-        >
-          {lenses.map((l) => (
-            <button
-              key={l.id}
-              aria-pressed={state.lens === l.id}
-              onClick={() => chooseLayer(l.layers[0], l.id)}
-            >
-              {words(l.name, locale)}
-            </button>
-          ))}
-        </nav>
+        {!state.urban && (
+          <nav
+            className="maps-lenses"
+            aria-label={t("Explore by question", "বিষয় বেছে নিন")}
+          >
+            {lenses.map((l) => (
+              <button
+                key={l.id}
+                aria-pressed={state.lens === l.id}
+                onClick={() => chooseLayer(l.layers[0], l.id)}
+              >
+                {words(l.name, locale)}
+              </button>
+            ))}
+          </nav>
+        )}
         <div className="maps-overlays-toolbar">
-          <div>
-            <button
-              ref={layerTrigger}
-              className="maps-layer-trigger"
-              aria-expanded={layersOpen}
-              aria-controls="maps-layers"
-              onClick={() => {
-                setLayersOpen((o) => !o);
-                if (innerWidth <= 1100) setDetailOpen(false);
-              }}
-            >
-              <Icon name="layers" />
-              <span>
-                {words(layer.name, locale)}
-                <small>
-                  {words(layer.unit, locale)} · {observation(layer, locale)}
-                </small>
-              </span>
-              <Icon name="chevron" />
-            </button>
-            <button
-              ref={detailTrigger}
-              aria-expanded={detailOpen}
-              aria-controls="maps-details"
-              onClick={() => {
-                if (detailOpen) closeDetails();
-                else toggleDetails("insights");
-              }}
-            >
-              <Icon name="info" />
-              {t("Insights", "বিস্তারিত")}
-            </button>
-          </div>
+          {state.urban ? (
+            <div className="maps-urban-toolbar">
+              <button
+                ref={detailTrigger}
+                aria-expanded={detailOpen}
+                aria-controls="maps-details"
+                onClick={() =>
+                  detailOpen ? closeDetails() : toggleDetails("insights")
+                }
+              >
+                {t("Cities & towns", "শহরের তথ্য")}
+              </button>
+            </div>
+          ) : (
+            <div>
+              <button
+                ref={layerTrigger}
+                className="maps-layer-trigger"
+                aria-expanded={layersOpen}
+                aria-controls="maps-layers"
+                onClick={() => {
+                  setLayersOpen((o) => !o);
+                  if (innerWidth <= 1100) setDetailOpen(false);
+                }}
+              >
+                <Icon name="layers" />
+                <span>
+                  {words(layer.name, locale)}
+                  <small>
+                    {words(layer.unit, locale)} · {observation(layer, locale)}
+                  </small>
+                </span>
+                <Icon name="chevron" />
+              </button>
+              <button
+                ref={detailTrigger}
+                aria-expanded={detailOpen}
+                aria-controls="maps-details"
+                onClick={() => {
+                  if (detailOpen) closeDetails();
+                  else toggleDetails("insights");
+                }}
+              >
+                <Icon name="info" />
+                {t("Insights", "বিস্তারিত")}
+              </button>
+            </div>
+          )}
           <div
             className="maps-view-toggle"
             role="group"
@@ -794,7 +890,21 @@ export default function MapsExperience({
                 <Icon name="close" />
               </button>
             </div>
-            {panel === "sources" ? (
+            {state.urban ? (
+              <UrbanMarkets
+                places={towns}
+                allPlaces={urbanPlaces}
+                districts={regions.filter((r) => r.level === "district")}
+                district={selected!}
+                coverage={urbanCoverage[state.urban]}
+                placeId={state.place}
+                compareId={state.urbanCompare}
+                locale={locale}
+                onSelect={chooseUrban}
+                onCompare={(id) => change({ urbanCompare: id })}
+                onBack={leaveUrban}
+              />
+            ) : panel === "sources" ? (
               <div className="maps-source-body">
                 <h2>{words(layer.name, locale)}</h2>
                 <p>{words(layer.definition, locale)}</p>
@@ -856,7 +966,12 @@ export default function MapsExperience({
                 )}
                 {state.industry && (
                   <>
-                    <h3>{t("Industrial zones & parks", "শিল্পাঞ্চল ও প্রযুক্তি পার্ক")}</h3>
+                    <h3>
+                      {t(
+                        "Industrial zones & parks",
+                        "শিল্পাঞ্চল ও প্রযুক্তি পার্ক",
+                      )}
+                    </h3>
                     <p>
                       {t(
                         "Eight BEPZA EPZs plus selected BSCIC estates, economic zones and technology parks. Checked 12 September 2026 against authority/operator records and named OSM facilities. BSCIC status uses its July 2026 register; other source dates are shown per site. Developed, allotted and operating are different states. Coverage is partial: no marker does not mean no industry. Positions are approximate, not entrances or legal boundaries; no plot availability, capacity or investment suitability is implied.",
@@ -867,7 +982,9 @@ export default function MapsExperience({
                       BEPZA · {t("Operating zones", "চালু অঞ্চল")}
                     </a>
                     {" · "}
-                    <a href="https://bscic.gov.bd/pages/static-pages/6922df55933eb65569e2141e">BSCIC</a>
+                    <a href="https://bscic.gov.bd/pages/static-pages/6922df55933eb65569e2141e">
+                      BSCIC
+                    </a>
                     {" · "}
                     <a href="https://bhtpa.gov.bd/">BHTPA</a>
                   </>
@@ -974,7 +1091,9 @@ export default function MapsExperience({
                               {words(metric.name, locale)}
                               <small>
                                 {words(metric.unit, locale)} ·{" "}
-                                {observation(metric, locale)}
+                                <span className="maps-observation-period">
+                                  {observation(metric, locale)}
+                                </span>
                               </small>
                               {cells.some((c) => c.context) && (
                                 <small className="maps-context-label">
@@ -1047,19 +1166,8 @@ export default function MapsExperience({
                     )}
                     <details className="maps-measure-notes">
                       <summary>
-                        {t("Before choosing a place", "অঞ্চল বেছে নেওয়ার আগে")}
+                        {t("Measure definitions", "তথ্যের সংজ্ঞা")}
                       </summary>
-                      <p>{words(layer.question, locale)}</p>
-                      <p>
-                        {t(
-                          "Check how your intended customers solve the problem today, what they pay, and what reaching and serving them would cost.",
-                          "আপনার সম্ভাব্য কাস্টমাররা এখন সমস্যাটি কীভাবে সমাধান করছেন, কত খরচ করছেন আর তাঁদের কাছে পৌঁছাতে ও সার্ভিস দিতে আপনার কত খরচ পড়বে, তা আগে জেনে নিন।",
-                        )}
-                      </p>
-                      {interviewGuideLink}
-                      <h3>
-                        {t("What these measures mean", "পরিমাপগুলো কী বোঝায়")}
-                      </h3>
                       {comparisonRows(
                         regions,
                         [selected, compared],
@@ -1215,27 +1323,38 @@ export default function MapsExperience({
                           </div>
                         ))}
                     </dl>
+                    {urbanPlaces.some((p) => p.district === selected.id) && (
+                      <button
+                        className="maps-text-button"
+                        onClick={() => openUrban(selected.id)}
+                      >
+                        {t("Explore cities & towns", "জেলার শহরগুলো দেখুন")}
+                        <Icon name="arrow" />
+                      </button>
+                    )}
                     <BusinessProfile region={selected} locale={locale} />
-                    <button
-                      className="maps-wide-button"
-                      onClick={() => toggleDetails("compare")}
-                    >
-                      <Icon name="compare" />
-                      {t(
-                        "Compare with another region",
-                        "অন্য অঞ্চলের সঙ্গে তুলনা",
-                      )}
-                    </button>
-                    <button
-                      className="maps-text-button"
-                      onClick={() => {
-                        change({ region: "", compare: "" });
-                        setReset((r) => r + 1);
-                      }}
-                    >
-                      {t("Back to Bangladesh", "পুরো বাংলাদেশে ফিরুন")}
-                      <Icon name="arrow" />
-                    </button>
+                    <div className="maps-action-stack">
+                      <button
+                        className="maps-wide-button"
+                        onClick={() => toggleDetails("compare")}
+                      >
+                        <Icon name="compare" />
+                        {t(
+                          "Compare with another region",
+                          "অন্য অঞ্চলের সঙ্গে তুলনা",
+                        )}
+                      </button>
+                      <button
+                        className="maps-text-button"
+                        onClick={() => {
+                          change({ region: "", compare: "" });
+                          setReset((r) => r + 1);
+                        }}
+                      >
+                        {t("Back to Bangladesh", "পুরো বাংলাদেশে ফিরুন")}
+                        <Icon name="arrow" />
+                      </button>
+                    </div>
                   </>
                 ) : (
                   <>
@@ -1263,7 +1382,6 @@ export default function MapsExperience({
                     <p className="maps-small">
                       {t("Bangladesh", "বাংলাদেশ")} · {sourceName}
                     </p>
-                    {fieldQuestion}
                     <div className="maps-rank-title">
                       <h3>{words(layer.name, locale)}</h3>
                       <span>{observation(layer, locale)}</span>
@@ -1335,7 +1453,6 @@ export default function MapsExperience({
                     )}
                   </>
                 )}
-                {selected && fieldQuestion}
                 {(state.industry || state.ports) && (
                   <details className="maps-industry-list">
                     <summary>
@@ -1382,7 +1499,10 @@ export default function MapsExperience({
                               {site.location[locale]}
                             </small>
                             {"statusNote" in site && (
-                              <small>{site.statusNote[locale]} {site.evidenceNote[locale]}</small>
+                              <small>
+                                {site.statusNote[locale]}{" "}
+                                {site.evidenceNote[locale]}
+                              </small>
                             )}
                             {"role" in site && (
                               <small>
@@ -1413,7 +1533,7 @@ export default function MapsExperience({
             )}
           </aside>
         )}
-        {state.view === "map" && (
+        {state.view === "map" && !state.urban && (
           <section
             className="maps-legend maps-floating"
             aria-label={t("Map legend", "মানচিত্রের সংকেত")}
@@ -1570,17 +1690,83 @@ export default function MapsExperience({
           }
           aria-label={t("Regional data table", "অঞ্চলের তথ্যের টেবিল")}
         >
-          <h2>{words(layer.name, locale)}</h2>
-          <p>{words(layer.definition, locale)}</p>
-          {table(visible)}
+          {state.urban ? (
+            <>
+              <h2>
+                {state.urbanCompare
+                  ? t("Urban comparison", "শহরের তুলনা")
+                  : t(
+                      `Cities & towns in ${selected?.name.en}`,
+                      `${selected?.name.bn} জেলার শহর`,
+                    )}
+              </h2>
+              <table>
+                <caption>
+                  {t(
+                    "Census 2022 · selected urban jurisdictions",
+                    "শুমারি ২০২২ · বাছাই করা শহরের এলাকা",
+                  )}
+                </caption>
+                <thead>
+                  <tr>
+                    <th>{t("Place", "শহর")}</th>
+                    <th>{t("General households", "সাধারণ খানা")}</th>
+                    <th>
+                      {t("Literacy · age\u00a07+", "সাক্ষরতা · বয়স\u00a0৭+")}
+                    </th>
+                    <th>{t("Source", "উৎস")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {mapTowns.map((p) => (
+                    <tr key={p.id}>
+                      <th scope="row">
+                        <button onClick={() => chooseUrban(p.id)}>
+                          {urbanName(p, locale)}
+                        </button>
+                        {state.urbanCompare && (
+                          <small>
+                            {
+                              regions.find((r) => r.id === p.district)?.name[
+                                locale
+                              ]
+                            }
+                          </small>
+                        )}
+                      </th>
+                      <td>{num(p.households)}</td>
+                      <td>
+                        {new Intl.NumberFormat(
+                          locale === "bn" ? "bn-BD" : "en-GB",
+                          { maximumFractionDigits: 2 },
+                        ).format(p.literacy)}
+                        %
+                      </td>
+                      <td>
+                        <a href={urbanSource(p)}>{p.table}</a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          ) : (
+            <>
+              <h2>{words(layer.name, locale)}</h2>
+              <p>{words(layer.definition, locale)}</p>
+              {table(visible)}
+            </>
+          )}
           {!visible.length && (
             <p>{t("No matching regions.", "কোনো অঞ্চল মেলেনি।")}</p>
           )}
-          <p>
-            {sourceName} · {observation(layer, locale)}
-          </p>
+          {!state.urban && (
+            <p>
+              {sourceName} · {observation(layer, locale)}
+            </p>
+          )}
         </section>
-        {state.view === "map" && !detailOpen && (
+        {state.view === "map" && !detailOpen && !state.urban && (
           <button
             className="maps-mobile-insights"
             ref={mobileDetailTrigger}

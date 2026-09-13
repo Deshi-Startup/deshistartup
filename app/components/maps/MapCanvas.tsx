@@ -19,9 +19,15 @@ import {
   symbolColors,
   type ExplorerState,
 } from "./layers";
-import type { Region, Locale } from "./types";
+import type { Region, Locale, UrbanPlace } from "./types";
+import { urbanName } from "./urban";
 import { countRadius, nationalOutline } from "./cartography";
-import { matchingAnchors, groupSites, siteKind, isIndustrialSite } from "./industry";
+import {
+  matchingAnchors,
+  groupSites,
+  siteKind,
+  isIndustrialSite,
+} from "./industry";
 import "maplibre-gl/dist/maplibre-gl.css";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 setWorkerUrl(`${basePath}/maps/worker/maplibre-gl-worker.mjs`);
@@ -31,6 +37,8 @@ type Shapes = FeatureCollection<
 >;
 type Props = {
   regions: Region[];
+  urbanPlaces: UrbanPlace[];
+  onUrbanSelect: (id: string) => void;
   locale: Locale;
   state: ExplorerState;
   onSelect: (id: string) => void;
@@ -64,6 +72,22 @@ function extent(
     [Math.max(...all.map((c) => c[0])), Math.max(...all.map((c) => c[1]))],
   ];
 }
+function urbanBounds(
+  places: UrbanPlace[],
+): [[number, number], [number, number]] {
+  if (!places.length) return country;
+  // This is camera padding around reference points, never a jurisdiction extent.
+  return [
+    [
+      Math.min(...places.map((p) => p.point[0])) - 0.025,
+      Math.min(...places.map((p) => p.point[1])) - 0.025,
+    ],
+    [
+      Math.max(...places.map((p) => p.point[0])) + 0.025,
+      Math.max(...places.map((p) => p.point[1])) + 0.025,
+    ],
+  ];
+}
 export default function MapCanvas(props: Props) {
   const host = useRef<HTMLDivElement>(null),
     map = useRef<Map | null>(null),
@@ -72,6 +96,7 @@ export default function MapCanvas(props: Props) {
     hoverPopup = useRef<Popup | null>(null),
     sitePopup = useRef<Popup | null>(null),
     markers = useRef<Marker[]>([]),
+    urbanMarkers = useRef<Marker[]>([]),
     lastFitKey = useRef("");
   current.current = props;
   const [status, setStatus] = useState<"loading" | "ready" | "error">(
@@ -93,11 +118,22 @@ export default function MapCanvas(props: Props) {
       state.compare,
       state.division,
       state.level,
+      state.urban,
+      state.place,
+      state.urbanCompare,
       reset,
     ].join("|");
   };
   const targetBounds = () => {
-    const { state } = current.current;
+    const { state, urbanPlaces } = current.current;
+    if (state.urban && urbanPlaces.length) {
+      const chosen = state.place
+        ? urbanPlaces.filter(
+            (p) => p.id === state.place || p.id === state.urbanCompare,
+          )
+        : urbanPlaces;
+      if (chosen.length) return urbanBounds(chosen);
+    }
     const ids = [state.region, state.compare].filter(Boolean);
     if (!ids.length && state.division) ids.push(`division-${state.division}`);
     const features = shapes.current?.features.filter((f) =>
@@ -141,15 +177,34 @@ export default function MapCanvas(props: Props) {
       if (detail) inset.right = bounds.right - detail.left + 24;
       if (layers) inset.left = layers.right - bounds.left + 24;
     }
+    // Reference labels extend to the right of their coordinate. Reserve their
+    // full width and the controls, especially when comparing nearby towns.
+    if (current.current.state.urban) {
+      const measure = document.createElement("canvas").getContext("2d");
+      if (measure)
+        measure.font = `500 12px ${getComputedStyle(host.current!).fontFamily}`;
+      const textWidth = Math.max(
+        0,
+        ...current.current.urbanPlaces.map(
+          (place) =>
+            measure?.measureText(place.name[current.current.locale]).width ||
+            80,
+        ),
+      );
+      inset.right = Math.max(
+        inset.right,
+        Math.min(bounds.width - 72, Math.max(140, textWidth + 84)),
+      );
+    }
     return inset;
   };
-  const fit = (bounds = country) =>
+  const fit = (bounds = country, duration = 550) =>
     map.current?.fitBounds(bounds, {
       padding: padding(bounds === country),
-      maxZoom: 9,
+      maxZoom: current.current.state.urban ? 11 : 9,
       duration: matchMedia("(prefers-reduced-motion: reduce)").matches
         ? 0
-        : 550,
+        : duration,
     });
   function labels() {
     const m = map.current,
@@ -157,7 +212,7 @@ export default function MapCanvas(props: Props) {
     if (!m || !shapes.current) return;
     markers.current.forEach((marker) => marker.remove());
     markers.current = [];
-    if (!p.labels) return;
+    if (!p.labels || p.state.urban) return;
     const boxes: number[][] = [];
     const visible = matchingRegions(p.regions, { ...p.state, minimum: 0 }).sort(
       (a, b) =>
@@ -234,7 +289,7 @@ export default function MapCanvas(props: Props) {
           bounds: targetBounds(),
           fitBoundsOptions: {
             padding: padding(targetBounds() === country),
-            maxZoom: 9,
+            maxZoom: current.current.state.urban ? 11 : 9,
           },
           minZoom,
           maxZoom,
@@ -426,10 +481,12 @@ export default function MapCanvas(props: Props) {
           } else setBaseError(true);
         });
         m.on("click", "regions-fill", (e) => {
+          if (current.current.state.urban) return;
           const id = e.features?.[0]?.properties?.id;
           if (typeof id === "string") current.current.onSelect(id);
         });
         m.on("mousemove", "regions-fill", (e) => {
+          if (current.current.state.urban) return;
           if (m.isMoving() || sitePopup.current?.isOpen()) return;
           m.getCanvas().style.cursor = "pointer";
           const p = current.current;
@@ -468,6 +525,9 @@ export default function MapCanvas(props: Props) {
           width = nextWidth;
           height = nextHeight;
           m.resize();
+          // Actual viewport changes need a fresh fit; floating panels do not
+          // resize this full-width host and therefore do not move the camera.
+          fit(targetBounds(), 0);
         });
         observer.observe(host.current);
       } catch {
@@ -486,6 +546,7 @@ export default function MapCanvas(props: Props) {
       popup?.remove();
       hoverPopup.current = null;
       markers.current.forEach((x) => x.remove());
+      urbanMarkers.current.forEach((x) => x.remove());
       map.current?.remove();
       map.current = null;
     };
@@ -733,8 +794,16 @@ export default function MapCanvas(props: Props) {
           ...f,
           properties: {
             id: r.id,
-            color: l.kind === "count" ? symbols.ground : metricColor(v, l),
-            opacity: included.has(r.id) ? props.opacity : 0.1,
+            color: props.state.urban
+              ? "#dde6dd"
+              : l.kind === "count"
+                ? symbols.ground
+                : metricColor(v, l),
+            opacity: props.state.urban
+              ? 0.18
+              : included.has(r.id)
+                ? props.opacity
+                : 0.1,
             selected: r.id === props.state.region,
             compare: r.id === props.state.compare,
           },
@@ -747,7 +816,7 @@ export default function MapCanvas(props: Props) {
     (m.getSource("symbols") as GeoJSONSource).setData({
       type: "FeatureCollection",
       features:
-        l.kind === "count"
+        !props.state.urban && l.kind === "count"
           ? level
               .filter((r) => included.has(r.id) && metricValue(r, l.id)! > 0)
               .map((r) => ({
@@ -771,6 +840,89 @@ export default function MapCanvas(props: Props) {
     props.regions,
   ]);
   useEffect(() => {
+    const m = map.current;
+    if (status !== "ready" || !m) return;
+    urbanMarkers.current.forEach((marker) => marker.remove());
+    urbanMarkers.current = [];
+    hoverPopup.current?.remove();
+    if (!props.state.urban) return;
+    const entries: { place: UrbanPlace; element: HTMLButtonElement }[] = [];
+    for (const place of props.urbanPlaces) {
+      const el = document.createElement("button");
+      el.type = "button";
+      el.className = "maps-urban-marker";
+      el.setAttribute("aria-label", urbanName(place, props.locale));
+      el.setAttribute(
+        "aria-pressed",
+        String(
+          [props.state.place, props.state.urbanCompare].includes(place.id),
+        ),
+      );
+      const dot = document.createElement("span");
+      dot.className = "maps-urban-marker-dot";
+      dot.setAttribute("aria-hidden", "true");
+      const label = document.createElement("span");
+      label.textContent = place.name[props.locale];
+      el.append(dot, label);
+      el.addEventListener("click", () =>
+        current.current.onUrbanSelect(place.id),
+      );
+      entries.push({ place, element: el });
+      urbanMarkers.current.push(
+        new Marker({ element: el, anchor: "left", offset: [-14, 0] })
+          .setLngLat(place.point as [number, number])
+          .addTo(m),
+      );
+    }
+    const layout = () => {
+      // Measure full labels together, then keep dots available when names
+      // collide. Selection, hover and keyboard focus always reveal the name.
+      entries.forEach(({ element }) => element.classList.remove("is-compact"));
+      const measured = entries
+        .map(({ place, element }) => ({
+          element,
+          selected: element.getAttribute("aria-pressed") === "true",
+          point: m.project(place.point as [number, number]),
+          width: element.getBoundingClientRect().width,
+        }))
+        .sort((a, b) => Number(b.selected) - Number(a.selected));
+      const boxes: number[][] = [];
+      for (const entry of measured) {
+        const { x, y } = entry.point;
+        const box = [x - 14, y - 23, x - 12 + entry.width, y + 23];
+        const overlaps = boxes.some(
+          (b) =>
+            box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1],
+        );
+        const coversPoint = measured.some(
+          (other) =>
+            other !== entry &&
+            other.point.x + 10 > box[0] &&
+            other.point.x - 10 < box[2] &&
+            other.point.y + 10 > box[1] &&
+            other.point.y - 10 < box[3],
+        );
+        const compact = !entry.selected && (overlaps || coversPoint);
+        entry.element.classList.toggle("is-compact", compact);
+        if (!compact) boxes.push(box);
+      }
+    };
+    layout();
+    m.on("moveend", layout);
+    return () => {
+      m.off("moveend", layout);
+      urbanMarkers.current.forEach((marker) => marker.remove());
+      urbanMarkers.current = [];
+    };
+  }, [
+    status,
+    props.urbanPlaces,
+    props.state.urban,
+    props.state.place,
+    props.state.urbanCompare,
+    props.locale,
+  ]);
+  useEffect(() => {
     if (status !== "ready" || lastFitKey.current === cameraKey()) return;
     lastFitKey.current = cameraKey();
     fit(targetBounds());
@@ -781,6 +933,9 @@ export default function MapCanvas(props: Props) {
     props.state.division,
     props.reset,
     props.state.level,
+    props.state.urban,
+    props.state.place,
+    props.state.urbanCompare,
   ]);
   return (
     <div className="maps-canvas-wrap">
@@ -813,10 +968,7 @@ export default function MapCanvas(props: Props) {
         </button>
         <button
           onClick={() => map.current?.zoomOut()}
-          disabled={
-            status !== "ready" ||
-            zoom <= constrainedMinZoom + 1e-6
-          }
+          disabled={status !== "ready" || zoom <= constrainedMinZoom + 1e-6}
           aria-label={t("Zoom out", "ছোট করুন")}
         >
           <svg viewBox="0 0 24 24">
@@ -824,9 +976,15 @@ export default function MapCanvas(props: Props) {
           </svg>
         </button>
         <button
-          onClick={() => fit()}
+          onClick={() =>
+            fit(props.state.urban ? urbanBounds(props.urbanPlaces) : country)
+          }
           disabled={status !== "ready"}
-          aria-label={t("Show all Bangladesh", "পুরো বাংলাদেশ দেখুন")}
+          aria-label={
+            props.state.urban
+              ? t("Show mapped places", "মানচিত্রের সব শহর দেখুন")
+              : t("Show all Bangladesh", "পুরো বাংলাদেশ দেখুন")
+          }
         >
           <svg viewBox="0 0 24 24">
             <path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5M4 4l5 5m11-5-5 5M4 20l5-5m11 5-5-5" />
