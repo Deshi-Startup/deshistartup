@@ -8,7 +8,7 @@ verified: 2026-07-28
 
 > **In short:** Compare the cost on the money you actually collect through each payment method. Card rates alone miss the <Term name="mfs">MFS</Term> rate, flat fees and setup cost. Shortlist two gateways, calculate the same sales scenario for both and get settlement, refund and document requirements in writing.
 
-This comparison is for a Bangladesh-based startup choosing a gateway for its website or app. If you only need to receive wallet payments, first check [whether a gateway is necessary](/en/payments/mfs-and-gateways).
+This comparison is for a Bangladesh-based startup choosing a gateway for its website or app. If you only need to receive wallet payments, first check [whether a gateway is necessary](/en/payments/mfs-and-gateways). Use the [payment gateways directory](/en/directory/payment-gateways) for provider links and application requirements.
 
 ## Published Gateway Fees
 
@@ -17,13 +17,13 @@ Start with the setup cost and the rates for your main payment methods. These are
 | Provider / plan | One-time setup | Standard cards | MFS payments |
 |---|---|---|---|
 | SSLCOMMERZ Basic | BDT 25,500, non-refundable | 2.50% | 2.50% |
-| aamarPay aamarGrowth | Quote required | 2.55% | 2.00% |
+| aamarPay aamarGrowth | BDT 20,000 on the registration form; confirm the quote | Quote required | Quote required |
 | PortPos | No signup fee | 2.50% | 2.20% |
 | ShurjoPay | Quote required | Quote required | Quote required |
 
 PortPos also publishes BDT 1 per successful transaction and no monthly fee. SSLCOMMERZ and PortPos list Amex at 3.50%. Ask separately about international cards, taxes on fees, refunds and any minimum charge.
 
-**Price-check dates:** SSLCOMMERZ and PortPos were rechecked on 6 September 2026. aamarPay's figures are the 28 July 2026 snapshot; its website was unavailable for rechecking on 6 September. ShurjoPay's July review did not find a public rate. Confirm those quotes before relying on a comparison. A missing published fee means unknown, not zero.
+**Price-check dates:** SSLCOMMERZ and PortPos were rechecked on 13 September 2026. On the same date, aamarPay's live pricing page requested a quote without displaying card or MFS rates. Its registration form listed BDT 20,000 as the non-refundable aamar Growth setup fee. Confirm that amount and the transaction rates together in writing.[^aamarpay-current-pricing] ShurjoPay's July review did not find a public rate. A missing published fee means unknown, not zero.
 
 ## Calculate Cost from Sales Value, Not Order Count
 
@@ -50,16 +50,26 @@ Suppose 200 successful orders average BDT 1,200 each, with BDT 192,000 collected
 | Gateway | Monthly transaction fees | Twelve months plus listed setup |
 |---|---|---|
 | SSLCOMMERZ | BDT 6,000 | BDT 97,500 |
-| aamarPay aamarGrowth | BDT 5,064 | BDT 60,768 + quoted setup |
 | PortPos | BDT 5,624 | BDT 67,488 |
-
-For aamarPay: `(192,000 × 0.02) + (48,000 × 0.0255) = 3,840 + 1,224 = BDT 5,064`.
 
 For PortPos: `(192,000 × 0.022) + (48,000 × 0.025) + (200 × 1) = 4,224 + 1,200 + 200 = BDT 5,624`.
 
 SSLCOMMERZ's single 2.5% rate gives `240,000 × 0.025 = BDT 6,000`; twelve months plus BDT 25,500 setup gives BDT 97,500.
 
-**What changes the decision:** in this scenario aamarPay's setup fee must be below BDT 6,720 to beat PortPos on the included first-year costs. That is `67,488 − 60,768`. Other quoted charges or different channel sales can change the result. ShurjoPay is omitted from the arithmetic because a rate is needed first.
+These totals include only the listed transaction and setup charges. Get rates for aamarPay and ShurjoPay before adding their totals; the old aamarPay rates are not a current offer.
+
+### aamarPay vs SSLCOMMERZ: Compare the Written Quote
+
+SSLCOMMERZ publishes a standard-channel rate; aamarPay's current card and MFS rates need a quote. For the same BDT 240,000 monthly sales example, ask aamarPay to price BDT 192,000 of MFS payments and BDT 48,000 of domestic-card payments separately.
+
+If the quote confirms the listed BDT 20,000 setup fee, aamarPay's monthly transaction fees must be below roughly **BDT 6,458** to cost less than SSLCOMMERZ over the first year on the included charges:
+
+```text
+Monthly fee ceiling = (97,500 − 20,000) ÷ 12
+                    = BDT 6,458.33
+```
+
+This is a break-even calculation, not an aamarPay transaction rate. Recalculate with the actual quote and sales mix. Ask both providers whether VAT is included in setup and transaction fees, what amount it applies to, and what they retain on refunds. Add those charges before choosing; neither a lower setup fee nor a headline percentage establishes the cheaper total.
 
 ### Copy This into Your Comparison Sheet
 
@@ -78,7 +88,7 @@ Use the last three months of records if available. For a new startup, mark the f
 
 ## Check Settlement and Refunds Before Signing
 
-Settlement means the gateway sends collected funds to your bank. aamarPay's FAQ in the July review stated twice-weekly disbursement on working days, excluding holidays. The reviewed pages did not establish a comparable cycle for the other three.[^gateway-onboarding-and-faq] Get a current commitment for your account.
+Settlement means the gateway sends collected funds to your bank. aamarPay's FAQ, checked on 13 September 2026, states twice-weekly disbursement subject to working days and holidays. That is a payout schedule, not a promise that every payment reaches the bank within two days. SSLCOMMERZ's FAQ explains how to download settlement reports but does not give a fixed payout cycle.[^gateway-onboarding-and-faq] Get the timing, minimum amount and any reserve for your account in writing.
 
 Send the same questions to each provider:
 
@@ -95,7 +105,7 @@ Before routing all sales through a provider, test a payment, refund and settleme
 
 Document requirements differ by provider and business structure. SSLCOMMERZ's published onboarding list includes <Term name="e-tin">TIN</Term>, trade licence, VAT and DBID for a proprietorship; a private limited company has additional corporate documents. Its page uses the abbreviations CBR and RCBFI without expanding them, so ask the account manager what to supply.[^gateway-onboarding-and-faq]
 
-aamarPay's July FAQ lists trade licence, TIN, VAT “if any,” NID and a photograph, with a partnership deed or <Term name="incorp-certificate">incorporation certificate</Term> and MoA/AoA as appropriate. It also describes its application and bank sub-merchant forms.[^gateway-onboarding-and-faq]
+aamarPay's FAQ lists trade licence, TIN, VAT “if any,” NID and a photograph, with a partnership deed or <Term name="incorp-certificate">incorporation certificate</Term> and MoA/AoA as appropriate. It also describes its application and bank sub-merchant forms.[^gateway-onboarding-and-faq]
 
 Get the checklist for **your** structure and product. Do not interpret one provider's onboarding list as a universal legal duty to obtain every certificate. Use the [merchant-account guide](/en/payments/merchant-account) and [DBID guide](/en/registration/dbid) to prepare, then confirm any missing items with the provider.
 
@@ -116,8 +126,10 @@ Keep the written quote with your agreement. Recheck the comparison when your pay
 
 ## Relevant Sources
 
-[^gateway-published-pricing]: [SSLCOMMERZ pricing](https://sslcommerz.com/pricing/) and [PortPos business pricing](https://portpos.com/business), checked 6 September 2026. [aamarPay pricing](https://www.aamarpay.com/index.php/pricing) and [ShurjoPay](https://shurjopay.com.bd), reviewed 28 July 2026; aamarPay could not be rechecked on 6 September. Provider claims, not independent service assessments.
+[^gateway-published-pricing]: [SSLCOMMERZ pricing](https://sslcommerz.com/pricing/) and [PortPos business pricing](https://portpos.com/business), checked 13 September 2026. [ShurjoPay](https://shurjopay.com.bd), reviewed 28 July 2026. Provider claims, not independent service assessments.
 
-[^gateway-onboarding-and-faq]: [SSLCOMMERZ onboarding requirements](https://sslcommerz.com/onboarding-requirements/), [SSLCOMMERZ FAQ](https://sslcommerz.com/faq/) and [aamarPay FAQ](https://www.aamarpay.com/index.php/faq), reviewed 28 July 2026. Request the provider's current requirements before applying.
+[^aamarpay-current-pricing]: [aamarPay pricing](https://aamarpay.com/index.php/pricing) and [merchant registration form](https://registration.aamarpay.com/), checked in the live browser on 13 September 2026. The pricing page asks for a quote; the registration form lists aamar Growth setup at BDT 20,000. Neither displayed current Growth card/MFS rates or established whether VAT was included. The previous July rate snapshot is not used in the current calculation.
 
-[^portwallet-portpos]: [PortWallet pricing](https://www.portwallet.com/en_US/pricing.html), reviewed 28 July 2026, and [PortPos business page](https://portpos.com/business), checked 6 September 2026.
+[^gateway-onboarding-and-faq]: [SSLCOMMERZ onboarding requirements](https://sslcommerz.com/onboarding-requirements/), [SSLCOMMERZ FAQ](https://sslcommerz.com/faq/) and [aamarPay FAQ](https://aamarpay.com/index.php/faq), checked 13 September 2026. Request the provider's requirements for your business before applying.
+
+[^portwallet-portpos]: [PortWallet pricing](https://www.portwallet.com/en_US/pricing.html), reviewed 28 July 2026, and [PortPos business page](https://portpos.com/business), checked 13 September 2026.

@@ -2231,12 +2231,10 @@ a.is-stub-link:hover {
 }
 
 @media (max-width: 860px) {
-  /* The header stacks to two rows here. It is 121px while the tagline fits on
-     one line and 140px on a 390px screen, where it wraps – so the clearance is
-     set from the taller case. Measured; 132px left the target heading tucked
-     under the header on a phone, which is the width this matters on. */
+  /* The compact two-row header is about 131px tall without the tagline.
+     Leave a little breathing room above headings reached through a link. */
   html {
-    scroll-padding-top: 152px;
+    scroll-padding-top: 144px;
   }
 
   /* The phone is the reading device, so it gets the larger body, not the
@@ -2262,6 +2260,10 @@ a.is-stub-link:hover {
   .brand img {
     width: 42px;
     height: 42px;
+  }
+
+  .brand small {
+    display: none;
   }
 
   .top-actions .social-link {
@@ -2448,10 +2450,6 @@ a.is-stub-link:hover {
     text-overflow: ellipsis;
     font-size: 1.08rem;
     line-height: 1.35;
-  }
-
-  .brand small {
-    font-size: 0.82rem;
   }
 
   th,

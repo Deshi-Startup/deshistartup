@@ -15,12 +15,14 @@ import {
   prepareContributorSnapshot
 } from '../app/lib/contributor-leaderboard.mjs'
 import {
+  DEFAULT_DESCRIPTIONS,
   DEFAULT_OG_IMAGE,
   INDEXNOW_KEY,
   ORGANIZATION_SAME_AS,
   SITE_NAME,
   SITE_URL,
-  canonicalUrl
+  canonicalUrl,
+  pageDocumentTitle
 } from '../app/seo.config.mjs'
 import { resolveBuildOutput } from './build-output.mjs'
 import { scopeRepeatsRoles } from '../app/lib/page-credits.mjs'
@@ -156,11 +158,19 @@ for (const page of pages) {
   if (titles.length !== 1 || !titles.first().text().trim()) {
     record(errors, `${page.route}: expected exactly one non-empty title, found ${titles.length}`)
   }
+  const expectedTitle = pageDocumentTitle(page)
+  const expectedDescription = (page.description || DEFAULT_DESCRIPTIONS[page.locale]).trim()
+  if (titles.first().text().trim() !== expectedTitle) {
+    record(errors, `${page.route}: document title differs from the authored SEO title`)
+  }
   if (page.locale === 'en' && titles.first().text().includes('দেশি স্টার্টআপ')) {
     record(errors, `${page.route}: English title contains the Bengali site-name boilerplate`)
   }
   if (descriptions.length !== 1 || !descriptions.first().attr('content')?.trim()) {
     record(errors, `${page.route}: expected exactly one non-empty meta description, found ${descriptions.length}`)
+  }
+  if (descriptions.first().attr('content')?.trim() !== expectedDescription) {
+    record(errors, `${page.route}: meta description differs from decoded frontmatter`)
   }
   if ($('h1').length !== 1) record(errors, `${page.route}: expected one H1, found ${$('h1').length}`)
   let previousHeadingLevel = 0
@@ -300,6 +310,12 @@ for (const page of pages) {
   if ($('meta[property="og:url"]').attr('content') !== canonicalUrl(page.route)) {
     record(errors, `${page.route}: og:url does not match canonical`)
   }
+  for (const selector of ['meta[property="og:title"]', 'meta[name="twitter:title"]']) {
+    if ($(selector).attr('content') !== expectedTitle) record(errors, `${page.route}: social title differs from the document title`)
+  }
+  for (const selector of ['meta[property="og:description"]', 'meta[name="twitter:description"]']) {
+    if ($(selector).attr('content')?.trim() !== expectedDescription) record(errors, `${page.route}: social description differs from decoded frontmatter`)
+  }
   const expectedOgImage = contributorProfile
     ? `${SITE_URL}/contributor-cards/${contributorProfile.slug}.png`
     : pageSocialImage(page)?.url || DEFAULT_OG_IMAGE
@@ -325,6 +341,10 @@ for (const page of pages) {
     try {
       const schema = JSON.parse(schemaScripts.first().text())
       const graph = Array.isArray(schema['@graph']) ? schema['@graph'] : []
+      const pageNode = graph.find((node) => node['@id'] === `${canonicalUrl(page.route)}#webpage`)
+      if (pageNode?.name !== expectedTitle || pageNode?.description?.trim() !== expectedDescription) {
+        record(errors, `${page.route}: JSON-LD page name or description differs from the document metadata`)
+      }
       const types = new Set(graph.map((node) => node['@type']))
       if (
         !types.has('Article') &&
@@ -368,6 +388,9 @@ for (const page of pages) {
       }
       const article = graph.find((node) => node['@type'] === 'Article')
       if (article) {
+        if (article.description?.trim() !== expectedDescription) {
+          record(errors, `${page.route}: Article description differs from the document metadata`)
+        }
         const nodeIds = new Set(graph.map((node) => node['@id']).filter(Boolean))
         const authorIds = referenceIds(article.author)
         const contributorIds = referenceIds(article.contributor)
@@ -377,8 +400,12 @@ for (const page of pages) {
         if (article.publisher?.['@id'] !== `${SITE_URL}/#organization`) {
           record(errors, `${page.route}: Article publisher does not resolve to the publisher Organization`)
         }
-        if (article.image?.url !== DEFAULT_OG_IMAGE || !article.publishingPrinciples) {
-          record(errors, `${page.route}: Article image or publishing principles are missing`)
+        const articleImages = Array.isArray(article.image) ? article.image : [article.image]
+        if (articleImages.some((image) => image === DEFAULT_OG_IMAGE || image?.url === DEFAULT_OG_IMAGE || image?.contentUrl === DEFAULT_OG_IMAGE)) {
+          record(errors, `${page.route}: Article image must not use the generic site-branding card`)
+        }
+        if (!article.publishingPrinciples) {
+          record(errors, `${page.route}: Article publishing principles are missing`)
         }
         if (!article.headline || !article.datePublished || !article.dateModified) {
           record(errors, `${page.route}: Article headline or publication dates are missing`)

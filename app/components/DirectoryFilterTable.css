@@ -176,6 +176,12 @@
   color: var(--muted);
 }
 
+.directory-source-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+
 .directory-empty {
   margin: 0;
   padding: 22px;

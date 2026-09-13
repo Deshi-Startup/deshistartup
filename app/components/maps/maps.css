@@ -1776,9 +1776,6 @@
     letter-spacing: -0.3px;
     white-space: nowrap;
   }
-  .maps-header .brand small {
-    display: none;
-  }
   .maps-header-actions {
     grid-column: 2;
     grid-row: 1;

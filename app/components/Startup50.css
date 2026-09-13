@@ -429,6 +429,15 @@ html[lang='bn'] .startup50-hero__folio strong {
   color: var(--muted);
 }
 
+.startup50-entry__case-study {
+  display: inline-block;
+  margin-top: 4px;
+  padding-block: 8px;
+  font-size: 0.82rem;
+  font-weight: var(--w-strong);
+  line-height: 1.4;
+}
+
 .startup50-details {
   align-self: stretch;
 }

@@ -16,8 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 export const metadata = {
   title: {
-    default: 'দেশি স্টার্টআপ – বাংলাদেশে স্টার্টআপ গড়ার ফ্রি, ওপেন-সোর্স ম্যানুয়াল',
-    template: '%s | দেশি স্টার্টআপ'
+    default: 'দেশি স্টার্টআপ – বাংলাদেশে স্টার্টআপ গড়ার ফ্রি, ওপেন-সোর্স ম্যানুয়াল'
   },
   description: DEFAULT_DESCRIPTIONS.bn,
   metadataBase: new URL(SITE_URL),

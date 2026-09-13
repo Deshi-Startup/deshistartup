@@ -1,8 +1,9 @@
 .ecosystem-map { margin: 28px 0 36px; max-width: var(--measure); }
-.ecosystem-map > h2 { margin: 0 0 16px; padding: 0; border: 0; font-size: 1.55rem; font-weight: var(--w-strong); }
-.ecosystem-map nav { border: 1px solid var(--line); border-radius: 4px; overflow: clip; }
+.ecosystem-map > h2 { margin: 0 0 12px; padding: 0 0 8px; font-size: 1.55rem; font-weight: var(--w-strong); }
+.ecosystem-map .ecosystem-map__instruction { margin: 0 0 16px; color: var(--muted); }
+.ecosystem-map nav { border: 1px solid var(--line); border-radius: 4px; }
 .ecosystem-map__core { display: grid; grid-template-columns: minmax(0,1fr) minmax(100px,.65fr) minmax(0,1fr); gap: 20px; align-items: center; padding: 28px; background: var(--green-ground); }
-.ecosystem-map nav a { display: flex; flex-direction: column; gap: 6px; text-decoration: none; border-radius: 3px; }
+.ecosystem-map nav a { display: flex; flex-direction: column; gap: 6px; min-width: 0; overflow-wrap: anywhere; text-decoration: none; border-radius: 3px; }
 .ecosystem-map nav a:hover strong { text-decoration: underline; text-underline-offset: 4px; }
 .ecosystem-map nav a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 .ecosystem-map nav a strong { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 1.08rem; line-height: 1.5; font-weight: var(--w-strong); }
@@ -19,7 +20,6 @@
 .ecosystem-map .ecosystem-map__support a:focus-visible { outline-offset: -5px; }
 .ecosystem-map__support svg { flex: 0 0 18px; width: 18px; height: 18px; }
 .ecosystem-map .ecosystem-map__caption { margin: 14px 0 0; font-size: .9rem; color: var(--muted); line-height: 1.7; }
-.article:has(> .ecosystem-map) > p { max-width: 75ch; }
 .article:has(> .ecosystem-map) > h2 { scroll-margin-top: calc(var(--header-h) + 24px); }
 .article:has(> .ecosystem-map) > table :is(th,td):first-child { width: 34%; }
 .article:has(> .ecosystem-map) > table td strong { display: block; margin-bottom: 6px; }
@@ -29,12 +29,14 @@
   .ecosystem-map .ecosystem-map__support a { padding: 18px 20px; }
 }
 @media (max-width: 540px) {
-  .ecosystem-map__core { grid-template-columns: 1fr; gap: 8px; }
-  .ecosystem-map__exchange { display: grid; grid-template-columns: minmax(0,1fr) 40px minmax(0,1fr); align-items: center; gap: 12px; min-height: 72px; }
-  .ecosystem-map__exchange > span:first-child { grid-column: 3; grid-row: 1; }
-  .ecosystem-map__exchange > span:last-child { grid-column: 1; grid-row: 1; }
-  .ecosystem-map__exchange svg { grid-column: 2; grid-row: 1; justify-self: center; width: 64px; height: 28px; transform: rotate(90deg); }
+  .ecosystem-map__core { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; padding: 16px; align-items: start; }
+  .ecosystem-map__customer { grid-column: 1; grid-row: 1; }
+  .ecosystem-map__startup { grid-column: 2; grid-row: 1; }
+  .ecosystem-map .ecosystem-map__core a strong { font-size: 1.125rem; line-height: 1.5; }
+  .ecosystem-map__exchange { grid-column: 1 / -1; grid-row: 2; width: 100%; max-width: 16rem; justify-self: center; gap: 4px; }
+  .ecosystem-map__exchange svg { height: 24px; }
   .ecosystem-map__support { grid-template-columns: 1fr; }
+  .ecosystem-map .ecosystem-map__support a { padding: 12px 16px; gap: 4px; }
   .ecosystem-map__support a:nth-child(even) { border-left: 0; }
 }
 @media print {

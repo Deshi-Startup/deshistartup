@@ -56,6 +56,23 @@
     "notes": "A technology-led parcel service for online merchants and individuals, combining nationwide delivery, next-day merchant payout and a live charge calculator. Its OpenAPI supports parcel creation, pickup-store management, tracking and charge calculation for businesses that want direct integration."
   },
   {
+    "name": "Steadfast Courier",
+    "type": "E-commerce courier",
+    "coverage": "All 64 districts and 495 upazilas, according to the company. Confirm access and extra charges for remote destinations.",
+    "codSupport": "Yes — the terms state a 1% cash-handling and risk-management charge on the collected amount after deducting the delivery charge.",
+    "pricing": "Live calculator examples checked 13 September 2026: a 1 kg Regular parcel with Regular service from Dhaka City costs BDT 75 to Dhaka City, BDT 105 to Dhaka Sub-Urban and BDT 135 to Chittagong. These are route examples, not nationwide flat rates. VAT and tax are excluded; size or extra services can change the quote.",
+    "returnHandling": "No separate return charge. The original delivery charge remains payable for every handed-over parcel, including cancelled deliveries. The merchant must approve cancellation before the return.",
+    "api": "Confirm current API access and documentation with the provider.",
+    "applicationPath": "Register at steadfast.com.bd/register with business and contact details, then complete email OTP and account verification.",
+    "website": "https://steadfast.com.bd/",
+    "sourceUrl": "https://steadfast.com.bd/pricing",
+    "sourceUrls": [
+      "https://steadfast.com.bd/terms-and-condition"
+    ],
+    "lastVerified": "2026-09-13",
+    "notes": "Provides merchant pickup, delivery, COD collection, tracking and returns. Use its current route calculator before quoting a customer: the homepage FAQ rates differ from the live calculator."
+  },
+  {
     "name": "S.A. Paribahan",
     "type": "Courier and cargo network",
     "coverage": "120+ branches across Bangladesh.",

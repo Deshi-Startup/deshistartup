@@ -3,8 +3,7 @@ import { DEFAULT_DESCRIPTIONS } from '../../seo.config.mjs'
 
 export const metadata = {
   title: {
-    default: 'Deshi Startup – The free, open-source manual for building startups in Bangladesh',
-    template: '%s | Deshi Startup'
+    default: 'Deshi Startup – The free, open-source manual for building startups in Bangladesh'
   },
   description: DEFAULT_DESCRIPTIONS.en
 }

@@ -31,7 +31,8 @@ import {
   SITE_NAME,
   SITE_NAME_BN,
   SITE_URL,
-  canonicalUrl
+  canonicalUrl,
+  pageDocumentTitle
 } from '../app/seo.config.mjs'
 import { resolveBuildOutput } from './build-output.mjs'
 import {
@@ -425,7 +426,7 @@ function schemaFor(page, wordCount, visibleCollectionItems = [], contributionEve
       : isCollection
         ? 'CollectionPage'
         : 'WebPage'
-  const pageName = isHome ? `${isEn ? SITE_NAME : SITE_NAME_BN} – ${page.fullTitle}` : page.fullTitle
+  const pageName = pageDocumentTitle(page)
 
   const organizationNode = {
     '@type': 'Organization',
@@ -533,13 +534,9 @@ function schemaFor(page, wordCount, visibleCollectionItems = [], contributionEve
         ? (authorReferences.length === 1 ? authorReferences[0] : authorReferences)
         : { '@id': `${SITE_URL}/#organization` },
       publisher: { '@id': `${SITE_URL}/#organization` },
-      image: {
-        '@type': 'ImageObject',
-        url: DEFAULT_OG_IMAGE,
-        contentUrl: DEFAULT_OG_IMAGE,
-        width: 1200,
-        height: 630
-      },
+      // Article images must depict the article, not its publisher's branding.
+      // Current articles have no approved representative image; their social
+      // fallback and the Organization logo are defined separately.
       publishingPrinciples: canonicalUrl(isEn ? '/en/about' : '/about'),
       isAccessibleForFree: true,
       license: CONTENT_LICENSE_URL,
@@ -611,12 +608,13 @@ for (const page of pages) {
   const contentLanguage = isEn ? 'en-BD' : 'bn-BD'
   const ogLocale = isEn ? 'en_BD' : 'bn_BD'
   const url = canonicalUrl(page.route)
-  const socialTitle = page.slug === ''
-    ? `${isEn ? SITE_NAME : SITE_NAME_BN} – ${page.fullTitle}`
-    : page.fullTitle
-  const expectedDocumentTitle = page.slug === ''
-    ? socialTitle
-    : `${page.fullTitle} | ${isEn ? SITE_NAME : SITE_NAME_BN}`
+  const expectedDocumentTitle = pageDocumentTitle(page)
+  const socialTitle = expectedDocumentTitle
+  // An export-only rewrite would leave Next's navigation/hydration payload with
+  // a different title. Fail at the source instead of hiding that discrepancy.
+  if (documentTitle !== expectedDocumentTitle) {
+    throw new Error(`${page.route}: Next document title differs from the SEO title: ${documentTitle}`)
+  }
   const pairedBn = pageByLocaleSlug.get(`bn:${page.slug}`)
   const pairedEn = pageByLocaleSlug.get(`en:${page.slug}`)
   const pairedPage = isEn ? pairedBn : pairedEn
@@ -789,10 +787,6 @@ for (const page of pages) {
   enriched += 1
   if (page.stub) noindexed += 1
 
-  // Keep a useful diagnostic if a page's actual document title diverges completely.
-  if (!documentTitle.includes(page.title) && !documentTitle.includes(page.fullTitle)) {
-    console.warn(`title mismatch: ${page.route}: ${documentTitle}`)
-  }
 }
 
 if (missing.length > 0) {

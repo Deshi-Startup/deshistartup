@@ -1,13 +1,258 @@
 ---
-title: "Agroshift case study"
-description: "Agroshift – this case study is planned for Deshi Startup, but it has not been written yet."
+title: "Agroshift"
+seoTitle: "Agroshift Case Study: Why the Factory Gate Matters"
+description: "How Agroshift groups grocery orders at garment factories. The founders' earlier lessons, delivery economics and trade-offs behind a different route to shoppers."
+verified: 2026-09-13
 ---
 
-# Agroshift case study
+import { CaseCompany, CaseTimeline, CaseMilestone, CaseDetail, CaseProcess } from '../../../../components/CaseStudy'
+import DataBars from '../../../../components/DataBars'
 
-<StubNotice path="case-studies/agroshift" locale="en" />
+# Agroshift
+
+<CaseCompany slug="agroshift" locale="en" />
+
+> **In short:** Agroshift found that buying a farmer's produce could be easier than finding enough people to sell it to.[^operations] Garment factories offered a place to gather those buyers. Grouping orders and delivering at work could lower costs. The catch: workers had to plan ahead and carry the groceries home. The business depends on making that trade worthwhile.
+
+This case is about a change in distribution, not a new kind of grocery. The product was familiar. The place where people ordered and collected it was different.
+
+It also offers a rare view into an early decision. An investor published the questions it was asking in May 2022, before Agroshift's later funding and growth announcements.[^investor-memo] We can examine the idea while its outcome was still uncertain.
+
+## At a glance
+
+| Item | Detail |
+|---|---|
+| Founders | Qazi Bouland, Rameez Hoque and Diptha Saha; the business began in 2022.[^preseed] |
+| Early focus | Groceries for garment workers, ordered and collected at factories.[^factory-pilot] |
+| Suppliers | A mix of farmers, traders and processors.[^adb] |
+| Business model | Buy and sell essentials, with the price covering goods and the work of supplying them.[^operations] |
+| Current scope | Workplace and reseller distribution, services for food companies, and cross-border trade.[^company] |
+
+The early factory model is the focus here. The company's later activities are broader, and their economics should not be assumed to match it.
+
+## Turning points
+
+<CaseTimeline>
+<CaseMilestone date="Before Agroshift" title="Learn from farming and factory work">
+
+Bouland grows vegetables on family land. Saha brings experience from the garment sector and an earlier dairy venture.[^bouland][^saha]
+
+</CaseMilestone>
+<CaseMilestone date="February 2022" title="Get a factory in which to test">
+
+Agroshift wins support from STITCH for RMG. The programme names Echotex as its pilot partner.[^factory-pilot]
+
+</CaseMilestone>
+<CaseMilestone date="May 2022" title="Record the unanswered questions">
+
+An early investment memo asks whether workers will accept waiting for orders and carrying groceries home.[^investor-memo]
+
+</CaseMilestone>
+<CaseMilestone date="October 2022" title="Raise money to expand the supply network">
+
+Agroshift announces US$1.8 million in early-stage, or pre-seed, funding. Shorooq Partners and Anchorless Bangladesh co-lead the round.[^preseed]
+
+</CaseMilestone>
+<CaseMilestone date="February 2024" title="Bring in ADB Ventures">
+
+The investor announces backing for expansion through factories and nearby communities.[^adb]
+
+</CaseMilestone>
+<CaseMilestone date="June 2026" title="Add a role in dairy finance">
+
+An agreement with City Bank and Milk Vita gives Agroshift a role in farmer onboarding and monitoring.[^dairy]
+
+</CaseMilestone>
+</CaseTimeline>
+
+## The founders had seen both ends of the problem
+
+Qazi Bouland returned to Bangladesh after years abroad, including work in technology and consulting. He began growing vegetables on family land in Bhaluka. Producing more than his family needed led him to the problem of moving food to buyers. He met Diptha Saha through LinkedIn, and the founding team later included Rameez Hoque.[^bouland]
+
+Saha's experience came from a different direction. In a 2023 interview, he described saving money from an engineering job linked to garment factories, then starting Khamar-e. That venture worked on dairy technology and market access. Agroshift combined his earlier experience in factories and agriculture.[^saha]
+
+By November 2022, Khamar-e had closed for lack of investment, Saha told The Business Standard.[^operations]
+
+These details make the factory focus more understandable. The team was not picking a large audience from a market-size slide. It had experience with the people producing food and the workplaces where many potential buyers gathered.
+
+## Finding enough buyers was harder than finding food
+
+Bouland's account describes an early plan to serve businesses, followed by difficulty with sales channels and changing prices.[^bouland] One large purchase could leave Agroshift needing many smaller sales.
+
+A garment factory offered a different arrangement. Orders could be gathered at one place, then fulfilled together. Rather than send a separate delivery to each home, the company could supply a shared collection point.
+
+This changes the question from “How do we sell groceries online?” to “Where can enough people buy together to make the delivery work?”
+
+The distinction is useful well beyond food. A service for offices, schools or housing groups may gain more from a good shared location than from a faster individual delivery promise.
+
+But a group of people is not yet a group of customers. The service still needs enough orders, often enough, at each location.
+
+## The first prize supplied more than money
+
+In February 2022, H&M Foundation named Agroshift among six STITCH for RMG winners. Each received a US$30,000 grant and access to a partner factory for a pilot. Agroshift was paired with Echotex.[^factory-pilot]
+
+For this business, access was a valuable part of the award. Testing required space on factory premises, a way to reach workers and agreement on when orders could be collected. Money alone could not provide those arrangements.
+
+A later company update describes converting Comfit Composite's existing “fair shop” into Agroshift's ordering and supply service.[^comfit] That is a concrete example of working with a channel already present, rather than constructing a new retail location from scratch.
+
+In June 2023, Saha also said his Forbes recognition had helped with factory introductions and partnership discussions.[^distribution-interview] That explains how publicity could help the business: it opened doors to decision-makers. It did not automatically sell groceries to workers.
+
+The customer relationships remained separate. Management could permit the service. Workers still chose where to spend their money.
+
+## How the order reaches the worker
+
+Saha's June 2023 description combined online ordering with an offline transaction, usually delivered in 12-18 hours. The supplier network included farmers, traders and processors.[^distribution-interview]
+
+The early service offered both digital ordering and factory kiosks.[^factory-pilot] That matters because access to a smartphone does not guarantee that every customer wants to navigate an unfamiliar shopping app alone.
+
+<CaseProcess
+  title="Order today, collect at work"
+  steps={[
+    { title: 'Choose the groceries', description: 'Workers order through the available digital or factory ordering point.' },
+    { title: 'Combine the orders', description: 'Agroshift groups the quantities needed for the collection point.' },
+    { title: 'Source and pack', description: 'The supply network prepares the goods for grouped delivery.' },
+    { title: 'Collect the purchase', description: 'Workers pick up their groceries and take them home.' },
+  ]}
+>
+
+A simplified version of the reported factory model.[^factory-pilot][^distribution-interview] It is a planned purchase, not an instant grocery service.
+
+</CaseProcess>
+
+A basket also contains different supply chains. The November 2022 account distinguishes fresh produce from farmers, grains from mills, and packaged goods from companies. Agroshift used outside transport providers.[^operations]
+
+So “direct from the farmer” cannot explain the whole business. The harder work is combining those sources into an order the buyer can trust.
+
+## Why orders per stop matter
+
+A shared delivery has a cost advantage only when enough people use it. The following example isolates that idea.
+
+<CaseDetail title="The same BDT 500 delivery, shared by more orders">
+
+**Illustrative example, not Agroshift's costs.** Suppose a delivery to a pickup point costs BDT 500. Hold that cost fixed to see what the number of orders changes.
+
+<DataBars
+  data={[
+    { label: '10 orders at the stop', value: 50, display: 'BDT 50 per order' },
+    { label: '50 orders at the stop', value: 10, display: 'BDT 10 per order' },
+    { label: '100 orders at the stop', value: 5, display: 'BDT 5 per order' },
+  ]}
+  max={50}
+/>
+
+<details>
+<summary>Example figures</summary>
+
+| Orders at the stop | Fixed delivery cost, BDT | Cost per order, BDT |
+|---:|---:|---:|
+| 10 | 500 | 50 |
+| 50 | 500 | 10 |
+| 100 | 500 | 5 |
+
+</details>
+
+Delivery cost per order = BDT 500 ÷ orders delivered. The chart excludes food, packing, staff, losses and other costs. In practice, a larger load may also cost more to transport.
+
+</CaseDetail>
+
+This helps explain why a factory agreement is only a starting point. A location with many employees but few orders can still be expensive to serve. A smaller site with regular orders may work better.
+
+It also explains the value of repeat purchases. Winning a customer once is useful. Having enough people order on the same delivery day is what keeps the shared route busy.
+
+## The decision: pre-orders or an always-stocked shop?
+
+Anchorless Bangladesh's memo was written in May 2022 and published, with some figures hidden, in 2024. It recorded an uncomfortable trade: some groceries took more than a day to arrive. Workers would need to plan ahead. Carrying heavy items after work could also make a nearby shop more attractive.[^investor-memo]
+
+The alternative was to hold stock for immediate purchases inside the factory. The memo noted that this would need more money, space and permission.[^investor-memo]
+
+| Choice | What the customer gains | What the business must carry |
+|---|---|---|
+| Pre-order and collect | A planned purchase at a shared point. | The need to deliver the promised items on time. |
+| Keep groceries in stock | The option to buy immediately. | Cash tied up in goods, storage and the risk of unsold food. |
+
+The table shows the trade, not a recommendation to choose one model everywhere.
+
+Pre-orders help the company know what to buy. They ask the worker to do more planning. A cheaper price must compensate for that change in habit, not merely look attractive on a poster.
+
+This is a stronger way to judge the design than counting how many steps the app removes. The full experience includes the wait, the collection and the walk home.
+
+## Price and trust had to be visible in the purchase
+
+Saha's Prothom Alo interview describes a price-sensitive audience that values an immediate, clear benefit and may need help when starting to use a digital service.[^saha]
+
+For groceries, the proof is ordinary: the bag contains the right amount, the quality is acceptable and the price makes sense. A promise to improve agriculture is too distant to settle those questions.
+
+Agroshift also used group discounts linked to orders from a factory production line, according to its November 2022 account.[^operations] This linked the buying incentive to the shared delivery model.
+
+That can encourage people to order together. It also means promotional volume needs careful reading. A busy discount day does not show what people will buy at the usual price.
+
+The Comfit update reported substantial worker use soon after launch, but it was a company claim rather than an independent customer study.[^comfit] We did not find enough public worker interviews or repeat-purchase data to judge how consistently the service met its promise across sites.
+
+## A shorter chain still needs quality control
+
+Agroshift takes on work that other traders would otherwise perform: finding supply, checking it, sorting orders and arranging delivery. Removing stages is valuable only if the remaining process does that work well.
+
+One passage in the 2022 reporting is especially important. Asked about the website's food-safety promise, Saha said the early focus was lower prices and visibly acceptable goods, rather than intervention in production.[^operations]
+
+That is a dated account of priorities, not an assessment of today's food safety. It does expose a distinction founders should keep clear: **looking fresh is not the same as verified safety.** A stronger claim needs stronger evidence.
+
+The investor memo raised a related measurement gap. At the time it was written, data on waste, returns and returning customers had not yet been collected.[^investor-memo]
+
+ADB Ventures later reported waste below 1%.[^adb] That is progress as described by an investor, but the announcement does not provide the full measurement method or define which stages of the chain it covers. It should not become a claim of zero loss from farm to household.
+
+## What the growth figures do - and do not - show
+
+ADB Ventures' February 2024 announcement reports more than 250,000 fulfilled orders for more than 170,000 unique users in Agroshift's first operating year.[^adb]
+
+Those are useful scale indicators, with a clear period. They do not tell us how often a typical worker bought groceries or what share returned the next month. Dividing total orders by users cannot reveal the distribution of repeat purchases.
+
+The distinction between reach and use appears in a later Unifill Group announcement too. Agroshift said it had expanded from one factory to six, giving it access to a workforce of 11,000.[^unifill] That is potential reach at partner sites, not 11,000 active customers.
+
+The October 2022 pre-seed round and later ADB backing show that investors funded the model.[^preseed][^adb] They do not establish current audited net profit or the cost of adding the next factory.
+
+For that decision, a founder needs the site's repeat orders, spending per basket, product margin, handling and delivery costs, and losses. The time between paying suppliers and collecting from buyers matters too. See [unit economics](/en/metrics/unit-economics) and [cash flow versus profit](/en/metrics/cashflow-vs-profit).
+
+## The next business may use the same relationships differently
+
+Agroshift's current website describes workplace distribution and reseller networks, food processing, and cross-border trade. It also offers private-label services: helping another company sell goods under its own brand.[^company] Those offers extend beyond the early factory-grocery model.
+
+In June 2026, the company announced a dairy-financing agreement with City Bank and Milk Vita. Milk Vita would provide access to its cooperative network. Agroshift would support farmer identification, digital onboarding and monitoring. City Bank would provide financing.[^dairy]
+
+The roles are distinct. Agroshift is the technology and operating partner, not the bank. The announcement describes intended work; it does not establish completed loans through that agreement.
+
+There is a plausible connection to the earlier business: repeated agricultural trade can create useful relationships and records. Whether those records make lending safer, or whether the new services improve the company's returns, requires later evidence.
+
+That is the next question to follow. Expansion can reuse a real capability. It can also add a new business before the first one is fully understood.
+
+## What founders can take from this
+
+- **Find the gathering point.** Where customers already spend time can change the cost of serving them.
+- **Use earlier experience to choose a narrow starting market.** The founders' farming and factory knowledge helped shape the first offer.
+- **Count orders at a location, not just people with access.** A partnership and a repeat customer are different achievements.
+- **Include the customer's extra effort in the price comparison.** Waiting and carrying groceries are part of the deal.
+- **Name the work behind a shorter supply chain.** Sourcing, handling, quality checks and loss control still need an owner.
+
+Do not copy a “no middlemen” slogan as a business plan. Do not treat a grant or award as proof of demand. And do not turn a reported margin into a whole-company profit claim without knowing what costs it includes.
+
+## What remains unknown
+
+Public evidence is still limited on repeat purchases by factory, consistent basket-price savings, current waste measurements and independently verified net profit. The early memo intentionally hides several figures; this case does not try to reconstruct them.
+
+Agroshift's most useful insight is that the delivery point can change the business. Its hardest test is whether the money and effort saved are worth more to the worker than the new effort the service asks for.
 
 ## Relevant Sources
 
-- [Agroshift](https://agroshift.com/)
-- [Agroshift raises $1.8M pre-seed funding](https://www.tbsnews.net/economy/corporates/agroshift-raises-18m-pre-seed-funding-519738)
+Founder interviews explain the decisions. The early investor memo preserves the doubts. Foundation, investor and company updates establish pilots and announcements, while leaving gaps in independent customer and financial evidence. Sources checked on 13 September 2026.
+
+[^bouland]: [Qazi Bouland's background and the first market choices - ExitStack, 4 July 2023; updated 1 May 2024](https://www.exitstack.co/posts/founder-spotlight-qazi-bouland).
+[^saha]: [Diptha Saha on factory work, Khamar-e and pricing - Prothom Alo, 23 May 2023](https://en.prothomalo.com/opinion/interview/d6rrb3kkej).
+[^factory-pilot]: [STITCH for RMG winners, grants and pilot partners - H&M Foundation, 16 February 2022](https://hmfoundation.com/2022/02/16/meet-the-innovators-who-are-improving-gender-equality-on-the-factory-floor/).
+[^operations]: [Agroshift's sourcing, pricing and operating choices - The Business Standard, 1 November 2022](https://www.tbsnews.net/features/panorama/replacing-middlemen-will-agroshifts-attempts-scaling-see-success-523702).
+[^investor-memo]: [Anchorless Bangladesh's May 2022 investment memo - Rahat Ahmed, published by ExitStack in September 2024](https://www.exitstack.co/posts/inside-anchorless-bangladeshs-investment-in-agroshift).
+[^preseed]: [Agroshift's US$1.8 million pre-seed round - The Business Standard, 25 October 2022](https://www.tbsnews.net/economy/corporates/agroshift-raises-18m-pre-seed-funding-519738).
+[^distribution-interview]: [Diptha Saha on ordering and factory partnerships - Dhaka Tribune, 24 June 2023](https://www.dhakatribune.com/amp/seminars-and-interviews/314183/%E2%80%98young-generation-should-stop-complaining-and).
+[^comfit]: [Conversion of Comfit's existing factory shop - Agroshift's company update](https://www.linkedin.com/feed/update/urn%3Ali%3Aactivity%3A7119276047048613888/).
+[^adb]: [Investment, first-year orders and reported waste - ADB Ventures, 5 February 2024](https://ventures.adb.org/investor-confidence-grows-as-agroshift-secures-new-investment-from-adb-ventures/).
+[^unifill]: [Expansion to six Unifill Group factories - Agroshift's company update](https://www.linkedin.com/posts/agroshift_agroshift-unifillgroup-socialimpact-activity-7308535467442913281-T1N3).
+[^company]: [Agroshift's current business lines - official website](https://www.agroshift.com/).
+[^dairy]: [City Bank, Milk Vita and Agroshift dairy-financing agreement - The Business Standard, 23 June 2026, press release](https://www.tbsnews.net/economy/corporates/city-bank-partners-milk-vita-agroshift-expand-digital-financing-dairy-farmers).

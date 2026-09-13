@@ -28,3 +28,13 @@ export const DEFAULT_DESCRIPTIONS = {
 export function canonicalUrl(route = '/') {
   return `${SITE_URL}${route === '/' ? '/' : route}`
 }
+
+// Search titles are independent of the concise labels used in navigation and
+// visible headings. Include a brand in seoTitle only when it helps that page;
+// the homepage is the one intentional branded fallback.
+export function pageDocumentTitle(page) {
+  const authored = page.seoTitle || page.fullTitle || page.title || ''
+  const title = String(authored).replace(/\s+/g, ' ').trim()
+  if (page.seoTitle || page.slug !== '') return title
+  return `${page.locale === 'en' ? SITE_NAME : SITE_NAME_BN} – ${title}`
+}

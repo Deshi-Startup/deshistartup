@@ -51,3 +51,22 @@
 /en/start-here/should-you-build-a-startup-or-a-normal-business /en/start-here/startup-or-business 301
 /start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh /start-here/startup-vs-sme 301
 /en/start-here/startup-vs-sme-vs-agency-vs-e-commerce-business-in-bangladesh /en/start-here/startup-vs-sme 301
+
+# Additional retired URLs still requested by search crawlers in September 2026.
+# The same July migration map confirms these completed destinations.
+/phase-one/islamic-finance-halal-business-considerations-where-relevant /funding/islamic-finance 301
+/en/phase-one/islamic-finance-halal-business-considerations-where-relevant /en/funding/islamic-finance 301
+/phase-one/rjsc-annual-returns-and-filing-calendar /registration/annual-returns 301
+/en/phase-one/rjsc-annual-returns-and-filing-calendar /en/registration/annual-returns 301
+/phase-one/turning-a-problem-list-into-a-business-opportunity /ideas/problem-to-opportunity 301
+/en/phase-one/turning-a-problem-list-into-a-business-opportunity /en/ideas/problem-to-opportunity 301
+/phase-one/step-by-step-guide-to-ircerc /trade/irc-erc-steps 301
+/en/phase-one/step-by-step-guide-to-ircerc /en/trade/irc-erc-steps 301
+/phase-one/solo-founder-vs-team-founder-tradeoffs-in-bangladesh /cofounders/solo-vs-team 301
+/en/phase-one/solo-founder-vs-team-founder-tradeoffs-in-bangladesh /en/cofounders/solo-vs-team 301
+/phase-one/where-to-find-bangladesh-market-data-bbs-world-bank-bida-sector-reports /ideas/market-data-sources 301
+/en/phase-one/where-to-find-bangladesh-market-data-bbs-world-bank-bida-sector-reports /en/ideas/market-data-sources 301
+
+# Conventional favicon requests and the previous public brand-mark URL.
+/favicon.ico /favicon-32.png 301
+/deshi-mark.svg /deshi-mark.webp 301

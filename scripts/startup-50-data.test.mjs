@@ -122,7 +122,7 @@ test('official websites are labelled with their root domains', () => {
 
 test('the English metadata positions the edition as an unranked editorial watchlist', () => {
   assert.match(englishPageSource, /title: "The Deshi Startup 50: Bangladeshi startups to watch"/)
-  assert.match(englishPageSource, /description: ".*unranked editorial watchlist/i)
+  assert.match(englishPageSource, /description: ".*(?:unranked editorial watchlist|editorial watchlist.*not a ranking)/i)
   assert.match(componentSource, /'50 Bangladeshi startups to watch in 2026\.'/)
   assert.match(componentSource, /'An unranked editorial watchlist/)
   assert.doesNotMatch(componentSource, /Top 50 Bangladeshi startups|Bangladesh's leading startups|দেশের শীর্ষ ৫০টি/)

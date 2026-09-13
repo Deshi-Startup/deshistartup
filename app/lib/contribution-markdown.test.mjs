@@ -74,6 +74,39 @@ test('paired component examples and unrelated locked fences are not decoded as m
   assert.equal(decodeLockedMdx(unrelated), unrelated)
 })
 
+test('case-study learning diagrams preserve their steps while captions remain editable', () => {
+  const source = [
+    '<CaseProcess',
+    '  title="Learn through practice"',
+    '  steps={[{ title: "Try", description: "Answer a question." }]}',
+    '>', '', 'Original caption.[^source]', '', '</CaseProcess>'
+  ].join('\n')
+  const encoded = encodeLockedMdx(source)
+  assert.equal((encoded.match(/```deshi-locked-mdx/g) || []).length, 2)
+  assert.match(encoded, /```\n\nOriginal caption\.\[\^source\]\n\n```deshi-locked-mdx/)
+  const edited = decodeLockedMdx(encoded.replace('Original caption.', 'Corrected caption.'))
+  assert.equal(edited, source.replace('Original caption.', 'Corrected caption.'))
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited)), true)
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace('Answer a question.', 'Changed step.'))), false)
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace('</CaseProcess>', ''))), false)
+})
+
+for (const [component, props] of [
+  ['CaseExchange', 'lanes={[{ label: "Orders", stops: [{ title: "Buyer", detail: "Places an order." }] }]}'],
+  ['CaseContrast', 'sides={[{ title: "Cash", points: ["Paid once."] }]}']
+]) {
+  test(`${component} protects its structure while allowing citation-caption edits`, () => {
+    const source = `<${component} title="How it works" ${props}>\n\nOriginal caption.[^source]\n\n</${component}>`
+    const encoded = encodeLockedMdx(source)
+    assert.equal((encoded.match(/```deshi-locked-mdx/g) || []).length, 2)
+    const edited = decodeLockedMdx(encoded.replace('Original caption.', 'Updated caption.'))
+    assert.equal(edited, source.replace('Original caption.', 'Updated caption.'))
+    assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited)), true)
+    assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace('How it works', 'Changed structure'))), false)
+    assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace(`</${component}>`, ''))), false)
+  })
+}
+
 test('resource layouts survive edits while their Markdown links and descriptions stay editable', () => {
   const source = [
     '<ToolsResourceGallery locale="en" />', '',

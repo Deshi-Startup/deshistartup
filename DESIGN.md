@@ -360,12 +360,13 @@ Responsive behavior, by the breakpoints that actually exist:
 - **1024px / 1023px**: exactly one "on this page" list at every width. The rail owns it above,
   the inline accordion owns it below. The two rules are a pair; move one and the other has to move
   with it.
-- **860px**: the phone layout. Header stacks to two rows and search takes the second, the rail
-  becomes an off-canvas drawer behind a toggle, scroll clearance rises to 152px, and simple tables
-  switch to a fixed layout so the column settles first and the text wraps inside it.
-- **620px / 560px / 520px**: single-column filter panels and footers, the brand tagline
-  truncates; the compact infobox keeps its label/value columns. Page metadata follows the article,
-  so its date cannot shift the headline after paint.
+- **860px**: the phone layout. The brand tagline is hidden, the header stacks to two rows and search
+  takes the second. The rail becomes an off-canvas drawer behind a toggle, scroll clearance is
+  144px, and simple tables switch to a fixed layout so the column settles first and the text wraps
+  inside it.
+- **620px / 560px / 520px**: single-column filter panels and footers, the brand name
+  truncates when needed; the compact infobox keeps its label/value columns. Page metadata follows
+  the article, so its date cannot shift the headline after paint.
 
 **The Phone-Is-The-Reader Rule.** The narrow column gets the larger body, not the smaller one.
 Bangla carries matra above the line and conjuncts below it, and at 15px the stacked forms are where
@@ -612,7 +613,8 @@ more squeezed column. There is no horizontal scroll at any width.
 `/maps` and `/en/maps` use a full-viewport map with a compact Deshi Startup
 header, replacing article chrome only on these routes. The manual's global palette, typography
 tokens and reading layouts remain unchanged. Its wordmark reuses the main site's shared brand
-component and typography. The header contains search, locale, a quiet comparison toggle and a
+component and typography, including the shared tagline hiding at 860px and below.
+The header contains search, locale, a quiet comparison toggle and a
 deep-green share action; there are no separate Manual or Maps navigation links.
 
 The map fills the space below an 80px desktop header. Two topic groups, layer controls and a
@@ -728,6 +730,20 @@ camera; explicit region/comparison, division, geographic-level and reset actions
 Selection fitting accounts for open panels and respects reduced motion. Meaningful state survives
 share and locale links. The implementation, source register and data-maintenance contract
 live in `docs/maps.md`.
+
+### Ecosystem overview and help chooser
+
+The ecosystem page starts with a need-based chooser, then explains the customer–startup
+relationship and the supporting roles. `EcosystemHelp` uses native radio inputs and CSS to show
+the matching contact, question, preparation and useful outcome. The whole label is a touch target;
+the selected wash and focus outline use structural green. It needs no client script. Browsers
+without `:has()` show every path as a readable reference, and print includes all four paths.
+
+Prose, heading rules, the chooser and the map share the site's `--measure`; this page must not add
+a separate paragraph-only width cap. On phones the chooser becomes one column, its label/value
+rows stack, and the map keeps customers and the startup side by side with their exchange below.
+The role links remain ordinary in-page anchors. Official links sit with the government-office
+rows, and the first-contact section provides a reusable message before the detailed precautions.
 
 ### Startup 50 watchlist
 
