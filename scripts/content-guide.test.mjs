@@ -8,6 +8,7 @@ const page = (slug, source, stub = false) => ({ slug, source, stub })
 test('classifies authored guide pages separately from project and utility surfaces', () => {
   assert.equal(isWrittenGuide(page('guides', '# All topics')), false)
   assert.equal(isWrittenGuide(page('about', '# About')), false)
+  assert.equal(isWrittenGuide(page('maps', '<Maps locale="en" />')), false)
   assert.equal(isWrittenGuide(page('legal-roadmap', '# Legal roadmap\n\n> **In short:** Start here.')), true)
   assert.equal(isWrittenGuide(page('funding/cap-table', '# Cap table\n\n> **In short:** Keep ownership clear.')), true)
 })

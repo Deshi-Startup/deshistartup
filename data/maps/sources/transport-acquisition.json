@@ -1,0 +1,6 @@
+{
+  "retrieved": "2026-09-12",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "query": "[out:json][timeout:90];area[\"ISO3166-1\"=\"BD\"][\"admin_level\"=\"2\"]->.bd;(way(area.bd)[\"railway\"=\"rail\"][\"service\"!~\"siding|yard|spur\"];way(area.bd)[\"highway\"~\"^(motorway|trunk)$\"];);out geom;",
+  "inputSha256": "6f48b9ef25b7516d51e15ac774d8991ebcbfd30454c44d20548ae705a42c25ef"
+}

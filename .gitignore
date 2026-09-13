@@ -73,3 +73,6 @@ opencode.json
 
 # Media staging. Bytes live in R2, never in git — see AGENTS.md "Media".
 /media/
+
+# Generated MapLibre worker modules, copied from the locked package.
+/public/maps/worker/

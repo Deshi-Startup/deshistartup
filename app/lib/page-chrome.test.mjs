@@ -25,8 +25,8 @@ test('utility and policy pages do not offer a discussion action', () => {
   }
 })
 
-test('home, contact, and Startup 50 omit the whole page-chrome strip', () => {
-  for (const route of ['/', '/en', '/en/', '/contact', '/en/contact', '/startup-50', '/en/startup-50']) {
+test('home, contact, Startup 50, and Maps omit the whole page-chrome strip', () => {
+  for (const route of ['/', '/en', '/en/', '/contact', '/en/contact', '/startup-50', '/en/startup-50', '/maps', '/en/maps']) {
     assert.deepEqual(
       pageChromePolicy(route),
       { showDiscussionAction: false, showPageActions: false, showEditAction: false },

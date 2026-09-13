@@ -112,7 +112,7 @@ npm run lint:citations
 npm run build
 ```
 
-কোডের মানচিত্র ও অপরিবর্তনীয় নিয়ম [AGENTS.md](./AGENTS.md)-এ আছে। `app/generated/` ও
+কোডের ম্যাপ ও অপরিবর্তনীয় নিয়ম [AGENTS.md](./AGENTS.md)-এ আছে। `app/generated/` ও
 SEO আউটপুট বিল্ডে তৈরি হয়। এগুলো হাতে বদলাবেন না।
 
 ## লাইসেন্স

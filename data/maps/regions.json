@@ -1,0 +1,1459 @@
+{
+  "observationYear": 2022,
+  "publicationDate": "2024-12",
+  "retrievedAt": "2026-09-12",
+  "regions": [
+    {
+      "id": "division-barishal",
+      "key": "barishal",
+      "level": "division",
+      "division": "barishal",
+      "name": {
+        "en": "Barishal",
+        "bn": "বরিশাল"
+      },
+      "aliases": [
+        "Barisal"
+      ],
+      "privateHouseholdPopulation": 8900160,
+      "povertyRate": 26.6,
+      "povertySE": 1.1,
+      "sourcePage": 58,
+      "point": [
+        90.24029,
+        22.43065
+      ]
+    },
+    {
+      "id": "district-barguna",
+      "key": "barguna",
+      "level": "district",
+      "division": "barishal",
+      "name": {
+        "en": "Barguna",
+        "bn": "বরগুনা"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 992721,
+      "povertyRate": 19.8,
+      "povertySE": 2.9,
+      "sourcePage": 58,
+      "boundaryId": "16705992B13795829103768",
+      "point": [
+        90.13232,
+        22.18639
+      ]
+    },
+    {
+      "id": "district-barishal",
+      "key": "barishal",
+      "level": "district",
+      "division": "barishal",
+      "name": {
+        "en": "Barishal",
+        "bn": "বরিশাল"
+      },
+      "aliases": [
+        "Barisal"
+      ],
+      "privateHouseholdPopulation": 2496625,
+      "povertyRate": 25.7,
+      "povertySE": 1.7,
+      "sourcePage": 58,
+      "boundaryId": "16705992B66943755852345",
+      "point": [
+        90.31989,
+        22.85507
+      ]
+    },
+    {
+      "id": "district-bhola",
+      "key": "bhola",
+      "level": "district",
+      "division": "barishal",
+      "name": {
+        "en": "Bhola",
+        "bn": "ভোলা"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1904358,
+      "povertyRate": 27,
+      "povertySE": 2,
+      "sourcePage": 58,
+      "boundaryId": "16705992B37732832620169",
+      "point": [
+        90.71167,
+        22.14304
+      ]
+    },
+    {
+      "id": "district-jhalokati",
+      "key": "jhalokati",
+      "level": "district",
+      "division": "barishal",
+      "name": {
+        "en": "Jhalokati",
+        "bn": "ঝালকাঠি"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 647167,
+      "povertyRate": 33.5,
+      "povertySE": 2.6,
+      "sourcePage": 59,
+      "boundaryId": "16705992B14602656752780",
+      "point": [
+        90.20302,
+        22.6074
+      ]
+    },
+    {
+      "id": "district-patuakhali",
+      "key": "patuakhali",
+      "level": "district",
+      "division": "barishal",
+      "name": {
+        "en": "Patuakhali",
+        "bn": "পটুয়াখালী"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1687450,
+      "povertyRate": 20.8,
+      "povertySE": 1.4,
+      "sourcePage": 59,
+      "boundaryId": "16705992B49808088196813",
+      "point": [
+        90.48485,
+        22.34526
+      ]
+    },
+    {
+      "id": "district-pirojpur",
+      "key": "pirojpur",
+      "level": "district",
+      "division": "barishal",
+      "name": {
+        "en": "Pirojpur",
+        "bn": "পিরোজপুর"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1171839,
+      "povertyRate": 37.9,
+      "povertySE": 2.6,
+      "sourcePage": 59,
+      "boundaryId": "16705992B46028667424095",
+      "point": [
+        90.02389,
+        22.70981
+      ]
+    },
+    {
+      "id": "division-chattogram",
+      "key": "chattogram",
+      "level": "division",
+      "division": "chattogram",
+      "name": {
+        "en": "Chattogram",
+        "bn": "চট্টগ্রাম"
+      },
+      "aliases": [
+        "Chittagong"
+      ],
+      "privateHouseholdPopulation": 32162688,
+      "povertyRate": 15.2,
+      "povertySE": 1.2,
+      "sourcePage": 59,
+      "point": [
+        92.04605,
+        22.79322
+      ]
+    },
+    {
+      "id": "district-bandarban",
+      "key": "bandarban",
+      "level": "district",
+      "division": "chattogram",
+      "name": {
+        "en": "Bandarban",
+        "bn": "বান্দরবান"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 450692,
+      "povertyRate": 25,
+      "povertySE": 5.9,
+      "sourcePage": 59,
+      "boundaryId": "16705992B23463827258150",
+      "point": [
+        92.39482,
+        21.68675
+      ]
+    },
+    {
+      "id": "district-brahmanbaria",
+      "key": "brahmanbaria",
+      "level": "district",
+      "division": "chattogram",
+      "name": {
+        "en": "Brahmanbaria",
+        "bn": "ব্রাহ্মণবাড়িয়া"
+      },
+      "aliases": [
+        "Brahamanbaria"
+      ],
+      "privateHouseholdPopulation": 3227902,
+      "povertyRate": 20.2,
+      "povertySE": 2.7,
+      "sourcePage": 59,
+      "boundaryId": "16705992B2831557138260",
+      "point": [
+        91.09588,
+        23.91647
+      ]
+    },
+    {
+      "id": "district-chandpur",
+      "key": "chandpur",
+      "level": "district",
+      "division": "chattogram",
+      "name": {
+        "en": "Chandpur",
+        "bn": "চাঁদপুর"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2580728,
+      "povertyRate": 24.6,
+      "povertySE": 3.5,
+      "sourcePage": 60,
+      "boundaryId": "16705992B70711841490613",
+      "point": [
+        90.8117,
+        23.29481
+      ]
+    },
+    {
+      "id": "district-chattogram",
+      "key": "chattogram",
+      "level": "district",
+      "division": "chattogram",
+      "name": {
+        "en": "Chattogram",
+        "bn": "চট্টগ্রাম"
+      },
+      "aliases": [
+        "Chittagong"
+      ],
+      "privateHouseholdPopulation": 8813087,
+      "povertyRate": 12,
+      "povertySE": 1.3,
+      "sourcePage": 60,
+      "boundaryId": "16705992B94200136889214",
+      "point": [
+        91.60877,
+        22.79968
+      ]
+    },
+    {
+      "id": "district-cumilla",
+      "key": "cumilla",
+      "level": "district",
+      "division": "chattogram",
+      "name": {
+        "en": "Cumilla",
+        "bn": "কুমিল্লা"
+      },
+      "aliases": [
+        "Comilla"
+      ],
+      "privateHouseholdPopulation": 6017180,
+      "povertyRate": 13.4,
+      "povertySE": 2,
+      "sourcePage": 61,
+      "boundaryId": "16705992B59490572634285",
+      "point": [
+        90.97738,
+        23.58834
+      ]
+    },
+    {
+      "id": "district-coxs-bazar",
+      "key": "coxs-bazar",
+      "level": "district",
+      "division": "chattogram",
+      "name": {
+        "en": "Cox's Bazar",
+        "bn": "কক্সবাজার"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2740161,
+      "povertyRate": 27.8,
+      "povertySE": 5,
+      "sourcePage": 61,
+      "boundaryId": "16705992B34517682786426",
+      "point": [
+        91.99307,
+        21.79098
+      ]
+    },
+    {
+      "id": "district-feni",
+      "key": "feni",
+      "level": "district",
+      "division": "chattogram",
+      "name": {
+        "en": "Feni",
+        "bn": "ফেনী"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1589784,
+      "povertyRate": 10.5,
+      "povertySE": 3.2,
+      "sourcePage": 61,
+      "boundaryId": "16705992B83268326466345",
+      "point": [
+        91.40545,
+        22.9703
+      ]
+    },
+    {
+      "id": "district-khagrachhari",
+      "key": "khagrachhari",
+      "level": "district",
+      "division": "chattogram",
+      "name": {
+        "en": "Khagrachhari",
+        "bn": "খাগড়াছড়ি"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 690804,
+      "povertyRate": 15.9,
+      "povertySE": 4.5,
+      "sourcePage": 62,
+      "boundaryId": "16705992B35326431749719",
+      "point": [
+        91.96527,
+        23.2214
+      ]
+    },
+    {
+      "id": "district-lakshmipur",
+      "key": "lakshmipur",
+      "level": "district",
+      "division": "chattogram",
+      "name": {
+        "en": "Lakshmipur",
+        "bn": "লক্ষ্মীপুর"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1894560,
+      "povertyRate": 15.6,
+      "povertySE": 3.2,
+      "sourcePage": 62,
+      "boundaryId": "16705992B31973889793084",
+      "point": [
+        90.85371,
+        22.91731
+      ]
+    },
+    {
+      "id": "district-noakhali",
+      "key": "noakhali",
+      "level": "district",
+      "division": "chattogram",
+      "name": {
+        "en": "Noakhali",
+        "bn": "নোয়াখালী"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 3541700,
+      "povertyRate": 6.1,
+      "povertySE": 1.9,
+      "sourcePage": 62,
+      "boundaryId": "16705992B96773862439533",
+      "point": [
+        91.11953,
+        22.84791
+      ]
+    },
+    {
+      "id": "district-rangamati",
+      "key": "rangamati",
+      "level": "district",
+      "division": "chattogram",
+      "name": {
+        "en": "Rangamati",
+        "bn": "রাঙামাটি"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 616090,
+      "povertyRate": 14.3,
+      "povertySE": 5.6,
+      "sourcePage": 62,
+      "boundaryId": "16705992B35610473312733",
+      "point": [
+        92.24613,
+        22.7522
+      ]
+    },
+    {
+      "id": "division-dhaka",
+      "key": "dhaka",
+      "level": "division",
+      "division": "dhaka",
+      "name": {
+        "en": "Dhaka",
+        "bn": "ঢাকা"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 42041851,
+      "povertyRate": 19.6,
+      "povertySE": 0.9,
+      "sourcePage": 63,
+      "point": [
+        90.19288,
+        23.79489
+      ]
+    },
+    {
+      "id": "district-dhaka",
+      "key": "dhaka",
+      "level": "district",
+      "division": "dhaka",
+      "name": {
+        "en": "Dhaka",
+        "bn": "ঢাকা"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 13514349,
+      "povertyRate": 8.6,
+      "povertySE": 0.7,
+      "sourcePage": 63,
+      "boundaryId": "16705992B90744549146712",
+      "point": [
+        90.35846,
+        23.7668
+      ]
+    },
+    {
+      "id": "district-faridpur",
+      "key": "faridpur",
+      "level": "district",
+      "division": "dhaka",
+      "name": {
+        "en": "Faridpur",
+        "bn": "ফরিদপুর"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2103804,
+      "povertyRate": 27,
+      "povertySE": 2.2,
+      "sourcePage": 64,
+      "boundaryId": "16705992B67131385183639",
+      "point": [
+        89.88491,
+        23.50365
+      ]
+    },
+    {
+      "id": "district-gazipur",
+      "key": "gazipur",
+      "level": "district",
+      "division": "dhaka",
+      "name": {
+        "en": "Gazipur",
+        "bn": "গাজীপুর"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 4983154,
+      "povertyRate": 20.7,
+      "povertySE": 1.8,
+      "sourcePage": 64,
+      "boundaryId": "16705992B50862305652789",
+      "point": [
+        90.45255,
+        24.10364
+      ]
+    },
+    {
+      "id": "district-gopalganj",
+      "key": "gopalganj",
+      "level": "district",
+      "division": "dhaka",
+      "name": {
+        "en": "Gopalganj",
+        "bn": "গোপালগঞ্জ"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1251723,
+      "povertyRate": 25.7,
+      "povertySE": 3.2,
+      "sourcePage": 65,
+      "boundaryId": "16705992B87804307332289",
+      "point": [
+        89.93488,
+        22.99741
+      ]
+    },
+    {
+      "id": "district-kishoreganj",
+      "key": "kishoreganj",
+      "level": "district",
+      "division": "dhaka",
+      "name": {
+        "en": "Kishoreganj",
+        "bn": "কিশোরগঞ্জ"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 3201295,
+      "povertyRate": 35.3,
+      "povertySE": 2.7,
+      "sourcePage": 65,
+      "boundaryId": "16705992B82604838368079",
+      "point": [
+        90.96315,
+        24.39964
+      ]
+    },
+    {
+      "id": "district-madaripur",
+      "key": "madaripur",
+      "level": "district",
+      "division": "dhaka",
+      "name": {
+        "en": "Madaripur",
+        "bn": "মাদারীপুর"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1259062,
+      "povertyRate": 54.4,
+      "povertySE": 4.6,
+      "sourcePage": 65,
+      "boundaryId": "16705992B87985099055959",
+      "point": [
+        90.13592,
+        23.21722
+      ]
+    },
+    {
+      "id": "district-manikganj",
+      "key": "manikganj",
+      "level": "district",
+      "division": "dhaka",
+      "name": {
+        "en": "Manikganj",
+        "bn": "মানিকগঞ্জ"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1526711,
+      "povertyRate": 22.2,
+      "povertySE": 2.7,
+      "sourcePage": 65,
+      "boundaryId": "16705992B79131283702140",
+      "point": [
+        89.94598,
+        23.83823
+      ]
+    },
+    {
+      "id": "district-munshiganj",
+      "key": "munshiganj",
+      "level": "district",
+      "division": "dhaka",
+      "name": {
+        "en": "Munshiganj",
+        "bn": "মুন্সীগঞ্জ"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1563778,
+      "povertyRate": 11.3,
+      "povertySE": 2.2,
+      "sourcePage": 65,
+      "boundaryId": "16705992B99884694518333",
+      "point": [
+        90.30724,
+        23.54789
+      ]
+    },
+    {
+      "id": "district-narayanganj",
+      "key": "narayanganj",
+      "level": "district",
+      "division": "dhaka",
+      "name": {
+        "en": "Narayanganj",
+        "bn": "নারায়ণগঞ্জ"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 3740835,
+      "povertyRate": 13.7,
+      "povertySE": 1.4,
+      "sourcePage": 66,
+      "boundaryId": "16705992B28796010313895",
+      "point": [
+        90.58937,
+        23.74173
+      ]
+    },
+    {
+      "id": "district-narsingdi",
+      "key": "narsingdi",
+      "level": "district",
+      "division": "dhaka",
+      "name": {
+        "en": "Narsingdi",
+        "bn": "নরসিংদী"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2499690,
+      "povertyRate": 43.7,
+      "povertySE": 3.5,
+      "sourcePage": 66,
+      "boundaryId": "16705992B95243043657125",
+      "point": [
+        90.78691,
+        23.99601
+      ]
+    },
+    {
+      "id": "district-rajbari",
+      "key": "rajbari",
+      "level": "district",
+      "division": "dhaka",
+      "name": {
+        "en": "Rajbari",
+        "bn": "রাজবাড়ী"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1169673,
+      "povertyRate": 27.8,
+      "povertySE": 3.9,
+      "sourcePage": 66,
+      "boundaryId": "16705992B48875454234518",
+      "point": [
+        89.54889,
+        23.70655
+      ]
+    },
+    {
+      "id": "district-shariatpur",
+      "key": "shariatpur",
+      "level": "district",
+      "division": "dhaka",
+      "name": {
+        "en": "Shariatpur",
+        "bn": "শরীয়তপুর"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1271446,
+      "povertyRate": 27.1,
+      "povertySE": 3.7,
+      "sourcePage": 66,
+      "boundaryId": "16705992B92388810566131",
+      "point": [
+        90.37521,
+        23.27972
+      ]
+    },
+    {
+      "id": "district-tangail",
+      "key": "tangail",
+      "level": "district",
+      "division": "dhaka",
+      "name": {
+        "en": "Tangail",
+        "bn": "টাঙ্গাইল"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 3956331,
+      "povertyRate": 13.3,
+      "povertySE": 2,
+      "sourcePage": 66,
+      "boundaryId": "16705992B55867939933107",
+      "point": [
+        89.99644,
+        24.37645
+      ]
+    },
+    {
+      "id": "division-khulna",
+      "key": "khulna",
+      "level": "division",
+      "division": "khulna",
+      "name": {
+        "en": "Khulna",
+        "bn": "খুলনা"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 17091200,
+      "povertyRate": 17.1,
+      "povertySE": 0.8,
+      "sourcePage": 67,
+      "point": [
+        89.38213,
+        22.82382
+      ]
+    },
+    {
+      "id": "district-bagerhat",
+      "key": "bagerhat",
+      "level": "district",
+      "division": "khulna",
+      "name": {
+        "en": "Bagerhat",
+        "bn": "বাগেরহাট"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1582590,
+      "povertyRate": 13.7,
+      "povertySE": 1.8,
+      "sourcePage": 67,
+      "boundaryId": "16705992B77600989823530",
+      "point": [
+        89.73648,
+        22.58388
+      ]
+    },
+    {
+      "id": "district-chuadanga",
+      "key": "chuadanga",
+      "level": "district",
+      "division": "khulna",
+      "name": {
+        "en": "Chuadanga",
+        "bn": "চুয়াডাঙ্গা"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1219036,
+      "povertyRate": 20.9,
+      "povertySE": 2.7,
+      "sourcePage": 67,
+      "boundaryId": "16705992B19758630986204",
+      "point": [
+        88.88546,
+        23.65361
+      ]
+    },
+    {
+      "id": "district-jashore",
+      "key": "jashore",
+      "level": "district",
+      "division": "khulna",
+      "name": {
+        "en": "Jashore",
+        "bn": "যশোর"
+      },
+      "aliases": [
+        "Jessore"
+      ],
+      "privateHouseholdPopulation": 3004239,
+      "povertyRate": 20,
+      "povertySE": 1.5,
+      "sourcePage": 67,
+      "boundaryId": "16705992B28022870637862",
+      "point": [
+        89.19962,
+        23.10355
+      ]
+    },
+    {
+      "id": "district-jhenaidah",
+      "key": "jhenaidah",
+      "level": "district",
+      "division": "khulna",
+      "name": {
+        "en": "Jhenaidah",
+        "bn": "ঝিনাইদহ"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1969715,
+      "povertyRate": 21.2,
+      "povertySE": 2,
+      "sourcePage": 67,
+      "boundaryId": "16705992B77509092527129",
+      "point": [
+        89.14258,
+        23.54143
+      ]
+    },
+    {
+      "id": "district-khulna",
+      "key": "khulna",
+      "level": "district",
+      "division": "khulna",
+      "name": {
+        "en": "Khulna",
+        "bn": "খুলনা"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2535569,
+      "povertyRate": 10.2,
+      "povertySE": 1.5,
+      "sourcePage": 67,
+      "boundaryId": "16705992B21968895988188",
+      "point": [
+        89.4067,
+        22.54872
+      ]
+    },
+    {
+      "id": "district-kushtia",
+      "key": "kushtia",
+      "level": "district",
+      "division": "khulna",
+      "name": {
+        "en": "Kushtia",
+        "bn": "কুষ্টিয়া"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2119248,
+      "povertyRate": 18,
+      "povertySE": 1.7,
+      "sourcePage": 68,
+      "boundaryId": "16705992B21124734124900",
+      "point": [
+        88.93752,
+        24.00427
+      ]
+    },
+    {
+      "id": "district-magura",
+      "key": "magura",
+      "level": "district",
+      "division": "khulna",
+      "name": {
+        "en": "Magura",
+        "bn": "মাগুরা"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1017133,
+      "povertyRate": 22.8,
+      "povertySE": 3.2,
+      "sourcePage": 68,
+      "boundaryId": "16705992B78415132034426",
+      "point": [
+        89.40511,
+        23.40811
+      ]
+    },
+    {
+      "id": "district-meherpur",
+      "key": "meherpur",
+      "level": "district",
+      "division": "khulna",
+      "name": {
+        "en": "Meherpur",
+        "bn": "মেহেরপুর"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 699477,
+      "povertyRate": 9.8,
+      "povertySE": 1.7,
+      "sourcePage": 68,
+      "boundaryId": "16705992B11914188004823",
+      "point": [
+        88.68996,
+        23.77439
+      ]
+    },
+    {
+      "id": "district-narail",
+      "key": "narail",
+      "level": "district",
+      "division": "khulna",
+      "name": {
+        "en": "Narail",
+        "bn": "নড়াইল"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 774876,
+      "povertyRate": 14.9,
+      "povertySE": 2.9,
+      "sourcePage": 68,
+      "boundaryId": "16705992B56503274196630",
+      "point": [
+        89.55622,
+        23.14688
+      ]
+    },
+    {
+      "id": "district-satkhira",
+      "key": "satkhira",
+      "level": "district",
+      "division": "khulna",
+      "name": {
+        "en": "Satkhira",
+        "bn": "সাতক্ষীরা"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2169317,
+      "povertyRate": 17.3,
+      "povertySE": 1.8,
+      "sourcePage": 68,
+      "boundaryId": "16705992B60176987344662",
+      "point": [
+        89.10029,
+        22.64886
+      ]
+    },
+    {
+      "id": "division-mymensingh",
+      "key": "mymensingh",
+      "level": "division",
+      "division": "mymensingh",
+      "name": {
+        "en": "Mymensingh",
+        "bn": "ময়মনসিংহ"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 11976372,
+      "povertyRate": 22.6,
+      "povertySE": 0.9,
+      "sourcePage": 69,
+      "point": [
+        90.59142,
+        24.83554
+      ]
+    },
+    {
+      "id": "district-jamalpur",
+      "key": "jamalpur",
+      "level": "district",
+      "division": "mymensingh",
+      "name": {
+        "en": "Jamalpur",
+        "bn": "জামালপুর"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2475535,
+      "povertyRate": 18.8,
+      "povertySE": 1.5,
+      "sourcePage": 69,
+      "boundaryId": "16705992B65705561019803",
+      "point": [
+        89.77328,
+        25.10063
+      ]
+    },
+    {
+      "id": "district-mymensingh",
+      "key": "mymensingh",
+      "level": "district",
+      "division": "mymensingh",
+      "name": {
+        "en": "Mymensingh",
+        "bn": "ময়মনসিংহ"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 5737380,
+      "povertyRate": 20.4,
+      "povertySE": 1,
+      "sourcePage": 69,
+      "boundaryId": "16705992B54511139091050",
+      "point": [
+        90.37929,
+        24.6702
+      ]
+    },
+    {
+      "id": "district-netrakona",
+      "key": "netrakona",
+      "level": "district",
+      "division": "mymensingh",
+      "name": {
+        "en": "Netrakona",
+        "bn": "নেত্রকোনা"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2281021,
+      "povertyRate": 33.9,
+      "povertySE": 3,
+      "sourcePage": 69,
+      "boundaryId": "16705992B47191620994273",
+      "point": [
+        90.76812,
+        24.96394
+      ]
+    },
+    {
+      "id": "district-sherpur",
+      "key": "sherpur",
+      "level": "district",
+      "division": "mymensingh",
+      "name": {
+        "en": "Sherpur",
+        "bn": "শেরপুর"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1482436,
+      "povertyRate": 19.9,
+      "povertySE": 1.9,
+      "sourcePage": 69,
+      "boundaryId": "16705992B90842308963557",
+      "point": [
+        90.08009,
+        25.073
+      ]
+    },
+    {
+      "id": "division-rajshahi",
+      "key": "rajshahi",
+      "level": "division",
+      "division": "rajshahi",
+      "name": {
+        "en": "Rajshahi",
+        "bn": "রাজশাহী"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 19925109,
+      "povertyRate": 16.3,
+      "povertySE": 1,
+      "sourcePage": 70,
+      "point": [
+        89.12437,
+        24.60814
+      ]
+    },
+    {
+      "id": "district-bogura",
+      "key": "bogura",
+      "level": "district",
+      "division": "rajshahi",
+      "name": {
+        "en": "Bogura",
+        "bn": "বগুড়া"
+      },
+      "aliases": [
+        "Bogra"
+      ],
+      "privateHouseholdPopulation": 3651917,
+      "povertyRate": 12,
+      "povertySE": 1.5,
+      "sourcePage": 70,
+      "boundaryId": "16705992B87441692505107",
+      "point": [
+        89.37561,
+        24.8292
+      ]
+    },
+    {
+      "id": "district-joypurhat",
+      "key": "joypurhat",
+      "level": "district",
+      "division": "rajshahi",
+      "name": {
+        "en": "Joypurhat",
+        "bn": "জয়পুরহাট"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 938110,
+      "povertyRate": 15.1,
+      "povertySE": 2.6,
+      "sourcePage": 70,
+      "boundaryId": "16705992B2288856744536",
+      "point": [
+        89.12025,
+        25.08898
+      ]
+    },
+    {
+      "id": "district-naogaon",
+      "key": "naogaon",
+      "level": "district",
+      "division": "rajshahi",
+      "name": {
+        "en": "Naogaon",
+        "bn": "নওগাঁ"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2731917,
+      "povertyRate": 16.2,
+      "povertySE": 2.1,
+      "sourcePage": 70,
+      "boundaryId": "16705992B34203284467157",
+      "point": [
+        88.73337,
+        24.92214
+      ]
+    },
+    {
+      "id": "district-natore",
+      "key": "natore",
+      "level": "district",
+      "division": "rajshahi",
+      "name": {
+        "en": "Natore",
+        "bn": "নাটোর"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1828058,
+      "povertyRate": 24.4,
+      "povertySE": 4,
+      "sourcePage": 70,
+      "boundaryId": "16705992B43065208682222",
+      "point": [
+        89.07435,
+        24.35185
+      ]
+    },
+    {
+      "id": "district-chapainawabganj",
+      "key": "chapainawabganj",
+      "level": "district",
+      "division": "rajshahi",
+      "name": {
+        "en": "Chapainawabganj",
+        "bn": "চাঁপাইনবাবগঞ্জ"
+      },
+      "aliases": [
+        "Nawabganj"
+      ],
+      "privateHouseholdPopulation": 1816475,
+      "povertyRate": 34.7,
+      "povertySE": 3.7,
+      "sourcePage": 71,
+      "boundaryId": "16705992B76725860359822",
+      "point": [
+        88.26508,
+        24.7239
+      ]
+    },
+    {
+      "id": "district-pabna",
+      "key": "pabna",
+      "level": "district",
+      "division": "rajshahi",
+      "name": {
+        "en": "Pabna",
+        "bn": "পাবনা"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2852250,
+      "povertyRate": 12.1,
+      "povertySE": 1.9,
+      "sourcePage": 71,
+      "boundaryId": "16705992B46384724638491",
+      "point": [
+        89.3387,
+        24.10178
+      ]
+    },
+    {
+      "id": "district-rajshahi",
+      "key": "rajshahi",
+      "level": "district",
+      "division": "rajshahi",
+      "name": {
+        "en": "Rajshahi",
+        "bn": "রাজশাহী"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2816532,
+      "povertyRate": 15.5,
+      "povertySE": 1.6,
+      "sourcePage": 71,
+      "boundaryId": "16705992B51815672792645",
+      "point": [
+        88.72842,
+        24.47034
+      ]
+    },
+    {
+      "id": "district-sirajganj",
+      "key": "sirajganj",
+      "level": "district",
+      "division": "rajshahi",
+      "name": {
+        "en": "Sirajganj",
+        "bn": "সিরাজগঞ্জ"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 3289850,
+      "povertyRate": 10.9,
+      "povertySE": 1.1,
+      "sourcePage": 71,
+      "boundaryId": "16705992B55394931042500",
+      "point": [
+        89.58399,
+        24.37743
+      ]
+    },
+    {
+      "id": "division-rangpur",
+      "key": "rangpur",
+      "level": "division",
+      "division": "rangpur",
+      "name": {
+        "en": "Rangpur",
+        "bn": "রংপুর"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 17298631,
+      "povertyRate": 25,
+      "povertySE": 1.3,
+      "sourcePage": 72,
+      "point": [
+        89.39197,
+        25.59337
+      ]
+    },
+    {
+      "id": "district-dinajpur",
+      "key": "dinajpur",
+      "level": "district",
+      "division": "rangpur",
+      "name": {
+        "en": "Dinajpur",
+        "bn": "দিনাজপুর"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 3236651,
+      "povertyRate": 25.7,
+      "povertySE": 2.4,
+      "sourcePage": 72,
+      "boundaryId": "16705992B66423446659680",
+      "point": [
+        88.64707,
+        25.72304
+      ]
+    },
+    {
+      "id": "district-gaibandha",
+      "key": "gaibandha",
+      "level": "district",
+      "division": "rangpur",
+      "name": {
+        "en": "Gaibandha",
+        "bn": "গাইবান্ধা"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2529359,
+      "povertyRate": 24.6,
+      "povertySE": 2,
+      "sourcePage": 72,
+      "boundaryId": "16705992B74857221285320",
+      "point": [
+        89.53105,
+        25.30568
+      ]
+    },
+    {
+      "id": "district-kurigram",
+      "key": "kurigram",
+      "level": "district",
+      "division": "rangpur",
+      "name": {
+        "en": "Kurigram",
+        "bn": "কুড়িগ্রাম"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2305840,
+      "povertyRate": 31.3,
+      "povertySE": 2.7,
+      "sourcePage": 72,
+      "boundaryId": "16705992B97164497642406",
+      "point": [
+        89.66983,
+        25.73774
+      ]
+    },
+    {
+      "id": "district-lalmonirhat",
+      "key": "lalmonirhat",
+      "level": "district",
+      "division": "rangpur",
+      "name": {
+        "en": "Lalmonirhat",
+        "bn": "লালমনিরহাট"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1413455,
+      "povertyRate": 20,
+      "povertySE": 2.7,
+      "sourcePage": 73,
+      "boundaryId": "16705992B84214314165922",
+      "point": [
+        89.40353,
+        25.91223
+      ]
+    },
+    {
+      "id": "district-nilphamari",
+      "key": "nilphamari",
+      "level": "district",
+      "division": "rangpur",
+      "name": {
+        "en": "Nilphamari",
+        "bn": "নীলফামারী"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2064574,
+      "povertyRate": 22.2,
+      "povertySE": 2,
+      "sourcePage": 73,
+      "boundaryId": "16705992B74406959438199",
+      "point": [
+        88.93344,
+        26.01591
+      ]
+    },
+    {
+      "id": "district-panchagarh",
+      "key": "panchagarh",
+      "level": "district",
+      "division": "rangpur",
+      "name": {
+        "en": "Panchagarh",
+        "bn": "পঞ্চগড়"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1160775,
+      "povertyRate": 33.2,
+      "povertySE": 4.2,
+      "sourcePage": 73,
+      "boundaryId": "16705992B66536058617583",
+      "point": [
+        88.5731,
+        26.2776
+      ]
+    },
+    {
+      "id": "district-rangpur",
+      "key": "rangpur",
+      "level": "district",
+      "division": "rangpur",
+      "name": {
+        "en": "Rangpur",
+        "bn": "রংপুর"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 3082438,
+      "povertyRate": 21.8,
+      "povertySE": 2.1,
+      "sourcePage": 73,
+      "boundaryId": "16705992B34260815515495",
+      "point": [
+        89.25262,
+        25.66885
+      ]
+    },
+    {
+      "id": "district-thakurgaon",
+      "key": "thakurgaon",
+      "level": "district",
+      "division": "rangpur",
+      "name": {
+        "en": "Thakurgaon",
+        "bn": "ঠাকুরগাঁও"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 1505539,
+      "povertyRate": 23.3,
+      "povertySE": 2.6,
+      "sourcePage": 73,
+      "boundaryId": "16705992B44482388014877",
+      "point": [
+        88.34546,
+        26.01872
+      ]
+    },
+    {
+      "id": "division-sylhet",
+      "key": "sylhet",
+      "level": "division",
+      "division": "sylhet",
+      "name": {
+        "en": "Sylhet",
+        "bn": "সিলেট"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 10836513,
+      "povertyRate": 18.5,
+      "povertySE": 0.9,
+      "sourcePage": 74,
+      "point": [
+        91.67191,
+        24.69423
+      ]
+    },
+    {
+      "id": "district-habiganj",
+      "key": "habiganj",
+      "level": "district",
+      "division": "sylhet",
+      "name": {
+        "en": "Habiganj",
+        "bn": "হবিগঞ্জ"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2321098,
+      "povertyRate": 10.9,
+      "povertySE": 0.9,
+      "sourcePage": 74,
+      "boundaryId": "16705992B7772300815487",
+      "point": [
+        91.42348,
+        24.46512
+      ]
+    },
+    {
+      "id": "district-moulvibazar",
+      "key": "moulvibazar",
+      "level": "district",
+      "division": "sylhet",
+      "name": {
+        "en": "Moulvibazar",
+        "bn": "মৌলভীবাজার"
+      },
+      "aliases": [
+        "Maulvibazar"
+      ],
+      "privateHouseholdPopulation": 2088869,
+      "povertyRate": 20.4,
+      "povertySE": 1.4,
+      "sourcePage": 74,
+      "boundaryId": "16705992B62450131352427",
+      "point": [
+        91.78673,
+        24.43695
+      ]
+    },
+    {
+      "id": "district-sunamganj",
+      "key": "sunamganj",
+      "level": "district",
+      "division": "sylhet",
+      "name": {
+        "en": "Sunamganj",
+        "bn": "সুনামগঞ্জ"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 2675216,
+      "povertyRate": 27.2,
+      "povertySE": 1.7,
+      "sourcePage": 74,
+      "boundaryId": "16705992B61059366245275",
+      "point": [
+        91.37728,
+        24.9237
+      ]
+    },
+    {
+      "id": "district-sylhet",
+      "key": "sylhet",
+      "level": "district",
+      "division": "sylhet",
+      "name": {
+        "en": "Sylhet",
+        "bn": "সিলেট"
+      },
+      "aliases": [],
+      "privateHouseholdPopulation": 3751330,
+      "povertyRate": 16,
+      "povertySE": 1,
+      "sourcePage": 74,
+      "boundaryId": "16705992B47932115867008",
+      "point": [
+        91.94174,
+        24.94768
+      ]
+    }
+  ]
+}

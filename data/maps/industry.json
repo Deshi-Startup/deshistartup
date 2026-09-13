@@ -1,0 +1,194 @@
+{
+  "source": "BEPZA, Who We Are and individual EPZ profiles",
+  "url": "https://bepza.gov.bd/pages/who-we-are",
+  "checked": "2026-09-12",
+  "publicationDate": null,
+  "coordinateSnapshot": "2026-09-12T08:45:06Z",
+  "coordinateLicense": "ODbL 1.0",
+  "inputSha256": "df5607a2413604bd3a0c25b77c85e0b139c743f574b19076922cdb914f5f03bb",
+  "coordinateMethod": "Overpass bounding-box centre of a named industrial area, matched to BEPZA name and locality. Approximate overview positions, not entrances. Dhaka uses its new area. Duplicate Karnaphuli area excluded. Official descriptive facts cited; no BEPZA prose or photography reproduced.",
+  "sites": [
+    {
+      "id": "chattogram",
+      "name": {
+        "en": "Chattogram EPZ",
+        "bn": "চট্টগ্রাম ইপিজেড"
+      },
+      "location": {
+        "en": "South Halishahar, Chattogram",
+        "bn": "দক্ষিণ হালিশহর, চট্টগ্রাম"
+      },
+      "district": "district-chattogram",
+      "division": "chattogram",
+      "kind": "epz",
+      "status": "operating",
+      "source": "https://bepza.gov.bd/pages/chattogram-epz",
+      "point": [
+        91.7763452,
+        22.2898293
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/1042087037",
+      "osmName": "Chattogram Export Processing Zone"
+    },
+    {
+      "id": "dhaka",
+      "name": {
+        "en": "Dhaka EPZ",
+        "bn": "ঢাকা ইপিজেড"
+      },
+      "location": {
+        "en": "Savar, Dhaka · new area shown",
+        "bn": "সাভার, ঢাকা · নতুন অংশের অবস্থান"
+      },
+      "district": "district-dhaka",
+      "division": "dhaka",
+      "kind": "epz",
+      "status": "operating",
+      "source": "https://bepza.gov.bd/pages/dhaka-epz",
+      "point": [
+        90.2817886,
+        23.9454251
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/285882436",
+      "osmName": "Dhaka New EPZ"
+    },
+    {
+      "id": "mongla",
+      "name": {
+        "en": "Mongla EPZ",
+        "bn": "মোংলা ইপিজেড"
+      },
+      "location": {
+        "en": "Mongla Port Area, Bagerhat",
+        "bn": "মোংলা বন্দর এলাকা, বাগেরহাট"
+      },
+      "district": "district-bagerhat",
+      "division": "khulna",
+      "kind": "epz",
+      "status": "operating",
+      "source": "https://bepza.gov.bd/pages/mongla-epz",
+      "point": [
+        89.6036648,
+        22.4861443
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/1042087035",
+      "osmName": "Mongla Export Processing Zone"
+    },
+    {
+      "id": "ishwardi",
+      "name": {
+        "en": "Ishwardi EPZ",
+        "bn": "ঈশ্বরদী ইপিজেড"
+      },
+      "location": {
+        "en": "Paksey, Pabna",
+        "bn": "পাকশী, পাবনা"
+      },
+      "district": "district-pabna",
+      "division": "rajshahi",
+      "kind": "epz",
+      "status": "operating",
+      "source": "https://bepza.gov.bd/pages/ishwardi-epz",
+      "point": [
+        89.0373665,
+        24.0947316
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/531650053",
+      "osmName": "Ishwardi Export Processing Zone"
+    },
+    {
+      "id": "cumilla",
+      "name": {
+        "en": "Cumilla EPZ",
+        "bn": "কুমিল্লা ইপিজেড"
+      },
+      "location": {
+        "en": "Old Airport Area, Cumilla",
+        "bn": "পুরোনো বিমানবন্দর এলাকা, কুমিল্লা"
+      },
+      "district": "district-cumilla",
+      "division": "chattogram",
+      "kind": "epz",
+      "status": "operating",
+      "source": "https://bepza.gov.bd/pages/cumilla-epz",
+      "point": [
+        91.1852747,
+        23.4436839
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/241761257",
+      "osmName": "Cumilla Export Processing Zone"
+    },
+    {
+      "id": "uttara",
+      "name": {
+        "en": "Uttara EPZ",
+        "bn": "উত্তরা ইপিজেড"
+      },
+      "location": {
+        "en": "Shangalshi, Nilphamari",
+        "bn": "সংগলশী, নীলফামারী"
+      },
+      "district": "district-nilphamari",
+      "division": "rangpur",
+      "kind": "epz",
+      "status": "operating",
+      "source": "https://bepza.gov.bd/pages/uttara-epz",
+      "point": [
+        88.8618627,
+        25.8569205
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/363523620",
+      "osmName": "Uttara Export Processing Zone"
+    },
+    {
+      "id": "adamjee",
+      "name": {
+        "en": "Adamjee EPZ",
+        "bn": "আদমজী ইপিজেড"
+      },
+      "location": {
+        "en": "Siddirganj, Narayanganj",
+        "bn": "সিদ্ধিরগঞ্জ, নারায়ণগঞ্জ"
+      },
+      "district": "district-narayanganj",
+      "division": "dhaka",
+      "kind": "epz",
+      "status": "operating",
+      "source": "https://bepza.gov.bd/pages/adamjee-epz",
+      "point": [
+        90.5233456,
+        23.6767279
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/928996334",
+      "osmName": "Adamjee Export Processing Zone"
+    },
+    {
+      "id": "karnaphuli",
+      "name": {
+        "en": "Karnaphuli EPZ",
+        "bn": "কর্ণফুলী ইপিজেড"
+      },
+      "location": {
+        "en": "North Patenga, Chattogram",
+        "bn": "উত্তর পতেঙ্গা, চট্টগ্রাম"
+      },
+      "district": "district-chattogram",
+      "division": "chattogram",
+      "kind": "epz",
+      "status": "operating",
+      "source": "https://bepza.gov.bd/pages/karnaphuli-epz",
+      "point": [
+        91.7920536,
+        22.2748724
+      ],
+      "coordinateSource": "https://www.openstreetmap.org/way/757725744",
+      "osmName": "Karnaphuli Export Processing Zone"
+    }
+  ],
+  "coordinateAcquisition": {
+    "retrieved": "2026-09-12",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "query": "[out:json][timeout:90];(way[\"landuse\"=\"industrial\"](20.7,88,26.7,92.8);relation[\"landuse\"=\"industrial\"](20.7,88,26.7,92.8););out center tags;",
+    "inputSha256": "df5607a2413604bd3a0c25b77c85e0b139c743f574b19076922cdb914f5f03bb"
+  }
+}
