@@ -33,7 +33,7 @@
     "lint:citations": "node scripts/citation-lint.mjs",
     "lint:glossary": "node scripts/glossary-lint.mjs",
     "lint:media": "node scripts/media-lint.mjs",
-    "pretest": "npm run manifest",
+    "pretest": "npm run history:ensure && npm run manifest",
     "test": "node --experimental-strip-types --test",
     "test:citations": "node --experimental-strip-types --test app/lib/rehype-footnotes.test.mjs app/lib/contribution-markdown.test.mjs scripts/citation-lint.test.mjs",
     "test:media": "node --test scripts/media-lib.test.mjs scripts/contributor-media.test.mjs",
