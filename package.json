@@ -60,7 +60,7 @@
   "dependencies": {
     "@milkdown/crepe": "^7.22.1",
     "@milkdown/kit": "^7.21.2",
-    "jose": "^6.2.10",
+    "jose": "^6.2.12",
     "maplibre-gl": "^6.9.0",
     "next": "^15.5.25",
     "nextra": "^4.6.1",
@@ -74,7 +74,7 @@
     "cheerio": "^1.2.0",
     "fontkit": "^2.0.4",
     "pagefind": "^1.5.2",
-    "polylabel": "2.0.1",
+    "polylabel": "2.1.0",
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "robots-parser": "^3.0.1",
@@ -83,7 +83,7 @@
     "topojson-server": "3.0.1",
     "typescript": "^5.9.3",
     "unified": "^11.0.5",
-    "wrangler": "^4.129.0",
+    "wrangler": "^4.131.0",
     "yaml": "^2.9.0"
   },
   "overrides": {
