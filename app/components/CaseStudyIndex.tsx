@@ -275,8 +275,8 @@ export default function CaseStudyIndex({ locale = 'bn' }: { locale?: CaseLocale 
       renderCollection={(pages) => {
         const featured = Object.keys(covers).flatMap((slug) => pages.filter((page) => page[0].endsWith(`/${slug}`)))
         const otherWritten = pages.filter((page) => !page[2] && !featured.includes(page))
-        // Keep the curated rows stable as planned studies become finished articles.
-        const galleryPages = [...featured, ...otherWritten]
+        // Put completed studies first, preserving the curated order within each group.
+        const galleryPages = [...featured, ...otherWritten].sort((a, b) => a[2] - b[2])
         return <div className="case-gallery">{galleryPages.map((page) => <CaseCover key={page[0]} page={page} locale={locale} />)}</div>
       }}
     />

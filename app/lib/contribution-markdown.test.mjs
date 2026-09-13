@@ -74,6 +74,23 @@ test('paired component examples and unrelated locked fences are not decoded as m
   assert.equal(decodeLockedMdx(unrelated), unrelated)
 })
 
+test('case-study learning diagrams preserve their steps while captions remain editable', () => {
+  const source = [
+    '<CaseProcess',
+    '  title="Learn through practice"',
+    '  steps={[{ title: "Try", description: "Answer a question." }]}',
+    '>', '', 'Original caption.[^source]', '', '</CaseProcess>'
+  ].join('\n')
+  const encoded = encodeLockedMdx(source)
+  assert.equal((encoded.match(/```deshi-locked-mdx/g) || []).length, 2)
+  assert.match(encoded, /```\n\nOriginal caption\.\[\^source\]\n\n```deshi-locked-mdx/)
+  const edited = decodeLockedMdx(encoded.replace('Original caption.', 'Corrected caption.'))
+  assert.equal(edited, source.replace('Original caption.', 'Corrected caption.'))
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited)), true)
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace('Answer a question.', 'Changed step.'))), false)
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace('</CaseProcess>', ''))), false)
+})
+
 test('resource layouts survive edits while their Markdown links and descriptions stay editable', () => {
   const source = [
     '<ToolsResourceGallery locale="en" />', '',

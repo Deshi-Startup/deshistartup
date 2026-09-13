@@ -22,6 +22,10 @@ const companies = {
   ifarmer: {
     theme: 'ifarmer',
     sector: { en: 'Agriculture', bn: 'কৃষি' }
+  },
+  shikho: {
+    theme: 'shikho',
+    sector: { en: 'Education', bn: 'শিক্ষা' }
   }
 } as const
 
@@ -63,4 +67,27 @@ export function CaseMilestone({ date, title, children }: { date: string; title: 
 
 export function CaseDetail({ title, children }: { title: string; children: ReactNode }) {
   return <section className="case-detail"><h3 data-toc-ignore>{title}</h3>{children}</section>
+}
+
+export function CaseProcess({ title, steps, children, locale = 'en' }: {
+  title: string
+  steps: { title: string; description: string }[]
+  children: ReactNode
+  locale?: CaseLocale
+}) {
+  return (
+    <figure className="case-process">
+      <p className="case-process__title"><strong>{title}</strong></p>
+      <ol role="list">
+        {steps.map((step, index) => (
+          <li key={step.title}>
+            <span className="case-process__number" aria-hidden="true">{(index + 1).toLocaleString(locale === 'bn' ? 'bn-BD' : 'en-US')}</span>
+            <strong>{step.title}</strong>
+            <p>{step.description}</p>
+          </li>
+        ))}
+      </ol>
+      <figcaption>{children}</figcaption>
+    </figure>
+  )
 }
