@@ -92,11 +92,17 @@ when an advisory `robots.txt` rule is not enough.
 - Titles must be unique, descriptive, concise, and in the page's own language. There is no fixed
   Google character limit; the audit warns on unusually long titles rather than enforcing an
   invented 60-character rule.
-- Both homepage titles are compiled as Next.js `title.absolute` values by
-  `app/lib/rehype-home-title.mjs`. Check the title after hydration as well as in the initial
-  HTML: a postbuild-only title correction can be overwritten by Next's metadata payload.
+- Use optional frontmatter `seoTitle` for a search title that differs from the page's
+  `title`, navigation label or visible H1. Without it, the authored title is used. Do not
+  append the site name automatically; include it in `seoTitle` only when it adds value.
+  The homepages retain their intentional branded fallback.
+- MDX search titles are compiled as Next.js `title.absolute` values by
+  `app/lib/rehype-seo-title.mjs`, using the same resolver as document, social and WebPage
+  metadata. Check the title after hydration as well as in the initial HTML: a postbuild-only
+  title correction can be overwritten by Next's metadata payload.
 - Descriptions must be page-specific and useful. Google has no fixed description length limit;
-  snippets are truncated to fit the result surface.
+  snippets are truncated to fit the result surface. The manifest uses the same YAML parser as
+  Nextra, and the production audit checks decoded description parity with social and JSON-LD output.
 - Do not add meta-keywords or repeat keyword variants.
 - Do not generate FAQ or HowTo markup unless the visible page genuinely has that structure.
   Structured data describes content; it is never added only to chase a rich result.
@@ -153,6 +159,57 @@ every exposure to an AI answer. Compare engaged sessions as well as visit totals
 
 Keep a small fixed set of Bangla and English questions for manual citation checks. Record the
 date, engine, prompt and linked page; one answer is a sample, not a ranking.
+
+### Turn query evidence into useful page improvements
+
+Impressions without clicks are a research lead, not an instruction to add a keyword. Review the
+searcher's actual task before changing a page:
+
+1. **Keep comparable evidence.** Export the latest complete seven and 28 days against their
+   preceding periods. Record exact dates, property, search type, timezone and reporting delay.
+   Keep the longest available history for context, especially launches or unusual traffic spikes.
+   Preserve property totals separately from page totals and disclosed query rows; they need not
+   match. A missing query is unknown, not proof of zero demand.
+2. **Confirm the page.** Filter Search Console or Bing to the actual URL, then inspect its
+   queries. Join that URL to GA4 landing-page sessions and engagement. Keep language-specific
+   rows for editing and combine locale pairs only for a topic-level view. Keep search-console
+   referrals, local previews and other identifiable test traffic separate. Do not equate a
+   search click, an analytics session, an AI citation and a crawler request.
+3. **Judge the intent.** Does this question help a founder building a scalable business in
+   Bangladesh? Is the person seeking an explanation, a comparison, an official portal, or an
+   unrelated company? Discard irrelevant geography and brand-name collisions. Repeated relevant
+   impressions, early clicks and corroborating visits strengthen a candidate; one isolated
+   impression can justify reading the page, but rarely a new article.
+4. **Inspect the existing answer.** Read the page before proposing a fix. Check whether the
+   answer is present, correct, easy to find and supported by a current primary source. A query
+   about a fee, legal requirement or government process needs source verification before copy
+   changes. If a source cannot be checked, record the gap instead of inventing a confident answer.
+5. **Choose the smallest useful change.** Use the following decision table. Keep established
+   URLs and good visible headings. Write natural Bangla and English, not a list of spelling
+   variants. One page should answer a coherent task, not compete with another page on the same site.
+
+| What the review finds | Appropriate change |
+|---|---|
+| The answer is useful, but the search title is generic | Improve `seoTitle` and, if needed, the description; preserve the H1 |
+| The answer exists but uses unfamiliar wording | Rephrase the relevant sentence naturally; explain the term once |
+| A necessary part of the same task is missing | Add a sourced section or compact worked example to the existing guide |
+| The reader needs to calculate or prepare something | Start with a worked example and a copy-ready worksheet; add a tool only if interaction earns its place |
+| A useful finished guide is hard to discover | Add a relevant contextual link from an existing guide, hub or journey |
+| The task is distinct and no published page owns it | Check the backlog and write one complete bilingual guide under the editorial standard |
+| The query is navigational to an official service | Offer a clear official link and relevant guidance; never imply that this site is the service |
+| The query is unrelated, or the page already answers it well | Record the decision to leave it alone |
+
+Keep a small private change log: query group, exact page, baseline dates and metrics, diagnosed
+gap, proposed edit, evidence, release date, and review date. Separate a source-verification task
+from an edit that is ready to publish. Search queries and account exports do not belong in the
+public repository or generated site output.
+
+After an approved release, verify the rendered metadata and page, then allow time for recrawling.
+Review the same page/query cohort after seven days for regressions and after 28 days for a more
+useful trend. Compare clicks, relevant impressions and qualified landing sessions together;
+inspect actual reader actions where they are measured. Do not claim causation from a before/after
+comparison, chase an aggregate CTR distorted by a changing query mix, or rewrite a page every
+week because a small sample fluctuated. Retain, refine or roll back the change on the evidence.
 
 ## Release checklist
 

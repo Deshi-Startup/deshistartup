@@ -25,6 +25,7 @@ import { prepareContributorSnapshot } from "../app/lib/contributor-leaderboard.m
 import { sourceSupportsInlineEdit } from "../app/lib/inline-edit-policy.mjs";
 import { isWrittenGuide } from "./content-guide.mjs";
 import { collectGitDates } from "./git-content-dates.mjs";
+import { parseFrontmatter } from "./frontmatter.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const contentRoot = path.join(root, "app", "(contents)");
@@ -39,26 +40,6 @@ const LOCALES = [
   { key: "bn", dir: path.join(contentRoot, "(bn)"), routePrefix: "" },
   { key: "en", dir: path.join(contentRoot, "en"), routePrefix: "/en" },
 ];
-
-function parseFrontmatter(source) {
-  const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  const data = {};
-  if (match) {
-    for (const line of match[1].split(/\r?\n/)) {
-      const kv = line.match(/^(\w+):\s*(.*)$/);
-      if (!kv) continue;
-      let value = kv[2].trim();
-      if (
-        (value.startsWith('"') && value.endsWith('"')) ||
-        (value.startsWith("'") && value.endsWith("'"))
-      ) {
-        value = value.slice(1, -1);
-      }
-      data[kv[1]] = value;
-    }
-  }
-  return data;
-}
 
 function firstHeading(source) {
   const match = source.match(/^#\s+(.+)$/m);
@@ -115,7 +96,7 @@ for (const locale of LOCALES) {
   const pages = relPages.map((rel) => {
     const filePath = path.join(locale.dir, rel === "" ? "" : rel, "page.mdx");
     const source = fs.readFileSync(filePath, "utf8");
-    const fm = parseFrontmatter(source);
+    const fm = parseFrontmatter(source, filePath);
     const title = fm.title || firstHeading(source) || rel;
     const isStub =
       source.includes("<StubNotice") || rendersEmptyDirectory(source);
@@ -139,6 +120,7 @@ for (const locale of LOCALES) {
       locale: locale.key,
       title: title.split("–")[0].split("|")[0].trim(),
       fullTitle: title,
+      ...(fm.seoTitle ? { seoTitle: fm.seoTitle } : {}),
       description: fm.description || "",
       stub: isStub,
       guide: isWrittenGuide({ slug: rel, source, stub: isStub }),

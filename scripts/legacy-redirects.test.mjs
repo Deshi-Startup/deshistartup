@@ -10,6 +10,11 @@ const rules = fs.readFileSync(path.join(root, 'public/_redirects'), 'utf8')
   .map(line => line.trim())
   .filter(line => line && !line.startsWith('#'))
   .map(line => line.split(/\s+/))
+const assetRedirects = new Map([
+  ['/favicon.ico', '/favicon-32.png'],
+  ['/deshi-mark.svg', '/deshi-mark.webp']
+])
+const contentRules = rules.filter(([source]) => !assetRedirects.has(source))
 
 function contentPath(route) {
   const english = route.startsWith('/en/')
@@ -22,11 +27,19 @@ test('legacy redirects lead directly to completed pages without shadowing curren
   for (const rule of rules) {
     assert.equal(rule.length, 3)
     const [source, destination, status] = rule
-    assert.match(source, /^\/[a-z0-9/-]+$/)
-    assert.match(destination, /^\/[a-z0-9/-]+$/)
+    assert.match(source, /^\/[a-z0-9/.-]+$/)
+    assert.match(destination, /^\/[a-z0-9/.-]+$/)
     assert.equal(status, '301')
     assert.equal(sources.has(source), false, 'duplicate source: ' + source)
     sources.add(source)
+    if (assetRedirects.has(source)) {
+      assert.equal(destination, assetRedirects.get(source), source)
+      assert.equal(fs.existsSync(path.join(root, 'public', source)), false,
+        'redirect shadows a current asset: ' + source)
+      assert.ok(fs.existsSync(path.join(root, 'public', destination)),
+        'missing asset destination: ' + destination)
+      continue
+    }
     assert.equal(source.startsWith('/en/'), destination.startsWith('/en/'), source)
     for (const extension of ['mdx', 'tsx']) {
       assert.equal(fs.existsSync(path.join(contentPath(source), 'page.' + extension)), false,
@@ -43,8 +56,8 @@ test('legacy redirects lead directly to completed pages without shadowing curren
 })
 
 test('legacy redirects preserve both language editions', () => {
-  const destinations = new Map(rules.map(([source, destination]) => [source, destination]))
-  for (const [source, destination] of rules) {
+  const destinations = new Map(contentRules.map(([source, destination]) => [source, destination]))
+  for (const [source, destination] of contentRules) {
     if (!source.startsWith('/en/')) {
       assert.equal(destinations.get('/en' + source), '/en' + destination, source)
     } else {

@@ -77,7 +77,8 @@
     "sharp": "^0.35.4",
     "typescript": "^5.9.3",
     "unified": "^11.0.5",
-    "wrangler": "^4.129.0"
+    "wrangler": "^4.129.0",
+    "yaml": "^2.9.0"
   },
   "overrides": {
     "speech-rule-engine": {
