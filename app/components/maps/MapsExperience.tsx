@@ -10,7 +10,12 @@ import { urbanName, urbanSource, urbanMatches } from "./urban";
 import type { Region, Locale, UrbanPlace, UrbanCoverage } from "./types";
 import { interval, regionMatches } from "./model";
 import { countRadius } from "./cartography";
-import { matchingAnchors, matchingSites, siteKind } from "./industry";
+import {
+  matchingAnchors,
+  matchingSites,
+  matchingPorts,
+  siteKind,
+} from "./industry";
 import {
   comparisonRows,
   layers,
@@ -25,6 +30,8 @@ import {
   sourceLabel,
   internetInterval,
   initialExplorer,
+  selectExplorerRegions,
+  nationalExplorer,
   parseExplorer,
   explorerUrl,
   matchingRegions,
@@ -57,6 +64,7 @@ export default function MapsExperience({
   const [state, setState] = useState<ExplorerState>(initialExplorer),
     [contextOpen, setContextOpen] = useState(true),
     [hydrated, setHydrated] = useState(false),
+    [mapStarted, setMapStarted] = useState(false),
     [layersOpen, setLayersOpen] = useState(false),
     [detailOpen, setDetailOpen] = useState(false),
     [panel, setPanel] = useState<"insights" | "sources" | "compare">(
@@ -81,6 +89,13 @@ export default function MapsExperience({
     lens = lenses.find((l) => l.id === state.lens)!,
     divisionRegions = regions.filter((r) => r.level === "division"),
     visible = matchingRegions(regions, state);
+  const portCounts = matchingPorts(state).reduce<Record<string, number>>(
+    (counts, site) => {
+      counts[site.kind] = (counts[site.kind] || 0) + 1;
+      return counts;
+    },
+    {},
+  );
   const selected = regions.find((r) => r.id === state.region),
     compared = regions.find((r) => r.id === state.compare);
   const towns = useMemo(
@@ -150,6 +165,9 @@ export default function MapsExperience({
     return () => removeEventListener("popstate", read);
   }, [regions, urbanPlaces]);
   useEffect(() => {
+    if (hydrated && state.view === "map") setMapStarted(true);
+  }, [hydrated, state.view]);
+  useEffect(() => {
     detailPanel.current?.scrollTo({ top: 0 });
   }, [panel, state.region, state.layer, state.place, state.urban, detailOpen]);
   useEffect(() => {
@@ -210,18 +228,23 @@ export default function MapsExperience({
     if (active && !active.closest(".maps-detail-panel, .maps-text-alternative"))
       detailOpener.current = active;
   }
+  function selectRegions(
+    selection: Partial<Pick<ExplorerState, "region" | "compare">>,
+  ) {
+    setState((s) => selectExplorerRegions(s, regions, selection));
+  }
   function choose(id: string) {
     rememberDetailOpener();
     if (detailOpen && panel === "compare" && selected && id !== selected.id)
-      change({ compare: id });
+      selectRegions({ compare: id });
     else {
-      change({
-        region: id,
-        compare: "",
-        urban: "",
-        place: "",
-        urbanCompare: "",
-      });
+      setState((s) =>
+        selectExplorerRegions(
+          { ...s, urban: "", place: "", urbanCompare: "" },
+          regions,
+          { region: id, compare: "" },
+        ),
+      );
       setPanel("insights");
     }
     setQuery("");
@@ -540,19 +563,21 @@ export default function MapsExperience({
             {t("Deshi Startup Maps", "দেশি স্টার্টআপ মানচিত্র")}
           </h1>
         )}
-        <MapCanvas
-          regions={regions}
-          urbanPlaces={mapTowns}
-          onUrbanSelect={chooseUrban}
-          locale={locale}
-          state={state}
-          onSelect={choose}
-          reset={reset}
-          detailOpen={detailOpen}
-          layersOpen={layersOpen}
-          opacity={opacity}
-          labels={labels}
-        />
+        {hydrated && (mapStarted || state.view === "map") && (
+          <MapCanvas
+            regions={regions}
+            urbanPlaces={mapTowns}
+            onUrbanSelect={chooseUrban}
+            locale={locale}
+            state={state}
+            onSelect={choose}
+            reset={reset}
+            detailOpen={detailOpen}
+            layersOpen={layersOpen}
+            opacity={opacity}
+            labels={labels}
+          />
+        )}
         {!state.urban && (
           <nav
             className="maps-lenses"
@@ -1225,7 +1250,7 @@ export default function MapsExperience({
                     <select
                       value={state.region}
                       onChange={(e) =>
-                        change({ region: e.target.value, compare: "" })
+                        selectRegions({ region: e.target.value, compare: "" })
                       }
                     >
                       <option value="">
@@ -1245,7 +1270,9 @@ export default function MapsExperience({
                     <select
                       disabled={!selected}
                       value={state.compare}
-                      onChange={(e) => change({ compare: e.target.value })}
+                      onChange={(e) =>
+                        selectRegions({ compare: e.target.value })
+                      }
                     >
                       <option value="">
                         {t("Choose a region", "অঞ্চল বেছে নিন")}
@@ -1408,7 +1435,7 @@ export default function MapsExperience({
                       <button
                         className="maps-text-button"
                         onClick={() => {
-                          change({ region: "", compare: "" });
+                          setState(nationalExplorer);
                           setReset((r) => r + 1);
                         }}
                       >
@@ -1711,22 +1738,22 @@ export default function MapsExperience({
                             <i className="maps-port-swatch">
                               <Icon name="anchor" />
                             </i>
-                            {t("3 seaports", "৩টি সমুদ্রবন্দর")}
+                            {t("Seaports", "সমুদ্রবন্দর")} ·{" "}
+                            {num(portCounts.seaport || 0)}
                           </span>
                           <span>
                             <i className="maps-port-swatch">
                               <Icon name="gate" />
                             </i>
-                            {t(
-                              "6 selected land ports",
-                              "বাছাই করা ৬টি স্থলবন্দর",
-                            )}
+                            {t("Selected land ports", "বাছাই করা স্থলবন্দর")} ·{" "}
+                            {num(portCounts.landport || 0)}
                           </span>
                           <span>
                             <i className="maps-port-swatch">
                               <Icon name="plane" />
                             </i>
-                            {t("8 airports", "৮টি বিমানবন্দর")}
+                            {t("Airports", "বিমানবন্দর")} ·{" "}
+                            {num(portCounts.airport || 0)}
                           </span>
                         </>
                       )}

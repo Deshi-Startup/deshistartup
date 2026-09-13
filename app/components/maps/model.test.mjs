@@ -2,8 +2,9 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import fs from "node:fs";
 import { gzipSync } from "node:zlib";
+import { validateStyleMin } from "@maplibre/maplibre-gl-style-spec";
 import { interval, regionMatches } from "./model.ts";
-import { countRadius, nationalOutline } from "./cartography.ts";
+import { baseMapStyle, countRadius, nationalOutline } from "./cartography.ts";
 import { layerById, metricColor } from "./layers.ts";
 import { routeSupportsInlineEdit } from "../../lib/inline-edit-policy.mjs";
 const { regions } = JSON.parse(
@@ -164,4 +165,18 @@ test("coastal outline hierarchy preserves every source polygon and coordinate", 
   );
   assert.ok(parts.features.some((f) => f.properties.minor));
   assert.ok(parts.features.some((f) => !f.properties.minor));
+});
+
+test("the analytical fallback is valid without a contextual basemap or font URL", () => {
+  const fallback = baseMapStyle();
+  assert.deepEqual(validateStyleMin(fallback), []);
+  assert.equal(Object.hasOwn(fallback, "glyphs"), false);
+  assert.deepEqual(fallback.sources, {});
+  const style = JSON.parse(
+    fs.readFileSync(
+      new URL("../../../public/maps/basemap.json", import.meta.url),
+    ),
+  );
+  assert.deepEqual(validateStyleMin(baseMapStyle(style.glyphs)), []);
+  assert.equal(baseMapStyle(style.glyphs).glyphs, style.glyphs);
 });

@@ -21,7 +21,7 @@ import {
 } from "./layers";
 import type { Region, Locale, UrbanPlace } from "./types";
 import { urbanName } from "./urban";
-import { countRadius, nationalOutline } from "./cartography";
+import { baseMapStyle, countRadius, nationalOutline } from "./cartography";
 import {
   matchingAnchors,
   groupSites,
@@ -274,18 +274,7 @@ export default function MapCanvas(props: Props) {
         shapes.current = boundary;
         const m = new Map({
           container: host.current,
-          style: {
-            version: 8,
-            glyphs: base?.glyphs,
-            sources: {},
-            layers: [
-              {
-                id: "background",
-                type: "background",
-                paint: { "background-color": "#f4f3ed" },
-              },
-            ],
-          },
+          style: baseMapStyle(base?.glyphs),
           bounds: targetBounds(),
           fitBoundsOptions: {
             padding: padding(targetBounds() === country),
@@ -339,6 +328,7 @@ export default function MapCanvas(props: Props) {
           if (gone) return;
           m.addSource("regions", {
             type: "geojson",
+            promoteId: "id",
             data: { type: "FeatureCollection", features: [] },
           });
           m.addSource("country", {
@@ -359,17 +349,17 @@ export default function MapCanvas(props: Props) {
             type: "fill",
             source: "regions",
             paint: {
-              "fill-color": ["get", "color"],
+              "fill-color": ["coalesce", ["feature-state", "color"], "#dde6dd"],
               "fill-opacity": [
                 "interpolate",
                 ["linear"],
                 ["zoom"],
                 5,
-                ["get", "opacity"],
+                ["coalesce", ["feature-state", "opacity"], 0],
                 10,
-                ["*", ["get", "opacity"], 0.6],
+                ["*", ["coalesce", ["feature-state", "opacity"], 0], 0.6],
                 14,
-                ["*", ["get", "opacity"], 0.25],
+                ["*", ["coalesce", ["feature-state", "opacity"], 0], 0.25],
               ],
             },
           });
@@ -426,14 +416,14 @@ export default function MapCanvas(props: Props) {
             id: "regions-selected",
             type: "line",
             source: "regions",
-            filter: ["==", ["get", "selected"], true],
+            filter: ["==", ["get", "id"], ""],
             paint: { "line-color": "#173e36", "line-width": 2.8 },
           });
           m.addLayer({
             id: "regions-compare",
             type: "line",
             source: "regions",
-            filter: ["==", ["get", "compare"], true],
+            filter: ["==", ["get", "id"], ""],
             paint: {
               "line-color": "#173e36",
               "line-width": 2.5,
@@ -774,10 +764,68 @@ export default function MapCanvas(props: Props) {
     props.state.division,
     props.locale,
   ]);
+  // Geometry is static. Only a geography-level change sends polygons to the
+  // worker; measures and filters update lightweight paint state instead.
   useEffect(() => {
     const m = map.current,
       data = shapes.current;
     if (status !== "ready" || !m || !data) return;
+    const ids = new Set(
+      props.regions
+        .filter((r) => r.level === props.state.level)
+        .map((r) => r.id),
+    );
+    (m.getSource("regions") as GeoJSONSource).setData({
+      type: "FeatureCollection",
+      features: data.features.filter((f) => ids.has(f.properties.id)),
+    });
+  }, [status, props.state.level, props.regions]);
+  useEffect(() => {
+    const m = map.current;
+    if (status !== "ready" || !m) return;
+    const l = layerById(props.state.layer),
+      symbols = symbolColors(l),
+      included = new Set(
+        matchingRegions(props.regions, props.state).map((r) => r.id),
+      );
+    for (const r of props.regions.filter(
+      (r) => r.level === props.state.level,
+    )) {
+      m.setFeatureState(
+        { source: "regions", id: r.id },
+        {
+          color: props.state.urban
+            ? "#dde6dd"
+            : l.kind === "count"
+              ? symbols.ground
+              : metricColor(metricValue(r, l.id), l),
+          opacity: props.state.urban
+            ? 0.18
+            : included.has(r.id)
+              ? props.opacity
+              : 0.1,
+        },
+      );
+    }
+  }, [
+    status,
+    props.state.layer,
+    props.state.level,
+    props.state.division,
+    props.state.minimum,
+    props.state.urban,
+    props.opacity,
+    props.regions,
+  ]);
+  useEffect(() => {
+    const m = map.current;
+    if (status !== "ready" || !m) return;
+    m.setFilter("regions-selected", ["==", ["get", "id"], props.state.region]);
+    m.setFilter("regions-compare", ["==", ["get", "id"], props.state.compare]);
+  }, [status, props.state.region, props.state.compare]);
+  useEffect(() => {
+    const m = map.current;
+    if (status !== "ready" || !m) return;
     const l = layerById(props.state.layer),
       symbols = symbolColors(l),
       included = new Set(
@@ -785,34 +833,6 @@ export default function MapCanvas(props: Props) {
       ),
       level = props.regions.filter((r) => r.level === props.state.level),
       maximum = Math.max(...level.map((r) => metricValue(r, l.id) ?? 0), 1);
-    const features = data.features
-      .filter((f) => level.some((r) => r.id === f.properties.id))
-      .map((f) => {
-        const r = level.find((r) => r.id === f.properties.id)!,
-          v = metricValue(r, l.id);
-        return {
-          ...f,
-          properties: {
-            id: r.id,
-            color: props.state.urban
-              ? "#dde6dd"
-              : l.kind === "count"
-                ? symbols.ground
-                : metricColor(v, l),
-            opacity: props.state.urban
-              ? 0.18
-              : included.has(r.id)
-                ? props.opacity
-                : 0.1,
-            selected: r.id === props.state.region,
-            compare: r.id === props.state.compare,
-          },
-        };
-      });
-    (m.getSource("regions") as GeoJSONSource).setData({
-      type: "FeatureCollection",
-      features,
-    });
     (m.getSource("symbols") as GeoJSONSource).setData({
       type: "FeatureCollection",
       features:
@@ -830,12 +850,24 @@ export default function MapCanvas(props: Props) {
               }))
           : [],
     });
-    labels();
   }, [
     status,
-    props.state,
+    props.state.layer,
+    props.state.level,
+    props.state.division,
+    props.state.minimum,
+    props.state.urban,
+    props.regions,
+  ]);
+  useEffect(() => {
+    if (status === "ready") labels();
+  }, [
+    status,
+    props.state.level,
+    props.state.division,
+    props.state.region,
+    props.state.urban,
     props.locale,
-    props.opacity,
     props.labels,
     props.regions,
   ]);

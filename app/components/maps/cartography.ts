@@ -1,3 +1,4 @@
+import type { StyleSpecification } from "maplibre-gl";
 import type { FeatureCollection, Geometry, Polygon } from "geojson";
 
 /** Shared by the map and legend: circle AREA, not radius, represents the count. */
@@ -33,5 +34,21 @@ export function nationalOutline(
       properties: { minor: areas[i] < threshold },
       geometry: { type: "Polygon", coordinates },
     })),
+  };
+}
+
+/** The analytical map must also start when contextual tiles/style are unavailable. */
+export function baseMapStyle(glyphs?: string): StyleSpecification {
+  return {
+    version: 8,
+    ...(glyphs ? { glyphs } : {}),
+    sources: {},
+    layers: [
+      {
+        id: "background",
+        type: "background",
+        paint: { "background-color": "#f4f3ed" },
+      },
+    ],
   };
 }

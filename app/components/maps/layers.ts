@@ -415,23 +415,70 @@ export function parseExplorer(
   const place = urbanPlace("place"),
     urbanCompare =
       urbanPlaces.find((p) => p.id === q.get("urbanCompare"))?.id || "";
+  return selectExplorerRegions(
+    {
+      lens: urban ? "people" : lens.id,
+      layer: urban ? "density" : layer.id,
+      level: urban ? "district" : level,
+      region: urban || region,
+      compare: !urban && region && compare !== region ? compare : "",
+      division: urban ? "" : division,
+      minimum: urban ? 0 : minimum,
+      view: q.get("view") === "table" ? "table" : "map",
+      transport: !urban && q.get("transport") === "true",
+      industry: !urban && q.get("industry") === "true",
+      ports: !urban && q.get("ports") === "true",
+      urban,
+      place,
+      urbanCompare: place && urbanCompare !== place ? urbanCompare : "",
+    },
+    regions,
+  );
+}
+/** Explicit selection wins over a conflicting filter, including restored links. */
+export function selectExplorerRegions(
+  state: ExplorerState,
+  regions: Region[],
+  selection: Partial<Pick<ExplorerState, "region" | "compare">> = {},
+): ExplorerState {
+  const next = { ...state, ...selection };
+  const selected = regions.filter(
+    (r) => r.id === next.region || r.id === next.compare,
+  );
+  if (
+    selected.some(
+      (r) =>
+        next.division &&
+        (r.level === "division" ? r.key : r.division) !== next.division,
+    )
+  )
+    next.division = "";
+  if (
+    next.minimum > 0 &&
+    selected.some(
+      (r) =>
+        metricValue(r, next.layer) === null ||
+        metricValue(r, next.layer)! < next.minimum,
+    )
+  )
+    next.minimum = 0;
+  return next;
+}
+
+/** Return to national coverage without discarding the user's measure or overlays. */
+export function nationalExplorer(state: ExplorerState): ExplorerState {
   return {
-    lens: urban ? "people" : lens.id,
-    layer: urban ? "density" : layer.id,
-    level: urban ? "district" : level,
-    region: urban || region,
-    compare: !urban && region && compare !== region ? compare : "",
-    division: urban ? "" : division,
-    minimum: urban ? 0 : minimum,
-    view: q.get("view") === "table" ? "table" : "map",
-    transport: !urban && q.get("transport") === "true",
-    industry: !urban && q.get("industry") === "true",
-    ports: !urban && q.get("ports") === "true",
-    urban,
-    place,
-    urbanCompare: place && urbanCompare !== place ? urbanCompare : "",
+    ...state,
+    region: "",
+    compare: "",
+    division: "",
+    minimum: 0,
+    urban: "",
+    place: "",
+    urbanCompare: "",
   };
 }
+
 export function explorerUrl(s: ExplorerState) {
   const q = new URLSearchParams();
   for (const k of Object.keys(initialExplorer) as (keyof ExplorerState)[])

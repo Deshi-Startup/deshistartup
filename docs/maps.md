@@ -27,6 +27,11 @@ The map/data switch provides a keyboard-accessible table. Share and locale links
 preserve meaningful state. Source links, definitions and coverage details stay
 with each measure, with longer explanations behind disclosure controls.
 
+Selecting a region outside an active division or value filter clears the conflicting
+filter, including when restoring shared URLs. Compatible filters stay in place. Back
+to Bangladesh clears geographic/value filters and selections while retaining the
+measure and enabled context. Port and airport legend counts reflect the active division.
+
 The implementation separates these responsibilities:
 
 | Path | Responsibility |
@@ -47,6 +52,12 @@ tiles. The customized OpenMapTiles/Maputnik style lives in
 `public/maps/basemap.json`. No API credentials are required. The renderer loads
 only on Maps, and transport geometry loads only when requested. There is no
 runtime Overpass request or external statistics API.
+
+Data-only links defer the MapLibre module, worker, boundaries and hosted tiles until the
+reader opens Map. Once mounted, the renderer remains available across Map/Data switches
+so the camera is retained. Regional polygons are submitted to the worker only when the
+geographic level changes; measure colors and opacity use feature state, and selection
+uses ID filters. Optional context controls and label toggles do not reprocess polygons.
 
 Geographic data rights and hosting permissions are separate. OpenStreetMap data
 requires [ODbL attribution](https://www.openstreetmap.org/copyright). Context uses
@@ -106,8 +117,6 @@ These observations are **2022**. The active internet measure uses the final **20
 | Mobile banking | % aged 15+ with a mobile banking account | 409–410, P27 | Not transaction volume, active customers or agent coverage. |
 
 `data/maps/census.json` contains all 72 region rows with per-metric PDF pages, source periods/publication dates and input text SHA-256. National population reconciles to **165,158,616**, urban population to **52,049,459**, and students to **41,518,866**. Every division count reconciles with its constituent districts. For example, the historical Bandarban age-5+ internet use figure is 23.06%, distinct from the adjacent age-15+ figure 29.54%.
-
-Count layers use proportional circles with area tied to count and the exact same radius scale in the legend. Rate/mean layers use fixed, documented bands in `layers.ts`. Filtering does not reclassify values. Region type changes the circle scale; the legend recalculates explicitly. Missing values remain null/gray, never zero. Source notes and practical field questions accompany each active layer; they do not assert measured product demand.
 
 ## Current internet and business evidence
 

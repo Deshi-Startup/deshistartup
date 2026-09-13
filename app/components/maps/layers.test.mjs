@@ -4,6 +4,9 @@ import fs from "node:fs";
 import {
   layers,
   parseExplorer,
+  initialExplorer,
+  selectExplorerRegions,
+  nationalExplorer,
   explorerUrl,
   matchingRegions,
   metricValue,
@@ -114,4 +117,53 @@ test("missing is distinct from zero; filters preserve classification and exclude
   );
   assert.equal(matchingRegions(regions, { ...s, minimum: 1e8 }).length, 0);
   assert.equal(metricColor(42696, layer), layer.colors.at(-1));
+});
+
+test("selection and restored links reveal regions outside geographic or value filters", () => {
+  const focused = {
+    ...initialExplorer,
+    layer: "population",
+    division: "dhaka",
+    region: "district-dhaka",
+    minimum: 1e7,
+  };
+  const selected = selectExplorerRegions(focused, regions, {
+    compare: "district-chattogram",
+  });
+  assert.equal(selected.division, "");
+  assert.equal(selected.minimum, 0);
+  assert.ok(
+    matchingRegions(regions, selected).some((r) => r.id === selected.compare),
+  );
+  assert.equal(focused.division, "dhaka", "input state is not mutated");
+  const restored = parseExplorer(
+    "?layer=population&division=dhaka&region=district-chattogram&min=10000000",
+    regions,
+  );
+  assert.equal(restored.division, "");
+  assert.equal(restored.minimum, 0);
+  const compatible = selectExplorerRegions(
+    { ...focused, minimum: 1 },
+    regions,
+    { compare: "district-gazipur" },
+  );
+  assert.equal(compatible.division, "dhaka");
+  assert.equal(compatible.minimum, 1);
+});
+
+test("national return restores coverage while retaining measure, level and context", () => {
+  const next = nationalExplorer({
+    ...initialExplorer,
+    layer: "poverty",
+    level: "division",
+    region: "division-mymensingh",
+    division: "mymensingh",
+    minimum: 20,
+    ports: true,
+  });
+  assert.equal(matchingRegions(regions, next).length, 8);
+  assert.equal(next.region, "");
+  assert.equal(next.layer, "poverty");
+  assert.equal(next.ports, true);
+  assert.deepEqual(parseExplorer(explorerUrl(next), regions), next);
 });
