@@ -1,4 +1,15 @@
 import type { Locale, Region, Level, UrbanPlace } from "./types.ts";
+import {
+  ECONOMY_SECTOR_URL,
+  nationalSectorValue,
+  sectorNames,
+  sectorShareBreaks,
+  sectorValue,
+  validSector,
+  sectorMeasures,
+  type SectorMeasure,
+  type SectorSelection,
+} from "./business.ts";
 const REPORT_URL =
   "https://socialprotection.gov.bd/wp-content/uploads/2025/08/Paper-4-Poverty-Map-of-Bangladesh.pdf";
 export const CENSUS_URL =
@@ -71,7 +82,8 @@ export type Layer = {
   breaks: number[];
   colors: string[];
   symbols?: typeof countInk;
-  national: number;
+  national: number | null;
+  sector?: SectorSelection;
   kind: "rate" | "count";
   source: "census" | "hies" | "poverty" | "ict" | "economy";
 };
@@ -300,11 +312,70 @@ export function internetInterval(region: Region): [number, number] | null {
     : null;
 }
 export const layerById = (id: LayerId) => layers.find((l) => l.id === id)!;
+/** A sector is a focused view of business activity, not another top-level layer. */
+export function explorerLayer(
+  state: Pick<ExplorerState, "layer" | "sector" | "sectorMeasure">,
+  regions: Region[],
+): Layer {
+  const base = layerById(state.layer);
+  if (state.layer !== "economicUnits" || !validSector(state.sector))
+    return base;
+  const selection = {
+    sector: state.sector,
+    sectorMeasure: state.sectorMeasure,
+  };
+  const share = state.sectorMeasure === "share";
+  const people = state.sectorMeasure === "people";
+  return {
+    ...base,
+    name: sectorNames[state.sector],
+    sector: selection,
+    kind: share ? "rate" : "count",
+    unit: share
+      ? ["% of local permanent establishments", "স্থানীয় স্থায়ী প্রতিষ্ঠানের %"]
+      : people
+        ? [
+            "people in permanent establishments",
+            "স্থায়ী প্রতিষ্ঠানে কাজে যুক্ত মানুষ",
+          ]
+        : ["permanent establishments", "স্থায়ী প্রতিষ্ঠান"],
+    definition: share
+      ? [
+          "This sector’s permanent establishments divided by all permanent establishments in the same region. A local share, not a share of Bangladesh’s sector or a measure of unmet demand.",
+          "অঞ্চলের সব স্থায়ী প্রতিষ্ঠানের মধ্যে এই খাতের প্রতিষ্ঠানের হার। এটি স্থানীয় অংশ, দেশের এই খাতের মোট প্রতিষ্ঠানের অংশ বা অপূর্ণ চাহিদার হিসাব নয়।",
+        ]
+      : people
+        ? [
+            "People engaged in this sector’s permanent establishments, Economic Census 2024. Includes working owners, unpaid family workers, part-time and casual workers; not salaried jobs or available talent.",
+            "অর্থনৈতিক শুমারি ২০২৪ অনুযায়ী এই খাতের স্থায়ী প্রতিষ্ঠানে কাজে যুক্ত মানুষ। কর্মরত মালিক, বিনা বেতনে কাজ করা পরিবারের সদস্য, খণ্ডকালীন ও অনিয়মিত কর্মীও আছেন, তাই এটি বেতনভুক্ত চাকরি বা নিয়োগের জন্য প্রস্তুত মানুষের হিসাব নয়।",
+          ]
+        : [
+            "Permanent establishments classified by their main activity, Economic Census 2024. Includes public and nonprofit establishments; excludes temporary establishments and economic households. Establishments are not unique companies or paying customers.",
+            "অর্থনৈতিক শুমারি ২০২৪-এ প্রধান কাজ অনুযায়ী এই খাতে থাকা স্থায়ী প্রতিষ্ঠান। সরকারি ও অলাভজনক প্রতিষ্ঠানও আছে, অস্থায়ী প্রতিষ্ঠান ও অর্থনৈতিক কর্মকাণ্ডে যুক্ত খানা নেই। প্রতিষ্ঠানের সংখ্যা মানেই আলাদা কোম্পানি বা কাস্টমারের সংখ্যা নয়।",
+          ],
+    breaks: share ? sectorShareBreaks[state.sector] : [],
+    colors: teal,
+    national: nationalSectorValue(regions, selection),
+  };
+}
 export const symbolColors = (layer: Layer) => layer.symbols ?? countInk;
-export function metricValue(r: Region, l: LayerId): number | null {
-  return l === "poverty" ? r.povertyRate : (r.metrics?.[l] ?? null);
+export function metricValue(r: Region, layer: LayerId | Layer): number | null {
+  if (typeof layer !== "string" && layer.sector)
+    return sectorValue(r, layer.sector);
+  const id = typeof layer === "string" ? layer : layer.id;
+  return id === "poverty" ? r.povertyRate : (r.metrics?.[id] ?? null);
 }
 export function sourceLink(r: Region | undefined, l: Layer) {
+  if (l.sector) {
+    const page =
+      l.sector.sectorMeasure === "people"
+        ? r?.business?.sectorPersonsPage
+        : r?.business?.sectorPage;
+    return (
+      ECONOMY_SECTOR_URL +
+      `#page=${page ?? (l.sector.sectorMeasure === "people" ? 67 : 58)}`
+    );
+  }
   const page =
     l.source === "poverty" ? r?.sourcePage : r?.metrics?.[l.id + "Page"];
   return (
@@ -333,11 +404,21 @@ export function formatValue(
   compact = false,
 ) {
   if (v === null) return "—";
+  if (l.sector?.sectorMeasure === "share" && v > 0 && v < 0.01)
+    return (
+      "<" +
+      new Intl.NumberFormat(locale === "en" ? "en-GB" : "bn-BD").format(0.01) +
+      "%"
+    );
   return (
     new Intl.NumberFormat(locale === "en" ? "en-GB" : "bn-BD", {
       maximumFractionDigits:
-        l.kind === "count" || l.id === "density" || l.source === "hies" ? 0 : 1,
-      ...(compact
+        l.kind === "count" || l.id === "density" || l.source === "hies"
+          ? 0
+          : l.sector
+            ? 2
+            : 1,
+      ...(compact && l.sector?.sectorMeasure !== "share"
         ? { notation: "compact" as const, maximumFractionDigits: 1 }
         : {}),
     }).format(v) +
@@ -359,6 +440,8 @@ export type ExplorerState = {
   urban: string;
   place: string;
   urbanCompare: string;
+  sector: string;
+  sectorMeasure: SectorMeasure;
 };
 export const initialExplorer: ExplorerState = {
   lens: "people",
@@ -375,6 +458,8 @@ export const initialExplorer: ExplorerState = {
   urban: "",
   place: "",
   urbanCompare: "",
+  sector: "",
+  sectorMeasure: "units",
 };
 export function parseExplorer(
   search: string,
@@ -431,6 +516,17 @@ export function parseExplorer(
       urban,
       place,
       urbanCompare: place && urbanCompare !== place ? urbanCompare : "",
+      sector:
+        !urban && layer.id === "economicUnits"
+          ? validSector(q.get("sector"))
+          : "",
+      sectorMeasure:
+        !urban &&
+        layer.id === "economicUnits" &&
+        validSector(q.get("sector")) &&
+        sectorMeasures.includes(q.get("sectorMeasure") as SectorMeasure)
+          ? (q.get("sectorMeasure") as SectorMeasure)
+          : "units",
     },
     regions,
   );
@@ -442,6 +538,7 @@ export function selectExplorerRegions(
   selection: Partial<Pick<ExplorerState, "region" | "compare">> = {},
 ): ExplorerState {
   const next = { ...state, ...selection };
+  const metric = explorerLayer(next, regions);
   const selected = regions.filter(
     (r) => r.id === next.region || r.id === next.compare,
   );
@@ -457,8 +554,8 @@ export function selectExplorerRegions(
     next.minimum > 0 &&
     selected.some(
       (r) =>
-        metricValue(r, next.layer) === null ||
-        metricValue(r, next.layer)! < next.minimum,
+        metricValue(r, metric) === null ||
+        metricValue(r, metric)! < next.minimum,
     )
   )
     next.minimum = 0;
@@ -482,19 +579,25 @@ export function nationalExplorer(state: ExplorerState): ExplorerState {
 export function explorerUrl(s: ExplorerState) {
   const q = new URLSearchParams();
   for (const k of Object.keys(initialExplorer) as (keyof ExplorerState)[])
-    if (s[k] !== initialExplorer[k] && s[k] !== "" && s[k] !== 0)
+    if (
+      (k === "sector" || k === "sectorMeasure") &&
+      (s.layer !== "economicUnits" || !s.sector)
+    )
+      continue;
+    else if (s[k] !== initialExplorer[k] && s[k] !== "" && s[k] !== 0)
       q.set(k === "minimum" ? "min" : k, String(s[k]));
   return q.size ? "?" + q.toString() : "";
 }
 export function matchingRegions(regions: Region[], s: ExplorerState) {
+  const metric = explorerLayer(s, regions);
   return regions.filter(
     (r) =>
       r.level === s.level &&
       (!s.division ||
         (r.level === "division" ? r.key : r.division) === s.division) &&
       (s.minimum === 0 ||
-        (metricValue(r, s.layer) !== null &&
-          metricValue(r, s.layer)! >= s.minimum)),
+        (metricValue(r, metric) !== null &&
+          metricValue(r, metric)! >= s.minimum)),
   );
 }
 
@@ -502,19 +605,38 @@ export function matchingRegions(regions: Region[], s: ExplorerState) {
 export function comparisonRows(
   regions: Region[],
   places: Region[],
-  active: LayerId,
+  active: LayerId | Layer,
 ) {
+  const activeLayer = typeof active === "string" ? layerById(active) : active;
   const ids = [
     ...new Set<LayerId>([
-      active,
+      activeLayer.id,
       "population",
       "urban",
       "internet",
       "consumption",
     ]),
   ];
-  return ids.map((id) => {
-    const metric = layerById(id);
+  const metrics = activeLayer.sector
+    ? [
+        activeLayer,
+        ...sectorMeasures
+          .filter((measure) => measure !== activeLayer.sector!.sectorMeasure)
+          .map((sectorMeasure) =>
+            explorerLayer(
+              {
+                layer: "economicUnits",
+                sector: activeLayer.sector!.sector,
+                sectorMeasure,
+              },
+              regions,
+            ),
+          ),
+        layerById("population"),
+        layerById("internet"),
+      ]
+    : ids.map((id) => (id === activeLayer.id ? activeLayer : layerById(id)));
+  return metrics.map((metric) => {
     return {
       metric,
       cells: places.map((place) => {
@@ -527,7 +649,7 @@ export function comparisonRows(
         return {
           region: sourceRegion,
           context,
-          value: sourceRegion ? metricValue(sourceRegion, id) : null,
+          value: sourceRegion ? metricValue(sourceRegion, metric) : null,
         };
       }),
     };

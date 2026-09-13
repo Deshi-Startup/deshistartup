@@ -91,7 +91,7 @@
   stroke-linejoin: round;
   flex-shrink: 0;
 }
-.deshi-maps :is(button, input, select, summary, a):focus-visible {
+.deshi-maps :is(button, input, select, summary, a, h1[tabindex]):focus-visible {
   outline: 3px solid #3776ad;
   outline-offset: 3px;
 }
@@ -481,7 +481,7 @@
   flex-direction: column;
   gap: 2px;
 }
-.maps-layer-options button {
+.maps-layer-options > button {
   justify-content: space-between;
   text-align: left;
   border-color: transparent;
@@ -492,7 +492,7 @@
   font-size: 13px;
   font-weight: 400;
 }
-.maps-layer-options button[aria-pressed="true"] {
+.maps-layer-options > button[aria-pressed="true"] {
   background: #e8f1e5;
   border-color: #c7dac4;
 }
@@ -2311,4 +2311,61 @@
 .maps-urban-list-title strong,
 .maps-urban-toolbar button {
   white-space: nowrap;
+}
+
+/* Sector exploration reuses the layer panel's field rhythm and touch targets. */
+.maps-sector-controls {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  margin: 12px 0 18px;
+}
+.deshi-maps .maps-sector-controls label {
+  margin: 0;
+}
+.deshi-maps .maps-sector-controls select {
+  min-height: 44px;
+}
+.maps-sector-measures {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3px;
+  padding: 3px;
+  border-radius: 9px;
+  background: #f0f4ee;
+}
+.deshi-maps .maps-sector-measures button {
+  min-width: 0;
+  min-height: 44px;
+  padding: 6px 3px;
+  border-color: transparent;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 400;
+  justify-content: center;
+}
+.deshi-maps .maps-sector-measures button[aria-pressed="true"] {
+  background: white;
+  border-color: var(--maps-line);
+  color: var(--maps-ink);
+  font-weight: 600;
+}
+.deshi-maps .maps-sector-link {
+  min-height: 44px;
+  padding: 4px 0;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  justify-content: flex-start;
+  color: var(--maps-green);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font: inherit;
+}
+.maps-data-panel .maps-sector-controls {
+  max-width: 340px;
+  margin-block: 18px;
+}
+.maps-comparison-sector {
+  color: var(--maps-muted);
 }

@@ -27,6 +27,33 @@ The map/data switch provides a keyboard-accessible table. Share and locale links
 preserve meaningful state. Source links, definitions and coverage details stay
 with each measure, with longer explanations behind disclosure controls.
 
+Business activity also supports focused exploration of all 18 BSIC sections in
+Economic Census 2024, Volume II. One sector selector sits within the existing
+People & markets topic; selecting a sector in a regional business profile opens
+the same view. The selector offers establishments, local share and people engaged.
+Counts use proportional symbols; local shares use a sequential choropleth. Insights,
+tooltips, comparison, the data table and shared URLs use the same active definition.
+Switching sectors or measures preserves the camera and selected region. The data
+table shows all three sector measures together and sorts by the selected measure.
+
+Sector measures cover **permanent establishments only**, unlike the broader economic
+units total. Local share is sector establishments divided by all permanent
+establishments in the region, multiplied by 100. The national share uses summed
+counts from the eight divisions; it is not an average of regional percentages.
+People engaged includes working owners and unpaid family workers. Broad BSIC
+sections do not identify fine industry clusters, exports, customer demand, wages
+or hiring availability. No district sector measurements are assigned to towns.
+
+Local-share bands are fixed, manually chosen percentage thresholds in
+`business.ts`, using rounded breaks suited to each sector's 2024 range. They do
+not recalculate with geographic level, filters or comparisons. Different sectors
+use different thresholds, explicitly identified in the legend and methodology;
+matching colors across sectors cannot be compared as equal shares. Positive
+shares below 0.01% display as `<0.01%`, preserving the distinction from zero.
+Any data refresh must review these thresholds and their source/period together.
+Counts and shares link to S4; people engaged links to S5, at the corresponding
+region's PDF page. No additional dataset, vendor request or client library is used.
+
 Selecting a region outside an active division or value filter clears the conflicting
 filter, including when restoring shared URLs. Compatible filters stay in place. Back
 to Bangladesh clears geographic/value filters and selections while retaining the
@@ -41,6 +68,7 @@ The implementation separates these responsibilities:
 | `public/maps/` | Local geometry and contextual style; generated worker modules are ignored |
 | `app/components/maps/Maps.tsx`, `evidence.ts` | Server-side dataset joins and client-ready evidence |
 | `app/components/maps/layers.ts` | Metric definitions, periods, formatting and classification |
+| `app/components/maps/business.ts`, `SectorControls.tsx` | Sector definitions, calculations and the shared sector selector |
 | `app/components/maps/MapCanvas.tsx` | Rendering, camera and map interactions |
 | `app/components/maps/MapsExperience.tsx` | UI state, search, comparison and panels |
 | `app/components/maps/maps.css`, Maps section in `DESIGN.md` | Responsive presentation and design contract |
@@ -81,7 +109,8 @@ start collapsed with a visible OpenStreetMap attribution link.
 
 Count symbols use proportional area, sharing the renderer's radius scale with
 the legend at every viewport. Rate and mean layers use fixed bands defined in
-`layers.ts`; filtering never reclassifies them. Changing geographic level changes
+`layers.ts` and sector-share bands in `business.ts`; filtering never reclassifies
+them. Changing geographic level changes
 the count scale, reflected in the legend. Null values remain missing, never zero.
 Source period, units, geographic level and source links stay with each measure.
 

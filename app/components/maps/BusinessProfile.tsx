@@ -10,9 +10,11 @@ import {
 export default function BusinessProfile({
   region,
   locale,
+  onSectorSelect,
 }: {
   region: Region;
   locale: Locale;
+  onSectorSelect: (code: string) => void;
 }) {
   const b = region.business;
   if (!b)
@@ -88,7 +90,16 @@ export default function BusinessProfile({
             return (
               <li key={s.code}>
                 <div>
-                  <span>{words(sectorNames[s.code], locale)}</span>
+                  <button
+                    className="maps-sector-link"
+                    onClick={() => onSectorSelect(s.code)}
+                    aria-label={t(
+                      `Explore ${sectorNames[s.code][0]} across regions`,
+                      `${sectorNames[s.code][1]} খাত অঞ্চল ধরে দেখুন`,
+                    )}
+                  >
+                    {words(sectorNames[s.code], locale)}
+                  </button>
                   <strong>
                     {share === null ? "—" : number(share, 1) + "%"}
                   </strong>
@@ -121,7 +132,18 @@ export default function BusinessProfile({
           <tbody>
             {activities.map((s) => (
               <tr key={s.code}>
-                <th scope="row">{words(sectorNames[s.code], locale)}</th>
+                <th scope="row">
+                  <button
+                    className="maps-sector-link"
+                    onClick={() => onSectorSelect(s.code)}
+                    aria-label={t(
+                      `Explore ${sectorNames[s.code][0]} across regions`,
+                      `${sectorNames[s.code][1]} খাত অঞ্চল ধরে দেখুন`,
+                    )}
+                  >
+                    {words(sectorNames[s.code], locale)}
+                  </button>
+                </th>
                 <td>{number(s.units)}</td>
                 <td>{number(s.people)}</td>
               </tr>

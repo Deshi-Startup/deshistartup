@@ -15,7 +15,7 @@ import {
   metricValue,
   metricColor,
   formatValue,
-  layerById,
+  explorerLayer,
   symbolColors,
   type ExplorerState,
 } from "./layers";
@@ -485,14 +485,11 @@ export default function MapCanvas(props: Props) {
           );
           if (!r) return;
           const el = document.createElement("div");
+          const active = explorerLayer(p.state, p.regions);
           el.textContent =
             r.name[p.locale] +
             " · " +
-            formatValue(
-              metricValue(r, p.state.layer),
-              layerById(p.state.layer),
-              p.locale,
-            );
+            formatValue(metricValue(r, active), active, p.locale);
           popup?.setLngLat(e.lngLat).setDOMContent(el).addTo(m);
         });
         m.on("mouseleave", "regions-fill", () => {
@@ -783,7 +780,7 @@ export default function MapCanvas(props: Props) {
   useEffect(() => {
     const m = map.current;
     if (status !== "ready" || !m) return;
-    const l = layerById(props.state.layer),
+    const l = explorerLayer(props.state, props.regions),
       symbols = symbolColors(l),
       included = new Set(
         matchingRegions(props.regions, props.state).map((r) => r.id),
@@ -798,7 +795,7 @@ export default function MapCanvas(props: Props) {
             ? "#dde6dd"
             : l.kind === "count"
               ? symbols.ground
-              : metricColor(metricValue(r, l.id), l),
+              : metricColor(metricValue(r, l), l),
           opacity: props.state.urban
             ? 0.18
             : included.has(r.id)
@@ -810,6 +807,8 @@ export default function MapCanvas(props: Props) {
   }, [
     status,
     props.state.layer,
+    props.state.sector,
+    props.state.sectorMeasure,
     props.state.level,
     props.state.division,
     props.state.minimum,
@@ -826,24 +825,24 @@ export default function MapCanvas(props: Props) {
   useEffect(() => {
     const m = map.current;
     if (status !== "ready" || !m) return;
-    const l = layerById(props.state.layer),
+    const l = explorerLayer(props.state, props.regions),
       symbols = symbolColors(l),
       included = new Set(
         matchingRegions(props.regions, props.state).map((r) => r.id),
       ),
       level = props.regions.filter((r) => r.level === props.state.level),
-      maximum = Math.max(...level.map((r) => metricValue(r, l.id) ?? 0), 1);
+      maximum = Math.max(...level.map((r) => metricValue(r, l) ?? 0), 1);
     (m.getSource("symbols") as GeoJSONSource).setData({
       type: "FeatureCollection",
       features:
         !props.state.urban && l.kind === "count"
           ? level
-              .filter((r) => included.has(r.id) && metricValue(r, l.id)! > 0)
+              .filter((r) => included.has(r.id) && metricValue(r, l)! > 0)
               .map((r) => ({
                 type: "Feature",
                 geometry: { type: "Point", coordinates: r.point },
                 properties: {
-                  radius: countRadius(metricValue(r, l.id), maximum),
+                  radius: countRadius(metricValue(r, l), maximum),
                   fill: symbols.fill,
                   stroke: symbols.stroke,
                 },
@@ -853,6 +852,8 @@ export default function MapCanvas(props: Props) {
   }, [
     status,
     props.state.layer,
+    props.state.sector,
+    props.state.sectorMeasure,
     props.state.level,
     props.state.division,
     props.state.minimum,
@@ -1064,10 +1065,7 @@ export default function MapCanvas(props: Props) {
               t("Loading roads & railways…", "সড়ক ও রেলপথ লোড হচ্ছে…")
             ) : (
               <>
-                {t(
-                  "Roads & railways couldn't load.",
-                  "সড়ক ও রেলপথ লোড হয়নি।",
-                )}
+                {t("Roads & railways couldn't load.", "সড়ক ও রেলপথ লোড হয়নি।")}
                 <button onClick={() => setTransportRetry((r) => r + 1)}>
                   {t("Retry", "আবার চেষ্টা করুন")}
                 </button>

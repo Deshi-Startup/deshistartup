@@ -639,7 +639,15 @@ The layer panel is 300px wide on desktop, 320px on wide screens and 290px on tab
 content gutters. Its close control has a 44px target at the header's outer edge. The legend and
 overlay status keep a 24px gap from the panel using the same width and offset values.
 Geography fields form one group. Layer choices, selects, checkboxes and reset actions retain
-44px targets. Selecting a layer on a phone restores focus to the layer trigger.
+44px targets. Selecting a layer on a phone restores focus to the layer trigger,
+except Business activity, whose sector controls remain available in the sheet.
+Business activity has one inline sector select and a three-part Count / Local share /
+People control, each with a 44px target. Sector selection retains the current region,
+geographic level and camera. Insights pairs the active sector measure with the other
+two measures; comparison and Data show the same definitions. Local share uses a teal
+sequential ramp with explicitly sector-specific fixed percentage bands. Counts use
+proportional symbols. Sector controls replace neither the two existing topics nor
+their defaults. Regional activity names link to that sector's geographic view.
 Supporting facts align labels left and values right, with units and periods on a full-width
 line beneath. All panel disclosures use trailing chevrons. Text actions retain padded targets
 while their labels align with the evidence; source links use the same alignment.

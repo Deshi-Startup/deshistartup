@@ -1,10 +1,16 @@
 "use client";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import SiteBrand from "../SiteBrand";
 import SurveyInterval from "./SurveyInterval";
 import Icon from "./MapIcon";
 import BusinessProfile from "./BusinessProfile";
+import SectorControls from "./SectorControls";
+import {
+  sectorMeasureNames,
+  sectorMeasures,
+  type SectorSelection,
+} from "./business";
 import UrbanMarkets from "./UrbanMarkets";
 import { urbanName, urbanSource, urbanMatches } from "./urban";
 import type { Region, Locale, UrbanPlace, UrbanCoverage } from "./types";
@@ -21,6 +27,7 @@ import {
   layers,
   lenses,
   layerById,
+  explorerLayer,
   symbolColors,
   words,
   metricValue,
@@ -37,6 +44,7 @@ import {
   matchingRegions,
   type ExplorerState,
   type LayerId,
+  type Layer,
   type LensId,
 } from "./layers";
 import "./maps.css";
@@ -85,7 +93,7 @@ export default function MapsExperience({
     mobileDetailTrigger = useRef<HTMLButtonElement>(null),
     detailPanel = useRef<HTMLElement>(null),
     detailOpener = useRef<HTMLElement | null>(null);
-  const layer = layerById(state.layer),
+  const layer = explorerLayer(state, regions),
     lens = lenses.find((l) => l.id === state.lens)!,
     divisionRegions = regions.filter((r) => r.level === "division"),
     visible = matchingRegions(regions, state);
@@ -98,6 +106,10 @@ export default function MapsExperience({
   );
   const selected = regions.find((r) => r.id === state.region),
     compared = regions.find((r) => r.id === state.compare);
+  const comparisonEvidence =
+    selected && compared
+      ? comparisonRows(regions, [selected, compared], layer)
+      : [];
   const towns = useMemo(
     () =>
       urbanPlaces
@@ -145,8 +157,16 @@ export default function MapsExperience({
     new Intl.NumberFormat(locale === "bn" ? "bn-BD" : "en-GB", {
       maximumFractionDigits: 0,
     }).format(v);
-  const value = (r: Region, id = state.layer) =>
-    formatValue(metricValue(r, id), layerById(id), locale);
+  const legendNumber = (v: number) =>
+    new Intl.NumberFormat(locale === "bn" ? "bn-BD" : "en-GB", {
+      maximumFractionDigits: layer.sector ? 3 : 0,
+    }).format(v);
+  const value = (r: Region, metric: LayerId | Layer = layer) =>
+    formatValue(
+      metricValue(r, metric),
+      typeof metric === "string" ? layerById(metric) : metric,
+      locale,
+    );
   const change = (next: Partial<ExplorerState>) =>
     setState((s) => ({ ...s, ...next }));
   useEffect(() => {
@@ -169,7 +189,16 @@ export default function MapsExperience({
   }, [hydrated, state.view]);
   useEffect(() => {
     detailPanel.current?.scrollTo({ top: 0 });
-  }, [panel, state.region, state.layer, state.place, state.urban, detailOpen]);
+  }, [
+    panel,
+    state.region,
+    state.layer,
+    state.sector,
+    state.sectorMeasure,
+    state.place,
+    state.urban,
+    detailOpen,
+  ]);
   useEffect(() => {
     const compact = matchMedia("(max-width: 1100px)");
     const closeLayers = () => {
@@ -277,9 +306,9 @@ export default function MapsExperience({
     setQuery("");
     setSearchOpen(false);
     setSearchVisible(false);
-    focusUrbanHeading();
+    focusInsightsHeading();
   }
-  function focusUrbanHeading() {
+  function focusInsightsHeading() {
     requestAnimationFrame(() =>
       detailPanel.current?.querySelector<HTMLHeadingElement>("h1")?.focus(),
     );
@@ -292,7 +321,7 @@ export default function MapsExperience({
     }
     change({ place, urbanCompare: "", view: "map" });
     setDetailOpen(true);
-    focusUrbanHeading();
+    focusInsightsHeading();
   }
   function leaveUrban() {
     change({ urban: "", place: "", urbanCompare: "", view: "map" });
@@ -308,6 +337,8 @@ export default function MapsExperience({
       lenses.find((l) => l.layers.includes(id))!.id;
     change({
       layer: id,
+      sector: id === "economicUnits" ? state.sector : "",
+      sectorMeasure: id === "economicUnits" ? state.sectorMeasure : "units",
       lens: owner,
       level,
       region: level === state.level ? state.region : "",
@@ -322,6 +353,25 @@ export default function MapsExperience({
       layerTrigger.current?.focus();
     }
   }
+  function chooseSector(selection: SectorSelection) {
+    change({
+      ...selection,
+      layer: "economicUnits",
+      lens: "people",
+      minimum: 0,
+      urban: "",
+      place: "",
+      urbanCompare: "",
+    });
+  }
+  const sectorControls = (
+    <SectorControls locale={locale} selection={state} onChange={chooseSector} />
+  );
+  const sectorFacts = layer.sector
+    ? sectorMeasures.map((sectorMeasure) =>
+        explorerLayer({ ...state, sectorMeasure }, regions),
+      )
+    : [];
   function toggleDetails(next: "insights" | "sources" | "compare") {
     rememberDetailOpener();
     setPanel(state.urban ? "insights" : next);
@@ -344,8 +394,8 @@ export default function MapsExperience({
     }
   }
   const top = [...visible]
-    .filter((r) => metricValue(r, state.layer) !== null)
-    .sort((a, b) => metricValue(b, state.layer)! - metricValue(a, state.layer)!)
+    .filter((r) => metricValue(r, layer) !== null)
+    .sort((a, b) => metricValue(b, layer)! - metricValue(a, layer)!)
     .slice(0, 5);
   function closeDetails() {
     setDetailOpen(false);
@@ -366,7 +416,11 @@ export default function MapsExperience({
   const table = (items: Region[]) => (
     <table>
       <caption>
-        {words(layer.name, locale)} · {words(layer.unit, locale)} ·{" "}
+        {words(layer.name, locale)} ·{" "}
+        {layer.sector
+          ? t("Permanent establishments only", "শুধু স্থায়ী প্রতিষ্ঠান")
+          : words(layer.unit, locale)}{" "}
+        ·{" "}
         <span className="maps-observation-period">
           {observation(layer, locale)}
         </span>
@@ -374,7 +428,18 @@ export default function MapsExperience({
       <thead>
         <tr>
           <th scope="col">{t("Region", "অঞ্চল")}</th>
-          <th scope="col">{words(layer.name, locale)}</th>
+          {layer.sector ? (
+            sectorFacts.map((metric) => (
+              <th key={metric.sector!.sectorMeasure} scope="col">
+                {words(
+                  sectorMeasureNames[metric.sector!.sectorMeasure],
+                  locale,
+                )}
+              </th>
+            ))
+          ) : (
+            <th scope="col">{words(layer.name, locale)}</th>
+          )}
           {(state.layer === "poverty" || state.layer === "internet") && (
             <th scope="col">
               {state.layer === "internet"
@@ -382,7 +447,7 @@ export default function MapsExperience({
                 : t("Approx. 95% interval", "প্রায় ৯৫% আস্থার সীমা")}
             </th>
           )}
-          <th scope="col">{t("Source", "উৎস")}</th>
+          {!layer.sector && <th scope="col">{t("Source", "উৎস")}</th>}
         </tr>
       </thead>
       <tbody>
@@ -398,7 +463,22 @@ export default function MapsExperience({
                 {r.name[locale]}
               </button>
             </th>
-            <td>{value(r)}</td>
+            {layer.sector ? (
+              sectorFacts.map((metric) => (
+                <td key={metric.sector!.sectorMeasure}>
+                  <a
+                    href={sourceLink(r, metric)}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${r.name[locale]} · ${words(sectorMeasureNames[metric.sector!.sectorMeasure], locale)} · ${value(r, metric)} · ${t("source", "উৎস")}`}
+                  >
+                    {value(r, metric)}
+                  </a>
+                </td>
+              ))
+            ) : (
+              <td>{value(r)}</td>
+            )}
             {state.layer === "poverty" && (
               <td>
                 {interval(r.povertyRate, r.povertySE)
@@ -411,9 +491,11 @@ export default function MapsExperience({
                 <SurveyInterval region={r} locale={locale} />
               </td>
             )}
-            <td>
-              <a href={sourceLink(r, layer)}>{t("Report", "রিপোর্ট")}</a>
-            </td>
+            {!layer.sector && (
+              <td>
+                <a href={sourceLink(r, layer)}>{t("Report", "রিপোর্ট")}</a>
+              </td>
+            )}
           </tr>
         ))}
       </tbody>
@@ -709,25 +791,37 @@ export default function MapsExperience({
             </label>
             <div className="maps-layer-options">
               {lens.layers.map(layerById).map((l) => (
-                <button
-                  key={l.id}
-                  aria-pressed={state.layer === l.id}
-                  onClick={() => chooseLayer(l.id)}
-                >
-                  <span>{words(l.name, locale)}</span>
-                  <span className="maps-layer-swatch" aria-hidden="true">
-                    {l.kind === "count" ? (
-                      <i
-                        className="maps-layer-dot"
-                        style={{ background: symbolColors(l).fill }}
-                      />
-                    ) : (
-                      l.colors.map((color) => (
-                        <i key={color} style={{ background: color }} />
-                      ))
-                    )}
-                  </span>
-                </button>
+                <Fragment key={l.id}>
+                  <button
+                    aria-pressed={state.layer === l.id}
+                    onClick={() =>
+                      chooseLayer(l.id, undefined, l.id === "economicUnits")
+                    }
+                  >
+                    <span>
+                      {l.id === "economicUnits"
+                        ? t("Business activity", "ব্যবসা ও প্রতিষ্ঠান")
+                        : words(l.name, locale)}
+                    </span>
+                    <span className="maps-layer-swatch" aria-hidden="true">
+                      {(l.id === state.layer ? layer : l).kind === "count" ? (
+                        <i
+                          className="maps-layer-dot"
+                          style={{ background: symbolColors(l).fill }}
+                        />
+                      ) : (
+                        (l.id === state.layer ? layer : l).colors.map(
+                          (color) => (
+                            <i key={color} style={{ background: color }} />
+                          ),
+                        )
+                      )}
+                    </span>
+                  </button>
+                  {l.id === "economicUnits" &&
+                    state.layer === l.id &&
+                    sectorControls}
+                </Fragment>
               ))}
             </div>
             <div className="maps-geography-controls">
@@ -939,6 +1033,11 @@ export default function MapsExperience({
                 <Icon name="close" />
               </button>
             </div>
+            {panel === "compare" && layer.sector && (
+              <p className="maps-comparison-sector">
+                {words(layer.name, locale)} · {observation(layer, locale)}
+              </p>
+            )}
             {state.urban ? (
               <UrbanMarkets
                 places={towns}
@@ -1001,6 +1100,14 @@ export default function MapsExperience({
                         "ফিল্টার বা তুলনায় রঙের সীমা বদলায় না। ধূসর মানে তথ্য নেই, শূন্য নয়।",
                       )}
                 </p>
+                {layer.sector?.sectorMeasure === "share" && (
+                  <p>
+                    {t(
+                      "Each sector uses its own percentage bands, shown in the legend. Bands stay fixed across districts, divisions and filters; matching colors in different sectors do not mean equal shares.",
+                      "প্রতিটি খাতের রঙের সীমা আলাদা, সংকেতে সেই হারগুলো দেখানো আছে। জেলা, বিভাগ বা ফিল্টার বদলালে এই সীমা বদলায় না। তাই দুই খাতে একই রং মানে সমান হার নয়।",
+                    )}
+                  </p>
+                )}
                 {state.transport && (
                   <>
                     <h3>{t("Roads & railways", "সড়ক ও রেলপথ")}</h3>
@@ -1067,7 +1174,15 @@ export default function MapsExperience({
                     )}
                   </p>
                 )}
-                {layer.source === "economy" && (
+                {layer.sector && (
+                  <p>
+                    {t(
+                      "These are 18 broad BSIC activity sections, not individual industry clusters. Establishments are classified by their main activity and may be public or nonprofit. Temporary establishments and economic households are excluded from sector measures. Counts do not measure sales, regional GDP, exports, imports or service demand.",
+                      "এখানে BSIC অনুযায়ী কাজের ১৮টি বড় খাত দেখানো হয়েছে, নির্দিষ্ট শিল্পগুচ্ছ নয়। প্রধান কাজ অনুযায়ী প্রতিষ্ঠানের খাত ঠিক করা হয়েছে। সরকারি ও অলাভজনক প্রতিষ্ঠানও আছে। খাতের হিসাবে অস্থায়ী প্রতিষ্ঠান ও অর্থনৈতিক কর্মকাণ্ডে যুক্ত খানা নেই। এই সংখ্যা দিয়ে বিক্রি, আঞ্চলিক জিডিপি, আমদানি, রপ্তানি বা সেবার চাহিদা মাপা যায় না।",
+                    )}
+                  </p>
+                )}
+                {layer.source === "economy" && !layer.sector && (
                   <p>
                     {t(
                       "Counts describe economic activity, not a monetary market size. They include public and nonprofit establishments and household activity, not only registered companies. Ordinary household crop farming is outside the census scope. Persons engaged includes working owners and unpaid family workers, not only salaried employees. Industry profiles cover permanent establishments only; they are not regional GDP, exports or imports.",
@@ -1128,15 +1243,24 @@ export default function MapsExperience({
                         </tr>
                       </thead>
 
-                      {comparisonRows(
-                        regions,
-                        [selected, compared],
-                        state.layer,
-                      ).map(({ metric, cells }) => (
-                        <tbody key={metric.id}>
+                      {comparisonEvidence.map(({ metric, cells }) => (
+                        <tbody
+                          key={
+                            metric.sector
+                              ? metric.sector.sectorMeasure
+                              : metric.id
+                          }
+                        >
                           <tr>
                             <th scope="rowgroup" colSpan={2}>
-                              {words(metric.name, locale)}
+                              {metric.sector
+                                ? words(
+                                    sectorMeasureNames[
+                                      metric.sector.sectorMeasure
+                                    ],
+                                    locale,
+                                  )
+                                : words(metric.name, locale)}
                               <small>
                                 {words(metric.unit, locale)} ·{" "}
                                 <span className="maps-observation-period">
@@ -1157,7 +1281,7 @@ export default function MapsExperience({
                                   <a
                                     className="maps-comparison-value"
                                     href={sourceLink(cell.region, metric)}
-                                    aria-label={`${cell.region.name[locale]} · ${words(metric.name, locale)} · ${t("source", "উৎস")}`}
+                                    aria-label={`${cell.region.name[locale]} · ${words(metric.sector ? sectorMeasureNames[metric.sector.sectorMeasure] : metric.name, locale)} · ${formatValue(cell.value, metric, locale)} · ${t("source", "উৎস")}`}
                                     target="_blank"
                                     rel="noreferrer"
                                   >
@@ -1203,8 +1327,12 @@ export default function MapsExperience({
                     </table>
                     <p className="maps-small">
                       {t(
-                        "Select a value for its source. Division budgets describe the wider region, not a district estimate. — means unavailable.",
-                        "উৎস দেখতে সংখ্যায় চাপ দিন। বিভাগের বাজেট পুরো অঞ্চলের চিত্র, জেলার আলাদা হিসাব নয়। '—' মানে তথ্য নেই।",
+                        layer.sector
+                          ? "Select a value for its source. Sector measures cover permanent establishments only. — means unavailable."
+                          : "Select a value for its source. Division budgets describe the wider region, not a district estimate. — means unavailable.",
+                        layer.sector
+                          ? "উৎস দেখতে সংখ্যায় চাপ দিন। খাতের হিসাবে শুধু স্থায়ী প্রতিষ্ঠান আছে। '—' মানে তথ্য নেই।"
+                          : "উৎস দেখতে সংখ্যায় চাপ দিন। বিভাগের বাজেট পুরো অঞ্চলের চিত্র, জেলার আলাদা হিসাব নয়। '—' মানে তথ্য নেই।",
                       )}
                     </p>
                     {state.layer === "poverty" && (
@@ -1219,13 +1347,19 @@ export default function MapsExperience({
                       <summary>
                         {t("Measure definitions", "তথ্যের সংজ্ঞা")}
                       </summary>
-                      {comparisonRows(
-                        regions,
-                        [selected, compared],
-                        state.layer,
-                      ).map(({ metric }) => (
-                        <p key={metric.id}>
-                          <strong>{words(metric.name, locale)}:</strong>{" "}
+                      {comparisonEvidence.map(({ metric }) => (
+                        <p key={metric.sector?.sectorMeasure || metric.id}>
+                          <strong>
+                            {words(
+                              metric.sector
+                                ? sectorMeasureNames[
+                                    metric.sector.sectorMeasure
+                                  ]
+                                : metric.name,
+                              locale,
+                            )}
+                            :
+                          </strong>{" "}
                           {words(metric.definition, locale)}
                         </p>
                       ))}
@@ -1295,7 +1429,10 @@ export default function MapsExperience({
               </div>
             ) : (
               <>
-                <h1 className={!selected ? "maps-national-title" : undefined}>
+                <h1
+                  tabIndex={-1}
+                  className={!selected ? "maps-national-title" : undefined}
+                >
                   {selected
                     ? selected.name[locale]
                     : t("Bangladesh", "বাংলাদেশ")}
@@ -1309,8 +1446,12 @@ export default function MapsExperience({
                 ) : (
                   <p className="maps-intro">
                     {t(
-                      "Compare places for a business idea, then choose what to investigate locally.",
-                      "ব্যবসার আইডিয়া নিয়ে অঞ্চলগুলো তুলনা করুন, তারপর ঠিক করুন সেখানে কী কী খোঁজ নেবেন।",
+                      layer.sector
+                        ? "Explore where this activity is concentrated. All sector measures cover permanent establishments only."
+                        : "Compare places for a business idea, then choose what to investigate locally.",
+                      layer.sector
+                        ? "কোন অঞ্চলে এই খাতের কাজ বেশি, দেখে নিন। খাতের সব হিসাব শুধু স্থায়ী প্রতিষ্ঠানের।"
+                        : "ব্যবসার আইডিয়া নিয়ে অঞ্চলগুলো তুলনা করুন, তারপর ঠিক করুন সেখানে কী কী খোঁজ নেবেন।",
                     )}
                   </p>
                 )}
@@ -1366,55 +1507,114 @@ export default function MapsExperience({
                           )}
                       </p>
                     </details>
-                    <dl className="maps-facts">
-                      {(
-                        [
-                          "population",
-                          "density",
-                          "literacy",
-                          "internet",
-                        ] as LayerId[]
-                      )
-                        .filter((id) => id !== state.layer)
-                        .map((id) => (
-                          <div key={id}>
-                            <dt>
-                              <a
-                                href={sourceLink(selected, layerById(id))}
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                {words(layerById(id).name, locale)}
-                              </a>
-                            </dt>
-                            <dd>{value(selected, id)}</dd>
-                            <dd className="maps-fact-context">
-                              <small>
-                                {words(layerById(id).unit, locale)} ·{" "}
-                                <span className="maps-observation-period">
-                                  {observation(layerById(id), locale)}
-                                </span>
-                              </small>
-                              {id === "internet" && (
-                                <SurveyInterval
-                                  region={selected}
-                                  locale={locale}
-                                />
-                              )}
-                            </dd>
-                          </div>
-                        ))}
-                    </dl>
-                    {urbanPlaces.some((p) => p.district === selected.id) && (
+                    {layer.sector ? (
+                      <dl className="maps-facts">
+                        {sectorFacts
+                          .filter(
+                            (metric) =>
+                              metric.sector!.sectorMeasure !==
+                              state.sectorMeasure,
+                          )
+                          .map((metric) => (
+                            <div key={metric.sector!.sectorMeasure}>
+                              <dt>
+                                <a
+                                  href={sourceLink(selected, metric)}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  {words(
+                                    sectorMeasureNames[
+                                      metric.sector!.sectorMeasure
+                                    ],
+                                    locale,
+                                  )}
+                                </a>
+                              </dt>
+                              <dd>{value(selected, metric)}</dd>
+                              <dd className="maps-fact-context">
+                                <small>
+                                  {words(metric.unit, locale)} ·{" "}
+                                  <span className="maps-observation-period">
+                                    {observation(metric, locale)}
+                                  </span>
+                                </small>
+                              </dd>
+                            </div>
+                          ))}
+                      </dl>
+                    ) : (
+                      <dl className="maps-facts">
+                        {(
+                          [
+                            "population",
+                            "density",
+                            "literacy",
+                            "internet",
+                          ] as LayerId[]
+                        )
+                          .filter((id) => id !== state.layer)
+                          .map((id) => (
+                            <div key={id}>
+                              <dt>
+                                <a
+                                  href={sourceLink(selected, layerById(id))}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  {words(layerById(id).name, locale)}
+                                </a>
+                              </dt>
+                              <dd>{value(selected, id)}</dd>
+                              <dd className="maps-fact-context">
+                                <small>
+                                  {words(layerById(id).unit, locale)} ·{" "}
+                                  <span className="maps-observation-period">
+                                    {observation(layerById(id), locale)}
+                                  </span>
+                                </small>
+                                {id === "internet" && (
+                                  <SurveyInterval
+                                    region={selected}
+                                    locale={locale}
+                                  />
+                                )}
+                              </dd>
+                            </div>
+                          ))}
+                      </dl>
+                    )}
+                    {!layer.sector &&
+                      urbanPlaces.some((p) => p.district === selected.id) && (
+                        <button
+                          className="maps-text-button"
+                          onClick={() => openUrban(selected.id)}
+                        >
+                          {t("Explore cities & towns", "জেলার শহরগুলো দেখুন")}
+                          <Icon name="arrow" />
+                        </button>
+                      )}
+                    {layer.sector ? (
                       <button
                         className="maps-text-button"
-                        onClick={() => openUrban(selected.id)}
+                        onClick={() => {
+                          chooseSector({ sector: "", sectorMeasure: "units" });
+                          focusInsightsHeading();
+                        }}
                       >
-                        {t("Explore cities & towns", "জেলার শহরগুলো দেখুন")}
+                        {t("All business activity", "সব অর্থনৈতিক কর্মকাণ্ড")}
                         <Icon name="arrow" />
                       </button>
+                    ) : (
+                      <BusinessProfile
+                        region={selected}
+                        locale={locale}
+                        onSectorSelect={(sector) => {
+                          chooseSector({ sector, sectorMeasure: "units" });
+                          focusInsightsHeading();
+                        }}
+                      />
                     )}
-                    <BusinessProfile region={selected} locale={locale} />
                     <div className="maps-action-stack">
                       <button
                         className="maps-text-button"
@@ -1455,7 +1655,13 @@ export default function MapsExperience({
                       </div>
                       <div>
                         <strong>
-                          {num(state.level === "district" ? 64 : 8)}
+                          {num(
+                            regions.filter(
+                              (r) =>
+                                r.level === state.level &&
+                                metricValue(r, layer) !== null,
+                            ).length,
+                          )}
                         </strong>
                         <span>
                           {state.level === "district"
@@ -1500,13 +1706,13 @@ export default function MapsExperience({
                             {r.name[locale]}
                             <i
                               style={{
-                                width: `${(100 * metricValue(r, state.layer)!) / (metricValue(top[0], state.layer) || 1)}%`,
+                                width: `${(100 * metricValue(r, layer)!) / (metricValue(top[0], layer) || 1)}%`,
                               }}
                             />
                           </span>
                           <strong>
                             {formatValue(
-                              metricValue(r, state.layer),
+                              metricValue(r, layer),
                               layer,
                               locale,
                               true,
@@ -1530,11 +1736,15 @@ export default function MapsExperience({
                         </button>
                       ))}
                     </div>
-                    {!visible.length && (
+                    {!top.length && (
                       <p role="status">
                         {t(
-                          "No regions match. Clear the filters to explore again.",
-                          "কোনো অঞ্চল মেলেনি। ফিল্টার মুছে আবার দেখুন।",
+                          visible.length
+                            ? "This measure is unavailable for the selected regions."
+                            : "No regions match. Clear the filters to explore again.",
+                          visible.length
+                            ? "বাছাই করা অঞ্চলের জন্য এই তথ্য নেই।"
+                            : "কোনো অঞ্চল মেলেনি। ফিল্টার মুছে আবার দেখুন।",
                         )}
                       </p>
                     )}
@@ -1657,10 +1867,10 @@ export default function MapsExperience({
                         style={{ background: c }}
                         title={
                           i === 0
-                            ? `< ${num(layer.breaks[0])}`
+                            ? `< ${legendNumber(layer.breaks[0])}`
                             : i === layer.breaks.length
-                              ? `${num(layer.breaks[i - 1])}+`
-                              : `${num(layer.breaks[i - 1])}–<${num(layer.breaks[i])}`
+                              ? `${legendNumber(layer.breaks[i - 1])}+`
+                              : `${legendNumber(layer.breaks[i - 1])}–<${legendNumber(layer.breaks[i])}`
                         }
                       />
                     ))}
@@ -1668,7 +1878,7 @@ export default function MapsExperience({
                   <div className="maps-ticks">
                     <span>{num(0)}</span>
                     {layer.breaks.map((b) => (
-                      <span key={b}>{num(b)}</span>
+                      <span key={b}>{legendNumber(b)}</span>
                     ))}
                     <span>+</span>
                   </div>
@@ -1679,7 +1889,7 @@ export default function MapsExperience({
                     const max = Math.max(
                       ...regions
                         .filter((r) => r.level === state.level)
-                        .map((r) => metricValue(r, state.layer) || 0),
+                        .map((r) => metricValue(r, layer) || 0),
                     );
                     return (
                       <div key={f}>
@@ -1765,7 +1975,10 @@ export default function MapsExperience({
             <small>
               {sourceName}
               {layer.kind === "rate"
-                ? " · " + t("Fixed bands", "স্থির সীমা")
+                ? " · " +
+                  (layer.sector
+                    ? t("Sector-specific bands", "খাতভেদে স্থির সীমা")
+                    : t("Fixed bands", "স্থির সীমা"))
                 : ""}
             </small>
           </section>
@@ -1843,8 +2056,48 @@ export default function MapsExperience({
           ) : (
             <>
               <h2>{words(layer.name, locale)}</h2>
-              <p>{words(layer.definition, locale)}</p>
-              {table(visible)}
+              {state.layer === "economicUnits" &&
+                state.view === "table" &&
+                sectorControls}
+              {layer.sector ? (
+                <>
+                  <p className="maps-small">
+                    {t(
+                      "Local share is a percentage of all permanent establishments in the region. Highest values of the selected measure appear first. Select a value for its source.",
+                      "অঞ্চলের সব স্থায়ী প্রতিষ্ঠানের মধ্যে এই খাতের হারই স্থানীয় অংশ। বাছাই করা হিসাবের বড় সংখ্যা আগে দেখানো হয়েছে। উৎস দেখতে সংখ্যায় চাপ দিন।",
+                    )}
+                  </p>
+                  <details className="maps-measure-notes">
+                    <summary>
+                      {t("Measure definitions", "তথ্যের সংজ্ঞা")}
+                    </summary>
+                    {sectorFacts.map((metric) => (
+                      <p key={metric.sector!.sectorMeasure}>
+                        <strong>
+                          {words(
+                            sectorMeasureNames[metric.sector!.sectorMeasure],
+                            locale,
+                          )}
+                          :
+                        </strong>{" "}
+                        {words(metric.definition, locale)}
+                      </p>
+                    ))}
+                  </details>
+                </>
+              ) : (
+                <p>{words(layer.definition, locale)}</p>
+              )}
+              {table(
+                layer.sector
+                  ? [...visible].sort(
+                      (a, b) =>
+                        (metricValue(b, layer) ?? -1) -
+                          (metricValue(a, layer) ?? -1) ||
+                        a.name.en.localeCompare(b.name.en),
+                    )
+                  : visible,
+              )}
             </>
           )}
           {!visible.length && (
