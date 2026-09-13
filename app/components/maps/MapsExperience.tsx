@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import SiteBrand from "../SiteBrand";
 import SurveyInterval from "./SurveyInterval";
+import Icon from "./MapIcon";
 import BusinessProfile from "./BusinessProfile";
 import UrbanMarkets from "./UrbanMarkets";
 import { urbanName, urbanSource, urbanMatches } from "./urban";
@@ -41,46 +42,6 @@ const MapCanvas = dynamic(() => import("./MapCanvas"), {
   ),
 });
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-function Icon({
-  name,
-}: {
-  name:
-    | "layers"
-    | "search"
-    | "close"
-    | "share"
-    | "arrow"
-    | "info"
-    | "compare"
-    | "chevron"
-    | "factory"
-    | "anchor"
-    | "gate"
-    | "plane";
-}) {
-  const paths = {
-    layers: "M12 3 2 8l10 5 10-5-10-5ZM2 12l10 5 10-5M2 16l10 5 10-5",
-    search: "m16 16 5 5M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z",
-    close: "m6 6 12 12M18 6 6 18",
-    share:
-      "m10 13 4-4M8 16l-1 1a4 4 0 0 1-6-6l5-5a4 4 0 0 1 6 0M16 8l1-1a4 4 0 0 1 6 6l-5 5a4 4 0 0 1-6 0",
-    arrow: "M4 12h16m-6-6 6 6-6 6",
-    info: "M12 11v6m0-10v1M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z",
-    compare: "M8 4v16M16 4v16M3 8l5-4 5 4M11 16l5 4 5-4",
-    chevron: "m6 9 6 6 6-6",
-    factory: "M3 21V10l6 3V7l6 4V3h4l2 18H3ZM7 17h1m4 0h1m4 0h1",
-    anchor:
-      "M12 7v14M5 11H2v4a10 10 0 0 0 20 0v-4h-3M8 12h8M15 4a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z",
-    plane:
-      "M12 2c-1 0-2 2-2 4v3L2 14v2l8-2v4l-3 2v1l5-1 5 1v-1l-3-2v-4l8 2v-2l-8-5V6c0-2-1-4-2-4Z",
-    gate: "M4 21V8h16v13M2 8l10-5 10 5M8 21v-7h8v7M2 21h20",
-  };
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d={paths[name]} />
-    </svg>
-  );
-}
 export default function MapsExperience({
   locale,
   regions,
@@ -94,6 +55,7 @@ export default function MapsExperience({
 }) {
   const t = (en: string, bn: string) => (locale === "en" ? en : bn);
   const [state, setState] = useState<ExplorerState>(initialExplorer),
+    [contextOpen, setContextOpen] = useState(true),
     [hydrated, setHydrated] = useState(false),
     [layersOpen, setLayersOpen] = useState(false),
     [detailOpen, setDetailOpen] = useState(false),
@@ -332,7 +294,10 @@ export default function MapsExperience({
       place: "",
       urbanCompare: "",
     });
-    if (innerWidth < 760 && !keepOpen) setLayersOpen(false);
+    if (innerWidth < 760 && !keepOpen) {
+      setLayersOpen(false);
+      layerTrigger.current?.focus();
+    }
   }
   function toggleDetails(next: "insights" | "sources" | "compare") {
     rememberDetailOpener();
@@ -379,7 +344,9 @@ export default function MapsExperience({
     <table>
       <caption>
         {words(layer.name, locale)} · {words(layer.unit, locale)} ·{" "}
-        {observation(layer, locale)}
+        <span className="maps-observation-period">
+          {observation(layer, locale)}
+        </span>
       </caption>
       <thead>
         <tr>
@@ -632,7 +599,12 @@ export default function MapsExperience({
                 <span>
                   {words(layer.name, locale)}
                   <small>
-                    {words(layer.unit, locale)} · {observation(layer, locale)}
+                    <span className="maps-layer-unit">
+                      {words(layer.unit, locale)} ·{" "}
+                    </span>
+                    <span className="maps-observation-period">
+                      {observation(layer, locale)}
+                    </span>
                   </small>
                 </span>
                 <Icon name="chevron" />
@@ -681,7 +653,7 @@ export default function MapsExperience({
             aria-label={t("Map layers", "মানচিত্রের তথ্যস্তর")}
           >
             <div className="maps-panel-heading">
-              <h2>{t("Explore the data", "তথ্য ঘুরে দেখুন")}</h2>
+              <h2>{t("Map layers", "মানচিত্রের তথ্যস্তর")}</h2>
               <button
                 className="maps-icon-button"
                 aria-label={t("Close layers", "তথ্যস্তর বন্ধ করুন")}
@@ -694,7 +666,7 @@ export default function MapsExperience({
               </button>
             </div>
             <label className="maps-topic-picker">
-              {t("Explore", "বিষয়")}
+              {t("Topic", "বিষয়")}
               <select
                 aria-label={t("Explore topic", "বিষয় বেছে নিন")}
                 value={state.lens}
@@ -733,106 +705,161 @@ export default function MapsExperience({
                 </button>
               ))}
             </div>
-            <label>
-              {t("Geographic level", "অঞ্চলের ধরন")}
-              <select
-                value={state.level}
-                disabled={layer.source === "hies"}
-                onChange={(e) =>
-                  change({
-                    level: e.target.value as "district" | "division",
-                    region: "",
-                    compare: "",
-                  })
-                }
-              >
-                <option value="district">{t("Districts", "জেলা")}</option>
-                <option value="division">{t("Divisions", "বিভাগ")}</option>
-              </select>
-            </label>
-            {layer.source === "hies" && (
-              <p className="maps-small">
-                {t(
-                  "Income and consumption are available by division.",
-                  "আয় ও ভোগব্যয়ের তথ্য শুধু বিভাগ অনুযায়ী আছে।",
-                )}
-              </p>
-            )}
-            <label>
-              {t("Focus on a division", "বিভাগ বেছে নিন")}
-              <select
-                value={state.division}
-                onChange={(e) =>
-                  change({ division: e.target.value, region: "", compare: "" })
-                }
-              >
-                <option value="">{t("All Bangladesh", "পুরো বাংলাদেশ")}</option>
-                {divisionRegions.map((r) => (
-                  <option key={r.id} value={r.key}>
-                    {r.name[locale]}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <fieldset className="maps-context-options">
-              <legend>{t("Trade & connections", "বাণিজ্য ও যোগাযোগ")}</legend>
-              <label className="maps-check">
-                <input
-                  type="checkbox"
-                  checked={state.transport}
-                  onChange={(e) => change({ transport: e.target.checked })}
-                />
-                {t("Major roads & railways", "বড় সড়ক ও রেলপথ")}
-              </label>
-              <p className="maps-small">
-                {t(
-                  "Mapped infrastructure, not routes, service frequency or freight volumes.",
-                  "সড়ক ও রেলপথের অবস্থান। চলাচলের সময়সূচি বা পণ্য পরিবহনের পরিমাণ নয়।",
-                )}
-              </p>
-              <label className="maps-check">
-                <input
-                  type="checkbox"
-                  checked={state.industry}
-                  onChange={(e) => change({ industry: e.target.checked })}
-                />
-                {t("Industrial zones & parks", "শিল্পাঞ্চল ও প্রযুক্তি পার্ক")}
-              </label>
-              <p className="maps-small">
-                {t(
-                  "EPZs, selected BSCIC estates, economic zones and technology parks. Select a site for its source and status.",
-                  "ইপিজেড, বাছাই করা বিসিক শিল্পনগরী, অর্থনৈতিক অঞ্চল ও প্রযুক্তি পার্ক। কোনো স্থান বেছে নিলে তথ্যের উৎস ও কার্যক্রমের অবস্থা পাবেন।",
-                )}
-              </p>
-              <label className="maps-check">
-                <input
-                  type="checkbox"
-                  checked={state.ports}
-                  onChange={(e) => change({ ports: e.target.checked })}
-                />
-                {t("Ports & airports", "বন্দর ও বিমানবন্দর")}
-              </label>
-              <p className="maps-small">
-                {t(
-                  "3 seaports, 6 selected land ports and 8 airports. Reference locations, not live services.",
-                  "৩টি সমুদ্রবন্দর, বাছাই করা ৬টি স্থলবন্দর ও ৮টি বিমানবন্দর। অবস্থান দেখানো হয়েছে, এই মুহূর্তের চলাচল নয়।",
-                )}
-              </p>
-              {(state.transport || state.industry || state.ports) && (
-                <button
-                  className="maps-text-button"
-                  onClick={() =>
-                    change({ transport: false, industry: false, ports: false })
+            <div className="maps-geography-controls">
+              <label>
+                {t("Geographic level", "অঞ্চলের ধরন")}
+                <select
+                  value={state.level}
+                  disabled={layer.source === "hies"}
+                  aria-describedby={
+                    layer.source === "hies" ? "maps-level-note" : undefined
+                  }
+                  onChange={(e) =>
+                    change({
+                      level: e.target.value as "district" | "division",
+                      region: "",
+                      compare: "",
+                    })
                   }
                 >
-                  {t("Clear context layers", "যোগ করা তথ্যস্তর সরান")}
-                </button>
+                  <option value="district">{t("Districts", "জেলা")}</option>
+                  <option value="division">{t("Divisions", "বিভাগ")}</option>
+                </select>
+              </label>
+              {layer.source === "hies" && (
+                <p id="maps-level-note" className="maps-small">
+                  {t(
+                    "Income and consumption are available by division.",
+                    "আয় ও ভোগব্যয়ের তথ্য শুধু বিভাগ অনুযায়ী আছে।",
+                  )}
+                </p>
               )}
-            </fieldset>
-            <details className="maps-refine">
-              <summary>{t("Refine the map", "আরও বাছাই করুন")}</summary>
               <label>
-                {t("Layer opacity", "তথ্যস্তরের গাঢ়ত্ব")}
+                {t("Focus on a division", "বিভাগ বেছে নিন")}
+                <select
+                  value={state.division}
+                  onChange={(e) =>
+                    change({
+                      division: e.target.value,
+                      region: "",
+                      compare: "",
+                    })
+                  }
+                >
+                  <option value="">
+                    {t("All Bangladesh", "পুরো বাংলাদেশ")}
+                  </option>
+                  {divisionRegions.map((r) => (
+                    <option key={r.id} value={r.key}>
+                      {r.name[locale]}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+            <details
+              className="maps-context-options"
+              open={contextOpen}
+              onToggle={(event) => setContextOpen(event.currentTarget.open)}
+            >
+              <summary>
+                {t("Trade & connections", "বাণিজ্য ও যোগাযোগ")}
+                {(state.transport || state.industry || state.ports) && (
+                  <span>
+                    {t(
+                      `${[state.transport, state.industry, state.ports].filter(Boolean).length} on`,
+                      `${num([state.transport, state.industry, state.ports].filter(Boolean).length)}টি চালু`,
+                    )}
+                  </span>
+                )}
+              </summary>
+              <fieldset>
+                <legend className="sr-only">
+                  {t("Trade & connections", "বাণিজ্য ও যোগাযোগ")}
+                </legend>
+                <label className="maps-check maps-context-option">
+                  <input
+                    type="checkbox"
+                    aria-labelledby="maps-transport-title"
+                    aria-describedby="maps-transport-description"
+                    checked={state.transport}
+                    onChange={(e) => change({ transport: e.target.checked })}
+                  />
+                  <span>
+                    <span id="maps-transport-title">
+                      {t("Major roads & railways", "বড় সড়ক ও রেলপথ")}
+                    </span>
+                    <small id="maps-transport-description">
+                      {t(
+                        "Mapped infrastructure, not routes, service frequency or freight volumes.",
+                        "সড়ক ও রেলপথের অবস্থান। চলাচলের সময়সূচি বা পণ্য পরিবহনের পরিমাণ নয়।",
+                      )}
+                    </small>
+                  </span>
+                </label>
+                <label className="maps-check maps-context-option">
+                  <input
+                    type="checkbox"
+                    aria-labelledby="maps-industry-title"
+                    aria-describedby="maps-industry-description"
+                    checked={state.industry}
+                    onChange={(e) => change({ industry: e.target.checked })}
+                  />
+                  <span>
+                    <span id="maps-industry-title">
+                      {t(
+                        "Industrial zones & parks",
+                        "শিল্পাঞ্চল ও প্রযুক্তি পার্ক",
+                      )}
+                    </span>
+                    <small id="maps-industry-description">
+                      {t(
+                        "EPZs, selected BSCIC estates, economic zones and technology parks. Select a site for its source and status.",
+                        "ইপিজেড, বাছাই করা বিসিক শিল্পনগরী, অর্থনৈতিক অঞ্চল ও প্রযুক্তি পার্ক। কোনো স্থান বেছে নিলে তথ্যের উৎস ও কার্যক্রমের অবস্থা পাবেন।",
+                      )}
+                    </small>
+                  </span>
+                </label>
+                <label className="maps-check maps-context-option">
+                  <input
+                    type="checkbox"
+                    aria-labelledby="maps-ports-title"
+                    aria-describedby="maps-ports-description"
+                    checked={state.ports}
+                    onChange={(e) => change({ ports: e.target.checked })}
+                  />
+                  <span>
+                    <span id="maps-ports-title">
+                      {t("Ports & airports", "বন্দর ও বিমানবন্দর")}
+                    </span>
+                    <small id="maps-ports-description">
+                      {t(
+                        "3 seaports, 6 selected land ports and 8 airports. Reference locations, not live services.",
+                        "৩টি সমুদ্রবন্দর, বাছাই করা ৬টি স্থলবন্দর ও ৮টি বিমানবন্দর। অবস্থান দেখানো হয়েছে, এই মুহূর্তের চলাচল নয়।",
+                      )}
+                    </small>
+                  </span>
+                </label>
+                {(state.transport || state.industry || state.ports) && (
+                  <button
+                    className="maps-text-button"
+                    onClick={() =>
+                      change({
+                        transport: false,
+                        industry: false,
+                        ports: false,
+                      })
+                    }
+                  >
+                    {t("Hide these layers", "এই তথ্যস্তরগুলো সরান")}
+                  </button>
+                )}
+              </fieldset>
+            </details>
+            <details className="maps-refine">
+              <summary>{t("Map appearance", "মানচিত্রের সেটিংস")}</summary>
+              <label>
+                {t("Colour strength", "রঙের গাঢ়ত্ব")}
                 <input
                   type="range"
                   min=".35"
@@ -860,7 +887,7 @@ export default function MapsExperience({
               </span>
               {(state.division || state.minimum > 0) && (
                 <button onClick={() => change({ division: "", minimum: 0 })}>
-                  {t("Clear", "মুছুন")}
+                  {t("Reset filters", "বাছাই সরান")}
                 </button>
               )}
             </div>
@@ -910,7 +937,9 @@ export default function MapsExperience({
                 <p>{words(layer.definition, locale)}</p>
                 <dl>
                   <dt>{t("Observation", "তথ্যের বছর")}</dt>
-                  <dd>{observation(layer, locale)}</dd>
+                  <dd className="maps-observation-period">
+                    {observation(layer, locale)}
+                  </dd>
                   <dt>{t("Published", "প্রকাশ")}</dt>
                   <dd>
                     {layer.source === "census"
@@ -1075,19 +1104,19 @@ export default function MapsExperience({
                       </caption>
                       <thead>
                         <tr>
-                          <th scope="col">{t("Measure", "পরিমাপ")}</th>
                           <th scope="col">{selected.name[locale]}</th>
                           <th scope="col">{compared.name[locale]}</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        {comparisonRows(
-                          regions,
-                          [selected, compared],
-                          state.layer,
-                        ).map(({ metric, cells }) => (
-                          <tr key={metric.id}>
-                            <th scope="row">
+
+                      {comparisonRows(
+                        regions,
+                        [selected, compared],
+                        state.layer,
+                      ).map(({ metric, cells }) => (
+                        <tbody key={metric.id}>
+                          <tr>
+                            <th scope="rowgroup" colSpan={2}>
                               {words(metric.name, locale)}
                               <small>
                                 {words(metric.unit, locale)} ·{" "}
@@ -1101,10 +1130,13 @@ export default function MapsExperience({
                                 </small>
                               )}
                             </th>
+                          </tr>
+                          <tr>
                             {cells.map((cell, i) => (
                               <td key={i}>
                                 {cell.region && cell.value !== null ? (
                                   <a
+                                    className="maps-comparison-value"
                                     href={sourceLink(cell.region, metric)}
                                     aria-label={`${cell.region.name[locale]} · ${words(metric.name, locale)} · ${t("source", "উৎস")}`}
                                     target="_blank"
@@ -1147,8 +1179,8 @@ export default function MapsExperience({
                               </td>
                             ))}
                           </tr>
-                        ))}
-                      </tbody>
+                        </tbody>
+                      ))}
                     </table>
                     <p className="maps-small">
                       {t(
@@ -1247,14 +1279,20 @@ export default function MapsExperience({
                     ? selected.name[locale]
                     : t("Bangladesh", "বাংলাদেশ")}
                 </h1>
-                <p className="maps-intro">
-                  {selected
-                    ? words(layer.definition, locale)
-                    : t(
-                        "Compare places for a business idea, then choose what to investigate locally.",
-                        "ব্যবসার আইডিয়া নিয়ে অঞ্চলগুলো তুলনা করুন, তারপর ঠিক করুন সেখানে কী কী খোঁজ নেবেন।",
-                      )}
-                </p>
+                {selected ? (
+                  <p className="maps-region-kind">
+                    {selected.level === "division"
+                      ? t("Division", "বিভাগ")
+                      : t("District", "জেলা")}
+                  </p>
+                ) : (
+                  <p className="maps-intro">
+                    {t(
+                      "Compare places for a business idea, then choose what to investigate locally.",
+                      "ব্যবসার আইডিয়া নিয়ে অঞ্চলগুলো তুলনা করুন, তারপর ঠিক করুন সেখানে কী কী খোঁজ নেবেন।",
+                    )}
+                  </p>
+                )}
                 {selected ? (
                   <>
                     <div className="maps-primary-value">
@@ -1262,7 +1300,9 @@ export default function MapsExperience({
                       <strong>{value(selected)}</strong>
                       <small>
                         {words(layer.unit, locale)} ·{" "}
-                        {observation(layer, locale)}
+                        <span className="maps-observation-period">
+                          {observation(layer, locale)}
+                        </span>
                       </small>
                     </div>
                     {state.layer === "poverty" && (
@@ -1284,6 +1324,27 @@ export default function MapsExperience({
                         </strong>
                       </p>
                     )}
+                    <details className="maps-metric-definition">
+                      <summary>
+                        {t("What this measures", "এই তথ্য কী বোঝায়")}
+                      </summary>
+                      <p>
+                        {words(layer.definition, locale)
+                          .split(/([0-9০-৯]{4}–[0-9০-৯]{2,4})/g)
+                          .map((part, index) =>
+                            index % 2 ? (
+                              <span
+                                className="maps-observation-period"
+                                key={index}
+                              >
+                                {part}
+                              </span>
+                            ) : (
+                              part
+                            ),
+                          )}
+                      </p>
+                    </details>
                     <dl className="maps-facts">
                       {(
                         [
@@ -1305,8 +1366,8 @@ export default function MapsExperience({
                                 {words(layerById(id).name, locale)}
                               </a>
                             </dt>
-                            <dd>
-                              {value(selected, id)}
+                            <dd>{value(selected, id)}</dd>
+                            <dd className="maps-fact-context">
                               <small>
                                 {words(layerById(id).unit, locale)} ·{" "}
                                 <span className="maps-observation-period">
@@ -1335,14 +1396,14 @@ export default function MapsExperience({
                     <BusinessProfile region={selected} locale={locale} />
                     <div className="maps-action-stack">
                       <button
-                        className="maps-wide-button"
+                        className="maps-text-button"
                         onClick={() => toggleDetails("compare")}
                       >
-                        <Icon name="compare" />
                         {t(
                           "Compare with another region",
                           "অন্য অঞ্চলের সঙ্গে তুলনা",
                         )}
+                        <Icon name="compare" />
                       </button>
                       <button
                         className="maps-text-button"
@@ -1359,7 +1420,10 @@ export default function MapsExperience({
                 ) : (
                   <>
                     <p className="maps-overview-measure">
-                      {words(layer.name, locale)} · {observation(layer, locale)}
+                      {words(layer.name, locale)} ·{" "}
+                      <span className="maps-observation-period">
+                        {observation(layer, locale)}
+                      </span>
                     </p>
                     <div className="maps-overview-numbers">
                       <div>
@@ -1384,7 +1448,9 @@ export default function MapsExperience({
                     </p>
                     <div className="maps-rank-title">
                       <h3>{words(layer.name, locale)}</h3>
-                      <span>{observation(layer, locale)}</span>
+                      <span className="maps-observation-period">
+                        {observation(layer, locale)}
+                      </span>
                     </div>
                     <p className="maps-small">
                       {t(
@@ -1403,13 +1469,13 @@ export default function MapsExperience({
                     <div className="maps-ranked">
                       {top.map((r, i) => (
                         <button key={r.id} onClick={() => choose(r.id)}>
-                          <span>
-                            {state.layer === "poverty" ||
-                            state.layer === "internet"
-                              ? ""
-                              : num(i + 1)}
-                          </span>
-                          <span>
+                          {state.layer !== "poverty" &&
+                            state.layer !== "internet" && (
+                              <span className="maps-rank-number">
+                                {num(i + 1)}
+                              </span>
+                            )}
+                          <span className="maps-ranked-place">
                             {r.name[locale]}
                             <i
                               style={{
@@ -1525,7 +1591,6 @@ export default function MapsExperience({
                   className="maps-source-link"
                   onClick={() => toggleDetails("sources")}
                 >
-                  <Icon name="info" />
                   <span>{sourceName}</span>
                   <Icon name="arrow" />
                 </button>
@@ -1552,7 +1617,11 @@ export default function MapsExperience({
               </button>
             </div>
             <p>
-              {words(layer.unit, locale)} · {observation(layer, locale)} ·{" "}
+              {words(layer.unit, locale)} ·{" "}
+              <span className="maps-observation-period">
+                {observation(layer, locale)}
+              </span>{" "}
+              ·{" "}
               {state.level === "district"
                 ? t("Districts", "জেলা")
                 : t("Divisions", "বিভাগ")}
@@ -1762,7 +1831,10 @@ export default function MapsExperience({
           )}
           {!state.urban && (
             <p>
-              {sourceName} · {observation(layer, locale)}
+              {sourceName} ·{" "}
+              <span className="maps-observation-period">
+                {observation(layer, locale)}
+              </span>
             </p>
           )}
         </section>

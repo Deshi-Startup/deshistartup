@@ -17,9 +17,11 @@ export default function SurveyInterval({
           target="_blank"
           rel="noreferrer"
         >
-          {bounds
-            .map((value) => formatValue(value, layerById("internet"), locale))
-            .join("–")}
+          <span className="maps-observation-period">
+            {bounds
+              .map((value) => formatValue(value, layerById("internet"), locale))
+              .join("–")}
+          </span>
           {locale === "en" ? " · 95% interval" : " · ৯৫% আস্থার সীমা"}
         </a>
       ) : locale === "en" ? (

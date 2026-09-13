@@ -295,6 +295,8 @@
   color: white;
 }
 .maps-workspace {
+  --maps-layer-width: 300px;
+  --maps-layer-left: 24px;
   flex: 1;
   position: relative;
   min-height: 0;
@@ -410,8 +412,34 @@
 }
 .maps-layer-panel {
   --maps-enter-x: -8px;
-  left: 24px;
-  width: 280px;
+  left: var(--maps-layer-left);
+  width: var(--maps-layer-width);
+  padding: 18px;
+  scroll-padding-block: 64px 16px;
+}
+.maps-layer-panel > .maps-panel-heading {
+  position: sticky;
+  top: -18px;
+  z-index: 2;
+  margin: -18px -18px 4px;
+  padding: 6px 18px;
+  background: #fff;
+}
+.deshi-maps .maps-layer-panel .maps-icon-button {
+  width: 44px;
+  min-height: 44px;
+  margin-inline-end: -18px;
+}
+.maps-layer-panel select {
+  min-height: 44px;
+}
+.maps-geography-controls {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+.deshi-maps .maps-geography-controls > label {
+  margin: 0;
 }
 .maps-detail-panel {
   --maps-enter-x: 8px;
@@ -448,16 +476,18 @@
   color: var(--maps-muted);
 }
 .maps-layer-options {
-  margin-top: 18px;
+  margin-top: 12px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 .maps-layer-options button {
   justify-content: space-between;
   text-align: left;
   border-color: transparent;
-  min-height: 46px;
+  min-height: 44px;
+  width: calc(100% + 20px);
+  margin-inline: -10px;
   padding: 9px 10px;
   font-size: 13px;
   font-weight: 400;
@@ -473,7 +503,6 @@
   width: 36px;
   height: 12px;
   flex: 0 0 36px;
-  margin-left: 12px;
   overflow: hidden;
   border-radius: 3px;
 }
@@ -503,59 +532,103 @@
   display: grid;
   gap: 12px;
 }
-.maps-action-stack > * {
+.deshi-maps .maps-action-stack > * {
   min-width: 0;
   margin-block: 0;
 }
-.maps-refine {
-  margin-top: 20px;
-  border-top: 1px solid var(--maps-line);
-  padding-top: 16px;
+/* Align action labels with the evidence while retaining padded hover/focus targets. */
+.deshi-maps .maps-detail-panel :is(.maps-text-button, .maps-source-link) {
+  width: calc(100% + 24px);
+  margin-inline: -12px;
 }
-.maps-refine summary {
-  font-weight: 600;
-  font-size: 12px;
-  cursor: pointer;
-  min-height: 44px;
+/* One disclosure pattern across profiles, comparisons, source notes and trade controls. */
+:is(.maps-detail-panel details, .maps-context-options, .maps-refine) > summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  padding-block: 10px;
   list-style: none;
+  cursor: pointer;
 }
-.maps-refine summary::-webkit-details-marker {
+:is(.maps-detail-panel details, .maps-context-options, .maps-refine)
+  > summary::-webkit-details-marker {
   display: none;
 }
-.maps-refine summary::after {
+:is(.maps-detail-panel details, .maps-context-options, .maps-refine)
+  > summary::after {
   content: "";
-  width: 6px;
-  height: 6px;
+  flex: 0 0 7px;
+  height: 7px;
   margin-right: 4px;
   border-right: 1.5px solid currentColor;
   border-bottom: 1.5px solid currentColor;
-  transform: rotate(45deg);
+  transform: translateY(-2px) rotate(45deg);
   transition: transform 180ms var(--maps-ease);
 }
-.maps-refine[open] summary::after {
-  transform: rotate(225deg);
+:is(.maps-detail-panel details, .maps-context-options, .maps-refine)[open]
+  > summary::after {
+  transform: translateY(2px) rotate(225deg);
+}
+.maps-refine {
+  margin-top: 16px;
+  border-top: 1px solid var(--maps-line);
+  padding-top: 8px;
+}
+.maps-refine summary {
+  font-weight: 500;
+  font-size: 12px;
+}
+.deshi-maps .maps-refine > label:first-of-type {
+  margin-top: 8px;
+}
+.deshi-maps .maps-refine .maps-check {
+  min-height: 44px;
+  margin-top: 8px;
+  font-weight: 500;
 }
 .maps-panel-foot {
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid var(--maps-line);
-  margin-top: 20px;
-  padding-top: 15px;
+  margin-top: 16px;
+  padding-top: 12px;
   font-size: 11px;
   color: var(--maps-muted);
 }
 .maps-panel-foot button {
-  min-height: 30px;
+  min-height: 44px;
   padding: 4px 8px;
   font-size: 11px;
 }
 .maps-intro {
   margin-top: 15px !important;
   font-size: 13px;
+  line-height: 1.75;
+  color: var(--maps-muted);
+}
+.deshi-maps .maps-region-kind {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--maps-muted);
+}
+.maps-metric-definition {
+  margin-top: 4px;
+  font-size: 12px;
+}
+.maps-metric-definition > summary {
+  min-height: 44px;
+  align-content: center;
+  cursor: pointer;
+  color: var(--maps-green);
+  font-weight: 500;
+}
+.deshi-maps .maps-metric-definition p {
+  margin: 0 0 12px;
   line-height: 1.75;
   color: var(--maps-muted);
 }
@@ -602,6 +675,7 @@
 }
 .maps-ranked button {
   display: flex;
+  align-items: baseline;
   justify-content: flex-start;
   border: 0;
   border-radius: 6px;
@@ -612,13 +686,13 @@
   font-weight: 400;
   min-height: 48px;
 }
-.maps-ranked button > span:first-child {
+.maps-rank-number {
   color: var(--maps-muted);
   font-weight: 400;
   font-size: 10px;
-  width: 10px;
+  flex: 0 0 10px;
 }
-.maps-ranked button > span:nth-child(2) {
+.maps-ranked-place {
   flex: 1;
   position: relative;
   text-align: left;
@@ -635,6 +709,8 @@
 .maps-ranked strong {
   font-size: 12px;
   font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
 }
 .deshi-maps .maps-source-link {
   width: 100%;
@@ -657,10 +733,10 @@
   margin-left: auto;
 }
 .maps-primary-value {
-  margin-top: 25px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 .maps-primary-value > span {
   font-size: 12px;
@@ -676,45 +752,48 @@
   font-size: 11px;
   color: var(--maps-muted);
 }
-.maps-benchmark {
-  margin-top: 18px !important;
-  padding: 10px 0;
-  border-block: 1px solid var(--maps-line);
+.deshi-maps .maps-benchmark {
+  margin-top: 12px;
   font-size: 12px;
 }
 .maps-facts {
-  margin: 20px 0;
+  margin: 4px 0 12px;
 }
 .maps-facts > div {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-  gap: 12px;
-  padding: 9px 0;
-  font-size: 12px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 16px;
+  padding: 8px 0;
+  font-size: 13px;
 }
 .maps-facts dt {
-  color: var(--maps-muted);
+  color: var(--maps-ink);
 }
 .maps-facts dd {
   margin: 0;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
+.maps-facts .maps-fact-context {
+  grid-column: 1 / -1;
+  font-weight: 400;
+}
+.maps-facts dd:not(.maps-fact-context) {
+  text-align: right;
+  white-space: nowrap;
+}
 .maps-observation-period {
   white-space: nowrap;
 }
-.maps-wide-button {
-  width: 100%;
-  font-size: 12px !important;
-}
-.maps-source-body p,
-.maps-comparison > p {
+.deshi-maps .maps-source-body p,
+.deshi-maps .maps-comparison > p {
   font-size: 12px;
   line-height: 1.8;
   margin-top: 13px;
   color: var(--maps-muted);
 }
-.maps-source-body h3 {
+.deshi-maps .maps-source-body h3 {
   margin-top: 22px;
   font-size: 13px;
 }
@@ -1078,6 +1157,10 @@
   font-size: 14px;
 }
 @media (min-width: 1600px) {
+  .maps-workspace {
+    --maps-layer-width: 320px;
+    --maps-layer-left: 30px;
+  }
   .maps-detail-panel {
     width: 340px;
     right: 30px;
@@ -1085,12 +1168,12 @@
   .has-detail .maps-map-controls {
     right: 386px;
   }
-  .maps-layer-panel {
-    left: 30px;
-    width: 290px;
-  }
 }
 @media (max-width: 1100px) {
+  .maps-workspace {
+    --maps-layer-width: 290px;
+    --maps-layer-left: 18px;
+  }
   .maps-header {
     gap: 16px;
     padding-inline: 20px;
@@ -1104,10 +1187,6 @@
   .maps-detail-panel {
     width: 290px;
     right: 18px;
-  }
-  .maps-layer-panel {
-    width: 270px;
-    left: 18px;
   }
   .has-detail .maps-map-controls {
     right: 321px;
@@ -1248,6 +1327,9 @@
   }
   .maps-panel-heading {
     margin-bottom: 12px;
+  }
+  .maps-layer-panel {
+    padding: 18px 18px 24px;
   }
   .maps-panel-heading .maps-icon-button {
     min-height: 44px;
@@ -1392,7 +1474,9 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .deshi-maps * {
+  .deshi-maps *,
+  .deshi-maps *::before,
+  .deshi-maps *::after {
     scroll-behavior: auto !important;
     transition: none !important;
     animation: none !important;
@@ -1416,29 +1500,61 @@
 .deshi-maps .maps-context-options {
   border: 0;
   border-top: 1px solid #e1e7e1;
-  margin: 18px 0 0;
-  padding: 14px 0 0;
+  margin: 16px 0 0;
+  padding: 8px 0 0;
   min-width: 0;
 }
-.maps-context-options legend {
-  padding: 0 8px 0 0;
+.maps-context-options > summary {
+  min-height: 44px;
+  align-content: center;
+  cursor: pointer;
   font-size: 12px;
-  font-weight: 600;
-  color: #466052;
+  font-weight: 500;
 }
-.maps-context-options .maps-check {
+.maps-context-options > summary span {
+  margin-left: auto;
+  color: var(--maps-muted);
+  font-weight: 400;
+  white-space: nowrap;
+}
+.deshi-maps .maps-context-options fieldset {
+  border: 0;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+.deshi-maps .maps-context-option {
+  display: grid;
+  grid-template-columns: 17px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
   min-height: 44px;
   margin: 0;
+  padding-block: 10px;
+  font-weight: 500;
 }
-.maps-context-options .maps-small {
-  margin: 0 0 8px;
+.deshi-maps .maps-context-option input {
+  margin-top: 1px;
+  padding: 0;
+}
+.maps-context-option small {
+  display: block;
+  margin-top: 4px;
+  color: var(--maps-muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.deshi-maps .maps-context-options .maps-text-button {
+  width: calc(100% + 24px);
+  margin-inline: -12px;
 }
 .maps-facts dd small {
   display: block;
   color: var(--maps-muted);
   font-size: 11px;
   line-height: 1.5;
-  margin-top: 4px;
+  margin: 0;
   font-weight: 400;
 }
 .deshi-maps .maps-industry-pin {
@@ -1566,21 +1682,29 @@
   max-height: calc(100% - 174px);
 }
 .maps-topic-picker {
-  margin-top: 8px !important;
+  margin-top: 4px !important;
 }
 .maps-comparison-matrix {
   table-layout: fixed;
   width: 100%;
-  margin-top: 18px;
+  margin-top: 16px;
 }
-.maps-comparison-matrix th:first-child {
-  width: 42%;
+.maps-comparison-matrix thead th {
+  width: 50%;
 }
 .maps-comparison-matrix :is(th, td) {
   overflow-wrap: anywhere;
   font-size: 12px;
   line-height: 1.55;
-  padding: 11px 5px;
+  text-align: left;
+  vertical-align: top;
+  padding: 10px 0;
+}
+.maps-comparison-matrix tr > :last-child:not([colspan]) {
+  padding-left: 16px;
+}
+.maps-comparison-value {
+  white-space: nowrap;
 }
 .maps-comparison-matrix td {
   font-variant-numeric: tabular-nums;
@@ -1611,12 +1735,12 @@
   font-size: 12px;
   font-weight: 500;
 }
-.maps-measure-notes p {
+.deshi-maps .maps-measure-notes p {
   font-size: 12px;
   line-height: 1.7;
   margin: 8px 0 16px;
 }
-.maps-compare-selectors label {
+.deshi-maps .maps-compare-selectors label {
   margin-top: 10px;
 }
 .maps-ranked strong small {
@@ -1685,6 +1809,9 @@
   .maps-layer-trigger {
     max-width: calc(100vw - 150px);
   }
+  .maps-layer-trigger .maps-layer-unit {
+    display: none;
+  }
 
   .maps-overlays-toolbar button {
     min-height: 52px;
@@ -1726,13 +1853,21 @@
   }
   .has-layers .maps-legend,
   .has-layers.has-detail .maps-legend {
-    left: 328px;
+    left: calc(var(--maps-layer-left) + var(--maps-layer-width) + 24px);
   }
 }
 .maps-comparison-matrix :is(th, td) {
   border: 0;
   border-bottom: 1px solid var(--maps-line);
   background: none;
+}
+.maps-comparison-matrix tbody th[scope="rowgroup"] {
+  padding: 12px 0 4px;
+  border-bottom: 0;
+  font-weight: 500;
+}
+.maps-comparison-matrix tbody td {
+  padding-top: 4px;
 }
 .maps-transport-key {
   display: flex;
@@ -1778,19 +1913,15 @@
 
 /* Regional evidence stays inside the existing profile, behind a native disclosure. */
 .maps-business {
-  margin: 20px 0;
-  padding-block: 12px;
+  margin: 12px 0;
   border-block: 1px solid var(--maps-line);
 }
-.maps-business summary {
+.maps-business > summary {
   cursor: pointer;
   min-height: 44px;
-  padding-block: 8px;
-  font-size: 14px;
+  padding-block: 12px;
+  font-size: 13px;
   font-weight: 500;
-}
-.maps-business > summary > span {
-  display: inline;
 }
 .maps-business > summary small {
   display: block;
@@ -1814,7 +1945,7 @@
   margin: 0;
   font-variant-numeric: tabular-nums;
 }
-.maps-business h3 {
+.deshi-maps .maps-business h3 {
   margin-top: 20px;
   font-size: 15px;
   font-weight: 500;
@@ -1909,7 +2040,7 @@
   font-size: 22px;
   font-weight: 600;
 }
-.maps-overview-measure {
+.deshi-maps .maps-overview-measure {
   font-size: 14px;
   margin-top: 12px;
 }
@@ -1996,7 +2127,7 @@
   font-size: 13px;
 }
 .has-layers .maps-overlay-status {
-  left: 328px;
+  left: calc(var(--maps-layer-left) + var(--maps-layer-width) + 24px);
 }
 @media (max-width: 759px) {
   .maps-overlay-status,
@@ -2032,10 +2163,17 @@
   background: transparent;
   color: var(--maps-green);
   font-size: 12px;
+  margin-left: -12px;
+}
+.maps-urban-back svg {
+  transform: rotate(180deg);
 }
 .maps-urban-panel h1 {
   clear: both;
   max-width: 20ch;
+}
+.maps-urban-panel > .maps-action-stack {
+  margin-top: 20px;
 }
 .maps-urban-list-heading {
   display: flex;
@@ -2050,7 +2188,8 @@
 }
 .deshi-maps .maps-urban-list button {
   display: block;
-  width: 100%;
+  width: calc(100% + 16px);
+  margin-inline: -8px;
   text-align: left;
   padding: 16px 8px;
   border-width: 0 0 1px;
@@ -2087,35 +2226,10 @@
   margin-top: 8px;
   min-height: 44px;
 }
-.maps-urban-comparison table {
-  table-layout: fixed;
-  width: 100%;
-  font-size: 11px;
-  border-collapse: collapse;
-}
-.maps-urban-comparison :is(th, td) {
-  background: transparent;
-  border: 0;
-  text-align: right;
-  padding: 10px 4px;
-  border-bottom: 1px solid var(--maps-line);
-  overflow-wrap: anywhere;
-  font-variant-numeric: tabular-nums;
-}
-.maps-urban-comparison th:first-child {
-  width: 38%;
-  text-align: left;
-  font-weight: 400;
-}
-.maps-urban-comparison th small {
-  display: block;
-  font-size: 10px;
-  color: var(--maps-muted);
-  font-weight: 400;
-}
 .maps-urban-comparison caption {
   text-align: left;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  font-size: 12px;
   color: var(--maps-muted);
 }
 .maps-urban-geography {
@@ -2134,7 +2248,7 @@
   padding-block: 8px;
   font-size: 12px;
 }
-.maps-urban-sources p {
+.deshi-maps .maps-urban-sources p {
   margin-top: 12px;
 }
 .deshi-maps .maps-urban-marker {

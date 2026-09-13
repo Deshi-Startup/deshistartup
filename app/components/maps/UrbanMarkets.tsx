@@ -1,3 +1,4 @@
+import Icon from "./MapIcon";
 import type { Locale, Region, UrbanCoverage, UrbanPlace } from "./types";
 import { URBAN_REPORT_URL, urbanKind, urbanName, urbanSource } from "./urban";
 
@@ -64,7 +65,7 @@ export default function UrbanMarkets({
   return (
     <div className="maps-urban-panel">
       <button className="maps-urban-back" onClick={onBack}>
-        <span aria-hidden="true">←</span>{" "}
+        <Icon name="arrow" />
         {t(`${district.name.en} district`, `${district.name.bn} জেলা`)}
       </button>
       <h1 tabIndex={-1}>
@@ -89,12 +90,14 @@ export default function UrbanMarkets({
                     <dd>
                       {num(place[f.key], f.digits)}
                       {f.unit}
-                      {f.key === "householdSize" && (
+                    </dd>
+                    {f.key === "householdSize" && (
+                      <dd className="maps-fact-context">
                         <small>
                           {t("Mean · general households", "গড় · সাধারণ খানা")}
                         </small>
-                      )}
-                    </dd>
+                      </dd>
+                    )}
                   </div>
                 ))}
               </dl>
@@ -128,13 +131,12 @@ export default function UrbanMarkets({
             </label>
             {compared && (
               <div className="maps-urban-comparison">
-                <table>
+                <table className="maps-comparison-matrix">
                   <caption>
                     {t("Census 2022 comparison", "শুমারি ২০২২-এর তুলনা")}
                   </caption>
                   <thead>
                     <tr>
-                      <th scope="col">{t("Measure", "তথ্য")}</th>
                       {[place, compared].map((p) => (
                         <th scope="col" key={p.id}>
                           {p.name[locale]}
@@ -151,10 +153,15 @@ export default function UrbanMarkets({
                       ))}
                     </tr>
                   </thead>
-                  <tbody>
-                    {facts.map((f) => (
-                      <tr key={f.key}>
-                        <th scope="row">{f.name}</th>
+
+                  {facts.map((f) => (
+                    <tbody key={f.key}>
+                      <tr>
+                        <th scope="rowgroup" colSpan={2}>
+                          {f.name}
+                        </th>
+                      </tr>
+                      <tr>
                         {[place, compared].map((p) => (
                           <td key={p.id}>
                             {num(p[f.key], f.digits)}
@@ -162,14 +169,14 @@ export default function UrbanMarkets({
                           </td>
                         ))}
                       </tr>
-                    ))}
-                  </tbody>
+                    </tbody>
+                  ))}
                 </table>
               </div>
             )}
             <button className="maps-text-button" onClick={() => onSelect("")}>
               {t("See district places", "জেলার শহরগুলো দেখুন")}{" "}
-              <span aria-hidden="true">→</span>
+              <Icon name="arrow" />
             </button>
           </div>
         </>

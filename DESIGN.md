@@ -629,6 +629,25 @@ quantitative scale is always shown. Phone search, map controls, panel-close acti
 map/data switch retain at least 44px targets; the top map toolbar uses 52px-high buttons.
 
 White panels use 14px corners and a soft ambient shadow; mobile sheets use 18px upper corners.
+Regional Insights identifies the geographic level and leads with the active measure, period,
+uncertainty and national benchmark. The unchanged full definition sits in a collapsed
+“What this measures” disclosure. Trade & connections controls start expanded; the overlays
+remain off unless enabled by the reader or a shared view. Appearance controls remain separate.
+The layer-panel heading stays reachable during scrolling. Layer rows align with the field labels;
+trade descriptions align beneath their option titles and belong to the same clickable label.
+The layer panel is 300px wide on desktop, 320px on wide screens and 290px on tablets, with 18px
+content gutters. Its close control has a 44px target at the header's outer edge. The legend and
+overlay status keep a 24px gap from the panel using the same width and offset values.
+Geography fields form one group. Layer choices, selects, checkboxes and reset actions retain
+44px targets. Selecting a layer on a phone restores focus to the layer trigger.
+Supporting facts align labels left and values right, with units and periods on a full-width
+line beneath. All panel disclosures use trailing chevrons. Text actions retain padded targets
+while their labels align with the evidence; source links use the same alignment.
+Regional and town comparisons use two place columns, with each measure and its units spanning
+both columns above the values. Long numbers and survey ranges remain intact on narrow screens.
+Related actions use a shared 12px grid gap, with child margins reset at matching specificity.
+The phone layer trigger shows the measure and year; units remain in the legend and Insights.
+Observation ranges stay together when text wraps.
 Controls use compact rounded corners, with pill-shaped question groups and green-tinted selection.
 These curved, floating surfaces are a Maps exception to the manual's square, flat reading controls.
 The local palette uses muted green ink, pale cream land and subdued teal water, with sequential
@@ -648,8 +667,11 @@ These sizes and colors belong to this workspace, not to the article type ramp or
 registry; the shared wordmark keeps its main-site typography.
 The insights close control sits beside the first heading line, leaving the full panel width
 available to the lines below it. A hairline and 16px top padding separate overview figures from
-the active measure; ranked rows use 10px by 8px padding. Zoom buttons form one vertical group, with
-reset separated below. Panel scrollbars are thin with transparent tracks. Phone zoom/reset
+the active measure; ranked rows use 10px by 8px padding. Place names and estimates share a
+first-line baseline in the lists. Uncertainty intervals sit
+under the estimates; survey lists omit the rank column instead of reserving empty space.
+Zoom buttons form one vertical group, with reset separated below. Panel scrollbars are thin
+with transparent tracks. Phone zoom/reset
 controls sit near the upper-right, clear of the toolbar; Explore and the legend sit above the
 attribution at the bottom.
 
