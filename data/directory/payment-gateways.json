@@ -2,8 +2,8 @@
   {
     "name": "SSLCOMMERZ",
     "type": "Payment gateway aggregator",
-    "fees": "Basic plan: BDT 25,500 one-time setup, then 2.5% per successful transaction (3.5% for American Express).",
-    "settlement": "Not publicly stated",
+    "fees": "Basic plan: BDT 25,500 one-time, non-refundable setup, then 2.5% per successful transaction (3.5% for American Express). The pricing page does not establish whether VAT is included; confirm it in the quote.",
+    "settlement": "The FAQ provides settlement-report instructions but no fixed payout cycle. Confirm timing, minimum payout and reserves in the merchant agreement.",
     "supportedMethods": [
       "Cards",
       "Mobile financial services",
@@ -11,12 +11,30 @@
       "Wallets",
       "Bank EMI"
     ],
-    "requiredDocs": "Proprietorship: trade licence, company bank account and cheque leaf, signatory photo and NID, TIN certificate, DBID, signed MEF and undertaking. Partnership adds the partnership deed, company BIN and letter of authorisation. Limited company: trade licence, incorporation certificate, MOA/AOA, Form XII, company BIN/VAT certificate, bank cheque leaf, signatory NID and photo, signed MEF.",
+    "requiredDocs": "Proprietorship: trade licence, company bank account and cheque leaf, signatory photo and NID, TIN certificate, DBID, signed MEF and undertaking. Partnership adds the partnership deed, company BIN and letter of authorisation. Limited company: trade licence, incorporation certificate, MOA/AOA, Form XII, company BIN/VAT certificate, TIN certificate, DBID, bank cheque leaf, signatory NID and photo, signed MEF. Check the full provider list for any sector-specific documents.",
     "applicationPath": "Create a merchant application at join.sslcommerz.com, then submit the documents required for your business type.",
     "website": "https://sslcommerz.com/",
     "sourceUrl": "https://sslcommerz.com/pricing/",
-    "lastVerified": "2026-08-19",
+    "lastVerified": "2026-09-13",
     "notes": "A Bangladesh payment gateway aggregator for businesses that want one integration for cards, mobile financial services, internet banking, wallets and bank EMI. The Basic package includes API integration and a merchant dashboard; settlement timing should be confirmed in the merchant agreement."
+  },
+  {
+    "name": "aamarPay",
+    "type": "Payment gateway aggregator",
+    "fees": "The registration form lists aamar Growth setup at BDT 20,000, one-time and non-refundable. The pricing page says no monthly fee but asks for a quote without publishing current card or MFS rates. Confirm setup, transaction rates and whether VAT is included together in writing.",
+    "settlement": "The FAQ states twice-weekly disbursement, subject to working days and bank or government holidays. This does not guarantee that each payment settles within two days; confirm your account's timing and any holds.",
+    "supportedMethods": [
+      "Cards",
+      "Mobile financial services",
+      "Internet banking",
+      "Bank EMI"
+    ],
+    "requiredDocs": "The FAQ lists trade licence, TIN, VAT if any, NID and a photograph, plus the aamarPay application and bank sub-merchant forms. A partnership needs its partnership deed; a private limited company needs its incorporation certificate and MOA/AOA. Confirm the checklist for your business structure and product.",
+    "applicationPath": "Review the plans at registration.aamarpay.com, then obtain the current quotation and confirm eligibility before completing the merchant application.",
+    "website": "https://aamarpay.com/",
+    "sourceUrl": "https://aamarpay.com/index.php/pricing",
+    "lastVerified": "2026-09-13",
+    "notes": "One gateway for cards, mobile wallets, internet banking and EMI, with payment, refund and settlement reports. The registration form and FAQ links below provide the setup listing and onboarding details. Compare the written quote using your payment mix, including refund deductions and taxes on fees."
   },
   {
     "name": "ShurjoPay",

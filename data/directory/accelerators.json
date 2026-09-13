@@ -19,13 +19,17 @@
       "Demo Day and post-program network"
     ],
     "cohortTiming": "Bangladesh Fall 2026: final application deadline 6 October; program runs from 27 October 2026 to Demo Day on 3 February 2027.",
-    "costOrEquity": "Bangladesh entrance fee: Not publicly stated. Participating companies that join FI's Equity Collective issue a 2.5% warrant to the collective.",
+    "costOrEquity": "The Bangladesh page displays a one-time US$399 entrance fee. Confirm the fee and refund cutoff before paying. Companies that join FI's Equity Collective pledge 2.5% future equity through a warrant, approximately two-thirds of the way through the programme.",
     "notableAlumni": [],
     "applicationPath": "Apply through the Bangladesh Fall 2026 program page before 6 October 2026.",
     "website": "https://fi.co/s/dhaka",
     "sourceUrl": "https://fi.co/program/12756",
-    "lastVerified": "2026-08-19",
-    "notes": "A 15-week, in-person company-building programme for Bangladesh founders moving from an idea or early product towards traction and funding readiness. Weekly sprints cover customer validation, product development, launch, growth and fundraising, with recurring mentor reviews and investor feedback."
+    "sourceUrls": [
+      "https://fi.co/s/dhaka",
+      "https://fi.co/equity"
+    ],
+    "lastVerified": "2026-09-13",
+    "notes": "The Bangladesh Fall 2026 schedule is marked virtual. Its FI Agentic programme combines AI-assisted company-building sprints with mentor feedback and working groups, covering validation, product development, launch, traction and fundraising. The final application deadline is 6 October 2026; confirm the published fee and agreement before joining."
   },
   {
     "name": "Orange Corners Bangladesh",

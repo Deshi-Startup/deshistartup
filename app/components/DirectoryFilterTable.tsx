@@ -95,6 +95,8 @@ const CATEGORY_CONFIG: Record<DirectoryCategory, CategoryConfig> = {
       stageColumn,
       sectorsColumn,
       { key: 'benefits', label: { bn: 'সুবিধা', en: 'Benefits' } },
+      { key: 'cohortTiming', label: { bn: 'আবেদনের সময়', en: 'Intake timing' } },
+      { key: 'costOrEquity', label: { bn: 'ফি ও ইকুইটি', en: 'Fees / equity' } },
       applicationPathColumn
     ],
     filters: [typeFilter, stageFilter, sectorsFilter],
@@ -242,9 +244,26 @@ function asArray(value: string | string[] | null | undefined): string[] {
 export interface DirectoryRow {
   name: string
   sourceUrl?: string | null
+  sourceUrls?: string[] | null
   lastVerified?: string | null
   notes?: string
   [field: string]: string | string[] | null | undefined
+}
+
+function DirectorySources({ row, locale, fallback }: { row: DirectoryRow; locale: 'bn' | 'en'; fallback: string }) {
+  const sources = [...new Set([...asArray(row.sourceUrl), ...asArray(row.sourceUrls)].map(url => url.trim()).filter(Boolean))]
+  if (!sources.length) return <>{fallback}</>
+
+  return <span className="directory-source-links">
+    {sources.map((url, index) => {
+      const number = locale === 'en' ? String(index + 1) : bengaliDigits(index + 1)
+      const label = `${LABELS[locale].source}${sources.length > 1 ? ` ${number}` : ''}`
+      return <a key={url} href={url} target="_blank" rel="noopener noreferrer"
+        aria-label={locale === 'en' ? `${label} for ${row.name}` : `${row.name}: ${label}`}>
+        {label}
+      </a>
+    })}
+  </span>
 }
 
 function uniqueSorted(rows: DirectoryRow[], field: string): string[] {
@@ -389,7 +408,7 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
             <tbody>
               {config.columns.map(column => <tr key={column.key}><th scope="row">{column.key === 'applicationPath' ? (isEn ? 'Contact' : 'যোগাযোগ') : (isEn ? column.label.en : column.label.bn)}</th>{selectedRows.map(({ index, row }) => <td key={index}>{asText(row[column.key], fallback)}</td>)}</tr>)}
               <tr><th scope="row">{isEn ? 'Notes' : 'আরও তথ্য'}</th>{selectedRows.map(({ index, row }) => <td key={index}>{row.notes || fallback}</td>)}</tr>
-              <tr><th scope="row">{labels.source}</th>{selectedRows.map(({ index, row }) => <td key={index}>{row.sourceUrl ? <a href={row.sourceUrl} target="_blank" rel="noopener noreferrer">{labels.source}</a> : fallback}<span className="directory-comparison__date">{labels.verified}: {checkDate(row)}</span></td>)}</tr>
+              <tr><th scope="row">{labels.source}</th>{selectedRows.map(({ index, row }) => <td key={index}><DirectorySources row={row} locale={locale} fallback={fallback} /><span className="directory-comparison__date">{labels.verified}: {checkDate(row)}</span></td>)}</tr>
             </tbody>
           </table>
         </div>
@@ -430,13 +449,7 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
                   ))}
                 </dl>
                 <p className="directory-card__source">
-                  {row.sourceUrl ? (
-                    <a href={row.sourceUrl} target="_blank" rel="noopener noreferrer">
-                      {labels.source}
-                    </a>
-                  ) : (
-                    labels.source
-                  )}
+                  <DirectorySources row={row} locale={locale} fallback={labels.source} />
                   <span>
                     {labels.verified}: {checkDate(row)}
                   </span>

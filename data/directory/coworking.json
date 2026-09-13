@@ -4,7 +4,7 @@
     "type": "Coworking space",
     "city": "Dhaka",
     "locations": "Banani 11, Dhanmondi 27, and Gulshan-Tejgaon Link Road.",
-    "priceRange": "Starter membership BDT 5,000; Infinity all-location membership BDT 15,000; hour pass BDT 250; day pass BDT 1,000. Meeting rooms start at BDT 250–1,000 depending on capacity.",
+    "priceRange": "Starter membership BDT 5,000; Infinity all-location membership from BDT 15,000; hour pass BDT 250; day pass BDT 1,000. Meeting rooms start at BDT 250–1,000 depending on capacity.",
     "facilities": [
       "Hot desks",
       "Dedicated offices",
@@ -13,10 +13,14 @@
       "Coworking pass"
     ],
     "hours": "8:00–22:00, six days a week; closed Fridays and government holidays.",
-    "applicationPath": "Book a pass or meeting room online, or enquire about offices and memberships.",
+    "applicationPath": "Hourly and daily Coworking Passes do not require membership or advance booking. Bring a government-issued photo ID and emergency-contact details; enquire separately about offices and memberships.",
     "website": "https://moarbd.com/",
-    "sourceUrl": "https://moarbd.com/",
-    "lastVerified": "2026-08-19",
+    "sourceUrl": "https://moarbd.com/collections/coworking-pass",
+    "sourceUrls": [
+      "https://moarbd.com/",
+      "https://moarbd.com/collections/memberships"
+    ],
+    "lastVerified": "2026-09-13",
     "notes": "A three-location coworking network offering hourly and daily access, memberships, meeting rooms, dedicated or private offices and event space. All-location membership suits people who need to move between Banani, Dhanmondi and the Gulshan–Tejgaon Link Road."
   },
   {

@@ -3,7 +3,9 @@ import './Startup50.css'
 import startup50Data from '../../data/startup-50.json'
 import startup50Logos from '../../data/startup-50-logos.json'
 import startup50SourceTitles from '../../data/startup-50-sources.json'
+import contentIndex from '../generated/content-index.json'
 import { mediaSource } from '../lib/media'
+import { startupCaseStudyRoutes } from '../lib/startup-case-studies.mjs'
 import { REPO_URL } from '../nav.config'
 import Startup50Filters from './Startup50Filters'
 
@@ -186,6 +188,8 @@ export default function Startup50({ locale = 'bn' }: Startup50Props) {
     isEn ? '[Correction] Deshi Startup 50: ' : '[সংশোধন] দেশি স্টার্টআপ ৫০: '
   )
   const sectors = sectorOptions(data, locale)
+  const caseStudies = startupCaseStudyRoutes(contentIndex, locale)
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
   return (
     <div className="startup50" data-startup50-edition={data.edition}>
@@ -236,6 +240,7 @@ export default function Startup50({ locale = 'bn' }: Startup50Props) {
         <ul className="startup50-register" id="startup-50-register">
           {data.entries.map((entry) => {
             const logo = logoBySlug.get(entry.slug) as StartupLogo
+            const caseStudyRoute = caseStudies.get(entry.slug)
             const searchText = [
               entry.name,
               local(entry.sector, locale),
@@ -265,6 +270,15 @@ export default function Startup50({ locale = 'bn' }: Startup50Props) {
                   <div className="startup50-entry__lesson">
                     <span>{isEn ? 'What founders can learn' : 'ফাউন্ডারদের যা শেখার আছে'}</span>
                     <p>{local(entry.lesson, locale)}</p>
+                    {caseStudyRoute && (
+                      <a
+                        className="startup50-entry__case-study"
+                        href={`${basePath}${caseStudyRoute}`}
+                        aria-label={isEn ? 'Read the ' + entry.name + ' case study' : entry.name + ' নিয়ে কেস স্টাডি পড়ুন'}
+                      >
+                        {isEn ? 'Read the case study' : 'কেস স্টাডি পড়ুন'}
+                      </a>
+                    )}
                   </div>
                   <details className="startup50-details">
                     <summary>
