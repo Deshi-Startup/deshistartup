@@ -501,7 +501,7 @@ export default function MapsExperience({
         </div>
         <nav
           className="maps-header-actions"
-          aria-label={t("Map actions", "মানচিত্রের কাজ")}
+          aria-label={t("Map actions", "ম্যাপের কাজ")}
         >
           <button
             ref={searchTrigger}
@@ -523,7 +523,7 @@ export default function MapsExperience({
               explorerUrl(state)
             }
             lang={locale === "en" ? "bn" : "en"}
-            aria-label={t("বাংলায় দেখুন", "View in English")}
+            aria-label={t("বাংলায় দেখুন", "View in English")}
           >
             {t("বাংলা", "EN")}
           </a>
@@ -556,11 +556,11 @@ export default function MapsExperience({
       <main
         id="main"
         className={`maps-workspace ${state.urban ? "is-urban" : ""} ${layersOpen ? "has-layers" : ""} ${detailOpen ? "has-detail" : ""}`}
-        aria-label={t("Deshi Startup map explorer", "দেশি স্টার্টআপ মানচিত্র")}
+        aria-label={t("Deshi Startup map explorer", "দেশি স্টার্টআপ ম্যাপ")}
       >
         {(!detailOpen || panel !== "insights") && (
           <h1 className="sr-only">
-            {t("Deshi Startup Maps", "দেশি স্টার্টআপ মানচিত্র")}
+            {t("Deshi Startup Maps", "দেশি স্টার্টআপ ম্যাপ")}
           </h1>
         )}
         {hydrated && (mapStarted || state.view === "map") && (
@@ -651,13 +651,13 @@ export default function MapsExperience({
           <div
             className="maps-view-toggle"
             role="group"
-            aria-label={t("Map or data table", "মানচিত্র বা তথ্যের টেবিল")}
+            aria-label={t("Map or data table", "ম্যাপ বা তথ্যের টেবিল")}
           >
             <button
               aria-pressed={state.view === "map"}
               onClick={() => change({ view: "map" })}
             >
-              {t("Map", "মানচিত্র")}
+              {t("Map", "ম্যাপ")}
             </button>
             <button
               aria-pressed={state.view === "table"}
@@ -675,10 +675,10 @@ export default function MapsExperience({
           <aside
             className="maps-layer-panel maps-floating"
             id="maps-layers"
-            aria-label={t("Map layers", "মানচিত্রের তথ্যস্তর")}
+            aria-label={t("Map layers", "ম্যাপের তথ্যস্তর")}
           >
             <div className="maps-panel-heading">
-              <h2>{t("Map layers", "মানচিত্রের তথ্যস্তর")}</h2>
+              <h2>{t("Map layers", "ম্যাপের তথ্যস্তর")}</h2>
               <button
                 className="maps-icon-button"
                 aria-label={t("Close layers", "তথ্যস্তর বন্ধ করুন")}
@@ -832,10 +832,7 @@ export default function MapsExperience({
                   />
                   <span>
                     <span id="maps-industry-title">
-                      {t(
-                        "Industrial zones & parks",
-                        "শিল্পাঞ্চল ও প্রযুক্তি পার্ক",
-                      )}
+                      {t("Industrial zones & parks", "শিল্পাঞ্চল ও পার্ক")}
                     </span>
                     <small id="maps-industry-description">
                       {t(
@@ -882,7 +879,7 @@ export default function MapsExperience({
               </fieldset>
             </details>
             <details className="maps-refine">
-              <summary>{t("Map appearance", "মানচিত্রের সেটিংস")}</summary>
+              <summary>{t("Map appearance", "ম্যাপের সেটিংস")}</summary>
               <label>
                 {t("Colour strength", "রঙের গাঢ়ত্ব")}
                 <input
@@ -982,7 +979,7 @@ export default function MapsExperience({
                           : layer.source === "economy"
                             ? t(
                                 "Volume I: March 2026; Volume II: June 2026",
-                                "প্রথম খণ্ড: মার্চ ২০২৬। দ্বিতীয় খণ্ড: জুন ২০২৬।",
+                                "প্রথম খণ্ড: মার্চ ২০২৬। দ্বিতীয় খণ্ড: জুন ২০২৬।",
                               )
                             : t("December 2024", "ডিসেম্বর ২০২৪")}
                   </dd>
@@ -992,7 +989,7 @@ export default function MapsExperience({
                 <a href={sourceLink(selected, layer)}>
                   {sourceName} <Icon name="arrow" />
                 </a>
-                <h3>{t("How to read this map", "কীভাবে মানচিত্র পড়বেন")}</h3>
+                <h3>{t("How to read this map", "ম্যাপ কীভাবে পড়বেন")}</h3>
                 <p>
                   {layer.kind === "count"
                     ? t(
@@ -1021,15 +1018,12 @@ export default function MapsExperience({
                 {state.industry && (
                   <>
                     <h3>
-                      {t(
-                        "Industrial zones & parks",
-                        "শিল্পাঞ্চল ও প্রযুক্তি পার্ক",
-                      )}
+                      {t("Industrial zones & parks", "শিল্পাঞ্চল ও পার্ক")}
                     </h3>
                     <p>
                       {t(
                         "Eight BEPZA EPZs plus selected BSCIC estates, economic zones and technology parks. Checked 12 September 2026 against authority/operator records and named OSM facilities. BSCIC status uses its July 2026 register; other source dates are shown per site. Developed, allotted and operating are different states. Coverage is partial: no marker does not mean no industry. Positions are approximate, not entrances or legal boundaries; no plot availability, capacity or investment suitability is implied.",
-                        "বেপজার আটটি ইপিজেডের সঙ্গে বাছাই করা বিসিক শিল্পনগরী, অর্থনৈতিক অঞ্চল ও প্রযুক্তি পার্ক। কর্তৃপক্ষ ও পরিচালনাকারীর তথ্য OSM-এর অবস্থানের সঙ্গে মিলিয়ে যাচাই ১২ সেপ্টেম্বর ২০২৬। বিসিকের কার্যক্রমের তথ্য জুলাই ২০২৬-এর, অন্য স্থানের উৎস ও সময়কাল আলাদা করে দেওয়া আছে। অবকাঠামো তৈরি, বরাদ্দ ও কার্যক্রম চালু হওয়া এক বিষয় নয়। তথ্য অসম্পূর্ণ, চিহ্ন নেই মানে শিল্প নেই এমন নয়। অবস্থান আনুমানিক। প্রবেশপথ, আইনি সীমানা, খালি প্লট বা বিনিয়োগের উপযোগিতা বোঝায় না।",
+                        "বেপজার আটটি ইপিজেডের সঙ্গে বাছাই করা বিসিক শিল্পনগরী, অর্থনৈতিক অঞ্চল ও প্রযুক্তি পার্ক। কর্তৃপক্ষ ও পরিচালনাকারীর তথ্য OSM-এর অবস্থানের সঙ্গে মিলিয়ে যাচাই ১২ সেপ্টেম্বর ২০২৬। বিসিকের কার্যক্রমের তথ্য জুলাই ২০২৬-এর, অন্য স্থানের উৎস ও সময়কাল আলাদা করে দেওয়া আছে। অবকাঠামো তৈরি, বরাদ্দ ও কার্যক্রম চালু হওয়া এক বিষয় নয়। তথ্য অসম্পূর্ণ, চিহ্ন নেই মানে শিল্প নেই এমন নয়। অবস্থান আনুমানিক। প্রবেশপথ, আইনি সীমানা, খালি প্লট বা বিনিয়োগের উপযোগিতা বোঝায় না।",
                       )}
                     </p>
                     <a href="https://bepza.gov.bd/pages/who-we-are">
@@ -1069,7 +1063,7 @@ export default function MapsExperience({
                   <p>
                     {t(
                       "Published 95% intervals are shown for districts; division intervals were not available in the imported tables. Small differences may be sampling noise. This private-household survey has a different population and method from Census 2022; the two are not a seamless time series. Estimates are not averaged across districts or converted into counts using older population data.",
-                      "জেলার প্রকাশিত ৯৫% আস্থার সীমা দেখানো হয়েছে। ব্যবহৃত টেবিলে বিভাগের সীমা নেই। ছোট পার্থক্য নমুনার অনিশ্চয়তা থেকেও হতে পারে। সাধারণ খানার এই জরিপের আওতা ও পদ্ধতি জনশুমারি ২০২২ থেকে আলাদা। জেলার হার গড় করে বা পুরোনো জনসংখ্যা দিয়ে মানুষের সংখ্যা হিসাব করা হয়নি।",
+                      "জেলার প্রকাশিত ৯৫% আস্থার সীমা দেখানো হয়েছে। ব্যবহৃত টেবিলে বিভাগের সীমা নেই। ছোট পার্থক্য নমুনার অনিশ্চয়তা থেকেও হতে পারে। সাধারণ খানার এই জরিপের আওতা ও পদ্ধতি জনশুমারি ২০২২ থেকে আলাদা। তাই দুই উৎসের হারকে একই ধারার সময়ভিত্তিক পরিবর্তন হিসেবে তুলনা করা যায় না। জেলার হার গড় করে বা পুরোনো জনসংখ্যা দিয়ে মানুষের সংখ্যা হিসাব করা হয়নি।",
                     )}
                   </p>
                 )}
@@ -1077,7 +1071,7 @@ export default function MapsExperience({
                   <p>
                     {t(
                       "Counts describe economic activity, not a monetary market size. They include public and nonprofit establishments and household activity, not only registered companies. Ordinary household crop farming is outside the census scope. Persons engaged includes working owners and unpaid family workers, not only salaried employees. Industry profiles cover permanent establishments only; they are not regional GDP, exports or imports.",
-                      "সংখ্যা দিয়ে অর্থনৈতিক কাজকর্মের পরিসর বোঝানো হচ্ছে, টাকায় বাজারের আকার নয়। সরকারি ও অলাভজনক প্রতিষ্ঠান এবং খানার কাজও আছে, শুধু নিবন্ধিত কোম্পানি নয়। সাধারণ খানার ফসল চাষ এই শুমারির আওতার বাইরে। নিয়োজিত ব্যক্তিদের মধ্যে কর্মরত মালিক ও বিনা বেতনে কাজ করা পরিবারের সদস্যও আছেন। খাতের তথ্যে শুধু স্থায়ী প্রতিষ্ঠান আছে, আঞ্চলিক জিডিপি বা আমদানি-রপ্তানি নয়।",
+                      "সংখ্যা দিয়ে অর্থনৈতিক কাজকর্মের পরিসর বোঝানো হয়েছে, টাকায় বাজারের আকার নয়। সাধারণ ব্যবসার পাশাপাশি সরকারি ও অলাভজনক প্রতিষ্ঠান এবং খানার অর্থনৈতিক কাজকর্মের হিসাবও আছে, শুধু নিবন্ধিত কোম্পানি নয়। সাধারণ খানার ফসল চাষ এই শুমারির বাইরে। কর্মীদের পাশাপাশি কর্মরত মালিক ও বিনা বেতনে কাজ করা পরিবারের সদস্যরাও এই হিসাবে আছেন। খাতের তথ্যে শুধু স্থায়ী প্রতিষ্ঠান দেখানো হয়েছে, এটি আঞ্চলিক জিডিপি বা আমদানি-রপ্তানির হিসাব নয়।",
                     )}
                   </p>
                 )}
@@ -1085,7 +1079,7 @@ export default function MapsExperience({
                   <p>
                     {t(
                       "Approximate 95% intervals: estimate ± 1.96 × reported standard error, clipped to 0–100%. Overlapping intervals caution against ranking.",
-                      "প্রায় ৯৫% আস্থার সীমা: প্রাক্কলন ± প্রমিত ত্রুটির ১.৯৬ গুণ (০–১০০%-এর মধ্যে)। সীমাগুলো মিলে গেলে র‍্যাঙ্কিংয়ে সতর্কতা দরকার।",
+                      "প্রায় ৯৫% আস্থার সীমা: আনুমানিক হার ± প্রকাশিত প্রমিত ত্রুটির ১.৯৬ গুণ (০–১০০%-এর মধ্যে)। দুই অঞ্চলের সীমা মিলে গেলে একটি আরেকটির চেয়ে নিশ্চিত এগিয়ে আছে বলে ধরে নেওয়া ঠিক হবে না।",
                     )}
                   </p>
                 )}
@@ -1266,7 +1260,7 @@ export default function MapsExperience({
                     </select>
                   </label>
                   <label>
-                    {t("Second region", "দ্বিতীয় অঞ্চল")}
+                    {t("Second region", "দ্বিতীয় অঞ্চল")}
                     <select
                       disabled={!selected}
                       value={state.compare}
@@ -1316,7 +1310,7 @@ export default function MapsExperience({
                   <p className="maps-intro">
                     {t(
                       "Compare places for a business idea, then choose what to investigate locally.",
-                      "ব্যবসার আইডিয়া নিয়ে অঞ্চলগুলো তুলনা করুন, তারপর ঠিক করুন সেখানে কী কী খোঁজ নেবেন।",
+                      "ব্যবসার আইডিয়া নিয়ে অঞ্চলগুলো তুলনা করুন, তারপর ঠিক করুন সেখানে কী কী খোঁজ নেবেন।",
                     )}
                   </p>
                 )}
@@ -1487,10 +1481,10 @@ export default function MapsExperience({
                             ? "Higher survey estimates with published 95% intervals where available. Overlap cautions against ranking. Division intervals are unavailable."
                             : "Highest values in the current selection",
                         state.layer === "poverty"
-                          ? "বেশি প্রাক্কলনগুলোর সঙ্গে প্রায় ৯৫% আস্থার সীমা। সীমা মিলে গেলে র‍্যাঙ্কিং নির্ভরযোগ্য নয়।"
+                          ? "উচ্চ হারের অঞ্চলগুলোর সঙ্গে আনুমানিক ৯৫% আস্থার সীমা। সীমাগুলো মিলে গেলে র‍্যাঙ্কিং দিয়ে পার্থক্য করা ঠিক হবে না।"
                           : state.layer === "internet"
-                            ? "বেশি প্রাক্কলনগুলোর সঙ্গে প্রকাশিত ৯৫% আস্থার সীমা দেখুন। সীমা মিলে গেলে র‍্যাঙ্কিং নির্ভরযোগ্য নয়। বিভাগের সীমা নেই।"
-                            : "বর্তমান বাছাইয়ে সর্বোচ্চ মান",
+                            ? "উচ্চ হারের অঞ্চলগুলোর সঙ্গে জরিপের ৯৫% আস্থার সীমা। সীমাগুলো মিলে গেলে র‍্যাঙ্কিং দিয়ে পার্থক্য করা ঠিক হবে না। বিভাগের আলাদা সীমা নেই।"
+                            : "বর্তমান বাছাইয়ে সর্বোচ্চ মান",
                       )}
                     </p>
                     <div className="maps-ranked">
@@ -1609,7 +1603,7 @@ export default function MapsExperience({
                     <p className="maps-small">
                       {t(
                         "Selected facilities only. An empty list does not mean no local activity. Site counts cannot measure market size or demand.",
-                        "বাছাই করা কিছু স্থানের তথ্য। তালিকা খালি মানে এখানে কাজকর্ম নেই, এমন নয়। স্থানের সংখ্যা দিয়ে বাজারের আকার বা চাহিদা মাপা যায় না।",
+                        "বাছাই করা কিছু স্থানের তথ্য। তালিকা খালি মানে এখানে কাজকর্ম নেই, এমন নয়। স্থানের সংখ্যা দিয়ে বাজারের আকার বা চাহিদা মাপা যায় না।",
                       )}
                     </p>
                   </details>
@@ -1628,7 +1622,7 @@ export default function MapsExperience({
         {state.view === "map" && !state.urban && (
           <section
             className="maps-legend maps-floating"
-            aria-label={t("Map legend", "মানচিত্রের সংকেত")}
+            aria-label={t("Map legend", "ম্যাপের সংকেত")}
           >
             <div>
               <h2>{words(layer.name, locale)}</h2>
@@ -1713,7 +1707,7 @@ export default function MapsExperience({
                     <div className="maps-transport-key">
                       <span>
                         <i />
-                        {t("Major road", "বড় সড়ক")}
+                        {t("Major road", "বড় সড়ক")}
                       </span>
                       <span>
                         <i className="maps-rail-key" />

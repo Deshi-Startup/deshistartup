@@ -113,7 +113,7 @@ export const layers: Layer[] = [
     ["people counted", "গণনা করা মানুষ"],
     [
       "Total enumerated population, including general and institutional households and floating people; not the post-enumeration adjusted total.",
-      "সাধারণ ও প্রাতিষ্ঠানিক খানার মানুষ এবং ভাসমান মানুষসহ গণনা করা মোট জনসংখ্যা। শুমারি-পরবর্তী যাচাই দিয়ে সমন্বয় করা সংখ্যা নয়।",
+      "সাধারণ ও প্রাতিষ্ঠানিক খানার মানুষ এবং ভাসমান মানুষসহ শুমারিতে গণনা করা মোট জনসংখ্যা। শুমারি-পরবর্তী যাচাই দিয়ে সমন্বয় করা সংখ্যা নয়।",
     ],
     [],
     165158616,
@@ -122,11 +122,11 @@ export const layers: Layer[] = [
   {
     ...census(
       "economicUnits",
-      ["Economic units", "অর্থনৈতিক ইউনিট"],
+      ["Economic units", "ব্যবসা ও প্রতিষ্ঠান"],
       ["units counted", "গণনা করা ইউনিট"],
       [
         "Permanent and temporary establishments plus economic households, Economic Census 2024. Includes businesses, public and nonprofit establishments. A count of activity, not revenue, GDP or paying customers.",
-        "অর্থনৈতিক শুমারি ২০২৪-এ স্থায়ী ও অস্থায়ী প্রতিষ্ঠান এবং অর্থনৈতিক কর্মকাণ্ডে যুক্ত খানা। ব্যবসার পাশাপাশি সরকারি ও অলাভজনক প্রতিষ্ঠানও আছে। এটি কাজকর্মের সংখ্যা, আয়, জিডিপি বা টাকা দিতে প্রস্তুত কাস্টমারের হিসাব নয়।",
+        "অর্থনৈতিক শুমারি ২০২৪-এ স্থায়ী ও অস্থায়ী প্রতিষ্ঠান এবং অর্থনৈতিক কর্মকাণ্ডে যুক্ত খানা। সাধারণ ব্যবসার পাশাপাশি সরকারি ও অলাভজনক প্রতিষ্ঠানও আছে। এটি কাজকর্মের সংখ্যা, আয়, জিডিপি বা টাকা দিতে প্রস্তুত কাস্টমারের হিসাব নয়।",
       ],
       [],
       11702792,
@@ -140,7 +140,7 @@ export const layers: Layer[] = [
     ["% of population", "মোট জনসংখ্যার %"],
     [
       "Urban residents divided by all enumerated residents. Calculated from Census Table P02.",
-      "জনশুমারির P02 টেবিলের শহরাঞ্চলের জনসংখ্যাকে মোট জনসংখ্যা দিয়ে ভাগ করে হিসাব করা।",
+      "জনশুমারির P02 টেবিল অনুযায়ী মোট জনসংখ্যার মধ্যে শহরে বসবাসকারী মানুষের হার।",
     ],
     [15, 20, 30, 40, 60],
     (52049459 / 165158616) * 100,
@@ -152,7 +152,7 @@ export const layers: Layer[] = [
       ["% below upper poverty line", "ঊর্ধ্ব দারিদ্র্যসীমার নিচে %"],
       [
         "Estimated consumption poverty (CensusEB), using HIES and Census 2022. Not income, wealth or an opportunity ranking.",
-        "HIES ও জনশুমারি ২০২২ দিয়ে CensusEB পদ্ধতিতে ভোগব্যয়ভিত্তিক দারিদ্র্যের প্রাক্কলন। আয়, সম্পদ বা ব্যবসার সুযোগের র‍্যাঙ্কিং নয়।",
+        "HIES ও জনশুমারি ২০২২-এর তথ্য দিয়ে CensusEB পদ্ধতিতে হিসাব করা ভোগব্যয়ভিত্তিক দারিদ্র্যের আনুমানিক হার। আয়, সম্পদ বা ব্যবসার সুযোগের র‍্যাঙ্কিং নয়।",
       ],
       [10, 15, 20, 25, 35],
       19.2,
@@ -196,7 +196,7 @@ export const layers: Layer[] = [
       ["% of people aged 5+", "৫ বছর বা বেশি বয়সীদের %"],
       [
         "Survey estimate of people aged 5+ in private households who used the internet in the last three months, ICT Survey 2024–25. Not network coverage, speed or device ownership.",
-        "আইসিটি জরিপ ২০২৪–২৫ অনুযায়ী সাধারণ খানার ৫ বছর বা বেশি বয়সীদের মধ্যে গত তিন মাসে ইন্টারনেট ব্যবহারের প্রাক্কলিত হার। নেটওয়ার্কের আওতা, গতি বা ডিভাইসের মালিকানা নয়।",
+        "আইসিটি জরিপ ২০২৪–২৫ অনুযায়ী সাধারণ খানার ৫ বছর বা বেশি বয়সীদের মধ্যে গত তিন মাসে ইন্টারনেট ব্যবহারের আনুমানিক হার। নেটওয়ার্কের আওতা, গতি বা ডিভাইসের মালিকানা নয়।",
       ],
       [30, 40, 50, 60, 70],
       53.4,
@@ -207,11 +207,11 @@ export const layers: Layer[] = [
   },
   census(
     "financial",
-    ["Financial accounts", "আর্থিক প্রতিষ্ঠানে হিসাব"],
+    ["Financial accounts", "ব্যাংক ও আর্থিক হিসাব"],
     ["% of people aged 15+", "১৫ বছর বা বেশি বয়সীদের %"],
     [
       "People with an account at a bank, insurer, microcredit institution, post office or other financial institution. Not balances or active use.",
-      "ব্যাংক, বিমা, ক্ষুদ্রঋণ প্রতিষ্ঠান, ডাকঘর বা অন্য আর্থিক প্রতিষ্ঠানে হিসাব আছে এমন মানুষের হার। জমা টাকা বা নিয়মিত ব্যবহার বোঝায় না।",
+      "ব্যাংক, বিমা, ক্ষুদ্রঋণ প্রতিষ্ঠান, ডাকঘর বা অন্য আর্থিক প্রতিষ্ঠানে অ্যাকাউন্ট আছে এমন মানুষের হার। ব্যালান্স বা নিয়মিত ব্যবহার বোঝায় না।",
     ],
     [15, 20, 25, 30, 35],
     25.35,
@@ -224,7 +224,7 @@ export const layers: Layer[] = [
     ["% of people aged 15+", "১৫ বছর বা বেশি বয়সীদের %"],
     [
       "People aged 15+ reporting a mobile banking account. Not transaction volume, active customers or agent coverage.",
-      "১৫ বছর বা বেশি বয়সীদের মধ্যে মোবাইল ব্যাংকিং হিসাব আছে এমন মানুষের হার। লেনদেনের পরিমাণ, সক্রিয় কাস্টমার বা এজেন্টের আওতা নয়।",
+      "১৫ বছর বা বেশি বয়সীদের মধ্যে মোবাইল ব্যাংকিং অ্যাকাউন্ট আছে এমন মানুষের হার। লেনদেনের পরিমাণ, সক্রিয় কাস্টমার বা এজেন্টের উপস্থিতি নয়।",
     ],
     [30, 35, 40, 45, 50],
     39.11,
@@ -235,17 +235,17 @@ export const layers: Layer[] = [
     ...census(
       id,
       id === "income"
-        ? ["Household income", "খানার আয়"]
-        : ["Consumption expenditure", "ভোগব্যয়"],
+        ? ["Household income", "খানার গড় আয়"]
+        : ["Consumption expenditure", "ভোগব্যয়"],
       ["BDT / household / month", "টাকা / খানা / মাস"],
       id === "income"
         ? [
             "Mean monthly nominal household income, HIES 2022 Table 4.5. Not median, per-person income or wealth. Division estimates only.",
-            "HIES ২০২২-এর টেবিল ৪.৫ অনুযায়ী খানার মাসিক গড় আয়, সেই বছরের টাকার মূল্যে। মধ্যমা, মাথাপিছু আয় বা সম্পদ নয়। শুধু বিভাগের হিসাব।",
+            "HIES ২০২২-এর টেবিল ৪.৫ অনুযায়ী খানার মাসিক গড় আয়, সেই সময়ের টাকার মূল্যে। মধ্যমা (মিডিয়ান), মাথাপিছু আয় বা সম্পদ নয়। শুধু বিভাগের হিসাব।",
           ]
         : [
             "Mean monthly nominal household consumption expenditure, HIES 2022 Table 4.5. Distinct from income and total expenditure. Division estimates only.",
-            "HIES ২০২২-এর টেবিল ৪.৫ অনুযায়ী খানার মাসিক গড় ভোগব্যয়, সেই বছরের টাকার মূল্যে। আয় ও মোট ব্যয় থেকে আলাদা। শুধু বিভাগের হিসাব।",
+            "HIES ২০২২-এর টেবিল ৪.৫ অনুযায়ী খানার মাসিক গড় ভোগব্যয়, সেই সময়ের টাকার মূল্যে। আয় ও মোট খরচ থেকে আলাদা। শুধু বিভাগের হিসাব।",
           ],
       [24000, 28000, 32000, 36000, 40000],
       id === "income" ? 32422 : 30603,

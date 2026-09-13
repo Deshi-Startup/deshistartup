@@ -76,14 +76,14 @@
       "id": "payra-port",
       "name": {
         "en": "Payra port",
-        "bn": "পায়রা বন্দর"
+        "bn": "পায়রা বন্দর"
       },
       "kind": "seaport",
       "district": "district-patuakhali",
       "division": "barishal",
       "location": {
         "en": "Kalapara, Patuakhali · first-terminal area",
-        "bn": "কলাপাড়া, পটুয়াখালী · প্রথম টার্মিনাল এলাকা"
+        "bn": "কলাপাড়া, পটুয়াখালী · প্রথম টার্মিনাল এলাকা"
       },
       "source": "https://ppa.gov.bd/pages/static-pages/6922e05a933eb65569e26a61",
       "activitySource": "https://ppa.gov.bd/pages/static-pages/6922de60933eb65569e1a3b3",
@@ -120,14 +120,14 @@
       "id": "burimari-port",
       "name": {
         "en": "Burimari land port",
-        "bn": "বুড়িমারী স্থলবন্দর"
+        "bn": "বুড়িমারী স্থলবন্দর"
       },
       "kind": "landport",
       "district": "district-lalmonirhat",
       "division": "rangpur",
       "location": {
         "en": "Burimari, Lalmonirhat · commercial port area",
-        "bn": "বুড়িমারী, লালমনিরহাট · বাণিজ্যিক বন্দর এলাকা"
+        "bn": "বুড়িমারী, লালমনিরহাট · বাণিজ্যিক বন্দর এলাকা"
       },
       "source": "https://burimari.blpa.gov.bd/",
       "activitySource": "https://blpa.gov.bd/",
@@ -149,7 +149,7 @@
       "division": "rangpur",
       "location": {
         "en": "Tetulia, Panchagarh · port area",
-        "bn": "তেঁতুলিয়া, পঞ্চগড় · বন্দর এলাকা"
+        "bn": "তেঁতুলিয়া, পঞ্চগড় · বন্দর এলাকা"
       },
       "source": "https://blpa.gov.bd/pages/office-contents/6922d89d933eb65569df9327",
       "activitySource": "https://blpa.gov.bd/",
@@ -209,14 +209,14 @@
       "id": "akhaura-port",
       "name": {
         "en": "Akhaura land port",
-        "bn": "আখাউড়া স্থলবন্দর"
+        "bn": "আখাউড়া স্থলবন্দর"
       },
       "kind": "landport",
       "district": "district-brahmanbaria",
       "division": "chattogram",
       "location": {
         "en": "Akhaura, Brahmanbaria · check-post building",
-        "bn": "আখাউড়া, ব্রাহ্মণবাড়িয়া · চেকপোস্ট ভবন"
+        "bn": "আখাউড়া, ব্রাহ্মণবাড়িয়া · চেকপোস্ট ভবন"
       },
       "source": "https://blpa.gov.bd/pages/office-contents/6922d89d933eb65569df92ee",
       "activitySource": "https://blpa.gov.bd/",

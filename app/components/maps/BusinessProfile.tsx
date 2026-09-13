@@ -33,10 +33,10 @@ export default function BusinessProfile({
     <details className="maps-business" key={region.id}>
       <summary>
         <span>
-          {t("Business activity", "অর্থনৈতিক কর্মকাণ্ড")}
+          {t("Business activity", "ব্যবসা ও অর্থনৈতিক কর্মকাণ্ড")}
           <small>
             {number(b.economicUnits)}{" "}
-            {t("economic units · 2024", "অর্থনৈতিক ইউনিট · ২০২৪")}
+            {t("economic units · 2024", "ব্যবসা ও প্রতিষ্ঠান · ২০২৪")}
           </small>
         </span>
       </summary>
@@ -72,7 +72,7 @@ export default function BusinessProfile({
         )}{" "}
         ↗
       </a>
-      <h3>{t("Largest activities", "প্রধান কর্মকাণ্ড")}</h3>
+      <h3>{t("Largest activities", "শীর্ষ খাতগুলো")}</h3>
       <p className="maps-small">
         {t(
           "By number of permanent establishments. Shares use permanent establishments only.",
@@ -105,7 +105,7 @@ export default function BusinessProfile({
       </ol>
       <details className="maps-activity-detail">
         <summary>
-          {t("All activities & scope", "সব কর্মকাণ্ড ও হিসাবের আওতা")}
+          {t("All activities & scope", "সব খাত ও হিসাবের আওতা")}
         </summary>
         <table className="maps-activity-table">
           <caption>
@@ -113,9 +113,9 @@ export default function BusinessProfile({
           </caption>
           <thead>
             <tr>
-              <th scope="col">{t("Activity", "কর্মকাণ্ড")}</th>
+              <th scope="col">{t("Activity", "কাজের খাত")}</th>
               <th scope="col">{t("Units", "প্রতিষ্ঠান")}</th>
-              <th scope="col">{t("People engaged", "নিয়োজিত ব্যক্তি")}</th>
+              <th scope="col">{t("People engaged", "কাজে যুক্ত মানুষ")}</th>
             </tr>
           </thead>
           <tbody>
@@ -131,7 +131,7 @@ export default function BusinessProfile({
         <p className="maps-small">
           {t(
             "People engaged includes working owners, unpaid family workers and part-time workers. This table covers permanent establishments only; temporary and household activity is excluded. Public and nonprofit establishments are included. Ordinary household crop farming is outside census scope, while farm-based livestock, poultry, fishery and nursery establishments are included.",
-            "নিয়োজিত ব্যক্তিদের মধ্যে কর্মরত মালিক, বিনা বেতনে কাজ করা পরিবারের সদস্য ও খণ্ডকালীন কর্মীও আছেন। এই টেবিলে শুধু স্থায়ী প্রতিষ্ঠান আছে, অস্থায়ী প্রতিষ্ঠান ও খানার কাজ বাদ। সরকারি ও অলাভজনক প্রতিষ্ঠানও আছে। সাধারণ খানার ফসল চাষ শুমারির আওতার বাইরে। তবে পশুপালন, হাঁস-মুরগি, মৎস্য ও নার্সারির প্রতিষ্ঠান অন্তর্ভুক্ত।",
+            "কাজে যুক্ত মানুষের মধ্যে কর্মরত মালিক, বিনা বেতনে কাজ করা পরিবারের সদস্য ও খণ্ডকালীন কর্মীও আছেন। এই টেবিলে শুধু স্থায়ী প্রতিষ্ঠান আছে, অস্থায়ী প্রতিষ্ঠান বা খানার অর্থনৈতিক কাজকর্ম নেই। সরকারি ও অলাভজনক প্রতিষ্ঠানও ধরা হয়েছে। সাধারণ খানার ফসল চাষ এই শুমারির বাইরে, তবে খামারভিত্তিক পশুপালন, হাঁস-মুরগি, মাছ চাষ ও নার্সারির প্রতিষ্ঠান যুক্ত আছে।",
           )}
         </p>
         <p className="maps-small">
@@ -148,7 +148,7 @@ export default function BusinessProfile({
         >
           {t(
             "People engaged · Volume II, S5",
-            "নিয়োজিত ব্যক্তি · দ্বিতীয় খণ্ড, S5",
+            "কাজে যুক্ত মানুষ · দ্বিতীয় খণ্ড, S5",
           )}{" "}
           ↗
         </a>

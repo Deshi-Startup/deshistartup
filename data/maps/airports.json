@@ -61,7 +61,7 @@
       "osmName": "হযরত শাহজালাল আন্তর্জাতিক বিমানবন্দর",
       "sourceNote": {
         "en": "Source page undated here; current services require verification.",
-        "bn": "উৎসের পাতার তারিখ নিশ্চিত নয়। বর্তমান সেবা যাচাই করুন।"
+        "bn": "উৎসের পাতার তারিখ নিশ্চিত নয়। বর্তমান সেবা যাচাই করুন।"
       }
     },
     {
@@ -151,7 +151,7 @@
       "checked": "2026-09-12",
       "role": {
         "en": "Passenger airport. Cargo capability not established here.",
-        "bn": "যাত্রীবাহী বিমানবন্দর। এখানে কার্গো সুবিধার তথ্য যাচাই করা হয়নি।"
+        "bn": "যাত্রীবাহী বিমানবন্দর। এখানে কার্গো সুবিধার তথ্য যাচাই করা হয়নি।"
       },
       "point": [
         91.9629203,
@@ -185,7 +185,7 @@
       "checked": "2026-09-12",
       "role": {
         "en": "Passenger airport. Cargo capability not established here.",
-        "bn": "যাত্রীবাহী বিমানবন্দর। এখানে কার্গো সুবিধার তথ্য যাচাই করা হয়নি।"
+        "bn": "যাত্রীবাহী বিমানবন্দর। এখানে কার্গো সুবিধার তথ্য যাচাই করা হয়নি।"
       },
       "point": [
         89.1587553,
@@ -197,14 +197,14 @@
       "osmName": "যশোর বিমানবন্দর",
       "sourceNote": {
         "en": "Source page undated here; current services require verification.",
-        "bn": "উৎসের পাতার তারিখ নিশ্চিত নয়। বর্তমান সেবা যাচাই করুন।"
+        "bn": "উৎসের পাতার তারিখ নিশ্চিত নয়। বর্তমান সেবা যাচাই করুন।"
       }
     },
     {
       "id": "airport-spd",
       "name": {
         "en": "Saidpur airport",
-        "bn": "সৈয়দপুর বিমানবন্দর"
+        "bn": "সৈয়দপুর বিমানবন্দর"
       },
       "kind": "airport",
       "code": "SPD",
@@ -212,14 +212,14 @@
       "division": "rangpur",
       "location": {
         "en": "Saidpur, Nilphamari",
-        "bn": "সৈয়দপুর, নীলফামারী"
+        "bn": "সৈয়দপুর, নীলফামারী"
       },
       "source": "https://ops.caab.gov.bd/group-menu-content/12/103",
       "sourcePageUpdated": null,
       "checked": "2026-09-12",
       "role": {
         "en": "Passenger airport. Cargo capability not established here.",
-        "bn": "যাত্রীবাহী বিমানবন্দর। এখানে কার্গো সুবিধার তথ্য যাচাই করা হয়নি।"
+        "bn": "যাত্রীবাহী বিমানবন্দর। এখানে কার্গো সুবিধার তথ্য যাচাই করা হয়নি।"
       },
       "point": [
         88.9091955,
@@ -231,7 +231,7 @@
       "osmName": "সৈয়দপুর বিমানবন্দর",
       "sourceNote": {
         "en": "Source page undated here; current services require verification.",
-        "bn": "উৎসের পাতার তারিখ নিশ্চিত নয়। বর্তমান সেবা যাচাই করুন।"
+        "bn": "উৎসের পাতার তারিখ নিশ্চিত নয়। বর্তমান সেবা যাচাই করুন।"
       }
     },
     {
@@ -253,7 +253,7 @@
       "checked": "2026-09-12",
       "role": {
         "en": "Passenger airport. Cargo capability not established here.",
-        "bn": "যাত্রীবাহী বিমানবন্দর। এখানে কার্গো সুবিধার তথ্য যাচাই করা হয়নি।"
+        "bn": "যাত্রীবাহী বিমানবন্দর। এখানে কার্গো সুবিধার তথ্য যাচাই করা হয়নি।"
       },
       "point": [
         88.6150528,
@@ -265,7 +265,7 @@
       "osmName": "শাহ মখদুম বিমানবন্দর",
       "sourceNote": {
         "en": "Source page undated here; current services require verification.",
-        "bn": "উৎসের পাতার তারিখ নিশ্চিত নয়। বর্তমান সেবা যাচাই করুন।"
+        "bn": "উৎসের পাতার তারিখ নিশ্চিত নয়। বর্তমান সেবা যাচাই করুন।"
       }
     },
     {
@@ -287,7 +287,7 @@
       "checked": "2026-09-12",
       "role": {
         "en": "Passenger airport. Cargo capability not established here.",
-        "bn": "যাত্রীবাহী বিমানবন্দর। এখানে কার্গো সুবিধার তথ্য যাচাই করা হয়নি।"
+        "bn": "যাত্রীবাহী বিমানবন্দর। এখানে কার্গো সুবিধার তথ্য যাচাই করা হয়নি।"
       },
       "point": [
         90.3002559,

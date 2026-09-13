@@ -977,7 +977,7 @@ export default function MapCanvas(props: Props) {
         role="region"
         aria-label={t(
           "Interactive Bangladesh map. Search or use Data for keyboard access.",
-          "বাংলাদেশের ইন্টার‌্যাকটিভ মানচিত্র। কিবোর্ড দিয়ে খুঁজুন বা তথ্যের টেবিল ব্যবহার করুন।",
+          "বাংলাদেশের ইন্টারঅ্যাকটিভ ম্যাপ। কিবোর্ড দিয়ে খুঁজুন বা তথ্যের টেবিল ব্যবহার করুন।",
         )}
       />
       <a
@@ -1014,7 +1014,7 @@ export default function MapCanvas(props: Props) {
           disabled={status !== "ready"}
           aria-label={
             props.state.urban
-              ? t("Show mapped places", "মানচিত্রের সব শহর দেখুন")
+              ? t("Show mapped places", "ম্যাপের সব শহর দেখুন")
               : t("Show all Bangladesh", "পুরো বাংলাদেশ দেখুন")
           }
         >
@@ -1027,17 +1027,17 @@ export default function MapCanvas(props: Props) {
         <div className="maps-load" role="status">
           <strong>
             {status === "loading"
-              ? t("Drawing Bangladesh…", "বাংলাদেশের মানচিত্র লোড হচ্ছে…")
+              ? t("Drawing Bangladesh…", "বাংলাদেশের ম্যাপ লোড হচ্ছে…")
               : t(
                   "The map is unavailable on this device.",
-                  "এই ডিভাইসে মানচিত্র দেখা যাচ্ছে না।",
+                  "এই ডিভাইসে ম্যাপ দেখা যাচ্ছে না।",
                 )}
           </strong>
           {status === "error" && (
             <p>
               {t(
                 "Use Data above to explore the same regional information.",
-                "ওপরে তথ্য বেছে নিয়ে একই আঞ্চলিক তথ্য দেখতে পারবেন।",
+                "ওপরে তথ্য বেছে নিয়ে একই আঞ্চলিক তথ্য দেখতে পারবেন।",
               )}
             </p>
           )}
@@ -1052,7 +1052,7 @@ export default function MapCanvas(props: Props) {
         <p className="maps-context-note">
           {t(
             "Some background tiles are unavailable. Regional data is loaded.",
-            "পেছনের মানচিত্রের কিছু অংশ লোড হয়নি। অঞ্চলের তথ্য দেখা যাচ্ছে।",
+            "পেছনের ম্যাপের কিছু অংশ লোড হয়নি। অঞ্চলের তথ্য দেখা যাচ্ছে।",
           )}
         </p>
       )}
@@ -1061,12 +1061,12 @@ export default function MapCanvas(props: Props) {
         transportStatus !== "ready" && (
           <div className="maps-overlay-status" role="status">
             {transportStatus === "loading" ? (
-              t("Loading roads & railways…", "সড়ক ও রেলপথ লোড হচ্ছে…")
+              t("Loading roads & railways…", "সড়ক ও রেলপথ লোড হচ্ছে…")
             ) : (
               <>
                 {t(
                   "Roads & railways couldn't load.",
-                  "সড়ক ও রেলপথ লোড হয়নি।",
+                  "সড়ক ও রেলপথ লোড হয়নি।",
                 )}
                 <button onClick={() => setTransportRetry((r) => r + 1)}>
                   {t("Retry", "আবার চেষ্টা করুন")}

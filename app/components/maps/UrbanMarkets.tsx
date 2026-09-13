@@ -236,7 +236,7 @@ export default function UrbanMarkets({
         <p>
           {t(
             `${coverage.mappedRecords} of ${coverage.reportRecords} city and municipality entries from this district are mapped.`,
-            `প্রতিবেদনে এই জেলার ${num(coverage.reportRecords)}টি শহরের মধ্যে ${num(coverage.mappedRecords)}টির অবস্থান মানচিত্রে দেখানো হয়েছে।`,
+            `প্রতিবেদনে এই জেলার ${num(coverage.reportRecords)}টি শহরের মধ্যে ${num(coverage.mappedRecords)}টির অবস্থান ম্যাপে দেখানো হয়েছে।`,
           )}
         </p>
         {coverage.excluded.length > 0 && (
@@ -267,7 +267,7 @@ export default function UrbanMarkets({
         <p className="maps-small">
           {t(
             "Administrative areas differ in size. Household counts describe scale, not demand for your service.",
-            "প্রশাসনিক এলাকার আয়তন এক নয়। খানার সংখ্যা থেকে আপনার সেবার চাহিদা জানা যায় না।",
+            "প্রশাসনিক এলাকার আয়তন এক রকম নয়। শুধু খানার সংখ্যা দিয়ে আপনার সেবার চাহিদা বোঝা যায় না।",
           )}
         </p>
         {(place ? [place, ...(compared ? [compared] : [])] : places).map(
