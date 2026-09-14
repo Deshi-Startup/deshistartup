@@ -377,8 +377,8 @@ Responsive behavior, by the breakpoints that actually exist:
   with it.
 - **860px**: the phone layout. The brand tagline is hidden, the header stacks to two rows and search
   takes the second. The rail becomes an off-canvas drawer behind a toggle, scroll clearance is
-  144px, and simple tables switch to a fixed layout so the column settles first and the text wraps
-  inside it.
+  144px. Two-column article tables size their columns from content, with a 6rem minimum per
+  cell and emergency wrapping for long words or URLs. Three-column references retain fixed tracks.
 - **620px / 520px**: footer labels stack, then the brand name truncates when needed. The compact
   infobox keeps its label/value columns. Page metadata follows the article, so its date cannot
   shift the headline after paint.
@@ -392,8 +392,11 @@ Bangla carries matra above the line and conjuncts below it, and at 15px the stac
 a founder on a mid-range Android starts guessing. 16px costs about one word per line and buys back
 the shapes; the opened leading is the other half of the same fix.
 
-**The Even-Column Rule.** A table divides the phone column evenly rather than sizing itself from its
-longest word. Only a genuinely dense grid earns its own horizontal scroll surface.
+**The Content-Aware-Columns Rule.** Two-column article tables share the phone width according to
+their content, preserving a readable minimum for both columns. A short date or label should leave
+more room for its explanation. Three-column references keep equal tracks; genuinely dense grids
+own their horizontal scroll surface. Keep text size and padding readable instead of shrinking them
+to compensate for unsuitable column widths.
 
 **The Nothing-After-Paint Rule.** Nothing appears above the article once the page has painted. The
 shell is one client component that cannot know the route while the static HTML renders, so anything

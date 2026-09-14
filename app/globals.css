@@ -2366,13 +2366,22 @@ a.is-stub-link:hover {
     min-width: 8rem;
   }
 
-  /* Everything narrower stays in the column and divides it evenly. Automatic
-     layout sizes a table from its longest word, so one "Requirements" in a
-     three-column reference walked the whole table 9px past the canvas and gave
-     the page a sideways scroll. Fixed layout settles the columns first and lets
-     the text wrap inside them, which is the arrangement a phone can read. */
+  /* Three-column references keep predictable tracks on narrow screens. */
   .article > table:not(:has(tr > :nth-child(4))) {
     table-layout: fixed;
+  }
+
+  /* Two-column references often pair a short date or label with an explanation.
+     Let the content share the available width, but preserve a readable minimum
+     for either column. Emergency wrapping also participates in intrinsic sizing
+     so a long word or URL cannot widen the whole page. */
+  .article > table:not(:has(tr > :nth-child(3))) {
+    table-layout: auto;
+  }
+
+  .article > table:not(:has(tr > :nth-child(3))) :is(th, td) {
+    min-width: 6rem;
+    overflow-wrap: anywhere;
   }
 
   .article-meta,
