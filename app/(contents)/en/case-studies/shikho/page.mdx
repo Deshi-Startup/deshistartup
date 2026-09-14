@@ -5,7 +5,8 @@ description: "How Shikho started with SSC maths, built paid learning products an
 verified: 2026-09-13
 ---
 
-import { CaseCompany, CaseTimeline, CaseMilestone, CaseDetail, CaseProcess } from '../../../../components/CaseStudy'
+import { CaseCompany, CaseTimeline, CaseMilestone, CaseDetail } from '../../../../components/CaseStudy'
+import CaseLearningEvidence from '../../../../components/CaseLearningEvidence'
 
 # Shikho
 
@@ -32,32 +33,32 @@ The starting point was a specific exam need. The ambition was much larger.
 ## Turning points
 
 <CaseTimeline>
-<CaseMilestone date="Late 2020" title="Start with one maths course">
+<CaseMilestone date="Late 2020" title="Start with one maths course" href="#the-first-course-was-narrow-but-complete">
 
 The app launches with SSC general maths. The team plans to test this course before adding subjects.[^fs-launch]
 
 </CaseMilestone>
-<CaseMilestone date="2021" title="Add live classes and buy Bohubrihi">
+<CaseMilestone date="2021" title="Add live classes and buy Bohubrihi" href="#why-the-two-brands-stayed-separate">
 
 By November, Shikho has added live teaching and acquired a platform for professional skills.[^fs-acquisition]
 
 </CaseMilestone>
-<CaseMilestone date="2022–23" title="Give each audience its own brand">
+<CaseMilestone date="2022–23" title="Give each audience its own brand" href="#why-the-two-brands-stayed-separate">
 
 After trying “Shikho Skills,” the team separates the focus: Shikho for academics, Bohubrihi for professional learning.[^fs-bohubrihi]
 
 </CaseMilestone>
-<CaseMilestone date="April 2024" title="Make the online service tangible">
+<CaseMilestone date="April 2024" title="Make the online service tangible" href="#earning-a-familys-trust">
 
 An Exam and Experience Center opens in Farmgate, Dhaka. Families can try the product with staff, and students can take supervised exams.[^fs-centre]
 
 </CaseMilestone>
-<CaseMilestone date="February 2025" title="Test AI help for study questions">
+<CaseMilestone date="February 2025" title="Test AI help for study questions" href="#ai-help-when-a-student-gets-stuck">
 
 Shikho introduces a test version of its AI study tool for existing paid users, starting with questions asked in Bangla.[^ds-ai]
 
 </CaseMilestone>
-<CaseMilestone date="April 2026" title="Reach learners through MyGP">
+<CaseMilestone date="April 2026" title="Reach learners through MyGP" href="#what-scales-and-what-still-costs-money">
 
 A partnership announcement says Grameenphone will offer discounted Shikho maths courses for classes 6–10 through MyGP, Grameenphone's customer app.[^gp-partnership]
 
@@ -70,7 +71,7 @@ Shahir Chowdhury had worked in banking in the UK. When he looked for a business 
 
 The problem he chose was access to teaching. In Bangladesh, a family's options depended on where it lived and what it could spend on tutors or coaching. Shikho's proposed answer was to put structured lessons on a phone.[^fs-seed]
 
-Language and exam fit mattered too. In a 2022 interview, Chowdhury described the focus as teaching Bangladesh's national curriculum in Bangla. A useful product had to help students with the syllabus and exams they actually faced.[^row-founder]
+Language and exam fit mattered too. In a 2022 interview, Shahir described the focus as teaching Bangladesh's national curriculum in Bangla. A useful product had to help students with the syllabus and exams they actually faced.[^row-founder]
 
 This is a useful way to think about a local product: translating the words is only part of the job. You also need to match the task, the deadline and the way people judge success.
 
@@ -82,33 +83,49 @@ That choice kept the scope clear. A family could judge one concrete promise: hel
 
 But a narrow product is not always a cheap product. Shikho was building several parts of the learning experience at once. A founder copying this approach should separate **a small audience** from **a small amount of work**.
 
-The current academic offer still combines classes, notes, practice tests and report cards.[^shikho-site] The diagram below explains how those parts can support a learner.
+10 Minute School had already taught for free for years when it [tested paid demand with a BDT 75 PDF](/en/case-studies/10-minute-school#business-model). That answered whether some of its audience would pay; Shikho's exam course also had to supply the lessons and practice promised to the learner.
 
-<CaseProcess
-  title="A video explains. Practice shows what you understood."
-  steps={[
-    { title: 'Learn', description: 'Watch a lesson and use the notes.' },
-    { title: 'Try', description: 'Answer questions on the topic.' },
-    { title: 'Check', description: 'Use answers and results to spot gaps.' },
-    { title: 'Revisit', description: 'Go back to the part that needs work.' },
-  ]}
+Shikho's public feature illustrations show two useful kinds of feedback: a practice-test summary and a chapter report.[^shikho-site] They help explain a distinction that matters in education: attending a class is not the same as understanding the topic.
+
+<CaseLearningEvidence
+  title="Results can guide what to revisit"
+  practice={{
+    title: 'Practice-test feedback',
+    description: 'Separate a correct answer from a mistake or a skipped question.',
+    results: { correct: 'Correct', incorrect: 'Incorrect', skipped: 'Skipped' },
+    source: {
+      href: 'https://res.cloudinary.com/cross-border-education-technologies-pte-ltd/image/upload/q_auto:good/f_auto/c_scale,w_auto/v1670221272/Shikho%20Website%20V3/Homepage/Feature%20Image%20Carousel/Website_Banner_%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%95%E0%A6%9F%E0%A6%BF%E0%A6%B8_MCQ_%E0%A6%9F%E0%A7%87%E0%A6%B8%E0%A7%8D%E0%A6%9F_841x656_gt6s6z',
+      label: "See Shikho's test illustration",
+    },
+  }}
+  chapter={{
+    title: 'Chapter report',
+    description: 'Keep class attendance separate from the topics that need work.',
+    attendanceLabel: 'Class attendance',
+    topicsLabel: 'Topics needing improvement',
+    revisitLabel: 'Material to revisit',
+    source: {
+      href: 'https://res.cloudinary.com/cross-border-education-technologies-pte-ltd/image/upload/q_auto:good/f_auto/c_scale,w_auto/v1670221271/Shikho%20Website%20V3/Homepage/Feature%20Image%20Carousel/Website_Banner_Report_Card_841x656_weoyb8',
+      label: "See Shikho's report illustration",
+    },
+  }}
 >
 
-Our simplified view of how these features support learning.[^shikho-site] Shikho has not published measured results for this path.
+Our interpretation of Shikho's published illustrations, checked 14 September 2026.[^shikho-site] These show product features, not a tested learning path or evidence of better results.
 
-</CaseProcess>
+</CaseLearningEvidence>
 
 The product question becomes more useful when it is specific: **what helps a learner move past a wrong answer?** Another video may help. So may a clearer worked answer, feedback or a teacher. Adding more content is only one possible response.
 
 ## What brought in paying customers
 
-In August 2022, Chowdhury told Rest of World that purchases were coming from students who sought out help before board or university entrance exams. He reported about 170,000 monthly active users. That means people using the product during a month, not 170,000 paying customers.[^row-founder]
+In August 2022, Shahir told Rest of World that purchases were coming from students who sought out help before board or university entrance exams. He reported about 170,000 monthly active users. That means people using the product during a month, not 170,000 paying customers.[^row-founder]
 
 This suggests that an approaching exam gave the offer urgency. It does not tell us which channel brought in the first buyers or how much each sale cost. The sources reviewed do not provide that early sales breakdown.
 
-The timing also had a downside. In his early TRT World interview, Chowdhury said pandemic school closures and shifting exam dates had removed a clear study target. Restrictions also made it harder to show the product to families in person.[^trt-founder] A need for online learning did not remove the work of finding buyers.
+The timing also had a downside. In his early TRT World interview, Shahir said pandemic school closures and shifting exam dates had removed a clear study target. Restrictions also made it harder to show the product to families in person.[^trt-founder] A need for online learning did not remove the work of finding buyers.
 
-There were also two people to understand: the learner and the parent. Chowdhury described this shift in a June 2025 interview.[^ro-founder]
+There were also two people to understand: the learner and the parent. Shahir described this shift in a June 2025 interview.[^ro-founder]
 
 | Learner's stage | How he described the buying decision |
 |---|---|
@@ -120,7 +137,7 @@ These are the founder's observations, not a survey of all families. They point t
 
 ## Earning a family's trust
 
-In April 2024, Shikho opened its first Exam and Experience Center in Farmgate. In his announcement, Chowdhury described two uses: supervised exams, and a place where students and parents could try paid courses on devices with help from staff.[^founder-centre]
+In April 2024, Shikho opened its first Exam and Experience Center in Farmgate. In his announcement, Shahir described two uses: supervised exams, and a place where students and parents could try paid courses on devices with help from staff.[^founder-centre]
 
 A physical visit can make an unfamiliar service easier to judge. It also creates costs that a video library does not have. Future Startup's analysis raised that trade-off: the centres would need to bring enough business value to justify the extra spending.[^fs-centre]
 
@@ -142,9 +159,9 @@ In November 2021, Shikho acquired Bohubrihi, a platform for professional courses
 
 That created a new challenge. Helping a school student pass an exam and helping an adult gain a work skill are both education, but the buying reasons are different.
 
-The team tried another split: basic, lower-cost courses under “Shikho Skills” and deeper career courses under Bohubrihi. In a May 2023 interview, Piash said the same learners often needed both. Sending them to two places made learning and marketing harder. The team brought the courses back under Bohubrihi.[^fs-bohubrihi]
+The team tried another split: basic, lower-cost courses under “Shikho Skills” and deeper career courses under Bohubrihi. In a May 2023 interview, Yanur Islam Piash said the same learners often needed both. Sending them to two places made learning and marketing harder. The team brought the courses back under Bohubrihi.[^fs-bohubrihi]
 
-It kept the wider split by learner goal: Shikho for school studies, Bohubrihi for work skills. Chowdhury said each brand had its own marketing, product and engineering teams.[^fs-bohubrihi]
+It kept the wider split by learner goal: Shikho for school studies, Bohubrihi for work skills. Shahir said each brand had its own marketing, product and engineering teams.[^fs-bohubrihi]
 
 The useful lesson is **to organise around the customer's goal**. A shared owner does not require a shared message or course catalogue. Keeping two brands also means more work, so the split needs a reason beyond making the company look bigger.
 
@@ -178,13 +195,13 @@ Shikho raised outside money early. These selected announcements show the scale o
 
 The last row is a running total, so do not add it to the earlier rounds. Nor should that total be read as cash still available to spend.
 
-Funding was not a smooth path. In August 2024, Chowdhury said a proposed BDT 5 crore investment from Startup Bangladesh had been withdrawn for political reasons. The Daily Star reported his account; it was not an independently established finding about the fund's motives.[^ds-funding] The fund's own May 2025 announcement confirms a later investment.[^sbl-investment]
+Funding was not a smooth path. In August 2024, Shahir said a proposed BDT 5 crore investment from Startup Bangladesh had been withdrawn for political reasons. The Daily Star reported his account; it was not an independently established finding about the fund's motives.[^ds-funding] The fund's own May 2025 announcement confirms a later investment.[^sbl-investment]
 
 For a founder, a promised cheque and money received are different planning inputs. Keep a plan for delays.
 
 ## AI help when a student gets stuck
 
-The test version of Shikho's AI study tool launched in February 2025. It focused on answering study questions in Bangla. Chowdhury told The Daily Star that educators reviewed outputs and students could rate answers. The first access was for existing paid users.[^ds-ai]
+The test version of Shikho's AI study tool launched in February 2025. It focused on answering study questions in Bangla. Shahir told The Daily Star that educators reviewed outputs and students could rate answers. The first access was for existing paid users.[^ds-ai]
 
 The choice of one task makes sense: help at the point where a learner cannot move forward. But fast answers can be wrong, and a correct answer can still do the thinking for the student.
 
@@ -212,15 +229,13 @@ The reviewed sources do not provide independently checked figures for current re
 
 That leaves three separate questions for any business like this: **Do people pay? Do they benefit? Can the business afford to keep serving them?** Evidence for one does not answer the other two.
 
-For another education business with a different starting point, read [10 Minute School's case study](/en/case-studies/10-minute-school).
-
 ## Relevant Sources
 
 Sources checked on 13 September 2026. The founder interviews are useful for motives and experience. Company and investor announcements establish what was announced, not an independent verdict on results.
 
 [^fs-launch]: [Future Startup: Shikho's launch and first course](https://futurestartup.com/2020/11/09/new-edtech-startup-shikho-launches/), 9 November 2020. Contemporary report based on company information. It gives 30 October as the launch date; later reporting uses November 2020. This study uses “late 2020.”
 [^fs-seed]: [Future Startup: Shikho raises US$1.3 million](https://futurestartup.com/2021/07/28/edtech-startup-shikho-raises-1-3m-in-seed-funding/), 28 July 2021. Funding, founders and the trial model at that time.
-[^shikho-site]: [Shikho: academic product and displayed figures](https://shikho.com/en), accessed 13 September 2026. Company-published features and reach claims.
+[^shikho-site]: [Shikho: academic product and displayed figures](https://shikho.com/en), accessed 13 September 2026. Company-published features and reach claims. Feature illustrations rechecked 14 September 2026.
 [^trt-founder]: [TRT World: Shikho's origins and early product](https://www.trtworld.com/article/12762620). Reporting and an interview with Shahir Chowdhury about the early business.
 [^row-founder]: [Rest of World: interview with Shahir Chowdhury](https://restofworld.org/2022/meet-the-edtech-founder-who-wants-to-democratize-quality-education-for-the-masses/), 9 August 2022. Founder account of the market, purchases and use.
 [^ro-founder]: [The Realistic Optimist: Shikho, digitizing education in Bangladesh](https://www.realisticoptimist.io/shikho-digitizing-bangladesh/), 12 June 2025. The public part of the founder interview supports the parent–student buying roles; the rest requires a subscription.

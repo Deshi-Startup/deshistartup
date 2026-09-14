@@ -1,0 +1,61 @@
+.article .case-cash-cycle {
+  --parcel-position: 100%;
+  --payment-position: 50%;
+  margin: 32px 0;
+  padding: 28px;
+  border-radius: 9px;
+  background: var(--case-ground);
+  color: var(--case-ink);
+}
+.case-cash-cycle fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.case-cash-cycle legend { padding: 0; font-size: 1.35rem; font-weight: var(--w-strong); line-height: 1.4; }
+.case-cash-cycle__choices { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 20px; }
+.case-cash-cycle__choices label { display: flex; align-items: center; gap: 8px; min-height: 44px; cursor: pointer; font-size: .9375rem; }
+.case-cash-cycle__choices input { width: 18px; height: 18px; margin: 0; accent-color: var(--case-ink); cursor: pointer; }
+.case-cash-cycle__choices input:checked + span { font-weight: var(--w-strong); }
+.case-cash-cycle__choices input:focus-visible { outline: 2px solid var(--case-ink); outline-offset: 4px; }
+.case-cash-cycle__diagram { margin: 24px 0 28px; }
+.case-cash-cycle__actors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-left: 80px; }
+.case-cash-cycle__actors > div { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; font-size: .875rem; color: var(--case-soft); }
+.case-cash-cycle__actors svg { width: 32px; height: 32px; }
+.case-cash-cycle__row { display: grid; grid-template-columns: 80px minmax(0, 1fr); align-items: center; min-height: 80px; }
+.case-cash-cycle__row > strong { font-size: .875rem; font-weight: var(--w-strong); }
+.case-cash-cycle__track { position: relative; height: 1px; margin-inline: calc(100% / 6); background: var(--case-soft); }
+.case-cash-cycle__track > i { position: absolute; width: 5px; height: 5px; background: var(--case-soft); border-radius: 50%; top: 50%; transform: translate(-50%, -50%); }
+.case-cash-cycle__track > i:nth-child(2) { left: 50%; }
+.case-cash-cycle__track > i:nth-child(3) { left: 100%; }
+.case-cash-cycle__marker { position: absolute; top: 50%; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 9px; background: var(--case-ink); color: var(--case-ground); transform: translate(-50%, -50%); transition: left 320ms cubic-bezier(.16, 1, .3, 1); }
+.case-cash-cycle__marker svg { width: 24px; height: 24px; }
+.case-cash-cycle__parcel { left: var(--parcel-position); }
+.case-cash-cycle__payment { left: var(--payment-position); }
+.case-cash-cycle:has(input[value="0"]:checked) { --parcel-position: 50%; --payment-position: 100%; }
+.case-cash-cycle:has(input[value="2"]:checked) { --payment-position: 0%; }
+.article .case-cash-cycle__explanation p { margin: 8px 0 0; color: var(--case-soft); font-size: .9375rem; line-height: 1.65; }
+.article .case-cash-cycle__explanation .case-cash-cycle__finding { margin: 0; color: var(--case-ink); font-size: 1.125rem; }
+@supports selector(:has(input:checked)) {
+  .case-cash-cycle__explanations { display: grid; }
+  .case-cash-cycle__explanation { grid-area: 1 / 1; visibility: hidden; }
+  .case-cash-cycle:has(input[value="0"]:checked) [data-step="0"],
+  .case-cash-cycle:has(input[value="1"]:checked) [data-step="1"],
+  .case-cash-cycle:has(input[value="2"]:checked) [data-step="2"] { visibility: visible; }
+}
+.article .case-cash-cycle figcaption { padding-top: 20px; margin-top: 20px; border-top: 1px solid var(--case-soft); color: var(--case-soft); font-size: .8125rem; line-height: 1.65; }
+.article .case-cash-cycle figcaption p { margin: 0; }
+.case-cash-cycle ::selection { background: var(--case-ink); color: var(--case-ground); }
+@media (max-width: 600px) {
+  .article .case-cash-cycle { padding: 20px; }
+  .case-cash-cycle legend { font-size: 1.2rem; }
+  .case-cash-cycle__choices { gap: 2px 16px; }
+  .case-cash-cycle__choices label { font-size: .875rem; }
+  .case-cash-cycle__actors { margin-left: 56px; }
+  .case-cash-cycle__row { grid-template-columns: 56px minmax(0, 1fr); min-height: 72px; }
+  .case-cash-cycle__actors > div, .case-cash-cycle__row > strong { font-size: .8125rem; }
+}
+@media (prefers-reduced-motion: reduce) { .case-cash-cycle__marker { transition: none; } }
+@media print {
+  .article .case-cash-cycle { color: var(--ink); background: none; border: 1px solid var(--line); }
+  .case-cash-cycle__choices, .case-cash-cycle__diagram { display: none; }
+  .case-cash-cycle .case-cash-cycle__explanation { visibility: visible; margin-top: 16px; }
+  .article .case-cash-cycle .case-cash-cycle__explanation p, .article .case-cash-cycle figcaption { color: inherit; }
+  .case-cash-cycle__explanations { display: block; }
+}

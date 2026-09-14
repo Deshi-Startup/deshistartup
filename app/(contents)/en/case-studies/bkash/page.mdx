@@ -6,6 +6,7 @@ verified: 2026-09-10
 ---
 
 import { CaseCompany, CaseTimeline, CaseMilestone, CaseDetail } from '../../../../components/CaseStudy'
+import CaseAgentLiquidity from '../../../../components/CaseAgentLiquidity'
 
 # bKash
 
@@ -33,37 +34,37 @@ import { CaseCompany, CaseTimeline, CaseMilestone, CaseDetail } from '../../../.
 ## Turning points
 
 <CaseTimeline>
-<CaseMilestone date="2008–2010" title="The structure is designed before launch">
+<CaseMilestone date="2008–2010" title="The structure is designed before launch" href="#why-the-problem-was-bangladesh-specific">
 
-The Quadir brothers explored mobile money in Bangladesh and began discussions with BRAC founder Fazle Hasan Abed. Bangladesh's bank-led regulatory model meant the venture needed a licensed bank at the center, so BRAC Bank and Money in Motion formed bKash as a joint venture.[^world-bank-2017]
+Brothers Kamal and Iqbal explored mobile money in Bangladesh and began discussions with BRAC founder Fazle Hasan Abed. Bangladesh's bank-led regulatory model meant the venture needed a licensed bank at the center, so BRAC Bank and Money in Motion formed bKash as a joint venture.[^world-bank-2017]
 
 </CaseMilestone>
-<CaseMilestone date="2011" title="Commercial service begins">
+<CaseMilestone date="2011" title="Commercial service begins" href="#first-wedge">
 
 bKash launched as a Bangladesh Bank-regulated MFS provider. The first product was not a super app; it was basic mobile money designed to work on ordinary phones.[^bkash-about]
 
 </CaseMilestone>
-<CaseMilestone date="2012–2013" title="Distribution creates scale">
+<CaseMilestone date="2012–2013" title="Distribution creates scale" href="#early-customers">
 
 bKash passed 2 million registered customers in 2012. By 2013 it reported 10 million customers and 50,000 agent points nationwide.[^bkash-about]
 
 </CaseMilestone>
-<CaseMilestone date="2018" title="The smartphone era arrives">
+<CaseMilestone date="2018" title="The smartphone era arrives" href="#first-wedge">
 
 The bKash app launched as smartphone adoption increased. Ant joined the shareholder group, bringing a strategic relationship with a large Asian digital-payments operator.[^bkash-about][^future-startup-history]
 
 </CaseMilestone>
-<CaseMilestone date="2021" title="Unicorn-scale capital arrives">
+<CaseMilestone date="2021" title="Unicorn-scale capital arrives" href="#capital-and-strategic-investors">
 
 SoftBank Vision Fund II agreed to inject $250 million. The investment was reported to take bKash's valuation to around $2 billion, after the company had already crossed the $1 billion unicorn threshold.[^softbank-2021][^mit-sloan-2023]
 
 </CaseMilestone>
-<CaseMilestone date="2021–2026" title="Payments become a broader financial platform">
+<CaseMilestone date="2021–2026" title="Payments become a broader financial platform" href="#from-wallet-to-financial-platform">
 
 bKash added or expanded products such as digital loans with City Bank, savings with regulated financial institutions, international remittance, and services for Bangladeshis abroad.[^bkash-loan][^bkash-savings][^bkash-remittance][^bkash-abroad]
 
 </CaseMilestone>
-<CaseMilestone date="2025–2026" title="Profit grows and digital banking becomes the next question">
+<CaseMilestone date="2025–2026" title="Profit grows and digital banking becomes the next question" href="#financial-performance">
 
 The company reported strong profitability in 2025 and Q1 2026. At the same time, bKash applied for a digital bank licence, while Bangladesh Bank's latest licensing process was still unresolved as of August 2026.[^bkash-financials-2025][^bkash-financials-q1-2026][^digital-bank-2026]
 
@@ -133,6 +134,29 @@ That brand strength is real, but founders should not confuse brand love with per
 ## Constraints, tradeoffs and competitive pressure
 
 **Agent liquidity is operational work.** A large agent number means little if an agent does not have enough cash or electronic balance when a customer arrives. The system therefore needs distribution, liquidity management and incentives in addition to software.[^world-bank-2014]
+
+<CaseAgentLiquidity
+  id="bkash-agent-liquidity"
+  title="Agents need cash and electronic balance"
+  customerLabel="Customer"
+  agentLabel="Agent"
+  cashLabel="Cash"
+  balanceLabel="Electronic balance"
+  cashIn={{
+    label: 'Cash in',
+    title: "Cash-in uses the agent's electronic balance.",
+    description: 'The customer gives cash to the agent. The agent transfers electronic value to the customer. Having cash in the till does not mean the agent has enough electronic balance to do this.',
+  }}
+  cashOut={{
+    label: 'Cash out',
+    title: "Cash-out uses the agent's cash.",
+    description: 'The customer transfers electronic value to the agent. The agent hands over cash. A customer can have enough account balance and still need to find an agent with enough cash.',
+  }}
+>
+
+A simplified agent exchange. Fees and commissions are omitted. Keeping enough cash and electronic balance available is an ongoing operating task.[^agent-liquidity]
+
+</CaseAgentLiquidity>
 
 **Cash-out fees create tension.** bKash historically earned meaningful revenue from transaction and cash-out charges, but lower-priced competitors made fees a visible customer issue. Bangladesh Bank also changes MFS transaction limits and rules over time, so pricing and product design sit inside a regulated boundary.[^daily-star-market-2025][^limits-2025]
 
@@ -234,6 +258,8 @@ The digital-bank outcome also remains open. Bangladesh Bank was still evaluating
 [^world-bank-2017]: [World Bank / IFC – bKash: Built for Change](https://documents1.worldbank.org/curated/en/560181506580665929/pdf/119870-BRI-PUBLIC-bKash-Builtforchangereport.pdf). Case study on the founding partnership, market context and early operating model.
 
 [^world-bank-2014]: [World Bank – bKash Bangladesh](https://documents1.worldbank.org/curated/en/750881468206353481/pdf/909520BRI0Box30Bangladesh0July02014.pdf), July 2014. Early ownership, USSD and agent-network structure.
+
+[^agent-liquidity]: [CGAP: Agent Management Toolkit](https://documents1.worldbank.org/curated/en/898731468340143196/pdf/633350WP0Agent00Box0361513B0PUBLIC0.pdf), 2011, sections 1.2 and 5.4. Explains cash and electronic-balance management across agent networks; the diagram is a simplified model, not an account of a particular bKash agent. Checked 14 September 2026.
 
 [^bkash-about]: [bKash – About](https://www.bkash.com/en/about), accessed 10 September 2026. Company history, current customer, agent and merchant figures, and shareholder list.
 

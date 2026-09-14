@@ -26,5 +26,126 @@
         "alt": "দেশি স্টার্টআপ ৫০: ২০২৬ সালে নজরে রাখার মতো ৫০টি বাংলাদেশি স্টার্টআপ"
       }
     }
+  },
+  "case-studies/10-minute-school": {
+    "template": "case-study",
+    "locales": {
+      "bn": {
+        "src": "/media/og/bn/case-studies/10-minute-school.png"
+      },
+      "en": {
+        "src": "/media/og/en/case-studies/10-minute-school.png"
+      }
+    }
+  },
+  "case-studies/agroshift": {
+    "template": "case-study",
+    "locales": {
+      "bn": {
+        "src": "/media/og/bn/case-studies/agroshift.png"
+      },
+      "en": {
+        "src": "/media/og/en/case-studies/agroshift.png"
+      }
+    }
+  },
+  "case-studies/arogga": {
+    "template": "case-study",
+    "locales": {
+      "bn": {
+        "src": "/media/og/bn/case-studies/arogga.png"
+      },
+      "en": {
+        "src": "/media/og/en/case-studies/arogga.png"
+      }
+    }
+  },
+  "case-studies/bkash": {
+    "template": "case-study",
+    "locales": {
+      "bn": {
+        "src": "/media/og/bn/case-studies/bkash.png"
+      },
+      "en": {
+        "src": "/media/og/en/case-studies/bkash.png"
+      }
+    }
+  },
+  "case-studies/dorik": {
+    "template": "case-study",
+    "locales": {
+      "bn": {
+        "src": "/media/og/bn/case-studies/dorik.png"
+      },
+      "en": {
+        "src": "/media/og/en/case-studies/dorik.png"
+      }
+    }
+  },
+  "case-studies/ifarmer": {
+    "template": "case-study",
+    "locales": {
+      "bn": {
+        "src": "/media/og/bn/case-studies/ifarmer.png"
+      },
+      "en": {
+        "src": "/media/og/en/case-studies/ifarmer.png"
+      }
+    }
+  },
+  "case-studies/pathao": {
+    "template": "case-study",
+    "locales": {
+      "bn": {
+        "src": "/media/og/bn/case-studies/pathao.png"
+      },
+      "en": {
+        "src": "/media/og/en/case-studies/pathao.png"
+      }
+    }
+  },
+  "case-studies/shikho": {
+    "template": "case-study",
+    "locales": {
+      "bn": {
+        "src": "/media/og/bn/case-studies/shikho.png"
+      },
+      "en": {
+        "src": "/media/og/en/case-studies/shikho.png"
+      }
+    }
+  },
+  "case-studies/shopup-silq": {
+    "template": "case-study",
+    "locales": {
+      "bn": {
+        "src": "/media/og/bn/case-studies/shopup-silq.png"
+      },
+      "en": {
+        "src": "/media/og/en/case-studies/shopup-silq.png"
+      }
+    }
+  },
+  "case-studies/solshare": {
+    "template": "case-study",
+    "locales": {
+      "bn": {
+        "src": "/media/og/bn/case-studies/solshare.png"
+      },
+      "en": {
+        "src": "/media/og/en/case-studies/solshare.png"
+      }
+    }
+  },
+  "case-studies/truck-lagbe": {
+    "template": "case-study",
+    "locales": {
+      "bn": {
+        "src": "/media/og/bn/case-studies/truck-lagbe.png"
+      },
+      "en": {
+        "src": "/media/og/en/case-studies/truck-lagbe.png"
+      }
+    }
   }
 }

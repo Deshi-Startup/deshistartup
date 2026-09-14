@@ -1504,7 +1504,7 @@ export default function MapsExperience({
                         </strong>
                       </p>
                     )}
-                    <details className="maps-metric-definition">
+                    <details className="maps-metric-definition" open>
                       <summary>
                         {t("What this measures", "এই তথ্য কী বোঝায়")}
                       </summary>

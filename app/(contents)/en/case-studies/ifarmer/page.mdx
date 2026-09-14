@@ -5,7 +5,7 @@ description: "How iFarmer left rooftop farming behind and built finance, inputs,
 verified: 2026-09-11
 ---
 
-import { CaseCompany, CaseTimeline, CaseMilestone, CaseDetail } from '../../../../components/CaseStudy'
+import { CaseCompany, CaseTimeline, CaseMilestone, CaseDetail, CaseExchange } from '../../../../components/CaseStudy'
 
 # iFarmer
 
@@ -34,32 +34,32 @@ import { CaseCompany, CaseTimeline, CaseMilestone, CaseDetail } from '../../../.
 ## Turning points
 
 <CaseTimeline>
-<CaseMilestone date="Early 2018" title="The first idea is urban farming">
+<CaseMilestone date="Early 2018" title="The first idea is urban farming" href="#founding-insight">
 
 iFarmer began as a side project that matched unused rooftops with farming activity. The founders later described the idea as an "Uber for Urban Farming."[^pivot]
 
 </CaseMilestone>
-<CaseMilestone date="August 2018" title="The company changes direction">
+<CaseMilestone date="August 2018" title="The company changes direction" href="#founding-insight">
 
 After about six months, the team concluded that rooftop supply, apartment-owner coordination and market size made the model hard to scale. It pivoted toward agriculture finance, farmers and supply-chain problems that matched Fahad Ifaz's prior experience.[^pivot]
 
 </CaseMilestone>
-<CaseMilestone date="2020–2021" title="Data becomes the bridge to banks">
+<CaseMilestone date="2020–2021" title="Data becomes the bridge to banks" href="#trust-building">
 
 iFarmer began approaching financial institutions and built tools for farmer profiling, identity verification (know your customer, or KYC) and project monitoring. A 2021 Mutual Trust Bank pilot became an important proof point for institutional agriculture lending.[^sofol-2021][^banks-2025]
 
 </CaseMilestone>
-<CaseMilestone date="May 2022" title="Pre-Series A funds expansion">
+<CaseMilestone date="May 2022" title="Pre-Series A funds expansion" href="#capital">
 
 iFarmer raised $2.1 million in a round led by IDLC Venture Capital Fund. The company said the capital would support geographic expansion, supply-chain technology, input access and market linkage.[^agfunder-2022]
 
 </CaseMilestone>
-<CaseMilestone date="2024" title="The product moves closer to farmers">
+<CaseMilestone date="2024" title="The product moves closer to farmers" href="#early-customers">
 
 iFarmer launched Folon for farmers and, with Visa and UCB, introduced a cashless farmer card programme designed to bring more agricultural transactions onto formal digital rails.[^folon-2024][^farmer-card-2024]
 
 </CaseMilestone>
-<CaseMilestone date="2025–2026" title="Working-capital debt becomes more important">
+<CaseMilestone date="2025–2026" title="Working-capital debt becomes more important" href="#capital">
 
 Pioneer Facility provided a three-year $500,000 working-capital loan in 2025. Symbiotics followed with $1.5 million in 2026 for input distribution and market linkage.[^pioneer-2025][^symbiotics-2026]
 
@@ -148,15 +148,29 @@ By 2026, describing iFarmer only as a farm-investment app would miss most of the
 
 **KriShop and input distribution** connect retailers and farmers to agricultural inputs. **Market linkage** connects produce with buyers. **Advisory and monitoring** help manage crop and repayment risk. **Folon** moves more of that relationship directly to the farmer's phone.[^current-site][^folon-2024]
 
-The strategic loop is straightforward:
-
-`finance → farmer data → inputs/advisory → harvest visibility → market linkage → repayment/transaction data → better future lending decisions`
-
-That loop is an interpretation of the company's integrated product model, not a claim that iFarmer has publicly proven superior credit performance across its entire portfolio.
+The connection between these services matters: finance supports farming, while information about the farm, crop and sales can help lenders assess risk. That is our reading of the model, rather than proof of better credit performance across iFarmer's portfolio.
 
 ## Example: the UCB maize programme
 
-A 2022 programme with UCB shows the model in practice. The partners targeted 1,089 maize farmers in Bogura, Sirajganj and Gaibandha, with a target of about 1,000 tonnes of maize. UCB handled formal banking access while iFarmer supported inputs, advice, crop monitoring and planned procurement after harvest.[^ucb-maize-2022]
+<CaseExchange
+  company="ifarmer"
+  title="The plan paired bank credit with farm support"
+  lanes={[
+    { label: 'Banking and finance', stops: [
+      { title: 'UCB', detail: 'Planned to open bank accounts and provide credit.' },
+      { title: 'Maize farmers', detail: 'Would receive finance for the crop cycle.' },
+    ] },
+    { label: 'iFarmer’s planned support', stops: [
+      { title: 'Inputs and advice', detail: 'Agricultural inputs, weather updates and guidance.' },
+      { title: 'Farm monitoring', detail: 'Field agents would check farms and report to UCB.' },
+      { title: 'Harvest purchase', detail: 'iFarmer planned to buy the maize.', note: 'The announced plan linked procurement with loan repayment.' },
+    ] },
+  ]}
+>
+
+The UCB maize programme announced in November 2022 targeted 1,089 farmers in Bogura, Sirajganj and Gaibandha and about 1,000 tonnes of maize. This describes the announced responsibilities, not verified harvest or repayment results.[^ucb-maize-2022]
+
+</CaseExchange>
 
 The value to a bank was therefore broader than lead generation. iFarmer was trying to manage the conditions around the loan, not merely introduce a borrower.
 
@@ -230,7 +244,7 @@ These gaps do not cancel the evidence of scale. They define what a serious lende
 
 [^banks-2025]: [Future Startup – iFarmer's Partnership with Banks and NBFIs](https://futurestartup.com/2025/01/06/ifarmers-partnership-with-banks-and-nbfis-transforms-agriculture-lending-landscape-in-bangladesh/), 6 January 2025. Detailed account of institutional-lending adoption, KYC, monitoring and the MTB pilot.
 
-[^ucb-maize-2022]: [Future Startup – iFarmer partners with UCBL on maize finance](https://futurestartup.com/2022/11/02/ifarmer-partners-with-ucbl-to-facilitate-finance-to-marginalized-maize-farmers-in-the-char-area/), 2 November 2022. Programme description covering 1,089 farmers, crop monitoring, inputs and procurement.
+[^ucb-maize-2022]: [Future Startup – iFarmer partners with UCBL on maize finance](https://futurestartup.com/2022/11/02/ifarmer-partners-with-ucbl-to-facilitate-finance-to-marginalized-maize-farmers-in-the-char-area/), 2 November 2022. Press-release account of the planned programme, including farmer and maize targets, crop monitoring, inputs and procurement.
 
 [^folon-2024]: [Future Startup – iFarmer Launches Folon](https://futurestartup.com/2024/11/11/ifarmer-launches-folon-app/), 11 November 2024. Launch report for the farmer-facing smartphone app.
 

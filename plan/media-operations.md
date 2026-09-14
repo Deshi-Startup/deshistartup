@@ -89,12 +89,35 @@ does not approve it.
 
 ### Page-specific social images
 
-Social-card copy, alt text and logical paths live in `data/social-images.json`. Run
+Social-card templates and logical paths live in `data/social-images.json`, along with the
+Startup 50 card's copy and alt text. Run
 `npm run social:images` to render the configured 1200×630 cards into the gitignored
 `media/og/{locale}/` staging directory, review the PNGs, then upload them with the normal
 `npm run media:upload` command. The image bytes stay out of Git. The SEO pass uses the immutable
 R2 object key recorded in `app/generated/media.json`; a configured card that is missing from the
 remote registry falls back to the site-wide image rather than producing a broken share preview.
+
+Case-study share images reuse the gallery's approved headline and theme from
+`data/case-study-covers.json`, vector artwork from `data/case-study-artwork.json`, company palette
+from the case-study stylesheets, and reviewed logos from the existing logo registries. Edit these
+shared sources instead of maintaining separate social-card copy or artwork. The SEO pass derives
+localized alt text from the article title and cover headline for both Open Graph and Twitter.
+
+After finishing a study or changing a shared cover, ensure `data/social-images.json` has a
+`case-study` definition for both editions, then run:
+
+```bash
+npm run manifest
+npm run social:images -- --case-studies
+```
+
+Review the 1200×630 PNGs under `media/og/{locale}/case-studies/`, upload the reviewed files through
+the normal media workflow, then run `npm run social:images -- --case-studies --check`. This check
+renders in memory and compares the expected image hashes with the uploaded registry entries. It
+also requires coverage for every finished case-study edition in the current manifest and rejects
+definitions for unfinished or missing studies. Run it again before release after any cover change;
+it does not upload images or verify live delivery. Commit the shared sources, definitions and
+media registry changes together, keeping the staged PNGs out of Git.
 
 ## Retention and deletion
 

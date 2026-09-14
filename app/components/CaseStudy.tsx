@@ -80,11 +80,11 @@ export function CaseTimeline({ children }: { children: ReactNode }) {
   return <ol className="case-timeline" role="list">{children}</ol>
 }
 
-export function CaseMilestone({ date, title, children }: { date: string; title: string; children: ReactNode }) {
+export function CaseMilestone({ date, title, href, children }: { date: string; title: string; href?: string; children: ReactNode }) {
   return (
     <li>
       <span className="case-timeline__date">{date}</span>
-      <div className="case-timeline__moment"><h3 data-toc-ignore>{title}</h3>{children}</div>
+      <div className="case-timeline__moment"><h3 data-toc-ignore>{href ? <a href={href}>{title}</a> : title}</h3>{children}</div>
     </li>
   )
 }
@@ -116,19 +116,20 @@ export function CaseProcess({ title, steps, children, locale = 'en' }: {
   )
 }
 
-export function CaseExchange({ title, lanes, children }: {
+export function CaseExchange({ title, lanes, children, company }: {
   title: string
-  lanes: { label: string; stops: { title: string; detail: string }[] }[]
+  lanes: { label: string; stops: { title: string; detail: string; note?: string }[] }[]
   children: ReactNode
+  company?: keyof typeof companies
 }) {
   return (
-    <figure className="case-exchange">
+    <figure className={`case-exchange${company ? ` case-theme--${companies[company].theme}` : ''}`}>
       <p className="case-exchange__title"><strong>{title}</strong></p>
       {lanes.map((lane) => (
         <div className="case-exchange__lane" key={lane.label}>
           <p className="case-exchange__label">{lane.label}</p>
           <ol role="list">
-            {lane.stops.map((stop) => <li key={stop.title}><strong>{stop.title}</strong><p>{stop.detail}</p></li>)}
+            {lane.stops.map((stop) => <li key={stop.title}><strong>{stop.title}</strong><p>{stop.detail}</p>{stop.note && <p className="case-exchange__note">{stop.note}</p>}</li>)}
           </ol>
         </div>
       ))}

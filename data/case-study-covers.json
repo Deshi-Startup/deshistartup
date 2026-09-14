@@ -1,0 +1,298 @@
+{
+  "pathao": {
+    "theme": "pathao",
+    "sector": {
+      "en": "Mobility & logistics",
+      "bn": "যাতায়াত ও লজিস্টিকস"
+    },
+    "title": {
+      "en": [
+        "A small start.",
+        "A costly expansion."
+      ],
+      "bn": [
+        "ছোট করে শুরু,",
+        "দ্রুত বাড়ার ধাক্কা।"
+      ]
+    },
+    "summary": {
+      "en": "Manual delivery, the move into rides, and the cost of losing focus.",
+      "bn": "ডেলিভারি দিয়ে শুরু, রাইডে বড় সাফল্য আর সুপার অ্যাপ বানাতে গিয়ে মূল ফোকাস হারানোর গল্প।"
+    }
+  },
+  "10-minute-school": {
+    "theme": "school",
+    "sector": {
+      "en": "Education",
+      "bn": "শিক্ষা"
+    },
+    "title": {
+      "en": [
+        "Free lessons.",
+        "A test of paid demand."
+      ],
+      "bn": [
+        "ফ্রি ক্লাস,",
+        "পেইড মডেলের পরীক্ষা।"
+      ]
+    },
+    "summary": {
+      "en": "Free teaching, fragile sponsorship and a small test of willingness to pay.",
+      "bn": "স্পন্সরের টাকায় ফ্রি ক্লাস, স্পন্সরশিপ বন্ধের ধাক্কা আর বই বিক্রি করে পেইড মডেল যাচাইয়ের গল্প।"
+    }
+  },
+  "bkash": {
+    "theme": "bkash",
+    "sector": {
+      "en": "Payments",
+      "bn": "পেমেন্ট"
+    },
+    "title": {
+      "en": [
+        "How trust travels",
+        "through a network."
+      ],
+      "bn": [
+        "এজেন্ট নেটওয়ার্কে",
+        "ভরসা এলো কীভাবে?"
+      ]
+    },
+    "summary": {
+      "en": "How agent networks and everyday small transactions built financial trust across Bangladesh.",
+      "bn": "পাড়ার এজেন্ট নেটওয়ার্ক আর প্রতিদিনের ছোট লেনদেন দিয়ে দেশজুড়ে মানুষের ভরসা তৈরির গল্প।"
+    }
+  },
+  "shopup-silq": {
+    "theme": "shopup",
+    "sector": {
+      "en": "B2B & logistics",
+      "bn": "বিটুবি ও লজিস্টিকস"
+    },
+    "title": {
+      "en": [
+        "From local shops",
+        "to cross-border scale."
+      ],
+      "bn": [
+        "পাড়ার দোকান থেকে",
+        "সীমানা ছাড়িয়ে।"
+      ]
+    },
+    "summary": {
+      "en": "Small-shop supply, the wait for cash and the merger that formed SILQ.",
+      "bn": "মুদি দোকানে পাইকারি সাপ্লাই, ছোট ব্যবসায়ীদের লোন আর Sary-র সাথে মার্জার করে SILQ হয়ে ওঠার গল্প।"
+    }
+  },
+  "myalice": {
+    "theme": "revora",
+    "logoSlug": "revora",
+    "name": "Revora",
+    "sector": {
+      "en": "Commerce software",
+      "bn": "ব্যবসার সফটওয়্যার"
+    },
+    "title": {
+      "en": [
+        "From scattered chats",
+        "to one shared inbox."
+      ],
+      "bn": [
+        "এলোমেলো চ্যাট থেকে",
+        "এক ইনবক্সে।"
+      ]
+    },
+    "summary": {
+      "en": "Customer conversations, merchant workflows and the move from MyAlice to Revora.",
+      "bn": "কাস্টমার চ্যাট সামলানো, সেলারদের কাজের ঝামেলা কমানো আর MyAlice থেকে Revora হয়ে ওঠার গল্প।"
+    }
+  },
+  "shikho": {
+    "theme": "shikho",
+    "sector": {
+      "en": "Education",
+      "bn": "শিক্ষা"
+    },
+    "title": {
+      "en": [
+        "The classroom,",
+        "beyond its walls."
+      ],
+      "bn": [
+        "ক্লাসরুমের বাইরেও",
+        "পড়াশোনা।"
+      ]
+    },
+    "summary": {
+      "en": "Animated lessons, live coaching and scaling an edtech platform across Bangladesh.",
+      "bn": "অ্যানিমেটেড ক্লাস, লাইভ কোচিং আর দেশজুড়ে এডটেক প্ল্যাটফর্ম বড় করার গল্প।"
+    }
+  },
+  "truck-lagbe": {
+    "theme": "truck-lagbe",
+    "sector": {
+      "en": "Freight & logistics",
+      "bn": "পণ্য পরিবহন ও লজিস্টিকস"
+    },
+    "title": {
+      "en": [
+        "A truck to book.",
+        "A load to move."
+      ],
+      "bn": [
+        "পণ্য যাবে দূরে,",
+        "ট্রাক মিলবে সহজে।"
+      ]
+    },
+    "summary": {
+      "en": "Digitising freight, matching shippers with drivers and tackling empty return trips.",
+      "bn": "ডিজিটাল ফ্রেইট প্ল্যাটফর্ম, পণ্যমালিকের সাথে ট্রাক ড্রাইভার মেলানো আর ফিরতি ট্রিপে লোড পাওয়ার লড়াই।"
+    }
+  },
+  "chaldal": {
+    "theme": "chaldal",
+    "sector": {
+      "en": "Online grocery",
+      "bn": "অনলাইন গ্রোসারি"
+    },
+    "title": {
+      "en": [
+        "Fresh groceries.",
+        "Dark-store speed."
+      ],
+      "bn": [
+        "তাজা বাজার,",
+        "দ্রুত ডেলিভারি।"
+      ]
+    },
+    "summary": {
+      "en": "Micro-warehouses, cold-chain operations and the daily race of grocery delivery.",
+      "bn": "মাইক্রো-ওয়্যারহাউজ নেটওয়ার্ক, কোল্ড চেইন আর ঘরে ঘরে প্রতিদিনের বাজার পৌঁছে দেওয়ার লড়াই।"
+    }
+  },
+  "shohoz": {
+    "theme": "shohoz",
+    "sector": {
+      "en": "Travel & ticketing",
+      "bn": "ভ্রমণ ও টিকিট"
+    },
+    "title": {
+      "en": [
+        "A ticket booked.",
+        "A journey started."
+      ],
+      "bn": [
+        "অনলাইনে টিকিট,",
+        "ঝামেলাহীন যাত্রা।"
+      ]
+    },
+    "summary": {
+      "en": "Bus ticketing scale, the battle in ride-hailing and operating railway reservations.",
+      "bn": "বাসের টিকিটিংয়ে দাপট, রাইড শেয়ারিংয়ের তুমুল লড়াই আর ট্রেনের অনলাইন টিকিট সামলানোর গল্প।"
+    }
+  },
+  "dorik": {
+    "theme": "dorik",
+    "sector": {
+      "en": "Software",
+      "bn": "সফটওয়্যার"
+    },
+    "title": {
+      "en": [
+        "Build in Sylhet.",
+        "Sell to the world."
+      ],
+      "bn": [
+        "সিলেটে তৈরি,",
+        "বিশ্বজুড়ে বিক্রি।"
+      ]
+    },
+    "summary": {
+      "en": "The first paid offer, lifetime pricing and building websites for clients.",
+      "bn": "সিলেটে বসে ছোট একটা টিম কীভাবে গ্লোবাল নো-কোড ওয়েবসাইট প্ল্যাটফর্ম গড়ে তুলল।"
+    }
+  },
+  "arogga": {
+    "theme": "arogga",
+    "sector": {
+      "en": "Health",
+      "bn": "স্বাস্থ্যসেবা"
+    },
+    "title": {
+      "en": [
+        "Genuine medicine.",
+        "Doorstep care."
+      ],
+      "bn": [
+        "আসল ওষুধ,",
+        "ঘরে বসেই ভরসা।"
+      ]
+    },
+    "summary": {
+      "en": "Direct sourcing, pharmacist review and the cost of dependable delivery.",
+      "bn": "প্রেসক্রিপশন যাচাই, লাইসেন্স করা সাপ্লাই চেইন আর স্বাস্থ্যসেবায় রোগীদের ভরসা তৈরির গল্প।"
+    }
+  },
+  "ifarmer": {
+    "theme": "ifarmer",
+    "sector": {
+      "en": "Agriculture",
+      "bn": "কৃষি ও এগ্রিটেক"
+    },
+    "title": {
+      "en": [
+        "Where finance",
+        "meets the field."
+      ],
+      "bn": [
+        "কৃষকের পুঁজি,",
+        "মাঠের ফসল।"
+      ]
+    },
+    "summary": {
+      "en": "Connecting retail capital with farm inputs, advisory and direct market access.",
+      "bn": "খামারিদের জন্য পুঁজির ব্যবস্থা, মানসম্মত উপকরণ, পরামর্শ সেবা আর সরাসরি বাজারে ফসল বিক্রির মডেল।"
+    }
+  },
+  "solshare": {
+    "theme": "solshare",
+    "sector": {
+      "en": "Energy",
+      "bn": "জ্বালানি"
+    },
+    "title": {
+      "en": [
+        "Spare power.",
+        "A new connection."
+      ],
+      "bn": [
+        "বাড়তি বিদ্যুৎ,",
+        "নতুন সংযোগ।"
+      ]
+    },
+    "summary": {
+      "en": "Trading solar electricity, connecting to the grid and financing vehicle batteries.",
+      "bn": "সোলার বিদ্যুৎ বেচাকেনা, জাতীয় গ্রিডে সংযোগ আর গাড়ির ব্যাটারিতে ফাইন্যান্সিংয়ের গল্প।"
+    }
+  },
+  "agroshift": {
+    "theme": "agroshift",
+    "sector": {
+      "en": "Agriculture",
+      "bn": "কৃষি"
+    },
+    "title": {
+      "en": [
+        "Orders together.",
+        "Groceries at work."
+      ],
+      "bn": [
+        "অর্ডার একসাথে,",
+        "বাজার ফ্যাক্টরিতে।"
+      ]
+    },
+    "summary": {
+      "en": "Factory pickup points, grouped demand and the trade-offs behind a cheaper delivery.",
+      "bn": "ফ্যাক্টরি পিকআপ পয়েন্ট, সবার চাহিদা এক করা আর কম খরচে ডেলিভারির পেছনের সুবিধা-অসুবিধার হিসাব।"
+    }
+  }
+}

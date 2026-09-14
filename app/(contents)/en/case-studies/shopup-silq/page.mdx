@@ -5,7 +5,8 @@ description: "How ShopUp grew from Facebook seller tools into wholesale, deliver
 verified: 2026-09-13
 ---
 
-import { CaseCompany, CaseTimeline, CaseMilestone, CaseDetail, CaseExchange } from '../../../../components/CaseStudy'
+import { CaseCompany, CaseTimeline, CaseMilestone, CaseDetail } from '../../../../components/CaseStudy'
+import CaseCashCycle from '../../../../components/CaseCashCycle'
 
 # ShopUp / SILQ
 
@@ -32,32 +33,32 @@ ShopUp has not simply changed its name to SILQ. The distinction matters when rea
 ## Turning points
 
 <CaseTimeline>
-<CaseMilestone date="2016-18" title="Begin with Facebook sellers">
+<CaseMilestone date="2016-18" title="Begin with Facebook sellers" href="#start-with-the-seller-who-already-has-a-business">
 
 The early offer helps merchants manage online sales. The company's later business will look quite different.[^history]
 
 </CaseMilestone>
-<CaseMilestone date="March 2018" title="Test loans with BRAC">
+<CaseMilestone date="March 2018" title="Test loans with BRAC" href="#the-first-lending-model-used-a-partners-strengths">
 
 A pilot connects selected ShopUp sellers with loans from BRAC, using their business records in the process.[^brac-pilot]
 
 </CaseMilestone>
-<CaseMilestone date="2019-20" title="Move into stock and delivery">
+<CaseMilestone date="2019-20" title="Move into stock and delivery" href="#why-supply-neighbourhood-shops-rather-than-replace-them">
 
 Mokam launches in December 2019; REDX follows in March 2020.[^about]
 
 </CaseMilestone>
-<CaseMilestone date="February 2020" title="Bring in an experienced technology team">
+<CaseMilestone date="February 2020" title="Bring in an experienced technology team" href="#buying-a-team-solved-a-problem-that-hiring-had-not">
 
 Voonik's business-to-business operation and technology platform merge with ShopUp.[^voonik]
 
 </CaseMilestone>
-<CaseMilestone date="2024" title="Face the cost of expansion">
+<CaseMilestone date="2024" title="Face the cost of expansion" href="#large-sales-came-with-large-costs">
 
 Reporting on the previous year's accounts shows large group losses. Later, ShopUp reports a profit in its packaged-goods distribution division.[^group-accounts][^division-results]
 
 </CaseMilestone>
-<CaseMilestone date="April 2025" title="Join Sary to form SILQ">
+<CaseMilestone date="April 2025" title="Join Sary to form SILQ" href="#capital-changed-form-as-the-business-changed">
 
 The merger combines the two businesses while keeping their local brands.[^merger]
 
@@ -84,27 +85,26 @@ These are related problems, but the solutions do different jobs. A loan supplies
 
 That distinction prevents a common mistake. More credit can hide a broken process for a while. If each order still leaves money tied up for too long, the need for credit keeps returning.
 
-<CaseExchange
-  title="A sale is not finished when the parcel leaves"
-  lanes={[
-    { label: 'The order moves forward', stops: [
-      { title: 'Buy stock', detail: 'The seller commits cash before the sale.' },
-      { title: 'Send the order', detail: 'Goods leave, but payment may still be due.' },
-      { title: 'Customer receives it', detail: 'Delivery completes one part of the job.' },
-    ] },
-    { label: 'The money must return', stops: [
-      { title: 'Collect payment', detail: 'The customer pays for the goods.' },
-      { title: 'Settle with the seller', detail: 'Collected money reaches the business.' },
-      { title: 'Buy the next batch', detail: 'That cash can fund another order.' },
-    ] },
+<CaseCashCycle
+  id="shopup-cash-cycle"
+  title="A delivered order can still leave cash out of reach"
+  actors={['Seller', 'Courier', 'Customer']}
+  parcelLabel="Parcel"
+  paymentLabel="Payment"
+  stages={[
+    { label: '1. Sent', title: 'The order is on its way.', description: 'The parcel is with the courier. The customer has not paid yet. The seller has already spent money on stock.' },
+    { label: '2. Delivered', title: 'The delivery is done. The seller is still waiting.', description: 'The customer has paid the courier. Until that payment reaches the seller, it cannot fund the next batch of stock.' },
+    { label: '3. Seller paid', title: 'The payment reaches the seller.', description: 'The parcel stays with the customer. The money is now with the seller and can help pay for another order.' },
   ]}
 >
 
 A simplified cash-on-delivery cycle. The goods and the money reach their destinations at different times. This explains the timing problem; it does not represent a particular ShopUp contract.
 
-</CaseExchange>
+</CaseCashCycle>
 
 For a founder, the useful discovery is often the unfinished part of a transaction. Order software may say “delivered” while the merchant still says “I cannot restock.”
+
+[Truck Lagbe's enterprise service also faced a cash gap](/en/case-studies/truck-lagbe#enterprise-customers-brought-a-second-business), paying truck owners promptly while some customers paid later. Releasing money a courier has already collected calls for faster settlement; offering customers an agreed period to pay requires cash to fund that wait.
 
 ## The first lending model used a partner's strengths
 

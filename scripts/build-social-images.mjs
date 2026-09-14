@@ -7,9 +7,19 @@ import fsSync from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
+import { createHash } from 'node:crypto'
 import * as fontkit from 'fontkit'
 import sharp from 'sharp'
 import socialImages from '../data/social-images.json' with { type: 'json' }
+import caseCovers from '../data/case-study-covers.json' with { type: 'json' }
+import caseArtwork from '../data/case-study-artwork.json' with { type: 'json' }
+import caseLogos from '../data/case-study-logos.json' with { type: 'json' }
+import startupLogos from '../data/startup-50-logos.json' with { type: 'json' }
+import mediaRegistry from '../app/generated/media.json' with { type: 'json' }
+import { MEDIA_URL } from '../app/seo.config.mjs'
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
+const CASE_PROVENANCE = 'Programmatic 1200x630 social image adapted from the approved Deshi Startup case-study gallery. The same company ground, official logo, headline and vector artwork are shared with the gallery. Wide composition with generous text measure, original logo colours, and a quiet Deshi Startup footer. The bundled Deshi Sans Bengali font shapes Bangla; Latin uses the existing sans-serif fallback. No new factual claims, synthetic photos or interface controls.'
 
 export const CARD_WIDTH = 1200
 export const CARD_HEIGHT = 630
@@ -107,7 +117,9 @@ async function textLayer({
   width,
   height,
   spacing = 0,
-  letterSpacing = 0
+  letterSpacing = 0,
+  bundledFont = false,
+  fixedSize = false
 }) {
   const markup = `<span foreground="${color}" font_size="${Math.round(fontSize * 1024)}" font_weight="${fontWeight}"` +
     (letterSpacing ? ` letter_spacing="${Math.round(letterSpacing * 1024)}"` : '') +
@@ -115,10 +127,10 @@ async function textLayer({
   return sharp({
     text: {
       text: markup,
-      font: locale === 'bn' ? 'Deshi Sans Bengali' : 'Arial',
-      ...(locale === 'bn' ? { fontfile: fontPath } : {}),
+      font: locale === 'bn' || bundledFont ? 'Deshi Sans Bengali' : 'Arial',
+      ...(locale === 'bn' || bundledFont ? { fontfile: fontPath } : {}),
       width,
-      height,
+      ...(fixedSize ? {} : { height }),
       rgba: true,
       align: 'left',
       spacing
@@ -191,11 +203,112 @@ async function renderFolioSocialCard({ locale, copy, fontPath, mark, provenance 
   return embedSocialImageProvenance(png, provenance)
 }
 
+function shortHash(bytes) {
+  return createHash('sha256').update(bytes).digest('hex').slice(0, 12)
+}
+
+export function caseStudyPalette(css, theme) {
+  const rule = [...css.matchAll(/\.case-theme--([\w-]+)\s*\{([^}]+)\}/g)]
+    .filter((match) => match[1] === theme).at(-1)?.[2]
+  const colors = Object.fromEntries([...String(rule).matchAll(/--case-(ground|ink|soft):\s*(#[a-f\d]{6})/gi)]
+    .map((match) => [match[1], match[2]]))
+  if (!colors.ground || !colors.ink || !colors.soft) throw new Error(`Missing case-study palette: ${theme}`)
+  return colors
+}
+
+export function validateCaseStudySocialDefinitions(pages, definitions = socialImages) {
+  const written = pages.filter((page) => page.slug.startsWith('case-studies/') && !page.stub)
+  for (const page of written) {
+    const definition = definitions[page.slug]
+    const slug = page.slug.slice('case-studies/'.length)
+    if (definition?.template !== 'case-study' || !definition.locales?.[page.locale]) {
+      throw new Error(`${page.locale}:${page.slug}: completed case study needs a social-image definition`)
+    }
+    if (!caseCovers[slug] || !caseArtwork[caseCovers[slug].theme]) {
+      throw new Error(`${page.slug}: completed case study needs shared cover copy and artwork`)
+    }
+  }
+  for (const [slug, definition] of Object.entries(definitions)) {
+    if (definition.template !== 'case-study') continue
+    for (const locale of Object.keys(definition.locales || {})) {
+      if (!written.some((page) => page.slug === slug && page.locale === locale)) {
+        throw new Error(`${locale}:${slug}: stale social-image definition has no completed case study`)
+      }
+    }
+  }
+}
+
+function logoForCase(slug) {
+  const logoSlug = caseCovers[slug]?.logoSlug || slug
+  return caseLogos.entries.find((entry) => entry.slug === logoSlug)
+    || startupLogos.entries.find((entry) => entry.slug === logoSlug)
+}
+
+async function loadApprovedLogo(logo) {
+  const entry = mediaRegistry[logo.src]
+  if (!entry?.remote || !entry.sha || !entry.key) throw new Error(`${logo.slug}: no approved remote logo`)
+  let bytes
+  try {
+    bytes = await fs.readFile(path.join(ROOT, logo.src))
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error
+    const response = await fetch(`${MEDIA_URL}/${entry.key}`, { signal: AbortSignal.timeout(20000) })
+    if (!response.ok) throw new Error(`${logo.slug}: approved logo returned HTTP ${response.status}`)
+    bytes = Buffer.from(await response.arrayBuffer())
+  }
+  if (shortHash(bytes) !== entry.sha) throw new Error(`${logo.slug}: logo bytes differ from the reviewed media registry`)
+  return bytes
+}
+
+export async function renderCaseStudySocialCard({ page, fontPath, palette, logo, logoBytes }) {
+  const locale = page.locale
+  const slug = page.slug.slice('case-studies/'.length)
+  const cover = caseCovers[slug]
+  const artwork = caseArtwork[cover.theme]
+  const svg = artwork.locales?.[locale] || artwork.svg
+  const text = (value, fontSize, color, width, height, fontWeight = 600, spacing = 0) => textLayer({
+    text: value, locale, fontPath, fontSize, fontWeight, color, width, height, spacing,
+    bundledFont: true, fixedSize: true
+  })
+  const [name, headline, footer, domain, logoLayer, artLayer] = await Promise.all([
+    text(page.title, 32, palette.soft, 650, 74),
+    text(cover.title[locale].join('\n'), 56, palette.ink, 660, 205, 600, locale === 'bn' ? -3 : 2),
+    text(locale === 'en' ? 'Deshi Startup / Case study' : 'দেশি স্টার্টআপ / কেস স্টাডি', 23, palette.soft, 700, 52, 400),
+    textLayer({ text: 'deshistartup.com', locale: 'en', fontPath, fontSize: 22, fontWeight: 400, color: palette.soft, width: 300, height: 52, bundledFont: true, fixedSize: true }),
+    sharp(logoBytes).resize(208, 66, { fit: 'inside' }).png().toBuffer({ resolveWithObject: true }),
+    sharp(Buffer.from(svg.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" ')))
+      .resize(432, 262).png().toBuffer()
+  ])
+  if (name.info.height > 58 || headline.info.height > 207 || footer.info.height > 42 || domain.info.height > 42) {
+    throw new Error(`${locale}:${page.slug}: social-image copy exceeds its safe area`)
+  }
+  // The approved cover artwork fills the right side; text is never scaled into a narrow column.
+  const base = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
+    <rect width="1200" height="630" fill="${palette.ground}"/>
+    <rect x="60" y="54" width="248" height="102" rx="6" fill="${logo.background || '#ffffff'}"/>
+    <path d="M60 536H1140" stroke="${palette.ink}" stroke-opacity=".28"/>
+  </svg>`
+  const png = await sharp(Buffer.from(base)).composite([
+    { input: logoLayer.data, left: 60 + Math.round((248 - logoLayer.info.width) / 2), top: 54 + Math.round((102 - logoLayer.info.height) / 2) },
+    { input: name.data, left: 60, top: 229 },
+    { input: headline.data, left: 60, top: 297 },
+    { input: artLayer, left: 714, top: 216 },
+    { input: footer.data, left: 60, top: 568 },
+    { input: domain.data, left: 1140 - domain.info.width, top: 568 }
+  ]).png({ compressionLevel: 9 }).toBuffer()
+  return embedSocialImageProvenance(png, `${CASE_PROVENANCE} Company: ${page.title}. Locale: ${locale}.`)
+}
+
 export async function buildSocialImages({
   definitions = socialImages,
   outputDir,
   fontPath,
-  markPath
+  markPath,
+  pages = [],
+  themeCss,
+  logoLoader = loadApprovedLogo,
+  check = false,
+  registry = mediaRegistry
 }) {
   if (!fontPath) throw new Error('Social-image font path is required')
   await configureFontRendering()
@@ -207,12 +320,14 @@ export async function buildSocialImages({
   ])
   createSocialImageFont(fontData)
   let generated = 0
+  const logoCache = new Map()
+  const stale = []
 
   for (const [slug, definition] of Object.entries(definitions)) {
-    if (definition.template !== 'folio') {
+    if (!['folio', 'case-study'].includes(definition.template)) {
       throw new Error(`${slug}: unsupported social-image template ${definition.template}`)
     }
-    if (!definition.provenance?.trim()) {
+    if (definition.template === 'folio' && !definition.provenance?.trim()) {
       throw new Error(`${slug}: social-image provenance is required`)
     }
     for (const [locale, copy] of Object.entries(definition.locales || {})) {
@@ -221,29 +336,56 @@ export async function buildSocialImages({
         throw new Error(`${slug}:${locale} must use ${expectedSrc}`)
       }
       const target = path.join(outputDir, locale, `${slug}.png`)
-      await fs.mkdir(path.dirname(target), { recursive: true })
-      const card = await renderFolioSocialCard({
-        locale,
-        copy,
-        fontPath,
-        mark,
-        provenance: definition.provenance
-      })
-      await fs.writeFile(target, card)
+      let card
+      if (definition.template === 'case-study') {
+        const companySlug = slug.slice('case-studies/'.length)
+        const page = pages.find((candidate) => candidate.slug === slug && candidate.locale === locale && !candidate.stub)
+        if (!page) throw new Error(`${locale}:${slug}: no completed case study in the manifest`)
+        const logo = logoForCase(companySlug)
+        if (!logo) throw new Error(`${slug}: reviewed company logo is required`)
+        if (!logoCache.has(logo.src)) logoCache.set(logo.src, await logoLoader(logo))
+        card = await renderCaseStudySocialCard({
+          page, fontPath, logo, logoBytes: logoCache.get(logo.src),
+          palette: caseStudyPalette(themeCss, caseCovers[companySlug].theme)
+        })
+      } else {
+        card = await renderFolioSocialCard({ locale, copy, fontPath, mark, provenance: definition.provenance })
+      }
+      if (check) {
+        // Compare the exact expected pixels and provenance to the uploaded revision.
+        // This catches changed headlines, artwork, palettes and missing uploads.
+        if (!registry[copy.src]?.remote || registry[copy.src]?.sha !== shortHash(card)) stale.push(copy.src)
+      } else {
+        await fs.mkdir(path.dirname(target), { recursive: true })
+        await fs.writeFile(target, card)
+      }
       generated += 1
     }
   }
-  return { generated }
+  return check ? { checked: generated, stale } : { generated }
 }
 
 async function main() {
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
+  const pages = JSON.parse(await fs.readFile(path.join(root, 'app/generated/seo-pages.json'), 'utf8'))
+  validateCaseStudySocialDefinitions(pages)
+  const check = process.argv.includes('--check')
+  const definitions = process.argv.includes('--case-studies')
+    ? Object.fromEntries(Object.entries(socialImages).filter(([, definition]) => definition.template === 'case-study'))
+    : socialImages
+  const themeCss = (await Promise.all(['CaseStudy.css', 'CaseStudyIndex.css'].map((file) => fs.readFile(path.join(root, 'app/components', file), 'utf8')))).join('\n')
   const result = await buildSocialImages({
+    definitions, pages, themeCss, check,
     outputDir: path.join(root, 'media', 'og'),
     fontPath: path.join(root, 'app', 'fonts', 'deshi-sans-bengali-var.woff2'),
     markPath: path.join(root, 'public', 'deshi-mark.webp')
   })
-  process.stdout.write(`Social images: generated ${result.generated} in gitignored media/og\n`)
+  if (check) {
+    if (result.stale.length) throw new Error(`Social images need regeneration and upload:\n${result.stale.join('\n')}`)
+    process.stdout.write(`Social images: ${result.checked} uploaded images match current sources\n`)
+  } else {
+    process.stdout.write(`Social images: generated ${result.generated} in gitignored media/og\n`)
+  }
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] || '').href) {

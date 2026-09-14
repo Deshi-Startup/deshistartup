@@ -93,6 +93,10 @@ test('case-study learning diagrams preserve their steps while captions remain ed
 
 for (const [component, props] of [
   ['CaseExchange', 'lanes={[{ label: "Orders", stops: [{ title: "Buyer", detail: "Places an order." }] }]}'],
+  ['CaseAgentLiquidity', 'id="agent" title="Agent liquidity" cashIn={{ label: "Cash in", title: "Balance", description: "Electronic value" }}'],
+  ['CaseGroupedDelivery', 'title="Orders" orders={{ title: "Order ahead", description: "Collect together" }}'],
+  ['CaseLearningEvidence', 'title="Results" practice={{ title: "Feedback", source: { href: "https://example.com", label: "Source" } }}'],
+  ['CaseCashCycle', 'id="cash-cycle" actors={["Seller", "Courier", "Customer"]} stages={[{ label: "Sent", title: "On the way", description: "Cash is still with the customer." }]}'],
   ['CaseContrast', 'sides={[{ title: "Cash", points: ["Paid once."] }]}']
 ]) {
   test(`${component} protects its structure while allowing citation-caption edits`, () => {

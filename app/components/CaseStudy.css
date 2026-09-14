@@ -64,6 +64,9 @@ html[lang] .article .case-timeline { list-style-type: none; }
 }
 .case-timeline > li:last-child .case-timeline__moment { border-color: transparent; padding-bottom: 0; }
 .article .case-timeline h3 { margin: 0 0 8px; padding: 0; border: 0; font-size: 1.125rem; text-wrap: wrap; }
+.case-timeline h3 a { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: .18em; text-decoration-thickness: 1px; }
+.case-timeline h3 a:hover { text-decoration-color: currentColor; }
+.case-timeline h3 a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 2px; }
 .article .case-timeline p { margin: 0; }
 .case-detail { margin: 28px 0; padding: 24px 28px; border: 1px solid var(--line); background: var(--green-ground); }
 .article .case-detail h3 { margin: 0 0 12px; text-wrap: wrap; }
@@ -83,6 +86,14 @@ html[lang] .article .case-process ol { list-style-type: none; }
 .article .case-process figcaption p { margin: 0; }
 
 .article .case-exchange, .article .case-contrast { margin: 28px 0; padding: 28px; background: var(--canvas-soft); border-radius: 9px; }
+.article .case-exchange[class*="case-theme--"] { background: var(--case-ground); color: var(--case-ink); }
+.article .case-exchange[class*="case-theme--"] .case-exchange__title { color: inherit; }
+.article .case-exchange[class*="case-theme--"] .case-exchange__label,
+.article .case-exchange[class*="case-theme--"] li .case-exchange__note,
+.article .case-exchange[class*="case-theme--"] a { color: var(--case-ink); }
+.article .case-exchange[class*="case-theme--"] li p,
+.article .case-exchange[class*="case-theme--"] figcaption { color: var(--case-soft); }
+.case-exchange[class*="case-theme--"] ::selection { background: var(--case-ink); color: var(--case-ground); }
 .article .case-exchange__title, .article .case-contrast__title { margin: 0 0 24px; font-size: 1.125rem; }
 .article .case-exchange__label { margin: 0 0 14px; color: var(--green-deep); font-size: .9375rem; font-weight: 700; }
 .case-exchange__lane + .case-exchange__lane { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
@@ -91,6 +102,7 @@ html[lang] .article .case-exchange ol { list-style-type: none; }
 .article .case-exchange li { position: relative; padding: 0; margin: 0; }
 .case-exchange li:not(:last-child)::after { content: ''; position: absolute; right: -23px; top: 9px; width: 8px; height: 8px; border-top: 1px solid var(--green-deep); border-right: 1px solid var(--green-deep); transform: rotate(45deg); }
 .article .case-exchange li p { margin: 6px 0 0; font-size: .9375rem; line-height: 1.65; color: var(--muted); }
+.article .case-exchange li .case-exchange__note { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--green-deep); color: var(--green-deep); font-weight: var(--w-strong); }
 .case-contrast__sides { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
 .case-contrast__sides > div + div { padding-left: 28px; border-left: 1px solid var(--line); }
 .article .case-contrast h3 { margin: 0 0 12px; font-size: 1rem; color: var(--green-deep); text-wrap: wrap; }
@@ -119,6 +131,7 @@ html[lang] .article .case-exchange ol { list-style-type: none; }
   .case-process li:not(:last-child)::before { top: 32px; bottom: 0; left: 15px; right: auto; border-top: 0; border-left: 1px solid var(--line); }
 }
 @media print {
+  .article .case-exchange[class*="case-theme--"] { --case-ink: var(--ink); --case-soft: var(--muted); background: none; border: 1px solid var(--line); }
   .case-exchange__lane, .case-contrast__sides > div { break-inside: avoid; }
   .case-company { background: none; color: #000; border: 1px solid #aaa; }
   .case-company p span + span { color: #333; }

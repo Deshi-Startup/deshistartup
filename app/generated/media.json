@@ -53,6 +53,105 @@
     "remote": true,
     "uploadedAt": "2026-08-18T21:34:09.801Z"
   },
+  "/media/og/bn/case-studies/10-minute-school.png": {
+    "key": "og/bn/case-studies/10-minute-school.6b6a975b4685.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 50975,
+    "sha": "6b6a975b4685",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:38.596Z"
+  },
+  "/media/og/bn/case-studies/agroshift.png": {
+    "key": "og/bn/case-studies/agroshift.eb537be57fb8.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 40987,
+    "sha": "eb537be57fb8",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:41.157Z"
+  },
+  "/media/og/bn/case-studies/arogga.png": {
+    "key": "og/bn/case-studies/arogga.a837cad38544.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 43294,
+    "sha": "a837cad38544",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:43.777Z"
+  },
+  "/media/og/bn/case-studies/bkash.png": {
+    "key": "og/bn/case-studies/bkash.0127ca9dd4c3.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 43245,
+    "sha": "0127ca9dd4c3",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:46.744Z"
+  },
+  "/media/og/bn/case-studies/dorik.png": {
+    "key": "og/bn/case-studies/dorik.3ad4fe9fb9f9.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 38663,
+    "sha": "3ad4fe9fb9f9",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:49.283Z"
+  },
+  "/media/og/bn/case-studies/ifarmer.png": {
+    "key": "og/bn/case-studies/ifarmer.ba6de35ec593.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 42821,
+    "sha": "ba6de35ec593",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:51.840Z"
+  },
+  "/media/og/bn/case-studies/pathao.png": {
+    "key": "og/bn/case-studies/pathao.a55778681c81.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 41440,
+    "sha": "a55778681c81",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:54.313Z"
+  },
+  "/media/og/bn/case-studies/shikho.png": {
+    "key": "og/bn/case-studies/shikho.f33fe80cf404.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 40027,
+    "sha": "f33fe80cf404",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:56.262Z"
+  },
+  "/media/og/bn/case-studies/shopup-silq.png": {
+    "key": "og/bn/case-studies/shopup-silq.03877f61a597.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 40482,
+    "sha": "03877f61a597",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:58.756Z"
+  },
+  "/media/og/bn/case-studies/solshare.png": {
+    "key": "og/bn/case-studies/solshare.fb11cb35f357.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 38093,
+    "sha": "fb11cb35f357",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:15:02.066Z"
+  },
+  "/media/og/bn/case-studies/truck-lagbe.png": {
+    "key": "og/bn/case-studies/truck-lagbe.afa1f39473dc.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 39326,
+    "sha": "afa1f39473dc",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:15:04.948Z"
+  },
   "/media/og/bn/startup-50.png": {
     "key": "og/bn/startup-50.b36805afc551.png",
     "w": 1200,
@@ -61,6 +160,105 @@
     "sha": "b36805afc551",
     "remote": true,
     "uploadedAt": "2026-08-24T12:15:08.523Z"
+  },
+  "/media/og/en/case-studies/10-minute-school.png": {
+    "key": "og/en/case-studies/10-minute-school.621c25d8fef4.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 49148,
+    "sha": "621c25d8fef4",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:11.251Z"
+  },
+  "/media/og/en/case-studies/agroshift.png": {
+    "key": "og/en/case-studies/agroshift.9004a0a79b67.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 39180,
+    "sha": "9004a0a79b67",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:14.025Z"
+  },
+  "/media/og/en/case-studies/arogga.png": {
+    "key": "og/en/case-studies/arogga.63918b3afcf4.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 42512,
+    "sha": "63918b3afcf4",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:16.173Z"
+  },
+  "/media/og/en/case-studies/bkash.png": {
+    "key": "og/en/case-studies/bkash.86fb92eaa9fe.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 40497,
+    "sha": "86fb92eaa9fe",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:19.172Z"
+  },
+  "/media/og/en/case-studies/dorik.png": {
+    "key": "og/en/case-studies/dorik.d7d0f61cd144.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 36279,
+    "sha": "d7d0f61cd144",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:21.906Z"
+  },
+  "/media/og/en/case-studies/ifarmer.png": {
+    "key": "og/en/case-studies/ifarmer.546b56d1d2b4.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 39251,
+    "sha": "546b56d1d2b4",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:23.830Z"
+  },
+  "/media/og/en/case-studies/pathao.png": {
+    "key": "og/en/case-studies/pathao.a43cb6d1c43c.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 39963,
+    "sha": "a43cb6d1c43c",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:25.828Z"
+  },
+  "/media/og/en/case-studies/shikho.png": {
+    "key": "og/en/case-studies/shikho.e16e20f8dcbc.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 41153,
+    "sha": "e16e20f8dcbc",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:28.393Z"
+  },
+  "/media/og/en/case-studies/shopup-silq.png": {
+    "key": "og/en/case-studies/shopup-silq.5248042f2457.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 39205,
+    "sha": "5248042f2457",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:30.936Z"
+  },
+  "/media/og/en/case-studies/solshare.png": {
+    "key": "og/en/case-studies/solshare.31fa05480c69.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 36899,
+    "sha": "31fa05480c69",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:33.501Z"
+  },
+  "/media/og/en/case-studies/truck-lagbe.png": {
+    "key": "og/en/case-studies/truck-lagbe.0123411aa4ca.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 37018,
+    "sha": "0123411aa4ca",
+    "remote": true,
+    "uploadedAt": "2026-09-14T17:14:36.024Z"
   },
   "/media/og/en/startup-50.png": {
     "key": "og/en/startup-50.565d5ce9f7be.png",

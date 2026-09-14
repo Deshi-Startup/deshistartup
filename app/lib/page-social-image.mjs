@@ -1,11 +1,22 @@
 import mediaManifest from '../generated/media.json' with { type: 'json' }
 import socialImages from '../../data/social-images.json' with { type: 'json' }
+import caseCovers from '../../data/case-study-covers.json' with { type: 'json' }
 import { MEDIA_URL } from '../seo.config.mjs'
 
 export function socialImageDefinition(page, definitions = socialImages) {
   const definition = definitions?.[page.slug]
   const localized = definition?.locales?.[page.locale]
   if (!localized) return null
+  if (definition.template === 'case-study') {
+    const cover = caseCovers[page.slug.replace(/^case-studies\//, '')]
+    if (page.stub || !cover || !page.title) return null
+    const label = page.locale === 'en' ? 'case study' : 'কেস স্টাডি'
+    return {
+      ...localized,
+      template: definition.template,
+      alt: `${page.title} ${label}: ${cover.title[page.locale].join(' ')}`
+    }
+  }
   return {
     ...localized,
     template: definition.template
