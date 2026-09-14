@@ -698,11 +698,13 @@ disclosure, which also closes on map drag. Expanded credits are bounded to 320px
 above desktop insights and beneath mobile sheets. Attribution keeps its 9px text; the information
 control has a 20px symbol inside a 28px desktop or 36px phone target.
 
-The analytical outlines retain the pinned district geometry. A restrained green national
-perimeter is dissolved from those same districts and becomes quieter at deeper zoom; it is an
-orientation aid, not a surveyed boundary. Small coastal components receive thinner, quieter
-strokes at country overview so the main perimeter stays clear; styling retains every source
-coordinate. Water and roads remain above thematic fills, whose
+The analytical outlines use one pinned district coverage, with a restrained green national
+perimeter dissolved from those same districts. Overview and on-demand close-zoom detail
+swap together in one rendering source. Close-zoom detail loads only the active geographic
+level, with parsing handled by the map worker; the basemap's competing administrative borders are
+omitted. The perimeter remains legible at close zoom. It is an orientation aid, not a surveyed
+boundary. Small coastal components receive thinner, quieter strokes at country overview.
+Water and roads remain above thematic fills, whose
 opacity decreases as the reader zooms in. Optional hosted context can fail without replacing
 the country with an incompatible coarse silhouette: the fallback is a neutral background with
 the local analytical outlines.

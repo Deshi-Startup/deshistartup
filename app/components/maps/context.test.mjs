@@ -272,7 +272,7 @@ test("selected ports have distinct official sources and verified district joins"
     );
     if (site.id === "bhomra-port") {
       // Preserve the observed OSM position; never shift it to satisfy a simplified border.
-      assert.match(site.boundaryNote, /23 metres outside/);
+      assert.match(site.boundaryNote, /26 metres outside the overview/);
       const distance = (a, b) => {
         const scale = Math.cos((site.point[1] * Math.PI) / 180);
         const x = (a[0] - site.point[0]) * scale,

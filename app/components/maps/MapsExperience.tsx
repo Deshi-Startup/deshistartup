@@ -1,5 +1,6 @@
 "use client";
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import { preload } from "react-dom";
 import dynamic from "next/dynamic";
 import SiteBrand from "../SiteBrand";
 import SurveyInterval from "./SurveyInterval";
@@ -185,7 +186,15 @@ export default function MapsExperience({
     return () => removeEventListener("popstate", read);
   }, [regions, urbanPlaces]);
   useEffect(() => {
-    if (hydrated && state.view === "map") setMapStarted(true);
+    if (hydrated && state.view === "map") {
+      // Start the required overview alongside the lazy map renderer. Data-only
+      // visits do not download geometry, and the later fetch reuses this request.
+      preload(`${basePath}/maps/bangladesh-2020.geojson`, {
+        as: "fetch",
+        crossOrigin: "anonymous",
+      });
+      setMapStarted(true);
+    }
   }, [hydrated, state.view]);
   useEffect(() => {
     detailPanel.current?.scrollTo({ top: 0 });

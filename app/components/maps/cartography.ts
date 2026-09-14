@@ -1,5 +1,38 @@
-import type { StyleSpecification } from "maplibre-gl";
+import type { LayerSpecification, StyleSpecification } from "maplibre-gl";
 import type { FeatureCollection, Geometry, Polygon } from "geojson";
+
+export const boundaryDetailMinZoom = 9;
+// Screen-space tolerance, not a change to stored geography. Zero lets detailed
+// national rings overflow MapLibre's 16-bit line mesh when viewed at small scales.
+export const boundaryRenderTolerance = 0.25;
+
+export type Boundaries = FeatureCollection<
+  Geometry,
+  { id: string; [key: string]: unknown }
+>;
+
+/** Context supplies roads/water/labels; analytical geometry owns administrative borders. */
+export function isContextLayer(layer: LayerSpecification) {
+  return !("source-layer" in layer && layer["source-layer"] === "boundary");
+}
+
+/** One source update swaps fills, selection edges and the country perimeter together. */
+export function boundaryFeatures(data: Boundaries, ids: Set<string>): Boundaries {
+  const country = data.features.find(
+    (f) => f.properties.id === "country-bangladesh",
+  );
+  if (!country) throw new Error("Missing national boundary");
+  return {
+    type: "FeatureCollection",
+    features: [
+      ...data.features.filter((f) => ids.has(f.properties.id)),
+      ...nationalOutline(country.geometry).features.map((f, i) => ({
+        ...f,
+        properties: { ...f.properties, id: `country-outline-${i}`, national: true },
+      })),
+    ],
+  };
+}
 
 /** Shared by the map and legend: circle AREA, not radius, represents the count. */
 export function countRadius(value: number | null, maximum: number) {

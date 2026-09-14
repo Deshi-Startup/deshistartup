@@ -181,7 +181,7 @@
       "coordinateSnapshot": "2026-09-12T09:30:20Z",
       "coordinateMethod": "crossing-building",
       "osmName": "Bhomra Border Crossing",
-      "boundaryNote": "OSM crossing-building centre lies approximately 23 metres outside the simplified 2020 Satkhira polygon. Source position retained; this regional map does not resolve the legal border."
+      "boundaryNote": "OSM crossing-building centre lies approximately 26 metres outside the overview Satkhira polygon, but inside the detailed polygon from the same 2020 source. Source position retained; this regional map does not resolve the legal border."
     },
     {
       "id": "tamabil-port",
