@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { mapIconPaths } from "./map-icons";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import {
   Map,
   Marker,
@@ -19,6 +20,8 @@ import {
   type ExplorerState,
 } from "./layers";
 import type { Region, Locale, UrbanPlace } from "./types";
+import type { MapHandle } from "./export-types";
+import type { MapCamera } from "./view-state";
 import { urbanName } from "./urban";
 import {
   baseMapStyle,
@@ -51,6 +54,9 @@ type Props = {
   layersOpen: boolean;
   labels: boolean;
   opacity: number;
+  mapHandle: RefObject<MapHandle | null>;
+  cameraRequest: MapCamera | null;
+  onCameraChange: (camera: MapCamera) => void;
 };
 const minZoom = 3.5;
 const maxZoom = 13;
@@ -109,6 +115,7 @@ export default function MapCanvas(props: Props) {
     labelMarkers = useRef<Record<string, Marker>>({}),
     urbanMarkers = useRef<Marker[]>([]),
     lastFitKey = useRef("");
+  const lastCameraRequest = useRef<MapCamera | null>(null);
   current.current = props;
   const [status, setStatus] = useState<"loading" | "ready" | "error">(
       "loading",
@@ -130,6 +137,41 @@ export default function MapCanvas(props: Props) {
   const closeZoom = zoom >= boundaryDetailMinZoom;
   const showBoundaryStatus = closeZoom &&
     (detailStatus === "loading" || detailStatus === "error");
+  // A shared camera describes the centre of the visible canvas, independent of
+  // the temporary padding used to fit a selection beside an Insights panel.
+  const getCamera = (): MapCamera | null => {
+    const m = map.current;
+    if (!m) return null;
+    const center = m.unproject([
+      m.getCanvas().clientWidth / 2,
+      m.getCanvas().clientHeight / 2,
+    ]);
+    return { lng: center.lng, lat: center.lat, zoom: m.getZoom() };
+  };
+  useEffect(() => {
+    props.mapHandle.current = {
+      getMap: () => map.current,
+      getCamera,
+      getFeatureIds: () => current.current.regions
+        .filter((r) => r.level === current.current.state.level)
+        .map((r) => r.id),
+      getIssue: () => {
+        if (
+          status === "error" || baseError || boundaryRenderError.current ||
+          (closeZoom && detailStatus === "error") ||
+          (props.state.transport && transportStatus === "error")
+        ) return "unavailable";
+        if (
+          status !== "ready" || (closeZoom && detailStatus === "loading") ||
+          (props.state.transport && transportStatus === "loading")
+        ) return "loading";
+        return null;
+      },
+    };
+    return () => {
+      props.mapHandle.current = null;
+    };
+  });
   const cameraKey = () => {
     const { state, reset } = current.current;
     return [
@@ -307,7 +349,15 @@ export default function MapCanvas(props: Props) {
         const m = new Map({
           container: host.current,
           style: baseMapStyle(base?.glyphs),
-          bounds: targetBounds(),
+          ...(current.current.cameraRequest
+            ? {
+                center: [
+                  current.current.cameraRequest.lng,
+                  current.current.cameraRequest.lat,
+                ] as [number, number],
+                zoom: current.current.cameraRequest.zoom,
+              }
+            : { bounds: targetBounds() }),
           fitBoundsOptions: {
             padding: padding(targetBounds() === country),
             maxZoom: current.current.state.urban ? 11 : 9,
@@ -534,6 +584,8 @@ export default function MapCanvas(props: Props) {
           setZoom(m.getZoom());
           setConstrainedMinZoom(m.getMinZoom(true));
           labels();
+          const camera = getCamera();
+          if (camera) current.current.onCameraChange(camera);
         });
         let width = host.current.clientWidth,
           height = host.current.clientHeight;
@@ -718,14 +770,14 @@ export default function MapCanvas(props: Props) {
         element.onpointerenter = () => hoverPopup.current?.remove();
         // Authored, static geometry: no provider strings are inserted as markup.
         const shape = sites.every((s) => s.kind === "seaport")
-          ? "M12 7v14M5 11H2v4a10 10 0 0 0 20 0v-4h-3M8 12h8M15 4a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+          ? mapIconPaths.anchor
           : sites.every((s) => s.kind === "landport")
-            ? "M4 21V8h16v13M2 8l10-5 10 5M8 21v-7h8v7M2 21h20"
+            ? mapIconPaths.gate
             : sites.every((s) => s.kind === "airport")
-              ? "M12 2c-1 0-2 2-2 4v3L2 14v2l8-2v4l-3 2v1l5-1 5 1v-1l-3-2v-4l8 2v-2l-8-5V6c0-2-1-4-2-4Z"
+              ? mapIconPaths.plane
               : sites.every(isIndustrialSite)
-                ? "M3 21V10l6 3V7l6 4V3h4l2 18H3ZM7 17h1m4 0h1m4 0h1"
-                : "M12 3 2 8l10 5 10-5-10-5ZM2 12l10 5 10-5M2 16l10 5 10-5";
+                ? mapIconPaths.factory
+                : mapIconPaths.layers;
         element.innerHTML = `<span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${shape}"/></svg></span>`;
         if (sites.length > 1) {
           const count = document.createElement("b");
@@ -1042,7 +1094,23 @@ export default function MapCanvas(props: Props) {
     props.locale,
   ]);
   useEffect(() => {
-    if (status !== "ready" || lastFitKey.current === cameraKey()) return;
+    if (status !== "ready") return;
+    if (lastCameraRequest.current !== props.cameraRequest) {
+      if (!props.cameraRequest) {
+        lastCameraRequest.current = null;
+        lastFitKey.current = "";
+      } else {
+        lastCameraRequest.current = props.cameraRequest;
+        lastFitKey.current = cameraKey();
+        map.current?.jumpTo({
+          center: [props.cameraRequest.lng, props.cameraRequest.lat],
+          zoom: props.cameraRequest.zoom,
+          padding: { top: 0, left: 0, right: 0, bottom: 0 },
+        });
+        return;
+      }
+    }
+    if (lastFitKey.current === cameraKey()) return;
     lastFitKey.current = cameraKey();
     fit(targetBounds());
   }, [
@@ -1055,6 +1123,7 @@ export default function MapCanvas(props: Props) {
     props.state.urban,
     props.state.place,
     props.state.urbanCompare,
+    props.cameraRequest,
   ]);
   return (
     <div className="maps-canvas-wrap">

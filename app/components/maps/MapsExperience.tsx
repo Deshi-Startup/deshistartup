@@ -7,6 +7,9 @@ import SurveyInterval from "./SurveyInterval";
 import Icon from "./MapIcon";
 import BusinessProfile from "./BusinessProfile";
 import SectorControls from "./SectorControls";
+import ShareMenu from "./ShareMenu";
+import type { MapHandle } from "./export-types";
+import { parseMapAppearance, withMapAppearance, type MapCamera } from "./view-state";
 import {
   sectorMeasureNames,
   sectorMeasures,
@@ -87,6 +90,9 @@ export default function MapsExperience({
     [reset, setReset] = useState(0),
     [opacity, setOpacity] = useState(0.8),
     [labels, setLabels] = useState(true);
+  const [cameraRequest, setCameraRequest] = useState<MapCamera | null>(null);
+  const mapHandle = useRef<MapHandle | null>(null);
+  const camera = useRef<MapCamera | null>(null);
   const searchRef = useRef<HTMLInputElement>(null),
     searchTrigger = useRef<HTMLButtonElement>(null),
     layerTrigger = useRef<HTMLButtonElement>(null),
@@ -173,6 +179,11 @@ export default function MapsExperience({
   useEffect(() => {
     const read = () => {
       const restored = parseExplorer(location.search, regions, urbanPlaces);
+      const appearance = parseMapAppearance(location.search);
+      camera.current = appearance.camera;
+      setCameraRequest(appearance.camera);
+      setLabels(appearance.labels);
+      setOpacity(appearance.opacity);
       setState(restored);
       setLayersOpen(false);
       setPanel(restored.compare ? "compare" : "insights");
@@ -218,10 +229,10 @@ export default function MapsExperience({
   }, []);
   useEffect(() => {
     if (hydrated) {
-      history.replaceState(null, "", location.pathname + explorerUrl(state));
+      history.replaceState(null, "", location.pathname + withMapAppearance(explorerUrl(state), { camera: camera.current, labels, opacity }));
       setShare("");
     }
-  }, [state, hydrated]);
+  }, [state, hydrated, labels, opacity]);
   useEffect(() => {
     if (!share) return;
     const timeout = setTimeout(() => setShare(""), 5000);
@@ -229,6 +240,7 @@ export default function MapsExperience({
   }, [share]);
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
+      if ((e.target as HTMLElement)?.closest("dialog[open], .maps-share-control")) return;
       if (
         e.key === "/" &&
         !["INPUT", "TEXTAREA", "SELECT"].includes(
@@ -387,20 +399,11 @@ export default function MapsExperience({
     setDetailOpen(true);
     if (innerWidth <= 1100) setLayersOpen(false);
   }
-  async function shareView() {
-    try {
-      await navigator.clipboard.writeText(
-        location.origin + location.pathname + explorerUrl(state),
-      );
-      setShare(t("Link copied", "লিংক কপি হয়েছে"));
-    } catch {
-      setShare(
-        t(
-          "Copy the link from your address bar.",
-          "অ্যাড্রেস বার থেকে লিংক কপি করুন।",
-        ),
-      );
-    }
+  function shareLink() {
+    return location.origin + location.pathname + withMapAppearance(
+      explorerUrl(state),
+      { camera: mapHandle.current?.getCamera() || camera.current, labels, opacity },
+    );
   }
   const top = [...visible]
     .filter((r) => metricValue(r, layer) !== null)
@@ -634,14 +637,14 @@ export default function MapsExperience({
               <span>{t("Compare", "তুলনা")}</span>
             </button>
           )}
-          <button
-            className="maps-share"
-            aria-label={t("Share this view", "এই ভিউ শেয়ার করুন")}
-            onClick={shareView}
-          >
-            <Icon name="share" />
-            <span>{t("Share view", "লিংক কপি")}</span>
-          </button>
+          <ShareMenu
+            request={{
+              state, regions, towns: urbanPlaces, locale, mapHandle,
+              comparisonOpen: detailOpen && (panel === "compare" || !!state.urbanCompare),
+            }}
+            getLink={shareLink}
+            onMessage={setShare}
+          />
         </nav>
       </header>
       <main
@@ -667,6 +670,12 @@ export default function MapsExperience({
             layersOpen={layersOpen}
             opacity={opacity}
             labels={labels}
+            mapHandle={mapHandle}
+            cameraRequest={cameraRequest}
+            onCameraChange={next => {
+              camera.current = next;
+              history.replaceState(null, "", location.pathname + withMapAppearance(explorerUrl(state), { camera: next, labels, opacity }));
+            }}
           />
         )}
         {!state.urban && (
