@@ -397,6 +397,9 @@ their content, preserving a readable minimum for both columns. A short date or l
 more room for its explanation. Three-column references keep equal tracks; genuinely dense grids
 own their horizontal scroll surface. Keep text size and padding readable instead of shrinking them
 to compensate for unsuitable column widths.
+Above 860px, two-column article cells have a `clamp(8rem, 15vw, 13rem)` minimum width:
+a modest floor capped at one fifth of the full prose measure. This prevents a desktop date or
+label column from collapsing while leaving automatic layout free to give either column more room.
 
 **The Nothing-After-Paint Rule.** Nothing appears above the article once the page has painted. The
 shell is one client component that cannot know the route while the static HTML renders, so anything

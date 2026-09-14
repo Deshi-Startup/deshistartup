@@ -1127,6 +1127,15 @@ table {
   max-width: var(--measure);
 }
 
+/* Native automatic layout can squeeze a date column to a sliver on desktop.
+   Give both columns a modest floor, capped at one fifth of the prose measure,
+   while content continues to determine the rest of the available width. */
+@media (min-width: 861px) {
+  .article > table:not(:has(tr > :nth-child(3))) :is(th, td) {
+    min-width: clamp(8rem, 15vw, 13rem);
+  }
+}
+
 th,
 td {
   border: 1px solid var(--line);
