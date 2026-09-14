@@ -71,7 +71,62 @@ The implementation separates these responsibilities:
 | `app/components/maps/business.ts`, `SectorControls.tsx` | Sector definitions, calculations and the shared sector selector |
 | `app/components/maps/MapCanvas.tsx` | Rendering, camera and map interactions |
 | `app/components/maps/MapsExperience.tsx` | UI state, search, comparison and panels |
+| `app/components/maps/view-state.ts` | Camera, label visibility and opacity in shared URLs |
+| `app/components/maps/ShareMenu.tsx`, `ExportPreview.tsx`, `export.css` | Share menu and on-demand image preview |
+| `app/components/maps/export-model.ts`, `export-render.ts`, `export-types.ts` | Export evidence, bounded rendering and map snapshots |
 | `app/components/maps/maps.css`, Maps section in `DESIGN.md` | Responsive presentation and design contract |
+
+## Sharing and map images
+
+The existing Share action opens **Copy link** and **Download image**. Copy link
+preserves the analytical filters, selections and enabled context, plus the current
+camera, place-label visibility and fill opacity. `view-state.ts` validates the
+`map=longitude,latitude,zoom`, `labels` and `opacity` parameters separately from
+statistical state. If clipboard access fails, the same URL is placed in the address
+bar for manual copying.
+
+Download image is available in Map view. It opens a desktop dialog or phone sheet
+with a preview of the actual PNG, its dimensions, a source link and Download PNG.
+The export captures the **current map framing only** and preserves the active
+geometry, classifications, opacity, labels, selections and enabled context markers.
+It excludes navigation and interactive panels; opening or closing export does not
+move the live map. The complete PNG, including its caption, has a maximum long edge
+of **2,400 pixels**. Dimensions depend on the viewport and caption height.
+
+When a two-place comparison is open, its evidence is included by default. The
+preview checkbox can hide or include that comparison without changing the map or
+its selected places. Regional comparisons show the active measure and available
+uncertainty intervals; town comparisons show general households. This is a compact
+comparison for the image, not a copy of every row in the interactive panel.
+
+Analytical PNGs retain the measure, units, observation period, geographic level
+and quantitative legend; town images identify the census jurisdictions and period.
+Every PNG retains its source credit and Deshi Startup Maps address. Applicable
+filter, missing-data and context-coverage notes remain in the caption. Keep the
+OpenMapTiles/OpenStreetMap attribution and copyright address, and the BBS/OCHA via geoBoundaries credit,
+CC BY 3.0 IGO licence and simplification notice. Poverty exports additionally retain
+the educational/non-commercial reuse restriction and commercial-permission notice;
+the preview links to the source terms. Image export does not relicense source data.
+The context caption in `export-model.ts` currently names the 12 September 2026
+snapshot; update that date when the transport or industry source snapshots change.
+
+The preview and export code load on demand. `captureMap` waits for the map and fonts,
+then records the current style, feature state and visible DOM label/marker
+primitives. A temporary, non-interactive renderer uses the existing MapLibre
+dependency to render that snapshot at higher resolution; the live renderer keeps
+its normal drawing buffer. Disabled transport sources are omitted. Canvas
+composition adds the legend and caption without rasterizing the page or adding a
+client dependency, backend endpoint or upload.
+
+The temporary renderer, host and copied map geometry are released after rendering.
+Only previews with a comparison toggle retain the uncaptioned map for reuse;
+other previews release it once the PNG is prepared. Closing or retrying aborts
+pending map work; canvases and image object URLs are released when replaced or
+closed. Changing comparison visibility reuses the prepared map image; cancelled
+composition results are discarded. Loading,
+provider and device failures keep Download PNG disabled and expose Retry; an
+incomplete map is not offered as a finished image. Maintain these cleanup and
+failure behaviors alongside the source and attribution requirements.
 
 ## Renderer and hosted context
 

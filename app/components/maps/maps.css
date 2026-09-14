@@ -294,6 +294,34 @@
   background: #064d39;
   color: white;
 }
+.maps-share-control { position: relative; }
+.maps-share-menu {
+  display: flex;
+  flex-direction: column;
+  white-space: normal;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 20;
+  min-width: 200px;
+  padding: 6px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 6px 28px #173b2c26;
+}
+.maps-header-actions .maps-share-menu button {
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  white-space: nowrap;
+}
+.maps-header-actions .maps-share[aria-expanded="true"],
+.maps-header-actions .maps-share[aria-expanded="true"]:hover {
+  background: #064d39;
+  color: #fff;
+}
+.maps-share-menu button[aria-disabled="true"] { color: var(--maps-muted); cursor: default; }
 .maps-workspace {
   --maps-layer-width: 300px;
   --maps-layer-left: 24px;
