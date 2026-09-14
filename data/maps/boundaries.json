@@ -1,0 +1,46 @@
+{
+  "source": "BBS / OCHA ROAP via geoBoundaries",
+  "boundaryYear": 2020,
+  "boundaryId": "BGD-ADM2-16705992",
+  "release": "9469f09",
+  "sourceUrl": "https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/9469f09/releaseData/gbOpen/BGD/ADM2/geoBoundaries-BGD-ADM2.geojson",
+  "sourceSha256": "54379ccc77f6f59dab3569ecc5f9b3850dbed2d65a5f43a034bdf92179f5621b",
+  "sourceBytes": 46554183,
+  "retrieved": "2026-09-14",
+  "license": "CC BY 3.0 IGO",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0/igo/",
+  "method": "Coverage-preserving Visvalingam simplification in EPSG:3857; precision grid 0.00001 degrees; divisions and country dissolved from the same districts. Tolerances are cartographic scales, not surveyed accuracy bounds.",
+  "shapelyVersion": "2.1.2",
+  "geosVersion": "3.13.1",
+  "detailMinZoom": 9,
+  "levels": [
+    {
+      "name": "overview",
+      "geography": "both",
+      "tolerance": 125,
+      "file": "bangladesh-2020.geojson",
+      "bytes": 2282862,
+      "gzipBytes": 730060,
+      "sha256": "7a35e403e158ba60eaa1ebbe39d9dafa65929e40ac1c55ef326a2123a38863e3"
+    },
+    {
+      "name": "detail",
+      "geography": "district",
+      "tolerance": 15,
+      "file": "bangladesh-2020-district-detail.geojson",
+      "bytes": 6814459,
+      "gzipBytes": 1969401,
+      "sha256": "3cb81e9f8710b393189e584f0cff83adb18de44fbbeb86407ddaf8585071da86"
+    },
+    {
+      "name": "detail",
+      "geography": "division",
+      "tolerance": 15,
+      "file": "bangladesh-2020-division-detail.geojson",
+      "bytes": 3691064,
+      "gzipBytes": 1068703,
+      "sha256": "21f1495e485d6114115283d3fffeb56def6da9e937441be521552b3daee9090f"
+    }
+  ],
+  "limitations": "2020 administrative geography, not current surveyed borders or a validated 2022 census boundary match. No snapping to basemap borders, roads or riverbanks. The full input is not shipped to browsers."
+}

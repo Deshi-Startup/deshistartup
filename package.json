@@ -79,8 +79,6 @@
     "remark-parse": "^11.0.0",
     "robots-parser": "^3.0.1",
     "sharp": "^0.35.4",
-    "topojson-client": "3.1.0",
-    "topojson-server": "3.0.1",
     "typescript": "^5.9.3",
     "unified": "^11.0.5",
     "wrangler": "^4.129.0",

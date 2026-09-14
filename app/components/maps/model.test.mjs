@@ -148,7 +148,7 @@ test("search reconciles historic spellings and Bangla names", () => {
   );
 });
 test("map files stay bounded and data-owned pages are excluded from inline editing", () => {
-  assert.ok(gzipSync(JSON.stringify(geo)).length < 500_000);
+  assert.ok(gzipSync(JSON.stringify(geo)).length < 750_000);
   assert.equal(routeSupportsInlineEdit("/maps"), false);
   assert.equal(routeSupportsInlineEdit("/en/maps"), false);
 });

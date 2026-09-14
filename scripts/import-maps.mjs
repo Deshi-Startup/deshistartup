@@ -2,14 +2,12 @@
 import fs from "node:fs";
 import crypto from "node:crypto";
 import assert from "node:assert/strict";
-import { topology } from "topojson-server";
-import { merge, feature } from "topojson-client";
 import polylabel from "polylabel";
 
-const [reportPath, boundaryPath] = process.argv.slice(2);
-if (!boundaryPath)
+const [reportPath] = process.argv.slice(2);
+if (!reportPath)
   throw new Error(
-    "Usage: node scripts/import-maps.mjs REPORT.txt DISTRICTS.geojson",
+    "Usage: node scripts/import-maps.mjs REPORT.txt (boundaries: import-map-boundaries.py)",
   );
 const retrievedAt =
   process.env.MAPS_RETRIEVED_AT || new Date().toISOString().slice(0, 10);
@@ -68,42 +66,10 @@ for (const div of rows.filter((r) => r.level === "division")) {
     `Population reconciliation: ${div.id}`,
   );
 }
-const raw = JSON.parse(fs.readFileSync(boundaryPath, "utf8"));
-const round = (c) =>
-  typeof c[0] === "number" ? c.map((n) => Number(n.toFixed(5))) : c.map(round);
-let districts = raw.features.map((f) => {
-  const geo = crosswalk.find(
-    (g) => (g.boundaryName || g.en) === f.properties.shapeName,
-  );
-  assert(geo, `Missing boundary crosswalk: ${f.properties.shapeName}`);
-  const row = rows.find((r) => r.id === `district-${geo.id}`);
-  assert(row, `Unmatched metric: ${geo.id}`);
-  row.boundaryId = f.properties.shapeID;
-  return {
-    type: "Feature",
-    properties: { id: row.id },
-    geometry: { ...f.geometry, coordinates: round(f.geometry.coordinates) },
-  };
-});
-// Preserve source vertices; shared topology still supports correct division dissolves.
-// Five decimal places keeps metre-scale precision without long coordinate strings.
-const topo = topology({
-  districts: { type: "FeatureCollection", features: districts },
-});
-districts = feature(topo, topo.objects.districts).features;
-const divisions = rows
-  .filter((r) => r.level === "division")
-  .map((r) => ({
-    type: "Feature",
-    properties: { id: r.id },
-    geometry: merge(
-      topo,
-      topo.objects.districts.geometries.filter(
-        (g) =>
-          rows.find((row) => row.id === g.properties.id).division === r.key,
-      ),
-    ),
-  }));
+// Statistical imports do not overwrite the separately verified geometry levels.
+const geometry = JSON.parse(
+  fs.readFileSync("public/maps/bangladesh-2020.geojson", "utf8"),
+);
 function point(geometry) {
   const polys =
     geometry.type === "Polygon" ? [geometry.coordinates] : geometry.coordinates;
@@ -120,18 +86,12 @@ function point(geometry) {
     .slice(0, 2)
     .map((n) => Number(n.toFixed(5)));
 }
-for (const f of [...districts, ...divisions])
-  rows.find((r) => r.id === f.properties.id).point = point(f.geometry);
-// The national perimeter shares the exact district topology; no competing border dataset.
-const national = {
-  type: "Feature",
-  properties: { id: "country-bangladesh" },
-  geometry: merge(topo, topo.objects.districts.geometries),
-};
-const output = {
-  type: "FeatureCollection",
-  features: [...districts, ...divisions, national],
-};
+for (const row of rows) {
+  const f = geometry.features.find((f) => f.properties.id === row.id);
+  assert(f, `Missing verified boundary: ${row.id}`);
+  row.point = point(f.geometry);
+  if (row.level === "district") row.boundaryId = f.properties.boundaryId;
+}
 fs.writeFileSync(
   "data/maps/regions.json",
   JSON.stringify(
@@ -145,14 +105,9 @@ fs.writeFileSync(
     2,
   ) + "\n",
 );
-fs.writeFileSync(
-  "public/maps/bangladesh-2020.geojson",
-  JSON.stringify(output) + "\n",
-);
 const hashes = Object.fromEntries(
   [
     ["reportText", reportPath],
-    ["boundaries", boundaryPath],
   ].map(([key, path]) => [
     key,
     crypto.createHash("sha256").update(fs.readFileSync(path)).digest("hex"),

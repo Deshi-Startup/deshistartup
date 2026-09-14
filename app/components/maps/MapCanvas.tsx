@@ -9,7 +9,6 @@ import {
   type GeoJSONSource,
   type StyleSpecification,
 } from "maplibre-gl";
-import type { FeatureCollection, Geometry } from "geojson";
 import {
   matchingRegions,
   metricValue,
@@ -21,7 +20,15 @@ import {
 } from "./layers";
 import type { Region, Locale, UrbanPlace } from "./types";
 import { urbanName } from "./urban";
-import { baseMapStyle, countRadius, nationalOutline } from "./cartography";
+import {
+  baseMapStyle,
+  countRadius,
+  boundaryFeatures,
+  boundaryDetailMinZoom,
+  boundaryRenderTolerance,
+  isContextLayer,
+  type Boundaries,
+} from "./cartography";
 import {
   matchingAnchors,
   groupSites,
@@ -31,10 +38,7 @@ import {
 import "maplibre-gl/dist/maplibre-gl.css";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 setWorkerUrl(`${basePath}/maps/worker/maplibre-gl-worker.mjs`);
-type Shapes = FeatureCollection<
-  Geometry,
-  { id: string; [key: string]: unknown }
->;
+type Shapes = Boundaries;
 type Props = {
   regions: Region[];
   urbanPlaces: UrbanPlace[];
@@ -57,20 +61,24 @@ const country: [[number, number], [number, number]] = [
 function extent(
   features: Shapes["features"],
 ): [[number, number], [number, number]] {
-  const all: number[][] = [];
+  const bounds: [[number, number], [number, number]] = [
+    [Infinity, Infinity],
+    [-Infinity, -Infinity],
+  ];
   const visit = (a: unknown) => {
     if (Array.isArray(a)) {
-      if (typeof a[0] === "number") all.push(a as number[]);
-      else a.forEach(visit);
+      if (typeof a[0] === "number") {
+        bounds[0][0] = Math.min(bounds[0][0], a[0]);
+        bounds[0][1] = Math.min(bounds[0][1], a[1]);
+        bounds[1][0] = Math.max(bounds[1][0], a[0]);
+        bounds[1][1] = Math.max(bounds[1][1], a[1]);
+      } else a.forEach(visit);
     }
   };
   features.forEach((f) => {
     if ("coordinates" in f.geometry) visit(f.geometry.coordinates);
   });
-  return [
-    [Math.min(...all.map((c) => c[0])), Math.min(...all.map((c) => c[1]))],
-    [Math.max(...all.map((c) => c[0])), Math.max(...all.map((c) => c[1]))],
-  ];
+  return bounds;
 }
 function urbanBounds(
   places: UrbanPlace[],
@@ -92,10 +100,13 @@ export default function MapCanvas(props: Props) {
   const host = useRef<HTMLDivElement>(null),
     map = useRef<Map | null>(null),
     shapes = useRef<Shapes | null>(null),
+    detailFiles = useRef<Partial<Record<ExplorerState["level"], string>>>({}),
+    boundaryRenderError = useRef(false),
     current = useRef(props),
     hoverPopup = useRef<Popup | null>(null),
     sitePopup = useRef<Popup | null>(null),
     markers = useRef<Marker[]>([]),
+    labelMarkers = useRef<Record<string, Marker>>({}),
     urbanMarkers = useRef<Marker[]>([]),
     lastFitKey = useRef("");
   current.current = props;
@@ -104,6 +115,11 @@ export default function MapCanvas(props: Props) {
     ),
     [retry, setRetry] = useState(0),
     [baseError, setBaseError] = useState(false),
+    [detailStatus, setDetailStatus] = useState<
+      "idle" | "loading" | "ready" | "error"
+    >("idle"),
+    [detailRetry, setDetailRetry] = useState(0),
+    [geometryRevision, setGeometryRevision] = useState(0),
     [transportStatus, setTransportStatus] = useState<
       "loading" | "ready" | "error"
     >("loading"),
@@ -111,6 +127,9 @@ export default function MapCanvas(props: Props) {
     [zoom, setZoom] = useState(6),
     [constrainedMinZoom, setConstrainedMinZoom] = useState(minZoom);
   const t = (a: string, b: string) => (props.locale === "en" ? a : b);
+  const closeZoom = zoom >= boundaryDetailMinZoom;
+  const showBoundaryStatus = closeZoom &&
+    (detailStatus === "loading" || detailStatus === "error");
   const cameraKey = () => {
     const { state, reset } = current.current;
     return [
@@ -210,9 +229,13 @@ export default function MapCanvas(props: Props) {
     const m = map.current,
       p = current.current;
     if (!m || !shapes.current) return;
-    markers.current.forEach((marker) => marker.remove());
-    markers.current = [];
-    if (!p.labels || p.state.urban) return;
+    if (!p.labels || p.state.urban) {
+      markers.current.forEach((marker) => marker.remove());
+      markers.current = [];
+      labelMarkers.current = {};
+      return;
+    }
+    const next: Record<string, Marker> = {};
     const boxes: number[][] = [];
     const visible = matchingRegions(p.regions, { ...p.state, minimum: 0 }).sort(
       (a, b) =>
@@ -226,6 +249,8 @@ export default function MapCanvas(props: Props) {
         w = Math.max(48, text.length * 6.6),
         box = [xy.x - w / 2, xy.y - 10, xy.x + w / 2, xy.y + 12];
       if (
+        box[2] < 0 || box[0] > m.getCanvas().clientWidth ||
+        box[3] < 0 || box[1] > m.getCanvas().clientHeight ||
         boxes.some(
           (b) =>
             box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1],
@@ -233,16 +258,23 @@ export default function MapCanvas(props: Props) {
       )
         continue;
       boxes.push(box);
-      const el = document.createElement("div");
-      el.className = "maps-place-label";
-      el.textContent = text;
-      el.setAttribute("aria-hidden", "true");
-      markers.current.push(
-        new Marker({ element: el })
+      let marker = labelMarkers.current[r.id];
+      if (!marker) {
+        const el = document.createElement("div");
+        el.className = "maps-place-label";
+        el.setAttribute("aria-hidden", "true");
+        marker = new Marker({ element: el })
           .setLngLat(r.point as [number, number])
-          .addTo(m),
-      );
+          .addTo(m);
+      }
+      if (marker.getElement().textContent !== text)
+        marker.getElement().textContent = text;
+      next[r.id] = marker;
     }
+    for (const [id, marker] of Object.entries(labelMarkers.current))
+      if (!next[id]) marker.remove();
+    labelMarkers.current = next;
+    markers.current = Object.values(next);
   }
   useEffect(() => {
     let gone = false;
@@ -318,6 +350,10 @@ export default function MapCanvas(props: Props) {
         });
         hoverPopup.current = popup;
         m.on("error", (event) => {
+          if ("sourceId" in event && event.sourceId === "regions") {
+            boundaryRenderError.current = true;
+            return;
+          }
           if ("sourceId" in event && event.sourceId === "transport") {
             if (!gone) setTransportStatus("error");
             return;
@@ -329,16 +365,10 @@ export default function MapCanvas(props: Props) {
           m.addSource("regions", {
             type: "geojson",
             promoteId: "id",
+            // Keep subpixel detail without overflowing low-zoom line meshes.
+            // Fills and outlines use the same source and screen-space tolerance.
+            tolerance: boundaryRenderTolerance,
             data: { type: "FeatureCollection", features: [] },
-          });
-          m.addSource("country", {
-            type: "geojson",
-            data: nationalOutline(
-              boundary.features.find(
-                (f: Shapes["features"][number]) =>
-                  f.properties.id === "country-bangladesh",
-              ).geometry,
-            ),
           });
           m.addSource("symbols", {
             type: "geojson",
@@ -348,6 +378,7 @@ export default function MapCanvas(props: Props) {
             id: "regions-fill",
             type: "fill",
             source: "regions",
+            filter: ["!", ["has", "national"]],
             paint: {
               "fill-color": ["coalesce", ["feature-state", "color"], "#dde6dd"],
               "fill-opacity": [
@@ -367,6 +398,7 @@ export default function MapCanvas(props: Props) {
             id: "regions-line",
             type: "line",
             source: "regions",
+            filter: ["!", ["has", "national"]],
             paint: {
               "line-color": "#fdfef8",
               "line-width": [
@@ -381,12 +413,12 @@ export default function MapCanvas(props: Props) {
               "line-opacity": 0.9,
             },
           });
-          // A dissolved perimeter distinguishes Bangladesh at country scale. Fade it
-          // as detailed basemap borders take over; the source is a 2020 statistical boundary.
+          // The same statistical geometry owns the perimeter at every zoom.
           m.addLayer({
             id: "country-outline",
             type: "line",
-            source: "country",
+            source: "regions",
+            filter: ["==", ["get", "national"], true],
             layout: { "line-join": "round", "line-cap": "round" },
             paint: {
               "line-color": "#6b8277",
@@ -408,7 +440,7 @@ export default function MapCanvas(props: Props) {
                 7,
                 ["case", ["get", "minor"], 0.35, 0.7],
                 10,
-                0.25,
+                0.55,
               ],
             },
           });
@@ -458,6 +490,7 @@ export default function MapCanvas(props: Props) {
               // Water, roads and labels sit above analytical fills, as in the preferred map.
               if (layer.id === "water") insertion = "regions-line";
               if (
+                !isContextLayer(layer) ||
                 layer.type === "background" ||
                 layer.type === "raster" ||
                 (layer.type === "symbol" && layer.layout?.["icon-image"])
@@ -533,11 +566,48 @@ export default function MapCanvas(props: Props) {
       popup?.remove();
       hoverPopup.current = null;
       markers.current.forEach((x) => x.remove());
+      labelMarkers.current = {};
       urbanMarkers.current.forEach((x) => x.remove());
       map.current?.remove();
       map.current = null;
     };
   }, [retry]);
+  useEffect(() => {
+    if (status !== "ready" || !closeZoom) return;
+    const level = props.state.level;
+    const cached = detailFiles.current[level];
+    if (cached) return;
+    const controller = new AbortController();
+    let gone = false;
+    setDetailStatus("loading");
+    const timeout = setTimeout(() => controller.abort(), 20000);
+    fetch(`${basePath}/maps/bangladesh-2020-${level}-detail.geojson`, {
+      signal: controller.signal,
+    })
+      .then(async (response) => {
+        if (!response.ok) throw new Error("Detailed boundaries unavailable");
+        // Keep bytes out of application JS. MapLibre parses the Blob URL in its
+        // worker; all joins and outline transformations are checked offline.
+        const blob = await response.blob();
+        if (gone) return;
+        const url = URL.createObjectURL(blob);
+        detailFiles.current[level] = url;
+        setGeometryRevision((n) => n + 1);
+      })
+      .catch(() => {
+        if (!gone) setDetailStatus("error");
+      })
+      .finally(() => clearTimeout(timeout));
+    return () => {
+      gone = true;
+      controller.abort();
+      clearTimeout(timeout);
+    };
+  }, [status, closeZoom, detailRetry, props.state.level]);
+  useEffect(() => () => {
+    Object.values(detailFiles.current).forEach(URL.revokeObjectURL);
+    detailFiles.current = {};
+  }, []);
   useEffect(() => {
     const m = map.current;
     if (status !== "ready" || !m) return;
@@ -761,8 +831,8 @@ export default function MapCanvas(props: Props) {
     props.state.division,
     props.locale,
   ]);
-  // Geometry is static. Only a geography-level change sends polygons to the
-  // worker; measures and filters update lightweight paint state instead.
+  // Measures use lightweight paint state. Geometry changes only with geographic
+  // level or its close-zoom upgrade, including all outlines in one update.
   useEffect(() => {
     const m = map.current,
       data = shapes.current;
@@ -772,11 +842,27 @@ export default function MapCanvas(props: Props) {
         .filter((r) => r.level === props.state.level)
         .map((r) => r.id),
     );
-    (m.getSource("regions") as GeoJSONSource).setData({
-      type: "FeatureCollection",
-      features: data.features.filter((f) => ids.has(f.properties.id)),
+    const source = m.getSource("regions") as GeoJSONSource;
+    const detailed = detailFiles.current[props.state.level] || null;
+    const overview = () => boundaryFeatures(data, ids);
+    let gone = false;
+    boundaryRenderError.current = false;
+    if (detailed) setDetailStatus("loading");
+    // MapLibre 6 reports load failures through its error event, even when the
+    // setData promise resolves. Keep the overview if worker-side parsing fails.
+    void source.setData(detailed || overview()).then(() => {
+      if (gone) return;
+      if (boundaryRenderError.current) {
+        if (detailed) {
+          URL.revokeObjectURL(detailed);
+          delete detailFiles.current[props.state.level];
+          setDetailStatus("error");
+          void source.setData(overview());
+        } else setStatus("error");
+      } else if (detailed) setDetailStatus("ready");
     });
-  }, [status, props.state.level, props.regions]);
+    return () => { gone = true; };
+  }, [status, props.state.level, props.regions, geometryRevision]);
   useEffect(() => {
     const m = map.current;
     if (status !== "ready" || !m) return;
@@ -1057,7 +1143,28 @@ export default function MapCanvas(props: Props) {
           )}
         </p>
       )}
-      {props.state.transport &&
+      {showBoundaryStatus && status === "ready" && (
+        <div className="maps-overlay-status" role="status">
+          {detailStatus === "loading" ? (
+            t("Loading detailed boundaries…", "সীমানার বিস্তারিত রেখা লোড হচ্ছে…")
+          ) : (
+            <>
+              {t(
+                "Detailed boundaries couldn't load. Showing overview boundaries.",
+                "সীমানার বিস্তারিত রেখা লোড হয়নি। আপাতত সরল রেখা দেখানো হচ্ছে।",
+              )}
+              <button onClick={() => {
+                map.current?.getCanvas().focus({ preventScroll: true });
+                setDetailRetry((r) => r + 1);
+              }}>
+                {t("Retry", "আবার চেষ্টা করুন")}
+              </button>
+            </>
+          )}
+        </div>
+      )}
+      {!showBoundaryStatus &&
+        props.state.transport &&
         status === "ready" &&
         transportStatus !== "ready" && (
           <div className="maps-overlay-status" role="status">
