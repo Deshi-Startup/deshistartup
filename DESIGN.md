@@ -64,6 +64,10 @@ typography:
     fontSize: "0.95rem"
     fontWeight: 400
     lineHeight: 1.72
+  home-primary:
+    fontSize: "0.95rem"
+    fontWeight: 500
+    lineHeight: 1.72
   home-meta:
     fontSize: "0.9rem"
     fontWeight: 400
@@ -79,6 +83,14 @@ typography:
     fontSize: "0.82rem"
     fontWeight: 600
     lineHeight: 1.5
+  navigation:
+    fontSize: "0.9rem"
+    fontWeight: 600
+    lineHeight: 1.72
+  directory-action:
+    fontSize: "0.9rem"
+    fontWeight: 600
+    lineHeight: 1.72
   code:
     fontFamily: "'Deshi Sans Bengali', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace"
     fontSize: "0.92em"
@@ -104,38 +116,38 @@ components:
     textColor: "{colors.blue-hover}"
   link-visited:
     textColor: "{colors.visited}"
-  button-quiet:
+  button-reset:
     backgroundColor: "{colors.canvas}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.edge}"
-    padding: "10px 18px"
-    typography: "{typography.body}"
-  button-quiet-hover:
-    backgroundColor: "{colors.green-soft}"
+    textColor: "{colors.green-deep}"
+    padding: "6px 12px"
+    typography: "{typography.directory-action}"
+  button-reset-hover:
+    backgroundColor: "{colors.green-ground}"
     textColor: "{colors.green-deep}"
   button-primary:
     backgroundColor: "{colors.green-ground}"
     textColor: "{colors.green-deep}"
     rounded: "{rounded.edge}"
     padding: "10px 18px"
+    typography: "{typography.home-primary}"
   button-primary-hover:
     backgroundColor: "{colors.green-soft}"
     textColor: "{colors.green-deep}"
-  button-disabled:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.faint}"
   input-search:
     backgroundColor: "{colors.canvas}"
     textColor: "{colors.ink}"
     rounded: "{rounded.edge}"
     padding: "12px 16px"
-  card:
-    backgroundColor: "{colors.canvas}"
+  directory-record:
     textColor: "{colors.ink}"
-    padding: "18px"
-  card-hover:
+    padding: "1.5rem 0"
+  directory-record-selected:
     backgroundColor: "{colors.green-ground}"
-    textColor: "{colors.green-deep}"
+  directory-shortlist:
+    backgroundColor: "{colors.green-deep}"
+    textColor: "{colors.canvas}"
+    rounded: "{rounded.badge}"
+    padding: "0.75rem 1rem"
   callout-summary:
     backgroundColor: "{colors.green-ground}"
     textColor: "{colors.ink}"
@@ -144,11 +156,6 @@ components:
     backgroundColor: "{colors.warn-bg}"
     textColor: "{colors.warn-ink}"
     padding: "16px 18px"
-  chip-count:
-    backgroundColor: "{colors.canvas-soft}"
-    textColor: "{colors.muted}"
-    rounded: "{rounded.pill}"
-    padding: "3px 12px"
   chip-stub:
     backgroundColor: "{colors.warn-bg}"
     textColor: "{colors.warn-ink}"
@@ -157,10 +164,10 @@ components:
   infobox-title:
     backgroundColor: "{colors.green-deep}"
     textColor: "{colors.canvas}"
-    padding: "14px 16px"
+    padding: "15px 18px"
   nav-link-active:
     textColor: "{colors.green-deep}"
-    typography: "{typography.label}"
+    typography: "{typography.navigation}"
 ---
 
 # Design System: Deshi Startup
@@ -168,6 +175,11 @@ components:
 ## Overview
 
 **Creative North Star: "The Field Manual"**
+
+Refreshed from the current implementation on 2026-09-14. `app/globals.css` owns the shared
+tokens; component styles own the scoped exceptions below. The frontmatter records observed values,
+not a separate theme to edit instead of the CSS. The companion `.impeccable/design.json` contains
+preview snippets and extensions; its interpolated color ramps are previews, not new application tokens.
 
 Deshi Startup is not read at leisure. It is opened one-handed, on a mid-range Android, on patchy
 bandwidth, in the middle of doing the thing it describes: at the RJSC counter, in front of a bank
@@ -179,15 +191,16 @@ one next action. Nothing performs.
 Trust is what the interface is actually for, and it earns trust the way a working manual does: by
 receding, staying legible, and never overstating. The chrome is hairline borders and quiet grays.
 The color budget is spent only where it carries meaning, under a strict division of labor between
-two accents. Green is structure, meaning the top rule, active navigation, hover washes, the infobox
-header and section badges. Blue is language, meaning links, and only links. That single discipline
-is most of the reason the page reads calm and authoritative instead of busy.
+two accents. Green identifies structure and manual actions; blue identifies ordinary reading links
+and text actions. That division keeps the page calm and authoritative. The richer palettes of
+Maps, case covers and resource illustrations stay within those surfaces.
 
 The type system is one self-hosted Bengali variable face, and the whole hierarchy is built out of
 scale, weight and hairline rules rather than a second family. That is a design decision and a
 performance decision at the same time, which is the pattern across this system: the visual language
 and the byte budget are the same argument. The rejected alternatives are specific, not abstract:
-the startup-blog look (gradients, saturated fills, card grids, a hero that sells), and the
+the generic startup-blog treatment applied to reading pages (gradients, competing filled cards,
+a hero that sells), and the
 translated-Western-template look that would treat Bangla as text poured into a Latin layout.
 
 These are reasoned defaults, not untouchable rules. A deliberate change with a stated reason and a
@@ -197,10 +210,10 @@ unrelated work.
 **Key Characteristics:**
 
 - Warm paper page framing a bordered white reading canvas with a deep-green top rule.
-- Two-accent discipline: green for structure, blue for links, nothing else competing.
+- Two-accent discipline in the manual: green for structure and actions, blue for ordinary links.
 - One Bengali face for everything; hierarchy carried by scale, weight and hairline rules.
-- Flat by default. Hairline borders do the work; one soft ambient shadow, used twice.
-- Square-cornered geometry (3px), with pills reserved for toggles, counts and status chips.
+- Flat reading surfaces by default; scoped overlays and collection covers have their own depth.
+- Barely eased controls, with deliberate curves for chips, avatars and scoped tool surfaces.
 - Mobile-first and near-zero-JS. The visual language is also the performance budget.
 
 What a first-time founder on patchy bandwidth must be able to do on any page:
@@ -213,68 +226,70 @@ What a first-time founder on patchy bandwidth must be able to do on any page:
 
 ## Colors
 
-A warm-paper neutral field carrying two working accents, plus a caution family and one violet that
-exists for a single genuine affordance. Nothing in the palette is decorative.
+A warm-paper neutral field carries two working accents, a caution family and a visited-link violet.
+The values live in frontmatter; the names below explain their roles. Maps, case covers, resource
+illustrations and generated social images own their local palettes rather than changing the manual's theme.
 
 ### Primary
 
-- **Bangladesh Emerald** (`#047857`): the working green. Active tab top rule, focus and hover
+- **Bangladesh Emerald** (`green`): the working green. Active tab top rule, focus and hover
   borders, checkbox accent, the search field's active border, card hover edges.
-- **Deep Deshi Green** (`#065f46`): the authority green. The 5px rule across the top of the reading
+- **Deep Deshi Green** (`green-deep`): the authority green. The 5px rule across the top of the reading
   canvas, the infobox header ground, active navigation labels, focus rings, and the text color of
-  every quiet action in its hover and primary states.
-- **Structure Wash** (`#eaf4ef`) and **Structure Ground** (`#f8fbf7`): the two green grounds. The
-  wash is the hover state (search results, nav, buttons, disclosure summaries); the ground is the
+  primary manual actions and selected controls.
+- **Structure Wash** (`green-soft`) and **Structure Ground** (`green-ground`): the two green grounds. The
+  wash is a hover state for search results, buttons and disclosure summaries; the ground is the
   resting fill for the summary callout, the primary action and a hovered path card.
 
 ### Secondary
 
-- **Reference Blue** (`#3366cc`): links, and only links. **Link Pressed** (`#1f4fb2`) is the hover
-  and the visited-hover. **Link Wash** (`#eef5fc`) is the rare selected-link ground.
-- **Read Violet** (`#6b4ba1`): the visited-link color inside articles, section indexes and recent
+- **Reference Blue** (`blue`): ordinary links and text actions. **Link Pressed** (`blue-hover`) is the hover
+  and the visited-hover. **Link Wash** (`blue-soft`) marks citation targets and reference interactions.
+- **Read Violet** (`visited`): the visited-link color inside articles, section indexes and recent
   lists. It is a real encyclopedia affordance, not styling: returning to a section, a founder can
   see which guides they already read, at zero JavaScript and zero tracking. Stub links are excluded
   on purpose, because "visited" there would falsely read as "finished".
 
 ### Tertiary
 
-- **Marker Yellow** (`#f7c948`): the language-switcher thumb, and nothing else.
-- **Notice Gold** (`#e1b900`), **Notice Cream** (`#fff8df`), **Notice Ink** (`#5f4b00`),
-  **Notice Hairline** (`#e5d193`): the caution family. Stub notices, the homepage unfinished-work
+- **Marker Yellow** (`yellow`): the language-switcher thumb and labelled marks in scoped guide illustrations.
+- **Notice Gold** (`warn-border`), **Notice Cream** (`warn-bg`), **Notice Ink** (`warn-ink`),
+  **Notice Hairline** (`warn-line-soft`): the caution family. Stub notices, the homepage unfinished-work
   notice, the stub chip beside an unwritten link.
-- **Error Red** (`#b42318`): error text and error state only. It never means emphasis.
+- **Error Red** (`error`): errors, invalid fields and explicitly labelled financial outflows or losses.
+  It never means generic emphasis.
 
 ### Neutral
 
-- **Field Paper** (`#f5f3ee`): the page beneath everything. Warm, so the white canvas reads as a
+- **Field Paper** (`page`): the page beneath everything. Warm, so the white canvas reads as a
   sheet laid on it rather than as a hole.
-- **Reading White** (`#ffffff`): the article canvas, cards, the infobox, table bodies.
-- **Cool White** (`#f8faf9`): recessed utility surfaces. Fenced blocks, the search submit button,
-  filter panels, count chips.
-- **Manuscript Ink** (`#202122`): body text and headings. Also published as bare channels
-  (`--ink-channels: 32 33 34`) for the four places that need it at an alpha, so a scrim can never
+- **Reading White** (`canvas`): the article canvas, cards, the infobox, table bodies.
+- **Cool White** (`canvas-soft`): recessed utility surfaces. Fenced blocks, the search submit button,
+  filter panels and recessed controls.
+- **Manuscript Ink** (`ink`): body text and headings. Also published as bare channels
+  (`--ink-channels`) for translucent treatments, so a scrim can never
   drift off the ink it was made from.
-- **Muted Ink** (`#54595d`): secondary text, labels, descriptions, table meta.
-- **Faint Ink** (`#696e74`): placeholders and disabled text. It is stated explicitly because left to
-  the browser a placeholder is `#757575` in Chrome but 40% black in Safari, which is 3.6:1 on white.
-- **Hairline** (`#c8ccd1`): the standard border on white. **Soft Hairline** (`#eaecf0`): dividers
-  inside a bordered surface. **Warm Hairline** (`#d9d5cd`): the divider tuned for the paper page,
+- **Muted Ink** (`muted`): secondary text, labels, descriptions, table meta.
+- **Faint Ink** (`faint`): placeholders and quiet utility text. Placeholder color and opacity are
+  explicit so browser defaults do not determine legibility.
+- **Hairline** (`line`): the standard border on white. **Soft Hairline** (`line-soft`): dividers
+  inside a bordered surface. **Warm Hairline** (`line-warm`): the divider tuned for the paper page,
   used in the sidebar, because the standard hairline is tuned for white.
-- **Shade** (`#f1f3f4`): table headers and inline code grounds.
+- **Shade** (`shade`): table headers and inline code grounds.
 
 ### Named Rules
 
-**The Two-Accent Rule.** Green is structure; blue is language. A link is never green, and a
-structural element (rule, tab, active state, badge, wash) is never blue. If a new element seems to
-need a third accent, it almost always wants a neutral, a label, a hairline or a spacing change
-instead.
+**The Two-Accent Rule.** In the manual, green identifies structure, selected navigation and framed
+actions; blue identifies ordinary reading links and text actions. Homepage path links and contribution
+actions can be green. Company covers, Maps data and resource illustrations keep their scoped palettes.
+Do not import those palettes into ordinary article chrome.
 
-**The Frugal-Yellow Rule.** Yellow belongs to cautions and the one toggle thumb. It is never a
-highlight or a decoration. Its scarcity is what lets a stub banner read as unfinished rather than
-broken. The on-demand contribution diff is the sole semantic exception: Notice Gold and Notice
+**The Frugal-Yellow Rule.** In article chrome, yellow belongs to cautions and the language toggle.
+Its scarcity lets a stub banner read as unfinished rather than broken. In the contribution diff,
+Notice Gold and Notice
 Cream identify removed text, always paired with a minus marker and a spoken “removed” label so
-color never carries the meaning alone. This exception does not make yellow available as a general
-highlight.
+color never carries the meaning alone. Labelled calculator swatches, ownership diagrams and cover
+art can also use yellow within their own visual keys; this does not make it a general highlight.
 
 **The Earned-Violet Rule.** The violet is the only color in this palette justified by a reader
 behavior rather than a role. It may not be borrowed for anything that is not literally "you have
@@ -318,9 +333,9 @@ so a future face has somewhere to land, but hierarchy is carried by size, weight
 and the hairline rules, never by a second family. A second family is a new font download charged to
 a mid-range Android on every first visit.
 
-**The Hairline-Underline Rule.** `h1` and `h2` are separated from their content by a `1px` hairline
-border-bottom, not by size or space alone. It is the single most reference-defining type detail in
-the system and must survive any restyle of headings.
+**The Hairline-Underline Rule.** Ordinary article `h1` and `h2` use a hairline border-bottom.
+Keep that reference detail in reading prose. The homepage masthead, directory record headings,
+dialogs and cover lettering use their component's own hierarchy without a redundant heading rule.
 
 **The Step-Not-Weight Rule.** Every heading level stays a clear size step above the body at every
 width. If a level only distinguishes itself by getting bolder, the level is broken; fix the size,
@@ -364,11 +379,15 @@ Responsive behavior, by the breakpoints that actually exist:
   takes the second. The rail becomes an off-canvas drawer behind a toggle, scroll clearance is
   144px, and simple tables switch to a fixed layout so the column settles first and the text wraps
   inside it.
-- **620px / 560px / 520px**: single-column filter panels and footers, the brand name
-  truncates when needed; the compact infobox keeps its label/value columns. Page metadata follows
-  the article, so its date cannot shift the headline after paint.
+- **620px / 520px**: footer labels stack, then the brand name truncates when needed. The compact
+  infobox keeps its label/value columns. Page metadata follows the article, so its date cannot
+  shift the headline after paint.
+- **Component queries:** directory filters collapse at 820px and 480px of available container
+  width; case galleries expand to two columns at 544px and three at 828px of container width.
+  These are not viewport breakpoints. Maps switches to its phone workspace at 759px; the sign-in
+  dialog becomes a bottom sheet at 640px. Keep these scoped to their components.
 
-**The Phone-Is-The-Reader Rule.** The narrow column gets the larger body, not the smaller one.
+**The Phone-Is-The-Reader Rule.** The narrow column keeps the desktop's 16px body and opens its leading.
 Bangla carries matra above the line and conjuncts below it, and at 15px the stacked forms are where
 a founder on a mid-range Android starts guessing. 16px costs about one word per line and buys back
 the shapes; the opened leading is the other half of the same fix.
@@ -401,26 +420,33 @@ keeps the footer aligned with its content when the sidebar opens or closes.
 
 ## Elevation & Depth
 
-This system is flat. Depth comes from tonal layering (warm paper under white canvas under cool-white
-utility surfaces) and from hairline borders, not from shadows. Radii are small, fills are absent,
-and no surface floats without a structural reason.
+The reading system is flat by default. Warm paper, white canvas, recessed utility surfaces and
+hairline borders establish its structure. Shadows identify an overlay, persistent tool or a scoped
+interactive cover; they are not a default treatment for every bounded surface.
 
 ### Shadow Vocabulary
 
-- **Canvas lift** (`box-shadow: 0 14px 32px rgb(32 33 34 / 8%)`): the one ambient shadow. It lifts
-  the reading canvas off the paper page, and the search-results popover off the canvas. That is the
-  whole list.
+- **Canvas lift** (`box-shadow: 0 14px 32px rgb(var(--ink-channels) / 8%)`): the shared ambient
+  shadow for the reading canvas and search results.
 - **Drawer** (`box-shadow: 12px 0 40px rgb(32 33 34 / 20%)`): heavier, reserved for the mobile
-  off-canvas navigation drawer, the one true overlay in the system.
+  off-canvas navigation drawer.
 - **Popover lift** (`box-shadow: 0 4px 20px rgb(32 33 34 / 16%)`): the glossary term popover.
 - **Focus fill** (`box-shadow: inset 0 0 0 1px <green>`): not depth. It thickens the search field's
   border on focus from the inside, because the field shares an edge with its submit button.
+- **Directory shortlist** (`box-shadow: 0 4px 16px rgb(32 33 34 / 12%)`): separates the sticky
+  selection bar from the records beneath it.
+- **Case-cover hover** (`box-shadow: 0 16px 30px #132b221f`): accompanies a small lift only on
+  devices with hover and without reduced motion.
+- **Maps panel** (`box-shadow: 0 5px 24px #173b2c14`) and **Maps share menu**
+  (`box-shadow: 0 6px 28px #173b2c26`): local workspace overlays above the map.
+- **Resource-sheet illustration** (`box-shadow: 0 8px 20px rgb(63 53 28 / 9%)`): belongs to the
+  miniature documents inside Tools previews, not the surrounding resource link.
 
 ### Named Rules
 
-**The One-Shadow Rule.** The ambient lift belongs to the reading canvas and the search popover.
-Cards, infoboxes, tables, notices, chips and buttons are flat with borders. A new surface defaults
-to a hairline, never a shadow.
+**The Flat-By-Default Rule.** Ordinary cards, infoboxes, tables, notices and controls use borders
+and grounds. Reuse a shadow only for the matching overlay, persistent tool or illustrated-cover
+role above; a new reading surface starts with a hairline.
 
 **The No-Blur Rule.** Nothing sticky or full-width carries a `backdrop-filter`. Blurring a strip on
 every scroll frame is paid by exactly the mid-range Android this site is read on, and what it buys
@@ -432,8 +458,9 @@ answer: the article is white, and the header is the top of it.
 Square by default. The standard corner is 3px, which is barely an easing: buttons, the search
 field's outer corners, notices, chips with square shoulders, editor controls. 4px appears on search
 result rows, 6px on the glossary popover, 12px on the expert-review badge, 2px on citation markers.
-True curves are rationed to two jobs: `999px` pills for toggles, count chips, status chips and the
-stub chip, and `50%` circles for avatars and step badges.
+Pills identify toggles and status chips; circles identify avatars and step badges. These are manual
+defaults, not a ban on existing scoped shapes: case covers have 9px corners, resource previews 7px,
+and the directory shortlist 12px. Maps uses its own rounded floating panels and controls.
 
 Borders carry the form language. Almost every bounded thing on this site is a 1px hairline in
 `--line` on white or `--line-warm` on paper, with `--line-soft` for divisions inside an already
@@ -442,15 +469,15 @@ a ground, never by a thick colored slab down one edge. Separators are a single h
 the measure, and a separator immediately above a heading collapses to nothing, because the heading's
 own underline is already the division.
 
-**The Square-By-Default Rule.** New interactive elements are square or 3px. Pills mean "this is a
-toggle or a count", and circles mean "this is a person or a step". Borrowing either for anything
-else costs the site the meaning.
+**The Square-By-Default Rule.** New manual controls start square or barely eased. Reuse the
+component's shape for a toggle, status, person or step. The curves of Maps, resource previews and
+case covers stay local to those surfaces.
 
 ## Components
 
-Buttons, cards and inputs are quiet and hard-wearing: a hairline border, a white ground, a 3px
-corner, a green wash on hover, and a name made of text rather than of an icon. Nothing is filled and
-nothing is lifted. A control should look like it will still be there in five years.
+Manual controls use quiet grounds, hairline borders and explicit names. There is no universal
+button or card class: reuse the owning component's dimensions and states. Maps, cover galleries,
+resource previews and the directory shortlist have the scoped treatments described below.
 
 ### Links
 
@@ -467,23 +494,26 @@ nothing is lifted. A control should look like it will still be there in five yea
 ### Buttons
 
 - **Shape:** barely eased corners (3px), 1px hairline border, white ground.
-- **Quiet (default):** `--ink` text on `--canvas`, 10px 18px padding, named by its text. Hover moves
-  the border to Bangladesh Emerald, the ground to the structure wash, the text to Deep Deshi Green.
-- **Primary:** the same geometry, distinguished only by a Deep Deshi Green border, the structure
-  ground, green text, weight 600 and a trailing `→` that steps 3px forward on hover. There is one
-  ranked pair of actions on the site (the homepage start row); everything else is quiet.
-- **Disabled:** soft hairline, faint ink, weight back to 400, default cursor.
-- **Focus:** a 2px Deep Deshi Green outline at 3px offset, site-wide, on every link, button, input,
-  select and summary.
+- **Quiet example:** the directory Reset button uses Deep Deshi Green on Reading White, a hairline,
+  6px 12px padding and the directory-action type role. Hover deepens the border and adds Structure Ground.
+- **Homepage primary:** a Deep Deshi Green border, Structure Ground, green text, the home-primary
+  type role and a trailing `→` that steps 3px forward. It has 10px 18px padding and a 46px minimum
+  height. The adjacent topic link remains unframed. Contribution actions use their own related style.
+- **Disabled:** retain native disabled semantics and the owning component's treatment; directory
+  buttons use 0.55 opacity and a default cursor. Do not invent a universal disabled palette.
+- **Focus:** the shared default is a 2px Deep Deshi Green outline at 3px offset on links, buttons,
+  inputs, selects and summaries. Joined search fields draw it inset; covers and dark toolbars use
+  their documented contrast and offset adjustments. Maps uses its own blue focus ring.
 - **Touch:** important mobile actions are at least 44px; directory controls keep that height
   at every width.
 
-**The No-Saturated-Fill Rule.** A button is never a solid brand-colored slab. Rank is expressed by
-border color, ground tint, weight and the arrow, in that order.
+**The Quiet-Action Rule.** Ordinary manual actions establish rank through border, ground tint,
+weight and destination cue. The Maps Share action and directory shortlist deliberately use deep
+green fills for their workspace roles; they do not redefine the article's button default.
 
 ### Cards and Callouts
 
-- **Cards:** flat white, 1px hairline, 18px padding, square corners. A hovered navigational card
+- **Homepage path cards:** flat white, hairline borders and square corners. A hovered navigational card
   answers on its whole surface (border to green, ground to the structure ground, title deepens) so
   it reads as one target rather than an outlined region. When a grid's item count leaves a remainder,
   the last card takes the full row and reads across it, because a lone card in a final row reads as
@@ -497,8 +527,8 @@ border color, ground tint, weight and the arrow, in that order.
 
 ### Chips
 
-- **Count chip:** pill, cool-white ground, hairline, muted label with the number in Deep Deshi
-  Green.
+- **Availability counts:** section indexes and directory results use plain text lines. They do not
+  need a generic count pill or a redundant total.
 - **Stub chip:** pill, Notice Cream ground, Notice Hairline border, Notice Ink text. It sits beside
   a link the reader is deciding whether to follow, so on a phone it grows to 0.78rem rather than
   merely being present.
@@ -514,8 +544,8 @@ border color, ground tint, weight and the arrow, in that order.
 - **Placeholder:** stated explicitly in Faint Ink at full opacity, never left to the browser.
 - **Filters:** glossary, directory and Startup 50 text fields use normal-weight 1rem text and
   at least 44px height. Labels stay distinct from the values the reader enters or selects.
-- **Validation:** messages sit beside the control they belong to. Error Red carries text, never a
-  fill.
+- **Validation:** messages sit beside their controls; Error Red identifies errors and invalid
+  borders. Temporary sign-in availability failures use a caution surface with a retry action.
 - **Search:** focusing the field prepares the index; reading a page does not download it. Results
   belong to the current query only, and late responses cannot reopen a dismissed panel. A failed
   download offers an inline retry that keeps the query and the reader's place.
@@ -552,7 +582,7 @@ A single hairline frames the box. Written and unwritten guide counts are stated 
 without turning them into a scoreboard. A 6rem label column stays beside the value on phones.
 It sits beside the homepage introduction on desktop and after the starting
 choices below 1180px, where the facts use three columns until the phone layout stacks them.
-Nothing else in the system gets a filled header.
+This filled header belongs to the infobox; it is not the default for every card.
 
 ### Homepage discovery
 
@@ -600,13 +630,20 @@ once and then leaves.
 
 ### Directory
 
-Utilitarian by design. A bordered cool-white filter panel on a data-attribute-keyed grid, a pill
-summary of the result count, and one flat card per entry. The filter grid responds to the article's
+Utilitarian by design. A bordered cool-white filter panel on a data-attribute-keyed grid, a plain
+result-count line, and ruled records with labelled fields. The filter grid responds to the article's
 available width, including the sidebar: one row when roomy, two columns below 820px with search
-across the top, and one column below 480px. Cards rather than a wide table: directory
+across the top, and one column below 480px. Records rather than a wide browsing table: directory
 values are sentences (coverage areas, rate bands, application steps), a column grid gave each a
 track too narrow to hold a word, and a new field should cost one more labelled line rather than one
-more squeezed column. There is no horizontal scroll at any width.
+more squeezed column. Each record has a bottom hairline, a wrapping heading and a comparison
+checkbox; selection adds Structure Ground. Keep source and verification details with the entry.
+
+The shortlist is a sticky deep-green bar with white text, rounded corners and a small shadow. It
+holds up to three selections; Compare becomes available with two. Activating it opens a separate
+comparison table and moves focus to its heading. That dense table owns its horizontal scroll
+surface and sticky labels; the browsing page itself should not scroll sideways. Closing the view
+restores focus to Compare. Print removes selection controls and releases the table's scroll limits.
 
 ### Maps exploration
 
@@ -675,6 +712,7 @@ leading and natural tracking. Map chrome inherits the same family, with 12px/1.5
 9px/16px attribution.
 These sizes and colors belong to this workspace, not to the article type ramp or global token
 registry; the shared wordmark keeps its main-site typography.
+Keyboard focus uses a 3px blue (`#3776ad`) outline at 3px offset, distinct from green selection.
 The insights close control sits beside the first heading line, leaving the full panel width
 available to the lines below it. A hairline and 16px top padding separate overview figures from
 the active measure; ranked rows use 10px by 8px padding. Place names and estimates share a
@@ -820,15 +858,15 @@ that the object is remote, otherwise it safely falls back to the site-wide card.
 ### Case-study gallery and articles
 
 The case-study gallery has an approved, scoped exception to the manual's flat list treatment:
-portrait covers with company-specific grounds, cream lettering, reviewed company marks and crisp
+portrait covers with company-specific grounds, contrasting lettering, reviewed company marks and crisp
 vector artwork. Pathao uses a red route map; 10 Minute School uses a deep-green ground with stacked
 lesson pages. These covers retain the approved prototype's composition, 9px corners and a small
 hover lift. Other pages keep the existing palette and geometry.
 
-The gallery keeps Pathao, 10 Minute School and bKash in its first desktop row. ShopUp / SILQ,
-Revora and Shikho follow in the second row; Truck Lagbe, Chaldal and Shohoz form the third.
-Dorik, Arogga and iFarmer retain their approved covers below. Order stays stable as studies are
-completed. Finished studies link directly to their articles.
+Finished studies appear before unwritten studies. Within each group, the curated order in
+`data/case-study-covers.json` is preserved; newly finished studies without custom covers follow
+the featured finished studies. Do not hard-code desktop row assignments or imply that order stays
+unchanged when a study is completed. Finished studies link directly to their articles.
 Unwritten studies use "To be written" in the bottom CTA and link to their starting sources.
 There is no duplicate status beside the company name. Readiness comes from the content manifest,
 so a completed study automatically gets the reading link.
@@ -838,7 +876,9 @@ keeps its original colour on a contrasting logo plate. A company name is used on
 reviewed logo is available. Revora keeps the permanent `myalice` route.
 
 Headings use the available width, aiming for two lines without truncation or narrow character-count
-limits. The grid fits three columns when space allows, then two, then one. The full writing list
+limits. The grid uses one column, two from 544px and three from 828px of container width.
+Yellow-ground covers use dark lettering; visited links preserve each cover's contrast pair.
+The full writing list
 remains a native disclosure driven by the existing content manifest.
 
 Inside a study, the original company-name H1 and complete body remain. A horizontal company banner,
@@ -916,8 +956,8 @@ the person's name, `CONTRIBUTOR`, up to three English role labels, and the stabl
 no inset card, rounded frame, shadow, portrait, organization, count,
 date, rank, badge, or other changing statistic. The image therefore stays useful when activity or
 affiliation changes, while the profile page remains the complete evidence record.
-Its raster-only palette uses Social Card Field (`#064e3b`), Social Card Identity (`#fbfaf7`) and
-Social Card Monogram (`#f7f3e8`). These are documented output colors, not new interface tokens.
+Its raster-only palette uses Social Card Field (`social-card-field`), Social Card Identity (`social-card-identity`) and
+Social Card Monogram (`social-card-monogram`). These are documented output colors, not new interface tokens.
 At 1200×630, its own raster type ramp is 78px for a short one-line name, up to 62px over two lines,
 24px for the contributor label, 17–22px for roles, 18px for the URL, and 156px for the monogram.
 Names keep a 32px floor; only the documented 180-character edge case receives bounded horizontal
@@ -968,25 +1008,34 @@ rendered article stays in place at 42% opacity while it hands over rather than b
 complexity there must improve editing, recovery, accessibility or security. It must not become a
 second design system.
 
+### Sign-in and review overlays
+
+Sign-in uses the same white canvas and green top rule, with a translucent ink scrim and a 44px
+close target. Its desktop card is at most 466px wide; at 640px and below it becomes a bottom sheet
+with safe-area padding. A reserved 44px sign-in slot holds loading and Google-button states in the
+same place. Loading has a restrained pulse; a failure names the problem and offers retry. Reduced
+motion removes the pulse and entrance transitions. Focus stays inside the dialog, Escape closes it,
+and closing returns focus to the initiating control. Diff and media-review interfaces load their
+own styles on demand and retain their distinct review and authorization states.
+
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** frame reading surfaces as Reading White (`#ffffff`) on Field Paper (`#f5f3ee`), bounded by
+- **Do** frame reading surfaces as Reading White (`canvas`) on Field Paper (`page`), bounded by
   a `--line` hairline, with the 5px `--green-deep` top rule intact. That framing is the brand.
-- **Do** keep the Two-Accent Rule: green for structure, blue for links only.
-- **Do** underline `h1` and `h2` with a `--line` border-bottom, and carry every other level
+- **Do** keep the manual's Two-Accent Rule and the documented scope of each exception.
+- **Do** underline ordinary article `h1` and `h2` with a `--line` border-bottom, and carry every other level
   difference through size and weight rather than a second font family.
-- **Do** convey depth with hairlines and paper/canvas layering; reserve the ambient shadow for the
-  canvas and the search popover.
-- **Do** keep new interactive elements square or 3px, and reserve pills for toggles and count or
-  status chips.
+- **Do** convey reading structure with hairlines and paper/canvas layering; use the documented
+  shadows only in their matching roles.
+- **Do** keep ordinary manual controls square or barely eased, and preserve scoped component shapes.
 - **Do** give important mobile actions at least 44px, and keep keyboard focus visible everywhere.
 - **Do** trap focus in drawers and modals, close them with Escape, and restore focus on exit.
 - **Do** use Bengali numerals (০ to ৯) in the Bangla UI and Latin numerals in the English UI.
-- **Do** keep dates client-side. Node and Chrome ship different CLDR data (Node writes
-  "৩১ জানুয়ারী", Chrome writes "৩১ জানুয়ারি"), so a build-time Bengali date would not survive
-  hydration. Formatting in the browser is the only way both agree.
+- **Do** preserve the shared shell's client-side date formatting to avoid localized hydration
+  mismatches. Source years, static attribution and map vintages follow their owning data/rendering
+  pipeline; do not convert every date in the product into a client-only element.
 - **Do** give images useful alt text, and keep captions and sources as selectable text.
 - **Do** respect `prefers-reduced-motion`, and keep animation out of the way of reading.
 - **Do** self-host fonts, and keep the Bengali face fenced to its unicode range so Latin downloads
@@ -1006,14 +1055,15 @@ second design system.
   canvas, green top rule and absent right-hand rail are a reasoned default recorded here, and this
   file is their only record. A proposal that demonstrably serves readers better is welcome; erosion
   by accident is not.
-- **Don't** fill buttons, cards or notices with a saturated brand color, or add a drop shadow to
-  make something pop. Flat with borders is the system.
+- **Don't** copy a cover palette, Maps panel or filled shortlist into ordinary article chrome.
+  New reading surfaces start with quiet grounds and borders.
 - **Don't** add a second display family, a serif, or any additional font download. One Bengali face.
 - **Don't** use a thick colored side border as generic callout decoration. A callout is bounded on
   four sides and identified by its label.
-- **Don't** color a link green or a structural element blue.
-- **Don't** spend yellow on decoration; it belongs to cautions and the one toggle thumb. Error red is
-  for errors only.
+- **Don't** replace ordinary reading-link blue with a decorative accent. Green action links and
+  selected navigation already have specific roles.
+- **Don't** spend yellow or red on generic emphasis; keep their caution, error or labelled
+  illustration/data meanings explicit.
 - **Don't** put a `backdrop-filter` on anything sticky or full-width.
 - **Don't** synthesize italic Bengali. Emphasis is weight 600, upright.
 - **Don't** embed raw YouTube or Facebook iframes; use the click-to-load facade components.
@@ -1031,7 +1081,7 @@ second design system.
 
 - [ ] The change helps trust, reading, navigation or contribution.
 - [ ] It works at narrow mobile width and with keyboard navigation.
-- [ ] Green still means structure and blue still means link.
+- [ ] The manual's accent roles and any scoped palette remain clear.
 - [ ] It reuses existing tokens and component language.
 - [ ] It adds no unnecessary JavaScript, font or media weight.
 - [ ] A new exception is explained by a user need, not visual novelty.
