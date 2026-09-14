@@ -110,6 +110,8 @@ Page types with separate rules:
 - Case studies use [`plan/case-study-format.md`](./plan/case-study-format.md).
 - Journeys order existing guides and must not link missing routes.
 - Directory pages render `data/directory/*.json`; do not hand-maintain prose tables.
+  Each record shares an ID, evidence URLs and verification date across `en`/`bn`
+  copy. Follow [`docs/directory.md`](./docs/directory.md) when updating records.
 - The glossary at `/start-here/glossary` renders `data/glossary.json` through `<Glossary />`;
   add or edit a term there, never as prose in the page. One entry feeds the A–Z page, the inline
   `<Term>` popover and the `#id` a guide deep-links to, so both locales stay in step by
@@ -130,6 +132,7 @@ The public editor is a supported product feature:
 1. A reader presses **Edit** and signs in with Google.
 2. The browser sends the Google ID token as a bearer token; the server verifies it on every request.
 3. `GET /api/content` resolves the URL through generated `contributable.json` and returns source MDX.
+   This compact route-to-title/stub registry is the allowlist; the Worker does not load navigation data.
 4. Crepe edits the body while locked MDX components survive as protected fenced blocks.
 5. `POST /api/contribute` creates or updates a deterministic contributor/page branch and pull request
    through the GitHub App.
@@ -212,7 +215,8 @@ npm run lint:glossary       # glossary schema, locale parity, guide links and te
 npm run lint:routes         # URL and locale-tree checks
 npm run lint:terms          # tag first mention of each glossary term with <Term>; rewrites content files
 npm run lint:media          # media references and limits
-npm test                    # run every repository test file once
+npm test                    # run all Node repository tests once
+npm run test:maps           # Python map importer tests; setup in docs/maps.md
 npm run test:contribute     # editor/contribution helpers
 npm run test:contributors   # contributor snapshot and leaderboard helpers
 npm run test:media          # media pipeline helpers

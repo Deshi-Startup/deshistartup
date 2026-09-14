@@ -59,7 +59,7 @@ export function ensureFullGitHistory(root) {
 // One git pass: newest and oldest commit timestamp per content file. Rename
 // detection walks history through URL migrations so a moved guide retains its
 // original publication and modification timestamps.
-export function collectGitDates(root) {
+export function collectGitDates(root, dataPaths = []) {
   const modified = new Map();
   const published = new Map();
   const modifiedAt = new Map();
@@ -88,6 +88,7 @@ export function collectGitDates(root) {
     "-M",
     "--",
     CONTENT_PATH,
+    ...dataPaths,
   ]);
   let currentTimestamp = null;
   for (const line of log.split("\n")) {

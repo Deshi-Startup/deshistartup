@@ -10,39 +10,12 @@
  * Output: plan/status-report.md
  */
 import fs from 'node:fs'
+import { parseCsv } from './csv.mjs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 
-function parseCsv(text) {
-  const rows = []
-  let row = []
-  let field = ''
-  let inQuotes = false
-  for (let i = 0; i < text.length; i++) {
-    const ch = text[i]
-    if (inQuotes) {
-      if (ch === '"') {
-        if (text[i + 1] === '"') { field += '"'; i++ } else inQuotes = false
-      } else {
-        field += ch
-      }
-    } else if (ch === '"') {
-      inQuotes = true
-    } else if (ch === ',') {
-      row.push(field); field = ''
-    } else if (ch === '\n') {
-      row.push(field); rows.push(row); row = []; field = ''
-    } else if (ch === '\r') {
-      // skip, \n handles the line break
-    } else {
-      field += ch
-    }
-  }
-  if (field.length || row.length) { row.push(field); rows.push(row) }
-  return rows.filter((r) => !(r.length === 1 && r[0] === ''))
-}
 
 function loadCsv(filePath) {
   const rows = parseCsv(fs.readFileSync(filePath, 'utf8'))

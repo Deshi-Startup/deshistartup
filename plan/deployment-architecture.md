@@ -56,6 +56,9 @@ npm run preview:worker
 `/api/*` requests; Next proxies them to Wrangler on port 8787. Local Worker secrets come from the
 gitignored `.env.local`.
 
+`npm run dev:turbo` delegates to the same command with `--turbopack`, including its
+map-asset, manifest and contributor-card preparation on a fresh checkout.
+
 `CONTACT_INBOX` is the account-level verified Email Routing destination behind the public
 `hello@deshistartup.com` alias. Keep that private destination in the Worker secret; do not put it in
 `wrangler.jsonc` or other tracked files.

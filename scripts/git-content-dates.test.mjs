@@ -15,6 +15,7 @@ import {
   collectGitDates,
   ensureFullGitHistory,
 } from "./git-content-dates.mjs";
+import { datesForPage, PAGE_DATA_PATHS } from './page-data-inputs.mjs';
 
 function git(root, args, env = {}) {
   return execFileSync("git", args, {
@@ -102,5 +103,39 @@ test("collectGitDates rejects shallow history and ensureFullGitHistory repairs i
   } finally {
     rmSync(source, { recursive: true, force: true });
     rmSync(parent, { recursive: true, force: true });
+  }
+});
+
+test('rendered data updates modification dates in both locales without changing publication or verification', () => {
+  const root = fixture();
+  try {
+    const en = 'app/(contents)/en/maps/page.mdx';
+    const bn = 'app/(contents)/(bn)/maps/page.mdx';
+    for (const file of [en, bn, 'data/maps/urban.json', 'data/maps/census.json']) {
+      mkdirSync(path.dirname(path.join(root, file)), { recursive: true });
+      writeFileSync(path.join(root, file), '{}');
+    }
+    commit(root, 'Publish Maps', '2026-08-20T10:00:00+06:00');
+    writeFileSync(path.join(root, 'data/maps/urban.json'), '{"updated":true}');
+    commit(root, 'Update urban data', '2026-08-22T02:00:00+06:00');
+    writeFileSync(path.join(root, 'data/maps/census.json'), '{"updated":true}');
+    // Later instant despite the earlier calendar date in this timezone.
+    commit(root, 'Update census data', '2026-08-21T23:00:00+02:00');
+    writeFileSync(path.join(root, 'README.md'), 'Unrelated update');
+    commit(root, 'Update docs', '2026-08-30T10:00:00+06:00');
+    const dates = collectGitDates(root, PAGE_DATA_PATHS);
+    for (const repoPath of [en, bn]) {
+      assert.deepEqual(datesForPage(dates, { repoPath, slug: 'maps', verified: '2026-08-19' }), {
+        date: '2026-08-21', modifiedAt: '2026-08-21T23:00:00+02:00',
+        published: '2026-08-20', publishedAt: '2026-08-20T10:00:00+06:00'
+      });
+    }
+    assert.equal(datesForPage(dates, { repoPath: 'app/(contents)/en/new-route/page.mdx', slug: 'new-route' }).date, '2026-08-15');
+    const empty = { modifiedAt: new Map(), published: new Map(), publishedAt: new Map() };
+    assert.deepEqual(datesForPage(empty, { repoPath: en, slug: 'maps', verified: '2026-08-19' }), {
+      date: '2026-08-19', modifiedAt: null, published: null, publishedAt: null
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
   }
 });

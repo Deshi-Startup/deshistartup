@@ -1,182 +1,392 @@
 [
   {
-    "name": "Registrar of Joint Stock Companies and Firms (RJSC)",
-    "type": "Registration",
-    "service": "Name clearance; registration of companies, partnerships, societies and trade organisations; annual and change-return filing; and certified copies.",
-    "process": "Submit applications and returns through the RJSC online application, using the published process guides, forms and fee schedule for the entity type.",
-    "ministry": "Ministry of Commerce",
-    "applicationPath": "Create an account at app.roc.gov.bd, obtain name clearance where required, then file the registration documents and later statutory returns.",
+    "id": "rjsc",
     "website": "https://roc.gov.bd/",
-    "sourceUrl": "https://app.roc.gov.bd/",
+    "sourceUrls": [
+      "https://app.roc.gov.bd/"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "RJSC creates and maintains the legal record for registered entities; it does not issue a trade licence or protect a trademark. Name clearance is required before registering most new entities, while RJSC's process guide exempts foreign companies and partnership firms from that step."
+    "en": {
+      "name": "Registrar of Joint Stock Companies and Firms (RJSC)",
+      "type": "Registration",
+      "service": "Name clearance; registration of companies, partnerships, societies and trade organisations; annual and change-return filing; and certified copies.",
+      "process": "Submit applications and returns through the RJSC online application, using the published process guides, forms and fee schedule for the entity type.",
+      "ministry": "Ministry of Commerce",
+      "applicationPath": "Create an account at app.roc.gov.bd, obtain name clearance where required, then file the registration documents and later statutory returns.",
+      "notes": "RJSC creates and maintains the legal record for registered entities; it does not issue a trade licence or protect a trademark. Name clearance is required before registering most new entities, while RJSC's process guide exempts foreign companies and partnership firms from that step."
+    },
+    "bn": {
+      "name": "যৌথ মূলধন কোম্পানি ও ফার্মসমূহের পরিদপ্তর (RJSC)",
+      "type": "রেজিস্ট্রেশন",
+      "service": "কোম্পানি, পার্টনারশিপ, সমিতি ও বাণিজ্য সংগঠনের নামের ছাড়পত্র ও নিবন্ধন। বার্ষিক রিটার্ন, কোনো পরিবর্তনের রিটার্ন ও সার্টিফায়েড কপির কাজও এখানে হয়।",
+      "process": "প্রতিষ্ঠানের ধরন অনুযায়ী আরজেএসসির নির্দেশনা, ফরম ও ফি দেখে অনলাইন পোর্টালে আবেদন বা রিটার্ন জমা দিন।",
+      "ministry": "বাণিজ্য মন্ত্রণালয়",
+      "applicationPath": "app.roc.gov.bd-তে অ্যাকাউন্ট খুলুন। নামের ছাড়পত্র লাগলে আগে সেটা নিয়ে নিবন্ধনের কাগজ জমা দিন। পরে নির্ধারিত রিটার্নও জমা দিতে হবে।",
+      "notes": "নিবন্ধিত প্রতিষ্ঠানের আইনি রেকর্ড রাখে আরজেএসসি। ট্রেড লাইসেন্স বা ট্রেডমার্কের সুরক্ষা এখান থেকে পাওয়া যায় না। বেশির ভাগ নতুন প্রতিষ্ঠানের নিবন্ধনের আগে নামের ছাড়পত্র লাগে। তবে আরজেএসসির নির্দেশনা অনুযায়ী বিদেশি কোম্পানি ও পার্টনারশিপ ফার্মের জন্য এই ধাপ লাগে না।"
+    }
   },
   {
-    "name": "Invest Bangladesh One Stop Service (formerly BIDA OSS)",
-    "type": "Investment facilitation",
-    "service": "Registration and approval of domestic, foreign and joint-venture industrial projects, branch or liaison offices, foreign-worker services and other investor-facing permits.",
-    "process": "Submit documents, pay applicable charges, track applications and download approvals through the Invest Bangladesh OSS portal; requests are routed to Invest Bangladesh or an integrated agency.",
-    "ministry": "Prime Minister's Office",
-    "applicationPath": "Create an organisation account on bidaquickserv.org — the official OSS address retained after the agency transition — and choose the Invest Bangladesh or partner-agency service you need.",
+    "id": "invest-bangladesh-oss",
     "website": "https://investbangladesh.gov.bd/",
-    "sourceUrl": "https://bidaquickserv.org/",
+    "sourceUrls": [
+      "https://bidaquickserv.org/"
+    ],
     "lastVerified": "2026-08-23",
-    "notes": "Invest Bangladesh became the apex investment agency on 23 August 2026 after BIDA, BEZA and PPPA were merged. Existing investor services continue through the new authority. OSS is particularly relevant to eligible industrial and service projects, foreign staff and branch or liaison offices; Invest Bangladesh's FAQ says registration is not required for commercial and trading activities, and OSS does not replace RJSC registration or every sector licence."
+    "en": {
+      "name": "Invest Bangladesh One Stop Service (formerly BIDA OSS)",
+      "type": "Investment facilitation",
+      "service": "Registration and approval of domestic, foreign and joint-venture industrial projects, branch or liaison offices, foreign-worker services and other investor-facing permits.",
+      "process": "Submit documents, pay applicable charges, track applications and download approvals through the Invest Bangladesh OSS portal; requests are routed to Invest Bangladesh or an integrated agency.",
+      "ministry": "Prime Minister's Office",
+      "applicationPath": "Create an organisation account on bidaquickserv.org — the official OSS address retained after the agency transition — and choose the Invest Bangladesh or partner-agency service you need.",
+      "notes": "Invest Bangladesh became the apex investment agency on 23 August 2026 after BIDA, BEZA and PPPA were merged. Existing investor services continue through the new authority. OSS is particularly relevant to eligible industrial and service projects, foreign staff and branch or liaison offices; Invest Bangladesh's FAQ says registration is not required for commercial and trading activities, and OSS does not replace RJSC registration or every sector licence."
+    },
+    "bn": {
+      "name": "ইনভেস্ট বাংলাদেশ কর্তৃপক্ষ – ওয়ান স্টপ সার্ভিস (সাবেক BIDA OSS)",
+      "type": "বিনিয়োগ সহায়তা",
+      "service": "বিনিয়োগ প্রস্তাব নিবন্ধন, বিভিন্ন পারমিট, ছাড়পত্র এবং সংশ্লিষ্ট অন্যান্য সরকারি সংস্থার লাইসেন্স সেবা এক প্ল্যাটফর্মে পাওয়ার ব্যবস্থা।",
+      "process": "ইনভেস্ট বাংলাদেশ ওএসএস পোর্টালে অ্যাকাউন্ট খুলুন। তারপর প্রয়োজন অনুযায়ী ইনভেস্ট বাংলাদেশ বা যুক্ত অন্য কোনো সংস্থার সেবার আবেদন করুন।",
+      "ministry": "প্রধানমন্ত্রীর কার্যালয়",
+      "applicationPath": "সংস্থা বদলালেও সরকারি ওএসএসের ঠিকানা bidaquickserv.org-ই আছে। সেখানে প্রতিষ্ঠানের নামে অ্যাকাউন্ট খুলে প্রয়োজনীয় সেবা বেছে নিন।",
+      "notes": "বিডা, বেজা ও পিপিপিএ একীভূত হয়ে ২৩ আগস্ট ২০২৬ থেকে ইনভেস্ট বাংলাদেশ কাজ শুরু করেছে। আগের বিনিয়োগসেবাগুলো নতুন কর্তৃপক্ষের অধীনেই চলবে। যোগ্য শিল্প ও সেবা প্রকল্প, বিদেশি কর্মী এবং লিয়াজোঁ বা শাখা অফিসের ক্ষেত্রে ওএসএস কাজে লাগে। তবে ইনভেস্ট বাংলাদেশের এফএকিউ অনুযায়ী কমার্শিয়াল ও ট্রেডিং কার্যক্রমে এই রেজিস্ট্রেশন বাধ্যতামূলক নয়। এটি আরজেএসসি রেজিস্ট্রেশন বা খাতভিত্তিক সব লাইসেন্সের বিকল্পও নয়।"
+    }
   },
   {
-    "name": "National Board of Revenue – e-TIN and income tax",
-    "type": "Tax",
-    "service": "Electronic Taxpayer Identification Number registration and income-tax return preparation, payment and filing.",
-    "process": "Register or manage an e-TIN at secure.incometax.gov.bd, then use etaxnbr.gov.bd for applicable income-tax returns.",
-    "ministry": "Internal Resources Division, Ministry of Finance",
-    "applicationPath": "Obtain or manage an e-TIN at secure.incometax.gov.bd/TINHome. Use etaxnbr.gov.bd for e-Return registration and filing.",
+    "id": "nbr-income-tax",
     "website": "https://nbr.gov.bd/",
-    "sourceUrl": "https://secure.incometax.gov.bd/TINHome",
+    "sourceUrls": [
+      "https://secure.incometax.gov.bd/TINHome"
+    ],
     "lastVerified": "2026-08-25",
-    "notes": "An e-TIN is the taxpayer identifier; e-Return is the separate service used to prepare, pay and submit income-tax returns. A TIN is not company registration and does not by itself show that a taxpayer's filing obligations are up to date."
+    "en": {
+      "name": "National Board of Revenue – e-TIN and income tax",
+      "type": "Tax",
+      "service": "Electronic Taxpayer Identification Number registration and income-tax return preparation, payment and filing.",
+      "process": "Register or manage an e-TIN at secure.incometax.gov.bd, then use etaxnbr.gov.bd for applicable income-tax returns.",
+      "ministry": "Internal Resources Division, Ministry of Finance",
+      "applicationPath": "Obtain or manage an e-TIN at secure.incometax.gov.bd/TINHome. Use etaxnbr.gov.bd for e-Return registration and filing.",
+      "notes": "An e-TIN is the taxpayer identifier; e-Return is the separate service used to prepare, pay and submit income-tax returns. A TIN is not company registration and does not by itself show that a taxpayer's filing obligations are up to date."
+    },
+    "bn": {
+      "name": "জাতীয় রাজস্ব বোর্ড (NBR) – ই-টিন ও আয়কর",
+      "type": "ট্যাক্স",
+      "service": "ইলেকট্রনিক করদাতা শনাক্তকরণ নম্বর (e-TIN) নিবন্ধন এবং আয়কর রিটার্ন প্রস্তুত, কর পরিশোধ ও দাখিল।",
+      "process": "secure.incometax.gov.bd থেকে ই-টিন নিন বা ই-টিনের তথ্য হালনাগাদ করুন। প্রযোজ্য আয়কর রিটার্ন দাখিলে etaxnbr.gov.bd ব্যবহার করুন।",
+      "ministry": "অভ্যন্তরীণ সম্পদ বিভাগ, অর্থ মন্ত্রণালয়",
+      "applicationPath": "ই-টিন নেওয়া বা এর তথ্য হালনাগাদ করার জন্য secure.incometax.gov.bd/TINHome ব্যবহার করুন। ই-রিটার্ন নিবন্ধন ও দাখিলের জন্য etaxnbr.gov.bd ব্যবহার করুন।",
+      "notes": "ই-টিন হলো করদাতার পরিচয় নম্বর; আর আয়কর রিটার্ন তৈরি, কর দেওয়া ও দাখিলের জন্য ই-রিটার্ন পৃথক একটি সেবা। শুধু টিন থাকা মানেই কোম্পানি রেজিস্ট্রেশন নয়, কিংবা এর দ্বারা করদাতার সব রিটার্ন হালনাগাদ আছে তাও বোঝায় না।"
+    }
   },
   {
-    "name": "National Board of Revenue – VAT Online (BIN)",
-    "type": "Tax",
-    "service": "VAT registration or turnover-tax enlistment, Business Identification Number issuance and Mushak return filing.",
-    "process": "Create a VAT Online account, submit the applicable Mushak registration or enlistment form and use the same system for returns.",
-    "ministry": "Internal Resources Division, Ministry of Finance",
-    "applicationPath": "Create an account at vat.gov.bd and submit Mushak 2.1 for registration or enlistment; determine which status applies before filing.",
+    "id": "nbr-vat",
     "website": "https://vat.gov.bd/",
-    "sourceUrl": "https://nbr.gov.bd/faq/vat-faq/eng",
+    "sourceUrls": [
+      "https://nbr.gov.bd/faq/vat-faq/eng"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "A BIN identifies a person in the VAT system; VAT registration and turnover-tax enlistment are different statuses with different thresholds and return obligations. Applicability also depends on the activity, so do not treat a BIN as a generic business-registration certificate."
+    "en": {
+      "name": "National Board of Revenue – VAT Online (BIN)",
+      "type": "Tax",
+      "service": "VAT registration or turnover-tax enlistment, Business Identification Number issuance and Mushak return filing.",
+      "process": "Create a VAT Online account, submit the applicable Mushak registration or enlistment form and use the same system for returns.",
+      "ministry": "Internal Resources Division, Ministry of Finance",
+      "applicationPath": "Create an account at vat.gov.bd and submit Mushak 2.1 for registration or enlistment; determine which status applies before filing.",
+      "notes": "A BIN identifies a person in the VAT system; VAT registration and turnover-tax enlistment are different statuses with different thresholds and return obligations. Applicability also depends on the activity, so do not treat a BIN as a generic business-registration certificate."
+    },
+    "bn": {
+      "name": "জাতীয় রাজস্ব বোর্ড (NBR) – ভ্যাট অনলাইন (BIN)",
+      "type": "ট্যাক্স",
+      "service": "ভ্যাট নিবন্ধন বা টার্নওভার কর তালিকাভুক্তি, বিজনেস আইডেন্টিফিকেশন নম্বর (BIN) গ্রহণ এবং মূসক রিটার্ন দাখিল।",
+      "process": "ভ্যাট অনলাইন পোর্টালে অ্যাকাউন্ট খুলে প্রযোজ্য মূসক নিবন্ধন বা তালিকাভুক্তির ফরম জমা দিন। একই পোর্টাল দিয়ে রিটার্ন দাখিল করুন।",
+      "ministry": "অভ্যন্তরীণ সম্পদ বিভাগ, অর্থ মন্ত্রণালয়",
+      "applicationPath": "vat.gov.bd পোর্টালে অ্যাকাউন্ট খুলে মূসক ২.১ ফরম জমা দিন। দাখিলের আগেই নিশ্চিত হয়ে নিন আপনার জন্য কোন স্ট্যাটাস প্রযোজ্য।",
+      "notes": "ভ্যাট ব্যবস্থায় করদাতাকে শনাক্ত করতে বিন (BIN) ব্যবহৃত হয়। সাধারণ ভ্যাট নিবন্ধন ও টার্নওভার করের মধ্যে যোগ্যতা, বার্ষিক লেনদেনের সীমা এবং রিটার্নের নিয়মে পার্থক্য রয়েছে। এটি ব্যবসার ধরনের ওপরও নির্ভর করে। তাই বিনকে সাধারণ কোনো ট্রেড লাইসেন্স বা ব্যবসা নিবন্ধনের সনদ মনে করবেন না।"
+    }
   },
   {
-    "name": "Dhaka North City Corporation – trade licence",
-    "type": "Licence",
-    "service": "Trade licence issue and annual renewal for businesses inside the DNCC area.",
-    "process": "Apply through DNCC's e-Revenue portal, upload the required identity, premises and business documents, then pay after approval; some business categories require additional review.",
-    "ministry": "Local Government Division",
-    "applicationPath": "Create an account at erevenue.dncc.gov.bd/cp/cportal/cp/northcc.aspx for a new licence or renewal and follow the document checklist shown for the business category.",
+    "id": "dncc-trade-licence",
     "website": "https://dncc.gov.bd/",
-    "sourceUrl": "https://dncc.gov.bd/pages/static-pages/6922e06d933eb65569e27049",
+    "sourceUrls": [
+      "https://dncc.gov.bd/pages/static-pages/6922e06d933eb65569e27049"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "DNCC issues the annual trade licence for establishments located inside Dhaka North. The fee and supporting clearances depend on the stated trade and premises, so the licence should match the actual business address and activity."
+    "en": {
+      "name": "Dhaka North City Corporation – trade licence",
+      "type": "Licence",
+      "service": "Trade licence issue and annual renewal for businesses inside the DNCC area.",
+      "process": "Apply through DNCC's e-Revenue portal, upload the required identity, premises and business documents, then pay after approval; some business categories require additional review.",
+      "ministry": "Local Government Division",
+      "applicationPath": "Create an account at erevenue.dncc.gov.bd/cp/cportal/cp/northcc.aspx for a new licence or renewal and follow the document checklist shown for the business category.",
+      "notes": "DNCC issues the annual trade licence for establishments located inside Dhaka North. The fee and supporting clearances depend on the stated trade and premises, so the licence should match the actual business address and activity."
+    },
+    "bn": {
+      "name": "ঢাকা উত্তর সিটি কর্পোরেশন – ট্রেড লাইসেন্স",
+      "type": "লাইসেন্স",
+      "service": "ডিএনসিসি এলাকার ব্যবসা প্রতিষ্ঠানের জন্য ট্রেড লাইসেন্স ইস্যু ও বার্ষিক নবায়ন।",
+      "process": "ডিএনসিসি ই-রেভিনিউ পোর্টালে আবেদন করুন এবং ব্যবসার ধরন অনুযায়ী প্রয়োজনীয় কাগজপত্র ও ফি জমা দিন।",
+      "ministry": "স্থানীয় সরকার বিভাগ",
+      "applicationPath": "erevenue.dncc.gov.bd/cp/cportal/cp/northcc.aspx লিংকে অ্যাকাউন্ট খুলে ব্যবসার ক্যাটাগরি অনুযায়ী প্রয়োজনীয় কাগজপত্রসহ আবেদন জমা দিন।",
+      "notes": "ঢাকা উত্তর সিটি কর্পোরেশন এলাকার সব ব্যবসা প্রতিষ্ঠানের জন্য এই বার্ষিক ট্রেড লাইসেন্স বাধ্যতামূলক। ব্যবসার ধরন ও ঠিকানার ওপর লাইসেন্স ফি ও অন্যান্য ছাড়পত্রের প্রয়োজনীয়তা নির্ভর করে। তাই লাইসেন্সে দেওয়া তথ্যের সাথে প্রতিষ্ঠানের মূল কার্যক্রম ও ঠিকানার মিল থাকা জরুরি।"
+    }
   },
   {
-    "name": "Dhaka South City Corporation – trade licence",
-    "type": "Licence",
-    "service": "Trade licence issue and annual renewal for businesses inside the DSCC area.",
-    "process": "Submit the application through the DSCC e-Revenue portal; the prescribed form and premises, identity and company documents are reviewed, with field verification before issue where required.",
-    "ministry": "Local Government Division",
-    "applicationPath": "Use erevenue.dscc.gov.bd/cp/cportal/cp/southcc.aspx and follow DSCC's issue or renewal procedure for your business type.",
+    "id": "dscc-trade-licence",
     "website": "https://dscc.gov.bd/",
-    "sourceUrl": "https://dscc.gov.bd/pages/static-pages/6922dba2933eb65569e0b707",
+    "sourceUrls": [
+      "https://dscc.gov.bd/pages/static-pages/6922dba2933eb65569e0b707"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "DSCC issues the annual trade licence for establishments located inside Dhaka South. Businesses elsewhere must use their own city corporation, municipality or other competent local authority rather than this portal."
+    "en": {
+      "name": "Dhaka South City Corporation – trade licence",
+      "type": "Licence",
+      "service": "Trade licence issue and annual renewal for businesses inside the DSCC area.",
+      "process": "Submit the application through the DSCC e-Revenue portal; the prescribed form and premises, identity and company documents are reviewed, with field verification before issue where required.",
+      "ministry": "Local Government Division",
+      "applicationPath": "Use erevenue.dscc.gov.bd/cp/cportal/cp/southcc.aspx and follow DSCC's issue or renewal procedure for your business type.",
+      "notes": "DSCC issues the annual trade licence for establishments located inside Dhaka South. Businesses elsewhere must use their own city corporation, municipality or other competent local authority rather than this portal."
+    },
+    "bn": {
+      "name": "ঢাকা দক্ষিণ সিটি কর্পোরেশন – ট্রেড লাইসেন্স",
+      "type": "লাইসেন্স",
+      "service": "ডিএসসিসি এলাকার ব্যবসা প্রতিষ্ঠানের জন্য ট্রেড লাইসেন্স ইস্যু ও বার্ষিক নবায়ন।",
+      "process": "ডিএসসিসি ই-রেভিনিউ পোর্টালে আবেদন জমা দিন; আবেদনের সাথে ব্যবসার স্থান, জাতীয় পরিচয়পত্র ও কোম্পানির কাগজপত্র যাচাই করা হয় (প্রয়োজনে ইস্যুর আগে সরেজমিনে পরিদর্শন হতে পারে)।",
+      "ministry": "স্থানীয় সরকার বিভাগ",
+      "applicationPath": "erevenue.dscc.gov.bd/cp/cportal/cp/southcc.aspx ব্যবহার করে ব্যবসার ধরন অনুযায়ী ডিএসসিসির নতুন লাইসেন্স বা নবায়নের প্রক্রিয়া সম্পন্ন করুন।",
+      "notes": "ঢাকা দক্ষিণ সিটি কর্পোরেশন এলাকার ব্যবসা প্রতিষ্ঠানগুলোকে ডিএসসিসি ট্রেড লাইসেন্স দেয়। ব্যবসা অন্য কোনো এলাকায় হলে সংশ্লিষ্ট সিটি কর্পোরেশন, পৌরসভা বা ইউনিয়ন পরিষদ থেকে লাইসেন্স নিতে হবে।"
+    }
   },
   {
-    "name": "Chief Controller of Imports and Exports (CCIE)",
-    "type": "Trade",
-    "service": "Import Registration Certificate and Export Registration Certificate issue, renewal and amendment, plus related import and export permissions.",
-    "process": "Apply and manage certificates through CCIE's Online Licensing Module, which uses mobile OTP verification and service-specific supporting documents.",
-    "ministry": "Ministry of Commerce",
-    "applicationPath": "Create an account at olm.ccie.gov.bd, choose the relevant IRC, ERC or permit service and follow the current document and renewal requirements.",
+    "id": "ccie",
     "website": "https://ccie.gov.bd/",
-    "sourceUrl": "https://olm.ccie.gov.bd/",
+    "sourceUrls": [
+      "https://olm.ccie.gov.bd/"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "CCIE is the licensing authority for businesses carrying out regulated commercial import and export activity. Choose the correct certificate class for the activity and confirm its supporting documents before committing to a shipment or contract."
+    "en": {
+      "name": "Chief Controller of Imports and Exports (CCIE)",
+      "type": "Trade",
+      "service": "Import Registration Certificate and Export Registration Certificate issue, renewal and amendment, plus related import and export permissions.",
+      "process": "Apply and manage certificates through CCIE's Online Licensing Module, which uses mobile OTP verification and service-specific supporting documents.",
+      "ministry": "Ministry of Commerce",
+      "applicationPath": "Create an account at olm.ccie.gov.bd, choose the relevant IRC, ERC or permit service and follow the current document and renewal requirements.",
+      "notes": "CCIE is the licensing authority for businesses carrying out regulated commercial import and export activity. Choose the correct certificate class for the activity and confirm its supporting documents before committing to a shipment or contract."
+    },
+    "bn": {
+      "name": "প্রধান আমদানি ও রপ্তানি নিয়ন্ত্রকের দপ্তর (CCIE)",
+      "type": "ট্রেড",
+      "service": "আমদানি নিবন্ধন সনদ (IRC) ও রপ্তানি নিবন্ধন সনদ (ERC) ইস্যু, নবায়ন ও সংশোধন, এবং আমদানি-রপ্তানি সংক্রান্ত প্রয়োজনীয় অনুমতি প্রদান।",
+      "process": "সিসিআইই-এর অনলাইন লাইসেন্সিং মডিউল (OLM) ব্যবহার করে আবেদন ও সনদ ব্যবস্থাপনা করুন। এতে মোবাইল ওটিপি যাচাই ও সেবানির্ভর কাগজপত্র প্রয়োজন হয়।",
+      "ministry": "বাণিজ্য মন্ত্রণালয়",
+      "applicationPath": "olm.ccie.gov.bd পোর্টালে অ্যাকাউন্ট খুলে সংশ্লিষ্ট আইআরসি, ইআরসি বা পারমিট সেবা নির্বাচন করুন এবং হালনাগাদ কাগজপত্র জমা দিন।",
+      "notes": "বাণিজ্যিক আমদানি ও রপ্তানি কার্যক্রম পরিচালনাকারী প্রতিষ্ঠানের লাইসেন্স দেওয়ার দায়িত্বে রয়েছে সিসিআইই। কোনো চালান বা চুক্তির আগে ব্যবসার ধরন অনুযায়ী সঠিক শ্রেণির সনদ বেছে নিন এবং প্রয়োজনীয় কাগজপত্র নিশ্চিত করুন।"
+    }
   },
   {
-    "name": "Export Promotion Bureau (EPB)",
-    "type": "Trade",
-    "service": "Exporter promotion, market intelligence, trade-fair support, export statistics, exporter profiles and access to export-related certification services.",
-    "process": "Use the service-specific portals linked by EPB, including the Exporter Database and Bangladesh Single Window for applicable certificates of origin.",
-    "ministry": "Ministry of Commerce",
-    "applicationPath": "Choose the relevant e-service from epb.gov.bd; exporters can create a profile at edb.epb.gov.bd, while origin-certificate applications use the Bangladesh Single Window.",
+    "id": "epb",
     "website": "https://epb.gov.bd/",
-    "sourceUrl": "https://epb.gov.bd/",
+    "sourceUrls": [
+      "https://epb.gov.bd/"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "EPB helps active or prospective exporters find markets, participate in promotion programmes and use export-service systems. It does not issue the IRC or ERC required for the underlying trading activity; those certificates come from CCIE."
+    "en": {
+      "name": "Export Promotion Bureau (EPB)",
+      "type": "Trade",
+      "service": "Exporter promotion, market intelligence, trade-fair support, export statistics, exporter profiles and access to export-related certification services.",
+      "process": "Use the service-specific portals linked by EPB, including the Exporter Database and Bangladesh Single Window for applicable certificates of origin.",
+      "ministry": "Ministry of Commerce",
+      "applicationPath": "Choose the relevant e-service from epb.gov.bd; exporters can create a profile at edb.epb.gov.bd, while origin-certificate applications use the Bangladesh Single Window.",
+      "notes": "EPB helps active or prospective exporters find markets, participate in promotion programmes and use export-service systems. It does not issue the IRC or ERC required for the underlying trading activity; those certificates come from CCIE."
+    },
+    "bn": {
+      "name": "রপ্তানি উন্নয়ন ব্যুরো (EPB)",
+      "type": "ট্রেড",
+      "service": "রপ্তানিকারক তালিকাভুক্তি, বিভিন্ন বাণিজ্য চুক্তির অধীনে রুলস অব অরিজিন অনুযায়ী সার্টিফিকেট অব অরিজিন (COO) ইস্যু এবং আন্তর্জাতিক বাণিজ্য মেলায় অংশগ্রহণের সুযোগ।",
+      "process": "অনলাইন বা নির্ধারিত প্রক্রিয়ায় আবেদন করুন এবং রুলস অব অরিজিনের শর্ত পূরণ করে প্রয়োজনীয় চালান ও চুক্তিপত্রের কাগজ জমা দিন।",
+      "ministry": "বাণিজ্য মন্ত্রণালয়",
+      "applicationPath": "ইপিবির নির্দেশিকা অনুসরণ করে সার্টিফিকেট অব অরিজিন ও মেলা সংক্রান্ত সেবার আবেদন করুন।",
+      "notes": "যেসব রপ্তানিকারকের বিদেশি বাজারে শুল্কমুক্ত বা রেয়াতি সুবিধা পেতে কান্ট্রি অব অরিজিন প্রমাণের সনদ (COO) প্রয়োজন হয়, তাদের জন্য ইপিবি গুরুত্বপূর্ণ। তবে পণ্য রপ্তানির আগে প্রতিষ্ঠানটির কাছে হালনাগাদ ইআরসি (ERC) এবং সংশ্লিষ্ট পণ্যভিত্তিক ছাড়পত্র থাকতে হবে।"
+    }
   },
   {
-    "name": "Department of Environment (DOE)",
-    "type": "Clearance",
-    "service": "Environmental Clearance Certificate issue and renewal, with requirements based on the project's activity and environmental category.",
-    "process": "Register in the Department of Environment's ECC system, complete the applicable forms, upload supporting documents and pay system-generated fees online or by challan.",
-    "ministry": "Ministry of Environment, Forest and Climate Change",
-    "applicationPath": "Create an account at ecc-beta.doe.gov.bd, identify the correct project category and follow the online new-application or renewal workflow.",
+    "id": "doe",
     "website": "https://doe.gov.bd/",
-    "sourceUrl": "https://ecc-beta.doe.gov.bd/how-to-apply",
+    "sourceUrls": [
+      "https://ecc-beta.doe.gov.bd/how-to-apply"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "The environmental category determines the studies, clearances and supporting documents a project needs. Check the actual activity and premises against the current rules before starting operations rather than assuming the business is exempt from its sector label alone."
+    "en": {
+      "name": "Department of Environment (DOE)",
+      "type": "Clearance",
+      "service": "Environmental Clearance Certificate issue and renewal, with requirements based on the project's activity and environmental category.",
+      "process": "Register in the Department of Environment's ECC system, complete the applicable forms, upload supporting documents and pay system-generated fees online or by challan.",
+      "ministry": "Ministry of Environment, Forest and Climate Change",
+      "applicationPath": "Create an account at ecc-beta.doe.gov.bd, identify the correct project category and follow the online new-application or renewal workflow.",
+      "notes": "The environmental category determines the studies, clearances and supporting documents a project needs. Check the actual activity and premises against the current rules before starting operations rather than assuming the business is exempt from its sector label alone."
+    },
+    "bn": {
+      "name": "পরিবেশ অধিদপ্তর (DOE)",
+      "type": "ছাড়পত্র",
+      "service": "পরিবেশ ছাড়পত্র দেওয়া ও নবায়ন। প্রকল্পে কী কাজ হবে আর সেটি কোন পরিবেশগত ক্যাটাগরিতে পড়ে, তার ওপর শর্ত নির্ভর করে।",
+      "process": "পরিবেশ অধিদপ্তরের ছাড়পত্রের পোর্টালে অ্যাকাউন্ট খুলে প্রযোজ্য ফরম পূরণ করুন ও কাগজপত্র আপলোড করুন। সিস্টেমে দেখানো ফি অনলাইনে বা চালানে জমা দিন।",
+      "ministry": "পরিবেশ, বন ও জলবায়ু পরিবর্তন মন্ত্রণালয়",
+      "applicationPath": "ecc-beta.doe.gov.bd-তে অ্যাকাউন্ট খুলুন। প্রকল্পের সঠিক ক্যাটাগরি দেখে নতুন আবেদন বা নবায়নের ধাপগুলো অনুসরণ করুন।",
+      "notes": "কী সমীক্ষা, ছাড়পত্র ও কাগজপত্র লাগবে, সেটা প্রকল্পের ক্যাটাগরি অনুযায়ী ঠিক হয়। ব্যবসার খাতের নাম দেখেই ছাড়পত্র লাগবে না ধরে নেবেন না। কাজ শুরুর আগে প্রকল্পে কী হবে ও কোথায় হবে, তা চালু বিধির সঙ্গে মিলিয়ে নিন।"
+    }
   },
   {
-    "name": "Department of Patents, Designs and Trademarks (DPDT)",
-    "type": "Intellectual property",
-    "service": "Trademark, patent, industrial-design and geographical-indication registration and publication.",
-    "process": "Use the relevant DPDT application process, forms, checklist and fee schedule; electronic filing is provided through the Bangladesh WIPO filing dashboard.",
-    "ministry": "Ministry of Industries",
-    "applicationPath": "Choose the correct right on DPDT's application-process page, search the relevant public records and file through bd.wipo.net/efiling-dashboard or the route specified by DPDT.",
+    "id": "dpdt",
     "website": "https://dpdt.gov.bd/",
-    "sourceUrl": "https://dpdt.gov.bd/pages/static-pages/6922e011933eb65569e25501",
+    "sourceUrls": [
+      "https://dpdt.gov.bd/pages/static-pages/6922e011933eb65569e25501"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "Use a trademark for a brand, a patent for a qualifying invention and an industrial design for a product's visual design. RJSC name clearance only checks the proposed entity name and does not provide trademark protection."
+    "en": {
+      "name": "Department of Patents, Designs and Trademarks (DPDT)",
+      "type": "Intellectual property",
+      "service": "Trademark, patent, industrial-design and geographical-indication registration and publication.",
+      "process": "Use the relevant DPDT application process, forms, checklist and fee schedule; electronic filing is provided through the Bangladesh WIPO filing dashboard.",
+      "ministry": "Ministry of Industries",
+      "applicationPath": "Choose the correct right on DPDT's application-process page, search the relevant public records and file through bd.wipo.net/efiling-dashboard or the route specified by DPDT.",
+      "notes": "Use a trademark for a brand, a patent for a qualifying invention and an industrial design for a product's visual design. RJSC name clearance only checks the proposed entity name and does not provide trademark protection."
+    },
+    "bn": {
+      "name": "পেটেন্ট, ডিজাইন ও ট্রেডমার্কস অধিদপ্তর (DPDT)",
+      "type": "ইন্টেলেকচুয়াল প্রপার্টি",
+      "service": "ট্রেডমার্ক, পেটেন্ট, শিল্পনকশা ও ভৌগোলিক নির্দেশক পণ্যের নিবন্ধন এবং প্রকাশনা।",
+      "process": "যে সুরক্ষার জন্য আবেদন করবেন, তার প্রক্রিয়া, ফরম, কাগজপত্রের তালিকা ও ফি ডিপিডিটির সাইটে দেখে নিন। অনলাইনে আবেদন করা যায় বাংলাদেশের WIPO ফাইলিং ড্যাশবোর্ডে।",
+      "ministry": "শিল্প মন্ত্রণালয়",
+      "applicationPath": "ডিপিডিটির আবেদন প্রক্রিয়ার পাতা থেকে প্রয়োজনীয় সেবাটি বেছে নিন। প্রযোজ্য প্রকাশ্য রেকর্ড খুঁজে দেখে bd.wipo.net/efiling-dashboard বা ডিপিডিটির নির্দেশিত মাধ্যমে আবেদন করুন।",
+      "notes": "ব্র্যান্ডের জন্য ট্রেডমার্ক, শর্ত পূরণ করা উদ্ভাবনের জন্য পেটেন্ট আর পণ্যের বাহ্যিক নকশার জন্য শিল্পনকশার সুরক্ষা প্রযোজ্য। আরজেএসসির নামের ছাড়পত্রে শুধু প্রতিষ্ঠানের প্রস্তাবিত নাম যাচাই হয়। এতে ট্রেডমার্কের সুরক্ষা পাওয়া যায় না।"
+    }
   },
   {
-    "name": "Copyright Office Bangladesh",
-    "type": "Intellectual property",
-    "service": "Copyright registration for literary, dramatic, musical, artistic, film, sound-recording, broadcast and computer-software works.",
-    "process": "Submit the category-specific application and supporting work through the Copyright Office's e-Copyright system and pay the published fee.",
-    "ministry": "Ministry of Cultural Affairs",
-    "applicationPath": "Create an account at bcoecopyright.gov.bd, choose the correct work category and follow the Copyright Office's document and fee instructions.",
+    "id": "copyright-office",
     "website": "https://copyrightoffice.gov.bd/",
-    "sourceUrl": "https://copyrightoffice.gov.bd/",
+    "sourceUrls": [
+      "https://copyrightoffice.gov.bd/"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "Registration is not mandatory for copyright to exist, but the Copyright Office says its certificate can be used as evidence if ownership is disputed. For commissioned, employee-created or jointly owned work, establish who owns the rights before applying."
+    "en": {
+      "name": "Copyright Office Bangladesh",
+      "type": "Intellectual property",
+      "service": "Copyright registration for literary, dramatic, musical, artistic, film, sound-recording, broadcast and computer-software works.",
+      "process": "Submit the category-specific application and supporting work through the Copyright Office's e-Copyright system and pay the published fee.",
+      "ministry": "Ministry of Cultural Affairs",
+      "applicationPath": "Create an account at bcoecopyright.gov.bd, choose the correct work category and follow the Copyright Office's document and fee instructions.",
+      "notes": "Registration is not mandatory for copyright to exist, but the Copyright Office says its certificate can be used as evidence if ownership is disputed. For commissioned, employee-created or jointly owned work, establish who owns the rights before applying."
+    },
+    "bn": {
+      "name": "কপিরাইট অফিস বাংলাদেশ",
+      "type": "ইন্টেলেকচুয়াল প্রপার্টি",
+      "service": "সাহিত্য, নাটক, সংগীত, শিল্পকর্ম, চলচ্চিত্র, শব্দ রেকর্ডিং, সম্প্রচার ও কম্পিউটার সফটওয়্যারের কপিরাইট নিবন্ধন।",
+      "process": "কাজের ধরন অনুযায়ী আবেদন ও প্রয়োজনীয় কপি ই-কপিরাইট পোর্টালে জমা দিন। কপিরাইট অফিসের প্রকাশিত ফি দিতে হবে।",
+      "ministry": "সংস্কৃতি বিষয়ক মন্ত্রণালয়",
+      "applicationPath": "bcoecopyright.gov.bd-তে অ্যাকাউন্ট খুলে কাজের সঠিক ক্যাটাগরি বেছে নিন। কাগজপত্র ও ফি জমা দেওয়ার নির্দেশনা কপিরাইট অফিসের সাইটে দেখে নিন।",
+      "notes": "কপিরাইট থাকার জন্য নিবন্ধন বাধ্যতামূলক নয়। তবে মালিকানা নিয়ে বিরোধ হলে নিবন্ধন সনদ প্রমাণ হিসেবে কাজে লাগতে পারে বলে কপিরাইট অফিস জানিয়েছে। কাউকে দিয়ে করানো, কর্মীর তৈরি বা যৌথ মালিকানার কাজ হলে আবেদনের আগেই কার কী অধিকার, তা ঠিক করে নিন।"
+    }
   },
   {
-    "name": "Bangladesh Standards and Testing Institution (BSTI)",
-    "type": "Licence",
-    "service": "Bangladesh Standards, product testing and Certification Marks licences for products subject to compulsory or voluntary certification.",
-    "process": "Follow the relevant Certification Marks process, including application, factory assessment and product sampling or testing against the applicable Bangladesh Standard.",
-    "ministry": "Ministry of Industries",
-    "applicationPath": "Check BSTI's current mandatory-products list, identify the applicable standard, then follow the published CM licence issue or renewal steps and fee schedule.",
+    "id": "bsti",
     "website": "https://bsti.gov.bd/",
-    "sourceUrl": "https://bsti.gov.bd/pages/static-pages/6922dcba933eb65569e11af8",
+    "sourceUrls": [
+      "https://bsti.gov.bd/pages/static-pages/6922dcba933eb65569e11af8"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "Manufacturers and importers should check the exact product against BSTI's compulsory-certification list before production or release. The applicable standard, samples, inspection steps and fees are product-specific; voluntary certification and testing are separate options."
+    "en": {
+      "name": "Bangladesh Standards and Testing Institution (BSTI)",
+      "type": "Licence",
+      "service": "Bangladesh Standards, product testing and Certification Marks licences for products subject to compulsory or voluntary certification.",
+      "process": "Follow the relevant Certification Marks process, including application, factory assessment and product sampling or testing against the applicable Bangladesh Standard.",
+      "ministry": "Ministry of Industries",
+      "applicationPath": "Check BSTI's current mandatory-products list, identify the applicable standard, then follow the published CM licence issue or renewal steps and fee schedule.",
+      "notes": "Manufacturers and importers should check the exact product against BSTI's compulsory-certification list before production or release. The applicable standard, samples, inspection steps and fees are product-specific; voluntary certification and testing are separate options."
+    },
+    "bn": {
+      "name": "বাংলাদেশ স্ট্যান্ডার্ডস অ্যান্ড টেস্টিং ইনস্টিটিউশন (BSTI)",
+      "type": "লাইসেন্স",
+      "service": "জাতীয় মান নির্ধারণ, ল্যাব টেস্টিং এবং বাধ্যতামূলক বা ঐচ্ছিক পণ্যের জন্য সার্টিফিকেশন মার্কস (CM) লাইসেন্স প্রদান।",
+      "process": "বিএসটিআই পোর্টালে আবেদন, কারখানা পরিদর্শন এবং প্রযোজ্য বাংলাদেশ স্ট্যান্ডার্ড (BDS) অনুযায়ী পণ্যের নমুনা পরীক্ষা সম্পন্ন করুন।",
+      "ministry": "শিল্প মন্ত্রণালয়",
+      "applicationPath": "বিএসটিআইয়ের বাধ্যতামূলক পণ্যের তালিকা দেখে প্রযোজ্য মানদণ্ড চিহ্নিত করুন। এরপর সিএম লাইসেন্স গ্রহণ বা নবায়নের নিয়মাবলী ও ফি তালিকা মেনে আবেদন করুন।",
+      "notes": "উৎপাদক ও আমদানিকারকদের পণ্য বাজারে ছাড়ার আগেই বিএসটিআইয়ের বাধ্যতামূলক পণ্যের তালিকা মিলিয়ে দেখা জরুরি। পণ্যের মানদণ্ড, স্যাম্পল, পরিদর্শন প্রক্রিয়া ও ফি নির্দিষ্ট পণ্যের ওপর নির্ভর করে। এছাড়া ঐচ্ছিক টেস্টিং ও সার্টিফিকেশনের সুযোগও রয়েছে।"
+    }
   },
   {
-    "name": "Directorate General of Drug Administration (DGDA)",
-    "type": "Licence",
-    "service": "Licensing, product registration and regulatory oversight for drugs, cosmetics, vaccines, medical devices, pharmacies and pharmaceutical manufacturers.",
-    "process": "Use the DGDA system assigned to the service, submit the product or establishment documents and complete any required review or premises inspection.",
-    "ministry": "Ministry of Health and Family Welfare",
-    "applicationPath": "Start with DGDA's current notices and registered-product database, then use rims.dgda.gov.bd or the pharmacy application route for the specific licence or registration.",
+    "id": "dgda",
     "website": "https://dgda.gov.bd/",
-    "sourceUrl": "https://info.dgda.gov.bd/",
+    "sourceUrls": [
+      "https://info.dgda.gov.bd/"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "A founder manufacturing, importing, distributing or selling a regulated health or cosmetics product may need approval for both the product and the establishment. Determine the product classification before launch; a trade licence alone is not market authorisation."
+    "en": {
+      "name": "Directorate General of Drug Administration (DGDA)",
+      "type": "Licence",
+      "service": "Licensing, product registration and regulatory oversight for drugs, cosmetics, vaccines, medical devices, pharmacies and pharmaceutical manufacturers.",
+      "process": "Use the DGDA system assigned to the service, submit the product or establishment documents and complete any required review or premises inspection.",
+      "ministry": "Ministry of Health and Family Welfare",
+      "applicationPath": "Start with DGDA's current notices and registered-product database, then use rims.dgda.gov.bd or the pharmacy application route for the specific licence or registration.",
+      "notes": "A founder manufacturing, importing, distributing or selling a regulated health or cosmetics product may need approval for both the product and the establishment. Determine the product classification before launch; a trade licence alone is not market authorisation."
+    },
+    "bn": {
+      "name": "ঔষধ প্রশাসন অধিদপ্তর (DGDA)",
+      "type": "লাইসেন্স",
+      "service": "ওষুধ, কসমেটিকস, ভ্যাকসিন, চিকিৎসা সরঞ্জাম, ফার্মেসি ও ওষুধ প্রস্তুতকারী প্রতিষ্ঠানের লাইসেন্স, পণ্য নিবন্ধন ও নিয়ন্ত্রণ।",
+      "process": "ঔষধ প্রশাসনের নির্দিষ্ট অনলাইন সিস্টেমে প্রতিষ্ঠানের কাগজপত্র ও পণ্যের বিবরণ জমা দিন। প্রয়োজনীয় ফাইল পর্যালোচনা ও কারখানা বা স্থাপনা পরিদর্শনের পর অনুমোদন মেলে।",
+      "ministry": "স্বাস্থ্য ও পরিবার কল্যাণ মন্ত্রণালয়",
+      "applicationPath": "ডিজিডিএ-এর সাম্প্রতিক নোটিশ ও নিবন্ধিত পণ্যের ডেটাবেস দেখে নিন। এরপর নির্দিষ্ট লাইসেন্সের জন্য rims.dgda.gov.bd বা সংশ্লিষ্ট আবেদনপথ ব্যবহার করুন।",
+      "notes": "নিয়ন্ত্রিত স্বাস্থ্য বা কসমেটিকস পণ্য উৎপাদন, আমদানি, বিতরণ বা বিক্রির ক্ষেত্রে পণ্য এবং প্রতিষ্ঠান উভয়ের জন্যই অনুমোদন লাগতে পারে। বাজারে পণ্য ছাড়ার আগেই এর শ্রেণিবিভাগ নিশ্চিত করুন। কেবল ট্রেড লাইসেন্স থাকা মানেই বাজারে ওষুধ বা কসমেটিকস বিক্রির বৈধতা নয়।"
+    }
   },
   {
-    "name": "Fire Service and Civil Defence Directorate",
-    "type": "Licence",
-    "service": "Fire licence issue, reassessment and renewal for business and industrial premises.",
-    "process": "Apply through the e-Fire Licence portal with the premises and business information; Fire Service reviews the submission and assesses the site's compliance.",
-    "ministry": "Ministry of Home Affairs",
-    "applicationPath": "Submit a new-licence or reassessment application at elicense.fireservice.gov.bd; use the renewal option when it is available for the relevant licence year.",
+    "id": "fire-service",
     "website": "https://fireservice.gov.bd/",
-    "sourceUrl": "https://elicense.fireservice.gov.bd/apply",
+    "sourceUrls": [
+      "https://elicense.fireservice.gov.bd/apply"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "The fire licence addresses the safety of the operating premises, so the building use, layout and risk matter alongside the company details. Building NOC, fire-safety training, drills and risk assessments are related but separate Fire Service workflows."
+    "en": {
+      "name": "Fire Service and Civil Defence Directorate",
+      "type": "Licence",
+      "service": "Fire licence issue, reassessment and renewal for business and industrial premises.",
+      "process": "Apply through the e-Fire Licence portal with the premises and business information; Fire Service reviews the submission and assesses the site's compliance.",
+      "ministry": "Ministry of Home Affairs",
+      "applicationPath": "Submit a new-licence or reassessment application at elicense.fireservice.gov.bd; use the renewal option when it is available for the relevant licence year.",
+      "notes": "The fire licence addresses the safety of the operating premises, so the building use, layout and risk matter alongside the company details. Building NOC, fire-safety training, drills and risk assessments are related but separate Fire Service workflows."
+    },
+    "bn": {
+      "name": "ফায়ার সার্ভিস ও সিভিল ডিফেন্স অধিদপ্তর",
+      "type": "লাইসেন্স",
+      "service": "ব্যবসা ও শিল্প প্রতিষ্ঠানের ভবনের জন্য ফায়ার লাইসেন্স ইস্যু, পুনর্মূল্যায়ন ও বার্ষিক নবায়ন।",
+      "process": "ই-ফায়ার লাইসেন্স পোর্টালে ব্যবসা ও জায়গার বিস্তারিত তথ্য দিয়ে আবেদন করুন; ফায়ার সার্ভিস কর্মকর্তারা জমা দেওয়া কাগজপত্র যাচাই এবং স্থাপনা পরিদর্শন করে অগ্নিনিরাপত্তা নিশ্চিত করেন।",
+      "ministry": "স্বরাষ্ট্র মন্ত্রণালয়",
+      "applicationPath": "elicense.fireservice.gov.bd পোর্টালে নতুন লাইসেন্স বা পুনর্মূল্যায়নের আবেদন করুন; নবায়নের অপশন চালু থাকলে সেখান থেকেই রিনিউ করুন।",
+      "notes": "ফায়ার লাইসেন্সে প্রতিষ্ঠানের কর্মস্থলের বাস্তব নিরাপত্তা যাচাই করা হয়। তাই কোম্পানির কাগজপত্রের পাশাপাশি ভবনের ব্যবহার, ফ্লোর প্ল্যান ও নিরাপত্তা ঝুঁকি বিবেচনা করা হয়। বিল্ডিং এনওসি (NOC), ফায়ার ড্রিল ও নিরাপত্তা প্রশিক্ষণ ফায়ার সার্ভিসের পৃথক সেবা।"
+    }
   },
   {
-    "name": "Bangladesh Bank",
-    "type": "Foreign-exchange and investment regulation",
-    "service": "Foreign-investment share issue and transfer reporting, temporary investment accounts, dividend and share-sale repatriation, portfolio-investment routes and other foreign-exchange transactions.",
-    "process": "Most filings and remittances are handled through an authorised dealer bank under Bangladesh Bank rules; only specified cases require prior central-bank approval.",
-    "ministry": "Central bank (autonomous)",
-    "applicationPath": "Engage an authorised dealer bank before money moves, use the FEID portal for current requirements and use Invest Bangladesh OSS for a temporary non-resident account where applicable.",
+    "id": "bangladesh-bank",
     "website": "https://www.bb.org.bd/",
-    "sourceUrl": "https://www.bb.org.bd/feidportal/repatriation_share_sale_proceeds.php",
+    "sourceUrls": [
+      "https://www.bb.org.bd/feidportal/repatriation_share_sale_proceeds.php"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "Founders receiving foreign equity or repatriating investment proceeds should structure the transaction through formal banking channels and complete the required reporting on time. Many transactions operate under general permission, while larger or exceptional transfers may require valuation documents or Bangladesh Bank approval."
+    "en": {
+      "name": "Bangladesh Bank",
+      "type": "Foreign-exchange and investment regulation",
+      "service": "Foreign-investment share issue and transfer reporting, temporary investment accounts, dividend and share-sale repatriation, portfolio-investment routes and other foreign-exchange transactions.",
+      "process": "Most filings and remittances are handled through an authorised dealer bank under Bangladesh Bank rules; only specified cases require prior central-bank approval.",
+      "ministry": "Central bank (autonomous)",
+      "applicationPath": "Engage an authorised dealer bank before money moves, use the FEID portal for current requirements and use Invest Bangladesh OSS for a temporary non-resident account where applicable.",
+      "notes": "Founders receiving foreign equity or repatriating investment proceeds should structure the transaction through formal banking channels and complete the required reporting on time. Many transactions operate under general permission, while larger or exceptional transfers may require valuation documents or Bangladesh Bank approval."
+    },
+    "bn": {
+      "name": "বাংলাদেশ ব্যাংক",
+      "type": "ফরেন-এক্সচেঞ্জ ও বিনিয়োগ নিয়ন্ত্রণ",
+      "service": "বিদেশি বিনিয়োগের বিপরীতে শেয়ার ইস্যু ও হস্তান্তরের তথ্য দাখিল, সাময়িক বিনিয়োগ অ্যাকাউন্ট পরিচালনা, লভ্যাংশ ও শেয়ার বিক্রির অর্থ প্রত্যাবাসন (repatriation), পোর্টফোলিও বিনিয়োগ ও বৈদেশিক মুদ্রা লেনদেন তদারকি।",
+      "process": "বেশিরভাগ দাখিল ও রেমিট্যান্স অনুমোদিত ডিলার (AD) ব্যাংকের মাধ্যমে বাংলাদেশ ব্যাংকের সাধারণ নিয়মের অধীনে সম্পন্ন হয়। কেবল নির্দিষ্ট কিছু ক্ষেত্রে কেন্দ্রীয় ব্যাংকের পূর্বানুমোদন প্রয়োজন হয়।",
+      "ministry": "বাংলাদেশ ব্যাংক (স্বায়ত্তশাসিত)",
+      "applicationPath": "বৈদেশিক মুদ্রা লেনদেনের আগেই অনুমোদিত ডিলার ব্যাংকের সাথে যোগাযোগ করুন। বর্তমান নিয়ম জানতে FEID পোর্টাল দেখুন এবং প্রযোজ্য ক্ষেত্রে অনাবাসিক সাময়িক অ্যাকাউন্টের জন্য ইনভেস্ট বাংলাদেশ ওএসএস ব্যবহার করুন।",
+      "notes": "বিদেশি ইকুইটি নেওয়া বা বিনিয়োগ ও শেয়ার বিক্রির অর্থ বিদেশে পাঠাতে আনুষ্ঠানিক ব্যাংকিং চ্যানেল ও সময়মতো সঠিক রিপোর্টিং বাধ্যতামূলক। বেশিরভাগ সাধারণ লেনদেন অনুমোদিত ব্যাংকের মাধ্যমেই করা যায়। তবে বড় বা বিশেষ ক্ষেত্রে ভ্যালুয়েশন সনদ ও বাংলাদেশ ব্যাংকের পূর্বানুমোদনের প্রয়োজন হতে পারে।"
+    }
   }
 ]

@@ -1,4 +1,6 @@
 node_modules/
+.venv-maps/
+__pycache__/
 out/
 .next/
 # `next dev` builds here instead, so a dev server running in an editor cannot

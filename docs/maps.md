@@ -271,7 +271,7 @@ The importers target the specific report editions and table layouts below. A new
 
 1. Download the official Census/HIES PDFs and produce UTF-8 text with `pdftotext -layout`. Keep PDFs/text outside Git. Inspect copyright/publication pages and the named source tables, including continuation headers and denominator changes.
 2. Run `python3 scripts/import-map-census.py /path/census.txt /path/hies.txt`. The script normalizes documented spellings, handles wrapped Mymensingh division rows, refuses missing joins and reconciles totals. Review `data/maps/census.json` and its changed checksums. Verify representative cells visually against the PDF after every replacement source.
-3. Poverty updates use `node scripts/import-maps.mjs REPORT.txt`. The importer writes 72 statistical rows and the report hash; it uses the checked-in geometry for representative points without replacing any boundary file. Boundary updates are a separate, maintainer-only process: create a Python virtual environment, install `scripts/maps-requirements.txt`, then run `python scripts/import-map-boundaries.py FULL_SOURCE.geojson --retrieved YYYY-MM-DD`. It checks the pinned full-source hash and every geographic join before writing the overview, two detail packets and `boundaries.json`. Reproduce with `--check` (no writes), and run `python scripts/test-import-map-boundaries.py` to verify coverage and dissolved parents. Shapely 2.1.2 / GEOS 3.12+ are required only for this import, never CI builds or the client. Source replacements require reviewed hash, identity, vintage and reuse changes. Never hand-edit generated geometry or claim a polygon is an office location.
+3. Poverty updates use `node scripts/import-maps.mjs REPORT.txt`. The importer writes 72 statistical rows and the report hash; it uses the checked-in geometry for representative points without replacing any boundary file. Boundary updates are a separate, maintainer-only process: create a Python virtual environment, install `scripts/maps-requirements.txt`, then run `python scripts/import-map-boundaries.py FULL_SOURCE.geojson --retrieved YYYY-MM-DD`. It checks the pinned full-source hash and every geographic join before writing the overview, two detail packets and `boundaries.json`. Reproduce with `--check` (no writes), and run `python scripts/test-import-map-boundaries.py` to verify coverage and dissolved parents. Shapely 2.1.2 / GEOS 3.12+ are required for this import and its tests, never the website build or client. Source replacements require reviewed hash, identity, vintage and reuse changes. Never hand-edit generated geometry or claim a polygon is an office location.
 4. Run `npm test`, `npx tsc --noEmit`, content lints and `npm run build:worker`. Check both locales, district/division selection, source pages, changed classifications, comparison links and fallback states in a browser. A successful build alone does not validate worker loading.
 5. Add a metric in `layers.ts` only after source dates, age/population denominator, geographic level, reuse rights, null behavior and interpretation risk are settled. Put normalization in the importer, not JSX; metadata/formatting lives in `layers.ts`, renderer in `MapCanvas.tsx`, interaction state in `MapsExperience.tsx`.
 
@@ -361,9 +361,10 @@ Use Node 22 for development and builds. From the repository root:
 ```sh
 npm run dev
 npm test
-python3 -B scripts/test-import-map-economy.py
-python3 -B scripts/test-import-map-ict.py
-python3 -B scripts/test-import-map-transport.py
+python3 -m venv .venv-maps
+. .venv-maps/bin/activate
+python -m pip install -r scripts/maps-requirements.txt
+npm run test:maps
 python3 -B scripts/import-map-economy.py --check
 python3 -B scripts/import-map-ict.py --check
 npm run lint:bangla
@@ -372,6 +373,8 @@ npm run check:worker
 ```
 
 `build:worker` includes content validation, static export, search and SEO checks.
+`test:maps` discovers all Python map importer suites, including the boundary
+geometry tests. PR checks run them with Python 3.13 and the pinned requirements.
 `check:worker` checks types, dry-run packaging and deployment budgets. In the
 browser, check both locales, phone and desktop, initial fit, count legends,
 zoom limits, search, comparison, source links and restored URL state. Check

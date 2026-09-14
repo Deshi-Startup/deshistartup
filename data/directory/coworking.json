@@ -1,89 +1,178 @@
 [
   {
-    "name": "Moar",
-    "type": "Coworking space",
-    "city": "Dhaka",
-    "locations": "Banani 11, Dhanmondi 27, and Gulshan-Tejgaon Link Road.",
-    "priceRange": "Starter membership BDT 5,000; Infinity all-location membership from BDT 15,000; hour pass BDT 250; day pass BDT 1,000. Meeting rooms start at BDT 250–1,000 depending on capacity.",
-    "facilities": [
-      "Hot desks",
-      "Dedicated offices",
-      "Private offices",
-      "Meeting rooms (2–16 people)",
-      "Coworking pass"
-    ],
-    "hours": "8:00–22:00, six days a week; closed Fridays and government holidays.",
-    "applicationPath": "Hourly and daily Coworking Passes do not require membership or advance booking. Bring a government-issued photo ID and emergency-contact details; enquire separately about offices and memberships.",
+    "id": "moar",
     "website": "https://moarbd.com/",
-    "sourceUrl": "https://moarbd.com/collections/coworking-pass",
     "sourceUrls": [
+      "https://moarbd.com/collections/coworking-pass",
       "https://moarbd.com/",
       "https://moarbd.com/collections/memberships"
     ],
     "lastVerified": "2026-09-13",
-    "notes": "A three-location coworking network offering hourly and daily access, memberships, meeting rooms, dedicated or private offices and event space. All-location membership suits people who need to move between Banani, Dhanmondi and the Gulshan–Tejgaon Link Road."
+    "en": {
+      "name": "Moar",
+      "type": "Coworking space",
+      "city": "Dhaka",
+      "locations": "Banani 11, Dhanmondi 27, and Gulshan-Tejgaon Link Road.",
+      "priceRange": "Starter membership BDT 5,000; Infinity all-location membership from BDT 15,000; hour pass BDT 250; day pass BDT 1,000. Meeting rooms start at BDT 250–1,000 depending on capacity.",
+      "facilities": [
+        "Hot desks",
+        "Dedicated offices",
+        "Private offices",
+        "Meeting rooms (2–16 people)",
+        "Coworking pass"
+      ],
+      "hours": "8:00–22:00, six days a week; closed Fridays and government holidays.",
+      "applicationPath": "Hourly and daily Coworking Passes do not require membership or advance booking. Bring a government-issued photo ID and emergency-contact details; enquire separately about offices and memberships.",
+      "notes": "A three-location coworking network offering hourly and daily access, memberships, meeting rooms, dedicated or private offices and event space. All-location membership suits people who need to move between Banani, Dhanmondi and the Gulshan–Tejgaon Link Road."
+    },
+    "bn": {
+      "name": "Moar",
+      "type": "কো-ওয়ার্কিং স্পেস",
+      "city": "ঢাকা",
+      "locations": "বনানী ১১, ধানমন্ডি ২৭ এবং গুলশান-তেজগাঁও লিংক রোড।",
+      "priceRange": "স্টার্টার মেম্বারশিপ ৫,০০০ টাকা। সব শাখার ইনফিনিটি মেম্বারশিপ শুরু ১৫,০০০ টাকা থেকে। আওয়ারলি পাস ২৫০ টাকা, ডে পাস ১,০০০ টাকা। মিটিং রুমের ধারণক্ষমতা অনুযায়ী ভাড়া শুরু ২৫০–১,০০০ টাকা থেকে।",
+      "facilities": [
+        "হট ডেস্ক",
+        "ডেডিকেটেড অফিস",
+        "প্রাইভেট অফিস",
+        "মিটিং রুম (২–১৬ জন)",
+        "কো-ওয়ার্কিং পাস"
+      ],
+      "hours": "সকাল ৮:০০–রাত ১০:০০ (সপ্তাহে ৬ দিন); শুক্রবার ও সরকারি ছুটির দিনে বন্ধ।",
+      "applicationPath": "ঘণ্টা বা দিনের কো-ওয়ার্কিং পাস নিতে সদস্যপদ কিংবা আগাম বুকিং লাগে না। সরকারি ছবিযুক্ত পরিচয়পত্র ও জরুরি যোগাযোগের তথ্য সঙ্গে রাখুন। অফিস বা মেম্বারশিপের জন্য আলাদা করে খোঁজ নিন।",
+      "notes": "বনানী, ধানমন্ডি ও গুলশান-তেজগাঁও লিংক রোডে তিনটি শাখা নিয়ে Moar-এর কো-ওয়ার্কিং নেটওয়ার্ক। এখানে ঘণ্টা বা দিনের পাস, মান্থলি মেম্বারশিপ, মিটিং রুম, ডেডিকেটেড ও প্রাইভেট অফিস এবং ইভেন্ট স্পেসের সুবিধা রয়েছে। যাদের এই তিন এলাকার মধ্যে যাতায়াত করতে হয়, তাদের জন্য সব শাখার অল-লোকেশন মেম্বারশিপ বেশ সুবিধাজনক।"
+    }
   },
   {
-    "name": "Impact Hub Dhaka",
-    "type": "Coworking space and innovation hub",
-    "city": "Dhaka",
-    "locations": "Mirpur (9th Floor, Grameen Telecom Bhaban, Zoo Road) and Banani (7th Floor, Momen Bari Heights, Plot 157, Road 12).",
-    "priceRange": "BDT 2,000 per month for 8 hours, BDT 8,000 for 50 hours, BDT 14,000 for 100 hours, or BDT 17,500 for unlimited office hours.",
-    "facilities": [
-      "Coworking space",
-      "Private offices",
-      "Community events",
-      "Entrepreneurship programmes",
-      "Consultancy"
-    ],
-    "hours": "9:00 AM–6:00 PM",
-    "applicationPath": "Book a membership, free tour or team call through the co-working page.",
+    "id": "impact-hub-dhaka",
     "website": "https://dhaka.impacthub.net/",
-    "sourceUrl": "https://dhaka.impacthub.net/co-working",
+    "sourceUrls": [
+      "https://dhaka.impacthub.net/co-working"
+    ],
     "lastVerified": "2026-08-25",
-    "notes": "A coworking and innovation hub for entrepreneurs, freelancers, professionals and impact-focused teams. Alongside desks and private offices, members can access community events, entrepreneurship programmes, consultancy and connections across the wider Impact Hub network."
+    "en": {
+      "name": "Impact Hub Dhaka",
+      "type": "Coworking space and innovation hub",
+      "city": "Dhaka",
+      "locations": "Mirpur (9th Floor, Grameen Telecom Bhaban, Zoo Road) and Banani (7th Floor, Momen Bari Heights, Plot 157, Road 12).",
+      "priceRange": "BDT 2,000 per month for 8 hours, BDT 8,000 for 50 hours, BDT 14,000 for 100 hours, or BDT 17,500 for unlimited office hours.",
+      "facilities": [
+        "Coworking space",
+        "Private offices",
+        "Community events",
+        "Entrepreneurship programmes",
+        "Consultancy"
+      ],
+      "hours": "9:00 AM–6:00 PM",
+      "applicationPath": "Book a membership, free tour or team call through the co-working page.",
+      "notes": "A coworking and innovation hub for entrepreneurs, freelancers, professionals and impact-focused teams. Alongside desks and private offices, members can access community events, entrepreneurship programmes, consultancy and connections across the wider Impact Hub network."
+    },
+    "bn": {
+      "name": "Impact Hub Dhaka",
+      "type": "কো-ওয়ার্কিং স্পেস ও ইনোভেশন হাব",
+      "city": "ঢাকা",
+      "locations": "মিরপুর (৯ম তলা, গ্রামীণ টেলিকম ভবন, চিড়িয়াখানা রোড) আর বনানী (৭ম তলা, মোমেন বারী হাইটস, প্লট ১৫৭, রোড ১২)।",
+      "priceRange": "মাসে ৮ ঘণ্টার জন্য ২,০০০ টাকা, ৫০ ঘণ্টার জন্য ৮,০০০ টাকা, ১০০ ঘণ্টার জন্য ১৪,০০০ টাকা, অথবা আনলিমিটেড অফিস আওয়ারের জন্য ১৭,৫০০ টাকা।",
+      "facilities": [
+        "কো-ওয়ার্কিং স্পেস",
+        "প্রাইভেট অফিস",
+        "কমিউনিটি ইভেন্ট",
+        "উদ্যোক্তা সহায়তা প্রোগ্রাম",
+        "পরামর্শ সেবা"
+      ],
+      "hours": "সকাল ৯:০০টা থেকে সন্ধ্যা ৬:০০টা",
+      "applicationPath": "কো-ওয়ার্কিং পেজ থেকে মেম্বারশিপ বা ফ্রি ট্যুর বুক করুন অথবা টিমের সঙ্গে কলের জন্য সময় নিন।",
+      "notes": "উদ্যোক্তা, ফ্রিল্যান্সার, পেশাজীবী ও সোশ্যাল ইমপ্যাক্ট টিমের জন্য কো-ওয়ার্কিং স্পেস ও ইনোভেশন হাব। ডেস্ক ও প্রাইভেট অফিসের পাশাপাশি মেম্বাররা বিভিন্ন কমিউনিটি ইভেন্ট, উদ্যোক্তা প্রোগ্রাম, পরামর্শ সেবা এবং Impact Hub-এর আন্তর্জাতিক নেটওয়ার্কে যুক্ত হওয়ার সুবিধা পান।"
+    }
   },
   {
-    "name": "hubdhaka",
-    "type": "Coworking space",
-    "city": "Dhaka",
-    "locations": "Mirpur 11 (Building 7, Road 3, Section 7).",
-    "priceRange": "Premium coworking BDT 9,000 per month; Basic Coworking is currently waitlisted; team rooms are quoted on enquiry.",
-    "facilities": [
-      "Shared workspace",
-      "Client meeting space",
-      "Backup internet and power",
-      "Printing and lockers",
-      "Event space for up to 130 people"
-    ],
-    "hours": "Not publicly stated",
-    "applicationPath": "Submit the membership application for evaluation, then schedule a visit and one-day trial if invited.",
+    "id": "hubdhaka",
     "website": "https://hubdhaka.com/",
-    "sourceUrl": "https://hubdhaka.com/take-the-test.html",
+    "sourceUrls": [
+      "https://hubdhaka.com/take-the-test.html"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "A community-oriented Mirpur coworking space for freelancers, entrepreneurs and small teams. Membership includes workspace, backup internet and power, printing, lockers and event facilities without a long-term agreement; admission is application-based."
+    "en": {
+      "name": "hubdhaka",
+      "type": "Coworking space",
+      "city": "Dhaka",
+      "locations": "Mirpur 11 (Building 7, Road 3, Section 7).",
+      "priceRange": "Premium coworking BDT 9,000 per month; Basic Coworking is currently waitlisted; team rooms are quoted on enquiry.",
+      "facilities": [
+        "Shared workspace",
+        "Client meeting space",
+        "Backup internet and power",
+        "Printing and lockers",
+        "Event space for up to 130 people"
+      ],
+      "hours": "Not publicly stated",
+      "applicationPath": "Submit the membership application for evaluation, then schedule a visit and one-day trial if invited.",
+      "notes": "A community-oriented Mirpur coworking space for freelancers, entrepreneurs and small teams. Membership includes workspace, backup internet and power, printing, lockers and event facilities without a long-term agreement; admission is application-based."
+    },
+    "bn": {
+      "name": "hubdhaka",
+      "type": "কো-ওয়ার্কিং স্পেস",
+      "city": "ঢাকা",
+      "locations": "মিরপুর ১১ (বিল্ডিং ৭, রোড ৩, সেকশন ৭)।",
+      "priceRange": "প্রিমিয়াম কো-ওয়ার্কিং প্রতি মাসে ৯,০০০ টাকা; বেসিক কো-ওয়ার্কিংয়ে বর্তমানে অপেক্ষমাণ তালিকা (waitlist) চলছে; টিম রুমের ভাড়া আলোচনার ভিত্তিতে নির্ধারিত হয়।",
+      "facilities": [
+        "শেয়ার্ড ওয়ার্কস্পেস",
+        "ক্লায়েন্ট মিটিং স্পেস",
+        "ব্যাকআপ ইন্টারনেট ও বিদ্যুৎ",
+        "প্রিন্টিং ও লকার",
+        "১৩০ জন ধারণক্ষমতার ইভেন্ট স্পেস"
+      ],
+      "hours": "প্রকাশ্যে বলা নেই",
+      "applicationPath": "মেম্বারশিপের জন্য আবেদনপত্র জমা দিন; আবেদন মূল্যায়নের পর নির্বাচিত হলে স্পেস পরিদর্শন ও এক দিনের ট্রায়ালের সুযোগ মিলবে।",
+      "notes": "ফ্রিল্যান্সার, উদ্যোক্তা ও ছোট টিমের জন্য মিরপুরের একটি কমিউনিটি-ভিত্তিক কো-ওয়ার্কিং স্পেস। মেম্বারশিপে কোনো দীর্ঘমেয়াদি চুক্তি ছাড়াই শেয়ার্ড স্পেস, ব্যাকআপ বিদ্যুৎ ও ইন্টারনেট, প্রিন্টিং, লকার ও ইভেন্টের সুবিধা পাওয়া যায়; সদস্যপদ আবেদন মূল্যায়নের মাধ্যমে দেওয়া হয়।"
+    }
   },
   {
-    "name": "WorkStation 101",
-    "type": "Coworking space",
-    "city": "Dhaka",
-    "locations": "Uttara Tower, Level 4, 1 Jashimuddin Avenue, Sector 3, Uttara.",
-    "priceRange": "Hot desk BDT 100 per hour, BDT 700 per day or BDT 8,000 per month; private offices start from BDT 40,000 per month. Hot-desk prices exclude 15% VAT.",
-    "facilities": [
-      "Hot desks",
-      "Dedicated desks",
-      "Private offices",
-      "Meeting and conference rooms",
-      "Event space",
-      "High-speed Wi-Fi",
-      "Generator backup",
-      "Printing and lockers"
-    ],
-    "hours": "Saturday–Thursday, 9:00 AM–8:00 PM for hot desks and premium desks",
-    "applicationPath": "Book a desk or room through the co-working page, or contact WorkStation 101 for a private office.",
+    "id": "workstation-101",
     "website": "https://workstation101.com/",
-    "sourceUrl": "https://workstation101.com/co-working-space/",
+    "sourceUrls": [
+      "https://workstation101.com/co-working-space/"
+    ],
     "lastVerified": "2026-08-25",
-    "notes": "An Uttara coworking space for individual professionals and teams, with hourly, daily and monthly desks, private offices, meeting rooms, event space and virtual-office services."
+    "en": {
+      "name": "WorkStation 101",
+      "type": "Coworking space",
+      "city": "Dhaka",
+      "locations": "Uttara Tower, Level 4, 1 Jashimuddin Avenue, Sector 3, Uttara.",
+      "priceRange": "Hot desk BDT 100 per hour, BDT 700 per day or BDT 8,000 per month; private offices start from BDT 40,000 per month. Hot-desk prices exclude 15% VAT.",
+      "facilities": [
+        "Hot desks",
+        "Dedicated desks",
+        "Private offices",
+        "Meeting and conference rooms",
+        "Event space",
+        "High-speed Wi-Fi",
+        "Generator backup",
+        "Printing and lockers"
+      ],
+      "hours": "Saturday–Thursday, 9:00 AM–8:00 PM for hot desks and premium desks",
+      "applicationPath": "Book a desk or room through the co-working page, or contact WorkStation 101 for a private office.",
+      "notes": "An Uttara coworking space for individual professionals and teams, with hourly, daily and monthly desks, private offices, meeting rooms, event space and virtual-office services."
+    },
+    "bn": {
+      "name": "WorkStation 101",
+      "type": "কো-ওয়ার্কিং স্পেস",
+      "city": "ঢাকা",
+      "locations": "উত্তরা টাওয়ার, লেভেল ৪, ১ জসিমউদ্দীন এভিনিউ, সেক্টর ৩, উত্তরা।",
+      "priceRange": "হট ডেস্ক ঘণ্টায় ১০০ টাকা, দিনে ৭০০ টাকা অথবা মাসে ৮,০০০ টাকা। প্রাইভেট অফিস মাসে ৪০,০০০ টাকা থেকে শুরু। হট ডেস্কের উল্লেখ করা দামে ১৫% ভ্যাট ধরা নেই।",
+      "facilities": [
+        "হট ডেস্ক",
+        "ডেডিকেটেড ডেস্ক",
+        "প্রাইভেট অফিস",
+        "মিটিং ও কনফারেন্স রুম",
+        "ইভেন্ট স্পেস",
+        "হাই-স্পিড ওয়াই-ফাই",
+        "জেনারেটর ব্যাকআপ",
+        "প্রিন্টিং ও লকার"
+      ],
+      "hours": "শনিবার–বৃহস্পতিবার, সকাল ৯:০০টা থেকে রাত ৮:০০টা (হট ডেস্ক ও প্রিমিয়াম ডেস্কের জন্য)",
+      "applicationPath": "ডেস্ক বা রুম বুক করতে কো-ওয়ার্কিং পেজ ব্যবহার করুন, অথবা প্রাইভেট অফিসের জন্য সরাসরি WorkStation 101-এর সঙ্গে যোগাযোগ করুন।",
+      "notes": "উত্তরার এই কো-ওয়ার্কিং স্পেসে একক পেশাজীবী ও টিম ঘণ্টা, দিন বা মাস হিসেবে ডেস্ক নিতে পারে। প্রাইভেট অফিস, মিটিং রুম, ইভেন্ট স্পেস ও ভার্চুয়াল অফিসও আছে।"
+    }
   }
 ]

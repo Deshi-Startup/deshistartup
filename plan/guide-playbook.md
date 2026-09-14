@@ -273,4 +273,4 @@ A guide is done when:
 - both editions pass `lint:citations`, `lint:routes`, `lint:media`, `lint:bangla`, and the build;
 - the GitHub issue claimed in step 1 is closed; and
 - `npm run backlog:status` has been re-run when a stub became a guide, so
-  [`status-report.md`](./status-report.md) counts it — that file is generated, never hand-edited.
+  the local `plan/status-report.md` counts it — that file is generated, never hand-edited or committed.

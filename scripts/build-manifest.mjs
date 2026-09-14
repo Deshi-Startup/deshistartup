@@ -25,6 +25,7 @@ import { prepareContributorSnapshot } from "../app/lib/contributor-leaderboard.m
 import { sourceSupportsInlineEdit } from "../app/lib/inline-edit-policy.mjs";
 import { isWrittenGuide } from "./content-guide.mjs";
 import { collectGitDates } from "./git-content-dates.mjs";
+import { datesForPage, PAGE_DATA_PATHS } from "./page-data-inputs.mjs";
 import { parseFrontmatter } from "./frontmatter.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -76,7 +77,7 @@ function walkPages(dir, baseDir) {
   return pages;
 }
 
-const gitDates = collectGitDates(root);
+const gitDates = collectGitDates(root, PAGE_DATA_PATHS);
 const generatedDir = path.join(root, "app", "generated");
 fs.mkdirSync(generatedDir, { recursive: true });
 
@@ -107,10 +108,9 @@ for (const locale of LOCALES) {
     }
     const repoPath = path.relative(root, filePath).split(path.sep).join("/");
     const verified = fm.verified ? String(fm.verified) : null;
-    const date = gitDates.modified.get(repoPath) || verified;
-    const published = gitDates.published.get(repoPath) || null;
-    const modifiedAt = gitDates.modifiedAt.get(repoPath) || null;
-    const publishedAt = gitDates.publishedAt.get(repoPath) || null;
+    const { date, published, modifiedAt, publishedAt } = datesForPage(
+      gitDates, { repoPath, slug: rel, verified },
+    );
     if (date) allDates[route] = date;
     if (published) allPublished[route] = published;
     if (verified) allVerified[route] = verified;
@@ -238,13 +238,13 @@ if (fs.existsSync(contributorSnapshotPath)) {
     for (const page of llmsPages[locale.key] || []) {
       if (page.route === "/" || page.route === "/en") continue;
       if (!inlineEditableRoutes.has(page.route)) continue;
-      contributable.push(page.route);
+      contributable.push([page.route, [page.title, Number(page.stub)]]);
     }
   }
-  contributable.sort();
+  contributable.sort(([a], [b]) => a.localeCompare(b));
   fs.writeFileSync(
     path.join(generatedDir, "contributable.json"),
-    JSON.stringify(contributable, null, 1),
+    JSON.stringify(Object.fromEntries(contributable)),
   );
   console.log(
     `contributable.json: ${contributable.length} editable routes`,

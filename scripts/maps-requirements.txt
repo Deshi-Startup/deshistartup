@@ -1,2 +1,2 @@
-# Maintainer-only boundary ingestion; never used by the website build or client.
+# Boundary ingestion and importer tests; never used by the website build or client.
 shapely==2.1.2

@@ -1,257 +1,526 @@
 [
   {
-    "name": "Bangladesh Angels Network",
-    "type": "Angel network",
-    "stage": [
-      "Pre-seed",
-      "Seed"
-    ],
-    "sectors": [
-      "Sector-agnostic",
-      "Digital products and services",
-      "Bangladesh-linked startups"
-    ],
-    "chequeSize": "Not publicly stated",
-    "notableInvestments": [
-      "Pathao",
-      "Chaldal",
-      "Shajgoj",
-      "Chhaya",
-      "PulseTech"
-    ],
-    "applicationPath": "Send a one-line company summary and PDF pitch deck through BAN's startup pitch form. Selected founders may be invited to a showcase and investor diligence.",
+    "id": "bangladesh-angels-network",
     "website": "https://bdangels.co/",
-    "sourceUrl": "https://bdangels.co/faq",
-    "lastVerified": "2026-08-25",
-    "notes": "A member-led angel network that syndicates investments into early-stage, Bangladesh-linked digital businesses. BAN helps selected founders prepare their deck, data room and fundraising strategy before presenting them to angels for diligence and a common term sheet."
-  },
-  {
-    "name": "Bangladesh Women Investors Network",
-    "type": "Angel network",
-    "stage": [
-      "Pre-seed",
-      "Seed"
-    ],
-    "sectors": [
-      "Sector-agnostic",
-      "Women-led startups",
-      "Women-focused startups"
-    ],
-    "chequeSize": "Not publicly stated",
-    "notableInvestments": [],
-    "applicationPath": "Submit a pitch through Bangladesh Angels Network's startup form; BWIN operates as BAN's gender-lens sister chapter.",
-    "website": "https://bdangels.co/",
-    "sourceUrl": "https://bdangels.co/",
-    "lastVerified": "2026-08-19",
-    "notes": "BAN's women-led sister chapter mobilises women angel investors and applies a gender lens to pre-seed and seed deals. It focuses on expanding capital, mentoring and investor access for women-led and women-focused ventures."
-  },
-  {
-    "name": "Startup Bangladesh Limited",
-    "type": "Government-backed venture capital",
-    "stage": [
-      "Seed",
-      "Early stage",
-      "Growth"
-    ],
-    "sectors": [
-      "Fintech",
-      "Healthtech",
-      "Enterprise software",
-      "E-commerce",
-      "Agritech",
-      "Frontier technology"
-    ],
-    "chequeSize": "BDT 25 lakh–5 crore per investment round",
-    "notableInvestments": [
-      "10 Minute School",
-      "Pathao",
-      "Chaldal",
-      "Shikho",
-      "Truck Lagbe"
-    ],
-    "applicationPath": "Complete Startup Bangladesh's online investment application with company, founder, traction and financial information.",
-    "website": "https://www.startupbangladesh.vc/",
-    "sourceUrl": "https://www.startupbangladesh.vc/contact/faqs/",
-    "lastVerified": "2026-08-19",
-    "notes": "The ICT Division's government-owned venture-capital company invests equity or quasi-equity in Bangladesh-registered startups and impact enterprises with an MVP and evidence of customer or revenue growth. It can also provide governance and operational support and co-invest with other funders."
-  },
-  {
-    "name": "Anchorless Bangladesh",
-    "type": "Venture capital fund",
-    "stage": [
-      "Pre-seed",
-      "Seed",
-      "Post-seed"
-    ],
-    "sectors": [
-      "Sector-agnostic",
-      "Technology-enabled businesses"
-    ],
-    "chequeSize": "Not publicly stated",
-    "notableInvestments": [
-      "Agroshift",
-      "HypeScout",
-      "Loop Freight",
-      "Pathao",
-      "Shikho"
-    ],
-    "applicationPath": "No public application route is published.",
-    "website": "https://anchorless.vc/",
-    "sourceUrl": "https://www.anchorless.vc/portfolio",
-    "lastVerified": "2026-08-19",
-    "notes": "A Bangladesh-focused early-stage fund investing primarily in seed rounds, with selective pre-seed and post-seed deals. It looks for companies with a technology or data advantage, scalable models, international expansion potential and a credible path to follow-on funding and exit."
-  },
-  {
-    "name": "Bangladesh Startup Investment Company PLC (BSIC)",
-    "type": "Institutional venture capital",
-    "stage": [
-      "Late-seed",
-      "Series A",
-      "Series B"
-    ],
-    "sectors": [
-      "Sector-agnostic",
-      "Technology",
-      "Agriculture"
-    ],
-    "chequeSize": "Not publicly stated",
-    "notableInvestments": [],
-    "applicationPath": "Submit company and round details, a pitch deck and cap table through the BSIC: Deals form.",
-    "website": "https://www.bsic.vc/",
-    "sourceUrl": "https://www.bsic.vc/",
-    "lastVerified": "2026-08-19",
-    "notes": "A permanent venture-capital vehicle funded by 39 Bangladeshi commercial banks. Its US$35 million ONKUR fund is designed to co-invest in high-growth Bangladesh startups alongside a credible global or regional lead investor."
-  },
-  {
-    "name": "Dekko ISHO Venture Capital (DIVC)",
-    "type": "Corporate venture capital investor",
-    "stage": [
-      "Idea",
-      "Early stage",
-      "Growth"
-    ],
-    "sectors": [
-      "Fintech",
-      "Cybersecurity and AI",
-      "Cleantech",
-      "SaaS and enterprise",
-      "Agritech and food supply chain",
-      "Proptech",
-      "Deeptech",
-      "Hospitality tech",
-      "E-commerce",
-      "Gaming and esports"
-    ],
-    "chequeSize": "Not publicly stated",
-    "notableInvestments": [
-      "Markopolo.ai",
-      "Zatiq",
-      "Turtle Venture Studio",
-      "Ecobloc"
-    ],
-    "applicationPath": "Submit the startup and pitch deck through DIVC's rolling online application.",
-    "website": "https://www.di.vc/",
-    "sourceUrl": "https://www.di.vc/",
-    "lastVerified": "2026-08-25",
-    "notes": "A founder-focused venture investor backed by Dekko ISHO Group. It provides capital and hands-on support across strategy, operations, legal, hiring, branding and growth."
-  },
-  {
-    "name": "Bangladesh Venture Capital Limited (BVCL)",
-    "type": "Venture capital investor and fund manager",
-    "stage": [
-      "Pre-seed",
-      "Seed",
-      "Growth"
-    ],
-    "sectors": [
-      "Technology and software",
-      "Fintech",
-      "Agritech",
-      "Edtech",
-      "Healthtech",
-      "E-commerce"
-    ],
-    "chequeSize": "Not publicly stated",
-    "notableInvestments": [
-      "Chaldal",
-      "Sokrio Technologies",
-      "ADEFFI",
-      "Ayykori"
-    ],
-    "applicationPath": "Contact BVCL through its website with the business proposal and funding requirement.",
-    "website": "https://venture.com.bd/",
-    "sourceUrl": "https://venture.com.bd/portfolio/",
-    "lastVerified": "2026-08-25",
-    "notes": "A Bangladesh venture-capital and alternative-investment company providing capital, mentorship, industry connections and strategic guidance to startups and growth-stage businesses."
-  },
-  {
-    "name": "YY Ventures",
-    "type": "Impact investor and incubator",
-    "stage": [
-      "Idea",
-      "Pre-seed",
-      "Seed"
-    ],
-    "sectors": [
-      "Social business",
-      "Climate and environment",
-      "Inclusive livelihoods"
-    ],
-    "chequeSize": "Not publicly stated",
-    "notableInvestments": [],
-    "applicationPath": "Email info@yy.ventures with a concise overview of the venture and its social or environmental impact.",
-    "website": "https://yy.ventures/",
-    "sourceUrl": "https://yy.ventures/funds",
-    "lastVerified": "2026-08-19",
-    "notes": "An impact investor and venture-support company for early-stage social businesses addressing challenges such as carbon emissions, poverty and unemployment in Bangladesh. It combines capital with hands-on help securing partners, customers and follow-on investors."
-  },
-  {
-    "name": "Accelerating Asia Ventures",
-    "type": "Regional VC accelerator",
-    "stage": [
-      "Seed",
-      "Pre-Series A"
-    ],
-    "sectors": [
-      "Sector-agnostic",
-      "Technology-enabled startups"
-    ],
-    "chequeSize": "US$100,000 upfront; up to US$150,000 in follow-on funding",
-    "notableInvestments": [],
-    "applicationPath": "Apply to the flagship accelerator through Accelerating Asia Ventures' Get Funded page; Cohort 14 applications are open.",
-    "website": "https://www.acceleratingasia.com/",
-    "sourceUrl": "https://www.acceleratingasia.com/getfunded",
-    "lastVerified": "2026-08-19",
-    "notes": "A Singapore-based VC accelerator investing in high-growth, pre-Series A technology startups across South and Southeast Asia. Investment is tied to its 100-day accelerator; participating companies pay a US$35,000 programme fee and give 3% equity, separate from the post-money SAFE investment terms."
-  },
-  {
-    "name": "IDLC Venture Capital",
-    "type": "Venture capital fund",
-    "stage": [
-      "Early stage"
-    ],
-    "sectors": [
-      "Sector-agnostic",
-      "Technology-enabled startups"
-    ],
-    "chequeSize": "Not publicly stated",
-    "notableInvestments": [
-      "Arogga",
-      "Barikoi",
-      "iFarmer",
-      "Truck Lagbe",
-      "Intelligent Machines",
-      "Pickaboo"
-    ],
-    "applicationPath": "Applications are closed. IDLC says Fund I is exhausted and it is not currently investing. Follow the official application page for a future reopening.",
-    "website": "https://www.idlcvc.com/",
-    "sourceUrl": "https://www.idlcvc.com/coming-soon-03",
     "sourceUrls": [
+      "https://bdangels.co/faq"
+    ],
+    "lastVerified": "2026-08-25",
+    "en": {
+      "name": "Bangladesh Angels Network",
+      "type": "Angel network",
+      "stage": [
+        "Pre-seed",
+        "Seed"
+      ],
+      "sectors": [
+        "Sector-agnostic",
+        "Digital products and services",
+        "Bangladesh-linked startups"
+      ],
+      "chequeSize": "Not publicly stated",
+      "notableInvestments": [
+        "Pathao",
+        "Chaldal",
+        "Shajgoj",
+        "Chhaya",
+        "PulseTech"
+      ],
+      "applicationPath": "Send a one-line company summary and PDF pitch deck through BAN's startup pitch form. Selected founders may be invited to a showcase and investor diligence.",
+      "notes": "A member-led angel network that syndicates investments into early-stage, Bangladesh-linked digital businesses. BAN helps selected founders prepare their deck, data room and fundraising strategy before presenting them to angels for diligence and a common term sheet."
+    },
+    "bn": {
+      "name": "Bangladesh Angels Network",
+      "type": "অ্যাঞ্জেল নেটওয়ার্ক",
+      "stage": [
+        "প্রি-সিড",
+        "সিড"
+      ],
+      "sectors": [
+        "যেকোনো খাত",
+        "ডিজিটাল প্রোডাক্ট ও সেবা",
+        "বাংলাদেশ-সম্পর্কিত স্টার্টআপ"
+      ],
+      "chequeSize": "প্রকাশ্যে বলা নেই",
+      "notableInvestments": [
+        "Pathao",
+        "Chaldal",
+        "Shajgoj",
+        "Chhaya",
+        "PulseTech"
+      ],
+      "applicationPath": "BAN-এর স্টার্টআপ পিচ ফরমের মাধ্যমে কোম্পানির এক লাইনের বিবরণ ও পিডিএফ পিচ ডেক জমা দিন। নির্বাচিত ফাউন্ডারদের শোকেস ও ইনভেস্টরদের ডিউ ডিলিজেন্সের জন্য আমন্ত্রণ জানানো হতে পারে।",
+      "notes": "সদস্যদের পরিচালিত এই অ্যাঞ্জেল নেটওয়ার্কটি প্রাথমিক পর্যায়ের বাংলাদেশ-সম্পর্কিত ডিজিটাল ব্যবসায় যৌথভাবে বিনিয়োগ করে। BAN নির্বাচিত ফাউন্ডারদের পিচ ডেক, ডেটা রুম ও ফান্ড সংগ্রহের পরিকল্পনা গুছিয়ে নিতে সাহায্য করে। এরপর যৌথ ডিউ ডিলিজেন্স ও সমন্বিত টার্ম শিটের জন্য ইনভেস্টরদের সামনে উপস্থাপন করে।"
+    }
+  },
+  {
+    "id": "bangladesh-women-investors-network",
+    "website": "https://bdangels.co/",
+    "sourceUrls": [
+      "https://bdangels.co/"
+    ],
+    "lastVerified": "2026-08-19",
+    "en": {
+      "name": "Bangladesh Women Investors Network",
+      "type": "Angel network",
+      "stage": [
+        "Pre-seed",
+        "Seed"
+      ],
+      "sectors": [
+        "Sector-agnostic",
+        "Women-led startups",
+        "Women-focused startups"
+      ],
+      "chequeSize": "Not publicly stated",
+      "notableInvestments": [],
+      "applicationPath": "Submit a pitch through Bangladesh Angels Network's startup form; BWIN operates as BAN's gender-lens sister chapter.",
+      "notes": "BAN's women-led sister chapter mobilises women angel investors and applies a gender lens to pre-seed and seed deals. It focuses on expanding capital, mentoring and investor access for women-led and women-focused ventures."
+    },
+    "bn": {
+      "name": "Bangladesh Women Investors Network",
+      "type": "অ্যাঞ্জেল নেটওয়ার্ক",
+      "stage": [
+        "প্রি-সিড",
+        "সিড"
+      ],
+      "sectors": [
+        "যেকোনো খাত",
+        "নারী-নেতৃত্বাধীন স্টার্টআপ",
+        "নারীকেন্দ্রিক উদ্যোগ"
+      ],
+      "chequeSize": "প্রকাশ্যে বলা নেই",
+      "notableInvestments": [],
+      "applicationPath": "Bangladesh Angels Network-এর স্টার্টআপ ফরমের মাধ্যমে পিচ জমা দিন। BWIN মূলত BAN-এর নারীকেন্দ্রিক সিস্টার চ্যাপ্টার হিসেবে পরিচালিত হয়।",
+      "notes": "নারী অ্যাঞ্জেল ইনভেস্টরদের একত্র করা এবং প্রি-সিড ও সিড রাউন্ডে জেন্ডার-লেন্স দৃষ্টিকোণ থেকে বিনিয়োগ করাই BAN-এর এই সহযোগী চ্যাপ্টারের মূল কাজ। নারী-নেতৃত্বাধীন ও নারীদের লক্ষ্য করে গড়ে ওঠা উদ্যোগে মূলধন, মেন্টরিং ও ইনভেস্টর নেটওয়ার্ক বাড়ানোই এর লক্ষ্য।"
+    }
+  },
+  {
+    "id": "startup-bangladesh-limited",
+    "website": "https://www.startupbangladesh.vc/",
+    "sourceUrls": [
+      "https://www.startupbangladesh.vc/contact/faqs/"
+    ],
+    "lastVerified": "2026-08-19",
+    "en": {
+      "name": "Startup Bangladesh Limited",
+      "type": "Government-backed venture capital",
+      "stage": [
+        "Seed",
+        "Early stage",
+        "Growth"
+      ],
+      "sectors": [
+        "Fintech",
+        "Healthtech",
+        "Enterprise software",
+        "E-commerce",
+        "Agritech",
+        "Frontier technology"
+      ],
+      "chequeSize": "BDT 25 lakh–5 crore per investment round",
+      "notableInvestments": [
+        "10 Minute School",
+        "Pathao",
+        "Chaldal",
+        "Shikho",
+        "Truck Lagbe"
+      ],
+      "applicationPath": "Complete Startup Bangladesh's online investment application with company, founder, traction and financial information.",
+      "notes": "The ICT Division's government-owned venture-capital company invests equity or quasi-equity in Bangladesh-registered startups and impact enterprises with an MVP and evidence of customer or revenue growth. It can also provide governance and operational support and co-invest with other funders."
+    },
+    "bn": {
+      "name": "Startup Bangladesh Limited",
+      "type": "সরকারি ভেঞ্চার ক্যাপিটাল",
+      "stage": [
+        "সিড",
+        "আর্লি স্টেজ",
+        "গ্রোথ"
+      ],
+      "sectors": [
+        "ফিনটেক",
+        "হেলথটেক",
+        "এন্টারপ্রাইজ সফটওয়্যার",
+        "ই-কমার্স",
+        "এগ্রিটেক",
+        "ফ্রন্টিয়ার প্রযুক্তি"
+      ],
+      "chequeSize": "প্রতি রাউন্ডে ২৫ লাখ থেকে ৫ কোটি টাকা",
+      "notableInvestments": [
+        "10 Minute School",
+        "Pathao",
+        "Chaldal",
+        "Shikho",
+        "Truck Lagbe"
+      ],
+      "applicationPath": "কোম্পানি, ফাউন্ডার, ট্র্যাকশন ও আর্থিক তথ্য দিয়ে Startup Bangladesh-এর অনলাইন ইনভেস্টমেন্ট আবেদন ফরম পূরণ করুন।",
+      "notes": "তথ্য ও যোগাযোগ প্রযুক্তি বিভাগের মালিকানাধীন এই সরকারি ভেঞ্চার ক্যাপিটাল কোম্পানিটি বাংলাদেশে নিবন্ধিত স্টার্টআপ ও ইমপ্যাক্ট উদ্যোগে ইকুইটি বা কোয়াসি-ইকুইটির মাধ্যমে বিনিয়োগ করে। আবেদনকারী প্রতিষ্ঠানের একটি তৈরি এমভিপি (MVP) এবং কাস্টমার বা আয় বৃদ্ধির বাস্তব প্রমাণ থাকতে হয়। এটি প্রাতিষ্ঠানিক সুশাসন ও পরিচালন সহায়তার পাশাপাশি অন্যান্য ইনভেস্টরের সাথে যৌথ বিনিয়োগও করে থাকে।"
+    }
+  },
+  {
+    "id": "anchorless-bangladesh",
+    "website": "https://anchorless.vc/",
+    "sourceUrls": [
+      "https://www.anchorless.vc/portfolio"
+    ],
+    "lastVerified": "2026-08-19",
+    "en": {
+      "name": "Anchorless Bangladesh",
+      "type": "Venture capital fund",
+      "stage": [
+        "Pre-seed",
+        "Seed",
+        "Post-seed"
+      ],
+      "sectors": [
+        "Sector-agnostic",
+        "Technology-enabled businesses"
+      ],
+      "chequeSize": "Not publicly stated",
+      "notableInvestments": [
+        "Agroshift",
+        "HypeScout",
+        "Loop Freight",
+        "Pathao",
+        "Shikho"
+      ],
+      "applicationPath": "No public application route is published.",
+      "notes": "A Bangladesh-focused early-stage fund investing primarily in seed rounds, with selective pre-seed and post-seed deals. It looks for companies with a technology or data advantage, scalable models, international expansion potential and a credible path to follow-on funding and exit."
+    },
+    "bn": {
+      "name": "Anchorless Bangladesh",
+      "type": "ভেঞ্চার ক্যাপিটাল ফান্ড",
+      "stage": [
+        "প্রি-সিড",
+        "সিড",
+        "পোস্ট-সিড"
+      ],
+      "sectors": [
+        "যেকোনো খাত",
+        "প্রযুক্তি-নির্ভর ব্যবসা"
+      ],
+      "chequeSize": "প্রকাশ্যে বলা নেই",
+      "notableInvestments": [
+        "Agroshift",
+        "HypeScout",
+        "Loop Freight",
+        "Pathao",
+        "Shikho"
+      ],
+      "applicationPath": "প্রকাশ্যে কোনো আবেদনপথ জানানো নেই।",
+      "notes": "বাংলাদেশ-কেন্দ্রিক এই প্রারম্ভিক পর্যায়ের ফান্ডটি মূলত সিড রাউন্ডে বিনিয়োগ করে, সাথে বাছাইকৃত কিছু প্রি-সিড ও পোস্ট-সিড ডিলেও অংশ নেয়। যেসব কোম্পানির প্রযুক্তি বা ডেটায় শক্ত অবস্থান, স্কেল করার মতো মডেল, আন্তর্জাতিক বাজারে বিস্তারের সুযোগ এবং পরবর্তী রাউন্ডে ফান্ডিং ও এক্সিটের পরিষ্কার রূপরেখা রয়েছে, তারা সেগুলোতে গুরুত্ব দেয়।"
+    }
+  },
+  {
+    "id": "bangladesh-startup-investment-company-plc-bsic",
+    "website": "https://www.bsic.vc/",
+    "sourceUrls": [
+      "https://www.bsic.vc/"
+    ],
+    "lastVerified": "2026-08-19",
+    "en": {
+      "name": "Bangladesh Startup Investment Company PLC (BSIC)",
+      "type": "Institutional venture capital",
+      "stage": [
+        "Late-seed",
+        "Series A",
+        "Series B"
+      ],
+      "sectors": [
+        "Sector-agnostic",
+        "Technology",
+        "Agriculture"
+      ],
+      "chequeSize": "Not publicly stated",
+      "notableInvestments": [],
+      "applicationPath": "Submit company and round details, a pitch deck and cap table through the BSIC: Deals form.",
+      "notes": "A permanent venture-capital vehicle funded by 39 Bangladeshi commercial banks. Its US$35 million ONKUR fund is designed to co-invest in high-growth Bangladesh startups alongside a credible global or regional lead investor."
+    },
+    "bn": {
+      "name": "Bangladesh Startup Investment Company PLC (BSIC)",
+      "type": "প্রাতিষ্ঠানিক ভেঞ্চার ক্যাপিটাল",
+      "stage": [
+        "লেট-সিড",
+        "সিরিজ এ",
+        "সিরিজ বি"
+      ],
+      "sectors": [
+        "যেকোনো খাত",
+        "প্রযুক্তি",
+        "কৃষি"
+      ],
+      "chequeSize": "প্রকাশ্যে বলা নেই",
+      "notableInvestments": [],
+      "applicationPath": "কোম্পানি ও ফান্ডিং রাউন্ডের বিবরণ, পিচ ডেক ও ক্যাপ টেবিল দিয়ে BSIC Deals ফরম পূরণ করে জমা দিন।",
+      "notes": "বাংলাদেশের ৩৯টি বাণিজ্যিক ব্যাংকের অর্থায়নে গঠিত একটি স্থায়ী ভেঞ্চার ক্যাপিটাল প্রতিষ্ঠান। এদের ৩৫ মিলিয়ন ডলারের ONKUR ফান্ডটি কোনো নির্ভরযোগ্য বৈশ্বিক বা আঞ্চলিক লিড ইনভেস্টরের পাশাপাশি সম্ভাবনাময় বাংলাদেশি স্টার্টআপে যৌথ বিনিয়োগ (co-invest) করার জন্য তৈরি।"
+    }
+  },
+  {
+    "id": "dekko-isho-venture-capital-divc",
+    "website": "https://www.di.vc/",
+    "sourceUrls": [
+      "https://www.di.vc/"
+    ],
+    "lastVerified": "2026-08-25",
+    "en": {
+      "name": "Dekko ISHO Venture Capital (DIVC)",
+      "type": "Corporate venture capital investor",
+      "stage": [
+        "Idea",
+        "Early stage",
+        "Growth"
+      ],
+      "sectors": [
+        "Fintech",
+        "Cybersecurity and AI",
+        "Cleantech",
+        "SaaS and enterprise",
+        "Agritech and food supply chain",
+        "Proptech",
+        "Deeptech",
+        "Hospitality tech",
+        "E-commerce",
+        "Gaming and esports"
+      ],
+      "chequeSize": "Not publicly stated",
+      "notableInvestments": [
+        "Markopolo.ai",
+        "Zatiq",
+        "Turtle Venture Studio",
+        "Ecobloc"
+      ],
+      "applicationPath": "Submit the startup and pitch deck through DIVC's rolling online application.",
+      "notes": "A founder-focused venture investor backed by Dekko ISHO Group. It provides capital and hands-on support across strategy, operations, legal, hiring, branding and growth."
+    },
+    "bn": {
+      "name": "Dekko ISHO Venture Capital (DIVC)",
+      "type": "করপোরেট ভেঞ্চার ক্যাপিটাল ইনভেস্টর",
+      "stage": [
+        "আইডিয়া",
+        "আর্লি স্টেজ",
+        "গ্রোথ"
+      ],
+      "sectors": [
+        "ফিনটেক",
+        "সাইবার সিকিউরিটি ও এআই",
+        "ক্লিনটেক",
+        "SaaS ও এন্টারপ্রাইজ",
+        "অ্যাগ্রিটেক ও ফুড সাপ্লাই চেইন",
+        "প্রপটেক",
+        "ডিপটেক",
+        "হসপিটালিটি টেক",
+        "ই-কমার্স",
+        "গেমিং ও ই-স্পোর্টস"
+      ],
+      "chequeSize": "প্রকাশ্যে বলা নেই",
+      "notableInvestments": [
+        "Markopolo.ai",
+        "Zatiq",
+        "Turtle Venture Studio",
+        "Ecobloc"
+      ],
+      "applicationPath": "DIVC-এর অনলাইন আবেদনপত্রে স্টার্টআপের তথ্য ও পিচ ডেক জমা দিন। আবেদন সারা বছর নেওয়া হয়।",
+      "notes": "Dekko ISHO Group-এর সমর্থনে পরিচালিত এই ভেঞ্চার ইনভেস্টর ফাউন্ডারদের প্রয়োজনকে অগ্রাধিকার দেয়। মূলধনের পাশাপাশি স্ট্র্যাটেজি, অপারেশন, আইনি কাজ, নিয়োগ, ব্র্যান্ডিং ও গ্রোথে হাতে-কলমে সহায়তা করে।"
+    }
+  },
+  {
+    "id": "bangladesh-venture-capital-limited-bvcl",
+    "website": "https://venture.com.bd/",
+    "sourceUrls": [
+      "https://venture.com.bd/portfolio/"
+    ],
+    "lastVerified": "2026-08-25",
+    "en": {
+      "name": "Bangladesh Venture Capital Limited (BVCL)",
+      "type": "Venture capital investor and fund manager",
+      "stage": [
+        "Pre-seed",
+        "Seed",
+        "Growth"
+      ],
+      "sectors": [
+        "Technology and software",
+        "Fintech",
+        "Agritech",
+        "Edtech",
+        "Healthtech",
+        "E-commerce"
+      ],
+      "chequeSize": "Not publicly stated",
+      "notableInvestments": [
+        "Chaldal",
+        "Sokrio Technologies",
+        "ADEFFI",
+        "Ayykori"
+      ],
+      "applicationPath": "Contact BVCL through its website with the business proposal and funding requirement.",
+      "notes": "A Bangladesh venture-capital and alternative-investment company providing capital, mentorship, industry connections and strategic guidance to startups and growth-stage businesses."
+    },
+    "bn": {
+      "name": "Bangladesh Venture Capital Limited (BVCL)",
+      "type": "ভেঞ্চার ক্যাপিটাল ইনভেস্টর ও ফান্ড ম্যানেজার",
+      "stage": [
+        "প্রি-সিড",
+        "সিড",
+        "গ্রোথ"
+      ],
+      "sectors": [
+        "প্রযুক্তি ও সফটওয়্যার",
+        "ফিনটেক",
+        "অ্যাগ্রিটেক",
+        "এডটেক",
+        "হেলথটেক",
+        "ই-কমার্স"
+      ],
+      "chequeSize": "প্রকাশ্যে বলা নেই",
+      "notableInvestments": [
+        "Chaldal",
+        "Sokrio Technologies",
+        "ADEFFI",
+        "Ayykori"
+      ],
+      "applicationPath": "বিজনেস প্রপোজাল আর ফান্ডের পরিমাণ জানিয়ে তাদের ওয়েবসাইটের মাধ্যমে BVCL-এর সঙ্গে যোগাযোগ করুন।",
+      "notes": "বাংলাদেশের একটি ভেঞ্চার-ক্যাপিটাল আর অল্টারনেটিভ-ইনভেস্টমেন্ট কোম্পানি। এরা স্টার্টআপ আর গ্রোথ-স্টেজ কোম্পানিগুলোতে মূলধনের পাশাপাশি মেন্টরশিপ, ইন্ডাস্ট্রি নেটওয়ার্ক আর স্ট্র্যাটেজিক সাপোর্ট দেয়।"
+    }
+  },
+  {
+    "id": "yy-ventures",
+    "website": "https://yy.ventures/",
+    "sourceUrls": [
+      "https://yy.ventures/funds"
+    ],
+    "lastVerified": "2026-08-19",
+    "en": {
+      "name": "YY Ventures",
+      "type": "Impact investor and incubator",
+      "stage": [
+        "Idea",
+        "Pre-seed",
+        "Seed"
+      ],
+      "sectors": [
+        "Social business",
+        "Climate and environment",
+        "Inclusive livelihoods"
+      ],
+      "chequeSize": "Not publicly stated",
+      "notableInvestments": [],
+      "applicationPath": "Email info@yy.ventures with a concise overview of the venture and its social or environmental impact.",
+      "notes": "An impact investor and venture-support company for early-stage social businesses addressing challenges such as carbon emissions, poverty and unemployment in Bangladesh. It combines capital with hands-on help securing partners, customers and follow-on investors."
+    },
+    "bn": {
+      "name": "YY Ventures",
+      "type": "ইমপ্যাক্ট ইনভেস্টর ও ইনকিউবেটর",
+      "stage": [
+        "আইডিয়া",
+        "প্রি-সিড",
+        "সিড"
+      ],
+      "sectors": [
+        "সামাজিক ব্যবসা",
+        "জলবায়ু ও পরিবেশ",
+        "অন্তর্ভুক্তিমূলক জীবিকা"
+      ],
+      "chequeSize": "প্রকাশ্যে বলা নেই",
+      "notableInvestments": [],
+      "applicationPath": "উদ্যোগ ও এর সামাজিক বা পরিবেশগত প্রভাবের সংক্ষিপ্ত বিবরণ দিয়ে info@yy.ventures ঠিকানায় ইমেইল করুন।",
+      "notes": "বাংলাদেশে কার্বন নিঃসরণ কমানো, দারিদ্র্য দূর করা ও বেকারত্ব দূর করতে কাজ করা প্রাথমিক পর্যায়ের সামাজিক ব্যবসাগুলোতে বিনিয়োগ ও সার্বিক সহায়তা দেয় YY Ventures। মূলধনের পাশাপাশি পার্টনারশিপ, কাস্টমার তৈরি এবং পরবর্তী রাউন্ডের ইনভেস্টর পেতে এরা নিবিড়ভাবে কাজ করে।"
+    }
+  },
+  {
+    "id": "accelerating-asia-ventures",
+    "website": "https://www.acceleratingasia.com/",
+    "sourceUrls": [
+      "https://www.acceleratingasia.com/getfunded"
+    ],
+    "lastVerified": "2026-08-19",
+    "en": {
+      "name": "Accelerating Asia Ventures",
+      "type": "Regional VC accelerator",
+      "stage": [
+        "Seed",
+        "Pre-Series A"
+      ],
+      "sectors": [
+        "Sector-agnostic",
+        "Technology-enabled startups"
+      ],
+      "chequeSize": "US$100,000 upfront; up to US$150,000 in follow-on funding",
+      "notableInvestments": [],
+      "applicationPath": "Apply to the flagship accelerator through Accelerating Asia Ventures' Get Funded page; Cohort 14 applications are open.",
+      "notes": "A Singapore-based VC accelerator investing in high-growth, pre-Series A technology startups across South and Southeast Asia. Investment is tied to its 100-day accelerator; participating companies pay a US$35,000 programme fee and give 3% equity, separate from the post-money SAFE investment terms."
+    },
+    "bn": {
+      "name": "Accelerating Asia Ventures",
+      "type": "আঞ্চলিক ভিসি অ্যাক্সিলারেটর",
+      "stage": [
+        "সিড",
+        "প্রি-সিরিজ এ"
+      ],
+      "sectors": [
+        "যেকোনো খাত",
+        "প্রযুক্তি-নির্ভর স্টার্টআপ"
+      ],
+      "chequeSize": "শুরুতে ১,০০,০০০ ডলার; পরবর্তীতে আরও ১,৫০,০০০ ডলার পর্যন্ত ফলো-অন ফান্ডিং",
+      "notableInvestments": [],
+      "applicationPath": "Accelerating Asia Ventures-এর Get Funded পেজ থেকে মূল অ্যাক্সিলারেটরের জন্য আবেদন করুন। বর্তমানে কোহোর্ট ১৪-এর আবেদন চলছে।",
+      "notes": "সিঙ্গাপুর-ভিত্তিক এই ভিসি অ্যাক্সিলারেটর দক্ষিণ ও দক্ষিণ-পূর্ব এশিয়ার উচ্চ সম্ভাবনাময় প্রি-সিরিজ এ প্রযুক্তি স্টার্টআপে বিনিয়োগ করে। বিনিয়োগের শর্ত হিসেবে ১০০ দিনের অ্যাক্সিলারেটর প্রোগ্রামে অংশ নিতে হয়। অংশগ্রহণকারী কোম্পানিকে ৩৫,০০০ ডলার প্রোগ্রাম ফি এবং ৩% ইকুইটি দিতে হয় (যা তাদের পোস্ট-মানি SAFE বিনিয়োগ চুক্তির বাইরে পৃথক শর্ত)।"
+    }
+  },
+  {
+    "id": "idlc-venture-capital",
+    "website": "https://www.idlcvc.com/",
+    "sourceUrls": [
+      "https://www.idlcvc.com/coming-soon-03",
       "https://www.idlcvc.com/thesis",
       "https://www.idlcvc.com/"
     ],
     "lastVerified": "2026-09-11",
-    "notes": "A Bangladesh-focused investor in early-stage technology and technology-enabled companies. Its published portfolio remains useful for research, but it is not a current funding route. The manager says it plans another fund in 2027; that is a plan, not an open call.",
-    "eligibility": "Its published thesis targets scalable technology businesses solving problems in Bangladesh. New applications are currently closed."
+    "en": {
+      "name": "IDLC Venture Capital",
+      "type": "Venture capital fund",
+      "stage": [
+        "Early stage"
+      ],
+      "sectors": [
+        "Sector-agnostic",
+        "Technology-enabled startups"
+      ],
+      "chequeSize": "Not publicly stated",
+      "notableInvestments": [
+        "Arogga",
+        "Barikoi",
+        "iFarmer",
+        "Truck Lagbe",
+        "Intelligent Machines",
+        "Pickaboo"
+      ],
+      "applicationPath": "Applications are closed. IDLC says Fund I is exhausted and it is not currently investing. Follow the official application page for a future reopening.",
+      "notes": "A Bangladesh-focused investor in early-stage technology and technology-enabled companies. Its published portfolio remains useful for research, but it is not a current funding route. The manager says it plans another fund in 2027; that is a plan, not an open call.",
+      "eligibility": "Its published thesis targets scalable technology businesses solving problems in Bangladesh. New applications are currently closed."
+    },
+    "bn": {
+      "name": "IDLC Venture Capital",
+      "type": "ভেঞ্চার ক্যাপিটাল ফান্ড",
+      "stage": [
+        "আর্লি স্টেজ"
+      ],
+      "sectors": [
+        "সব খাত",
+        "প্রযুক্তিনির্ভর স্টার্টআপ"
+      ],
+      "chequeSize": "প্রকাশ্যে বলা নেই",
+      "notableInvestments": [
+        "Arogga",
+        "Barikoi",
+        "iFarmer",
+        "Truck Lagbe",
+        "Intelligent Machines",
+        "Pickaboo"
+      ],
+      "applicationPath": "আবেদন বন্ধ। IDLC জানিয়েছে, প্রথম ফান্ডের অর্থ শেষ হওয়ায় এখন নতুন ইনভেস্টমেন্ট করছে না। আবার আবেদন নেওয়া হলে অফিশিয়াল পেজে দেখুন।",
+      "notes": "বাংলাদেশের আর্লি স্টেজ প্রযুক্তিনির্ভর কোম্পানিতে ইনভেস্ট করে। পুরোনো পোর্টফোলিও থেকে ধারণা নিতে পারেন, তবে এখন এখানে ফান্ডিংয়ের আবেদন করা যাচ্ছে না। প্রতিষ্ঠানটি ২০২৭ সালে আরেকটি ফান্ড চালুর পরিকল্পনা জানিয়েছে। সেটা পরিকল্পনা, আবেদন শুরুর ঘোষণা নয়।",
+      "eligibility": "বাংলাদেশের সমস্যা সমাধানে কাজ করা, বড় হওয়ার সুযোগ আছে এমন প্রযুক্তিনির্ভর ব্যবসা তাদের প্রকাশিত লক্ষ্য। এখন নতুন আবেদন বন্ধ।"
+    }
   }
 ]

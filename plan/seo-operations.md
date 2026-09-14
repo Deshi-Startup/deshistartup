@@ -16,7 +16,11 @@ HTML is validated before Wrangler packages the deployment.
 - Stubs are excluded from the XML and human-readable sitemaps. Links to stubs use `rel="nofollow"`.
 - Every indexable locale pair self-canonicalizes and publishes reciprocal `bn-BD`, `en-BD`, and
   `x-default` alternates. The Bengali root route owns `x-default`.
-- XML `<lastmod>` is the page's actual latest git commit date. Do not substitute the build date.
+- XML `<lastmod>` is the latest Git date for the page or its declared rendered-data inputs.
+  `scripts/page-data-inputs.mjs` owns dependencies for directory, Maps, glossary,
+  Startup 50, case-study gallery and contributor pages. Keep it aligned with their
+  imports when adding data sources. Data changes do not reset publication or
+  editorial-verification dates. Do not substitute the build date.
   `npm run build:worker` repairs a shallow checkout with `npm run history:ensure` before the
   manifest runs; manifest generation fails instead of publishing false dates if history remains
   incomplete. Article schema separately uses the full timezone-aware Git commit timestamps.

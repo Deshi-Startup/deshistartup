@@ -1,42 +1,24 @@
 import React from 'react'
 import investors from '../../data/directory/investors.json'
-import investorsBn from '../../data/directory/investors.bn.json'
 import accelerators from '../../data/directory/accelerators.json'
-import acceleratorsBn from '../../data/directory/accelerators.bn.json'
 import governmentFunding from '../../data/directory/government-funding.json'
-import governmentFundingBn from '../../data/directory/government-funding.bn.json'
 import paymentGateways from '../../data/directory/payment-gateways.json'
-import paymentGatewaysBn from '../../data/directory/payment-gateways.bn.json'
 import couriers from '../../data/directory/couriers.json'
-import couriersBn from '../../data/directory/couriers.bn.json'
 import legalAccounting from '../../data/directory/legal-accounting.json'
-import legalAccountingBn from '../../data/directory/legal-accounting.bn.json'
 import governmentServices from '../../data/directory/government-services.json'
-import governmentServicesBn from '../../data/directory/government-services.bn.json'
 import coworking from '../../data/directory/coworking.json'
-import coworkingBn from '../../data/directory/coworking.bn.json'
-import DirectoryFilterTable, { DirectoryCategory, DirectoryRow } from './DirectoryFilterTable'
+import { localizeDirectory, type DirectoryEntry } from '../lib/directory'
+import DirectoryFilterTable, { DirectoryCategory } from './DirectoryFilterTable'
 
-const DATA_EN: Record<DirectoryCategory, DirectoryRow[]> = {
-  investors: investors as unknown as DirectoryRow[],
-  accelerators: accelerators as unknown as DirectoryRow[],
-  'government-funding': governmentFunding as unknown as DirectoryRow[],
-  'payment-gateways': paymentGateways as unknown as DirectoryRow[],
-  couriers: couriers as unknown as DirectoryRow[],
-  'legal-accounting': legalAccounting as unknown as DirectoryRow[],
-  'government-services': governmentServices as unknown as DirectoryRow[],
-  coworking: coworking as unknown as DirectoryRow[]
-}
-
-const DATA_BN: Record<DirectoryCategory, DirectoryRow[]> = {
-  investors: investorsBn as unknown as DirectoryRow[],
-  accelerators: acceleratorsBn as unknown as DirectoryRow[],
-  'government-funding': governmentFundingBn as unknown as DirectoryRow[],
-  'payment-gateways': paymentGatewaysBn as unknown as DirectoryRow[],
-  couriers: couriersBn as unknown as DirectoryRow[],
-  'legal-accounting': legalAccountingBn as unknown as DirectoryRow[],
-  'government-services': governmentServicesBn as unknown as DirectoryRow[],
-  coworking: coworkingBn as unknown as DirectoryRow[]
+const DATA: Record<DirectoryCategory, DirectoryEntry[]> = {
+  investors: investors as unknown as DirectoryEntry[],
+  accelerators: accelerators as unknown as DirectoryEntry[],
+  'government-funding': governmentFunding as unknown as DirectoryEntry[],
+  'payment-gateways': paymentGateways as unknown as DirectoryEntry[],
+  couriers: couriers as unknown as DirectoryEntry[],
+  'legal-accounting': legalAccounting as unknown as DirectoryEntry[],
+  'government-services': governmentServices as unknown as DirectoryEntry[],
+  coworking: coworking as unknown as DirectoryEntry[]
 }
 
 interface DirectoryListProps {
@@ -45,10 +27,10 @@ interface DirectoryListProps {
 }
 
 export default function DirectoryList({ category = 'investors', locale = 'bn' }: DirectoryListProps) {
-  const rows = locale === 'en' ? DATA_EN[category] : DATA_BN[category]
-  if (!rows) {
+  const entries = DATA[category]
+  if (!entries) {
     throw new Error(`Unknown directory category: ${category}`)
   }
 
-  return <DirectoryFilterTable key={`${category}-${locale}`} category={category} locale={locale} rows={rows} />
+  return <DirectoryFilterTable key={`${category}-${locale}`} category={category} locale={locale} rows={localizeDirectory(entries, locale)} />
 }

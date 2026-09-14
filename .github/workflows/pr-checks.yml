@@ -31,6 +31,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: scripts/maps-requirements.txt
+
+      - name: Install map test dependencies
+        run: python -m pip install -r scripts/maps-requirements.txt
+
+      - name: Test map importers
+        run: npm run test:maps
+
       - name: Bangla style lint (hard findings fail)
         run: npm run lint:bangla -- --strict
 

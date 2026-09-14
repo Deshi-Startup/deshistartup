@@ -25,8 +25,9 @@
  * in STYLE.md catches the rest.
  */
 
-import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
+import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
+import { banglaSourceText, collectBanglaSources } from './bangla-sources.mjs'
 
 const args = process.argv.slice(2)
 const strict = args.includes('--strict')
@@ -261,15 +262,18 @@ function sentenceRhythm(raw) {
 }
 
 function lintFile(file) {
-  const raw = readFileSync(file, 'utf8')
+  const source = readFileSync(file, 'utf8')
+  const structured = /\.(?:tsx?|mjs|json)$/.test(file)
+  const raw = structured ? banglaSourceText(file, source) : source
   const lines = preprocess(raw)
   const hard = []
   const soft = []
 
-  // Em dash is banned in all content, both locales — checked on the raw file so
-  // Frontmatter titles and descriptions are covered too.
+  // MDX includes frontmatter; code/data includes only reader-facing literals.
   raw.split('\n').forEach((l, i) => {
-    if (l.includes('—')) hard.push([i + 1, 'এম-ড্যাশ (—) নিষিদ্ধ — স্পেসসহ এন-ড্যাশ ( – ), কমা বা দুই বাক্য'])
+    // A quoted single-character missing-value legend describes a symbol.
+    const prose = structured ? l.replace(/(['"])—\1/g, '') : l
+    if (prose.includes('—')) hard.push([i + 1, 'এম-ড্যাশ (—) নিষিদ্ধ — স্পেসসহ এন-ড্যাশ ( – ), কমা বা দুই বাক্য'])
   })
 
   lines.forEach((line, idx) => {
@@ -288,7 +292,7 @@ function lintFile(file) {
     // html[lang='bn'], so `1. ` is both correct and shows the right digits.
     // preprocess() blanks fenced code, so worksheets and ASCII cards are safe.
     const bnList = line.match(/^\s{0,6}([০-৯]+)[.)]\s/)
-    if (bnList)
+    if (bnList && !structured)
       hard.push([
         no,
         `"${bnList[1]}." দিয়ে লিস্ট — remark একে প্যারাগ্রাফ ধরে, <ol> হয় না; ASCII "1." লিখুন, CSS বাংলা সংখ্যা দেখাবে`
@@ -354,24 +358,11 @@ function lintFile(file) {
 // Run
 // ---------------------------------------------------------------------------
 
-// Bangla UI copy that lives outside app/(contents)/ — the homepage strings escaped every
-// sweep until reader feedback caught billboard-style Bangla there.
-const EXTRA_BN_SOURCES = [
-  'app/components/WikiLanding.tsx',
-  'app/nav.config.ts',
-  // The glossary moved out of prose and into structured data, and its Bangla
-  // definitions are the same reader-facing copy they were as MDX bullets.
-  'data/glossary.json',
-  'app/components/Glossary.tsx',
-  'app/components/GlossaryControls.tsx',
-  // The contributor surfaces name real people in Bangla and were never swept.
-  'app/components/ContributorLeaderboard.tsx',
-  'app/components/ContributorProfile.tsx',
-]
+// Discover reader-facing Bangla in components and authored data as they grow.
 
 const targets = fileArgs.length
   ? fileArgs
-  : [...collectPages(BN_ROOT), ...EXTRA_BN_SOURCES.filter((f) => existsSync(f))]
+  : [...collectPages(BN_ROOT), ...collectBanglaSources()]
 let hardTotal = 0
 let softTotal = 0
 let flaggedFiles = 0

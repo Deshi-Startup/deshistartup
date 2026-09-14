@@ -1,431 +1,878 @@
 [
   {
-    "name": "Founder Institute Bangladesh",
-    "type": "Company-builder / accelerator",
-    "stage": [
-      "Idea",
-      "Pre-seed",
-      "Early traction"
-    ],
-    "sectors": [
-      "Sector-agnostic",
-      "Technology",
-      "Scalable startups"
-    ],
-    "benefits": [
-      "Structured company-building sprints",
-      "Mentor and investor feedback",
-      "Peer working groups and office hours",
-      "Demo Day and post-program network"
-    ],
-    "cohortTiming": "Bangladesh Fall 2026: final application deadline 6 October; program runs from 27 October 2026 to Demo Day on 3 February 2027.",
-    "costOrEquity": "The Bangladesh page displays a one-time US$399 entrance fee. Confirm the fee and refund cutoff before paying. Companies that join FI's Equity Collective pledge 2.5% future equity through a warrant, approximately two-thirds of the way through the programme.",
-    "notableAlumni": [],
-    "applicationPath": "Apply through the Bangladesh Fall 2026 program page before 6 October 2026.",
+    "id": "founder-institute-bangladesh",
     "website": "https://fi.co/s/dhaka",
-    "sourceUrl": "https://fi.co/program/12756",
     "sourceUrls": [
+      "https://fi.co/program/12756",
       "https://fi.co/s/dhaka",
       "https://fi.co/equity"
     ],
     "lastVerified": "2026-09-13",
-    "notes": "The Bangladesh Fall 2026 schedule is marked virtual. Its FI Agentic programme combines AI-assisted company-building sprints with mentor feedback and working groups, covering validation, product development, launch, traction and fundraising. The final application deadline is 6 October 2026; confirm the published fee and agreement before joining."
+    "en": {
+      "name": "Founder Institute Bangladesh",
+      "type": "Company-builder / accelerator",
+      "stage": [
+        "Idea",
+        "Pre-seed",
+        "Early traction"
+      ],
+      "sectors": [
+        "Sector-agnostic",
+        "Technology",
+        "Scalable startups"
+      ],
+      "benefits": [
+        "Structured company-building sprints",
+        "Mentor and investor feedback",
+        "Peer working groups and office hours",
+        "Demo Day and post-program network"
+      ],
+      "cohortTiming": "Bangladesh Fall 2026: final application deadline 6 October; program runs from 27 October 2026 to Demo Day on 3 February 2027.",
+      "costOrEquity": "The Bangladesh page displays a one-time US$399 entrance fee. Confirm the fee and refund cutoff before paying. Companies that join FI's Equity Collective pledge 2.5% future equity through a warrant, approximately two-thirds of the way through the programme.",
+      "notableAlumni": [],
+      "applicationPath": "Apply through the Bangladesh Fall 2026 program page before 6 October 2026.",
+      "notes": "The Bangladesh Fall 2026 schedule is marked virtual. Its FI Agentic programme combines AI-assisted company-building sprints with mentor feedback and working groups, covering validation, product development, launch, traction and fundraising. The final application deadline is 6 October 2026; confirm the published fee and agreement before joining."
+    },
+    "bn": {
+      "name": "Founder Institute Bangladesh",
+      "type": "কোম্পানি-বিল্ডার / অ্যাক্সিলারেটর",
+      "stage": [
+        "আইডিয়া",
+        "প্রি-সিড",
+        "আর্লি ট্র্যাকশন"
+      ],
+      "sectors": [
+        "যেকোনো খাত",
+        "প্রযুক্তি",
+        "স্কেলেবল স্টার্টআপ"
+      ],
+      "benefits": [
+        "কোম্পানি গড়ার ধাপে ধাপে স্প্রিন্ট",
+        "মেন্টর ও ইনভেস্টরদের ফিডব্যাক",
+        "পিয়ার ওয়ার্কিং গ্রুপ ও অফিস আওয়ার",
+        "ডেমো ডে ও প্রোগ্রাম-পরবর্তী নেটওয়ার্ক"
+      ],
+      "cohortTiming": "বাংলাদেশ ফল ২০২৬: আবেদনের শেষ তারিখ ৬ অক্টোবর ২০২৬। প্রোগ্রাম চলবে ২৭ অক্টোবর ২০২৬ থেকে ৩ ফেব্রুয়ারি ২০২৭ ডেমো ডে পর্যন্ত।",
+      "costOrEquity": "বাংলাদেশের পাতায় এককালীন ভর্তি ফি ৩৯৯ মার্কিন ডলার দেখানো হচ্ছে। টাকা দেওয়ার আগে ফি ও ফেরত পাওয়ার শেষ সময় মিলিয়ে নিন। FI-এর Equity Collective-এ যোগ দেওয়া কোম্পানি ভবিষ্যৎ মালিকানার ২.৫% দেওয়ার অঙ্গীকার করে ওয়ারেন্টের মাধ্যমে। প্রোগ্রামের প্রায় দুই-তৃতীয়াংশ শেষ হওয়ার পর এই ধাপ আসে।",
+      "notableAlumni": [],
+      "applicationPath": "৬ অক্টোবর ২০২৬-এর আগে Bangladesh Fall 2026 প্রোগ্রাম পেজ থেকে আবেদন করুন।",
+      "notes": "Bangladesh Fall 2026-এর সূচিতে প্রোগ্রামটি অনলাইনে চলবে বলে লেখা আছে। FI Agentic প্রোগ্রামে এআইয়ের সাহায্যে কোম্পানি গড়ার ছোট ছোট ধাপে কাজ হয়। মেন্টরদের কাছ থেকে মতামত পাওয়া যায়, অন্য ফাউন্ডারদের সঙ্গে দলীয় কাজও থাকে। আইডিয়া যাচাই, প্রোডাক্ট তৈরি, লঞ্চ, গ্রাহক পাওয়া ও ফান্ড তোলার প্রস্তুতি নিয়ে কাজ করতে হয়। আবেদনের শেষ তারিখ ৬ অক্টোবর ২০২৬। যোগ দেওয়ার আগে প্রকাশিত ফি ও চুক্তির শর্ত মিলিয়ে নিন।"
+    }
   },
   {
-    "name": "Orange Corners Bangladesh",
-    "type": "Entrepreneurship incubation and acceleration programme",
-    "stage": [
-      "Post-launch",
-      "Early stage"
-    ],
-    "sectors": [
-      "Sector-agnostic",
-      "SDG-aligned businesses",
-      "Impact"
-    ],
-    "benefits": [
-      "Capacity-building workshops",
-      "One-to-one coaching and mentorship",
-      "Networking and investor access",
-      "Complimentary co-working space",
-      "Grants of up to €5,000 for selected participants"
-    ],
-    "cohortTiming": "Cohort 8 began on 29 July 2026; the next application window has not been announced.",
-    "costOrEquity": "No application fee; grants and soft loans do not take equity.",
-    "notableAlumni": [],
-    "applicationPath": "Wait for the next Bangladesh intake announcement before applying. At least one founder must be Bangladeshi, aged 18–35 and based in Bangladesh.",
+    "id": "orange-corners-bangladesh",
     "website": "https://www.orangecorners.com/country/bangladesh/",
-    "sourceUrl": "https://www.linkedin.com/posts/orangecornersbd_orangecorners-orangecornersbd-entrepreneurs-activity-7489666354472689664-aYPe",
-    "lastVerified": "2026-08-19",
-    "notes": "A Netherlands-backed programme helping young Bangladeshi founders build sustainable, investment-ready businesses that contribute to the Sustainable Development Goals. Its incubation track supports businesses that have already launched; graduates can progress to acceleration and financing support."
-  },
-  {
-    "name": "YY Ventures Incubation",
-    "type": "Impact incubator",
-    "stage": [
-      "Idea",
-      "Pre-seed",
-      "Seed"
-    ],
-    "sectors": [
-      "Social business",
-      "Climate and environment",
-      "Inclusive livelihoods"
-    ],
-    "benefits": [
-      "Founder training and tailored consultation",
-      "Mentoring and community",
-      "Co-working space",
-      "Business support services",
-      "Investor access"
-    ],
-    "cohortTiming": "Programme-specific; applications for YY Goshthi are currently closed.",
-    "costOrEquity": "Current fee and equity terms: Not publicly stated. The now-closed YY Goshthi programme advertised BDT 1–1.5 million in pre-seed investment for selected businesses.",
-    "notableAlumni": [
-      "AmarLab",
-      "Avijatrik Tourism",
-      "GARBAGEMAN",
-      "Wizkit"
-    ],
-    "applicationPath": "Email info@yy.ventures about current incubation opportunities; the YY Goshthi application is closed.",
-    "website": "https://incubator.yy.ventures/",
-    "sourceUrl": "https://incubator.yy.ventures/",
-    "lastVerified": "2026-08-19",
-    "notes": "YY Ventures incubates early-stage, cause-driven businesses tackling social or environmental problems. Its model combines founder training, tailored consulting, workspace, business services and investor introductions to help teams launch an MVP and raise seed capital."
-  },
-  {
-    "name": "Impact Hub Dhaka",
-    "type": "Innovation hub and entrepreneurship platform",
-    "stage": [
-      "Idea",
-      "Early stage",
-      "Growth"
-    ],
-    "sectors": [
-      "Impact",
-      "Social innovation",
-      "Inclusive entrepreneurship"
-    ],
-    "benefits": [
-      "Co-working and private offices",
-      "Entrepreneurship programmes",
-      "Community events",
-      "Mentorship and capacity building",
-      "Partner and investor network"
-    ],
-    "cohortTiming": "No standing accelerator cohort; opportunities are announced programme by programme.",
-    "costOrEquity": "Workspace pricing and programme terms vary.",
-    "notableAlumni": [],
-    "applicationPath": "No standing accelerator application is open; check the Projects page for partner-led programmes and apply through the relevant programme notice.",
-    "website": "https://dhaka.impacthub.net/",
-    "sourceUrl": "https://dhaka.impacthub.net/projects",
-    "lastVerified": "2026-08-19",
-    "notes": "A Dhaka-based workspace and innovation community connecting entrepreneurs and impact organisations with mentors, corporate partners, investors and public-sector institutions. It hosts partner-led incubation and acceleration programmes, but it is not itself a single recurring accelerator."
-  },
-  {
-    "name": "BYLC Ventures",
-    "type": "Early-stage accelerator and investor",
-    "stage": [
-      "Early stage",
-      "Market traction"
-    ],
-    "sectors": [
-      "Sector-agnostic",
-      "Youth-led businesses",
-      "Socioeconomic impact"
-    ],
-    "benefits": [
-      "Seed and potential scale-up funding",
-      "Accelerator curriculum and mentoring",
-      "Leadership development",
-      "Legal and virtual CFO support",
-      "Co-working space"
-    ],
-    "cohortTiming": "Cohort-based; no current application window is announced.",
-    "costOrEquity": "No application fee. A BDT 200,000 programme and professional-services fee is deducted from the BDT 800,000 seed funding. Equity terms: Not publicly stated.",
-    "notableAlumni": [
-      "InsureCow",
-      "Ecovia",
-      "Biotech Energy"
-    ],
-    "applicationPath": "Apply through the BYLC Ventures page when the next cohort opens; shortlisted teams enter a selection bootcamp.",
-    "website": "https://bylc.org/ventures/",
-    "sourceUrl": "https://bylc.org/ventures/",
-    "lastVerified": "2026-08-19",
-    "notes": "A six-month accelerator and investment programme combining early-stage capital with founder leadership, company-building and Bangladesh-specific legal and financial support. It is sector-agnostic, prefers teams with some market traction and looks for businesses addressing socioeconomic challenges."
-  },
-  {
-    "name": "OnnoRokom Uddokta",
-    "type": "Non-profit business accelerator",
-    "stage": [
-      "Operating business",
-      "Early stage",
-      "Growth"
-    ],
-    "sectors": [
-      "Sector-agnostic",
-      "Impact",
-      "Sustainable businesses"
-    ],
-    "benefits": [
-      "Six-month, 17-module growth programme",
-      "In-person and online learning sessions",
-      "Mentoring, selected one-to-one coaching and practical guidance",
-      "Growth-partner reviews, follow-ups and accountability",
-      "Founder and business network access"
-    ],
-    "cohortTiming": "The published Cohort 3 deadline was 31 August 2026 and has passed. The previously announced programme dates were 15 September 2026 to 15 March 2027, subject to change. Check the organiser for a new intake.",
-    "costOrEquity": "No application, admission, participation, coaching or training fee; the programme takes no equity.",
-    "notableAlumni": [],
-    "applicationPath": "Check the official Active Applications page for the next intake; do not treat the expired deadline as an open call. The published eligibility required an existing business, venture or non-profit, rather than an idea alone.",
-    "website": "https://onnorokomuddokta.org/en/",
-    "sourceUrl": "https://onnorokomuddokta.org/applications",
-    "lastVerified": "2026-08-23",
-    "notes": "OnnoRokom Group's six-month accelerator supports Bangladeshi founders who already run a business and want structured help to grow sustainably. The programme combines learning sessions, coaching, mentoring, practical work, accountability and network access, with one-to-one coaching for selected participants. Its separate idea-stage incubation programme is still being developed and has not announced a first cohort."
-  },
-  {
-    "name": "NSU Startups Next",
-    "type": "University startup incubator and accelerator",
-    "stage": [
-      "Idea",
-      "Pre-MVP",
-      "Early stage",
-      "Early traction"
-    ],
-    "sectors": [
-      "Technology-enabled startups",
-      "Scalable solutions"
-    ],
-    "benefits": [
-      "16-week Founders’ Lab or Flagship track",
-      "Weekly KPI tracking and progress reviews every two weeks",
-      "Industry mentorship and business support",
-      "NSU workspace plus programme tools and credits",
-      "Investor pitch and two months of post-programme support for Flagship teams"
-    ],
-    "cohortTiming": "Cohort 4 launched in May 2026 and was still active on 9 August 2026. Its 15 April application deadline has passed; the next intake has not been announced.",
-    "costOrEquity": "No programme fee, according to the official FAQ. Equity terms: Not publicly stated.",
-    "notableAlumni": [
-      "Thrive",
-      "ReShop",
-      "Kalke",
-      "HypeScout"
-    ],
-    "applicationPath": "Cohort 4 applications are closed. Follow the official website or LinkedIn page, or email nsu.sn@northsouth.edu, for the next intake. Eligibility varies by cohort.",
-    "website": "https://nsustartupsnext.org/",
-    "sourceUrl": "https://nsustartupsnext.org/programs/",
-    "lastVerified": "2026-08-20",
-    "notes": "North South University's cohort-based startup platform has two 16-week tracks. Founders’ Lab helps idea-stage teams validate a business model and develop an initial MVP. Flagship Incubation supports launched, technology-enabled startups with early traction as they work towards product-market fit and investor readiness. Support includes structured reviews, mentors, workspace, tools and credits, investor exposure and two months of post-programme support for Flagship graduates."
-  },
-  {
-    "name": "University Innovation Hub Program (UIHP)",
-    "type": "University startup incubator",
-    "stage": [
-      "Idea",
-      "Pre-seed",
-      "Prototype"
-    ],
-    "sectors": [
-      "Technology",
-      "University innovation",
-      "Research commercialisation"
-    ],
-    "benefits": [
-      "Innovation and entrepreneurship training",
-      "Industry mentorship",
-      "Co-working and technical resources",
-      "Prototype and MVP development",
-      "Potential pre-seed or seed funding"
-    ],
-    "cohortTiming": "University-specific cohorts and deadlines; check the application page for each hub.",
-    "costOrEquity": "No participation fee. Equity terms: Not publicly stated.",
-    "notableAlumni": [],
-    "applicationPath": "Choose the relevant university innovation hub on the UIHP application page and follow that hub's registration instructions.",
-    "website": "https://uihp.org/",
-    "sourceUrl": "https://uihp.org/faq",
-    "lastVerified": "2026-08-25",
-    "notes": "A Bangladesh Hi-Tech Park Authority university incubation programme under the ICT Division, financed by the World Bank. It supports students, graduates, researchers and alumni in participating universities to develop technology-driven ideas into prototypes, startups or registered intellectual property."
-  },
-  {
-    "name": "Accelerating Bangladesh",
-    "type": "Government-backed startup accelerator",
-    "stage": [
-      "Idea",
-      "MVP",
-      "Early stage",
-      "Growth"
-    ],
-    "sectors": [
-      "Sector-agnostic",
-      "Technology-enabled startups",
-      "Women-led digital businesses"
-    ],
-    "benefits": [
-      "14-week coaching and applied curriculum",
-      "One-to-one mentoring",
-      "Networking and investor pitching sessions",
-      "Residential bootcamp",
-      "National demo day and post-programme support"
-    ],
-    "cohortTiming": "Industry-cohort registration is open only to startups shortlisted in the first round; no new first-round application window is published.",
-    "costOrEquity": "The programme is fully sponsored. Equity terms: Not publicly stated.",
-    "notableAlumni": [],
-    "applicationPath": "Shortlisted startups can use the industry-cohort form. Other founders should wait for the next first-round call.",
-    "website": "https://acceleratingbangladesh.com/",
-    "sourceUrl": "https://acceleratingbangladesh.com/early-stage-startups/",
-    "lastVerified": "2026-08-25",
-    "notes": "A Bangladesh Hi-Tech Park Authority and Digital Entrepreneurship and Innovation Ecosystem Development startup acceleration programme for Bangladesh founders from viable idea or MVP stage through growth. The programme combines coaching, mentoring, bootcamps, investor sessions and demo-day exposure."
-  },
-  {
-    "name": "Accelerating Asia Accelerator",
-    "type": "Regional VC accelerator",
-    "stage": [
-      "Seed",
-      "Pre-Series A"
-    ],
-    "sectors": [
-      "Sector-agnostic",
-      "Technology-enabled startups"
-    ],
-    "benefits": [
-      "US$100,000 initial investment",
-      "100-day tailored accelerator",
-      "One-to-one Entrepreneurs in Residence",
-      "Masterclasses and investor introductions",
-      "Potential follow-on funding up to US$150,000"
-    ],
-    "cohortTiming": "Cohort 14 applications are open; interviews begin in August 2026, the programme starts in October and Demo Day is planned for January 2027.",
-    "costOrEquity": "US$35,000 programme fee, deducted from the initial investment, plus 3% equity; the investment uses a post-money SAFE.",
-    "notableAlumni": [
-      "Markopolo.ai",
-      "TransTRACK",
-      "Kopi Date"
-    ],
-    "applicationPath": "Apply through Accelerating Asia Ventures' Get Funded page for Cohort 14.",
-    "website": "https://www.acceleratingasia.com/",
-    "sourceUrl": "https://www.acceleratingasia.com/getfunded",
-    "lastVerified": "2026-08-19",
-    "notes": "A 100-day VC accelerator for high-growth, pre-Series A technology startups across South and Southeast Asia. It is designed for companies with evidence of execution or traction and combines capital with intensive growth, fundraising and regional-expansion support."
-  },
-  {
-    "name": "Grameenphone Accelerator",
-    "type": "Corporate accelerator",
-    "stage": [
-      "MVP",
-      "Early stage"
-    ],
-    "sectors": [
-      "Technology",
-      "Fintech",
-      "Healthtech",
-      "Edtech",
-      "Enterprise software"
-    ],
-    "benefits": [
-      "Mentoring and business-building curriculum",
-      "Office space at GP House",
-      "Equity-free grants and investor access"
-    ],
-    "cohortTiming": "The official page says the next application and selection dates will be announced later.",
-    "costOrEquity": "The published programme takes no equity and provides workspace without rent. Confirm the terms of the next intake.",
-    "notableAlumni": [
-      "Sheba.xyz",
-      "CMED Health",
-      "Cramstack",
-      "Barikoi"
-    ],
-    "eligibility": "A Bangladesh-registered technology startup, preferably with a prototype, MVP or early users. At least one cofounder must work full-time. The FAQ describes a minimum of two cofounders.",
-    "applicationPath": "Check the official programme page for the next call. No current application window is published.",
-    "website": "https://www.grameenphone.com/about/gp-accelerator",
-    "sourceUrl": "https://www.grameenphone.com/about/gp-accelerator",
-    "lastVerified": "2026-09-11",
-    "notes": "For Bangladesh-registered technology startups, preferably with a prototype or MVP. The FAQ requires at least two cofounders, with one working full-time. Teams are expected to work mainly from GP House. The published programme takes no equity and charges no workspace rent. The next intake has not been announced."
-  },
-  {
-    "name": "Turtle Venture Sprint",
-    "type": "Regional accelerator",
-    "stage": [
-      "MVP",
-      "Early stage"
-    ],
-    "sectors": [
-      "Technology-enabled startups"
-    ],
-    "benefits": [
-      "Product and revenue-development support",
-      "Pitch deck and fundraising preparation",
-      "Online sessions and an overseas immersion"
-    ],
-    "cohortTiming": "The page still advertises a June 2026 cohort. That date has passed; confirm the next intake.",
-    "costOrEquity": "Published one-time programme fee: US$3,000. No equity taken. Confirm travel, accommodation and other extra costs before paying.",
-    "notableAlumni": [],
-    "eligibility": "Targets startup founders in South and Southeast Asia. Detailed stage and selection requirements for a new intake should be confirmed with the organiser.",
-    "applicationPath": "Contact Turtle Venture through the programme page to confirm the next intake and full written terms.",
-    "website": "https://turtleventure.com/venture-sprint/",
-    "sourceUrl": "https://turtleventure.com/venture-sprint/",
-    "lastVerified": "2026-09-11",
-    "notes": "For founders in South and Southeast Asia. The ten-week programme includes eight online weeks and eight days overseas. The published fee is US$3,000, with no equity taken. Confirm travel, accommodation and other extra costs before paying. The page still advertises the past June 2026 cohort; confirm the next intake. Investor introductions do not guarantee investment."
-  },
-  {
-    "name": "Biniyog Briddhi Voucher Scheme",
-    "type": "Impact investment-readiness support",
-    "stage": [
-      "Market traction",
-      "Growth"
-    ],
-    "sectors": [
-      "Social business",
-      "Climate and environment",
-      "Impact"
-    ],
-    "benefits": [
-      "Subsidised impact investment-readiness support",
-      "Impact measurement and management support",
-      "Work with a certified service provider"
-    ],
-    "cohortTiming": "The page describes the 2025 call. Confirm whether a new call is available.",
-    "costOrEquity": "The published scheme requires an enterprise contribution of 20% of service fees within the voucher limit, or 5% for qualifying rural enterprises; fees above the limit are paid in full.",
-    "notableAlumni": [],
-    "eligibility": "A Bangladesh-registered impact enterprise with a product and customers. At least two years of operation for investment-readiness support, or one year for impact-management support. Apply jointly with a certified provider.",
-    "applicationPath": "Choose a certified provider and ask about the next call before jointly preparing a training plan and application.",
-    "website": "https://www.sie-b.org/vouchers/",
-    "sourceUrl": "https://www.sie-b.org/vouchers/",
-    "lastVerified": "2026-09-11",
-    "notes": "For Bangladesh-registered impact enterprises with a product and customers: at least two years of operation for investment-readiness support, or one year for impact-management support. Enterprises pay 20% of service fees within the voucher limit, or 5% for qualifying rural enterprises, plus all fees above the limit. This subsidises advisory services; it is not an unrestricted cash grant. The page describes the 2025 call; confirm current availability."
-  },
-  {
-    "name": "Iterative",
-    "type": "Regional VC accelerator",
-    "stage": [
-      "Idea",
-      "MVP",
-      "Early stage",
-      "Growth"
-    ],
-    "sectors": [
-      "Sector-agnostic"
-    ],
-    "benefits": [
-      "US$150,000–500,000 investment on admission",
-      "Partner office hours and fundraising support",
-      "Three-month programme and investor demo day"
-    ],
-    "cohortTiming": "Winter 2027 applications are advertised as open; the batch runs February–May 2027. No final deadline is published on the application page.",
-    "costOrEquity": "No programme fee. The published investment uses a post-money SAFE for approximately 10–15% of the company; confirm the offered terms.",
-    "notableAlumni": [
-      "Go Zayaan"
-    ],
-    "eligibility": "The company must be based in Southeast Asia or focus on a Southeast Asian market. A Bangladesh-only business does not meet that published geography rule. Solo founders and idea-stage teams may apply.",
-    "applicationPath": "Read the geography requirement, then use the official Winter 2027 application page.",
-    "website": "https://www.iterative.vc/",
-    "sourceUrl": "https://www.iterative.vc/getting-into-iterative",
     "sourceUrls": [
+      "https://www.linkedin.com/posts/orangecornersbd_orangecorners-orangecornersbd-entrepreneurs-activity-7489666354472689664-aYPe"
+    ],
+    "lastVerified": "2026-08-19",
+    "en": {
+      "name": "Orange Corners Bangladesh",
+      "type": "Entrepreneurship incubation and acceleration programme",
+      "stage": [
+        "Post-launch",
+        "Early stage"
+      ],
+      "sectors": [
+        "Sector-agnostic",
+        "SDG-aligned businesses",
+        "Impact"
+      ],
+      "benefits": [
+        "Capacity-building workshops",
+        "One-to-one coaching and mentorship",
+        "Networking and investor access",
+        "Complimentary co-working space",
+        "Grants of up to €5,000 for selected participants"
+      ],
+      "cohortTiming": "Cohort 8 began on 29 July 2026; the next application window has not been announced.",
+      "costOrEquity": "No application fee; grants and soft loans do not take equity.",
+      "notableAlumni": [],
+      "applicationPath": "Wait for the next Bangladesh intake announcement before applying. At least one founder must be Bangladeshi, aged 18–35 and based in Bangladesh.",
+      "notes": "A Netherlands-backed programme helping young Bangladeshi founders build sustainable, investment-ready businesses that contribute to the Sustainable Development Goals. Its incubation track supports businesses that have already launched; graduates can progress to acceleration and financing support."
+    },
+    "bn": {
+      "name": "Orange Corners Bangladesh",
+      "type": "উদ্যোক্তা ইনকিউবেশন ও অ্যাক্সিলারেটর প্রোগ্রাম",
+      "stage": [
+        "লঞ্চ-পরবর্তী",
+        "আর্লি স্টেজ"
+      ],
+      "sectors": [
+        "যেকোনো খাত",
+        "এসডিজি-ভিত্তিক ব্যবসা",
+        "সামাজিক প্রভাব"
+      ],
+      "benefits": [
+        "দক্ষতা উন্নয়ন ওয়ার্কশপ",
+        "ওয়ান-টু-ওয়ান কোচিং ও মেন্টরিং",
+        "নেটওয়ার্কিং ও ইনভেস্টরদের সাথে যোগাযোগ",
+        "ফ্রি কো-ওয়ার্কিং স্পেস",
+        "বাছাইকৃত উদ্যোগের জন্য ৫,০০০ ইউরো পর্যন্ত অনুদান"
+      ],
+      "cohortTiming": "কোহোর্ট ৮ শুরু হয়েছে ২৯ জুলাই ২০২৬ তারিখে; পরবর্তী আবেদনের সময়সূচি এখনো ঘোষণা করা হয়নি।",
+      "costOrEquity": "কোনো আবেদন ফি নেই; গ্রান্ট বা সফট লোনের বিপরীতে কোনো ইকুইটি নেওয়া হয় না।",
+      "notableAlumni": [],
+      "applicationPath": "পরবর্তী ইনটেকের ঘোষণার জন্য অপেক্ষা করুন। অন্তত একজন ফাউন্ডারকে বাংলাদেশি, ১৮–৩৫ বছর বয়সী এবং বাংলাদেশে বসবাসকারী হতে হবে।",
+      "notes": "নেদারল্যান্ডস সরকারের সহায়তায় পরিচালিত এই প্রোগ্রামটি বাংলাদেশের তরুণ উদ্যোক্তাদের টেকসই ও বিনিয়োগের উপযোগী ব্যবসা গড়তে সাহায্য করে। ব্যবসাগুলোতে টেকসই উন্নয়ন লক্ষ্যমাত্রা (SDG) অর্জনের প্রভাব থাকতে হয়। ইনকিউবেশন ট্র্যাকে ইতিমধ্যে চালু হওয়া ব্যবসাকে নেওয়া হয়, আর গ্র্যাজুয়েটরা পরবর্তীতে অ্যাক্সিলারেশন ও ফাইন্যান্সিং সহায়তার সুযোগ পান।"
+    }
+  },
+  {
+    "id": "yy-ventures-incubation",
+    "website": "https://incubator.yy.ventures/",
+    "sourceUrls": [
+      "https://incubator.yy.ventures/"
+    ],
+    "lastVerified": "2026-08-19",
+    "en": {
+      "name": "YY Ventures Incubation",
+      "type": "Impact incubator",
+      "stage": [
+        "Idea",
+        "Pre-seed",
+        "Seed"
+      ],
+      "sectors": [
+        "Social business",
+        "Climate and environment",
+        "Inclusive livelihoods"
+      ],
+      "benefits": [
+        "Founder training and tailored consultation",
+        "Mentoring and community",
+        "Co-working space",
+        "Business support services",
+        "Investor access"
+      ],
+      "cohortTiming": "Programme-specific; applications for YY Goshthi are currently closed.",
+      "costOrEquity": "Current fee and equity terms: Not publicly stated. The now-closed YY Goshthi programme advertised BDT 1–1.5 million in pre-seed investment for selected businesses.",
+      "notableAlumni": [
+        "AmarLab",
+        "Avijatrik Tourism",
+        "GARBAGEMAN",
+        "Wizkit"
+      ],
+      "applicationPath": "Email info@yy.ventures about current incubation opportunities; the YY Goshthi application is closed.",
+      "notes": "YY Ventures incubates early-stage, cause-driven businesses tackling social or environmental problems. Its model combines founder training, tailored consulting, workspace, business services and investor introductions to help teams launch an MVP and raise seed capital."
+    },
+    "bn": {
+      "name": "YY Ventures Incubation",
+      "type": "ইমপ্যাক্ট ইনকিউবেটর",
+      "stage": [
+        "আইডিয়া",
+        "প্রি-সিড",
+        "সিড"
+      ],
+      "sectors": [
+        "সামাজিক ব্যবসা",
+        "পরিবেশ ও জলবায়ু",
+        "অন্তর্ভুক্তিমূলক জীবিকা"
+      ],
+      "benefits": [
+        "ফাউন্ডার ট্রেনিং ও প্রয়োজনমাফিক পরামর্শ",
+        "মেন্টরিং ও কমিউনিটি নেটওয়ার্ক",
+        "কো-ওয়ার্কিং স্পেস",
+        "বিজনেস সাপোর্ট সার্ভিস",
+        "ইনভেস্টরদের সাথে সংযোগ"
+      ],
+      "cohortTiming": "প্রোগ্রাম অনুযায়ী সময় আলাদা; বর্তমানে YY Goshthi-এর আবেদন বন্ধ রয়েছে।",
+      "costOrEquity": "বর্তমান ফি ও ইকুইটির শর্ত প্রকাশ্যে বলা নেই। পূর্বে সমাপ্ত YY Goshthi প্রোগ্রামে নির্বাচিত ব্যবসার জন্য ১০–১৫ লাখ টাকা প্রি-সিড বিনিয়োগের সুযোগ ছিল।",
+      "notableAlumni": [
+        "AmarLab",
+        "Avijatrik Tourism",
+        "GARBAGEMAN",
+        "Wizkit"
+      ],
+      "applicationPath": "ইনকিউবেশনের সুযোগ সম্পর্কে জানতে info@yy.ventures ঠিকানায় ইমেইল করুন। YY Goshthi-এর আবেদন বর্তমানে বন্ধ রয়েছে।",
+      "notes": "সামাজিক বা পরিবেশগত সমস্যার সমাধানে কাজ করা আর্লি-স্টেজ ব্যবসাগুলোকে ইনকিউবেট করে YY Ventures। এখানে ফাউন্ডারদের ট্রেনিং, প্রয়োজন অনুযায়ী কনসাল্টিং, ওয়ার্কস্পেস, বিজনেস সার্ভিস ও ইনভেস্টরদের সাথে পরিচয় করিয়ে দেওয়া হয়, যাতে টিমগুলো একটি এমভিপি (MVP) লঞ্চ করতে এবং সিড ফান্ড তুলতে পারে।"
+    }
+  },
+  {
+    "id": "impact-hub-dhaka",
+    "website": "https://dhaka.impacthub.net/",
+    "sourceUrls": [
+      "https://dhaka.impacthub.net/projects"
+    ],
+    "lastVerified": "2026-08-19",
+    "en": {
+      "name": "Impact Hub Dhaka",
+      "type": "Innovation hub and entrepreneurship platform",
+      "stage": [
+        "Idea",
+        "Early stage",
+        "Growth"
+      ],
+      "sectors": [
+        "Impact",
+        "Social innovation",
+        "Inclusive entrepreneurship"
+      ],
+      "benefits": [
+        "Co-working and private offices",
+        "Entrepreneurship programmes",
+        "Community events",
+        "Mentorship and capacity building",
+        "Partner and investor network"
+      ],
+      "cohortTiming": "No standing accelerator cohort; opportunities are announced programme by programme.",
+      "costOrEquity": "Workspace pricing and programme terms vary.",
+      "notableAlumni": [],
+      "applicationPath": "No standing accelerator application is open; check the Projects page for partner-led programmes and apply through the relevant programme notice.",
+      "notes": "A Dhaka-based workspace and innovation community connecting entrepreneurs and impact organisations with mentors, corporate partners, investors and public-sector institutions. It hosts partner-led incubation and acceleration programmes, but it is not itself a single recurring accelerator."
+    },
+    "bn": {
+      "name": "Impact Hub Dhaka",
+      "type": "ইনোভেশন হাব ও উদ্যোক্তা সহায়তা প্ল্যাটফর্ম",
+      "stage": [
+        "আইডিয়া",
+        "আর্লি স্টেজ",
+        "গ্রোথ"
+      ],
+      "sectors": [
+        "সামাজিক প্রভাব",
+        "সামাজিক উদ্ভাবন",
+        "অন্তর্ভুক্তিমূলক উদ্যোক্তা উন্নয়ন"
+      ],
+      "benefits": [
+        "কো-ওয়ার্কিং ও প্রাইভেট অফিস স্পেস",
+        "উদ্যোক্তা সহায়তা প্রোগ্রাম",
+        "কমিউনিটি ইভেন্ট",
+        "মেন্টরিং ও সক্ষমতা বৃদ্ধি",
+        "পার্টনার ও ইনভেস্টর নেটওয়ার্ক"
+      ],
+      "cohortTiming": "এদের নিয়মিত কোনো অ্যাক্সিলারেটর কোহোর্ট নেই; প্রোগ্রামভেদে আলাদা সুযোগ ঘোষণা করা হয়।",
+      "costOrEquity": "ওয়ার্কস্পেসের ফি ও প্রোগ্রামের শর্তাবলী ভিন্ন হতে পারে।",
+      "notableAlumni": [],
+      "applicationPath": "সবসময় চালু থাকে এমন কোনো অ্যাক্সিলারেটরের আবেদন খোলা নেই। পার্টনারদের নেওয়া প্রোগ্রামগুলোর জন্য এদের ওয়েবসাইটের Projects পেজ দেখুন এবং সংশ্লিষ্ট নোটিশ অনুযায়ী আবেদন করুন।",
+      "notes": "ঢাকার একটি ওয়ার্কস্পেস ও ইনোভেশন কমিউনিটি, যা উদ্যোক্তা ও সামাজিক প্রতিষ্ঠানগুলোকে মেন্টর, করপোরেট পার্টনার, ইনভেস্টর ও সরকারি প্রতিষ্ঠানের সাথে যুক্ত করে। এরা পার্টনারদের সহযোগিতায় ইনকিউবেশন ও অ্যাক্সিলারেশন প্রোগ্রাম পরিচালনা করে, তবে এটি নিজে একক কোনো নিয়মিত অ্যাক্সিলারেটর নয়।"
+    }
+  },
+  {
+    "id": "bylc-ventures",
+    "website": "https://bylc.org/ventures/",
+    "sourceUrls": [
+      "https://bylc.org/ventures/"
+    ],
+    "lastVerified": "2026-08-19",
+    "en": {
+      "name": "BYLC Ventures",
+      "type": "Early-stage accelerator and investor",
+      "stage": [
+        "Early stage",
+        "Market traction"
+      ],
+      "sectors": [
+        "Sector-agnostic",
+        "Youth-led businesses",
+        "Socioeconomic impact"
+      ],
+      "benefits": [
+        "Seed and potential scale-up funding",
+        "Accelerator curriculum and mentoring",
+        "Leadership development",
+        "Legal and virtual CFO support",
+        "Co-working space"
+      ],
+      "cohortTiming": "Cohort-based; no current application window is announced.",
+      "costOrEquity": "No application fee. A BDT 200,000 programme and professional-services fee is deducted from the BDT 800,000 seed funding. Equity terms: Not publicly stated.",
+      "notableAlumni": [
+        "InsureCow",
+        "Ecovia",
+        "Biotech Energy"
+      ],
+      "applicationPath": "Apply through the BYLC Ventures page when the next cohort opens; shortlisted teams enter a selection bootcamp.",
+      "notes": "A six-month accelerator and investment programme combining early-stage capital with founder leadership, company-building and Bangladesh-specific legal and financial support. It is sector-agnostic, prefers teams with some market traction and looks for businesses addressing socioeconomic challenges."
+    },
+    "bn": {
+      "name": "BYLC Ventures",
+      "type": "আর্লি-স্টেজ অ্যাক্সিলারেটর ও ইনভেস্টর",
+      "stage": [
+        "আর্লি স্টেজ",
+        "মার্কেট ট্র্যাকশন"
+      ],
+      "sectors": [
+        "যেকোনো খাত",
+        "তরুণদের ব্যবসা",
+        "আর্থসামাজিক প্রভাব"
+      ],
+      "benefits": [
+        "সিড ফান্ডিং ও পরবর্তী স্কেল-আপ ফান্ডের সম্ভাবনা",
+        "অ্যাক্সিলারেটর কারিকুলাম ও মেন্টরিং",
+        "নেতৃত্ব বিকাশ",
+        "আইনি ও ভার্চুয়াল সিএফও (CFO) সহায়তা",
+        "কো-ওয়ার্কিং স্পেস"
+      ],
+      "cohortTiming": "কোহোর্ট-ভিত্তিক; বর্তমানে কোনো নতুন আবেদন বিজ্ঞপ্তি নেই।",
+      "costOrEquity": "কোনো আবেদন ফি নেই। ৮ লাখ টাকার সিড ফান্ডিং থেকে ২ লাখ টাকা প্রোগ্রাম ও প্রফেশনাল সার্ভিস ফি বাবদ কেটে রাখা হয়। ইকুইটির শর্ত: প্রকাশ্যে বলা নেই।",
+      "notableAlumni": [
+        "InsureCow",
+        "Ecovia",
+        "Biotech Energy"
+      ],
+      "applicationPath": "পরবর্তী কোহোর্ট চালু হলে BYLC Ventures পেজ থেকে আবেদন করুন; বাছাই করা টিমগুলোকে সিলেকশন বুটক্যাম্পে অংশ নিতে হয়।",
+      "notes": "এটি ৬ মাসের একটি অ্যাক্সিলারেটর ও ইনভেস্টমেন্ট প্রোগ্রাম, যেখানে প্রারম্ভিক পুঁজির পাশাপাশি ফাউন্ডারদের নেতৃত্ব বিকাশ, কোম্পানি গঠন এবং বাংলাদেশের প্রেক্ষাপটে আইনি ও আর্থিক সহায়তা দেওয়া হয়। এটি যেকোনো খাতের জন্য উন্মুক্ত; বাজারে কিছুটা ট্র্যাকশন আছে এবং আর্থসামাজিক সমস্যার সমাধানে কাজ করছে এমন টিমগুলোকে প্রাধান্য দেওয়া হয়।"
+    }
+  },
+  {
+    "id": "onnorokom-uddokta",
+    "website": {
+      "en": "https://onnorokomuddokta.org/en/",
+      "bn": "https://onnorokomuddokta.org/bn/"
+    },
+    "sourceUrls": [
+      "https://onnorokomuddokta.org/applications"
+    ],
+    "lastVerified": "2026-08-23",
+    "en": {
+      "name": "OnnoRokom Uddokta",
+      "type": "Non-profit business accelerator",
+      "stage": [
+        "Operating business",
+        "Early stage",
+        "Growth"
+      ],
+      "sectors": [
+        "Sector-agnostic",
+        "Impact",
+        "Sustainable businesses"
+      ],
+      "benefits": [
+        "Six-month, 17-module growth programme",
+        "In-person and online learning sessions",
+        "Mentoring, selected one-to-one coaching and practical guidance",
+        "Growth-partner reviews, follow-ups and accountability",
+        "Founder and business network access"
+      ],
+      "cohortTiming": "The published Cohort 3 deadline was 31 August 2026 and has passed. The previously announced programme dates were 15 September 2026 to 15 March 2027, subject to change. Check the organiser for a new intake.",
+      "costOrEquity": "No application, admission, participation, coaching or training fee; the programme takes no equity.",
+      "notableAlumni": [],
+      "applicationPath": "Check the official Active Applications page for the next intake; do not treat the expired deadline as an open call. The published eligibility required an existing business, venture or non-profit, rather than an idea alone.",
+      "notes": "OnnoRokom Group's six-month accelerator supports Bangladeshi founders who already run a business and want structured help to grow sustainably. The programme combines learning sessions, coaching, mentoring, practical work, accountability and network access, with one-to-one coaching for selected participants. Its separate idea-stage incubation programme is still being developed and has not announced a first cohort."
+    },
+    "bn": {
+      "name": "OnnoRokom Uddokta",
+      "type": "নন-প্রফিট বিজনেস অ্যাক্সিলারেটর",
+      "stage": [
+        "চলমান ব্যবসা",
+        "আর্লি স্টেজ",
+        "গ্রোথ"
+      ],
+      "sectors": [
+        "যেকোনো খাত",
+        "ইমপ্যাক্ট",
+        "টেকসই ব্যবসা"
+      ],
+      "benefits": [
+        "১৭ মডিউলের ছয় মাসের গ্রোথ প্রোগ্রাম",
+        "সরাসরি ও অনলাইন লার্নিং সেশন",
+        "মেন্টরিং, বাছাই করা অংশগ্রহণকারীদের ওয়ান-অন-ওয়ান কোচিং ও প্র্যাকটিক্যাল গাইডেন্স",
+        "গ্রোথ-পার্টনার রিভিউ, নিয়মিত ফলো-আপ ও অগ্রগতি যাচাই",
+        "ফাউন্ডার ও বিজনেস নেটওয়ার্কে যুক্ত হওয়ার সুযোগ"
+      ],
+      "cohortTiming": "কোহোর্ট ৩-এর প্রকাশিত শেষ তারিখ ছিল ৩১ আগস্ট ২০২৬; তা পেরিয়ে গেছে। ১৫ সেপ্টেম্বর ২০২৬ থেকে ১৫ মার্চ ২০২৭ প্রোগ্রাম চলার পূর্বঘোষিত তারিখগুলো চূড়ান্ত নয়। নতুন সুযোগের জন্য আয়োজকের সাইট দেখুন।",
+      "costOrEquity": "আবেদন, ভর্তি, অংশগ্রহণ, কোচিং বা ট্রেনিংয়ে কোনো ফি নেই। প্রোগ্রামটি কোনো ইকুইটিও নেয় না।",
+      "notableAlumni": [],
+      "applicationPath": "পরবর্তী আবেদনপর্বের জন্য অফিসিয়াল Active Applications পেজ দেখুন। পুরোনো শেষ তারিখ দেখে আবেদন খোলা ধরে নেবেন না। প্রকাশিত যোগ্যতায় আগে থেকেই ব্যবসা, উদ্যোগ বা নন-প্রফিট চালানোর শর্ত ছিল; শুধু আইডিয়ার জন্য নয়।",
+      "notes": "অন্যরকম (OnnoRokom) গ্রুপের ছয় মাসের এই অ্যাক্সিলারেটরটি এমন বাংলাদেশি ফাউন্ডারদের জন্য, যাঁরা আগে থেকেই ব্যবসা চালাচ্ছেন আর সেটাকে টেকসইভাবে বড় করতে চান। এখানে লার্নিং সেশন, কোচিং, মেন্টরিং ও প্র্যাকটিক্যাল কাজের পাশাপাশি নিয়মিত অগ্রগতি যাচাই করা হয়। ফাউন্ডার ও বিজনেস নেটওয়ার্কে যুক্ত হওয়ার সুযোগও থাকে। বাছাই করা অংশগ্রহণকারীরা ওয়ান-অন-ওয়ান কোচিং পান। আইডিয়া-স্টেজের ফাউন্ডারদের জন্য আলাদা ইনকিউবেশন প্রোগ্রামটি এখনো তৈরি হচ্ছে। প্রথম কোহোর্টের ঘোষণা আসেনি।"
+    }
+  },
+  {
+    "id": "nsu-startups-next",
+    "website": "https://nsustartupsnext.org/",
+    "sourceUrls": [
+      "https://nsustartupsnext.org/programs/"
+    ],
+    "lastVerified": "2026-08-20",
+    "en": {
+      "name": "NSU Startups Next",
+      "type": "University startup incubator and accelerator",
+      "stage": [
+        "Idea",
+        "Pre-MVP",
+        "Early stage",
+        "Early traction"
+      ],
+      "sectors": [
+        "Technology-enabled startups",
+        "Scalable solutions"
+      ],
+      "benefits": [
+        "16-week Founders’ Lab or Flagship track",
+        "Weekly KPI tracking and progress reviews every two weeks",
+        "Industry mentorship and business support",
+        "NSU workspace plus programme tools and credits",
+        "Investor pitch and two months of post-programme support for Flagship teams"
+      ],
+      "cohortTiming": "Cohort 4 launched in May 2026 and was still active on 9 August 2026. Its 15 April application deadline has passed; the next intake has not been announced.",
+      "costOrEquity": "No programme fee, according to the official FAQ. Equity terms: Not publicly stated.",
+      "notableAlumni": [
+        "Thrive",
+        "ReShop",
+        "Kalke",
+        "HypeScout"
+      ],
+      "applicationPath": "Cohort 4 applications are closed. Follow the official website or LinkedIn page, or email nsu.sn@northsouth.edu, for the next intake. Eligibility varies by cohort.",
+      "notes": "North South University's cohort-based startup platform has two 16-week tracks. Founders’ Lab helps idea-stage teams validate a business model and develop an initial MVP. Flagship Incubation supports launched, technology-enabled startups with early traction as they work towards product-market fit and investor readiness. Support includes structured reviews, mentors, workspace, tools and credits, investor exposure and two months of post-programme support for Flagship graduates."
+    },
+    "bn": {
+      "name": "NSU Startups Next",
+      "type": "বিশ্ববিদ্যালয়ভিত্তিক স্টার্টআপ ইনকিউবেটর ও অ্যাক্সিলারেটর",
+      "stage": [
+        "আইডিয়া",
+        "প্রি-এমভিপি",
+        "আর্লি স্টেজ",
+        "আর্লি ট্র্যাকশন"
+      ],
+      "sectors": [
+        "প্রযুক্তি-নির্ভর স্টার্টআপ",
+        "স্কেল করার মতো সমাধান"
+      ],
+      "benefits": [
+        "১৬ সপ্তাহের Founders’ Lab বা Flagship ট্র্যাক",
+        "প্রতি সপ্তাহে কেপিআই (KPI) ট্র্যাকিং ও দুই সপ্তাহ পরপর অগ্রগতি যাচাই",
+        "ইন্ডাস্ট্রি মেন্টরদের পরামর্শ ও ব্যবসা গড়ার সহায়তা",
+        "NSU-তে কাজের জায়গা, প্রোগ্রামের দরকারি টুল ও ক্রেডিট",
+        "Flagship টিমের জন্য ইনভেস্টরদের সামনে পিচ ও প্রোগ্রাম শেষে দুই মাসের বাড়তি সহায়তা"
+      ],
+      "cohortTiming": "কোহোর্ট ৪ শুরু হয়েছে ২০২৬ সালের মে মাসে, আর ৯ আগস্ট ২০২৬ তারিখেও এটি চালু ছিল। ১৫ এপ্রিল আবেদনের শেষ সময় পার হয়ে গেছে। পরবর্তী ইনটেকের সময়সূচি এখনো ঘোষণা করা হয়নি।",
+      "costOrEquity": "অফিসিয়াল FAQ অনুযায়ী কোনো প্রোগ্রাম ফি নেই। ইকুইটির শর্ত: প্রকাশ্যে বলা নেই।",
+      "notableAlumni": [
+        "Thrive",
+        "ReShop",
+        "Kalke",
+        "HypeScout"
+      ],
+      "applicationPath": "কোহোর্ট ৪-এর আবেদন এখন বন্ধ। পরবর্তী ইনটেকের খবর জানতে অফিসিয়াল ওয়েবসাইট বা LinkedIn পেজ দেখে নিন, অথবা nsu.sn@northsouth.edu ঠিকানায় ইমেইল করুন। আবেদনের যোগ্যতার শর্ত কোহোর্টভেদে বদলাতে পারে।",
+      "notes": "North South University-এর কোহোর্টভিত্তিক এই স্টার্টআপ প্ল্যাটফর্মে ১৬ সপ্তাহের দুটো আলাদা ট্র্যাক আছে। Founders’ Lab-এ আইডিয়া-স্টেজের টিম বিজনেস মডেল যাচাই করে প্রথম এমভিপি (MVP) তৈরি করে নিতে পারে। আর Flagship Incubation সাহায্য করে বাজারে চালু, প্রযুক্তি-নির্ভর ও আর্লি ট্র্যাকশন থাকা স্টার্টআপকে, যাতে তারা প্রোডাক্ট-মার্কেট ফিট খুঁজে পায় আর ইনভেস্টরদের কাছে যাওয়ার প্রস্তুতি গুছিয়ে নিতে পারে। এই সহায়তার মধ্যে রয়েছে নিয়মিত কাজের অগ্রগতি পর্যালোচনা, মেন্টরদের পরামর্শ, কাজের জায়গা, দরকারি টুল ও ক্রেডিট আর ইনভেস্টরদের সাথে যোগাযোগের সুযোগ। Flagship শেষ করা টিম প্রোগ্রাম শেষে আরও দুই মাস সাপোর্ট পায়।"
+    }
+  },
+  {
+    "id": "university-innovation-hub-program-uihp",
+    "website": "https://uihp.org/",
+    "sourceUrls": [
+      "https://uihp.org/faq"
+    ],
+    "lastVerified": "2026-08-25",
+    "en": {
+      "name": "University Innovation Hub Program (UIHP)",
+      "type": "University startup incubator",
+      "stage": [
+        "Idea",
+        "Pre-seed",
+        "Prototype"
+      ],
+      "sectors": [
+        "Technology",
+        "University innovation",
+        "Research commercialisation"
+      ],
+      "benefits": [
+        "Innovation and entrepreneurship training",
+        "Industry mentorship",
+        "Co-working and technical resources",
+        "Prototype and MVP development",
+        "Potential pre-seed or seed funding"
+      ],
+      "cohortTiming": "University-specific cohorts and deadlines; check the application page for each hub.",
+      "costOrEquity": "No participation fee. Equity terms: Not publicly stated.",
+      "notableAlumni": [],
+      "applicationPath": "Choose the relevant university innovation hub on the UIHP application page and follow that hub's registration instructions.",
+      "notes": "A Bangladesh Hi-Tech Park Authority university incubation programme under the ICT Division, financed by the World Bank. It supports students, graduates, researchers and alumni in participating universities to develop technology-driven ideas into prototypes, startups or registered intellectual property."
+    },
+    "bn": {
+      "name": "University Innovation Hub Program (UIHP)",
+      "type": "ইউনিভার্সিটি স্টার্টআপ ইনকিউবেটর",
+      "stage": [
+        "আইডিয়া",
+        "প্রি-সিড",
+        "প্রোটোটাইপ"
+      ],
+      "sectors": [
+        "প্রযুক্তি",
+        "ইউনিভার্সিটি ইনোভেশন",
+        "রিসার্চ কমার্শিয়ালাইজেশন"
+      ],
+      "benefits": [
+        "ইনোভেশন ও এন্টারপ্রেনারশিপ ট্রেনিং",
+        "ইন্ডাস্ট্রি মেন্টরশিপ",
+        "কো-ওয়ার্কিং ও টেকনিক্যাল রিসোর্স",
+        "প্রোটোটাইপ ও এমভিপি ডেভেলপমেন্ট",
+        "প্রি-সিড বা সিড ফান্ডিংয়ের সুযোগ"
+      ],
+      "cohortTiming": "প্রতিটি বিশ্ববিদ্যালয়ের কোহোর্ট ও সময়সীমা আলাদা। ওই হাবের আবেদন পাতায় বর্তমান সময়সীমা দেখে নিন।",
+      "costOrEquity": "অংশগ্রহণের কোনো ফি নেই। ইকুইটির শর্ত প্রকাশ্যে বলা নেই।",
+      "notableAlumni": [],
+      "applicationPath": "UIHP-এর আবেদন পাতায় নিজের বিশ্ববিদ্যালয়ের ইনোভেশন হাব বেছে নিন। তারপর ওই হাবের নিয়ম মেনে নিবন্ধন করুন।",
+      "notes": "আইসিটি বিভাগের অধীনে বাংলাদেশ হাই-টেক পার্ক কর্তৃপক্ষের একটি ইউনিভার্সিটি ইনকিউবেশন প্রোগ্রাম, যা বিশ্বব্যাংকের অর্থায়নে পরিচালিত হচ্ছে। এতে অংশগ্রহণকারী বিশ্ববিদ্যালয়গুলোর শিক্ষার্থী, গ্র্যাজুয়েট, গবেষক ও অ্যালামনাইদের প্রযুক্তিভিত্তিক আইডিয়াগুলোকে প্রোটোটাইপ, স্টার্টআপ বা নিবন্ধিত মেধাসম্পদে (intellectual property) রূপ দিতে সাহায্য করা হয়।"
+    }
+  },
+  {
+    "id": "accelerating-bangladesh",
+    "website": "https://acceleratingbangladesh.com/",
+    "sourceUrls": [
+      "https://acceleratingbangladesh.com/early-stage-startups/"
+    ],
+    "lastVerified": "2026-08-25",
+    "en": {
+      "name": "Accelerating Bangladesh",
+      "type": "Government-backed startup accelerator",
+      "stage": [
+        "Idea",
+        "MVP",
+        "Early stage",
+        "Growth"
+      ],
+      "sectors": [
+        "Sector-agnostic",
+        "Technology-enabled startups",
+        "Women-led digital businesses"
+      ],
+      "benefits": [
+        "14-week coaching and applied curriculum",
+        "One-to-one mentoring",
+        "Networking and investor pitching sessions",
+        "Residential bootcamp",
+        "National demo day and post-programme support"
+      ],
+      "cohortTiming": "Industry-cohort registration is open only to startups shortlisted in the first round; no new first-round application window is published.",
+      "costOrEquity": "The programme is fully sponsored. Equity terms: Not publicly stated.",
+      "notableAlumni": [],
+      "applicationPath": "Shortlisted startups can use the industry-cohort form. Other founders should wait for the next first-round call.",
+      "notes": "A Bangladesh Hi-Tech Park Authority and Digital Entrepreneurship and Innovation Ecosystem Development startup acceleration programme for Bangladesh founders from viable idea or MVP stage through growth. The programme combines coaching, mentoring, bootcamps, investor sessions and demo-day exposure."
+    },
+    "bn": {
+      "name": "Accelerating Bangladesh",
+      "type": "সরকার-সমর্থিত স্টার্টআপ অ্যাক্সিলারেটর",
+      "stage": [
+        "আইডিয়া",
+        "এমভিপি",
+        "আর্লি স্টেজ",
+        "গ্রোথ"
+      ],
+      "sectors": [
+        "যেকোনো খাত",
+        "প্রযুক্তিভিত্তিক স্টার্টআপ",
+        "নারী-নেতৃত্বাধীন ডিজিটাল ব্যবসা"
+      ],
+      "benefits": [
+        "১৪ সপ্তাহের কোচিং ও প্র্যাকটিক্যাল কারিকুলাম",
+        "ওয়ান-টু-ওয়ান মেন্টরিং",
+        "নেটওয়ার্কিং ও ইনভেস্টর পিচিং সেশন",
+        "রেসিডেনসিয়াল বুটক্যাম্প",
+        "ন্যাশনাল ডেমো ডে ও প্রোগ্রাম-পরবর্তী সাপোর্ট"
+      ],
+      "cohortTiming": "ইন্ডাস্ট্রি কোহোর্টে শুধু প্রথম রাউন্ডে বাছাই হওয়া স্টার্টআপগুলোই নিবন্ধন করতে পারে। নতুন প্রথম রাউন্ডের আবেদন কবে খুলবে, তা প্রকাশ করা হয়নি।",
+      "costOrEquity": "প্রোগ্রামটি সম্পূর্ণ স্পন্সরড। ইকুইটির শর্ত প্রকাশ্যে বলা নেই।",
+      "notableAlumni": [],
+      "applicationPath": "প্রথম রাউন্ডে বাছাই হওয়া স্টার্টআপগুলো ইন্ডাস্ট্রি কোহোর্টের ফর্ম ব্যবহার করতে পারে। অন্য ফাউন্ডারদের পরবর্তী প্রথম রাউন্ডের আবেদন খোলার ঘোষণা পর্যন্ত অপেক্ষা করতে হবে।",
+      "notes": "বাংলাদেশ হাই-টেক পার্ক কর্তৃপক্ষ এবং ডিজিটাল এন্টারপ্রেনারশিপ অ্যান্ড ইনোভেশন ইকোসিস্টেম ডেভেলপমেন্ট-এর একটি স্টার্টআপ অ্যাক্সিলারেশন প্রোগ্রাম। এটি বাস্তবসম্মত আইডিয়া বা এমভিপি পর্যায় থেকে গ্রোথ পর্যায়ে থাকা বাংলাদেশি ফাউন্ডারদের জন্য তৈরি। এতে কোচিং, মেন্টরিং, বুটক্যাম্প, ইনভেস্টর সেশন আর ডেমো ডে-তে অংশ নেওয়ার সুযোগ দেওয়া হয়।"
+    }
+  },
+  {
+    "id": "accelerating-asia-accelerator",
+    "website": "https://www.acceleratingasia.com/",
+    "sourceUrls": [
+      "https://www.acceleratingasia.com/getfunded"
+    ],
+    "lastVerified": "2026-08-19",
+    "en": {
+      "name": "Accelerating Asia Accelerator",
+      "type": "Regional VC accelerator",
+      "stage": [
+        "Seed",
+        "Pre-Series A"
+      ],
+      "sectors": [
+        "Sector-agnostic",
+        "Technology-enabled startups"
+      ],
+      "benefits": [
+        "US$100,000 initial investment",
+        "100-day tailored accelerator",
+        "One-to-one Entrepreneurs in Residence",
+        "Masterclasses and investor introductions",
+        "Potential follow-on funding up to US$150,000"
+      ],
+      "cohortTiming": "Cohort 14 applications are open; interviews begin in August 2026, the programme starts in October and Demo Day is planned for January 2027.",
+      "costOrEquity": "US$35,000 programme fee, deducted from the initial investment, plus 3% equity; the investment uses a post-money SAFE.",
+      "notableAlumni": [
+        "Markopolo.ai",
+        "TransTRACK",
+        "Kopi Date"
+      ],
+      "applicationPath": "Apply through Accelerating Asia Ventures' Get Funded page for Cohort 14.",
+      "notes": "A 100-day VC accelerator for high-growth, pre-Series A technology startups across South and Southeast Asia. It is designed for companies with evidence of execution or traction and combines capital with intensive growth, fundraising and regional-expansion support."
+    },
+    "bn": {
+      "name": "Accelerating Asia Accelerator",
+      "type": "আঞ্চলিক ভিসি অ্যাক্সিলারেটর",
+      "stage": [
+        "সিড",
+        "প্রি-সিরিজ এ"
+      ],
+      "sectors": [
+        "যেকোনো খাত",
+        "প্রযুক্তি-নির্ভর স্টার্টআপ"
+      ],
+      "benefits": [
+        "শুরুতে ১ লাখ ডলার প্রাথমিক বিনিয়োগ",
+        "কোম্পানির প্রয়োজনমাফিক ১০০ দিনের অ্যাক্সিলারেটর",
+        "এন্টারপ্রেনার ইন রেসিডেন্সের (EIR) সাথে ওয়ান-অন-ওয়ান কাজ",
+        "মাস্টারক্লাস ও ইনভেস্টরদের সাথে সংযোগ",
+        "পরবর্তীতে আরও ১.৫ লাখ ডলার পর্যন্ত ফলো-অন ফান্ডিংয়ের সুযোগ"
+      ],
+      "cohortTiming": "কোহোর্ট ১৪-এর আবেদন চলছে; ২০২৬ সালের আগস্টে ইন্টারভিউ শুরু হবে, অক্টোবরে প্রোগ্রাম শুরু হবে এবং ২০২৭ সালের জানুয়ারিতে ডেমো ডে অনুষ্ঠিত হবে।",
+      "costOrEquity": "প্রোগ্রাম ফি ৩৫,০০০ ডলার, যা প্রাথমিক বিনিয়োগ থেকে কেটে রাখা হয়। সাথে ৩% ইকুইটি নেওয়া হয়; এই বিনিয়োগে পোস্ট-মানি সেফ (SAFE) চুক্তি ব্যবহার করা হয়।",
+      "notableAlumni": [
+        "Markopolo.ai",
+        "TransTRACK",
+        "Kopi Date"
+      ],
+      "applicationPath": "কোহোর্ট ১৪-এর জন্য Accelerating Asia Ventures-এর Get Funded পেজ থেকে আবেদন করুন।",
+      "notes": "দক্ষিণ ও দক্ষিণ-পূর্ব এশিয়ার দ্রুত বর্ধনশীল প্রি-সিরিজ এ প্রযুক্তি স্টার্টআপদের জন্য ১০০ দিনের এই ভিসি অ্যাক্সিলারেটর। বাজারে কাজের প্রমাণ বা ট্র্যাকশন আছে এমন কোম্পানিগুলোর জন্য এটি তৈরি। এখানে মূলধনের পাশাপাশি গ্রোথ, ফান্ড সংগ্রহ এবং আঞ্চলিক বাজারে বিস্তারের নিবিড় সহায়তা দেওয়া হয়।"
+    }
+  },
+  {
+    "id": "grameenphone-accelerator",
+    "website": "https://www.grameenphone.com/about/gp-accelerator",
+    "sourceUrls": [
+      "https://www.grameenphone.com/about/gp-accelerator"
+    ],
+    "lastVerified": "2026-09-11",
+    "en": {
+      "name": "Grameenphone Accelerator",
+      "type": "Corporate accelerator",
+      "stage": [
+        "MVP",
+        "Early stage"
+      ],
+      "sectors": [
+        "Technology",
+        "Fintech",
+        "Healthtech",
+        "Edtech",
+        "Enterprise software"
+      ],
+      "benefits": [
+        "Mentoring and business-building curriculum",
+        "Office space at GP House",
+        "Equity-free grants and investor access"
+      ],
+      "cohortTiming": "The official page says the next application and selection dates will be announced later.",
+      "costOrEquity": "The published programme takes no equity and provides workspace without rent. Confirm the terms of the next intake.",
+      "notableAlumni": [
+        "Sheba.xyz",
+        "CMED Health",
+        "Cramstack",
+        "Barikoi"
+      ],
+      "eligibility": "A Bangladesh-registered technology startup, preferably with a prototype, MVP or early users. At least one cofounder must work full-time. The FAQ describes a minimum of two cofounders.",
+      "applicationPath": "Check the official programme page for the next call. No current application window is published.",
+      "notes": "For Bangladesh-registered technology startups, preferably with a prototype or MVP. The FAQ requires at least two cofounders, with one working full-time. Teams are expected to work mainly from GP House. The published programme takes no equity and charges no workspace rent. The next intake has not been announced."
+    },
+    "bn": {
+      "name": "Grameenphone Accelerator",
+      "type": "করপোরেট অ্যাক্সিলারেটর",
+      "stage": [
+        "এমভিপি",
+        "আর্লি স্টেজ"
+      ],
+      "sectors": [
+        "প্রযুক্তি",
+        "ফিনটেক",
+        "হেলথটেক",
+        "এডটেক",
+        "এন্টারপ্রাইজ সফটওয়্যার"
+      ],
+      "benefits": [
+        "মেন্টরিং ও ব্যবসা গড়ার প্রশিক্ষণ",
+        "GP House-এ অফিসের জায়গা",
+        "ইকুইটি ছাড়া অনুদান ও ইনভেস্টরের সঙ্গে যোগাযোগ"
+      ],
+      "cohortTiming": "অফিশিয়াল পেজে বলা আছে, পরের আবেদন ও বাছাইয়ের তারিখ পরে জানানো হবে।",
+      "costOrEquity": "প্রকাশিত নিয়ম অনুযায়ী মালিকানার ভাগ নেয় না, অফিসের জায়গার ভাড়াও লাগে না। পরের ব্যাচের শর্ত জেনে নিন।",
+      "notableAlumni": [
+        "Sheba.xyz",
+        "CMED Health",
+        "Cramstack",
+        "Barikoi"
+      ],
+      "eligibility": "বাংলাদেশে রেজিস্টার্ড প্রযুক্তিনির্ভর স্টার্টআপ। প্রোটোটাইপ, এমভিপি বা কিছু ইউজার থাকলে বেশি উপযোগী। অন্তত একজন কো-ফাউন্ডারকে পুরো সময় কাজ করতে হবে। FAQ-তে অন্তত দুজন কো-ফাউন্ডারের কথা বলা আছে।",
+      "applicationPath": "পরের ব্যাচের ঘোষণা অফিশিয়াল পেজে দেখুন। এখন আবেদন নেওয়ার কোনো সময়সীমা দেওয়া নেই।",
+      "notes": "বাংলাদেশে রেজিস্টার্ড প্রযুক্তিনির্ভর স্টার্টআপের জন্য। প্রোটোটাইপ বা এমভিপি থাকলে অগ্রাধিকার পায়। FAQ অনুযায়ী অন্তত দুজন কো-ফাউন্ডার থাকতে হবে, তাঁদের একজনকে পুরো সময় কাজ করতে হবে। প্রোগ্রাম চলাকালে দলকে মূলত GP House থেকে কাজ করতে হয়। প্রকাশিত নিয়মে মালিকানার ভাগ নেয় না, অফিসের ভাড়াও লাগে না। পরের ব্যাচের ঘোষণা এখনো আসেনি।"
+    }
+  },
+  {
+    "id": "turtle-venture-sprint",
+    "website": "https://turtleventure.com/venture-sprint/",
+    "sourceUrls": [
+      "https://turtleventure.com/venture-sprint/"
+    ],
+    "lastVerified": "2026-09-11",
+    "en": {
+      "name": "Turtle Venture Sprint",
+      "type": "Regional accelerator",
+      "stage": [
+        "MVP",
+        "Early stage"
+      ],
+      "sectors": [
+        "Technology-enabled startups"
+      ],
+      "benefits": [
+        "Product and revenue-development support",
+        "Pitch deck and fundraising preparation",
+        "Online sessions and an overseas immersion"
+      ],
+      "cohortTiming": "The page still advertises a June 2026 cohort. That date has passed; confirm the next intake.",
+      "costOrEquity": "Published one-time programme fee: US$3,000. No equity taken. Confirm travel, accommodation and other extra costs before paying.",
+      "notableAlumni": [],
+      "eligibility": "Targets startup founders in South and Southeast Asia. Detailed stage and selection requirements for a new intake should be confirmed with the organiser.",
+      "applicationPath": "Contact Turtle Venture through the programme page to confirm the next intake and full written terms.",
+      "notes": "For founders in South and Southeast Asia. The ten-week programme includes eight online weeks and eight days overseas. The published fee is US$3,000, with no equity taken. Confirm travel, accommodation and other extra costs before paying. The page still advertises the past June 2026 cohort; confirm the next intake. Investor introductions do not guarantee investment."
+    },
+    "bn": {
+      "name": "Turtle Venture Sprint",
+      "type": "আঞ্চলিক অ্যাক্সিলারেটর",
+      "stage": [
+        "এমভিপি",
+        "আর্লি স্টেজ"
+      ],
+      "sectors": [
+        "প্রযুক্তিনির্ভর স্টার্টআপ"
+      ],
+      "benefits": [
+        "প্রোডাক্ট ও বিক্রি বাড়াতে সহায়তা",
+        "পিচ ডেক ও ফান্ডিংয়ের প্রস্তুতি",
+        "অনলাইন সেশন এবং বিদেশে সরাসরি অংশ নেওয়ার পর্ব"
+      ],
+      "cohortTiming": "পেজে এখনো জুন ২০২৬-এর ব্যাচের ঘোষণা আছে। সেই সময় পেরিয়ে গেছে। পরের ব্যাচের খবর জেনে নিন।",
+      "costOrEquity": "প্রকাশিত এককালীন ফি ৩,০০০ মার্কিন ডলার। মালিকানার ভাগ নেয় না। পেমেন্টের আগে যাতায়াত, থাকা ও বাড়তি খরচ জেনে নিন।",
+      "notableAlumni": [],
+      "eligibility": "দক্ষিণ ও দক্ষিণ-পূর্ব এশিয়ার স্টার্টআপ ফাউন্ডারদের জন্য। নতুন ব্যাচে কোন স্টেজের দল নেওয়া হবে আর বাছাইয়ের শর্ত কী, আয়োজকের কাছে জেনে নিন।",
+      "applicationPath": "পরের ব্যাচ ও পুরো লিখিত শর্ত জানতে প্রোগ্রাম পেজ দিয়ে Turtle Venture-এর সঙ্গে যোগাযোগ করুন।",
+      "notes": "দক্ষিণ ও দক্ষিণ-পূর্ব এশিয়ার ফাউন্ডারদের জন্য দশ সপ্তাহের প্রোগ্রাম: আট সপ্তাহ অনলাইন সেশন ও আট দিন বিদেশে সরাসরি অংশ নিতে হয়। প্রকাশিত ফি ৩,০০০ মার্কিন ডলার। মালিকানার ভাগ নেয় না। পেমেন্টের আগে যাতায়াত, থাকা ও বাড়তি খরচ জেনে নিন। পেজে এখনো জুন ২০২৬-এর ব্যাচের ঘোষণা আছে, যে সময় পেরিয়ে গেছে। পরের ব্যাচের খবর নিন। ইনভেস্টরের সঙ্গে পরিচয় হলেই ইনভেস্টমেন্ট নিশ্চিত হয় না।"
+    }
+  },
+  {
+    "id": "biniyog-briddhi-voucher-scheme",
+    "website": "https://www.sie-b.org/vouchers/",
+    "sourceUrls": [
+      "https://www.sie-b.org/vouchers/"
+    ],
+    "lastVerified": "2026-09-11",
+    "en": {
+      "name": "Biniyog Briddhi Voucher Scheme",
+      "type": "Impact investment-readiness support",
+      "stage": [
+        "Market traction",
+        "Growth"
+      ],
+      "sectors": [
+        "Social business",
+        "Climate and environment",
+        "Impact"
+      ],
+      "benefits": [
+        "Subsidised impact investment-readiness support",
+        "Impact measurement and management support",
+        "Work with a certified service provider"
+      ],
+      "cohortTiming": "The page describes the 2025 call. Confirm whether a new call is available.",
+      "costOrEquity": "The published scheme requires an enterprise contribution of 20% of service fees within the voucher limit, or 5% for qualifying rural enterprises; fees above the limit are paid in full.",
+      "notableAlumni": [],
+      "eligibility": "A Bangladesh-registered impact enterprise with a product and customers. At least two years of operation for investment-readiness support, or one year for impact-management support. Apply jointly with a certified provider.",
+      "applicationPath": "Choose a certified provider and ask about the next call before jointly preparing a training plan and application.",
+      "notes": "For Bangladesh-registered impact enterprises with a product and customers: at least two years of operation for investment-readiness support, or one year for impact-management support. Enterprises pay 20% of service fees within the voucher limit, or 5% for qualifying rural enterprises, plus all fees above the limit. This subsidises advisory services; it is not an unrestricted cash grant. The page describes the 2025 call; confirm current availability."
+    },
+    "bn": {
+      "name": "Biniyog Briddhi Voucher Scheme",
+      "type": "ইমপ্যাক্ট ইনভেস্টমেন্টের প্রস্তুতিতে সহায়তা",
+      "stage": [
+        "বাজারে ট্র্যাকশন",
+        "গ্রোথ"
+      ],
+      "sectors": [
+        "সামাজিক ব্যবসা",
+        "জলবায়ু ও পরিবেশ",
+        "ইমপ্যাক্ট"
+      ],
+      "benefits": [
+        "ইমপ্যাক্ট ইনভেস্টমেন্টের প্রস্তুতিতে ভর্তুকি",
+        "সামাজিক ও পরিবেশগত ফল মাপা এবং ব্যবস্থাপনায় সহায়তা",
+        "অনুমোদিত সার্ভিস প্রোভাইডারের সঙ্গে কাজ"
+      ],
+      "cohortTiming": "পেজে ২০২৫ সালের আবেদনের তথ্য আছে। নতুন আবেদন নেওয়া হচ্ছে কি না জেনে নিন।",
+      "costOrEquity": "প্রকাশিত নিয়মে ভাউচার সীমার মধ্যে সার্ভিস ফির ২০% ব্যবসাকে দিতে হয়। যোগ্য গ্রামীণ ব্যবসার ক্ষেত্রে ৫%। সীমার বেশি খরচ হলে বাড়তি অংশ পুরোটা দিতে হয়।",
+      "notableAlumni": [],
+      "eligibility": "বাংলাদেশে রেজিস্টার্ড ইমপ্যাক্ট ব্যবসা, যার প্রোডাক্ট ও কাস্টমার আছে। ইনভেস্টমেন্টের প্রস্তুতির সহায়তা পেতে অন্তত দুই বছর, ইমপ্যাক্ট ম্যানেজমেন্টের সহায়তা পেতে অন্তত এক বছর চালু থাকতে হবে। অনুমোদিত প্রোভাইডারের সঙ্গে যৌথ আবেদন করতে হয়।",
+      "applicationPath": "অনুমোদিত প্রোভাইডার বেছে পরের আবেদনের খবর নিন। এরপর একসঙ্গে প্রশিক্ষণ পরিকল্পনা ও আবেদন তৈরি করুন।",
+      "notes": "বাংলাদেশে রেজিস্টার্ড ইমপ্যাক্ট ব্যবসার জন্য, যার প্রোডাক্ট ও কাস্টমার আছে। ইনভেস্টমেন্টের প্রস্তুতির সহায়তা পেতে অন্তত দুই বছর, ইমপ্যাক্ট ম্যানেজমেন্টের সহায়তা পেতে অন্তত এক বছর চালু থাকতে হবে। ভাউচার সীমার মধ্যে সার্ভিস ফির ২০% ব্যবসাকে দিতে হয়; যোগ্য গ্রামীণ ব্যবসার ক্ষেত্রে ৫%। সীমার বেশি খরচ পুরোটা দিতে হয়। এটি পরামর্শ সেবার খরচে ভর্তুকি, ইচ্ছামতো খরচের নগদ অনুদান নয়। পেজে ২০২৫ সালের আবেদনের তথ্য আছে। এখন আবেদন নেওয়া হচ্ছে কি না জেনে নিন।"
+    }
+  },
+  {
+    "id": "iterative",
+    "website": "https://www.iterative.vc/",
+    "sourceUrls": [
+      "https://www.iterative.vc/getting-into-iterative",
       "https://www.iterative.vc/what-happens-at-iterative",
       "https://www.iterative.vc/apply",
       "https://www.iterative.vc/"
     ],
     "lastVerified": "2026-09-11",
-    "notes": "The company must be based in Southeast Asia or focus on a Southeast Asian market; a Bangladesh-only business does not meet this geography rule. There is no programme fee, but the investment uses a post-money SAFE for approximately 10–15% of the company. Confirm your offered terms. The programme starts with an in-person orientation, followed by remote participation.",
-    "chequeSize": "US$150,000–500,000 on admission"
+    "en": {
+      "name": "Iterative",
+      "type": "Regional VC accelerator",
+      "stage": [
+        "Idea",
+        "MVP",
+        "Early stage",
+        "Growth"
+      ],
+      "sectors": [
+        "Sector-agnostic"
+      ],
+      "benefits": [
+        "US$150,000–500,000 investment on admission",
+        "Partner office hours and fundraising support",
+        "Three-month programme and investor demo day"
+      ],
+      "cohortTiming": "Winter 2027 applications are advertised as open; the batch runs February–May 2027. No final deadline is published on the application page.",
+      "costOrEquity": "No programme fee. The published investment uses a post-money SAFE for approximately 10–15% of the company; confirm the offered terms.",
+      "notableAlumni": [
+        "Go Zayaan"
+      ],
+      "eligibility": "The company must be based in Southeast Asia or focus on a Southeast Asian market. A Bangladesh-only business does not meet that published geography rule. Solo founders and idea-stage teams may apply.",
+      "applicationPath": "Read the geography requirement, then use the official Winter 2027 application page.",
+      "notes": "The company must be based in Southeast Asia or focus on a Southeast Asian market; a Bangladesh-only business does not meet this geography rule. There is no programme fee, but the investment uses a post-money SAFE for approximately 10–15% of the company. Confirm your offered terms. The programme starts with an in-person orientation, followed by remote participation.",
+      "chequeSize": "US$150,000–500,000 on admission"
+    },
+    "bn": {
+      "name": "Iterative",
+      "type": "আঞ্চলিক ভিসি অ্যাক্সিলারেটর",
+      "stage": [
+        "আইডিয়া",
+        "এমভিপি",
+        "আর্লি স্টেজ",
+        "গ্রোথ"
+      ],
+      "sectors": [
+        "সব খাত"
+      ],
+      "benefits": [
+        "নির্বাচিত হলে ১.৫–৫ লাখ মার্কিন ডলার ইনভেস্টমেন্ট",
+        "পার্টনারদের সঙ্গে আলোচনা ও ফান্ডিংয়ে সহায়তা",
+        "তিন মাসের প্রোগ্রাম ও ইনভেস্টর ডেমো ডে"
+      ],
+      "cohortTiming": "উইন্টার ২০২৭ ব্যাচের আবেদন খোলা দেখাচ্ছে। প্রোগ্রাম ফেব্রুয়ারি–মে ২০২৭। আবেদন পেজে শেষ তারিখ দেওয়া নেই।",
+      "costOrEquity": "প্রোগ্রাম ফি নেই। প্রকাশিত শর্তে পোস্ট-মানি SAFE দিয়ে কোম্পানির আনুমানিক ১০–১৫% মালিকানার বিনিময়ে ইনভেস্ট করে। আপনাকে দেওয়া শর্ত আলাদা করে দেখে নিন।",
+      "notableAlumni": [
+        "Go Zayaan"
+      ],
+      "eligibility": "কোম্পানির ঘাঁটি বা লক্ষ্য বাজার দক্ষিণ-পূর্ব এশিয়ায় হতে হবে। শুধু বাংলাদেশের বাজারে কাজ করলে এই ভৌগোলিক শর্ত পূরণ হয় না। একা ফাউন্ডার বা আইডিয়া স্টেজের দলও আবেদন করতে পারে।",
+      "applicationPath": "ভৌগোলিক শর্তটি আগে মিলিয়ে নিন। তারপর অফিশিয়াল উইন্টার ২০২৭ আবেদন পেজে যান।",
+      "notes": "কোম্পানির ঘাঁটি বা লক্ষ্যবাজার দক্ষিণ-পূর্ব এশিয়ায় হতে হবে। শুধু বাংলাদেশের বাজারে কাজ করলে এই ভৌগোলিক শর্ত পূরণ হয় না। প্রোগ্রাম ফি নেই, তবে পোস্ট-মানি SAFE দিয়ে কোম্পানির আনুমানিক ১০–১৫% মালিকানার বিনিময়ে ইনভেস্ট করে। আপনাকে দেওয়া শর্ত আলাদা করে দেখে নিন। শুরুতে ওরিয়েন্টেশনে সরাসরি অংশ নিতে হয়, পরের অংশ অনলাইনে চলে।",
+      "chequeSize": "নির্বাচিত হলে ১.৫–৫ লাখ মার্কিন ডলার"
+    }
   }
 ]

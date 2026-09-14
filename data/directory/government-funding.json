@@ -1,52 +1,108 @@
 [
   {
-    "name": "Startup Bangladesh Limited",
-    "type": "Government-backed venture capital",
-    "eligibility": "Bangladesh-registered startups and impact enterprises with high growth potential or significant social impact; seed applicants should have an MVP tested in the market, while growth applicants should have commercial operations, traction and recurring revenue.",
-    "amount": "BDT 25 lakh–5 crore per investment round",
-    "stage": [
-      "Seed",
-      "Early stage",
-      "Growth"
-    ],
-    "deadline": "Not publicly stated",
-    "applicationPath": "Complete the online Application for Investment form with company, founder, team, traction and pitch-deck information.",
+    "id": "startup-bangladesh-limited",
     "website": "https://www.startupbangladesh.vc/",
-    "sourceUrl": "https://www.startupbangladesh.vc/contact/faqs/",
+    "sourceUrls": [
+      "https://www.startupbangladesh.vc/contact/faqs/"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "Bangladesh's state-owned venture capital company invests through equity or quasi-equity and can co-invest in seed, early and growth-stage ventures. This route is for companies with a product and evidence of market progress, not idea-only projects seeking a grant."
+    "en": {
+      "name": "Startup Bangladesh Limited",
+      "type": "Government-backed venture capital",
+      "eligibility": "Bangladesh-registered startups and impact enterprises with high growth potential or significant social impact; seed applicants should have an MVP tested in the market, while growth applicants should have commercial operations, traction and recurring revenue.",
+      "amount": "BDT 25 lakh–5 crore per investment round",
+      "stage": [
+        "Seed",
+        "Early stage",
+        "Growth"
+      ],
+      "deadline": "Not publicly stated",
+      "applicationPath": "Complete the online Application for Investment form with company, founder, team, traction and pitch-deck information.",
+      "notes": "Bangladesh's state-owned venture capital company invests through equity or quasi-equity and can co-invest in seed, early and growth-stage ventures. This route is for companies with a product and evidence of market progress, not idea-only projects seeking a grant."
+    },
+    "bn": {
+      "name": "Startup Bangladesh Limited",
+      "type": "সরকারি ভেঞ্চার ক্যাপিটাল",
+      "eligibility": "বাংলাদেশে নিবন্ধিত স্টার্টআপ ও ইমপ্যাক্ট এন্টারপ্রাইজ, যাদের দ্রুত বড় হওয়ার সম্ভাবনা বা উল্লেখযোগ্য সামাজিক প্রভাব রয়েছে। সিড স্টেজের আবেদনকারীদের বাজারে পরীক্ষিত একটি এমভিপি (MVP) থাকতে হয়; আর গ্রোথ স্টেজের আবেদনকারীদের বাণিজ্যিক কার্যক্রম, ট্র্যাকশন ও নিয়মিত আয়ের রেকর্ড থাকতে হয়।",
+      "amount": "প্রতি রাউন্ডে ২৫ লাখ থেকে ৫ কোটি টাকা",
+      "stage": [
+        "সিড",
+        "আর্লি স্টেজ",
+        "গ্রোথ"
+      ],
+      "deadline": "প্রকাশ্যে বলা নেই",
+      "applicationPath": "কোম্পানি, ফাউন্ডার, টিম, ট্র্যাকশন ও আর্থিক বিবরণ দিয়ে অনলাইনে ইনভেস্টমেন্ট আবেদন ফরম পূরণ করুন।",
+      "notes": "বাংলাদেশ সরকারের মালিকানাধীন এই ভেঞ্চার ক্যাপিটাল কোম্পানিটি ইকুইটি বা কোয়াসি-ইকুইটির মাধ্যমে সিড, আর্লি ও গ্রোথ স্টেজের স্টার্টআপে সরাসরি বা অন্যান্য ইনভেস্টরের সাথে যৌথভাবে বিনিয়োগ করে। যাদের তৈরি প্রোডাক্ট ও বাজারে অগ্রগতির প্রমাণ আছে, এটি তাদের জন্য; কেবল আইডিয়া পর্যায়ের অনুদানের জন্য এটি নয়।"
+    }
   },
   {
-    "name": "iDEA Project, ICT Division",
-    "type": "Government grant and entrepreneurship-support programme",
-    "eligibility": "Bangladeshi founders, teams or early-stage startups with an innovative, scalable ICT-based idea.",
-    "amount": "Up to BDT 10 lakh, non-equity",
-    "stage": [
-      "Idea",
-      "Pre-seed"
-    ],
-    "deadline": "Not publicly stated",
-    "applicationPath": "Choose Startup Grant at apply.idea.gov.bd and review the required documents before submitting.",
+    "id": "idea-project-ict-division",
     "website": "https://idea.gov.bd/",
-    "sourceUrl": "https://idea.gov.bd/p/7/faq",
+    "sourceUrls": [
+      "https://idea.gov.bd/p/7/faq"
+    ],
     "lastVerified": "2026-08-19",
-    "notes": "The ICT Division's iDEA Project provides non-equity grants to help technology ventures validate ideas, build an MVP and develop or expand the business. It also offers co-working space, labs, mentoring, training and networking; these support services have their own application routes."
+    "en": {
+      "name": "iDEA Project, ICT Division",
+      "type": "Government grant and entrepreneurship-support programme",
+      "eligibility": "Bangladeshi founders, teams or early-stage startups with an innovative, scalable ICT-based idea.",
+      "amount": "Up to BDT 10 lakh, non-equity",
+      "stage": [
+        "Idea",
+        "Pre-seed"
+      ],
+      "deadline": "Not publicly stated",
+      "applicationPath": "Choose Startup Grant at apply.idea.gov.bd and review the required documents before submitting.",
+      "notes": "The ICT Division's iDEA Project provides non-equity grants to help technology ventures validate ideas, build an MVP and develop or expand the business. It also offers co-working space, labs, mentoring, training and networking; these support services have their own application routes."
+    },
+    "bn": {
+      "name": "iDEA Project, ICT Division",
+      "type": "সরকারি অনুদান ও উদ্যোক্তা সহায়তা প্রোগ্রাম",
+      "eligibility": "উদ্ভাবনী ও স্কেলেবল আইসিটি-ভিত্তিক আইডিয়া নিয়ে কাজ করা বাংলাদেশি ফাউন্ডার, টিম বা প্রাথমিক পর্যায়ের স্টার্টআপ।",
+      "amount": "সর্বোচ্চ ১০ লাখ টাকা পর্যন্ত (নন-ইকুইটি গ্রান্ট)",
+      "stage": [
+        "আইডিয়া",
+        "প্রি-সিড"
+      ],
+      "deadline": "প্রকাশ্যে বলা নেই",
+      "applicationPath": "apply.idea.gov.bd পোর্টাল থেকে Startup Grant নির্বাচন করুন এবং প্রয়োজনীয় কাগজপত্র দেখে নিয়ে আবেদন জমা দিন।",
+      "notes": "তথ্য ও যোগাযোগ প্রযুক্তি বিভাগের iDEA প্রকল্প নতুন প্রযুক্তি উদ্যোগগুলোকে আইডিয়া যাচাই, এমভিপি তৈরি এবং ব্যবসার পরিধি বাড়ানোর জন্য নন-ইকুইটি অনুদান দেয়। এছাড়া কো-ওয়ার্কিং স্পেস, ল্যাব সুবিধা, মেন্টরিং, ট্রেনিং ও নেটওয়ার্কিংয়ের সুযোগও রয়েছে; তবে সেগুলোর জন্য আলাদাভাবে আবেদন করতে হয়।"
+    }
   },
   {
-    "name": "Bangladesh Bank Startup Fund",
-    "type": "Central-bank startup-financing framework",
-    "eligibility": "Bangladesh-registered startups whose founders are aged 21 or above. New ventures and startups operating for up to 12 years from registration can apply, subject to appraisal by a participating bank or financial institution.",
-    "amount": "BDT 2–8 crore, depending on the startup's development stage",
-    "stage": [
-      "Seed",
-      "Growth",
-      "High growth"
-    ],
-    "deadline": "Rolling through participating banks and financial institutions",
-    "applicationPath": "Apply through a participating bank or financial institution; applications are not submitted directly to Bangladesh Bank.",
+    "id": "bangladesh-bank-startup-fund",
     "website": "https://www.bb.org.bd/",
-    "sourceUrl": "https://www.bb.org.bd/mediaroom/circulars/smespd/jul092025smespd02.pdf",
+    "sourceUrls": [
+      "https://www.bb.org.bd/mediaroom/circulars/smespd/jul092025smespd02.pdf"
+    ],
     "lastVerified": "2026-08-25",
-    "notes": "Bangladesh Bank's BDT 500 crore refinance fund supports startup loans and investments through participating banks and financial institutions. The maximum interest or profit rate is 4%, subject to the lender's appraisal and conditions."
+    "en": {
+      "name": "Bangladesh Bank Startup Fund",
+      "type": "Central-bank startup-financing framework",
+      "eligibility": "Bangladesh-registered startups whose founders are aged 21 or above. New ventures and startups operating for up to 12 years from registration can apply, subject to appraisal by a participating bank or financial institution.",
+      "amount": "BDT 2–8 crore, depending on the startup's development stage",
+      "stage": [
+        "Seed",
+        "Growth",
+        "High growth"
+      ],
+      "deadline": "Rolling through participating banks and financial institutions",
+      "applicationPath": "Apply through a participating bank or financial institution; applications are not submitted directly to Bangladesh Bank.",
+      "notes": "Bangladesh Bank's BDT 500 crore refinance fund supports startup loans and investments through participating banks and financial institutions. The maximum interest or profit rate is 4%, subject to the lender's appraisal and conditions."
+    },
+    "bn": {
+      "name": "Bangladesh Bank Startup Fund",
+      "type": "কেন্দ্রীয় ব্যাংকের স্টার্টআপ ফাইন্যান্সিং ফ্রেমওয়ার্ক",
+      "eligibility": "বাংলাদেশে নিবন্ধিত যেসব স্টার্টআপের ফাউন্ডারদের বয়স ২১ বছর বা তার বেশি, তারা আবেদন করতে পারে। নতুন উদ্যোগ বা নিবন্ধনের পর সর্বোচ্চ ১২ বছর ধরে চালু থাকা স্টার্টআপকে অংশগ্রহণকারী ব্যাংক বা আর্থিক প্রতিষ্ঠানের যাচাই পেরোতে হবে।",
+      "amount": "স্টার্টআপের অগ্রগতির ধাপ অনুযায়ী ২–৮ কোটি টাকা",
+      "stage": [
+        "সিড",
+        "গ্রোথ",
+        "হাই-গ্রোথ"
+      ],
+      "deadline": "ব্যাংক ও আর্থিক প্রতিষ্ঠানের মাধ্যমে সারা বছরই আবেদন করা যায়",
+      "applicationPath": "অংশগ্রহণকারী কোনো ব্যাংক বা আর্থিক প্রতিষ্ঠানে আবেদন করুন। বাংলাদেশ ব্যাংকে সরাসরি আবেদন করা যায় না।",
+      "notes": "বাংলাদেশ ব্যাংকের ৫০০ কোটি টাকার রিফাইন্যান্স ফান্ড থেকে অংশগ্রহণকারী ব্যাংক ও আর্থিক প্রতিষ্ঠানের মাধ্যমে স্টার্টআপ ঋণ ও বিনিয়োগে সহায়তা পাওয়া যায়। ঋণদাতা প্রতিষ্ঠানের যাচাই ও শর্ত সাপেক্ষে সর্বোচ্চ সুদ বা মুনাফার হার ৪%।"
+    }
   }
 ]

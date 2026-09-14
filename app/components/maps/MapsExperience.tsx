@@ -28,7 +28,6 @@ import {
 } from "./industry";
 import {
   comparisonRows,
-  layers,
   lenses,
   layerById,
   explorerLayer,

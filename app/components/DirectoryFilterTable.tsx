@@ -242,8 +242,8 @@ function asArray(value: string | string[] | null | undefined): string[] {
 }
 
 export interface DirectoryRow {
+  id: string
   name: string
-  sourceUrl?: string | null
   sourceUrls?: string[] | null
   lastVerified?: string | null
   notes?: string
@@ -251,7 +251,7 @@ export interface DirectoryRow {
 }
 
 function DirectorySources({ row, locale, fallback }: { row: DirectoryRow; locale: 'bn' | 'en'; fallback: string }) {
-  const sources = [...new Set([...asArray(row.sourceUrl), ...asArray(row.sourceUrls)].map(url => url.trim()).filter(Boolean))]
+  const sources = [...new Set(asArray(row.sourceUrls).map(url => url.trim()).filter(Boolean))]
   if (!sources.length) return <>{fallback}</>
 
   return <span className="directory-source-links">
@@ -401,14 +401,14 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
         <p className="directory-comparison__intro" id={`${comparisonId}-description`}>{isEn ? 'Compare the same fields. Confirm current terms with each organisation; an unstated detail is not a negative answer.' : 'একই তথ্য পাশাপাশি মিলিয়ে দেখুন। বর্তমান শর্ত প্রতিটি প্রতিষ্ঠানের কাছে জেনে নিন। কোনো তথ্য দেওয়া না থাকলে ধরে নেবেন না যে সুবিধাটি নেই।'}</p>
         <div className="directory-comparison__scroll" role="region" aria-label={isEn ? 'Organisation comparison' : 'প্রতিষ্ঠানের তুলনা'} tabIndex={0}>
           <table aria-labelledby={comparisonId} aria-describedby={`${comparisonId}-description`}>
-            <thead><tr><th scope="col">{isEn ? 'Details' : 'তথ্য'}</th>{selectedRows.map(({ index, row }) => <th scope="col" key={index}>
+            <thead><tr><th scope="col">{isEn ? 'Details' : 'তথ্য'}</th>{selectedRows.map(({ index, row }) => <th scope="col" key={row.id}>
               {typeof row.website === 'string' && row.website ? <a href={row.website} target="_blank" rel="noopener noreferrer">{row.name}</a> : row.name}
               <button type="button" aria-label={isEn ? `Remove ${row.name} from comparison` : `${row.name} তুলনা থেকে সরান`} onClick={() => removeSelection(index)}>{isEn ? 'Remove' : 'সরান'}</button>
             </th>)}</tr></thead>
             <tbody>
-              {config.columns.map(column => <tr key={column.key}><th scope="row">{column.key === 'applicationPath' ? (isEn ? 'Contact' : 'যোগাযোগ') : (isEn ? column.label.en : column.label.bn)}</th>{selectedRows.map(({ index, row }) => <td key={index}>{asText(row[column.key], fallback)}</td>)}</tr>)}
-              <tr><th scope="row">{isEn ? 'Notes' : 'আরও তথ্য'}</th>{selectedRows.map(({ index, row }) => <td key={index}>{row.notes || fallback}</td>)}</tr>
-              <tr><th scope="row">{labels.source}</th>{selectedRows.map(({ index, row }) => <td key={index}><DirectorySources row={row} locale={locale} fallback={fallback} /><span className="directory-comparison__date">{labels.verified}: {checkDate(row)}</span></td>)}</tr>
+              {config.columns.map(column => <tr key={column.key}><th scope="row">{column.key === 'applicationPath' ? (isEn ? 'Contact' : 'যোগাযোগ') : (isEn ? column.label.en : column.label.bn)}</th>{selectedRows.map(({ row }) => <td key={row.id}>{asText(row[column.key], fallback)}</td>)}</tr>)}
+              <tr><th scope="row">{isEn ? 'Notes' : 'আরও তথ্য'}</th>{selectedRows.map(({ row }) => <td key={row.id}>{row.notes || fallback}</td>)}</tr>
+              <tr><th scope="row">{labels.source}</th>{selectedRows.map(({ row }) => <td key={row.id}><DirectorySources row={row} locale={locale} fallback={fallback} /><span className="directory-comparison__date">{labels.verified}: {checkDate(row)}</span></td>)}</tr>
             </tbody>
           </table>
         </div>
@@ -425,7 +425,7 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
               // position or name: duplicate names and filtering stay distinct.
               const index = rows.indexOf(row)
               const chosen = selected.includes(index)
-              return <article className="directory-card" key={index} data-selected={chosen || undefined}>
+              return <article className="directory-card" key={row.id} data-selected={chosen || undefined}>
                 <div className="directory-card__heading">
                 <h2 data-toc-ignore="">
                   {typeof row.website === 'string' && row.website ? (

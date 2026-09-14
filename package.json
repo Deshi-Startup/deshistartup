@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "node scripts/dev.mjs",
-    "dev:turbo": "node scripts/dev.mjs --turbopack",
+    "dev:turbo": "npm run dev -- --turbopack",
     "build": "NODE_ENV=production next build",
     "build:worker": "npm run history:ensure && NODE_OPTIONS=--max-old-space-size=4096 DESHI_DEPLOY_TARGET=cloudflare-worker npm run build",
     "preview:worker": "npm run build:worker && wrangler dev --env-file .env.local",
@@ -43,7 +43,7 @@
     "lint:bangla": "node scripts/bangla-lint.mjs",
     "lint:routes": "node scripts/route-lint.mjs",
     "lint:terms": "node scripts/apply-terms.mjs",
-    "test:contribute": "node --experimental-strip-types --test app/lib/contributable-path.test.mjs app/lib/contribution-markdown.test.mjs app/lib/contribution-diff.test.mjs app/lib/contribution-draft.test.mjs app/lib/contribution-media.test.mjs app/lib/clean-route.test.mjs app/lib/page-chrome.test.mjs",
+    "test:contribute": "node --experimental-strip-types --test app/lib/contributable-path.test.mjs app/lib/contributable-resolver.test.mjs app/lib/contribution-markdown.test.mjs app/lib/contribution-diff.test.mjs app/lib/contribution-draft.test.mjs app/lib/contribution-media.test.mjs app/lib/clean-route.test.mjs app/lib/page-chrome.test.mjs",
     "test:contributors": "node --test scripts/contributor-data.test.mjs scripts/contributor-cards.test.mjs scripts/content-guide.test.mjs scripts/postbuild-contributors.test.mjs app/lib/contributor-event-locale.test.mjs app/lib/contributor-leaderboard.test.mjs app/lib/contributor-topics.test.mjs app/lib/page-byline.test.mjs app/lib/page-credits.test.mjs",
     "test:analytics": "node --experimental-strip-types --test app/lib/search-analytics.test.mjs",
     "test:startup-50": "node --experimental-strip-types --test scripts/startup-50-data.test.mjs app/lib/page-chrome.test.mjs",
@@ -55,20 +55,21 @@
     "predev": "npm run maps:prepare && node scripts/build-manifest.mjs && node scripts/build-contributor-cards.mjs",
     "prebuild": "npm run maps:prepare && node scripts/route-lint.mjs && node scripts/media-lint.mjs && node scripts/citation-lint.mjs && node scripts/build-manifest.mjs && node scripts/build-contributor-cards.mjs && node scripts/glossary-lint.mjs",
     "postbuild": "node scripts/postbuild-seo.mjs && node scripts/build-pagefind.mjs && node scripts/search-audit.mjs && node scripts/seo-audit.mjs",
-    "maps:prepare": "node scripts/prepare-map-assets.mjs"
+    "maps:prepare": "node scripts/prepare-map-assets.mjs",
+    "test:maps": "python3 -B scripts/test-maps.py"
   },
   "dependencies": {
     "@milkdown/crepe": "^7.22.1",
     "@milkdown/kit": "^7.21.2",
     "jose": "^6.2.12",
-    "maplibre-gl": "^6.9.0",
+    "maplibre-gl": "^6.9.1",
     "next": "^15.5.25",
     "nextra": "^4.6.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },
   "devDependencies": {
-    "@types/node": "^22.20.1",
+    "@types/node": "^22.20.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "cheerio": "^1.2.0",
@@ -81,8 +82,8 @@
     "sharp": "^0.35.4",
     "typescript": "^5.9.3",
     "unified": "^11.0.5",
-    "wrangler": "^4.131.0",
-    "yaml": "^2.9.0"
+    "wrangler": "^4.131.2",
+    "yaml": "^2.9.1"
   },
   "overrides": {
     "speech-rule-engine": {
