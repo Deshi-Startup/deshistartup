@@ -850,7 +850,7 @@ readable stacked row.
 
 Green is used for structure, rules, hover and focus; blue remains for links. Company marks are
 reviewed before use, stored in R2 through the site's media pipeline and linked to their source in the
-authored logo manifest. The page is reviewed monthly when practical and at least quarterly. It has no
+authored logo manifest. The list is reviewed every month. It has no
 rank numbers, public scores, trophy language or sponsor-controlled placement.
 
 Each language has its own 1200×630 sharing image. It carries the same folio idea as the page: one

@@ -57,6 +57,14 @@ const reviewedOverrides = {
     kind: 'official-site footer wordmark',
     background: '#0e2207'
   },
+  appscode: {
+    url: 'https://raw.githubusercontent.com/appscode/static-assets/master/images/logo/appscode/ac-logo-color.svg',
+    kind: 'official company asset-repository wordmark'
+  },
+  bongo: {
+    url: 'https://play-lh.googleusercontent.com/1OgPya2VlbqKsz3thntAQilgBc3P8Mam5xsYt-sGgEUq-GVYgDY0NEN--Da84d57IcufkyKvpl1lrQSCjT5w=w480-h960',
+    kind: 'official Google Play developer app icon'
+  },
   barikoi: {
     url: 'https://barikoi.com/lovable-uploads/fa94013f-be2a-4dce-bcde-091677f4213d.png',
     kind: 'official-site header wordmark'
@@ -74,10 +82,6 @@ const reviewedOverrides = {
     url: 'https://dubotech.com/assets/logo.webp',
     kind: 'official-site header wordmark',
     background: '#0a1425'
-  },
-  doctorkoi: {
-    url: 'https://doctorkoi.com/assets/doctorkoi_logo-BFjc43J7.png',
-    kind: 'official-site logo image'
   },
   ecovia: {
     url: 'https://ecoviaglobal.com/',
@@ -126,11 +130,6 @@ const reviewedOverrides = {
     url: 'https://www.nuport.io/images/nuport-logo.png',
     kind: 'official-site logo'
   },
-  'palki-motors': {
-    url: 'https://palkimotors.com/logo.png',
-    kind: 'official-site logo',
-    background: '#17324d'
-  },
   priyoshop: {
     url: 'https://priyoshopretail.com/wp-content/uploads/2025/09/Frame-1-3.png',
     kind: 'official-site header logo'
@@ -167,6 +166,18 @@ const reviewedOverrides = {
   },
   zatiq: {
     url: 'https://zatiq.com/images/zatiq/Zatiq_Logo.svg',
+    kind: 'official-site logo'
+  },
+  tipsoi: {
+    url: 'https://0dae24d4.delivery.rocketcdn.me/wp-content/uploads/2025/10/tipsoi-logo.avif',
+    kind: 'official-site header logo'
+  },
+  wedevs: {
+    url: 'https://wedevs.com/img/logos/wedevs/wedevs-logo-colored.svg',
+    kind: 'official-site header wordmark'
+  },
+  wpdeveloper: {
+    url: 'https://assets.wpdeveloper.com/2020/04/WPDeveloper-Logo.png',
     kind: 'official-site logo'
   }
 }

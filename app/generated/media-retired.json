@@ -401,5 +401,40 @@
     "retiredAt": "2026-09-14T17:15:04.948Z",
     "reason": "superseded",
     "replacementKey": "og/bn/case-studies/truck-lagbe.afa1f39473dc.png"
+  },
+  {
+    "logicalPath": "/media/startup-50/apploye.webp",
+    "key": "startup-50/apploye.eeb85b9c3f75.webp",
+    "bytes": 7646,
+    "retiredAt": "2026-09-15T23:42:15.847Z",
+    "reason": "unreferenced"
+  },
+  {
+    "logicalPath": "/media/startup-50/doctorkoi.webp",
+    "key": "startup-50/doctorkoi.ae8ed2b76509.webp",
+    "bytes": 10708,
+    "retiredAt": "2026-09-15T23:42:15.847Z",
+    "reason": "unreferenced"
+  },
+  {
+    "logicalPath": "/media/startup-50/nodes-digital.webp",
+    "key": "startup-50/nodes-digital.14667961710d.webp",
+    "bytes": 13434,
+    "retiredAt": "2026-09-15T23:42:15.847Z",
+    "reason": "unreferenced"
+  },
+  {
+    "logicalPath": "/media/startup-50/palki-motors.webp",
+    "key": "startup-50/palki-motors.e3860af8dc13.webp",
+    "bytes": 2432,
+    "retiredAt": "2026-09-15T23:42:15.847Z",
+    "reason": "unreferenced"
+  },
+  {
+    "logicalPath": "/media/startup-50/togumogu.webp",
+    "key": "startup-50/togumogu.7498805b5b9e.webp",
+    "bytes": 9040,
+    "retiredAt": "2026-09-15T23:42:15.847Z",
+    "reason": "unreferenced"
   }
 ]

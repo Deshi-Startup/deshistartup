@@ -42,11 +42,12 @@
       "reviewedAt": "2026-09-10"
     },
     {
-      "slug": "apploye",
-      "name": "Apploye",
-      "src": "/media/startup-50/apploye.webp",
-      "source": "https://cdn.prod.website-files.com/64bf6aa2443faa46c887a8c0/64c8ad1e4d77e15467726c08_logo.png",
-      "sourceKind": "json-ld logo"
+      "slug": "appscode",
+      "name": "AppsCode",
+      "src": "/media/startup-50/appscode.webp",
+      "source": "https://raw.githubusercontent.com/appscode/static-assets/master/images/logo/appscode/ac-logo-color.svg",
+      "sourceKind": "official company asset-repository wordmark",
+      "reviewedAt": "2026-09-16"
     },
     {
       "slug": "arogga",
@@ -86,6 +87,15 @@
       "sourceKind": "official payment portal logo"
     },
     {
+      "slug": "bongo",
+      "name": "Bongo",
+      "src": "/media/startup-50/bongo.webp",
+      "source": "https://play-lh.googleusercontent.com/1OgPya2VlbqKsz3thntAQilgBc3P8Mam5xsYt-sGgEUq-GVYgDY0NEN--Da84d57IcufkyKvpl1lrQSCjT5w=w480-h960",
+      "sourceKind": "official Google Play developer app icon",
+      "sourcePage": "https://play.google.com/store/apps/details?id=com.bongo.bongobdandroidtv",
+      "reviewedAt": "2026-09-16"
+    },
+    {
       "slug": "cassetex",
       "name": "Cassetex",
       "src": "/media/startup-50/cassetex.webp",
@@ -105,13 +115,6 @@
       "src": "/media/startup-50/digibox.webp",
       "source": "https://digibox.com.bd/wp-content/uploads/2025/09/digi-logo-scaled.png",
       "sourceKind": "json-ld logo"
-    },
-    {
-      "slug": "doctorkoi",
-      "name": "DoctorKoi",
-      "src": "/media/startup-50/doctorkoi.webp",
-      "source": "https://doctorkoi.com/assets/doctorkoi_logo-BFjc43J7.png",
-      "sourceKind": "official-site logo image"
     },
     {
       "slug": "dorik",
@@ -211,13 +214,6 @@
       "sourceKind": "json-ld logo"
     },
     {
-      "slug": "nodes-digital",
-      "name": "Nodes Digital",
-      "src": "/media/startup-50/nodes-digital.webp",
-      "source": "https://nodesdigitalbd.com/wp-content/uploads/2023/11/nodes-logo.svg",
-      "sourceKind": "json-ld logo"
-    },
-    {
       "slug": "nuport",
       "name": "Nuport",
       "src": "/media/startup-50/nuport.webp",
@@ -230,13 +226,6 @@
       "src": "/media/startup-50/ostad.webp",
       "source": "https://cdn.ostad.app/public/upload/2024-03-20T04-26-32.799Z-ostad_logo_light@512x%20(2).png",
       "sourceKind": "official-site logo image"
-    },
-    {
-      "slug": "palki-motors",
-      "name": "Palki Motors",
-      "src": "/media/startup-50/palki-motors.webp",
-      "source": "https://palkimotors.com/logo.png",
-      "sourceKind": "official-site logo"
     },
     {
       "slug": "pathao",
@@ -340,11 +329,12 @@
       "reviewedAt": "2026-09-10"
     },
     {
-      "slug": "togumogu",
-      "name": "ToguMogu",
-      "src": "/media/startup-50/togumogu.webp",
-      "source": "https://static.togumogu.com/uploads/2025/04/togumogu.png",
-      "sourceKind": "json-ld logo"
+      "slug": "tipsoi",
+      "name": "Tipsoi (Inovace Technologies)",
+      "src": "/media/startup-50/tipsoi.webp",
+      "source": "https://0dae24d4.delivery.rocketcdn.me/wp-content/uploads/2025/10/tipsoi-logo.avif",
+      "sourceKind": "official-site header logo",
+      "reviewedAt": "2026-09-16"
     },
     {
       "slug": "truck-lagbe",
@@ -354,11 +344,27 @@
       "sourceKind": "json-ld logo"
     },
     {
+      "slug": "wedevs",
+      "name": "weDevs",
+      "src": "/media/startup-50/wedevs.webp",
+      "source": "https://wedevs.com/img/logos/wedevs/wedevs-logo-colored.svg",
+      "sourceKind": "official-site header wordmark",
+      "reviewedAt": "2026-09-16"
+    },
+    {
       "slug": "wegro",
       "name": "WeGro",
       "src": "/media/startup-50/wegro.webp",
       "source": "https://www.wegro.global/newWegroLogo.png",
       "sourceKind": "official-site logo image"
+    },
+    {
+      "slug": "wpdeveloper",
+      "name": "WPDeveloper (Startise)",
+      "src": "/media/startup-50/wpdeveloper.webp",
+      "source": "https://assets.wpdeveloper.com/2020/04/WPDeveloper-Logo.png",
+      "sourceKind": "official-site logo",
+      "reviewedAt": "2026-09-16"
     },
     {
       "slug": "zatiq",

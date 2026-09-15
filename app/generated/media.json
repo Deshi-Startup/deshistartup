@@ -314,14 +314,14 @@
     "remote": true,
     "uploadedAt": "2026-09-10T13:09:13.776Z"
   },
-  "/media/startup-50/apploye.webp": {
-    "key": "startup-50/apploye.eeb85b9c3f75.webp",
+  "/media/startup-50/appscode.webp": {
+    "key": "startup-50/appscode.fc0ec8280b2b.webp",
     "w": 320,
-    "h": 55,
-    "bytes": 7646,
-    "sha": "eeb85b9c3f75",
+    "h": 66,
+    "bytes": 9822,
+    "sha": "fc0ec8280b2b",
     "remote": true,
-    "uploadedAt": "2026-08-23T18:13:01.195Z"
+    "uploadedAt": "2026-09-15T23:41:46.251Z"
   },
   "/media/startup-50/arogga.webp": {
     "key": "startup-50/arogga.89c3401be67d.webp",
@@ -368,6 +368,24 @@
     "remote": true,
     "uploadedAt": "2026-08-23T18:13:12.930Z"
   },
+  "/media/startup-50/bongo.webp": {
+    "key": "startup-50/bongo.4dd06076de09.webp",
+    "w": 160,
+    "h": 160,
+    "bytes": 1794,
+    "sha": "4dd06076de09",
+    "remote": true,
+    "uploadedAt": "2026-09-16T00:58:37.218Z"
+  },
+  "/media/startup-50/brain-craft.webp": {
+    "key": "startup-50/brain-craft.b3da4cb2e49d.webp",
+    "w": 320,
+    "h": 160,
+    "bytes": 3904,
+    "sha": "b3da4cb2e49d",
+    "remote": true,
+    "uploadedAt": "2026-09-15T23:41:48.444Z"
+  },
   "/media/startup-50/cassetex.webp": {
     "key": "startup-50/cassetex.eb65e0c35ee7.webp",
     "w": 320,
@@ -394,15 +412,6 @@
     "sha": "ce736c9733a2",
     "remote": true,
     "uploadedAt": "2026-08-23T18:13:21.486Z"
-  },
-  "/media/startup-50/doctorkoi.webp": {
-    "key": "startup-50/doctorkoi.ae8ed2b76509.webp",
-    "w": 320,
-    "h": 150,
-    "bytes": 10708,
-    "sha": "ae8ed2b76509",
-    "remote": true,
-    "uploadedAt": "2026-08-24T19:40:43.919Z"
   },
   "/media/startup-50/dorik.webp": {
     "key": "startup-50/dorik.f11ce693f53c.webp",
@@ -521,15 +530,6 @@
     "remote": true,
     "uploadedAt": "2026-08-23T18:14:05.964Z"
   },
-  "/media/startup-50/nodes-digital.webp": {
-    "key": "startup-50/nodes-digital.14667961710d.webp",
-    "w": 320,
-    "h": 142,
-    "bytes": 13434,
-    "sha": "14667961710d",
-    "remote": true,
-    "uploadedAt": "2026-08-23T18:14:08.111Z"
-  },
   "/media/startup-50/nuport.webp": {
     "key": "startup-50/nuport.85a738cd8742.webp",
     "w": 320,
@@ -547,15 +547,6 @@
     "sha": "6faa4de6965a",
     "remote": true,
     "uploadedAt": "2026-08-23T18:14:10.200Z"
-  },
-  "/media/startup-50/palki-motors.webp": {
-    "key": "startup-50/palki-motors.e3860af8dc13.webp",
-    "w": 320,
-    "h": 160,
-    "bytes": 2432,
-    "sha": "e3860af8dc13",
-    "remote": true,
-    "uploadedAt": "2026-08-23T18:14:12.497Z"
   },
   "/media/startup-50/pathao.webp": {
     "key": "startup-50/pathao.d3ebf18975db.webp",
@@ -683,14 +674,14 @@
     "remote": true,
     "uploadedAt": "2026-09-10T13:09:37.764Z"
   },
-  "/media/startup-50/togumogu.webp": {
-    "key": "startup-50/togumogu.7498805b5b9e.webp",
+  "/media/startup-50/tipsoi.webp": {
+    "key": "startup-50/tipsoi.db8aac71acc8.webp",
     "w": 320,
-    "h": 73,
-    "bytes": 9040,
-    "sha": "7498805b5b9e",
+    "h": 92,
+    "bytes": 11842,
+    "sha": "db8aac71acc8",
     "remote": true,
-    "uploadedAt": "2026-08-24T19:40:46.092Z"
+    "uploadedAt": "2026-09-15T23:41:50.530Z"
   },
   "/media/startup-50/truck-lagbe.webp": {
     "key": "startup-50/truck-lagbe.8c29b5165f68.webp",
@@ -701,6 +692,15 @@
     "remote": true,
     "uploadedAt": "2026-08-23T18:14:47.177Z"
   },
+  "/media/startup-50/wedevs.webp": {
+    "key": "startup-50/wedevs.523993c243a5.webp",
+    "w": 320,
+    "h": 69,
+    "bytes": 10250,
+    "sha": "523993c243a5",
+    "remote": true,
+    "uploadedAt": "2026-09-15T23:41:52.902Z"
+  },
   "/media/startup-50/wegro.webp": {
     "key": "startup-50/wegro.712df6b136b2.webp",
     "w": 320,
@@ -709,6 +709,15 @@
     "sha": "712df6b136b2",
     "remote": true,
     "uploadedAt": "2026-08-23T18:14:49.593Z"
+  },
+  "/media/startup-50/wpdeveloper.webp": {
+    "key": "startup-50/wpdeveloper.24122e0a945f.webp",
+    "w": 320,
+    "h": 50,
+    "bytes": 7786,
+    "sha": "24122e0a945f",
+    "remote": true,
+    "uploadedAt": "2026-09-15T23:41:54.957Z"
   },
   "/media/startup-50/zatiq.webp": {
     "key": "startup-50/zatiq.95122537ec42.webp",

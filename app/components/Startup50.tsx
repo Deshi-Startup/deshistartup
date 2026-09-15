@@ -206,8 +206,8 @@ export default function Startup50({ locale = 'bn' }: Startup50Props) {
           </p>
           <p className="startup50-hero__description">
             {isEn
-              ? 'An unranked editorial watchlist of 50 startups built in Bangladesh. See what each company is building, why it matters and what founders can learn from it.'
-              : 'বাংলাদেশ থেকে গড়ে ওঠা ৫০টি স্টার্টআপের তালিকা এটি। কোনো র‍্যাঙ্কিং নয়, বরং কোন কোম্পানি কী বানাচ্ছে, কেন কাজটি জরুরি আর অন্য ফাউন্ডারদের এখান থেকে কী শেখার আছে – দেখে নিন।'}
+              ? 'Discover 50 of Bangladesh\'s top startups. See what each company is building, why it matters and what founders can learn from it.'
+              : 'বাংলাদেশের শীর্ষ ৫০টি স্টার্টআপকে জানুন। কোন কোম্পানি কী বানাচ্ছে, কেন তা গুরুত্বপূর্ণ আর অন্য ফাউন্ডারদের এখান থেকে কী শেখার আছে – জেনে নিন।'}
           </p>
           <nav className="startup50-hero__actions" aria-label={isEn ? 'Startup 50 actions' : 'স্টার্টআপ ৫০-এর কাজ'}>
             <a className="startup50-action startup50-action--primary" href="#the-50">
@@ -330,8 +330,8 @@ export default function Startup50({ locale = 'bn' }: Startup50Props) {
         <h2 id="startup50-method-title">{isEn ? 'How startups make the list' : 'কোন স্টার্টআপ তালিকায় আসে'}</h2>
         <p className="startup50-methodology__lede">
           {isEn
-            ? 'This is an unranked editorial watchlist, not a scorecard. Every company must meet the requirements below. We use traction, recent growth, market reach and funding as editorial signals rather than a numeric score.'
-            : 'এটি সম্পাদকীয় বাছাই, কোনো সংখ্যাভিত্তিক স্কোর বা র‍্যাঙ্কিং নয়। প্রতিটি কোম্পানিকেই নিচের শর্তগুলো পূরণ করতে হয়। ট্র্যাকশন (traction), সাম্প্রতিক গ্রোথ, মার্কেটে কাজের পরিসর আর ফান্ডিংকে আমরা সম্পাদকীয় সিদ্ধান্তের সূত্র হিসেবে দেখি, কোনো সংখ্যাভিত্তিক স্কোর হিসেবে নয়।'}
+            ? 'We look for startups with real demand, strong growth potential and a credible track record. Funding is an important factor, but we also consider businesses that grow without outside investment.'
+            : 'আমরা এমন স্টার্টআপ খুঁজি যাদের বাস্তব চাহিদা, জোরালো গ্রোথ সম্ভাবনা আর বিশ্বাসযোগ্য ট্র্যাক রেকর্ড আছে। ফান্ডিং একটি গুরুত্বপূর্ণ বিষয়, তবে বাইরের ইনভেস্টমেন্ট ছাড়াই বড় হওয়া ব্যবসাকেও আমরা বিবেচনায় রাখি।'}
         </p>
 
         <div className="startup50-methodology__body">
@@ -342,20 +342,18 @@ export default function Startup50({ locale = 'bn' }: Startup50Props) {
               <li>{isEn ? 'An active startup or private scaleup, not mainly an agency, consultancy or traditional service business' : 'চালু কোনো স্টার্টআপ বা প্রাইভেট স্কেলআপ। প্রধানত এজেন্সি, কনসালটেন্সি বা সাধারণ সেবাভিত্তিক ব্যবসা হলে হবে না'}</li>
               <li>{isEn ? 'A live product or platform with real customers or active deployments' : 'বাস্তব কাস্টমার বা অ্যাকটিভ ডিপ্লয়মেন্ট (deployment) আছে, এমন চালু প্রডাক্ট বা প্ল্যাটফর্ম'}</li>
               <li>{isEn ? 'Verifiable activity within the past 12 months' : 'গত ১২ মাসের ভেতর কাজ এগোনোর যাচাইযোগ্য প্রমাণ'}</li>
-              <li>{isEn ? 'Clear evidence of traction, such as customers, users, revenue, transactions, contracts or meaningful partnerships' : 'ট্র্যাকশনের (traction) স্পষ্ট প্রমাণ: যেমন কাস্টমার, ইউজার, রেভিনিউ, ট্রানজ্যাকশন, চুক্তি বা বড় কোনো পার্টনারশিপ'}</li>
-              <li>{isEn ? 'At least two reliable public sources, including one editorial or institutional source with no financial stake in the company' : 'অন্তত দুটি নির্ভরযোগ্য পাবলিক সোর্স। এর একটি এমন সম্পাদকীয় বা প্রাতিষ্ঠানিক সোর্স হতে হবে, যাদের কোম্পানিটিতে কোনো আর্থিক স্বার্থ নেই'}</li>
-              <li>{isEn ? 'Company and investor claims are attributed. They do not count as independent confirmation' : 'কোম্পানি ও ইনভেস্টরের দাবি কার বক্তব্য, তা স্পষ্ট করে লেখা হয়। এগুলোকে স্বাধীন প্রমাণ হিসেবে ধরা হয় না'}</li>
+              <li>{isEn ? 'Clear evidence of traction and growth, such as paying customers, repeat use, revenue or successful deployments' : 'ট্র্যাকশন (traction) ও গ্রোথের স্পষ্ট প্রমাণ: যেমন পেইং কাস্টমার, বারবার ব্যবহার, রেভিনিউ বা সফল ডিপ্লয়মেন্ট (deployment)'}</li>
+              <li>{isEn ? 'At least five reliable sources, including independent reporting or institutional records' : 'স্বাধীন রিপোর্টিং বা প্রাতিষ্ঠানিক রেকর্ডসহ অন্তত পাঁচটি নির্ভরযোগ্য সোর্স'}</li>
+              <li>{isEn ? 'Credible leadership and responsible treatment of customers, employees and partners' : 'বিশ্বাসযোগ্য নেতৃত্ব এবং কাস্টমার, কর্মী ও পার্টনারদের প্রতি দায়িত্বশীল আচরণ'}</li>
             </ul>
-            <p>{isEn ? 'Funding notes preserve older disclosed amounts when a newer transaction is undisclosed, and distinguish equity, grants and financing facilities when the sources allow it.' : 'নতুন কোনো বিনিয়োগের পরিমাণ গোপন থাকলে আগের প্রকাশিত অঙ্ক বাদ দেওয়া হয় না। সোর্সে তথ্য থাকলে ইকুইটি, গ্র্যান্ট আর অর্থায়ন সুবিধাও আলাদা করে লেখা হয়।'}</p>
             <p>{isEn ? 'Meeting these requirements does not guarantee a place on the list.' : 'এই শর্তগুলো পূরণ করলেই তালিকায় জায়গা নিশ্চিত হয় না।'}</p>
-            <p>{isEn ? 'Evidence gap: DoctorKoi remains a provisional inclusion. Its profile records a website check, not a dated operating milestone within the past 12 months. That recent-activity criterion has not been confirmed.' : 'প্রমাণের ঘাটতি: DoctorKoi-কে আপাতত তালিকায় রাখা হয়েছে। প্রোফাইলে ওয়েবসাইট দেখে নেওয়ার কথা আছে, গত ১২ মাসে কাজ এগোনোর তারিখসহ প্রমাণ নেই। সাম্প্রতিক কাজের শর্তটি তাই এখনো নিশ্চিত করা যায়নি।'}</p>
           </section>
           <section>
             <h3>{isEn ? 'Keeping it current' : 'তালিকা যেভাবে আপডেট হয়'}</h3>
             <p>
               {isEn
-                ? 'We review the list throughout the year. We aim to review it monthly and do so at least once a quarter. Startups may be added or removed as their work changes.'
-                : 'আমরা সারা বছর ধরেই তালিকাটি রিভিউ করি। লক্ষ্য থাকে প্রতি মাসে করার, তবে অন্তত তিন মাসে একবার রিভিউ করা হয়ই। কাজ কীভাবে এগোচ্ছে, তার ওপর ভিত্তি করে স্টার্টআপ যোগ বা বাদ পড়তে পারে।'}
+                ? 'We review the list every month. Startups may be added, removed or replaced as their businesses change.'
+                : 'আমরা প্রতি মাসেই তালিকাটি রিভিউ করি। ব্যবসার পরিবর্তনের সাথে সাথে স্টার্টআপ যুক্ত হতে, বাদ পড়তে বা তাদের জায়গায় অন্য কোম্পানি আসতে পারে।'}
             </p>
             <p>{isEn ? 'A company cannot pay to be included.' : 'টাকা দিয়ে এই তালিকায় জায়গা কেনা যায় না।'}</p>
             <p>{isEn ? 'Company names and logos identify the companies. Inclusion does not imply endorsement or a commercial relationship.' : 'কোম্পানির নাম ও লোগো শুধু পরিচয় বোঝাতে ব্যবহার করা হয়েছে। তালিকায় থাকা মানেই দেশি স্টার্টআপের অনুমোদন বা কোনো বাণিজ্যিক সম্পর্ক নয়।'}</p>

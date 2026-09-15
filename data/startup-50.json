@@ -1,7 +1,7 @@
 {
   "edition": 2026,
-  "lastResearched": "2026-08-26",
-  "activityWindowStart": "2025-08-26",
+  "lastResearched": "2026-09-16",
+  "activityWindowStart": "2025-09-16",
   "sectorGroups": {
     "education": {
       "en": "Education",
@@ -54,6 +54,10 @@
     "logistics": {
       "en": "Logistics",
       "bn": "লজিস্টিকস"
+    },
+    "entertainment": {
+      "en": "Entertainment",
+      "bn": "বিনোদন"
     }
   },
   "entries": [
@@ -257,41 +261,47 @@
       }
     },
     {
-      "slug": "apploye",
-      "name": "Apploye",
-      "sortName": "Apploye",
-      "monogram": "AP",
-      "website": "https://apploye.com/",
+      "slug": "appscode",
+      "name": "AppsCode",
+      "sortName": "AppsCode",
+      "monogram": "AC",
+      "website": "https://appscode.com/",
       "sectorKey": "software",
       "sector": {
-        "en": "Workforce software",
-        "bn": "কর্মী ব্যবস্থাপনা সফটওয়্যার"
+        "en": "Enterprise software",
+        "bn": "এন্টারপ্রাইজ সফটওয়্যার"
       },
       "description": {
-        "en": "Time-tracking and workforce tools for remote and distributed teams.",
-        "bn": "রিমোট ও নানা জায়গায় ছড়ানো টিমের কাজের সময় ও উপস্থিতি ট্র্যাকিংয়ের সফটওয়্যার।"
+        "en": "Software for running, backing up and securing databases on Kubernetes.",
+        "bn": "Kubernetes-এ ডেটাবেস চালানো, ব্যাকআপ রাখা ও নিরাপদ রাখার সফটওয়্যার।"
       },
       "lesson": {
-        "en": "Building global SaaS from Bangladesh by staying close to customer workflow.",
-        "bn": "গ্রাহকের কাজের ধরন ঘনিষ্ঠভাবে বুঝে বাংলাদেশ থেকেই বৈশ্বিক SaaS পণ্য তৈরি করা।"
+        "en": "Turning a difficult, recurring task into software that businesses can use across their own infrastructure.",
+        "bn": "বারবার করতে হয় এমন জটিল কাজের জন্য সফটওয়্যার বানানো, যা ব্যবসাগুলো নিজেদের সার্ভারে ব্যবহার করতে পারে।"
       },
       "background": {
-        "en": "Apploye grew out of its founder's experience managing an ecommerce team spread across several countries. Existing tools were too expensive or a poor fit, so he built time-tracking software for remote teams.",
-        "bn": "বিভিন্ন দেশে ছড়িয়ে থাকা একটি ই-কমার্স টিম চালাতে গিয়ে এর ফাউন্ডার দেখেন, বাজারে থাকা টুলগুলো হয় খুব ব্যয়বহুল নয়তো কাজের সাথে ঠিক মেলে না। সেই প্রয়োজন থেকেই তিনি রিমোট টিমের জন্য টাইম-ট্র্যাকিং সফটওয়্যার বানিয়ে ফেলেন।",
+        "en": "Tamal Saha started AppsCode in 2016 after working at Google and Amazon. With teams in Bangladesh and the US, it builds database tools sold through annual licenses and cloud marketplaces. In April 2025, Saha reported 100 commercial customers worldwide.",
+        "bn": "Google ও Amazon-এ কাজ করার পর ২০১৬ সালে AppsCode শুরু করেন তমাল সাহা। বাংলাদেশ ও যুক্তরাষ্ট্রের টিম মিলে ডেটাবেস ব্যবস্থাপনার টুল বানায়। বার্ষিক লাইসেন্স ও ক্লাউড মার্কেটপ্লেসের মাধ্যমে এসব টুল বিক্রি হয়। ২০২৫ সালের এপ্রিলে সাহা জানান, বিশ্বজুড়ে ১০০টি প্রতিষ্ঠান তাঁদের সফটওয়্যারের জন্য টাকা দিচ্ছে।",
         "sources": [
-          "https://futurestartup.com/2021/01/18/interview-with-sheikh-shourav-apploye-inc/"
+          "https://appscode.com/about/",
+          "https://www.iteuropa.com/news/kubernetes-data-management-player-appscode-looking-partners",
+          "https://aws.amazon.com/marketplace/pp/prodview-izn7wxvkpbjuo"
         ]
       },
       "activity": {
-        "date": "2026-06-09",
-        "en": "A Daily Star column by investor Ishti Alam described Apploye’s customer base in more than 60 countries, built through software-review sites such as G2 and Capterra.",
-        "bn": "ইনভেস্টর ইশতি আলম ডেইলি স্টারের একটি কলামে লিখেছেন, G2 ও Capterra-র মতো সফটওয়্যার রিভিউ সাইট থেকে কাস্টমার পেয়ে Apploye ৬০টির বেশি দেশে পৌঁছেছে।",
-        "url": "https://www.thedailystar.net/news/tech-startup/news/how-bangladeshi-startups-are-building-global-revenue-4194406"
+        "en": "KubeDB received Red Hat OpenShift operator certification in May 2026.",
+        "bn": "২০২৬ সালের মে মাসে KubeDB, Red Hat OpenShift-এর অপারেটর সার্টিফিকেশন পায়।",
+        "date": "2026-05-11",
+        "url": "https://appscode.com/blog/post/openshift-certification/",
+        "sources": [
+          "https://appscode.com/blog/post/openshift-certification/",
+          "https://catalog.redhat.com/en/software/containers/appscode/kubedb/69bd4de9354baf46f9233f44"
+        ]
       },
       "financing": {
-        "en": "The company has been profiled as bootstrapped. No institutional round was found in the reviewed sources.",
-        "bn": "বুটস্ট্র্যাপড প্রতিষ্ঠান হিসেবে পরিচিত। পর্যালোচিত পাবলিক সোর্সগুলোতে কোনো প্রাতিষ্ঠানিক ফান্ডিং রাউন্ড পাওয়া যায়নি।",
-        "url": "https://www.thedailystar.net/news/tech-startup/news/how-bangladeshi-startups-are-building-global-revenue-4194406"
+        "en": "No public funding round confirmed.",
+        "bn": "প্রকাশ্যে ঘোষিত কোনো ফান্ডিং রাউন্ড নিশ্চিত করা যায়নি।",
+        "url": "https://appscode.com/about/"
       }
     },
     {
@@ -495,6 +505,49 @@
       }
     },
     {
+      "slug": "bongo",
+      "name": "Bongo",
+      "sortName": "Bongo",
+      "monogram": "BO",
+      "website": "https://bongobd.com/",
+      "sectorKey": "entertainment",
+      "sector": {
+        "en": "Video streaming",
+        "bn": "ভিডিও স্ট্রিমিং"
+      },
+      "description": {
+        "en": "A streaming platform for Bangla entertainment, original shows and live sport.",
+        "bn": "বাংলা সিনেমা, নাটক, নিজস্ব শো আর খেলা সরাসরি দেখার স্ট্রিমিং প্ল্যাটফর্ম।"
+      },
+      "lesson": {
+        "en": "Combining local content, licensed sport and telecom partnerships to reach paying audiences.",
+        "bn": "দেশি কনটেন্ট, খেলা দেখানোর লাইসেন্স আর টেলিকম পার্টনারশিপ মিলিয়ে পেইড দর্শক তৈরি করা।"
+      },
+      "background": {
+        "en": "Bongo started in 2013 to bring local entertainment to mobile screens. Alongside its own streaming service, it helps creators distribute and earn from their videos and builds streaming technology for other companies. Its platform combines free viewing, paid subscriptions and mobile-operator billing.",
+        "bn": "দেশি বিনোদন মোবাইলের পর্দায় পৌঁছে দিতে ২০১৩ সালে বঙ্গের শুরু। নিজেদের স্ট্রিমিং সেবার পাশাপাশি তারা কনটেন্ট ক্রিয়েটরদের ভিডিও ছড়িয়ে দিতে ও আয় করতে সাহায্য করে। অন্য কোম্পানির জন্যও স্ট্রিমিং প্রযুক্তি বানায়। প্ল্যাটফর্মে ফ্রি কনটেন্টের সঙ্গে পেইড সাবস্ক্রিপশন আছে, আর মোবাইল অপারেটরের মাধ্যমেও টাকা দেওয়া যায়।",
+        "sources": [
+          "https://bongoholdings.com/",
+          "https://play.google.com/store/apps/details?id=com.bongo.bongobdandroidtv"
+        ]
+      },
+      "activity": {
+        "en": "Launched coverage of the 2026/27 English Premier League season in partnership with Myco.",
+        "bn": "Myco-এর সঙ্গে পার্টনারশিপে ২০২৬/২৭ মৌসুমের ইংলিশ প্রিমিয়ার লিগ দেখানো শুরু করেছে।",
+        "date": "2026-08-22",
+        "url": "https://online-d11.thedailystar.net/sports/news/bongo-launches-epl-season-grand-press-event-4254171",
+        "sources": [
+          "https://online-d11.thedailystar.net/sports/news/bongo-launches-epl-season-grand-press-event-4254171",
+          "https://blogs.myco.io/premier-league-fixtures-bangladesh-time/"
+        ]
+      },
+      "financing": {
+        "en": "Startup Bangladesh announced a BDT 5 crore investment agreement in August 2023.",
+        "bn": "২০২৩ সালের আগস্টে Startup Bangladesh বঙ্গের সঙ্গে ৫ কোটি টাকা বিনিয়োগের চুক্তি করার কথা জানায়।",
+        "url": "https://www.dhakatribune.com/business/323969/startup-bangladesh-to-invest-5c-in-bongo"
+      }
+    },
+    {
       "slug": "cassetex",
       "name": "Cassetex",
       "sortName": "Cassetex",
@@ -617,45 +670,6 @@
           "https://www.acceleratingasia.com/latest-news/acceleratingasia-meet-cohort-13",
           "https://www.acceleratingasia.com/latest-news/acceleratingasia-c13-founderstory-digibox"
         ]
-      }
-    },
-    {
-      "slug": "doctorkoi",
-      "name": "DoctorKoi",
-      "sortName": "DoctorKoi",
-      "monogram": "DK",
-      "website": "https://doctorkoi.com/",
-      "sectorKey": "health",
-      "sector": {
-        "en": "Clinical software",
-        "bn": "ক্লিনিক্যাল সফটওয়্যার"
-      },
-      "description": {
-        "en": "Digital prescription and practice-management software for doctors and clinics.",
-        "bn": "ডাক্তার ও ক্লিনিকের জন্য ডিজিটাল প্রেসক্রিপশন ও প্র্যাকটিস ম্যানেজমেন্ট সফটওয়্যার।"
-      },
-      "lesson": {
-        "en": "Starting with a frequent clinical task and expanding into the wider practice workflow.",
-        "bn": "ক্লিনিকের নিয়মিত ও অপরিহার্য একটি কাজ দিয়ে শুরু করে ধাপে ধাপে পুরো প্র্যাকটিসের কাজে ঢোকা।"
-      },
-      "background": {
-        "en": "DoctorKoi began with Digital RX, a prescription-writing tool built around Bangladesh’s medicine database. It later expanded into appointments, patient records, billing and clinic management.",
-        "bn": "বাংলাদেশের ওষুধের ডেটাবেস ধরে প্রেসক্রিপশন লেখার ডিজিটাল টুল Digital RX দিয়ে DoctorKoi-এর সূচনা। পরে তারা অ্যাপয়েন্টমেন্ট, রোগীর রেকর্ড, বিলিং ও ক্লিনিক ব্যবস্থাপনার ফিচার যুক্ত করে।",
-        "sources": [
-          "https://doctorkoi.com/aboutCompany",
-          "https://www.thedailystar.net/toggle/news/four-bangladeshi-startups-among-accelerating-asias-11-high-potential-startups-2077197"
-        ]
-      },
-      "activity": {
-        "date": "2026-08-24",
-        "en": "The company’s public website listed prescription and clinic-management tools. This was a website availability check; a recent dated operating milestone was not found in the reviewed sources.",
-        "bn": "কোম্পানির ওয়েবসাইটে প্রেসক্রিপশন লেখা ও ক্লিনিক ম্যানেজমেন্টের টুলের তথ্য পাওয়া গেছে। এই তারিখে ওয়েবসাইটটি দেখে নেওয়া হয়েছে। দেখা সোর্সগুলোতে সাম্প্রতিক কাজের অগ্রগতির কোনো তারিখসহ খবর পাওয়া যায়নি।",
-        "url": "https://doctorkoi.com/digitalrx"
-      },
-      "financing": {
-        "en": "$500,000 seed funding disclosed in June 2022, bringing reported total funding to $700,000.",
-        "bn": "২০২২ সালের জুনে ৫ লাখ ডলারের সিড ফান্ডিং প্রকাশ করা হয়। এতে মোট প্রকাশিত ফান্ডিং ৭ লাখ ডলারে পৌঁছায়।",
-        "url": "https://www.dhakatribune.com/feature/tech/273222/doctorkoi-raises-500-000-in-latest-round-of-seed"
       }
     },
     {
@@ -1180,44 +1194,6 @@
       }
     },
     {
-      "slug": "nodes-digital",
-      "name": "Nodes Digital",
-      "sortName": "Nodes Digital",
-      "monogram": "ND",
-      "website": "https://nodesdigitalbd.com/",
-      "sectorKey": "agriculture",
-      "sector": {
-        "en": "Climate-smart agriculture",
-        "bn": "জলবায়ুসহিষ্ণু কৃষি প্রযুক্তি"
-      },
-      "description": {
-        "en": "IoT and data systems for irrigation, climate-smart farming and agricultural decisions.",
-        "bn": "সেচ, জলবায়ুসহিষ্ণু চাষ ও কৃষির সিদ্ধান্তের জন্য IoT ও ডেটা সিস্টেম।"
-      },
-      "lesson": {
-        "en": "Bringing hardware and data into farm workflows through institutional partnerships.",
-        "bn": "প্রাতিষ্ঠানিক অংশীদারত্ব ধরে হার্ডওয়্যার ও ডেটাকে সরাসরি খামারের কাজে নিয়ে যাওয়া।"
-      },
-      "background": {
-        "en": "Nodes Digital brings IoT sensors and decision tools into farming, including irrigation, feed management and climate-smart rice production. Its approach has been developed through field deployments and institutional partnerships rather than a consumer app.",
-        "bn": "সেচ, ফিড ম্যানেজমেন্ট ও জলবায়ু-উপযোগী ধান চাষে IoT সেন্সর ও সিদ্ধান্ত নেওয়ার টুল এনেছে Nodes Digital। সাধারণ কোনো অ্যাপের বদলে তারা মাঠপর্যায়ে কাজ ও প্রাতিষ্ঠানিক পার্টনারশিপের মাধ্যমে নিজেদের মডেল দাঁড় করিয়েছে।",
-        "sources": [
-          "https://thefinancialexpress.com.bd/youth-and-entrepreneurship/startups/nodes-digital-limited-secures-eur40000-to-drive-climate-smart-farming-in-bangladesh"
-        ]
-      },
-      "activity": {
-        "date": "2026-08-07",
-        "en": "Published a current climate-smart rice-farming deployment update.",
-        "bn": "জলবায়ুসহিষ্ণু ধানচাষে চলতি প্রযুক্তি ব্যবহারের আপডেট প্রকাশ করেছে।",
-        "url": "https://www.linkedin.com/posts/nodes-digital-limited_nodesdigital-rsf-climatesmartrice-activity-7491376231204978689-b8Am"
-      },
-      "financing": {
-        "en": "€40,000 from the Orange Corners Innovation Fund was reported in September 2025 for climate-smart farming.",
-        "bn": "জলবায়ুর সঙ্গে মানিয়ে কৃষিকাজের জন্য Orange Corners Innovation Fund থেকে ৪০ হাজার ইউরো পাওয়ার খবর আসে ২০২৫ সালের সেপ্টেম্বরে।",
-        "url": "https://thefinancialexpress.com.bd/youth-and-entrepreneurship/startups/nodes-digital-limited-secures-eur40000-to-drive-climate-smart-farming-in-bangladesh"
-      }
-    },
-    {
       "slug": "nuport",
       "name": "Nuport",
       "sortName": "Nuport",
@@ -1251,9 +1227,14 @@
         "url": "https://www.linkedin.com/posts/nuport_nuport-ecommerceautomation-achievement-activity-7414275059512442880-VYBB"
       },
       "financing": {
-        "en": "$125,000 from ODX Flexport was disclosed in December 2021. Reliable public sources do not support a reconciled lifetime total.",
-        "bn": "২০২১ সালের ডিসেম্বরে ODX Flexport-এর কাছ থেকে ১ লাখ ২৫ হাজার ডলার পাওয়ার কথা প্রকাশ করা হয়। নির্ভরযোগ্য প্রকাশ্য সোর্স থেকে মোট ফান্ডিংয়ের অঙ্ক মেলানো যায়নি।",
-        "url": "https://futurestartup.com/2021/12/10/nuport-receives-funding-from-us-based-freight-forwarder-flexport-supply-chain-automation-and-nuports-ambition/"
+        "en": "$125,000 from ODX Flexport was disclosed in December 2021. A separate $250,000 investment from Iterative was reported in March 2023.",
+        "bn": "২০২১ সালের ডিসেম্বরে ODX Flexport-এর কাছ থেকে ১ লাখ ২৫ হাজার ডলার পাওয়ার কথা জানায় Nuport। পরে ২০২৩ সালের মার্চে Iterative থেকে আলাদা করে আড়াই লাখ ডলার বিনিয়োগের খবর প্রকাশ পায়।",
+        "url": "https://www.exitstack.co/posts/nuport-raises-us-250k-investment-from-iterative",
+        "sources": [
+          "https://futurestartup.com/2021/12/10/nuport-receives-funding-from-us-based-freight-forwarder-flexport-supply-chain-automation-and-nuports-ambition/",
+          "https://www.exitstack.co/posts/nuport-raises-us-250k-investment-from-iterative",
+          "https://www.iterative.vc/post/meet-the-iterative-winter-2023-batch"
+        ]
       }
     },
     {
@@ -1290,52 +1271,13 @@
         "url": "https://www.linkedin.com/posts/waheed-labib-45b1b625a_bkash-ostad-have-exclusively-launched-the-activity-7462028721814929408-ebjz"
       },
       "financing": {
-        "en": "Public reporting records $277,000 across four rounds through December 2022. Ostad later received a BDT 1 crore Shark Tank Bangladesh investment in May 2024.",
-        "bn": "প্রকাশ্য তথ্য অনুযায়ী ২০২২ সালের ডিসেম্বর পর্যন্ত চারটি রাউন্ডে মোট ২ লাখ ৭৭ হাজার ডলার তোলা হয়। পরে ২০২৪ সালের মে মাসে Shark Tank Bangladesh থেকে ১ কোটি টাকার বিনিয়োগ পায়।",
+        "en": "Public reporting records $277,000 across four rounds through December 2022. Ostad later announced a BDT 1 crore investment deal on Shark Tank Bangladesh in May 2024.",
+        "bn": "প্রকাশ্য তথ্য অনুযায়ী ২০২২ সালের ডিসেম্বর পর্যন্ত চারটি রাউন্ডে মোট ২ লাখ ৭৭ হাজার ডলার তোলা হয়। পরে ২০২৪ সালের মে মাসে Shark Tank Bangladesh-এ ১ কোটি টাকা বিনিয়োগের চুক্তির কথা জানায় Ostad।",
         "url": "https://publisher.tbsnews.net/bangladesh/ostad-secures-tk1cr-investment-shark-tank-bangladesh-852076",
         "sources": [
           "https://en.prothomalo.com/youth/education/wlc3y5n7xq",
           "https://publisher.tbsnews.net/bangladesh/ostad-secures-tk1cr-investment-shark-tank-bangladesh-852076"
         ]
-      }
-    },
-    {
-      "slug": "palki-motors",
-      "name": "Palki Motors",
-      "sortName": "Palki Motors",
-      "monogram": "PM",
-      "website": "https://palkimotors.com/",
-      "sectorKey": "mobility",
-      "sector": {
-        "en": "Electric vehicles",
-        "bn": "বৈদ্যুতিক যানবাহন"
-      },
-      "description": {
-        "en": "Locally designed electric vehicles and mobility products for Bangladesh.",
-        "bn": "বাংলাদেশের জন্য দেশেই নকশা করা বৈদ্যুতিক গাড়ি ও মোবিলিটি পণ্য।"
-      },
-      "lesson": {
-        "en": "Designing hardware around local roads, price constraints and serviceability.",
-        "bn": "দেশের রাস্তাঘাট, দামের সীমা ও মেরামতের বাস্তবতা বুঝে হার্ডওয়্যার নকশা করা।"
-      },
-      "background": {
-        "en": "Palki Motors began in 2022 with a plan to make electric vehicles affordable for ride-sharing and commercial drivers. It built its first prototype in 2023 and combines local engineering with component assembly.",
-        "bn": "রাইড শেয়ারিং ও বাণিজ্যিক চালকদের জন্য সাশ্রয়ী ইলেকট্রিক গাড়ি বানানোর লক্ষ্য নিয়ে ২০২২ সালে পালকি মোটরসের শুরু। ২০২৩ সালে তারা প্রথম প্রোটোটাইপ বানায়, যেখানে দেশীয় ইঞ্জিনিয়ারিংয়ের সাথে পার্টস সংযোজনের কাজ হয়।",
-        "sources": [
-          "https://palkimotors.com/about.html",
-          "https://www.undp.org/bangladesh/stories/city-boy-move-youth-built-evs-power-cleaner-commutes"
-        ]
-      },
-      "activity": {
-        "date": "2026-04-03",
-        "en": "Reported 26 vehicles delivered and further production underway.",
-        "bn": "২৬টি গাড়ি ডেলিভারি দেওয়া ও আরও গাড়ির উৎপাদন চলমান থাকার কথা জানিয়েছে।",
-        "url": "https://palkimotors.com/assets/press/Palki-Motors-Zayed-Phase-II-Report.pdf"
-      },
-      "financing": {
-        "en": "The company reports $100,000 in equity investment. Independent confirmation was not found.",
-        "bn": "কোম্পানির দাবি অনুযায়ী তারা ১ লাখ ডলারের ইকুইটি বিনিয়োগ পেয়েছে, তবে নিরপেক্ষ সোর্স থেকে তা নিশ্চিত করা যায়নি।",
-        "url": "https://palkimotors.com/about.html"
       }
     },
     {
@@ -1904,42 +1846,46 @@
       }
     },
     {
-      "slug": "togumogu",
-      "name": "ToguMogu",
-      "sortName": "ToguMogu",
-      "monogram": "TM",
-      "website": "https://togumogu.com/",
-      "sectorKey": "health",
+      "slug": "tipsoi",
+      "name": "Tipsoi (Inovace Technologies)",
+      "sortName": "Tipsoi",
+      "monogram": "TI",
+      "website": "https://tipsoi.ai/",
+      "sectorKey": "software",
       "sector": {
-        "en": "Parenting and family health",
-        "bn": "প্যারেন্টিং ও পারিবারিক স্বাস্থ্য"
+        "en": "Workforce management",
+        "bn": "কর্মী ব্যবস্থাপনা"
       },
       "description": {
-        "en": "A parenting platform combining personalised guidance, services, commerce and community.",
-        "bn": "ব্যক্তিভিত্তিক পরামর্শ, সেবা, কেনাকাটা ও অভিভাবক কমিউনিটির সমন্বিত প্যারেন্টিং প্ল্যাটফর্ম।"
+        "en": "Biometric devices and cloud software for attendance, shifts, leave, payroll and workplace access.",
+        "bn": "কর্মীদের হাজিরা, শিফট, ছুটি, বেতন ও অফিসে প্রবেশ নিয়ন্ত্রণের জন্য বায়োমেট্রিক ডিভাইস ও ক্লাউড সফটওয়্যার।"
       },
       "lesson": {
-        "en": "Building a long-term relationship around needs that change as a family grows.",
-        "bn": "সন্তানের বেড়ে ওঠার সাথে সাথে পরিবারের পরিবর্তিত চাহিদাকে ঘিরে দীর্ঘস্থায়ী সম্পর্ক তৈরি করা।"
+        "en": "Pairing locally built hardware with software subscriptions, then reaching new markets through distribution partners.",
+        "bn": "দেশে তৈরি হার্ডওয়্যারের সঙ্গে সফটওয়্যার সাবস্ক্রিপশন যোগ করা, তারপর ডিস্ট্রিবিউশন পার্টনারের মাধ্যমে নতুন বাজারে পৌঁছানো।"
       },
       "background": {
-        "en": "ToguMogu started in 2016 as a place for new parents to find reliable guidance and services. It grew into an app covering pregnancy and childhood, with products, providers, courses and community support.",
-        "bn": "নতুন মা-বাবার জন্য নির্ভরযোগ্য তথ্য ও সেবার ভরসা হিসেবে ২০১৬ সালে ToguMogu-এর যাত্রা শুরু। পরে তা গর্ভাবস্থা থেকে শৈশবের নানা পণ্য, সেবাদাতা, কোর্স ও কমিউনিটি সহায়তার পূর্ণাঙ্গ অ্যাপে রূপ নেয়।",
+        "en": "Built by BUET graduates at Inovace Technologies, Tipsoi started with biometric attendance devices and expanded into cloud software for managing employees. Its model pairs on-site hardware with recurring software subscriptions for teams working across multiple locations.",
+        "bn": "বুয়েটের কয়েকজন গ্র্যাজুয়েট Inovace Technologies-এ Tipsoi তৈরি করেন। শুরুটা ছিল বায়োমেট্রিক হাজিরা ডিভাইস দিয়ে। পরে কর্মী ব্যবস্থাপনার ক্লাউড সফটওয়্যার যোগ হয়। একাধিক অফিস বা কারখানায় কাজ করা টিমের জন্য ডিভাইসের সঙ্গে নিয়মিত সফটওয়্যার সাবস্ক্রিপশন বিক্রি করে তারা।",
         "sources": [
-          "https://idlc.com/mbr/images/public/aRCRdOo1M0KDBVxwvHBVri2a.pdf",
-          "https://futurestartup.com/2025/05/27/parenting-app-togumogu-launches-togumogu-connect-to-bridge-brands-and-bangladeshs-40-million-families/"
+          "https://today.thefinancialexpress.com.bd/education-youth/tipsoi-maker-inovace-joins-accelerating-asia-eyes-global-growth-1749915132",
+          "https://inovacetech.com/newsletter-may-2026/"
         ]
       },
       "activity": {
-        "date": "2026-05-13",
-        "en": "Ran the first Back to Work Fellowship cohort for mothers returning after a career break.",
-        "bn": "ক্যারিয়ারে বিরতির পর কাজে ফিরতে চাওয়া মায়েদের জন্য 'Back to Work Fellowship'-এর প্রথম ব্যাচ পরিচালনা করেছে।",
-        "url": "https://www.linkedin.com/posts/togumogu_togumogu-mothersday2026-backtowork-activity-7460192468265971712-rB_w"
+        "en": "In its August 2026 update, reported a live deployment at CIA Lawyers in Australia and expanded workplace access-control features.",
+        "bn": "২০২৬ সালের আগস্টের আপডেটে Tipsoi জানায়, অস্ট্রেলিয়ার CIA Lawyers তাদের সফটওয়্যার ব্যবহার শুরু করেছে। অফিসের বিভিন্ন অংশে কারা প্রবেশ করতে পারবেন, তা নিয়ন্ত্রণের নতুন ফিচারও যোগ করেছে তারা।",
+        "date": "2026-08-10",
+        "url": "https://inovacetech.com/july-newsletter-2026/"
       },
       "financing": {
-        "en": "Selected for an Orange Corners matching grant in May 2024. The company-specific amount was not published.",
-        "bn": "২০২৪ সালের মে মাসে Orange Corners-এর ম্যাচিং গ্র্যান্টের জন্য নির্বাচিত হয়, তবে নির্দিষ্ট অনুদানের অঙ্ক প্রকাশ করা হয়নি।",
-        "url": "https://www.orangecorners.com/orange-corners-bangladesh-track-1-ceremony/"
+        "en": "Backed by Accelerating Asia and Orbit Ventures. The total raised has not been independently confirmed.",
+        "bn": "Accelerating Asia ও Orbit Ventures-এর বিনিয়োগ আছে। মোট কত টাকা উঠেছে, তা স্বাধীনভাবে নিশ্চিত করা যায়নি।",
+        "url": "https://www.acceleratingasia.com/latest-news/meet-the-startups-of-cohort-11",
+        "sources": [
+          "https://www.acceleratingasia.com/latest-news/meet-the-startups-of-cohort-11",
+          "https://orbitventures.com/company/tipsoi/"
+        ]
       }
     },
     {
@@ -1978,6 +1924,50 @@
         "en": "$4 million in Series A funding was disclosed in 2021. A later Series A+ amount was not disclosed.",
         "bn": "২০২১ সালে ৪০ লাখ ডলারের সিরিজ A ফান্ডিং প্রকাশ করা হয়। পরের সিরিজ A+ রাউন্ডের পরিমাণ প্রকাশ করা হয়নি।",
         "url": "https://www.dhakatribune.com/business/319227/truck-lagbe-closes-series-a-financing-round"
+      }
+    },
+    {
+      "slug": "wedevs",
+      "name": "weDevs",
+      "sortName": "weDevs",
+      "monogram": "WD",
+      "website": "https://wedevs.com/",
+      "sectorKey": "software",
+      "sector": {
+        "en": "Business software",
+        "bn": "ব্যবসার সফটওয়্যার"
+      },
+      "description": {
+        "en": "Software for running online marketplaces, managing websites and handling everyday business work.",
+        "bn": "অনলাইন মার্কেটপ্লেস চালানো, ওয়েবসাইট পরিচালনা ও ব্যবসার দৈনন্দিন কাজের সফটওয়্যার।"
+      },
+      "lesson": {
+        "en": "Using free products to reach customers, then selling paid features and support for their growing businesses.",
+        "bn": "ফ্রি প্রোডাক্ট দিয়ে কাস্টমারের কাছে পৌঁছানো, তারপর তাঁদের ব্যবসার বাড়তি চাহিদার জন্য পেইড ফিচার ও সাপোর্ট বিক্রি করা।"
+      },
+      "background": {
+        "en": "Tareq Hasan and Nizam Uddin turned a WordPress blog into a product business. Its Dhaka-based team builds Dokan for multi-vendor marketplaces, WP ERP for business operations and FlyWP for managing WordPress hosting.",
+        "bn": "WordPress নিয়ে একটি ব্লগ থেকে প্রোডাক্ট ব্যবসা গড়ে তোলেন তারেক হাসান ও নিজাম উদ্দিন। ঢাকার টিমটি একাধিক বিক্রেতার মার্কেটপ্লেস চালানোর জন্য Dokan, ব্যবসা পরিচালনার জন্য WP ERP এবং WordPress হোস্টিং ব্যবস্থাপনার জন্য FlyWP বানায়।",
+        "sources": [
+          "https://wedevs.com/about/",
+          "https://futurestartup.com/2020/08/17/lifes-work-nizam-uddin-wedevs/",
+          "https://dhaka.wordcamp.org/2025/sponsor/wedevs/"
+        ]
+      },
+      "activity": {
+        "en": "Dokan added payment options and security fixes in September 2026. WordPress.org listed 30,000+ active installations of its free plugin at review time.",
+        "bn": "২০২৬ সালের সেপ্টেম্বরে Dokan নতুন পেমেন্ট সুবিধা যোগ করে ও নিরাপত্তার কিছু ত্রুটি ঠিক করে। রিভিউয়ের সময় WordPress.org-এ এর ফ্রি প্লাগইনের ৩০,০০০-এর বেশি সক্রিয় ইনস্টলেশন ছিল।",
+        "date": "2026-09-10",
+        "url": "https://dokan.co/wordpress/changelog/",
+        "sources": [
+          "https://dokan.co/wordpress/changelog/",
+          "https://wordpress.org/plugins/dokan-lite/"
+        ]
+      },
+      "financing": {
+        "en": "No external funding round confirmed. Cofounder Nizam Uddin has described early product revenue as the basis of its financial stability.",
+        "bn": "বাইরের বিনিয়োগের কোনো রাউন্ড নিশ্চিত করা যায়নি। কোফাউন্ডার নিজাম উদ্দিনের ভাষ্য অনুযায়ী, শুরু থেকেই প্রোডাক্টের আয় ব্যবসাটিকে আর্থিকভাবে স্থিতিশীল হতে সাহায্য করেছে।",
+        "url": "https://futurestartup.com/2020/08/17/lifes-work-nizam-uddin-wedevs/"
       }
     },
     {
@@ -2021,6 +2011,47 @@
           "https://futurestartup.com/2022/10/03/wegro-technologies-receives-us100000-investment-from-biniyog-briddhis-impact-ready-matching-fund/",
           "https://lightcastlepartners.com/wp-content/uploads/2023/08/BB-dealbook-Final-Version-update-Nov-2022.pdf"
         ]
+      }
+    },
+    {
+      "slug": "wpdeveloper",
+      "name": "WPDeveloper (Startise)",
+      "sortName": "WPDeveloper",
+      "monogram": "WP",
+      "website": "https://wpdeveloper.com/",
+      "sectorKey": "software",
+      "sector": {
+        "en": "Business software",
+        "bn": "ব্যবসার সফটওয়্যার"
+      },
+      "description": {
+        "en": "WordPress tools for building websites, managing content and supporting customers.",
+        "bn": "ওয়েবসাইট বানানো, কনটেন্ট ব্যবস্থাপনা ও কাস্টমার সাপোর্টের জন্য WordPress টুল।"
+      },
+      "lesson": {
+        "en": "Building a global software business around tools that website owners already use.",
+        "bn": "ওয়েবসাইট মালিকেরা যেসব টুল আগে থেকেই ব্যবহার করেন, সেগুলোর জন্য নতুন সুবিধা বানিয়ে বিশ্ববাজারে সফটওয়্যার ব্যবসা গড়া।"
+      },
+      "background": {
+        "en": "WPDeveloper grew from a small plugin team into a software business with products such as Essential Addons, BetterDocs and EmbedPress. It is part of Startise, the Dhaka-based group formed in 2024 to bring its expanding software brands together.",
+        "bn": "প্লাগইন বানানোর ছোট একটি টিম থেকে WPDeveloper বড় সফটওয়্যার ব্যবসা হয়ে ওঠে। তাদের প্রোডাক্টের মধ্যে আছে Essential Addons, BetterDocs ও EmbedPress। বাড়তে থাকা সফটওয়্যার ব্র্যান্ডগুলোকে একসঙ্গে রাখতে ২০২৪ সালে ঢাকাভিত্তিক Startise গ্রুপ গড়া হয়। WPDeveloper এখন এই গ্রুপের অংশ।",
+        "sources": [
+          "https://wpdeveloper.com/about/",
+          "https://futurestartup.com/2024/06/11/the-startise-story/",
+          "https://dhaka.wordcamp.org/2025/sponsor/startise/",
+          "https://store.wpdeveloper.com/checkout"
+        ]
+      },
+      "activity": {
+        "en": "Essential Addons continued releasing updates in September 2026. WordPress.org listed more than one million active installations of the free plugin at review time.",
+        "bn": "২০২৬ সালের সেপ্টেম্বরেও Essential Addons-এর নতুন আপডেট প্রকাশ হয়েছে। রিভিউয়ের সময় WordPress.org-এ ফ্রি প্লাগইনটির ১০ লাখের বেশি সক্রিয় ইনস্টলেশন ছিল।",
+        "date": "2026-09",
+        "url": "https://wordpress.org/plugins/essential-addons-for-elementor-lite/"
+      },
+      "financing": {
+        "en": "No external funding round confirmed.",
+        "bn": "বাইরের বিনিয়োগের কোনো রাউন্ড নিশ্চিত করা যায়নি।",
+        "url": "https://futurestartup.com/2024/06/11/the-startise-story/"
       }
     },
     {
