@@ -9,13 +9,63 @@ const readJson = (relative) => JSON.parse(fs.readFileSync(path.join(root, relati
 const data = readJson('data/startup-50.json')
 const sourceTitles = readJson('data/startup-50-sources.json')
 const logos = readJson('data/startup-50-logos.json')
+const salaryLinks = readJson('data/startup-50-salary-links.json')
 const media = readJson('app/generated/media.json')
 const workerSource = fs.readFileSync(path.join(root, 'worker', 'index.ts'), 'utf8')
 const wranglerConfig = fs.readFileSync(path.join(root, 'wrangler.jsonc'), 'utf8')
 const componentSource = fs.readFileSync(path.join(root, 'app', 'components', 'Startup50.tsx'), 'utf8')
+const componentStyles = fs.readFileSync(path.join(root, 'app', 'components', 'Startup50.css'), 'utf8')
 const filtersSource = fs.readFileSync(path.join(root, 'app', 'components', 'Startup50Filters.tsx'), 'utf8')
 const englishPageSource = fs.readFileSync(path.join(root, 'app', '(contents)', 'en', 'startup-50', 'page.mdx'), 'utf8')
 const banglaPageSource = fs.readFileSync(path.join(root, 'app', '(contents)', '(bn)', 'startup-50', 'page.mdx'), 'utf8')
+
+test('salary links are a reviewed, optional subset of the current roster', () => {
+  assert.match(salaryLinks.reviewedAt, /^\d{4}-\d{2}-\d{2}$/)
+  assert.equal(new Date(salaryLinks.reviewedAt).toISOString().slice(0, 10), salaryLinks.reviewedAt)
+  const slugs = new Set(data.entries.map(entry => entry.slug))
+  assert.equal(new Set(salaryLinks.entries.map(entry => entry.slug)).size, salaryLinks.entries.length)
+  assert.equal(new Set(salaryLinks.entries.map(entry => entry.companySlug)).size, salaryLinks.entries.length)
+  for (const profile of salaryLinks.entries) {
+    assert.ok(slugs.has(profile.slug), 'Salary link is not on the roster: ' + profile.slug)
+    assert.match(profile.companySlug, /^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+    assert.ok(profile.companyName.trim(), 'Missing reviewed company name: ' + profile.slug)
+    assert.deepEqual(Object.keys(profile).sort(), ['companyName', 'companySlug', 'slug'])
+  }
+})
+
+test('salary links stay in native details and use the current page language', () => {
+  const details = componentSource.slice(componentSource.indexOf('<details className="startup50-details">'), componentSource.indexOf('</details>'))
+  assert.match(details, /\{salaryProfile && \(/)
+  assert.match(details, /https:\/\/www\.betonkemon\.com\/\$\{locale\}\/c\/\$\{salaryProfile\.companySlug\}/)
+  assert.match(details, /className="startup50-salary__link"[\s\S]*?target="_blank"[\s\S]*?rel="noopener noreferrer"/)
+  assert.match(details, /Explore salaries on Beton Kemon/)
+  assert.match(details, /বেতন কেমন-এ বেতনের তথ্য দেখুন/)
+  assert.match(details, /className="sr-only">\{isEn \? ' for ' \+ entry\.name/)
+  assert.doesNotMatch(componentSource, /betonkemon\.com\/api\//)
+})
+
+test('expanded details group current updates and end with an optional salary link', () => {
+  const body = componentSource.slice(componentSource.indexOf('<div className="startup50-details__body">'), componentSource.indexOf('</details>'))
+  assert.equal((body.match(/<dl(?:\s|>)/g) || []).length, 3)
+  const labels = ['Background', 'Recent public activity', 'Funding', 'Thinking about joining?']
+  const positions = labels.map(label => body.indexOf("'" + label + "'"))
+  assert.ok(positions.every(position => position >= 0))
+  assert.deepEqual(positions, [...positions].sort((a, b) => a - b))
+  const updates = body.match(/<div className="startup50-details__updates">([\s\S]*?)<\/div>/)?.[1] || ''
+  assert.match(updates, /entry\.activity/)
+  assert.match(updates, /entry\.financing/)
+  assert.match(body, /<p className="startup50-salary">/)
+  assert.doesNotMatch(body, /href=\{entry\.website\}|Official website/)
+})
+
+test('the open state preserves responsive details padding and margins', () => {
+  // A base [open] shorthand outranks the container rules, removing their
+  // side and bottom padding. Open-state adjustments should stay top-only.
+  for (const [, selectors, declarations] of componentStyles.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+    if (!selectors.includes('.startup50-details[open]')) continue
+    assert.doesNotMatch(declarations, /(?:^|;)\s*(?:padding|margin)\s*:/, selectors.trim())
+  }
+})
 
 test('the watchlist has exactly fifty unique companies in alphabetical order', () => {
   assert.equal(data.entries.length, 50)
@@ -110,9 +160,10 @@ test('Bangla fields do not contain known translation corruption', () => {
   assert.doesNotMatch(bangla, /গোজায়ান|সক্রিয়-র/, 'known company-name corruption found')
 })
 
-test('official websites are labelled with their root domains', () => {
+test('company names link to their official websites without a duplicate details link', () => {
   assert.match(componentSource, /function displayDomain\(value: string\)/)
-  assert.match(componentSource, /\{displayDomain\(entry\.website\)\}/)
+  assert.match(componentSource, /<a href=\{entry\.website\} target="_blank" rel="noopener noreferrer">\{entry\.name\}<\/a>/)
+  assert.equal((componentSource.match(/href=\{entry\.website\}/g) || []).length, 1)
   assert.doesNotMatch(componentSource, /Visit the company website|কোম্পানির ওয়েবসাইট দেখুন/)
 
   for (const entry of data.entries) {
@@ -296,6 +347,13 @@ test('every company has one reviewed logo in the R2 media registry', () => {
   for (const logo of licensed) {
     assert.ok(logo.credit?.trim(), logo.name + ' licensed logo credit')
   }
+})
+
+test('Bongo uses its official wordmark instead of the square app icon', () => {
+  const logo = logos.entries.find(entry => entry.slug === 'bongo')
+  assert.equal(logo.source, 'https://bongoholdings.com/images/logo-nav.png')
+  assert.equal(logo.sourceKind, 'official company-site header wordmark')
+  assert.ok(media[logo.src].w > media[logo.src].h * 2, 'Bongo should retain the wide wordmark proportions')
 })
 
 test('both language pages and the public suggestion form are present', () => {

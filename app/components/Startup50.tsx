@@ -3,6 +3,7 @@ import './Startup50.css'
 import startup50Data from '../../data/startup-50.json'
 import startup50Logos from '../../data/startup-50-logos.json'
 import startup50SourceTitles from '../../data/startup-50-sources.json'
+import startup50SalaryLinks from '../../data/startup-50-salary-links.json'
 import contentIndex from '../generated/content-index.json'
 import { mediaSource } from '../lib/media'
 import { startupCaseStudyRoutes } from '../lib/startup-case-studies.mjs'
@@ -71,6 +72,7 @@ const data = startup50Data as Startup50Data
 const logos = startup50Logos as StartupLogoData
 const sourceTitles: Record<string, string> = startup50SourceTitles
 const logoBySlug = new Map(logos.entries.map((logo) => [logo.slug, logo]))
+const salaryProfileBySlug = new Map(startup50SalaryLinks.entries.map((profile) => [profile.slug, profile]))
 
 function assertData(value: Startup50Data) {
   if (value.entries.length !== 50) {
@@ -122,6 +124,15 @@ function assertData(value: Startup50Data) {
 
   if (logos.entries.length !== value.entries.length || logoBySlug.size !== value.entries.length) {
     throw new Error('The Startup 50 logo manifest must contain one reviewed logo per company.')
+  }
+
+  if (salaryProfileBySlug.size !== startup50SalaryLinks.entries.length) {
+    throw new Error('Duplicate Startup 50 salary profile.')
+  }
+  for (const profile of startup50SalaryLinks.entries) {
+    if (!slugs.has(profile.slug) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(profile.companySlug)) {
+      throw new Error('Invalid Startup 50 salary profile: ' + profile.slug)
+    }
   }
 }
 
@@ -241,6 +252,7 @@ export default function Startup50({ locale = 'bn' }: Startup50Props) {
           {data.entries.map((entry) => {
             const logo = logoBySlug.get(entry.slug) as StartupLogo
             const caseStudyRoute = caseStudies.get(entry.slug)
+            const salaryProfile = salaryProfileBySlug.get(entry.slug)
             const searchText = [
               entry.name,
               local(entry.sector, locale),
@@ -287,37 +299,45 @@ export default function Startup50({ locale = 'bn' }: Startup50Props) {
                         {isEn ? 'See details for ' + entry.name : entry.name + ' নিয়ে বিস্তারিত দেখুন'}
                       </span>
                     </summary>
-                    <dl>
-                      <div>
+                    <div className="startup50-details__body">
+                      <dl>
                         <dt>{isEn ? 'Background' : 'পেছনের গল্প'}</dt>
                         <dd>
                           <span>{local(entry.background, locale)}</span>
                           <SourceLinks urls={sourceUrls(entry.background)} locale={locale} />
                         </dd>
+                      </dl>
+                      <div className="startup50-details__updates">
+                        <dl>
+                          <dt>{isEn ? 'Recent public activity' : 'সাম্প্রতিক কাজ'}</dt>
+                          <dd>
+                            <span>{local(entry.activity, locale)} ({formatDate(entry.activity.date, locale)})</span>
+                            <SourceLinks urls={sourceUrls(entry.activity)} locale={locale} />
+                          </dd>
+                        </dl>
+                        <dl>
+                          <dt>{isEn ? 'Funding' : 'ফান্ডিং'}</dt>
+                          <dd>
+                            <span>{local(entry.financing, locale)}</span>
+                            <SourceLinks urls={sourceUrls(entry.financing)} locale={locale} />
+                          </dd>
+                        </dl>
                       </div>
-                      <div>
-                        <dt>{isEn ? 'Recent public activity' : 'সাম্প্রতিক কাজ'}</dt>
-                        <dd>
-                          <span>{local(entry.activity, locale)} ({formatDate(entry.activity.date, locale)})</span>
-                          <SourceLinks urls={sourceUrls(entry.activity)} locale={locale} />
-                        </dd>
-                      </div>
-                      <div>
-                        <dt>{isEn ? 'Funding' : 'ফান্ডিং'}</dt>
-                        <dd>
-                          <span>{local(entry.financing, locale)}</span>
-                          <SourceLinks urls={sourceUrls(entry.financing)} locale={locale} />
-                        </dd>
-                      </div>
-                      <div>
-                        <dt>{isEn ? 'Official website' : 'অফিশিয়াল ওয়েবসাইট'}</dt>
-                        <dd>
-                          <a href={entry.website} target="_blank" rel="noopener noreferrer">
-                            {displayDomain(entry.website)}
-                          </a>
-                        </dd>
-                      </div>
-                    </dl>
+                    </div>
+                    {salaryProfile && (
+                      <p className="startup50-salary">
+                        <span>{isEn ? 'Thinking about joining?' : 'এখানে কাজ করতে চান?'}</span>
+                        <a
+                          className="startup50-salary__link"
+                          href={`https://www.betonkemon.com/${locale}/c/${salaryProfile.companySlug}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {isEn ? 'Explore salaries on Beton Kemon' : 'বেতন কেমন-এ বেতনের তথ্য দেখুন'}
+                          <span className="sr-only">{isEn ? ' for ' + entry.name : ' (' + entry.name + ')'}</span>
+                        </a>
+                      </p>
+                    )}
                   </details>
                 </article>
               </li>

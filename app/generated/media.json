@@ -369,13 +369,13 @@
     "uploadedAt": "2026-08-23T18:13:12.930Z"
   },
   "/media/startup-50/bongo.webp": {
-    "key": "startup-50/bongo.4dd06076de09.webp",
-    "w": 160,
-    "h": 160,
-    "bytes": 1794,
-    "sha": "4dd06076de09",
+    "key": "startup-50/bongo.9d542eecde9f.webp",
+    "w": 320,
+    "h": 112,
+    "bytes": 10408,
+    "sha": "9d542eecde9f",
     "remote": true,
-    "uploadedAt": "2026-09-16T00:58:37.218Z"
+    "uploadedAt": "2026-09-16T15:03:13.939Z"
   },
   "/media/startup-50/brain-craft.webp": {
     "key": "startup-50/brain-craft.b3da4cb2e49d.webp",

@@ -436,5 +436,13 @@
     "bytes": 9040,
     "retiredAt": "2026-09-15T23:42:15.847Z",
     "reason": "unreferenced"
+  },
+  {
+    "logicalPath": "/media/startup-50/bongo.webp",
+    "key": "startup-50/bongo.4dd06076de09.webp",
+    "bytes": 1794,
+    "retiredAt": "2026-09-16T15:03:13.938Z",
+    "reason": "superseded",
+    "replacementKey": "startup-50/bongo.9d542eecde9f.webp"
   }
 ]

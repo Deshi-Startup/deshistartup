@@ -62,8 +62,8 @@ const reviewedOverrides = {
     kind: 'official company asset-repository wordmark'
   },
   bongo: {
-    url: 'https://play-lh.googleusercontent.com/1OgPya2VlbqKsz3thntAQilgBc3P8Mam5xsYt-sGgEUq-GVYgDY0NEN--Da84d57IcufkyKvpl1lrQSCjT5w=w480-h960',
-    kind: 'official Google Play developer app icon'
+    url: 'https://bongoholdings.com/images/logo-nav.png',
+    kind: 'official company-site header wordmark'
   },
   barikoi: {
     url: 'https://barikoi.com/lovable-uploads/fa94013f-be2a-4dce-bcde-091677f4213d.png',

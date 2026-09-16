@@ -362,16 +362,14 @@ html[lang='bn'] .startup50-hero__folio strong {
 
 .startup50-entry__description,
 .startup50-entry__lesson,
-.startup50-details,
-.startup50-details[open] {
+.startup50-details {
   grid-column: 1 / -1;
   border-top: 1px solid var(--line-soft);
   padding: 13px 0 0;
 }
 
 .startup50-entry__lesson,
-.startup50-details,
-.startup50-details[open] {
+.startup50-details {
   margin-top: 13px;
 }
 
@@ -480,14 +478,22 @@ html[lang='bn'] .startup50-hero__folio strong {
   content: '−';
 }
 
-.startup50-details dl {
+.startup50-details__body {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 14px 24px;
-  margin: 16px 0 0;
+  gap: 24px 32px;
+  margin-top: 20px;
 }
 
-.startup50-details dl > div {
+.startup50-details dl {
+  min-width: 0;
+  margin: 0;
+}
+
+.startup50-details__updates {
+  display: grid;
+  align-content: start;
+  gap: 24px;
   min-width: 0;
 }
 
@@ -502,6 +508,27 @@ html[lang='bn'] .startup50-hero__folio strong {
   margin: 4px 0 0;
   font-size: 0.83rem;
   line-height: 1.55;
+}
+
+.startup50-details .startup50-salary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 8px;
+  margin: 20px 0 0;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 8px;
+  color: var(--muted);
+  font-size: 0.83rem;
+  line-height: 1.55;
+}
+
+.startup50-salary__link {
+  display: inline-block;
+  max-width: 100%;
+  min-height: 44px;
+  padding-block: 8px;
+  overflow-wrap: anywhere;
 }
 
 .startup50-sources {
@@ -578,7 +605,7 @@ html[lang='bn'] .startup50-hero__folio strong {
     padding-top: 16px;
   }
 
-  .startup50-details dl {
+  .startup50-details__body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
