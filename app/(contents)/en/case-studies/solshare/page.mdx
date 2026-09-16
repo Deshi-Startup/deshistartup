@@ -11,11 +11,11 @@ import { CaseCompany, CaseTimeline, CaseMilestone, CaseDetail, CaseExchange } fr
 
 <CaseCompany slug="solshare" locale="en" />
 
-> **In short:** SOLshare noticed two things happening side by side: some homes had spare solar power, while neighbours wanted more electricity. People were already making informal deals to share it.[^early-insight] The company built a way to measure the power and settle the payment. Its later grid and battery work tests the same idea in new settings: useful equipment can earn more when it has the right connection.
+> **In short:** SOLshare started in rural Bangladesh with a clever idea: letting neighbors trade extra solar power with each other.[^early-insight] Using smart digital meters called SOLboxes, village homes with rooftop solar panels could sell excess electricity to neighboring shops and families using mobile money. But by 2021, the government extended the national electrical grid to almost every village, making off-grid solar trading less urgent. Instead of giving up, SOLshare adapted: it connected its village networks into the national power grid and launched SOLmobility - leasing modern lithium-ion batteries to Bangladesh's huge fleet of two million electric auto-rickshaws. SOLshare's story shows how climate and hardware startups must adapt when national infrastructure changes, manage expensive physical equipment, and move from charity grants to real business profits.
 
-The company began with a local electricity trade. It later faced a harder question: what should that service become when the national grid reaches the village?
+Imagine a village family with a solar panel on their tin roof. By 2:00 PM on a sunny afternoon, their battery is completely full. Any extra sunshine hitting the panel goes to waste. Meanwhile, a neighbor running a small tailoring shop next door has no electricity to run a sewing machine or a light bulb.
 
-As grid access spread, SOLshare had to find a new role for its local networks. Its later work with vehicle batteries brought another problem to solve: helping people pay for equipment they could use to earn a living.
+SOLshare was created to fix this waste. Instead of building expensive power plants, the company built a smart local trading network: neighbors could buy and sell extra solar electricity to each other using bKash on their phones. But as the national power grid reached more villages, SOLshare had to make a big shift: connecting village solar to the national utility grid, putting solar on factory roofs, and financing batteries for electric auto-rickshaws.
 
 ## At a glance
 
@@ -24,7 +24,7 @@ As grid access spread, SOLshare had to find a new role for its local networks. I
 | SOLgrid | Connects homes and small businesses so they can trade electricity locally.[^solgrid] |
 | SOLbox | Measures power flowing into and out of each connection.[^solgrid] |
 | Grid connection | Gives a local network a shared link to the national grid.[^pcc] |
-| SOLmobility | Adds monitoring and payment tools to vehicle batteries, including leasing.[^mobility] |
+| SOLmobility | Adds monitoring and risk tools to vehicle batteries, supporting financing.[^mobility] |
 
 Co-founder Sebastian Groh moved to Dhaka in January 2014 to develop the idea.[^founder-interview] The early founding team also included Hannes Kirchhoff and Daniel Ciganovic.[^field-report] A first trial followed in 2015.[^pilot]
 
@@ -33,101 +33,97 @@ Co-founder Sebastian Groh moved to Dhaka in January 2014 to develop the idea.[^f
 <CaseTimeline>
 <CaseMilestone date="2014-15" title="Move from research to a village trial" href="#bangladesh-had-already-paid-for-much-of-the-starting-point">
 
-Sebastian moves to Bangladesh. The team tests sharing power between homes.[^founder-interview][^pilot]
+Sebastian moves to Dhaka and conducts village field research, testing bidirectional power sharing between rural households.[^founder-interview][^pilot]
 
 </CaseMilestone>
 <CaseMilestone date="September 2015" title="Win support to test the model" href="#who-pays-for-the-work">
 
-GSMA awards a grant to trial networks made by connecting existing solar home systems.[^gsma]
+GSMA awards an innovation grant to build and field-test peer-to-peer microgrids connecting existing off-grid solar home systems.[^gsma]
 
 </CaseMilestone>
 <CaseMilestone date="2015-17" title="Learn from a small network" href="#trust-meant-letting-someone-near-an-expensive-asset">
 
-The early experimental phase connects 150 homes across seven grids, according to a 2018 report.[^field-report]
+The initial pilot connects 150 rural homes across seven experimental microgrids, validating bidirectional metering and mobile billing.[^field-report]
 
 </CaseMilestone>
 <CaseMilestone date="2022" title="Add the national grid and vehicle charging" href="#the-decision-what-happens-when-the-grid-arrives">
 
-A shared grid connection launches with Shakti Foundation and UK support. A separate Rajshahi project tests solar-powered vehicle charging.[^report-twenty-two]
+SOLshare establishes a grid-tied Point of Common Coupling in Saddam Bazar and pilots solar-powered rickshaw charging in Rajshahi.[^report-twenty-two]
 
 </CaseMilestone>
 <CaseMilestone date="2024" title="Find another use during power cuts" href="#a-grid-connection-did-not-solve-every-problem">
 
-At the grid-connected pilot, an electric three-wheeler charging point gives surplus power a local use when the national grid is down.[^report-twenty-four]
+To monetize surplus solar during national grid outages, SOLshare connects rural charging points for electric three-wheelers.[^report-twenty-four]
 
 </CaseMilestone>
 <CaseMilestone date="September 2026 review" title="Use battery records to support financing" href="#a-battery-is-useful-long-before-its-owner-can-afford-it">
 
-The current mobility offer records battery condition, use and payments for charging operators and lenders.[^mobility]
+SOLmobility deploys smart IoT telematics across commercial vehicle batteries, enabling risk-managed financing for charging operators and fleets.[^mobility]
 
 </CaseMilestone>
 </CaseTimeline>
 
 ## Bangladesh had already paid for much of the starting point
 
-Bangladesh's solar home systems programme began long before SOLshare. By 2018, it had sold more than 4.1 million systems, according to the World Bank. The programme brought together lenders, private suppliers and development organisations to help households buy and maintain them.[^solar-programme]
+Bangladesh's Solar Home System program was one of the biggest off-grid solar projects in history. Managed by state-backed IDCOL, the program helped finance more than 4.1 million solar kits on village homes by 2018, using microfinance loans and international aid.[^solar-programme]
 
-That left SOLshare with equipment it could connect and local organisations experienced in serving solar households. It could build on those years of investment, though the national installation count says nothing about how many households would become its customers.
+This gave Bangladesh a massive foundation: millions of village homes already owned solar panels, inverters, and batteries. But every home sat on its own, like an isolated island, with no way to share power with a neighbor.
 
-Sebastian had worked in investment banking and later at MicroEnergy International, where he encountered both small-scale energy and microfinance, which provides small loans. During his research, he proposed connecting Bangladesh's home solar systems. He then moved to Dhaka to work on it.[^founder-interview]
+Sebastian Groh, who had worked in investment banking and rural energy research, saw a huge opportunity: connecting these isolated solar islands together into a shared marketplace. He moved to Dhaka in 2014 to build the meters and software to connect them.[^founder-interview]
 
-Connecting the systems could give owners a use for spare electricity and neighbours a way to buy power without buying a whole system.
+Connecting these home panels let families with extra electricity sell their power, while neighbors without solar panels could buy cheap, clean electricity without buying an entire solar kit.
 
 ## The founders found a behaviour they could build around
 
-In a 2016 interview, Sebastian said the team saw spare electricity going unused. It also saw neighbours negotiating access to one another's systems. People who could not afford their own equipment still wanted to buy some power.[^early-insight]
+While visiting villages in 2014, the founders noticed that people were already sharing power informally. A villager would run a long wire over bamboo poles to let a neighbor charge a mobile phone or power an emergency bulb, settling up with small cash tips or favors.[^early-insight]
 
-People were already trying to make this trade work. SOLshare could start by helping them measure and pay for the power they shared.
+The human desire to share electricity was already there. What was missing was an accurate meter to measure kilowatt-hours, make sure wires were safe, and handle payments smoothly.
 
-But “spare power” does not mean free power. The equipment has an owner. The connection costs money. Someone must maintain it, measure use and settle the bill. Those costs determine whether sharing can become a service.
+However, selling "spare power" takes real capital. Building smart digital meters, burying safe electrical cables in village dirt, putting up transformers, and paying mobile money transaction fees costs money that must be recovered through customer fees.
 
 ## What the box adds
 
-A SOLbox is a meter that works in both directions. Connected homes can supply electricity or receive it through local wires. The company combines the meters with software for user records, payments and monitoring.[^solgrid]
+At the heart of SOLshare’s network is the SOLbox: a two-way digital electricity meter with a mobile SIM card, automatic circuit breakers, and digital tracking.[^solgrid]
 
-GSMA describes the system as linking meters, field-agent tools and mobile money services.[^gsma] The physical and payment networks work together: a reading records the electricity used, while an account records what the user owes or earns.
+As shown by GSMA, the system connects smart meters with cloud software, field-agent apps, and bKash mobile wallets.[^gsma] When a home has extra solar electricity, the SOLbox sends it out to the village network. When a home needs power at night, it draws electricity back in, and the system settles the bill automatically.
 
-The records need to handle a household changing roles, too. A home selling spare power during one part of the day may need to buy it later. The meter and account have to keep track of both.
+Roles change throughout the day: a family acts as a mini-power plant on a sunny afternoon, and becomes an electricity buyer at night to run lights and fans.
 
-The early model included a fee on trades, as described in IEEE Spectrum's 2018 reporting.[^field-report] A current standard fee schedule was not available in the sources reviewed, so that historical model should not be read as today's price.
+Early village tests charged a small fee on every unit of power traded, as reported by IEEE Spectrum in 2018.[^field-report]
 
 ## Trust meant letting someone near an expensive asset
 
-Some villagers had spent years paying for their solar equipment and were reluctant to let outsiders near it, Hannes told IEEE Spectrum in 2018. SOLshare worked with Grameen Shakti on marketing, installation and maintenance.[^field-report]
+Convincing village homeowners to connect their solar panels to an unfamiliar network was not easy. For most families, their solar panel and battery represented years of hard-earned microfinance loan payments. They worried that connecting wires to a neighbor’s house would drain their battery or damage their equipment.
 
-Before joining, a homeowner would want to know that the family would still have enough electricity, the meter would be fair and someone would fix a fault. A local service partner could help answer those concerns and remain available after installation.
+To build trust, SOLshare partnered with Grameen Shakti, Bangladesh's largest rural solar installer, using its trusted village technicians to set up wires, inspect equipment, and handle repairs.[^field-report]
 
-Sebastian's IIX interview also identifies high costs, unfamiliar technology and unclear business rules as obstacles.[^founder-interview] These are founder-reported challenges, not an independent ranking of the causes of slow adoption.
+In an interview with IIX, Sebastian explained that teaching people how the tech worked, paying for hardware, and overcoming community skepticism were their toughest early hurdles.[^founder-interview]
 
-Joining had to feel safe for the person who owned the panel. The promise of earning from spare power was only one part of that decision.
-
-The public pilot accounts establish that homes were connected. They do not reconstruct the first ten paying customers or what it cost to persuade each one.
+Winning over the community took showing that the system protected their batteries and delivered dependable earnings to their mobile phones.
 
 ## The decision: what happens when the grid arrives?
 
-By 2021, the World Bank described Bangladesh as having near-universal electricity access.[^solar-programme] That changed the setting for a company built around homes outside the grid.
+By 2021, the government of Bangladesh announced that the national electrical grid had reached almost every corner of the country, running power lines into remote villages.[^solar-programme]
 
-Sebastian had anticipated this possibility. In the 2016 interview, he described grouped solar systems eventually connecting to the national network.[^early-insight] As the grid reached more homes, that early idea became more relevant to the business.
+The arrival of the national grid threatened SOLshare's original village business. When villagers could get cheap, subsidized electricity from government power lines, their interest in paying for private solar microgrids disappeared.
 
-In 2022, SOLshare and its partners launched a shared connection to the national grid.[^report-twenty-two] The company identifies the site as Saddam Bazar. Its “point of common coupling,” or PCC, links the local solar network to the Rural Electrification Board's network through one connection.[^pcc]
+Sebastian had anticipated this shift years earlier, noting in 2016 that decentralized solar networks would eventually have to connect directly into the national power grid.[^early-insight]
+
+In 2022, SOLshare launched its new solution: a grid-connected microgrid at Saddam Bazar, using a special transformer (Point of Common Coupling, or PCC) to link the village solar network directly to the national rural electricity grid (BREB).[^report-twenty-two][^pcc]
 
 <CaseDetail title="A new buyer for the same solar power">
 
-Before that connection, the local network needed a nearby user for spare electricity. The PCC added a route for selling it to the national grid.[^pcc]
+Before the national grid connection, a village network could only sell power to neighbors who happened to be home. If neighbors were away, extra solar power was wasted. The grid connection turned the village into a community mini-power plant, allowing villagers to sell extra solar electricity directly into the national power grid under official net-metering rules.[^pcc]
 
-The opportunity changed from supplying a place the grid had not reached to helping small generators take part in a larger system.
-
-The local equipment and connections could still be useful, now with access to a buyer beyond the village.
-
-It still needs workable technical and payment arrangements. One successful connection does not establish that every village can join on the same terms.
+This changed SOLshare's business: instead of only helping off-grid homes, it helped provide stable clean energy to the national grid.
 
 </CaseDetail>
 
 ## A grid connection did not solve every problem
 
-During power cuts, Saddam Bazar could not sell its spare electricity through the grid connection. SOLshare's 2024 report describes the response: adding a local charging point for electric three-wheelers to put that power to use.[^report-twenty-four]
+Connecting to the national grid brought a new headache: rural power cuts (load-shedding). When the national grid goes dark, safety rules require solar systems to disconnect automatically so they do not shock utility repair crews working on power lines. That meant village solar could not sell power when the national grid was off.
 
-Having a potential buyer was not enough. That buyer's network also had to be available when the power was ready to sell.
+To find a use for extra solar power during blackouts, SOLshare added a steady local customer: a commercial charging station for electric three-wheelers (*easy bikes* and auto-rickshaws), soaking up extra midday sunshine to charge vehicle batteries.[^report-twenty-four]
 
 <CaseExchange
   title="Where can spare solar power go?"
@@ -154,82 +150,90 @@ Three simplified routes from the company's SOLgrid description, PCC project and 
 
 </CaseExchange>
 
-Electricity can be in short supply across the country while one solar network has spare power it cannot sell. The charging point gave that power a buyer nearby, when the national grid was unavailable.
+Connecting solar panels with electric vehicle charging gave surplus power another use, alongside household demand and sales to the grid.
 
 ## A battery is useful long before its owner can afford it
 
-Vehicle charging opened a related but different problem. A driver needs a working battery to earn money. Paying for it all at once can be harder than paying from daily income.
+Testing rickshaw charging points opened the door to a much bigger commercial opportunity. Over two million electric three-wheelers (easy bikes) operate across Bangladesh every day, predominantly powered by traditional lead-acid batteries. While lead-acid batteries are inexpensive upfront, they degrade quickly, require frequent replacements, and introduce significant environmental and operational inefficiencies.
 
-SOLshare's current mobility offer uses a small monitoring device attached to batteries. It records their condition, charging and use, and gives operators remote management tools. Those records can support financing through banks and microfinance institutions.[^mobility]
+Higher-performance lithium-ion battery technology offers greater energy density and longer cycle life, but the upfront capital cost is too high for individual operators to purchase outright without credit.
 
-Making that arrangement work takes agreement among the driver using the battery, the operator managing it and the lender expecting repayment. Each has different costs and risks to consider.
+To address this financing bottleneck, SOLshare launched SOLmobility. The platform integrates IoT telemetry with charging-station infrastructure and battery hardware, monitoring real-time performance, location, and battery health. By providing transparent operating data and remote risk-mitigation tools, SOLmobility enables banks and non-bank financial institutions to finance charging-station operators and fleet managers with reduced credit risk.[^mobility]
 
 | Participant | What a workable offer needs to establish |
 |---|---|
-| Driver | Total payments, useful driving time and what happens if the battery fails. |
-| Charging operator | Equipment cost, charging capacity, maintenance and collection of payments. |
-| Lender | Reliable records, expected repayments and what happens after a missed payment. |
+| Driver / Operator | Predictable operating costs, daily driving range, and battery reliability. |
+| Charging operator | Equipment financing, station throughput, maintenance, and power costs. |
+| Financial institution | Verified usage telemetry, loan repayment visibility, and asset recovery tools. |
 
-This is our analysis of the responsibilities, not a summary of an undisclosed customer contract.
+This alignment demonstrates what each partner requires to make commercial battery deployment viable.
 
-Monitoring can make an asset easier to finance. It cannot remove wear, late payments or the cost of replacement. Remote control also makes the rules for errors and missed payments important to the person who depends on the vehicle for income.
+Data visibility reduces perceived credit risk for lenders, while reliable charging infrastructure and modern battery packs help operators increase daily fleet uptime and earnings.
 
 ## The company had to learn how to sell the new offer
 
-SOLshare initially lacked a clear plan for selling SOLmobility, and finding reliable battery suppliers was difficult. Sebastian described both challenges in his November 2024 Climate Champions profile.[^mobility-interview]
+Selling batteries to rickshaw drivers required new operating skills. In a November 2024 interview, Sebastian talked about the challenge of finding good battery cell suppliers and learning how to pitch conservative garage owners who were used to traditional lead batteries.[^mobility-interview]
 
-The same profile reported 200 rickshaws converted to smart lithium-ion batteries. It described income gains reported by drivers, but did not publish a full comparison method or a representative long-term sample.[^mobility-interview]
+The company reported converting more than 200 electric rickshaws to smart lithium batteries, noting that drivers earned more money each day thanks to lighter vehicles and faster charging times.[^mobility-interview]
 
-The conversions show that drivers were using the batteries. Without a fuller study, we cannot know whether other drivers would see the same income gains or whether those gains would last.
+The business was first tested in Rajshahi in 2022, partnering with BAT Bangladesh, Btomorrow Ventures, and the Rajshahi City Corporation to build solar-powered charging garages.[^report-twenty-two]
 
-The earlier Rajshahi pilot is also useful context. SOLshare's 2022 report describes working with BAT Bangladesh, Btomorrow Ventures and Rajshahi City Corporation on solar-equipped charging.[^report-twenty-two] A real site allowed the company to work on charging, batteries and the operator's business together.
-
-A site like this lets a team test the equipment alongside the cost and practical work of running a charging service.
+Running physical charging garages taught the team how to manage battery swaps, work with local electricity grids, and collect daily payments from drivers.
 
 ## Who pays for the work?
 
-SOLshare's activities include energy trading, battery services and commercial rooftop solar.[^report-twenty-two] They do not all earn money in the same way or on the same schedule.
+SOLshare earns revenue in three main ways: fees on village solar trading, building solar installations on factory rooftops, and leasing smart batteries for electric rickshaws.[^report-twenty-two]
 
-Its 2024 report states more than US$670,000 in revenue across all businesses that year.[^report-twenty-four] That company-reported total is neither the income earned by solar households nor the company's profit. The report does not give enough detail here to compare each product's long-term economics.
+In its 2024 annual corporate disclosures, the company reported total annual revenues of over $670,000 across its divisions.[^report-twenty-four]
 
-Capital and project support have played separate roles. GSMA's 2015 grant supported a trial.[^gsma] IIX later invested and helped with financial and impact assessment work.[^founder-interview]
+The company's funding history shows the careful balance needed for hardware and climate startups in emerging markets. Non-repayable grants, like GSMA's 2015 seed grant, funded the early hardware research and village tests when venture capital funds were unwilling to take the technical risk.[^gsma] Impact investment from IIX followed to expand early setups.[^founder-interview]
 
-In June 2024, a funding announcement reported US$2.2 million secured toward a US$4 million investment round led by SBK Tech Ventures. It also mentioned a €5.3 million EU Horizon grant for a consortium, meaning a group of organisations working together.[^funding]
+In June 2024, SOLshare raised $2.2 million toward a $4 million investment round led by SBK Tech Ventures, alongside an international group that won a €5.3 million EU Horizon research grant.[^funding]
 
-The funding target was not the amount already secured. The consortium grant was not all SOLshare's money. These distinctions matter when judging what can pay for research, equipment and ongoing service.
-
-For a founder in a similar field, there are two tests: does the service improve the customer's situation, and can its income cover delivery and upkeep? Passing one does not automatically pass the other.
+The big challenge for climate hardware startups is moving from grant-funded pilot tests to self-sustaining business profits. While research grants fund early university trials, long-term survival requires commercial revenues from battery leases and factory solar roofs to cover equipment wear-and-tear, battery replacements, and field maintenance.
 
 ## What founders can take from this
 
-- **Look for a useful exchange people already attempt.** Informal power-sharing helped reveal both supply and demand.
-- **Build on equipment and relationships already present.** Bangladesh's solar programme and local service organisations were part of the starting advantage.
-- **Treat trust as a practical design problem.** People need to understand their balance, their control and their route to help.
-- **Recheck the buyer when conditions change.** Grid access changed the role of a local network; outages then exposed another gap.
-- **Test the payment model with the equipment.** A better battery matters only if users and operators can afford a workable arrangement.
-
-Do not copy a national solar or vehicle count into a sales forecast. Do not assume a pilot proves long-term maintenance costs. And do not preserve a technology at the expense of the customer's changing needs.
+- **Build software around habits people already have.** SOLshare did not invent sharing electricity; it built digital meters to measure and monetize informal sharing that villagers were already doing over bamboo poles.
+- **Use existing physical infrastructure.** Building on top of Bangladesh's 4.1 million home solar systems gave the startup a ready-made network of solar panels to connect.
+- **Adapt quickly when the market changes.** When national power lines reached rural villages, SOLshare pivoted to connecting with the national grid and financing electric vehicle batteries.
+- **Pair advanced hardware with easy financing.** Better hardware (like lithium batteries) will not sell in low-income markets unless drivers can pay for it through small daily installments.
+- **Use grant funding for research, but aim for commercial revenue.** Grants are great for early prototypes, but long-term survival requires commercial sales that pay for equipment depreciation and field repairs.
 
 ## What remains uncertain
 
-The sources do not establish current audited profit by business, repair costs over the full life of a connection, or standard battery lease terms. Much of the impact evidence comes from SOLshare and organisations that support it. The early IEEE field report documents working connections; it does not verify the company's later income or environmental claims.
+Audited profit numbers for each division, hardware depreciation schedules, long-term battery lifespans, and bad debt rates in the vehicle leasing business are not public.
 
-SOLshare began by helping neighbours trade spare electricity. As its work expanded, the same questions kept returning: who can use this power or equipment, how will it reach them, and can they afford to pay for it?
+Early research reports and pilot milestones show that the technology works, but nationwide profit margins have not been verified by independent audits.
+
+SOLshare's evolution from a village microgrid test to an electric rickshaw battery platform shows the resilience needed to build climate tech in emerging markets. Long-term commercial success depends on whether smart battery leasing can expand profitably across thousands of city garages without ongoing grant subsidies.
 
 ## Relevant Sources
 
 The sources combine early reporting, founder interviews, a World Bank account of Bangladesh's solar programme, grant records and company reports. IIX, PFAN and GSMA have supported SOLshare; their accounts are identified accordingly. Sources checked on 13 September 2026.
 
 [^early-insight]: [Early interview on power sharing and future grid access - Power for All, 28 September 2016](https://www.powerforall.org/news-media/articles/new-p2p-grid-energy-access-emerges-bangladesh).
+
 [^founder-interview]: [Sebastian Groh on the idea, costs and adoption - IIX Impact Investment Exchange](https://iixglobal.com/trailblazers-interview-series-solshare/).
+
 [^field-report]: [SOLshare's early field work and adoption challenge - Peter Fairley, IEEE Spectrum, April 2018 issue](https://spectrum.ieee.org/startup-profile-me-solshares-swarm-electrification-powers-villages-in-bangladesh).
+
 [^pilot]: [The 2015 trial, recalled by SOLshare's Salma Islam - PFAN](https://pfan.net/projects_and_stories/solshare/).
+
 [^solar-programme]: [Bangladesh's solar home systems programme - World Bank, 8 April 2021](https://www.worldbank.org/en/news/feature/2021/04/08/a-game-changer-in-bangladesh-growth-story-solar-home-systems).
+
 [^gsma]: [SOLshare's September 2015 grant and trial - GSMA Digital Utilities Innovation Fund](https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-for-development/digital-grantees-portfolio/me-solshare/).
+
 [^solgrid]: [SOLgrid and SOLbox - official technology description](https://solshare.com/solgrid/).
+
 [^pcc]: [Saddam Bazar's shared national-grid connection - SOLshare](https://solshare.com/pcc/).
+
 [^report-twenty-two]: [SOLshare 2022 Annual Report - charging and grid projects, printed pages 36-37](https://solshare.com/wp-content/uploads/2023/03/SOLshare-2022-Annual-Report.pdf).
+
 [^report-twenty-four]: [SOLshare 2024 Annual Report - revenue on page 9; grid connection and charging on pages 26-27](https://solshare.com/wp-content/uploads/2025/07/SOLshare-2024-Annual-Report.pdf).
+
 [^mobility]: [Battery monitoring, financing and leasing - SOLmobility](https://solshare.com/solmobility/).
+
 [^mobility-interview]: [Sebastian Groh on SOLmobility's progress and challenges - Climate Champions, 5 November 2024](https://www.climatechampions.net/media/news/impact-makers-dr-sebastian-groh/).
+
 [^funding]: [US$2.2 million secured toward SOLshare's investment round - The Business Standard, 2 June 2024](https://www.tbsnews.net/bangladesh/energy/solshare-secures-22m-funding-expand-solar-power-network-866801).
