@@ -1,5 +1,5 @@
 export type IdeaIconName = 'arrow' | 'back' | 'search' | 'bookmark' | 'plus' | 'check' | 'download' | 'external'
-  | 'commerce' | 'circular' | 'agriculture' | 'manufacturing'
+  | 'share' | 'commerce' | 'circular' | 'agriculture' | 'manufacturing'
 
 export default function IdeaIcon({ name, filled = false }: { name: IdeaIconName; filled?: boolean }) {
   const paths = {
@@ -11,6 +11,7 @@ export default function IdeaIcon({ name, filled = false }: { name: IdeaIconName;
     plus: <path d="M12 5v14M5 12h14" />,
     check: <path d="m5 12 4 4L19 6" />,
     download: <path d="M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5" />,
+    share: <path d="M12 3v13m-5-8 5-5 5 5M5 14v6h14v-6" />,
     commerce: <><path d="M5 8h14l-1 12H6L5 8Z" /><path d="M9 8V6a3 3 0 0 1 6 0v2" /></>,
     circular: <><path d="M20 12a8 8 0 0 1-14.3 4.9M4 12A8 8 0 0 1 18.3 7.1" /><path d="M18 3v4.5h-4.5M6 21v-4.5h4.5" /></>,
     agriculture: <><path d="M12 21V11" /><path d="M12 11C12 6.5 9 4 4 4c0 5 3 8 8 7Z" /><path d="M12 14c0-4 2.6-6 7-6 0 4.5-2.6 7-7 6Z" /></>,

@@ -104,6 +104,12 @@
 .ideas-shell .ideas-catalogue-filters .ideas-select:last-child { border-radius: 0 6px 6px 0; }
 .ideas-shell .ideas-catalogue-filters :is(.ideas-search:focus-within, select:focus-visible) { outline: 2px solid var(--green); outline-offset: -2px; }
 
+/* One row of pills: what it takes to start, not how the record is typed. */
+.ideas-shell .ideas-kinds { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: 1rem; }
+.ideas-shell .ideas-kinds button { min-height: 38px; padding: .45rem .85rem; border: 1px solid var(--line); border-radius: 999px; background: var(--canvas); color: var(--ink); font-size: .8125rem; line-height: 1.4; }
+.ideas-shell .ideas-kinds button:hover { border-color: var(--muted); }
+.ideas-shell .ideas-kinds button[aria-pressed="true"] { background: var(--green-soft); border-color: var(--green); color: var(--green-deep); font-weight: var(--w-strong, 600); }
+.ideas-shell .ideas-kinds-help { color: var(--muted); font-size: .8125rem; line-height: 1.5; }
 .ideas-shell .ideas-results-toolbar { display: flex; align-items: center; gap: 1.25rem; min-height: 64px; border-bottom: 1px solid var(--line-warm, #d9d5cd); margin-top: 1.5rem; }
 .ideas-shell .ideas-collection { display: flex; align-self: stretch; gap: 1.4rem; }
 .ideas-shell .ideas-collection button { display: inline-flex; align-items: center; gap: .4rem; padding: .65rem 0; border: 0; border-bottom: 2px solid transparent; background: transparent; margin-bottom: -1px; color: var(--muted, #54595d); font-size: .875rem; }
@@ -129,6 +135,10 @@
 .ideas-shell .ideas-row-for > span { flex: none; color: var(--green-deep); font-size: .78125rem; font-weight: var(--w-strong, 600); }
 .ideas-shell .ideas-row-summary { margin-top: .5rem; font-size: .9375rem; color: var(--muted); max-width: 40rem; line-height: 1.75; }
 .ideas-shell .ideas-chips { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .5rem; margin-top: .85rem; }
+.ideas-shell .ideas-chip-progress { display: inline-flex; align-items: center; gap: .45rem; color: var(--ink); }
+.ideas-shell .ideas-chip-progress.ideas-chip-done { border-color: var(--green-soft); background: var(--green-soft); color: var(--green-deep); font-weight: var(--w-strong, 600); }
+.ideas-shell .ideas-chip-bar { display: inline-block; width: 42px; height: 4px; border-radius: 2px; background: var(--line-soft); overflow: hidden; }
+.ideas-shell .ideas-chip-bar > span { display: block; height: 100%; background: var(--green); }
 .ideas-shell .ideas-chip { padding: .35rem .6rem; border: 1px solid var(--line-soft); border-radius: 999px; background: var(--canvas); color: var(--muted); font-size: .75rem; line-height: 1.3; }
 .ideas-shell .ideas-bookmark { position: relative; z-index: 1; width: 44px; height: 44px; margin-top: -.3rem; border: 1px solid transparent; background: transparent; color: var(--muted); border-radius: 5px; display: flex; align-items: center; justify-content: center; transition: color .16s, background-color .16s; }
 .ideas-shell .ideas-bookmark:hover { background: var(--green-soft); color: var(--green-deep); }
@@ -295,6 +305,9 @@
 .ideas-shell .ideas-detail { max-width: 100%; margin-inline: auto; }
 .ideas-shell .ideas-detail-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 2.5rem; }
 .ideas-shell .ideas-detail-toolbar .ideas-back { margin: 0; }
+.ideas-shell .ideas-detail-actions { display: flex; align-items: flex-start; gap: .5rem; }
+.ideas-shell .ideas-detail-actions .ideas-save-control, .ideas-shell .ideas-share { max-width: none; }
+.ideas-shell .ideas-share .ideas-feedback { margin-top: .4rem; font-size: .8125rem; text-align: end; }
 .ideas-shell .ideas-detail-heading { max-width: 60rem; }
 .ideas-shell .ideas-detail-heading .ideas-eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .1rem; color: var(--green-deep); }
 .ideas-shell .ideas-detail-heading .ideas-eyebrow svg { width: 16px; height: 16px; margin-right: .4rem; }
@@ -317,9 +330,19 @@
 .ideas-shell .ideas-detail-body > section:first-child { padding-right: 1.5rem; }
 .ideas-shell .ideas-detail-body .ideas-first-step { margin-top: 2rem; padding: 1.75rem 2rem; background: var(--green-ground); border: 1px solid var(--green-soft); border-radius: 6px; }
 .ideas-shell .ideas-first-step h2 { color: var(--green-deep); margin-bottom: 1.5rem; }
-.ideas-shell .ideas-first-step ol { padding: 0; list-style: none; counter-reset: steps; display: grid; gap: 1.25rem; }
-.ideas-shell .ideas-first-step li { counter-increment: steps; display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); gap: .875rem; margin: 0; padding: 0; font-size: .9375rem; line-height: 1.75; }
-.ideas-shell .ideas-first-step li::before { content: counter(steps, decimal-leading-zero); color: var(--green-deep); font-size: .75rem; padding-top: .25rem; font-variant-numeric: tabular-nums; }
+.ideas-shell .ideas-steps-hint { margin-bottom: 1.1rem; color: var(--muted); font-size: .8125rem; line-height: 1.6; }
+.ideas-shell .ideas-first-step ol { padding: 0; list-style: none; display: grid; gap: .9rem; }
+/* A ticked list carries its own marker. Bangla list numbering is applied by a
+   global rule that outranks `list-style: none`, so the item leaves list-item display. */
+.ideas-shell .ideas-first-step li { display: block; margin: 0; padding: 0; }
+.ideas-shell .ideas-first-step label { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: .9rem; align-items: start; padding: .15rem 0; font-size: .9375rem; line-height: 1.75; cursor: pointer; }
+.ideas-shell .ideas-first-step input[type="checkbox"] { appearance: none; -webkit-appearance: none; position: relative; width: 22px; height: 22px; margin: .3rem 0 0; border: 1.5px solid var(--green); border-radius: 5px; background: var(--canvas); cursor: pointer; }
+.ideas-shell .ideas-first-step input[type="checkbox"]:checked { background: var(--green-deep); border-color: var(--green-deep); }
+.ideas-shell .ideas-first-step input[type="checkbox"]:checked::after { content: ''; position: absolute; left: 6px; top: 2px; width: 6px; height: 11px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.ideas-shell .ideas-first-step input[type="checkbox"]:checked + span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
+.ideas-shell .ideas-steps-progress { display: flex; align-items: center; gap: .75rem; margin-top: 1.1rem; color: var(--muted); font-size: .8125rem; }
+.ideas-shell .ideas-steps-bar { flex: 1; max-width: 220px; height: 4px; border-radius: 2px; background: #dfe9e3; overflow: hidden; }
+.ideas-shell .ideas-steps-bar > span { display: block; height: 100%; background: var(--green); transition: width .25s; }
 .ideas-shell .ideas-first-step .ideas-signal { border-top: 1px solid var(--green-soft); padding-top: 1rem; margin-top: 1.25rem; }
 .ideas-shell .ideas-first-step .ideas-actions { margin-top: 1.25rem; }
 .ideas-shell .ideas-first-step .ideas-action-buttons { gap: .5rem 1.25rem; }
@@ -342,7 +365,6 @@
 .ideas-shell .ideas-research-body h2:not(:first-child) { margin-top: 1.5rem; }
 .ideas-shell .ideas-research-body > .ideas-source-date { margin-top: 1rem; }
 .ideas-shell .ideas-research-body .ideas-sources { margin-top: 1.5rem; }
-.ideas-shell[lang="bn"] .ideas-first-step li::before { content: counter(steps, bengali); }
 .ideas-shell[lang="bn"] .ideas-detail-heading h1 { line-height: 1.4; letter-spacing: 0; }
 .ideas-shell .ideas-draft-column { max-width: 47rem; }
 @media (max-width: 760px) {
@@ -365,6 +387,8 @@
   .ideas-shell .ideas-company-links { display: flex; flex-wrap: wrap; gap: 1rem; }
   .ideas-shell .ideas-companies-small .ideas-inline-link { margin: 0; }
   .ideas-shell .ideas-detail-toolbar { margin-bottom: 1.75rem; }
+  .ideas-shell .ideas-detail-actions .ideas-button { padding-inline: .8rem; }
+  .ideas-shell .ideas-kinds-help { flex-basis: 100%; margin-top: -.1rem; }
   .ideas-shell .ideas-detail-heading h1 { font-size: clamp(2.25rem, 6vw, 3.25rem); }
   .ideas-shell .ideas-detail-heading .ideas-lead { font-size: 1.0625rem; }
   .ideas-shell .ideas-detail-for { font-size: .9375rem; margin-top: .9rem; }

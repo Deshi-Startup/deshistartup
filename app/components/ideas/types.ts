@@ -11,5 +11,6 @@ export interface IdeaSummary {
   title: string
   summary: string
   customer: string
+  steps: number
   search: string
 }

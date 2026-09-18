@@ -1,8 +1,9 @@
 'use client'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { IdeaSummary, Locale, Place, Sector } from './types'
-import { defaultFilters, filterQuery, forLabel, ideaPath, kindLabel, matchingIdeas, number, parseFilters, places, sectors, type Filters } from './model'
+import { defaultFilters, filterQuery, forLabel, ideaPath, kindFilters, kindLabel, matchingIdeas, number, parseFilters, places, sectors, stepProgressLabel, stepsDone, type Filters } from './model'
 import { useShortlist } from './useShortlist'
+import { useSteps } from './useSteps'
 import IdeaShell from './IdeaShell'
 import IdeaIcon from './IdeaIcon'
 
@@ -12,6 +13,7 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
   const [urlReady, setUrlReady] = useState(false)
   const [message, setMessage] = useState('')
   const { saved, ready, error, toggle } = useShortlist(ideas)
+  const { progress } = useSteps()
   const resultHeading = useRef<HTMLHeadingElement>(null)
   const searchRef = useRef<HTMLInputElement>(null)
   const saveButtons = useRef(new Map<string, HTMLButtonElement>())
@@ -30,7 +32,7 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
   }, [filters, urlReady])
   const results = useMemo(() => matchingIdeas(ideas, filters, saved), [ideas, filters, saved])
   const savedCount = ideas.filter(idea => saved.includes(idea.id)).length
-  const hasFilters = Boolean(filters.q || filters.sector || filters.place || filters.problem)
+  const hasFilters = Boolean(filters.q || filters.sector || filters.place || filters.kind || filters.problem)
   function update(next: Filters) {
     setFilters(next)
     const target = `${window.location.pathname}${filterQuery(next)}${window.location.hash}`
@@ -61,6 +63,10 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
       <label className="ideas-select"><span className="ideas-sr-only">{en ? 'Sector' : 'খাত'}</span><select value={filters.sector} onChange={event => update({ ...filters, sector: event.target.value })}><option value="">{en ? 'All sectors' : 'সব খাত'}</option>{Object.entries(sectors).map(([value, label]) => <option key={value} value={value}>{label[locale]}</option>)}</select></label>
       <label className="ideas-select"><span className="ideas-sr-only">{en ? 'Location' : 'জায়গা'}</span><select value={filters.place} onChange={event => update({ ...filters, place: event.target.value })}><option value="">{en ? 'All locations' : 'সব জায়গা'}</option>{Object.entries(places).map(([value, label]) => <option key={value} value={value}>{label[locale]}</option>)}</select></label>
     </div>
+    <div className="ideas-kinds" role="group" aria-label={en ? 'What it takes to start' : 'শুরু করতে যা লাগবে'}>
+      {kindFilters.map(option => <button key={option.value} type="button" aria-pressed={filters.kind === option.value} onClick={() => update({ ...filters, kind: option.value })}>{option.label[locale]}</button>)}
+      <span className="ideas-kinds-help">{en ? 'Service and workflow ideas can start with a phone and a notebook.' : 'সেবা আর কাজের পদ্ধতির আইডিয়া ফোন আর একটা খাতা দিয়েই শুরু করা যায়।'}</span>
+    </div>
     <div className="ideas-results-toolbar"><div className="ideas-collection" role="group" aria-label={en ? 'Collection' : 'তালিকা'}><button type="button" aria-pressed={!filters.saved} onClick={() => update({ ...filters, saved: false })}>{en ? 'All ideas' : 'সব আইডিয়া'}</button><button type="button" aria-pressed={filters.saved} disabled={!ready} onClick={() => update({ ...filters, saved: true })}><IdeaIcon name="bookmark" filled={filters.saved} />{en ? 'Saved' : 'সেভ করা'}{ready && savedCount > 0 && <span>{number(savedCount, locale)}</span>}</button></div><h2 ref={resultHeading} tabIndex={-1} className="ideas-result-count" aria-live="polite">{number(results.length, locale)} {en ? (results.length === 1 ? 'idea' : 'ideas') : 'টি আইডিয়া'}</h2>{hasFilters && <button className="ideas-text-button ideas-clear" type="button" onClick={clear}>{en ? 'Clear filters' : 'ফিল্টার সরান'}</button>}</div>
     {filters.saved && <p className="ideas-browser-note">{en ? 'Saved on this browser only.' : 'সেভ করা তালিকা এই ব্রাউজারেই থাকে।'}</p>}
     {error && <p className="ideas-error" role="alert">{en ? 'Your saved list could not be updated. Allow site storage and try again.' : 'ব্রাউজারে তালিকাটি সেভ করা যায়নি। সাইটের স্টোরেজ চালু করে আবার চেষ্টা করুন।'}</p>}
@@ -74,7 +80,7 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
           <h3><a href={ideaPath(locale, idea.slug)}>{idea.title}</a></h3>
           <p className="ideas-row-for"><span>{forLabel(locale)}</span>{idea.customer}</p>
           <p className="ideas-row-summary">{idea.summary}</p>
-          <p className="ideas-chips"><span className="ideas-chip">{kindLabel(idea.kind, locale)}</span><span className="ideas-chip">{idea.places.map(place => places[place as Place]?.[locale] || place).join(' · ')}</span></p>
+          <p className="ideas-chips">{filters.saved && <span className={`ideas-chip ideas-chip-progress${stepsDone(progress, idea.id, idea.steps) >= idea.steps ? ' ideas-chip-done' : ''}`}><span className="ideas-chip-bar" aria-hidden="true"><span style={{ width: `${Math.round(stepsDone(progress, idea.id, idea.steps) / idea.steps * 100)}%` }} /></span>{stepProgressLabel(stepsDone(progress, idea.id, idea.steps), idea.steps, locale)}</span>}<span className="ideas-chip">{kindLabel(idea.kind, locale)}</span><span className="ideas-chip">{idea.places.map(place => places[place as Place]?.[locale] || place).join(' · ')}</span></p>
         </div>
         <button ref={element => { if (element) saveButtons.current.set(idea.id, element); else saveButtons.current.delete(idea.id) }} className="ideas-bookmark" type="button" aria-label={`${label}: ${idea.title}`} title={label} aria-pressed={active} disabled={!ready} onClick={() => save(idea.id)}><IdeaIcon name="bookmark" filled={active} /></button>
       </article>

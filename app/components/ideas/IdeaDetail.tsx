@@ -8,6 +8,8 @@ import IdeaShell from './IdeaShell'
 import IdeaIcon from './IdeaIcon'
 import CompanyMark from './CompanyMark'
 import SaveIdea from './SaveIdea'
+import ShareIdea from './ShareIdea'
+import StepChecklist from './StepChecklist'
 import IdeaActions from './IdeaActions'
 
 function materials(problem: Problem, idea: Approach, locale: Locale) {
@@ -49,7 +51,7 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
   const checked = latest ? sourceDate(latest, locale) : ''
   return <IdeaShell locale={locale}>
     <article className="ideas-detail">
-      <div className="ideas-detail-toolbar"><a className="ideas-back" href={ideaPath(locale)}><IdeaIcon name="back" />{en ? 'All ideas' : 'সব আইডিয়া'}</a><SaveIdea id={idea.id} locale={locale} ideas={savedIdeas} /></div>
+      <div className="ideas-detail-toolbar"><a className="ideas-back" href={ideaPath(locale)}><IdeaIcon name="back" />{en ? 'All ideas' : 'সব আইডিয়া'}</a><div className="ideas-detail-actions"><SaveIdea id={idea.id} locale={locale} ideas={savedIdeas} /><ShareIdea locale={locale} title={a.title} customer={p.customer} /></div></div>
       <header className="ideas-detail-heading">
         <p className="ideas-eyebrow"><IdeaIcon name={problem.sector as Sector} />{sectors[problem.sector as Sector]?.[locale] || problem.sector}<span aria-hidden="true"> · </span>{kindLabel(idea.kind, locale)}<span aria-hidden="true"> · </span>{placeNames}</p>
         <h1>{a.title}</h1><p className="ideas-lead">{a.summary}</p>
@@ -66,7 +68,7 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
             <p>{p.unknown}</p>
           </div>
           <section className="ideas-first-step"><h2>{en ? 'Try this first' : 'আগে এভাবে পরীক্ষা করুন'}</h2>
-            <ol>{a.steps.map((step, index) => <li key={index}>{step}</li>)}</ol>
+            <StepChecklist id={idea.id} locale={locale} steps={a.steps} />
             <p className="ideas-signal"><strong>{en ? 'You’ll know it’s working when: ' : 'কাজ হচ্ছে বুঝবেন যেভাবে: '}</strong>{a.signal}</p>
             <IdeaActions id={idea.id} locale={locale} brief={brief} prompt={prompt} />
           </section>
