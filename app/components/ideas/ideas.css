@@ -84,6 +84,10 @@
 .ideas-shell .ideas-catalogue-hero h1 span { color: var(--green-deep); }
 .ideas-shell .ideas-catalogue-invitation .ideas-lead { margin: 0; line-height: 1.75; }
 .ideas-shell .ideas-catalogue-invitation .ideas-button { margin-top: 1.25rem; padding-inline: 1.125rem; }
+/* The collection's pulse: how much there is, and when it last grew. */
+.ideas-shell .ideas-heartbeat { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .1rem; margin-top: .9rem; color: var(--muted); font-size: .8125rem; }
+.ideas-shell .ideas-heartbeat strong { color: var(--ink); font-weight: 500; }
+.ideas-shell .ideas-heartbeat-dot { width: 7px; height: 7px; margin-right: .55rem; border-radius: 50%; background: var(--green); }
 .ideas-shell[lang="bn"] .ideas-catalogue-hero h1 { font-size: clamp(2.5rem, 4.5vw, 3.6rem); line-height: 1.38; letter-spacing: 0; }
 
 .ideas-shell .ideas-filters { display: grid; grid-template-columns: minmax(230px, 1.7fr) minmax(155px, 1fr) minmax(175px, 1.1fr); gap: .75rem; }
@@ -135,6 +139,7 @@
 .ideas-shell .ideas-row-for > span { flex: none; color: var(--green-deep); font-size: .78125rem; font-weight: var(--w-strong, 600); }
 .ideas-shell .ideas-row-summary { margin-top: .5rem; font-size: .9375rem; color: var(--muted); max-width: 40rem; line-height: 1.75; }
 .ideas-shell .ideas-chips { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .5rem; margin-top: .85rem; }
+.ideas-shell .ideas-chip-new { border: 0; padding-left: 0; background: transparent; color: var(--green); font-weight: var(--w-strong, 600); }
 .ideas-shell .ideas-chip-progress { display: inline-flex; align-items: center; gap: .45rem; color: var(--ink); }
 .ideas-shell .ideas-chip-progress.ideas-chip-done { border-color: var(--green-soft); background: var(--green-soft); color: var(--green-deep); font-weight: var(--w-strong, 600); }
 .ideas-shell .ideas-chip-bar { display: inline-block; width: 42px; height: 4px; border-radius: 2px; background: var(--line-soft); overflow: hidden; }
@@ -347,6 +352,23 @@
 .ideas-shell .ideas-first-step .ideas-actions { margin-top: 1.25rem; }
 .ideas-shell .ideas-first-step .ideas-action-buttons { gap: .5rem 1.25rem; }
 .ideas-shell .ideas-action-help { flex-basis: 100%; margin-top: -.15rem; color: var(--muted); font-size: .8125rem; line-height: 1.6; }
+/* Guides turn the first test into work the manual already explains. */
+.ideas-shell .ideas-guides { margin-top: 2.25rem; }
+.ideas-shell .ideas-guides h2 { margin-bottom: .3rem; }
+.ideas-shell .ideas-guides-sub { color: var(--muted); font-size: .875rem; margin-bottom: .5rem; }
+.ideas-shell .ideas-guides ul { list-style: none; padding: 0; border-top: 1px solid var(--line-soft); }
+.ideas-shell .ideas-guides li { margin: 0; border-bottom: 1px solid var(--line-soft); }
+.ideas-shell .ideas-guides a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 56px; padding: .8rem 0; color: var(--blue, #3366cc); font-size: .9375rem; line-height: 1.5; }
+.ideas-shell .ideas-guides a:hover { color: var(--blue-hover, #1f4fb2); }
+.ideas-shell .ideas-guide-step { flex: none; padding: .2rem .55rem; border: 1px solid var(--line-soft); border-radius: 999px; color: var(--muted); font-size: .72rem; }
+/* The other answers to the same problem, and the neighbourhood it sits in. */
+.ideas-shell .ideas-related { margin-top: 2.5rem; padding-top: 1.6rem; border-top: 1px solid var(--line-warm); }
+.ideas-shell .ideas-related + .ideas-related { margin-top: 1.75rem; padding-top: 0; border-top: 0; }
+.ideas-shell .ideas-related > h2 { font-size: 1.0625rem; font-weight: var(--w-strong, 600); margin-bottom: .2rem; }
+.ideas-shell .ideas-related-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .2rem 1rem; align-items: center; padding: .9rem 0; border-bottom: 1px solid var(--line-soft); }
+.ideas-shell .ideas-related-row a { font-size: 1.0625rem; font-weight: 500; letter-spacing: -.01em; }
+.ideas-shell .ideas-related-row .ideas-chip { grid-column: 2; grid-row: 1 / span 2; }
+.ideas-shell .ideas-related-row small { grid-column: 1; color: var(--muted); font-size: .8125rem; line-height: 1.6; }
 .ideas-shell .ideas-facts { border-left: 1px solid var(--line-soft); padding-left: 1.5rem; font-size: .875rem; align-self: start; }
 .ideas-shell .ideas-facts section + section { margin-top: 1.75rem; }
 .ideas-shell .ideas-facts h2 { margin-bottom: .6rem; font-size: .8125rem; font-weight: 500; color: var(--muted); letter-spacing: 0; }
@@ -394,6 +416,8 @@
   .ideas-shell .ideas-detail-for { font-size: .9375rem; margin-top: .9rem; }
   .ideas-shell .ideas-open-question { margin-top: 1.4rem; }
   .ideas-shell .ideas-detail-body .ideas-first-step { padding: 1.5rem; }
+  .ideas-shell .ideas-guides { margin-top: 1.75rem; }
+  .ideas-shell .ideas-related { margin-top: 2rem; }
 }
 @media (max-width: 480px) {
   .ideas-shell .ideas-catalogue-filters { grid-template-columns: 1fr; }

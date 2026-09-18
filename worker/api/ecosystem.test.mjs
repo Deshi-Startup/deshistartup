@@ -42,7 +42,9 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
   const mf = new Miniflare(convertV4MiniflareOptions ? convertV4MiniflareOptions(options) : options)
   t.after(() => mf.dispose())
   const db = await mf.getD1Database('DB')
-  for (const file of ['0001_ecosystem.sql', '0002_initial_records.sql', '0003_submission_publication.sql', '0004_clearer_copy.sql', '0005_bangla_copy.sql', '0006_plain_connection_copy.sql']) {
+  // Read the directory so a new migration is exercised without editing this list.
+  const migrations = fs.readdirSync(new URL('../migrations/ecosystem/', import.meta.url)).filter(name => name.endsWith('.sql')).sort()
+  for (const file of migrations) {
     const sql = fs.readFileSync(new URL(`../migrations/ecosystem/${file}`, import.meta.url), 'utf8')
     await db.batch(unstable_splitSqlQuery(sql).map(statement => db.prepare(statement)))
   }

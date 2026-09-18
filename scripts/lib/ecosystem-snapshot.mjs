@@ -7,7 +7,7 @@ const parsed = value => JSON.parse(value)
 export const publicColumns = {
   problems: 'id slug sector places_json sources_json',
   problem_text: 'problem_id locale title summary customer context unknown',
-  approaches: 'id problem_id kind position',
+  approaches: 'id problem_id kind position added_at guides_json',
   approach_text: 'approach_id locale title summary description business_model steps_json signal prototype',
   organizations: 'id slug website logo_path roles_json aliases_json sources_json source_date origin',
   organization_text: 'organization_id locale name description',
@@ -30,7 +30,7 @@ export async function readEcosystemSnapshot(query, releaseId, createdAt) {
     version: 1, releaseId, createdAt,
     problems: problems.map(p => ({ id: p.id, slug: p.slug, sector: p.sector, places: parsed(p.places_json), sources: parsed(p.sources_json),
       ...localized(problemText, 'problem_id', p.id, t => ({ title: t.title, summary: t.summary, customer: t.customer, context: t.context, unknown: t.unknown })) })),
-    approaches: approaches.map(a => ({ id: a.id, problemId: a.problem_id, kind: a.kind, position: a.position,
+    approaches: approaches.map(a => ({ id: a.id, problemId: a.problem_id, kind: a.kind, position: a.position, addedAt: a.added_at, guides: parsed(a.guides_json),
       ...localized(approachText, 'approach_id', a.id, t => ({ title: t.title, summary: t.summary, description: t.description, businessModel: t.business_model, steps: parsed(t.steps_json), signal: t.signal, prototype: t.prototype })) })),
     organizations: organizations.map(o => ({ id: o.id, slug: o.slug, website: o.website, logoPath: o.logo_path, roles: parsed(o.roles_json), aliases: parsed(o.aliases_json), sourceUrls: parsed(o.sources_json), sourceDate: o.source_date, origin: o.origin,
       ...localized(organizationText, 'organization_id', o.id, t => ({ name: t.name, description: t.description })),
@@ -65,6 +65,9 @@ export function validateEcosystemSnapshot(snapshot) {
       if (kind === 'organizations' && (!safeUrl(row.website) || row.sourceUrls.some(u => !safeUrl(u)) || (row.logoPath && !/^\/media\/[a-zA-Z0-9/_.-]+$/.test(row.logoPath)))) throw new Error('Unsafe organization URL')
       if (kind === 'problems' && (row.sources.some(s => !safeUrl(s.url)) || !row.places.length)) throw new Error('Invalid problem context')
       if (kind === 'approaches' && ['en', 'bn'].some(l => !Array.isArray(row[l].steps) || !row[l].steps.length || row[l].steps.some(s => typeof s !== 'string' || !s.trim()))) throw new Error('Incomplete first test')
+      // An idea without a date would be presented as new forever, so the export fails instead.
+      if (kind === 'approaches' && !/^\d{4}-\d{2}-\d{2}$/.test(row.addedAt || '')) throw new Error(`Missing added date: ${row.id}`)
+      if (kind === 'approaches' && (!Array.isArray(row.guides) || row.guides.length > 5 || new Set(row.guides).size !== row.guides.length || row.guides.some(g => !/^[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)*$/.test(g)))) throw new Error(`Invalid guide links: ${row.id}`)
       if (kind === 'connections' && (!safeUrl(row.evidenceUrl) || !row.en.trim() || !row.bn.trim())) throw new Error('Invalid connection evidence')
     }
   }

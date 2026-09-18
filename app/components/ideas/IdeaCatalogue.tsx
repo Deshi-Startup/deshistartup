@@ -1,13 +1,13 @@
 'use client'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import type { IdeaSummary, Locale, Place, Sector } from './types'
+import type { Heartbeat, IdeaSummary, Locale, Place, Sector } from './types'
 import { defaultFilters, filterQuery, forLabel, ideaPath, kindFilters, kindLabel, matchingIdeas, number, parseFilters, places, sectors, stepProgressLabel, stepsDone, type Filters } from './model'
 import { useShortlist } from './useShortlist'
 import { useSteps } from './useSteps'
 import IdeaShell from './IdeaShell'
 import IdeaIcon from './IdeaIcon'
 
-export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas: IdeaSummary[] }) {
+export default function IdeaCatalogue({ locale, ideas, heartbeat }: { locale: Locale; ideas: IdeaSummary[]; heartbeat: Heartbeat }) {
   const en = locale === 'en'
   const [filters, setFilters] = useState<Filters>(defaultFilters)
   const [urlReady, setUrlReady] = useState(false)
@@ -55,6 +55,7 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
       <h1>{en ? <>Problems worth{' '}<br /><span>solving.</span></> : <>কোন সমস্যা নিয়ে{' '}<br /><span>কাজ করবেন?</span></>}</h1>
       <div className="ideas-catalogue-invitation">
         <p className="ideas-lead">{en ? 'Startup ideas drawn from real problems in Bangladesh. Each one names who it helps, how it could earn, and the first three things to do, so you can start testing this week.' : 'বাংলাদেশের সত্যিকারের সমস্যা থেকে বাছাই করা স্টার্টআপ আইডিয়া। কাদের কাজে লাগবে, আয় কোথা থেকে আসতে পারে আর প্রথম তিনটা কাজ কী, সব এক পাতায়। এই সপ্তাহেই পরীক্ষা শুরু করা যায়।'}</p>
+        <p className="ideas-heartbeat"><span className="ideas-heartbeat-dot" aria-hidden="true" /><strong>{en ? `${number(ideas.length, locale)} ideas` : `${number(ideas.length, locale)}টি আইডিয়া`}</strong><span aria-hidden="true"> · </span>{en ? `${number(heartbeat.sectors, locale)} sectors` : `${number(heartbeat.sectors, locale)}টি খাত`}<span aria-hidden="true"> · </span>{en ? `Newest added ${heartbeat.newest}` : `সর্বশেষ যোগ হয়েছে ${heartbeat.newest}`}</p>
         <a className="ideas-button" href={ideaPath(locale, 'add')}><IdeaIcon name="plus" />{en ? 'Suggest an idea' : 'আইডিয়া দিন'}</a>
       </div>
     </header>
@@ -80,7 +81,7 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
           <h3><a href={ideaPath(locale, idea.slug)}>{idea.title}</a></h3>
           <p className="ideas-row-for"><span>{forLabel(locale)}</span>{idea.customer}</p>
           <p className="ideas-row-summary">{idea.summary}</p>
-          <p className="ideas-chips">{filters.saved && <span className={`ideas-chip ideas-chip-progress${stepsDone(progress, idea.id, idea.steps) >= idea.steps ? ' ideas-chip-done' : ''}`}><span className="ideas-chip-bar" aria-hidden="true"><span style={{ width: `${Math.round(stepsDone(progress, idea.id, idea.steps) / idea.steps * 100)}%` }} /></span>{stepProgressLabel(stepsDone(progress, idea.id, idea.steps), idea.steps, locale)}</span>}<span className="ideas-chip">{kindLabel(idea.kind, locale)}</span><span className="ideas-chip">{idea.places.map(place => places[place as Place]?.[locale] || place).join(' · ')}</span></p>
+          <p className="ideas-chips">{filters.saved && <span className={`ideas-chip ideas-chip-progress${stepsDone(progress, idea.id, idea.steps) >= idea.steps ? ' ideas-chip-done' : ''}`}><span className="ideas-chip-bar" aria-hidden="true"><span style={{ width: `${Math.round(stepsDone(progress, idea.id, idea.steps) / idea.steps * 100)}%` }} /></span>{stepProgressLabel(stepsDone(progress, idea.id, idea.steps), idea.steps, locale)}</span>}<span className="ideas-chip">{kindLabel(idea.kind, locale)}</span><span className="ideas-chip">{idea.places.map(place => places[place as Place]?.[locale] || place).join(' · ')}</span>{idea.isNew && <span className="ideas-chip ideas-chip-new">{en ? 'New' : 'নতুন'}</span>}</p>
         </div>
         <button ref={element => { if (element) saveButtons.current.set(idea.id, element); else saveButtons.current.delete(idea.id) }} className="ideas-bookmark" type="button" aria-label={`${label}: ${idea.title}`} title={label} aria-pressed={active} disabled={!ready} onClick={() => save(idea.id)}><IdeaIcon name="bookmark" filled={active} /></button>
       </article>

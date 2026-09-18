@@ -3,6 +3,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 const { problems, approaches: ideas } = JSON.parse(fs.readFileSync(new URL('../../../data/ecosystem/public.json', import.meta.url), 'utf8'))
 import { defaultFilters, draftLimits, draftMarkdown, emptyDraft, filterQuery, ideaPath, ideaSlug, matchingIdeas, parseDraft, parseFilters, parseSaved, parseSteps, readSaved, SAVED_KEY, STEPS_KEY, LEGACY_SAVED_KEY, places, sectors, startsWithoutCode, stepProgressLabel, stepsDone, toggleStep } from './model.ts'
+import { guidePage } from '../../lib/guide-index.mjs'
 import { pageChromePolicy } from '../../lib/page-chrome.ts'
 import { sourceSupportsInlineEdit } from '../../lib/inline-edit-policy.mjs'
 
@@ -100,6 +101,24 @@ test('every idea has a stable bilingual route and shares complete problem resear
   assert.equal(pageChromePolicy('/en/ideas/customer-research').showEditAction, true, 'existing guide section stays editable')
 })
 
+
+test('every idea is dated and links only to guides that are written in both languages', () => {
+  const contentIndex = JSON.parse(fs.readFileSync(new URL('../../generated/content-index.json', import.meta.url), 'utf8'))
+  const anyStub = Object.values(contentIndex.bn.sections).flatMap(section => section[4].flatMap(group => group[1])).find(page => page[2])
+  assert.ok(anyStub, 'the manual still has planned topics, which this rule exists to exclude')
+  assert.equal(guidePage(contentIndex, 'bn', anyStub[0].replace(/^\//, '')), null, 'a planned topic is never offered as a guide')
+  assert.equal(guidePage(contentIndex, 'bn', 'not/a/real/page'), null)
+  for (const idea of ideas) {
+    assert.match(idea.addedAt, /^\d{4}-\d{2}-\d{2}$/, `${idea.id}: added date`)
+    assert.ok(idea.guides.length >= 1 && idea.guides.length <= 5, `${idea.id}: guide count`)
+    for (const slug of idea.guides) for (const locale of ['bn', 'en']) {
+      const guide = guidePage(contentIndex, locale, slug)
+      assert.ok(guide, `${idea.id}: ${locale} guide ${slug} is missing or still a stub`)
+      assert.equal(guide.route, locale === 'en' ? `/en/${slug}` : `/${slug}`)
+      assert.ok(guide.title.trim(), `${idea.id}: ${locale} guide ${slug} has no title`)
+    }
+  }
+})
 
 test('saved problems migrate to every related idea once, retaining unknown IDs and the backup', () => {
   const backup = JSON.stringify(['courier-settlement', 'removed-id', 'courier-settlement-approach'])

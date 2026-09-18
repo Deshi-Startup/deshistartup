@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "releaseId": "release_4a1b052a-91a3-4f1a-b91c-aed2f0ada456",
-  "createdAt": "2026-09-16T18:10:49.229Z",
+  "releaseId": "release_394f08fc-508f-4abe-8061-90bdd1deb5ff",
+  "createdAt": "2026-09-18T23:16:34.154Z",
   "problems": [
     {
       "id": "courier-settlement",
@@ -176,6 +176,12 @@
       "problemId": "courier-settlement",
       "kind": "software",
       "position": 0,
+      "addedAt": "2026-09-16",
+      "guides": [
+        "validation/customer-interviews",
+        "payments/cod-reconciliation",
+        "validation/pricing-tests"
+      ],
       "en": {
         "title": "Track courier payments in one place",
         "summary": "One place to match delivered orders, returns and courier payouts, so growing online brands can see what is still owed.",
@@ -208,6 +214,12 @@
       "problemId": "garment-offcuts",
       "kind": "marketplace",
       "position": 0,
+      "addedAt": "2026-09-16",
+      "guides": [
+        "validation/field-research-plan",
+        "ideas/competitor-map",
+        "validation/pricing-tests"
+      ],
       "en": {
         "title": "Find the next use for garment offcuts",
         "summary": "Help factories and recyclers trade fabric offcuts with clearer information about material, quality and collection.",
@@ -240,6 +252,12 @@
       "problemId": "shared-cold-delivery",
       "kind": "service",
       "position": 0,
+      "addedAt": "2026-09-16",
+      "guides": [
+        "validation/outside-dhaka",
+        "validation/field-research-plan",
+        "metrics/unit-economics"
+      ],
       "en": {
         "title": "Share space in a refrigerated delivery",
         "summary": "Combine small food shipments on a repeat route instead of asking every supplier to fill a refrigerated vehicle.",
@@ -272,6 +290,12 @@
       "problemId": "bangla-order-notes",
       "kind": "software",
       "position": 0,
+      "addedAt": "2026-09-16",
+      "guides": [
+        "validation/customer-interviews",
+        "validation/mvp-examples",
+        "validation/mvp-experiment-planner"
+      ],
       "en": {
         "title": "Turn a Bangla voice note into an order",
         "summary": "A human-confirmed order draft from a voice note, with missing quantities, variants and addresses made obvious.",
@@ -304,6 +328,12 @@
       "problemId": "produce-crates",
       "kind": "service",
       "position": 0,
+      "addedAt": "2026-09-16",
+      "guides": [
+        "validation/outside-dhaka",
+        "validation/demand-without-building",
+        "metrics/unit-economics"
+      ],
       "en": {
         "title": "Rent produce crates that come back",
         "summary": "A reusable crate pool for a repeat produce route, with collection, cleaning and returns built into the service.",
@@ -336,6 +366,12 @@
       "problemId": "factory-maintenance",
       "kind": "service",
       "position": 0,
+      "addedAt": "2026-09-16",
+      "guides": [
+        "b2b/sme-sales",
+        "validation/interview-scripts",
+        "validation/trust-signals"
+      ],
       "en": {
         "title": "Make machine repairs easier to arrange",
         "summary": "Help small factories find an appropriate technician, agree a visit and keep a useful maintenance record.",
@@ -368,6 +404,12 @@
       "problemId": "courier-settlement",
       "kind": "service",
       "position": 1,
+      "addedAt": "2026-09-16",
+      "guides": [
+        "validation/demand-without-building",
+        "payments/reconciliation",
+        "b2b/sme-sales"
+      ],
       "en": {
         "title": "Check courier payments for a business",
         "summary": "Do the work manually for one brand before building a product.",
@@ -400,6 +442,12 @@
       "problemId": "bangla-order-notes",
       "kind": "workflow",
       "position": 1,
+      "addedAt": "2026-09-16",
+      "guides": [
+        "validation/mvp-experiment-planner",
+        "customers/whatsapp-messenger-sales",
+        "validation/customer-interviews"
+      ],
       "en": {
         "title": "Confirm the order before processing it",
         "summary": "Try a short confirmation step without automated transcription.",

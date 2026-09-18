@@ -3,7 +3,9 @@ import { ecosystem, companyPath } from '../../lib/ecosystem'
 import { domain, sourceDate } from '../../lib/ecosystem-model'
 import type { Approach, Problem } from '../../lib/ecosystem-types'
 import type { Locale, Place, Sector } from './types'
-import { forLabel, ideaPath, kindLabel, localPath, number, places, sectors } from './model'
+import { forLabel, ideaPath, ideaSlug, kindLabel, localPath, number, places, sectors } from './model'
+import { guidePage } from '../../lib/guide-index.mjs'
+import contentIndex from '../../generated/content-index.json'
 import IdeaShell from './IdeaShell'
 import IdeaIcon from './IdeaIcon'
 import CompanyMark from './CompanyMark'
@@ -49,6 +51,21 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
   // The most recent access date is the honest age of the research behind this idea.
   const latest = problem.sources.map(source => source.date).sort((x, y) => Date.parse(y.replace(/^Accessed /, '')) - Date.parse(x.replace(/^Accessed /, '')))[0]
   const checked = latest ? sourceDate(latest, locale) : ''
+  const guides = idea.guides.map(slug => guidePage(contentIndex, locale, slug)).filter(guide => guide !== null)
+  const related = (list: Approach[]) => list.map(other => {
+    const context = ecosystem.problems.find(item => item.id === other.problemId)
+    return context ? { idea: other, customer: context[locale].customer } : null
+  }).filter(item => item !== null)
+  const siblings = related(ecosystem.approaches.filter(other => other.problemId === problem.id && other.id !== idea.id))
+  const sameSector = related(ecosystem.approaches.filter(other => {
+    const context = ecosystem.problems.find(item => item.id === other.problemId)
+    return other.problemId !== problem.id && context?.sector === problem.sector
+  })).slice(0, 2)
+  const relatedList = (items: typeof siblings) => <div className="ideas-related-list">{items.map(({ idea: other, customer }) => <div className="ideas-related-row" key={other.id}>
+    <a href={ideaPath(locale, ideaSlug(other.id))}>{other[locale].title}</a>
+    <span className="ideas-chip">{kindLabel(other.kind, locale)}</span>
+    <small>{forLabel(locale)} {customer}</small>
+  </div>)}</div>
   return <IdeaShell locale={locale}>
     <article className="ideas-detail">
       <div className="ideas-detail-toolbar"><a className="ideas-back" href={ideaPath(locale)}><IdeaIcon name="back" />{en ? 'All ideas' : 'সব আইডিয়া'}</a><div className="ideas-detail-actions"><SaveIdea id={idea.id} locale={locale} ideas={savedIdeas} /><ShareIdea locale={locale} title={a.title} customer={p.customer} /></div></div>
@@ -72,6 +89,11 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
             <p className="ideas-signal"><strong>{en ? 'You’ll know it’s working when: ' : 'কাজ হচ্ছে বুঝবেন যেভাবে: '}</strong>{a.signal}</p>
             <IdeaActions id={idea.id} locale={locale} brief={brief} prompt={prompt} />
           </section>
+          {guides.length > 0 && <section className="ideas-guides">
+            <h2>{en ? 'Guides for this idea' : 'এই আইডিয়ার জন্য গাইড'}</h2>
+            <p className="ideas-guides-sub">{en ? 'From the manual, matched to the steps above.' : 'ম্যানুয়াল থেকে বাছাই করা, ওপরের ধাপগুলোতে কাজে লাগবে।'}</p>
+            <ul>{guides.map((guide, index) => <li key={guide.route}><a href={guide.route}><span>{guide.title}</span>{index < a.steps.length && <span className="ideas-guide-step">{en ? `Step ${index + 1}` : `ধাপ ${number(index + 1, locale)}`}</span>}</a></li>)}</ul>
+          </section>}
         </div>
         <aside className="ideas-facts">
           <section><h2>{en ? 'How it could earn' : 'আয় হতে পারে যেভাবে'}</h2><p>{a.businessModel}</p></section>
@@ -82,6 +104,14 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
           </section>
         </aside>
       </div>
+      {siblings.length > 0 && <section className="ideas-related">
+        <h2>{en ? 'Another way to solve this' : 'একই সমস্যার আরেক সমাধান'}</h2>
+        {relatedList(siblings)}
+      </section>}
+      {sameSector.length > 0 && <section className="ideas-related">
+        <h2>{en ? `More in ${sectors[problem.sector as Sector]?.[locale] || problem.sector}` : `${sectors[problem.sector as Sector]?.[locale] || problem.sector} খাতের আরও আইডিয়া`}</h2>
+        {relatedList(sameSector)}
+      </section>}
       <details className="ideas-research" id="sources"><summary>{en ? 'Research & sources' : 'গবেষণা ও সোর্স'}<span className="ideas-disclosure-icon" aria-hidden="true" /></summary>
         <div className="ideas-research-body"><h2>{en ? 'The problem' : 'সমস্যাটি'}</h2><p>{p.context}</p>
           <h2>{en ? 'What to find out' : 'যা জেনে নেওয়া দরকার'}</h2><p>{p.unknown}</p>

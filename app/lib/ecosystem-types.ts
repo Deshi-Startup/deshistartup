@@ -13,7 +13,11 @@ export interface ApproachCopy {
   steps: string[]; signal: string; prototype: string
 }
 export interface Approach extends Localized<ApproachCopy> {
-  id: string; problemId: string; kind: ApproachKind; position: number
+  id: string; problemId: string; kind: ApproachKind; position: number;
+  /** The date this idea entered the public collection, as YYYY-MM-DD. */
+  addedAt: string;
+  /** Manual slugs whose written guides support this idea's first test, in step order. */
+  guides: string[]
 }
 export interface Organization extends Localized<{ name: string; description: string }> {
   id: string; slug: string; website: string; logoPath: string | null;
