@@ -1,0 +1,100 @@
+import type { IdeaSummary, Locale, Place, Sector } from './types'
+
+export const sectors: Record<Sector, Record<Locale, string>> = {
+  commerce: { en: 'Commerce', bn: 'কমার্স' },
+  circular: { en: 'Circular economy', bn: 'পুনর্ব্যবহার' },
+  agriculture: { en: 'Food & agriculture', bn: 'খাদ্য ও কৃষি' },
+  manufacturing: { en: 'Manufacturing', bn: 'উৎপাদন' }
+}
+export const places: Record<Place, Record<Locale, string>> = {
+  anywhere: { en: 'Across Bangladesh', bn: 'সারা বাংলাদেশ' },
+  dhaka: { en: 'Dhaka', bn: 'ঢাকা' },
+  gazipur: { en: 'Gazipur', bn: 'গাজীপুর' },
+  bogura: { en: 'Bogura', bn: 'বগুড়া' },
+  chattogram: { en: 'Chattogram', bn: 'চট্টগ্রাম' }
+}
+export const kinds = {
+  software: { en: 'Software', bn: 'সফটওয়্যার' },
+  service: { en: 'Service', bn: 'সেবা' },
+  marketplace: { en: 'Marketplace', bn: 'মার্কেটপ্লেস' },
+  workflow: { en: 'Workflow', bn: 'কাজের পদ্ধতি' }
+}
+export { ideaPath, ideaSlug } from '../../lib/idea-routes.mjs'
+export const localPath = (locale: Locale, path: string) => `${locale === 'en' ? '/en' : ''}${path}`
+export const number = (n: number, locale: Locale) => n.toLocaleString(locale === 'bn' ? 'bn-BD' : 'en-GB')
+export interface Filters { q: string; sector: string; place: string; saved: boolean; problem: string }
+export const defaultFilters: Filters = { q: '', sector: '', place: '', saved: false, problem: '' }
+export function parseFilters(search: string): Filters {
+  const params = new URLSearchParams(search)
+  const sector = params.get('sector') || ''
+  const place = params.get('place') || ''
+  return {
+    q: (params.get('q') || '').slice(0, 120),
+    sector: Object.hasOwn(sectors, sector) ? sector : '',
+    place: Object.hasOwn(places, place) ? place : '',
+    saved: params.get('view') === 'saved',
+    problem: /^[a-z0-9-]{1,80}$/.test(params.get('problem') || '') ? params.get('problem')! : ''
+  }
+}
+export function filterQuery(filters: Filters) {
+  const params = new URLSearchParams()
+  if (filters.q.trim()) params.set('q', filters.q.trim())
+  if (filters.sector) params.set('sector', filters.sector)
+  if (filters.place) params.set('place', filters.place)
+  if (filters.saved) params.set('view', 'saved')
+  if (filters.problem) params.set('problem', filters.problem)
+  const query = params.toString()
+  return query ? `?${query}` : ''
+}
+export function matchingIdeas(ideas: IdeaSummary[], filters: Filters, saved: string[]) {
+  const words = filters.q.toLocaleLowerCase().normalize('NFC').trim().split(/\s+/).filter(Boolean)
+  return ideas.filter(idea =>
+    (!filters.problem || idea.problemId === filters.problem) &&
+    (!filters.sector || idea.sector === filters.sector) &&
+    (!filters.place || idea.places.includes(filters.place as Place) || idea.places.includes('anywhere')) &&
+    (!filters.saved || saved.includes(idea.id)) &&
+    words.every(word => idea.search.toLocaleLowerCase().normalize('NFC').includes(word))
+  )
+}
+
+export const LEGACY_SAVED_KEY = 'deshi-startup:ideas:saved:v1'
+export const SAVED_KEY = 'deshi-startup:ideas:saved:v2'
+export const DRAFT_KEY = 'deshi-startup:ideas:draft:v1'
+export function parseSaved(raw: string | null): string[] {
+  try {
+    const value: unknown = JSON.parse(raw || '[]')
+    return Array.isArray(value) ? [...new Set(value.filter((id): id is string => typeof id === 'string' && /^[a-z0-9-]{1,80}$/.test(id)))].slice(0, 300) : []
+  } catch { return [] }
+}
+export interface SavedIdea { id: string; problemId: string }
+export function readSaved(storage: Pick<Storage, 'getItem' | 'setItem'>, ideas: SavedIdea[]): string[] {
+  const current = storage.getItem(SAVED_KEY)
+  if (current !== null) return parseSaved(current)
+  const legacy = storage.getItem(LEGACY_SAVED_KEY)
+  if (legacy === null) return []
+  const migrated = [...new Set(parseSaved(legacy).flatMap(id => {
+    const related = ideas.filter(idea => idea.problemId === id)
+    return related.length ? related.map(idea => idea.id) : [id]
+  }))]
+  // Write once, retaining the old value as a backup. An empty v2 list is final.
+  storage.setItem(SAVED_KEY, JSON.stringify(migrated))
+  return migrated
+}
+export interface IdeaDraft { title: string; solution: string; customer: string; problem: string; place: string; evidence: string; test: string }
+export const emptyDraft: IdeaDraft = { title: '', solution: '', customer: '', problem: '', place: '', evidence: '', test: '' }
+export const draftLimits: Record<keyof IdeaDraft, number> = { title: 100, solution: 2000, customer: 240, problem: 2000, place: 120, evidence: 2000, test: 1000 }
+export function parseDraft(raw: string | null): IdeaDraft {
+  try {
+    const value = JSON.parse(raw || '{}')
+    if (!value || typeof value !== 'object') return { ...emptyDraft }
+    return Object.fromEntries(Object.entries(draftLimits).map(([key, limit]) => [key, typeof value[key] === 'string' ? value[key].slice(0, limit) : ''])) as unknown as IdeaDraft
+  } catch { return { ...emptyDraft } }
+}
+export function draftMarkdown(draft: IdeaDraft, locale: Locale) {
+  const en = locale === 'en'
+  const heading: Record<keyof IdeaDraft, string> = en
+    ? { title: 'Idea', solution: 'The idea', customer: 'Who it helps', problem: 'The problem', place: 'Suggested pilot location', evidence: 'Evidence and sources', test: 'First test' }
+    : { title: 'আইডিয়া', solution: 'যা বানাতে চান', customer: 'কাদের কাজে লাগবে', problem: 'সমস্যা', place: 'কোথায় পরীক্ষা করবেন', evidence: 'তথ্য ও সোর্স', test: 'প্রথম পরীক্ষা' }
+  return `# ${draft.title || heading.title}\n\n${en ? 'Private draft · Not submitted or validated.' : 'নিজের খসড়া। জমা দেওয়া বা যাচাই করা হয়নি।'}\n\n` +
+    (Object.keys(heading) as (keyof IdeaDraft)[]).filter(key => key !== 'title' && draft[key].trim()).map(key => `## ${heading[key]}\n\n${draft[key].trim()}`).join('\n\n') + '\n'
+}

@@ -1,0 +1,680 @@
+{
+  "version": 1,
+  "releaseId": "release_4a1b052a-91a3-4f1a-b91c-aed2f0ada456",
+  "createdAt": "2026-09-16T18:10:49.229Z",
+  "problems": [
+    {
+      "id": "courier-settlement",
+      "slug": "courier-settlement",
+      "sector": "commerce",
+      "places": [
+        "anywhere"
+      ],
+      "sources": [
+        {
+          "title": "Pathao · Merchant terms, sections 3.21–3.31",
+          "url": "https://pathao.com/terms-of-service-merchant/",
+          "date": "Accessed 16 September 2026",
+          "en": "These terms explain how Pathao collects and pays money, adjusts fees and handles returns. They do not show whether businesses would pay for extra help checking their courier payments.",
+          "bn": "শর্তে COD-এর টাকা সংগ্রহ, ফি সমন্বয়, পেমেন্টের স্টেটমেন্ট ও রিটার্নের প্রক্রিয়া আছে। আলাদা হিসাব মেলানোর টুলের চাহিদা আছে কি না, এই সোর্স থেকে তা জানা যায় না।"
+        }
+      ],
+      "en": {
+        "title": "Courier payments are hard to track.",
+        "summary": "Online businesses need to see which orders were delivered, returned and paid for across different couriers.",
+        "customer": "The owner or operations lead of an online brand using more than one courier.",
+        "context": "Order details, delivery updates and payments sit in separate records. Find out how much work it takes to match them and whether businesses need help doing it.",
+        "unknown": "Will businesses pay for extra help when their couriers and accounting tools already do part of the job?"
+      },
+      "bn": {
+        "title": "কুরিয়ারের পাওনা মেলানো কঠিন।",
+        "summary": "একাধিক কুরিয়ারে পণ্য পাঠালে কোন অর্ডার পৌঁছেছে, ফেরত এসেছে আর টাকা পাওয়া গেছে, তা মিলিয়ে দেখতে হয়।",
+        "customer": "একাধিক কুরিয়ার ব্যবহার করে এমন অনলাইন ব্র্যান্ডের মালিক বা অপারেশন লিড।",
+        "context": "অর্ডার, ডেলিভারির অবস্থা আর পাওয়া টাকার হিসাব আলাদা জায়গায় থাকে। এগুলো মেলাতে কত সময় যায়, কোথায় হিসাব আটকে যায়, আগে তা জেনে নিন।",
+        "unknown": "কুরিয়ার প্যানেল ও অ্যাকাউন্টিং টুলে কাজের কিছু অংশ করা যায়। এর পরও আলাদা টুলের জন্য মার্চেন্ট টাকা দেবেন?"
+      }
+    },
+    {
+      "id": "garment-offcuts",
+      "slug": "garment-offcuts",
+      "sector": "circular",
+      "places": [
+        "gazipur",
+        "chattogram"
+      ],
+      "sources": [
+        {
+          "title": "UNIDO · Circularity in Bangladesh’s textile value chain",
+          "url": "https://www.unido.org/news/bangladesh-circularity-opportunities-textile-value-chain",
+          "date": "28 February 2023",
+          "en": "A Bangladesh stakeholder roundtable discussed textile waste and circular production. This is sector context from 2023, not evidence of available stock or buyer willingness to pay.",
+          "bn": "বাংলাদেশে টেক্সটাইল বর্জ্য ও তা আবার উৎপাদনে কাজে লাগানো নিয়ে অংশীজনদের আলোচনা হয়েছিল। ২০২৩ সালের এই তথ্য খাতটি বুঝতে সাহায্য করে। এখন কত মাল পাওয়া যাবে বা ক্রেতা কত দাম দেবেন, তা এখান থেকে বোঝা যায় না।"
+        }
+      ],
+      "en": {
+        "title": "Garment offcuts need the right buyer.",
+        "summary": "Factories and recyclers need to agree on material, quality and collection before a trade can work.",
+        "customer": "Factory waste managers and recyclers buying a specific fibre or quality of offcut.",
+        "context": "Find out why some fabric offcuts remain unsold. Buyers may be unsure of the material or quality, or collection may cost too much. Check whether better information would help before building a marketplace.",
+        "unknown": "Would clearer quality checks and regular supply earn enough to cover inspection, transport and the people arranging the sale?"
+      },
+      "bn": {
+        "title": "ব্যবহারযোগ্য ঝুটের উপযুক্ত ক্রেতা খুঁজে পাওয়া কঠিন",
+        "summary": "ঝুটের ধরন, মান আর সংগ্রহের ব্যবস্থা নিয়ে কারখানা ও রিসাইক্লারের বোঝাপড়া হলেই কেনাবেচা এগোতে পারে।",
+        "customer": "কারখানায় ঝুটের দায়িত্বে থাকা ব্যক্তি এবং নির্দিষ্ট ফাইবার বা মানের ঝুট কেনেন এমন রিসাইক্লার।",
+        "context": "চলতি কেনাবেচায় কোথায় সমস্যা হয়, আগে খুঁজে নিন। মান বোঝা, ফাইবারের তথ্য, নিয়মিত সরবরাহ বা পরিবহন খরচের কোনটি আসল বাধা? নতুন মার্কেটপ্লেসই দরকার, এমন ধরে নেবেন না।",
+        "unknown": "মান যাচাই ও নিয়মিত সরবরাহের সুবিধা কি পরিদর্শন, পরিবহন ও মধ্যস্থতার খরচের চেয়ে বেশি হবে?"
+      }
+    },
+    {
+      "id": "shared-cold-delivery",
+      "slug": "shared-cold-delivery",
+      "sector": "agriculture",
+      "places": [
+        "bogura",
+        "dhaka"
+      ],
+      "sources": [
+        {
+          "title": "FAO · Sustainable food cold chains",
+          "url": "https://www.fao.org/energy/resources/videos/video-details/reducing-food-loss-and-waste-through-sustainable-food-cold-chains/en",
+          "date": "23 May 2023",
+          "en": "FAO explains the role of temperature-controlled storage and transport, including energy constraints. This is global background; it does not establish demand on a Bangladesh route.",
+          "bn": "নির্দিষ্ট তাপমাত্রায় খাবার রাখা ও পরিবহনের ভূমিকা এবং বিদ্যুতের সীমাবদ্ধতা ব্যাখ্যা করেছে FAO। এটি বিশ্বজুড়ে প্রযোজ্য পটভূমি। বাংলাদেশের কোনো নির্দিষ্ট রুটে চাহিদার প্রমাণ নয়।"
+        }
+      ],
+      "en": {
+        "title": "Small food shipments don’t fill a cold truck.",
+        "summary": "Suppliers with repeat buyers may need reliable cold transport at a scale they can afford.",
+        "customer": "A food supplier who makes regular deliveries but cannot fill a refrigerated vehicle.",
+        "context": "Investigate whether small suppliers lose orders or margin because they cannot arrange reliable temperature-controlled transport. Start with one product and one route.",
+        "unknown": "Can suppliers share the same route, timing and storage conditions? Would the price cover the trip, handling and possible spoilage?"
+      },
+      "bn": {
+        "title": "অল্প পণ্য পাঠাতে পুরো ঠান্ডা গাড়ি ভাড়া নিতে হয়",
+        "summary": "নিয়মিত ক্রেতা থাকলেও ছোট সরবরাহকারীর পক্ষে পুরো গাড়ির খরচ চালানো কঠিন হতে পারে। নির্ভরযোগ্য ছোট চালানের সুযোগ দরকার কি না, খুঁজে দেখুন।",
+        "customer": "নিয়মিত ক্রেতা আছে, কিন্তু নিজে একটি ঠান্ডা গাড়ি ভরার মতো উপযুক্ত মাল নেই, এমন খাবার সরবরাহকারী।",
+        "context": "নির্ভরযোগ্য ঠান্ডা পরিবহন না পাওয়ায় ছোট সরবরাহকারীর অর্ডার বা লাভ কমছে কি না, খোঁজ নিন। একটি পণ্য ও একটি রুট ধরে শুরু করুন।",
+        "unknown": "একসঙ্গে পাঠানো যায় এমন মাল কি একই সময়ে নিয়মিত আসবে? খালি জায়গা, ওঠানো-নামানো আর নষ্ট হওয়ার ঝুঁকি ধরেও লাভ থাকবে?"
+      }
+    },
+    {
+      "id": "bangla-order-notes",
+      "slug": "bangla-order-notes",
+      "sector": "commerce",
+      "places": [
+        "anywhere"
+      ],
+      "sources": [],
+      "en": {
+        "title": "Voice-note orders are easy to get wrong.",
+        "summary": "Order teams may spend too much time replaying messages to check products, quantities and addresses.",
+        "customer": "An order-taking team that already receives customer voice notes in Bangla.",
+        "context": "Find out whether taking orders from voice notes causes mistakes or delays. We have not yet interviewed customers about this problem.",
+        "unknown": "Do accents, background noise and mixed product names leave more correction work than simply typing the order?"
+      },
+      "bn": {
+        "title": "ভয়েস নোটের অর্ডারে ভুল থেকে যেতে পারে",
+        "summary": "পণ্যের পরিমাণ, ধরন আর ঠিকানা মিলিয়ে নিতে বারবার ভয়েস নোট শুনতে হয়। এতে কত সময় যায় আর কোথায় ভুল হয়, তা খুঁজে দেখুন।",
+        "customer": "ক্রেতার বাংলা ভয়েস নোট থেকে আগে থেকেই অর্ডার নেয় এমন টিম।",
+        "context": "ভয়েস নোট বারবার শুনতে গিয়ে ভুল বা দেরি হচ্ছে কি না, খুঁজে দেখুন। এটি মাঠে যাচাই করার ধারণা। এই ব্রিফের জন্য এখনো ক্রেতার সাক্ষাৎকার নেওয়া হয়নি।",
+        "unknown": "আঞ্চলিক উচ্চারণ, আশপাশের শব্দ ও মিশ্র ভাষায় পণ্যের নামের কারণে খসড়া ঠিক করতে কি হাতে লেখার চেয়েও বেশি সময় লাগবে?"
+      }
+    },
+    {
+      "id": "produce-crates",
+      "slug": "produce-crates",
+      "sector": "agriculture",
+      "places": [
+        "bogura",
+        "dhaka"
+      ],
+      "sources": [],
+      "en": {
+        "title": "Produce packaging is hard to reuse.",
+        "summary": "Fruit and vegetable suppliers may benefit from sturdy crates that they can get back after each delivery.",
+        "customer": "A produce wholesaler and their regular suppliers on a short, repeat route.",
+        "context": "Find out what suppliers spend on packaging and how often goods are damaged in transit. Then check whether reusable crates could help. We have not measured those costs yet.",
+        "unknown": "Can crates return reliably and cheaply enough to make rental worthwhile?"
+      },
+      "bn": {
+        "title": "ফসলের প্যাকেট একবার ব্যবহার করেই ফেলে দিতে হয়",
+        "summary": "নিয়মিত একই পথে ফসল পাঠালে বারবার ব্যবহারযোগ্য ক্রেট কাজে আসতে পারে। পণ্য ভালো রাখা আর খালি ক্রেট ফেরত আনা, দুটোই পরীক্ষা করতে হবে।",
+        "customer": "ছোট একটি নিয়মিত রুটের পাইকার ও তাঁর কৃষিপণ্য সরবরাহকারীরা।",
+        "context": "মাল ওঠানো-নামানোয় ক্ষতি বা একবার ব্যবহার করা প্যাকেজিংয়ের খরচ কি ক্রেট ভাড়া নেওয়ার কারণ হতে পারে? এই ব্রিফে প্রশ্নটি পরীক্ষা করার প্রস্তাব আছে, ক্ষতির মাপা পরিমাণ নেই।",
+        "unknown": "ক্রেট কি নিয়মিত এবং এত কম খরচে ফেরত আসবে যে ভাড়ার সেবা চালানো যায়?"
+      }
+    },
+    {
+      "id": "factory-maintenance",
+      "slug": "factory-maintenance",
+      "sector": "manufacturing",
+      "places": [
+        "gazipur",
+        "chattogram"
+      ],
+      "sources": [],
+      "en": {
+        "title": "Finding the right machine repairer takes time.",
+        "summary": "Small factories need to know who can repair a particular machine, when they can come and what is needed.",
+        "customer": "The manager of a small factory with a common type of machine.",
+        "context": "Ask managers what happened during their last breakdown. Was finding a technician the difficult part, or was it getting parts or agreeing on payment?",
+        "unknown": "Can a new service provide more reliability than a manager’s existing technician relationships?"
+      },
+      "bn": {
+        "title": "মেশিন নষ্ট হলে উপযুক্ত মিস্ত্রি খোঁজা শুরু হয়",
+        "summary": "নির্দিষ্ট মেশিনটি কে ঠিক করতে পারবেন, কখন আসবেন আর কী লাগবে, তা আগে থেকে জানা ছোট কারখানার জন্য কাজে লাগতে পারে।",
+        "customer": "একটি নির্দিষ্ট প্রচলিত ধরনের মেশিন ব্যবহার করে এমন ছোট কারখানার প্রোডাকশন ম্যানেজার।",
+        "context": "মেশিন বন্ধ হলে ম্যানেজার এখন কী করেন, জেনে নিন। উপযুক্ত টেকনিশিয়ান পাওয়াই কি বাধা? যন্ত্রাংশ বা পেমেন্টের শর্তও বড় সমস্যা হতে পারে।",
+        "unknown": "ম্যানেজারের চেনা টেকনিশিয়ানের চেয়ে নতুন সেবা কি বেশি নির্ভরযোগ্য হতে পারবে?"
+      }
+    }
+  ],
+  "approaches": [
+    {
+      "id": "courier-settlement-approach",
+      "problemId": "courier-settlement",
+      "kind": "software",
+      "position": 0,
+      "en": {
+        "title": "Track courier payments in one place",
+        "summary": "One place to match delivered orders, returns and courier payouts, so growing online brands can see what is still owed.",
+        "description": "With the business’s permission, upload its order and payment spreadsheets. Match each order to a payment and flag anything that does not match. Let the business correct mistakes and see a record of changes.",
+        "businessModel": "Try a monthly fee. Check whether businesses with more orders would pay more.",
+        "steps": [
+          "Ask three business owners to show how they checked their latest courier payment. Remove private customer details first.",
+          "Match one week of orders and payments by hand. Note missing order numbers, fee differences and the time it takes.",
+          "Show what did not match. Offer to do it again for a fee before building connections to courier systems."
+        ],
+        "signal": "A business sends another batch and agrees to pay for regular help.",
+        "prototype": "A CSV import, an order-to-payment matching table and a review queue for unmatched items. Include duplicate IDs, partial payouts and returns in the synthetic sample data."
+      },
+      "bn": {
+        "title": "এক জায়গায় কুরিয়ারের পাওনা দেখুন",
+        "summary": "কোন অর্ডার ডেলিভারি হলো, কোনটি ফেরত এলো আর কত টাকা পাওয়া গেল, সব মিলিয়ে অনলাইন ব্র্যান্ডের বাকি পাওনার হিসাব।",
+        "description": "মার্চেন্টের অনুমতি নিয়ে CSV ফাইল দিয়ে শুরু করা যায়। অর্ডার আইডি ধরে টাকা মেলান, অমিলগুলো আলাদা দেখান। ভুল মিল হলে মার্চেন্ট তা ঠিক করবেন, আগের পরিবর্তনের রেকর্ডও থাকবে।",
+        "businessModel": "মার্চেন্টপ্রতি মাসিক ফি পরীক্ষা করা যায়। অর্ডারের সংখ্যা ধরে আলাদা প্যাকেজ লাগবে কি না, পরে দেখুন।",
+        "steps": [
+          "তিনজন মার্চেন্টের সঙ্গে বসে তাঁদের শেষ পেমেন্টের হিসাব দেখুন। ব্যক্তিগত তথ্য আগে সরিয়ে নিন।",
+          "এক সপ্তাহের হিসাব হাতে মিলিয়ে দেখুন। আইডি না মেলা, ফির পার্থক্য আর সমাধানে কত সময় গেল, লিখে রাখুন।",
+          "অমিলের তালিকা দেখিয়ে পরেরবার টাকার বিনিময়ে কাজটি করার প্রস্তাব দিন। তারপর ইন্টিগ্রেশন বানানোর কথা ভাবুন।"
+        ],
+        "signal": "মার্চেন্ট আবার হিসাব মেলানোর কাজ দিলেন এবং নিয়মিত সেবার জন্য টাকা দিতে রাজি হলেন। ডেমো ভালো লেগেছে বললেই হবে না।",
+        "prototype": "CSV আপলোড, অর্ডারের সঙ্গে পেমেন্ট মেলানোর টেবিল ও অমিল পর্যালোচনার তালিকা। নমুনা ডেটায় একই আইডি দুবার থাকা, আংশিক পেমেন্ট ও রিটার্ন রাখুন।"
+      }
+    },
+    {
+      "id": "garment-offcuts-approach",
+      "problemId": "garment-offcuts",
+      "kind": "marketplace",
+      "position": 0,
+      "en": {
+        "title": "Find the next use for garment offcuts",
+        "summary": "Help factories and recyclers trade fabric offcuts with clearer information about material, quality and collection.",
+        "description": "Start with one type of fabric offcut. Record its material, colour, cleanliness, weight and collection details. Help one factory and one buyer complete a sale before building a listing site.",
+        "businessModel": "Try a clearly stated fee for arranging a sale, checking quality or collecting the material.",
+        "steps": [
+          "Speak to three factories and three buyers about one type of offcut.",
+          "With permission, document and grade a sample batch against a buyer’s actual specification.",
+          "Arrange one paid transaction and record the full inspection and collection cost."
+        ],
+        "signal": "Both sides want to repeat the transaction at a price that covers the coordination work.",
+        "prototype": "A material listing with composition, grade, sample photos, available weight and collection terms. Add a buyer request and a human-reviewed match; no invented stock."
+      },
+      "bn": {
+        "title": "গার্মেন্টসের ঝুট পাবে উপযুক্ত ক্রেতা",
+        "summary": "কাপড়ের ধরন, মান ও সংগ্রহের শর্ত পরিষ্কার থাকলে কারখানার ঝুট কিনতে রিসাইক্লারদের সুবিধা হবে কি না, তা পরীক্ষা করুন।",
+        "description": "এক ধরনের ঝুটের লেনদেন দিয়ে শুরু করুন। ফাইবার, রং, মিশ্রণ, ওজন ও সংগ্রহের শর্ত লিখে রাখুন। এরপর খোঁজার মতো মালের তালিকা বানানো যায়।",
+        "businessModel": "সফল লেনদেনে আগে জানানো ফি অথবা মান যাচাই ও সংগ্রহের সেবার ফি পরীক্ষা করুন।",
+        "steps": [
+          "এক ধরনের ঝুট নিয়ে তিনটি কারখানা ও তিনজন ক্রেতার সঙ্গে কথা বলুন।",
+          "অনুমতি নিয়ে একটি নমুনা ব্যাচের তথ্য লিখুন। ক্রেতা যে মান চান, তার সঙ্গে মিলিয়ে দেখুন।",
+          "একটি টাকার লেনদেন করিয়ে পরিদর্শন ও সংগ্রহের পুরো খরচ হিসাব করুন।"
+        ],
+        "signal": "দুই পক্ষই আবার লেনদেন করতে চায়, আর যে ফি দিতে রাজি তার মধ্যে সমন্বয়ের খরচ ওঠে।",
+        "prototype": "ফাইবার, মান, নমুনার ছবি, ওজন ও সংগ্রহের শর্তসহ মালের তালিকা। ক্রেতার চাহিদা লিখে মানুষের পর্যালোচনায় মিল খোঁজার ব্যবস্থা রাখুন। কাল্পনিক মজুতকে আসল বলে দেখাবেন না।"
+      }
+    },
+    {
+      "id": "shared-cold-delivery-approach",
+      "problemId": "shared-cold-delivery",
+      "kind": "service",
+      "position": 0,
+      "en": {
+        "title": "Share space in a refrigerated delivery",
+        "summary": "Combine small food shipments on a repeat route instead of asking every supplier to fill a refrigerated vehicle.",
+        "description": "Work with an operator who already handles this type of food safely. Match spare space with suppliers who need the same route, temperature and delivery time.",
+        "businessModel": "Try a fee for each shipment you arrange. Show transport and handling costs separately.",
+        "steps": [
+          "Interview suppliers and buyers on one proposed route. Map actual shipment days and product requirements.",
+          "Get an operator’s quote and handling plan; calculate the cost at partial capacity.",
+          "Only with suitable handling agreed, coordinate one paid trial and record temperatures, delays and the delivered condition."
+        ],
+        "signal": "Repeat bookings cover the full trip cost and the buyer accepts the delivered product.",
+        "prototype": "A booking board for one route showing product constraints, available capacity, delivery windows and a transparent quote. Use simulated records until an operator confirms a real trip."
+      },
+      "bn": {
+        "title": "ঠান্ডা রাখার গাড়িতে জায়গা ভাগ করে নিন",
+        "summary": "প্রতিজন সরবরাহকারীকে পুরো গাড়ি ভরতে না দিয়ে একই রুটের উপযুক্ত ছোট চালানগুলো একসঙ্গে পাঠানো।",
+        "description": "উপযুক্ত পরিবহন অপারেটরের খালি জায়গা কাজে লাগান। কোন পণ্য একসঙ্গে যাবে, তাপমাত্রা কত থাকবে, ওঠানো-নামানো ও পৌঁছানোর সময়, সব স্পষ্ট রাখুন।",
+        "businessModel": "পরিবহন ও ওঠানো-নামানোর খরচ আলাদা দেখিয়ে চালানপ্রতি সমন্বয়ের ফি পরীক্ষা করুন।",
+        "steps": [
+          "একটি সম্ভাব্য রুটের সরবরাহকারী ও ক্রেতাদের সঙ্গে কথা বলুন। কোন দিন মাল যায় আর পণ্যের কী শর্ত, লিখে নিন।",
+          "অপারেটরের কোটেশন ও মাল সামলানোর পরিকল্পনা নিন। গাড়ি পুরো না ভরলেও খরচ কত হবে, হিসাব করুন।",
+          "উপযুক্ত ব্যবস্থা নিশ্চিত করেই একটি টাকার পরীক্ষামূলক চালান পাঠান। তাপমাত্রা, দেরি ও পৌঁছানোর সময় পণ্যের অবস্থা লিখে রাখুন।"
+        ],
+        "signal": "আবার বুকিং পাওয়া যায়, যাতায়াতের পুরো খরচ ওঠে এবং ক্রেতা পৌঁছানো পণ্য গ্রহণ করেন।",
+        "prototype": "একটি রুটের বুকিং বোর্ডে পণ্যের শর্ত, খালি জায়গা, পৌঁছানোর সময় ও খরচ দেখান। অপারেটর চালান নিশ্চিত করার আগে কেবল নমুনা রেকর্ড ব্যবহার করুন।"
+      }
+    },
+    {
+      "id": "bangla-order-notes-approach",
+      "problemId": "bangla-order-notes",
+      "kind": "software",
+      "position": 0,
+      "en": {
+        "title": "Turn a Bangla voice note into an order",
+        "summary": "A human-confirmed order draft from a voice note, with missing quantities, variants and addresses made obvious.",
+        "description": "Turn a voice note into a draft order. Highlight anything uncertain and ask a person to check it before confirming. Begin with one business’s product list.",
+        "businessModel": "Try a monthly team subscription. Compare the fee with the time saved after checking and correcting orders.",
+        "steps": [
+          "Observe a willing team processing voice orders and time the existing workflow.",
+          "With consent, test a small anonymised set. Compare the draft with the confirmed order.",
+          "Ask the team to use the draft-and-confirm workflow for a second session and discuss a paid trial."
+        ],
+        "signal": "The full workflow is faster without increasing order errors, and a team agrees to a paid trial.",
+        "prototype": "An audio upload, an editable order draft and highlighted uncertain fields. Use synthetic audio, require confirmation, and provide a clear delete action."
+      },
+      "bn": {
+        "title": "বাংলা ভয়েস নোট থেকে অর্ডারের খসড়া",
+        "summary": "ভয়েস নোট শুনে অর্ডারের খসড়া হবে। পরিমাণ, ধরন বা ঠিকানা অস্পষ্ট থাকলে তা দেখাবে, মানুষ মিলিয়ে কনফার্ম করবেন।",
+        "description": "খসড়ায় অনিশ্চিত অংশ আলাদা দেখান। প্রতিটি অর্ডার মানুষ মিলিয়ে কনফার্ম করবেন। একটি পণ্যের ক্যাটালগ দিয়ে শুরু করুন, নিজে থেকে অর্ডার পাঠানোর ব্যবস্থা রাখবেন না।",
+        "businessModel": "কত সময় বাঁচল ও ভুল ঠিক করতে কত কাজ হলো, তার সঙ্গে মিলিয়ে টিমের মাসিক ফি পরীক্ষা করুন।",
+        "steps": [
+          "রাজি আছে এমন একটি টিম কীভাবে ভয়েস অর্ডার নেয়, দেখুন। এখন কত সময় লাগে, মেপে নিন।",
+          "সম্মতি নিয়ে ব্যক্তিগত তথ্য সরানো কিছু রেকর্ডে পরীক্ষা করুন। কনফার্ম করা অর্ডারের সঙ্গে খসড়া মেলান।",
+          "টিমকে আরেকবার খসড়া মিলিয়ে কনফার্ম করার পদ্ধতি ব্যবহার করতে দিন। টাকার বিনিময়ে পরীক্ষার প্রস্তাব দিন।"
+        ],
+        "signal": "অর্ডারে ভুল না বাড়িয়ে পুরো কাজে সময় কম লাগে, আর একটি টিম টাকা দিয়ে পরীক্ষা করতে রাজি হয়।",
+        "prototype": "অডিও আপলোড, বদলানো যায় এমন অর্ডারের খসড়া ও অনিশ্চিত ঘর আলাদা দেখানোর ব্যবস্থা। বানানো নমুনা অডিও ব্যবহার করুন। কনফার্ম করা বাধ্যতামূলক রাখুন, মুছে দেওয়ার বোতামও দিন।"
+      }
+    },
+    {
+      "id": "produce-crates-approach",
+      "problemId": "produce-crates",
+      "kind": "service",
+      "position": 0,
+      "en": {
+        "title": "Rent produce crates that come back",
+        "summary": "A reusable crate pool for a repeat produce route, with collection, cleaning and returns built into the service.",
+        "description": "Start with a few crates on one regular route. Record who has each crate and agree who returns, cleans and pays for damage before the first delivery.",
+        "businessModel": "Test a per-trip rental fee and an agreed deposit; include loss and cleaning in the cost.",
+        "steps": [
+          "Watch one full produce journey and record handling and current packaging costs.",
+          "Agree a small paid trial with both ends of the route, including return and cleaning terms.",
+          "Track several complete return cycles, including damage, missing crates and collection time."
+        ],
+        "signal": "Both sides rebook and the rental covers cleaning, collection, loss and replacement.",
+        "prototype": "A simple crate register with check-out, handoff and return records. Show overdue returns and the actual cost per completed cycle."
+      },
+      "bn": {
+        "title": "ফসলের ক্রেট ভাড়া যাবে, ফেরতও আসবে",
+        "summary": "নিয়মিত একটি রুটে বারবার ব্যবহার করা যায় এমন ক্রেট ভাড়া। সংগ্রহ, পরিষ্কার ও ফেরত আনা সেবার মধ্যেই থাকবে।",
+        "description": "একটি রুটে অল্প কিছু ক্রেট দিয়ে শুরু করুন। কার হাতে কখন গেল, লিখে রাখুন। প্রথম চালানের আগেই ফেরত, পরিষ্কার ও ক্ষতির দায় ঠিক করে নিন।",
+        "businessModel": "প্রতিবারের ভাড়া ও সম্মত জামানত পরীক্ষা করুন। হারানো ক্রেট ও পরিষ্কারের খরচও হিসাবের মধ্যে রাখুন।",
+        "steps": [
+          "একটি চালানের পুরো পথ দেখুন। মাল সামলানো ও এখনকার প্যাকেজিংয়ের খরচ লিখুন।",
+          "রুটের দুই পক্ষের সঙ্গে ছোট একটি টাকার পরীক্ষা ঠিক করুন। ফেরত ও পরিষ্কারের শর্তও রাখুন।",
+          "কয়েকবার যাওয়া ও ফেরত আসার পুরো হিসাব নিন। ভাঙা, হারানো ক্রেট ও সংগ্রহের সময় বাদ দেবেন না।"
+        ],
+        "signal": "দুই পক্ষই আবার বুকিং দেয়। ভাড়া থেকে পরিষ্কার, সংগ্রহ, হারানো ও নতুন ক্রেট কেনার খরচ ওঠে।",
+        "prototype": "ক্রেট দেওয়া, হাতবদল ও ফেরতের সাধারণ রেজিস্টার। ফেরত দিতে দেরি হচ্ছে কোনগুলো, আর একবার যাওয়া-আসায় আসল খরচ কত, দেখান।"
+      }
+    },
+    {
+      "id": "factory-maintenance-approach",
+      "problemId": "factory-maintenance",
+      "kind": "service",
+      "position": 0,
+      "en": {
+        "title": "Make machine repairs easier to arrange",
+        "summary": "Help small factories find an appropriate technician, agree a visit and keep a useful maintenance record.",
+        "description": "Find technicians whose skills you have checked for one type of machine in one area. Agree the repair work and price in advance, then record what was done.",
+        "businessModel": "Test a transparent coordination fee, then explore a recurring maintenance plan only if visits repeat.",
+        "steps": [
+          "Interview three factory managers about their most recent breakdown, not an imagined future one.",
+          "Confirm skills and availability with technicians for that machine type.",
+          "Arrange one paid visit with a written scope, then check the outcome with both sides."
+        ],
+        "signal": "The manager chooses the service again and the fee covers coordination and follow-up.",
+        "prototype": "A service request, technician availability, an approved work order and a maintenance log. Do not generate repair instructions or promise response times you cannot deliver."
+      },
+      "bn": {
+        "title": "কারখানার মেশিন সারানোর লোক পাওয়া সহজ হোক",
+        "summary": "ছোট কারখানার জন্য উপযুক্ত টেকনিশিয়ান খোঁজা, আসার সময় ঠিক করা ও মেরামতের কাজের রেকর্ড রাখা।",
+        "description": "একটি শিল্প এলাকায় এক ধরনের মেশিনের যাচাই করা টেকনিশিয়ান দিয়ে শুরু করুন। সমস্যা, অনুমোদিত কাজ, যন্ত্রাংশ ও শেষ করা কাজের রেকর্ড রাখুন।",
+        "businessModel": "আগে জানানো সমন্বয়ের ফি পরীক্ষা করুন। কাজ নিয়মিত হলে তবেই রক্ষণাবেক্ষণের প্যাকেজ বিবেচনা করুন।",
+        "steps": [
+          "তিনজন ম্যানেজারের সঙ্গে সর্বশেষ মেশিন নষ্ট হওয়ার ঘটনা নিয়ে কথা বলুন। ভবিষ্যতে কী হতে পারে, তা নিয়ে নয়।",
+          "ওই মেশিনের টেকনিশিয়ানদের দক্ষতা ও সময় মিলিয়ে নিন।",
+          "কী কাজ হবে লিখে একটি টাকার ভিজিট ঠিক করুন। পরে দুই পক্ষের কাছেই ফল জেনে নিন।"
+        ],
+        "signal": "ম্যানেজার আবার সেবাটি নেন এবং ফি থেকে সমন্বয় ও পরে খোঁজ নেওয়ার খরচ ওঠে।",
+        "prototype": "সেবার অনুরোধ, টেকনিশিয়ানের সময়, অনুমোদিত কাজের বিবরণ ও মেরামতের রেকর্ড। নিজে থেকে মেরামতের নির্দেশনা বানাবেন না, রাখতে পারবেন না এমন সময়ের প্রতিশ্রুতিও দেবেন না।"
+      }
+    },
+    {
+      "id": "courier-settlement-service",
+      "problemId": "courier-settlement",
+      "kind": "service",
+      "position": 1,
+      "en": {
+        "title": "Check courier payments for a business",
+        "summary": "Do the work manually for one brand before building a product.",
+        "description": "Use a shared spreadsheet to match a business’s orders with its courier payments. Agree which missing or incorrect payments you will help investigate.",
+        "businessModel": "Try a fixed fee for checking one week of payments. Count the hours it takes before offering ongoing help.",
+        "steps": [
+          "Ask a business owner to walk you through a past courier payment.",
+          "With permission, check a small batch by hand after removing private customer details.",
+          "Show what you found and ask whether they would pay for you to do it again."
+        ],
+        "signal": "The business gets useful answers and wants to pay for another check. The fee covers your time.",
+        "prototype": "A sample reconciliation worksheet using synthetic orders, fees, returns and payouts."
+      },
+      "bn": {
+        "title": "ব্যবসার কুরিয়ার পেমেন্ট মিলিয়ে দিন",
+        "summary": "সফটওয়্যার বানানোর আগে একটি ব্র্যান্ডের হিসাব হাতে মিলিয়ে দেখুন।",
+        "description": "মার্চেন্টের রিপোর্ট নিয়ে একটি নির্দিষ্ট সময়ের পাওনা স্প্রেডশিটে মিলিয়ে দিন। কোন কোন অমিল খুঁজে দেবেন, তা আগেই ঠিক করে নিন।",
+        "businessModel": "একটি সময়ের হিসাব মেলাতে নির্দিষ্ট ফি চাইতে পারেন। নিয়মিত সেবা দেওয়ার আগে কতটা শ্রম লাগছে, তা হিসাব করুন।",
+        "steps": [
+          "একজন মার্চেন্টের সঙ্গে আগের একটি সময়ের হিসাব দেখে নিন।",
+          "অনুমতি নিয়ে পরিচয় মুছে ফেলা ছোট একটি নমুনা হাতে মিলিয়ে দেখুন।",
+          "অমিলগুলো মিটলে মার্চেন্ট আবার এই সেবা কিনবেন কি না, আলোচনা করুন।"
+        ],
+        "signal": "মার্চেন্ট বারবার হওয়া সমস্যাটি দেখাতে পারছেন, সমাধান তাঁর কাজে লাগছে এবং সেবার খরচও সামলানো যাচ্ছে।",
+        "prototype": "বানানো অর্ডার, ফি, রিটার্ন ও পাওনা দিয়ে হিসাব মেলানোর একটি নমুনা ওয়ার্কশিট।"
+      }
+    },
+    {
+      "id": "bangla-order-confirmation",
+      "problemId": "bangla-order-notes",
+      "kind": "workflow",
+      "position": 1,
+      "en": {
+        "title": "Confirm the order before processing it",
+        "summary": "Try a short confirmation step without automated transcription.",
+        "description": "Listen to the voice note, record the order in a simple form and send the details to the customer to confirm. See whether this catches mistakes before the order is packed.",
+        "businessModel": "Try it with one team first. If other teams want help using it, test whether they would pay for setup or training.",
+        "steps": [
+          "Review a few anonymized mistaken orders with the team.",
+          "Use one confirmation format for a small set of new orders.",
+          "Compare missing details and staff effort with the previous workflow."
+        ],
+        "signal": "Customer confirmation catches mistakes and saves the team more work than it adds.",
+        "prototype": "A mobile order form and customer confirmation preview with clearly synthetic names and products."
+      },
+      "bn": {
+        "title": "অর্ডার নেওয়ার পর ক্রেতার সঙ্গে মিলিয়ে নিন",
+        "summary": "অডিও থেকে লেখা তৈরির সফটওয়্যার ছাড়াই ক্রেতার সঙ্গে অর্ডার মিলিয়ে দেখুন।",
+        "description": "কর্মী একবার শুনে নির্দিষ্ট ফরমে অর্ডারের দরকারি তথ্য লিখবেন, তারপর ক্রেতাকে ছোট একটি বার্তা পাঠিয়ে মিলিয়ে নেবেন। বড় ভুলগুলো এতে ধরা পড়ে কি না, দেখুন।",
+        "businessModel": "আগে নিজেদের কাজের পদ্ধতি হিসেবে পরীক্ষা করুন। অন্য দলকে শেখানো বা চালু করে দেওয়ার সেবা বিক্রি করা যাবে কি না, তা পরে যাচাই করতে হবে।",
+        "steps": [
+          "দলের সঙ্গে ভুল হওয়া কয়েকটি অর্ডার পরিচয় মুছে দেখে নিন।",
+          "অল্প কিছু নতুন অর্ডারে একইভাবে তথ্য মিলিয়ে নিন।",
+          "আগের পদ্ধতির সঙ্গে বাদ পড়া তথ্য আর কর্মীদের সময় তুলনা করুন।"
+        ],
+        "signal": "তথ্য মিলিয়ে নেওয়ার ধাপটি কাজে লাগার মতো ভুল ঠেকাচ্ছে, অথচ বাঁচানো সময়ের চেয়ে বেশি সময় নিচ্ছে না।",
+        "prototype": "নমুনা নাম ও পণ্য দিয়ে মোবাইলে অর্ডার লেখার ফরম এবং ক্রেতাকে পাঠানোর বার্তার প্রিভিউ।"
+      }
+    }
+  ],
+  "organizations": [
+    {
+      "id": "org_10-minute-school",
+      "slug": "10-minute-school",
+      "website": "https://10minuteschool.com/",
+      "logoPath": "/media/startup-50/10-minute-school.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [
+        "10MS",
+        "টেন মিনিট স্কুল"
+      ],
+      "sourceUrls": [
+        "https://10minuteschool.com/",
+        "https://futurestartup.com/2022/06/20/ayman-sadiq-the-making-and-evolution-of-10-minute-school-and-the-psychology-of-entrepreneurship-part-i/",
+        "https://futurestartup.com/2023/09/27/ayman-sadiq-10-minute-school-the-future-of-edtech-navigating-fame-and-building-an-organization-part-ii/"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "10 Minute School",
+        "description": "Digital courses, exam preparation and learning products for students in Bangladesh."
+      },
+      "bn": {
+        "name": "10 Minute School",
+        "description": "বাংলাদেশের শিক্ষার্থীদের জন্য ডিজিটাল কোর্স, পরীক্ষার প্রস্তুতি ও পড়াশোনার নানা উপকরণ।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "10-minute-school"
+        },
+        {
+          "kind": "case-study",
+          "target": "10-minute-school"
+        }
+      ]
+    },
+    {
+      "id": "org_arogga",
+      "slug": "arogga",
+      "website": "https://arogga.com/",
+      "logoPath": "/media/startup-50/arogga.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://arogga.com/",
+        "https://futurestartup.com/2023/10/25/arogga-raises-5-5mn-seed-round/"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Arogga",
+        "description": "Digital pharmacy, diagnostics and healthcare access platform."
+      },
+      "bn": {
+        "name": "Arogga",
+        "description": "অনলাইন ফার্মেসি, ডায়াগনস্টিকস ও স্বাস্থ্যসেবা পাওয়ার সমন্বিত প্ল্যাটফর্ম।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "arogga"
+        },
+        {
+          "kind": "case-study",
+          "target": "arogga"
+        }
+      ]
+    },
+    {
+      "id": "org_bkash",
+      "slug": "bkash",
+      "website": "https://www.bkash.com/en",
+      "logoPath": "/media/startup-50/bkash.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.bkash.com/en",
+        "https://www.bkash.com/en/about"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "bKash",
+        "description": "Mobile financial services for payments, transfers, savings and other everyday transactions."
+      },
+      "bn": {
+        "name": "bKash",
+        "description": "পেমেন্ট, টাকা পাঠানো, সঞ্চয় ও দৈনন্দিন লেনদেনের মোবাইল আর্থিক সেবা।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "bkash"
+        },
+        {
+          "kind": "case-study",
+          "target": "bkash"
+        }
+      ]
+    },
+    {
+      "id": "org_dorik",
+      "slug": "dorik",
+      "website": "https://dorik.com/",
+      "logoPath": "/media/startup-50/dorik.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://dorik.com/",
+        "https://futurestartup.com/2021/08/26/mizanur-rahman-on-dorik/"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Dorik",
+        "description": "No-code website building and content-management software for global users."
+      },
+      "bn": {
+        "name": "Dorik",
+        "description": "কোডিং ছাড়াই ওয়েবসাইট তৈরি ও কনটেন্ট ব্যবস্থাপনার আন্তর্জাতিক সফটওয়্যার।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "dorik"
+        },
+        {
+          "kind": "case-study",
+          "target": "dorik"
+        }
+      ]
+    },
+    {
+      "id": "org_pathao",
+      "slug": "pathao",
+      "website": "https://pathao.com/",
+      "logoPath": "/media/startup-50/pathao.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://pathao.com/",
+        "https://futurestartup.com/2018/06/10/the-story-behind-pathaos-explosive-growth-with-hussain-m-elius/"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Pathao",
+        "description": "A multi-service platform spanning rides, delivery, food, logistics and payments."
+      },
+      "bn": {
+        "name": "Pathao",
+        "description": "রাইড শেয়ারিং, পার্সেল ডেলিভারি, খাবার, লজিস্টিকস ও পেমেন্টের বহু-সেবার প্ল্যাটফর্ম।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "pathao"
+        },
+        {
+          "kind": "case-study",
+          "target": "pathao"
+        }
+      ]
+    },
+    {
+      "id": "org_shikho",
+      "slug": "shikho",
+      "website": "https://shikho.com/",
+      "logoPath": "/media/startup-50/shikho.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://shikho.com/",
+        "https://www.realisticoptimist.io/shikho-digitizing-bangladesh"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Shikho",
+        "description": "Digital learning products, live instruction and exam preparation for Bangladeshi students."
+      },
+      "bn": {
+        "name": "Shikho",
+        "description": "বাংলাদেশি শিক্ষার্থীদের জন্য ডিজিটাল পড়াশোনার কনটেন্ট, লাইভ ক্লাস ও পরীক্ষার প্রস্তুতি।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "shikho"
+        },
+        {
+          "kind": "case-study",
+          "target": "shikho"
+        }
+      ]
+    },
+    {
+      "id": "org_bangladesh-angels-network",
+      "slug": "bangladesh-angels-network",
+      "website": "https://bdangels.co/",
+      "logoPath": null,
+      "roles": [
+        "investor"
+      ],
+      "aliases": [
+        "BAN"
+      ],
+      "sourceUrls": [
+        "https://bdangels.co/faq"
+      ],
+      "sourceDate": "2026-08-25",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Bangladesh Angels Network",
+        "description": "A member-led angel network that syndicates investments into early-stage, Bangladesh-linked digital businesses. BAN helps selected founders prepare their deck, data room and fundraising strategy before presenting them to angels for diligence and a common term sheet."
+      },
+      "bn": {
+        "name": "Bangladesh Angels Network",
+        "description": "সদস্যদের পরিচালিত এই অ্যাঞ্জেল নেটওয়ার্কটি প্রাথমিক পর্যায়ের বাংলাদেশ-সম্পর্কিত ডিজিটাল ব্যবসায় যৌথভাবে বিনিয়োগ করে। BAN নির্বাচিত ফাউন্ডারদের পিচ ডেক, ডেটা রুম ও ফান্ড সংগ্রহের পরিকল্পনা গুছিয়ে নিতে সাহায্য করে। এরপর যৌথ ডিউ ডিলিজেন্স ও সমন্বিত টার্ম শিটের জন্য ইনভেস্টরদের সামনে উপস্থাপন করে।"
+      },
+      "references": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "connection_pathao_settlements",
+      "organizationId": "org_pathao",
+      "problemId": "courier-settlement",
+      "stage": "live",
+      "en": "Pathao collects payment from buyers when it delivers an order, then pays the seller. Its published terms explain that service. They do not show whether Pathao can help a seller check payments from other couriers.",
+      "bn": "Pathao পণ্য পৌঁছে দেওয়ার সময় ক্রেতার কাছ থেকে টাকা নিয়ে বিক্রেতাকে দেয়। প্রকাশিত শর্তে এই সেবার বিবরণ আছে। তবে অন্য কুরিয়ারের পাওনা মেলাতেও Pathao সাহায্য করে কি না, এই সোর্স থেকে জানা যায় না।",
+      "evidenceUrl": "https://pathao.com/terms-of-service-merchant/",
+      "reviewScope": "public-source-context",
+      "reviewedAt": "2026-09-16T00:00:00Z"
+    }
+  ]
+}

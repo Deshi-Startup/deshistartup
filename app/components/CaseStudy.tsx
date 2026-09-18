@@ -1,3 +1,4 @@
+import { ecosystem, companyPath } from '../lib/ecosystem'
 import type { ReactNode } from 'react'
 import logos from '../../data/startup-50-logos.json'
 import fullLogos from '../../data/case-study-logos.json'
@@ -65,12 +66,14 @@ export function CaseLogo({ slug, fallback }: { slug: string; fallback?: string }
 export function CaseCompany({ slug, locale = 'bn' }: { slug: keyof typeof companies; locale?: CaseLocale }) {
   const en = locale === 'en'
   const company = companies[slug]
+  const profile = ecosystem.organizations.find(o => o.references.some(r => r.kind === 'case-study' && r.target === slug))
   return (
     <div className={`case-company case-theme--${company.theme}`}>
       <CaseLogo slug={slug} />
       <p>
         <span>{company.sector[locale]} · {en ? 'Bangladesh' : 'বাংলাদেশ'}</span>
         <span>{en ? 'Case study based on public sources' : 'পাবলিক তথ্যের ভিত্তিতে তৈরি কেস স্টাডি'}</span>
+        {profile && <a href={companyPath(locale, profile.slug)}>{en ? 'Company profile' : 'কোম্পানির প্রোফাইল'}</a>}
       </p>
     </div>
   )

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { isNoindexPage } from './lib/page-indexability.mjs'
 /**
  * Production-output SEO regression audit.
  * Run after `npm run build` (the build runs it automatically at the end).
@@ -50,7 +51,7 @@ for (const event of contributorView.events) {
   }
 }
 const pageByLocaleSlug = new Map(pages.map((page) => [`${page.locale}:${page.slug}`, page]))
-const indexable = pages.filter((page) => !page.stub)
+const indexable = pages.filter((page) => !isNoindexPage(page))
 const indexableRoutes = new Set(indexable.map((page) => page.route))
 const allRoutes = new Set(pages.map((page) => page.route))
 const inbound = new Map(indexable.map((page) => [page.route, 0]))
@@ -264,7 +265,7 @@ for (const page of pages) {
     record(errors, `${page.route}: contributor profile is not excluded from Pagefind`)
   }
 
-  if (page.stub) {
+  if (isNoindexPage(page)) {
     if (!/\bnoindex\b/i.test(robots) || !/\bfollow\b/i.test(robots)) {
       record(errors, `${page.route}: stub must be noindex, follow`)
     }
@@ -282,7 +283,7 @@ for (const page of pages) {
 
     const bnPair = pageByLocaleSlug.get(`bn:${page.slug}`)
     const enPair = pageByLocaleSlug.get(`en:${page.slug}`)
-    if (bnPair && enPair && !bnPair.stub && !enPair.stub) {
+    if (bnPair && enPair && !isNoindexPage(bnPair) && !isNoindexPage(enPair)) {
       const actual = new Map(alternates.toArray().map((node) => [$(node).attr('hreflang'), $(node).attr('href')]))
       const expected = new Map([
         ['bn-BD', canonicalUrl(bnPair.route)],
@@ -337,7 +338,7 @@ for (const page of pages) {
     record(errors, `${page.route}: wrong Twitter image alt text`)
   }
 
-  if (!page.stub && schemaScripts.length === 1) {
+  if (!isNoindexPage(page) && schemaScripts.length === 1) {
     try {
       const schema = JSON.parse(schemaScripts.first().text())
       const graph = Array.isArray(schema['@graph']) ? schema['@graph'] : []
@@ -588,7 +589,7 @@ for (const page of pages) {
     }
   }
 
-  if (!page.stub) {
+  if (!isNoindexPage(page)) {
     const title = titles.first().text().trim()
     const description = descriptions.first().attr('content')?.trim() || ''
     if (titleOwners.has(title)) record(errors, `${page.route}: duplicate title also used by ${titleOwners.get(title)}`)
@@ -618,7 +619,7 @@ for (const page of pages) {
       && $(element).attr('hreflang') !== 'bn') {
       record(errors, `${page.route}: English article links to Bengali content (${href})`)
     }
-    if (!page.stub && indexableRoutes.has(route) && route !== page.route) {
+    if (!isNoindexPage(page) && indexableRoutes.has(route) && route !== page.route) {
       inbound.set(route, (inbound.get(route) || 0) + 1)
     }
   })
@@ -649,7 +650,7 @@ if (!fs.existsSync(sitemapPath)) {
     if (actualLastmod !== expectedLastmod) record(errors, `${loc}: sitemap lastmod is inaccurate`)
     const bnPair = pageByLocaleSlug.get(`bn:${route.slug}`)
     const enPair = pageByLocaleSlug.get(`en:${route.slug}`)
-    if (bnPair && enPair && !bnPair.stub && !enPair.stub) {
+    if (bnPair && enPair && !isNoindexPage(bnPair) && !isNoindexPage(enPair)) {
       const alternates = new Map(
         $xml(node).find('> xhtml\\:link').toArray().map((link) => [
           $xml(link).attr('hreflang'),

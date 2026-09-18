@@ -46,7 +46,8 @@ only when a founder can follow it without meeting a critical stub.
 
 ## 4. Improve the product only where it removes friction
 
-Technical work supports the manual rather than becoming a separate product:
+Technical work supports the founder journey and shares capabilities across the manual and its
+discovery tools:
 
 1. Keep the browser editor and pull-request flow reliable, including sign-in, draft recovery, media
    review and clear errors.
@@ -59,8 +60,24 @@ Open technical work from a reproduced failure or a clear reader or contributor n
 speculative feature list.
 
 Do not build a second CMS, a GitHub wiki, a complex admin dashboard or an AI assistant during this
-cycle. The existing website, browser editor, GitHub review flow and Notion research library are
-enough to learn what the project needs next.
+cycle. Extend the existing website and review infrastructure for a concrete user need. A narrow
+review queue for structured company/problem submissions can support the direction below without
+replacing the guide editor or its GitHub review flow.
+
+## Startup ideas and shared company profiles
+
+**Direction confirmed, 16 September 2026:** browse individual startup ideas, with shared problem
+research underneath. Give each company a shared identity reused by problem connections,
+Startup 50 and case studies. Suggest existing companies before accepting new profile proposals.
+Keep new records and connections subject to human review.
+
+The local slice separates problems and ideas, reuses company IDs from existing research,
+and includes a D1-backed company-selection and review flow with static publication.
+The public catalogue is `/startup-ideas`, with supporting `/companies/<slug>` profiles. This is not deployed yet.
+The model and remaining launch requirements are owned by
+[`ecosystem-data.md`](./ecosystem-data.md); local commands are documented in
+[`docs/startup-ideas.md`](../docs/startup-ideas.md). Preserve public reading, bilingual parity and
+article performance. Database work is not a reason to migrate all editorial content.
 
 ## Immediate priorities
 

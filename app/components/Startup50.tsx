@@ -1,3 +1,4 @@
+import { ecosystem, companyPath } from '../lib/ecosystem'
 import React from 'react'
 import './Startup50.css'
 import startup50Data from '../../data/startup-50.json'
@@ -241,6 +242,7 @@ export default function Startup50({ locale = 'bn' }: Startup50Props) {
           {data.entries.map((entry) => {
             const logo = logoBySlug.get(entry.slug) as StartupLogo
             const caseStudyRoute = caseStudies.get(entry.slug)
+            const profile = ecosystem.organizations.find(o => o.references.some(r => r.kind === 'startup-50' && r.target === entry.slug))
             const searchText = [
               entry.name,
               local(entry.sector, locale),
@@ -262,7 +264,7 @@ export default function Startup50({ locale = 'bn' }: Startup50Props) {
                   </div>
                   <div className="startup50-entry__identity">
                     <h2 data-toc-ignore="">
-                      <a href={entry.website} target="_blank" rel="noopener noreferrer">{entry.name}</a>
+                      {profile ? <a href={companyPath(locale, profile.slug)}>{entry.name}</a> : <a href={entry.website} target="_blank" rel="noopener noreferrer">{entry.name}</a>}
                     </h2>
                     <p>{local(entry.sector, locale)}</p>
                   </div>

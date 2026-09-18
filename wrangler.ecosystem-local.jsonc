@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "deshistartup-ecosystem-local",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-07-29",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": { "directory": "./public", "binding": "ASSETS" },
+  "d1_databases": [{
+    "binding": "ECOSYSTEM_DB",
+    "database_name": "deshi-ecosystem-local",
+    "database_id": "00000000-0000-0000-0000-000000000001",
+    "migrations_dir": "worker/migrations/ecosystem"
+  }],
+  "kv_namespaces": [{ "binding": "CONTRIBUTION_GUARDS", "id": "ecosystem-local-guards" }],
+  "ratelimits": [{
+    "name": "CONTRIBUTION_USER_RATE", "namespace_id": "31003",
+    "simple": { "limit": 3, "period": 60 }
+  }]
+}

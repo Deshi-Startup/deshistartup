@@ -55,6 +55,16 @@ const nextConfig = {
     ? {
         async redirects() {
           return [
+            ...['', '/en'].flatMap(prefix => [
+              { source: `${prefix}/problems`, destination: `${prefix}/startup-ideas`, permanent: true },
+              { source: `${prefix}/problems/contribute`, destination: `${prefix}/startup-ideas/add-company`, permanent: true },
+              { source: `${prefix}/problems/review`, destination: `${prefix}/startup-ideas/review`, permanent: true },
+              { source: `${prefix}/problems/draft`, destination: `${prefix}/startup-ideas/add`, permanent: true },
+              { source: `${prefix}/problems/:problem`, destination: `${prefix}/startup-ideas?problem=:problem`, permanent: true },
+              { source: `${prefix}/startup-ideas/add-startup`, destination: `${prefix}/startup-ideas/add-company`, permanent: true },
+              { source: `${prefix}/startup-ideas/draft`, destination: `${prefix}/startup-ideas/add`, permanent: true },
+              { source: `${prefix}/startup-ideas/contribute`, destination: `${prefix}/startup-ideas/add`, permanent: true }
+            ]),
             {
               source: '/50',
               destination: '/startup-50',

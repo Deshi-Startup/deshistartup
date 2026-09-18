@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { isNoindexPage } from './lib/page-indexability.mjs'
 /**
  * Builds navigation manifests from the content tree so navigation,
  * section hubs, stub badges, and "last updated" dates never need
@@ -286,7 +287,7 @@ console.log(`seo-pages.json: ${seoPages.length} routes`);
   const writtenByLocale = Object.fromEntries(
     ["bn", "en"].map((key) => [
       key,
-      (llmsPages[key] || []).filter((page) => !page.stub),
+      (llmsPages[key] || []).filter((page) => !isNoindexPage(page)),
     ]),
   );
   const curatedSlugs = [
@@ -398,7 +399,7 @@ console.log(`seo-pages.json: ${seoPages.length} routes`);
       .replace(/'/g, "&apos;");
 
   const written = seoPages
-    .filter((page) => !page.stub)
+    .filter((page) => !isNoindexPage(page))
     .sort((a, b) => a.route.localeCompare(b.route));
   const writtenByKey = new Map(
     written.map((page) => [`${page.locale}:${page.slug}`, page]),
