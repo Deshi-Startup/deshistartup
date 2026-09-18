@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { IdeaSummary, Locale, Place, Sector } from './types'
-import { defaultFilters, filterQuery, ideaPath, kinds, matchingIdeas, number, parseFilters, places, sectors, type Filters } from './model'
+import { defaultFilters, filterQuery, forLabel, ideaPath, kindLabel, matchingIdeas, number, parseFilters, places, sectors, type Filters } from './model'
 import { useShortlist } from './useShortlist'
 import IdeaShell from './IdeaShell'
 import IdeaIcon from './IdeaIcon'
@@ -52,8 +52,8 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
     <header className="ideas-catalogue-intro ideas-catalogue-hero">
       <h1>{en ? <>Problems worth{' '}<br /><span>solving.</span></> : <>কোন সমস্যা নিয়ে{' '}<br /><span>কাজ করবেন?</span></>}</h1>
       <div className="ideas-catalogue-invitation">
-        <p className="ideas-lead">{en ? 'Discover startup ideas for Bangladesh and the problems behind them. See who each idea could help, how it could work, and where to start.' : 'বাংলাদেশের জন্য স্টার্টআপ আইডিয়া আর তার পেছনের সমস্যাগুলো দেখুন। কাদের কাজে লাগবে, কীভাবে কাজ করবে ও কোথা থেকে শুরু করবেন, জেনে নিন।'}</p>
-        <a className="ideas-button" href={ideaPath(locale, 'add')}><IdeaIcon name="plus" />{en ? 'Add an idea' : 'আইডিয়া দিন'}</a>
+        <p className="ideas-lead">{en ? 'Startup ideas drawn from real problems in Bangladesh. Each one names who it helps, how it could earn, and the first three things to do, so you can start testing this week.' : 'বাংলাদেশের সত্যিকারের সমস্যা থেকে বাছাই করা স্টার্টআপ আইডিয়া। কাদের কাজে লাগবে, আয় কোথা থেকে আসতে পারে আর প্রথম তিনটা কাজ কী, সব এক পাতায়। এই সপ্তাহেই পরীক্ষা শুরু করা যায়।'}</p>
+        <a className="ideas-button" href={ideaPath(locale, 'add')}><IdeaIcon name="plus" />{en ? 'Suggest an idea' : 'আইডিয়া দিন'}</a>
       </div>
     </header>
     <div className="ideas-filters ideas-catalogue-filters" role="search" aria-label={en ? 'Filter ideas' : 'আইডিয়া বাছাই করুন'}>
@@ -69,11 +69,12 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
       const active = saved.includes(idea.id)
       const label = active ? (en ? 'Remove from saved' : 'সেভ করা থেকে সরান') : (en ? 'Save idea' : 'আইডিয়া সেভ করুন')
       return <article className="ideas-row" key={idea.id}>
-        <p className="ideas-row-sector">{sectors[idea.sector as Sector]?.[locale] || idea.sector}</p>
+        <p className="ideas-row-sector"><IdeaIcon name={idea.sector} />{sectors[idea.sector as Sector]?.[locale] || idea.sector}</p>
         <div className="ideas-row-copy">
           <h3><a href={ideaPath(locale, idea.slug)}>{idea.title}</a></h3>
+          <p className="ideas-row-for"><span>{forLabel(locale)}</span>{idea.customer}</p>
           <p className="ideas-row-summary">{idea.summary}</p>
-          <p className="ideas-row-meta">{kinds[idea.kind][locale]}<span aria-hidden="true"> · </span>{idea.places.map(place => places[place as Place]?.[locale] || place).join(' · ')}</p>
+          <p className="ideas-chips"><span className="ideas-chip">{kindLabel(idea.kind, locale)}</span><span className="ideas-chip">{idea.places.map(place => places[place as Place]?.[locale] || place).join(' · ')}</span></p>
         </div>
         <button ref={element => { if (element) saveButtons.current.set(idea.id, element); else saveButtons.current.delete(idea.id) }} className="ideas-bookmark" type="button" aria-label={`${label}: ${idea.title}`} title={label} aria-pressed={active} disabled={!ready} onClick={() => save(idea.id)}><IdeaIcon name="bookmark" filled={active} /></button>
       </article>

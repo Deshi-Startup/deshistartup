@@ -15,10 +15,10 @@ export default function IdeaActions({ id, locale, prompt, brief }: { id: string;
     try {
       await navigator.clipboard.writeText(prompt)
       setFallback(false)
-      setMessage(en ? 'AI instructions copied.' : 'এআই টুলের জন্য লেখা কপি হয়েছে।')
+      setMessage(en ? 'AI prompt copied.' : 'এআই প্রম্পট কপি হয়েছে।')
     } catch {
       setFallback(true)
-      setMessage(en ? 'Select and copy the instructions below.' : 'নিচের লেখা সিলেক্ট করে কপি করুন।')
+      setMessage(en ? 'Select and copy the prompt below.' : 'নিচের লেখা সিলেক্ট করে কপি করুন।')
       textRef.current?.focus(); textRef.current?.select()
     }
   }
@@ -28,10 +28,11 @@ export default function IdeaActions({ id, locale, prompt, brief }: { id: string;
   }
   return <div className="ideas-actions">
     <div className="ideas-action-buttons">
-      <button type="button" className="ideas-button" onClick={copy}>{en ? 'Copy prototype prompt' : 'প্রোটোটাইপের প্রম্পট কপি করুন'}<IdeaIcon name="arrow" /></button>
+      <button type="button" className="ideas-button ideas-button-secondary" onClick={copy}>{en ? 'Copy AI prompt' : 'এআই প্রম্পট কপি করুন'}<IdeaIcon name="arrow" /></button>
       <button type="button" className="ideas-text-button" onClick={download}><IdeaIcon name="download" />{en ? 'Download idea' : 'আইডিয়া ডাউনলোড করুন'}</button>
+      <p className="ideas-action-help">{en ? 'Paste it into ChatGPT, Claude or Gemini to sketch a first version.' : 'ChatGPT, Claude বা Gemini-তে পেস্ট করলে প্রথম খসড়াটা বানিয়ে দেখা যায়।'}</p>
     </div>
     <p className="ideas-feedback" role="status" aria-live="polite">{message}</p>
-    {fallback && <div className="ideas-copy-fallback"><label htmlFor={fieldId}>{en ? 'AI instructions' : 'এআই টুলের জন্য লেখা'}</label><textarea id={fieldId} ref={textRef} value={prompt} readOnly rows={9} /></div>}
+    {fallback && <div className="ideas-copy-fallback"><label htmlFor={fieldId}>{en ? 'AI prompt' : 'এআই প্রম্পট'}</label><textarea id={fieldId} ref={textRef} value={prompt} readOnly rows={9} /></div>}
   </div>
 }

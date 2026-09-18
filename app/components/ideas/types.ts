@@ -10,5 +10,6 @@ export interface IdeaSummary {
   places: Place[]
   title: string
   summary: string
+  customer: string
   search: string
 }

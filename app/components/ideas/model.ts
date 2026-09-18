@@ -19,6 +19,12 @@ export const kinds = {
   marketplace: { en: 'Marketplace', bn: 'মার্কেটপ্লেস' },
   workflow: { en: 'Workflow', bn: 'কাজের পদ্ধতি' }
 }
+// Service and workflow ideas can be started with a phone and a notebook.
+export const startsWithoutCode = (kind: IdeaSummary['kind']) => kind === 'service' || kind === 'workflow'
+export const kindLabel = (kind: IdeaSummary['kind'], locale: Locale) =>
+  startsWithoutCode(kind) ? (locale === 'en' ? 'No code needed' : 'কোড লাগবে না') : kinds[kind][locale]
+export const forLabel = (locale: Locale) => locale === 'en' ? 'For:' : 'যাঁদের জন্য:'
+
 export { ideaPath, ideaSlug } from '../../lib/idea-routes.mjs'
 export const localPath = (locale: Locale, path: string) => `${locale === 'en' ? '/en' : ''}${path}`
 export const number = (n: number, locale: Locale) => n.toLocaleString(locale === 'bn' ? 'bn-BD' : 'en-GB')
