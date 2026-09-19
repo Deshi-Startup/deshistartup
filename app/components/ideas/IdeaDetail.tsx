@@ -10,6 +10,7 @@ import IdeaShell from './IdeaShell'
 import IdeaIcon from './IdeaIcon'
 import CompanyMark from './CompanyMark'
 import SaveIdea from './SaveIdea'
+import VoteIdea from './VoteIdea'
 import ShareIdea from './ShareIdea'
 import IdeaActions from './IdeaActions'
 
@@ -51,9 +52,9 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
   const siblings = ecosystem.approaches.filter(other => other.problemId === problem.id && other.id !== idea.id)
   return <IdeaShell locale={locale}>
     <article className="ideas-detail">
-      <div className="ideas-detail-toolbar"><a className="ideas-back" href={ideaPath(locale)}><IdeaIcon name="back" />{en ? 'All ideas' : 'সব আইডিয়া'}</a><div className="ideas-detail-actions"><SaveIdea id={idea.id} locale={locale} ideas={savedIdeas} /><ShareIdea locale={locale} title={a.title} customer={p.customer} /></div></div>
+      <div className="ideas-detail-toolbar"><a className="ideas-back" href={ideaPath(locale)}><IdeaIcon name="back" />{en ? 'All ideas' : 'সব আইডিয়া'}</a><div className="ideas-detail-actions"><VoteIdea id={idea.id} title={a.title} locale={locale} /><SaveIdea id={idea.id} locale={locale} ideas={savedIdeas} /><ShareIdea locale={locale} title={a.title} customer={p.customer} /></div></div>
       <header className="ideas-detail-heading">
-        <p className="ideas-eyebrow">{sectors[problem.sector as Sector]?.[locale] || problem.sector}<span aria-hidden="true"> · </span>{kindLabel(idea.kind, locale)}<span aria-hidden="true"> · </span>{placeNames}</p>
+        <p className="ideas-eyebrow">{sectors[problem.sector as Sector]?.[locale] || problem.sector}<span aria-hidden="true"> · </span>{kindLabel(idea.kind, locale)}<span aria-hidden="true"> · </span>{placeNames}{a.editorialNote && <span className="ideas-pick">{en ? 'Editor’s pick' : 'আমাদের বাছাই'}</span>}</p>
         <h1>{a.title}</h1><p className="ideas-lead">{a.summary}</p>
         <p className="ideas-detail-for"><span>{forLabel(locale)}</span>{p.customer}</p>
       </header>
@@ -83,7 +84,7 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
         {siblings.map(other => <a className="ideas-related-link" href={ideaPath(locale, ideaSlug(other.id))} key={other.id}>{other[locale].title}<IdeaIcon name="arrow" /></a>)}
       </section>}
       <details className="ideas-research" id="sources"><summary>{en ? 'Research & sources' : 'গবেষণা ও সোর্স'}<span className="ideas-disclosure-icon" aria-hidden="true" /></summary>
-        <div className="ideas-research-body"><h2>{en ? 'The problem' : 'সমস্যাটি'}</h2><p>{p.context}</p>
+        <div className="ideas-research-body">{a.editorialNote && <><h2>{en ? 'Why we picked it' : 'কেন বেছে নিয়েছি'}</h2><p>{a.editorialNote}</p></>}<h2>{en ? 'The problem' : 'সমস্যাটি'}</h2><p>{p.context}</p>
           <h2>{en ? 'What to find out' : 'যা জেনে নেওয়া দরকার'}</h2><p>{p.unknown}</p>
           {problem.sources.length > 0 && <ol className="ideas-sources">{problem.sources.map(source => <li key={source.url}><div><a href={source.url}>{source.title}<IdeaIcon name="external" /></a><span className="ideas-source-date">{source.date} · {domain(source.url)}</span><p>{source[locale]}</p></div></li>)}</ol>}
         </div>

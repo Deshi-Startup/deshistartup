@@ -201,8 +201,9 @@ reader can discover relevant companies with clear evidence. Two problem connecti
 one company profile. Count successful next actions, correction quality and review burden before
 optimizing for profile volume or votes.
 
-Before public participation, name the maintainer responsible for reviews, set a realistic response
-expectation, document removal/correction and retention rules, and decide the public dataset's
-reuse license. Open-source code does not grant rights to private submissions, company trademarks
-or third-party research. Do not promise an open database export until field-level provenance and
-reuse rights support it.
+The existing Deshi Startup editorial team owns the review queue, with no promised response time.
+The privacy page documents browser-only drafts/saves, private submissions, hashed voting records
+and manual removal requests through the contact form. Private records do not yet auto-expire.
+Original editorial text in the public snapshot uses CC BY-SA 4.0; this does not relicense company
+marks or third-party research, or make private submissions and votes available for reuse.
+Production release, backup/restore and rollback steps live in `docs/startup-ideas.md`.

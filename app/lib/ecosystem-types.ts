@@ -10,7 +10,7 @@ export interface Problem extends Localized<ProblemCopy> {
 }
 export interface ApproachCopy {
   title: string; summary: string; description: string; businessModel: string;
-  steps: string[]; signal: string; prototype: string
+  steps: string[]; signal: string; prototype: string; editorialNote?: string
 }
 export interface Approach extends Localized<ApproachCopy> {
   id: string; problemId: string; kind: ApproachKind; position: number;
@@ -41,6 +41,7 @@ export interface ConnectionProposal {
 export interface ReviewDecision {
   revision: number; decision: 'approved' | 'rejected'; note: string;
   organizationId: string;
+  organizationVersion?: number;
   organization: { slug: string; en: { name: string; description: string }; bn: { name: string; description: string } } | null;
   work: Localized<string>
 }

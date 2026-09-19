@@ -9,7 +9,12 @@ const root = path.resolve(import.meta.dirname, '..')
 const read = p => fs.readFileSync(path.join(root, p), 'utf8')
 const data = validateEcosystemSnapshot(JSON.parse(read('data/ecosystem/public.json')))
 const marker = JSON.parse(read('public/ecosystem-release.json'))
-if (marker.releaseId !== data.releaseId || marker.digest !== snapshotDigest(data)) throw new Error('Public snapshot was edited outside the release exporter. Prepare it from local D1.')
+if (marker.releaseId !== data.releaseId || marker.digest !== snapshotDigest(data)) throw new Error('Public snapshot was edited outside the release exporter. Prepare it from D1.')
+// Keep the API aligned with the shipped catalogue without bundling full briefs.
+const voteIdsPath = path.join(root, 'app/generated/idea-ids.json')
+const voteIds = JSON.stringify(data.approaches.map(idea => idea.id)) + '\n'
+if (!fs.existsSync(voteIdsPath) || fs.readFileSync(voteIdsPath, 'utf8') !== voteIds) fs.writeFileSync(voteIdsPath, voteIds)
+const profileDescription = text => text.length > 250 ? text.split(/(?<=[.!?।])\s+/)[0] : text
 const routes = [
   { route: 'startup-ideas', component: 'Ideas', en: ['Startup ideas for Bangladesh', 'Explore practical startup ideas for Bangladesh. Find who they could help, ways to earn, and a small first test.'], bn: ['বাংলাদেশের জন্য স্টার্টআপ আইডিয়া', 'বাংলাদেশের জন্য স্টার্টআপ আইডিয়া খুঁজে নিন। কাদের কাজে লাগবে, আয়ের উপায় কী আর ছোট করে কীভাবে পরীক্ষা করবেন, জেনে নিন।'] },
   { route: 'companies', component: 'Companies', en: ['Companies in Bangladesh’s startup ecosystem', 'Find startups and investors. See what they do and which problems they work on.'], bn: ['বাংলাদেশের স্টার্টআপ ও বিনিয়োগকারী', 'স্টার্টআপ ও বিনিয়োগকারীদের কাজ এবং তাদের সমাধানের তথ্য দেখুন।'] },
@@ -17,7 +22,7 @@ const routes = [
   { route: 'startup-ideas/review', component: 'ConnectionReview', en: ['Review submissions', 'Private review queue for Deshi Startup reviewers.'], bn: ['জমা দেওয়া তথ্য পর্যালোচনা', 'Deshi Startup-এর পর্যালোচকদের জন্য জমা দেওয়া তথ্য।'] },
   { route: 'startup-ideas/add', component: 'ContributeIdea', en: ['Add a startup idea', 'Share a startup idea for Bangladesh. Describe what you would build and who it would help.'], bn: ['স্টার্টআপ আইডিয়া দিন', 'বাংলাদেশের জন্য আপনার স্টার্টআপ আইডিয়া জানান। কী বানাতে চান আর কাদের কাজে লাগবে, লিখুন।'] },
   ...data.approaches.map(p => ({ route: `startup-ideas/${ideaSlug(p.id)}`, id: p.id, component: 'IdeaDetail', en: [p.en.title, p.en.summary], bn: [p.bn.title, p.bn.summary] })),
-  ...data.organizations.map(o => ({ route: `companies/${o.slug}`, id: o.id, component: 'CompanyProfile', en: [`${o.en.name} company profile`, o.en.description], bn: [`${o.bn.name} সম্পর্কে`, o.bn.description] }))
+  ...data.organizations.map(o => ({ route: `companies/${o.slug}`, id: o.id, component: 'CompanyProfile', en: [`${o.en.name} company profile`, profileDescription(o.en.description)], bn: [`${o.bn.name} সম্পর্কে`, profileDescription(o.bn.description)] }))
 ]
 if (new Set(routes.map(r => r.route)).size !== routes.length) throw new Error('Duplicate ecosystem route')
 const generatedMark = '{/* Generated from the approved ecosystem snapshot by scripts/build-ecosystem-routes.mjs. */}'

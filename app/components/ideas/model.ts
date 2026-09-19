@@ -34,8 +34,9 @@ export const kindFilters = [
 export { ideaPath, ideaSlug } from '../../lib/idea-routes.mjs'
 export const localPath = (locale: Locale, path: string) => `${locale === 'en' ? '/en' : ''}${path}`
 export const number = (n: number, locale: Locale) => n.toLocaleString(locale === 'bn' ? 'bn-BD' : 'en-GB')
-export interface Filters { q: string; sector: string; place: string; kind: string; saved: boolean; problem: string }
-export const defaultFilters: Filters = { q: '', sector: '', place: '', kind: '', saved: false, problem: '' }
+export type IdeaSort = 'recommended' | 'votes' | 'newest'
+export interface Filters { q: string; sector: string; place: string; kind: string; saved: boolean; problem: string; sort: IdeaSort }
+export const defaultFilters: Filters = { q: '', sector: '', place: '', kind: '', saved: false, problem: '', sort: 'recommended' }
 const kindValues = Object.keys(kinds)
 export function parseFilters(search: string): Filters {
   const params = new URLSearchParams(search)
@@ -47,6 +48,7 @@ export function parseFilters(search: string): Filters {
     place: Object.hasOwn(places, place) ? place : '',
     kind: kindValues.includes(params.get('kind') || '') ? params.get('kind')! : '',
     saved: params.get('view') === 'saved',
+    sort: params.get('sort') === 'votes' ? 'votes' : params.get('sort') === 'newest' ? 'newest' : 'recommended',
     problem: /^[a-z0-9-]{1,80}$/.test(params.get('problem') || '') ? params.get('problem')! : ''
   }
 }
@@ -58,8 +60,15 @@ export function filterQuery(filters: Filters) {
   if (filters.kind) params.set('kind', filters.kind)
   if (filters.saved) params.set('view', 'saved')
   if (filters.problem) params.set('problem', filters.problem)
+  if (filters.sort !== 'recommended') params.set('sort', filters.sort)
   const query = params.toString()
   return query ? `?${query}` : ''
+}
+export function sortIdeas(ideas: IdeaSummary[], sort: IdeaSort, counts: Record<string, number> = {}) {
+  // Stable ties preserve the editorial order. Popularity never changes the default.
+  return [...ideas].sort((a, b) => sort === 'votes' ? (counts[b.id] || 0) - (counts[a.id] || 0)
+    : sort === 'newest' ? b.addedAt.localeCompare(a.addedAt)
+    : Number(b.editorialPick) - Number(a.editorialPick))
 }
 export function matchingIdeas(ideas: IdeaSummary[], filters: Filters, saved: string[]) {
   const words = filters.q.toLocaleLowerCase().normalize('NFC').trim().split(/\s+/).filter(Boolean)

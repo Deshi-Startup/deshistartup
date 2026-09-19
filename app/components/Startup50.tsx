@@ -242,12 +242,12 @@ export default function Startup50({ locale = 'bn' }: Startup50Props) {
           {data.entries.map((entry) => {
             const logo = logoBySlug.get(entry.slug) as StartupLogo
             const caseStudyRoute = caseStudies.get(entry.slug)
-            const profile = ecosystem.organizations.find(o => o.references.some(r => r.kind === 'startup-50' && r.target === entry.slug))
             const searchText = [
               entry.name,
               local(entry.sector, locale),
               local(data.sectorGroups[entry.sectorKey], locale)
             ].join(' ')
+            const profile = ecosystem.organizations.find(o => o.references.some(r => r.kind === 'startup-50' && r.target === entry.slug))
             return (
               <li key={entry.slug} data-startup-entry="" data-sector={entry.sectorKey} data-search={searchText}>
                 <article className="startup50-entry" id={entry.slug}>

@@ -27,11 +27,45 @@
       "/en/problems",
       "/en/problems/*",
       "/startup-ideas/add-startup",
+      "/startup-ideas/add-startup/",
       "/startup-ideas/contribute",
+      "/startup-ideas/contribute/",
       "/startup-ideas/draft",
+      "/startup-ideas/draft/",
+      "/startup-ideas/courier-settlement",
+      "/startup-ideas/courier-settlement/",
+      "/startup-ideas/courier-settlement-service",
+      "/startup-ideas/courier-settlement-service/",
+      "/startup-ideas/shared-cold-delivery",
+      "/startup-ideas/shared-cold-delivery/",
+      "/startup-ideas/bangla-order-notes",
+      "/startup-ideas/bangla-order-notes/",
+      "/startup-ideas/bangla-order-confirmation",
+      "/startup-ideas/bangla-order-confirmation/",
+      "/startup-ideas/produce-crates",
+      "/startup-ideas/produce-crates/",
+      "/startup-ideas/factory-maintenance",
+      "/startup-ideas/factory-maintenance/",
       "/en/startup-ideas/add-startup",
+      "/en/startup-ideas/add-startup/",
       "/en/startup-ideas/contribute",
+      "/en/startup-ideas/contribute/",
       "/en/startup-ideas/draft",
+      "/en/startup-ideas/draft/",
+      "/en/startup-ideas/courier-settlement",
+      "/en/startup-ideas/courier-settlement/",
+      "/en/startup-ideas/courier-settlement-service",
+      "/en/startup-ideas/courier-settlement-service/",
+      "/en/startup-ideas/shared-cold-delivery",
+      "/en/startup-ideas/shared-cold-delivery/",
+      "/en/startup-ideas/bangla-order-notes",
+      "/en/startup-ideas/bangla-order-notes/",
+      "/en/startup-ideas/bangla-order-confirmation",
+      "/en/startup-ideas/bangla-order-confirmation/",
+      "/en/startup-ideas/produce-crates",
+      "/en/startup-ideas/produce-crates/",
+      "/en/startup-ideas/factory-maintenance",
+      "/en/startup-ideas/factory-maintenance/",
       "/contribute/review/*",
       "/50",
       "/50/",
@@ -70,6 +104,14 @@
       "bucket_name": "deshistartup-media-quarantine"
     }
   ],
+  "d1_databases": [
+    {
+      "binding": "ECOSYSTEM_DB",
+      "database_name": "deshistartup-ecosystem",
+      "database_id": "8cbfc32c-8491-4e95-8561-a87a16e732ab",
+      "migrations_dir": "worker/migrations/ecosystem"
+    }
+  ],
   "kv_namespaces": [
     {
       "binding": "CONTRIBUTION_GUARDS",
@@ -77,6 +119,11 @@
     }
   ],
   "ratelimits": [
+    {
+      "name": "IDEA_VOTE_RATE",
+      "namespace_id": "31006",
+      "simple": { "limit": 20, "period": 60 }
+    },
     {
       "name": "MEDIA_USER_RATE",
       "namespace_id": "31001",

@@ -1,5 +1,5 @@
 import test from 'node:test'
-import { legacyIdeaDestination, ideaSlug } from '../app/lib/idea-routes.mjs'
+import { legacyIdeaDestination, ideaSlug, retiredIdeaSlugs } from '../app/lib/idea-routes.mjs'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import { snapshotDigest, validateEcosystemSnapshot } from './lib/ecosystem-snapshot.mjs'
@@ -24,6 +24,14 @@ test('snapshot rejects unknown public types before components can crash', () => 
     broken[table][0][field] = value
     assert.throws(() => validateEcosystemSnapshot(broken), /Invalid/)
   }
+})
+test('editorial picks need matching bilingual reasons and voting allows only shipped ideas', () => {
+  const broken = structuredClone(snapshot)
+  broken.approaches[0].en.editorialNote = 'A clear customer and a practical first test.'
+  broken.approaches[0].bn.editorialNote = ''
+  assert.throws(() => validateEcosystemSnapshot(broken), /editorial selection/)
+  const ids = JSON.parse(fs.readFileSync(new URL('../app/generated/idea-ids.json', import.meta.url), 'utf8'))
+  assert.deepEqual(ids, snapshot.approaches.map(idea => idea.id))
 })
 test('release marker pins exact data and all editorial references resolve', () => {
   const marker = JSON.parse(fs.readFileSync(new URL('../public/ecosystem-release.json', import.meta.url), 'utf8'))
@@ -59,4 +67,16 @@ test('old preview routes preserve all idea choices and never redirect the canoni
   assert.equal(legacyIdeaDestination('/problems/draft'), '/startup-ideas/add')
   for (const route of ['/startup-ideas', '/en/startup-ideas/harvest-cooling', '/companies/pathao', '/problems/a/b', '/ideas/finding-ideas']) assert.equal(legacyIdeaDestination(route), null)
   assert.equal(new Set(snapshot.approaches.map(idea => ideaSlug(idea.id))).size, snapshot.approaches.length)
+})
+
+// Static Assets only invokes redirects for paths explicitly delegated to the Worker.
+test('all legacy idea navigation paths reach their Worker redirects', () => {
+  const config = fs.readFileSync(new URL('../wrangler.jsonc', import.meta.url), 'utf8')
+  for (const prefix of ['', '/en']) for (const slug of ['add-startup', 'contribute', 'draft', ...retiredIdeaSlugs]) {
+    for (const suffix of ['', '/']) {
+      const route = `${prefix}/startup-ideas/${slug}${suffix}`
+      assert.ok(config.includes(JSON.stringify(route)), `Missing Worker route: ${route}`)
+      assert.ok(legacyIdeaDestination(route))
+    }
+  }
 })

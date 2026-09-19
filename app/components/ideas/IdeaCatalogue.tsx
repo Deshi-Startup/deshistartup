@@ -1,8 +1,10 @@
 'use client'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { IdeaSummary, Locale, Place, Sector } from './types'
-import { defaultFilters, filterQuery, ideaPath, kindFilters, kindLabel, matchingIdeas, number, parseFilters, places, sectors, type Filters } from './model'
+import { defaultFilters, filterQuery, ideaPath, kindFilters, kindLabel, matchingIdeas, number, parseFilters, places, sectors, sortIdeas, type Filters, type IdeaSort } from './model'
 import { useShortlist } from './useShortlist'
+import { useIdeaVotes } from './useIdeaVotes'
+import { VoteButton } from './VoteIdea'
 import IdeaShell from './IdeaShell'
 import IdeaIcon from './IdeaIcon'
 
@@ -12,6 +14,7 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
   const [urlReady, setUrlReady] = useState(false)
   const [message, setMessage] = useState('')
   const { saved, ready, error, toggle } = useShortlist(ideas)
+  const votes = useIdeaVotes(locale)
   const resultHeading = useRef<HTMLHeadingElement>(null)
   const searchRef = useRef<HTMLInputElement>(null)
   const saveButtons = useRef(new Map<string, HTMLButtonElement>())
@@ -28,7 +31,8 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
     }, 250)
     return () => window.clearTimeout(timer)
   }, [filters, urlReady])
-  const results = useMemo(() => matchingIdeas(ideas, filters, saved), [ideas, filters, saved])
+  const results = useMemo(() => sortIdeas(matchingIdeas(ideas, filters, saved), filters.sort, votes.counts), [ideas, filters, saved, votes.counts])
+  const hasVotes = Object.values(votes.counts).some(count => count > 0)
   const savedCount = ideas.filter(idea => saved.includes(idea.id)).length
   const sectorOptions = Object.entries(sectors).filter(([value]) => value === filters.sector || ideas.some(idea => idea.sector === value))
   const placeOptions = Object.entries(places).filter(([value]) => value === filters.place || ideas.some(idea => idea.places.includes(value as Place)))
@@ -39,7 +43,7 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
     const target = `${window.location.pathname}${filterQuery(next)}${window.location.hash}`
     if (target !== `${window.location.pathname}${window.location.search}${window.location.hash}`) window.history.pushState(window.history.state, '', target)
   }
-  function clear() { update({ ...defaultFilters, saved: filters.saved }); searchRef.current?.focus() }
+  function clear() { update({ ...defaultFilters, saved: filters.saved, sort: filters.sort }); searchRef.current?.focus() }
   function browseAll() { update({ ...defaultFilters }); searchRef.current?.focus() }
   function save(id: string) {
     const index = results.findIndex(idea => idea.id === id)
@@ -67,21 +71,34 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
     <div className="ideas-kinds" role="group" aria-label={en ? 'Idea type' : 'আইডিয়ার ধরন'}>
       {typeOptions.map(option => <button key={option.value} type="button" aria-pressed={filters.kind === option.value} onClick={() => update({ ...filters, kind: option.value })}>{option.label[locale]}</button>)}
     </div>
-    <div className="ideas-results-toolbar"><h2 ref={resultHeading} tabIndex={-1} className="ideas-result-count" aria-live="polite">{en ? `${number(results.length, locale)} ${results.length === 1 ? 'idea' : 'ideas'}` : `${number(results.length, locale)}টি আইডিয়া`}</h2>{hasFilters && <button className="ideas-text-button ideas-clear" type="button" onClick={clear}>{en ? 'Clear filters' : 'ফিল্টার সরান'}</button>}<button className="ideas-saved-filter" type="button" aria-pressed={filters.saved} disabled={!ready} onClick={() => update({ ...filters, saved: !filters.saved })}><IdeaIcon name="bookmark" filled={filters.saved} />{en ? 'Saved' : 'সেভ করা'}{ready && savedCount > 0 && <span>{number(savedCount, locale)}</span>}</button></div>
+    <div className="ideas-results-toolbar"><h2 ref={resultHeading} tabIndex={-1} className="ideas-result-count" aria-live="polite">{en ? `${number(results.length, locale)} ${results.length === 1 ? 'idea' : 'ideas'}` : `${number(results.length, locale)}টি আইডিয়া`}</h2>{hasFilters && <button className="ideas-text-button ideas-clear" type="button" onClick={clear}>{en ? 'Clear filters' : 'ফিল্টার সরান'}</button>}
+      <div className="ideas-result-options">
+        <label className="ideas-select ideas-sort"><span className="ideas-sr-only">{en ? 'Sort ideas' : 'আইডিয়া সাজান'}</span><select value={filters.sort} onChange={event => update({ ...filters, sort: event.target.value as IdeaSort })}>
+          <option value="recommended">{en ? 'Recommended' : 'আমাদের বাছাই'}</option>
+          {(hasVotes || filters.sort === 'votes') && <option value="votes">{en ? 'Most upvoted' : 'বেশি ভোট'}</option>}
+          <option value="newest">{en ? 'Newest' : 'নতুন আগে'}</option>
+        </select></label>
+        <button className="ideas-saved-filter" type="button" aria-pressed={filters.saved} disabled={!ready} onClick={() => update({ ...filters, saved: !filters.saved })}><IdeaIcon name="bookmark" filled={filters.saved} />{en ? 'Saved' : 'সেভ করা'}{ready && savedCount > 0 && <span>{number(savedCount, locale)}</span>}</button>
+      </div>
+    </div>
     {filters.saved && <p className="ideas-browser-note">{en ? 'Saved on this browser only.' : 'সেভ করা তালিকা এই ব্রাউজারেই থাকে।'}</p>}
     {error && <p className="ideas-error" role="alert">{en ? 'Your saved list could not be updated. Allow site storage and try again.' : 'ব্রাউজারে তালিকাটি সেভ করা যায়নি। সাইটের স্টোরেজ চালু করে আবার চেষ্টা করুন।'}</p>}
-    <p className="ideas-sr-only" role="status">{message}</p>
+    <p className="ideas-sr-only" role="status">{message}</p><p className="ideas-sr-only" role="status">{votes.announcement}</p>{votes.dialog}
     {results.length ? <div className="ideas-list">{results.map(idea => {
       const active = saved.includes(idea.id)
       const label = active ? (en ? 'Remove from saved' : 'সেভ করা থেকে সরান') : (en ? 'Save idea' : 'আইডিয়া সেভ করুন')
       return <article className="ideas-row" key={idea.id}>
-        <p className="ideas-row-sector">{sectors[idea.sector as Sector]?.[locale] || idea.sector}</p>
+        <div className="ideas-row-sector"><p>{sectors[idea.sector as Sector]?.[locale] || idea.sector}</p>{idea.editorialPick && <span className="ideas-pick">{en ? 'Editor’s pick' : 'আমাদের বাছাই'}</span>}</div>
         <div className="ideas-row-copy">
           <h3><a href={ideaPath(locale, idea.slug)}>{idea.title}</a></h3>
           <p className="ideas-row-summary">{idea.summary}</p>
           <p className="ideas-row-meta">{kindLabel(idea.kind, locale)}<span aria-hidden="true"> · </span>{idea.places.map(place => places[place as Place]?.[locale] || place).join(' · ')}</p>
         </div>
-        <button ref={element => { if (element) saveButtons.current.set(idea.id, element); else saveButtons.current.delete(idea.id) }} className="ideas-bookmark" type="button" aria-label={`${label}: ${idea.title}`} title={label} aria-pressed={active} disabled={!ready} onClick={() => save(idea.id)}><IdeaIcon name="bookmark" filled={active} /></button>
+        <div className="ideas-row-actions">
+          <VoteButton id={idea.id} title={idea.title} locale={locale} votes={votes} compact />
+          <button ref={element => { if (element) saveButtons.current.set(idea.id, element); else saveButtons.current.delete(idea.id) }} className="ideas-bookmark" type="button" aria-label={`${label}: ${idea.title}`} title={label} aria-pressed={active} disabled={!ready} onClick={() => save(idea.id)}><IdeaIcon name="bookmark" filled={active} /></button>
+        </div>
+        {votes.error?.id === idea.id && <p className="ideas-error ideas-row-error" role="alert">{votes.error.message}</p>}
       </article>
     })}</div> : <div className="ideas-empty"><IdeaIcon name={filters.saved && !savedCount ? 'bookmark' : 'search'} /><h3>{filters.saved && !savedCount ? (en ? 'No saved ideas yet.' : 'এখনো কোনো আইডিয়া সেভ করেননি।') : (en ? 'No matching ideas.' : 'মিলে যায় এমন কোনো আইডিয়া পাওয়া যায়নি।')}</h3><p>{filters.saved && !savedCount ? (en ? 'Use the bookmark beside an idea to save it.' : 'আইডিয়ার পাশের বুকমার্কে চাপ দিয়ে নিজের তালিকায় রেখে দিতে পারেন।') : (en ? 'Try a broader search or clear your filters.' : 'অন্য শব্দ দিয়ে খুঁজুন বা ফিল্টার সরিয়ে দেখুন।')}</p><button className="ideas-button ideas-button-secondary" type="button" onClick={browseAll}>{en ? 'Browse all ideas' : 'সব আইডিয়া দেখুন'}</button></div>}
   </IdeaShell>

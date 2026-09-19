@@ -63,6 +63,88 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
     return readEcosystemSnapshot(sql => rows[sql.match(/FROM (\w+)/)[1]], 'release-test', now)
   }
   const initial = await snapshot()
+  await t.test('public vote caching shares one release key and never caches private reads', async () => {
+    const entries = new Map()
+    let reads = 0
+    const cached = createEcosystemHandler({
+      authenticate: async () => null,
+      cache: {
+        match: async request => entries.get(request.url)?.clone(),
+        put: async (request, response) => { entries.set(request.url, response.clone()) }
+      }
+    })
+    const counted = { ...env, ECOSYSTEM_DB: { prepare(sql) { reads++; return db.prepare(sql) } } }
+    const read = path => cached(new Request(`https://example.com/api/ecosystem/${path}`), counted)
+    assert.equal((await read('votes?nonce=one')).status, 200)
+    assert.equal((await read('votes?nonce=two')).status, 200)
+    assert.equal(reads, 1)
+    assert.equal(entries.size, 1)
+    const privateResponse = await read('votes/mine')
+    assert.equal(privateResponse.status, 401)
+    assert.match(privateResponse.headers.get('Cache-Control'), /no-store/)
+    assert.equal(entries.size, 1)
+  })
+
+  await t.test('votes are public counts, private choices and idempotent authenticated writes', async () => {
+    const publicResponse = await call('votes')
+    assert.equal(publicResponse.status, 200)
+    assert.equal(publicResponse.headers.get('Cache-Control'), 'public, max-age=60')
+    const before = await publicResponse.json()
+    assert.equal(before.counts['harvest-cooling'], 0)
+    assert.equal(Object.hasOwn(before.counts, 'courier-settlement-approach'), false)
+    assert.equal((await call('votes/mine')).status, 401)
+    assert.equal((await call('votes', null, { id: 'harvest-cooling', voted: true })).status, 401)
+    const responses = await Promise.all([1, 2].map(() => call('votes', 'voter', { id: 'harvest-cooling', voted: true })))
+    for (const response of responses) assert.deepEqual(await response.json(), { id: 'harvest-cooling', voted: true, count: 1 })
+    assert.deepEqual(await (await call('votes', 'another-voter', { id: 'harvest-cooling', voted: true })).json(), { id: 'harvest-cooling', voted: true, count: 2 })
+    const mine = await call('votes/mine', 'voter')
+    assert.match(mine.headers.get('Cache-Control'), /private, no-store/)
+    const mineBody = await mine.json()
+    assert.deepEqual(mineBody.voted, ['harvest-cooling'])
+    assert.equal(mineBody.counts['harvest-cooling'], 2)
+    assert.deepEqual((await (await call('votes/mine', 'unrelated')).json()).voted, [])
+    assert.equal((await (await call('votes')).json()).counts['harvest-cooling'], 2)
+    const firstDate = (await db.prepare("SELECT created_at FROM idea_votes WHERE approach_id = 'harvest-cooling' LIMIT 1").first()).created_at
+    for (const voted of [false, false, true, false]) {
+      const response = await call('votes', 'voter', { id: 'harvest-cooling', voted })
+      assert.match(response.headers.get('Cache-Control'), /private, no-store/)
+      assert.deepEqual(await response.json(), { id: 'harvest-cooling', voted, count: voted ? 2 : 1 })
+    }
+    assert.equal((await db.prepare("SELECT created_at FROM idea_votes WHERE approach_id = 'harvest-cooling' LIMIT 1").first()).created_at, firstDate)
+    assert.deepEqual(await snapshot(), initial, 'live votes and voter identity must never enter a static release')
+    assert.doesNotMatch(JSON.stringify(await (await call('votes')).json()), /owner|voter|email|created/)
+  })
+  await t.test('voting cannot expose unpublished records or bypass input, retirement and admission controls', async () => {
+    for (const id of ['not-a-real-idea', 'courier-settlement-approach']) assert.equal((await call('votes', 'voter', { id, voted: true })).status, 404)
+    await db.prepare("INSERT INTO approaches (id, problem_id, kind, added_at) VALUES ('unpublished-test', 'produce-cold-chain', 'service', '2026-09-19')").run()
+    assert.equal((await call('votes', 'voter', { id: 'unpublished-test', voted: true })).status, 404)
+    assert.equal(Object.hasOwn((await (await call('votes')).json()).counts, 'unpublished-test'), false)
+    await db.prepare("DELETE FROM approaches WHERE id = 'unpublished-test'").run()
+    await db.prepare("UPDATE problems SET active = 0 WHERE id = 'produce-cold-chain'").run()
+    assert.equal((await call('votes', 'voter', { id: 'harvest-cooling', voted: true })).status, 404)
+    assert.equal(Object.hasOwn((await (await call('votes')).json()).counts, 'harvest-cooling'), false)
+    assert.deepEqual((await (await call('votes/mine', 'another-voter')).json()).voted, [])
+    await db.prepare("UPDATE problems SET active = 1 WHERE id = 'produce-cold-chain'").run()
+    for (const body of [{ id: 'harvest-cooling', voted: 'true' }, { id: '../bad', voted: true }, { id: 'harvest-cooling' }]) assert.equal((await call('votes', 'voter', body)).status, 400)
+    assert.equal((await call('votes', 'voter', { id: 'harvest-cooling', voted: true, padding: 'x'.repeat(600) })).status, 413)
+    const limited = createEcosystemHandler({ authenticate: async () => ({ sub: 'limited', email: 'limited@example.com' }), admit: async () => false })
+    assert.equal((await limited(new Request('https://example.com/api/ecosystem/votes', { method: 'POST', body: JSON.stringify({ id: 'harvest-cooling', voted: true }) }), env)).status, 429)
+    assert.equal((await handler(new Request('https://example.com/api/ecosystem/votes'), {})).status, 503)
+  })
+  await t.test('voting uses its own allowance and still respects account moderation', async () => {
+    let votes = 0, contributions = 0
+    const liveAdmission = createEcosystemHandler({ authenticate: async () => ({ sub: 'vote-quota', email: 'vote-quota@example.com' }) })
+    const rateEnv = { ...env, CONTRIBUTION_GUARDS: { get: async () => null },
+      IDEA_VOTE_RATE: { limit: async () => { votes++; return { success: true } } },
+      CONTRIBUTION_USER_RATE: { limit: async () => { contributions++; return { success: false } } }
+    }
+    const request = () => new Request('https://example.com/api/ecosystem/votes', { method: 'POST', body: JSON.stringify({ id: 'solar-upkeep', voted: true }), headers: { 'Content-Type': 'application/json' } })
+    assert.equal((await liveAdmission(request(), rateEnv)).status, 200)
+    assert.equal(votes, 1); assert.equal(contributions, 0)
+    const moderated = createEcosystemHandler({ authenticate: async () => ({ sub: 'banned-voter', email: 'banned-voter@example.com' }) })
+    assert.equal((await moderated(request(), { ...rateEnv, CONTRIBUTION_GUARDS: { get: async () => ({ status: 'banned' }) } })).status, 429)
+    assert.equal(votes, 1, 'moderation must reject before calling the vote limiter')
+  })
   await t.test('retired preview records stay in D1 but cannot leak into a new release', async () => {
     assert.equal((await db.prepare("SELECT active FROM problems WHERE id = 'courier-settlement'").first()).active, 0)
     assert.ok(await db.prepare("SELECT id FROM approaches WHERE id = 'courier-settlement-approach'").first())
@@ -111,8 +193,14 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
     const incoming = proposal({ organizationId: '', organization: { name: 'Test Venture', website: 'https://example.com', description: 'An illustrative venture for this isolated integration test.', role: 'startup' } })
     const pending = await (await call('submissions', 'contributor', incoming, 'test-idempotency-00003')).json()
     assert.equal((await snapshot()).organizations.length, initial.organizations.length)
-    const approve = decision({ organizationId: '', organization: { slug: 'test-venture', en: { name: 'Test Venture', description: 'An illustrative venture used only in this test.' }, bn: { name: 'টেস্ট ভেঞ্চার', description: 'এই পরীক্ষার জন্য তৈরি একটি কাল্পনিক কোম্পানি।' } } })
+    const version = (await (await call('review', 'reviewer')).json()).organizationVersion
+    const approve = decision({ organizationVersion: version, organizationId: '', organization: { slug: 'test-venture', en: { name: 'Test Venture', description: 'An illustrative venture used only in this test.' }, bn: { name: 'টেস্ট ভেঞ্চার', description: 'এই পরীক্ষার জন্য তৈরি একটি কাল্পনিক কোম্পানি।' } } })
     assert.equal((await call(`review/${pending.id}`, 'reviewer', approve)).status, 200)
+    const duplicate = await (await call('submissions', 'other-contributor', incoming, 'duplicate-identity-00001')).json()
+    const stale = { ...approve, organization: { ...approve.organization, slug: 'test-venture-alias' } }
+    assert.equal((await call(`review/${duplicate.id}`, 'reviewer', stale)).status, 409)
+    assert.equal((await db.prepare('SELECT status FROM submissions WHERE id = ?').bind(duplicate.id).first()).status, 'pending')
+    assert.equal((await db.prepare('SELECT COUNT(*) AS n FROM mutation_guards').first()).n, 0)
     const company = (await snapshot()).organizations.find(o => o.slug === 'test-venture')
     assert.ok(company.en.name && company.bn.name)
     const second = await (await call('submissions', 'contributor', proposal({ problemId: 'garment-offcuts', organizationId: company.id }), 'test-idempotency-00004')).json()

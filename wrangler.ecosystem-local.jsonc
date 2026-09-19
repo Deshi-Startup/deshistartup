@@ -13,6 +13,9 @@
   }],
   "kv_namespaces": [{ "binding": "CONTRIBUTION_GUARDS", "id": "ecosystem-local-guards" }],
   "ratelimits": [{
+    "name": "IDEA_VOTE_RATE", "namespace_id": "31006",
+    "simple": { "limit": 20, "period": 60 }
+  }, {
     "name": "CONTRIBUTION_USER_RATE", "namespace_id": "31003",
     "simple": { "limit": 3, "period": 60 }
   }]

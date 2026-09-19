@@ -11,4 +11,6 @@ export interface IdeaSummary {
   title: string
   summary: string
   search: string
+  addedAt: string
+  editorialPick: boolean
 }

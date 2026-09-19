@@ -15,6 +15,8 @@ export default function ConnectionReview({ locale }: { locale: Locale }) {
   const session = useEcosystemSession(locale)
   const [queue, setQueue] = useState<Pending[]>([])
   const [companies, setCompanies] = useState<Company[]>([])
+  const [organizationVersion, setOrganizationVersion] = useState(0)
+  const [authorizedToken, setAuthorizedToken] = useState('')
   const [busy, setBusy] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const [error, setError] = useState('')
@@ -23,10 +25,10 @@ export default function ConnectionReview({ locale }: { locale: Locale }) {
     if (!session.auth) return
     setBusy(true); setError('')
     try {
-      const response = await fetch('/api/ecosystem/review', { headers: { Authorization: `Bearer ${session.auth.token}` } })
+      const response = await fetch('/api/ecosystem/review', { headers: { Authorization: `Bearer ${session.auth.token}` }, signal: AbortSignal.timeout(15_000) })
       if (!response.ok) { if (response.status === 401) session.expire(); throw new Error(ecosystemError(response.status, locale)) }
-      const data = await response.json(); setQueue(data.submissions); setCompanies(data.organizations); setLoaded(true)
-    } catch (cause) { setError(cause instanceof Error ? cause.message : ecosystemError(503, locale)) }
+      const data = await response.json(); setQueue(data.submissions); setCompanies(data.organizations); setOrganizationVersion(data.organizationVersion); setAuthorizedToken(session.auth.token); setLoaded(true)
+    } catch (cause) { setError(cause instanceof Error && cause.name === 'Error' ? cause.message : ecosystemError(503, locale)) }
     finally { setBusy(false) }
   }, [session.auth, locale])
   useEffect(() => { void load() }, [load])
@@ -34,19 +36,20 @@ export default function ConnectionReview({ locale }: { locale: Locale }) {
     if (!session.auth) return
     setBusy(true); setError(''); setMessage('')
     try {
-      const response = await fetch(`/api/ecosystem/review/${item.id}`, { method: 'POST', headers: { Authorization: `Bearer ${session.auth.token}`, 'Content-Type': 'application/json' }, body: JSON.stringify(decision) })
+      const response = await fetch(`/api/ecosystem/review/${item.id}`, { method: 'POST', headers: { Authorization: `Bearer ${session.auth.token}`, 'Content-Type': 'application/json' }, body: JSON.stringify(decision), signal: AbortSignal.timeout(15_000) })
       if (!response.ok) { if (response.status === 401) session.expire(); throw new Error(ecosystemError(response.status, locale)) }
       setMessage(decision.decision === 'approved' && 'kind' in item.payload ? t('Accepted for editorial preparation.', 'সম্পাদনার জন্য গ্রহণ করা হয়েছে।') : decision.decision === 'approved' ? t('Approved. It will appear after the next publication.', 'অনুমোদিত হয়েছে। পরেরবার প্রকাশের সময় সাইটে দেখা যাবে।') : t('Decision saved.', 'সিদ্ধান্ত সেভ হয়েছে।'))
       await load()
-    } catch (cause) { setError(cause instanceof Error ? cause.message : ecosystemError(503, locale)) }
+    } catch (cause) { setError(cause instanceof Error && cause.name === 'Error' ? cause.message : ecosystemError(503, locale)) }
     finally { setBusy(false) }
   }
+  const authorized = !!session.auth && authorizedToken === session.auth.token
   return <IdeaShell locale={locale}><a className="ideas-back" href={relatedIdeasPath(locale)}>{t('Back to ideas', 'আইডিয়ার তালিকায় ফিরুন')}</a><header className="ideas-draft-intro"><h1>{t('Review submissions', 'জমা দেওয়া তথ্য দেখুন।')}</h1><p>{t('Review ideas and company submissions before they join the collection.', 'প্রকাশের আগে জমা দেওয়া আইডিয়া ও কোম্পানির তথ্য দেখুন।')}</p></header>
-    {!session.auth ? <button className="ideas-button" onClick={session.signIn}>{t('Sign in as a reviewer', 'পর্যালোচক হিসেবে সাইন ইন করুন')}</button> : <><button className="ideas-text-button" disabled={busy} onClick={load}>{busy ? t('Loading…', 'লোড হচ্ছে…') : t('Refresh list', 'তালিকা রিফ্রেশ করুন')}</button>{loaded && !queue.length && !error && <p className="review-empty">{t('Nothing is waiting for review.', 'পর্যালোচনার জন্য কোনো তথ্য বাকি নেই।')}</p>}{queue[0] && ('kind' in queue[0].payload ? <IdeaReviewItem key={queue[0].id} locale={locale} item={{ ...queue[0], payload: queue[0].payload }} busy={busy} onDecision={decision => decide(queue[0], decision)} /> : <ReviewItem key={queue[0].id} locale={locale} item={queue[0] as PendingConnection} companies={companies} busy={busy} onDecision={decision => decide(queue[0], decision)} />)}</>}
+    {!session.auth ? <button className="ideas-button" onClick={session.signIn}>{t('Sign in as a reviewer', 'পর্যালোচক হিসেবে সাইন ইন করুন')}</button> : <button className="ideas-text-button" disabled={busy} onClick={load}>{busy ? t('Loading…', 'লোড হচ্ছে…') : t('Refresh list', 'তালিকা রিফ্রেশ করুন')}</button>}<div hidden={!authorized}>{loaded && !queue.length && !error && <p className="review-empty">{t('Nothing is waiting for review.', 'পর্যালোচনার জন্য কোনো তথ্য বাকি নেই।')}</p>}{queue[0] && ('kind' in queue[0].payload ? <IdeaReviewItem key={queue[0].id} locale={locale} item={{ ...queue[0], payload: queue[0].payload }} busy={busy || !authorized} onDecision={decision => decide(queue[0], decision)} /> : <ReviewItem key={queue[0].id} locale={locale} item={queue[0] as PendingConnection} companies={companies} organizationVersion={organizationVersion} busy={busy || !authorized} onDecision={decision => decide(queue[0], decision)} />)}</div>
     {error && <p className="ideas-error" role="alert">{error}</p>}<p className="ideas-action-status" role="status">{message}</p>{session.dialog}
   </IdeaShell>
 }
-function ReviewItem({ locale, item, companies, busy, onDecision }: { locale: Locale; item: PendingConnection; companies: Company[]; busy: boolean; onDecision: (decision: ReviewDecision) => void }) {
+function ReviewItem({ locale, item, companies, organizationVersion, busy, onDecision }: { locale: Locale; item: PendingConnection; companies: Company[]; organizationVersion: number; busy: boolean; onDecision: (decision: ReviewDecision) => void }) {
   const t = (a: string, b: string) => locale === 'en' ? a : b
   const p = item.payload
   const [companyId, setCompanyId] = useState(p.organizationId)
@@ -58,7 +61,7 @@ function ReviewItem({ locale, item, companies, busy, onDecision }: { locale: Loc
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const action = (event.nativeEvent as SubmitEvent).submitter?.getAttribute('value')
-    const decision = parseDecision({ revision: item.revision, decision: action, note, organizationId: companyId, organization: companyId ? null : org, work })
+    const decision = parseDecision({ revision: item.revision, decision: action, note, organizationId: companyId, organizationVersion, organization: companyId ? null : org, work })
     if (!decision) { setError(t('Add a review note. Approvals also need a company and complete English and Bangla descriptions.', 'পর্যালোচনার মন্তব্য লিখুন। অনুমোদন দিতে কোম্পানির তথ্য ও বাংলা-ইংরেজি বিবরণ পূর্ণ করতে হবে।')); return }
     setError(''); onDecision(decision)
   }

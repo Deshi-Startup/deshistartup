@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 const { problems, approaches: ideas } = JSON.parse(fs.readFileSync(new URL('../../../data/ecosystem/public.json', import.meta.url), 'utf8'))
-import { defaultFilters, draftLimits, draftMarkdown, emptyDraft, filterQuery, ideaPath, ideaSlug, matchingIdeas, parseDraft, parseFilters, parseSaved, readSaved, SAVED_KEY, LEGACY_SAVED_KEY, places, sectors } from './model.ts'
+import { defaultFilters, draftLimits, draftMarkdown, emptyDraft, filterQuery, ideaPath, ideaSlug, matchingIdeas, parseDraft, parseFilters, parseSaved, readSaved, SAVED_KEY, LEGACY_SAVED_KEY, places, sectors, sortIdeas } from './model.ts'
 import { guidePage } from '../../lib/guide-index.mjs'
 import { pageChromePolicy } from '../../lib/page-chrome.ts'
 import { sourceSupportsInlineEdit } from '../../lib/inline-edit-policy.mjs'
@@ -96,11 +96,27 @@ const summaries = [
 ]
 
 test('URL filters round-trip Bangla and punctuation without accepting unknown categories', () => {
-  const state = { q: 'কুরিয়ার & returns', sector: 'commerce', place: 'dhaka', kind: 'service', saved: true, problem: '' }
+  const state = { q: 'কুরিয়ার & returns', sector: 'commerce', place: 'dhaka', kind: 'service', saved: true, problem: '', sort: 'votes' }
   assert.deepEqual(parseFilters(filterQuery(state)), state)
   assert.deepEqual(parseFilters('?sector=__proto__&place=constructor&kind=__proto__&view=unknown'), defaultFilters)
   assert.equal(parseFilters(`?q=${'x'.repeat(200)}`).q.length, 120)
   assert.equal(filterQuery(defaultFilters), '')
+})
+
+test('editorial ordering stays independent of votes; optional sorts are stable and shareable', () => {
+  const sample = [
+    { id: 'a', addedAt: '2026-09-01', editorialPick: false },
+    { id: 'b', addedAt: '2026-09-02', editorialPick: true },
+    { id: 'c', addedAt: '2026-09-02', editorialPick: false }
+  ]
+  const ids = rows => rows.map(row => row.id)
+  assert.deepEqual(ids(sortIdeas(sample, 'recommended', { a: 100 })), ['b', 'a', 'c'])
+  assert.deepEqual(ids(sortIdeas(sample, 'votes', { a: 1, b: 4, c: 4 })), ['b', 'c', 'a'])
+  assert.deepEqual(ids(sortIdeas(sample, 'newest')), ['b', 'c', 'a'])
+  assert.deepEqual(ids(sortIdeas(sample, 'votes')), ['a', 'b', 'c'])
+  assert.deepEqual(ids(sample), ['a', 'b', 'c'])
+  assert.equal(parseFilters('?sort=trending').sort, 'recommended')
+  assert.equal(parseFilters(filterQuery({ ...defaultFilters, sort: 'newest' })).sort, 'newest')
 })
 
 test('search, sector, pilot scope and shortlist narrow together', () => {

@@ -53,12 +53,14 @@ export function parseDecision(value: unknown): ReviewDecision | null {
   const existing = validEntityId(value.organizationId)
   const org = value.organization
   if (existing && org !== null) return null
+  if (!existing && (!Number.isSafeInteger(value.organizationVersion) || Number(value.organizationVersion) < 0)) return null
   if (!existing && !(value.organizationId === '' && record(org) && text(org.slug, 80) &&
     /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(org.slug) && !['review', 'draft', 'contribute'].includes(org.slug) && record(org.en) && record(org.bn) &&
     text(org.en.name, 100) && text(org.bn.name, 100) && text(org.en.description, 500, 20) && text(org.bn.description, 500, 20))) return null
   return {
     revision: Number(value.revision), decision: 'approved', note: value.note.trim(),
     organizationId: existing ? value.organizationId as string : '',
+    ...(!existing ? { organizationVersion: Number(value.organizationVersion) } : {}),
     organization: existing ? null : org as ReviewDecision['organization'],
     work: { en: value.work.en.trim(), bn: value.work.bn.trim() }
   }

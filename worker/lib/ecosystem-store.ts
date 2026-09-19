@@ -42,6 +42,9 @@ export async function decideSubmission(db: D1Database, id: string, reviewer: str
     statements.push(db.prepare('INSERT INTO mutation_guards (id, valid) VALUES (?, CASE WHEN EXISTS (SELECT 1 FROM problems WHERE id = ? AND active = 1) THEN 1 ELSE 0 END)').bind(`${guard}:problem`, proposal.problemId))
     const organizationId = decision.organizationId || `org_${crypto.randomUUID()}`
     if (!decision.organizationId) {
+      // A newly approved identity must be seen before another reviewer creates one.
+      // Company identities are retained, so rowid is a monotonic catalogue version.
+      statements.push(db.prepare('INSERT INTO mutation_guards (id, valid) VALUES (?, CASE WHEN COALESCE((SELECT MAX(rowid) FROM organizations), 0) = ? THEN 1 ELSE 0 END)').bind(`${guard}:organizations`, decision.organizationVersion ?? -1))
       const org = decision.organization!
       const submitted = proposal.organization!
       statements.push(db.prepare('INSERT INTO organizations (id, slug, website, roles_json, aliases_json, sources_json, source_date, origin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
@@ -56,7 +59,7 @@ export async function decideSubmission(db: D1Database, id: string, reviewer: str
   statements.push(
     db.prepare('UPDATE submissions SET status = ?, revision = revision + 1, decided_at = ?, decision_note = ? WHERE id = ?').bind(decision.decision, now, decision.note, id),
     db.prepare('INSERT INTO review_events (id, submission_id, reviewer_hash, decision, note, created_at) VALUES (?, ?, ?, ?, ?, ?)').bind(`review_${crypto.randomUUID()}`, id, reviewer, decision.decision, decision.note, now),
-    db.prepare('DELETE FROM mutation_guards WHERE id IN (?, ?)').bind(guard, `${guard}:problem`)
+    db.prepare('DELETE FROM mutation_guards WHERE id IN (?, ?, ?)').bind(guard, `${guard}:problem`, `${guard}:organizations`)
   )
   try { await db.batch(statements) }
   catch (error) {

@@ -1,4 +1,4 @@
-# Startup ideas: local first version
+# Startup ideas
 
 A small, bilingual catalogue of startup ideas for Bangladesh. Each idea has its own
 page, save action, first test and prototype prompt. Problems supply shared context;
@@ -7,10 +7,10 @@ companies are supporting references with one profile across Deshi Startup.
 ## Routes and data
 
 - `/startup-ideas` and `/en/startup-ideas`: six researched ideas, search, sector/location
-  and idea-type filters, plus a saved-only filter. Filters use shareable URLs.
+  and idea-type filters, plus a saved-only filter. Filters and sort use shareable URLs.
 - `/startup-ideas/<slug>`: one idea, who it helps, how it works, a possible revenue
   model and numbered first steps. Relevant guides and alternative ideas for the
-  same problem offer a next step. Save and Share sit above the brief. Research expands below. Related companies appear as small
+  same problem offer a next step. Upvote, Save and Share sit above the brief. Research expands below. Related companies appear as small
   logo/name links; their profiles explain the specific work and source.
 - `/companies/<slug>`: shared profiles linked from ideas, DS50 and case studies.
   The existing company index is directly reachable but has no navigation entry.
@@ -39,12 +39,46 @@ existing v2 list, even empty, is never remigrated. Private draft keys stay uncha
 D1 owns records and private submissions. `data/ecosystem/public.json` is a generated,
 versioned public snapshot; never edit it by hand. Thin bilingual MDX wrappers are
 produced by `scripts/build-ecosystem-routes.mjs`. Public reading is static and needs
-neither an account nor a database request. Normal builds need no D1 credentials.
+neither an account nor a working database. Optional live vote counts are fetched
+separately; they never enter the static content snapshot. Normal builds need no D1 credentials.
 
 Company connections currently refer to the shared problem, not a specific idea.
 “Related companies” reflects that scope. Reverse Resources is linked through
 published textile-recycling work. It is not presented as adopting our proposed
 idea. Shared profiles retain source dates; DS50 membership remains independent.
+
+## Discovery
+
+Recommended order puts editorial picks first and keeps the remaining release order.
+Pick an idea for a significant local problem, a clear customer or payer, a useful gap
+and a practical first test. A short, bilingual `editorial_note` explains each choice
+under Research & sources; a quiet label identifies it in the catalogue. Keep the
+selection small and review it as the collection grows, including new ideas and
+underrepresented sectors. Votes never affect this default ordering.
+
+One Google account can cast one active vote per canonical idea, shared across both
+languages. Clicking again removes it. Saves remain browser-local and private;
+existing saves are never uploaded or counted as votes. Votes express reader interest,
+not customer validation or an investment assessment.
+
+The compact sort offers Recommended and Newest. Most upvoted appears once the
+collection has votes (or when opened through its `?sort=votes` URL). Ties retain
+release order. No votes are seeded, and neither trending nor investor interest is
+inferred from popularity.
+
+`GET /api/ecosystem/votes` returns only aggregate counts, cached for 60 seconds in the
+browser and in a shared Cache API entry per release and Cloudflare location. Client
+query strings cannot create extra entries. Private reads and writes bypass this cache.
+`GET /api/ecosystem/votes/mine` returns the signed-in account's active choices.
+`POST /api/ecosystem/votes` accepts `{ id, voted }`, verifies sign-in, moderation and
+rate limits, and atomically writes the explicit state and returns the new count.
+Voting has its own 20-actions-per-minute limiter per account and Cloudflare location;
+it does not consume the contribution endpoint's allowance.
+Retries cannot create duplicate votes. Private responses are never cached. Counts
+exclude retired ideas; an allowlist generated from the shipped snapshot prevents
+unpublished records from becoming visible or receiving votes. D1 stores only the
+account hash, idea ID, active state and first-vote date, with a composite primary key.
+Migration `0011` creates this table and the initial editorial selections.
 
 ## Seed standard
 
@@ -103,16 +137,79 @@ npm run ecosystem:publish -- <release-id>
 Preparation freezes approved records into a release. The build checks the snapshot,
 route output and release marker. Publication accepts only that exact built release
 and changes the local publication pointer. An approval remains “awaiting publication”
-until its connection appears in the published release. These commands are local only;
-production publication and deployment are not wired up in this slice. A failed build
-or mismatched marker cannot advance the pointer. Frozen releases remain in local D1.
+until its connection appears in the published release. A failed build or mismatched
+marker cannot advance the pointer. Frozen releases remain in the selected D1 database.
+
+## Production D1 and publication
+
+`wrangler.jsonc` binds `ECOSYSTEM_DB` to `deshistartup-ecosystem` in the Deshi Startup
+account. The primary is in APAC; read replication is disabled. There is no replica
+consistency/session machinery to maintain. Local development uses a different config
+and database identity. Normal builds read the committed public snapshot, not D1.
+All eleven migrations have been applied to the new remote database. No production
+Worker deployment is performed by these commands.
+
+Use explicit remote commands only when preparing a production release:
+
+```sh
+npm run ecosystem:init -- --remote
+npm run ecosystem:prepare -- --remote
+npm run build:worker
+# Review and commit the generated snapshot, marker and route wrappers.
+# Deploy that reviewed commit through the normal main-branch release process.
+npm run ecosystem:publish -- <release-id> --remote
+```
+
+The final command checks the built marker, frozen D1 release and the marker actually
+served by `https://deshistartup.com` before advancing the publication pointer. Run it
+after the deployment succeeds; it cannot publish an unbuilt or undeployed snapshot.
+A local run cannot mark a remote release published. Never prepare from local test data
+for a production release. Approval and publication remain separate steps.
+
+### Recovery and performance
+
+Before a schema or data migration, save a private SQL export outside tracked paths:
+
+```sh
+mkdir -p .wrangler/backups
+(umask 077; npx wrangler d1 export deshistartup-ecosystem --remote --output .wrangler/backups/ecosystem.sql)
+node scripts/ecosystem.mjs prepare-restore .wrangler/backups/ecosystem.sql .wrangler/backups/restore.sql
+# Rehearse restore into a fresh local emulator, never over the working development DB:
+npx wrangler d1 execute deshi-ecosystem-local --config wrangler.ecosystem-local.jsonc --local --persist-to .wrangler/restore-check --file .wrangler/backups/restore.sql
+```
+
+The preparation step moves table definitions before row inserts because deferred
+foreign keys cannot reference a table that has not been created yet. It refuses to
+overwrite an existing output file.
+
+Check `PRAGMA foreign_key_check`, `PRAGMA quick_check`, record counts and the frozen
+release digest after restoring. Treat all exports as private, even if today's seed
+database has no submissions. Keep only the backup needed for the operation.
+Cloudflare [Time Travel](https://developers.cloudflare.com/d1/reference/time-travel/)
+provides a second recovery path; inspect the available bookmark before any restore.
+Do not restore production during routine checks.
+
+For a site rollback, redeploy the previous known-good commit with its snapshot and
+Worker, then run `ecosystem:publish` from a build of that release after its live marker
+matches. Do not reverse schema migrations or discard subsequent submissions/votes.
+
+Public catalogue/detail reading makes no D1 query. The indexed vote aggregation only
+reads shipped, active ideas; private votes use an owner index. Mutations are bounded,
+parameterized and batched atomically. Keep the existing indexes and measure query plans
+before adding counters, replicas or an ORM. Public Cache API failures fall back to D1;
+private responses always use `no-store`.
 
 ## Boundaries
 
 Every write verifies a Google ID token, applies moderation and rate limits, validates
 bounded input and uses prepared SQL. Submission retries use an owner-scoped idempotency
 key. Review requires the allowlist, an expected revision and an atomic D1 batch. A stale
-review or duplicate company/problem connection rolls back the entire decision.
+review or duplicate company/problem connection rolls back the entire decision. Creating
+a company also requires the current catalogue version, checked inside that transaction:
+if another reviewer just added a company, refresh the list and check it first. Company
+identities are retained, so the largest row ID is a monotonic catalogue version.
+Reviewer fields stay mounted but hidden during sign-in expiry, preserving edits on
+reauthentication. Network requests time out so an interrupted connection can be retried.
 
 Contributors see only their own submissions; only reviewers can read the queue.
 Public exports omit submitter identity, review notes and request keys. Submitting
@@ -124,12 +221,14 @@ pairs are unique. Domain or name similarity is a hint, not proof that two brands
 one company. General editing, identity merges, representative verification and logo
 uploads remain outside this first slice.
 
-Votes, partner-interest badges, automatic research imports and additional dashboards
+Trending, partner-interest badges, automatic research imports and additional dashboards
 are deferred. A Moncho.ai or other integration needs its own source, permission and
-scope. Before public submissions launch, assign review ownership, define correction,
-retention and removal rules, decide dataset reuse rights, and rehearse production
-backup/restore and deployment rollback. Code licensing does not grant rights to
-company marks, private submissions or third-party research.
+scope. The existing Deshi Startup editorial team owns the submission queue, through
+the existing reviewer allowlist. No response time is promised. Corrections and private
+removal requests use the contact form; they are reviewed before changing public records.
+Privacy documents the actual storage and manual removal route; private records do not
+currently auto-expire. Original editorial snapshot text uses the existing content licence
+(`LICENSE-content.md`); company marks, private submissions and linked research are excluded.
 
 ## Verification
 
@@ -137,7 +236,9 @@ company marks, private submissions or third-party research.
 stale review, duplicate rollback, shared identities, private-field exclusion and
 frozen publication. Idea intake tests also verify required fields, owner isolation,
 concurrent retries, revision checks and that acceptance never changes public data.
-The idea model tests cover filters, bilingual routes, saved-list
+Vote tests cover concurrent retries, removal, owner isolation, unpublished/retired
+ideas and exclusion from static releases. The idea model tests cover sorting,
+filters, bilingual routes, saved-list
 migration and draft recovery. Run the repository tests, Worker checks and production
 build, then check desktop/mobile reading and keyboard use in both languages.
 
@@ -148,7 +249,7 @@ shared search/filter bar and a row of idea-type pills. A Saved toggle narrows th
 current filters. Ruled rows separate sectors from idea titles; metadata stays plain.
 Service, software, marketplace and manual-process types describe the idea, without
 inferring coding requirements. Customers remain searchable and appear on detail
-pages. Each row links to its idea, with the save button remaining independent.
+pages. Each row links to its idea, with upvote and save buttons remaining independent.
 On phones, filters stack so selected labels stay readable. Idea briefs give the
 first test a pale green surface; supporting facts follow the main content on
 small screens. These layouts use the existing font and CSS without new assets,
@@ -158,6 +259,13 @@ are omitted. Publication dates and guide relationships remain in the data.
 Obsolete problem-page wrappers and styles are
 removed by their owning generator or source edit, never by deleting research.
 
-Signed-in submission/reviewer screens still need visual acceptance before launch.
-Backend tests use isolated identities, never a production auth bypass. Product
+The 20 September 2026 audit checked desktop and narrow-phone reading in both languages,
+saved-state and draft recovery, company lookup and cross-links, all 40 legacy redirect
+spellings against the built Worker, private API boundaries, fresh migrations, and a
+remote SQL export restored to a fresh local D1 database. The restored integrity checks,
+record counts and frozen release digest matched.
+
+One real Google-account submission, review and vote/unvote cycle is still required before
+launch. Backend tests use isolated identities, never a production auth bypass. After
+deployment, confirm the live release marker before advancing the publication pointer. Product
 scope and research are recorded in [`plan/startup-ideas-direction.md`](../plan/startup-ideas-direction.md).

@@ -7,6 +7,10 @@ International license (CC BY-SA 4.0)**:
 - Deed (plain-language summary): https://creativecommons.org/licenses/by-sa/4.0/
 - Full legal text: https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
+The original editorial text in `data/ecosystem/public.json` uses the same CC BY-SA 4.0
+license. This does not relicense third-party names, logos, trademarks or linked research,
+and does not grant access to private submissions or votes.
+
 All other code and configuration in this repository (the Next.js app, build
 scripts, components, styling) remains **MIT-licensed** — see `LICENSE`.
 

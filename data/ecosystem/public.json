@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "releaseId": "release_a39d68ca-d46b-4026-862e-f36483afb6ae",
-  "createdAt": "2026-09-19T17:28:24.947Z",
+  "releaseId": "release_7f5a124e-f9a5-49cb-a3db-9869b43c978e",
+  "createdAt": "2026-09-19T22:17:43.963Z",
   "problems": [
     {
       "id": "garment-offcuts",
@@ -216,7 +216,8 @@
           "Deliver one paid load. Check the final weight, pay all truck and labor bills, and ask both sides if they want to do another run."
         ],
         "signal": "The recycler places another order for the same cloth, and you make a profit after paying all costs.",
-        "prototype": "Create a simple shipment log on your phone or spreadsheet. Record the fabric type, factory name, weight, quality check notes, truck fee, and what the recycler paid. Use made-up test numbers to make sure your math works before real deliveries."
+        "prototype": "Create a simple shipment log on your phone or spreadsheet. Record the fabric type, factory name, weight, quality check notes, truck fee, and what the recycler paid. Use made-up test numbers to make sure your math works before real deliveries.",
+        "editorialNote": "A clear industrial customer and a first test that starts with a buyer, before building a marketplace."
       },
       "bn": {
         "title": "পোশাক কারখানার ঝুট কাপড় রিসাইক্লিং মিলে বিক্রি করুন",
@@ -229,7 +230,8 @@
           "প্রথম চালানটি পৌঁছে দিয়ে পেমেন্ট বুঝে নিন। ট্রাক ভাড়া ও মজুরির সব খরচ বাদ দিয়ে লাভ কেমন থাকে দেখুন। দুই পক্ষই আবার কাজ করতে রাজি কি না জেনে নিন।"
         ],
         "signal": "রিসাইক্লিং মিল আবার একই কাপড়ের অর্ডার দিচ্ছে এবং সব খরচ মিটিয়ে আপনার হাতে পরিষ্কার লাভ থাকছে।",
-        "prototype": "ফোন বা স্প্রেডশিটে চালানের হিসাব রাখার একটি সহজ খসড়া বানান। কাপড়ের জাত, কারখানার নাম, ওজন, বাছাইয়ের নোট, ট্রাক ভাড়া আর মিল কত টাকা দিল, তা লিখে রাখুন। আসল কাজে নামার আগেই কাল্পনিক সংখ্যা বসিয়ে লাভ-লোকসান মিলিয়ে দেখুন।"
+        "prototype": "ফোন বা স্প্রেডশিটে চালানের হিসাব রাখার একটি সহজ খসড়া বানান। কাপড়ের জাত, কারখানার নাম, ওজন, বাছাইয়ের নোট, ট্রাক ভাড়া আর মিল কত টাকা দিল, তা লিখে রাখুন। আসল কাজে নামার আগেই কাল্পনিক সংখ্যা বসিয়ে লাভ-লোকসান মিলিয়ে দেখুন।",
+        "editorialNote": "কারা কিনবেন তা স্পষ্ট। মার্কেটপ্লেস বানানোর আগেই একজন ক্রেতা নিয়ে পরীক্ষা শুরু করা যায়।"
       }
     },
     {
@@ -254,7 +256,8 @@
           "Track saleable weight, price, and all storage, handling, and transport costs. Check whether the farmer earned more than on the usual batch and wants to book again."
         ],
         "signal": "The customer books another batch because selling crisp vegetables paid for your fee and left them with extra profit.",
-        "prototype": "Create a simple mobile log for crate bookings. Record crop type, crate count, arrival condition, storage temperature, costs, and final sale price. Compare net earnings with a similar batch handled as usual."
+        "prototype": "Create a simple mobile log for crate bookings. Record crop type, crate count, arrival condition, storage temperature, costs, and final sale price. Compare net earnings with a similar batch handled as usual.",
+        "editorialNote": "An important food-supply problem with a small, paid pilot using existing cooling facilities."
       },
       "bn": {
         "title": "ফসল তোলার পর ক্রেট হিসেবে হিমাগারের জায়গা ভাড়া দিন",
@@ -267,7 +270,8 @@
           "কত কেজি বিক্রি হলো, কত দাম পাওয়া গেল আর রাখা, ওঠানো-নামানো ও যাতায়াতে মোট কত খরচ হলো লিখে রাখুন। আগের নিয়মের চেয়ে চাষির লাভ বেড়েছে কি না আর তিনি আবার বুকিং চান কি না জেনে নিন।"
         ],
         "signal": "হিমাগারের ভাড়া মেটানোর পরও চাষি বা পাইকারের হাতে বাড়তি লাভ থাকছে এবং তিনি পরের চালানের জন্যও বুকিং দিচ্ছেন।",
-        "prototype": "মোবাইলে ক্রেট বুকিংয়ের হিসাব রাখার একটি সহজ ফর্ম বানান। ফসলের নাম, ক্রেট সংখ্যা, আসার সময় অবস্থা, ঘরের তাপমাত্রা, খরচ আর বিক্রির দাম লিখে রাখুন। আগের নিয়মে রাখা একই রকম আরেক চালানের সাথে লাভ-লোকসান মিলিয়ে দেখুন।"
+        "prototype": "মোবাইলে ক্রেট বুকিংয়ের হিসাব রাখার একটি সহজ ফর্ম বানান। ফসলের নাম, ক্রেট সংখ্যা, আসার সময় অবস্থা, ঘরের তাপমাত্রা, খরচ আর বিক্রির দাম লিখে রাখুন। আগের নিয়মে রাখা একই রকম আরেক চালানের সাথে লাভ-লোকসান মিলিয়ে দেখুন।",
+        "editorialNote": "খাদ্য সরবরাহের গুরুত্বপূর্ণ সমস্যা। আগে থেকে থাকা হিমাগার ব্যবহার করে ছোট পরিসরে সেবার জন্য টাকা দিতে রাজি ক্রেতা খোঁজা যায়।"
       }
     },
     {
@@ -292,7 +296,8 @@
           "Review the month’s lab results, breakdowns, response times, and costs with the manager. Ask whether they will pay to continue the service."
         ],
         "signal": "The manager renews because testing and repairs happen as agreed, and the fee covers your service costs.",
-        "prototype": "Build a simple checklist on your phone for site visits. Log water filter condition, test dates, lab results, repair notes, and response times. Keep it focused on tracking maintenance rather than building fancy automated sensors."
+        "prototype": "Build a simple checklist on your phone for site visits. Log water filter condition, test dates, lab results, repair notes, and response times. Keep it focused on tracking maintenance rather than building fancy automated sensors.",
+        "editorialNote": ""
       },
       "bn": {
         "title": "খাবার পানির ফিল্টার ও পাম্প নিয়মিত মেরামতের সার্ভিস",
@@ -305,7 +310,8 @@
           "মাস শেষে ল্যাবের ফলাফল, কতবার পানি বন্ধ ছিল, সারাতে কত সময় লেগেছে আর খরচ কত হয়েছে, কর্তৃপক্ষকে দেখান। তাঁরা ফি দিয়ে সার্ভিস চালিয়ে যেতে চান কি না জেনে নিন।"
         ],
         "signal": "কথামতো পরীক্ষা ও মেরামত হওয়ায় কর্তৃপক্ষ চুক্তি নবায়ন করছে। পাওয়া ফি দিয়েও সার্ভিসের সব খরচ মিটছে।",
-        "prototype": "পরিদর্শনের হিসাব রাখার জন্য ফোনে একটি সহজ চেকলিস্ট বানান। ফিল্টারের অবস্থা, পরীক্ষার তারিখ, ল্যাবের রেজাল্ট, মেরামতের বিবরণ আর মিস্ত্রির আসার সময় লিখে রাখুন। জটিল সেন্সর বানানোর বদলে নিয়মিত কাজের হিসাব রাখার ওপর জোর দিন।"
+        "prototype": "পরিদর্শনের হিসাব রাখার জন্য ফোনে একটি সহজ চেকলিস্ট বানান। ফিল্টারের অবস্থা, পরীক্ষার তারিখ, ল্যাবের রেজাল্ট, মেরামতের বিবরণ আর মিস্ত্রির আসার সময় লিখে রাখুন। জটিল সেন্সর বানানোর বদলে নিয়মিত কাজের হিসাব রাখার ওপর জোর দিন।",
+        "editorialNote": ""
       }
     },
     {
@@ -330,7 +336,8 @@
           "Run a two-week paid trial with the clinic’s approval and patients who agree to reminders. Keep records within the clinic. Track staff time and completed follow-up visits, not just bookings."
         ],
         "signal": "The receptionist checks the list every morning, and the clinic owner happily pays for the next month.",
-        "prototype": "Create a simple screen with fake patient names, appointment due dates, and call status buttons (Called, Busy, Rebooked). Include staff-only access. Use no real patient data in the prototype."
+        "prototype": "Create a simple screen with fake patient names, appointment due dates, and call status buttons (Called, Busy, Rebooked). Include staff-only access. Use no real patient data in the prototype.",
+        "editorialNote": ""
       },
       "bn": {
         "title": "ছোট ক্লিনিকের রোগীদের ফলোআপে ডাকার সহজ রিমাইন্ডার টুল",
@@ -343,7 +350,8 @@
           "ক্লিনিকের অনুমতি নিয়ে দুই সপ্তাহ ফি নিয়ে কাজ করুন। যাঁরা রিমাইন্ডার পেতে রাজি, শুধু তাঁদের সাথে যোগাযোগ করুন। রোগীর তথ্য ক্লিনিকের মধ্যেই রাখুন। কর্মীদের কত সময় লাগল আর কতজন রোগী সত্যিই ফিরে এলেন, লিখে রাখুন।"
         ],
         "signal": "রিসেপশনিস্ট প্রতিদিন সকালে তালিকাটি ব্যবহার করছেন এবং ক্লিনিক মালিক পরের মাসের জন্য ফি দিতে রাজি হচ্ছেন।",
-        "prototype": "কাল্পনিক নাম, অ্যাপয়েন্টমেন্টের তারিখ আর কলের অবস্থা দিয়ে একটি সহজ স্ক্রিন বানান। ফোন করা হয়েছে, নম্বর ব্যস্ত বা নতুন তারিখ নিয়েছেন, এমন অপশন রাখুন। কেবল দায়িত্বপ্রাপ্ত কর্মী ঢুকতে পারবেন। প্রোটোটাইপে আসল রোগীর কোনো তথ্য রাখবেন না।"
+        "prototype": "কাল্পনিক নাম, অ্যাপয়েন্টমেন্টের তারিখ আর কলের অবস্থা দিয়ে একটি সহজ স্ক্রিন বানান। ফোন করা হয়েছে, নম্বর ব্যস্ত বা নতুন তারিখ নিয়েছেন, এমন অপশন রাখুন। কেবল দায়িত্বপ্রাপ্ত কর্মী ঢুকতে পারবেন। প্রোটোটাইপে আসল রোগীর কোনো তথ্য রাখবেন না।",
+        "editorialNote": ""
       }
     },
     {
@@ -368,7 +376,8 @@
           "Compare temperatures and worker feedback on shifts with similar weather and production. If conditions improve, ask whether the owner will pay to extend the work."
         ],
         "signal": "Comparable measurements and worker feedback show an improvement, and the owner pays to extend the work.",
-        "prototype": "Create a simple survey and comparison report. Record weather, production conditions, indoor temperatures, and worker feedback before and after the work. Show what changed, including results that did not improve."
+        "prototype": "Create a simple survey and comparison report. Record weather, production conditions, indoor temperatures, and worker feedback before and after the work. Show what changed, including results that did not improve.",
+        "editorialNote": ""
       },
       "bn": {
         "title": "বড় খরচ ছাড়াই কারখানার গরম কমানোর সহজ উপায়",
@@ -381,7 +390,8 @@
           "একই রকম আবহাওয়া ও উৎপাদনের শিফটে আগের ও পরের তাপমাত্রা মিলিয়ে দেখুন। কর্মীদের মতামতও নিন। উন্নতি হলে মালিক আরও কাজ করাতে চান কি না জেনে নিন।"
         ],
         "signal": "তুলনা করার মতো মাপজোক ও কর্মীদের মতামতে উন্নতি দেখা যাচ্ছে। মালিক আরও জায়গায় কাজ করাতে ফি দিচ্ছেন।",
-        "prototype": "পরিবেশ মাপার ও তুলনা করার একটি সহজ রিপোর্ট বানান। আবহাওয়া, উৎপাদনের অবস্থা, ঘরের তাপমাত্রা আর কর্মীদের মতামত আগে-পরে লিখে রাখুন। কোথায় উন্নতি হলো আর কোথায় হলো না, দুটোই দেখান।"
+        "prototype": "পরিবেশ মাপার ও তুলনা করার একটি সহজ রিপোর্ট বানান। আবহাওয়া, উৎপাদনের অবস্থা, ঘরের তাপমাত্রা আর কর্মীদের মতামত আগে-পরে লিখে রাখুন। কোথায় উন্নতি হলো আর কোথায় হলো না, দুটোই দেখান।",
+        "editorialNote": ""
       }
     },
     {
@@ -406,7 +416,8 @@
           "Compare generation before and after, accounting for sunlight and grid outages. If measured savings cover your fee, offer a quarterly maintenance contract."
         ],
         "signal": "The owner renews the service because the extra electricity generated pays for your fee and lowers their overall bill.",
-        "prototype": "Create a rooftop maintenance report. Record panel condition, faults, work done, generation, sunlight, and grid outages. Compare output under similar conditions to estimate any savings from the work."
+        "prototype": "Create a rooftop maintenance report. Record panel condition, faults, work done, generation, sunlight, and grid outages. Compare output under similar conditions to estimate any savings from the work.",
+        "editorialNote": ""
       },
       "bn": {
         "title": "ছাদের সোলার প্যানেল পরিষ্কার ও মেরামতের সার্ভিস",
@@ -419,7 +430,8 @@
           "আগে-পরের বিদ্যুৎ উৎপাদন মিলিয়ে দেখুন। রোদ কতটা ছিল আর গ্রিড কতক্ষণ বন্ধ ছিল, তাও হিসাবে নিন। মেপে পাওয়া সাশ্রয়ে ফি উঠে এলে তিন মাসের সার্ভিস চুক্তির প্রস্তাব দিন।"
         ],
         "signal": "প্যানেল পরিষ্কার রাখলে যে বিদ্যুৎ বিল বাঁচে তা দেখে মালিক প্রতি তিন মাস পর পর সার্ভিস নেওয়ার চুক্তি নবায়ন করছেন।",
-        "prototype": "ছাদের কাজের একটি সহজ রিপোর্ট বানান। প্যানেলের অবস্থা, ত্রুটি, কী কাজ হলো, বিদ্যুৎ উৎপাদন, রোদের অবস্থা আর গ্রিড বন্ধ থাকার সময় লিখে রাখুন। একই রকম পরিবেশের হিসাব মিলিয়ে কাজ থেকে কতটা সাশ্রয় হলো, বের করুন।"
+        "prototype": "ছাদের কাজের একটি সহজ রিপোর্ট বানান। প্যানেলের অবস্থা, ত্রুটি, কী কাজ হলো, বিদ্যুৎ উৎপাদন, রোদের অবস্থা আর গ্রিড বন্ধ থাকার সময় লিখে রাখুন। একই রকম পরিবেশের হিসাব মিলিয়ে কাজ থেকে কতটা সাশ্রয় হলো, বের করুন।",
+        "editorialNote": ""
       }
     }
   ],

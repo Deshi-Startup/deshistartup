@@ -71,14 +71,27 @@ noticing real unmet needs rather than inventing plausible solutions. That suppor
 the editorial approach; it is advice, not evidence that a problem catalogue will
 produce successful companies.
 
+## Discovery signals
+
+Editorial picks lead the recommended order, with a short reason under each idea's
+research disclosure. Prioritize an important local problem, a clear customer or
+payer and a practical first test. Keep new ideas and less represented sectors in
+the selection. Popularity does not determine editorial quality.
+
+One optional upvote expresses interest in seeing an idea built. Reuse Google sign-in
+and D1, keep account choices private, and count each account once per idea across
+languages. Saving stays private and browser-local. A compact sort lets readers
+choose Newest or, once votes exist, Most upvoted. No seeded engagement, public voter
+lists, or numerical quality scores.
+
 ## What waits
 
-Defer progress tracking, votes, comments, popularity rankings, investor badges, dashboards, automatic
+Defer progress tracking, comments, trending, investor badges, dashboards, automatic
 research imports and a standalone company-discovery product. Add a grant, investor
 interest or research link only when useful, supported and maintainable. Do not
 prebuild empty feature slots. Saved items remain browser-local for now.
 
-A vote may eventually help surface interest, but it must not masquerade as demand.
+A vote helps surface interest, but it must not masquerade as demand.
 A founder liking an idea and a customer wanting a problem solved are different.
 
 ## Contributions

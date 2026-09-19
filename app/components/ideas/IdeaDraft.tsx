@@ -22,7 +22,7 @@ export default function IdeaDraft({ locale }: { locale: Locale }) {
     try { setDraft(parseDraft(localStorage.getItem(DRAFT_KEY))) }
     catch { setStorageError(true) }
     setReady(true)
-    fetch('/api/ecosystem/status').then(r => r.json()).then(data => setAvailable(data.available === true)).catch(() => setAvailable(false))
+    fetch('/api/ecosystem/status', { signal: AbortSignal.timeout(12_000) }).then(r => r.json()).then(data => setAvailable(data.available === true)).catch(() => setAvailable(false))
   }, [])
   const edit = (key: keyof Draft, value: string) => {
     const next = { ...draft, [key]: value }
@@ -45,11 +45,11 @@ export default function IdeaDraft({ locale }: { locale: Locale }) {
     }
     setBusy(true)
     try {
-      const response = await fetch('/api/ecosystem/submissions', { method: 'POST', headers: { Authorization: `Bearer ${session.auth.token}`, 'Content-Type': 'application/json', 'Idempotency-Key': retry.current!.key }, body: json })
+      const response = await fetch('/api/ecosystem/submissions', { method: 'POST', headers: { Authorization: `Bearer ${session.auth.token}`, 'Content-Type': 'application/json', 'Idempotency-Key': retry.current!.key }, body: json, signal: AbortSignal.timeout(15_000) })
       if (!response.ok) { if (response.status === 401) session.expire(); throw new Error(ecosystemError(response.status, locale)) }
       const result = await response.json()
       setMessage(result.status === 'pending' ? t('Idea submitted. We’ll review it for the collection.', 'আইডিয়া জমা হয়েছে। তালিকায় যোগ করার আগে আমরা দেখে নেব।') : t('This idea has already been reviewed.', 'এই আইডিয়া আগেই পর্যালোচনা করা হয়েছে।'))
-    } catch (cause) { setError(cause instanceof Error ? cause.message : ecosystemError(503, locale)) }
+    } catch (cause) { setError(cause instanceof Error && cause.name === 'Error' ? cause.message : ecosystemError(503, locale)) }
     finally { setBusy(false) }
   }
   const download = () => {

@@ -52,15 +52,15 @@ export default function ConnectionForm({ locale, companies, problems }: { locale
     if (!Object.hasOwn(workStages, saved.stage)) saved.stage = 'research'
     if (!Object.hasOwn(organizationRoles, saved.role)) saved.role = 'startup'
     setDraft(saved); setNewCompany(!saved.organizationId && !!saved.name); setReady(true)
-    fetch('/api/ecosystem/status').then(r => r.json()).then(data => setAvailable(data.available === true)).catch(() => setAvailable(false))
+    fetch('/api/ecosystem/status', { signal: AbortSignal.timeout(12_000) }).then(r => r.json()).then(data => setAvailable(data.available === true)).catch(() => setAvailable(false))
   }, [companies, problems])
   useEffect(() => {
     if (!session.auth) { setSubmissions([]); return }
     let active = true
-    fetch('/api/ecosystem/submissions', { headers: { Authorization: `Bearer ${session.auth.token}` } }).then(async response => {
+    fetch('/api/ecosystem/submissions', { headers: { Authorization: `Bearer ${session.auth.token}` }, signal: AbortSignal.timeout(12_000) }).then(async response => {
       if (!response.ok) { if (active && response.status === 401) session.expire(); throw new Error(ecosystemError(response.status, locale)) }
       const data = await response.json(); if (active) { setSubmissions(data.submissions); setHistoryError('') }
-    }).catch(error => { if (active) setHistoryError(error.message) })
+    }).catch(error => { if (active) setHistoryError(error instanceof Error && error.name === 'Error' ? error.message : ecosystemError(503, locale)) })
     return () => { active = false }
   }, [session.auth, locale, notice])
   const edit = (change: Partial<Draft>) => {
@@ -84,11 +84,11 @@ export default function ConnectionForm({ locale, companies, problems }: { locale
       } catch { retry.current = { json, key: crypto.randomUUID() } }
     }
     try {
-      const response = await fetch('/api/ecosystem/submissions', { method: 'POST', headers: { Authorization: `Bearer ${session.auth.token}`, 'Content-Type': 'application/json', 'Idempotency-Key': retry.current!.key }, body: json })
+      const response = await fetch('/api/ecosystem/submissions', { method: 'POST', headers: { Authorization: `Bearer ${session.auth.token}`, 'Content-Type': 'application/json', 'Idempotency-Key': retry.current!.key }, body: json, signal: AbortSignal.timeout(15_000) })
       if (!response.ok) { if (response.status === 401) session.expire(); throw new Error(ecosystemError(response.status, locale)) }
       const result = await response.json()
       setNotice(result.status === 'pending' ? t('Submitted for review. It is not public yet.', 'পর্যালোচনার জন্য জমা হয়েছে। এখনো প্রকাশ করা হয়নি।') : t('This submission has already been reviewed. See its status below.', 'এই তথ্য আগেই পর্যালোচনা করা হয়েছে। নিচে অবস্থা দেখুন।'))
-    } catch (cause) { setError(cause instanceof Error ? cause.message : ecosystemError(503, locale)) }
+    } catch (cause) { setError(cause instanceof Error && cause.name === 'Error' ? cause.message : ecosystemError(503, locale)) }
     finally { setBusy(false) }
   }
   const selected = companies.find(c => c.id === draft.organizationId)

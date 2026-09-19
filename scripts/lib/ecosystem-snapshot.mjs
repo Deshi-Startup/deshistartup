@@ -8,7 +8,7 @@ export const publicColumns = {
   problems: 'id slug sector places_json sources_json',
   problem_text: 'problem_id locale title summary customer context unknown',
   approaches: 'id problem_id kind position added_at guides_json',
-  approach_text: 'approach_id locale title summary description business_model steps_json signal prototype',
+  approach_text: 'approach_id locale title summary description business_model steps_json signal prototype editorial_note',
   organizations: 'id slug website logo_path roles_json aliases_json sources_json source_date origin',
   organization_text: 'organization_id locale name description',
   organization_references: 'organization_id kind target',
@@ -35,7 +35,7 @@ export async function readEcosystemSnapshot(query, releaseId, createdAt) {
     problems: problems.map(p => ({ id: p.id, slug: p.slug, sector: p.sector, places: parsed(p.places_json), sources: parsed(p.sources_json),
       ...localized(problemText, 'problem_id', p.id, t => ({ title: t.title, summary: t.summary, customer: t.customer, context: t.context, unknown: t.unknown })) })),
     approaches: approaches.map(a => ({ id: a.id, problemId: a.problem_id, kind: a.kind, position: a.position, addedAt: a.added_at, guides: parsed(a.guides_json),
-      ...localized(approachText, 'approach_id', a.id, t => ({ title: t.title, summary: t.summary, description: t.description, businessModel: t.business_model, steps: parsed(t.steps_json), signal: t.signal, prototype: t.prototype })) })),
+      ...localized(approachText, 'approach_id', a.id, t => ({ title: t.title, summary: t.summary, description: t.description, businessModel: t.business_model, steps: parsed(t.steps_json), signal: t.signal, prototype: t.prototype, editorialNote: t.editorial_note })) })),
     organizations: organizations.map(o => ({ id: o.id, slug: o.slug, website: o.website, logoPath: o.logo_path, roles: parsed(o.roles_json), aliases: parsed(o.aliases_json), sourceUrls: parsed(o.sources_json), sourceDate: o.source_date, origin: o.origin,
       ...localized(organizationText, 'organization_id', o.id, t => ({ name: t.name, description: t.description })),
       references: references.filter(r => r.organization_id === o.id).map(r => ({ kind: r.kind, target: r.target })) })),
@@ -70,6 +70,7 @@ export function validateEcosystemSnapshot(snapshot) {
       if (kind === 'problems' && (row.sources.some(s => !safeUrl(s.url)) || !row.places.length)) throw new Error('Invalid problem context')
       if (kind === 'approaches' && ['en', 'bn'].some(l => !Array.isArray(row[l].steps) || !row[l].steps.length || row[l].steps.some(s => typeof s !== 'string' || !s.trim()))) throw new Error('Incomplete first test')
       if (kind === 'approaches' && !['software', 'service', 'marketplace', 'workflow'].includes(row.kind)) throw new Error('Invalid idea type')
+      if (kind === 'approaches' && (['en', 'bn'].some(l => row[l].editorialNote !== undefined && (typeof row[l].editorialNote !== 'string' || row[l].editorialNote.length > 350)) || Boolean(row.en.editorialNote?.trim()) !== Boolean(row.bn.editorialNote?.trim()))) throw new Error('Invalid editorial selection')
       if (kind === 'organizations' && (!row.roles.length || row.roles.some(role => !['startup', 'investor', 'accelerator', 'incubator', 'community'].includes(role)))) throw new Error('Invalid organization role')
       if (kind === 'connections' && !['research', 'prototype', 'live'].includes(row.stage)) throw new Error('Invalid work stage')
       // Keep editorial dates available without adding freshness claims to the UI.

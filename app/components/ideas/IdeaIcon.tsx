@@ -1,5 +1,5 @@
 export type IdeaIconName = 'arrow' | 'back' | 'search' | 'bookmark' | 'plus' | 'check' | 'download' | 'external'
-  | 'share'
+  | 'share' | 'upvote'
 
 export default function IdeaIcon({ name, filled = false }: { name: IdeaIconName; filled?: boolean }) {
   const paths = {
@@ -10,6 +10,7 @@ export default function IdeaIcon({ name, filled = false }: { name: IdeaIconName;
     bookmark: <path d="M6 4h12v17l-6-4-6 4V4Z" fill={filled ? 'currentColor' : 'none'} />,
     plus: <path d="M12 5v14M5 12h14" />,
     check: <path d="m5 12 4 4L19 6" />,
+    upvote: <path d="m6 14 6-6 6 6" />,
     download: <path d="M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5" />,
     share: <path d="M12 3v13m-5-8 5-5 5 5M5 14v6h14v-6" />
   }
