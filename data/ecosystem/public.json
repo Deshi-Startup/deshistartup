@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "releaseId": "release_ca18f8b0-3aee-497e-8e62-4f68d4684d9d",
-  "createdAt": "2026-09-19T16:40:17.239Z",
+  "releaseId": "release_a39d68ca-d46b-4026-862e-f36483afb6ae",
+  "createdAt": "2026-09-19T17:28:24.947Z",
   "problems": [
     {
       "id": "garment-offcuts",
@@ -21,18 +21,18 @@
         }
       ],
       "en": {
-        "title": "Recyclers need clean, traceable textile offcuts",
-        "summary": "Mixed fabric and uncertain composition make factory waste harder to recycle.",
-        "customer": "Garment factories, established waste handlers and textile recyclers.",
-        "context": "A Bangladesh textile pilot shows the value of source sorting and dependable material records. Traceability platforms already exist. A possible gap is the practical work of qualifying small batches and arranging reliable pickup.",
-        "unknown": "Which material grades will a recycler commit to buying? Do sorting and transport costs leave a margin while paying existing handlers fairly?"
+        "title": "Mixed garment scraps are hard for recyclers to use",
+        "summary": "Recyclers need fabric sorted by type, with reliable records of what each batch contains.",
+        "customer": "Garment factories, local scrap dealers, and textile recycling mills.",
+        "context": "Garment factories produce leftover fabric, known as jhut. A Bangladesh recycling pilot found that poor sorting and missing fabric records made it hard for mills to find suitable material. Sorting improved during the pilot. A new service could help more factories and scrap dealers prepare batches that meet a recycler’s requirements.",
+        "unknown": "Which types of fabric will recyclers buy regularly? After paying for sorting, trucks, and a fair cut to local scrap dealers, is there enough profit left over?"
       },
       "bn": {
-        "title": "রিসাইক্লারদের দরকার বাছাই করা কাপড় ও নির্ভরযোগ্য তথ্য",
-        "summary": "কাপড় মিশে গেলে আর উপাদান জানা না থাকলে পুনর্ব্যবহার কঠিন হয়।",
-        "customer": "পোশাক কারখানা, ঝুট ব্যবসায়ী ও টেক্সটাইল রিসাইক্লার।",
-        "context": "বাংলাদেশের একটি উদ্যোগে উৎসে বাছাই ও কাপড়ের সঠিক তথ্য রাখার গুরুত্ব দেখা গেছে। গতিপথের তথ্য রাখার প্ল্যাটফর্ম আগেই আছে। ছোট চালানের মান যাচাই ও সময়মতো সংগ্রহের কাজে কোথায় ঘাটতি আছে, দেখা যেতে পারে।",
-        "unknown": "কোন মানের কাপড় কিনতে রিসাইক্লার আগেই রাজি হবেন? ঝুট ব্যবসায়ীদের ন্যায্য দাম দিয়ে বাছাই ও পরিবহনের খরচের পর লাভ থাকবে কি?"
+        "title": "কারখানার ঝুট কাপড় আলাদা না থাকায় রিসাইক্লিং কঠিন হয়",
+        "summary": "নানা ধরনের কাপড় মিশে গেলে রিসাইক্লিং কঠিন হয়। মিলে পাঠানোর আগে কাপড়ের ধরন আলাদা করে হিসাব রাখতে হয়।",
+        "customer": "পোশাক কারখানা, স্থানীয় ঝুট ব্যবসায়ী আর টেক্সটাইল রিসাইক্লিং মিল।",
+        "context": "কারখানায় কাটিংয়ের পর যে কাপড় বেঁচে যায়, সেটাই ঝুট। বাংলাদেশে একটি রিসাইক্লিং প্রকল্পে দেখা গেছে, কাপড় আলাদা করে বাছাই না করায় আর সুতার ধরন লিখে না রাখায় মিলের উপযোগী ঝুট খুঁজে পাওয়া কঠিন হচ্ছিল। প্রকল্প চলাকালে এই ব্যবস্থা উন্নত হয়েছে। আরও কারখানা ও ঝুট ব্যবসায়ীকে মিলের চাহিদামতো চালান তৈরি করে দিতে পারেন।",
+        "unknown": "কোন কোন জাতের কাপড় রিসাইক্লাররা নিয়মিত কিনতে রাজি হবেন? বাছাই, ট্রাক ভাড়া আর ঝুট ব্যবসায়ীকে ভালো দাম দেওয়ার পর ব্যবসায় লাভ থাকবে কি?"
       }
     },
     {
@@ -53,18 +53,18 @@
         }
       ],
       "en": {
-        "title": "Fresh produce loses value before reaching buyers",
-        "summary": "Harvested produce needs handling and storage suited to the crop.",
-        "customer": "Grower groups and produce buyers near harvest centres.",
-        "context": "Bangladesh’s crop-storage investment plans identify losses between harvest and sale. A useful starting point is one crop, one harvest window and a buyer who values better quality.",
-        "unknown": "Does cooling improve the seller’s net return after transport, electricity and storage fees? Who pays when produce is rejected, and can the facility earn outside peak harvest?"
+        "title": "Fresh vegetables rot in the heat before finding a buyer",
+        "summary": "Freshly picked crops spoil fast if farmers cannot keep them cool for a few days.",
+        "customer": "Farmer groups and produce wholesalers near major harvest hubs.",
+        "context": "FAO’s 2022 Bangladesh investment plan identifies losses after harvest and a need for better cold storage, including for tomatoes. A short-term storage service could give farmers more time to sell. The right temperature and storage time depend on the crop and its condition.",
+        "unknown": "Does chilling the vegetables bring in enough extra money to cover electricity, storage rent, and trucks? Who takes the hit if crops still go bad? How do you make money when harvest season ends?"
       },
       "bn": {
-        "title": "ক্রেতার কাছে পৌঁছানোর আগেই ফসলের দাম কমে যায়",
-        "summary": "ফসলের ধরন অনুযায়ী পরিবহন ও সংরক্ষণের ব্যবস্থা দরকার।",
-        "customer": "ফসল সংগ্রহকেন্দ্রের আশপাশের চাষিদের দল ও পাইকারি ক্রেতা।",
-        "context": "বাংলাদেশের ফসল সংরক্ষণের বিনিয়োগ পরিকল্পনায় ফসল তোলা থেকে বিক্রির মধ্যে ক্ষতির কথা উঠে এসেছে। একটি ফসল, একটি মৌসুম আর ভালো মানের জন্য বেশি দিতে রাজি একজন ক্রেতা দিয়ে শুরু করা যায়।",
-        "unknown": "পরিবহন, বিদ্যুৎ ও সংরক্ষণের খরচ বাদ দিয়ে বিক্রেতার আয় বাড়বে কি? ক্রেতা ফসল ফেরত দিলে ক্ষতি কে নেবে? মৌসুমের বাইরে আয়ের উপায় কী?"
+        "title": "ভালো ক্রেতা পাওয়ার আগেই গরমে শাকসবজি নষ্ট হয়ে যায়",
+        "summary": "ফসল তোলার পর কয়েক দিন ঠাণ্ডায় রাখার ব্যবস্থা না থাকলে শাকসবজি দ্রুত পচে যায়।",
+        "customer": "কাঁচাবাজারের পাইকারি ক্রেতা ও ফসল তোলার এলাকার চাষিদের দল।",
+        "context": "FAO-এর ২০২২ সালের বাংলাদেশ বিনিয়োগ পরিকল্পনায় ফসল তোলার পর নষ্ট হয়ে যাওয়ার কথা এসেছে। টমেটোসহ কয়েকটি ফসলের জন্য ভালো হিমাগারের প্রয়োজনও তুলে ধরা হয়েছে। কয়েক দিন সংরক্ষণের ব্যবস্থা থাকলে চাষি বিক্রির জন্য কিছুটা সময় পেতে পারেন। কোন ফসল কত দিন ও কত তাপমাত্রায় ভালো থাকে, তা আগে জেনে নিতে হবে।",
+        "unknown": "বিদ্যুৎ, ভাড়া আর ট্রাকের খরচ মিটিয়ে সবজি ঠাণ্ডায় রাখলে বাড়তি লাভ থাকবে কি? কোনো কারণে সবজি নষ্ট হলে ক্ষতিপূরণ কে দেবে? আর ফসল তোলার মৌসুম শেষ হলে বাকি দিনগুলোতে আয় আসবে কীভাবে?"
       }
     },
     {
@@ -84,18 +84,18 @@
         }
       ],
       "en": {
-        "title": "Installed water systems need dependable upkeep",
-        "summary": "A water point is only useful if it keeps delivering safe water.",
-        "customer": "School networks, clinic operators and organisations managing community water systems.",
-        "context": "Research in coastal Khulna describes water points with unreliable maintenance and quality monitoring. SafePani demonstrates an existing professional-service model. The opportunity is to serve a cluster whose upkeep still lacks a funded owner.",
-        "unknown": "Who controls the maintenance budget and can sign a recurring contract? Can a local repair route cover its costs through the dry season?"
+        "title": "Community water filters break down with no one to fix them",
+        "summary": "Clean water taps stop working when pumps and filters are left without routine repairs.",
+        "customer": "Schools, rural health clinics, and charities that run community water plants.",
+        "context": "REACH’s research in Khulna schools found gaps in water-quality checks and responsibility for repairs. Complex systems can fall out of use without maintenance. SafePani already tests a professional service model in schools and health centres. A new provider would need to find sites still missing reliable upkeep.",
+        "unknown": "Who actually controls the local budget to pay for monthly upkeep? Can a repair technician visit enough nearby water points in one neighborhood to make a full-time living?"
       },
       "bn": {
-        "title": "পানির ব্যবস্থা বসালেই কাজ শেষ হয় না",
-        "summary": "নিয়মিত নিরাপদ পানি দিতে না পারলে স্থাপনাটি কাজে আসে না।",
-        "customer": "স্কুলের নেটওয়ার্ক, ক্লিনিক পরিচালনাকারী ও এলাকার পানির ব্যবস্থা দেখভাল করে এমন সংস্থা।",
-        "context": "উপকূলীয় খুলনার গবেষণায় পানির স্থাপনা রক্ষণাবেক্ষণ ও মান পরীক্ষার অনিশ্চয়তা উঠে এসেছে। SafePani পেশাদার সেবার একটি উদাহরণ। কাছাকাছি কয়েকটি স্থাপনায় নিয়মিত খরচ ও দেখভালের দায়িত্ব নেওয়ার কেউ নেই কি না, খুঁজে দেখুন।",
-        "unknown": "রক্ষণাবেক্ষণের বাজেট কার হাতে? নিয়মিত সেবার চুক্তি কে করতে পারবেন? শুষ্ক মৌসুমেও কাছাকাছি স্থাপনা ঘুরে সেবা দিয়ে খরচ উঠবে কি?"
+        "title": "নিয়মিত মেরামতের অভাবে এলাকার পানির ফিল্টার নষ্ট হয়ে পড়ে থাকে",
+        "summary": "পানির পাম্প আর ফিল্টার নিয়মিত দেখভাল না করলে কল দিয়ে আর নিরাপদ পানি মেলে না।",
+        "customer": "স্কুল, ইউনিয়ন স্বাস্থ্য ক্লিনিক ও এলাকার যেসব সংস্থা পানির প্ল্যান্ট চালায়।",
+        "context": "খুলনার স্কুলগুলো নিয়ে REACH-এর গবেষণায় নিয়মিত পানির মান পরীক্ষা ও মেরামতের দায়িত্বে ঘাটতি পাওয়া গেছে। দেখভাল না হলে জটিল পানির ব্যবস্থা নষ্ট হয়ে পড়ে থাকতে পারে। SafePani ইতিমধ্যে স্কুল ও স্বাস্থ্যকেন্দ্রে পেশাদার সার্ভিস দিয়ে এই সমস্যা সমাধানের কাজ করছে। নতুন করে শুরু করতে হলে কোথায় এখনো নিয়মিত সার্ভিস মেলে না, খুঁজে নিতে হবে।",
+        "unknown": "নিয়মিত মেরামতের বাজেট আসলে কার হাতে থাকে? একজন টেকনিশিয়ান এক এলাকায় ঘুরে ঘুরে সার্ভিস দিয়ে নিজের সংসার চালানোর মতো আয় করতে পারবেন কি?"
       }
     },
     {
@@ -115,18 +115,18 @@
         }
       ],
       "en": {
-        "title": "Patients miss ongoing care between clinic visits",
-        "summary": "Clinics need a workable way to find and follow up with patients who miss appointments.",
-        "customer": "Private and NGO clinics providing ongoing hypertension care.",
-        "context": "Simple’s Bangladesh programme documents patients missing follow-up care. Its existing software already supports overdue call lists. A new service needs to solve a clinic’s remaining workflow or staffing gap.",
-        "unknown": "Are missed visits driven by reminders, travel, costs or medicine access? What is missing from the clinic’s current tools, and will it pay to fix that gap?"
+        "title": "Patients miss follow-up visits for long-term conditions",
+        "summary": "Small clinics struggle to track patients who miss routine visits for high blood pressure or diabetes.",
+        "customer": "Small private clinics, diagnostic centres, and NGOs treating long-term conditions.",
+        "context": "Simple’s work with a Bangladesh hypertension programme shows that patients miss follow-up visits and that calling can help bring them back. Simple already provides calling lists. The opportunity is to find smaller clinics whose existing tools do not meet their follow-up needs.",
+        "unknown": "Why do patients skip their visits—do they forget, can they not afford travel, or are clinic lines too long? Will a busy clinic owner pay money every month just to bring patients back?"
       },
       "bn": {
-        "title": "ক্লিনিকে দেখানোর পর চিকিৎসার ধারাবাহিকতা ভেঙে যায়",
-        "summary": "নির্ধারিত দিনে না আসা রোগীর সঙ্গে যোগাযোগের সহজ ব্যবস্থা দরকার।",
-        "customer": "উচ্চ রক্তচাপের নিয়মিত চিকিৎসা দেয় এমন বেসরকারি ও এনজিও ক্লিনিক।",
-        "context": "Simple-এর বাংলাদেশের কর্মসূচিতে রোগীদের ফলোআপে না আসার কথা আছে। তাদের সফটওয়্যারে যোগাযোগের তালিকাও আছে। নতুন সেবা করতে হলে ক্লিনিকের কাজে বা লোকবলে বাকি ঘাটতিটি আগে ধরতে হবে।",
-        "unknown": "রোগী কি ভুলে যান, নাকি যাতায়াত, খরচ বা ওষুধ না পাওয়া বাধা? চালু ব্যবস্থায় কী নেই? সেই ঘাটতি মেটাতে ক্লিনিক টাকা দেবে কি?"
+        "title": "প্রেসার বা ডায়াবেটিসের রোগীরা নিয়মিত ফলোআপে আসেন না",
+        "summary": "যেসব রোগী নিয়মিত চেকআপের দিন মিস করেন, ছোট ক্লিনিকগুলো সহজে তাদের খোঁজ রাখতে পারে না।",
+        "customer": "ছোট প্রাইভেট ক্লিনিক, ডায়াগনস্টিক সেন্টার ও ডায়াবেটিস বা প্রেসারের চিকিৎসা দেওয়া প্রতিষ্ঠান।",
+        "context": "বাংলাদেশে উচ্চ রক্তচাপের চিকিৎসার একটি কর্মসূচিতে Simple-এর কাজ থেকে দেখা যায়, অনেক রোগী নিয়মিত ফলোআপে আসেন না। ফোন করে যোগাযোগ করলে তাঁদের ফিরিয়ে আনতে সাহায্য হয়। Simple-এ এমন কল লিস্ট আগেই আছে। ছোট ক্লিনিকের বর্তমান ব্যবস্থায় কোথায় ঘাটতি রয়ে গেছে, তা খুঁজে দেখতে হবে।",
+        "unknown": "রোগীরা কেন আসেন না – স্রেফ ভুলে যান, নাকি যাতায়াতের খরচ ও লম্বা লাইনের কারণে আসেন না? নিয়মিত রোগী ফিরিয়ে আনতে ক্লিনিক কি প্রতি মাসে সফটওয়্যার ফি দিতে রাজি হবে?"
       }
     },
     {
@@ -147,18 +147,18 @@
         }
       ],
       "en": {
-        "title": "Hot workplaces put workers and production at risk",
-        "summary": "Factories need cooling improvements that work within their buildings and budgets.",
-        "customer": "Factory and warehouse operators with heat-exposed work areas.",
-        "context": "Bangladesh’s rising heat creates health and productivity risks. For a founder, the useful question is narrower: which affordable changes can reduce heat in a particular work area without raising operating costs too far?",
-        "unknown": "Which changes suit the building, process and season? Will the owner fund installation and upkeep, and do workers report a meaningful improvement?"
+        "title": "Hot tin roofs make factory floors dangerous during summer",
+        "summary": "Factory workers get exhausted in high heat, but central air conditioning is too expensive.",
+        "customer": "Owners and factory managers of garment factories, bakeries, and workshops.",
+        "context": "The World Bank’s 2025 Bangladesh heat study links rising heat to health problems and lost workdays. It makes workplace cooling worth investigating. Each factory needs an assessment of its roof, ventilation, and heat from machinery before choosing an upgrade.",
+        "unknown": "Which affordable fixes help workers in this factory? Who approves the work, and what evidence would make the owner pay for it?"
       },
       "bn": {
-        "title": "গরমে কর্মী ও উৎপাদন দুটোই ঝুঁকিতে পড়ে",
-        "summary": "ভবন ও বাজেটের সঙ্গে মানানসই শীতল করার ব্যবস্থা দরকার।",
-        "customer": "গরমে কাজ করতে হয় এমন কারখানা ও গুদামের পরিচালকেরা।",
-        "context": "বাংলাদেশে বাড়তি গরম স্বাস্থ্য ও কাজের সক্ষমতায় ঝুঁকি তৈরি করছে। উদ্যোক্তার জন্য প্রশ্নটি ছোট করে আনা দরকার: একটি কাজের জায়গায় খরচ খুব না বাড়িয়ে কী বদলালে গরম কমে?",
-        "unknown": "ভবন, কাজের ধরন ও মৌসুম অনুযায়ী কোন পরিবর্তন মানাবে? মালিক কি বসানো ও দেখভালের খরচ দেবেন? কর্মীরা কি বাস্তবে স্বস্তি পাবেন?"
+        "title": "গরমের দিনে টিনের চালার নিচে কারখানার পরিবেশ অসহনীয় হয়ে ওঠে",
+        "summary": "প্রচণ্ড গরমে কারখানার শ্রমিকরা অসুস্থ হয়ে পড়েন, কিন্তু সেন্ট্রাল এসি লাগানো অনেক খরুচে।",
+        "customer": "তৈরি পোশাক কারখানা, বেকারি ও টিনের নিচে থাকা নানা কারখানার মালিক ও ম্যানেজার।",
+        "context": "বিশ্বব্যাংকের ২০২৫ সালের বাংলাদেশবিষয়ক গবেষণায় বাড়তি গরমের সাথে অসুস্থতা ও কর্মদিবস হারানোর সম্পর্ক উঠে এসেছে। তাই কারখানার গরম কমানোর সুযোগ খুঁজে দেখা যায়। কাজ বেছে নেওয়ার আগে প্রতিটি কারখানার ছাদ, বাতাস চলাচল আর যন্ত্রের তাপ বুঝে নিতে হবে।",
+        "unknown": "এই কারখানায় কম খরচের কোন ব্যবস্থায় কর্মীদের স্বস্তি মিলবে? কাজের অনুমতি কে দেবেন আর কী ফল দেখলে মালিক টাকা খরচ করতে রাজি হবেন?"
       }
     },
     {
@@ -178,18 +178,18 @@
         }
       ],
       "en": {
-        "title": "Solar installations need care after handover",
-        "summary": "Owners need to know when output drops and who will fix the cause.",
-        "customer": "Rooftop-solar owners and installers managing several customer sites.",
-        "context": "Bangladesh’s rooftop-solar expansion brings an ongoing maintenance need. IEEFA highlights soiling, service provision and independent monitoring. A focused business could serve sites whose handover left no dependable upkeep.",
-        "unknown": "What is already covered by the installer or warranty? How much lost output is avoidable, and can technicians serve several nearby sites profitably?"
+        "title": "Rooftop solar panels lose power when dust and soot pile up",
+        "summary": "Factory owners invest in rooftop solar, but power drops quickly if no one cleans or inspects the panels.",
+        "customer": "Factory owners, commercial building managers, and solar installers.",
+        "context": "IEEFA’s 2025 Bangladesh rooftop solar analysis identifies maintenance gaps and dust buildup as risks to electricity output. Grid outages can also reduce generation. A service should find the cause of low output before promising savings from cleaning.",
+        "unknown": "Does regular panel washing save enough money on the main power bill to easily cover your service fee? Can your cleaning crew move safely across slippery, sloped tin factory roofs?"
       },
       "bn": {
-        "title": "সোলার বসানোর পরও দেখভাল দরকার",
-        "summary": "বিদ্যুৎ কম হলে মালিকের জানা দরকার কেন কমছে আর কে ঠিক করবেন।",
-        "customer": "ছাদের সোলারের মালিক ও একাধিক গ্রাহকের স্থাপনা দেখেন এমন ইনস্টলার।",
-        "context": "বাংলাদেশে ছাদের সোলার বাড়ার সঙ্গে নিয়মিত রক্ষণাবেক্ষণের প্রয়োজনও বাড়ছে। IEEFA ময়লা জমা, সেবা ও আলাদা পর্যবেক্ষণের বিষয় তুলেছে। যেখানে বসানোর পর নির্ভরযোগ্য দেখভাল নেই, সেখানে সেবার সুযোগ খোঁজা যায়।",
-        "unknown": "ইনস্টলারের চুক্তি বা ওয়ারেন্টিতে কী আছে? উৎপাদনের কতটা ক্ষতি এড়ানো যায়? কাছাকাছি কয়েকটি স্থাপনা দেখে টেকনিশিয়ানের খরচ উঠবে কি?"
+        "title": "ধুলোবালি জমে ছাদের সোলার প্যানেলের বিদ্যুৎ উৎপাদন কমে যায়",
+        "summary": "কারখানার মালিকরা সোলার বসান ঠিকই, কিন্তু নিয়মিত পরিষ্কার না করায় বিদ্যুৎ উৎপাদন দ্রুত কমতে থাকে।",
+        "customer": "কারখানার মালিক, বড় ভবনের ম্যানেজার ও সোলার ইনস্টলেশন কোম্পানি।",
+        "context": "IEEFA-এর ২০২৫ সালের বাংলাদেশবিষয়ক বিশ্লেষণে সোলারের নিয়মিত রক্ষণাবেক্ষণের ঘাটতি ও ধুলো জমে উৎপাদন কমার ঝুঁকি এসেছে। গ্রিডের বিদ্যুৎ বন্ধ থাকলেও উৎপাদন কমতে পারে। তাই পরিষ্কার করে কতটা সাশ্রয় হবে বলার আগে বিদ্যুৎ কম হওয়ার কারণ খুঁজে নিতে হবে।",
+        "unknown": "নিয়মিত প্যানেল পরিষ্কার করলে যে বিদ্যুৎ সাশ্রয় হয়, তা দিয়ে কি এই সার্ভিসের খরচ উঠে আসবে? ঢালু ও পিচ্ছিল টিনের ছাদে কর্মীরা নিরাপদে কাজ করতে পারবেন কি?"
       }
     }
   ],
@@ -206,30 +206,30 @@
         "metrics/unit-economics"
       ],
       "en": {
-        "title": "Turn garment offcuts into traceable feedstock",
-        "summary": "Match sorted factory offcuts with recyclers who need a specific material.",
-        "description": "Agree on a recycler’s material specification first. Work with a factory and its existing waste handler to separate, weigh and document matching offcuts, then coordinate pickup. Use existing traceability tools where possible.",
-        "businessModel": "Charge a handling or matching fee on accepted batches. The buyer’s price must cover sorting, transport, rejected material and fair payment to the supplier.",
+        "title": "Sell sorted garment scraps directly to recyclers",
+        "summary": "Connect factories that have leftover fabric with recycling mills that need that exact cloth.",
+        "description": "First, ask two recycling mills what fabric they need (like pure white cotton scraps). Then, team up with a garment factory and its local scrap dealer to sort, weigh, and pack only that cloth. Finally, hire a truck to deliver it straight to the mill.",
+        "businessModel": "Take a small commission or service fee on every delivery the buyer accepts. Make sure the sale price easily covers the sorting labor, truck rental, and a fair payout to the scrap dealer.",
         "steps": [
-          "Ask two recyclers for their buying specifications, rejection reasons and minimum batch size.",
-          "With one factory and its waste handler, prepare and document a small batch to an agreed specification. Get the recycler’s acceptance before scaling collection.",
-          "Complete one paid delivery. Reconcile accepted weight, rejected material and all costs; ask both sides to repeat it."
+          "Talk to two textile recyclers. Find out what fabric they buy, why they reject loads, and the smallest order they will take.",
+          "Work with one clothing factory and its scrap dealer. Pack and weigh a small test batch that matches what the recycler asked for, and get their approval before collecting more.",
+          "Deliver one paid load. Check the final weight, pay all truck and labor bills, and ask both sides if they want to do another run."
         ],
-        "signal": "A repeat order for a documented grade with a positive margin after rejects and transport.",
-        "prototype": "Build a batch record with material composition, source, weight, quality checks, pickup, accepted weight and buyer. Track who supplied each field. Use fictional batches and avoid unverified recycled-content or certification claims."
+        "signal": "The recycler places another order for the same cloth, and you make a profit after paying all costs.",
+        "prototype": "Create a simple shipment log on your phone or spreadsheet. Record the fabric type, factory name, weight, quality check notes, truck fee, and what the recycler paid. Use made-up test numbers to make sure your math works before real deliveries."
       },
       "bn": {
-        "title": "গার্মেন্টসের ঝুটকে রিসাইক্লিংয়ের কাঁচামাল বানান",
-        "summary": "নির্দিষ্ট কাপড় দরকার এমন রিসাইক্লারের সঙ্গে বাছাই করা ঝুট মিলিয়ে দিন।",
-        "description": "রিসাইক্লার কী ধরনের কাপড় চান, আগে ঠিক করুন। কারখানা ও তার চালু ঝুট ব্যবসায়ীর সঙ্গে মিলে সেই কাপড় আলাদা করুন, ওজন নিন, তথ্য রাখুন এবং সংগ্রহের ব্যবস্থা করুন। সম্ভব হলে চালু ট্র্যাকিং টুল ব্যবহার করুন।",
-        "businessModel": "ক্রেতার গ্রহণ করা চালানে সংগ্রহ বা ক্রেতা মেলানোর ফি নিন। বাছাই, পরিবহন, ফেরত যাওয়া কাপড় ও সরবরাহকারীর ন্যায্য দাম মিটিয়েও লাভ থাকতে হবে।",
+        "title": "পোশাক কারখানার ঝুট কাপড় রিসাইক্লিং মিলে বিক্রি করুন",
+        "summary": "কারখানার বেঁচে যাওয়া কাপড় বাছাই করে সরাসরি রিসাইক্লিং মিলের কাছে পৌঁছে দিন।",
+        "description": "প্রথমে দুটি রিসাইক্লিং মিলের সাথে কথা বলে জেনে নিন তাদের ঠিক কী ধরনের কাপড় দরকার (যেমন ১০০% সাদা সুতি কাপড়)। এরপর একটি পোশাক কারখানা ও তাদের ঝুট ব্যবসায়ীর সাথে চুক্তি করে শুধু সেই কাপড় আলাদা করে ওজন করুন। সবশেষে ট্রাকে করে কাপড়টি সরাসরি রিসাইক্লিং কারখানায় পৌঁছে দিন।",
+        "businessModel": "মিল কাপড় বুঝে নেওয়ার পর প্রতি চালানে একটি নির্দিষ্ট কমিশন বা সার্ভিস ফি নিন। বিক্রির টাকা দিয়ে যেন বাছাইয়ের মজুরি, ট্রাক ভাড়া আর ঝুট ব্যবসায়ীর পাওনা মিটিয়েও আপনার হাতে ভালো লাভ থাকে।",
         "steps": [
-          "দুজন রিসাইক্লারের কাছে কাপড়ের মান, ফেরত দেওয়ার কারণ ও ন্যূনতম চালানের পরিমাণ জানুন।",
-          "একটি কারখানা ও তার ঝুট ব্যবসায়ীর সঙ্গে ঠিক করা মানের ছোট চালান তৈরি করে তথ্য রাখুন। সংগ্রহ বাড়ানোর আগে রিসাইক্লার সেটি গ্রহণ করেন কি না দেখুন।",
-          "টাকার বিনিময়ে একটি চালান পৌঁছে দিন। গ্রহণ করা ওজন, ফেরত কাপড় ও সব খরচ মেলান। দুই পক্ষ আবার করতে চান কি না জানুন।"
+          "দুটি রিসাইক্লিং মিলের সাথে কথা বলুন। তারা কোন কাপড় কেনে, কী কারণে চালান ফেরত দেয় আর একবারে কত কেজি মাল নেয়, জেনে নিন।",
+          "একটি পোশাক কারখানা ও তাদের ঝুট ব্যবসায়ীর সাথে মিলে অল্প কিছু বাছাই করা কাপড়ের বস্তা রেডি করুন। বেশি সংগ্রহের আগে মিলের ম্যানেজারকে স্যাম্পল দেখিয়ে নিশ্চিত হয়ে নিন।",
+          "প্রথম চালানটি পৌঁছে দিয়ে পেমেন্ট বুঝে নিন। ট্রাক ভাড়া ও মজুরির সব খরচ বাদ দিয়ে লাভ কেমন থাকে দেখুন। দুই পক্ষই আবার কাজ করতে রাজি কি না জেনে নিন।"
         ],
-        "signal": "পরিবহন ও ফেরত কাপড়ের খরচ বাদ দিয়েও লাভ থাকে এবং একই মানের কাপড়ের আবার অর্ডার আসে।",
-        "prototype": "কাপড়ের উপাদান, উৎস, ওজন, মান পরীক্ষা, সংগ্রহ, গ্রহণ করা ওজন ও ক্রেতা নিয়ে চালানের রেকর্ড বানান। কোন তথ্য কে দিয়েছেন, রাখুন। কাল্পনিক চালান ব্যবহার করুন। যাচাই ছাড়া রিসাইক্লিং বা সনদের দাবি করবেন না।"
+        "signal": "রিসাইক্লিং মিল আবার একই কাপড়ের অর্ডার দিচ্ছে এবং সব খরচ মিটিয়ে আপনার হাতে পরিষ্কার লাভ থাকছে।",
+        "prototype": "ফোন বা স্প্রেডশিটে চালানের হিসাব রাখার একটি সহজ খসড়া বানান। কাপড়ের জাত, কারখানার নাম, ওজন, বাছাইয়ের নোট, ট্রাক ভাড়া আর মিল কত টাকা দিল, তা লিখে রাখুন। আসল কাজে নামার আগেই কাল্পনিক সংখ্যা বসিয়ে লাভ-লোকসান মিলিয়ে দেখুন।"
       }
     },
     {
@@ -244,30 +244,30 @@
         "metrics/unit-economics"
       ],
       "en": {
-        "title": "Cold storage by the crate, near harvest",
-        "summary": "Help growers keep produce saleable while they arrange a buyer.",
-        "description": "Offer short-term, crop-specific cooling through an existing storage operator. Collect small batches, record their condition and arrange delivery to a committed buyer. Start by coordinating the service before investing in a facility.",
-        "businessModel": "Grower groups or buyers pay per crate and day. The fee must leave them better off after all handling and delivery costs.",
+        "title": "Rent cold storage by the crate for fresh harvests",
+        "summary": "Help farmers keep vegetables and fruits fresh for a few days until they find a good buyer.",
+        "description": "Partner with an existing cold store that can keep your chosen crop at the right temperature. Rent out space by the crate. Check the crop quality on arrival, agree how long to store it, and arrange delivery when a wholesale buyer is ready.",
+        "businessModel": "Charge farmers or wholesale buyers a daily fee per crate. Test whether less spoilage or a better sale price leaves them with more money after storage and transport costs.",
         "steps": [
-          "Choose one crop and interview five growers and two buyers about recent rejected or spoiled loads.",
-          "With a qualified storage operator, agree on suitable temperatures and run one small paid batch alongside a comparable batch handled as usual.",
-          "Record saleable weight, selling price and every cost. Ask the buyer or grower to book the next batch."
+          "Pick one vegetable (like tomatoes or peppers). Talk to five local farmers and two wholesale buyers about loads that spoiled recently.",
+          "Agree the crop’s storage conditions with an experienced operator. Run a paid test with 20 crates and compare with a similar batch handled as usual.",
+          "Track saleable weight, price, and all storage, handling, and transport costs. Check whether the farmer earned more than on the usual batch and wants to book again."
         ],
-        "signal": "A repeat booking and higher net receipts for the customer after your fee.",
-        "prototype": "Build a mobile booking and batch log with crop, crate count, arrival condition, temperature record, buyer, fees and saleable weight. Show net proceeds against a comparison batch. Use no live sensors or payment integrations."
+        "signal": "The customer books another batch because selling crisp vegetables paid for your fee and left them with extra profit.",
+        "prototype": "Create a simple mobile log for crate bookings. Record crop type, crate count, arrival condition, storage temperature, costs, and final sale price. Compare net earnings with a similar batch handled as usual."
       },
       "bn": {
-        "title": "ফসল তোলার কাছেই ক্রেট হিসেবে হিমাগারের সেবা",
-        "summary": "ক্রেতা ঠিক করতে করতে ফসল যেন নষ্ট না হয়, সে ব্যবস্থা করুন।",
-        "description": "চালু কোনো হিমাগারের সঙ্গে মিলে অল্প সময়ের জন্য ফসল রাখার সেবা দিন। ছোট চালান সংগ্রহ করুন, অবস্থা লিখে রাখুন এবং আগে ঠিক করা ক্রেতার কাছে পৌঁছে দিন। নিজস্ব হিমাগারে বিনিয়োগের আগে সেবাটি চালিয়ে দেখুন।",
-        "businessModel": "চাষিদের দল বা ক্রেতা ক্রেট ও দিন হিসেবে ফি দেবেন। সব খরচ মিটিয়েও তাঁদের বাড়তি আয় থাকতে হবে।",
+        "title": "ফসল তোলার পর ক্রেট হিসেবে হিমাগারের জায়গা ভাড়া দিন",
+        "summary": "ভালো পাইকার না পাওয়া পর্যন্ত শাকসবজি যেন গরমে নষ্ট না হয়, সেই ব্যবস্থা করুন।",
+        "description": "নিজের হিমাগার বানানোর আগে এলাকার চালু হিমাগারের সাথে চুক্তি করে জায়গা নিন। বেছে নেওয়া ফসলের জন্য ঠিক তাপমাত্রা রাখা যাবে কি না, দেখে নিন। ক্রেট হিসেবে ভাড়া দিন, আসার সময় ফসলের মান যাচাই করুন আর কত দিন রাখা হবে তা ঠিক করে নিন। পাইকার ঠিক হলে ডেলিভারি দিন।",
+        "businessModel": "চাষি বা পাইকারের কাছ থেকে প্রতি ক্রেটের জন্য দৈনিক ভাড়া নিন। সবজি কম নষ্ট হলে বা ভালো দামে বিক্রি হলে বাড়তি যা আয় হবে, তা দিয়ে ভাড়া ও যাতায়াতের খরচ মিটিয়ে লাভ থাকে কি না দেখুন।",
         "steps": [
-          "একটি ফসল বাছুন। সম্প্রতি নষ্ট বা ফেরত যাওয়া চালান নিয়ে পাঁচজন চাষি ও দুজন ক্রেতার সঙ্গে কথা বলুন।",
-          "অভিজ্ঞ হিমাগার পরিচালকের সঙ্গে তাপমাত্রা ঠিক করুন। অল্প ফি নিয়ে একটি ছোট চালান রাখুন; তুলনার জন্য একই রকম আরেকটি চালান আগের নিয়মে রাখুন।",
-          "বিক্রিযোগ্য ওজন, বিক্রির দাম ও সব খরচ লিখুন। ক্রেতা বা চাষি পরের চালানের জন্য আবার বুকিং দেন কি না দেখুন।"
+          "টমেটো বা মরিচের মতো একটি নির্দিষ্ট সবজি বেছে নিন। সম্প্রতি সবজি পচে লোকসান হয়েছে এমন পাঁচজন চাষি ও দুজন পাইকারের সাথে কথা বলুন।",
+          "অভিজ্ঞ হিমাগার পরিচালকের সাথে ফসল রাখার তাপমাত্রা ও সময় ঠিক করে নিন। ভাড়া নিয়ে ২০ ক্রেট দিয়ে পরীক্ষা করুন। একই রকম আরেক চালান আগের নিয়মে রেখে তুলনা করুন।",
+          "কত কেজি বিক্রি হলো, কত দাম পাওয়া গেল আর রাখা, ওঠানো-নামানো ও যাতায়াতে মোট কত খরচ হলো লিখে রাখুন। আগের নিয়মের চেয়ে চাষির লাভ বেড়েছে কি না আর তিনি আবার বুকিং চান কি না জেনে নিন।"
         ],
-        "signal": "আপনার ফি দেওয়ার পরও গ্রাহকের হাতে বেশি টাকা থাকে, আর তিনি আবার বুকিং দেন।",
-        "prototype": "মোবাইলে বুকিং ও চালানের হিসাব রাখার নমুনা বানান। ফসল, ক্রেটের সংখ্যা, আসার সময়ের অবস্থা, তাপমাত্রা, ক্রেতা, ফি ও বিক্রিযোগ্য ওজন রাখুন। তুলনার চালানের সঙ্গে খরচ বাদে আয় দেখান। কোনো সেন্সর বা পেমেন্ট সিস্টেম যুক্ত করবেন না।"
+        "signal": "হিমাগারের ভাড়া মেটানোর পরও চাষি বা পাইকারের হাতে বাড়তি লাভ থাকছে এবং তিনি পরের চালানের জন্যও বুকিং দিচ্ছেন।",
+        "prototype": "মোবাইলে ক্রেট বুকিংয়ের হিসাব রাখার একটি সহজ ফর্ম বানান। ফসলের নাম, ক্রেট সংখ্যা, আসার সময় অবস্থা, ঘরের তাপমাত্রা, খরচ আর বিক্রির দাম লিখে রাখুন। আগের নিয়মে রাখা একই রকম আরেক চালানের সাথে লাভ-লোকসান মিলিয়ে দেখুন।"
       }
     },
     {
@@ -282,30 +282,30 @@
         "metrics/unit-economics"
       ],
       "en": {
-        "title": "Keep drinking-water systems working",
-        "summary": "Turn testing, repairs and routine upkeep into one dependable service.",
-        "description": "Maintain a cluster of existing water systems under one service agreement. Pair local technicians with a qualified water-testing laboratory, track breakdowns and give the operator a clear repair history. Learn from SafePani before choosing an unserved area.",
-        "businessModel": "A school network, water operator or programme funder pays a recurring maintenance fee. Identify the budget holder before recruiting sites.",
+        "title": "A regular repair and testing service for clean drinking water",
+        "summary": "Keep water filters and pumps running in schools and clinics with scheduled checkups and quick repairs.",
+        "description": "Group nearby schools or clinics under one maintenance plan. Arrange a trained technician for repairs and a qualified water-testing lab to set the tests and schedule for each site. Keep a simple record of results, breakdowns, and repairs for the managers.",
+        "businessModel": "School boards, clinic managers, or donors pay a monthly fee for agreed water tests, inspections, and repair visits. Quote major parts separately.",
         "steps": [
-          "Visit five nearby sites with their operator. Record downtime, repair spending and who authorises payment.",
-          "Agree on a paid trial with one budget holder, a technician and a qualified laboratory. Set repair response times and a procedure for unsafe test results.",
-          "Run the route for a month. Compare downtime, response time and full service cost, then seek a renewal."
+          "Visit five schools or clinics that have water filters. Ask the managers how often the filters break, how much past repairs cost, and who pays the bills.",
+          "Agree a one-month paid trial with one or two sites. Set testing and repair response times with the technician and lab, including what to do if water fails a safety test.",
+          "Review the month’s lab results, breakdowns, response times, and costs with the manager. Ask whether they will pay to continue the service."
         ],
-        "signal": "A funded renewal and fewer days without a working water supply.",
-        "prototype": "Build a site register, fault-report form and technician visit log. Store laboratory results with test date and source. Never infer that water is safe from a sensor value or an overdue test."
+        "signal": "The manager renews because testing and repairs happen as agreed, and the fee covers your service costs.",
+        "prototype": "Build a simple checklist on your phone for site visits. Log water filter condition, test dates, lab results, repair notes, and response times. Keep it focused on tracking maintenance rather than building fancy automated sensors."
       },
       "bn": {
-        "title": "খাবার পানির ব্যবস্থা সচল রাখার সেবা",
-        "summary": "পানির পরীক্ষা, মেরামত ও নিয়মিত দেখভাল একই সেবায় আনুন।",
-        "description": "কাছাকাছি কয়েকটি চালু পানির স্থাপনা একটি চুক্তিতে দেখভাল করুন। স্থানীয় মিস্ত্রি ও যোগ্য পরীক্ষাগারকে যুক্ত করুন। কখন কী নষ্ট হলো, কী মেরামত হলো, তার হিসাব রাখুন। এলাকা বাছার আগে SafePani-এর কাজ থেকে শিখুন।",
-        "businessModel": "স্কুলের নেটওয়ার্ক, পানি সরবরাহকারী বা প্রকল্পের অর্থদাতা নিয়মিত ফি দেবেন। স্থাপনা যুক্ত করার আগে কে টাকা দেবেন, ঠিক করুন।",
+        "title": "খাবার পানির ফিল্টার ও পাম্প নিয়মিত মেরামতের সার্ভিস",
+        "summary": "নিয়মিত পরীক্ষা ও দ্রুত মেরামতের দায়িত্ব নিয়ে স্কুল আর ক্লিনিকের পানির ব্যবস্থা সচল রাখুন।",
+        "description": "কাছাকাছি কয়েকটি স্কুল বা ক্লিনিক নিয়ে মাসিক সার্ভিসের চুক্তি করুন। মেরামতের জন্য প্রশিক্ষিত মিস্ত্রি রাখুন। পানি পরীক্ষায় দক্ষ ল্যাবের সাথে ঠিক করে নিন কোথায় কোন পরীক্ষা কত দিন পর পর দরকার। ফলাফল, ত্রুটি আর মেরামতের হিসাব কর্তৃপক্ষকে বুঝিয়ে দিন।",
+        "businessModel": "পানি পরীক্ষা, পরিদর্শন ও মেরামতের জন্য স্কুল কমিটি, ক্লিনিক বা দাতা সংস্থা মাসিক ফি দেবে। বড় কোনো যন্ত্রাংশ বদলানোর খরচ আলাদা করে জানান।",
         "steps": [
-          "পরিচালকের সঙ্গে কাছাকাছি পাঁচটি স্থাপনা দেখুন। কত দিন বন্ধ থাকে, মেরামতে কত খরচ হয় আর টাকা কে অনুমোদন করেন, লিখুন।",
-          "একজন অর্থদাতা, একজন মিস্ত্রি ও যোগ্য পরীক্ষাগার নিয়ে টাকার বিনিময়ে পরীক্ষামূলক সেবা ঠিক করুন। মেরামতের সময়সীমা ও পানি অনিরাপদ হলে করণীয় স্থির করুন।",
-          "এক মাস সেবা দিন। বন্ধ থাকার সময়, সাড়া দেওয়ার সময় ও মোট খরচ মিলিয়ে দেখুন। এরপর চুক্তি নবায়নের প্রস্তাব দিন।"
+          "পানির ফিল্টার আছে এমন পাঁচটি স্কুল বা ক্লিনিক ঘুরে দেখুন। তাদের ফিল্টার কত দিন পর পর নষ্ট হয়, আগে মেরামতে কত খরচ হয়েছে আর বিল কে দেয়, জেনে নিন।",
+          "এক বা দুটি প্রতিষ্ঠানের সাথে ফি নিয়ে এক মাসের কাজ ঠিক করুন। মিস্ত্রি ও ল্যাবের সাথে পরীক্ষার সময় আর মেরামতে কত দ্রুত পৌঁছাবেন, ঠিক করে নিন। পরীক্ষায় পানি অনিরাপদ এলে কী করবেন, তাও ঠিক রাখুন।",
+          "মাস শেষে ল্যাবের ফলাফল, কতবার পানি বন্ধ ছিল, সারাতে কত সময় লেগেছে আর খরচ কত হয়েছে, কর্তৃপক্ষকে দেখান। তাঁরা ফি দিয়ে সার্ভিস চালিয়ে যেতে চান কি না জেনে নিন।"
         ],
-        "signal": "পানি না পাওয়ার দিন কমে আসে এবং অর্থদাতা চুক্তি নবায়ন করেন।",
-        "prototype": "স্থাপনার তালিকা, ত্রুটি জানানোর ফর্ম ও মিস্ত্রির কাজের হিসাব বানান। পরীক্ষাগারের ফলের সঙ্গে তারিখ ও সোর্স রাখুন। সেন্সরের রিডিং বা পুরোনো পরীক্ষা থেকে পানিকে নিরাপদ বলবেন না।"
+        "signal": "কথামতো পরীক্ষা ও মেরামত হওয়ায় কর্তৃপক্ষ চুক্তি নবায়ন করছে। পাওয়া ফি দিয়েও সার্ভিসের সব খরচ মিটছে।",
+        "prototype": "পরিদর্শনের হিসাব রাখার জন্য ফোনে একটি সহজ চেকলিস্ট বানান। ফিল্টারের অবস্থা, পরীক্ষার তারিখ, ল্যাবের রেজাল্ট, মেরামতের বিবরণ আর মিস্ত্রির আসার সময় লিখে রাখুন। জটিল সেন্সর বানানোর বদলে নিয়মিত কাজের হিসাব রাখার ওপর জোর দিন।"
       }
     },
     {
@@ -320,30 +320,30 @@
         "metrics/unit-economics"
       ],
       "en": {
-        "title": "Help clinics bring patients back for follow-up",
-        "summary": "Give clinic staff a simple way to track missed visits and arrange the next one.",
-        "description": "Build around one clinic’s existing records: who is due, who was contacted and who returned. Reuse tools such as Simple where they fit. Focus on the staff handoff and appointment workflow; clinicians keep control of care.",
-        "businessModel": "Clinics pay a monthly fee for setup and ongoing support if the service saves staff time or improves continuity of care.",
+        "title": "A simple reminder tool for small medical clinics",
+        "summary": "Help clinic receptionists call patients who missed their checkups and rebook their visits.",
+        "description": "Give the clinic receptionist a simple daily list of patients who missed a doctor-requested follow-up, their contact number, and call status. Keep access limited to authorised clinic staff so they can arrange the next visit.",
+        "businessModel": "Charge clinics a monthly software fee. Test whether easier follow-up and less staff time are worth the fee to the clinic.",
         "steps": [
-          "Observe one clinic’s follow-up process with permission. Ask staff and willing patients why visits are missed.",
-          "Use fictional records to test a short call list with staff. Compare it with the tools they already use before building.",
-          "With clinic approval and patient consent, run a small trial through one follow-up cycle. Track staff time, completed contacts and return visits using only necessary data."
+          "Spend a morning at a small clinic. Ask the receptionist and doctor how they currently keep track of patients who do not show up.",
+          "Make a one-page calling list with pretend patient names. Let the receptionist try it and compare the work with their current process.",
+          "Run a two-week paid trial with the clinic’s approval and patients who agree to reminders. Keep records within the clinic. Track staff time and completed follow-up visits, not just bookings."
         ],
-        "signal": "Staff keep using the workflow, and the clinic agrees to pay for the next cycle.",
-        "prototype": "Prototype a staff-only appointment list with synthetic patients, due dates and contact outcomes. No clinical recommendations, real patient data or live messaging. Support role-limited access and deletion in the design."
+        "signal": "The receptionist checks the list every morning, and the clinic owner happily pays for the next month.",
+        "prototype": "Create a simple screen with fake patient names, appointment due dates, and call status buttons (Called, Busy, Rebooked). Include staff-only access. Use no real patient data in the prototype."
       },
       "bn": {
-        "title": "রোগীকে ফলোআপে ফেরাতে ক্লিনিককে সাহায্য করুন",
-        "summary": "বাদ পড়া সাক্ষাৎ ও পরের তারিখের হিসাব কর্মীরা সহজে রাখতে পারবেন।",
-        "description": "ক্লিনিকের চালু রেকর্ড দিয়েই শুরু করুন: কার আসার কথা, কার সঙ্গে কথা হয়েছে, কে ফিরেছেন। কাজে লাগলে Simple-এর মতো টুল ব্যবহার করুন। কর্মীদের মধ্যে দায়িত্ব ভাগ ও তারিখ ঠিক করার কাজ সহজ করুন। চিকিৎসার সিদ্ধান্ত চিকিৎসকের হাতেই থাকবে।",
-        "businessModel": "কর্মীদের সময় বাঁচলে বা নিয়মিত চিকিৎসা চালাতে সুবিধা হলে ক্লিনিক সেটআপ ও সহায়তার জন্য মাসিক ফি দিতে পারে।",
+        "title": "ছোট ক্লিনিকের রোগীদের ফলোআপে ডাকার সহজ রিমাইন্ডার টুল",
+        "summary": "যেসব রোগী চেকআপের দিন মিস করেছেন, ক্লিনিকের কর্মীদের তাদের ফোন দিয়ে নতুন তারিখ নেওয়ার ব্যবস্থা করে দিন।",
+        "description": "ডাক্তারের দেওয়া ফলোআপের তারিখে যাঁরা আসেননি, তাঁদের তালিকা রিসেপশনিস্টকে দিন। ফোন নম্বর আর কল করা হয়েছে কি না, সেটুকু থাকলেই শুরু করা যায়। কেবল দায়িত্বপ্রাপ্ত ক্লিনিককর্মী যেন তালিকাটি দেখতে পারেন ও পরের তারিখ ঠিক করে দিতে পারেন।",
+        "businessModel": "ক্লিনিকের কাছ থেকে মাসিক সফটওয়্যার ফি নিন। ফলোআপের কাজ সহজ হলে আর কর্মীদের সময় বাঁচলে ক্লিনিক এই ফি দিতে রাজি কি না, পরীক্ষা করুন।",
         "steps": [
-          "অনুমতি নিয়ে একটি ক্লিনিকের ফলোআপের কাজ দেখুন। কর্মী ও কথা বলতে রাজি রোগীদের কাছে না আসার কারণ জানুন।",
-          "কাল্পনিক রেকর্ড দিয়ে কর্মীদের ছোট একটি কলের তালিকা ব্যবহার করতে দিন। বানানোর আগে চালু টুলের সঙ্গে তুলনা করুন।",
-          "ক্লিনিকের অনুমতি ও রোগীর সম্মতি নিয়ে পরের ফলোআপ পর্যন্ত ছোট পরীক্ষা চালান। শুধু দরকারি তথ্য রেখে কর্মীদের সময়, যোগাযোগ ও ফেরত আসার হিসাব দেখুন।"
+          "একটি ছোট ক্লিনিকে কিছুটা সময় কাটান। রোগী না এলে কর্মীরা কীভাবে ট্র্যাক করেন আর ডাক্তাররা কী চান, দেখে নিন।",
+          "কাল্পনিক নাম দিয়ে এক পাতার কল লিস্ট বানান। রিসেপশনিস্টকে দিয়ে ব্যবহার করিয়ে দেখুন আগের নিয়মের চেয়ে কাজ সহজ হচ্ছে কি না।",
+          "ক্লিনিকের অনুমতি নিয়ে দুই সপ্তাহ ফি নিয়ে কাজ করুন। যাঁরা রিমাইন্ডার পেতে রাজি, শুধু তাঁদের সাথে যোগাযোগ করুন। রোগীর তথ্য ক্লিনিকের মধ্যেই রাখুন। কর্মীদের কত সময় লাগল আর কতজন রোগী সত্যিই ফিরে এলেন, লিখে রাখুন।"
         ],
-        "signal": "কর্মীরা ব্যবস্থাটি ব্যবহার করে যান এবং ক্লিনিক পরের মাসের জন্য টাকা দিতে রাজি হয়।",
-        "prototype": "কাল্পনিক রোগী, আসার তারিখ ও যোগাযোগের ফল দিয়ে কর্মীদের জন্য অ্যাপয়েন্টমেন্ট তালিকা বানান। চিকিৎসার পরামর্শ, আসল রোগীর তথ্য বা সরাসরি মেসেজ পাঠানো থাকবে না। কে কোন তথ্য দেখবেন ও কীভাবে মুছবেন, তা নকশায় রাখুন।"
+        "signal": "রিসেপশনিস্ট প্রতিদিন সকালে তালিকাটি ব্যবহার করছেন এবং ক্লিনিক মালিক পরের মাসের জন্য ফি দিতে রাজি হচ্ছেন।",
+        "prototype": "কাল্পনিক নাম, অ্যাপয়েন্টমেন্টের তারিখ আর কলের অবস্থা দিয়ে একটি সহজ স্ক্রিন বানান। ফোন করা হয়েছে, নম্বর ব্যস্ত বা নতুন তারিখ নিয়েছেন, এমন অপশন রাখুন। কেবল দায়িত্বপ্রাপ্ত কর্মী ঢুকতে পারবেন। প্রোটোটাইপে আসল রোগীর কোনো তথ্য রাখবেন না।"
       }
     },
     {
@@ -358,30 +358,30 @@
         "metrics/unit-economics"
       ],
       "en": {
-        "title": "Cooler workplaces, without a full rebuild",
-        "summary": "Help factories choose and maintain practical ways to reduce workplace heat.",
-        "description": "Offer a site assessment and a small retrofit package, such as roof shading or improved ventilation, selected by a qualified engineer. Pair installation with measurement and maintenance so owners can judge what actually improves conditions.",
-        "businessModel": "The factory pays for an assessment and installation, with an optional maintenance contract. Quote against measured site needs, not promised productivity gains.",
+        "title": "Simple cooling upgrades for hot factory floors",
+        "summary": "Help factory owners bring down scorching floor temperatures without remodeling the whole building.",
+        "description": "Offer targeted fixes such as reflective roof coatings, better ventilation, or shade. Work with a qualified engineer to choose a suitable change. Measure conditions before and after the work to see whether it helps.",
+        "businessModel": "The factory owner pays a fixed price for the inspection, materials, and installation work. You can also offer an annual maintenance contract to wash the roof and service the vents.",
         "steps": [
-          "Visit one heat-exposed work area with its safety lead and workers. Record existing controls, conditions and the owner’s budget.",
-          "Have a qualified engineer select one suitable change and agree on a paid pilot. Keep existing worker protections in place.",
-          "Compare indoor conditions and energy use across comparable shifts, accounting for weather and production. Ask workers what changed."
+          "Walk a hot factory floor with the safety manager. Measure the room temperature and ask workers where the air feels most trapped.",
+          "With a qualified engineer, choose one affordable fix and agree a small paid test. Keep existing worker protections in place.",
+          "Compare temperatures and worker feedback on shifts with similar weather and production. If conditions improve, ask whether the owner will pay to extend the work."
         ],
-        "signal": "Measurably better conditions, worker acceptance and an owner willing to fund the next area.",
-        "prototype": "Build a site-assessment form and a before-and-after comparison for indoor heat, outdoor weather, energy use and worker feedback. Mark missing readings clearly. Do not calculate health safety or productivity gains from temperature alone."
+        "signal": "Comparable measurements and worker feedback show an improvement, and the owner pays to extend the work.",
+        "prototype": "Create a simple survey and comparison report. Record weather, production conditions, indoor temperatures, and worker feedback before and after the work. Show what changed, including results that did not improve."
       },
       "bn": {
-        "title": "বড় সংস্কার ছাড়াই কারখানায় গরম কমান",
-        "summary": "কাজের জায়গায় গরম কমানোর উপায় বাছাই ও দেখভালে সাহায্য করুন।",
-        "description": "জায়গাটি দেখে উপযুক্ত প্রকৌশলী দিয়ে ছোট পরিবর্তনের পরিকল্পনা করুন। ছাদে ছায়া বা বাতাস চলাচল বাড়ানোর মতো ব্যবস্থা লাগতে পারে। বসানোর সঙ্গে ফল মাপা ও রক্ষণাবেক্ষণ রাখুন, যেন মালিক বুঝতে পারেন কোন কাজে সুবিধা হচ্ছে।",
-        "businessModel": "কারখানা পরিদর্শন ও ব্যবস্থা বসানোর জন্য টাকা দেবে। চাইলে রক্ষণাবেক্ষণের চুক্তি করবে। উৎপাদন বাড়বেই এমন প্রতিশ্রুতির বদলে জায়গার প্রয়োজন বুঝে দাম দিন।",
+        "title": "বড় খরচ ছাড়াই কারখানার গরম কমানোর সহজ উপায়",
+        "summary": "পুরো ভবন নতুন করে না বানিয়েও টিনের চালার কারখানার তাপমাত্রা কমানোর উপায় দিন।",
+        "description": "ছাদে তাপ ফেরত পাঠায় এমন রং, বাতাস চলাচলের ব্যবস্থা বা ছায়া দিয়ে গরম কমানোর কাজ নিতে পারেন। কোনটা ওই ভবনে ঠিক হবে, দক্ষ প্রকৌশলীকে দিয়ে দেখে নিন। কাজের আগে ও পরের পরিবেশ মেপে বুঝুন কতটা কাজে লাগল।",
+        "businessModel": "পরিদর্শন, মালপত্র ও কাজের জন্য কারখানা মালিক এককালীন ফি দেবেন। চাইলে প্রতি বছর ছাদ পরিষ্কার ও ভেন্টিলেশন সার্ভিসিংয়ের জন্য বার্ষিক চুক্তি করতে পারেন।",
         "steps": [
-          "নিরাপত্তার দায়িত্বে থাকা ব্যক্তি ও কর্মীদের সঙ্গে একটি গরম কাজের জায়গা দেখুন। চালু সুরক্ষা, পরিবেশ ও মালিকের বাজেট লিখুন।",
-          "যোগ্য প্রকৌশলী দিয়ে একটি উপযুক্ত পরিবর্তন বাছুন এবং ফি নিয়ে পরীক্ষা ঠিক করুন। কর্মীদের চালু সুরক্ষা বহাল রাখুন।",
-          "আবহাওয়া ও উৎপাদন মাথায় রেখে কাছাকাছি ধরনের শিফটে ভেতরের পরিবেশ ও বিদ্যুতের ব্যবহার তুলনা করুন। কর্মীদের অভিজ্ঞতা শুনুন।"
+          "নিরাপত্তার দায়িত্বে থাকা ম্যানেজারের সাথে সবচেয়ে গরম ফ্লোরটি ঘুরে দেখুন। তাপমাত্রা মাপুন আর কর্মীদের কাছে শুনুন কোথায় বাতাস আটকে থাকে।",
+          "দক্ষ প্রকৌশলীর পরামর্শে কম খরচের একটি ব্যবস্থা বেছে নিন। ছোট অংশে পরীক্ষা করার খরচ মালিকের সাথে ঠিক করে নিন। কর্মীদের জন্য চালু সুরক্ষার ব্যবস্থা বজায় রাখুন।",
+          "একই রকম আবহাওয়া ও উৎপাদনের শিফটে আগের ও পরের তাপমাত্রা মিলিয়ে দেখুন। কর্মীদের মতামতও নিন। উন্নতি হলে মালিক আরও কাজ করাতে চান কি না জেনে নিন।"
         ],
-        "signal": "পরিবেশের উন্নতি মাপে ধরা পড়ে, কর্মীরা সুবিধা পান এবং মালিক আরেকটি জায়গায় খরচ করতে চান।",
-        "prototype": "পরিদর্শনের ফর্ম ও আগে-পরে তুলনার নমুনা বানান। ভেতরের গরম, বাইরের আবহাওয়া, বিদ্যুতের ব্যবহার ও কর্মীদের মতামত রাখুন। রিডিং না থাকলে স্পষ্ট দেখান। শুধু তাপমাত্রা থেকে স্বাস্থ্যের নিরাপত্তা বা উৎপাদন বৃদ্ধির হিসাব করবেন না।"
+        "signal": "তুলনা করার মতো মাপজোক ও কর্মীদের মতামতে উন্নতি দেখা যাচ্ছে। মালিক আরও জায়গায় কাজ করাতে ফি দিচ্ছেন।",
+        "prototype": "পরিবেশ মাপার ও তুলনা করার একটি সহজ রিপোর্ট বানান। আবহাওয়া, উৎপাদনের অবস্থা, ঘরের তাপমাত্রা আর কর্মীদের মতামত আগে-পরে লিখে রাখুন। কোথায় উন্নতি হলো আর কোথায় হলো না, দুটোই দেখান।"
       }
     },
     {
@@ -396,30 +396,30 @@
         "metrics/unit-economics"
       ],
       "en": {
-        "title": "Keep rooftop solar producing",
-        "summary": "Spot avoidable output losses and get the right technician to fix them.",
-        "description": "Combine a simple output check with scheduled maintenance and fault resolution for existing solar sites. Work with qualified technicians and the original installer. Keep weather, grid outages and equipment faults separate when explaining lost generation.",
-        "businessModel": "Owners or installation firms pay per site for monitoring and upkeep. Quote repairs separately and respect existing warranties.",
+        "title": "Cleaning and repair service for rooftop solar panels",
+        "summary": "Find out why solar panels are losing power and send trained technicians to wash and fix them.",
+        "description": "Arrange regular upkeep by trained solar technicians: clean panels, inspect inverters and wiring, and fix faults. Coordinate with the installer and follow the equipment’s maintenance and warranty instructions.",
+        "businessModel": "Building owners or solar installation firms pay a recurring monthly or quarterly fee per roof. Larger electrical replacement parts are quoted and billed separately.",
         "steps": [
-          "Interview three owners and one installer. Review their maintenance contracts, fault history and available generation records with permission.",
-          "Offer a paid inspection at one site with a qualified technician. Identify a fixable issue without duplicating warranty work.",
-          "Track the repair, service cost and subsequent output, accounting for sunlight and grid availability. Offer a recurring contract if the value is clear."
+          "Interview three factory owners with rooftop solar. Ask how often they wash their panels and how they know if a panel stops producing power.",
+          "Offer a paid checkup with a trained solar technician. Agree safe roof access and the maintenance method with the installer, then inspect and clean the system.",
+          "Compare generation before and after, accounting for sunlight and grid outages. If measured savings cover your fee, offer a quarterly maintenance contract."
         ],
-        "signal": "A paid renewal based on verified maintenance work and useful reporting.",
-        "prototype": "Prototype a site list, generation log and repair queue using synthetic readings. Distinguish missing data, grid outages and suspected equipment faults. Do not remotely control equipment or promise energy savings."
+        "signal": "The owner renews the service because the extra electricity generated pays for your fee and lowers their overall bill.",
+        "prototype": "Create a rooftop maintenance report. Record panel condition, faults, work done, generation, sunlight, and grid outages. Compare output under similar conditions to estimate any savings from the work."
       },
       "bn": {
-        "title": "ছাদের সোলার থেকে বিদ্যুৎ উৎপাদন সচল রাখুন",
-        "summary": "এড়ানো যায় এমন ক্ষতি ধরুন, ঠিক করার জন্য উপযুক্ত টেকনিশিয়ান দিন।",
-        "description": "চালু সোলারের উৎপাদন দেখা, নিয়মিত রক্ষণাবেক্ষণ ও ত্রুটি সারানো এক সেবায় আনুন। যোগ্য টেকনিশিয়ান ও মূল ইনস্টলারের সঙ্গে কাজ করুন। উৎপাদন কমার কারণ বোঝাতে আবহাওয়া, গ্রিড বন্ধ থাকা ও যন্ত্রের ত্রুটি আলাদা করুন।",
-        "businessModel": "মালিক বা ইনস্টলার প্রতি স্থাপনার জন্য পর্যবেক্ষণ ও দেখভালের ফি দেবেন। মেরামতের দাম আলাদা দিন এবং চালু ওয়ারেন্টি মেনে কাজ করুন।",
+        "title": "ছাদের সোলার প্যানেল পরিষ্কার ও মেরামতের সার্ভিস",
+        "summary": "সোলার প্যানেলে কেন কম বিদ্যুৎ তৈরি হচ্ছে তা খুঁজে বের করুন। প্রশিক্ষিত টেকনিশিয়ান দিয়ে পরিষ্কার ও মেরামত করান।",
+        "description": "সোলারের প্রশিক্ষিত টেকনিশিয়ান দিয়ে নিয়মিত প্যানেল পরিষ্কার, ইনভার্টার ও তার পরীক্ষা আর ত্রুটি সারানোর সার্ভিস দিন। যাঁরা সিস্টেম বসিয়েছেন তাঁদের সাথে কাজ মিলিয়ে নিন। যন্ত্রের রক্ষণাবেক্ষণ ও ওয়ারেন্টির নিয়ম মেনে চলুন।",
+        "businessModel": "ভবনের মালিক বা সোলার কোম্পানি প্রতি ছাদের জন্য তিন মাসের বা মাসিক সাবস্ক্রিপশন ফি দেবে। বড় কোনো পার্টস বদলাতে হলে তার খরচ আলাদা নেওয়া হবে।",
         "steps": [
-          "তিনজন মালিক ও একজন ইনস্টলারের সঙ্গে কথা বলুন। অনুমতি নিয়ে রক্ষণাবেক্ষণের চুক্তি, ত্রুটির ইতিহাস ও উৎপাদনের রেকর্ড দেখুন।",
-          "যোগ্য টেকনিশিয়ান নিয়ে একটি স্থাপনায় ফি দিয়ে পরিদর্শনের প্রস্তাব দিন। ওয়ারেন্টির কাজ আবার না করে ঠিক করা যায় এমন ঘাটতি খুঁজুন।",
-          "মেরামত, সেবার খরচ ও পরের উৎপাদন লিখুন। রোদ ও গ্রিড চালু থাকার সময় ধরে তুলনা করুন। উপকার স্পষ্ট হলে নিয়মিত চুক্তির প্রস্তাব দিন।"
+          "ছাদে সোলার আছে এমন তিনজন কারখানা মালিকের সাথে কথা বলুন। তাঁরা কত দিন পর পর প্যানেল পরিষ্কার করান আর উৎপাদন কমলে কীভাবে বোঝেন, জেনে নিন।",
+          "প্রশিক্ষিত সোলার টেকনিশিয়ান নিয়ে ফি নিয়ে পরিদর্শনের প্রস্তাব দিন। সোলার বসানোর কোম্পানির সাথে ছাদে নিরাপদে ওঠা ও কাজের পদ্ধতি ঠিক করে সিস্টেম পরীক্ষা ও পরিষ্কার করান।",
+          "আগে-পরের বিদ্যুৎ উৎপাদন মিলিয়ে দেখুন। রোদ কতটা ছিল আর গ্রিড কতক্ষণ বন্ধ ছিল, তাও হিসাবে নিন। মেপে পাওয়া সাশ্রয়ে ফি উঠে এলে তিন মাসের সার্ভিস চুক্তির প্রস্তাব দিন।"
         ],
-        "signal": "যাচাই করা কাজ ও দরকারি রিপোর্ট দেখে গ্রাহক টাকা দিয়ে চুক্তি নবায়ন করেন।",
-        "prototype": "নমুনা রিডিং দিয়ে স্থাপনার তালিকা, উৎপাদনের হিসাব ও মেরামতের কাজের তালিকা বানান। তথ্য না থাকা, গ্রিড বন্ধ থাকা ও সম্ভাব্য যন্ত্রের ত্রুটি আলাদা করুন। দূর থেকে যন্ত্র চালাবেন না বা বিদ্যুৎ সাশ্রয়ের প্রতিশ্রুতি দেবেন না।"
+        "signal": "প্যানেল পরিষ্কার রাখলে যে বিদ্যুৎ বিল বাঁচে তা দেখে মালিক প্রতি তিন মাস পর পর সার্ভিস নেওয়ার চুক্তি নবায়ন করছেন।",
+        "prototype": "ছাদের কাজের একটি সহজ রিপোর্ট বানান। প্যানেলের অবস্থা, ত্রুটি, কী কাজ হলো, বিদ্যুৎ উৎপাদন, রোদের অবস্থা আর গ্রিড বন্ধ থাকার সময় লিখে রাখুন। একই রকম পরিবেশের হিসাব মিলিয়ে কাজ থেকে কতটা সাশ্রয় হলো, বের করুন।"
       }
     }
   ],

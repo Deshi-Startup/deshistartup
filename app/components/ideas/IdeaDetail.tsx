@@ -21,15 +21,15 @@ function materials(problem: Problem, idea: Approach, locale: Locale) {
     `# ${a.title}`, a.summary,
     `## ${en ? 'Who it helps' : 'কাদের কাজে লাগবে'}`, p.customer,
     `## ${en ? 'How it works' : 'যেভাবে কাজ করবে'}`, a.description,
-    `## ${en ? 'How it could earn' : 'আয় হতে পারে যেভাবে'}`, a.businessModel,
+    `## ${en ? 'Ways to earn' : 'আয়ের উপায়'}`, a.businessModel,
     `## ${en ? 'Try this first' : 'আগে এভাবে পরীক্ষা করুন'}`,
     a.steps.map((step, index) => `${index + 1}. ${step}`).join('\n'),
     `${en ? 'Look for: ' : 'যে ফল খুঁজবেন: '}${a.signal}`,
     `## ${en ? 'The problem' : 'সমস্যাটি'}`, p.context,
-    `## ${en ? 'What to find out' : 'যা জেনে নেওয়া দরকার'}`, p.unknown,
+    `## ${en ? 'What to find out' : 'যা জেনে নেওয়া দরকার'}`, p.unknown,
     ...(sources ? [`## ${en ? 'Sources' : 'সোর্স'}`, sources] : [])
   ].join('\n\n') + '\n'
-  const prompt = `${en ? 'Help me build a small prototype to test this startup idea in Bangladesh.' : 'বাংলাদেশে এই স্টার্টআপ আইডিয়া পরীক্ষা করতে ছোট একটি প্রোটোটাইপ বানাতে সাহায্য করুন।'}\n\n${brief}\n${a.prototype}\n\n${en ? 'Use clearly labelled synthetic data. Do not invent demand, market size, partnerships, integrations or results. Include mobile, keyboard, empty and error states. State which assumption this prototype can test.' : 'নমুনা ডেটা স্পষ্ট করে চিহ্নিত করুন। চাহিদা, বাজারের আকার, পার্টনারশিপ, বাইরের সিস্টেমের সংযোগ বা ফলাফল বানিয়ে লিখবেন না। মোবাইল ও কিবোর্ডে ব্যবহার, খালি অবস্থা ও ভুলের বার্তা রাখুন। কোন ধারণাটি পরীক্ষা করা যাবে, বুঝিয়ে দিন।'}\n`
+  const prompt = `${en ? 'Help me build a small prototype to test this startup idea in Bangladesh.' : 'বাংলাদেশে এই স্টার্টআপ আইডিয়া পরীক্ষা করতে ছোট একটি প্রোটোটাইপ বানাতে সাহায্য করুন।'}\n\n${brief}\n${a.prototype}\n\n${en ? 'Use clearly labelled synthetic data. Do not invent demand, market size, partnerships, integrations or results. Include mobile, keyboard, empty and error states. State which assumption this prototype can test.' : 'নমুনা ডেটা স্পষ্ট করে চিহ্নিত করুন। চাহিদা, বাজারের আকার, পার্টনারশিপ, বাইরের সিস্টেমের সংযোগ বা ফলাফল বানিয়ে লিখবেন না। মোবাইল ও কিবোর্ডে ব্যবহার, খালি অবস্থা ও ভুলের বার্তা রাখুন। কোন ধারণাটি পরীক্ষা করা যাবে, বুঝিয়ে দিন।'}\n`
 
   return { brief, prompt }
 }
@@ -51,7 +51,7 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
   const siblings = ecosystem.approaches.filter(other => other.problemId === problem.id && other.id !== idea.id)
   return <IdeaShell locale={locale}>
     <article className="ideas-detail">
-      <div className="ideas-detail-toolbar"><a className="ideas-back" href={ideaPath(locale)}><IdeaIcon name="back" />{en ? 'All ideas' : 'সব আইডিয়া'}</a><div className="ideas-detail-actions"><SaveIdea id={idea.id} locale={locale} ideas={savedIdeas} /><ShareIdea locale={locale} title={a.title} customer={p.customer} /></div></div>
+      <div className="ideas-detail-toolbar"><a className="ideas-back" href={ideaPath(locale)}><IdeaIcon name="back" />{en ? 'All ideas' : 'সব আইডিয়া'}</a><div className="ideas-detail-actions"><SaveIdea id={idea.id} locale={locale} ideas={savedIdeas} /><ShareIdea locale={locale} title={a.title} customer={p.customer} /></div></div>
       <header className="ideas-detail-heading">
         <p className="ideas-eyebrow">{sectors[problem.sector as Sector]?.[locale] || problem.sector}<span aria-hidden="true"> · </span>{kindLabel(idea.kind, locale)}<span aria-hidden="true"> · </span>{placeNames}</p>
         <h1>{a.title}</h1><p className="ideas-lead">{a.summary}</p>
@@ -66,15 +66,15 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
             <IdeaActions id={idea.id} locale={locale} brief={brief} prompt={prompt} />
           </section>
           {guides.length > 0 && <section className="ideas-guides">
-            <h2>{en ? 'Guides for this idea' : 'এই আইডিয়ার জন্য গাইড'}</h2>
+            <h2>{en ? 'Guides for this idea' : 'এই আইডিয়ার জন্য গাইড'}</h2>
             <ul>{guides.map(guide => <li key={guide.route}><a href={guide.route}>{guide.title}<IdeaIcon name="arrow" /></a></li>)}</ul>
           </section>}
         </div>
         <aside className="ideas-facts">
-          <section><h2>{en ? 'How it could earn' : 'আয় হতে পারে যেভাবে'}</h2><p>{a.businessModel}</p></section>
+          <section><h2>{en ? 'Ways to earn' : 'আয়ের উপায়'}</h2><p>{a.businessModel}</p></section>
           <section className="ideas-companies-small">
-            {companies.length > 0 && <><h2>{en ? 'Related companies' : 'সংশ্লিষ্ট কোম্পানি'}</h2><div className="ideas-company-links">{companies.map(({ company, connection }) => <a href={companyPath(locale, company.slug)} key={connection.id}><CompanyMark company={company} locale={locale} /><span>{company[locale].name}</span></a>)}</div></>}
-            <a className="ideas-inline-link" href={`${ideaPath(locale, 'add-company')}?problem=${encodeURIComponent(problem.id)}`}>{en ? 'Working on this?' : 'এ নিয়ে কাজ করছেন?'}<IdeaIcon name="plus" /></a>
+            {companies.length > 0 && <><h2>{en ? 'Related companies' : 'একই সমস্যা নিয়ে কাজ করা কোম্পানি'}</h2><div className="ideas-company-links">{companies.map(({ company, connection }) => <a href={companyPath(locale, company.slug)} key={connection.id}><CompanyMark company={company} locale={locale} /><span>{company[locale].name}</span></a>)}</div></>}
+            <a className="ideas-inline-link" href={`${ideaPath(locale, 'add-company')}?problem=${encodeURIComponent(problem.id)}`}>{en ? 'Working on this?' : 'এ নিয়ে কাজ করছেন?'}<IdeaIcon name="plus" /></a>
           </section>
         </aside>
       </div>
@@ -84,7 +84,7 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
       </section>}
       <details className="ideas-research" id="sources"><summary>{en ? 'Research & sources' : 'গবেষণা ও সোর্স'}<span className="ideas-disclosure-icon" aria-hidden="true" /></summary>
         <div className="ideas-research-body"><h2>{en ? 'The problem' : 'সমস্যাটি'}</h2><p>{p.context}</p>
-          <h2>{en ? 'What to find out' : 'যা জেনে নেওয়া দরকার'}</h2><p>{p.unknown}</p>
+          <h2>{en ? 'What to find out' : 'যা জেনে নেওয়া দরকার'}</h2><p>{p.unknown}</p>
           {problem.sources.length > 0 && <ol className="ideas-sources">{problem.sources.map(source => <li key={source.url}><div><a href={source.url}>{source.title}<IdeaIcon name="external" /></a><span className="ideas-source-date">{source.date} · {domain(source.url)}</span><p>{source[locale]}</p></div></li>)}</ol>}
         </div>
       </details>
