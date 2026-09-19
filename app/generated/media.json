@@ -53,6 +53,42 @@
     "remote": true,
     "uploadedAt": "2026-08-18T21:34:09.801Z"
   },
+  "/media/funding/pitch-deck/ask-en.webp": {
+    "key": "funding/pitch-deck/ask-en.dbd3141b7a7d.webp",
+    "w": 2400,
+    "h": 1350,
+    "bytes": 104358,
+    "sha": "dbd3141b7a7d",
+    "remote": true,
+    "uploadedAt": "2026-09-19T17:44:27.755Z"
+  },
+  "/media/funding/pitch-deck/market-en.webp": {
+    "key": "funding/pitch-deck/market-en.ceaddcf0df24.webp",
+    "w": 2400,
+    "h": 1350,
+    "bytes": 111550,
+    "sha": "ceaddcf0df24",
+    "remote": true,
+    "uploadedAt": "2026-09-19T17:44:24.179Z"
+  },
+  "/media/funding/pitch-deck/problem-en.webp": {
+    "key": "funding/pitch-deck/problem-en.32e1d2b11382.webp",
+    "w": 2400,
+    "h": 1350,
+    "bytes": 140512,
+    "sha": "32e1d2b11382",
+    "remote": true,
+    "uploadedAt": "2026-09-19T17:44:22.422Z"
+  },
+  "/media/funding/pitch-deck/traction-en.webp": {
+    "key": "funding/pitch-deck/traction-en.46f9c145492e.webp",
+    "w": 2400,
+    "h": 1350,
+    "bytes": 93668,
+    "sha": "46f9c145492e",
+    "remote": true,
+    "uploadedAt": "2026-09-19T17:44:25.860Z"
+  },
   "/media/og/bn/case-studies/10-minute-school.png": {
     "key": "og/bn/case-studies/10-minute-school.6b6a975b4685.png",
     "w": 1200,
@@ -369,13 +405,13 @@
     "uploadedAt": "2026-08-23T18:13:12.930Z"
   },
   "/media/startup-50/bongo.webp": {
-    "key": "startup-50/bongo.4dd06076de09.webp",
-    "w": 160,
-    "h": 160,
-    "bytes": 1794,
-    "sha": "4dd06076de09",
+    "key": "startup-50/bongo.9d542eecde9f.webp",
+    "w": 320,
+    "h": 112,
+    "bytes": 10408,
+    "sha": "9d542eecde9f",
     "remote": true,
-    "uploadedAt": "2026-09-16T00:58:37.218Z"
+    "uploadedAt": "2026-09-16T15:03:13.939Z"
   },
   "/media/startup-50/brain-craft.webp": {
     "key": "startup-50/brain-craft.b3da4cb2e49d.webp",

@@ -1,0 +1,26 @@
+/* Scoped additions: preserve the shared calculator layout on other pages. */
+.working-capital .calc__result {
+  flex-wrap: wrap;
+}
+.working-capital .calc__result dd {
+  overflow-wrap: anywhere;
+}
+.working-capital .calc__input {
+  min-width: 0;
+  min-height: 44px;
+}
+.working-capital__reset {
+  margin-top: 14px;
+  padding: 8px 12px;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--canvas);
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+.working-capital :is(input, button):focus-visible {
+  outline: 2px solid var(--green-deep);
+  outline-offset: 3px;
+}
