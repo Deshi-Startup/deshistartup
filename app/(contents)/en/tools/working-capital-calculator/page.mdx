@@ -8,17 +8,17 @@ import WorkingCapitalCalculator from '../../../../components/WorkingCapitalCalcu
 
 # Working Capital Calculator: Stock, Invoices and Cash Cycle
 
-> **In short:** Stock and unpaid invoices can absorb cash while sales grow. Enter your monthly amounts and average waiting times below. You will get a cash conversion cycle in days and an estimate of inventory plus customer receivables minus supplier payables. Change one waiting time to see what could improve. This is not your bank balance or the amount you need to borrow.
+> **In short:** Stock and unpaid invoices can tie up money even when sales grow. Enter your monthly amounts and average waiting times below. The calculator estimates the value of your stock plus money customers owe you, minus bills you still owe suppliers. It also shows your cash conversion cycle: stock days plus customer payment days, minus supplier payment days. Change one waiting time to see what could improve. This is not your bank balance or the amount you need to borrow.
 
 Use this for an established product business or a business selling on credit. It assumes activity continues at roughly the same pace. For a launch, an Eid stock build-up or a large one-off order, map the actual payment dates in a cash forecast instead.
 
 ## Try your numbers
 
-Use amounts from the same business or product line, normalized to a **30-day month**, excluding VAT throughout. For example, divide a representative 90-day total by three. The starting numbers are a **hypothetical Bangladesh B2B product business**, not an industry benchmark. All its sales and purchases are on credit.
+Use amounts from the same business or product line, worked out for a **30-day month**, excluding VAT throughout. For example, take a normal 90-day period and divide its totals by three. The starting numbers are a **hypothetical Bangladesh B2B product business**, not an industry benchmark. All its sales and purchases are on credit.
 
 <WorkingCapitalCalculator locale="en" />
 
-Change customer collection days from **20 to 10**. The estimate falls from **BDT 5,80,000 to BDT 3,80,000**. That is BDT 2,00,000 less in receivables once the faster collection pattern is established, not a recurring monthly profit.
+Change customer collection days from **20 to 10**. The estimate falls from **BDT 5,80,000 to BDT 3,80,000**. That is BDT 2,00,000 less owed by customers once they regularly pay in ten days, not a recurring monthly profit.
 
 ## Which “working capital” does this show?
 
@@ -30,7 +30,7 @@ A shorter cycle is useful only if the change works in practice. Running out of s
 
 ## Get the inputs from your records
 
-Bring your sales ledger, cost-of-goods report, supplier purchase ledger and recent average balances. Start with a representative period, not a single unusually busy month.
+Bring your sales records, the cost of goods sold, supplier purchase records and average balances. Choose a period that reflects normal business, rather than one unusually busy month.
 
 - **Credit sales:** sales where customers pay later. Leave immediate cash sales out. Use the amount invoiced, not cash collected this month.
 - **Cost of goods sold (COGS):** the cost of the goods sold during the period, including goods sold for cash. Do not enter their selling price or the value of all stock bought.
@@ -39,13 +39,13 @@ Bring your sales ledger, cost-of-goods report, supplier purchase ledger and rece
 - **Customer collection days:** average trade receivables ÷ daily credit sales. Use the actual collection pattern, not just “30 days” printed on invoices.
 - **Supplier payment days:** average trade payables ÷ daily credit purchases. Match the supplier balances to the purchases you included.[^acca-ratios]
 
-For an initial average balance, use opening plus closing balance divided by two; use more frequent snapshots when balances swing. Keep the same period and VAT basis for amounts and balances. A courier or payment-provider settlement delay needs its own cash schedule if it is not captured in trade receivables. Customer deposits and supplier prepayments are outside this model.
+For an initial average balance, use opening plus closing balance divided by two; record the balances more often when they change a lot. Keep the same period and VAT basis for amounts and balances. A courier or payment-provider settlement delay needs its own cash schedule if it is not captured in trade receivables. Customer deposits and supplier prepayments are outside this model.
 
 **If a monthly amount is zero, its matching days must also be zero.** For example, no credit sales means zero collection days. If old invoices or unsold stock remain despite no new activity, use those actual balances and payment dates in a forecast. A zero here does not write them off. No inventory? Enter zero COGS and inventory days only when those costs and balances really are absent; this does not remove payroll or other service costs.
 
 ## Check the calculation by hand
 
-The tool rearranges the turnover-day formulas into estimated balances. Inventory uses cost, customer invoices use credit sales, and supplier bills use credit purchases.[^acca-ratios]
+The tool works backwards from the day counts to estimate how much money sits in each balance. Inventory uses cost, customer invoices use credit sales, and supplier bills use credit purchases.[^acca-ratios]
 
 ```text
 Inventory = (monthly COGS ÷ 30) × inventory days
@@ -84,11 +84,11 @@ Pick a change you can verify: invoice sooner, reduce a slow-moving stock line or
 
 ## What a zero or negative result means
 
-A **negative CCC** means the modeled collection cycle finishes before the supplier payment period ends. It does not automatically produce a negative taka balance, because the money calculation uses different bases.
+A **negative CCC** means this model puts customer payments before the supplier payment deadline. It does not automatically produce a negative taka balance, because the money calculation uses different bases.
 
-A **negative cash-tied-up estimate** means modeled supplier payables exceed inventory plus customer receivables. Those bills still need paying. The result is not profit, spare cash to distribute or proof that the business needs no funding. A zero estimate makes none of those promises either.
+A **negative cash-tied-up estimate** means the supplier bills in this estimate are larger than the stock value plus money customers owe you. Those bills still need paying. The result is not profit, spare cash to distribute or proof that the business needs no funding. A zero estimate makes none of those promises either.
 
-The calculator excludes cash already held, rent, payroll, taxes, interest, loan repayments, equipment, deposits, bad debts, returns and minimum cash reserves. It assumes steady activity and representative days; it does not show the biggest cash shortfall during growth or seasonal buying. The cash needed on a particular date depends on actual receipts and payments. See [cash flow versus profit](/en/metrics/cashflow-vs-profit) for that distinction.
+The calculator excludes cash already held, rent, payroll, taxes, interest, loan repayments, equipment, deposits, bad debts, returns and minimum cash reserves. It assumes sales, costs and average waiting times stay roughly the same; it does not show the biggest cash shortfall during growth or seasonal buying. The cash needed on a particular date depends on actual receipts and payments. See [cash flow versus profit](/en/metrics/cashflow-vs-profit) for that distinction.
 
 ## Leave with one action
 
