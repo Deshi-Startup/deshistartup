@@ -1,14 +1,106 @@
 ---
-title: "Working Capital Cycle Calculator"
-description: "Working Capital Cycle Calculator – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "Working Capital Calculator: Stock, Invoices and Cash Cycle"
+description: "Calculate cash conversion cycle days and estimated cash tied up in stock and unpaid invoices, less supplier credit. Try a BDT example and test a change."
+verified: 2026-09-19
 ---
 
-# Working Capital Cycle Calculator
+import WorkingCapitalCalculator from '../../../../components/WorkingCapitalCalculator'
 
-<StubNotice path="tools/working-capital-calculator" locale="en" />
+# Working Capital Calculator: Stock, Invoices and Cash Cycle
+
+> **In short:** Stock and unpaid invoices can absorb cash while sales grow. Enter your monthly amounts and average waiting times below. You will get a cash conversion cycle in days and an estimate of inventory plus customer receivables minus supplier payables. Change one waiting time to see what could improve. This is not your bank balance or the amount you need to borrow.
+
+Use this for an established product business or a business selling on credit. It assumes activity continues at roughly the same pace. For a launch, an Eid stock build-up or a large one-off order, map the actual payment dates in a cash forecast instead.
+
+## Try your numbers
+
+Use amounts from the same business or product line, normalized to a **30-day month**, excluding VAT throughout. For example, divide a representative 90-day total by three. The starting numbers are a **hypothetical Bangladesh B2B product business**, not an industry benchmark. All its sales and purchases are on credit.
+
+<WorkingCapitalCalculator locale="en" />
+
+Change customer collection days from **20 to 10**. The estimate falls from **BDT 5,80,000 to BDT 3,80,000**. That is BDT 2,00,000 less in receivables once the faster collection pattern is established, not a recurring monthly profit.
+
+## Which “working capital” does this show?
+
+**Net <Term name="working-capital">working capital</Term>** on a balance sheet is current assets minus current liabilities. It includes more than these three operating balances, such as cash and short-term obligations.[^bdc-working-capital]
+
+This tool shows a narrower **operating balance: inventory + receivables - payables**. Receivables are customer invoices not yet collected; payables are supplier bills not yet paid. The **cash conversion cycle (CCC)** is a time measure: inventory days + collection days - supplier payment days.[^acca-working-capital]
+
+A shorter cycle is useful only if the change works in practice. Running out of stock or losing a supplier can cost more than the cash released.
+
+## Get the inputs from your records
+
+Bring your sales ledger, cost-of-goods report, supplier purchase ledger and recent average balances. Start with a representative period, not a single unusually busy month.
+
+- **Credit sales:** sales where customers pay later. Leave immediate cash sales out. Use the amount invoiced, not cash collected this month.
+- **Cost of goods sold (COGS):** the cost of the goods sold during the period, including goods sold for cash. Do not enter their selling price or the value of all stock bought.
+- **Credit purchases:** goods or services bought from suppliers on credit. Leave purchases paid immediately out. Do not automatically copy COGS here: purchases can differ from the cost of goods sold.
+- **Inventory days:** average inventory at cost ÷ daily COGS. For this tool, daily COGS is the 30-day amount ÷ 30.
+- **Customer collection days:** average trade receivables ÷ daily credit sales. Use the actual collection pattern, not just “30 days” printed on invoices.
+- **Supplier payment days:** average trade payables ÷ daily credit purchases. Match the supplier balances to the purchases you included.[^acca-ratios]
+
+For an initial average balance, use opening plus closing balance divided by two; use more frequent snapshots when balances swing. Keep the same period and VAT basis for amounts and balances. A courier or payment-provider settlement delay needs its own cash schedule if it is not captured in trade receivables. Customer deposits and supplier prepayments are outside this model.
+
+**If a monthly amount is zero, its matching days must also be zero.** For example, no credit sales means zero collection days. If old invoices or unsold stock remain despite no new activity, use those actual balances and payment dates in a forecast. A zero here does not write them off. No inventory? Enter zero COGS and inventory days only when those costs and balances really are absent; this does not remove payroll or other service costs.
+
+## Check the calculation by hand
+
+The tool rearranges the turnover-day formulas into estimated balances. Inventory uses cost, customer invoices use credit sales, and supplier bills use credit purchases.[^acca-ratios]
+
+```text
+Inventory = (monthly COGS ÷ 30) × inventory days
+Receivables = (monthly credit sales ÷ 30) × collection days
+Payables = (monthly credit purchases ÷ 30) × payment days
+Operating cash tied up = inventory + receivables - payables
+CCC = inventory days + collection days - payment days
+```
+
+In the hypothetical example, monthly credit sales are BDT 6 lakh. COGS and credit purchases are each BDT 3.6 lakh. Stock stays for 30 days, customers pay in 20 days and suppliers receive payment in 15 days. Daily credit sales are BDT 20,000; daily COGS and purchases are each BDT 12,000.
+
+Here is where the BDT 5.8 lakh estimate comes from:
+
+| Balance | Calculation | Estimated BDT |
+|---|---|---:|
+| Inventory at cost | 12,000 × 30 | 3,60,000 |
+| Customer receivables | 20,000 × 20 | 4,00,000 |
+| Less supplier payables | 12,000 × 15 | -1,80,000 |
+| Operating cash tied up | 3,60,000 + 4,00,000 - 1,80,000 | **5,80,000** |
+
+CCC is **30 + 20 - 15 = 35 days**. Multiplying 35 by daily sales would give BDT 7 lakh, which is **not** this operating balance. It incorrectly values the stock and supplier bills at the selling-price rate.
+
+## Test one realistic change
+
+Keep sales and costs unchanged and compare each option separately with the original example:
+
+| One change | New CCC | New cash tied up | Reduction |
+|---|---:|---:|---:|
+| Collect customer invoices in 10 rather than 20 days | 25 days | BDT 3,80,000 | BDT 2,00,000 |
+| Hold stock for 20 rather than 30 days | 25 days | BDT 4,60,000 | BDT 1,20,000 |
+| Agree 25 rather than 15 days with suppliers | 25 days | BDT 4,60,000 | BDT 1,20,000 |
+
+All three shorten CCC by ten days, but the cash effect differs because sales and costs have different daily values. These are alternative scenarios, not savings to add together. Any collection discount, price change or extra delivery cost would also need to be included in the decision.
+
+Pick a change you can verify: invoice sooner, reduce a slow-moving stock line or negotiate a written supplier term. Do not enter a longer payment period simply because you plan to pay late; supplier credit and discounts can be lost.[^acca-working-capital]
+
+## What a zero or negative result means
+
+A **negative CCC** means the modeled collection cycle finishes before the supplier payment period ends. It does not automatically produce a negative taka balance, because the money calculation uses different bases.
+
+A **negative cash-tied-up estimate** means modeled supplier payables exceed inventory plus customer receivables. Those bills still need paying. The result is not profit, spare cash to distribute or proof that the business needs no funding. A zero estimate makes none of those promises either.
+
+The calculator excludes cash already held, rent, payroll, taxes, interest, loan repayments, equipment, deposits, bad debts, returns and minimum cash reserves. It assumes steady activity and representative days; it does not show the biggest cash shortfall during growth or seasonal buying. The cash needed on a particular date depends on actual receipts and payments. See [cash flow versus profit](/en/metrics/cashflow-vs-profit) for that distinction.
+
+## Leave with one action
+
+- [ ] Save the starting inputs, date and result in your own notes.
+- [ ] Change one assumption and write down the difference in taka.
+- [ ] Check the trade-off with the person handling stock, customers or suppliers.
+- [ ] Put the proposed change and its actual payment dates into your cash forecast before committing money.
+
+For an invoice already overdue, use the [invoice-collection guide](/en/b2b/invoice-collection). For runway and a broader monthly plan, continue to [financial projections](/en/metrics/financial-projections). This calculator helps identify where to investigate; it does not approve a loan amount.
 
 ## Relevant Sources
 
-- [RJSC](https://roc.gov.bd)
-- [BASIS](https://www.basis.org.bd)
-- [Bangladesh Bank](https://www.bb.org.bd)
+[^bdc-working-capital]: [BDC: How to increase your working capital](https://www.bdc.ca/en/articles-tools/money-finance/manage-finances/stay-agile-increased-working-capital) - balance-sheet definition. This Canadian source is used for the accounting concept, not Bangladesh lending rules.
+[^acca-working-capital]: [ACCA: Working capital management](https://www.accaglobal.com/gb/en/student/exam-support-resources/fundamentals-exams-study-resources/f9/technical-articles/wcm.html) - operating balances, cash operating cycle and supplier-credit trade-offs.
+[^acca-ratios]: [ACCA: How to approach performance appraisal questions](https://www.accaglobal.com/an/en/student/exam-support-resources/fundamentals-exams-study-resources/f7/technical-articles/appraisal-questions.html) - turnover-day formulas and the appropriate sales, cost and purchase bases.
