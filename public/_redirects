@@ -67,6 +67,16 @@
 /phase-one/where-to-find-bangladesh-market-data-bbs-world-bank-bida-sector-reports /ideas/market-data-sources 301
 /en/phase-one/where-to-find-bangladesh-market-data-bbs-world-bank-bida-sector-reports /en/ideas/market-data-sources 301
 
+# Retired URLs for completed guides, matched through the July migration map.
+/phase-one/how-to-validate-customers-outside-dhaka /validation/outside-dhaka 301
+/en/phase-one/how-to-validate-customers-outside-dhaka /en/validation/outside-dhaka 301
+/phase-one/business-bank-account-guide /payments/bank-account 301
+/en/phase-one/business-bank-account-guide /en/payments/bank-account 301
+/phase-one/payment-gateway-integration-sslcommerz-amarpay-portwallet /payments/gateway-integration 301
+/en/phase-one/payment-gateway-integration-sslcommerz-amarpay-portwallet /en/payments/gateway-integration 301
+/phase-one/importexport-registration-basics /trade/import-export-registration 301
+/en/phase-one/importexport-registration-basics /en/trade/import-export-registration 301
+
 # Conventional favicon requests and the previous public brand-mark URL.
 /favicon.ico /favicon-32.png 301
 /deshi-mark.svg /deshi-mark.webp 301
