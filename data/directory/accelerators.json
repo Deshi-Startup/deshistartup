@@ -249,9 +249,12 @@
   },
   {
     "id": "bylc-ventures",
-    "website": "https://bylc.org/ventures/",
+    "website": "https://bylc.org/programs/",
     "sourceUrls": [
-      "https://bylc.org/ventures/"
+      "https://bylc.org/programs/",
+      "https://bylc.org/assets/files/Impact-Report2023.pdf",
+      "https://unb.com.bd/category/business/bylc-ventures-announces-cohort-5-winners/102983",
+      "https://www.newagebd.net/print/article/166022"
     ],
     "lastVerified": "2026-08-19",
     "en": {
@@ -273,15 +276,15 @@
         "Legal and virtual CFO support",
         "Co-working space"
       ],
-      "cohortTiming": "Cohort-based; no current application window is announced.",
-      "costOrEquity": "No application fee. A BDT 200,000 programme and professional-services fee is deducted from the BDT 800,000 seed funding. Equity terms: Not publicly stated.",
+      "cohortTiming": "Cohort-based; confirm the next intake with BYLC.",
+      "costOrEquity": "Confirm current fees, funding amounts and equity terms with BYLC; its programme overview does not publish them.",
       "notableAlumni": [
         "InsureCow",
         "Ecovia",
         "Biotech Energy"
       ],
-      "applicationPath": "Apply through the BYLC Ventures page when the next cohort opens; shortlisted teams enter a selection bootcamp.",
-      "notes": "A six-month accelerator and investment programme combining early-stage capital with founder leadership, company-building and Bangladesh-specific legal and financial support. It is sector-agnostic, prefers teams with some market traction and looks for businesses addressing socioeconomic challenges."
+      "applicationPath": "Check BYLC’s programmes page and contact BYLC for the next Ventures intake and application link.",
+      "notes": "BYLC supports young entrepreneurs with funding, training and co-working space. Earlier cohorts included six-month accelerator programmes with mentoring and legal and financial support; confirm what the next intake includes."
     },
     "bn": {
       "name": "BYLC Ventures",
@@ -302,15 +305,15 @@
         "আইনি ও ভার্চুয়াল সিএফও (CFO) সহায়তা",
         "কো-ওয়ার্কিং স্পেস"
       ],
-      "cohortTiming": "কোহোর্ট-ভিত্তিক; বর্তমানে কোনো নতুন আবেদন বিজ্ঞপ্তি নেই।",
-      "costOrEquity": "কোনো আবেদন ফি নেই। ৮ লাখ টাকার সিড ফান্ডিং থেকে ২ লাখ টাকা প্রোগ্রাম ও প্রফেশনাল সার্ভিস ফি বাবদ কেটে রাখা হয়। ইকুইটির শর্ত: প্রকাশ্যে বলা নেই।",
+      "cohortTiming": "কোহোর্ট ধরে চলে। পরবর্তী কোহোর্ট কবে শুরু হবে, BYLC-র কাছ থেকে জেনে নিন।",
+      "costOrEquity": "বর্তমান ফি, ফান্ডিংয়ের পরিমাণ ও ইকুইটির শর্ত BYLC-র কাছ থেকে জেনে নিন। তাদের প্রোগ্রামের পরিচিতি পেজে এগুলো দেওয়া নেই।",
       "notableAlumni": [
         "InsureCow",
         "Ecovia",
         "Biotech Energy"
       ],
-      "applicationPath": "পরবর্তী কোহোর্ট চালু হলে BYLC Ventures পেজ থেকে আবেদন করুন; বাছাই করা টিমগুলোকে সিলেকশন বুটক্যাম্পে অংশ নিতে হয়।",
-      "notes": "এটি ৬ মাসের একটি অ্যাক্সিলারেটর ও ইনভেস্টমেন্ট প্রোগ্রাম, যেখানে প্রারম্ভিক পুঁজির পাশাপাশি ফাউন্ডারদের নেতৃত্ব বিকাশ, কোম্পানি গঠন এবং বাংলাদেশের প্রেক্ষাপটে আইনি ও আর্থিক সহায়তা দেওয়া হয়। এটি যেকোনো খাতের জন্য উন্মুক্ত; বাজারে কিছুটা ট্র্যাকশন আছে এবং আর্থসামাজিক সমস্যার সমাধানে কাজ করছে এমন টিমগুলোকে প্রাধান্য দেওয়া হয়।"
+      "applicationPath": "BYLC-র Programs পেজ দেখুন। পরবর্তী Ventures কোহোর্টের সময় ও আবেদনের লিংক জানতে BYLC-র সঙ্গে যোগাযোগ করুন।",
+      "notes": "তরুণ উদ্যোক্তাদের ফান্ডিং, প্রশিক্ষণ ও কো-ওয়ার্কিং স্পেস দেয় BYLC। আগের কোহোর্টগুলোতে ছয় মাসের অ্যাক্সিলারেটর প্রোগ্রাম, মেন্টরিং এবং আইনি ও আর্থিক সহায়তা ছিল। পরবর্তী কোহোর্টে কী কী পাবেন, আগে জেনে নিন।"
     }
   },
   {
