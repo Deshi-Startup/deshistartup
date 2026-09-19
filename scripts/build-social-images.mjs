@@ -280,7 +280,8 @@ export async function renderCaseStudySocialCard({ page, fontPath, palette, logo,
       .resize(432, 262).png().toBuffer()
   ])
   if (name.info.height > 58 || headline.info.height > 207 || footer.info.height > 42 || domain.info.height > 42) {
-    throw new Error(`${locale}:${page.slug}: social-image copy exceeds its safe area`)
+    const sizes = { name: name.info, headline: headline.info, footer: footer.info, domain: domain.info }
+    throw new Error(`${locale}:${page.slug}: social-image copy exceeds its safe area: ${JSON.stringify(sizes)}`)
   }
   // The approved cover artwork fills the right side; text is never scaled into a narrow column.
   const base = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
