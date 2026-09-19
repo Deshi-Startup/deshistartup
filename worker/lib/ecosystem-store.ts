@@ -14,7 +14,7 @@ export async function createSubmission(db: D1Database, owner: string, key: strin
     return { id: previous.id, status: previous.status }
   }
   if (!('kind' in payload)) {
-    if (!await db.prepare('SELECT id FROM problems WHERE id = ?').bind(payload.problemId).first()) throw new EcosystemConflict('problem_not_found')
+    if (!await db.prepare('SELECT id FROM problems WHERE id = ? AND active = 1').bind(payload.problemId).first()) throw new EcosystemConflict('problem_not_found')
     if (payload.organizationId && !await db.prepare('SELECT id FROM organizations WHERE id = ?').bind(payload.organizationId).first()) throw new EcosystemConflict('organization_not_found')
   }
   const id = `submission_${crypto.randomUUID()}`
@@ -38,6 +38,8 @@ export async function decideSubmission(db: D1Database, id: string, reviewer: str
   const statements = [db.prepare('INSERT INTO mutation_guards (id, valid) VALUES (?, CASE WHEN EXISTS (SELECT 1 FROM submissions WHERE id = ? AND status = ? AND revision = ?) THEN 1 ELSE 0 END)')
     .bind(guard, id, 'pending', decision.revision)]
   if (decision.decision === 'approved' && !('kind' in proposal) && 'organizationId' in decision) {
+    // Keep the active-record check in the same transaction as the approval.
+    statements.push(db.prepare('INSERT INTO mutation_guards (id, valid) VALUES (?, CASE WHEN EXISTS (SELECT 1 FROM problems WHERE id = ? AND active = 1) THEN 1 ELSE 0 END)').bind(`${guard}:problem`, proposal.problemId))
     const organizationId = decision.organizationId || `org_${crypto.randomUUID()}`
     if (!decision.organizationId) {
       const org = decision.organization!
@@ -54,7 +56,7 @@ export async function decideSubmission(db: D1Database, id: string, reviewer: str
   statements.push(
     db.prepare('UPDATE submissions SET status = ?, revision = revision + 1, decided_at = ?, decision_note = ? WHERE id = ?').bind(decision.decision, now, decision.note, id),
     db.prepare('INSERT INTO review_events (id, submission_id, reviewer_hash, decision, note, created_at) VALUES (?, ?, ?, ?, ?, ?)').bind(`review_${crypto.randomUUID()}`, id, reviewer, decision.decision, decision.note, now),
-    db.prepare('DELETE FROM mutation_guards WHERE id = ?').bind(guard)
+    db.prepare('DELETE FROM mutation_guards WHERE id IN (?, ?)').bind(guard, `${guard}:problem`)
   )
   try { await db.batch(statements) }
   catch (error) {

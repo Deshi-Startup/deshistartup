@@ -14,17 +14,21 @@ export const publicColumns = {
   organization_references: 'organization_id kind target',
   connections: 'id organization_id problem_id stage work_en work_bn evidence_url review_scope reviewed_at'
 }
+const activeProblems = 'SELECT id FROM problems WHERE active = 1'
+const publicWhere = {
+  problems: 'active = 1',
+  problem_text: `problem_id IN (${activeProblems})`,
+  approaches: `problem_id IN (${activeProblems})`,
+  approach_text: `approach_id IN (SELECT id FROM approaches WHERE problem_id IN (${activeProblems}))`,
+  connections: `problem_id IN (${activeProblems})`
+}
+const publicQuery = table => `SELECT * FROM ${table}${publicWhere[table] ? ` WHERE ${publicWhere[table]}` : ''} ORDER BY rowid`
 export const snapshotRowsSql = 'SELECT json_object(' + Object.entries(publicColumns).map(([table, columns]) =>
-  `'${table}', (SELECT json_group_array(json_object(${columns.split(' ').map(c => `'${c}', ${c}`).join(', ')})) FROM (SELECT * FROM ${table} ORDER BY rowid))`
+  `'${table}', (SELECT json_group_array(json_object(${columns.split(' ').map(c => `'${c}', ${c}`).join(', ')})) FROM (${publicQuery(table)}))`
 ).join(', ') + ') AS snapshot_rows'
 
 export async function readEcosystemSnapshot(query, releaseId, createdAt) {
-  const [problems, problemText, approaches, approachText, organizations, organizationText, references, connections] = await Promise.all([
-    'SELECT * FROM problems ORDER BY rowid', 'SELECT * FROM problem_text',
-    'SELECT * FROM approaches ORDER BY problem_id, position, id', 'SELECT * FROM approach_text',
-    'SELECT * FROM organizations ORDER BY slug', 'SELECT * FROM organization_text',
-    'SELECT * FROM organization_references ORDER BY kind, target', 'SELECT * FROM connections ORDER BY id'
-  ].map(query))
+  const [problems, problemText, approaches, approachText, organizations, organizationText, references, connections] = await Promise.all(Object.keys(publicColumns).map(table => query(publicQuery(table))))
   const localized = (rows, idKey, id, transform) => Object.fromEntries(rows.filter(x => x[idKey] === id).map(x => [x.locale, transform(x)]))
   const snapshot = {
     version: 1, releaseId, createdAt,
@@ -65,7 +69,10 @@ export function validateEcosystemSnapshot(snapshot) {
       if (kind === 'organizations' && (!safeUrl(row.website) || row.sourceUrls.some(u => !safeUrl(u)) || (row.logoPath && !/^\/media\/[a-zA-Z0-9/_.-]+$/.test(row.logoPath)))) throw new Error('Unsafe organization URL')
       if (kind === 'problems' && (row.sources.some(s => !safeUrl(s.url)) || !row.places.length)) throw new Error('Invalid problem context')
       if (kind === 'approaches' && ['en', 'bn'].some(l => !Array.isArray(row[l].steps) || !row[l].steps.length || row[l].steps.some(s => typeof s !== 'string' || !s.trim()))) throw new Error('Incomplete first test')
-      // An idea without a date would be presented as new forever, so the export fails instead.
+      if (kind === 'approaches' && !['software', 'service', 'marketplace', 'workflow'].includes(row.kind)) throw new Error('Invalid idea type')
+      if (kind === 'organizations' && (!row.roles.length || row.roles.some(role => !['startup', 'investor', 'accelerator', 'incubator', 'community'].includes(role)))) throw new Error('Invalid organization role')
+      if (kind === 'connections' && !['research', 'prototype', 'live'].includes(row.stage)) throw new Error('Invalid work stage')
+      // Keep editorial dates available without adding freshness claims to the UI.
       if (kind === 'approaches' && !/^\d{4}-\d{2}-\d{2}$/.test(row.addedAt || '')) throw new Error(`Missing added date: ${row.id}`)
       if (kind === 'approaches' && (!Array.isArray(row.guides) || row.guides.length > 5 || new Set(row.guides).size !== row.guides.length || row.guides.some(g => !/^[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)*$/.test(g)))) throw new Error(`Invalid guide links: ${row.id}`)
       if (kind === 'connections' && (!safeUrl(row.evidenceUrl) || !row.en.trim() || !row.bn.trim())) throw new Error('Invalid connection evidence')

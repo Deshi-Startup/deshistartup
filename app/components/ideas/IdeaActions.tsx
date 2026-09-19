@@ -30,7 +30,6 @@ export default function IdeaActions({ id, locale, prompt, brief }: { id: string;
     <div className="ideas-action-buttons">
       <button type="button" className="ideas-button ideas-button-secondary" onClick={copy}>{en ? 'Copy AI prompt' : 'এআই প্রম্পট কপি করুন'}<IdeaIcon name="arrow" /></button>
       <button type="button" className="ideas-text-button" onClick={download}><IdeaIcon name="download" />{en ? 'Download idea' : 'আইডিয়া ডাউনলোড করুন'}</button>
-      <p className="ideas-action-help">{en ? 'Paste it into ChatGPT, Claude or Gemini to sketch a first version.' : 'ChatGPT, Claude বা Gemini-তে পেস্ট করলে প্রথম খসড়াটা বানিয়ে দেখা যায়।'}</p>
     </div>
     <p className="ideas-feedback" role="status" aria-live="polite">{message}</p>
     {fallback && <div className="ideas-copy-fallback"><label htmlFor={fieldId}>{en ? 'AI prompt' : 'এআই প্রম্পট'}</label><textarea id={fieldId} ref={textRef} value={prompt} readOnly rows={9} /></div>}

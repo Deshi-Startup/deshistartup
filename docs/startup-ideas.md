@@ -6,10 +6,11 @@ companies are supporting references with one profile across Deshi Startup.
 
 ## Routes and data
 
-- `/startup-ideas` and `/en/startup-ideas`: eight ideas, search, sector/location
-  filters and a saved view. Filters use shareable URLs.
+- `/startup-ideas` and `/en/startup-ideas`: six researched ideas, search, sector/location
+  and idea-type filters, plus a saved-only filter. Filters use shareable URLs.
 - `/startup-ideas/<slug>`: one idea, who it helps, how it works, a possible revenue
-  model and first steps. Research expands below. Related companies appear as small
+  model and numbered first steps. Relevant guides and alternative ideas for the
+  same problem offer a next step. Save and Share sit above the brief. Research expands below. Related companies appear as small
   logo/name links; their profiles explain the specific work and source.
 - `/companies/<slug>`: shared profiles linked from ideas, DS50 and case studies.
   The existing company index is directly reachable but has no navigation entry.
@@ -41,9 +42,30 @@ produced by `scripts/build-ecosystem-routes.mjs`. Public reading is static and n
 neither an account nor a database request. Normal builds need no D1 credentials.
 
 Company connections currently refer to the shared problem, not a specific idea.
-“Related companies” reflects that scope. The Pathao record describes published
-courier services, not adoption of either proposed reconciliation idea. Shared
-profiles retain the original research dates. DS50 membership remains independent.
+“Related companies” reflects that scope. Reverse Resources is linked through
+published textile-recycling work. It is not presented as adopting our proposed
+idea. Shared profiles retain source dates; DS50 membership remains independent.
+
+## Seed standard
+
+The first collection covers crop cooling, drinking-water maintenance, clinic
+follow-up, workplace heat, textile recycling and rooftop-solar upkeep. Each brief
+names a customer, a possible payer, a small test and the result worth looking for.
+Primary sources establish the problem; pricing, demand and proposed business models
+remain hypotheses to test. Existing work is acknowledged. Sector importance alone
+is not enough to qualify an idea.
+
+Keep both languages concise. Include material safety or operational constraints in
+the relevant step, and keep deeper questions and source notes in the disclosure.
+Prefer one grounded source to a long reading list. Avoid fabricated market sizes,
+funding interest, traction or financial forecasts.
+
+Migration `0008` retires earlier preview problems with `active = 0`, preserving
+records, submissions and frozen releases. Exports include only active problems and
+their ideas and connections. Company identities remain available. New connections
+to retired problems cannot be submitted or approved. Old preview idea links redirect
+to the collection. To curate later, use a forward migration and prepare a new release;
+do not edit a published snapshot or rewrite an applied migration.
 
 ## Idea submissions
 
@@ -121,13 +143,19 @@ build, then check desktop/mobile reading and keyboard use in both languages.
 
 `LocalizedLayout` owns the shared header, fonts, search, language switch, sidebar
 and footer. `IdeaShell` adds spacing without a second navigation layer. The index
-contains no company names or counts. A two-column introduction leads into one
-shared filter bar; ruled rows separate sectors from idea titles and keep metadata
-quiet. Each row links to its idea, with the save button remaining independent.
+contains no company names or counts. A single-column introduction leads into one
+shared search/filter bar and a row of idea-type pills. A Saved toggle narrows the
+current filters. Ruled rows separate sectors from idea titles; metadata stays plain.
+Service, software, marketplace and manual-process types describe the idea, without
+inferring coding requirements. Customers remain searchable and appear on detail
+pages. Each row links to its idea, with the save button remaining independent.
 On phones, filters stack so selected labels stay readable. Idea briefs give the
 first test a pale green surface; supporting facts follow the main content on
 small screens. These layouts use the existing font and CSS without new assets,
-packages or animation code. Obsolete problem-page wrappers and styles are
+packages or animation code. Progress tracking, freshness badges, collection
+statistics, repeated customer paragraphs and broad related-idea recommendations
+are omitted. Publication dates and guide relationships remain in the data.
+Obsolete problem-page wrappers and styles are
 removed by their owning generator or source edit, never by deleting research.
 
 Signed-in submission/reviewer screens still need visual acceptance before launch.

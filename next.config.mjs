@@ -1,3 +1,4 @@
+import { retiredIdeaSlugs } from './app/lib/idea-routes.mjs'
 import nextra from 'nextra'
 import { MEDIA_URL } from './app/seo.config.mjs'
 import rehypeFootnotes from './app/lib/rehype-footnotes.mjs'
@@ -63,7 +64,8 @@ const nextConfig = {
               { source: `${prefix}/problems/:problem`, destination: `${prefix}/startup-ideas?problem=:problem`, permanent: true },
               { source: `${prefix}/startup-ideas/add-startup`, destination: `${prefix}/startup-ideas/add-company`, permanent: true },
               { source: `${prefix}/startup-ideas/draft`, destination: `${prefix}/startup-ideas/add`, permanent: true },
-              { source: `${prefix}/startup-ideas/contribute`, destination: `${prefix}/startup-ideas/add`, permanent: true }
+              { source: `${prefix}/startup-ideas/contribute`, destination: `${prefix}/startup-ideas/add`, permanent: true },
+              ...retiredIdeaSlugs.map(slug => ({ source: `${prefix}/startup-ideas/${slug}`, destination: `${prefix}/startup-ideas`, permanent: true }))
             ]),
             {
               source: '/50',

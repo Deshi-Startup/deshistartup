@@ -10,7 +10,7 @@ export default function SaveIdea({ id, locale, ideas }: { id: string; locale: Lo
   return <div className="ideas-save-control">
     <button className="ideas-button ideas-button-secondary" type="button" disabled={!ready} aria-pressed={active} onClick={() => toggle(id)}>
       <IdeaIcon name="bookmark" filled={active} />
-      {active ? (locale === 'en' ? 'Saved' : 'সেভ করা আছে') : (locale === 'en' ? 'Save idea' : 'সেভ করুন')}
+      {active ? (locale === 'en' ? 'Saved' : 'সেভ করা') : (locale === 'en' ? 'Save' : 'সেভ করুন')}
     </button>
     {error && <p className="ideas-error" role="alert">{locale === 'en' ? 'Could not save. Allow site storage and try again.' : 'সেভ করা যায়নি। সাইটের স্টোরেজ চালু করে আবার চেষ্টা করুন।'}</p>}
   </div>

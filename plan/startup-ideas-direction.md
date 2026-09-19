@@ -1,6 +1,6 @@
 # Startup ideas for Bangladesh
 
-Approved direction and local implementation, 16 September 2026.
+Approved direction and local implementation, 19 September 2026.
 
 ## Purpose
 
@@ -15,18 +15,22 @@ An idea is the browsable, saveable and shareable unit. Each page explains who it
 helps, how it works and a first test. Readers do not need to learn the underlying
 problem/idea/company model to use the product.
 
-The catalogue has search, sector and location filters, and saving. A detail page
+The catalogue has search, sector, location and idea-type filters, and saving. A detail page
 contains one idea with practical next steps. Research and sources expand below;
 companies remain small supporting references. Keep the main site's identity and
 fonts. Use ordinary language, restrained spacing and visible, familiar controls.
 Remove repeated explanations, empty sections, disclaimers and decorative UI.
+Keep the type-filter pills, sharing, a few written guides and quiet links to
+alternative ideas for the same problem. Use a stacked index introduction and
+plain row metadata. Avoid collection statistics, freshness badges, progress bars
+and recommendations based only on sharing a sector.
 
 `/startup-ideas` lives on the main website, with one stable URL per idea and mirrored
 English/Bangla routes. `/ideas` continues to hold the manual's guides. The old
 problem catalogue and detail layouts are retired. Old links lead to the relevant
 ideas; saved problems migrate to their related ideas without losing the backup.
 
-The first collection has eight ideas backed by six shared problem records. D1
+The first collection has six researched ideas backed by six shared problem records. D1
 already stores the useful relationships and reviewed submissions. Keep that model;
 changing the public view requires no database rewrite. Public pages remain static.
 
@@ -69,7 +73,7 @@ produce successful companies.
 
 ## What waits
 
-Defer votes, comments, popularity rankings, investor badges, dashboards, automatic
+Defer progress tracking, votes, comments, popularity rankings, investor badges, dashboards, automatic
 research imports and a standalone company-discovery product. Add a grant, investor
 interest or research link only when useful, supported and maintainable. Do not
 prebuild empty feature slots. Saved items remain browser-local for now.

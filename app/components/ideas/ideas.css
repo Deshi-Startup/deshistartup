@@ -79,15 +79,11 @@
 .ideas-shell .ideas-catalogue-intro { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-bottom: 2.5rem; }
 .ideas-shell .ideas-catalogue-intro > a { flex-shrink: 0; }
 .ideas-shell .ideas-catalogue-intro .ideas-lead { max-width: 39rem; font-size: 1.0625rem; }
-.ideas-shell .ideas-catalogue-hero { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .9fr); gap: 4rem; align-items: center; margin-bottom: 3.25rem; }
+.ideas-shell .ideas-catalogue-hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; align-items: start; margin-bottom: 3.25rem; }
 .ideas-shell .ideas-catalogue-hero h1 { font-size: clamp(2.75rem, 5vw, 4.25rem); line-height: 1.06; letter-spacing: -.045em; text-wrap: initial; }
 .ideas-shell .ideas-catalogue-hero h1 span { color: var(--green-deep); }
-.ideas-shell .ideas-catalogue-invitation .ideas-lead { margin: 0; line-height: 1.75; }
+.ideas-shell .ideas-catalogue-invitation .ideas-lead { max-width: 44rem; margin: 0; line-height: 1.75; }
 .ideas-shell .ideas-catalogue-invitation .ideas-button { margin-top: 1.25rem; padding-inline: 1.125rem; }
-/* The collection's pulse: how much there is, and when it last grew. */
-.ideas-shell .ideas-heartbeat { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .1rem; margin-top: .9rem; color: var(--muted); font-size: .8125rem; }
-.ideas-shell .ideas-heartbeat strong { color: var(--ink); font-weight: 500; }
-.ideas-shell .ideas-heartbeat-dot { width: 7px; height: 7px; margin-right: .55rem; border-radius: 50%; background: var(--green); }
 .ideas-shell[lang="bn"] .ideas-catalogue-hero h1 { font-size: clamp(2.5rem, 4.5vw, 3.6rem); line-height: 1.38; letter-spacing: 0; }
 
 .ideas-shell .ideas-filters { display: grid; grid-template-columns: minmax(230px, 1.7fr) minmax(155px, 1fr) minmax(175px, 1.1fr); gap: .75rem; }
@@ -108,43 +104,32 @@
 .ideas-shell .ideas-catalogue-filters .ideas-select:last-child { border-radius: 0 6px 6px 0; }
 .ideas-shell .ideas-catalogue-filters :is(.ideas-search:focus-within, select:focus-visible) { outline: 2px solid var(--green); outline-offset: -2px; }
 
-/* One row of pills: what it takes to start, not how the record is typed. */
+/* Type filters stay compact; saving is a separate, optional filter. */
 .ideas-shell .ideas-kinds { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: 1rem; }
-.ideas-shell .ideas-kinds button { min-height: 38px; padding: .45rem .85rem; border: 1px solid var(--line); border-radius: 999px; background: var(--canvas); color: var(--ink); font-size: .8125rem; line-height: 1.4; }
+.ideas-shell .ideas-kinds button { min-height: 44px; padding: .45rem .85rem; border: 1px solid var(--line); border-radius: 999px; background: var(--canvas); color: var(--ink); font-size: .8125rem; line-height: 1.4; }
 .ideas-shell .ideas-kinds button:hover { border-color: var(--muted); }
 .ideas-shell .ideas-kinds button[aria-pressed="true"] { background: var(--green-soft); border-color: var(--green); color: var(--green-deep); font-weight: var(--w-strong, 600); }
-.ideas-shell .ideas-kinds-help { color: var(--muted); font-size: .8125rem; line-height: 1.5; }
 .ideas-shell .ideas-results-toolbar { display: flex; align-items: center; gap: 1.25rem; min-height: 64px; border-bottom: 1px solid var(--line-warm, #d9d5cd); margin-top: 1.5rem; }
-.ideas-shell .ideas-collection { display: flex; align-self: stretch; gap: 1.4rem; }
-.ideas-shell .ideas-collection button { display: inline-flex; align-items: center; gap: .4rem; padding: .65rem 0; border: 0; border-bottom: 2px solid transparent; background: transparent; margin-bottom: -1px; color: var(--muted, #54595d); font-size: .875rem; }
-.ideas-shell .ideas-collection button[aria-pressed="true"] { color: var(--green-deep, #065f46); border-color: var(--green, #047857); font-weight: var(--w-strong, 600); }
-.ideas-shell .ideas-collection svg { width: 16px; height: 16px; }
-.ideas-shell .ideas-collection button > span { font-size: .75rem; }
+.ideas-shell .ideas-kinds + .ideas-results-toolbar { margin-top: .75rem; }
+.ideas-shell .ideas-saved-filter { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; padding: .5rem .65rem; margin-left: auto; border: 0; border-radius: 5px; background: transparent; color: var(--muted); font-size: .875rem; }
+.ideas-shell .ideas-saved-filter:hover, .ideas-shell .ideas-saved-filter[aria-pressed="true"] { background: var(--green-soft); color: var(--green-deep); }
+.ideas-shell .ideas-saved-filter svg { width: 16px; height: 16px; }
+.ideas-shell .ideas-saved-filter > span { font-size: .75rem; }
 .ideas-shell .ideas-result-count { font-size: .8rem; color: var(--muted, #54595d); font-weight: 400; letter-spacing: 0; white-space: nowrap; }
-.ideas-shell .ideas-collection + .ideas-result-count { margin-left: auto; }
 .ideas-shell .ideas-clear { margin-left: auto; font-size: .8rem; }
-.ideas-shell .ideas-collection + .ideas-result-count + .ideas-clear { margin-left: 0; }
+.ideas-shell .ideas-clear + .ideas-saved-filter { margin-left: 0; }
 .ideas-shell .ideas-browser-note { font-size: .8rem; color: var(--muted, #54595d); margin-top: .8rem; }
 .ideas-shell .ideas-row { position: relative; display: grid; grid-template-columns: 9.5rem minmax(0, 1fr) 44px; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--line-soft); align-items: start; isolation: isolate; }
 .ideas-shell .ideas-row::before { content: ''; position: absolute; inset: 0 -1rem; z-index: -1; background: var(--green-ground); opacity: 0; transition: opacity .16s ease; }
-.ideas-shell .ideas-row-sector { display: flex; align-items: center; gap: .5rem; padding-top: .35rem; color: var(--green-deep); font-size: .8125rem; font-weight: 500; }
-.ideas-shell .ideas-row-sector svg { width: 18px; height: 18px; }
+.ideas-shell .ideas-row-sector { padding-top: .3rem; color: var(--green-deep); font-size: .8125rem; font-weight: 500; }
 .ideas-shell .ideas-row-copy { min-width: 0; }
 .ideas-shell .ideas-row-copy h3 { font-size: 1.5rem; font-weight: 500; line-height: 1.35; letter-spacing: -.025em; }
 .ideas-shell .ideas-row-copy h3 a { transition: color .16s ease; }
 .ideas-shell .ideas-row-copy h3 a::after { content: ''; position: absolute; inset: 0; }
 .ideas-shell .ideas-row-copy h3 a:hover { text-decoration: none; }
-/* The customer decides whether to read on, so it sits above the mechanism. */
-.ideas-shell .ideas-row-for { display: flex; align-items: baseline; gap: .5rem; margin-top: .55rem; font-size: .9375rem; line-height: 1.65; }
-.ideas-shell .ideas-row-for > span { flex: none; color: var(--green-deep); font-size: .78125rem; font-weight: var(--w-strong, 600); }
 .ideas-shell .ideas-row-summary { margin-top: .5rem; font-size: .9375rem; color: var(--muted); max-width: 40rem; line-height: 1.75; }
-.ideas-shell .ideas-chips { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .5rem; margin-top: .85rem; }
-.ideas-shell .ideas-chip-new { border: 0; padding-left: 0; background: transparent; color: var(--green); font-weight: var(--w-strong, 600); }
-.ideas-shell .ideas-chip-progress { display: inline-flex; align-items: center; gap: .45rem; color: var(--ink); }
-.ideas-shell .ideas-chip-progress.ideas-chip-done { border-color: var(--green-soft); background: var(--green-soft); color: var(--green-deep); font-weight: var(--w-strong, 600); }
-.ideas-shell .ideas-chip-bar { display: inline-block; width: 42px; height: 4px; border-radius: 2px; background: var(--line-soft); overflow: hidden; }
-.ideas-shell .ideas-chip-bar > span { display: block; height: 100%; background: var(--green); }
-.ideas-shell .ideas-chip { padding: .35rem .6rem; border: 1px solid var(--line-soft); border-radius: 999px; background: var(--canvas); color: var(--muted); font-size: .75rem; line-height: 1.3; }
+.ideas-shell .ideas-row-meta { margin-top: .85rem; font-size: .75rem; color: var(--muted); }
+.ideas-shell .ideas-row-meta > span { padding-inline: .25rem; }
 .ideas-shell .ideas-bookmark { position: relative; z-index: 1; width: 44px; height: 44px; margin-top: -.3rem; border: 1px solid transparent; background: transparent; color: var(--muted); border-radius: 5px; display: flex; align-items: center; justify-content: center; transition: color .16s, background-color .16s; }
 .ideas-shell .ideas-bookmark:hover { background: var(--green-soft); color: var(--green-deep); }
 .ideas-shell .ideas-bookmark[aria-pressed="true"] { color: var(--green-deep); background: var(--green-soft); }
@@ -203,7 +188,7 @@
 .ideas-shell .ideas-draft-form label, .ideas-shell .ideas-draft-form legend { font-size: .9375rem; font-weight: var(--w-strong, 600); }
 .ideas-shell .ideas-draft-form label { display: flex; flex-direction: column; gap: .5rem; }
 .ideas-shell .ideas-field-help { font-size: .8125rem; font-weight: 400; color: var(--muted, #54595d); }
-.ideas-shell :is(.ideas-draft-form, .ideas-copy-fallback) :is(input:not([type="radio"]):not([type="checkbox"]), textarea, select) { width: 100%; min-height: 44px; border: 1px solid var(--line, #c8ccd1); border-radius: 4px; background: var(--canvas, #fff); color: var(--ink, #202122); padding: .65rem .8rem; font-size: .9375rem; font-weight: 400; line-height: 1.6; }
+.ideas-shell :is(.ideas-draft-form, .ideas-copy-fallback) :where(input:not([type="radio"]):not([type="checkbox"]), textarea, select) { width: 100%; min-height: 44px; border: 1px solid var(--line, #c8ccd1); border-radius: 4px; background: var(--canvas, #fff); color: var(--ink, #202122); padding: .65rem .8rem; font-size: .9375rem; font-weight: 400; line-height: 1.6; }
 .ideas-shell textarea { resize: vertical; }
 .ideas-shell .ideas-draft-form fieldset { min-width: 0; padding: 1.25rem; border: 1px solid var(--line-soft, #eaecf0); }
 .ideas-shell .ideas-draft-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.5rem; border-top: 1px solid var(--line-soft, #eaecf0); padding-top: 1.25rem; }
@@ -235,17 +220,12 @@
   .ideas-shell .ideas-filters:not(.ideas-catalogue-filters) { gap: .65rem; }
   .ideas-shell .ideas-select select { font-size: .75rem; }
   .ideas-shell .ideas-results-toolbar { flex-wrap: wrap; gap: 0 1rem; min-height: 60px; }
-  .ideas-shell .ideas-collection { min-height: 60px; gap: 1rem; }
-  .ideas-shell .ideas-collection button { font-size: .8125rem; }
   .ideas-shell .ideas-result-count { font-size: .75rem; }
   .ideas-shell .ideas-results-toolbar .ideas-clear { margin-left: 0; font-size: .75rem; }
   .ideas-shell .ideas-row { grid-template-columns: minmax(0, 1fr) 44px; gap: .5rem 1rem; padding-block: 1.5rem; }
   .ideas-shell .ideas-row-sector { grid-column: 1; padding: 0; font-size: .75rem; }
-  .ideas-shell .ideas-row-sector svg { width: 16px; height: 16px; }
-  .ideas-shell .ideas-row-for { font-size: .9375rem; }
   .ideas-shell .ideas-row-copy { grid-column: 1 / -1; }
   .ideas-shell .ideas-row-copy h3 { font-size: 1.4rem; max-width: 32rem; }
-  .ideas-shell .ideas-chips { margin-top: .75rem; }
   .ideas-shell .ideas-bookmark { grid-column: 2; grid-row: 1; margin-block: -.5rem; }
   .ideas-shell .ideas-company-filters { grid-template-columns: minmax(0, 1fr); }
   .ideas-shell .ideas-company-list { grid-template-columns: minmax(0, 1fr); }
@@ -306,69 +286,43 @@
 .ideas-shell .review-empty { margin-top: 1rem; color: var(--muted); }
 
 /* Each idea is a short brief, with one distinct place to start doing the work. */
-.ideas-shell .ideas-count { color: var(--muted); font-size: .8rem; font-weight: 400; }
 .ideas-shell .ideas-detail { max-width: 100%; margin-inline: auto; }
-.ideas-shell .ideas-detail-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 2.5rem; }
-.ideas-shell .ideas-detail-toolbar .ideas-back { margin: 0; }
+.ideas-shell .ideas-detail-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 2.5rem; }
+.ideas-shell .ideas-detail-toolbar .ideas-back { margin: 0; white-space: nowrap; }
 .ideas-shell .ideas-detail-actions { display: flex; align-items: flex-start; gap: .5rem; }
 .ideas-shell .ideas-detail-actions .ideas-save-control, .ideas-shell .ideas-share { max-width: none; }
 .ideas-shell .ideas-share .ideas-feedback { margin-top: .4rem; font-size: .8125rem; text-align: end; }
 .ideas-shell .ideas-detail-heading { max-width: 60rem; }
 .ideas-shell .ideas-detail-heading .ideas-eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .1rem; color: var(--green-deep); }
-.ideas-shell .ideas-detail-heading .ideas-eyebrow svg { width: 16px; height: 16px; margin-right: .4rem; }
 .ideas-shell .ideas-detail-for { display: flex; align-items: baseline; gap: .6rem; max-width: 44rem; margin-top: 1.1rem; font-size: 1rem; line-height: 1.65; }
 .ideas-shell .ideas-detail-for > span { flex: none; color: var(--green-deep); font-size: .8125rem; font-weight: var(--w-strong, 600); }
-.ideas-shell .ideas-trust { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .5rem; margin-top: .85rem; color: var(--muted); font-size: .8125rem; }
-.ideas-shell .ideas-trust a { color: var(--blue, #3366cc); text-decoration: underline; text-underline-offset: .2em; }
-.ideas-shell .ideas-trust a:hover { color: var(--blue-hover, #1f4fb2); }
-.ideas-shell .ideas-wanted { padding: .1rem .55rem; border: 1px solid var(--warn-line-soft, #e5d193); border-radius: 999px; background: var(--warn-bg, #fff8df); color: var(--warn-ink, #5f4b00); font-weight: var(--w-strong, 600); }
-/* The question the research could not answer is the reader's opening. */
-.ideas-shell .ideas-open-question { max-width: 43rem; margin-top: 1.6rem; padding-left: 1.1rem; border-left: 3px solid var(--green, #047857); }
-.ideas-shell .ideas-open-label { color: var(--green-deep); font-size: .78125rem; font-weight: var(--w-strong, 600); }
-.ideas-shell .ideas-open-question > p + p { margin-top: .3rem; font-size: 1.0625rem; line-height: 1.6; text-wrap: pretty; }
 .ideas-shell .ideas-detail-heading h1 { margin-top: 1rem; font-size: clamp(2.5rem, 4.8vw, 3.75rem); line-height: 1.12; font-weight: 500; letter-spacing: -.035em; }
 .ideas-shell .ideas-detail-heading .ideas-lead { max-width: 43rem; margin-top: 1.25rem; font-size: 1.1875rem; line-height: 1.75; }
-.ideas-shell .ideas-detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) 18rem; gap: 3.5rem; margin-top: 2.75rem; padding-top: 2.5rem; border-top: 1px solid var(--line-warm); }
+.ideas-shell .ideas-detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; gap: 3.5rem; margin-top: 2.75rem; padding-top: 2.5rem; border-top: 1px solid var(--line-warm); }
 .ideas-shell .ideas-detail-body { min-width: 0; }
 .ideas-shell .ideas-detail-body h2 { font-size: 1.3125rem; font-weight: 500; letter-spacing: -.015em; margin-bottom: .8rem; }
 .ideas-shell .ideas-detail-body p { max-width: 43rem; }
 .ideas-shell .ideas-detail-body > section:first-child { padding-right: 1.5rem; }
 .ideas-shell .ideas-detail-body .ideas-first-step { margin-top: 2rem; padding: 1.75rem 2rem; background: var(--green-ground); border: 1px solid var(--green-soft); border-radius: 6px; }
 .ideas-shell .ideas-first-step h2 { color: var(--green-deep); margin-bottom: 1.5rem; }
-.ideas-shell .ideas-steps-hint { margin-bottom: 1.1rem; color: var(--muted); font-size: .8125rem; line-height: 1.6; }
-.ideas-shell .ideas-first-step ol { padding: 0; list-style: none; display: grid; gap: .9rem; }
-/* A ticked list carries its own marker. Bangla list numbering is applied by a
-   global rule that outranks `list-style: none`, so the item leaves list-item display. */
-.ideas-shell .ideas-first-step li { display: block; margin: 0; padding: 0; }
-.ideas-shell .ideas-first-step label { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: .9rem; align-items: start; padding: .15rem 0; font-size: .9375rem; line-height: 1.75; cursor: pointer; }
-.ideas-shell .ideas-first-step input[type="checkbox"] { appearance: none; -webkit-appearance: none; position: relative; width: 22px; height: 22px; margin: .3rem 0 0; border: 1.5px solid var(--green); border-radius: 5px; background: var(--canvas); cursor: pointer; }
-.ideas-shell .ideas-first-step input[type="checkbox"]:checked { background: var(--green-deep); border-color: var(--green-deep); }
-.ideas-shell .ideas-first-step input[type="checkbox"]:checked::after { content: ''; position: absolute; left: 6px; top: 2px; width: 6px; height: 11px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
-.ideas-shell .ideas-first-step input[type="checkbox"]:checked + span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
-.ideas-shell .ideas-steps-progress { display: flex; align-items: center; gap: .75rem; margin-top: 1.1rem; color: var(--muted); font-size: .8125rem; }
-.ideas-shell .ideas-steps-bar { flex: 1; max-width: 220px; height: 4px; border-radius: 2px; background: #dfe9e3; overflow: hidden; }
-.ideas-shell .ideas-steps-bar > span { display: block; height: 100%; background: var(--green); transition: width .25s; }
+.ideas-shell .ideas-first-step ol { padding: 0; list-style: none; counter-reset: steps; display: grid; gap: 1.25rem; }
+.ideas-shell .ideas-first-step li { counter-increment: steps; display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); gap: .875rem; margin: 0; padding: 0; font-size: .9375rem; line-height: 1.75; }
+.ideas-shell .ideas-first-step li::before { content: counter(steps, decimal-leading-zero); color: var(--green-deep); font-size: .75rem; padding-top: .25rem; font-variant-numeric: tabular-nums; }
 .ideas-shell .ideas-first-step .ideas-signal { border-top: 1px solid var(--green-soft); padding-top: 1rem; margin-top: 1.25rem; }
 .ideas-shell .ideas-first-step .ideas-actions { margin-top: 1.25rem; }
 .ideas-shell .ideas-first-step .ideas-action-buttons { gap: .5rem 1.25rem; }
-.ideas-shell .ideas-action-help { flex-basis: 100%; margin-top: -.15rem; color: var(--muted); font-size: .8125rem; line-height: 1.6; }
 /* Guides turn the first test into work the manual already explains. */
 .ideas-shell .ideas-guides { margin-top: 2.25rem; }
-.ideas-shell .ideas-guides h2 { margin-bottom: .3rem; }
-.ideas-shell .ideas-guides-sub { color: var(--muted); font-size: .875rem; margin-bottom: .5rem; }
+.ideas-shell .ideas-guides h2 { margin-bottom: .8rem; }
 .ideas-shell .ideas-guides ul { list-style: none; padding: 0; border-top: 1px solid var(--line-soft); }
-.ideas-shell .ideas-guides li { margin: 0; border-bottom: 1px solid var(--line-soft); }
-.ideas-shell .ideas-guides a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 56px; padding: .8rem 0; color: var(--blue, #3366cc); font-size: .9375rem; line-height: 1.5; }
+.ideas-shell .ideas-guides li { display: block; margin: 0; border-bottom: 1px solid var(--line-soft); }
+.ideas-shell .ideas-guides a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 44px; padding: .75rem 0; color: var(--blue, #3366cc); font-size: .9375rem; line-height: 1.5; }
 .ideas-shell .ideas-guides a:hover { color: var(--blue-hover, #1f4fb2); }
-.ideas-shell .ideas-guide-step { flex: none; padding: .2rem .55rem; border: 1px solid var(--line-soft); border-radius: 999px; color: var(--muted); font-size: .72rem; }
-/* The other answers to the same problem, and the neighbourhood it sits in. */
-.ideas-shell .ideas-related { margin-top: 2.5rem; padding-top: 1.6rem; border-top: 1px solid var(--line-warm); }
-.ideas-shell .ideas-related + .ideas-related { margin-top: 1.75rem; padding-top: 0; border-top: 0; }
-.ideas-shell .ideas-related > h2 { font-size: 1.0625rem; font-weight: var(--w-strong, 600); margin-bottom: .2rem; }
-.ideas-shell .ideas-related-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .2rem 1rem; align-items: center; padding: .9rem 0; border-bottom: 1px solid var(--line-soft); }
-.ideas-shell .ideas-related-row a { font-size: 1.0625rem; font-weight: 500; letter-spacing: -.01em; }
-.ideas-shell .ideas-related-row .ideas-chip { grid-column: 2; grid-row: 1 / span 2; }
-.ideas-shell .ideas-related-row small { grid-column: 1; color: var(--muted); font-size: .8125rem; line-height: 1.6; }
+/* Alternatives share the same problem, without another recommendation catalogue. */
+.ideas-shell .ideas-related { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line-warm); }
+.ideas-shell .ideas-related > h2 { font-size: .875rem; font-weight: 500; color: var(--muted); margin-bottom: .4rem; }
+.ideas-shell .ideas-related-link { display: flex; align-items: center; gap: .75rem; width: fit-content; min-height: 44px; padding-block: .5rem; font-size: 1rem; }
+.ideas-shell .ideas-related-link svg { width: 16px; height: 16px; }
 .ideas-shell .ideas-facts { border-left: 1px solid var(--line-soft); padding-left: 1.5rem; font-size: .875rem; align-self: start; }
 .ideas-shell .ideas-facts section + section { margin-top: 1.75rem; }
 .ideas-shell .ideas-facts h2 { margin-bottom: .6rem; font-size: .8125rem; font-weight: 500; color: var(--muted); letter-spacing: 0; }
@@ -387,10 +341,11 @@
 .ideas-shell .ideas-research-body h2:not(:first-child) { margin-top: 1.5rem; }
 .ideas-shell .ideas-research-body > .ideas-source-date { margin-top: 1rem; }
 .ideas-shell .ideas-research-body .ideas-sources { margin-top: 1.5rem; }
+.ideas-shell[lang="bn"] .ideas-first-step li::before { content: counter(steps, bengali); }
 .ideas-shell[lang="bn"] .ideas-detail-heading h1 { line-height: 1.4; letter-spacing: 0; }
 .ideas-shell .ideas-draft-column { max-width: 47rem; }
 @media (max-width: 760px) {
-  .ideas-shell .ideas-catalogue-hero { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+  .ideas-shell .ideas-catalogue-hero { gap: 1rem; margin-bottom: 2rem; }
   .ideas-shell .ideas-catalogue-hero h1 { font-size: clamp(2.625rem, 7.5vw, 3.75rem); }
   .ideas-shell[lang="bn"] .ideas-catalogue-hero h1 { font-size: clamp(2.125rem, 6.5vw, 3.25rem); }
   .ideas-shell .ideas-catalogue-invitation .ideas-lead { font-size: 1rem; max-width: 38rem; }
@@ -410,16 +365,16 @@
   .ideas-shell .ideas-companies-small .ideas-inline-link { margin: 0; }
   .ideas-shell .ideas-detail-toolbar { margin-bottom: 1.75rem; }
   .ideas-shell .ideas-detail-actions .ideas-button { padding-inline: .8rem; }
-  .ideas-shell .ideas-kinds-help { flex-basis: 100%; margin-top: -.1rem; }
   .ideas-shell .ideas-detail-heading h1 { font-size: clamp(2.25rem, 6vw, 3.25rem); }
   .ideas-shell .ideas-detail-heading .ideas-lead { font-size: 1.0625rem; }
   .ideas-shell .ideas-detail-for { font-size: .9375rem; margin-top: .9rem; }
-  .ideas-shell .ideas-open-question { margin-top: 1.4rem; }
   .ideas-shell .ideas-detail-body .ideas-first-step { padding: 1.5rem; }
   .ideas-shell .ideas-guides { margin-top: 1.75rem; }
   .ideas-shell .ideas-related { margin-top: 2rem; }
 }
 @media (max-width: 480px) {
+  .ideas-shell .ideas-detail-toolbar { gap: .5rem; }
+  .ideas-shell .ideas-detail-actions .ideas-button { padding-inline: .5rem; font-size: .8125rem; }
   .ideas-shell .ideas-catalogue-filters { grid-template-columns: 1fr; }
   .ideas-shell .ideas-catalogue-filters .ideas-select { border-radius: 0; }
   .ideas-shell .ideas-catalogue-filters .ideas-select:last-child { border-left: 0; border-top: 1px solid var(--line-soft); border-radius: 0 0 6px 6px; }

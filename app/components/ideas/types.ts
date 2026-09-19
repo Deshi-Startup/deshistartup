@@ -1,7 +1,6 @@
 export type Locale = 'en' | 'bn'
-export type Sector = 'commerce' | 'circular' | 'agriculture' | 'manufacturing'
-export type Place = 'anywhere' | 'dhaka' | 'gazipur' | 'bogura' | 'chattogram'
-export interface Heartbeat { sectors: number; newest: string }
+export type Sector = 'commerce' | 'circular' | 'agriculture' | 'manufacturing' | 'health' | 'water' | 'energy'
+export type Place = 'anywhere' | 'dhaka' | 'gazipur' | 'bogura' | 'chattogram' | 'khulna' | 'rajshahi'
 export interface IdeaSummary {
   id: string
   slug: string
@@ -11,8 +10,5 @@ export interface IdeaSummary {
   places: Place[]
   title: string
   summary: string
-  customer: string
-  steps: number
-  isNew: boolean
   search: string
 }

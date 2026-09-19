@@ -60,7 +60,7 @@
     "ecosystem:init": "node scripts/ecosystem-local.mjs init",
     "ecosystem:prepare": "node scripts/ecosystem-local.mjs prepare && node scripts/build-ecosystem-routes.mjs",
     "ecosystem:publish": "node scripts/ecosystem-local.mjs publish",
-    "dev:ecosystem": "DESHI_ECOSYSTEM_LOCAL=1 npm run dev",
+    "dev:ecosystem": "DESHI_ECOSYSTEM_LOCAL=1 npm run dev --",
     "test:ecosystem": "node --experimental-strip-types --test worker/api/ecosystem.test.mjs scripts/ecosystem.test.mjs"
   },
   "dependencies": {

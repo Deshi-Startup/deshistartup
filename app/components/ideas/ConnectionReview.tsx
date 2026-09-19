@@ -24,7 +24,7 @@ export default function ConnectionReview({ locale }: { locale: Locale }) {
     setBusy(true); setError('')
     try {
       const response = await fetch('/api/ecosystem/review', { headers: { Authorization: `Bearer ${session.auth.token}` } })
-      if (!response.ok) throw new Error(ecosystemError(response.status, locale))
+      if (!response.ok) { if (response.status === 401) session.expire(); throw new Error(ecosystemError(response.status, locale)) }
       const data = await response.json(); setQueue(data.submissions); setCompanies(data.organizations); setLoaded(true)
     } catch (cause) { setError(cause instanceof Error ? cause.message : ecosystemError(503, locale)) }
     finally { setBusy(false) }

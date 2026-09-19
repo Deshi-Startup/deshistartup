@@ -63,7 +63,7 @@ export default function IdeaDraft({ locale }: { locale: Locale }) {
       <fieldset disabled={!ready || busy}>
         <legend className="sr-only">{t('Your idea', 'আপনার আইডিয়া')}</legend>
         <label htmlFor="draft-title">{t('Give it a name', 'একটি নাম দিন')}</label>
-        <input id="draft-title" value={draft.title} required pattern=".*\S.*" maxLength={draftLimits.title} onChange={event => edit('title', event.target.value)} placeholder={t('e.g. A tool for tracking courier payments', 'যেমন: কুরিয়ারের পাওনা মেলানোর সফটওয়্যার')} />
+        <input id="draft-title" value={draft.title} required pattern=".*\S.*" maxLength={draftLimits.title} onChange={event => edit('title', event.target.value)} placeholder={t('e.g. Cold storage by the crate', 'যেমন: ক্রেট হিসেবে ফসল রাখার হিমাগার')} />
         <label htmlFor="draft-solution">{t('Describe your idea', 'আইডিয়াটি বুঝিয়ে বলুন')}</label>
         <textarea id="draft-solution" required minLength={20} maxLength={draftLimits.solution} rows={4} value={draft.solution} onChange={event => edit('solution', event.target.value)} />
         <label htmlFor="draft-customer">{t('Who would use it?', 'কারা ব্যবহার করবেন?')}</label>

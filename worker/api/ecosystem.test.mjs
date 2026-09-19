@@ -11,7 +11,7 @@ import { readEcosystemSnapshot, snapshotRowsSql } from '../../scripts/lib/ecosys
 const require = createRequire(import.meta.resolve('wrangler'))
 const { Miniflare, convertV4MiniflareOptions } = require('miniflare')
 const now = '2026-09-16T12:00:00.000Z'
-const proposal = (changes = {}) => ({ version: 1, locale: 'en', problemId: 'courier-settlement', organizationId: 'org_dorik', organization: null, work: 'A public example of relevant work to investigate.', stage: 'research', evidenceUrl: 'https://example.com/evidence', ...changes })
+const proposal = (changes = {}) => ({ version: 1, locale: 'en', problemId: 'produce-cold-chain', organizationId: 'org_dorik', organization: null, work: 'A public example of relevant work to investigate.', stage: 'research', evidenceUrl: 'https://example.com/evidence', ...changes })
 const decision = (changes = {}) => ({ revision: 1, decision: 'approved', note: 'Identity and the stated connection checked.', organizationId: 'org_dorik', organization: null, work: { en: 'A reviewed description of relevant work on this problem.', bn: 'এই সমস্যা নিয়ে কোম্পানির কাজের তথ্য পর্যালোচনা করা হয়েছে।' }, ...changes })
 const idea = (changes = {}) => ({ version: 1, kind: 'idea', locale: 'en', title: 'An idea for testing', solution: 'A small service that helps factories arrange equipment repairs.', customer: 'Small factory owners', problem: '', place: '', evidence: '', test: '', ...changes })
 const ideaDecision = (changes = {}) => ({ revision: 1, decision: 'approved', note: 'Useful proposal, ready for editorial preparation.', ...changes })
@@ -63,6 +63,14 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
     return readEcosystemSnapshot(sql => rows[sql.match(/FROM (\w+)/)[1]], 'release-test', now)
   }
   const initial = await snapshot()
+  await t.test('retired preview records stay in D1 but cannot leak into a new release', async () => {
+    assert.equal((await db.prepare("SELECT active FROM problems WHERE id = 'courier-settlement'").first()).active, 0)
+    assert.ok(await db.prepare("SELECT id FROM approaches WHERE id = 'courier-settlement-approach'").first())
+    assert.ok(!initial.problems.some(p => p.id === 'courier-settlement'))
+    assert.ok(!initial.approaches.some(a => a.problemId === 'courier-settlement'))
+    assert.ok(!initial.connections.some(c => c.problemId === 'courier-settlement'))
+    assert.equal((await call('submissions', 'contributor', proposal({ problemId: 'courier-settlement' }), 'retired-submit-00001')).status, 409)
+  })
   await t.test('anonymous and non-reviewer access stays private', async () => {
     assert.equal((await call('review')).status, 401)
     const denied = await call('review', 'contributor')
@@ -112,6 +120,14 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
     const final = await snapshot()
     assert.equal(final.organizations.filter(o => o.slug === 'test-venture').length, 1)
     assert.equal(final.connections.filter(c => c.organizationId === company.id).length, 2)
+  })
+  await t.test('retiring a problem after submission prevents approval but still allows a decision', async () => {
+    const pending = await (await call('submissions', 'contributor', proposal({ problemId: 'solar-maintenance' }), 'retired-review-00001')).json()
+    await db.prepare("UPDATE problems SET active = 0 WHERE id = 'solar-maintenance'").run()
+    assert.equal((await call(`review/${pending.id}`, 'reviewer', decision())).status, 409)
+    assert.equal((await db.prepare('SELECT status FROM submissions WHERE id = ?').bind(pending.id).first()).status, 'pending')
+    assert.equal((await call(`review/${pending.id}`, 'reviewer', decision({ decision: 'rejected' }))).status, 200)
+    await db.prepare("UPDATE problems SET active = 1 WHERE id = 'solar-maintenance'").run()
   })
   await t.test('rate limits and absent D1 fail closed', async () => {
     const limited = createEcosystemHandler({ authenticate: async () => ({ sub: 'limited', email: 'limited@example.com' }), admit: async () => false })

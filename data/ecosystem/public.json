@@ -1,214 +1,199 @@
 {
   "version": 1,
-  "releaseId": "release_394f08fc-508f-4abe-8061-90bdd1deb5ff",
-  "createdAt": "2026-09-18T23:16:34.154Z",
+  "releaseId": "release_ca18f8b0-3aee-497e-8e62-4f68d4684d9d",
+  "createdAt": "2026-09-19T16:40:17.239Z",
   "problems": [
-    {
-      "id": "courier-settlement",
-      "slug": "courier-settlement",
-      "sector": "commerce",
-      "places": [
-        "anywhere"
-      ],
-      "sources": [
-        {
-          "title": "Pathao · Merchant terms, sections 3.21–3.31",
-          "url": "https://pathao.com/terms-of-service-merchant/",
-          "date": "Accessed 16 September 2026",
-          "en": "These terms explain how Pathao collects and pays money, adjusts fees and handles returns. They do not show whether businesses would pay for extra help checking their courier payments.",
-          "bn": "শর্তে COD-এর টাকা সংগ্রহ, ফি সমন্বয়, পেমেন্টের স্টেটমেন্ট ও রিটার্নের প্রক্রিয়া আছে। আলাদা হিসাব মেলানোর টুলের চাহিদা আছে কি না, এই সোর্স থেকে তা জানা যায় না।"
-        }
-      ],
-      "en": {
-        "title": "Courier payments are hard to track.",
-        "summary": "Online businesses need to see which orders were delivered, returned and paid for across different couriers.",
-        "customer": "The owner or operations lead of an online brand using more than one courier.",
-        "context": "Order details, delivery updates and payments sit in separate records. Find out how much work it takes to match them and whether businesses need help doing it.",
-        "unknown": "Will businesses pay for extra help when their couriers and accounting tools already do part of the job?"
-      },
-      "bn": {
-        "title": "কুরিয়ারের পাওনা মেলানো কঠিন।",
-        "summary": "একাধিক কুরিয়ারে পণ্য পাঠালে কোন অর্ডার পৌঁছেছে, ফেরত এসেছে আর টাকা পাওয়া গেছে, তা মিলিয়ে দেখতে হয়।",
-        "customer": "একাধিক কুরিয়ার ব্যবহার করে এমন অনলাইন ব্র্যান্ডের মালিক বা অপারেশন লিড।",
-        "context": "অর্ডার, ডেলিভারির অবস্থা আর পাওয়া টাকার হিসাব আলাদা জায়গায় থাকে। এগুলো মেলাতে কত সময় যায়, কোথায় হিসাব আটকে যায়, আগে তা জেনে নিন।",
-        "unknown": "কুরিয়ার প্যানেল ও অ্যাকাউন্টিং টুলে কাজের কিছু অংশ করা যায়। এর পরও আলাদা টুলের জন্য মার্চেন্ট টাকা দেবেন?"
-      }
-    },
     {
       "id": "garment-offcuts",
       "slug": "garment-offcuts",
       "sector": "circular",
       "places": [
         "gazipur",
-        "chattogram"
-      ],
-      "sources": [
-        {
-          "title": "UNIDO · Circularity in Bangladesh’s textile value chain",
-          "url": "https://www.unido.org/news/bangladesh-circularity-opportunities-textile-value-chain",
-          "date": "28 February 2023",
-          "en": "A Bangladesh stakeholder roundtable discussed textile waste and circular production. This is sector context from 2023, not evidence of available stock or buyer willingness to pay.",
-          "bn": "বাংলাদেশে টেক্সটাইল বর্জ্য ও তা আবার উৎপাদনে কাজে লাগানো নিয়ে অংশীজনদের আলোচনা হয়েছিল। ২০২৩ সালের এই তথ্য খাতটি বুঝতে সাহায্য করে। এখন কত মাল পাওয়া যাবে বা ক্রেতা কত দাম দেবেন, তা এখান থেকে বোঝা যায় না।"
-        }
-      ],
-      "en": {
-        "title": "Garment offcuts need the right buyer.",
-        "summary": "Factories and recyclers need to agree on material, quality and collection before a trade can work.",
-        "customer": "Factory waste managers and recyclers buying a specific fibre or quality of offcut.",
-        "context": "Find out why some fabric offcuts remain unsold. Buyers may be unsure of the material or quality, or collection may cost too much. Check whether better information would help before building a marketplace.",
-        "unknown": "Would clearer quality checks and regular supply earn enough to cover inspection, transport and the people arranging the sale?"
-      },
-      "bn": {
-        "title": "ব্যবহারযোগ্য ঝুটের উপযুক্ত ক্রেতা খুঁজে পাওয়া কঠিন",
-        "summary": "ঝুটের ধরন, মান আর সংগ্রহের ব্যবস্থা নিয়ে কারখানা ও রিসাইক্লারের বোঝাপড়া হলেই কেনাবেচা এগোতে পারে।",
-        "customer": "কারখানায় ঝুটের দায়িত্বে থাকা ব্যক্তি এবং নির্দিষ্ট ফাইবার বা মানের ঝুট কেনেন এমন রিসাইক্লার।",
-        "context": "চলতি কেনাবেচায় কোথায় সমস্যা হয়, আগে খুঁজে নিন। মান বোঝা, ফাইবারের তথ্য, নিয়মিত সরবরাহ বা পরিবহন খরচের কোনটি আসল বাধা? নতুন মার্কেটপ্লেসই দরকার, এমন ধরে নেবেন না।",
-        "unknown": "মান যাচাই ও নিয়মিত সরবরাহের সুবিধা কি পরিদর্শন, পরিবহন ও মধ্যস্থতার খরচের চেয়ে বেশি হবে?"
-      }
-    },
-    {
-      "id": "shared-cold-delivery",
-      "slug": "shared-cold-delivery",
-      "sector": "agriculture",
-      "places": [
-        "bogura",
         "dhaka"
       ],
       "sources": [
         {
-          "title": "FAO · Sustainable food cold chains",
-          "url": "https://www.fao.org/energy/resources/videos/video-details/reducing-food-loss-and-waste-through-sustainable-food-cold-chains/en",
-          "date": "23 May 2023",
-          "en": "FAO explains the role of temperature-controlled storage and transport, including energy constraints. This is global background; it does not establish demand on a Bangladesh route.",
-          "bn": "নির্দিষ্ট তাপমাত্রায় খাবার রাখা ও পরিবহনের ভূমিকা এবং বিদ্যুতের সীমাবদ্ধতা ব্যাখ্যা করেছে FAO। এটি বিশ্বজুড়ে প্রযোজ্য পটভূমি। বাংলাদেশের কোনো নির্দিষ্ট রুটে চাহিদার প্রমাণ নয়।"
+          "title": "Global Fashion Agenda · Textile-waste sorting in Bangladesh",
+          "url": "https://globalfashionagenda.org/news-article/transforming-post-industrial-textile-waste-in-bangladesh/",
+          "date": "13 March 2026",
+          "en": "A Bangladesh pilot found that sorting at source and reliable composition data helped textile waste reach recyclers. It also reports continuing quality and capacity limits. Reverse Resources already supports traceability in this market.",
+          "bn": "বাংলাদেশের একটি পরীক্ষামূলক উদ্যোগে কারখানায় বাছাই ও কাপড়ের উপাদানের নির্ভরযোগ্য তথ্য রিসাইক্লিংয়ে কাজে এসেছে। মান ও সক্ষমতার সীমাও আছে। Reverse Resources এই বাজারে কাপড়ের গতিপথের তথ্য নিয়ে কাজ করছে।"
         }
       ],
       "en": {
-        "title": "Small food shipments don’t fill a cold truck.",
-        "summary": "Suppliers with repeat buyers may need reliable cold transport at a scale they can afford.",
-        "customer": "A food supplier who makes regular deliveries but cannot fill a refrigerated vehicle.",
-        "context": "Investigate whether small suppliers lose orders or margin because they cannot arrange reliable temperature-controlled transport. Start with one product and one route.",
-        "unknown": "Can suppliers share the same route, timing and storage conditions? Would the price cover the trip, handling and possible spoilage?"
+        "title": "Recyclers need clean, traceable textile offcuts",
+        "summary": "Mixed fabric and uncertain composition make factory waste harder to recycle.",
+        "customer": "Garment factories, established waste handlers and textile recyclers.",
+        "context": "A Bangladesh textile pilot shows the value of source sorting and dependable material records. Traceability platforms already exist. A possible gap is the practical work of qualifying small batches and arranging reliable pickup.",
+        "unknown": "Which material grades will a recycler commit to buying? Do sorting and transport costs leave a margin while paying existing handlers fairly?"
       },
       "bn": {
-        "title": "অল্প পণ্য পাঠাতে পুরো ঠান্ডা গাড়ি ভাড়া নিতে হয়",
-        "summary": "নিয়মিত ক্রেতা থাকলেও ছোট সরবরাহকারীর পক্ষে পুরো গাড়ির খরচ চালানো কঠিন হতে পারে। নির্ভরযোগ্য ছোট চালানের সুযোগ দরকার কি না, খুঁজে দেখুন।",
-        "customer": "নিয়মিত ক্রেতা আছে, কিন্তু নিজে একটি ঠান্ডা গাড়ি ভরার মতো উপযুক্ত মাল নেই, এমন খাবার সরবরাহকারী।",
-        "context": "নির্ভরযোগ্য ঠান্ডা পরিবহন না পাওয়ায় ছোট সরবরাহকারীর অর্ডার বা লাভ কমছে কি না, খোঁজ নিন। একটি পণ্য ও একটি রুট ধরে শুরু করুন।",
-        "unknown": "একসঙ্গে পাঠানো যায় এমন মাল কি একই সময়ে নিয়মিত আসবে? খালি জায়গা, ওঠানো-নামানো আর নষ্ট হওয়ার ঝুঁকি ধরেও লাভ থাকবে?"
+        "title": "রিসাইক্লারদের দরকার বাছাই করা কাপড় ও নির্ভরযোগ্য তথ্য",
+        "summary": "কাপড় মিশে গেলে আর উপাদান জানা না থাকলে পুনর্ব্যবহার কঠিন হয়।",
+        "customer": "পোশাক কারখানা, ঝুট ব্যবসায়ী ও টেক্সটাইল রিসাইক্লার।",
+        "context": "বাংলাদেশের একটি উদ্যোগে উৎসে বাছাই ও কাপড়ের সঠিক তথ্য রাখার গুরুত্ব দেখা গেছে। গতিপথের তথ্য রাখার প্ল্যাটফর্ম আগেই আছে। ছোট চালানের মান যাচাই ও সময়মতো সংগ্রহের কাজে কোথায় ঘাটতি আছে, দেখা যেতে পারে।",
+        "unknown": "কোন মানের কাপড় কিনতে রিসাইক্লার আগেই রাজি হবেন? ঝুট ব্যবসায়ীদের ন্যায্য দাম দিয়ে বাছাই ও পরিবহনের খরচের পর লাভ থাকবে কি?"
       }
     },
     {
-      "id": "bangla-order-notes",
-      "slug": "bangla-order-notes",
-      "sector": "commerce",
+      "id": "produce-cold-chain",
+      "slug": "produce-cold-chain",
+      "sector": "agriculture",
+      "places": [
+        "rajshahi",
+        "bogura"
+      ],
+      "sources": [
+        {
+          "title": "FAO · Bangladesh’s crop-storage investment needs",
+          "url": "https://www.fao.org/hand-in-hand/previous-editions/investment-forum-2022/bangladesh/en",
+          "date": "2022 investment plan",
+          "en": "FAO’s investment plan identifies post-harvest losses and storage gaps in several crop chains. Its proposed projects are context for field research, not evidence that a particular cooling service will sell.",
+          "bn": "FAO-এর বিনিয়োগ পরিকল্পনায় কয়েকটি ফসল সংরক্ষণের ঘাটতি ও ফসল তোলার পর নষ্ট হওয়ার কথা আছে। কোনো নির্দিষ্ট সেবার চাহিদা আছে কি না, মাঠে গিয়ে জানতে হবে।"
+        }
+      ],
+      "en": {
+        "title": "Fresh produce loses value before reaching buyers",
+        "summary": "Harvested produce needs handling and storage suited to the crop.",
+        "customer": "Grower groups and produce buyers near harvest centres.",
+        "context": "Bangladesh’s crop-storage investment plans identify losses between harvest and sale. A useful starting point is one crop, one harvest window and a buyer who values better quality.",
+        "unknown": "Does cooling improve the seller’s net return after transport, electricity and storage fees? Who pays when produce is rejected, and can the facility earn outside peak harvest?"
+      },
+      "bn": {
+        "title": "ক্রেতার কাছে পৌঁছানোর আগেই ফসলের দাম কমে যায়",
+        "summary": "ফসলের ধরন অনুযায়ী পরিবহন ও সংরক্ষণের ব্যবস্থা দরকার।",
+        "customer": "ফসল সংগ্রহকেন্দ্রের আশপাশের চাষিদের দল ও পাইকারি ক্রেতা।",
+        "context": "বাংলাদেশের ফসল সংরক্ষণের বিনিয়োগ পরিকল্পনায় ফসল তোলা থেকে বিক্রির মধ্যে ক্ষতির কথা উঠে এসেছে। একটি ফসল, একটি মৌসুম আর ভালো মানের জন্য বেশি দিতে রাজি একজন ক্রেতা দিয়ে শুরু করা যায়।",
+        "unknown": "পরিবহন, বিদ্যুৎ ও সংরক্ষণের খরচ বাদ দিয়ে বিক্রেতার আয় বাড়বে কি? ক্রেতা ফসল ফেরত দিলে ক্ষতি কে নেবে? মৌসুমের বাইরে আয়ের উপায় কী?"
+      }
+    },
+    {
+      "id": "water-system-maintenance",
+      "slug": "water-system-maintenance",
+      "sector": "water",
+      "places": [
+        "khulna"
+      ],
+      "sources": [
+        {
+          "title": "Oxford REACH · SafePani in coastal Bangladesh",
+          "url": "https://reachwater.uk/safepani-a-new-model-to-secure-safe-drinking-water-for-school-children-in-coastal-bangladesh/",
+          "date": "17 March 2023",
+          "en": "REACH documents uncertain water quality and maintenance responsibilities in Khulna schools. SafePani already combines inspections, testing and repairs; its contracting model is a starting point to learn from.",
+          "bn": "খুলনার স্কুলে পানির মান ও রক্ষণাবেক্ষণের দায়িত্ব নিয়ে অনিশ্চয়তার কথা REACH লিখেছে। SafePani পরিদর্শন, পরীক্ষা ও মেরামত একসঙ্গে করছে। তাদের চুক্তির ধরন থেকে শেখা যায়।"
+        }
+      ],
+      "en": {
+        "title": "Installed water systems need dependable upkeep",
+        "summary": "A water point is only useful if it keeps delivering safe water.",
+        "customer": "School networks, clinic operators and organisations managing community water systems.",
+        "context": "Research in coastal Khulna describes water points with unreliable maintenance and quality monitoring. SafePani demonstrates an existing professional-service model. The opportunity is to serve a cluster whose upkeep still lacks a funded owner.",
+        "unknown": "Who controls the maintenance budget and can sign a recurring contract? Can a local repair route cover its costs through the dry season?"
+      },
+      "bn": {
+        "title": "পানির ব্যবস্থা বসালেই কাজ শেষ হয় না",
+        "summary": "নিয়মিত নিরাপদ পানি দিতে না পারলে স্থাপনাটি কাজে আসে না।",
+        "customer": "স্কুলের নেটওয়ার্ক, ক্লিনিক পরিচালনাকারী ও এলাকার পানির ব্যবস্থা দেখভাল করে এমন সংস্থা।",
+        "context": "উপকূলীয় খুলনার গবেষণায় পানির স্থাপনা রক্ষণাবেক্ষণ ও মান পরীক্ষার অনিশ্চয়তা উঠে এসেছে। SafePani পেশাদার সেবার একটি উদাহরণ। কাছাকাছি কয়েকটি স্থাপনায় নিয়মিত খরচ ও দেখভালের দায়িত্ব নেওয়ার কেউ নেই কি না, খুঁজে দেখুন।",
+        "unknown": "রক্ষণাবেক্ষণের বাজেট কার হাতে? নিয়মিত সেবার চুক্তি কে করতে পারবেন? শুষ্ক মৌসুমেও কাছাকাছি স্থাপনা ঘুরে সেবা দিয়ে খরচ উঠবে কি?"
+      }
+    },
+    {
+      "id": "missed-follow-up",
+      "slug": "missed-follow-up",
+      "sector": "health",
       "places": [
         "anywhere"
       ],
-      "sources": [],
-      "en": {
-        "title": "Voice-note orders are easy to get wrong.",
-        "summary": "Order teams may spend too much time replaying messages to check products, quantities and addresses.",
-        "customer": "An order-taking team that already receives customer voice notes in Bangla.",
-        "context": "Find out whether taking orders from voice notes causes mistakes or delays. We have not yet interviewed customers about this problem.",
-        "unknown": "Do accents, background noise and mixed product names leave more correction work than simply typing the order?"
-      },
-      "bn": {
-        "title": "ভয়েস নোটের অর্ডারে ভুল থেকে যেতে পারে",
-        "summary": "পণ্যের পরিমাণ, ধরন আর ঠিকানা মিলিয়ে নিতে বারবার ভয়েস নোট শুনতে হয়। এতে কত সময় যায় আর কোথায় ভুল হয়, তা খুঁজে দেখুন।",
-        "customer": "ক্রেতার বাংলা ভয়েস নোট থেকে আগে থেকেই অর্ডার নেয় এমন টিম।",
-        "context": "ভয়েস নোট বারবার শুনতে গিয়ে ভুল বা দেরি হচ্ছে কি না, খুঁজে দেখুন। এটি মাঠে যাচাই করার ধারণা। এই ব্রিফের জন্য এখনো ক্রেতার সাক্ষাৎকার নেওয়া হয়নি।",
-        "unknown": "আঞ্চলিক উচ্চারণ, আশপাশের শব্দ ও মিশ্র ভাষায় পণ্যের নামের কারণে খসড়া ঠিক করতে কি হাতে লেখার চেয়েও বেশি সময় লাগবে?"
-      }
-    },
-    {
-      "id": "produce-crates",
-      "slug": "produce-crates",
-      "sector": "agriculture",
-      "places": [
-        "bogura",
-        "dhaka"
+      "sources": [
+        {
+          "title": "Simple · Following up with overdue patients",
+          "url": "https://www.simple.org/blog/revealing-data-behind-overdue-patient-calls/",
+          "date": "10 January 2024",
+          "en": "The team behind Simple describes missed hypertension follow-ups in its Bangladesh programme and tools for contacting overdue patients. This supports investigating follow-up workflows, not assuming that another reminder app is needed.",
+          "bn": "Simple-এর দল বাংলাদেশে তাদের কর্মসূচিতে উচ্চ রক্তচাপের রোগীদের ফলোআপ বাদ পড়া ও যোগাযোগের ব্যবস্থা নিয়ে লিখেছে। একই অ্যাপ আবার বানানোর আগে ক্লিনিকের কাজে কোথায় ঘাটতি আছে, জানতে হবে।"
+        }
       ],
-      "sources": [],
       "en": {
-        "title": "Produce packaging is hard to reuse.",
-        "summary": "Fruit and vegetable suppliers may benefit from sturdy crates that they can get back after each delivery.",
-        "customer": "A produce wholesaler and their regular suppliers on a short, repeat route.",
-        "context": "Find out what suppliers spend on packaging and how often goods are damaged in transit. Then check whether reusable crates could help. We have not measured those costs yet.",
-        "unknown": "Can crates return reliably and cheaply enough to make rental worthwhile?"
+        "title": "Patients miss ongoing care between clinic visits",
+        "summary": "Clinics need a workable way to find and follow up with patients who miss appointments.",
+        "customer": "Private and NGO clinics providing ongoing hypertension care.",
+        "context": "Simple’s Bangladesh programme documents patients missing follow-up care. Its existing software already supports overdue call lists. A new service needs to solve a clinic’s remaining workflow or staffing gap.",
+        "unknown": "Are missed visits driven by reminders, travel, costs or medicine access? What is missing from the clinic’s current tools, and will it pay to fix that gap?"
       },
       "bn": {
-        "title": "ফসলের প্যাকেট একবার ব্যবহার করেই ফেলে দিতে হয়",
-        "summary": "নিয়মিত একই পথে ফসল পাঠালে বারবার ব্যবহারযোগ্য ক্রেট কাজে আসতে পারে। পণ্য ভালো রাখা আর খালি ক্রেট ফেরত আনা, দুটোই পরীক্ষা করতে হবে।",
-        "customer": "ছোট একটি নিয়মিত রুটের পাইকার ও তাঁর কৃষিপণ্য সরবরাহকারীরা।",
-        "context": "মাল ওঠানো-নামানোয় ক্ষতি বা একবার ব্যবহার করা প্যাকেজিংয়ের খরচ কি ক্রেট ভাড়া নেওয়ার কারণ হতে পারে? এই ব্রিফে প্রশ্নটি পরীক্ষা করার প্রস্তাব আছে, ক্ষতির মাপা পরিমাণ নেই।",
-        "unknown": "ক্রেট কি নিয়মিত এবং এত কম খরচে ফেরত আসবে যে ভাড়ার সেবা চালানো যায়?"
+        "title": "ক্লিনিকে দেখানোর পর চিকিৎসার ধারাবাহিকতা ভেঙে যায়",
+        "summary": "নির্ধারিত দিনে না আসা রোগীর সঙ্গে যোগাযোগের সহজ ব্যবস্থা দরকার।",
+        "customer": "উচ্চ রক্তচাপের নিয়মিত চিকিৎসা দেয় এমন বেসরকারি ও এনজিও ক্লিনিক।",
+        "context": "Simple-এর বাংলাদেশের কর্মসূচিতে রোগীদের ফলোআপে না আসার কথা আছে। তাদের সফটওয়্যারে যোগাযোগের তালিকাও আছে। নতুন সেবা করতে হলে ক্লিনিকের কাজে বা লোকবলে বাকি ঘাটতিটি আগে ধরতে হবে।",
+        "unknown": "রোগী কি ভুলে যান, নাকি যাতায়াত, খরচ বা ওষুধ না পাওয়া বাধা? চালু ব্যবস্থায় কী নেই? সেই ঘাটতি মেটাতে ক্লিনিক টাকা দেবে কি?"
       }
     },
     {
-      "id": "factory-maintenance",
-      "slug": "factory-maintenance",
+      "id": "workplace-heat",
+      "slug": "workplace-heat",
       "sector": "manufacturing",
       "places": [
         "gazipur",
-        "chattogram"
+        "dhaka"
       ],
-      "sources": [],
+      "sources": [
+        {
+          "title": "World Bank · Heat risks in Bangladesh",
+          "url": "https://www.worldbank.org/en/news/press-release/2025/09/16/bangladesh-faces-health-and-economic-risks-from-rising-temperature-world-bank",
+          "date": "16 September 2025",
+          "en": "The World Bank reports health and productivity risks from rising heat in Bangladesh. The study establishes the wider problem; the performance and economics of a particular factory retrofit still need site-level measurement.",
+          "bn": "বিশ্বব্যাংকের প্রতিবেদনে বাংলাদেশের বাড়তি গরমে স্বাস্থ্য ও কর্মক্ষমতার ঝুঁকি উঠে এসেছে। নির্দিষ্ট কারখানায় পরিবর্তন এনে কতটা লাভ হবে, তা সেখানেই মাপতে হবে।"
+        }
+      ],
       "en": {
-        "title": "Finding the right machine repairer takes time.",
-        "summary": "Small factories need to know who can repair a particular machine, when they can come and what is needed.",
-        "customer": "The manager of a small factory with a common type of machine.",
-        "context": "Ask managers what happened during their last breakdown. Was finding a technician the difficult part, or was it getting parts or agreeing on payment?",
-        "unknown": "Can a new service provide more reliability than a manager’s existing technician relationships?"
+        "title": "Hot workplaces put workers and production at risk",
+        "summary": "Factories need cooling improvements that work within their buildings and budgets.",
+        "customer": "Factory and warehouse operators with heat-exposed work areas.",
+        "context": "Bangladesh’s rising heat creates health and productivity risks. For a founder, the useful question is narrower: which affordable changes can reduce heat in a particular work area without raising operating costs too far?",
+        "unknown": "Which changes suit the building, process and season? Will the owner fund installation and upkeep, and do workers report a meaningful improvement?"
       },
       "bn": {
-        "title": "মেশিন নষ্ট হলে উপযুক্ত মিস্ত্রি খোঁজা শুরু হয়",
-        "summary": "নির্দিষ্ট মেশিনটি কে ঠিক করতে পারবেন, কখন আসবেন আর কী লাগবে, তা আগে থেকে জানা ছোট কারখানার জন্য কাজে লাগতে পারে।",
-        "customer": "একটি নির্দিষ্ট প্রচলিত ধরনের মেশিন ব্যবহার করে এমন ছোট কারখানার প্রোডাকশন ম্যানেজার।",
-        "context": "মেশিন বন্ধ হলে ম্যানেজার এখন কী করেন, জেনে নিন। উপযুক্ত টেকনিশিয়ান পাওয়াই কি বাধা? যন্ত্রাংশ বা পেমেন্টের শর্তও বড় সমস্যা হতে পারে।",
-        "unknown": "ম্যানেজারের চেনা টেকনিশিয়ানের চেয়ে নতুন সেবা কি বেশি নির্ভরযোগ্য হতে পারবে?"
+        "title": "গরমে কর্মী ও উৎপাদন দুটোই ঝুঁকিতে পড়ে",
+        "summary": "ভবন ও বাজেটের সঙ্গে মানানসই শীতল করার ব্যবস্থা দরকার।",
+        "customer": "গরমে কাজ করতে হয় এমন কারখানা ও গুদামের পরিচালকেরা।",
+        "context": "বাংলাদেশে বাড়তি গরম স্বাস্থ্য ও কাজের সক্ষমতায় ঝুঁকি তৈরি করছে। উদ্যোক্তার জন্য প্রশ্নটি ছোট করে আনা দরকার: একটি কাজের জায়গায় খরচ খুব না বাড়িয়ে কী বদলালে গরম কমে?",
+        "unknown": "ভবন, কাজের ধরন ও মৌসুম অনুযায়ী কোন পরিবর্তন মানাবে? মালিক কি বসানো ও দেখভালের খরচ দেবেন? কর্মীরা কি বাস্তবে স্বস্তি পাবেন?"
+      }
+    },
+    {
+      "id": "solar-maintenance",
+      "slug": "solar-maintenance",
+      "sector": "energy",
+      "places": [
+        "anywhere"
+      ],
+      "sources": [
+        {
+          "title": "IEEFA · Rooftop solar maintenance in Bangladesh",
+          "url": "https://ieefa.org/resources/rooftop-solars-time-shine-bangladesh",
+          "date": "18 August 2025",
+          "en": "IEEFA identifies maintenance, soiling and monitoring gaps in Bangladesh’s rooftop-solar rollout. It recommends provision for long-term upkeep. This is a service opportunity to test, not a forecast of recoverable energy at a given site.",
+          "bn": "IEEFA বাংলাদেশের ছাদের সৌরবিদ্যুৎ ব্যবস্থায় রক্ষণাবেক্ষণ, ময়লা জমা ও পর্যবেক্ষণের ঘাটতি তুলেছে। দীর্ঘমেয়াদি দেখভালের ব্যবস্থা রাখার পরামর্শ দিয়েছে। কোনো স্থাপনায় কত বিদ্যুৎ বাড়বে, তা আলাদা করে মাপতে হবে।"
+        }
+      ],
+      "en": {
+        "title": "Solar installations need care after handover",
+        "summary": "Owners need to know when output drops and who will fix the cause.",
+        "customer": "Rooftop-solar owners and installers managing several customer sites.",
+        "context": "Bangladesh’s rooftop-solar expansion brings an ongoing maintenance need. IEEFA highlights soiling, service provision and independent monitoring. A focused business could serve sites whose handover left no dependable upkeep.",
+        "unknown": "What is already covered by the installer or warranty? How much lost output is avoidable, and can technicians serve several nearby sites profitably?"
+      },
+      "bn": {
+        "title": "সোলার বসানোর পরও দেখভাল দরকার",
+        "summary": "বিদ্যুৎ কম হলে মালিকের জানা দরকার কেন কমছে আর কে ঠিক করবেন।",
+        "customer": "ছাদের সোলারের মালিক ও একাধিক গ্রাহকের স্থাপনা দেখেন এমন ইনস্টলার।",
+        "context": "বাংলাদেশে ছাদের সোলার বাড়ার সঙ্গে নিয়মিত রক্ষণাবেক্ষণের প্রয়োজনও বাড়ছে। IEEFA ময়লা জমা, সেবা ও আলাদা পর্যবেক্ষণের বিষয় তুলেছে। যেখানে বসানোর পর নির্ভরযোগ্য দেখভাল নেই, সেখানে সেবার সুযোগ খোঁজা যায়।",
+        "unknown": "ইনস্টলারের চুক্তি বা ওয়ারেন্টিতে কী আছে? উৎপাদনের কতটা ক্ষতি এড়ানো যায়? কাছাকাছি কয়েকটি স্থাপনা দেখে টেকনিশিয়ানের খরচ উঠবে কি?"
       }
     }
   ],
   "approaches": [
-    {
-      "id": "courier-settlement-approach",
-      "problemId": "courier-settlement",
-      "kind": "software",
-      "position": 0,
-      "addedAt": "2026-09-16",
-      "guides": [
-        "validation/customer-interviews",
-        "payments/cod-reconciliation",
-        "validation/pricing-tests"
-      ],
-      "en": {
-        "title": "Track courier payments in one place",
-        "summary": "One place to match delivered orders, returns and courier payouts, so growing online brands can see what is still owed.",
-        "description": "With the business’s permission, upload its order and payment spreadsheets. Match each order to a payment and flag anything that does not match. Let the business correct mistakes and see a record of changes.",
-        "businessModel": "Try a monthly fee. Check whether businesses with more orders would pay more.",
-        "steps": [
-          "Ask three business owners to show how they checked their latest courier payment. Remove private customer details first.",
-          "Match one week of orders and payments by hand. Note missing order numbers, fee differences and the time it takes.",
-          "Show what did not match. Offer to do it again for a fee before building connections to courier systems."
-        ],
-        "signal": "A business sends another batch and agrees to pay for regular help.",
-        "prototype": "A CSV import, an order-to-payment matching table and a review queue for unmatched items. Include duplicate IDs, partial payouts and returns in the synthetic sample data."
-      },
-      "bn": {
-        "title": "এক জায়গায় কুরিয়ারের পাওনা দেখুন",
-        "summary": "কোন অর্ডার ডেলিভারি হলো, কোনটি ফেরত এলো আর কত টাকা পাওয়া গেল, সব মিলিয়ে অনলাইন ব্র্যান্ডের বাকি পাওনার হিসাব।",
-        "description": "মার্চেন্টের অনুমতি নিয়ে CSV ফাইল দিয়ে শুরু করা যায়। অর্ডার আইডি ধরে টাকা মেলান, অমিলগুলো আলাদা দেখান। ভুল মিল হলে মার্চেন্ট তা ঠিক করবেন, আগের পরিবর্তনের রেকর্ডও থাকবে।",
-        "businessModel": "মার্চেন্টপ্রতি মাসিক ফি পরীক্ষা করা যায়। অর্ডারের সংখ্যা ধরে আলাদা প্যাকেজ লাগবে কি না, পরে দেখুন।",
-        "steps": [
-          "তিনজন মার্চেন্টের সঙ্গে বসে তাঁদের শেষ পেমেন্টের হিসাব দেখুন। ব্যক্তিগত তথ্য আগে সরিয়ে নিন।",
-          "এক সপ্তাহের হিসাব হাতে মিলিয়ে দেখুন। আইডি না মেলা, ফির পার্থক্য আর সমাধানে কত সময় গেল, লিখে রাখুন।",
-          "অমিলের তালিকা দেখিয়ে পরেরবার টাকার বিনিময়ে কাজটি করার প্রস্তাব দিন। তারপর ইন্টিগ্রেশন বানানোর কথা ভাবুন।"
-        ],
-        "signal": "মার্চেন্ট আবার হিসাব মেলানোর কাজ দিলেন এবং নিয়মিত সেবার জন্য টাকা দিতে রাজি হলেন। ডেমো ভালো লেগেছে বললেই হবে না।",
-        "prototype": "CSV আপলোড, অর্ডারের সঙ্গে পেমেন্ট মেলানোর টেবিল ও অমিল পর্যালোচনার তালিকা। নমুনা ডেটায় একই আইডি দুবার থাকা, আংশিক পেমেন্ট ও রিটার্ন রাখুন।"
-      }
-    },
     {
       "id": "garment-offcuts-approach",
       "problemId": "garment-offcuts",
@@ -216,263 +201,225 @@
       "position": 0,
       "addedAt": "2026-09-16",
       "guides": [
-        "validation/field-research-plan",
-        "ideas/competitor-map",
-        "validation/pricing-tests"
-      ],
-      "en": {
-        "title": "Find the next use for garment offcuts",
-        "summary": "Help factories and recyclers trade fabric offcuts with clearer information about material, quality and collection.",
-        "description": "Start with one type of fabric offcut. Record its material, colour, cleanliness, weight and collection details. Help one factory and one buyer complete a sale before building a listing site.",
-        "businessModel": "Try a clearly stated fee for arranging a sale, checking quality or collecting the material.",
-        "steps": [
-          "Speak to three factories and three buyers about one type of offcut.",
-          "With permission, document and grade a sample batch against a buyer’s actual specification.",
-          "Arrange one paid transaction and record the full inspection and collection cost."
-        ],
-        "signal": "Both sides want to repeat the transaction at a price that covers the coordination work.",
-        "prototype": "A material listing with composition, grade, sample photos, available weight and collection terms. Add a buyer request and a human-reviewed match; no invented stock."
-      },
-      "bn": {
-        "title": "গার্মেন্টসের ঝুট পাবে উপযুক্ত ক্রেতা",
-        "summary": "কাপড়ের ধরন, মান ও সংগ্রহের শর্ত পরিষ্কার থাকলে কারখানার ঝুট কিনতে রিসাইক্লারদের সুবিধা হবে কি না, তা পরীক্ষা করুন।",
-        "description": "এক ধরনের ঝুটের লেনদেন দিয়ে শুরু করুন। ফাইবার, রং, মিশ্রণ, ওজন ও সংগ্রহের শর্ত লিখে রাখুন। এরপর খোঁজার মতো মালের তালিকা বানানো যায়।",
-        "businessModel": "সফল লেনদেনে আগে জানানো ফি অথবা মান যাচাই ও সংগ্রহের সেবার ফি পরীক্ষা করুন।",
-        "steps": [
-          "এক ধরনের ঝুট নিয়ে তিনটি কারখানা ও তিনজন ক্রেতার সঙ্গে কথা বলুন।",
-          "অনুমতি নিয়ে একটি নমুনা ব্যাচের তথ্য লিখুন। ক্রেতা যে মান চান, তার সঙ্গে মিলিয়ে দেখুন।",
-          "একটি টাকার লেনদেন করিয়ে পরিদর্শন ও সংগ্রহের পুরো খরচ হিসাব করুন।"
-        ],
-        "signal": "দুই পক্ষই আবার লেনদেন করতে চায়, আর যে ফি দিতে রাজি তার মধ্যে সমন্বয়ের খরচ ওঠে।",
-        "prototype": "ফাইবার, মান, নমুনার ছবি, ওজন ও সংগ্রহের শর্তসহ মালের তালিকা। ক্রেতার চাহিদা লিখে মানুষের পর্যালোচনায় মিল খোঁজার ব্যবস্থা রাখুন। কাল্পনিক মজুতকে আসল বলে দেখাবেন না।"
-      }
-    },
-    {
-      "id": "shared-cold-delivery-approach",
-      "problemId": "shared-cold-delivery",
-      "kind": "service",
-      "position": 0,
-      "addedAt": "2026-09-16",
-      "guides": [
-        "validation/outside-dhaka",
-        "validation/field-research-plan",
+        "validation/customer-interviews",
+        "validation/demand-without-building",
         "metrics/unit-economics"
       ],
       "en": {
-        "title": "Share space in a refrigerated delivery",
-        "summary": "Combine small food shipments on a repeat route instead of asking every supplier to fill a refrigerated vehicle.",
-        "description": "Work with an operator who already handles this type of food safely. Match spare space with suppliers who need the same route, temperature and delivery time.",
-        "businessModel": "Try a fee for each shipment you arrange. Show transport and handling costs separately.",
+        "title": "Turn garment offcuts into traceable feedstock",
+        "summary": "Match sorted factory offcuts with recyclers who need a specific material.",
+        "description": "Agree on a recycler’s material specification first. Work with a factory and its existing waste handler to separate, weigh and document matching offcuts, then coordinate pickup. Use existing traceability tools where possible.",
+        "businessModel": "Charge a handling or matching fee on accepted batches. The buyer’s price must cover sorting, transport, rejected material and fair payment to the supplier.",
         "steps": [
-          "Interview suppliers and buyers on one proposed route. Map actual shipment days and product requirements.",
-          "Get an operator’s quote and handling plan; calculate the cost at partial capacity.",
-          "Only with suitable handling agreed, coordinate one paid trial and record temperatures, delays and the delivered condition."
+          "Ask two recyclers for their buying specifications, rejection reasons and minimum batch size.",
+          "With one factory and its waste handler, prepare and document a small batch to an agreed specification. Get the recycler’s acceptance before scaling collection.",
+          "Complete one paid delivery. Reconcile accepted weight, rejected material and all costs; ask both sides to repeat it."
         ],
-        "signal": "Repeat bookings cover the full trip cost and the buyer accepts the delivered product.",
-        "prototype": "A booking board for one route showing product constraints, available capacity, delivery windows and a transparent quote. Use simulated records until an operator confirms a real trip."
+        "signal": "A repeat order for a documented grade with a positive margin after rejects and transport.",
+        "prototype": "Build a batch record with material composition, source, weight, quality checks, pickup, accepted weight and buyer. Track who supplied each field. Use fictional batches and avoid unverified recycled-content or certification claims."
       },
       "bn": {
-        "title": "ঠান্ডা রাখার গাড়িতে জায়গা ভাগ করে নিন",
-        "summary": "প্রতিজন সরবরাহকারীকে পুরো গাড়ি ভরতে না দিয়ে একই রুটের উপযুক্ত ছোট চালানগুলো একসঙ্গে পাঠানো।",
-        "description": "উপযুক্ত পরিবহন অপারেটরের খালি জায়গা কাজে লাগান। কোন পণ্য একসঙ্গে যাবে, তাপমাত্রা কত থাকবে, ওঠানো-নামানো ও পৌঁছানোর সময়, সব স্পষ্ট রাখুন।",
-        "businessModel": "পরিবহন ও ওঠানো-নামানোর খরচ আলাদা দেখিয়ে চালানপ্রতি সমন্বয়ের ফি পরীক্ষা করুন।",
+        "title": "গার্মেন্টসের ঝুটকে রিসাইক্লিংয়ের কাঁচামাল বানান",
+        "summary": "নির্দিষ্ট কাপড় দরকার এমন রিসাইক্লারের সঙ্গে বাছাই করা ঝুট মিলিয়ে দিন।",
+        "description": "রিসাইক্লার কী ধরনের কাপড় চান, আগে ঠিক করুন। কারখানা ও তার চালু ঝুট ব্যবসায়ীর সঙ্গে মিলে সেই কাপড় আলাদা করুন, ওজন নিন, তথ্য রাখুন এবং সংগ্রহের ব্যবস্থা করুন। সম্ভব হলে চালু ট্র্যাকিং টুল ব্যবহার করুন।",
+        "businessModel": "ক্রেতার গ্রহণ করা চালানে সংগ্রহ বা ক্রেতা মেলানোর ফি নিন। বাছাই, পরিবহন, ফেরত যাওয়া কাপড় ও সরবরাহকারীর ন্যায্য দাম মিটিয়েও লাভ থাকতে হবে।",
         "steps": [
-          "একটি সম্ভাব্য রুটের সরবরাহকারী ও ক্রেতাদের সঙ্গে কথা বলুন। কোন দিন মাল যায় আর পণ্যের কী শর্ত, লিখে নিন।",
-          "অপারেটরের কোটেশন ও মাল সামলানোর পরিকল্পনা নিন। গাড়ি পুরো না ভরলেও খরচ কত হবে, হিসাব করুন।",
-          "উপযুক্ত ব্যবস্থা নিশ্চিত করেই একটি টাকার পরীক্ষামূলক চালান পাঠান। তাপমাত্রা, দেরি ও পৌঁছানোর সময় পণ্যের অবস্থা লিখে রাখুন।"
+          "দুজন রিসাইক্লারের কাছে কাপড়ের মান, ফেরত দেওয়ার কারণ ও ন্যূনতম চালানের পরিমাণ জানুন।",
+          "একটি কারখানা ও তার ঝুট ব্যবসায়ীর সঙ্গে ঠিক করা মানের ছোট চালান তৈরি করে তথ্য রাখুন। সংগ্রহ বাড়ানোর আগে রিসাইক্লার সেটি গ্রহণ করেন কি না দেখুন।",
+          "টাকার বিনিময়ে একটি চালান পৌঁছে দিন। গ্রহণ করা ওজন, ফেরত কাপড় ও সব খরচ মেলান। দুই পক্ষ আবার করতে চান কি না জানুন।"
         ],
-        "signal": "আবার বুকিং পাওয়া যায়, যাতায়াতের পুরো খরচ ওঠে এবং ক্রেতা পৌঁছানো পণ্য গ্রহণ করেন।",
-        "prototype": "একটি রুটের বুকিং বোর্ডে পণ্যের শর্ত, খালি জায়গা, পৌঁছানোর সময় ও খরচ দেখান। অপারেটর চালান নিশ্চিত করার আগে কেবল নমুনা রেকর্ড ব্যবহার করুন।"
+        "signal": "পরিবহন ও ফেরত কাপড়ের খরচ বাদ দিয়েও লাভ থাকে এবং একই মানের কাপড়ের আবার অর্ডার আসে।",
+        "prototype": "কাপড়ের উপাদান, উৎস, ওজন, মান পরীক্ষা, সংগ্রহ, গ্রহণ করা ওজন ও ক্রেতা নিয়ে চালানের রেকর্ড বানান। কোন তথ্য কে দিয়েছেন, রাখুন। কাল্পনিক চালান ব্যবহার করুন। যাচাই ছাড়া রিসাইক্লিং বা সনদের দাবি করবেন না।"
       }
     },
     {
-      "id": "bangla-order-notes-approach",
-      "problemId": "bangla-order-notes",
-      "kind": "software",
+      "id": "harvest-cooling",
+      "problemId": "produce-cold-chain",
+      "kind": "service",
       "position": 0,
-      "addedAt": "2026-09-16",
+      "addedAt": "2026-09-19",
       "guides": [
         "validation/customer-interviews",
-        "validation/mvp-examples",
-        "validation/mvp-experiment-planner"
-      ],
-      "en": {
-        "title": "Turn a Bangla voice note into an order",
-        "summary": "A human-confirmed order draft from a voice note, with missing quantities, variants and addresses made obvious.",
-        "description": "Turn a voice note into a draft order. Highlight anything uncertain and ask a person to check it before confirming. Begin with one business’s product list.",
-        "businessModel": "Try a monthly team subscription. Compare the fee with the time saved after checking and correcting orders.",
-        "steps": [
-          "Observe a willing team processing voice orders and time the existing workflow.",
-          "With consent, test a small anonymised set. Compare the draft with the confirmed order.",
-          "Ask the team to use the draft-and-confirm workflow for a second session and discuss a paid trial."
-        ],
-        "signal": "The full workflow is faster without increasing order errors, and a team agrees to a paid trial.",
-        "prototype": "An audio upload, an editable order draft and highlighted uncertain fields. Use synthetic audio, require confirmation, and provide a clear delete action."
-      },
-      "bn": {
-        "title": "বাংলা ভয়েস নোট থেকে অর্ডারের খসড়া",
-        "summary": "ভয়েস নোট শুনে অর্ডারের খসড়া হবে। পরিমাণ, ধরন বা ঠিকানা অস্পষ্ট থাকলে তা দেখাবে, মানুষ মিলিয়ে কনফার্ম করবেন।",
-        "description": "খসড়ায় অনিশ্চিত অংশ আলাদা দেখান। প্রতিটি অর্ডার মানুষ মিলিয়ে কনফার্ম করবেন। একটি পণ্যের ক্যাটালগ দিয়ে শুরু করুন, নিজে থেকে অর্ডার পাঠানোর ব্যবস্থা রাখবেন না।",
-        "businessModel": "কত সময় বাঁচল ও ভুল ঠিক করতে কত কাজ হলো, তার সঙ্গে মিলিয়ে টিমের মাসিক ফি পরীক্ষা করুন।",
-        "steps": [
-          "রাজি আছে এমন একটি টিম কীভাবে ভয়েস অর্ডার নেয়, দেখুন। এখন কত সময় লাগে, মেপে নিন।",
-          "সম্মতি নিয়ে ব্যক্তিগত তথ্য সরানো কিছু রেকর্ডে পরীক্ষা করুন। কনফার্ম করা অর্ডারের সঙ্গে খসড়া মেলান।",
-          "টিমকে আরেকবার খসড়া মিলিয়ে কনফার্ম করার পদ্ধতি ব্যবহার করতে দিন। টাকার বিনিময়ে পরীক্ষার প্রস্তাব দিন।"
-        ],
-        "signal": "অর্ডারে ভুল না বাড়িয়ে পুরো কাজে সময় কম লাগে, আর একটি টিম টাকা দিয়ে পরীক্ষা করতে রাজি হয়।",
-        "prototype": "অডিও আপলোড, বদলানো যায় এমন অর্ডারের খসড়া ও অনিশ্চিত ঘর আলাদা দেখানোর ব্যবস্থা। বানানো নমুনা অডিও ব্যবহার করুন। কনফার্ম করা বাধ্যতামূলক রাখুন, মুছে দেওয়ার বোতামও দিন।"
-      }
-    },
-    {
-      "id": "produce-crates-approach",
-      "problemId": "produce-crates",
-      "kind": "service",
-      "position": 0,
-      "addedAt": "2026-09-16",
-      "guides": [
-        "validation/outside-dhaka",
         "validation/demand-without-building",
         "metrics/unit-economics"
       ],
       "en": {
-        "title": "Rent produce crates that come back",
-        "summary": "A reusable crate pool for a repeat produce route, with collection, cleaning and returns built into the service.",
-        "description": "Start with a few crates on one regular route. Record who has each crate and agree who returns, cleans and pays for damage before the first delivery.",
-        "businessModel": "Test a per-trip rental fee and an agreed deposit; include loss and cleaning in the cost.",
+        "title": "Cold storage by the crate, near harvest",
+        "summary": "Help growers keep produce saleable while they arrange a buyer.",
+        "description": "Offer short-term, crop-specific cooling through an existing storage operator. Collect small batches, record their condition and arrange delivery to a committed buyer. Start by coordinating the service before investing in a facility.",
+        "businessModel": "Grower groups or buyers pay per crate and day. The fee must leave them better off after all handling and delivery costs.",
         "steps": [
-          "Watch one full produce journey and record handling and current packaging costs.",
-          "Agree a small paid trial with both ends of the route, including return and cleaning terms.",
-          "Track several complete return cycles, including damage, missing crates and collection time."
+          "Choose one crop and interview five growers and two buyers about recent rejected or spoiled loads.",
+          "With a qualified storage operator, agree on suitable temperatures and run one small paid batch alongside a comparable batch handled as usual.",
+          "Record saleable weight, selling price and every cost. Ask the buyer or grower to book the next batch."
         ],
-        "signal": "Both sides rebook and the rental covers cleaning, collection, loss and replacement.",
-        "prototype": "A simple crate register with check-out, handoff and return records. Show overdue returns and the actual cost per completed cycle."
+        "signal": "A repeat booking and higher net receipts for the customer after your fee.",
+        "prototype": "Build a mobile booking and batch log with crop, crate count, arrival condition, temperature record, buyer, fees and saleable weight. Show net proceeds against a comparison batch. Use no live sensors or payment integrations."
       },
       "bn": {
-        "title": "ফসলের ক্রেট ভাড়া যাবে, ফেরতও আসবে",
-        "summary": "নিয়মিত একটি রুটে বারবার ব্যবহার করা যায় এমন ক্রেট ভাড়া। সংগ্রহ, পরিষ্কার ও ফেরত আনা সেবার মধ্যেই থাকবে।",
-        "description": "একটি রুটে অল্প কিছু ক্রেট দিয়ে শুরু করুন। কার হাতে কখন গেল, লিখে রাখুন। প্রথম চালানের আগেই ফেরত, পরিষ্কার ও ক্ষতির দায় ঠিক করে নিন।",
-        "businessModel": "প্রতিবারের ভাড়া ও সম্মত জামানত পরীক্ষা করুন। হারানো ক্রেট ও পরিষ্কারের খরচও হিসাবের মধ্যে রাখুন।",
+        "title": "ফসল তোলার কাছেই ক্রেট হিসেবে হিমাগারের সেবা",
+        "summary": "ক্রেতা ঠিক করতে করতে ফসল যেন নষ্ট না হয়, সে ব্যবস্থা করুন।",
+        "description": "চালু কোনো হিমাগারের সঙ্গে মিলে অল্প সময়ের জন্য ফসল রাখার সেবা দিন। ছোট চালান সংগ্রহ করুন, অবস্থা লিখে রাখুন এবং আগে ঠিক করা ক্রেতার কাছে পৌঁছে দিন। নিজস্ব হিমাগারে বিনিয়োগের আগে সেবাটি চালিয়ে দেখুন।",
+        "businessModel": "চাষিদের দল বা ক্রেতা ক্রেট ও দিন হিসেবে ফি দেবেন। সব খরচ মিটিয়েও তাঁদের বাড়তি আয় থাকতে হবে।",
         "steps": [
-          "একটি চালানের পুরো পথ দেখুন। মাল সামলানো ও এখনকার প্যাকেজিংয়ের খরচ লিখুন।",
-          "রুটের দুই পক্ষের সঙ্গে ছোট একটি টাকার পরীক্ষা ঠিক করুন। ফেরত ও পরিষ্কারের শর্তও রাখুন।",
-          "কয়েকবার যাওয়া ও ফেরত আসার পুরো হিসাব নিন। ভাঙা, হারানো ক্রেট ও সংগ্রহের সময় বাদ দেবেন না।"
+          "একটি ফসল বাছুন। সম্প্রতি নষ্ট বা ফেরত যাওয়া চালান নিয়ে পাঁচজন চাষি ও দুজন ক্রেতার সঙ্গে কথা বলুন।",
+          "অভিজ্ঞ হিমাগার পরিচালকের সঙ্গে তাপমাত্রা ঠিক করুন। অল্প ফি নিয়ে একটি ছোট চালান রাখুন; তুলনার জন্য একই রকম আরেকটি চালান আগের নিয়মে রাখুন।",
+          "বিক্রিযোগ্য ওজন, বিক্রির দাম ও সব খরচ লিখুন। ক্রেতা বা চাষি পরের চালানের জন্য আবার বুকিং দেন কি না দেখুন।"
         ],
-        "signal": "দুই পক্ষই আবার বুকিং দেয়। ভাড়া থেকে পরিষ্কার, সংগ্রহ, হারানো ও নতুন ক্রেট কেনার খরচ ওঠে।",
-        "prototype": "ক্রেট দেওয়া, হাতবদল ও ফেরতের সাধারণ রেজিস্টার। ফেরত দিতে দেরি হচ্ছে কোনগুলো, আর একবার যাওয়া-আসায় আসল খরচ কত, দেখান।"
+        "signal": "আপনার ফি দেওয়ার পরও গ্রাহকের হাতে বেশি টাকা থাকে, আর তিনি আবার বুকিং দেন।",
+        "prototype": "মোবাইলে বুকিং ও চালানের হিসাব রাখার নমুনা বানান। ফসল, ক্রেটের সংখ্যা, আসার সময়ের অবস্থা, তাপমাত্রা, ক্রেতা, ফি ও বিক্রিযোগ্য ওজন রাখুন। তুলনার চালানের সঙ্গে খরচ বাদে আয় দেখান। কোনো সেন্সর বা পেমেন্ট সিস্টেম যুক্ত করবেন না।"
       }
     },
     {
-      "id": "factory-maintenance-approach",
-      "problemId": "factory-maintenance",
+      "id": "reliable-water",
+      "problemId": "water-system-maintenance",
       "kind": "service",
       "position": 0,
-      "addedAt": "2026-09-16",
+      "addedAt": "2026-09-19",
       "guides": [
-        "b2b/sme-sales",
-        "validation/interview-scripts",
-        "validation/trust-signals"
-      ],
-      "en": {
-        "title": "Make machine repairs easier to arrange",
-        "summary": "Help small factories find an appropriate technician, agree a visit and keep a useful maintenance record.",
-        "description": "Find technicians whose skills you have checked for one type of machine in one area. Agree the repair work and price in advance, then record what was done.",
-        "businessModel": "Test a transparent coordination fee, then explore a recurring maintenance plan only if visits repeat.",
-        "steps": [
-          "Interview three factory managers about their most recent breakdown, not an imagined future one.",
-          "Confirm skills and availability with technicians for that machine type.",
-          "Arrange one paid visit with a written scope, then check the outcome with both sides."
-        ],
-        "signal": "The manager chooses the service again and the fee covers coordination and follow-up.",
-        "prototype": "A service request, technician availability, an approved work order and a maintenance log. Do not generate repair instructions or promise response times you cannot deliver."
-      },
-      "bn": {
-        "title": "কারখানার মেশিন সারানোর লোক পাওয়া সহজ হোক",
-        "summary": "ছোট কারখানার জন্য উপযুক্ত টেকনিশিয়ান খোঁজা, আসার সময় ঠিক করা ও মেরামতের কাজের রেকর্ড রাখা।",
-        "description": "একটি শিল্প এলাকায় এক ধরনের মেশিনের যাচাই করা টেকনিশিয়ান দিয়ে শুরু করুন। সমস্যা, অনুমোদিত কাজ, যন্ত্রাংশ ও শেষ করা কাজের রেকর্ড রাখুন।",
-        "businessModel": "আগে জানানো সমন্বয়ের ফি পরীক্ষা করুন। কাজ নিয়মিত হলে তবেই রক্ষণাবেক্ষণের প্যাকেজ বিবেচনা করুন।",
-        "steps": [
-          "তিনজন ম্যানেজারের সঙ্গে সর্বশেষ মেশিন নষ্ট হওয়ার ঘটনা নিয়ে কথা বলুন। ভবিষ্যতে কী হতে পারে, তা নিয়ে নয়।",
-          "ওই মেশিনের টেকনিশিয়ানদের দক্ষতা ও সময় মিলিয়ে নিন।",
-          "কী কাজ হবে লিখে একটি টাকার ভিজিট ঠিক করুন। পরে দুই পক্ষের কাছেই ফল জেনে নিন।"
-        ],
-        "signal": "ম্যানেজার আবার সেবাটি নেন এবং ফি থেকে সমন্বয় ও পরে খোঁজ নেওয়ার খরচ ওঠে।",
-        "prototype": "সেবার অনুরোধ, টেকনিশিয়ানের সময়, অনুমোদিত কাজের বিবরণ ও মেরামতের রেকর্ড। নিজে থেকে মেরামতের নির্দেশনা বানাবেন না, রাখতে পারবেন না এমন সময়ের প্রতিশ্রুতিও দেবেন না।"
-      }
-    },
-    {
-      "id": "courier-settlement-service",
-      "problemId": "courier-settlement",
-      "kind": "service",
-      "position": 1,
-      "addedAt": "2026-09-16",
-      "guides": [
+        "validation/customer-interviews",
         "validation/demand-without-building",
-        "payments/reconciliation",
-        "b2b/sme-sales"
+        "metrics/unit-economics"
       ],
       "en": {
-        "title": "Check courier payments for a business",
-        "summary": "Do the work manually for one brand before building a product.",
-        "description": "Use a shared spreadsheet to match a business’s orders with its courier payments. Agree which missing or incorrect payments you will help investigate.",
-        "businessModel": "Try a fixed fee for checking one week of payments. Count the hours it takes before offering ongoing help.",
+        "title": "Keep drinking-water systems working",
+        "summary": "Turn testing, repairs and routine upkeep into one dependable service.",
+        "description": "Maintain a cluster of existing water systems under one service agreement. Pair local technicians with a qualified water-testing laboratory, track breakdowns and give the operator a clear repair history. Learn from SafePani before choosing an unserved area.",
+        "businessModel": "A school network, water operator or programme funder pays a recurring maintenance fee. Identify the budget holder before recruiting sites.",
         "steps": [
-          "Ask a business owner to walk you through a past courier payment.",
-          "With permission, check a small batch by hand after removing private customer details.",
-          "Show what you found and ask whether they would pay for you to do it again."
+          "Visit five nearby sites with their operator. Record downtime, repair spending and who authorises payment.",
+          "Agree on a paid trial with one budget holder, a technician and a qualified laboratory. Set repair response times and a procedure for unsafe test results.",
+          "Run the route for a month. Compare downtime, response time and full service cost, then seek a renewal."
         ],
-        "signal": "The business gets useful answers and wants to pay for another check. The fee covers your time.",
-        "prototype": "A sample reconciliation worksheet using synthetic orders, fees, returns and payouts."
+        "signal": "A funded renewal and fewer days without a working water supply.",
+        "prototype": "Build a site register, fault-report form and technician visit log. Store laboratory results with test date and source. Never infer that water is safe from a sensor value or an overdue test."
       },
       "bn": {
-        "title": "ব্যবসার কুরিয়ার পেমেন্ট মিলিয়ে দিন",
-        "summary": "সফটওয়্যার বানানোর আগে একটি ব্র্যান্ডের হিসাব হাতে মিলিয়ে দেখুন।",
-        "description": "মার্চেন্টের রিপোর্ট নিয়ে একটি নির্দিষ্ট সময়ের পাওনা স্প্রেডশিটে মিলিয়ে দিন। কোন কোন অমিল খুঁজে দেবেন, তা আগেই ঠিক করে নিন।",
-        "businessModel": "একটি সময়ের হিসাব মেলাতে নির্দিষ্ট ফি চাইতে পারেন। নিয়মিত সেবা দেওয়ার আগে কতটা শ্রম লাগছে, তা হিসাব করুন।",
+        "title": "খাবার পানির ব্যবস্থা সচল রাখার সেবা",
+        "summary": "পানির পরীক্ষা, মেরামত ও নিয়মিত দেখভাল একই সেবায় আনুন।",
+        "description": "কাছাকাছি কয়েকটি চালু পানির স্থাপনা একটি চুক্তিতে দেখভাল করুন। স্থানীয় মিস্ত্রি ও যোগ্য পরীক্ষাগারকে যুক্ত করুন। কখন কী নষ্ট হলো, কী মেরামত হলো, তার হিসাব রাখুন। এলাকা বাছার আগে SafePani-এর কাজ থেকে শিখুন।",
+        "businessModel": "স্কুলের নেটওয়ার্ক, পানি সরবরাহকারী বা প্রকল্পের অর্থদাতা নিয়মিত ফি দেবেন। স্থাপনা যুক্ত করার আগে কে টাকা দেবেন, ঠিক করুন।",
         "steps": [
-          "একজন মার্চেন্টের সঙ্গে আগের একটি সময়ের হিসাব দেখে নিন।",
-          "অনুমতি নিয়ে পরিচয় মুছে ফেলা ছোট একটি নমুনা হাতে মিলিয়ে দেখুন।",
-          "অমিলগুলো মিটলে মার্চেন্ট আবার এই সেবা কিনবেন কি না, আলোচনা করুন।"
+          "পরিচালকের সঙ্গে কাছাকাছি পাঁচটি স্থাপনা দেখুন। কত দিন বন্ধ থাকে, মেরামতে কত খরচ হয় আর টাকা কে অনুমোদন করেন, লিখুন।",
+          "একজন অর্থদাতা, একজন মিস্ত্রি ও যোগ্য পরীক্ষাগার নিয়ে টাকার বিনিময়ে পরীক্ষামূলক সেবা ঠিক করুন। মেরামতের সময়সীমা ও পানি অনিরাপদ হলে করণীয় স্থির করুন।",
+          "এক মাস সেবা দিন। বন্ধ থাকার সময়, সাড়া দেওয়ার সময় ও মোট খরচ মিলিয়ে দেখুন। এরপর চুক্তি নবায়নের প্রস্তাব দিন।"
         ],
-        "signal": "মার্চেন্ট বারবার হওয়া সমস্যাটি দেখাতে পারছেন, সমাধান তাঁর কাজে লাগছে এবং সেবার খরচও সামলানো যাচ্ছে।",
-        "prototype": "বানানো অর্ডার, ফি, রিটার্ন ও পাওনা দিয়ে হিসাব মেলানোর একটি নমুনা ওয়ার্কশিট।"
+        "signal": "পানি না পাওয়ার দিন কমে আসে এবং অর্থদাতা চুক্তি নবায়ন করেন।",
+        "prototype": "স্থাপনার তালিকা, ত্রুটি জানানোর ফর্ম ও মিস্ত্রির কাজের হিসাব বানান। পরীক্ষাগারের ফলের সঙ্গে তারিখ ও সোর্স রাখুন। সেন্সরের রিডিং বা পুরোনো পরীক্ষা থেকে পানিকে নিরাপদ বলবেন না।"
       }
     },
     {
-      "id": "bangla-order-confirmation",
-      "problemId": "bangla-order-notes",
-      "kind": "workflow",
-      "position": 1,
-      "addedAt": "2026-09-16",
+      "id": "clinic-follow-up",
+      "problemId": "missed-follow-up",
+      "kind": "software",
+      "position": 0,
+      "addedAt": "2026-09-19",
       "guides": [
-        "validation/mvp-experiment-planner",
-        "customers/whatsapp-messenger-sales",
-        "validation/customer-interviews"
+        "validation/customer-interviews",
+        "validation/demand-without-building",
+        "metrics/unit-economics"
       ],
       "en": {
-        "title": "Confirm the order before processing it",
-        "summary": "Try a short confirmation step without automated transcription.",
-        "description": "Listen to the voice note, record the order in a simple form and send the details to the customer to confirm. See whether this catches mistakes before the order is packed.",
-        "businessModel": "Try it with one team first. If other teams want help using it, test whether they would pay for setup or training.",
+        "title": "Help clinics bring patients back for follow-up",
+        "summary": "Give clinic staff a simple way to track missed visits and arrange the next one.",
+        "description": "Build around one clinic’s existing records: who is due, who was contacted and who returned. Reuse tools such as Simple where they fit. Focus on the staff handoff and appointment workflow; clinicians keep control of care.",
+        "businessModel": "Clinics pay a monthly fee for setup and ongoing support if the service saves staff time or improves continuity of care.",
         "steps": [
-          "Review a few anonymized mistaken orders with the team.",
-          "Use one confirmation format for a small set of new orders.",
-          "Compare missing details and staff effort with the previous workflow."
+          "Observe one clinic’s follow-up process with permission. Ask staff and willing patients why visits are missed.",
+          "Use fictional records to test a short call list with staff. Compare it with the tools they already use before building.",
+          "With clinic approval and patient consent, run a small trial through one follow-up cycle. Track staff time, completed contacts and return visits using only necessary data."
         ],
-        "signal": "Customer confirmation catches mistakes and saves the team more work than it adds.",
-        "prototype": "A mobile order form and customer confirmation preview with clearly synthetic names and products."
+        "signal": "Staff keep using the workflow, and the clinic agrees to pay for the next cycle.",
+        "prototype": "Prototype a staff-only appointment list with synthetic patients, due dates and contact outcomes. No clinical recommendations, real patient data or live messaging. Support role-limited access and deletion in the design."
       },
       "bn": {
-        "title": "অর্ডার নেওয়ার পর ক্রেতার সঙ্গে মিলিয়ে নিন",
-        "summary": "অডিও থেকে লেখা তৈরির সফটওয়্যার ছাড়াই ক্রেতার সঙ্গে অর্ডার মিলিয়ে দেখুন।",
-        "description": "কর্মী একবার শুনে নির্দিষ্ট ফরমে অর্ডারের দরকারি তথ্য লিখবেন, তারপর ক্রেতাকে ছোট একটি বার্তা পাঠিয়ে মিলিয়ে নেবেন। বড় ভুলগুলো এতে ধরা পড়ে কি না, দেখুন।",
-        "businessModel": "আগে নিজেদের কাজের পদ্ধতি হিসেবে পরীক্ষা করুন। অন্য দলকে শেখানো বা চালু করে দেওয়ার সেবা বিক্রি করা যাবে কি না, তা পরে যাচাই করতে হবে।",
+        "title": "রোগীকে ফলোআপে ফেরাতে ক্লিনিককে সাহায্য করুন",
+        "summary": "বাদ পড়া সাক্ষাৎ ও পরের তারিখের হিসাব কর্মীরা সহজে রাখতে পারবেন।",
+        "description": "ক্লিনিকের চালু রেকর্ড দিয়েই শুরু করুন: কার আসার কথা, কার সঙ্গে কথা হয়েছে, কে ফিরেছেন। কাজে লাগলে Simple-এর মতো টুল ব্যবহার করুন। কর্মীদের মধ্যে দায়িত্ব ভাগ ও তারিখ ঠিক করার কাজ সহজ করুন। চিকিৎসার সিদ্ধান্ত চিকিৎসকের হাতেই থাকবে।",
+        "businessModel": "কর্মীদের সময় বাঁচলে বা নিয়মিত চিকিৎসা চালাতে সুবিধা হলে ক্লিনিক সেটআপ ও সহায়তার জন্য মাসিক ফি দিতে পারে।",
         "steps": [
-          "দলের সঙ্গে ভুল হওয়া কয়েকটি অর্ডার পরিচয় মুছে দেখে নিন।",
-          "অল্প কিছু নতুন অর্ডারে একইভাবে তথ্য মিলিয়ে নিন।",
-          "আগের পদ্ধতির সঙ্গে বাদ পড়া তথ্য আর কর্মীদের সময় তুলনা করুন।"
+          "অনুমতি নিয়ে একটি ক্লিনিকের ফলোআপের কাজ দেখুন। কর্মী ও কথা বলতে রাজি রোগীদের কাছে না আসার কারণ জানুন।",
+          "কাল্পনিক রেকর্ড দিয়ে কর্মীদের ছোট একটি কলের তালিকা ব্যবহার করতে দিন। বানানোর আগে চালু টুলের সঙ্গে তুলনা করুন।",
+          "ক্লিনিকের অনুমতি ও রোগীর সম্মতি নিয়ে পরের ফলোআপ পর্যন্ত ছোট পরীক্ষা চালান। শুধু দরকারি তথ্য রেখে কর্মীদের সময়, যোগাযোগ ও ফেরত আসার হিসাব দেখুন।"
         ],
-        "signal": "তথ্য মিলিয়ে নেওয়ার ধাপটি কাজে লাগার মতো ভুল ঠেকাচ্ছে, অথচ বাঁচানো সময়ের চেয়ে বেশি সময় নিচ্ছে না।",
-        "prototype": "নমুনা নাম ও পণ্য দিয়ে মোবাইলে অর্ডার লেখার ফরম এবং ক্রেতাকে পাঠানোর বার্তার প্রিভিউ।"
+        "signal": "কর্মীরা ব্যবস্থাটি ব্যবহার করে যান এবং ক্লিনিক পরের মাসের জন্য টাকা দিতে রাজি হয়।",
+        "prototype": "কাল্পনিক রোগী, আসার তারিখ ও যোগাযোগের ফল দিয়ে কর্মীদের জন্য অ্যাপয়েন্টমেন্ট তালিকা বানান। চিকিৎসার পরামর্শ, আসল রোগীর তথ্য বা সরাসরি মেসেজ পাঠানো থাকবে না। কে কোন তথ্য দেখবেন ও কীভাবে মুছবেন, তা নকশায় রাখুন।"
+      }
+    },
+    {
+      "id": "cooler-workplaces",
+      "problemId": "workplace-heat",
+      "kind": "service",
+      "position": 0,
+      "addedAt": "2026-09-19",
+      "guides": [
+        "validation/customer-interviews",
+        "validation/demand-without-building",
+        "metrics/unit-economics"
+      ],
+      "en": {
+        "title": "Cooler workplaces, without a full rebuild",
+        "summary": "Help factories choose and maintain practical ways to reduce workplace heat.",
+        "description": "Offer a site assessment and a small retrofit package, such as roof shading or improved ventilation, selected by a qualified engineer. Pair installation with measurement and maintenance so owners can judge what actually improves conditions.",
+        "businessModel": "The factory pays for an assessment and installation, with an optional maintenance contract. Quote against measured site needs, not promised productivity gains.",
+        "steps": [
+          "Visit one heat-exposed work area with its safety lead and workers. Record existing controls, conditions and the owner’s budget.",
+          "Have a qualified engineer select one suitable change and agree on a paid pilot. Keep existing worker protections in place.",
+          "Compare indoor conditions and energy use across comparable shifts, accounting for weather and production. Ask workers what changed."
+        ],
+        "signal": "Measurably better conditions, worker acceptance and an owner willing to fund the next area.",
+        "prototype": "Build a site-assessment form and a before-and-after comparison for indoor heat, outdoor weather, energy use and worker feedback. Mark missing readings clearly. Do not calculate health safety or productivity gains from temperature alone."
+      },
+      "bn": {
+        "title": "বড় সংস্কার ছাড়াই কারখানায় গরম কমান",
+        "summary": "কাজের জায়গায় গরম কমানোর উপায় বাছাই ও দেখভালে সাহায্য করুন।",
+        "description": "জায়গাটি দেখে উপযুক্ত প্রকৌশলী দিয়ে ছোট পরিবর্তনের পরিকল্পনা করুন। ছাদে ছায়া বা বাতাস চলাচল বাড়ানোর মতো ব্যবস্থা লাগতে পারে। বসানোর সঙ্গে ফল মাপা ও রক্ষণাবেক্ষণ রাখুন, যেন মালিক বুঝতে পারেন কোন কাজে সুবিধা হচ্ছে।",
+        "businessModel": "কারখানা পরিদর্শন ও ব্যবস্থা বসানোর জন্য টাকা দেবে। চাইলে রক্ষণাবেক্ষণের চুক্তি করবে। উৎপাদন বাড়বেই এমন প্রতিশ্রুতির বদলে জায়গার প্রয়োজন বুঝে দাম দিন।",
+        "steps": [
+          "নিরাপত্তার দায়িত্বে থাকা ব্যক্তি ও কর্মীদের সঙ্গে একটি গরম কাজের জায়গা দেখুন। চালু সুরক্ষা, পরিবেশ ও মালিকের বাজেট লিখুন।",
+          "যোগ্য প্রকৌশলী দিয়ে একটি উপযুক্ত পরিবর্তন বাছুন এবং ফি নিয়ে পরীক্ষা ঠিক করুন। কর্মীদের চালু সুরক্ষা বহাল রাখুন।",
+          "আবহাওয়া ও উৎপাদন মাথায় রেখে কাছাকাছি ধরনের শিফটে ভেতরের পরিবেশ ও বিদ্যুতের ব্যবহার তুলনা করুন। কর্মীদের অভিজ্ঞতা শুনুন।"
+        ],
+        "signal": "পরিবেশের উন্নতি মাপে ধরা পড়ে, কর্মীরা সুবিধা পান এবং মালিক আরেকটি জায়গায় খরচ করতে চান।",
+        "prototype": "পরিদর্শনের ফর্ম ও আগে-পরে তুলনার নমুনা বানান। ভেতরের গরম, বাইরের আবহাওয়া, বিদ্যুতের ব্যবহার ও কর্মীদের মতামত রাখুন। রিডিং না থাকলে স্পষ্ট দেখান। শুধু তাপমাত্রা থেকে স্বাস্থ্যের নিরাপত্তা বা উৎপাদন বৃদ্ধির হিসাব করবেন না।"
+      }
+    },
+    {
+      "id": "solar-upkeep",
+      "problemId": "solar-maintenance",
+      "kind": "service",
+      "position": 0,
+      "addedAt": "2026-09-19",
+      "guides": [
+        "validation/customer-interviews",
+        "validation/demand-without-building",
+        "metrics/unit-economics"
+      ],
+      "en": {
+        "title": "Keep rooftop solar producing",
+        "summary": "Spot avoidable output losses and get the right technician to fix them.",
+        "description": "Combine a simple output check with scheduled maintenance and fault resolution for existing solar sites. Work with qualified technicians and the original installer. Keep weather, grid outages and equipment faults separate when explaining lost generation.",
+        "businessModel": "Owners or installation firms pay per site for monitoring and upkeep. Quote repairs separately and respect existing warranties.",
+        "steps": [
+          "Interview three owners and one installer. Review their maintenance contracts, fault history and available generation records with permission.",
+          "Offer a paid inspection at one site with a qualified technician. Identify a fixable issue without duplicating warranty work.",
+          "Track the repair, service cost and subsequent output, accounting for sunlight and grid availability. Offer a recurring contract if the value is clear."
+        ],
+        "signal": "A paid renewal based on verified maintenance work and useful reporting.",
+        "prototype": "Prototype a site list, generation log and repair queue using synthetic readings. Distinguish missing data, grid outages and suspected equipment faults. Do not remotely control equipment or promise energy savings."
+      },
+      "bn": {
+        "title": "ছাদের সোলার থেকে বিদ্যুৎ উৎপাদন সচল রাখুন",
+        "summary": "এড়ানো যায় এমন ক্ষতি ধরুন, ঠিক করার জন্য উপযুক্ত টেকনিশিয়ান দিন।",
+        "description": "চালু সোলারের উৎপাদন দেখা, নিয়মিত রক্ষণাবেক্ষণ ও ত্রুটি সারানো এক সেবায় আনুন। যোগ্য টেকনিশিয়ান ও মূল ইনস্টলারের সঙ্গে কাজ করুন। উৎপাদন কমার কারণ বোঝাতে আবহাওয়া, গ্রিড বন্ধ থাকা ও যন্ত্রের ত্রুটি আলাদা করুন।",
+        "businessModel": "মালিক বা ইনস্টলার প্রতি স্থাপনার জন্য পর্যবেক্ষণ ও দেখভালের ফি দেবেন। মেরামতের দাম আলাদা দিন এবং চালু ওয়ারেন্টি মেনে কাজ করুন।",
+        "steps": [
+          "তিনজন মালিক ও একজন ইনস্টলারের সঙ্গে কথা বলুন। অনুমতি নিয়ে রক্ষণাবেক্ষণের চুক্তি, ত্রুটির ইতিহাস ও উৎপাদনের রেকর্ড দেখুন।",
+          "যোগ্য টেকনিশিয়ান নিয়ে একটি স্থাপনায় ফি দিয়ে পরিদর্শনের প্রস্তাব দিন। ওয়ারেন্টির কাজ আবার না করে ঠিক করা যায় এমন ঘাটতি খুঁজুন।",
+          "মেরামত, সেবার খরচ ও পরের উৎপাদন লিখুন। রোদ ও গ্রিড চালু থাকার সময় ধরে তুলনা করুন। উপকার স্পষ্ট হলে নিয়মিত চুক্তির প্রস্তাব দিন।"
+        ],
+        "signal": "যাচাই করা কাজ ও দরকারি রিপোর্ট দেখে গ্রাহক টাকা দিয়ে চুক্তি নবায়ন করেন।",
+        "prototype": "নমুনা রিডিং দিয়ে স্থাপনার তালিকা, উৎপাদনের হিসাব ও মেরামতের কাজের তালিকা বানান। তথ্য না থাকা, গ্রিড বন্ধ থাকা ও সম্ভাব্য যন্ত্রের ত্রুটি আলাদা করুন। দূর থেকে যন্ত্র চালাবেন না বা বিদ্যুৎ সাশ্রয়ের প্রতিশ্রুতি দেবেন না।"
       }
     }
   ],
@@ -710,19 +657,47 @@
         "description": "সদস্যদের পরিচালিত এই অ্যাঞ্জেল নেটওয়ার্কটি প্রাথমিক পর্যায়ের বাংলাদেশ-সম্পর্কিত ডিজিটাল ব্যবসায় যৌথভাবে বিনিয়োগ করে। BAN নির্বাচিত ফাউন্ডারদের পিচ ডেক, ডেটা রুম ও ফান্ড সংগ্রহের পরিকল্পনা গুছিয়ে নিতে সাহায্য করে। এরপর যৌথ ডিউ ডিলিজেন্স ও সমন্বিত টার্ম শিটের জন্য ইনভেস্টরদের সামনে উপস্থাপন করে।"
       },
       "references": []
+    },
+    {
+      "id": "org_reverse-resources",
+      "slug": "reverse-resources",
+      "website": "https://www.reverseresources.net/",
+      "logoPath": null,
+      "roles": [
+        "startup"
+      ],
+      "aliases": [
+        "Reverse Resources",
+        "RR"
+      ],
+      "sourceUrls": [
+        "https://www.reverseresources.net/",
+        "https://globalfashionagenda.org/news-article/transforming-post-industrial-textile-waste-in-bangladesh/"
+      ],
+      "sourceDate": "2026-09-19",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Reverse Resources",
+        "description": "A textile-waste traceability platform connecting manufacturers, waste handlers and recyclers, with documented work in Bangladesh."
+      },
+      "bn": {
+        "name": "রিভার্স রিসোর্সেস",
+        "description": "কাপড়ের বর্জ্যের গতিপথের তথ্য রাখার প্ল্যাটফর্ম। প্রস্তুতকারক, বর্জ্য সংগ্রহকারী ও রিসাইক্লারদের যুক্ত করে। বাংলাদেশেও কাজের প্রকাশিত তথ্য আছে।"
+      },
+      "references": []
     }
   ],
   "connections": [
     {
-      "id": "connection_pathao_settlements",
-      "organizationId": "org_pathao",
-      "problemId": "courier-settlement",
+      "id": "connection_reverse-resources_offcuts",
+      "organizationId": "org_reverse-resources",
+      "problemId": "garment-offcuts",
       "stage": "live",
-      "en": "Pathao collects payment from buyers when it delivers an order, then pays the seller. Its published terms explain that service. They do not show whether Pathao can help a seller check payments from other couriers.",
-      "bn": "Pathao পণ্য পৌঁছে দেওয়ার সময় ক্রেতার কাছ থেকে টাকা নিয়ে বিক্রেতাকে দেয়। প্রকাশিত শর্তে এই সেবার বিবরণ আছে। তবে অন্য কুরিয়ারের পাওনা মেলাতেও Pathao সাহায্য করে কি না, এই সোর্স থেকে জানা যায় না।",
-      "evidenceUrl": "https://pathao.com/terms-of-service-merchant/",
+      "en": "Supports textile-waste traceability in Bangladesh’s SWITCH to Upstream Circularity pilot.",
+      "bn": "বাংলাদেশের SWITCH to Upstream Circularity উদ্যোগে কাপড়ের বর্জ্যের গতিপথের তথ্য রাখতে কাজ করছে।",
+      "evidenceUrl": "https://globalfashionagenda.org/news-article/transforming-post-industrial-textile-waste-in-bangladesh/",
       "reviewScope": "public-source-context",
-      "reviewedAt": "2026-09-16T00:00:00Z"
+      "reviewedAt": "2026-09-19T00:00:00.000Z"
     }
   ]
 }

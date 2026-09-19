@@ -2,15 +2,101 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 const { problems, approaches: ideas } = JSON.parse(fs.readFileSync(new URL('../../../data/ecosystem/public.json', import.meta.url), 'utf8'))
-import { defaultFilters, draftLimits, draftMarkdown, emptyDraft, filterQuery, ideaPath, ideaSlug, matchingIdeas, parseDraft, parseFilters, parseSaved, parseSteps, readSaved, SAVED_KEY, STEPS_KEY, LEGACY_SAVED_KEY, places, sectors, startsWithoutCode, stepProgressLabel, stepsDone, toggleStep } from './model.ts'
+import { defaultFilters, draftLimits, draftMarkdown, emptyDraft, filterQuery, ideaPath, ideaSlug, matchingIdeas, parseDraft, parseFilters, parseSaved, readSaved, SAVED_KEY, LEGACY_SAVED_KEY, places, sectors } from './model.ts'
 import { guidePage } from '../../lib/guide-index.mjs'
 import { pageChromePolicy } from '../../lib/page-chrome.ts'
 import { sourceSupportsInlineEdit } from '../../lib/inline-edit-policy.mjs'
 
-const summaries = ideas.map(idea => ({ ...problems.find(p => p.id === idea.problemId), ...idea, title: idea.en.title, summary: idea.en.summary, search: `${idea.en.title} ${idea.en.summary} ${idea.bn.title} ${idea.bn.summary}` }))
+// Fixed fixtures keep filter behavior independent of editorial seed choices.
+const summaries = [
+  {
+    "id": "courier-settlement-approach",
+    "problemId": "courier-settlement",
+    "sector": "commerce",
+    "places": [
+      "anywhere"
+    ],
+    "kind": "software",
+    "search": "Track courier payments in one place One place to match delivered orders, returns and courier payouts, so growing online brands can see what is still owed. এক জায়গায় কুরিয়ারের পাওনা দেখুন কোন অর্ডার ডেলিভারি হলো, কোনটি ফেরত এলো আর কত টাকা পাওয়া গেল, সব মিলিয়ে অনলাইন ব্র্যান্ডের বাকি পাওনার হিসাব।"
+  },
+  {
+    "id": "garment-offcuts-approach",
+    "problemId": "garment-offcuts",
+    "sector": "circular",
+    "places": [
+      "gazipur",
+      "chattogram"
+    ],
+    "kind": "marketplace",
+    "search": "Find the next use for garment offcuts Help factories and recyclers trade fabric offcuts with clearer information about material, quality and collection. গার্মেন্টসের ঝুট পাবে উপযুক্ত ক্রেতা কাপড়ের ধরন, মান ও সংগ্রহের শর্ত পরিষ্কার থাকলে কারখানার ঝুট কিনতে রিসাইক্লারদের সুবিধা হবে কি না, তা পরীক্ষা করুন।"
+  },
+  {
+    "id": "shared-cold-delivery-approach",
+    "problemId": "shared-cold-delivery",
+    "sector": "agriculture",
+    "places": [
+      "bogura",
+      "dhaka"
+    ],
+    "kind": "service",
+    "search": "Share space in a refrigerated delivery Combine small food shipments on a repeat route instead of asking every supplier to fill a refrigerated vehicle. ঠান্ডা রাখার গাড়িতে জায়গা ভাগ করে নিন প্রতিজন সরবরাহকারীকে পুরো গাড়ি ভরতে না দিয়ে একই রুটের উপযুক্ত ছোট চালানগুলো একসঙ্গে পাঠানো।"
+  },
+  {
+    "id": "bangla-order-notes-approach",
+    "problemId": "bangla-order-notes",
+    "sector": "commerce",
+    "places": [
+      "anywhere"
+    ],
+    "kind": "software",
+    "search": "Turn a Bangla voice note into an order A human-confirmed order draft from a voice note, with missing quantities, variants and addresses made obvious. বাংলা ভয়েস নোট থেকে অর্ডারের খসড়া ভয়েস নোট শুনে অর্ডারের খসড়া হবে। পরিমাণ, ধরন বা ঠিকানা অস্পষ্ট থাকলে তা দেখাবে, মানুষ মিলিয়ে কনফার্ম করবেন।"
+  },
+  {
+    "id": "produce-crates-approach",
+    "problemId": "produce-crates",
+    "sector": "agriculture",
+    "places": [
+      "bogura",
+      "dhaka"
+    ],
+    "kind": "service",
+    "search": "Rent produce crates that come back A reusable crate pool for a repeat produce route, with collection, cleaning and returns built into the service. ফসলের ক্রেট ভাড়া যাবে, ফেরতও আসবে নিয়মিত একটি রুটে বারবার ব্যবহার করা যায় এমন ক্রেট ভাড়া। সংগ্রহ, পরিষ্কার ও ফেরত আনা সেবার মধ্যেই থাকবে।"
+  },
+  {
+    "id": "factory-maintenance-approach",
+    "problemId": "factory-maintenance",
+    "sector": "manufacturing",
+    "places": [
+      "gazipur",
+      "chattogram"
+    ],
+    "kind": "service",
+    "search": "Make machine repairs easier to arrange Help small factories find an appropriate technician, agree a visit and keep a useful maintenance record. কারখানার মেশিন সারানোর লোক পাওয়া সহজ হোক ছোট কারখানার জন্য উপযুক্ত টেকনিশিয়ান খোঁজা, আসার সময় ঠিক করা ও মেরামতের কাজের রেকর্ড রাখা।"
+  },
+  {
+    "id": "courier-settlement-service",
+    "problemId": "courier-settlement",
+    "sector": "commerce",
+    "places": [
+      "anywhere"
+    ],
+    "kind": "service",
+    "search": "Check courier payments for a business Do the work manually for one brand before building a product. ব্যবসার কুরিয়ার পেমেন্ট মিলিয়ে দিন সফটওয়্যার বানানোর আগে একটি ব্র্যান্ডের হিসাব হাতে মিলিয়ে দেখুন।"
+  },
+  {
+    "id": "bangla-order-confirmation",
+    "problemId": "bangla-order-notes",
+    "sector": "commerce",
+    "places": [
+      "anywhere"
+    ],
+    "kind": "workflow",
+    "search": "Confirm the order before processing it Try a short confirmation step without automated transcription. অর্ডার নেওয়ার পর ক্রেতার সঙ্গে মিলিয়ে নিন অডিও থেকে লেখা তৈরির সফটওয়্যার ছাড়াই ক্রেতার সঙ্গে অর্ডার মিলিয়ে দেখুন।"
+  }
+]
 
 test('URL filters round-trip Bangla and punctuation without accepting unknown categories', () => {
-  const state = { q: 'কুরিয়ার & returns', sector: 'commerce', place: 'dhaka', kind: 'nocode', saved: true, problem: '' }
+  const state = { q: 'কুরিয়ার & returns', sector: 'commerce', place: 'dhaka', kind: 'service', saved: true, problem: '' }
   assert.deepEqual(parseFilters(filterQuery(state)), state)
   assert.deepEqual(parseFilters('?sector=__proto__&place=constructor&kind=__proto__&view=unknown'), defaultFilters)
   assert.equal(parseFilters(`?q=${'x'.repeat(200)}`).q.length, 120)
@@ -26,35 +112,12 @@ test('search, sector, pilot scope and shortlist narrow together', () => {
   assert.equal(matchingIdeas(summaries, { ...defaultFilters, saved: true, problem: '' }, []).length, 0)
 })
 
-test('the no-code filter selects every idea a reader can start without software', () => {
-  const withoutCode = matchingIdeas(summaries, { ...defaultFilters, kind: 'nocode' }, [])
-  assert.deepEqual(withoutCode.map(idea => idea.kind).filter(kind => !startsWithoutCode(kind)), [])
-  assert.equal(withoutCode.length, ideas.filter(idea => startsWithoutCode(idea.kind)).length)
-  assert.ok(withoutCode.length > 0 && withoutCode.length < ideas.length, 'the filter is worth offering only if it divides the collection')
-  assert.equal(matchingIdeas(summaries, { ...defaultFilters, kind: 'software' }, []).every(idea => idea.kind === 'software'), true)
-  assert.equal(matchingIdeas(summaries, { ...defaultFilters, kind: 'nocode', sector: 'commerce' }, []).every(idea => idea.sector === 'commerce' && startsWithoutCode(idea.kind)), true)
-})
-
-test('first-test progress survives bad data, re-ordered steps and a removed tick', () => {
-  assert.deepEqual(parseSteps('not json'), {})
-  assert.deepEqual(parseSteps('[1,2]'), {})
-  assert.deepEqual(parseSteps('{"../escape":[0],"good-id":[1,1,0,"x",-1,99]}'), { 'good-id': [0, 1] })
-  assert.deepEqual(parseSteps('{"good-id":[]}'), {}, 'an untouched idea leaves nothing behind')
-  // A shortened first test must not report progress the reader never made.
-  assert.equal(stepsDone({ 'good-id': [0, 2] }, 'good-id', 2), 1)
-  assert.equal(stepsDone({}, 'missing', 3), 0)
-  const data = new Map()
-  const storage = { getItem: key => data.get(key) ?? null, setItem: (key, value) => data.set(key, value) }
-  assert.deepEqual(toggleStep(storage, 'courier-settlement-approach', 1), { 'courier-settlement-approach': [1] })
-  assert.deepEqual(toggleStep(storage, 'courier-settlement-approach', 0), { 'courier-settlement-approach': [0, 1] })
-  assert.deepEqual(toggleStep(storage, 'courier-settlement-approach', 0), { 'courier-settlement-approach': [1] })
-  // Removing the last tick leaves no entry behind for an idea the reader abandoned.
-  assert.deepEqual(toggleStep(storage, 'courier-settlement-approach', 1), {})
-  assert.deepEqual(parseSteps(data.get(STEPS_KEY)), {})
-  assert.equal(stepProgressLabel(0, 3, 'en'), 'Not started')
-  assert.equal(stepProgressLabel(2, 3, 'en'), '2 of 3 steps done')
-  assert.equal(stepProgressLabel(3, 3, 'bn'), 'সব ধাপ শেষ')
-  assert.match(stepProgressLabel(2, 3, 'bn'), /৩টির মধ্যে ২টি/)
+test('idea types combine with location and saved filters without making coding claims', () => {
+  assert.deepEqual(matchingIdeas(summaries, { ...defaultFilters, kind: 'software' }, []).map(idea => idea.id), ['courier-settlement-approach', 'bangla-order-notes-approach'])
+  assert.deepEqual(matchingIdeas(summaries, { ...defaultFilters, kind: 'marketplace' }, []).map(idea => idea.id), ['garment-offcuts-approach'])
+  assert.deepEqual(matchingIdeas(summaries, { ...defaultFilters, kind: 'workflow' }, []).map(idea => idea.id), ['bangla-order-confirmation'])
+  assert.deepEqual(matchingIdeas(summaries, { ...defaultFilters, kind: 'service', sector: 'commerce', saved: true }, ['courier-settlement-service', 'courier-settlement-approach']).map(idea => idea.id), ['courier-settlement-service'])
+  assert.equal(parseFilters('?kind=nocode').kind, '', 'the retired no-code claim cannot silently select unrelated business types')
 })
 
 test('shortlist recovers safely from malformed or unrelated browser data', () => {
@@ -125,25 +188,25 @@ test('saved problems migrate to every related idea once, retaining unknown IDs a
   const data = new Map([[LEGACY_SAVED_KEY, backup]])
   const storage = { getItem: key => data.get(key) ?? null, setItem: (key, value) => data.set(key, value) }
   const expected = ['courier-settlement-approach', 'courier-settlement-service', 'removed-id']
-  assert.deepEqual(readSaved(storage, ideas), expected)
+  assert.deepEqual(readSaved(storage, summaries), expected)
   assert.equal(data.get(LEGACY_SAVED_KEY), backup)
   // Removing items must not bring them back from the old key on the next visit.
   storage.setItem(SAVED_KEY, '[]')
-  assert.deepEqual(readSaved(storage, ideas), [])
+  assert.deepEqual(readSaved(storage, summaries), [])
   storage.setItem(SAVED_KEY, '["produce-crates-approach"]')
-  assert.deepEqual(readSaved(storage, ideas), ['produce-crates-approach'])
+  assert.deepEqual(readSaved(storage, summaries), ['produce-crates-approach'])
 })
 
 test('failed migration leaves the backup intact and does not pretend saving succeeded', () => {
   const backup = '["courier-settlement"]'
   const storage = { getItem: key => key === LEGACY_SAVED_KEY ? backup : null, setItem: () => { throw new Error('Storage unavailable') } }
-  assert.throws(() => readSaved(storage, ideas), /Storage unavailable/)
+  assert.throws(() => readSaved(storage, summaries), /Storage unavailable/)
   assert.equal(storage.getItem(LEGACY_SAVED_KEY), backup)
 })
 
 test('legacy problem links show the related choices without selecting a solution', () => {
   const filtered = matchingIdeas(summaries, parseFilters('?problem=courier-settlement'), [])
   assert.deepEqual(filtered.map(idea => idea.id), ['courier-settlement-approach', 'courier-settlement-service'])
-  assert.equal(matchingIdeas(summaries, defaultFilters, []).length, ideas.length)
+  assert.equal(matchingIdeas(summaries, defaultFilters, []).length, summaries.length)
   assert.equal(parseFilters('?problem=../bad').problem, '')
 })

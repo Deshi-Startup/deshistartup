@@ -4,32 +4,31 @@ export const sectors: Record<Sector, Record<Locale, string>> = {
   commerce: { en: 'Commerce', bn: 'কমার্স' },
   circular: { en: 'Circular economy', bn: 'পুনর্ব্যবহার' },
   agriculture: { en: 'Food & agriculture', bn: 'খাদ্য ও কৃষি' },
-  manufacturing: { en: 'Manufacturing', bn: 'উৎপাদন' }
+  manufacturing: { en: 'Manufacturing', bn: 'উৎপাদন' },
+  health: { en: 'Healthcare', bn: 'স্বাস্থ্যসেবা' },
+  water: { en: 'Water', bn: 'পানি' },
+  energy: { en: 'Energy', bn: 'জ্বালানি' }
 }
 export const places: Record<Place, Record<Locale, string>> = {
   anywhere: { en: 'Across Bangladesh', bn: 'সারা বাংলাদেশ' },
   dhaka: { en: 'Dhaka', bn: 'ঢাকা' },
   gazipur: { en: 'Gazipur', bn: 'গাজীপুর' },
   bogura: { en: 'Bogura', bn: 'বগুড়া' },
-  chattogram: { en: 'Chattogram', bn: 'চট্টগ্রাম' }
+  chattogram: { en: 'Chattogram', bn: 'চট্টগ্রাম' },
+  khulna: { en: 'Khulna', bn: 'খুলনা' },
+  rajshahi: { en: 'Rajshahi', bn: 'রাজশাহী' }
 }
 export const kinds = {
   software: { en: 'Software', bn: 'সফটওয়্যার' },
   service: { en: 'Service', bn: 'সেবা' },
   marketplace: { en: 'Marketplace', bn: 'মার্কেটপ্লেস' },
-  workflow: { en: 'Workflow', bn: 'কাজের পদ্ধতি' }
+  workflow: { en: 'Manual process', bn: 'কাজের পদ্ধতি' }
 }
-// Service and workflow ideas can be started with a phone and a notebook.
-export const startsWithoutCode = (kind: IdeaSummary['kind']) => kind === 'service' || kind === 'workflow'
-export const kindLabel = (kind: IdeaSummary['kind'], locale: Locale) =>
-  startsWithoutCode(kind) ? (locale === 'en' ? 'No code needed' : 'কোড লাগবে না') : kinds[kind][locale]
+export const kindLabel = (kind: IdeaSummary['kind'], locale: Locale) => kinds[kind][locale]
 export const forLabel = (locale: Locale) => locale === 'en' ? 'For:' : 'যাঁদের জন্য:'
-// One honest choice for readers who do not code, beside the two build shapes.
-export const kindFilters: { value: string; label: Record<Locale, string> }[] = [
-  { value: '', label: { en: 'All ideas', bn: 'সব আইডিয়া' } },
-  { value: 'nocode', label: { en: 'Start without code', bn: 'কোড ছাড়াই শুরু' } },
-  { value: 'software', label: { en: 'Software', bn: 'সফটওয়্যার' } },
-  { value: 'marketplace', label: { en: 'Marketplace', bn: 'মার্কেটপ্লেস' } }
+export const kindFilters = [
+  { value: '', label: { en: 'All types', bn: 'সব ধরন' } },
+  ...Object.entries(kinds).map(([value, label]) => ({ value, label }))
 ]
 
 export { ideaPath, ideaSlug } from '../../lib/idea-routes.mjs'
@@ -37,7 +36,7 @@ export const localPath = (locale: Locale, path: string) => `${locale === 'en' ? 
 export const number = (n: number, locale: Locale) => n.toLocaleString(locale === 'bn' ? 'bn-BD' : 'en-GB')
 export interface Filters { q: string; sector: string; place: string; kind: string; saved: boolean; problem: string }
 export const defaultFilters: Filters = { q: '', sector: '', place: '', kind: '', saved: false, problem: '' }
-const kindValues = ['nocode', ...Object.keys(kinds)]
+const kindValues = Object.keys(kinds)
 export function parseFilters(search: string): Filters {
   const params = new URLSearchParams(search)
   const sector = params.get('sector') || ''
@@ -68,7 +67,7 @@ export function matchingIdeas(ideas: IdeaSummary[], filters: Filters, saved: str
     (!filters.problem || idea.problemId === filters.problem) &&
     (!filters.sector || idea.sector === filters.sector) &&
     (!filters.place || idea.places.includes(filters.place as Place) || idea.places.includes('anywhere')) &&
-    (!filters.kind || (filters.kind === 'nocode' ? startsWithoutCode(idea.kind) : idea.kind === filters.kind)) &&
+    (!filters.kind || idea.kind === filters.kind) &&
     (!filters.saved || saved.includes(idea.id)) &&
     words.every(word => idea.search.toLocaleLowerCase().normalize('NFC').includes(word))
   )
@@ -97,37 +96,6 @@ export function readSaved(storage: Pick<Storage, 'getItem' | 'setItem'>, ideas: 
   storage.setItem(SAVED_KEY, JSON.stringify(migrated))
   return migrated
 }
-export const STEPS_KEY = 'deshi-startup:ideas:steps:v1'
-export type StepProgress = Record<string, number[]>
-/** Ticked steps are stored per idea as step numbers, so re-edited steps cannot silently inherit a tick. */
-export function parseSteps(raw: string | null): StepProgress {
-  try {
-    const value: unknown = JSON.parse(raw || '{}')
-    if (!value || typeof value !== 'object' || Array.isArray(value)) return {}
-    return Object.fromEntries(Object.entries(value as Record<string, unknown>)
-      .filter(([id]) => /^[a-z0-9-]{1,80}$/.test(id))
-      .slice(0, 300)
-      .map(([id, steps]) => [id, Array.isArray(steps)
-        ? [...new Set(steps.filter((n): n is number => Number.isInteger(n) && n >= 0 && n < 20))].sort((x, y) => x - y)
-        : []])
-      .filter(([, steps]) => (steps as number[]).length))
-  } catch { return {} }
-}
-export const stepsDone = (progress: StepProgress, id: string, total: number) => (progress[id] || []).filter(step => step < total).length
-export function toggleStep(storage: Pick<Storage, 'getItem' | 'setItem'>, id: string, step: number): StepProgress {
-  const current = parseSteps(storage.getItem(STEPS_KEY))
-  const ticked = current[id] || []
-  const next = { ...current, [id]: ticked.includes(step) ? ticked.filter(item => item !== step) : [...ticked, step].sort((x, y) => x - y) }
-  if (!next[id].length) delete next[id]
-  storage.setItem(STEPS_KEY, JSON.stringify(next))
-  return next
-}
-export function stepProgressLabel(done: number, total: number, locale: Locale) {
-  if (!done) return locale === 'en' ? 'Not started' : 'এখনো শুরু হয়নি'
-  if (done >= total) return locale === 'en' ? 'All steps done' : 'সব ধাপ শেষ'
-  return locale === 'en' ? `${done} of ${total} steps done` : `${number(total, locale)}টির মধ্যে ${number(done, locale)}টি ধাপ শেষ`
-}
-
 export interface IdeaDraft { title: string; solution: string; customer: string; problem: string; place: string; evidence: string; test: string }
 export const emptyDraft: IdeaDraft = { title: '', solution: '', customer: '', problem: '', place: '', evidence: '', test: '' }
 export const draftLimits: Record<keyof IdeaDraft, number> = { title: 100, solution: 2000, customer: 240, problem: 2000, place: 120, evidence: 2000, test: 1000 }

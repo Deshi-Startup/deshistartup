@@ -14,8 +14,8 @@ research underneath. Companies are supporting references with canonical
 The index has no company counts. Product scope and example research live in
 [`startup-ideas-direction.md`](./startup-ideas-direction.md).
 
-D1 stores six problems, eight ideas, seven initial company identities and private
-submissions. The Worker supports authenticated submissions and reviewer decisions;
+D1 stores problems, ideas, shared company identities and private submissions.
+The current seed collection and editorial standard live in the feature documentation. The Worker supports authenticated submissions and reviewer decisions;
 a frozen public snapshot supplies static pages. Investor firms, accelerators,
 incubators and communities use company roles rather than separate route trees.
 Individual people and programs remain separate future concepts.

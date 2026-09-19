@@ -2,9 +2,12 @@
 export const ideaSlug = id => id.replace(/-approach$/, '')
 export const ideaPath = (locale, slug = '') => `${locale === 'en' ? '/en' : ''}/startup-ideas${slug ? `/${slug}` : ''}`
 export const relatedIdeasPath = (locale, problemId = '') => `${ideaPath(locale)}${problemId ? `?problem=${encodeURIComponent(problemId)}` : ''}`
+export const retiredIdeaSlugs = ['courier-settlement', 'courier-settlement-service', 'shared-cold-delivery', 'bangla-order-notes', 'bangla-order-confirmation', 'produce-crates', 'factory-maintenance']
 
 // Keep the first preview's links useful without choosing one idea for a problem.
 export function legacyIdeaDestination(pathname) {
+  const retired = pathname.match(/^\/(en\/)?startup-ideas\/([^/]+)\/?$/)
+  if (retired && retiredIdeaSlugs.includes(retired[2])) return ideaPath(retired[1] ? 'en' : 'bn')
   const old = pathname.match(/^\/(en\/)?problems(?:\/([^/]+))?\/?$/)
   if (old) {
     const locale = old[1] ? 'en' : 'bn'

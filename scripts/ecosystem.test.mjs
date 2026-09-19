@@ -18,6 +18,13 @@ test('public snapshot rejects broken identities, relationships and incomplete tr
   delete broken.problems[0].bn
   assert.throws(() => validateEcosystemSnapshot(broken), /translation/)
 })
+test('snapshot rejects unknown public types before components can crash', () => {
+  for (const [table, field, value] of [['approaches', 'kind', 'unknown'], ['organizations', 'roles', ['unknown']], ['connections', 'stage', 'unknown']]) {
+    const broken = structuredClone(snapshot)
+    broken[table][0][field] = value
+    assert.throws(() => validateEcosystemSnapshot(broken), /Invalid/)
+  }
+})
 test('release marker pins exact data and all editorial references resolve', () => {
   const marker = JSON.parse(fs.readFileSync(new URL('../public/ecosystem-release.json', import.meta.url), 'utf8'))
   assert.equal(marker.digest, snapshotDigest(snapshot))
@@ -41,6 +48,7 @@ test('transactional forms stay out of search while public profiles remain indexa
 
 
 test('old preview routes preserve all idea choices and never redirect the canonical pages', () => {
+  assert.equal(legacyIdeaDestination('/en/startup-ideas/courier-settlement'), '/en/startup-ideas')
   assert.equal(legacyIdeaDestination('/en/problems'), '/en/startup-ideas')
   assert.equal(legacyIdeaDestination('/problems/courier-settlement/'), '/startup-ideas?problem=courier-settlement')
   assert.equal(legacyIdeaDestination('/en/problems/contribute'), '/en/startup-ideas/add-company')
@@ -49,6 +57,6 @@ test('old preview routes preserve all idea choices and never redirect the canoni
   assert.equal(legacyIdeaDestination('/en/startup-ideas/contribute'), '/en/startup-ideas/add')
   assert.equal(legacyIdeaDestination('/en/startup-ideas/draft'), '/en/startup-ideas/add')
   assert.equal(legacyIdeaDestination('/problems/draft'), '/startup-ideas/add')
-  for (const route of ['/startup-ideas', '/en/startup-ideas/courier-settlement', '/companies/pathao', '/problems/a/b', '/ideas/finding-ideas']) assert.equal(legacyIdeaDestination(route), null)
+  for (const route of ['/startup-ideas', '/en/startup-ideas/harvest-cooling', '/companies/pathao', '/problems/a/b', '/ideas/finding-ideas']) assert.equal(legacyIdeaDestination(route), null)
   assert.equal(new Set(snapshot.approaches.map(idea => ideaSlug(idea.id))).size, snapshot.approaches.length)
 })
