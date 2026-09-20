@@ -1,12 +1,79 @@
 ---
-title: "Break-Even Calculator"
-description: "Break-Even Calculator – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "Break-Even Calculator: How Many Sales Cover Your Costs?"
+description: "Use price, cost per sale and monthly fixed costs to find your break-even sales target in taka. Test a price cut before offering a discount."
+verified: 2026-09-20
 ---
 
-# Break-Even Calculator
+import BreakEvenCalculator from '../../../../components/BreakEvenCalculator'
 
-<StubNotice path="tools/break-even-calculator" locale="en" />
+# Break-Even Calculator: How Many Sales Cover Your Costs?
+
+> **In short:** Subtract the cost of each sale from its price. Divide monthly fixed costs by what remains. That gives the sales needed to cover the costs you entered. Check whether you can sell and deliver that much before changing your price.
+
+Use this for one product or one service package. One unit could mean one delivered order or one customer's monthly subscription. Keep that unit the same in every field. This is a monthly cost check, not a forecast of when money reaches your bank.
+
+## See one example first
+
+Say a Dhaka startup sells a scheduling app to coaching centres. Each centre pays **1,000 taka a month**. Serving it costs **400 taka**. The startup's other monthly costs total **30,000 taka**. These are made-up numbers for practice.
+
+Each paying centre leaves 1,000 - 400 = **600 taka** toward the month's fixed costs. Accountants call this contribution per unit. Break-even means that total contribution covers those fixed costs.[^sba]
+
+```text
+Monthly break-even units = fixed costs ÷ (price - cost per unit)
+                        = 30,000 ÷ (1,000 - 400)
+                        = 50 paying centres
+Sales at that level     = 50 × 1,000 = 50,000 taka
+At 60 paying centres    = 60 × 600 - 30,000 = 6,000 taka left
+```
+
+Now lower the price to 900 taka. Each centre leaves 500 taka, so the target rises to **60 centres**. At the same 60 centres, nothing remains after the entered costs. The discount needs more sales just to keep the old result.
+
+## Try your numbers
+
+<BreakEvenCalculator locale="en" />
+
+The sales target rounds **up** to a whole unit. A result of 50.1 means you need 51 sales to cover the entered costs. “Sales at that target” includes money needed to pay variable costs too; it is not profit.
+
+## What goes in each field?
+
+Prepare a month's cost list and your actual price after discounts. The tool is free. Allow about ten minutes if your records are ready.
+
+- **Monthly fixed costs:** costs that stay the same within the sales range you are testing, such as rent or a fixed salary. Include your own pay if the business needs to cover it.
+- **Price per unit:** what you earn from one sale. Leave out VAT you collect for the government.
+- **Variable cost per unit:** costs that rise with each sale. Include payment fees, delivery you pay for, materials and expected return losses where they apply. Do not count the same cost again under fixed costs.
+- **Planned units:** whole sales you expect to complete in that month. Use paying centres for the example, not downloads or free trials.
+
+Split mixed bills into their fixed and per-sale parts. For example, a base software fee belongs in fixed costs; a fee for each customer belongs in variable costs.[^openstax]
+
+## When the answer can mislead you
+
+The model holds price, cost per unit and total fixed costs steady. Extra staff, a larger office or bulk discounts can change them. Recalculate when you cross that limit. Different products need a model that accounts for how much of each you sell; do not put several unrelated prices into one average.[^acca]
+
+If price is at or below variable cost, more sales cannot build a positive contribution. Fix the price or cost first. With no fixed costs and no sales, the modeled result can be zero even when each future sale would lose money.
+
+The result only covers costs you entered. It does not work out tax, repay startup spending or tell you how much cash you need. For a large spending or borrowing decision, have an accountant check the full plan. Use [cashflow vs profit](/en/metrics/cashflow-vs-profit) for payment timing and [financial projections](/en/metrics/financial-projections) for a month-by-month plan.
+
+## Write down the decision
+
+Copy this into your notes. Test one change at a time, then compare the target with customers you can reach and orders you can deliver.
+
+```text
+Month and product/service:
+One unit means:
+Fixed costs: ___ taka
+Price: ___ taka; cost per unit: ___ taka
+Contribution per unit = price - cost = ___ taka
+Whole units needed = round up(fixed costs ÷ contribution) = ___
+Planned units: ___
+Result at that plan = planned units × contribution - fixed costs = ___ taka
+One change to test:
+Evidence that we can sell and deliver this much:
+```
+
+Before acting, check that every cost is counted once, the month and unit match, and the sales target is realistic. If the example startup can serve only 55 centres, the 900-taka price does not cover its costs at that capacity. It needs a different price or cost plan.
 
 ## Relevant Sources
 
-- [RJSC](https://roc.gov.bd)
+[^sba]: [U.S. Small Business Administration: Break-even point and unit formula](https://legacy.sba.gov/business-guide/plan-your-business/calculate-your-startup-costs/break-even-point)
+[^openstax]: [OpenStax: Fixed costs, variable costs and contribution](https://openstax.org/books/principles-managerial-accounting/pages/3-1-explain-contribution-margin-and-calculate-contribution-margin-per-unit-contribution-margin-ratio-and-total-contribution-margin)
+[^acca]: [ACCA: Cost-volume-profit analysis and its assumptions](https://www.accaglobal.com/gb/en/student/exam-support-resources/fundamentals-exams-study-resources/f5/technical-articles/CVP-analysis.html)
