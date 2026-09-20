@@ -40,7 +40,7 @@ export default function BreakEvenCalculator({ locale = 'en' }: { locale?: 'en' |
         </dl>
         <p className="calc__verdict">{result.contribution <= 0
           ? t('No positive contribution per sale. More sales cannot cover fixed costs; review the price or cost first. With zero fixed costs, zero sales can still give a zero result.', 'প্রতি বিক্রিতে পজিটিভ কন্ট্রিবিউশন থাকছে না। বেশি বিক্রি করে ফিক্সড খরচ উঠবে না। আগে দাম বা খরচ দেখুন। ফিক্সড খরচ শূন্য হলে বিক্রি শূন্য রেখেও ফল শূন্য আসতে পারে।')
-          : t('This covers only the costs entered. Compare the target with what you can sell and deliver. The result is not your bank balance or a tax calculation.', 'শুধু দেওয়া খরচগুলো ধরা হয়েছে। এতটা বিক্রি ও ডেলিভারি করতে পারবেন কি না মিলিয়ে নিন। ফলটা ব্যাংকের ব্যালান্স বা ট্যাক্সের হিসাব নয়।')}</p>
+          : t('This covers only the costs entered. Compare the target with what you can sell and deliver. The result is not your bank balance or a tax calculation.', 'শুধু দেওয়া খরচগুলো ধরা হয়েছে। এতটা বিক্রি ও ডেলিভারি করতে পারবেন কি না মিলিয়ে নিন। ফলটা ব্যাংক ব্যালেন্স বা ট্যাক্সের হিসাব নয়।')}</p>
       </>}
     </div>
     <noscript>{t('JavaScript is off. The example is shown; use the worksheet below for your own calculation.', 'জাভাস্ক্রিপ্ট বন্ধ আছে। উদাহরণটি দেখা যাচ্ছে। নিজের হিসাবের জন্য নিচের ছকটি কাজে লাগান।')}</noscript>
