@@ -66,11 +66,21 @@ The manual combines:
 - goal-based journeys that connect existing guides;
 - source-backed Bangladesh startup case studies;
 - maintained directories with verification dates;
+- startup ideas grounded in local problems, with shared company references;
 - copy-ready templates, scripts, checklists and lightweight calculators; and
 - a simple browser contribution path that produces reviewable GitHub pull requests.
 
 The project is not a startup news site, promotional founder directory, generic SME portal,
 marketplace or substitute for professional legal, tax or financial advice.
+
+Startup ideas are the public unit of discovery: something a reader can explore, save, share
+and test. Each idea explains the customer problem it addresses. Shared problem records connect
+related ideas underneath the interface; readers do not need to navigate a separate problem
+catalogue. Companies provide supporting context rather than another discovery destination.
+A company has one shared identity across idea references, Startup 50 and case studies.
+Profile inclusion is not a ranking, investment endorsement or DS50 selection. The cross-product
+model and review boundaries live in [`ecosystem-data.md`](./ecosystem-data.md), and the clarified
+product direction is in [`startup-ideas-direction.md`](./startup-ideas-direction.md).
 
 ## Boundaries
 

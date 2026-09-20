@@ -32,6 +32,7 @@ an agreed decision should be moved to its owner so it can be found later.
 | `seo-operations.md` | Search, crawler and generated SEO operations. |
 | `media-operations.md` | Media security, review, retention and cost controls. |
 | `deployment-architecture.md` | Deployment boundaries, checks and size budgets. |
+| `ecosystem-data.md` | Idea discovery, shared problem research, company identity and database/review architecture. |
 
 The live content tree owns journeys, directories and tools. Their pages and structured data should
 not be copied into planning spreadsheets.

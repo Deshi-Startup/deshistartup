@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { isNoindexPage, isEcosystemForm } from './lib/page-indexability.mjs'
 /**
  * Adds route-aware SEO metadata to statically exported HTML.
  *
@@ -62,7 +63,7 @@ for (const event of contributorView.events) {
 
 const pageByLocaleSlug = new Map(pages.map((page) => [`${page.locale}:${page.slug}`, page]))
 const pageByRoute = new Map(pages.map((page) => [page.route, page]))
-const writtenPages = pages.filter((page) => !page.stub)
+const writtenPages = pages.filter((page) => !isNoindexPage(page))
 const UTILITY_SLUGS = new Set(['contribute', 'contact', 'maps'])
 
 function isContributorProfile(page) {
@@ -82,7 +83,7 @@ function contributionEventsForPage(page) {
 }
 
 function isUtilityPage(page) {
-  return UTILITY_SLUGS.has(page.slug)
+  return UTILITY_SLUGS.has(page.slug) || /^(?:startup-ideas|companies)(?:\/|$)/.test(page.slug)
 }
 
 function htmlFileFor(route) {
@@ -395,7 +396,7 @@ function visibleCollectionItemsFor($, page) {
 }
 
 function schemaFor(page, wordCount, visibleCollectionItems = [], contributionEvents = []) {
-  if (page.stub) return null
+  if (isNoindexPage(page)) return null
 
   const isEn = page.locale === 'en'
   const locale = isEn ? 'en-BD' : 'bn-BD'
@@ -618,7 +619,7 @@ for (const page of pages) {
   const pairedBn = pageByLocaleSlug.get(`bn:${page.slug}`)
   const pairedEn = pageByLocaleSlug.get(`en:${page.slug}`)
   const pairedPage = isEn ? pairedBn : pairedEn
-  const hasIndexablePair = !page.stub && pairedBn && pairedEn && !pairedBn.stub && !pairedEn.stub
+  const hasIndexablePair = !isNoindexPage(page) && pairedBn && pairedEn && !isNoindexPage(pairedBn) && !isNoindexPage(pairedEn)
   const pageChildren = childrenFor(page)
   const isCollectionPage =
     page.slug === 'sitemap' ||
@@ -629,7 +630,7 @@ for (const page of pages) {
     pageChildren.length > 0
   const ogType = isContributorProfile(page)
     ? 'profile'
-    : page.stub ||
+    : isNoindexPage(page) ||
       page.slug === '' ||
       isCollectionPage ||
       page.slug === 'about' ||
@@ -640,7 +641,7 @@ for (const page of pages) {
   // components. Do not infer a guide from SEO type or the number of written
   // children: both misclassify empty section hubs and lookup pages.
   const showsByline = page.guide === true
-  const robots = page.stub
+  const robots = isNoindexPage(page)
     ? 'noindex, follow, noarchive'
     : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
   const customSocialImage = pageSocialImage(page)
@@ -666,7 +667,7 @@ for (const page of pages) {
   const tags = [
     '<!-- deshi-seo:start -->',
     `<link rel="canonical" href="${escapeHtml(url)}"/>`,
-    ...(!page.stub ? [`<link rel="describedby" href="${canonicalUrl('/llms.txt')}"/>`] : []),
+    ...(!isNoindexPage(page) ? [`<link rel="describedby" href="${canonicalUrl('/llms.txt')}"/>`] : []),
     // Bengali pages only: the English tree renders no Bengali codepoints, so the
     // face's unicode-range keeps it unfetched there and a preload would be pure
     // cost. crossorigin is required or the preload misses and the font is
@@ -782,10 +783,10 @@ for (const page of pages) {
       href: (route) => localBuildHref(route, buildBasePath)
     })
   )
-  if (isContributorProfile(page)) html = excludeProfileFromPagefind(html)
+  if (isContributorProfile(page) || isEcosystemForm(page)) html = excludeProfileFromPagefind(html)
   fs.writeFileSync(file, html)
   enriched += 1
-  if (page.stub) noindexed += 1
+  if (isNoindexPage(page)) noindexed += 1
 
 }
 

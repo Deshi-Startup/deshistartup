@@ -61,6 +61,7 @@ interface AuthModalProps {
   onAuthenticated?: (user: UserInfo, token: string) => void
   isEn?: boolean
   fallbackHref?: string
+  purpose?: 'editing' | 'ecosystem' | 'voting'
 }
 
 /**
@@ -74,7 +75,8 @@ export default function AuthModal({
   onClose,
   onAuthenticated,
   isEn = false,
-  fallbackHref
+  fallbackHref,
+  purpose = 'editing'
 }: AuthModalProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const dialogRef = useRef<HTMLDivElement>(null)
@@ -332,8 +334,8 @@ export default function AuthModal({
   const errorMessage =
     error === 'no_client_id'
       ? t(
-          'এই সাইটে Google সাইন-ইন এখন পাওয়া যাচ্ছে না। আপাতত GitHub-এ এডিট করতে পারেন।',
-          'Google sign-in is not available right now. You can edit on GitHub instead.'
+          purpose === 'voting' ? 'Google সাইন-ইন এখন পাওয়া যাচ্ছে না। পরে আবার চেষ্টা করুন।' : purpose === 'ecosystem' ? 'Google সাইন-ইন এখন পাওয়া যাচ্ছে না। খসড়া রেখে পরে চেষ্টা করুন।' : 'এই সাইটে Google সাইন-ইন এখন পাওয়া যাচ্ছে না। আপাতত GitHub-এ এডিট করতে পারেন।',
+          purpose === 'voting' ? 'Google sign-in is unavailable. Try again later.' : purpose === 'ecosystem' ? 'Google sign-in is unavailable. Keep your draft and try again later.' : 'Google sign-in is not available right now. You can edit on GitHub instead.'
         )
       : error === 'script_load_failed'
         ? t(
@@ -372,7 +374,7 @@ export default function AuthModal({
         </button>
         <h2 id={headingId}>{t('Google দিয়ে সাইন ইন করুন', 'Sign in with Google')}</h2>
         <p className="modal-lede" id={descriptionId}>
-          {t(
+          {purpose === 'voting' ? t('যে আইডিয়াটি বাস্তবে দেখতে চান, তাতে ভোট দিন।', 'Vote for an idea you’d like to see built.') : purpose === 'ecosystem' ? t('তথ্য জমা দিতে বা নিজের জমা দেওয়া তথ্য দেখতে সাইন ইন করুন।', 'Sign in to submit information or view your contributions.') : t(
             'এই পেজ এডিট করতে সাইন ইন করুন। GitHub অ্যাকাউন্ট লাগবে না।',
             'Sign in to start editing this page. No GitHub account needed.'
           )}
@@ -411,7 +413,7 @@ export default function AuthModal({
         )}
 
         <p className="modal-note">
-          {t(
+          {purpose === 'voting' ? t('প্রতি আইডিয়ায় একটি ভোট দিতে পারবেন। আপনার নাম দেখানো হবে না।', 'One vote per idea. Your name stays private.') : purpose === 'ecosystem' ? t('জমা দেওয়া তথ্য পর্যালোচনা ও প্রকাশের আগে অন্যরা দেখতে পাবেন না।', 'Submissions stay private until reviewed and published.') : t(
             'সাবমিট করলে রিভিউয়ের জন্য একটি পুল রিকোয়েস্ট তৈরি হবে। অ্যাপ্রুভ হওয়ার আগে সাইটে কিছু বদলাবে না।',
             'Submitting creates a pull request for review. Nothing changes on the site until it is approved.'
           )}

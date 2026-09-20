@@ -1,3 +1,4 @@
+import { legacyIdeaDestination } from '../app/lib/idea-routes.mjs'
 import { GET as getContent } from './api/content'
 import { POST as sendContactMessage } from './api/contact'
 import { POST as createContribution } from './api/contribute'
@@ -11,6 +12,7 @@ import {
   POST as updateContributionReview
 } from './api/contribution-review'
 import { logError } from './lib/logging'
+import { handleEcosystem } from './api/ecosystem'
 
 const OPAQUE_ID = /^[a-f0-9]{32}$/
 
@@ -36,6 +38,7 @@ async function apiResponse(
   env: CloudflareEnv,
   pathname: string
 ): Promise<Response> {
+  if (pathname.startsWith('/api/ecosystem/')) return handleEcosystem(request, env)
   if (pathname === '/api/content') {
     return request.method === 'GET'
       ? getContent(request, env)
@@ -90,6 +93,13 @@ export default {
     try {
       if (url.pathname === '/api' || url.pathname.startsWith('/api/')) {
         return await apiResponse(request, env, url.pathname.replace(/\/+$/, ''))
+      }
+
+      const oldIdeaDestination = legacyIdeaDestination(url.pathname)
+      if (oldIdeaDestination) {
+        const destination = new URL(oldIdeaDestination, url)
+        for (const [key, value] of url.searchParams) if (!destination.searchParams.has(key)) destination.searchParams.append(key, value)
+        return Response.redirect(destination.toString(), 308)
       }
 
       const startup50Alias = url.pathname.match(/^\/(en\/)?50\/?$/)

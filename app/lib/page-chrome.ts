@@ -30,6 +30,9 @@ const CHROMELESS_ROUTES = new Set(['/', '/contact', '/startup-50', '/maps'])
  */
 export function pageChromePolicy(pathname: string): PageChromePolicy {
   const route = localeNeutralContentRoute(pathname)
+  if (/^\/(?:startup-ideas|companies)(?:\/|$)/.test(route)) {
+    return { showDiscussionAction: false, showPageActions: false, showEditAction: false }
+  }
   const showPageActions = !CHROMELESS_ROUTES.has(route)
 
   return {

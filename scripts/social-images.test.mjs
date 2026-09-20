@@ -4,6 +4,7 @@ import os from 'node:os'
 import path from 'node:path'
 import test from 'node:test'
 import { createHash } from 'node:crypto'
+import { execFileSync } from 'node:child_process'
 import sharp from 'sharp'
 import mediaManifest from '../app/generated/media.json' with { type: 'json' }
 import socialImages from '../data/social-images.json' with { type: 'json' }
@@ -19,7 +20,7 @@ import {
 } from './build-social-images.mjs'
 
 const root = path.resolve(new URL('..', import.meta.url).pathname)
-const fontPath = path.join(root, 'app', 'fonts', 'deshi-sans-bengali-var.woff2')
+const fontPath = path.join(root, 'app', 'fonts', 'deshi-sans-bengali-var.ttf')
 const markPath = path.join(root, 'public', 'deshi-mark.webp')
 const socialFont = createSocialImageFont(await fs.readFile(fontPath))
 const pages = JSON.parse(await fs.readFile(path.join(root, 'app/generated/seo-pages.json'), 'utf8'))
@@ -34,6 +35,26 @@ function countRedPixels(data, channels) {
   }
   return count
 }
+
+test('the social-image font renders Bangla without installed system fonts', async (t) => {
+  const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'deshi-font-render-'))
+  t.after(() => fs.rm(directory, { recursive: true, force: true }))
+  const config = path.join(directory, 'fonts.conf')
+  await fs.writeFile(config, '<?xml version="1.0"?><!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd"><fontconfig></fontconfig>')
+  // A separate process prevents Pango's global font cache from hiding fallback.
+  const output = execFileSync(process.execPath, ['--input-type=module', '-e', `
+    import sharp from 'sharp'
+    const { info } = await sharp({ text: {
+      text: '<span font_size="57344" font_weight="600">এজেন্ট নেটওয়ার্কে\\nভরসা এলো কীভাবে?</span>',
+      font: 'Deshi Sans Bengali', fontfile: ${JSON.stringify(fontPath)},
+      width: 660, rgba: true, spacing: -3
+    } }).png().toBuffer({ resolveWithObject: true })
+    console.log(JSON.stringify(info))
+  `], { cwd: root, encoding: 'utf8', env: { ...process.env, FONTCONFIG_FILE: config, PANGOCAIRO_BACKEND: 'fontconfig' } })
+  const { width, height } = JSON.parse(output)
+  assert.ok(width > 400 && width < 600, `Expected shaped Bangla, got width ${width}`)
+  assert.ok(height > 90 && height < 160, `Expected two lines of the bundled font, got height ${height}`)
+})
 
 test('Startup 50 social copy and logical paths are explicit for both locales', () => {
   const definition = socialImages['startup-50']

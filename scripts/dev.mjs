@@ -17,6 +17,8 @@ const workerArgs = [
   'public'
 ]
 
+if (process.env.DESHI_ECOSYSTEM_LOCAL === '1') workerArgs.push('--config', 'wrangler.ecosystem-local.jsonc')
+
 if (fs.existsSync(path.join(root, '.env.local'))) {
   workerArgs.push('--env-file', '.env.local')
 }

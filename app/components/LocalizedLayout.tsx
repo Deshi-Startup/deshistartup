@@ -341,7 +341,8 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
     pathname.startsWith('/en/contributors/')
   // Wide collections start without the rail; readers can show it when needed.
   const isMaps = pathname === '/maps' || pathname === '/en/maps'
-  const isWidePage = isMaps || pathname === '/startup-50' || pathname === '/en/startup-50'
+  const isIdeas = /^(?:\/en)?\/(?:startup-ideas|problems|companies)(?:\/|$)/.test(pathname)
+  const isWidePage = isMaps || isIdeas || pathname === '/startup-50' || pathname === '/en/startup-50'
   const isStandaloneFeature = isCredits || isWidePage
   const isContact = pathname === '/contact' || pathname === '/en/contact'
   // One 404 document serves every unmatched URL, so the router reports the
@@ -961,7 +962,7 @@ export default function LocalizedLayout({ children }: LocalizedLayoutProps) {
           )}
 
           <article
-            className={`${isEditing && !editorReady ? 'article is-yielding' : 'article'}${isPrivateReview ? ' article--utility' : ''}`}
+            className={isIdeas ? 'ideas-route-content' : `${isEditing && !editorReady ? 'article is-yielding' : 'article'}${isPrivateReview ? ' article--utility' : ''}`}
             data-pagefind-body={isPrivateReview ? undefined : ''}
             data-pagefind-ignore={isPrivateReview ? 'all' : undefined}
             ref={articleRef}

@@ -1,4 +1,4 @@
-const DATA_OWNED_ROUTE = /^(?:\/directory(?:\/|$)|\/(?:startup-50|maps)\/?$)/
+const DATA_OWNED_ROUTE = /^(?:\/(?:directory|startup-ideas|companies)(?:\/|$)|\/(?:startup-50|maps)\/?$)/
 const SECTION_INDEX_COMPONENT = /<SectionIndex\b/
 
 /**

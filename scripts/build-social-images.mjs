@@ -76,7 +76,7 @@ function escapeXml(value) {
 export function createSocialImageFont(fontData) {
   if (!fontData?.length) throw new Error('Social-image Bengali font file is missing or empty')
   const font = fontkit.create(fontData)
-  if (!font || font.type !== 'WOFF2' || !font.characterSet?.includes(0x0995)) {
+  if (!font || !['WOFF2', 'TTF'].includes(font.type) || !font.characterSet?.includes(0x0995)) {
     throw new Error('Social-image font does not contain Bengali glyphs')
   }
   return font
@@ -280,7 +280,8 @@ export async function renderCaseStudySocialCard({ page, fontPath, palette, logo,
       .resize(432, 262).png().toBuffer()
   ])
   if (name.info.height > 58 || headline.info.height > 207 || footer.info.height > 42 || domain.info.height > 42) {
-    throw new Error(`${locale}:${page.slug}: social-image copy exceeds its safe area`)
+    const sizes = { name: name.info, headline: headline.info, footer: footer.info, domain: domain.info }
+    throw new Error(`${locale}:${page.slug}: social-image copy exceeds its safe area: ${JSON.stringify(sizes)}`)
   }
   // The approved cover artwork fills the right side; text is never scaled into a narrow column.
   const base = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
@@ -377,7 +378,7 @@ async function main() {
   const result = await buildSocialImages({
     definitions, pages, themeCss, check,
     outputDir: path.join(root, 'media', 'og'),
-    fontPath: path.join(root, 'app', 'fonts', 'deshi-sans-bengali-var.woff2'),
+    fontPath: path.join(root, 'app', 'fonts', 'deshi-sans-bengali-var.ttf'),
     markPath: path.join(root, 'public', 'deshi-mark.webp')
   })
   if (check) {
