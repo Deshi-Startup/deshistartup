@@ -41,8 +41,8 @@ ShopUp profile retains its original editorial slug. BAN portfolio mentions are n
 investment claims; BWIN retains a separate identity despite sharing BAN's domain.
 
 The initial release added researched sections and contacts for 10 Minute School,
-BAN and ShopUp. Later enrichment batches are recorded below. Roles and relationships show their as-of dates and evidence. The
-other profiles use existing dated editorial research. Their publication does not
+BAN and ShopUp. Later enrichment batches are recorded below. Roles and relationships show their as-of dates and evidence. Profiles also
+retain existing dated editorial research. Their publication does not
 claim that every fact was freshly checked. Funding remains sourced narrative, with
 no inferred total or valuation; structured funding events require a separate model.
 
@@ -125,3 +125,57 @@ new sections and contact emails were present. Browser checks covered all ten
 enriched pages at 320px, plus representative 390px and 1440px layouts. A long
 contact email overflow was fixed with wrapping; no horizontal overflow or browser
 errors remained. The SEO audit retained seven existing metadata-length advisories.
+
+## Catalogue enrichment - 21 September 2026
+
+Migration `0016_company_catalogue_enrichment.sql` adds bilingual product/service
+sections to the remaining 54 existing organizations, 38 public professional
+identities with sourced roles, and 11 typed portfolio mentions. It preserves the
+eight earlier expanded profiles and every existing company ID, slug, crosswalk,
+relationship and editorial research date. No account bindings or new company
+routes are introduced.
+
+`data/research/company-coverage.json` records a disposition, evidence URLs and
+remaining gaps for all 62 organizations. Of this pass's 54 profiles, 51 have useful
+current primary-source enrichment; Loop Freight, Shuttle and BVCL are explicitly
+source-limited. The other eight retain their earlier research dates. No existing
+organization is left unreviewed, but this is not a complete founder, funding or
+office registry. The coverage file is an editorial record, not a runtime input or
+a promise that absent details do not exist.
+
+Source limitations are recorded per organization. In particular, inaccessible
+official pages sometimes required indexed official text; Bimafy's conflicting
+addresses were omitted; placeholder team members, phone numbers and email links
+were excluded. Startise's group executives were not assigned to WPDeveloper.
+BAN and BWIN remain separate, and investor portfolio listings are not converted
+into investment amounts or ownership claims. IDLC's application closure is dated
+to the observed page, and its planned second fund is not described as launched.
+
+Bangla copy was reviewed against the English facts and through a written
+back-translation pass. Source qualifications, planned services and group/company
+distinctions remain in both editions. Contact sections render only when at least
+one verified contact field exists; phone links use a general phone label because
+some published numbers are office contacts rather than support hotlines.
+
+The migration was rehearsed against all preceding migrations with foreign-key
+and integrity checks. Every pre-existing row was preserved, and only profiles,
+people, affiliations, organization relationships and editorial review events
+gained rows. The local snapshot was prepared without advancing a publication
+pointer. Production migration, deployment and publication remain separate steps.
+
+The rendered review also corrected Anchorless's older directory application and
+cheque-size fields using the official site's linked application form. The new
+field-level check date is explicit; the record's overall verification date is
+retained because this was not a complete directory-record refresh.
+
+Final validation: 461 repository tests passed, followed by seven focused profile
+and directory tests after the application-field correction. The production build,
+route/media/citation/glossary checks and SEO audit passed; seven existing
+metadata-length advisories remain. All 126 company routes and 2,354 internal links
+and anchors validated. Export checks confirmed all 124 localized profiles, 146
+localized sections, 102 rendered professional roles and 90 contact sections.
+All 124 profiles passed a 320px overflow check, with representative visual checks
+at 390px, 768px and 1440px. Investor filtering and filtered profile return worked;
+no browser errors or broken images were observed. The corrected Anchorless fields
+were checked in both company and directory editions. Bangla checks reported no
+hard findings; advisory wording checks received editorial review.

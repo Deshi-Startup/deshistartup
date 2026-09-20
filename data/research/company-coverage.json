@@ -1,0 +1,1215 @@
+{
+  "reviewDate": "2026-09-21",
+  "scope": "All 62 existing organizations; dated editorial enrichment, not a complete company registry.",
+  "organizations": [
+    {
+      "organizationId": "org_10-minute-school",
+      "slug": "10-minute-school",
+      "status": "previously-enriched",
+      "reviewedAt": null,
+      "addedSections": [],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://10minuteschool.com/"
+      ],
+      "evidenceNotes": "Earlier expanded profile retained without changing its verification dates.",
+      "remainingGaps": [
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_arogga",
+      "slug": "arogga",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://www.arogga.com/",
+        "https://www.arogga.com/online-doctor-consultation",
+        "https://www.idlcvc.com/thesis"
+      ],
+      "evidenceNotes": "No current leadership verified; delivery promises and medical-quality claims excluded.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public email confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_bkash",
+      "slug": "bkash",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_c23ddcb5d10f4a7f8a5fbea2"
+      ],
+      "sourceUrls": [
+        "https://www.bkash.com/en",
+        "https://www.bkash.com/en/about",
+        "https://www.bkash.com/en/customer-service/contact-us"
+      ],
+      "evidenceNotes": "No ownership inferred from partner logos; customer-care location is not labeled headquarters.",
+      "remainingGaps": [
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_dorik",
+      "slug": "dorik",
+      "status": "previously-enriched",
+      "reviewedAt": null,
+      "addedSections": [],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://dorik.com/",
+        "https://dorik.com/about-dorik",
+        "https://dorik.com/white-label-cms",
+        "https://help.dorik.com/en/article/terms-of-service-1ct7bc/"
+      ],
+      "evidenceNotes": "Earlier expanded profile retained without changing its verification dates.",
+      "remainingGaps": [
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_pathao",
+      "slug": "pathao",
+      "status": "previously-enriched",
+      "reviewedAt": null,
+      "addedSections": [],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://pathao.com/about-us/",
+        "https://pathao.com/blog/press/pathao-commerce/",
+        "https://pathao.com/contact/",
+        "https://pathao.com/courier/",
+        "https://www.anchorless.vc/portfolio"
+      ],
+      "evidenceNotes": "Earlier expanded profile retained without changing its verification dates.",
+      "remainingGaps": [
+        "No unambiguous current public email confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_shikho",
+      "slug": "shikho",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_875f1cb68738491697d4a328"
+      ],
+      "sourceUrls": [
+        "https://shikho.com/",
+        "https://shikho.com/en/about-us",
+        "https://www.anchorless.vc/portfolio"
+      ],
+      "evidenceNotes": "Investor logos are not converted to ownership claims.",
+      "remainingGaps": []
+    },
+    {
+      "organizationId": "org_bangladesh-angels-network",
+      "slug": "bangladesh-angels-network",
+      "status": "previously-enriched",
+      "reviewedAt": null,
+      "addedSections": [],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://bdangels.co/about-us",
+        "https://bdangels.co/startups"
+      ],
+      "evidenceNotes": "Earlier expanded profile retained without changing its verification dates.",
+      "remainingGaps": [
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_reverse-resources",
+      "slug": "reverse-resources",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://www.reverseresources.net/",
+        "https://www.reverseresources.net/contact"
+      ],
+      "evidenceNotes": "No audited recycling impact or client relationship inferred from logos; local Bangladesh office not confirmed.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_agricore",
+      "slug": "agricore",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://insurecow.com/"
+      ],
+      "evidenceNotes": "Brand transition is not treated as a verified legal rename; insurance underwriting terms and approvals not inferred.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources."
+      ]
+    },
+    {
+      "organizationId": "org_agroshift",
+      "slug": "agroshift",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_203b73c1e1f04b54873e67c7",
+        "person_8cdedded0753408b9398dd6f",
+        "person_3404207560564d4c9763268f"
+      ],
+      "sourceUrls": [
+        "https://www.agroshift.com/",
+        "https://www.anchorless.vc/people",
+        "https://www.anchorless.vc/portfolio"
+      ],
+      "evidenceNotes": "Placeholder +1 (555) phone omitted; unlabeled investor logos not used.",
+      "remainingGaps": [
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_airwork",
+      "slug": "airwork",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_c28b3ba5081c46fbbf16850e"
+      ],
+      "sourceUrls": [
+        "https://airwork.ai/",
+        "https://airwork.ai/about"
+      ],
+      "evidenceNotes": "Founder and role confirmed on official about page. Announced AI interview/CRM capabilities excluded from available product description. No direct contact published in reviewed evidence.",
+      "remainingGaps": [
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_amarlab",
+      "slug": "amarlab",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://amarlab.com/",
+        "https://amarlab.com/packages"
+      ],
+      "evidenceNotes": "Homepage required indexed fallback; no universal test turnaround or current fee asserted.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources."
+      ]
+    },
+    {
+      "organizationId": "org_appscode",
+      "slug": "appscode",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_9885b9e9520048f8a751c7a0"
+      ],
+      "sourceUrls": [
+        "https://appscode.com/",
+        "https://appscode.com/about/",
+        "https://appscode.com/blog/authors/tamal-saha/"
+      ],
+      "evidenceNotes": "Founder confirmed on official company and author pages. No database performance guarantees or unsupported customer metrics.",
+      "remainingGaps": [
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_aunkur",
+      "slug": "aunkur",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_ad4e0a5a69d944ec98b9d3a9"
+      ],
+      "sourceUrls": [
+        "https://aunkur.ai/about",
+        "https://www.acceleratingasia.com/",
+        "https://www.aunkur.ai/"
+      ],
+      "evidenceNotes": "Aunkur/iPAGE branding retained without legal-entity merger; no agronomic accuracy claim.",
+      "remainingGaps": [
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_barikoi",
+      "slug": "barikoi",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://barikoi.com/",
+        "https://www.idlcvc.com/thesis"
+      ],
+      "evidenceNotes": "Indexed official homepage used; customer logos and savings/accuracy figures not treated as independent evidence.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_bimafy",
+      "slug": "bimafy",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://bimafy.com/"
+      ],
+      "evidenceNotes": "No insurer licenses or guaranteed payouts inferred; protected email omitted. Official pages contain conflicting addresses; no office address added.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_bongo",
+      "slug": "bongo",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://business.bongobd.com/about-us/",
+        "https://business.bongobd.com/contact-us-03/"
+      ],
+      "evidenceNotes": "Consumer site returned 403; used official business portal. Current catalogue, rights and leadership not inferred. Placeholder names on a business-portal team page excluded.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources."
+      ]
+    },
+    {
+      "organizationId": "org_cassetex",
+      "slug": "cassetex",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://www.cassetex.com/",
+        "https://www.cassetex.com/contact/"
+      ],
+      "evidenceNotes": "No fleet totals, future entrepreneur targets or renewable-share percentages asserted.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources."
+      ]
+    },
+    {
+      "organizationId": "org_chamak",
+      "slug": "chamak",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://chamakinc.com/"
+      ],
+      "evidenceNotes": "Mixed backer logos do not establish investment type; no yields, disbursement guarantee or regulatory endorsement added.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources."
+      ]
+    },
+    {
+      "organizationId": "org_digibox",
+      "slug": "digibox",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_7fc72711f1b94d2eb07fde57",
+        "person_3962f873c6854047b5b7625e"
+      ],
+      "sourceUrls": [
+        "https://digibox.com.bd/",
+        "https://digibox.com.bd/founders/"
+      ],
+      "evidenceNotes": "Truncated Dhaka postcode and protected emails omitted; no patent/market-leader claim.",
+      "remainingGaps": [
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_dubotech",
+      "slug": "dubotech",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://dubotech.com/",
+        "https://dubotech.com/contact"
+      ],
+      "evidenceNotes": "Official headquarters and phone confirmed; no customer or defence-partner relationship inferred from logos. Named current executives not verified.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public email confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_ecovia",
+      "slug": "ecovia",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://www.ecoviaglobal.com/contact-us",
+        "https://www.ecoviaglobal.com/products"
+      ],
+      "evidenceNotes": "Certification and 180-day decomposition claims not independently verified; placeholder country count excluded.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources."
+      ]
+    },
+    {
+      "organizationId": "org_ezycourse",
+      "slug": "ezycourse",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://ezycourse.com/"
+      ],
+      "evidenceNotes": "No creator earnings or support-response guarantee asserted; plan-specific availability must be checked.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_fashol",
+      "slug": "fashol",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://fashol.com/"
+      ],
+      "evidenceNotes": "Future processing-centre and finance rollout not treated as completed; impact figures excluded.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_gozayaan",
+      "slug": "gozayaan",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_0775b1bfce9647ab9dad45f1"
+      ],
+      "sourceUrls": [
+        "https://bkash.gozayaan.com/about-us",
+        "https://gozayaan.com/talent",
+        "https://upay.gozayaan.com/"
+      ],
+      "evidenceNotes": "Official booking subdomains used because main site rendered only a JavaScript shell. Conflicting office addresses omitted; current leaders not verified.",
+      "remainingGaps": [
+        "No unambiguous current public address confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_hishabee",
+      "slug": "hishabee",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://www.hishabee.io/"
+      ],
+      "evidenceNotes": "No guaranteed approval, user totals or religious/regulatory assurance adopted.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources."
+      ]
+    },
+    {
+      "organizationId": "org_ifarmer",
+      "slug": "ifarmer",
+      "status": "previously-enriched",
+      "reviewedAt": null,
+      "addedSections": [],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://www.idlcvc.com/thesis",
+        "https://www.ifarmer.asia/about",
+        "https://www.ifarmer.asia/product-folon",
+        "https://www.ifarmer.asia/product-krishop"
+      ],
+      "evidenceNotes": "Earlier expanded profile retained without changing its verification dates.",
+      "remainingGaps": []
+    },
+    {
+      "organizationId": "org_jatri",
+      "slug": "jatri",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_65bc4eba586d4010ae9aef0b",
+        "person_30f52859755b4c549dde5bd1",
+        "person_fe8b2004b260446ca1534132"
+      ],
+      "sourceUrls": [
+        "https://jatri.co/about-us",
+        "https://jatri.co/bus"
+      ],
+      "evidenceNotes": "No new legal relationship inferred from Saafir promotion; corporate tools need deeper product source.",
+      "remainingGaps": []
+    },
+    {
+      "organizationId": "org_loop-freight",
+      "slug": "loop-freight",
+      "status": "source-limited",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_09c8980318564078b84446c3"
+      ],
+      "sourceUrls": [
+        "https://loopfreight.io/",
+        "https://www.anchorless.vc/people",
+        "https://www.anchorless.vc/portfolio"
+      ],
+      "evidenceNotes": "Direct page returned a JavaScript shell; product details recovered from an older indexed official page. Contact details withheld because freshness could not be established. Current role separately checked against Anchorless people page.",
+      "remainingGaps": [
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_markopolo-ai",
+      "slug": "markopolo-ai",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://markopolo.ai/"
+      ],
+      "evidenceNotes": "Promotional conversion figures excluded. Direct business contact and independently corroborated current leadership remain gaps.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_medeasy",
+      "slug": "medeasy",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://medeasy.health/"
+      ],
+      "evidenceNotes": "Medical-quality guarantees, fulfilment promises and unverified leadership omitted.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_monsha",
+      "slug": "monsha",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_47864eafe67646079d2407de"
+      ],
+      "sourceUrls": [
+        "https://monsha.ai/",
+        "https://monsha.ai/author/yanur-islam-piash"
+      ],
+      "evidenceNotes": "Product capabilities only; learning outcomes and full leadership roster not asserted.",
+      "remainingGaps": [
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_nuport",
+      "slug": "nuport",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://www.nuport.io/"
+      ],
+      "evidenceNotes": "Courier integrations are product features, not investment relationships. No fulfilment-speed guarantees or leadership claims.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources."
+      ]
+    },
+    {
+      "organizationId": "org_ostad",
+      "slug": "ostad",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_ee7a7ea9b5564bd1a14099c8",
+        "person_152e929ebbf349e08cba0cce"
+      ],
+      "sourceUrls": [
+        "https://business.ostad.app/",
+        "https://ostad.app/"
+      ],
+      "evidenceNotes": "Placement guarantees and course-specific prices not reproduced. Current executives and direct contact not confirmed in reviewed material.",
+      "remainingGaps": [
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_priyoshop",
+      "slug": "priyoshop",
+      "status": "previously-enriched",
+      "reviewedAt": null,
+      "addedSections": [],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://priyoshop.com/"
+      ],
+      "evidenceNotes": "Earlier expanded profile retained without changing its verification dates.",
+      "remainingGaps": []
+    },
+    {
+      "organizationId": "org_pulsetech",
+      "slug": "pulsetech",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_db2a3dce45b44c7792c9bf05",
+        "person_9ddb529a4e2b4a89a4c9a0c3"
+      ],
+      "sourceUrls": [
+        "https://pulsetechltd.com/",
+        "https://pulsetechltd.com/about/"
+      ],
+      "evidenceNotes": "Finance availability is not an approval guarantee; promotional revenue figures omitted.",
+      "remainingGaps": []
+    },
+    {
+      "organizationId": "org_relaxy",
+      "slug": "relaxy",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://relaxy.com.bd/"
+      ],
+      "evidenceNotes": "No clinical-effectiveness, professional-licensing or confidentiality guarantees inferred. Current founders not verified.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources."
+      ]
+    },
+    {
+      "organizationId": "org_revora",
+      "slug": "revora",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_c0d9fd8c2aa44512bfbe29f4",
+        "person_91114464d5ed46178ae378df"
+      ],
+      "sourceUrls": [
+        "https://userevora.com/",
+        "https://www.anchorless.vc/people",
+        "https://www.anchorless.vc/portfolio"
+      ],
+      "evidenceNotes": "Current roles cross-checked on Anchorless people page; usage and revenue-lift claims omitted. No direct contact verified.",
+      "remainingGaps": [
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_sharetrip",
+      "slug": "sharetrip",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://news.sharetrip.net/",
+        "https://support.sharetrip.net/en/article/how-can-i-contact-customer-support-if-i-have-an-issue-1gh7p52/"
+      ],
+      "evidenceNotes": "Official news and support pages used where primary booking app is a JavaScript shell. Current leadership, visa outcomes and service availability by route not asserted.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources."
+      ]
+    },
+    {
+      "organizationId": "org_shomvob",
+      "slug": "shomvob",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://shomvob.com/",
+        "https://shomvob.com/contact"
+      ],
+      "evidenceNotes": "Office location is deliberately broad; no street address inferred. Placement outcomes and current executive roles remain unverified.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public email confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_shopup-silq",
+      "slug": "shopup-silq",
+      "status": "previously-enriched",
+      "reviewedAt": null,
+      "addedSections": [],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://www.shopup.org/about"
+      ],
+      "evidenceNotes": "Earlier expanded profile retained without changing its verification dates.",
+      "remainingGaps": [
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_shuttle",
+      "slug": "shuttle",
+      "status": "source-limited",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://www.shuttlebd.com/"
+      ],
+      "evidenceNotes": "Official homepage timed out; older indexed official service description used with explicit availability qualification. Contact numbers, fare claims and executive roles withheld pending fresher confirmation.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_sokrio",
+      "slug": "sokrio",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://sokrio.com/"
+      ],
+      "evidenceNotes": "Displayed email has a placeholder mailto destination, so email omitted. Pricing and leadership not asserted.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public email confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_solshare",
+      "slug": "solshare",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_9cea0d437c964efb97b1a8d4",
+        "person_24e83c77361f498ba2690731"
+      ],
+      "sourceUrls": [
+        "https://solshare.com/",
+        "https://solshare.com/contact-us/",
+        "https://solshare.com/solar-rooftop/",
+        "https://solshare.com/team/"
+      ],
+      "evidenceNotes": "Impact totals and projected energy savings not reproduced. Protected email omitted; leadership added from the official team page.",
+      "remainingGaps": [
+        "No unambiguous current public email confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_tallykhata",
+      "slug": "tallykhata",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://www.tallykhata.com/en/home-eng/"
+      ],
+      "evidenceNotes": "No licence, deposit-protection or finance-eligibility claim made without regulator evidence. Direct contact and current executives remain gaps.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_tiger-new-energy",
+      "slug": "tiger-new-energy",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_77799373a47e4b338dd50025",
+        "person_05abfa3762bc4a16a1ad895b"
+      ],
+      "sourceUrls": [
+        "https://www.tigernewenergy.com/",
+        "https://www.tigernewenergy.com/about-us"
+      ],
+      "evidenceNotes": "Driver-income testimonials and returns on investment excluded. Current leaders not verified.",
+      "remainingGaps": []
+    },
+    {
+      "organizationId": "org_tipsoi",
+      "slug": "tipsoi",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://tipsoi.ai/",
+        "https://www.acceleratingasia.com/"
+      ],
+      "evidenceNotes": "Inovace is the existing Tipsoi identity; no duplicate organization created. Contact link returned homepage; compliance guarantees and unsupported leadership claims omitted.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_truck-lagbe",
+      "slug": "truck-lagbe",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://trucklagbe.com/en/home/",
+        "https://www.idlcvc.com/thesis"
+      ],
+      "evidenceNotes": "Per-trip prices and service guarantees omitted; existing dated financing retained separately.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public address confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_wedevs",
+      "slug": "wedevs",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_f4f3bcd92d084e1f9f6bd1ed",
+        "person_9ff8dae2f66a4195ad744e32"
+      ],
+      "sourceUrls": [
+        "https://wedevs.com/",
+        "https://wedevs.com/about/team/"
+      ],
+      "evidenceNotes": "Product names and purposes verified on official portfolio. Leadership added from the official team page; office not confirmed.",
+      "remainingGaps": [
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_wegro",
+      "slug": "wegro",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_caf0b65532aa4e5f95db5ba7",
+        "person_132c778eb7d84a3f90a84f11"
+      ],
+      "sourceUrls": [
+        "https://www.wegro.global/",
+        "https://www.wegro.global/who-we-are"
+      ],
+      "evidenceNotes": "No crowdfunding return, financing approval or guaranteed market outcome asserted. Leadership added from the official team page.",
+      "remainingGaps": []
+    },
+    {
+      "organizationId": "org_wpdeveloper",
+      "slug": "wpdeveloper",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://startise.com/",
+        "https://startise.com/about/"
+      ],
+      "evidenceNotes": "Parent site used because production WPDeveloper blocked retrieval; staging pages not accepted as current evidence. Startise executives not assigned to the WPDeveloper organization without a scoped role source.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_zatiq",
+      "slug": "zatiq",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://zatiqeasy.com/"
+      ],
+      "evidenceNotes": "Current product page used instead of inconsistent corporate homepage descriptions. No unqualified hardware-to-software pivot or platform-sales-as-revenue claim.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources."
+      ]
+    },
+    {
+      "organizationId": "org_bangladesh-women-investors-network",
+      "slug": "bangladesh-women-investors-network",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://bdangels.co/bwin"
+      ],
+      "evidenceNotes": "Shared BAN contact is labelled explicitly. Sister-chapter evidence does not establish a legal parent/subsidiary relationship; no typed parent edge added.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources."
+      ]
+    },
+    {
+      "organizationId": "org_startup-bangladesh-limited",
+      "slug": "startup-bangladesh-limited",
+      "status": "previously-enriched",
+      "reviewedAt": null,
+      "addedSections": [],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://www.startupbangladesh.vc/about/about-who-we-are/",
+        "https://www.startupbangladesh.vc/contact/apply-for-investment/",
+        "https://www.startupbangladesh.vc/contact/contact-info/",
+        "https://www.startupbangladesh.vc/contact/faqs/"
+      ],
+      "evidenceNotes": "Earlier expanded profile retained without changing its verification dates.",
+      "remainingGaps": []
+    },
+    {
+      "organizationId": "org_anchorless-bangladesh",
+      "slug": "anchorless-bangladesh",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_e2e0dea6f7e04fc588add219",
+        "person_ceb10587cf524936aad3d210",
+        "person_2fc040db138643e1a6e6ab7f"
+      ],
+      "sourceUrls": [
+        "https://tally.so/r/w76VlR",
+        "https://www.anchorless.vc/",
+        "https://www.anchorless.vc/people",
+        "https://www.anchorless.vc/portfolio"
+      ],
+      "evidenceNotes": "Placeholder founder testimonial excluded. City clocks do not establish office addresses. Portfolio founder roles sourced separately; no ownership amounts inferred. Final rendered review corrected the directory application route and explicitly dated minimum cheque size from the official linked form; the older overall record verification date was retained.",
+      "remainingGaps": [
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_bangladesh-startup-investment-company-plc-bsic",
+      "slug": "bangladesh-startup-investment-company-plc-bsic",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://www.bsic.vc/"
+      ],
+      "evidenceNotes": "Planned ecosystem programmes, macroeconomic projections and new funding totals not restated as realised outcomes. No named current committee members or direct contact verified.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_dekko-isho-venture-capital-divc",
+      "slug": "dekko-isho-venture-capital-divc",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://www.di.vc/"
+      ],
+      "evidenceNotes": "Founder testimonials do not establish full company rosters or investment amounts. Named fund executives not confirmed.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_bangladesh-venture-capital-limited-bvcl",
+      "slug": "bangladesh-venture-capital-limited-bvcl",
+      "status": "source-limited",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://venture.com.bd/"
+      ],
+      "evidenceNotes": "Researched but source-limited: current official site is a short overview without team, portfolio, ticket size or detailed application process. Protected email not guessed.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_yy-ventures",
+      "slug": "yy-ventures",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://yy.ventures/"
+      ],
+      "evidenceNotes": "A Muhammad Yunus quotation is not evidence of ownership or an operating role. Protected email and unsupported leadership claims omitted.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public email confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_accelerating-asia-ventures",
+      "slug": "accelerating-asia-ventures",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [],
+      "sourceUrls": [
+        "https://www.acceleratingasia.com/"
+      ],
+      "evidenceNotes": "Portfolio listings recorded as portfolio-mention, not direct-investment or ownership proof. Cohort-wide revenue/return claims and unspecified office details omitted.",
+      "remainingGaps": [
+        "No named professional role confirmed in reviewed sources.",
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_idlc-venture-capital",
+      "slug": "idlc-venture-capital",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_fa413a33a9db40ceb569eae2",
+        "person_105ff69f794e43c5a280a53c",
+        "person_4ff552fa66a34e6894ea5b8f"
+      ],
+      "sourceUrls": [
+        "https://www.idlcvc.com/coming-soon-03",
+        "https://www.idlcvc.com/team",
+        "https://www.idlcvc.com/thesis"
+      ],
+      "evidenceNotes": "Displayed email and mailto disagree, so email omitted. Existing portfolio retained as dated listing rather than evidence that new applications are open.",
+      "remainingGaps": [
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    },
+    {
+      "organizationId": "org_silq",
+      "slug": "silq",
+      "status": "enriched",
+      "reviewedAt": "2026-09-21",
+      "addedSections": [
+        "services"
+      ],
+      "addedPeople": [
+        "person_40926914cd43483ea46baa7e",
+        "person_74ac5898ed3543f7a79e362f"
+      ],
+      "sourceUrls": [
+        "https://www.shopup.org/about"
+      ],
+      "evidenceNotes": "Existing SILQ/ShopUp identities and parent relationship preserved. ShopUp email not presented as SILQ-wide contact. Dated group roles added without inferring employment start dates.",
+      "remainingGaps": [
+        "No unambiguous current public address confirmed.",
+        "No unambiguous current public email confirmed.",
+        "No unambiguous current public phone confirmed."
+      ]
+    }
+  ]
+}
