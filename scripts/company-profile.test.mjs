@@ -19,6 +19,23 @@ test('every Startup 50 and investor record has a unique shared company identity'
  const entries=JSON.parse(fs.readFileSync('data/startup-50.json')).entries
  const investors=JSON.parse(fs.readFileSync('data/directory/investors.json'))
  for(const [namespace,ids] of [['startup-50',entries.map(e=>e.slug)],['directory',investors.map(e=>'investors/'+e.id)]])for(const id of ids){const refs=snapshot.identities.references.filter(r=>r.namespace===namespace&&r.externalId===id);assert.equal(refs.length,1,id);assert.ok(snapshot.organizations.some(o=>o.id===refs[0].organizationId))}
- assert.equal(snapshot.organizations.filter(o=>o.profile).length,3)
+ for(const organization of snapshot.organizations.filter(o=>o.profile)) validateCompanyProfile(organization.profile)
  assert.notEqual(snapshot.identities.references.find(r=>r.externalId==='investors/bangladesh-angels-network').organizationId,snapshot.identities.references.find(r=>r.externalId==='investors/bangladesh-women-investors-network').organizationId)
+})
+
+test('first enrichment batch preserves evidence boundaries and separates portfolio mentions from investments',()=>{
+ const snapshot=JSON.parse(fs.readFileSync('data/ecosystem/public.json'))
+ const batch=['pathao','priyoshop','dorik','ifarmer','startup-bangladesh-limited']
+ for(const slug of batch){
+  const company=snapshot.organizations.find(o=>o.slug===slug)
+  assert.ok(company?.profile,slug)
+  assert.ok(company.profile.sections.every(s=>s.sources.length && s.body.en && s.body.bn),slug)
+  assert.ok(snapshot.identities.affiliations.some(a=>a.organizationId===company.id),slug)
+ }
+ const bySlug=slug=>snapshot.organizations.find(o=>o.slug===slug)
+ assert.equal(bySlug('dorik').profile.contact.address,null)
+ const sbl=snapshot.identities.organizationRelationships.filter(r=>r.subjectId===bySlug('startup-bangladesh-limited').id)
+ assert.equal(sbl.length,2)
+ assert.ok(sbl.every(r=>r.kind==='portfolio-mention' && r.startedOn===null && r.endedOn===null))
+ assert.ok(!snapshot.identities.affiliations.some(a=>a.id==='affiliation_mirza-salman-hossain-beg'))
 })

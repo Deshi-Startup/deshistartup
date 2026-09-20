@@ -40,8 +40,8 @@ identities, preserving Reverse Resources and adding SILQ as a separate group. Th
 ShopUp profile retains its original editorial slug. BAN portfolio mentions are not
 investment claims; BWIN retains a separate identity despite sharing BAN's domain.
 
-Three profiles have additional researched sections and contacts: 10 Minute School,
-BAN and ShopUp. Roles and relationships show their as-of dates and evidence. The
+The initial release added researched sections and contacts for 10 Minute School,
+BAN and ShopUp. Later enrichment batches are recorded below. Roles and relationships show their as-of dates and evidence. The
 other profiles use existing dated editorial research. Their publication does not
 claim that every fact was freshly checked. Funding remains sourced narrative, with
 no inferred total or valuation; structured funding events require a separate model.
@@ -93,3 +93,35 @@ Rendered checks covered 320px, 390px, 768px and 1440px layouts, English and Bang
 directory comparison, gallery filters, empty-state recovery, keyboard activation
 and filtered profile return. No functional errors or spacing defects were found
 in these checks. Production publication remains a separate operation.
+
+## First enrichment batch - 21 September 2026
+
+Migration `0015_company_profile_batch_one.sql` expands five existing profiles:
+Pathao, PriyoShop, Dorik, iFarmer and Startup Bangladesh Limited. This batch adds
+14 bilingual sections, seven public professional identities with dated roles, and
+two Startup Bangladesh portfolio mentions (Pathao and iFarmer). It adds no routes,
+account bindings or new schema. Existing case studies and editorial research remain
+linked with their original dates.
+
+Evidence comes from the organizations' official product, team and contact pages;
+each new claim carries its source and check date in the profile. Pathao Commerce
+uses the dated 10 September 2026 announcement. Startup Bangladesh's current contact
+page takes precedence over the older FAQ's email domain. The portfolio entries are
+explicitly mentions, not assertions of round size, ownership or investment terms.
+
+Gaps deliberately remain: Dorik has a verified support email but no office address
+confirmed in this batch; Pathao's protected email was not guessed, so the profile
+uses its public telephone and contact page. The founders listed are not claimed to
+be exhaustive. iFarmer's ambiguous combined Singapore address was omitted in favour
+of its clearly published Bangladesh office. No funding total or valuation was added.
+Chaldal was researched but deferred because it is not an existing company record.
+
+The migration and snapshot are prepared locally. Production migration, deployment
+and publication-pointer advancement remain separate authorized release steps.
+
+Validation: all 460 tests and the production build passed. The static export check
+covered 126 company pages and 1,746 internal links and anchors; all 28 localized
+new sections and contact emails were present. Browser checks covered all ten
+enriched pages at 320px, plus representative 390px and 1440px layouts. A long
+contact email overflow was fixed with wrapping; no horizontal overflow or browser
+errors remained. The SEO audit retained seven existing metadata-length advisories.

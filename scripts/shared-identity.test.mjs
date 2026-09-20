@@ -126,11 +126,11 @@ test('identity migrations, import, relationship review and public export work ag
     assert.equal((await exportSnapshot()).identities.organizationRelationships.filter(r => r.id === 'portfolio-test').length, 0)
     await assert.rejects(db.prepare("UPDATE person_organizations SET status = 'confirmed' WHERE id = 'role-test'").run(), /CHECK/)
     await db.batch([
-      db.prepare("UPDATE person_organizations SET status = 'confirmed', reviewed_at = ?").bind(now),
-      db.prepare("UPDATE organization_relationships SET status = 'confirmed', reviewed_at = ?").bind(now)
+      db.prepare("UPDATE person_organizations SET status = 'confirmed', reviewed_at = ? WHERE id = 'role-test'").bind(now),
+      db.prepare("UPDATE organization_relationships SET status = 'confirmed', reviewed_at = ? WHERE id = 'portfolio-test'").bind(now)
     ])
     const snapshot = await exportSnapshot(), index = sharedIdentityIndex(snapshot)
-    assert.equal(index.peopleAt('org_dorik')[0].personId, profile.id)
+    assert.equal(index.peopleAt('org_dorik').find(a => a.id === 'role-test').personId, profile.id)
     assert.equal(index.affiliations(profile.id)[0].endedOn, '2023-01-01')
     assert.equal(index.relationships('org_dorik')[0].kind, 'portfolio-mention')
     assert.equal(index.relationships('org_bangladesh-angels-network').find(r => r.id === 'portfolio-test').objectId, 'org_dorik')
@@ -144,7 +144,7 @@ test('identity migrations, import, relationship review and public export work ag
     assert.throws(() => validateEcosystemSnapshot(unsafe), /person/)
     await db.prepare("UPDATE people SET visibility = 'withdrawn' WHERE id = ?").bind(profile.id).run()
     assert.equal((await exportSnapshot()).identities.affiliations.filter(a => a.personId === profile.id).length, 0)
-    await db.prepare("UPDATE organization_relationships SET status = 'retracted'").run()
+    await db.prepare("UPDATE organization_relationships SET status = 'retracted' WHERE id = 'portfolio-test'").run()
     assert.equal((await exportSnapshot()).identities.organizationRelationships.filter(r => r.id === 'portfolio-test').length, 0)
   })
   assert.deepEqual((await db.prepare('PRAGMA foreign_key_check').all()).results, [])
