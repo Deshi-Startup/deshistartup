@@ -69,7 +69,7 @@
     "@milkdown/crepe": "^7.22.1",
     "@milkdown/kit": "^7.21.2",
     "jose": "^6.2.12",
-    "maplibre-gl": "^6.9.1",
+    "maplibre-gl": "^6.10.0",
     "next": "^15.5.25",
     "nextra": "^4.6.1",
     "react": "^19.3.0",
@@ -89,7 +89,7 @@
     "sharp": "^0.35.4",
     "typescript": "^5.9.3",
     "unified": "^11.0.5",
-    "wrangler": "^4.131.2",
+    "wrangler": "^4.134.0",
     "yaml": "^2.9.1"
   },
   "overrides": {
