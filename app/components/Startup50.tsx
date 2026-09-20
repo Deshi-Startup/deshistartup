@@ -1,4 +1,4 @@
-import { ecosystem, companyPath } from '../lib/ecosystem'
+import { identities, companyPath } from '../lib/ecosystem'
 import React from 'react'
 import './Startup50.css'
 import startup50Data from '../../data/startup-50.json'
@@ -259,7 +259,7 @@ export default function Startup50({ locale = 'bn' }: Startup50Props) {
               local(entry.sector, locale),
               local(data.sectorGroups[entry.sectorKey], locale)
             ].join(' ')
-            const profile = ecosystem.organizations.find(o => o.references.some(r => r.kind === 'startup-50' && r.target === entry.slug))
+            const profile = identities.organization('startup-50', entry.slug)
             return (
               <li key={entry.slug} data-startup-entry="" data-sector={entry.sectorKey} data-search={searchText}>
                 <article className="startup50-entry" id={entry.slug}>

@@ -211,7 +211,8 @@ test('prune preserves company-only logos, Startup 50 logos and social images', a
   await writeFile(path.join(fixtureRoot, 'data/contributor-ledger.json'), JSON.stringify({ profiles: [] }))
   await writeFile(path.join(fixtureRoot, 'data/contributors-policy.json'), JSON.stringify(policy()))
   await writeFile(path.join(fixtureRoot, 'data/ecosystem/public.json'), JSON.stringify({
-    organizations: [{ id: 'company-only', logoPath: '/media/companies/only.webp' }, { id: 'no-logo', logoPath: null }]
+    organizations: [{ id: 'company-only', logoPath: '/media/companies/only.webp' }, { id: 'no-logo', logoPath: null }],
+    identities: { people: [{ id: 'person-only', avatarPath: '/media/people/only.webp' }] }
   }))
   await writeFile(
     path.join(fixtureRoot, 'data/startup-50-logos.json'),
@@ -226,6 +227,9 @@ test('prune preserves company-only logos, Startup 50 logos and social images', a
     JSON.stringify({
       '/media/companies/only.webp': {
         key: 'companies/only.dddddddddddd.webp', bytes: 100
+      },
+      '/media/people/only.webp': {
+        key: 'people/only.eeeeeeeeeeee.webp', bytes: 100
       },
       '/media/startup-50/example.webp': {
         key: 'startup-50/example.aaaaaaaaaaaa.webp', bytes: 100
@@ -255,6 +259,7 @@ test('prune preserves company-only logos, Startup 50 logos and social images', a
   assert.deepEqual(Object.keys(active).sort(), [
     '/media/companies/only.webp',
     '/media/og/en/example.png',
+    '/media/people/only.webp',
     '/media/startup-50/example.webp'
   ])
   await writeFile(path.join(fixtureRoot, 'data/ecosystem/public.json'), JSON.stringify({

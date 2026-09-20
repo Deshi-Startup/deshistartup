@@ -1,3 +1,4 @@
+import type { PublicIdentities } from './shared-identity'
 export type Locale = 'en' | 'bn'
 export type Localized<T> = Record<Locale, T>
 export type OrganizationRole = 'startup' | 'investor' | 'accelerator' | 'incubator' | 'community'
@@ -32,6 +33,7 @@ export interface Connection {
 export interface EcosystemSnapshot {
   version: 1; releaseId: string; createdAt: string;
   problems: Problem[]; approaches: Approach[]; organizations: Organization[]; connections: Connection[]
+  identities?: PublicIdentities
 }
 export interface ConnectionProposal {
   version: 1; locale: Locale; problemId: string; organizationId: string;

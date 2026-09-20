@@ -174,8 +174,11 @@ marker cannot advance the pointer. Frozen releases remain in the selected D1 dat
 account. The primary is in APAC; read replication is disabled. There is no replica
 consistency/session machinery to maintain. Local development uses a different config
 and database identity. Normal builds read the committed public snapshot, not D1.
-All eleven migrations have been applied to the new remote database. No production
-Worker deployment is performed by these commands.
+The first eleven migrations were applied for the initial remote database. The
+additive shared-identity migration `0012` must also be applied before preparing a
+release with the updated exporter; its presence in Git does not mean it has run
+remotely. See [`shared-identity.md`](./shared-identity.md) for the import and identity
+publication boundaries. No production Worker deployment is performed by these commands.
 
 Use explicit remote commands only when preparing a production release:
 

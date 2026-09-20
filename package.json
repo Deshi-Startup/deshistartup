@@ -60,6 +60,8 @@
     "ecosystem:init": "node scripts/ecosystem.mjs init",
     "ecosystem:prepare": "node scripts/ecosystem.mjs prepare",
     "ecosystem:publish": "node scripts/ecosystem.mjs publish",
+    "identities:import": "node scripts/identity-import.mjs",
+    "test:identities": "node --experimental-strip-types --test scripts/shared-identity.test.mjs",
     "dev:ecosystem": "DESHI_ECOSYSTEM_LOCAL=1 npm run dev --",
     "test:ecosystem": "node --experimental-strip-types --test worker/api/ecosystem.test.mjs scripts/ecosystem.test.mjs"
   },

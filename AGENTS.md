@@ -39,6 +39,9 @@ without `<StubNotice />`; run `npm run backlog:status` for current counts.
 - Pagefind supplies client-side static search.
 - D1 stores ecosystem records, private submissions, reviews and votes. Idea/company
   reading stays static through `data/ecosystem/public.json`; builds do not query D1.
+- Shared people, organization references and reviewed relationships use the additive
+  identity schema. Follow [`docs/shared-identity.md`](./docs/shared-identity.md) for
+  stable IDs, private account links, import and publication boundaries.
 - Milkdown Crepe powers the inline editor.
 - `jose` verifies Google ID tokens on every contribution request.
 

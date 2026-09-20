@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { identityColumns, identityWhere, identitySnapshot, validateIdentities } from './identity-snapshot.mjs'
 
 export const snapshotDigest = snapshot => createHash('sha256').update(JSON.stringify(snapshot)).digest('hex')
 const parsed = value => JSON.parse(value)
@@ -12,7 +13,8 @@ export const publicColumns = {
   organizations: 'id slug website logo_path roles_json aliases_json sources_json source_date origin',
   organization_text: 'organization_id locale name description',
   organization_references: 'organization_id kind target',
-  connections: 'id organization_id problem_id stage work_en work_bn evidence_url review_scope reviewed_at'
+  connections: 'id organization_id problem_id stage work_en work_bn evidence_url review_scope reviewed_at',
+  ...identityColumns
 }
 const activeProblems = 'SELECT id FROM problems WHERE active = 1'
 const publicWhere = {
@@ -20,7 +22,8 @@ const publicWhere = {
   problem_text: `problem_id IN (${activeProblems})`,
   approaches: `problem_id IN (${activeProblems})`,
   approach_text: `approach_id IN (SELECT id FROM approaches WHERE problem_id IN (${activeProblems}))`,
-  connections: `problem_id IN (${activeProblems})`
+  connections: `problem_id IN (${activeProblems})`,
+  ...identityWhere
 }
 const publicQuery = table => `SELECT * FROM ${table}${publicWhere[table] ? ` WHERE ${publicWhere[table]}` : ''} ORDER BY rowid`
 export const snapshotRowsSql = 'SELECT json_object(' + Object.entries(publicColumns).map(([table, columns]) =>
@@ -28,7 +31,10 @@ export const snapshotRowsSql = 'SELECT json_object(' + Object.entries(publicColu
 ).join(', ') + ') AS snapshot_rows'
 
 export async function readEcosystemSnapshot(query, releaseId, createdAt) {
-  const [problems, problemText, approaches, approachText, organizations, organizationText, references, connections] = await Promise.all(Object.keys(publicColumns).map(table => query(publicQuery(table))))
+  const tables = Object.keys(publicColumns)
+  const values = await Promise.all(tables.map(table => query(publicQuery(table))))
+  const [problems, problemText, approaches, approachText, organizations, organizationText, references, connections] = values
+  const identities = identitySnapshot(Object.fromEntries(tables.map((table, i) => [table, values[i]])))
   const localized = (rows, idKey, id, transform) => Object.fromEntries(rows.filter(x => x[idKey] === id).map(x => [x.locale, transform(x)]))
   const snapshot = {
     version: 1, releaseId, createdAt,
@@ -38,8 +44,12 @@ export async function readEcosystemSnapshot(query, releaseId, createdAt) {
       ...localized(approachText, 'approach_id', a.id, t => ({ title: t.title, summary: t.summary, description: t.description, businessModel: t.business_model, steps: parsed(t.steps_json), signal: t.signal, prototype: t.prototype, editorialNote: t.editorial_note })) })),
     organizations: organizations.map(o => ({ id: o.id, slug: o.slug, website: o.website, logoPath: o.logo_path, roles: parsed(o.roles_json), aliases: parsed(o.aliases_json), sourceUrls: parsed(o.sources_json), sourceDate: o.source_date, origin: o.origin,
       ...localized(organizationText, 'organization_id', o.id, t => ({ name: t.name, description: t.description })),
-      references: references.filter(r => r.organization_id === o.id).map(r => ({ kind: r.kind, target: r.target })) })),
-    connections: connections.map(c => ({ id: c.id, organizationId: c.organization_id, problemId: c.problem_id, stage: c.stage, en: c.work_en, bn: c.work_bn, evidenceUrl: c.evidence_url, reviewScope: c.review_scope, reviewedAt: c.reviewed_at }))
+      references: [
+        ...references.filter(r => r.organization_id === o.id).map(r => ({ kind: r.kind, target: r.target })),
+        ...identities.references.filter(r => r.organizationId === o.id && r.namespace === 'startup-50').map(r => ({ kind: 'startup-50', target: r.externalId }))
+      ] })),
+    connections: connections.map(c => ({ id: c.id, organizationId: c.organization_id, problemId: c.problem_id, stage: c.stage, en: c.work_en, bn: c.work_bn, evidenceUrl: c.evidence_url, reviewScope: c.review_scope, reviewedAt: c.reviewed_at })),
+    identities
   }
   validateEcosystemSnapshot(snapshot)
   return snapshot
@@ -80,5 +90,7 @@ export function validateEcosystemSnapshot(snapshot) {
     }
   }
   if (snapshot.approaches.some(a => !ids.problems.has(a.problemId)) || snapshot.connections.some(c => !ids.problems.has(c.problemId) || !ids.organizations.has(c.organizationId))) throw new Error('Dangling relationship')
+  // Older frozen releases remain buildable. New exports include the identity section.
+  if (snapshot.identities !== undefined) validateIdentities(snapshot.identities, ids.organizations)
   return snapshot
 }

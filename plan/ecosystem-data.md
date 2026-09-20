@@ -18,7 +18,9 @@ D1 stores problems, ideas, shared company identities and private submissions.
 The current seed collection and editorial standard live in the feature documentation. The Worker supports authenticated submissions and reviewer decisions;
 a frozen public snapshot supplies static pages. Investor firms, accelerators,
 incubators and communities use company roles rather than separate route trees.
-Individual people and programs remain separate future concepts.
+Individual people now have a separate shared-identity foundation; programs remain
+a future concept. See [`docs/shared-identity.md`](../docs/shared-identity.md) for the
+schema, source crosswalks, reviewed relationships and staged publication contract.
 
 The implementation includes DS50/case-study links, shared votes and separate
 approval/publication. The production D1 binding, review ownership, manual removal
