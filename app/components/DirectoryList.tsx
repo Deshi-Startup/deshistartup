@@ -1,4 +1,5 @@
 import React from 'react'
+import { identities, companyPath } from '../lib/ecosystem'
 import investors from '../../data/directory/investors.json'
 import accelerators from '../../data/directory/accelerators.json'
 import governmentFunding from '../../data/directory/government-funding.json'
@@ -32,5 +33,10 @@ export default function DirectoryList({ category = 'investors', locale = 'bn' }:
     throw new Error(`Unknown directory category: ${category}`)
   }
 
-  return <DirectoryFilterTable key={`${category}-${locale}`} category={category} locale={locale} rows={localizeDirectory(entries, locale)} />
+  const rows = localizeDirectory(entries, locale).map(row => {
+    const organization = identities.organization('directory', `${category}/${row.id}`)
+    return { ...row, profilePath: organization ? companyPath(locale, organization.slug) : undefined }
+  })
+
+  return <DirectoryFilterTable key={`${category}-${locale}`} category={category} locale={locale} rows={rows} />
 }

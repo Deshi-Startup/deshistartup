@@ -1,3 +1,4 @@
+import type { CompanyProfileContent } from './company-profile-types'
 import type { PublicIdentities } from './shared-identity'
 export type Locale = 'en' | 'bn'
 export type Localized<T> = Record<Locale, T>
@@ -22,6 +23,7 @@ export interface Approach extends Localized<ApproachCopy> {
 }
 export interface Organization extends Localized<{ name: string; description: string }> {
   id: string; slug: string; website: string; logoPath: string | null;
+  profile?: CompanyProfileContent;
   roles: OrganizationRole[]; aliases: string[]; sourceUrls: string[]; sourceDate: string | null;
   origin: 'editorial-import' | 'reviewed-submission';
   references: { kind: 'case-study' | 'startup-50'; target: string }[]

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "releaseId": "release_7f5a124e-f9a5-49cb-a3db-9869b43c978e",
-  "createdAt": "2026-09-19T22:17:43.963Z",
+  "releaseId": "release_b8616daa-47c3-4068-8092-dc72aa098d9b",
+  "createdAt": "2026-09-20T14:39:29.741Z",
   "problems": [
     {
       "id": "garment-offcuts",
@@ -463,13 +463,50 @@
         "name": "10 Minute School",
         "description": "বাংলাদেশের শিক্ষার্থীদের জন্য ডিজিটাল কোর্স, পরীক্ষার প্রস্তুতি ও পড়াশোনার নানা উপকরণ।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "products",
+            "title": {
+              "en": "Products & services",
+              "bn": "প্রোডাক্ট ও সেবা"
+            },
+            "body": {
+              "en": "10 Minute School offers academic courses, exam preparation, English and practical skills courses alongside free educational content. Learners can use recorded lessons, live classes and practice materials through its app.",
+              "bn": "10 Minute School-এ স্কুলের পড়াশোনা, পরীক্ষার প্রস্তুতি, ইংরেজি ও কাজের দক্ষতা শেখার কোর্স আছে। বিনা মূল্যের শিক্ষামূলক কনটেন্টও পাওয়া যায়। অ্যাপে রেকর্ড করা পাঠ, লাইভ ক্লাস ও অনুশীলনের উপকরণ ব্যবহার করা যায়।"
+            },
+            "sources": [
+              {
+                "title": "10 Minute School - courses and support",
+                "url": "https://10minuteschool.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-20"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": "16910",
+          "sources": [
+            {
+              "title": "10 Minute School - courses and support",
+              "url": "https://10minuteschool.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-20"
+            }
+          ]
+        }
+      },
       "references": [
         {
-          "kind": "startup-50",
+          "kind": "case-study",
           "target": "10-minute-school"
         },
         {
-          "kind": "case-study",
+          "kind": "startup-50",
           "target": "10-minute-school"
         }
       ]
@@ -499,11 +536,11 @@
       },
       "references": [
         {
-          "kind": "startup-50",
+          "kind": "case-study",
           "target": "arogga"
         },
         {
-          "kind": "case-study",
+          "kind": "startup-50",
           "target": "arogga"
         }
       ]
@@ -533,11 +570,11 @@
       },
       "references": [
         {
-          "kind": "startup-50",
+          "kind": "case-study",
           "target": "bkash"
         },
         {
-          "kind": "case-study",
+          "kind": "startup-50",
           "target": "bkash"
         }
       ]
@@ -567,11 +604,11 @@
       },
       "references": [
         {
-          "kind": "startup-50",
+          "kind": "case-study",
           "target": "dorik"
         },
         {
-          "kind": "case-study",
+          "kind": "startup-50",
           "target": "dorik"
         }
       ]
@@ -601,11 +638,11 @@
       },
       "references": [
         {
-          "kind": "startup-50",
+          "kind": "case-study",
           "target": "pathao"
         },
         {
-          "kind": "case-study",
+          "kind": "startup-50",
           "target": "pathao"
         }
       ]
@@ -635,11 +672,11 @@
       },
       "references": [
         {
-          "kind": "startup-50",
+          "kind": "case-study",
           "target": "shikho"
         },
         {
-          "kind": "case-study",
+          "kind": "startup-50",
           "target": "shikho"
         }
       ]
@@ -667,6 +704,74 @@
       "bn": {
         "name": "Bangladesh Angels Network",
         "description": "সদস্যদের পরিচালিত এই অ্যাঞ্জেল নেটওয়ার্কটি প্রাথমিক পর্যায়ের বাংলাদেশ-সম্পর্কিত ডিজিটাল ব্যবসায় যৌথভাবে বিনিয়োগ করে। BAN নির্বাচিত ফাউন্ডারদের পিচ ডেক, ডেটা রুম ও ফান্ড সংগ্রহের পরিকল্পনা গুছিয়ে নিতে সাহায্য করে। এরপর যৌথ ডিউ ডিলিজেন্স ও সমন্বিত টার্ম শিটের জন্য ইনভেস্টরদের সামনে উপস্থাপন করে।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "network",
+            "title": {
+              "en": "How the network works",
+              "bn": "নেটওয়ার্কটি যেভাবে কাজ করে"
+            },
+            "body": {
+              "en": "BAN connects founders with angel investors and helps them prepare for fundraising, including investor readiness and cap-table advice. Members make their own investment decisions. BAN says it does not pool member capital into a fund.",
+              "bn": "ফান্ড সংগ্রহের প্রস্তুতি নিতে ও অ্যাঞ্জেল ইনভেস্টরদের সঙ্গে যোগাযোগ করতে ফাউন্ডারদের সাহায্য করে BAN। বিনিয়োগের প্রস্তুতি ও ক্যাপ টেবিল নিয়েও পরামর্শ দেয়। বিনিয়োগ করবেন কি না, সেই সিদ্ধান্ত সদস্যরা নিজেরাই নেন। BAN-এর ভাষ্য অনুযায়ী, সদস্যদের টাকা একত্র করে কোনো ফান্ড চালায় না তারা।"
+            },
+            "sources": [
+              {
+                "title": "About Bangladesh Angels Network",
+                "url": "https://bdangels.co/about-us",
+                "publishedOn": null,
+                "checkedAt": "2026-09-20"
+              }
+            ],
+            "links": []
+          },
+          {
+            "id": "apply",
+            "title": {
+              "en": "For founders raising capital",
+              "bn": "ফান্ড সংগ্রহ করতে চাইলে"
+            },
+            "body": {
+              "en": "Review the network’s application process and submit through its official founder route. Interest from the network is not a funding commitment.",
+              "bn": "আবেদনের নিয়মগুলো দেখে BAN-এর নিজস্ব ওয়েবসাইটে তথ্য জমা দিন। নেটওয়ার্ক আগ্রহ দেখালেই বিনিয়োগের প্রতিশ্রুতি দিয়েছে, এমন ধরে নেবেন না।"
+            },
+            "sources": [
+              {
+                "title": "BAN - founder application",
+                "url": "https://bdangels.co/startups",
+                "publishedOn": null,
+                "checkedAt": "2026-09-20"
+              }
+            ],
+            "links": [
+              {
+                "label": {
+                  "en": "Founder application",
+                  "bn": "ফাউন্ডারদের আবেদন"
+                },
+                "url": "https://bdangels.co/startups"
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Level 3, House 27, Road 12, Niketon Housing Society, Gulshan 1, Dhaka 1212, Bangladesh.",
+            "bn": "লেভেল ৩, বাড়ি ২৭, রোড ১২, নিকেতন হাউজিং সোসাইটি, গুলশান ১, ঢাকা ১২১২, বাংলাদেশ।"
+          },
+          "email": "hello@bdangels.co",
+          "phone": null,
+          "sources": [
+            {
+              "title": "About Bangladesh Angels Network",
+              "url": "https://bdangels.co/about-us",
+              "publishedOn": null,
+              "checkedAt": "2026-09-20"
+            }
+          ]
+        }
       },
       "references": []
     },
@@ -697,6 +802,1699 @@
         "description": "কাপড়ের বর্জ্যের গতিপথের তথ্য রাখার প্ল্যাটফর্ম। প্রস্তুতকারক, বর্জ্য সংগ্রহকারী ও রিসাইক্লারদের যুক্ত করে। বাংলাদেশেও কাজের প্রকাশিত তথ্য আছে।"
       },
       "references": []
+    },
+    {
+      "id": "org_agricore",
+      "slug": "agricore",
+      "website": "https://insurecow.com/",
+      "logoPath": "/media/startup-50/agricore.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://insurecow.com/",
+        "https://www.huawei.com/en/media-center/transform/17/18-insurecow",
+        "https://www.linkedin.com/posts/blade-group_agricore-blade-labs-sharia-compliant-activity-7448305030027321344-wBKH"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "AgriCore (formerly InsureCow)",
+        "description": "Makes livestock and farm assets verifiable for banks, insurers and agricultural finance."
+      },
+      "bn": {
+        "name": "AgriCore (formerly InsureCow)",
+        "description": "ব্যাংক, বিমা কোম্পানি ও কৃষি অর্থায়ন প্রতিষ্ঠানের কাছে খামার ও গবাদিপশুর তথ্য যাচাই করার ব্যবস্থা দেয়।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "agricore"
+        }
+      ]
+    },
+    {
+      "id": "org_agroshift",
+      "slug": "agroshift",
+      "website": "https://agroshift.com/",
+      "logoPath": "/media/startup-50/agroshift.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://agroshift.com/",
+        "https://www.tbsnews.net/economy/corporates/agroshift-raises-18m-pre-seed-funding-519738"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Agroshift",
+        "description": "Connects agricultural demand, sourcing and distribution through a technology-enabled supply chain."
+      },
+      "bn": {
+        "name": "Agroshift",
+        "description": "প্রযুক্তির সাহায্যে কৃষিপণ্যের চাহিদা, মাঠ থেকে সংগ্রহ ও সরবরাহকে এক ব্যবস্থার মধ্যে আনে।"
+      },
+      "references": [
+        {
+          "kind": "case-study",
+          "target": "agroshift"
+        },
+        {
+          "kind": "startup-50",
+          "target": "agroshift"
+        }
+      ]
+    },
+    {
+      "id": "org_airwork",
+      "slug": "airwork",
+      "website": "https://airwork.ai/",
+      "logoPath": "/media/startup-50/airwork.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://airwork.ai/",
+        "https://airwork.ai/about",
+        "https://www.thedailystar.net/news/tech-startup/news/how-bangladeshi-startups-are-building-global-revenue-4194406",
+        "https://www.exitstack.co/database/airwork"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Airwork",
+        "description": "An AI-assisted hiring platform connecting companies with vetted technical talent across emerging markets."
+      },
+      "bn": {
+        "name": "Airwork",
+        "description": "বিকাশমান বাজারের যাচাই করা টেক ট্যালেন্টদের বিভিন্ন কোম্পানির সঙ্গে যুক্ত করার AI-সহায়ক নিয়োগ প্ল্যাটফর্ম।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "airwork"
+        }
+      ]
+    },
+    {
+      "id": "org_amarlab",
+      "slug": "amarlab",
+      "website": "https://amarlab.com/",
+      "logoPath": "/media/startup-50/amarlab.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://amarlab.com/",
+        "https://www.tbsnews.net/bangladesh/health/too-sick-leave-bed-tests-call-amar-lab-1185561",
+        "https://futurestartup.com/2022/03/20/amarlab-ceo-tazin-shadid-on-building-a-pioneering-on-demand-at-home-pathology-test-services-company-in-bangladesh/"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "AmarLab",
+        "description": "Lets people book diagnostic tests from home or work, choose a partner lab and receive reports online."
+      },
+      "bn": {
+        "name": "AmarLab",
+        "description": "বাসা বা অফিস থেকে ডায়াগনস্টিক টেস্ট বুক করা, পছন্দের ল্যাব বেছে নেওয়া ও অনলাইনে রিপোর্ট পাওয়ার সুবিধা দেয়।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "amarlab"
+        }
+      ]
+    },
+    {
+      "id": "org_appscode",
+      "slug": "appscode",
+      "website": "https://appscode.com/",
+      "logoPath": "/media/startup-50/appscode.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://appscode.com/",
+        "https://appscode.com/about/",
+        "https://www.iteuropa.com/news/kubernetes-data-management-player-appscode-looking-partners",
+        "https://aws.amazon.com/marketplace/pp/prodview-izn7wxvkpbjuo"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "AppsCode",
+        "description": "Software for running, backing up and securing databases on Kubernetes."
+      },
+      "bn": {
+        "name": "AppsCode",
+        "description": "Kubernetes-এ ডেটাবেস চালানো, ব্যাকআপ রাখা ও নিরাপদ রাখার সফটওয়্যার।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "appscode"
+        }
+      ]
+    },
+    {
+      "id": "org_aunkur",
+      "slug": "aunkur",
+      "website": "https://aunkur.ai/",
+      "logoPath": "/media/startup-50/aunkur.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://aunkur.ai/",
+        "https://www.tbsnews.net/features/panorama/ipage-ai-based-start-helping-farmers-become-smarter-richer-326683",
+        "https://aunkur.ai/"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Aunkur",
+        "description": "Farm analytics and climate data for agricultural credit and insurance decisions."
+      },
+      "bn": {
+        "name": "Aunkur",
+        "description": "কৃষিঋণ ও ইনস্যুরেন্সের সিদ্ধান্তের জন্য খামার বিশ্লেষণ ও জলবায়ুর ডেটা দেয়।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "aunkur"
+        }
+      ]
+    },
+    {
+      "id": "org_barikoi",
+      "slug": "barikoi",
+      "website": "https://barikoi.com/",
+      "logoPath": "/media/startup-50/barikoi.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://barikoi.com/",
+        "https://www.exitstack.co/posts/barikoi-raises-us-182k-in-seed-from-idlc"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Barikoi",
+        "description": "Maps, geocoding and location APIs designed for Bangladesh."
+      },
+      "bn": {
+        "name": "Barikoi",
+        "description": "বাংলাদেশের প্রেক্ষাপটে তৈরি ম্যাপ, জিওকোডিং ও লোকেশন API।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "barikoi"
+        }
+      ]
+    },
+    {
+      "id": "org_bimafy",
+      "slug": "bimafy",
+      "website": "https://bimafy.com/",
+      "logoPath": "/media/startup-50/bimafy.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://bimafy.com/",
+        "https://www.startupbangladesh.vc/portfolio/bimafy/",
+        "https://idlc.com/mbr/images/public/ewyiPX4uRXGOz8pJdf9nZv.pdf"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Bimafy",
+        "description": "A digital insurance marketplace and embedded-insurance platform for individuals and businesses."
+      },
+      "bn": {
+        "name": "Bimafy",
+        "description": "ব্যক্তি ও ব্যবসাপ্রতিষ্ঠানের জন্য ডিজিটাল ইনস্যুরেন্স মার্কেটপ্লেস ও এমবেডেড ইনস্যুরেন্স প্ল্যাটফর্ম।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "bimafy"
+        }
+      ]
+    },
+    {
+      "id": "org_bongo",
+      "slug": "bongo",
+      "website": "https://bongobd.com/",
+      "logoPath": "/media/startup-50/bongo.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://bongobd.com/",
+        "https://bongoholdings.com/",
+        "https://play.google.com/store/apps/details?id=com.bongo.bongobdandroidtv"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Bongo",
+        "description": "A streaming platform for Bangla entertainment, original shows and live sport."
+      },
+      "bn": {
+        "name": "Bongo",
+        "description": "বাংলা সিনেমা, নাটক, নিজস্ব শো আর খেলা সরাসরি দেখার স্ট্রিমিং প্ল্যাটফর্ম।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "bongo"
+        }
+      ]
+    },
+    {
+      "id": "org_cassetex",
+      "slug": "cassetex",
+      "website": "https://www.cassetex.com/",
+      "logoPath": "/media/startup-50/cassetex.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.cassetex.com/",
+        "https://www.cassetex.com/milestones/",
+        "https://www.faraday.ac.uk/wp-content/uploads/2026/03/Charging-ahead-March2026-FINAL.pdf"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Cassetex",
+        "description": "Solar-powered battery-swapping infrastructure for electric three-wheelers and other light vehicles."
+      },
+      "bn": {
+        "name": "Cassetex",
+        "description": "বৈদ্যুতিক তিন চাকার যান ও অন্যান্য হালকা যানের জন্য সৌরবিদ্যুৎচালিত ব্যাটারি সোয়াপিং অবকাঠামো।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "cassetex"
+        }
+      ]
+    },
+    {
+      "id": "org_chamak",
+      "slug": "chamak",
+      "website": "https://chamakinc.com/",
+      "logoPath": "/media/startup-50/chamak.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://chamakinc.com/",
+        "https://futurestartup.com/2026/04/05/debasish-chakraborty-on-chamak/"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Chamak",
+        "description": "Technology-enabled trade receivables and working-capital financing for businesses."
+      },
+      "bn": {
+        "name": "Chamak",
+        "description": "ব্যবসার ট্রেড রিসিভেবল ও চলতি মূলধন অর্থায়নের প্রযুক্তিনির্ভর প্ল্যাটফর্ম।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "chamak"
+        }
+      ]
+    },
+    {
+      "id": "org_digibox",
+      "slug": "digibox",
+      "website": "https://digibox.com.bd/",
+      "logoPath": "/media/startup-50/digibox.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://digibox.com.bd/",
+        "https://digibox.com.bd/founders/",
+        "https://www.acceleratingasia.com/latest-news/acceleratingasia-c13-digibox",
+        "https://futurestartup.com/2026/06/09/accelerating-asia-backs-5-startups-in-cohort-13-including-two-bangladeshi-companies/"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "DIGIBOX",
+        "description": "A shared network of IoT parcel lockers for ecommerce, couriers, banks and retailers."
+      },
+      "bn": {
+        "name": "DIGIBOX",
+        "description": "ই-কমার্স কোম্পানি, কুরিয়ার, ব্যাংক ও খুচরা বিক্রেতাদের জন্য IoT পার্সেল লকারের যৌথ নেটওয়ার্ক।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "digibox"
+        }
+      ]
+    },
+    {
+      "id": "org_dubotech",
+      "slug": "dubotech",
+      "website": "https://dubotech.com/",
+      "logoPath": "/media/startup-50/dubotech.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://dubotech.com/",
+        "https://bracuexpress.com/rise-of-dubotech-from-student-researchers-to-startup-champions"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Dubotech",
+        "description": "Underwater remotely operated and autonomous vehicles for inspection, research and defence uses."
+      },
+      "bn": {
+        "name": "Dubotech",
+        "description": "পরিদর্শন, গবেষণা ও প্রতিরক্ষা কাজে ব্যবহারের জন্য রিমোটচালিত ও স্বয়ংক্রিয় আন্ডারওয়াটার যান তৈরি করে।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "dubotech"
+        }
+      ]
+    },
+    {
+      "id": "org_ecovia",
+      "slug": "ecovia",
+      "website": "https://ecoviaglobal.com/",
+      "logoPath": "/media/startup-50/ecovia.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://ecoviaglobal.com/",
+        "https://www.tbsnews.net/feature/panorama/ecovia-turning-waste-biodegradable-plastic-218788"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Ecovia",
+        "description": "Compostable packaging materials made from locally available agricultural and textile waste."
+      },
+      "bn": {
+        "name": "Ecovia",
+        "description": "স্থানীয় কৃষি ও পোশাক কারখানার বর্জ্য থেকে তৈরি কম্পোস্টযোগ্য প্যাকেজিং উপাদান।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "ecovia"
+        }
+      ]
+    },
+    {
+      "id": "org_ezycourse",
+      "slug": "ezycourse",
+      "website": "https://ezycourse.com/",
+      "logoPath": "/media/startup-50/ezycourse.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://ezycourse.com/",
+        "https://thefinancialexpress.com.bd/youth-and-entrepreneurship/bangladeshi-founder-bootstrapped-his-way-to-global-success"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "EzyCourse",
+        "description": "An all-in-one platform for selling courses, communities and digital products."
+      },
+      "bn": {
+        "name": "EzyCourse",
+        "description": "কোর্স, কমিউনিটি ও ডিজিটাল পণ্য বিক্রির অল-ইন-ওয়ান প্ল্যাটফর্ম।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "ezycourse"
+        }
+      ]
+    },
+    {
+      "id": "org_fashol",
+      "slug": "fashol",
+      "website": "https://fashol.com/",
+      "logoPath": "/media/startup-50/fashol.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://fashol.com/",
+        "https://agfundernews.com/bangladeshs-fashol-tackles-the-agrifood-supply-chain-to-stabilize-food-prices-for-farmers-and-reduce-food-waste",
+        "https://www.thedailystar.net/business/economy/news/startup-fashol-gets-1m-investment-3296846"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Fashol",
+        "description": "Connects farmers with retailers, restaurants and other buyers through software, collection hubs and logistics."
+      },
+      "bn": {
+        "name": "Fashol",
+        "description": "সফটওয়্যার, সংগ্রহকেন্দ্র ও লজিস্টিকসের মাধ্যমে কৃষকদের খুচরা বিক্রেতা, রেস্তোরাঁ ও অন্যান্য ক্রেতাদের সঙ্গে যুক্ত করে।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "fashol"
+        }
+      ]
+    },
+    {
+      "id": "org_gozayaan",
+      "slug": "gozayaan",
+      "website": "https://gozayaan.com/",
+      "logoPath": "/media/startup-50/gozayaan.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://gozayaan.com/",
+        "https://sturgeoncapital.substack.com/p/building-bangladeshs-largest-online"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "GoZayaan",
+        "description": "Online booking for flights, hotels, tours and other travel services."
+      },
+      "bn": {
+        "name": "GoZayaan",
+        "description": "ফ্লাইট, হোটেল, ট্যুর ও ভ্রমণের নানা সেবা অনলাইনে বুক করার প্ল্যাটফর্ম।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "gozayaan"
+        }
+      ]
+    },
+    {
+      "id": "org_hishabee",
+      "slug": "hishabee",
+      "website": "https://www.hishabee.io/",
+      "logoPath": "/media/startup-50/hishabee.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.hishabee.io/",
+        "https://www.dhakatribune.com/business/279440/accelerating-asia-invests-in-bangladeshi-startup",
+        "https://www.thedailystar.net/business/news/prime-bank-hishabee-strike-mou-boost-retail-banking-3600496"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Hishabee",
+        "description": "Gives small retailers one app for bookkeeping, inventory, online sales and financing stock purchases."
+      },
+      "bn": {
+        "name": "Hishabee",
+        "description": "ছোট দোকানদারদের হিসাব, স্টক, অনলাইন বিক্রি ও পণ্য কেনার অর্থায়নের সব সুবিধা এক অ্যাপে দেয়।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "hishabee"
+        }
+      ]
+    },
+    {
+      "id": "org_ifarmer",
+      "slug": "ifarmer",
+      "website": "https://ifarmer.asia/",
+      "logoPath": "/media/startup-50/ifarmer.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://ifarmer.asia/",
+        "https://futurestartup.com/2022/05/31/how-ifarmer-was-created-lessons-in-finding-product-market-fit/"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "iFarmer",
+        "description": "Connects farmers with finance, inputs, advisory support and market access."
+      },
+      "bn": {
+        "name": "iFarmer",
+        "description": "কৃষকদের অর্থায়ন, সার-বীজের উপকরণ, বিশেষজ্ঞ পরামর্শ ও বাজারের সঙ্গে যুক্ত করে।"
+      },
+      "references": [
+        {
+          "kind": "case-study",
+          "target": "ifarmer"
+        },
+        {
+          "kind": "startup-50",
+          "target": "ifarmer"
+        }
+      ]
+    },
+    {
+      "id": "org_jatri",
+      "slug": "jatri",
+      "website": "https://jatri.co/",
+      "logoPath": "/media/startup-50/jatri.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://jatri.co/",
+        "https://www.realisticoptimist.io/jatri-tech-for-travel-operators-in-bangladesh-the-middle-east",
+        "https://www.gobi.vc/news/gobi-partners-makes-first-investment-in-bangladesh-backing-travel-tech-platform-jatri"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Jatri",
+        "description": "Travel booking, inventory and financing tools for transport operators, travel agents and corporate buyers."
+      },
+      "bn": {
+        "name": "Jatri",
+        "description": "পরিবহন কোম্পানি, ট্রাভেল এজেন্ট আর করপোরেট ক্রেতাদের জন্য বুকিং, আসন ও গাড়ির সরবরাহ এবং অর্থায়নের টুল।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "jatri"
+        }
+      ]
+    },
+    {
+      "id": "org_loop-freight",
+      "slug": "loop-freight",
+      "website": "https://loopfreight.io/",
+      "logoPath": "/media/startup-50/loop-freight.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://loopfreight.io/",
+        "https://www.tbsnews.net/feature/panorama/loop-freight-modernising-bangladeshs-goods-transport-industry-137800"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Loop Freight",
+        "description": "A B2B truck-freight marketplace connecting commercial shippers and fleet operators."
+      },
+      "bn": {
+        "name": "Loop Freight",
+        "description": "বাণিজ্যিক পণ্য প্রেরণকারী ও ট্রাক বহর মালিকদের যুক্ত করার B2B ফ্রেইট মার্কেটপ্লেস।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "loop-freight"
+        }
+      ]
+    },
+    {
+      "id": "org_markopolo-ai",
+      "slug": "markopolo-ai",
+      "website": "https://markopolo.ai/",
+      "logoPath": "/media/startup-50/markopolo-ai.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://markopolo.ai/",
+        "https://www.tbsnews.net/features/panorama/digital-marketing-future-and-markopoloai-will-take-you-there-273157"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Markopolo.ai",
+        "description": "AI-assisted customer engagement and revenue software for online merchants."
+      },
+      "bn": {
+        "name": "Markopolo.ai",
+        "description": "অনলাইন মার্চেন্টদের জন্য AI-সহায়ক গ্রাহক যোগাযোগ ও রেভিনিউ সফটওয়্যার।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "markopolo-ai"
+        }
+      ]
+    },
+    {
+      "id": "org_medeasy",
+      "slug": "medeasy",
+      "website": "https://medeasy.health/",
+      "logoPath": "/media/startup-50/medeasy.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://medeasy.health/",
+        "https://www.exitstack.co/posts/founder-spotlight-arefin-zaman"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "MedEasy",
+        "description": "Online doctor consultations, medicine delivery and consumer health services."
+      },
+      "bn": {
+        "name": "MedEasy",
+        "description": "অনলাইন ডাক্তার পরামর্শ, ওষুধ ডেলিভারি ও ভোক্তা স্বাস্থ্যসেবা।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "medeasy"
+        }
+      ]
+    },
+    {
+      "id": "org_monsha",
+      "slug": "monsha",
+      "website": "https://monsha.ai/",
+      "logoPath": "/media/startup-50/monsha.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://monsha.ai/",
+        "https://www.tbsnews.net/features/panorama/monsha-two-bangladeshi-entrepreneurs-ai-venture-simplify-teachers-workload"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Monsha",
+        "description": "AI tools that help teachers plan courses, lessons and classroom materials."
+      },
+      "bn": {
+        "name": "Monsha",
+        "description": "শিক্ষকদের কোর্স পরিকল্পনা, পাঠ সাজানো ও ক্লাসের উপকরণ তৈরিতে সাহায্য করা AI টুল।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "monsha"
+        }
+      ]
+    },
+    {
+      "id": "org_nuport",
+      "slug": "nuport",
+      "website": "https://www.nuport.io/",
+      "logoPath": "/media/startup-50/nuport.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.nuport.io/",
+        "https://www.tbsnews.net/features/panorama/nuport-start-promises-cut-down-distribution-planning-time-85-364123",
+        "https://enterprise.nuport.io/blogs/nuport-the-dhaka-based-saas-startup-targeting-the-8-billion-e-commerce-industry-in-bangladesh"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Nuport",
+        "description": "Brings orders, inventory, couriers and fulfilment together for online brands."
+      },
+      "bn": {
+        "name": "Nuport",
+        "description": "অনলাইন ব্র্যান্ডের অর্ডার, ইনভেন্টরি, কুরিয়ার আর ফুলফিলমেন্ট এক জায়গায় আনে।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "nuport"
+        }
+      ]
+    },
+    {
+      "id": "org_ostad",
+      "slug": "ostad",
+      "website": "https://ostad.app/",
+      "logoPath": "/media/startup-50/ostad.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://ostad.app/",
+        "https://en.prothomalo.com/youth/education/wlc3y5n7xq",
+        "https://www.exitstack.co/database/ostad"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Ostad",
+        "description": "Live, cohort-based courses for professional and technology skills."
+      },
+      "bn": {
+        "name": "Ostad",
+        "description": "পেশাগত ও প্রযুক্তিগত দক্ষতার জন্য লাইভ, ব্যাচভিত্তিক কোর্স।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "ostad"
+        }
+      ]
+    },
+    {
+      "id": "org_priyoshop",
+      "slug": "priyoshop",
+      "website": "https://priyoshopretail.com/",
+      "logoPath": "/media/startup-50/priyoshop.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://priyoshopretail.com/",
+        "https://futurestartup.com/2023/06/19/priyoshop-b2b-e-commerce-startup/"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "PriyoShop",
+        "description": "Procurement, distribution and embedded services for neighbourhood retailers."
+      },
+      "bn": {
+        "name": "PriyoShop",
+        "description": "পাড়ার মুদি ও খুচরা দোকানের জন্য পণ্য কেনা, সরবরাহ ও সঙ্গে থাকা ডিজিটাল সেবা।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "priyoshop"
+        }
+      ]
+    },
+    {
+      "id": "org_pulsetech",
+      "slug": "pulsetech",
+      "website": "https://pulsetechltd.com/",
+      "logoPath": "/media/startup-50/pulsetech.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://pulsetechltd.com/",
+        "https://thefinancialexpress.com.bd/youth-and-entrepreneurship/startups/pulsetech-secures-us-30m-to-transform-bangladeshs-pharmaceutical-supply-chain-1"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "PulseTech",
+        "description": "Technology-enabled medicine distribution, pharmacy software and embedded finance."
+      },
+      "bn": {
+        "name": "PulseTech",
+        "description": "প্রযুক্তিনির্ভর ওষুধ সরবরাহ, ফার্মেসি সফটওয়্যার ও সঙ্গে থাকা অর্থায়ন সুবিধা।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "pulsetech"
+        }
+      ]
+    },
+    {
+      "id": "org_relaxy",
+      "slug": "relaxy",
+      "website": "https://relaxy.com.bd/",
+      "logoPath": "/media/startup-50/relaxy.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://relaxy.com.bd/",
+        "https://www.generationunlimited.org/stories/feeling-isolated-making-mental-healthcare-accessible",
+        "https://www.prothomalo.com/business/%E0%A6%89%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A7%8B%E0%A6%95%E0%A7%8D%E0%A6%A4%E0%A6%BE/tyybgfp4bq"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Relaxy",
+        "description": "Offers therapy, expert support, mood tracking and AI-assisted wellness tools."
+      },
+      "bn": {
+        "name": "Relaxy",
+        "description": "থেরাপি, বিশেষজ্ঞ পরামর্শ, মানসিক অবস্থা ট্র্যাকিং ও AI-ভিত্তিক ভালো থাকার নানা টুল দেয়।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "relaxy"
+        }
+      ]
+    },
+    {
+      "id": "org_revora",
+      "slug": "revora",
+      "website": "https://userevora.com/",
+      "logoPath": "/media/startup-50/revora.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://userevora.com/",
+        "https://futurestartup.com/2021/05/29/on-myalice-conversational-ai-and-the-ambition-of-building-a-global-saas-startup-with-shuvo-rahman-founder-ceo-alice-labs/",
+        "https://userevora.com/about/"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Revora",
+        "description": "AI-assisted sales and customer support across messaging channels for online merchants."
+      },
+      "bn": {
+        "name": "Revora",
+        "description": "অনলাইন মার্চেন্টদের বিভিন্ন মেসেজিং চ্যানেলে AI-সহায়ক বিক্রি ও গ্রাহকসেবা।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "revora"
+        }
+      ]
+    },
+    {
+      "id": "org_sharetrip",
+      "slug": "sharetrip",
+      "website": "https://sharetrip.net/",
+      "logoPath": "/media/startup-50/sharetrip.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://sharetrip.net/",
+        "https://www.exitstack.co/posts/meet-sadia-haque-founder-ceo-of-sharetrip"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "ShareTrip",
+        "description": "Flights, hotels, holidays and travel-finance services in one consumer platform."
+      },
+      "bn": {
+        "name": "ShareTrip",
+        "description": "ফ্লাইট, হোটেল, হলিডে ও ভ্রমণসংক্রান্ত আর্থিক সেবার গ্রাহক প্ল্যাটফর্ম।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "sharetrip"
+        }
+      ]
+    },
+    {
+      "id": "org_shomvob",
+      "slug": "shomvob",
+      "website": "https://shomvob.com/",
+      "logoPath": "/media/startup-50/shomvob.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://shomvob.com/",
+        "https://www.tbsnews.net/economy/corporates/jobtech-firm-shomvob-raises-1-million-pre-seed-funding-858886",
+        "https://www.thedailystar.net/tech-startup/news/bangladeshi-startups-earn-spot-forbes-asia-list-3971156"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Shomvob",
+        "description": "Connects job seekers with employers and gives businesses hiring, staffing and payroll tools."
+      },
+      "bn": {
+        "name": "Shomvob",
+        "description": "চাকরিপ্রার্থীদের সাথে নিয়োগকর্তার সংযোগ ঘটায়, আর ব্যবসার জন্য দেয় নিয়োগ, কর্মী ব্যবস্থাপনা ও পে-রোলের টুল।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "shomvob"
+        }
+      ]
+    },
+    {
+      "id": "org_shopup-silq",
+      "slug": "shopup-silq",
+      "website": "https://www.shopup.org/about",
+      "logoPath": "/media/startup-50/shopup-silq.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.shopup.org/about",
+        "https://futurestartup.com/2025/04/14/a-brief-history-of-shopup-from-facebook-commerce-facilitator-to-cross-regional-b2b-powerhouse/",
+        "https://www.tbsnews.net/economy/shopup-sary-merge-form-silq-110m-saudi-us-investment-1111361"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "ShopUp (SILQ)",
+        "description": "ShopUp's Bangladesh commerce operation now sits within SILQ, linking small retailers to goods, logistics and finance."
+      },
+      "bn": {
+        "name": "ShopUp (SILQ)",
+        "description": "ShopUp-এর বাংলাদেশের বাণিজ্যিক কার্যক্রম এখন SILQ-এর অধীনে, যা ছোট দোকানদারদের পণ্য, লজিস্টিকস ও অর্থায়নের সাথে যুক্ত করে।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "products",
+            "title": {
+              "en": "Products & services",
+              "bn": "প্রোডাক্ট ও সেবা"
+            },
+            "body": {
+              "en": "ShopUp connects neighbourhood retailers with sourcing, logistics and finance. Its product offering includes Mokam, a B2B commerce platform, and REDX, a logistics service.",
+              "bn": "পাড়ার দোকানগুলোর পণ্য সংগ্রহ, পরিবহন ও অর্থায়ন নিয়ে কাজ করে ShopUp। তাদের সেবার মধ্যে আছে বিটুবি কমার্স প্ল্যাটফর্ম Mokam ও লজিস্টিকস সেবা REDX।"
+            },
+            "sources": [
+              {
+                "title": "ShopUp - products, leadership and offices",
+                "url": "https://www.shopup.org/about",
+                "publishedOn": null,
+                "checkedAt": "2026-09-20"
+              }
+            ],
+            "links": [
+              {
+                "label": {
+                  "en": "Mokam",
+                  "bn": "Mokam"
+                },
+                "url": "https://mokam.com.bd/"
+              },
+              {
+                "label": {
+                  "en": "REDX",
+                  "bn": "REDX"
+                },
+                "url": "https://redx.com.bd/"
+              }
+            ]
+          },
+          {
+            "id": "structure",
+            "title": {
+              "en": "ShopUp and SILQ",
+              "bn": "ShopUp ও SILQ"
+            },
+            "body": {
+              "en": "ShopUp and Sary combined to form SILQ in 2025. This profile covers the Bangladesh operation and explains the wider group context. Group or transaction financing should not be read as equity raised solely by ShopUp in Bangladesh.",
+              "bn": "২০২৫ সালে ShopUp ও Sary মিলে SILQ গড়ে তোলে। এখানে বাংলাদেশের কার্যক্রমের পাশাপাশি বৃহত্তর গ্রুপের প্রেক্ষাপটও দেওয়া আছে। গ্রুপ বা এই একীভূত হওয়ার অর্থায়নকে শুধু বাংলাদেশের ShopUp-এর ইকুইটি বিনিয়োগ ধরে নেওয়া ঠিক হবে না।"
+            },
+            "sources": [
+              {
+                "title": "ShopUp - products, leadership and offices",
+                "url": "https://www.shopup.org/about",
+                "publishedOn": null,
+                "checkedAt": "2026-09-20"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "429–432, Tejgaon I/A, Dhaka 1208, Bangladesh.",
+            "bn": "৪২৯–৪৩২, তেজগাঁও শিল্প এলাকা, ঢাকা ১২০৮, বাংলাদেশ।"
+          },
+          "email": "hello@shopup.org",
+          "phone": null,
+          "sources": [
+            {
+              "title": "ShopUp - products, leadership and offices",
+              "url": "https://www.shopup.org/about",
+              "publishedOn": null,
+              "checkedAt": "2026-09-20"
+            }
+          ]
+        }
+      },
+      "references": [
+        {
+          "kind": "case-study",
+          "target": "shopup-silq"
+        },
+        {
+          "kind": "startup-50",
+          "target": "shopup-silq"
+        }
+      ]
+    },
+    {
+      "id": "org_shuttle",
+      "slug": "shuttle",
+      "website": "https://www.shuttlebd.com/",
+      "logoPath": "/media/startup-50/shuttle.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.shuttlebd.com/",
+        "https://www.thedailystar.net/shout/life/news/making-public-commutes-safer-women-1679164",
+        "https://futurestartup.com/2023/01/30/reyasat-chowdhury-at-fs-talk-january/"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Shuttle",
+        "description": "Runs scheduled shared rides and managed employee transport for individuals, schools and businesses."
+      },
+      "bn": {
+        "name": "Shuttle",
+        "description": "ব্যক্তি, স্কুল ও প্রতিষ্ঠানের জন্য নির্দিষ্ট রুটের শেয়ার্ড রাইড ও কর্মী পরিবহন পরিচালনা করে।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "shuttle"
+        }
+      ]
+    },
+    {
+      "id": "org_sokrio",
+      "slug": "sokrio",
+      "website": "https://sokrio.com/",
+      "logoPath": "/media/startup-50/sokrio.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://sokrio.com/",
+        "https://sokrio.com/",
+        "https://www.startupbangladesh.vc/portfolio/sokrio-technologies/"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Sokrio",
+        "description": "Sales-force automation, distribution management and retail field data for businesses."
+      },
+      "bn": {
+        "name": "Sokrio",
+        "description": "ব্যবসার জন্য সেলস টিম অটোমেশন, বিতরণ ব্যবস্থাপনা ও মাঠের রিটেইল ডেটা দেওয়ার সফটওয়্যার।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "sokrio"
+        }
+      ]
+    },
+    {
+      "id": "org_solshare",
+      "slug": "solshare",
+      "website": "https://solshare.com/",
+      "logoPath": "/media/startup-50/solshare.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://solshare.com/",
+        "https://solshare.com/overview/",
+        "https://www.saurenergy.com/solar-energy-conversation/interview-with-sebastian-groh-managing-director-and-founder-solshare"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "SOLshare",
+        "description": "Software and hardware for peer-to-peer solar energy and distributed power systems."
+      },
+      "bn": {
+        "name": "SOLshare",
+        "description": "পিয়ার-টু-পিয়ার সৌরবিদ্যুৎ ও বিকেন্দ্রীকৃত বিদ্যুৎ ব্যবস্থার সফটওয়্যার ও হার্ডওয়্যার।"
+      },
+      "references": [
+        {
+          "kind": "case-study",
+          "target": "solshare"
+        },
+        {
+          "kind": "startup-50",
+          "target": "solshare"
+        }
+      ]
+    },
+    {
+      "id": "org_tallykhata",
+      "slug": "tallykhata",
+      "website": "https://www.tallykhata.com/en/home-eng/",
+      "logoPath": "/media/startup-50/tallykhata.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.tallykhata.com/en/home-eng/",
+        "https://entrepreneurs.bd/entrepreneurs/shahadat-khan",
+        "https://www.tbsnews.net/economy/banking/mtb-tallykhata-launch-first-end-end-digital-loan-small-businesses-532590"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "TallyKhata",
+        "description": "Digital bookkeeping, payments and financial tools for small merchants."
+      },
+      "bn": {
+        "name": "TallyKhata",
+        "description": "ছোট ব্যবসায়ীদের ডিজিটাল হিসাবের খাতা, পেমেন্ট ও আর্থিক টুল।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "tallykhata"
+        }
+      ]
+    },
+    {
+      "id": "org_tiger-new-energy",
+      "slug": "tiger-new-energy",
+      "website": "https://www.tigernewenergy.com/",
+      "logoPath": "/media/startup-50/tiger-new-energy.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.tigernewenergy.com/",
+        "https://news.bloomberglaw.com/private-equity/harvard-duo-powers-bangladeshs-rickshaws-with-battery-startup",
+        "https://www.tigernewenergy.com/about-us"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Tiger New Energy",
+        "description": "Battery-swapping technology and energy services for electric three-wheelers."
+      },
+      "bn": {
+        "name": "Tiger New Energy",
+        "description": "বৈদ্যুতিক তিন চাকার যানের ব্যাটারি বদল প্রযুক্তি ও জ্বালানি সেবা।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "tiger-new-energy"
+        }
+      ]
+    },
+    {
+      "id": "org_tipsoi",
+      "slug": "tipsoi",
+      "website": "https://tipsoi.ai/",
+      "logoPath": "/media/startup-50/tipsoi.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://tipsoi.ai/",
+        "https://today.thefinancialexpress.com.bd/education-youth/tipsoi-maker-inovace-joins-accelerating-asia-eyes-global-growth-1749915132",
+        "https://inovacetech.com/newsletter-may-2026/"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Tipsoi (Inovace Technologies)",
+        "description": "Biometric devices and cloud software for attendance, shifts, leave, payroll and workplace access."
+      },
+      "bn": {
+        "name": "Tipsoi (Inovace Technologies)",
+        "description": "কর্মীদের হাজিরা, শিফট, ছুটি, বেতন ও অফিসে প্রবেশ নিয়ন্ত্রণের জন্য বায়োমেট্রিক ডিভাইস ও ক্লাউড সফটওয়্যার।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "tipsoi"
+        }
+      ]
+    },
+    {
+      "id": "org_truck-lagbe",
+      "slug": "truck-lagbe",
+      "website": "https://www.trucklagbe.com/en/home/",
+      "logoPath": "/media/startup-50/truck-lagbe.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.trucklagbe.com/en/home/",
+        "https://businessinspection.com.bd/history-and-journey-of-truck-lagbe"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Truck Lagbe",
+        "description": "A digital marketplace and fleet tools for booking and managing trucks."
+      },
+      "bn": {
+        "name": "Truck Lagbe",
+        "description": "ট্রাক বুকিং ও বহর ব্যবস্থাপনার ডিজিটাল মার্কেটপ্লেস ও পরিচালন টুল।"
+      },
+      "references": [
+        {
+          "kind": "case-study",
+          "target": "truck-lagbe"
+        },
+        {
+          "kind": "startup-50",
+          "target": "truck-lagbe"
+        }
+      ]
+    },
+    {
+      "id": "org_wedevs",
+      "slug": "wedevs",
+      "website": "https://wedevs.com/",
+      "logoPath": "/media/startup-50/wedevs.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://wedevs.com/",
+        "https://wedevs.com/about/",
+        "https://futurestartup.com/2020/08/17/lifes-work-nizam-uddin-wedevs/",
+        "https://dhaka.wordcamp.org/2025/sponsor/wedevs/"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "weDevs",
+        "description": "Software for running online marketplaces, managing websites and handling everyday business work."
+      },
+      "bn": {
+        "name": "weDevs",
+        "description": "অনলাইন মার্কেটপ্লেস চালানো, ওয়েবসাইট পরিচালনা ও ব্যবসার দৈনন্দিন কাজের সফটওয়্যার।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "wedevs"
+        }
+      ]
+    },
+    {
+      "id": "org_wegro",
+      "slug": "wegro",
+      "website": "https://www.wegro.global/",
+      "logoPath": "/media/startup-50/wegro.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.wegro.global/",
+        "https://www.undp.org/bangladesh/press-releases/wegro-better-way-provide-credit-support-farmers",
+        "https://www.exitstack.co/database/wegro"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "WeGro",
+        "description": "Combines farmer finance, data, inputs, insurance and market access across the agricultural value chain."
+      },
+      "bn": {
+        "name": "WeGro",
+        "description": "কৃষকের অর্থায়ন, ডেটা, সার-বীজ, ইনস্যুরেন্স ও বাজার সংযোগকে এক সূত্রে বাঁধে।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "wegro"
+        }
+      ]
+    },
+    {
+      "id": "org_wpdeveloper",
+      "slug": "wpdeveloper",
+      "website": "https://wpdeveloper.com/",
+      "logoPath": "/media/startup-50/wpdeveloper.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://wpdeveloper.com/",
+        "https://wpdeveloper.com/about/",
+        "https://futurestartup.com/2024/06/11/the-startise-story/",
+        "https://dhaka.wordcamp.org/2025/sponsor/startise/",
+        "https://store.wpdeveloper.com/checkout"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "WPDeveloper (Startise)",
+        "description": "WordPress tools for building websites, managing content and supporting customers."
+      },
+      "bn": {
+        "name": "WPDeveloper (Startise)",
+        "description": "ওয়েবসাইট বানানো, কনটেন্ট ব্যবস্থাপনা ও কাস্টমার সাপোর্টের জন্য WordPress টুল।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "wpdeveloper"
+        }
+      ]
+    },
+    {
+      "id": "org_zatiq",
+      "slug": "zatiq",
+      "website": "https://zatiq.com/",
+      "logoPath": "/media/startup-50/zatiq.webp",
+      "roles": [
+        "startup"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://zatiq.com/",
+        "https://www.tbsnews.net/features/panorama/zatiq-wants-simplify-accounting-smes-its-easier-said-done-700854",
+        "https://www.tbsnews.net/economy/corporates/zatiqeasys-unprecedented-success-digital-transformation-entrepreneurs-1116806"
+      ],
+      "sourceDate": "2026-09-16",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Zatiq",
+        "description": "Gives small businesses online-store, sales, customer, payment and financing tools."
+      },
+      "bn": {
+        "name": "Zatiq",
+        "description": "ছোট ব্যবসাকে অনলাইন শপ, বিক্রির হিসাব, কাস্টমার ও পেমেন্ট ব্যবস্থাপনা এবং অর্থায়নের সুবিধা দেয়।"
+      },
+      "references": [
+        {
+          "kind": "startup-50",
+          "target": "zatiq"
+        }
+      ]
+    },
+    {
+      "id": "org_bangladesh-women-investors-network",
+      "slug": "bangladesh-women-investors-network",
+      "website": "https://bdangels.co/",
+      "logoPath": null,
+      "roles": [
+        "investor"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://bdangels.co/"
+      ],
+      "sourceDate": "2026-08-19",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Bangladesh Women Investors Network",
+        "description": "BAN's women-led sister chapter mobilises women angel investors and applies a gender lens to pre-seed and seed deals. It focuses on expanding capital, mentoring and investor access for women-led and women-focused ventures."
+      },
+      "bn": {
+        "name": "Bangladesh Women Investors Network",
+        "description": "নারী অ্যাঞ্জেল ইনভেস্টরদের একত্র করা এবং প্রি-সিড ও সিড রাউন্ডে জেন্ডার-লেন্স দৃষ্টিকোণ থেকে বিনিয়োগ করাই BAN-এর এই সহযোগী চ্যাপ্টারের মূল কাজ। নারী-নেতৃত্বাধীন ও নারীদের লক্ষ্য করে গড়ে ওঠা উদ্যোগে মূলধন, মেন্টরিং ও ইনভেস্টর নেটওয়ার্ক বাড়ানোই এর লক্ষ্য।"
+      },
+      "references": []
+    },
+    {
+      "id": "org_startup-bangladesh-limited",
+      "slug": "startup-bangladesh-limited",
+      "website": "https://www.startupbangladesh.vc/",
+      "logoPath": null,
+      "roles": [
+        "investor"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.startupbangladesh.vc/contact/faqs/"
+      ],
+      "sourceDate": "2026-08-19",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Startup Bangladesh Limited",
+        "description": "The ICT Division's government-owned venture-capital company invests equity or quasi-equity in Bangladesh-registered startups and impact enterprises with an MVP and evidence of customer or revenue growth. It can also provide governance and operational support and co-invest with other funders."
+      },
+      "bn": {
+        "name": "Startup Bangladesh Limited",
+        "description": "তথ্য ও যোগাযোগ প্রযুক্তি বিভাগের মালিকানাধীন এই সরকারি ভেঞ্চার ক্যাপিটাল কোম্পানিটি বাংলাদেশে নিবন্ধিত স্টার্টআপ ও ইমপ্যাক্ট উদ্যোগে ইকুইটি বা কোয়াসি-ইকুইটির মাধ্যমে বিনিয়োগ করে। আবেদনকারী প্রতিষ্ঠানের একটি তৈরি এমভিপি (MVP) এবং কাস্টমার বা আয় বৃদ্ধির বাস্তব প্রমাণ থাকতে হয়। এটি প্রাতিষ্ঠানিক সুশাসন ও পরিচালন সহায়তার পাশাপাশি অন্যান্য ইনভেস্টরের সাথে যৌথ বিনিয়োগও করে থাকে।"
+      },
+      "references": []
+    },
+    {
+      "id": "org_anchorless-bangladesh",
+      "slug": "anchorless-bangladesh",
+      "website": "https://anchorless.vc/",
+      "logoPath": null,
+      "roles": [
+        "investor"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.anchorless.vc/portfolio"
+      ],
+      "sourceDate": "2026-08-19",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Anchorless Bangladesh",
+        "description": "A Bangladesh-focused early-stage fund investing primarily in seed rounds, with selective pre-seed and post-seed deals. It looks for companies with a technology or data advantage, scalable models, international expansion potential and a credible path to follow-on funding and exit."
+      },
+      "bn": {
+        "name": "Anchorless Bangladesh",
+        "description": "বাংলাদেশ-কেন্দ্রিক এই প্রারম্ভিক পর্যায়ের ফান্ডটি মূলত সিড রাউন্ডে বিনিয়োগ করে, সাথে বাছাইকৃত কিছু প্রি-সিড ও পোস্ট-সিড ডিলেও অংশ নেয়। যেসব কোম্পানির প্রযুক্তি বা ডেটায় শক্ত অবস্থান, স্কেল করার মতো মডেল, আন্তর্জাতিক বাজারে বিস্তারের সুযোগ এবং পরবর্তী রাউন্ডে ফান্ডিং ও এক্সিটের পরিষ্কার রূপরেখা রয়েছে, তারা সেগুলোতে গুরুত্ব দেয়।"
+      },
+      "references": []
+    },
+    {
+      "id": "org_bangladesh-startup-investment-company-plc-bsic",
+      "slug": "bangladesh-startup-investment-company-plc-bsic",
+      "website": "https://www.bsic.vc/",
+      "logoPath": null,
+      "roles": [
+        "investor"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.bsic.vc/"
+      ],
+      "sourceDate": "2026-08-19",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Bangladesh Startup Investment Company PLC (BSIC)",
+        "description": "A permanent venture-capital vehicle funded by 39 Bangladeshi commercial banks. Its US$35 million ONKUR fund is designed to co-invest in high-growth Bangladesh startups alongside a credible global or regional lead investor."
+      },
+      "bn": {
+        "name": "Bangladesh Startup Investment Company PLC (BSIC)",
+        "description": "বাংলাদেশের ৩৯টি বাণিজ্যিক ব্যাংকের অর্থায়নে গঠিত একটি স্থায়ী ভেঞ্চার ক্যাপিটাল প্রতিষ্ঠান। এদের ৩৫ মিলিয়ন ডলারের ONKUR ফান্ডটি কোনো নির্ভরযোগ্য বৈশ্বিক বা আঞ্চলিক লিড ইনভেস্টরের পাশাপাশি সম্ভাবনাময় বাংলাদেশি স্টার্টআপে যৌথ বিনিয়োগ (co-invest) করার জন্য তৈরি।"
+      },
+      "references": []
+    },
+    {
+      "id": "org_dekko-isho-venture-capital-divc",
+      "slug": "dekko-isho-venture-capital-divc",
+      "website": "https://www.di.vc/",
+      "logoPath": null,
+      "roles": [
+        "investor"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.di.vc/"
+      ],
+      "sourceDate": "2026-08-25",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Dekko ISHO Venture Capital (DIVC)",
+        "description": "A founder-focused venture investor backed by Dekko ISHO Group. It provides capital and hands-on support across strategy, operations, legal, hiring, branding and growth."
+      },
+      "bn": {
+        "name": "Dekko ISHO Venture Capital (DIVC)",
+        "description": "Dekko ISHO Group-এর সমর্থনে পরিচালিত এই ভেঞ্চার ইনভেস্টর ফাউন্ডারদের প্রয়োজনকে অগ্রাধিকার দেয়। মূলধনের পাশাপাশি স্ট্র্যাটেজি, অপারেশন, আইনি কাজ, নিয়োগ, ব্র্যান্ডিং ও গ্রোথে হাতে-কলমে সহায়তা করে।"
+      },
+      "references": []
+    },
+    {
+      "id": "org_bangladesh-venture-capital-limited-bvcl",
+      "slug": "bangladesh-venture-capital-limited-bvcl",
+      "website": "https://venture.com.bd/",
+      "logoPath": null,
+      "roles": [
+        "investor"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://venture.com.bd/portfolio/"
+      ],
+      "sourceDate": "2026-08-25",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Bangladesh Venture Capital Limited (BVCL)",
+        "description": "A Bangladesh venture-capital and alternative-investment company providing capital, mentorship, industry connections and strategic guidance to startups and growth-stage businesses."
+      },
+      "bn": {
+        "name": "Bangladesh Venture Capital Limited (BVCL)",
+        "description": "বাংলাদেশের একটি ভেঞ্চার-ক্যাপিটাল আর অল্টারনেটিভ-ইনভেস্টমেন্ট কোম্পানি। এরা স্টার্টআপ আর গ্রোথ-স্টেজ কোম্পানিগুলোতে মূলধনের পাশাপাশি মেন্টরশিপ, ইন্ডাস্ট্রি নেটওয়ার্ক আর স্ট্র্যাটেজিক সাপোর্ট দেয়।"
+      },
+      "references": []
+    },
+    {
+      "id": "org_yy-ventures",
+      "slug": "yy-ventures",
+      "website": "https://yy.ventures/",
+      "logoPath": null,
+      "roles": [
+        "investor"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://yy.ventures/funds"
+      ],
+      "sourceDate": "2026-08-19",
+      "origin": "editorial-import",
+      "en": {
+        "name": "YY Ventures",
+        "description": "An impact investor and venture-support company for early-stage social businesses addressing challenges such as carbon emissions, poverty and unemployment in Bangladesh. It combines capital with hands-on help securing partners, customers and follow-on investors."
+      },
+      "bn": {
+        "name": "YY Ventures",
+        "description": "বাংলাদেশে কার্বন নিঃসরণ কমানো, দারিদ্র্য দূর করা ও বেকারত্ব দূর করতে কাজ করা প্রাথমিক পর্যায়ের সামাজিক ব্যবসাগুলোতে বিনিয়োগ ও সার্বিক সহায়তা দেয় YY Ventures। মূলধনের পাশাপাশি পার্টনারশিপ, কাস্টমার তৈরি এবং পরবর্তী রাউন্ডের ইনভেস্টর পেতে এরা নিবিড়ভাবে কাজ করে।"
+      },
+      "references": []
+    },
+    {
+      "id": "org_accelerating-asia-ventures",
+      "slug": "accelerating-asia-ventures",
+      "website": "https://www.acceleratingasia.com/",
+      "logoPath": null,
+      "roles": [
+        "investor"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.acceleratingasia.com/getfunded"
+      ],
+      "sourceDate": "2026-08-19",
+      "origin": "editorial-import",
+      "en": {
+        "name": "Accelerating Asia Ventures",
+        "description": "A Singapore-based VC accelerator investing in high-growth, pre-Series A technology startups across South and Southeast Asia. Investment is tied to its 100-day accelerator; participating companies pay a US$35,000 programme fee and give 3% equity, separate from the post-money SAFE investment terms."
+      },
+      "bn": {
+        "name": "Accelerating Asia Ventures",
+        "description": "সিঙ্গাপুর-ভিত্তিক এই ভিসি অ্যাক্সিলারেটর দক্ষিণ ও দক্ষিণ-পূর্ব এশিয়ার উচ্চ সম্ভাবনাময় প্রি-সিরিজ এ প্রযুক্তি স্টার্টআপে বিনিয়োগ করে। বিনিয়োগের শর্ত হিসেবে ১০০ দিনের অ্যাক্সিলারেটর প্রোগ্রামে অংশ নিতে হয়। অংশগ্রহণকারী কোম্পানিকে ৩৫,০০০ ডলার প্রোগ্রাম ফি এবং ৩% ইকুইটি দিতে হয় (যা তাদের পোস্ট-মানি SAFE বিনিয়োগ চুক্তির বাইরে পৃথক শর্ত)।"
+      },
+      "references": []
+    },
+    {
+      "id": "org_idlc-venture-capital",
+      "slug": "idlc-venture-capital",
+      "website": "https://www.idlcvc.com/",
+      "logoPath": null,
+      "roles": [
+        "investor"
+      ],
+      "aliases": [],
+      "sourceUrls": [
+        "https://www.idlcvc.com/coming-soon-03",
+        "https://www.idlcvc.com/thesis",
+        "https://www.idlcvc.com/"
+      ],
+      "sourceDate": "2026-09-11",
+      "origin": "editorial-import",
+      "en": {
+        "name": "IDLC Venture Capital",
+        "description": "A Bangladesh-focused investor in early-stage technology and technology-enabled companies. Its published portfolio remains useful for research, but it is not a current funding route. The manager says it plans another fund in 2027; that is a plan, not an open call."
+      },
+      "bn": {
+        "name": "IDLC Venture Capital",
+        "description": "বাংলাদেশের আর্লি স্টেজ প্রযুক্তিনির্ভর কোম্পানিতে ইনভেস্ট করে। পুরোনো পোর্টফোলিও থেকে ধারণা নিতে পারেন, তবে এখন এখানে ফান্ডিংয়ের আবেদন করা যাচ্ছে না। প্রতিষ্ঠানটি ২০২৭ সালে আরেকটি ফান্ড চালুর পরিকল্পনা জানিয়েছে। সেটা পরিকল্পনা, আবেদন শুরুর ঘোষণা নয়।"
+      },
+      "references": []
+    },
+    {
+      "id": "org_silq",
+      "slug": "silq",
+      "website": "https://www.shopup.org/about",
+      "logoPath": null,
+      "roles": [
+        "startup"
+      ],
+      "aliases": [
+        "SILQ Group"
+      ],
+      "sourceUrls": [
+        "https://www.shopup.org/about"
+      ],
+      "sourceDate": "2026-09-20",
+      "origin": "editorial-import",
+      "en": {
+        "name": "SILQ",
+        "description": "Group formed through the combination of ShopUp and Sary in 2025, connecting commerce operations in the Gulf and Bangladesh."
+      },
+      "bn": {
+        "name": "SILQ",
+        "description": "২০২৫ সালে ShopUp ও Sary মিলে গড়ে ওঠা গ্রুপ। উপসাগরীয় অঞ্চল ও বাংলাদেশের কমার্স কার্যক্রম এই গ্রুপের অধীনে যুক্ত হয়েছে।"
+      },
+      "references": []
     }
   ],
   "connections": [
@@ -711,5 +2509,625 @@
       "reviewScope": "public-source-context",
       "reviewedAt": "2026-09-19T00:00:00.000Z"
     }
-  ]
+  ],
+  "identities": {
+    "version": 1,
+    "people": [
+      {
+        "id": "person_2daf97dd8abc214e60d717eb",
+        "slug": "afeef-zaman",
+        "displayName": "Afeef Zaman",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Source biography",
+            "url": "https://www.shopup.org/about"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-20"
+      },
+      {
+        "id": "person_208128b90e128b7319bc8d90",
+        "slug": "ayman-sadiq",
+        "displayName": "Ayman Sadiq",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Source biography",
+            "url": "https://10minuteschool.com/en/skills/instructors/ayman-sadiq/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-20"
+      },
+      {
+        "id": "person_24e3110d73723896a764d2af",
+        "slug": "abdullah-abyad-raied",
+        "displayName": "Abdullah Abyad Raied",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Source biography",
+            "url": "https://www.dhakatribune.com/bangladesh/education/327761/10-minute-school-raises-61c-in-pre-series-a-round"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-20"
+      },
+      {
+        "id": "person_1f2d340ab23413b0de9f2d77",
+        "slug": "mirza-salman-hossain-beg",
+        "displayName": "Mirza Salman Hossain Beg",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Source biography",
+            "url": "https://www.dhakatribune.com/bangladesh/education/327761/10-minute-school-raises-61c-in-pre-series-a-round"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-20"
+      },
+      {
+        "id": "person_db7ba10caf654493919b6574",
+        "slug": "ivy-huq-russell",
+        "displayName": "Ivy Huq Russell",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Source biography",
+            "url": "https://bdangels.co/team"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-20"
+      },
+      {
+        "id": "person_cd168783fc16706258b52806",
+        "slug": "zaaim-zakir",
+        "displayName": "Zaaim Zakir",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Source biography",
+            "url": "https://bdangels.co/team"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-20"
+      },
+      {
+        "id": "person_404aa03ddf1293012d84e0ab",
+        "slug": "ataur-rahim-chowdhury",
+        "displayName": "Ataur Rahim Chowdhury",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Source biography",
+            "url": "https://www.shopup.org/about"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-20"
+      }
+    ],
+    "references": [
+      {
+        "namespace": "startup-50",
+        "externalId": "10-minute-school",
+        "organizationId": "org_10-minute-school"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "arogga",
+        "organizationId": "org_arogga"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "bkash",
+        "organizationId": "org_bkash"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "dorik",
+        "organizationId": "org_dorik"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "pathao",
+        "organizationId": "org_pathao"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "shikho",
+        "organizationId": "org_shikho"
+      },
+      {
+        "namespace": "directory",
+        "externalId": "investors/bangladesh-angels-network",
+        "organizationId": "org_bangladesh-angels-network"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "agricore",
+        "organizationId": "org_agricore"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "agroshift",
+        "organizationId": "org_agroshift"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "airwork",
+        "organizationId": "org_airwork"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "amarlab",
+        "organizationId": "org_amarlab"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "appscode",
+        "organizationId": "org_appscode"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "aunkur",
+        "organizationId": "org_aunkur"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "barikoi",
+        "organizationId": "org_barikoi"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "bimafy",
+        "organizationId": "org_bimafy"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "bongo",
+        "organizationId": "org_bongo"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "cassetex",
+        "organizationId": "org_cassetex"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "chamak",
+        "organizationId": "org_chamak"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "digibox",
+        "organizationId": "org_digibox"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "dubotech",
+        "organizationId": "org_dubotech"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "ecovia",
+        "organizationId": "org_ecovia"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "ezycourse",
+        "organizationId": "org_ezycourse"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "fashol",
+        "organizationId": "org_fashol"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "gozayaan",
+        "organizationId": "org_gozayaan"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "hishabee",
+        "organizationId": "org_hishabee"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "ifarmer",
+        "organizationId": "org_ifarmer"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "jatri",
+        "organizationId": "org_jatri"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "loop-freight",
+        "organizationId": "org_loop-freight"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "markopolo-ai",
+        "organizationId": "org_markopolo-ai"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "medeasy",
+        "organizationId": "org_medeasy"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "monsha",
+        "organizationId": "org_monsha"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "nuport",
+        "organizationId": "org_nuport"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "ostad",
+        "organizationId": "org_ostad"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "priyoshop",
+        "organizationId": "org_priyoshop"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "pulsetech",
+        "organizationId": "org_pulsetech"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "relaxy",
+        "organizationId": "org_relaxy"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "revora",
+        "organizationId": "org_revora"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "sharetrip",
+        "organizationId": "org_sharetrip"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "shomvob",
+        "organizationId": "org_shomvob"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "shopup-silq",
+        "organizationId": "org_shopup-silq"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "shuttle",
+        "organizationId": "org_shuttle"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "sokrio",
+        "organizationId": "org_sokrio"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "solshare",
+        "organizationId": "org_solshare"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "tallykhata",
+        "organizationId": "org_tallykhata"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "tiger-new-energy",
+        "organizationId": "org_tiger-new-energy"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "tipsoi",
+        "organizationId": "org_tipsoi"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "truck-lagbe",
+        "organizationId": "org_truck-lagbe"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "wedevs",
+        "organizationId": "org_wedevs"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "wegro",
+        "organizationId": "org_wegro"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "wpdeveloper",
+        "organizationId": "org_wpdeveloper"
+      },
+      {
+        "namespace": "startup-50",
+        "externalId": "zatiq",
+        "organizationId": "org_zatiq"
+      },
+      {
+        "namespace": "directory",
+        "externalId": "investors/bangladesh-women-investors-network",
+        "organizationId": "org_bangladesh-women-investors-network"
+      },
+      {
+        "namespace": "directory",
+        "externalId": "investors/startup-bangladesh-limited",
+        "organizationId": "org_startup-bangladesh-limited"
+      },
+      {
+        "namespace": "directory",
+        "externalId": "investors/anchorless-bangladesh",
+        "organizationId": "org_anchorless-bangladesh"
+      },
+      {
+        "namespace": "directory",
+        "externalId": "investors/bangladesh-startup-investment-company-plc-bsic",
+        "organizationId": "org_bangladesh-startup-investment-company-plc-bsic"
+      },
+      {
+        "namespace": "directory",
+        "externalId": "investors/dekko-isho-venture-capital-divc",
+        "organizationId": "org_dekko-isho-venture-capital-divc"
+      },
+      {
+        "namespace": "directory",
+        "externalId": "investors/bangladesh-venture-capital-limited-bvcl",
+        "organizationId": "org_bangladesh-venture-capital-limited-bvcl"
+      },
+      {
+        "namespace": "directory",
+        "externalId": "investors/yy-ventures",
+        "organizationId": "org_yy-ventures"
+      },
+      {
+        "namespace": "directory",
+        "externalId": "investors/accelerating-asia-ventures",
+        "organizationId": "org_accelerating-asia-ventures"
+      },
+      {
+        "namespace": "directory",
+        "externalId": "investors/idlc-venture-capital",
+        "organizationId": "org_idlc-venture-capital"
+      }
+    ],
+    "affiliations": [
+      {
+        "id": "affiliation_afeef-zaman",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-20",
+        "sources": [
+          {
+            "title": "ShopUp - products, leadership and offices",
+            "url": "https://www.shopup.org/about",
+            "publishedOn": null,
+            "checkedAt": "2026-09-20"
+          }
+        ],
+        "reviewedAt": "2026-09-20",
+        "personId": "person_2daf97dd8abc214e60d717eb",
+        "organizationId": "org_silq",
+        "role": "founder",
+        "title": {
+          "en": "Founder & Group CEO, SILQ",
+          "bn": "ফাউন্ডার ও গ্রুপ CEO, SILQ"
+        }
+      },
+      {
+        "id": "affiliation_ayman-sadiq",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-20",
+        "sources": [
+          {
+            "title": "Ayman Sadiq - official instructor profile",
+            "url": "https://10minuteschool.com/en/skills/instructors/ayman-sadiq/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-20"
+          }
+        ],
+        "reviewedAt": "2026-09-20",
+        "personId": "person_208128b90e128b7319bc8d90",
+        "organizationId": "org_10-minute-school",
+        "role": "founder",
+        "title": {
+          "en": "Founder & CEO",
+          "bn": "ফাউন্ডার ও CEO"
+        }
+      },
+      {
+        "id": "affiliation_abdullah-abyad-raied",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2023-10-12",
+        "sources": [
+          {
+            "title": "10 Minute School announces its pre-Series A round",
+            "url": "https://www.dhakatribune.com/bangladesh/education/327761/10-minute-school-raises-61c-in-pre-series-a-round",
+            "publishedOn": "2023-10-12",
+            "checkedAt": "2026-09-20"
+          }
+        ],
+        "reviewedAt": "2026-09-20",
+        "personId": "person_24e3110d73723896a764d2af",
+        "organizationId": "org_10-minute-school",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder (2023 reporting)",
+          "bn": "সহপ্রতিষ্ঠাতা (২০২৩ সালের প্রতিবেদন)"
+        }
+      },
+      {
+        "id": "affiliation_ivy-huq-russell",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-20",
+        "sources": [
+          {
+            "title": "BAN - team",
+            "url": "https://bdangels.co/team",
+            "publishedOn": null,
+            "checkedAt": "2026-09-20"
+          }
+        ],
+        "reviewedAt": "2026-09-20",
+        "personId": "person_db7ba10caf654493919b6574",
+        "organizationId": "org_bangladesh-angels-network",
+        "role": "executive",
+        "title": {
+          "en": "CEO",
+          "bn": "CEO"
+        }
+      },
+      {
+        "id": "affiliation_zaaim-zakir",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-20",
+        "sources": [
+          {
+            "title": "BAN - team",
+            "url": "https://bdangels.co/team",
+            "publishedOn": null,
+            "checkedAt": "2026-09-20"
+          }
+        ],
+        "reviewedAt": "2026-09-20",
+        "personId": "person_cd168783fc16706258b52806",
+        "organizationId": "org_bangladesh-angels-network",
+        "role": "employee",
+        "title": {
+          "en": "Lead Deals Analyst",
+          "bn": "লিড ডিলস অ্যানালিস্ট"
+        }
+      },
+      {
+        "id": "affiliation_ataur-rahim-chowdhury",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-20",
+        "sources": [
+          {
+            "title": "ShopUp - products, leadership and offices",
+            "url": "https://www.shopup.org/about",
+            "publishedOn": null,
+            "checkedAt": "2026-09-20"
+          }
+        ],
+        "reviewedAt": "2026-09-20",
+        "personId": "person_404aa03ddf1293012d84e0ab",
+        "organizationId": "org_shopup-silq",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & CEO, ShopUp (Bangladesh)",
+          "bn": "সহপ্রতিষ্ঠাতা ও CEO, ShopUp (বাংলাদেশ)"
+        }
+      }
+    ],
+    "organizationRelationships": [
+      {
+        "id": "silq-parent-shopup",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-20",
+        "sources": [
+          {
+            "title": "ShopUp - products, leadership and offices",
+            "url": "https://www.shopup.org/about",
+            "publishedOn": null,
+            "checkedAt": "2026-09-20"
+          }
+        ],
+        "reviewedAt": "2026-09-20",
+        "subjectId": "org_silq",
+        "objectId": "org_shopup-silq",
+        "kind": "parent-of"
+      },
+      {
+        "id": "ban-portfolio-pathao",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-20",
+        "sources": [
+          {
+            "title": "BAN - public portfolio",
+            "url": "https://bdangels.co/portfolio",
+            "publishedOn": null,
+            "checkedAt": "2026-09-20"
+          }
+        ],
+        "reviewedAt": "2026-09-20",
+        "subjectId": "org_bangladesh-angels-network",
+        "objectId": "org_pathao",
+        "kind": "portfolio-mention"
+      },
+      {
+        "id": "ban-portfolio-priyoshop",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-20",
+        "sources": [
+          {
+            "title": "BAN - public portfolio",
+            "url": "https://bdangels.co/portfolio",
+            "publishedOn": null,
+            "checkedAt": "2026-09-20"
+          }
+        ],
+        "reviewedAt": "2026-09-20",
+        "subjectId": "org_bangladesh-angels-network",
+        "objectId": "org_priyoshop",
+        "kind": "portfolio-mention"
+      },
+      {
+        "id": "ban-portfolio-shuttle",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-20",
+        "sources": [
+          {
+            "title": "BAN - public portfolio",
+            "url": "https://bdangels.co/portfolio",
+            "publishedOn": null,
+            "checkedAt": "2026-09-20"
+          }
+        ],
+        "reviewedAt": "2026-09-20",
+        "subjectId": "org_bangladesh-angels-network",
+        "objectId": "org_shuttle",
+        "kind": "portfolio-mention"
+      }
+    ]
+  }
 }

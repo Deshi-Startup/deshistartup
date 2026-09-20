@@ -2,7 +2,7 @@
 
 A small, bilingual catalogue of startup ideas for Bangladesh. Each idea has its own
 page, save action, first test and prototype prompt. Problems supply shared context;
-companies are supporting references with one profile across Deshi Startup.
+companies have independent profiles shared across Deshi Startup. See `companies.md` for the directory and profile contract.
 
 ## Routes and data
 
@@ -13,7 +13,7 @@ companies are supporting references with one profile across Deshi Startup.
   same problem offer a next step. Upvote, Save and Share sit above the brief. Research expands below. Related companies appear as small
   logo/name links; their profiles explain the specific work and source.
 - `/companies/<slug>`: shared profiles linked from ideas, DS50 and case studies.
-  The existing company index is directly reachable but has no navigation entry.
+  The gallery index is directly reachable; a sidebar entry is deferred.
 - `/startup-ideas/add-company`: suggest an existing or new company and its work.
   Google sign-in is required to submit; review precedes publication.
 - `/startup-ideas/review`: private reviewer queue.

@@ -1,3 +1,4 @@
+import { validateCompanyProfile, publicCompanyProfile } from './company-profile.mjs'
 import { createHash } from 'node:crypto'
 import { identityColumns, identityWhere, identitySnapshot, validateIdentities } from './identity-snapshot.mjs'
 
@@ -14,6 +15,7 @@ export const publicColumns = {
   organization_text: 'organization_id locale name description',
   organization_references: 'organization_id kind target',
   connections: 'id organization_id problem_id stage work_en work_bn evidence_url review_scope reviewed_at',
+  organization_profiles: 'organization_id profile_json reviewed_at',
   ...identityColumns
 }
 const activeProblems = 'SELECT id FROM problems WHERE active = 1'
@@ -44,6 +46,7 @@ export async function readEcosystemSnapshot(query, releaseId, createdAt) {
       ...localized(approachText, 'approach_id', a.id, t => ({ title: t.title, summary: t.summary, description: t.description, businessModel: t.business_model, steps: parsed(t.steps_json), signal: t.signal, prototype: t.prototype, editorialNote: t.editorial_note })) })),
     organizations: organizations.map(o => ({ id: o.id, slug: o.slug, website: o.website, logoPath: o.logo_path, roles: parsed(o.roles_json), aliases: parsed(o.aliases_json), sourceUrls: parsed(o.sources_json), sourceDate: o.source_date, origin: o.origin,
       ...localized(organizationText, 'organization_id', o.id, t => ({ name: t.name, description: t.description })),
+      ...(values[tables.indexOf('organization_profiles')]?.find(p => p.organization_id === o.id) ? { profile: publicCompanyProfile(parsed(values[tables.indexOf('organization_profiles')].find(p => p.organization_id === o.id).profile_json)) } : {}),
       references: [
         ...references.filter(r => r.organization_id === o.id).map(r => ({ kind: r.kind, target: r.target })),
         ...identities.references.filter(r => r.organizationId === o.id && r.namespace === 'startup-50').map(r => ({ kind: 'startup-50', target: r.externalId }))
@@ -76,6 +79,7 @@ export function validateEcosystemSnapshot(snapshot) {
         if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(row.slug) || ['contribute', 'review', 'draft'].includes(row.slug) || slugs.has(row.slug)) throw new Error('Invalid or reserved slug')
         slugs.add(row.slug)
       }
+      if (kind === 'organizations' && row.profile !== undefined) validateCompanyProfile(row.profile)
       if (kind === 'organizations' && (!safeUrl(row.website) || row.sourceUrls.some(u => !safeUrl(u)) || (row.logoPath && !/^\/media\/[a-zA-Z0-9/_.-]+$/.test(row.logoPath)))) throw new Error('Unsafe organization URL')
       if (kind === 'problems' && (row.sources.some(s => !safeUrl(s.url)) || !row.places.length)) throw new Error('Invalid problem context')
       if (kind === 'approaches' && ['en', 'bn'].some(l => !Array.isArray(row[l].steps) || !row[l].steps.length || row[l].steps.some(s => typeof s !== 'string' || !s.trim()))) throw new Error('Incomplete first test')

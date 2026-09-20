@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Local by default. Remote D1 requires --remote; this tool never deploys the website.
 import fs from 'node:fs'
+import { storeDraftRelease } from './lib/ecosystem-release.mjs'
 import path from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { ideaSlug } from '../app/lib/idea-routes.mjs'
@@ -48,7 +49,7 @@ if (action === 'prepare-restore') {
   const snapshot = await readEcosystemSnapshot(sql => Promise.resolve(rows[sql.match(/FROM (\w+)/)[1]]), id, now)
   const json = JSON.stringify(snapshot)
   const digest = snapshotDigest(snapshot)
-  query(`INSERT INTO releases (id, snapshot_json, digest, created_at) VALUES (${quote(id)}, ${quote(json)}, ${quote(digest)}, ${quote(now)})`)
+  await storeDraftRelease(query, { id, json, digest, createdAt: now })
   fs.mkdirSync(path.join(root, 'data/ecosystem'), { recursive: true })
   fs.writeFileSync(path.join(root, 'data/ecosystem/public.json'), JSON.stringify(snapshot, null, 2) + '\n')
   fs.writeFileSync(path.join(root, 'public/ecosystem-release.json'), JSON.stringify({ releaseId: id, digest }) + '\n')

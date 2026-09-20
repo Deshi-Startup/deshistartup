@@ -255,3 +255,6 @@
 
 .directory-comparison thead th:first-child { left: 0; z-index: 3; }
 @media print { .directory-comparison :is(thead th, tbody th) { position: static; } }
+
+.directory-card__actions { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1.25rem; }
+.directory-card__actions > a { display: inline-flex; align-items: center; min-height: 44px; font-size: .85rem; }

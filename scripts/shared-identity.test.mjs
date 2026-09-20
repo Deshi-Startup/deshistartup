@@ -54,6 +54,8 @@ test('identity migrations, import, relationship review and public export work ag
     const rows = JSON.parse((await db.prepare(snapshotRowsSql).first()).snapshot_rows)
     return readEcosystemSnapshot(sql => rows[sql.match(/FROM (\w+)/)[1]], 'identity-test', now)
   }
+  const baseline = await exportSnapshot()
+  const baselineEvents = (await db.prepare('SELECT COUNT(*) AS n FROM identity_events').first()).n
   const apply = plan => db.batch(plan.statements.map(sql => db.prepare(sql)))
   const plan = contributorIdentityImport(ledger, policy, now)
 
@@ -75,13 +77,13 @@ test('identity migrations, import, relationship review and public export work ag
 
   await t.test('concurrent imports are idempotent and retain later edits and withdrawal', async () => {
     await Promise.all([apply(plan), apply(plan)])
-    assert.equal((await db.prepare('SELECT COUNT(*) AS n FROM people').first()).n, 1)
-    assert.equal((await db.prepare('SELECT COUNT(*) AS n FROM identity_events').first()).n, 1)
-    assert.equal((await db.prepare('SELECT visibility FROM people').first()).visibility, 'private')
+    assert.equal((await db.prepare('SELECT COUNT(*) AS n FROM people').first()).n, baseline.identities.people.length + 1)
+    assert.equal((await db.prepare('SELECT COUNT(*) AS n FROM identity_events').first()).n, baselineEvents + 1)
+    assert.equal((await db.prepare('SELECT visibility FROM people WHERE id = ?').bind(profile.id).first()).visibility, 'private')
     await db.prepare("UPDATE people SET display_name = 'Reviewed Name', visibility = 'withdrawn' WHERE id = ?").bind(profile.id).run()
     await apply(plan)
-    assert.deepEqual(await db.prepare('SELECT display_name, visibility FROM people').first(), { display_name: 'Reviewed Name', visibility: 'withdrawn' })
-    assert.equal((await exportSnapshot()).identities.people.length, 0)
+    assert.deepEqual(await db.prepare('SELECT display_name, visibility FROM people WHERE id = ?').bind(profile.id).first(), { display_name: 'Reviewed Name', visibility: 'withdrawn' })
+    assert.equal((await exportSnapshot()).identities.people.length, baseline.identities.people.length)
   })
 
   await t.test('public exports exclude account bindings, audit details and hidden identities', async () => {
@@ -94,7 +96,7 @@ test('identity migrations, import, relationship review and public export work ag
     assert.equal(index.person('contributor', profile.id).displayName, 'Reviewed Name')
     assert.deepEqual(index.person('contributor', profile.id).aliases, ['Earlier Name'])
     assert.equal(index.organization('directory', 'investors/bangladesh-angels-network').id, 'org_bangladesh-angels-network')
-    assert.equal(index.organization('directory', 'investors/bangladesh-women-investors-network'), null)
+    assert.equal(index.organization('directory', 'investors/bangladesh-women-investors-network').id, 'org_bangladesh-women-investors-network')
     assert.doesNotMatch(JSON.stringify(snapshot), /subject_hash|identity_events|maintainer:|aaaaaaaaaaaaaaaaaaaaaaaa|visibility|unmapped-org/)
   })
 
@@ -120,8 +122,8 @@ test('identity migrations, import, relationship review and public export work ag
     await db.prepare(`INSERT INTO organization_relationships (id, subject_id, object_id, kind, as_of, sources_json)
       VALUES ('portfolio-test', 'org_bangladesh-angels-network', 'org_dorik', 'portfolio-mention', '2023-01-01', ?)`)
       .bind(JSON.stringify(evidence)).run()
-    assert.equal((await exportSnapshot()).identities.affiliations.length, 0)
-    assert.equal((await exportSnapshot()).identities.organizationRelationships.length, 0)
+    assert.equal((await exportSnapshot()).identities.affiliations.filter(a => a.personId === profile.id).length, 0)
+    assert.equal((await exportSnapshot()).identities.organizationRelationships.filter(r => r.id === 'portfolio-test').length, 0)
     await assert.rejects(db.prepare("UPDATE person_organizations SET status = 'confirmed' WHERE id = 'role-test'").run(), /CHECK/)
     await db.batch([
       db.prepare("UPDATE person_organizations SET status = 'confirmed', reviewed_at = ?").bind(now),
@@ -131,8 +133,8 @@ test('identity migrations, import, relationship review and public export work ag
     assert.equal(index.peopleAt('org_dorik')[0].personId, profile.id)
     assert.equal(index.affiliations(profile.id)[0].endedOn, '2023-01-01')
     assert.equal(index.relationships('org_dorik')[0].kind, 'portfolio-mention')
-    assert.equal(index.relationships('org_bangladesh-angels-network')[0].objectId, 'org_dorik')
-    assert.deepEqual(snapshot.identities.affiliations[0].sources, evidence)
+    assert.equal(index.relationships('org_bangladesh-angels-network').find(r => r.id === 'portfolio-test').objectId, 'org_dorik')
+    assert.deepEqual(snapshot.identities.affiliations.find(a => a.id === 'role-test').sources, evidence)
     assert.doesNotMatch(JSON.stringify(snapshot), /privateNote|Never export/)
     const broken = structuredClone(snapshot)
     broken.identities.affiliations[0].personId = 'missing'
@@ -141,9 +143,9 @@ test('identity migrations, import, relationship review and public export work ag
     unsafe.identities.people[0].links[0].url = 'javascript:alert(1)'
     assert.throws(() => validateEcosystemSnapshot(unsafe), /person/)
     await db.prepare("UPDATE people SET visibility = 'withdrawn' WHERE id = ?").bind(profile.id).run()
-    assert.equal((await exportSnapshot()).identities.affiliations.length, 0)
+    assert.equal((await exportSnapshot()).identities.affiliations.filter(a => a.personId === profile.id).length, 0)
     await db.prepare("UPDATE organization_relationships SET status = 'retracted'").run()
-    assert.equal((await exportSnapshot()).identities.organizationRelationships.length, 0)
+    assert.equal((await exportSnapshot()).identities.organizationRelationships.filter(r => r.id === 'portfolio-test').length, 0)
   })
   assert.deepEqual((await db.prepare('PRAGMA foreign_key_check').all()).results, [])
 })

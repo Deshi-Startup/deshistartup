@@ -12,6 +12,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { load } from 'cheerio'
+import ecosystemData from '../data/ecosystem/public.json' with { type: 'json' }
 import snapshotData from '../app/generated/contributors.json' with { type: 'json' }
 import {
   contributorProfilePath,
@@ -414,6 +415,7 @@ function schemaFor(page, wordCount, visibleCollectionItems = [], contributionEve
   const children = childrenFor(page)
   const isHome = page.slug === ''
   const isAbout = page.slug === 'about'
+  const company = page.slug.startsWith('companies/') ? ecosystemData.organizations.find(o => o.slug === page.slug.slice('companies/'.length)) : null
   const isProfile = isContributorProfile(page)
   const contributorProfile = contributorProfileForPage(page)
   const isCollection =
@@ -428,8 +430,8 @@ function schemaFor(page, wordCount, visibleCollectionItems = [], contributionEve
   // weigh, and marking them up as one would put a stale "last updated" beside
   // an address that has not changed.
   const isUtility = isUtilityPage(page)
-  const isArticle = !isHome && !isAbout && !isCollection && !isUtility && !isProfile
-  const pageType = isProfile
+  const isArticle = !isHome && !isAbout && !isCollection && !isUtility && !isProfile && !company
+  const pageType = (isProfile || company)
     ? 'ProfilePage'
     : isAbout
       ? 'AboutPage'
@@ -507,6 +509,11 @@ function schemaFor(page, wordCount, visibleCollectionItems = [], contributionEve
   const graph = [organizationNode, websiteNode]
 
   graph.push(pageNode)
+  if (company) {
+    const companyNode = { '@type': 'Organization', '@id': `${url}#company`, name: company[page.locale].name, url: company.website, description: company[page.locale].description, mainEntityOfPage: { '@id': pageNode['@id'] } }
+    pageNode.mainEntity = { '@id': companyNode['@id'] }
+    graph.push(companyNode)
+  }
   if (isProfile && contributorProfile) {
     const personNode = contributorPersonNode(contributorProfile)
     pageNode.mainEntity = { '@id': personNode['@id'] }

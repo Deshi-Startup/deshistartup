@@ -244,6 +244,7 @@ function asArray(value: string | string[] | null | undefined): string[] {
 export interface DirectoryRow {
   id: string
   name: string
+  profilePath?: string
   sourceUrls?: string[] | null
   lastVerified?: string | null
   notes?: string
@@ -432,12 +433,15 @@ export default function DirectoryFilterTable({ category, locale, rows }: Directo
                     <a href={row.website} target="_blank" rel="noopener noreferrer">{row.name}</a>
                   ) : row.name}
                 </h2>
+                <div className="directory-card__actions">
+                {row.profilePath && <a href={row.profilePath} aria-label={isEn ? `View profile: ${row.name}` : `${row.name}: প্রোফাইল দেখুন`}>{isEn ? 'View profile' : 'প্রোফাইল দেখুন'}</a>}
                 <label className="directory-card__select">
                   <input type="checkbox" checked={chosen} disabled={!chosen && selected.length >= 3}
                     aria-label={isEn ? `Compare ${row.name}` : `${row.name} তুলনার জন্য বেছে নিন`}
                     onChange={() => toggleSelection(index)} />
                   <span>{isEn ? 'Compare' : 'তুলনা করুন'}</span>
                 </label>
+                </div>
                 </div>
                 {row.notes && <p className="directory-card__note">{row.notes}</p>}
                 <dl>
