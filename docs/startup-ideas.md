@@ -118,6 +118,28 @@ create or publish a catalogue record. This first version has no automatic publis
 or idea editor. The owner-scoped API exposes submission status and review notes; the
 form confirms receipt without adding an account dashboard.
 
+Manage reviewer access in Cloudflare: **Workers & Pages → deshistartup → Settings →
+Variables and Secrets → CONTRIBUTION_REVIEWER_EMAILS**. This is a **Text** runtime
+variable containing comma-separated Google-account email addresses. Its current
+value is readable in the dashboard; it is not exposed to website visitors. Keep
+the actual addresses out of Git. `keep_vars: true` preserves this dashboard-managed
+setting on deployment. The local `.env.local` value is only a development copy.
+Google token verification and reviewer matching still apply; a missing or empty
+list grants nobody reviewer access.
+
+Each new idea or company submission sends an editorial alert to the verified
+destination behind `hello@deshistartup.com`, using the existing `CONTACT_INBOX`
+secret and `CONTACT_EMAIL` binding. Sending to that verified destination works on
+the free plan; the public routing alias itself is not a verified destination.
+The sender is `contact@deshistartup.com`. The email contains the title or company name, a reference
+ID and a link to the private review queue. It includes no Google identity or full
+submission text. Retried requests for the same submission do not send another alert.
+Sending runs after the database write, in the Worker's background execution context.
+Email is best effort: a failed send logs `editorial_alert_failed` with the submission
+ID, while the submission remains available in the queue. There is no automatic mail
+retry or alert backfill. Local development uses Wrangler's simulated email binding;
+no new credentials, database migration or mail provider are needed.
+
 ## Run locally
 
 ```sh

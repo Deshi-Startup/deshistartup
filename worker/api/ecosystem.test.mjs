@@ -4,6 +4,7 @@ import fs from 'node:fs'
 import { createRequire } from 'node:module'
 import { unstable_splitSqlQuery } from 'wrangler'
 import { createEcosystemHandler } from './ecosystem.ts'
+import { notifyEditorial } from '../lib/ecosystem-email.ts'
 import { parseDecision, parseProposal, parseIdeaProposal, parseIdeaDecision } from '../../app/lib/ecosystem-input.ts'
 import { readEcosystemSnapshot, snapshotRowsSql } from '../../scripts/lib/ecosystem-snapshot.mjs'
 
@@ -37,6 +38,24 @@ test('idea intake requires useful bounded copy and ignores untrusted workflow fi
   assert.equal(parseIdeaDecision(ideaDecision({ revision: 0 })), null)
 })
 
+test('editorial alerts have a fixed destination, safe copy and a trusted review link', async () => {
+  const sent = []
+  const env = { CONTACT_INBOX: 'verified-editorial@example.com', CONTACT_EMAIL: { send: async message => { sent.push(message) } } }
+  const title = '<img src=x onerror=alert(1)>\r\nBcc: stranger@example.com'
+  await notifyEditorial(env, null, 'submission_test', idea({ title, to: 'stranger@example.com' }))
+  const alert = sent[0]
+  assert.equal(alert.to, 'verified-editorial@example.com')
+  assert.equal(alert.from.email, 'contact@deshistartup.com')
+  assert.doesNotMatch(alert.subject, /[\r\n]/)
+  assert.doesNotMatch(alert.html, /<img/)
+  assert.match(alert.html, /&lt;img/)
+  assert.match(alert.text, /https:\/\/deshistartup\.com\/en\/startup-ideas\/review/)
+  assert.match(alert.html, /href="https:\/\/deshistartup\.com\/en\/startup-ideas\/review"/)
+  assert.doesNotMatch(alert.text, /Small factory owners|equipment repairs/)
+  await notifyEditorial(env, null, 'submission_company', proposal({ organizationId: '', organization: { name: 'New Company', website: 'https://example.com', description: 'Company details', role: 'startup' } }))
+  assert.match(sent[1].subject, /New company submission: New Company/)
+})
+
 test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }, async t => {
   const options = { modules: true, script: '', d1Databases: { DB: 'ecosystem-tests' } }
   const mf = new Miniflare(convertV4MiniflareOptions ? convertV4MiniflareOptions(options) : options)
@@ -48,7 +67,8 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
     const sql = fs.readFileSync(new URL(`../migrations/ecosystem/${file}`, import.meta.url), 'utf8')
     await db.batch(unstable_splitSqlQuery(sql).map(statement => db.prepare(statement)))
   }
-  const env = { ECOSYSTEM_DB: db, CONTRIBUTION_REVIEWER_EMAILS: 'reviewer@example.com' }
+  const sent = []
+  const env = { ECOSYSTEM_DB: db, CONTRIBUTION_REVIEWER_EMAILS: 'reviewer@example.com', CONTACT_INBOX: 'verified-editorial@example.com', CONTACT_EMAIL: { send: async message => { sent.push(message) } } }
   const handler = createEcosystemHandler({
     authenticate: async request => {
       const role = request.headers.get('Authorization')
@@ -162,14 +182,19 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
   })
   let submitted
   await t.test('concurrent retries create one private submission, not a public connection', async () => {
+    const alertsBefore = sent.length
     const replies = await Promise.all([call('submissions', 'contributor', proposal()), call('submissions', 'contributor', proposal())])
     assert.deepEqual(replies.map(r => r.status), [201, 201])
     const [a, b] = await Promise.all(replies.map(r => r.json()))
     assert.equal(a.id, b.id); submitted = a
+    assert.equal(sent.length, alertsBefore + 1, 'only the request that inserts the row sends an alert')
+    assert.match(sent.at(-1).subject, /New company submission: Dorik/)
+    await call('submissions', 'contributor', proposal())
     assert.equal((await call('submissions', 'contributor', proposal({ work: 'Changed payload must not reuse an existing request key.' }))).status, 409)
     assert.equal((await call('submissions', 'other')).status, 200)
     assert.deepEqual((await (await call('submissions', 'other')).json()).submissions, [])
     assert.deepEqual(await snapshot(), initial)
+    assert.equal(sent.length, alertsBefore + 1, 'retries, reads and rejected requests do not send alerts')
   })
   await t.test('approval atomically links an existing identity and rejects a stale reviewer', async () => {
     const replies = await Promise.all([call(`review/${submitted.id}`, 'reviewer', decision()), call(`review/${submitted.id}`, 'reviewer', decision())])
@@ -240,6 +265,7 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
     assert.equal((await (await call('submissions', 'contributor')).json()).submissions.find(s => s.id === submitted.id).published, 0)
   })
   await t.test('idea submissions are private, owner scoped and safe to retry', async () => {
+    const alertsBefore = sent.length
     const before = await snapshot()
     assert.equal((await call('submissions', null, idea())).status, 401)
     assert.equal((await call('submissions', 'idea-author', idea({ solution: 'short' }))).status, 400)
@@ -256,6 +282,8 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
     assert.equal(own[0].status, 'pending')
     assert.doesNotMatch(JSON.stringify(own), /owner_hash|payload_hash|idempotency_key/)
     assert.deepEqual(await snapshot(), before)
+    assert.equal(sent.length, alertsBefore + 1, 'one alert for a new idea, none for invalid input or concurrent retries')
+    assert.match(sent.at(-1).subject, /New idea: An idea for testing/)
   })
   await t.test('accepting an idea is one audited editorial decision, not public data', async () => {
     const before = await snapshot()
@@ -285,5 +313,33 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
     assert.equal((await db.prepare('SELECT status FROM submissions WHERE id = ?').bind(pendingIdea.id).first()).status, 'rejected')
     const queue = (await (await call('review', 'reviewer')).json()).submissions
     assert.ok(!queue.some(s => s.id === pendingIdea.id))
+  })
+  await t.test('email failure preserves the submission and logs no private message content', async t => {
+    const errors = []
+    t.mock.method(console, 'error', entry => errors.push(JSON.parse(entry)))
+    const original = env.CONTACT_EMAIL
+    t.after(() => { env.CONTACT_EMAIL = original })
+    env.CONTACT_EMAIL = { send: async () => { throw new Error('Private provider details must not be logged') } }
+    const response = await call('submissions', 'mail-failure-author', idea(), 'mail-failure-000001')
+    assert.equal(response.status, 201)
+    const result = await response.json()
+    assert.deepEqual(Object.keys(result).sort(), ['id', 'status'])
+    assert.equal((await db.prepare('SELECT status FROM submissions WHERE id = ?').bind(result.id).first()).status, 'pending')
+    assert.deepEqual(errors, [{ level: 'error', scope: 'ecosystem', message: 'editorial_alert_failed', submissionId: result.id }])
+  })
+  await t.test('background mail does not delay the submission response', async t => {
+    let finish
+    const mail = new Promise(resolve => { finish = resolve })
+    const original = env.CONTACT_EMAIL
+    t.after(() => { finish(); env.CONTACT_EMAIL = original })
+    env.CONTACT_EMAIL = { send: () => mail }
+    const pending = []
+    const response = await handler(new Request('https://example.com/api/ecosystem/submissions', {
+      method: 'POST', headers: { Authorization: 'background-author', 'Content-Type': 'application/json', 'Idempotency-Key': 'background-000001' }, body: JSON.stringify(idea())
+    }), env, { waitUntil: task => pending.push(task) })
+    assert.equal(response.status, 201)
+    assert.equal(pending.length, 1)
+    finish()
+    await Promise.all(pending)
   })
 })

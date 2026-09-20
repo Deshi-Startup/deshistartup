@@ -36,9 +36,10 @@ function methodNotAllowed(...allowed: string[]): Response {
 async function apiResponse(
   request: Request,
   env: CloudflareEnv,
-  pathname: string
+  pathname: string,
+  context?: Pick<ExecutionContext, 'waitUntil'>
 ): Promise<Response> {
-  if (pathname.startsWith('/api/ecosystem/')) return handleEcosystem(request, env)
+  if (pathname.startsWith('/api/ecosystem/')) return handleEcosystem(request, env, context)
   if (pathname === '/api/content') {
     return request.method === 'GET'
       ? getContent(request, env)
@@ -87,12 +88,12 @@ async function apiResponse(
 }
 
 export default {
-  async fetch(request, env): Promise<Response> {
+  async fetch(request, env, context): Promise<Response> {
     const url = new URL(request.url)
 
     try {
       if (url.pathname === '/api' || url.pathname.startsWith('/api/')) {
-        return await apiResponse(request, env, url.pathname.replace(/\/+$/, ''))
+        return await apiResponse(request, env, url.pathname.replace(/\/+$/, ''), context)
       }
 
       const oldIdeaDestination = legacyIdeaDestination(url.pathname)

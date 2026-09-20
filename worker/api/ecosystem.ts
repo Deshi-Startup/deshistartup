@@ -4,6 +4,7 @@ import { authenticatedJson as json } from '../lib/http.ts'
 import { readBoundedJson } from '../lib/request-body.ts'
 import { parseDecision, parseProposal, parseIdeaProposal, parseIdeaDecision, validEntityId } from '../../app/lib/ecosystem-input.ts'
 import { createSubmission, decideSubmission, EcosystemConflict, type SubmissionRow } from '../lib/ecosystem-store.ts'
+import { notifyEditorial } from '../lib/ecosystem-email.ts'
 import { myVotes, setIdeaVote, voteCounts } from '../lib/idea-votes.ts'
 import release from '../../public/ecosystem-release.json' with { type: 'json' }
 
@@ -22,7 +23,7 @@ interface Dependencies {
   cache?: Cache
 }
 export function createEcosystemHandler({ authenticate = requireUser, admit = admitted, now = () => new Date().toISOString(), cache }: Dependencies = {}) {
-  return async function ecosystem(request: Request, env: Environment): Promise<Response> {
+  return async function ecosystem(request: Request, env: Environment, context?: Pick<ExecutionContext, 'waitUntil'>): Promise<Response> {
     const path = new URL(request.url).pathname.replace(/\/+$/, '')
     if (path === '/api/ecosystem/status' && request.method === 'GET') return json({ available: !!env.ECOSYSTEM_DB }, 200)
     if (!env.ECOSYSTEM_DB) return json({ error: 'ecosystem_unavailable' }, 503)
@@ -91,7 +92,13 @@ export function createEcosystemHandler({ authenticate = requireUser, admit = adm
       const proposal = parseIdeaProposal(body.value) || parseProposal(body.value)
       const key = request.headers.get('Idempotency-Key') || ''
       if (!proposal || !/^[a-zA-Z0-9_-]{16,80}$/.test(key)) return json({ error: 'invalid_submission' }, 400)
-      return json(await createSubmission(db, owner, key, await sha256Hex(JSON.stringify(proposal)), proposal, now()), 201)
+      const { created, ...submission } = await createSubmission(db, owner, key, await sha256Hex(JSON.stringify(proposal)), proposal, now())
+      if (created) {
+        const notification = notifyEditorial(env, db, submission.id, proposal)
+        if (context) context.waitUntil(notification)
+        else await notification
+      }
+      return json(submission, 201)
     } catch (error) {
       if (error instanceof EcosystemConflict) return json({ error: error.message }, 409)
       return json({ error: 'ecosystem_unavailable' }, 503)

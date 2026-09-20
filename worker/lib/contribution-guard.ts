@@ -175,7 +175,8 @@ export async function setModeration(
 
 export function isReviewer(
   user: Pick<GoogleUser, 'email'>,
-  env: CloudflareEnv
+  // Dashboard-managed Text binding, intentionally absent from generated config types.
+  env: CloudflareEnv & { CONTRIBUTION_REVIEWER_EMAILS?: string }
 ): boolean {
   const allowed = (env.CONTRIBUTION_REVIEWER_EMAILS || '')
     .split(',')

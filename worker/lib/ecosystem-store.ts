@@ -11,7 +11,7 @@ export async function createSubmission(db: D1Database, owner: string, key: strin
   const previous = await db.prepare('SELECT * FROM submissions WHERE owner_hash = ? AND idempotency_key = ?').bind(owner, key).first<SubmissionRow>()
   if (previous) {
     if (previous.payload_hash !== hash) throw new EcosystemConflict('idempotency_conflict')
-    return { id: previous.id, status: previous.status }
+    return { id: previous.id, status: previous.status, created: false }
   }
   if (!('kind' in payload)) {
     if (!await db.prepare('SELECT id FROM problems WHERE id = ? AND active = 1').bind(payload.problemId).first()) throw new EcosystemConflict('problem_not_found')
@@ -23,7 +23,7 @@ export async function createSubmission(db: D1Database, owner: string, key: strin
     .bind(id, owner, key, hash, JSON.stringify(payload), now).run()
   const stored = await db.prepare('SELECT id, status, payload_hash FROM submissions WHERE owner_hash = ? AND idempotency_key = ?').bind(owner, key).first<SubmissionRow>()
   if (!stored || stored.payload_hash !== hash) throw new EcosystemConflict('idempotency_conflict')
-  return { id: stored.id, status: stored.status }
+  return { id: stored.id, status: stored.status, created: stored.id === id }
 }
 
 export async function decideSubmission(db: D1Database, id: string, reviewer: string, decision: ReviewDecision | IdeaDecision, now: string) {

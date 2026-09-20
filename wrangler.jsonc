@@ -76,6 +76,9 @@
   "vars": {
     "GITHUB_REPO": "Deshi-Startup/deshistartup"
   },
+  // The reviewer email list is managed as Text in the dashboard, not in Git.
+  // Preserve it on deploy; do not add an empty override under vars.
+  "keep_vars": true,
   // CONTACT_INBOX is a runtime secret containing one verified destination.
   // The request cannot set a recipient; worker/api/contact.ts always uses that
   // secret, while this public binding declaration contains no private address.
@@ -90,7 +93,6 @@
       "GITHUB_APP_ID",
       "GITHUB_APP_PRIVATE_KEY",
       "GITHUB_INSTALLATION_ID",
-      "CONTRIBUTION_REVIEWER_EMAILS",
       "CONTACT_INBOX"
     ]
   },
