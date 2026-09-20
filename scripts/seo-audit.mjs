@@ -462,6 +462,18 @@ for (const page of pages) {
         }
       }
       const collection = graph.find((node) => node['@type'] === 'CollectionPage')
+      if (page.slug === 'startup-ideas') {
+        const links = $('.ideas-row h3 a[href]').toArray()
+        const items = collection?.mainEntity?.itemListElement
+        if (!links.length || collection?.mainEntity?.['@type'] !== 'ItemList' ||
+            !Array.isArray(items) || items.length !== links.length ||
+            collection.mainEntity.numberOfItems !== links.length ||
+            items.some((item, index) => item.position !== index + 1 ||
+              item.name !== $(links[index]).text().trim() ||
+              item.url !== canonicalUrl($(links[index]).attr('href')))) {
+          record(errors, `${page.route}: idea ItemList must match visible links in display order`)
+        }
+      }
       if (collection && (page.slug === 'contributors' || page.slug.startsWith('directory/'))) {
         const visibleCount = page.slug === 'contributors'
           ? $('.contributor-list--ranked .contributor-row').length

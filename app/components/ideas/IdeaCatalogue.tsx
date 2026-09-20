@@ -59,7 +59,7 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
     <header className="ideas-catalogue-intro ideas-catalogue-hero">
       <h1>{en ? <>Problems worth <span>solving.</span></> : <>কোন সমস্যা নিয়ে <span>কাজ করবেন?</span></>}</h1>
       <div className="ideas-catalogue-invitation">
-        <p className="ideas-lead">{en ? 'Explore practical startup ideas for Bangladesh. Find who they could help, ways to earn, and a small first test.' : 'বাংলাদেশের জন্য স্টার্টআপ আইডিয়া খুঁজে নিন। কাদের কাজে লাগবে, আয়ের উপায় কী আর ছোট করে কীভাবে পরীক্ষা করবেন, জেনে নিন।'}</p>
+        <p className="ideas-lead">{en ? 'Explore practical startup business ideas for Bangladesh. Find who they could help, ways to earn, and a small first test.' : 'বাংলাদেশের জন্য স্টার্টআপ আইডিয়া খুঁজে নিন। কাদের কাজে লাগবে, আয়ের উপায় কী আর ছোট করে কীভাবে পরীক্ষা করবেন, জেনে নিন।'}</p>
         <a className="ideas-button" href={ideaPath(locale, 'add')}><IdeaIcon name="plus" />{en ? 'Suggest an idea' : 'আইডিয়া দিন'}</a>
       </div>
     </header>
@@ -101,5 +101,6 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
         {votes.error?.id === idea.id && <p className="ideas-error ideas-row-error" role="alert">{votes.error.message}</p>}
       </article>
     })}</div> : <div className="ideas-empty"><IdeaIcon name={filters.saved && !savedCount ? 'bookmark' : 'search'} /><h3>{filters.saved && !savedCount ? (en ? 'No saved ideas yet.' : 'এখনো কোনো আইডিয়া সেভ করেননি।') : (en ? 'No matching ideas.' : 'মিলে যায় এমন কোনো আইডিয়া পাওয়া যায়নি।')}</h3><p>{filters.saved && !savedCount ? (en ? 'Use the bookmark beside an idea to save it.' : 'আইডিয়ার পাশের বুকমার্কে চাপ দিয়ে নিজের তালিকায় রেখে দিতে পারেন।') : (en ? 'Try a broader search or clear your filters.' : 'অন্য শব্দ দিয়ে খুঁজুন বা ফিল্টার সরিয়ে দেখুন।')}</p><button className="ideas-button ideas-button-secondary" type="button" onClick={browseAll}>{en ? 'Browse all ideas' : 'সব আইডিয়া দেখুন'}</button></div>}
+    <p className="ideas-browser-note">{en ? <>Want to find your own idea? Read <a href="/en/ideas/finding-ideas">how to find startup ideas</a>, then <a href="/en/validation/demand-without-building">test demand before you build</a>.</> : <>নিজে আইডিয়া খুঁজতে চান? <a href="/ideas/finding-ideas">স্টার্টআপ আইডিয়া খোঁজার উপায়</a> দেখুন। তারপর <a href="/validation/demand-without-building">কিছু বানানোর আগে চাহিদা যাচাই করুন</a>।</>}</p>
   </IdeaShell>
 }

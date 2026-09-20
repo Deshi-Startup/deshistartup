@@ -15,13 +15,41 @@ const voteIdsPath = path.join(root, 'app/generated/idea-ids.json')
 const voteIds = JSON.stringify(data.approaches.map(idea => idea.id)) + '\n'
 if (!fs.existsSync(voteIdsPath) || fs.readFileSync(voteIdsPath, 'utf8') !== voteIds) fs.writeFileSync(voteIdsPath, voteIds)
 const profileDescription = text => text.length > 250 ? text.split(/(?<=[.!?।])\s+/)[0] : text
+// Search metadata is separate from the short, reader-facing idea titles.
+// Keep the business-idea intent clear: these pages do not sell the services.
+const ideaSearchCopy = {
+  'garment-offcuts-approach': {
+    en: ['Garment Waste Recycling: A Startup Idea for Bangladesh', 'Explore a garment waste recycling business idea in Bangladesh. Connect factories with recyclers, plan how to earn, and test one small batch.'],
+    bn: ['ঝুট কাপড় রিসাইক্লিং: বাংলাদেশে ব্যবসার আইডিয়া', 'কারখানার ঝুট কাপড় রিসাইক্লিং মিলে বিক্রির ব্যবসার আইডিয়া দেখুন। কাদের সঙ্গে কাজ করবেন, আয় কীভাবে হবে আর ছোট করে কীভাবে পরীক্ষা করবেন, জানুন।']
+  },
+  'harvest-cooling': {
+    en: ['Cold Storage Rental: A Startup Idea for Bangladesh', 'Explore a cold storage rental business idea for farmers in Bangladesh. See who could pay, what to check, and how to test storage by the crate.'],
+    bn: ['ফসলের জন্য হিমাগার ভাড়া: বাংলাদেশে ব্যবসার আইডিয়া', 'কৃষকদের ক্রেট হিসেবে হিমাগারের জায়গা ভাড়া দেওয়ার ব্যবসার আইডিয়া দেখুন। কারা টাকা দেবেন আর ছোট করে কীভাবে পরীক্ষা করবেন, জেনে নিন।']
+  },
+  'reliable-water': {
+    en: ['Water Filter Maintenance: A Startup Idea for Bangladesh', 'Explore a water filter maintenance business idea for schools and clinics in Bangladesh. Plan regular checks, repairs, pricing, and a small first test.'],
+    bn: ['পানির ফিল্টার মেরামত: বাংলাদেশে ব্যবসার আইডিয়া', 'স্কুল ও ক্লিনিকের পানির ফিল্টার পরীক্ষা ও মেরামতের ব্যবসার আইডিয়া দেখুন। নিয়মিত সার্ভিস, আয়ের উপায় আর শুরুতে কী পরীক্ষা করবেন, জানুন।']
+  },
+  'clinic-follow-up': {
+    en: ['Patient Follow-Up Software: A Startup Idea for Bangladesh', 'Explore a patient follow-up software idea for small clinics in Bangladesh. Help staff arrange missed visits and test the idea before building an app.'],
+    bn: ['ক্লিনিকের ফলোআপ সফটওয়্যার: স্টার্টআপ আইডিয়া', 'ছোট ক্লিনিকে রোগীদের ফলোআপে ডাকার সফটওয়্যার আইডিয়া দেখুন। অ্যাপ বানানোর আগে ক্লিনিকের কর্মীদের সঙ্গে কীভাবে পরীক্ষা করবেন, জেনে নিন।']
+  },
+  'cooler-workplaces': {
+    en: ['Factory Cooling Services: A Startup Idea for Bangladesh', 'Explore a factory cooling business idea in Bangladesh. See who could pay for heat-reducing changes and how to test a small area before taking on more work.'],
+    bn: ['কারখানার গরম কমানোর সার্ভিস: ব্যবসার আইডিয়া', 'বাংলাদেশে কারখানার গরম কমানোর ব্যবসার আইডিয়া দেখুন। কারা এই কাজের খরচ দেবেন আর ছোট একটি জায়গায় কীভাবে পরীক্ষা করবেন, জেনে নিন।']
+  },
+  'solar-upkeep': {
+    en: ['Solar Panel Cleaning: A Startup Idea for Bangladesh', 'Explore a solar panel cleaning and maintenance business idea in Bangladesh. See who could pay, what trained technicians do, and how to test the service.'],
+    bn: ['সোলার প্যানেল পরিষ্কার: বাংলাদেশে ব্যবসার আইডিয়া', 'ছাদের সোলার প্যানেল পরিষ্কার ও মেরামতের ব্যবসার আইডিয়া দেখুন। কাদের সার্ভিস দেবেন, আয় কীভাবে হবে আর ছোট করে কীভাবে পরীক্ষা করবেন, জানুন।']
+  }
+}
 const routes = [
-  { route: 'startup-ideas', component: 'Ideas', en: ['Startup ideas for Bangladesh', 'Explore practical startup ideas for Bangladesh. Find who they could help, ways to earn, and a small first test.'], bn: ['বাংলাদেশের জন্য স্টার্টআপ আইডিয়া', 'বাংলাদেশের জন্য স্টার্টআপ আইডিয়া খুঁজে নিন। কাদের কাজে লাগবে, আয়ের উপায় কী আর ছোট করে কীভাবে পরীক্ষা করবেন, জেনে নিন।'] },
+  { route: 'startup-ideas', component: 'Ideas', seo: { en: 'Startup and New Business Ideas in Bangladesh', bn: 'বাংলাদেশে স্টার্টআপ ও নতুন ব্যবসার আইডিয়া' }, en: ['Startup ideas for Bangladesh', 'Explore startup and new business ideas for Bangladesh. See who each idea helps, ways to earn, and a small test to try before you build.'], bn: ['বাংলাদেশের জন্য স্টার্টআপ আইডিয়া', 'বাংলাদেশের জন্য স্টার্টআপ আইডিয়া খুঁজে নিন। কাদের কাজে লাগবে, আয়ের উপায় কী আর ছোট করে কীভাবে পরীক্ষা করবেন, জেনে নিন।'] },
   { route: 'companies', component: 'Companies', en: ['Companies in Bangladesh’s startup ecosystem', 'Find startups and investors. See what they do and which problems they work on.'], bn: ['বাংলাদেশের স্টার্টআপ ও বিনিয়োগকারী', 'স্টার্টআপ ও বিনিয়োগকারীদের কাজ এবং তাদের সমাধানের তথ্য দেখুন।'] },
   { route: 'startup-ideas/add-company', component: 'ContributeConnection', en: ['Add a company working on a problem', 'Choose an existing company or suggest a new one. Add its work and a public source for review.'], bn: ['সমস্যা নিয়ে কাজ করা কোম্পানির তথ্য দিন', 'কোম্পানি বেছে নিন বা নতুন তথ্য দিন। প্রকাশের আগে যাচাই করা হবে।'] },
   { route: 'startup-ideas/review', component: 'ConnectionReview', en: ['Review submissions', 'Private review queue for Deshi Startup reviewers.'], bn: ['জমা দেওয়া তথ্য পর্যালোচনা', 'Deshi Startup-এর পর্যালোচকদের জন্য জমা দেওয়া তথ্য।'] },
   { route: 'startup-ideas/add', component: 'ContributeIdea', en: ['Add a startup idea', 'Share a startup idea for Bangladesh. Describe what you would build and who it would help.'], bn: ['স্টার্টআপ আইডিয়া দিন', 'বাংলাদেশের জন্য আপনার স্টার্টআপ আইডিয়া জানান। কী বানাতে চান আর কাদের কাজে লাগবে, লিখুন।'] },
-  ...data.approaches.map(p => ({ route: `startup-ideas/${ideaSlug(p.id)}`, id: p.id, component: 'IdeaDetail', en: [p.en.title, p.en.summary], bn: [p.bn.title, p.bn.summary] })),
+  ...data.approaches.map(p => ({ route: `startup-ideas/${ideaSlug(p.id)}`, id: p.id, component: 'IdeaDetail', seo: { en: ideaSearchCopy[p.id]?.en[0], bn: ideaSearchCopy[p.id]?.bn[0] }, en: [p.en.title, ideaSearchCopy[p.id]?.en[1] || p.en.summary], bn: [p.bn.title, ideaSearchCopy[p.id]?.bn[1] || p.bn.summary] })),
   ...data.organizations.map(o => ({ route: `companies/${o.slug}`, id: o.id, component: 'CompanyProfile', en: [`${o.en.name} company profile`, profileDescription(o.en.description)], bn: [`${o.bn.name} সম্পর্কে`, profileDescription(o.bn.description)] }))
 ]
 if (new Set(routes.map(r => r.route)).size !== routes.length) throw new Error('Duplicate ecosystem route')
@@ -31,7 +59,7 @@ for (const locale of ['en', 'bn']) {
   for (const r of routes) {
     const file = path.join(content, r.route, 'page.mdx')
     const relative = r.route.includes('/') ? '../../../../' : '../../../'
-    const body = `---\ntitle: ${JSON.stringify(r[locale][0])}\ndescription: ${JSON.stringify(r[locale][1])}\n---\n\n${generatedMark}\n\nimport ${r.component} from '${relative}components/ideas/${r.component}'\n\n<${r.component} locale="${locale}"${r.id ? ` id="${r.id}"` : ''} />\n`
+    const body = `---\ntitle: ${JSON.stringify(r[locale][0])}\n${r.seo?.[locale] ? `seoTitle: ${JSON.stringify(r.seo[locale])}\n` : ''}description: ${JSON.stringify(r[locale][1])}\n---\n\n${generatedMark}\n\nimport ${r.component} from '${relative}components/ideas/${r.component}'\n\n<${r.component} locale="${locale}"${r.id ? ` id="${r.id}"` : ''} />\n`
     fs.mkdirSync(path.dirname(file), { recursive: true })
     if (!fs.existsSync(file) || fs.readFileSync(file, 'utf8') !== body) fs.writeFileSync(file, body)
   }

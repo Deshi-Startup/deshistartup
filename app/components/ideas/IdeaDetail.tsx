@@ -60,8 +60,8 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
       </header>
       <div className="ideas-detail-grid">
         <div className="ideas-detail-body">
-          <section><h2>{en ? 'How it works' : 'যেভাবে কাজ করবে'}</h2><p>{a.description}</p></section>
-          <section className="ideas-first-step"><h2>{en ? 'Try this first' : 'আগে এভাবে পরীক্ষা করুন'}</h2>
+          <section id="how-it-works"><h2>{en ? 'How it works' : 'যেভাবে কাজ করবে'}</h2><p>{a.description}</p></section>
+          <section className="ideas-first-step" id="first-test"><h2>{en ? 'Try this first' : 'আগে এভাবে পরীক্ষা করুন'}</h2>
             <ol>{a.steps.map((step, index) => <li key={index}>{step}</li>)}</ol>
             <p className="ideas-signal"><strong>{en ? 'Look for: ' : 'যে ফল খুঁজবেন: '}</strong>{a.signal}</p>
             <IdeaActions id={idea.id} locale={locale} brief={brief} prompt={prompt} />
@@ -72,7 +72,7 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
           </section>}
         </div>
         <aside className="ideas-facts">
-          <section><h2>{en ? 'Ways to earn' : 'আয়ের উপায়'}</h2><p>{a.businessModel}</p></section>
+          <section id="business-model"><h2>{en ? 'Ways to earn' : 'আয়ের উপায়'}</h2><p>{a.businessModel}</p></section>
           <section className="ideas-companies-small">
             {companies.length > 0 && <><h2>{en ? 'Related companies' : 'একই সমস্যা নিয়ে কাজ করা কোম্পানি'}</h2><div className="ideas-company-links">{companies.map(({ company, connection }) => <a href={companyPath(locale, company.slug)} key={connection.id}><CompanyMark company={company} locale={locale} /><span>{company[locale].name}</span></a>)}</div></>}
             <a className="ideas-inline-link" href={`${ideaPath(locale, 'add-company')}?problem=${encodeURIComponent(problem.id)}`}>{en ? 'Working on this?' : 'এ নিয়ে কাজ করছেন?'}<IdeaIcon name="plus" /></a>

@@ -358,6 +358,15 @@ function childrenFor(page) {
 }
 
 function visibleCollectionItemsFor($, page) {
+  if (page.slug === 'startup-ideas') {
+    return $('.ideas-row h3 a[href]').map((index, element) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: $(element).text().trim(),
+      url: canonicalUrl($(element).attr('href'))
+    })).get()
+  }
+
   if (page.slug === 'contributors') {
     return $('.contributor-list--ranked .contributor-row')
       .map((index, element) => {
