@@ -5,8 +5,13 @@ Deshi Startup uses one Cloudflare Worker deployment with two deliberately separa
 - `out/` contains the static Next.js/Nextra site, Pagefind index, fonts, and generated discovery
   files. Cloudflare Static Assets serve matching requests without running Worker code.
 - `worker/` contains the small request-time application. It handles `/api/contact`, the
-  contribution APIs, old contribution-review redirects, and the permanent `/50` and `/en/50`
-  shortcuts for Startup 50.
+  contribution and ecosystem APIs, old contribution-review and idea redirects, and
+  the permanent `/50` and `/en/50` shortcuts for Startup 50.
+- D1 owns ecosystem records, private submissions, reviews and votes. Public idea and
+  company pages build from the committed snapshot without querying D1. Only optional
+  votes and authenticated contribution/review flows use it at request time. See
+  [`docs/startup-ideas.md`](../docs/startup-ideas.md) for separate preparation,
+  deployment, publication and recovery steps.
 - R2 continues to hold public media and private contributor quarantine objects. Article HTML and
   MDX do not belong in R2 because Static Assets already provide clean URLs, caching, compression,
   and atomic versioned deployment.
@@ -72,7 +77,7 @@ dashboard-managed variables and secrets.
 
 ## Runtime boundary
 
-The generated `CloudflareEnv` type is the source of truth for R2, KV, rate-limit, asset, variable,
+The generated `CloudflareEnv` type is the source of truth for D1, R2, KV, rate-limit, asset, variable,
 and required-secret bindings. Request handlers receive `env` explicitly. Do not reintroduce
 `process.env`, framework runtime adapters, or request-scoped module globals into Worker code.
 

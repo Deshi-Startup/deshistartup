@@ -15,6 +15,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { classifyContributorMediaAvatars } from './lib/contributor-media.mjs'
+import { ecosystemLogos } from './lib/ecosystem-media.mjs'
 import {
   deleteObject,
   objectKeyMatchesLogicalPath,
@@ -113,6 +114,7 @@ function references() {
     }
   }
 
+  for (const logo of ecosystemLogos()) used.add(logo.src)
   return used
 }
 

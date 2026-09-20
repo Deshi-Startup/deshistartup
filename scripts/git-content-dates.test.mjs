@@ -139,3 +139,22 @@ test('rendered data updates modification dates in both locales without changing 
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('ecosystem reading dates follow the public release without dating forms or unrelated guides', () => {
+  const snapshot = 'data/ecosystem/public.json';
+  assert.ok(PAGE_DATA_PATHS.includes(snapshot));
+  const dates = {
+    modifiedAt: new Map([[snapshot, '2026-09-20T10:00:00Z']]),
+    published: new Map(), publishedAt: new Map()
+  };
+  for (const slug of ['startup-ideas', 'startup-ideas/harvest-cooling', 'companies', 'companies/pathao']) {
+    for (const locale of ['en', '(bn)']) {
+      const result = datesForPage(dates, { repoPath: `app/(contents)/${locale}/${slug}/page.mdx`, slug });
+      assert.equal(result.modifiedAt, '2026-09-20T10:00:00Z', slug);
+      assert.equal(result.publishedAt, null);
+    }
+  }
+  for (const slug of ['startup-ideas/add', 'startup-ideas/add-company', 'startup-ideas/review', 'metrics/unit-economics']) {
+    assert.equal(datesForPage(dates, { repoPath: `app/(contents)/en/${slug}/page.mdx`, slug }).modifiedAt, null);
+  }
+});

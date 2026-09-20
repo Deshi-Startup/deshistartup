@@ -24,6 +24,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { classifyContributorMediaAvatars } from './lib/contributor-media.mjs'
+import { ecosystemLogos } from './lib/ecosystem-media.mjs'
 import {
   CONTENT_TYPES,
   MAX_FILE_BYTES,
@@ -216,6 +217,11 @@ function checkCompanyLogoReferences(logoFile) {
 
 checkCompanyLogoReferences(startup50LogoFile)
 checkCompanyLogoReferences(caseStudyLogoFile)
+try {
+  for (const logo of ecosystemLogos()) checkSource(logo.src, `${logo.id} logo`, 'data/ecosystem/public.json')
+} catch (error) {
+  errors.push(`data/ecosystem/public.json: could not read company logo references (${error.message}).`)
+}
 
 function validFacebookVideoUrl(value) {
   let url

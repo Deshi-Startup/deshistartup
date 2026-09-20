@@ -123,7 +123,7 @@ test('lint rejects and prune retires a media avatar withdrawn through an inline 
 
   for (const directory of [
     'scripts/lib',
-    'data',
+    'data/ecosystem',
     'app/generated',
     'app/(contents)'
   ]) {
@@ -133,7 +133,8 @@ test('lint rejects and prune retires a media avatar withdrawn through an inline 
     'scripts/media-lint.mjs',
     'scripts/media-prune.mjs',
     'scripts/lib/media-lib.mjs',
-    'scripts/lib/contributor-media.mjs'
+    'scripts/lib/contributor-media.mjs',
+    'scripts/lib/ecosystem-media.mjs'
   ]) {
     await copyFile(path.join(repositoryRoot, file), path.join(fixtureRoot, file))
   }
@@ -164,6 +165,7 @@ test('lint rejects and prune retires a media avatar withdrawn through an inline 
     })
   )
   await writeFile(path.join(fixtureRoot, 'app/generated/media-retired.json'), '[]')
+  await writeFile(path.join(fixtureRoot, 'data/ecosystem/public.json'), '{"organizations":[]}')
 
   const lint = spawnSync(process.execPath, ['scripts/media-lint.mjs'], {
     cwd: fixtureRoot,
@@ -189,23 +191,28 @@ test('lint rejects and prune retires a media avatar withdrawn through an inline 
   )
 })
 
-test('prune preserves Startup 50 logos and social images referenced from data files', async (t) => {
+test('prune preserves company-only logos, Startup 50 logos and social images', async (t) => {
   const fixtureRoot = await mkdtemp(path.join(tmpdir(), 'deshi-data-media-'))
   t.after(() => rm(fixtureRoot, { recursive: true, force: true }))
 
-  for (const directory of ['scripts/lib', 'data', 'app/generated', 'app/(contents)']) {
+  for (const directory of ['scripts/lib', 'data/ecosystem', 'app/generated', 'app/(contents)']) {
     await mkdir(path.join(fixtureRoot, directory), { recursive: true })
   }
   for (const file of [
     'scripts/media-prune.mjs',
+    'scripts/media-lint.mjs',
     'scripts/lib/media-lib.mjs',
-    'scripts/lib/contributor-media.mjs'
+    'scripts/lib/contributor-media.mjs',
+    'scripts/lib/ecosystem-media.mjs'
   ]) {
     await copyFile(path.join(repositoryRoot, file), path.join(fixtureRoot, file))
   }
 
   await writeFile(path.join(fixtureRoot, 'data/contributor-ledger.json'), JSON.stringify({ profiles: [] }))
   await writeFile(path.join(fixtureRoot, 'data/contributors-policy.json'), JSON.stringify(policy()))
+  await writeFile(path.join(fixtureRoot, 'data/ecosystem/public.json'), JSON.stringify({
+    organizations: [{ id: 'company-only', logoPath: '/media/companies/only.webp' }, { id: 'no-logo', logoPath: null }]
+  }))
   await writeFile(
     path.join(fixtureRoot, 'data/startup-50-logos.json'),
     JSON.stringify({ entries: [{ slug: 'example', src: '/media/startup-50/example.webp' }] })
@@ -217,6 +224,9 @@ test('prune preserves Startup 50 logos and social images referenced from data fi
   await writeFile(
     path.join(fixtureRoot, 'app/generated/media.json'),
     JSON.stringify({
+      '/media/companies/only.webp': {
+        key: 'companies/only.dddddddddddd.webp', bytes: 100
+      },
       '/media/startup-50/example.webp': {
         key: 'startup-50/example.aaaaaaaaaaaa.webp', bytes: 100
       },
@@ -243,7 +253,19 @@ test('prune preserves Startup 50 logos and social images referenced from data fi
 
   const active = JSON.parse(await readFile(path.join(fixtureRoot, 'app/generated/media.json'), 'utf8'))
   assert.deepEqual(Object.keys(active).sort(), [
+    '/media/companies/only.webp',
     '/media/og/en/example.png',
     '/media/startup-50/example.webp'
   ])
+  await writeFile(path.join(fixtureRoot, 'data/ecosystem/public.json'), JSON.stringify({
+    organizations: [{ id: 'missing-logo', logoPath: '/media/companies/missing.webp' }]
+  }))
+  const lint = spawnSync(process.execPath, ['scripts/media-lint.mjs'], { cwd: fixtureRoot, encoding: 'utf8' })
+  assert.equal(lint.status, 1)
+  assert.match(`${lint.stdout}${lint.stderr}`, /missing-logo logo references .*missing.webp, which has not been uploaded/)
+
+  await writeFile(path.join(fixtureRoot, 'data/ecosystem/public.json'), '{}')
+  const unsafePrune = spawnSync(process.execPath, ['scripts/media-prune.mjs', '--retire-unreferenced'], { cwd: fixtureRoot, encoding: 'utf8' })
+  assert.notEqual(unsafePrune.status, 0, 'Malformed snapshot must stop retirement')
+  assert.deepEqual(JSON.parse(await readFile(path.join(fixtureRoot, 'app/generated/media.json'), 'utf8')), active)
 })

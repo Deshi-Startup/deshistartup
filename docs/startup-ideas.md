@@ -42,6 +42,12 @@ produced by `scripts/build-ecosystem-routes.mjs`. Public reading is static and n
 neither an account nor a working database. Optional live vote counts are fetched
 separately; they never enter the static content snapshot. Normal builds need no D1 credentials.
 
+Reading-page modification dates track the committed public release, including brief
+or relationship changes that leave wrapper titles unchanged. These are release-level
+update dates, not fresh source verification. Private submissions, votes and migrations
+alone do not change them. Media lint and retirement also read company logo references
+from this snapshot, including logos used nowhere else in the manual.
+
 Company connections currently refer to the shared problem, not a specific idea.
 “Related companies” reflects that scope. Reverse Resources is linked through
 published textile-recycling work. It is not presented as adopting our proposed

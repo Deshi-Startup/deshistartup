@@ -1,9 +1,20 @@
 // Data rendered inside otherwise unchanged MDX shells. Keep these dependencies
 // explicit: a build, source report or unrelated data edit is not a page update.
+import ecosystem from '../data/ecosystem/public.json' with { type: 'json' }
+import { ideaSlug } from '../app/lib/idea-routes.mjs'
+
 const directories = ['investors', 'accelerators', 'government-funding',
   'payment-gateways', 'couriers', 'legal-accounting', 'government-services', 'coworking']
 
 export const PAGE_DATA_INPUTS = {
+  // These wrappers contain only title/summary/component props; the published
+  // release owns their rendered briefs and relationships. Track that release,
+  // not private D1 writes, migrations or live votes. Forms have no such content.
+  ...Object.fromEntries([
+    'startup-ideas', 'companies',
+    ...ecosystem.approaches.map(idea => `startup-ideas/${ideaSlug(idea.id)}`),
+    ...ecosystem.organizations.map(company => `companies/${company.slug}`)
+  ].map(slug => [slug, ['data/ecosystem/public.json']])),
   ...Object.fromEntries(directories.map((category) => [
     `directory/${category}`, [`data/directory/${category}.json`]
   ])),

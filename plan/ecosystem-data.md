@@ -7,7 +7,7 @@ case studies and future contribution flows. Feature implementation details stay 
 
 ## Direction and decision status
 
-**Implemented locally, 16 September 2026:** individual startup ideas are the public
+**Implemented, reviewed 20 September 2026:** individual startup ideas are the public
 browsing unit at `/startup-ideas`, mirrored in English. Problems remain shared
 research underneath. Companies are supporting references with canonical
 `/companies/<slug>` profiles, not a primary or secondary navigation destination.
@@ -20,11 +20,13 @@ a frozen public snapshot supplies static pages. Investor firms, accelerators,
 incubators and communities use company roles rather than separate route trees.
 Individual people and programs remain separate future concepts.
 
-The local slice includes DS50/case-study links and separate approval/publication.
-Votes, general profile editing, representative verification, duplicate merges and
-logo uploads are deferred. Production review ownership, correction/retention rules,
-dataset reuse rights and recovery still need work. No remote database or deployment
-is included.
+The implementation includes DS50/case-study links, shared votes and separate
+approval/publication. The production D1 binding, review ownership, manual removal
+policy, reuse rights and backup/restore procedure are documented in
+[`docs/startup-ideas.md`](../docs/startup-ideas.md). General profile editing,
+representative verification, duplicate merges, logo uploads and automatic private
+record expiry remain deferred. Deployment and publication are separate operational
+steps; repository configuration alone does not prove a release is live.
 
 ## Product model
 
@@ -131,11 +133,11 @@ fixtures, exports and generated public snapshots.
 
 | Layer | Recommended responsibility |
 |---|---|
-| D1 | Authoritative company/problem/approach records, relationships, revisions, private submissions and review decisions. |
+| D1 | Authoritative company/problem/approach records, relationships, revisions, private submissions, review decisions and account-hashed votes. |
 | Existing Worker | Authentication, authorized mutations, company lookup, review decisions and controlled public queries. Browsers never receive database credentials. |
 | R2 | Approved image bytes and private quarantine, using the existing media pipeline. |
 | Git / MDX | Guides, case-study narratives, source code, database migrations and editorial DS50 selection. |
-| Static site | Crawlable, bilingual public profiles and problem pages built from an approved public snapshot. |
+| Static site | Crawlable, bilingual idea and company pages built from an approved public snapshot; live votes are fetched separately. |
 
 Use one small relational database initially, with explicit tables and foreign keys. Likely groups
 are companies and translations/aliases; problems and translations; approaches and translations;
@@ -175,7 +177,11 @@ update frequency later warrants request-time rendering, change that surface deli
 keeping crawlable HTML, language parity and the existing article performance budgets. Do not
 rewrite the whole site to introduce the database.
 
-## Build sequence and acceptance
+## Original build sequence and remaining acceptance
+
+The first three steps below describe the implemented foundation. Reliability tests
+and restore rehearsal are documented in the feature guide; a real Google-account
+submission, review and vote cycle remains an explicit launch check.
 
 1. **Separate the model locally.** Split the six combined briefs into problems and ideas.
    Preserve IDs through an explicit mapping, then adapt the catalogue, detail and prompt flows.
@@ -191,8 +197,9 @@ rewrite the whole site to introduce the database.
    retries, correction/merge behavior, unauthorized access and private-field exclusion. Exercise
    publication failure/rollback, logo review and database backup/restore. Verify both locales,
    keyboard interaction, mobile reading and public pages without login.
-5. **Expand from observed use.** Add more sourced problems, ideas and companies. Add shared
-   votes and verified partner offers only when their moderation and meaning are defined. Keep
+5. **Expand from observed use.** Add more sourced problems, ideas and companies. Add
+   verified partner offers only when their moderation and meaning are defined. Shared votes
+   now express reader interest and do not change the default editorial order. Keep
    Maps as a linked geographic research surface; a pilot location is not company presence or
    measured demand. Connect Skills only to actual published resources.
 

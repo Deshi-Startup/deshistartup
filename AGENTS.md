@@ -37,6 +37,8 @@ without `<StubNotice />`; run `npm run backlog:status` for current counts.
 - Next.js exports the site to `out/`; Cloudflare Static Assets serve it without invoking the Worker.
 - A small native Worker handles the contact endpoint, contribution APIs and legacy review-link redirects.
 - Pagefind supplies client-side static search.
+- D1 stores ecosystem records, private submissions, reviews and votes. Idea/company
+  reading stays static through `data/ecosystem/public.json`; builds do not query D1.
 - Milkdown Crepe powers the inline editor.
 - `jose` verifies Google ID tokens on every contribution request.
 
@@ -157,7 +159,9 @@ key is the only GitHub secret. Never expose credentials in client code.
 
 ## Media
 
-Image bytes live in R2 and are addressed in content as `/media/...`; binaries do not belong in git.
+Article images and company logos live in R2 and are addressed in content as `/media/...`.
+Small site-brand assets, repository previews and licensed self-hosted fonts are intentional
+Git assets; do not move them merely to make all bytes use R2.
 `app/generated/media.json` is the committed registry. `app/lib/media.ts` is the only delivery-URL
 resolver.
 
@@ -175,6 +179,12 @@ syntax and metadata fields. Never add raw media embeds or platform iframes. Run
 `plan/media-operations.md`.
 
 ## Generated files
+
+`data/ecosystem/public.json`, `public/ecosystem-release.json` and the marked bilingual
+idea/company MDX wrappers belong to the D1 release pipeline. Never hand-edit them.
+Apply forward migrations, prepare a snapshot, build and review it, then publish its
+pointer only after the matching deployment. See [`docs/startup-ideas.md`](./docs/startup-ideas.md).
+Normal builds regenerate wrappers from the existing snapshot and need no database access.
 
 `npm run manifest` derives navigation, contribution maps, SEO inputs, route date maps, sitemap,
 robots, `llms.txt` and `llms-full.txt` from the content tree and git history. These are outputs, not additional
