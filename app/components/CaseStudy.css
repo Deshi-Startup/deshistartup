@@ -35,6 +35,17 @@
 .article .case-company p { margin: 0; color: inherit; line-height: 1.65; }
 .case-company p span { display: block; }
 .case-company p span + span { color: var(--case-soft); font-size: .875rem; }
+.article .case-company a:any-link {
+  color: inherit;
+  font-size: .875rem;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+.article .case-company a:any-link:hover {
+  color: inherit;
+  text-decoration-thickness: 2px;
+}
+.article .case-company a:focus-visible { outline-color: currentColor; }
 .article:has(.case-company) > h1 { max-width: none; text-wrap: wrap; }
 
 .article .case-timeline {
