@@ -76,7 +76,7 @@ function escapeXml(value) {
 export function createSocialImageFont(fontData) {
   if (!fontData?.length) throw new Error('Social-image Bengali font file is missing or empty')
   const font = fontkit.create(fontData)
-  if (!font || font.type !== 'WOFF2' || !font.characterSet?.includes(0x0995)) {
+  if (!font || !['WOFF2', 'TTF'].includes(font.type) || !font.characterSet?.includes(0x0995)) {
     throw new Error('Social-image font does not contain Bengali glyphs')
   }
   return font
@@ -378,7 +378,7 @@ async function main() {
   const result = await buildSocialImages({
     definitions, pages, themeCss, check,
     outputDir: path.join(root, 'media', 'og'),
-    fontPath: path.join(root, 'app', 'fonts', 'deshi-sans-bengali-var.woff2'),
+    fontPath: path.join(root, 'app', 'fonts', 'deshi-sans-bengali-var.ttf'),
     markPath: path.join(root, 'public', 'deshi-mark.webp')
   })
   if (check) {
