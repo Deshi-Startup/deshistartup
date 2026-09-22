@@ -200,9 +200,11 @@ marker cannot advance the pointer. Frozen releases remain in the selected D1 dat
 account. The primary is in APAC; read replication is disabled. There is no replica
 consistency/session machinery to maintain. Local development uses a different config
 and database identity. Normal builds read the committed public snapshot, not D1.
-Production migrations through `0014` were applied on 20 September 2026 after a
-private backup and isolated restore/migration rehearsal. Post-migration integrity
-checks passed; the existing submissions and publication pointer were preserved.
+Production migrations through `0014` were applied on 20 September 2026; `0015`,
+`0016` and `0018` followed on 23 September after a private backup and isolated
+restore/migration rehearsal. Post-migration integrity checks passed; existing
+submissions, review records and the publication pointer were preserved. Migration
+`0017` belongs to a separate, unreleased idea-content draft.
 Future environments must apply all pending migrations before preparing a release.
 See [`shared-identity.md`](./shared-identity.md) for the import and identity
 publication boundaries. These database steps do not deploy the Worker or publish
@@ -240,6 +242,11 @@ npx wrangler d1 execute deshi-ecosystem-local --config wrangler.ecosystem-local.
 The preparation step moves table definitions before row inserts because deferred
 foreign keys cannot reference a table that has not been created yet. It refuses to
 overwrite an existing output file.
+
+Large frozen release rows can exceed D1's SQL statement-length limit in an export.
+If the local import reports `SQLITE_TOOBIG`, replay those inserts with prepared
+statements and bound values in an isolated D1 emulator. Keep every frozen release
+and verify its digest; never omit large rows to make a restore pass.
 
 Check `PRAGMA foreign_key_check`, `PRAGMA quick_check`, record counts and the frozen
 release digest after restoring. Treat all exports as private, even if today's seed
