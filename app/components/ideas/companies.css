@@ -41,6 +41,7 @@
 .ideas-shell .companies-section-note { color: var(--muted); font-size: .875rem; margin: .75rem 0 1rem; }
 .companies-actions { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1rem; }
 .companies-actions a, .companies-learning a { display: inline-flex; gap: .65rem; align-items: center; min-height: 44px; }
+.companies-actions a { max-width: 100%; min-width: 0; overflow-wrap: anywhere; }
 .ideas-shell .companies-actions a, .ideas-shell .companies-sources a { color: var(--blue); text-decoration: underline; }
 .companies-citations { white-space: nowrap; font-size: .75rem; vertical-align: super; }
 .ideas-shell .companies-citations a { color: var(--blue); padding: .15rem .2rem; }

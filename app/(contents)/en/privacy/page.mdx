@@ -14,7 +14,7 @@ description: "What data is processed when you read the site, sign in with Google
 > messages are used only to reply, and measurement tags may run through Google Tag Manager to help
 > us understand site use.
 
-**Effective: 20 September 2026**
+**Effective: 22 September 2026**
 
 ## When you only read the site
 
@@ -62,8 +62,14 @@ history. A submission does not give you control of a company profile.
 
 Voting uses the same Google sign-in described above. We store an account hash, the idea, whether
 your vote is active, and the date you first voted. Only totals are public. Removing a vote takes it
-out of the total, but leaves an inactive record. We do not store your Google token, name or email
-in the idea submission or voting tables.
+out of the total, but leaves an inactive record. We do not store your Google token or name with idea submissions, and voting does not store your email.
+
+When review emails are enabled, we keep your verified Google email address in a separate private
+record to send the decision and a link when your idea is published. The form tells you before
+submission. These messages are sent through Cloudflare Email Service; your address is not added
+to a mailing list or included in the public catalogue. Email delivery attempts are kept privately
+so failed messages can be retried. You can also follow your submission and read reviewer notes
+on [Your submissions](/en/startup-ideas/submissions).
 
 Submitted drafts, review records and vote records do not currently expire automatically. To ask
 for their removal, use the [contact form](/en/contact). Published copies may remain in history or

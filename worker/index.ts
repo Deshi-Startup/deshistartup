@@ -12,6 +12,7 @@ import {
   POST as updateContributionReview
 } from './api/contribution-review'
 import { logError } from './lib/logging'
+import { deliverNotifications } from './lib/ecosystem-email'
 import { handleEcosystem } from './api/ecosystem'
 
 const OPAQUE_ID = /^[a-f0-9]{32}$/
@@ -88,6 +89,9 @@ async function apiResponse(
 }
 
 export default {
+  async scheduled(_controller, env, context) {
+    context.waitUntil(deliverNotifications(env))
+  },
   async fetch(request, env, context): Promise<Response> {
     const url = new URL(request.url)
 

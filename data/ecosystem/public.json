@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "releaseId": "release_16330010-854a-460e-8b5e-132b7cb6bc71",
-  "createdAt": "2026-09-20T16:06:19.999Z",
+  "releaseId": "release_e1357d41-778e-446d-8649-4d4b0431ed8c",
+  "createdAt": "2026-09-22T22:14:19.873Z",
   "problems": [
     {
       "id": "garment-offcuts",
@@ -534,6 +534,52 @@
         "name": "Arogga",
         "description": "অনলাইন ফার্মেসি, ডায়াগনস্টিকস ও স্বাস্থ্যসেবা পাওয়ার সমন্বিত প্ল্যাটফর্ম।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Ordering & healthcare services",
+              "bn": "অর্ডার ও স্বাস্থ্যসেবা"
+            },
+            "body": {
+              "en": "Arogga combines medicine and healthcare-product ordering with home sample collection for lab tests and online doctor consultations. Customers can search by medicine name or upload a prescription. The consultation page offers general-doctor consultations; specialist appointment booking is marked as coming soon.",
+              "bn": "Arogga-তে ওষুধ ও স্বাস্থ্যপণ্য অর্ডারের পাশাপাশি বাসা থেকে পরীক্ষার নমুনা সংগ্রহ এবং অনলাইনে ডাক্তারের পরামর্শ নেওয়ার সেবা আছে। ওষুধের নাম দিয়ে খোঁজা বা প্রেসক্রিপশনের ছবি আপলোড করা যায়। সাধারণ ডাক্তারের সঙ্গে কথা বলার সুযোগ থাকলেও বিশেষজ্ঞের অ্যাপয়েন্টমেন্ট নেওয়ার সুবিধাটি এখনো চালুর অপেক্ষায় বলে লেখা আছে।"
+            },
+            "sources": [
+              {
+                "title": "Ordering & healthcare services",
+                "url": "https://www.arogga.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              },
+              {
+                "title": "Doctor consultation availability",
+                "url": "https://www.arogga.com/online-doctor-consultation",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "D/15-1, Road 36, Block D, Section 10, Mirpur, Dhaka 1216.",
+            "bn": "ডি/১৫-১, রোড ৩৬, ব্লক ডি, সেকশন ১০, মিরপুর, ঢাকা ১২১৬।"
+          },
+          "email": null,
+          "phone": "09610016778",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.arogga.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "case-study",
@@ -567,6 +613,43 @@
       "bn": {
         "name": "bKash",
         "description": "পেমেন্ট, টাকা পাঠানো, সঞ্চয় ও দৈনন্দিন লেনদেনের মোবাইল আর্থিক সেবা।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Consumer & business services",
+              "bn": "ব্যক্তিগত লেনদেন ও ব্যবসার সেবা"
+            },
+            "body": {
+              "en": "bKash supports person-to-person transfers, merchant payments, mobile recharge, bill payment and cash withdrawal. Its business offering has separate routes for online sellers, merchants, educational institutions and corporate customers, including digital payroll. Savings, loans and insurance appear as additional service categories; product eligibility and terms should be checked separately.",
+              "bn": "টাকা পাঠানো, দোকানে পেমেন্ট, মোবাইল রিচার্জ, বিল দেওয়া ও ক্যাশ আউট করা যায় bKash দিয়ে। অনলাইন বিক্রেতা, মার্চেন্ট, শিক্ষাপ্রতিষ্ঠান ও করপোরেট গ্রাহকদের জন্য আলাদা সেবাও আছে, যেমন ডিজিটাল বেতন দেওয়া। সঞ্চয়, ঋণ ও বিমার সুবিধা নিতে কারা পারবেন এবং কী শর্ত আছে, তা সংশ্লিষ্ট প্রোডাক্টের পেজে দেখে নিতে হয়।"
+            },
+            "sources": [
+              {
+                "title": "Consumer & business services",
+                "url": "https://www.bkash.com/en",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": "16247",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.bkash.com/en/customer-service/contact-us",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -602,6 +685,120 @@
         "name": "Dorik",
         "description": "কোডিং ছাড়াই ওয়েবসাইট তৈরি ও কনটেন্ট ব্যবস্থাপনার আন্তর্জাতিক সফটওয়্যার।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "products",
+            "title": {
+              "en": "Website building tools",
+              "bn": "ওয়েবসাইট তৈরির টুল"
+            },
+            "body": {
+              "en": "Dorik combines AI-assisted website generation with a visual editor, templates and reusable page elements. It includes hosting, custom-domain support, forms and blogging tools. Founders can use it to build and maintain a marketing site without writing every page in code.",
+              "bn": "এআই দিয়ে ওয়েবসাইটের খসড়া তৈরি করে Dorik-এর ভিজুয়াল এডিটরে তা সাজানো যায়। টেমপ্লেট ও আগে থেকে তৈরি পেজের অংশও আছে। হোস্টিং, নিজের ডোমেইন যুক্ত করা, ফর্ম ও ব্লগের সুবিধা দেয় Dorik। ফাউন্ডাররা প্রতিটি পেজের কোড না লিখেও ব্যবসার ওয়েবসাইট তৈরি ও আপডেট করতে পারেন।"
+            },
+            "sources": [
+              {
+                "title": "Dorik - website building features",
+                "url": "https://dorik.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": [
+              {
+                "label": {
+                  "en": "Website builder",
+                  "bn": "ওয়েবসাইট বিল্ডার"
+                },
+                "url": "https://dorik.com/"
+              },
+              {
+                "label": {
+                  "en": "Plans & limits",
+                  "bn": "প্ল্যান ও সীমা"
+                },
+                "url": "https://dorik.com/pricing"
+              }
+            ]
+          },
+          {
+            "id": "agency-tools",
+            "title": {
+              "en": "CMS & agency workflow",
+              "bn": "CMS ও এজেন্সির কাজ"
+            },
+            "body": {
+              "en": "The white-label CMS lets agencies use their own branding and give clients a dedicated dashboard. It supports structured content and a public API, alongside client billing tools. This makes client-site management a distinct part of Dorik’s offering, beyond individual website creation.",
+              "bn": "এজেন্সিগুলো Dorik-এর হোয়াইট-লেবেল CMS-এ নিজেদের ব্র্যান্ড ব্যবহার করতে পারে। ক্লায়েন্টকে আলাদা ড্যাশবোর্ড দেওয়া, নির্দিষ্ট কাঠামোয় কনটেন্ট রাখা, পাবলিক API ব্যবহার ও বিল পাঠানোর সুবিধাও আছে। ফলে শুধু একটি ওয়েবসাইট বানানো নয়, ক্লায়েন্টদের সাইট সামলানোর কাজেও Dorik ব্যবহার করা যায়।"
+            },
+            "sources": [
+              {
+                "title": "Dorik - white-label CMS",
+                "url": "https://dorik.com/white-label-cms",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": [
+              {
+                "label": {
+                  "en": "White-label CMS",
+                  "bn": "হোয়াইট-লেবেল CMS"
+                },
+                "url": "https://dorik.com/white-label-cms"
+              }
+            ]
+          },
+          {
+            "id": "origins",
+            "title": {
+              "en": "How it started",
+              "bn": "শুরুর গল্প"
+            },
+            "body": {
+              "en": "Dorik’s own history traces the product to a 2019 side project, followed by an April 2020 landing page to recruit early users. It records its first paying customer in July and public launch in August 2020. The helpdesk and live chat are the main published support routes.",
+              "bn": "Dorik-এর নিজের বর্ণনা অনুযায়ী, ২০১৯ সালে অন্য কাজের পাশাপাশি প্রোডাক্টটি বানানো শুরু হয়। প্রথম ব্যবহারকারীদের খুঁজতে ২০২০ সালের এপ্রিলে একটি ল্যান্ডিং পেজ প্রকাশ করে তারা। জুলাইয়ে প্রথম ক্রেতা টাকা দেন, আর আগস্টে সবার জন্য প্রোডাক্টটি চালু হয়। সহায়তার জন্য হেল্পডেস্ক ও লাইভ চ্যাট আছে।"
+            },
+            "sources": [
+              {
+                "title": "Dorik - company story",
+                "url": "https://dorik.com/about-dorik",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              },
+              {
+                "title": "Dorik - website building features",
+                "url": "https://dorik.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": [
+              {
+                "label": {
+                  "en": "Helpdesk",
+                  "bn": "হেল্পডেস্ক"
+                },
+                "url": "https://help.dorik.com/en/"
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": "support@dorik.com",
+          "phone": null,
+          "sources": [
+            {
+              "title": "Dorik - published support email",
+              "url": "https://help.dorik.com/en/article/terms-of-service-1ct7bc/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "case-study",
@@ -636,6 +833,109 @@
         "name": "Pathao",
         "description": "রাইড শেয়ারিং, পার্সেল ডেলিভারি, খাবার, লজিস্টিকস ও পেমেন্টের বহু-সেবার প্ল্যাটফর্ম।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "products",
+            "title": {
+              "en": "Products & services",
+              "bn": "প্রোডাক্ট ও সেবা"
+            },
+            "body": {
+              "en": "Pathao connects consumers with rides, food delivery and parcel services through its app. Its courier business serves merchants shipping orders to customers. These serve different needs: a consumer booking a trip or meal, and a business managing repeat deliveries.",
+              "bn": "Pathao অ্যাপ দিয়ে রাইড নেওয়া, খাবার অর্ডার করা ও পার্সেল পাঠানো যায়। ব্যবসায়ীরা ক্রেতার কাছে অর্ডার পৌঁছে দিতে তাদের কুরিয়ার সেবা ব্যবহার করেন। একদিকে ব্যক্তিগত যাতায়াত বা খাবারের প্রয়োজন মেটে, অন্যদিকে ব্যবসার নিয়মিত ডেলিভারি সামলানো যায়।"
+            },
+            "sources": [
+              {
+                "title": "Pathao - services and company overview",
+                "url": "https://pathao.com/about-us/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          },
+          {
+            "id": "merchant-services",
+            "title": {
+              "en": "Tools for merchants",
+              "bn": "ব্যবসায়ীদের জন্য সেবা"
+            },
+            "body": {
+              "en": "Pathao Courier offers parcel tracking, cash-on-delivery collection, returns and fulfilment support such as inventory management, packing and order processing. Merchants register through a separate portal. Its courier support number is 09610003030; confirm service areas, payout terms and return charges before choosing a delivery setup.",
+              "bn": "পার্সেল কোথায় আছে তা দেখা, ডেলিভারির সময় টাকা সংগ্রহ ও ফেরত আসা পণ্য সামলানোর সুবিধা দেয় Pathao Courier। স্টক রাখা, প্যাকিং ও অর্ডার প্রক্রিয়া করার সেবাও আছে। ব্যবসায়ীদের আলাদা পোর্টালে নিবন্ধন করতে হয়। কুরিয়ারের সহায়তা নম্বর ০৯৬১০০০৩০৩০। কাজ শুরুর আগে ডেলিভারির এলাকা, টাকা পাওয়ার নিয়ম ও রিটার্নের খরচ মিলিয়ে নিন।"
+            },
+            "sources": [
+              {
+                "title": "Pathao Courier - merchant services",
+                "url": "https://pathao.com/courier/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": [
+              {
+                "label": {
+                  "en": "Courier services",
+                  "bn": "কুরিয়ার সেবা"
+                },
+                "url": "https://pathao.com/courier/"
+              },
+              {
+                "label": {
+                  "en": "Merchant registration",
+                  "bn": "ব্যবসায়ী হিসেবে নিবন্ধন"
+                },
+                "url": "https://merchant.pathao.com/register"
+              }
+            ]
+          },
+          {
+            "id": "commerce",
+            "title": {
+              "en": "Pathao Commerce",
+              "bn": "Pathao Commerce"
+            },
+            "body": {
+              "en": "In September 2026, Pathao announced Commerce, a platform for managing storefronts, sales channels, orders, inventory, payments, delivery and customer communication together. It extends the merchant offering beyond moving parcels to coordinating the work around an order.",
+              "bn": "২০২৬ সালের সেপ্টেম্বরে Pathao Commerce চালুর ঘোষণা দেয় কোম্পানিটি। অনলাইন দোকান, বিক্রির চ্যানেল, অর্ডার, স্টক, পেমেন্ট, ডেলিভারি ও ক্রেতার সঙ্গে যোগাযোগ এক জায়গায় সামলানোর জন্য এই প্ল্যাটফর্ম। পার্সেল পৌঁছে দেওয়ার পাশাপাশি অর্ডার ঘিরে ব্যবসায়ীর বাকি কাজগুলোও এতে রাখা যায়।"
+            },
+            "sources": [
+              {
+                "title": "Pathao Commerce launch",
+                "url": "https://pathao.com/blog/press/pathao-commerce/",
+                "publishedOn": "2026-09-10",
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": [
+              {
+                "label": {
+                  "en": "Commerce announcement",
+                  "bn": "Commerce চালুর ঘোষণা"
+                },
+                "url": "https://pathao.com/blog/press/pathao-commerce/"
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Jahanara Garden, House 103, Road 13/A, Block C, Banani, Dhaka.",
+            "bn": "জাহানারা গার্ডেন, বাড়ি ১০৩, রোড ১৩/এ, ব্লক সি, বনানী, ঢাকা।"
+          },
+          "email": null,
+          "phone": "09678100800",
+          "sources": [
+            {
+              "title": "Pathao - official contact information",
+              "url": "https://pathao.com/contact/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "case-study",
@@ -669,6 +969,46 @@
       "bn": {
         "name": "Shikho",
         "description": "বাংলাদেশি শিক্ষার্থীদের জন্য ডিজিটাল পড়াশোনার কনটেন্ট, লাইভ ক্লাস ও পরীক্ষার প্রস্তুতি।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Academic learning & exam preparation",
+              "bn": "পড়াশোনা ও পরীক্ষার প্রস্তুতি"
+            },
+            "body": {
+              "en": "Shikho combines live and recorded classes with animated lessons, class notes, practice and live multiple-choice tests, and report cards. Its academic and admission-preparation programmes serve school and college learners.",
+              "bn": "স্কুল-কলেজের পড়া ও ভর্তি পরীক্ষার প্রস্তুতিতে Shikho-তে লাইভ ও রেকর্ডেড ক্লাস করা যায়। সঙ্গে আছে অ্যানিমেটেড পাঠ, ক্লাস নোট, অনুশীলনী ও লাইভ বহুনির্বাচনী পরীক্ষা এবং রিপোর্ট কার্ড।"
+            },
+            "sources": [
+              {
+                "title": "Academic learning & exam preparation",
+                "url": "https://shikho.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Rangs Paramount, Level 11, Block K, Plot 11, Road 17, Dhaka 1213.",
+            "bn": "র‍্যাংগস প্যারামাউন্ট, লেভেল ১১, ব্লক কে, প্লট ১১, রোড ১৭, ঢাকা ১২১৩।"
+          },
+          "email": "team@shikho.com",
+          "phone": "16780",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://shikho.com/en/about-us",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -801,6 +1141,46 @@
         "name": "রিভার্স রিসোর্সেস",
         "description": "কাপড়ের বর্জ্যের গতিপথের তথ্য রাখার প্ল্যাটফর্ম। প্রস্তুতকারক, বর্জ্য সংগ্রহকারী ও রিসাইক্লারদের যুক্ত করে। বাংলাদেশেও কাজের প্রকাশিত তথ্য আছে।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Textile waste data & traceability",
+              "bn": "টেক্সটাইল বর্জ্যের তথ্য ও গতিপথ"
+            },
+            "body": {
+              "en": "Reverse Resources connects fashion brands, textile manufacturers, waste handlers and recyclers. Its platform records waste flows and material composition so participants can identify recycling feedstock and follow it through the supply chain. Manufacturers get waste records and reporting tools; brands can view material-flow reports across participating suppliers.",
+              "bn": "কাপড়ের বর্জ্য কোথা থেকে এল, কী উপাদান আছে আর রিসাইক্লারের কাছে কীভাবে পৌঁছাল, সেই তথ্য রাখা যায় Reverse Resources-এ। ফ্যাশন ব্র্যান্ড, কারখানা, বর্জ্য সংগ্রহকারী ও রিসাইক্লাররা এতে যুক্ত হন। কারখানার জন্য বর্জ্যের হিসাব ও রিপোর্টের টুল আছে, আর ব্র্যান্ডগুলো সংশ্লিষ্ট সরবরাহকারীদের উপকরণ চলাচলের রিপোর্ট দেখতে পারে।"
+            },
+            "sources": [
+              {
+                "title": "Textile waste data & traceability",
+                "url": "https://www.reverseresources.net/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Telliskivi 60A, ON-building, fourth floor, Tallinn, Estonia.",
+            "bn": "তেল্লিসকিভি ৬০এ, ওএন বিল্ডিং, চতুর্থ তলা, তাল্লিন, এস্তোনিয়া।"
+          },
+          "email": "info@reverseresources.net",
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.reverseresources.net/contact",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": []
     },
     {
@@ -826,6 +1206,46 @@
       "bn": {
         "name": "AgriCore (formerly InsureCow)",
         "description": "ব্যাংক, বিমা কোম্পানি ও কৃষি অর্থায়ন প্রতিষ্ঠানের কাছে খামার ও গবাদিপশুর তথ্য যাচাই করার ব্যবস্থা দেয়।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Farm records & asset verification",
+              "bn": "খামারের হিসাব ও সম্পদ যাচাই"
+            },
+            "body": {
+              "en": "The InsureCow website describes livestock registration, health and vaccination records, milk-production and feed logs, breeding records and farm income/expense reports. Its enterprise offering includes animal identification, muzzle-pattern recognition and integrations with institutional systems. The website still uses InsureCow branding; this profile retains the existing AgriCore identity and historical name.",
+              "bn": "গরু নিবন্ধন, স্বাস্থ্য ও টিকার রেকর্ড, দুধ উৎপাদন, খাবার, প্রজনন এবং খামারের আয়-ব্যয়ের হিসাব রাখার সুবিধা InsureCow-এর সাইটে দেওয়া আছে। বড় প্রতিষ্ঠানের জন্য প্রাণী শনাক্ত করা, নাকের ছাপ মিলিয়ে দেখা ও অন্য সফটওয়্যারের সঙ্গে যুক্ত করার সেবাও বর্ণনা করা হয়েছে। সাইটে এখনো InsureCow নামই আছে। এখানে আগের AgriCore পরিচয় ও পুরোনো নাম দুটোই রাখা হয়েছে।"
+            },
+            "sources": [
+              {
+                "title": "Farm records & asset verification",
+                "url": "https://insurecow.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Bangladesh: House 117, Road 5, Block B, Niketon, Dhaka. Singapore: 192 Waterloo Street, #05-03 Skyline, Singapore 187966.",
+            "bn": "বাংলাদেশ: বাড়ি ১১৭, রোড ৫, ব্লক বি, নিকেতন, ঢাকা। সিঙ্গাপুর: ১৯২ ওয়াটারলু স্ট্রিট, #০৫-০৩ স্কাইলাইন, সিঙ্গাপুর ১৮৭৯৬৬।"
+          },
+          "email": "info@insurecow.com",
+          "phone": "+8801999467873",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://insurecow.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -856,6 +1276,46 @@
       "bn": {
         "name": "Agroshift",
         "description": "প্রযুক্তির সাহায্যে কৃষিপণ্যের চাহিদা, মাঠ থেকে সংগ্রহ ও সরবরাহকে এক ব্যবস্থার মধ্যে আনে।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Sourcing, distribution & trade",
+              "bn": "পণ্য সংগ্রহ, বিতরণ ও বাণিজ্য"
+            },
+            "body": {
+              "en": "Agroshift aggregates demand for essential goods around workplaces such as factories and through resellers. It also supplies raw materials to food processors, supports contract manufacturing and private-label products, and coordinates cross-border trade and logistics for commodities such as pulses, wheat, rice and edible oil.",
+              "bn": "কারখানার মতো কর্মস্থল ও রিসেলারদের মাধ্যমে নিত্যপণ্যের চাহিদা একত্র করে Agroshift। খাদ্য প্রক্রিয়াজাতকারী প্রতিষ্ঠানে কাঁচামাল সরবরাহ, চুক্তিতে পণ্য তৈরি ও নিজস্ব ব্র্যান্ডে পণ্য বাজারে আনার কাজেও সহায়তা করে। ডাল, গম, চাল ও ভোজ্যতেলের আন্তর্জাতিক বাণিজ্য এবং পণ্য পরিবহনের ব্যবস্থাও তাদের কাজের অংশ।"
+            },
+            "sources": [
+              {
+                "title": "Sourcing, distribution & trade",
+                "url": "https://www.agroshift.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Bangladesh: House 76/A, Road 11, Dhaka 1213. Global HQ: 101 Thompson Road, 12-01 United Square, Singapore 307591.",
+            "bn": "বাংলাদেশ: বাড়ি ৭৬/এ, রোড ১১, ঢাকা ১২১৩। প্রধান কার্যালয়: ১০১ থম্পসন রোড, ১২-০১ ইউনাইটেড স্কয়ার, সিঙ্গাপুর ৩০৭৫৯১।"
+          },
+          "email": "hello@agroshift.com",
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.agroshift.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -893,6 +1353,43 @@
         "name": "Airwork",
         "description": "বিকাশমান বাজারের যাচাই করা টেক ট্যালেন্টদের বিভিন্ন কোম্পানির সঙ্গে যুক্ত করার AI-সহায়ক নিয়োগ প্ল্যাটফর্ম।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Hiring software & managed recruitment",
+              "bn": "নিয়োগের সফটওয়্যার ও টিমের সহায়তা"
+            },
+            "body": {
+              "en": "Airwork offers two hiring routes. Teams can use its software to post jobs, add screening questions and assessments, rank applicants and schedule interviews. Alternatively, its managed service handles sourcing and screening for full-time hires, contract staff or project teams, leaving the client to conduct final interviews. AI interviews and CRM are labeled coming soon.",
+              "bn": "Airwork-এ নিজে নিয়োগপ্রক্রিয়া চালানো বা তাদের টিমের সহায়তা নেওয়া যায়। সফটওয়্যার দিয়ে চাকরির বিজ্ঞপ্তি, প্রাথমিক প্রশ্ন ও দক্ষতার পরীক্ষা দেওয়া, আবেদনকারীদের বাছাই এবং ইন্টারভিউয়ের সময় ঠিক করা যায়। সেবাটি টিমকে দিলে তারা পূর্ণকালীন, চুক্তিভিত্তিক বা প্রজেক্টের জন্য লোক খুঁজে বাছাই করে দেয়। চূড়ান্ত ইন্টারভিউ নেয় নিয়োগদাতা। AI ইন্টারভিউ ও CRM এখনো চালুর অপেক্ষায় বলে চিহ্নিত।"
+            },
+            "sources": [
+              {
+                "title": "Hiring software & managed recruitment",
+                "url": "https://airwork.ai/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://airwork.ai/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -923,6 +1420,46 @@
       "bn": {
         "name": "AmarLab",
         "description": "বাসা বা অফিস থেকে ডায়াগনস্টিক টেস্ট বুক করা, পছন্দের ল্যাব বেছে নেওয়া ও অনলাইনে রিপোর্ট পাওয়ার সুবিধা দেয়।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Home and workplace diagnostics",
+              "bn": "বাসা ও কর্মস্থল থেকে পরীক্ষা"
+            },
+            "body": {
+              "en": "AmarLab lets customers choose a partner laboratory and book diagnostic tests for sample collection at home or work. Its technicians collect and transport samples, and the partner laboratory performs the tests. Reports are then delivered to the customer. Orders can be placed through the website, Messenger or telephone, with collection arrangements confirmed by the team.",
+              "bn": "বাসা বা কর্মস্থল থেকে নমুনা দিয়ে পরীক্ষা করাতে AmarLab-এ পছন্দের পার্টনার ল্যাব বেছে নেওয়া যায়। তাদের টেকনিশিয়ান নমুনা সংগ্রহ করে ল্যাবে পৌঁছে দেন। পরীক্ষা করে পার্টনার ল্যাব, এরপর রিপোর্ট গ্রাহকের কাছে আসে। ওয়েবসাইট, মেসেঞ্জার বা ফোনে অর্ডার দিলে নমুনা নেওয়ার সময় ও ব্যবস্থা টিমের সঙ্গে ঠিক করে নেওয়া যায়।"
+            },
+            "sources": [
+              {
+                "title": "Home and workplace diagnostics",
+                "url": "https://amarlab.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Grameen Telecom Bhaban, Level 9, 53/1 Box Nagar, Mirpur, Dhaka 1216.",
+            "bn": "গ্রামীণ টেলিকম ভবন, লেভেল ৯, ৫৩/১ বক্স নগর, মিরপুর, ঢাকা ১২১৬।"
+          },
+          "email": "info@amarlab.com",
+          "phone": "09643445566",
+          "sources": [
+            {
+              "title": "AmarLab - packages and contact",
+              "url": "https://amarlab.com/packages",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -956,6 +1493,43 @@
         "name": "AppsCode",
         "description": "Kubernetes-এ ডেটাবেস চালানো, ব্যাকআপ রাখা ও নিরাপদ রাখার সফটওয়্যার।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Database operations & cloud services",
+              "bn": "ডেটাবেস চালানো ও ক্লাউড সেবা"
+            },
+            "body": {
+              "en": "AppsCode builds tools for technical teams operating Kubernetes infrastructure. KubeDB handles database provisioning and routine operations, KubeStash provides backup and recovery, and KubeVault manages secrets through HashiCorp Vault. Alongside these products, AppsCode offers managed cloud and database services, platform engineering, application modernization and reliability support.",
+              "bn": "Kubernetes-এ সফটওয়্যার চালানো টেকনিক্যাল টিমের জন্য AppsCode টুল তৈরি করে। KubeDB দিয়ে ডেটাবেস তৈরি ও নিয়মিত কাজ সামলানো, KubeStash দিয়ে ব্যাকআপ রাখা ও ফিরিয়ে আনা এবং KubeVault দিয়ে গোপন তথ্য ব্যবস্থাপনা করা যায়। প্রোডাক্টের পাশাপাশি ক্লাউড ও ডেটাবেস চালানো, পুরোনো অ্যাপ আধুনিক করা এবং নির্ভরযোগ্যভাবে সিস্টেম চালু রাখার সেবাও দেয়।"
+            },
+            "sources": [
+              {
+                "title": "Database operations & cloud services",
+                "url": "https://appscode.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": "+16502418486",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://appscode.com/about/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -987,6 +1561,43 @@
         "name": "Aunkur",
         "description": "কৃষিঋণ ও ইনস্যুরেন্সের সিদ্ধান্তের জন্য খামার বিশ্লেষণ ও জলবায়ুর ডেটা দেয়।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Farm data tools",
+              "bn": "খামারের তথ্য সংগ্রহের টুল"
+            },
+            "body": {
+              "en": "Aunkur’s official site presents the iPAGE farm-data business: ALBATROSS is a portable solar-powered weather station, AUNKUR is an IoT-enabled rapid soil-testing device, and AUNKUR POS is a smartphone access point for agricultural service providers. Its intended users include farmers, input retailers, extension workers, banks and insurers seeking farm-specific information.",
+              "bn": "iPAGE-এর কৃষিতথ্যের ব্যবসা ও প্রোডাক্টগুলো Aunkur-এর সাইটে বর্ণনা করা আছে। ALBATROSS সৌরবিদ্যুতে চলে এমন বহনযোগ্য আবহাওয়া স্টেশন, AUNKUR মাটির দ্রুত পরীক্ষা করার সংযুক্ত যন্ত্র। আর AUNKUR POS দিয়ে স্মার্টফোনে কৃষিসেবার তথ্য পাওয়া যায়। কৃষক ছাড়াও উপকরণ বিক্রেতা, মাঠকর্মী, ব্যাংক ও বিমা প্রতিষ্ঠান এই তথ্য কাজে লাগাতে পারে।"
+            },
+            "sources": [
+              {
+                "title": "Farm data tools",
+                "url": "https://www.aunkur.ai/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.aunkur.ai/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1016,6 +1627,43 @@
       "bn": {
         "name": "Barikoi",
         "description": "বাংলাদেশের প্রেক্ষাপটে তৈরি ম্যাপ, জিওকোডিং ও লোকেশন API।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Maps, address search & routing",
+              "bn": "মানচিত্র, ঠিকানা খোঁজা ও রুট"
+            },
+            "body": {
+              "en": "Barikoi supplies base maps, address search and geocoding, navigation and routing, and mobile SDKs. Businesses can use these components for parcel delivery, pickup locations, field-service routing and address checks. The website describes a focus on emerging markets; available coverage and a particular address should be tested before integration.",
+              "bn": "Barikoi-এর মানচিত্র, ঠিকানা খোঁজা, ঠিকানা থেকে অবস্থান বের করা ও রুটের টুল অ্যাপে যুক্ত করা যায়। পার্সেল পৌঁছানো, যাত্রী তোলার জায়গা ঠিক করা, মাঠকর্মীদের পথ সাজানো এবং ঠিকানা যাচাইয়ের কাজে এগুলো ব্যবহার করা যায়। সেবা নেওয়ার আগে প্রয়োজনের এলাকা ও কয়েকটি বাস্তব ঠিকানা দিয়ে ফল মিলিয়ে নেওয়া ভালো।"
+            },
+            "sources": [
+              {
+                "title": "Maps, address search & routing",
+                "url": "https://barikoi.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://barikoi.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -1048,6 +1696,43 @@
         "name": "Bimafy",
         "description": "ব্যক্তি ও ব্যবসাপ্রতিষ্ঠানের জন্য ডিজিটাল ইনস্যুরেন্স মার্কেটপ্লেস ও এমবেডেড ইনস্যুরেন্স প্ল্যাটফর্ম।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Policy comparison & claims support",
+              "bn": "পলিসি তুলনা ও দাবির সহায়তা"
+            },
+            "body": {
+              "en": "Bimafy offers health, travel, accident, life and vehicle insurance options, alongside employee group, marine and fire insurance for businesses. Customers can compare coverage and manage policies through its app, submit claims and follow claim updates. The underlying insurer and the specific policy terms determine coverage; the marketplace listing does not replace those terms.",
+              "bn": "স্বাস্থ্য, ভ্রমণ, দুর্ঘটনা, জীবন ও গাড়ির বিমা বেছে নেওয়ার সুযোগ আছে Bimafy-তে। ব্যবসার জন্য কর্মীদের গ্রুপ বিমা, নৌপণ্য ও অগ্নিবিমাও আছে। অ্যাপে পলিসি দেখা, দাবি জমা দেওয়া এবং দাবির অগ্রগতি অনুসরণ করা যায়। কোন ক্ষতি কভার হবে, তা নির্ভর করে বিমা কোম্পানি ও নির্দিষ্ট পলিসির শর্তের ওপর।"
+            },
+            "sources": [
+              {
+                "title": "Policy comparison & claims support",
+                "url": "https://bimafy.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": "+8809606991991",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://bimafy.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1078,6 +1763,46 @@
       "bn": {
         "name": "Bongo",
         "description": "বাংলা সিনেমা, নাটক, নিজস্ব শো আর খেলা সরাসরি দেখার স্ট্রিমিং প্ল্যাটফর্ম।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Entertainment distribution & content work",
+              "bn": "বিনোদন বিতরণ ও কনটেন্টের কাজ"
+            },
+            "body": {
+              "en": "Bongo’s business portal describes distribution of Bangla films, dramas, television shows and music through its streaming service, mobile app and syndicated channels. It also works on original content and invites creators to discuss publishing their work. Business and content enquiries have a dedicated contact route.",
+              "bn": "Bongo-এর স্ট্রিমিং সেবা, অ্যাপ ও অন্য চ্যানেলের মাধ্যমে বাংলা সিনেমা, নাটক, টিভি অনুষ্ঠান ও গান দর্শকের কাছে পৌঁছায়। নিজস্ব কনটেন্ট তৈরির কাজও করে তারা। কোনো নির্মাতা নিজের কাজ প্রকাশ করতে চাইলে ব্যবসায়িক যোগাযোগের ঠিকানায় আলোচনা করতে পারেন।"
+            },
+            "sources": [
+              {
+                "title": "Entertainment distribution & content work",
+                "url": "https://business.bongobd.com/about-us/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "House 20, Road 2/B, Block J, Baridhara, Dhaka 1212.",
+            "bn": "বাড়ি ২০, রোড ২/বি, ব্লক জে, বারিধারা, ঢাকা ১২১২।"
+          },
+          "email": "business@bongobd.com",
+          "phone": "+8809613827262",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://business.bongobd.com/contact-us-03/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -1110,6 +1835,46 @@
         "name": "Cassetex",
         "description": "বৈদ্যুতিক তিন চাকার যান ও অন্যান্য হালকা যানের জন্য সৌরবিদ্যুৎচালিত ব্যাটারি সোয়াপিং অবকাঠামো।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Battery swapping as a service",
+              "bn": "ব্যাটারি বদলে নেওয়ার সেবা"
+            },
+            "body": {
+              "en": "Cassetex describes a battery-service network for electric three-wheelers, two-wheelers and agricultural equipment. An operator checks charge status, finds a swapping point, returns the used battery and collects a charged one. The company combines swapping operations with solar charging and energy-demand management; network coverage needs checking for a particular route.",
+              "bn": "বৈদ্যুতিক তিন চাকার যান, দুই চাকার যান ও কৃষিযন্ত্রের জন্য ব্যাটারির সেবা দেয় Cassetex। চালক চার্জের অবস্থা দেখে নিকটবর্তী স্টেশনে গিয়ে ব্যবহৃত ব্যাটারি জমা দেন, তারপর চার্জ করা ব্যাটারি নিয়ে চলতে পারেন। এই ব্যবস্থার সঙ্গে সৌরবিদ্যুতে চার্জ দেওয়া ও বিদ্যুতের চাহিদা সামলানোর কাজও আছে। নিজের রুটে স্টেশন আছে কি না, আগে দেখে নিতে হবে।"
+            },
+            "sources": [
+              {
+                "title": "Battery swapping as a service",
+                "url": "https://www.cassetex.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Dhaka, Bangladesh.",
+            "bn": "ঢাকা, বাংলাদেশ।"
+          },
+          "email": "team@cassetex.com",
+          "phone": "+8801324414400",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.cassetex.com/contact/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1139,6 +1904,46 @@
       "bn": {
         "name": "Chamak",
         "description": "ব্যবসার ট্রেড রিসিভেবল ও চলতি মূলধন অর্থায়নের প্রযুক্তিনির্ভর প্ল্যাটফর্ম।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Trade-linked working capital",
+              "bn": "বেচাকেনার সঙ্গে যুক্ত চলতি মূলধন"
+            },
+            "body": {
+              "en": "Chamak’s application flow starts with a business profile and an invoice or purchase order. It describes digital transaction verification before funding approval, with inventory funding, receivables-to-cash and import-LC financing among its offerings. Chamak identifies itself as a financial technology company, not a bank; an application is not an approval or a quoted financing contract.",
+              "bn": "Chamak-এ ব্যবসার প্রোফাইল তৈরি করে ইনভয়েস বা পারচেজ অর্ডার জমা দিয়ে অর্থায়নের আবেদন করা যায়। লেনদেন যাচাইয়ের পর অনুমোদনের কথা বলা হয়েছে। স্টক কেনা, পাওনা বিলের বিপরীতে টাকা পাওয়া ও আমদানির এলসি অর্থায়ন তাদের সেবার মধ্যে আছে। Chamak নিজেকে ব্যাংক নয়, আর্থিক প্রযুক্তি প্রতিষ্ঠান হিসেবে পরিচয় দেয়। আবেদন করলেই অর্থায়ন নিশ্চিত হয় না।"
+            },
+            "sources": [
+              {
+                "title": "Trade-linked working capital",
+                "url": "https://chamakinc.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "House 1145, Road 10, Avenue 10, Mirpur DOHS, Dhaka 1216, Bangladesh.",
+            "bn": "বাড়ি ১১৪৫, রোড ১০, অ্যাভিনিউ ১০, মিরপুর ডিওএইচএস, ঢাকা ১২১৬, বাংলাদেশ।"
+          },
+          "email": "info@chamakinc.com",
+          "phone": "+8801321126100",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://chamakinc.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -1172,6 +1977,43 @@
         "name": "DIGIBOX",
         "description": "ই-কমার্স কোম্পানি, কুরিয়ার, ব্যাংক ও খুচরা বিক্রেতাদের জন্য IoT পার্সেল লকারের যৌথ নেটওয়ার্ক।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Locker delivery & business integration",
+              "bn": "লকারে ডেলিভারি ও ব্যবসায় সংযোগ"
+            },
+            "body": {
+              "en": "DIGIBOX lets a courier or service provider leave an item in a locker and sends the recipient an OTP or QR code for collection. Its service lines cover ecommerce parcels, banking documents, food and laundry. Businesses can connect through API or no-API workflows, while property owners can discuss hosting an installation. Pickup access depends on the location.",
+              "bn": "কুরিয়ার বা সেবাদাতা DIGIBOX লকারে জিনিস রেখে দিলে প্রাপক সংগ্রহের জন্য OTP বা QR কোড পান। ই-কমার্সের পার্সেল, ব্যাংকের কাগজপত্র, খাবার ও লন্ড্রির জন্য আলাদা সেবার বর্ণনা আছে। ব্যবসার ডেলিভারি প্রক্রিয়া API দিয়ে বা API ছাড়াও যুক্ত করা যায়। ভবনের মালিকরা লকার বসানোর বিষয়ে আলোচনা করতে পারেন। কখন সংগ্রহ করা যাবে, তা জায়গাভেদে দেখে নিতে হবে।"
+            },
+            "sources": [
+              {
+                "title": "Locker delivery & business integration",
+                "url": "https://digibox.com.bd/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": "+8809638556677",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://digibox.com.bd/founders/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1201,6 +2043,46 @@
       "bn": {
         "name": "Dubotech",
         "description": "পরিদর্শন, গবেষণা ও প্রতিরক্ষা কাজে ব্যবহারের জন্য রিমোটচালিত ও স্বয়ংক্রিয় আন্ডারওয়াটার যান তৈরি করে।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Autonomous systems & integration",
+              "bn": "স্বয়ংক্রিয় যান ও প্রযুক্তি সংযুক্তি"
+            },
+            "body": {
+              "en": "Dubotech develops autonomous vehicles and the FORTIS software layer that connects vehicles and sensors across sea, land and air. Its published applications include inspection, logistics and security. Alongside its own platforms, the company describes integrating autonomy into existing equipment, with monitoring and operator training.",
+              "bn": "জল, স্থল ও আকাশে চলা যান আর সেন্সর একসঙ্গে চালানোর সফটওয়্যার FORTIS বানায় Dubotech। নিজস্ব স্বয়ংক্রিয় যানের পাশাপাশি আগে থেকে থাকা যন্ত্রপাতিতেও এই প্রযুক্তি বসানোর কাজ করে। পরিদর্শন, পণ্য পরিবহন ও নিরাপত্তার কাজে ব্যবহারের কথা তাদের ওয়েবসাইটে আছে। যন্ত্রের কাজ পর্যবেক্ষণ ও অপারেটরদের প্রশিক্ষণও সেবার অংশ।"
+            },
+            "sources": [
+              {
+                "title": "Autonomous systems & integration",
+                "url": "https://dubotech.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Headquarters: House 13, Road 07, Block F, Banani, Dhaka, Bangladesh.",
+            "bn": "প্রধান কার্যালয়: বাড়ি ১৩, রোড ০৭, ব্লক এফ, বনানী, ঢাকা, বাংলাদেশ।"
+          },
+          "email": null,
+          "phone": "+8801871729639",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://dubotech.com/contact",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -1232,6 +2114,46 @@
         "name": "Ecovia",
         "description": "স্থানীয় কৃষি ও পোশাক কারখানার বর্জ্য থেকে তৈরি কম্পোস্টযোগ্য প্যাকেজিং উপাদান।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Packaging range & custom orders",
+              "bn": "প্যাকেজিংয়ের ধরন ও কাস্টম অর্ডার"
+            },
+            "body": {
+              "en": "Ecovia lists mailer, shopping, grocery, apparel and ziplock bags, sheets and electronics packaging. Businesses can request a quote specifying product type, quantity, dimensions and thickness. The company describes its materials as compostable; a buyer should obtain the applicable product certification and disposal requirements rather than assume every use or disposal setting is covered.",
+              "bn": "পণ্য পাঠানো, কেনাকাটা, মুদি পণ্য, পোশাক ও ইলেকট্রনিকসের জন্য বিভিন্ন ব্যাগ এবং শিট Ecovia-এর তালিকায় আছে। কী ধরনের প্যাকেট, কতগুলো, মাপ ও পুরুত্ব জানিয়ে দাম চাওয়া যায়। কোম্পানি এগুলোকে কম্পোস্টযোগ্য বলে বর্ণনা করে। কেনার আগে নির্দিষ্ট পণ্যের সনদ ও কী পরিবেশে পচবে, সে শর্তগুলো মিলিয়ে নেওয়া দরকার।"
+            },
+            "sources": [
+              {
+                "title": "Packaging range & custom orders",
+                "url": "https://www.ecoviaglobal.com/products",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "The Forum, West Tower, Level 19, 187–188/B Tejgaon Gulshan Link Road, Dhaka 1208, Bangladesh.",
+            "bn": "দ্য ফোরাম, ওয়েস্ট টাওয়ার, লেভেল ১৯, ১৮৭–১৮৮/বি তেজগাঁও গুলশান লিংক রোড, ঢাকা ১২০৮, বাংলাদেশ।"
+          },
+          "email": "info@ecoviaglobal.com",
+          "phone": "+8801817299956",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.ecoviaglobal.com/contact-us",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1261,6 +2183,43 @@
       "bn": {
         "name": "EzyCourse",
         "description": "কোর্স, কমিউনিটি ও ডিজিটাল পণ্য বিক্রির অল-ইন-ওয়ান প্ল্যাটফর্ম।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Tools for course creators",
+              "bn": "কোর্স নির্মাতাদের টুল"
+            },
+            "body": {
+              "en": "EzyCourse combines course delivery with communities, coaching bookings and membership subscriptions. Creators can build a website, sell digital products, run assessments and email campaigns, and offer a branded mobile app. Its audience is educators and knowledge-business operators who need teaching, sales and member access in the same service.",
+              "bn": "কোর্স, কমিউনিটি, কোচিংয়ের বুকিং ও মেম্বারশিপ সাবস্ক্রিপশন একসঙ্গে চালানো যায় EzyCourse-এ। ওয়েবসাইট তৈরি, ডিজিটাল পণ্য বিক্রি, পরীক্ষা নেওয়া ও ইমেইল পাঠানোর সুবিধাও আছে। নিজের ব্র্যান্ডে মোবাইল অ্যাপ দেওয়ার ব্যবস্থাও তালিকাভুক্ত। শেখানো, বিক্রি ও সদস্যদের প্রবেশাধিকার একই সেবায় সামলাতে চান এমন শিক্ষক ও কোর্স নির্মাতাদের জন্য প্রোডাক্টগুলো তৈরি।"
+            },
+            "sources": [
+              {
+                "title": "Tools for course creators",
+                "url": "https://ezycourse.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://ezycourse.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -1293,6 +2252,43 @@
         "name": "Fashol",
         "description": "সফটওয়্যার, সংগ্রহকেন্দ্র ও লজিস্টিকসের মাধ্যমে কৃষকদের খুচরা বিক্রেতা, রেস্তোরাঁ ও অন্যান্য ক্রেতাদের সঙ্গে যুক্ত করে।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Farm sourcing & buyer platforms",
+              "bn": "খামার থেকে সংগ্রহ ও ক্রেতার প্ল্যাটফর্ম"
+            },
+            "body": {
+              "en": "Fashol describes a supply chain that connects farmer procurement, hub grading, order matching and delivery. Jogaan handles farmer and input-side activity; Hyperfarm serves buyers such as restaurants and quick-commerce operators. Its site also describes wholesale and export services. Working-capital finance is presented as a planned 2026 offering, so it is not listed here as an established service.",
+              "bn": "কৃষকের কাছ থেকে পণ্য কেনা, হাবে মান বাছাই, অর্ডারের সঙ্গে মেলানো ও ক্রেতার কাছে পৌঁছানোর কাজ করে Fashol। কৃষক ও কৃষি উপকরণের দিকটি Jogaan-এ, আর রেস্তোরাঁসহ ব্যবসায়িক ক্রেতাদের অর্ডার Hyperfarm-এ সামলানোর কথা বলা হয়েছে। পাইকারি ও রপ্তানির সেবাও আছে। চলতি মূলধনের অর্থায়নকে সাইটে ২০২৬ সালের পরিকল্পনা বলা হয়েছে, তাই এখানে চালু সেবা হিসেবে ধরা হয়নি।"
+            },
+            "sources": [
+              {
+                "title": "Farm sourcing & buyer platforms",
+                "url": "https://fashol.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": "+8809613105505",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://fashol.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1322,6 +2318,43 @@
       "bn": {
         "name": "GoZayaan",
         "description": "ফ্লাইট, হোটেল, ট্যুর ও ভ্রমণের নানা সেবা অনলাইনে বুক করার প্ল্যাটফর্ম।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Travel booking & assistance",
+              "bn": "ভ্রমণ বুকিং ও সহায়তা"
+            },
+            "body": {
+              "en": "GoZayaan offers flight and hotel bookings, customised tours and visa assistance. Its published travel service describes both online booking and experience centres where travellers can discuss plans with a representative. Visa assistance is a booking-support service, not a promise of visa approval.",
+              "bn": "ফ্লাইট ও হোটেল বুক করা, নিজের প্রয়োজনমতো ট্যুর ঠিক করা এবং ভিসার আবেদনে সহায়তা নেওয়া যায় GoZayaan-এ। অনলাইনে বুকিংয়ের পাশাপাশি এক্সপেরিয়েন্স সেন্টারে প্রতিনিধির সঙ্গে ভ্রমণের পরিকল্পনা নিয়েও কথা বলা যায় বলে তাদের সাইটে উল্লেখ আছে। ভিসার কাজে সহায়তা পাওয়া মানে ভিসা পাওয়ার নিশ্চয়তা নয়।"
+            },
+            "sources": [
+              {
+                "title": "Travel booking & assistance",
+                "url": "https://bkash.gozayaan.com/about-us",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": "info@gozayaan.com",
+          "phone": "+8809678332211",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://upay.gozayaan.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -1354,6 +2387,46 @@
         "name": "Hishabee",
         "description": "ছোট দোকানদারদের হিসাব, স্টক, অনলাইন বিক্রি ও পণ্য কেনার অর্থায়নের সব সুবিধা এক অ্যাপে দেয়।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Shop management & stock finance",
+              "bn": "দোকানের হিসাব ও স্টকের অর্থায়ন"
+            },
+            "body": {
+              "en": "Hishabee combines sales, purchase, expense, stock and due-collection records in a Bangla/English business app. Its inventory-finance flow lets a merchant choose stock and apply within the app; the site identifies Prime Bank as the lender paying the supplier directly. Eligibility, repayment and pricing remain subject to the actual financing offer.",
+              "bn": "Hishabee-তে বিক্রি, কেনাকাটা, খরচ, স্টক ও বাকি আদায়ের হিসাব রাখা যায়। অ্যাপটি বাংলা ও ইংরেজিতে ব্যবহার করা যায়। স্টক বেছে নেওয়ার সময় অর্থায়নের আবেদন করার ব্যবস্থাও আছে। সাইটের বর্ণনা অনুযায়ী ঋণদাতা Prime Bank সরাসরি সরবরাহকারীকে টাকা দেয়। কারা অর্থায়ন পাবেন, ফেরত দেওয়ার নিয়ম ও খরচ কত হবে, তা প্রকৃত প্রস্তাবের শর্ত দেখে বুঝে নিতে হয়।"
+            },
+            "sources": [
+              {
+                "title": "Shop management & stock finance",
+                "url": "https://www.hishabee.io/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Level 2, 69/C Panthapath, Dhaka 1205.",
+            "bn": "লেভেল ২, ৬৯/সি পান্থপথ, ঢাকা ১২০৫।"
+          },
+          "email": "support@hishabee.io",
+          "phone": "+8809638011199",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.hishabee.io/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1383,6 +2456,102 @@
       "bn": {
         "name": "iFarmer",
         "description": "কৃষকদের অর্থায়ন, সার-বীজের উপকরণ, বিশেষজ্ঞ পরামর্শ ও বাজারের সঙ্গে যুক্ত করে।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Finance, inputs & market access",
+              "bn": "অর্থায়ন, কৃষি উপকরণ ও বাজার"
+            },
+            "body": {
+              "en": "iFarmer connects farmers, agricultural retailers and institutional buyers. Its services combine access to finance, seeds and other inputs, agricultural advice and routes to sell produce. For financial institutions, it provides farmer profiles, credit information and supply-chain data to support financing decisions.",
+              "bn": "কৃষক, কৃষি উপকরণের দোকান ও প্রাতিষ্ঠানিক ক্রেতাদের যুক্ত করে iFarmer। অর্থায়ন পাওয়ার সুযোগ, বীজসহ কৃষি উপকরণ, চাষের পরামর্শ ও উৎপাদিত পণ্য বিক্রির ব্যবস্থা নিয়ে কাজ করে তারা। অর্থায়নের সিদ্ধান্ত নিতে আর্থিক প্রতিষ্ঠানগুলোকে কৃষকের প্রোফাইল, ঋণসংক্রান্ত তথ্য ও সরবরাহব্যবস্থার ডেটা দেয়।"
+            },
+            "sources": [
+              {
+                "title": "iFarmer - services and Bangladesh office",
+                "url": "https://www.ifarmer.asia/about",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          },
+          {
+            "id": "folon",
+            "title": {
+              "en": "Folon for farmers",
+              "bn": "কৃষকদের জন্য Folon"
+            },
+            "body": {
+              "en": "Folon gives farmers crop advice in text and audio, a way to send pictures or voice messages to agricultural experts, and a community called Adda. The app also provides a route to apply for loans.",
+              "bn": "Folon-এ কৃষকেরা ফসলের পরামর্শ পড়তে বা শুনতে পারেন। ছবি ও ভয়েস মেসেজ পাঠিয়ে কৃষিবিশেষজ্ঞদের সঙ্গে কথাও বলা যায়। অন্য কৃষকদের সঙ্গে আলাপের জন্য আছে Adda কমিউনিটি। অ্যাপ থেকে ঋণের আবেদন করার সুযোগও আছে।"
+            },
+            "sources": [
+              {
+                "title": "iFarmer - Folon farmer application",
+                "url": "https://www.ifarmer.asia/product-folon",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": [
+              {
+                "label": {
+                  "en": "Explore Folon",
+                  "bn": "Folon সম্পর্কে জানুন"
+                },
+                "url": "https://www.ifarmer.asia/product-folon"
+              }
+            ]
+          },
+          {
+            "id": "krishop",
+            "title": {
+              "en": "KriShop for agricultural inputs",
+              "bn": "কৃষি উপকরণের জন্য KriShop"
+            },
+            "body": {
+              "en": "KriShop lets agricultural input retailers order supplies through an e-commerce platform. Its Lenden digital logbook records daily transactions online or offline and can send SMS reminders for unpaid balances. A retailer community adds a place to exchange advice and discuss business problems.",
+              "bn": "কৃষি উপকরণের দোকানগুলো KriShop-এর ই-কমার্স প্ল্যাটফর্ম থেকে পণ্য অর্ডার করতে পারে। এর Lenden ডিজিটাল খাতায় অনলাইন বা অফলাইনে দৈনিক লেনদেন লিখে রাখা যায়। বকেয়া টাকার কথা মনে করিয়ে দিতে ক্রেতাকে এসএমএসও পাঠানো যায়। অন্য দোকানিদের সঙ্গে পরামর্শ ও ব্যবসার সমস্যা নিয়ে আলাপের জন্য একটি কমিউনিটি আছে।"
+            },
+            "sources": [
+              {
+                "title": "iFarmer - KriShop input platform",
+                "url": "https://www.ifarmer.asia/product-krishop",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": [
+              {
+                "label": {
+                  "en": "Explore KriShop",
+                  "bn": "KriShop সম্পর্কে জানুন"
+                },
+                "url": "https://www.ifarmer.asia/product-krishop"
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Bangladesh office: House NE (B) 3B, Road 74, Gulshan 2, Dhaka 1212. Visits by appointment.",
+            "bn": "বাংলাদেশের অফিস: বাড়ি এনই (বি) ৩বি, রোড ৭৪, গুলশান ২, ঢাকা ১২১২। যাওয়ার আগে সময় ঠিক করে নিতে হয়।"
+          },
+          "email": "hello@ifarmer.asia",
+          "phone": "+8808008500800",
+          "sources": [
+            {
+              "title": "iFarmer - services and Bangladesh office",
+              "url": "https://www.ifarmer.asia/about",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -1419,6 +2588,46 @@
         "name": "Jatri",
         "description": "পরিবহন কোম্পানি, ট্রাভেল এজেন্ট আর করপোরেট ক্রেতাদের জন্য বুকিং, আসন ও গাড়ির সরবরাহ এবং অর্থায়নের টুল।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Passenger booking & transport services",
+              "bn": "যাত্রীদের বুকিং ও পরিবহন সেবা"
+            },
+            "body": {
+              "en": "Jatri’s passenger site offers bus tickets, launch tickets and car rental, with a multimode search option. It also provides separate routes for corporate customers and its transport platform. Passengers can search by origin, destination and travel date; availability and cancellation conditions depend on the selected service.",
+              "bn": "Jatri-তে বাস ও লঞ্চের টিকিট কাটা, গাড়ি ভাড়া নেওয়া এবং একাধিক ধরনের যাত্রা খোঁজার সুযোগ আছে। করপোরেট গ্রাহক ও পরিবহন প্ল্যাটফর্মের জন্য আলাদা লিংকও দেওয়া আছে। কোথা থেকে কোথায়, কোন দিনে যাবেন তা দিয়ে খোঁজা যায়। আসন পাওয়া ও বাতিলের শর্ত নির্ভর করে বেছে নেওয়া সেবার ওপর।"
+            },
+            "sources": [
+              {
+                "title": "Passenger booking & transport services",
+                "url": "https://jatri.co/bus",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "House 15, Road 24, Gulshan 2, Dhaka 1212.",
+            "bn": "বাড়ি ১৫, রোড ২৪, গুলশান ২, ঢাকা ১২১২।"
+          },
+          "email": "info@jatri.co",
+          "phone": "09643404040",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://jatri.co/bus",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1448,6 +2657,43 @@
       "bn": {
         "name": "Loop Freight",
         "description": "বাণিজ্যিক পণ্য প্রেরণকারী ও ট্রাক বহর মালিকদের যুক্ত করার B2B ফ্রেইট মার্কেটপ্লেস।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Freight coordination tools",
+              "bn": "মালামাল পরিবহনের কাজ গুছিয়ে নেওয়া"
+            },
+            "body": {
+              "en": "Loop Freight’s published platform description gives shippers tools to schedule and track truck movements and manage transport records. Truck vendors can find loads and organise vehicles and drivers. The service also covers dispatch documents, communication and transport accounting.",
+              "bn": "কোন ট্রাকে কখন মাল যাবে, ট্রাক কোথায় আছে আর পরিবহনের হিসাব কী দাঁড়াল, এসব এক জায়গায় রাখার ব্যবস্থা আছে Loop Freight-এর প্রকাশিত সেবার বর্ণনায়। ট্রাকের মালিকেরাও কাজ খোঁজা এবং গাড়ি ও চালকের কাজ ভাগ করে দেওয়ার টুল পান। মাল পাঠানোর কাগজপত্র ও যোগাযোগের তথ্যও গুছিয়ে রাখা যায়।"
+            },
+            "sources": [
+              {
+                "title": "Freight coordination tools",
+                "url": "https://loopfreight.io/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://loopfreight.io/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -1479,6 +2725,43 @@
         "name": "Markopolo.ai",
         "description": "অনলাইন মার্চেন্টদের জন্য AI-সহায়ক গ্রাহক যোগাযোগ ও রেভিনিউ সফটওয়্যার।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Customer engagement for online stores",
+              "bn": "অনলাইন দোকানের গ্রাহকের সঙ্গে যোগাযোগ"
+            },
+            "body": {
+              "en": "Markopolo.ai offers customer-engagement software for ecommerce businesses across email, SMS, WhatsApp, push notifications and AI voice. Its tools identify visitors, group audiences and automate follow-up after browsing, an abandoned cart or an unfinished checkout. These are product capabilities described by the company; sales-lift figures are not treated as established outcomes.",
+              "bn": "অনলাইন দোকানে কেউ পণ্য দেখে চলে গেলে বা কার্টে রেখেও অর্ডার শেষ না করলে, তাঁর সঙ্গে আবার যোগাযোগের কাজ সাজিয়ে নেওয়া যায় Markopolo.ai-তে। গ্রাহকদের আলাদা দলে ভাগ করে ইমেইল, SMS, WhatsApp, নোটিফিকেশন ও AI ভয়েসের মাধ্যমে বার্তা পাঠানোর টুল আছে। এখানে কোম্পানির বর্ণনা অনুযায়ী সুবিধাগুলো দেওয়া হলো, বিক্রি বাড়ার প্রচারমূলক হারকে নিশ্চিত ফল হিসেবে ধরা হয়নি।"
+            },
+            "sources": [
+              {
+                "title": "Customer engagement for online stores",
+                "url": "https://markopolo.ai/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://markopolo.ai/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1509,6 +2792,43 @@
         "name": "MedEasy",
         "description": "অনলাইন ডাক্তার পরামর্শ, ওষুধ ডেলিভারি ও ভোক্তা স্বাস্থ্যসেবা।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Prescription ordering & consultations",
+              "bn": "প্রেসক্রিপশন দিয়ে অর্ডার ও ডাক্তারের পরামর্শ"
+            },
+            "body": {
+              "en": "MedEasy sells medicines and healthcare products online and offers video consultations with doctors. Its prescription-order flow asks customers to photograph a prescription, sign in and upload it; a pharmacist reviews it before an agent calls to confirm the order. This is distinct from selecting products directly from the catalogue.",
+              "bn": "ওষুধের নাম ধরে খুঁজে অর্ডার করা ছাড়াও MedEasy-তে প্রেসক্রিপশনের ছবি পাঠানো যায়। সে ক্ষেত্রে পরিষ্কার ছবি তুলে অ্যাকাউন্টে ঢুকে আপলোড করতে হয়। ফার্মাসিস্ট দেখে নেওয়ার পর একজন প্রতিনিধি ফোন করে অর্ডার কনফার্ম করেন। ওষুধ ও স্বাস্থ্যপণ্যের পাশাপাশি ভিডিও কলে ডাক্তারের পরামর্শ নেওয়ার সেবাও আছে।"
+            },
+            "sources": [
+              {
+                "title": "Prescription ordering & consultations",
+                "url": "https://medeasy.health/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": "+8809642661112",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://medeasy.health/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1538,6 +2858,43 @@
       "bn": {
         "name": "Monsha",
         "description": "শিক্ষকদের কোর্স পরিকল্পনা, পাঠ সাজানো ও ক্লাসের উপকরণ তৈরিতে সাহায্য করা AI টুল।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Teaching materials & lesson planning",
+              "bn": "পাঠের পরিকল্পনা ও ক্লাসের উপকরণ"
+            },
+            "body": {
+              "en": "Monsha helps teachers turn a topic, document, URL or learning goal into course outlines, units, lesson plans and classroom materials. Outputs include worksheets, quizzes and slides, with options to adjust grade level, reading difficulty and language. Teachers can export work into common document and presentation formats or learning-management systems.",
+              "bn": "ক্লাসে কী পড়াবেন, সেই বিষয় বা শেখার লক্ষ্য দিয়ে Monsha-তে পাঠের পরিকল্পনা শুরু করা যায়। নিজের ফাইল বা ওয়েব লিংকও দেওয়া যায়। সেখান থেকে কোর্সের রূপরেখা, লেসন প্ল্যান, ওয়ার্কশিট, কুইজ ও স্লাইড বানিয়ে শ্রেণি, ভাষা বা পড়ার কঠিনতা অনুযায়ী বদলে নেওয়ার টুল আছে। তৈরি উপকরণ ডকুমেন্ট, প্রেজেন্টেশন বা লার্নিং ম্যানেজমেন্ট সিস্টেমেও নেওয়া যায়।"
+            },
+            "sources": [
+              {
+                "title": "Teaching materials & lesson planning",
+                "url": "https://monsha.ai/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://monsha.ai/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -1570,6 +2927,46 @@
         "name": "Nuport",
         "description": "অনলাইন ব্র্যান্ডের অর্ডার, ইনভেন্টরি, কুরিয়ার আর ফুলফিলমেন্ট এক জায়গায় আনে।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Orders, inventory & fulfilment",
+              "bn": "অর্ডার, মজুত ও পণ্য পাঠানোর কাজ"
+            },
+            "body": {
+              "en": "Nuport connects Shopify and WooCommerce orders with inventory, warehouse fulfilment and courier workflows. Its published service covers storage, picking, packing, shipping labels and tracking, including integrations with Pathao, REDX, Carrybee and Steadfast. Merchants can also reconcile cash-on-delivery collections, record expenses and review profit by sales channel.",
+              "bn": "Shopify বা WooCommerce-এর অর্ডার থেকে গুদামের মজুত, প্যাকিং ও কুরিয়ারে পাঠানো পর্যন্ত কাজ গুছিয়ে নেওয়া যায় Nuport-এ। পণ্য রাখা, অর্ডারমতো পণ্য তুলে প্যাক করা, শিপিং লেবেল বানানো ও ডেলিভারি ট্র্যাক করার সেবা আছে। Pathao, REDX, Carrybee ও Steadfast-এর সঙ্গে সংযোগের কথাও দেওয়া আছে। বিক্রেতারা COD-এর টাকা মিলিয়ে নেওয়া, খরচ লেখা ও কোন মাধ্যমে কত লাভ হচ্ছে দেখার টুল পান।"
+            },
+            "sources": [
+              {
+                "title": "Orders, inventory & fulfilment",
+                "url": "https://www.nuport.io/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Published Bangladesh locations: House 11, Road 17, Banani C/A, Dhaka 1212; and 8th Floor, 580 East Kazipara, MAS Square, Mirpur 10, Dhaka 1216.",
+            "bn": "বাংলাদেশে প্রকাশিত ঠিকানা: বাড়ি ১১, রোড ১৭, বনানী সি/এ, ঢাকা ১২১২। আরেকটি ঠিকানা: অষ্টম তলা, ৫৮০ পূর্ব কাজীপাড়া, MAS Square, মিরপুর ১০, ঢাকা ১২১৬।"
+          },
+          "email": "hello@nuport.io",
+          "phone": "01325072924",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.nuport.io/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1601,6 +2998,43 @@
         "name": "Ostad",
         "description": "পেশাগত ও প্রযুক্তিগত দক্ষতার জন্য লাইভ, ব্যাচভিত্তিক কোর্স।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Courses & career-support tools",
+              "bn": "কোর্স ও ক্যারিয়ারের প্রস্তুতি"
+            },
+            "body": {
+              "en": "Ostad offers live cohort-based and recorded courses in areas including software development, design, business, marketing, data and cybersecurity. It also lists corporate training, a CV builder, coding practice through Codemama and free preview classes. Career and placement support are services offered alongside learning.",
+              "bn": "সফটওয়্যার ডেভেলপমেন্ট, ডিজাইন, বিজনেস, মার্কেটিং, ডেটা ও সাইবার সিকিউরিটিসহ নানা বিষয়ে Ostad-এ লাইভ ব্যাচ ও রেকর্ড করা কোর্স আছে। আগে দেখে নেওয়ার জন্য ফ্রি ক্লাসও পাওয়া যায়। কোম্পানির কর্মীদের প্রশিক্ষণ, সিভি বানানোর টুল আর Codemama-তে কোডিং অনুশীলনের সুযোগ আলাদা করে দেওয়া আছে। ক্যারিয়ার গড়া ও চাকরি খোঁজার সহায়তাও দেয় Ostad।"
+            },
+            "sources": [
+              {
+                "title": "Courses & career-support tools",
+                "url": "https://ostad.app/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://ostad.app/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1631,6 +3065,74 @@
         "name": "PriyoShop",
         "description": "পাড়ার মুদি ও খুচরা দোকানের জন্য পণ্য কেনা, সরবরাহ ও সঙ্গে থাকা ডিজিটাল সেবা।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "products",
+            "title": {
+              "en": "Retail sourcing & distribution",
+              "bn": "দোকানের পণ্য সংগ্রহ ও বিতরণ"
+            },
+            "body": {
+              "en": "PriyoShop lets retailers order consumer goods from brands through a B2B app and receive deliveries at their shops. Its distribution service connects brands with retail outlets. Shops register with a mobile number, name and shop details before ordering.",
+              "bn": "PriyoShop-এর বিটুবি অ্যাপ থেকে দোকানিরা বিভিন্ন ব্র্যান্ডের ভোগ্যপণ্য অর্ডার করে দোকানে ডেলিভারি পান। তাদের বিতরণসেবা ব্র্যান্ডগুলোকে খুচরা দোকানের সঙ্গে যুক্ত করে। অর্ডারের আগে মোবাইল নম্বর, নাম ও দোকানের তথ্য দিয়ে নিবন্ধন করতে হয়।"
+            },
+            "sources": [
+              {
+                "title": "PriyoShop - retail services, founders and offices",
+                "url": "https://priyoshop.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": [
+              {
+                "label": {
+                  "en": "Retail platform",
+                  "bn": "খুচরা দোকানের প্ল্যাটফর্ম"
+                },
+                "url": "https://priyoshop.com/"
+              }
+            ]
+          },
+          {
+            "id": "retail-network",
+            "title": {
+              "en": "Services around the retail network",
+              "bn": "দোকানের নেটওয়ার্ক ঘিরে সেবা"
+            },
+            "body": {
+              "en": "Alongside sourcing, PriyoShop describes embedded finance for retailers, digital advertising screens inside retail points, and its Dipty house brand of goods such as rice and lentils. These extend the business beyond wholesale ordering into credit access, advertising and own-brand products.",
+              "bn": "পণ্য সংগ্রহের পাশাপাশি দোকানিদের অর্থায়ন পাওয়ার সুযোগ, দোকানের ভেতরে ডিজিটাল পর্দায় বিজ্ঞাপন এবং Dipty নামে নিজেদের ব্র্যান্ডের চাল-ডালও আছে PriyoShop-এর সেবায়। ফলে পাইকারি অর্ডারের বাইরেও অর্থায়ন, বিজ্ঞাপন ও নিজস্ব ব্র্যান্ডের পণ্য নিয়ে কাজ করছে তারা।"
+            },
+            "sources": [
+              {
+                "title": "PriyoShop - retail services, founders and offices",
+                "url": "https://priyoshop.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Bangladesh: 31/A, Dhanmondi 8, Dhaka 1209. Singapore: 160 Robinson Road, #24-09, Singapore 068914.",
+            "bn": "বাংলাদেশ: ৩১/এ, ধানমন্ডি ৮, ঢাকা ১২০৯। সিঙ্গাপুর: ১৬০ রবিনসন রোড, #২৪-০৯, সিঙ্গাপুর ০৬৮৯১৪।"
+          },
+          "email": "support@priyoshop.com",
+          "phone": "09610989922",
+          "sources": [
+            {
+              "title": "PriyoShop - retail services, founders and offices",
+              "url": "https://priyoshop.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1660,6 +3162,46 @@
       "bn": {
         "name": "PulseTech",
         "description": "প্রযুক্তিনির্ভর ওষুধ সরবরাহ, ফার্মেসি সফটওয়্যার ও সঙ্গে থাকা অর্থায়ন সুবিধা।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Pharmacy supply, software & retail",
+              "bn": "ফার্মেসির সরবরাহ, সফটওয়্যার ও দোকান"
+            },
+            "body": {
+              "en": "PulseTech combines several parts of the pharmacy business: MedBox for medicine distribution and warehousing, MediPOS for pharmacy inventory and sales workflows, and ONE Pharmacy for a retail franchise network. It also describes embedded finance for the supply chain. These are separate services; access to finance depends on the relevant provider and terms.",
+              "bn": "ফার্মেসির জন্য ওষুধ সংগ্রহ থেকে দোকানের হিসাব পর্যন্ত কয়েকটি আলাদা সেবা চালায় PulseTech। MedBox-এ ওষুধ সরবরাহ ও গুদামের কাজ হয়। MediPOS দিয়ে মজুত, কেনাবেচা ও দোকানের দৈনন্দিন কাজের হিসাব রাখা যায়। ONE Pharmacy তাদের ফ্র্যাঞ্চাইজি দোকানের নেটওয়ার্ক। সরবরাহের সঙ্গে অর্থায়নের ব্যবস্থাও বর্ণনা করা আছে, তবে অর্থ পেতে সংশ্লিষ্ট সেবার শর্ত মিলতে হবে।"
+            },
+            "sources": [
+              {
+                "title": "Pharmacy supply, software & retail",
+                "url": "https://pulsetechltd.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "115–116 BSTI Road, Dhaka 1208, Bangladesh. Singapore: 33A Pagoda Street, Singapore 059192.",
+            "bn": "১১৫–১১৬ বিএসটিআই রোড, ঢাকা ১২০৮, বাংলাদেশ। সিঙ্গাপুর: ৩৩এ প্যাগোডা স্ট্রিট, সিঙ্গাপুর ০৫৯১৯২।"
+          },
+          "email": "info@pulsetechltd.com",
+          "phone": "+8809609080706",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://pulsetechltd.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -1692,6 +3234,46 @@
         "name": "Relaxy",
         "description": "থেরাপি, বিশেষজ্ঞ পরামর্শ, মানসিক অবস্থা ট্র্যাকিং ও AI-ভিত্তিক ভালো থাকার নানা টুল দেয়।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Counselling & workplace programmes",
+              "bn": "কাউন্সেলিং ও কর্মীদের সহায়তা"
+            },
+            "body": {
+              "en": "Relaxy lists individual, couples, family and teenage counselling, available online or through its clinic. It also offers mental-health programmes for businesses. Its Riri AI companion is a separate digital product from booked sessions with a human professional.",
+              "bn": "ব্যক্তিগত, দম্পতি, পরিবার ও কিশোরদের কাউন্সেলিংয়ের জন্য Relaxy-তে অনলাইন বা ক্লিনিকে সেশন নেওয়ার সুযোগ আছে। প্রতিষ্ঠানের কর্মীদের মানসিক স্বাস্থ্য নিয়ে কাজ করার প্রোগ্রামও দেয়। Riri নামের AI সহচরটি আলাদা ডিজিটাল প্রোডাক্ট, মানুষের সঙ্গে বুক করা কাউন্সেলিং সেশন নয়।"
+            },
+            "sources": [
+              {
+                "title": "Counselling & workplace programmes",
+                "url": "https://relaxy.com.bd/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "House 22, Block H, Section 2, Avenue 3, Road 1, Mirpur 2, Milk Vita Road, Dhaka.",
+            "bn": "বাড়ি ২২, ব্লক এইচ, সেকশন ২, অ্যাভিনিউ ৩, রোড ১, মিরপুর ২, মিল্ক ভিটা রোড, ঢাকা।"
+          },
+          "email": "info@relaxy.com.bd",
+          "phone": "01316055638",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://relaxy.com.bd/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1723,6 +3305,43 @@
         "name": "Revora",
         "description": "অনলাইন মার্চেন্টদের বিভিন্ন মেসেজিং চ্যানেলে AI-সহায়ক বিক্রি ও গ্রাহকসেবা।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Messaging, sales & support",
+              "bn": "মেসেজে বিক্রি ও গ্রাহকসেবা"
+            },
+            "body": {
+              "en": "Revora, formerly MyAlice, offers a shared customer-message inbox with automation for sales, support and community interactions. Its product includes AI agents, WhatsApp campaigns and reporting, with ecommerce integrations including Shopify, WooCommerce, Salla and Zid. Teams can bring conversations from different channels into one workflow.",
+              "bn": "আগের MyAlice এখন Revora নামে গ্রাহকের মেসেজ, বিক্রি ও সাপোর্টের কাজ এক জায়গায় আনার সফটওয়্যার দেয়। আলাদা চ্যানেলের কথোপকথন একই ইনবক্সে এনে টিমের মধ্যে ভাগ করে নেওয়া যায়। AI এজেন্ট, WhatsApp ক্যাম্পেইন ও রিপোর্ট দেখার টুলও আছে। অনলাইন দোকানের সঙ্গে কাজ করার জন্য Shopify, WooCommerce, Salla ও Zid-এর সংযোগ দেওয়া আছে।"
+            },
+            "sources": [
+              {
+                "title": "Messaging, sales & support",
+                "url": "https://userevora.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://userevora.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1752,6 +3371,52 @@
       "bn": {
         "name": "ShareTrip",
         "description": "ফ্লাইট, হোটেল, হলিডে ও ভ্রমণসংক্রান্ত আর্থিক সেবার গ্রাহক প্ল্যাটফর্ম।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Booking & travel support",
+              "bn": "বুকিং ও ভ্রমণের সহায়তা"
+            },
+            "body": {
+              "en": "ShareTrip provides flight, hotel and holiday booking, visa assistance and car-booking support. Travellers can contact its support team with booking details by email or hotline. Its official news site also lists a Dhaka lounge and a Chattogram office for in-person contact.",
+              "bn": "ফ্লাইট, হোটেল ও ছুটির প্যাকেজ বুক করার পাশাপাশি ShareTrip-এ ভিসার কাজে সহায়তা এবং গাড়ি বুকিংয়ের সেবা আছে। কোনো বুকিংয়ে সমস্যা হলে বুকিংয়ের তথ্য নিয়ে ইমেইল বা হটলাইনে যোগাযোগ করা যায়। সরাসরি যোগাযোগের জন্য তাদের নিজস্ব নিউজ সাইটে ঢাকার লাউঞ্জ ও চট্টগ্রামের অফিসের ঠিকানাও দেওয়া আছে।"
+            },
+            "sources": [
+              {
+                "title": "Booking & travel support",
+                "url": "https://news.sharetrip.net/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              },
+              {
+                "title": "Car-booking support",
+                "url": "https://support.sharetrip.net/en/article/how-can-i-contact-customer-support-if-i-have-an-issue-1gh7p52/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Dhaka lounge: 3rd Floor, House 1, Road 17, Block C, Banani, Dhaka 1213. Chattogram: BM Heights, 5th Floor, 318 Sheikh Mujib Road, Badamtoli, Agrabad.",
+            "bn": "ঢাকার লাউঞ্জ: তৃতীয় তলা, বাড়ি ১, রোড ১৭, ব্লক সি, বনানী, ঢাকা ১২১৩। চট্টগ্রাম: বিএম হাইটস, পঞ্চম তলা, ৩১৮ শেখ মুজিব রোড, বাদামতলী, আগ্রাবাদ।"
+          },
+          "email": "ask@sharetrip.net",
+          "phone": "13701",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://news.sharetrip.net/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -1783,6 +3448,46 @@
       "bn": {
         "name": "Shomvob",
         "description": "চাকরিপ্রার্থীদের সাথে নিয়োগকর্তার সংযোগ ঘটায়, আর ব্যবসার জন্য দেয় নিয়োগ, কর্মী ব্যবস্থাপনা ও পে-রোলের টুল।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Job search, recruitment & HR",
+              "bn": "চাকরি খোঁজা, নিয়োগ ও কর্মীদের কাজ"
+            },
+            "body": {
+              "en": "Shomvob serves job seekers through vacancies and training, and employers through recruitment, outsourced staffing and payroll services. Its employer tools are distinct from the job-seeker application. The company also links to Shomvob HRM for workplace administration and an academy for training.",
+              "bn": "চাকরিপ্রার্থীরা Shomvob-এ বিজ্ঞপ্তি দেখে আবেদন ও প্রশিক্ষণের খোঁজ নিতে পারেন। আর কর্মী দরকার এমন প্রতিষ্ঠানের জন্য নিয়োগ, আউটসোর্সিংয়ের মাধ্যমে কর্মী দেওয়া ও বেতনের হিসাব সামলানোর সেবা আছে। চাকরিপ্রার্থী ও নিয়োগদাতার প্রবেশের জায়গা আলাদা। কর্মীদের দৈনন্দিন কাজ সামলানোর Shomvob HRM এবং প্রশিক্ষণের একাডেমিও তাদের সাইট থেকে পাওয়া যায়।"
+            },
+            "sources": [
+              {
+                "title": "Job search, recruitment & HR",
+                "url": "https://shomvob.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Published location: Baridhara DOHS, Dhaka, Bangladesh.",
+            "bn": "প্রকাশিত অবস্থান: বারিধারা ডিওএইচএস, ঢাকা, বাংলাদেশ।"
+          },
+          "email": null,
+          "phone": "+8809638885588",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://shomvob.com/contact",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -1925,6 +3630,43 @@
         "name": "Shuttle",
         "description": "ব্যক্তি, স্কুল ও প্রতিষ্ঠানের জন্য নির্দিষ্ট রুটের শেয়ার্ড রাইড ও কর্মী পরিবহন পরিচালনা করে।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Shared commuting & business transport",
+              "bn": "একসঙ্গে যাতায়াত ও প্রতিষ্ঠানের পরিবহন"
+            },
+            "body": {
+              "en": "Shuttle’s published services cover scheduled shared commuting, women’s rides, employee transport for businesses and car rental. Shared rides follow service routes and schedules, while a business transport arrangement or rental is a separate booking. Confirm current routes and availability directly before planning a commute.",
+              "bn": "প্রকাশিত সেবার বর্ণনা অনুযায়ী Shuttle-এ নির্ধারিত রুটে একসঙ্গে যাতায়াত, নারীদের রাইড, প্রতিষ্ঠানের কর্মীদের পরিবহন ও গাড়ি ভাড়ার ব্যবস্থা আছে। শেয়ারড রাইডে রুট ও সময় মিলিয়ে নিতে হয়। আর প্রতিষ্ঠানের পরিবহন বা গাড়ি ভাড়ার বুকিং আলাদা। নিয়মিত যাতায়াতের পরিকল্পনা করার আগে বর্তমানে কোন রুটে সেবা চলছে, সরাসরি জেনে নিন।"
+            },
+            "sources": [
+              {
+                "title": "Shared commuting & business transport",
+                "url": "https://www.shuttlebd.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.shuttlebd.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1956,6 +3698,46 @@
         "name": "Sokrio",
         "description": "ব্যবসার জন্য সেলস টিম অটোমেশন, বিতরণ ব্যবস্থাপনা ও মাঠের রিটেইল ডেটা দেওয়ার সফটওয়্যার।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Field sales & distribution",
+              "bn": "মাঠপর্যায়ের বিক্রি ও ডিস্ট্রিবিউশন"
+            },
+            "body": {
+              "en": "Sokrio provides distribution-management software for field sales teams. Published functions include mapping retail outlets, planning and validating routes, recording visits and attendance, taking orders, tracking stock and returns, and monitoring collections. Managers can review the field team’s activity and sales data through dashboards.",
+              "bn": "মাঠে কাজ করা সেলস টিমের জন্য দোকানের অবস্থান, যাওয়ার রুট, ভিজিট ও উপস্থিতির তথ্য এক জায়গায় রাখার সফটওয়্যার দেয় Sokrio। সেখান থেকেই অর্ডার নেওয়া, মজুত ও ফেরত পণ্যের হিসাব রাখা এবং টাকা আদায়ের অগ্রগতি দেখা যায়। ম্যানেজাররা ড্যাশবোর্ডে টিমের কাজ ও বিক্রির তথ্য মিলিয়ে নিতে পারেন।"
+            },
+            "sources": [
+              {
+                "title": "Field sales & distribution",
+                "url": "https://sokrio.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "House 11, Road 21, Sector 4, Uttara, Dhaka 1230.",
+            "bn": "বাড়ি ১১, রোড ২১, সেক্টর ৪, উত্তরা, ঢাকা ১২৩০।"
+          },
+          "email": null,
+          "phone": "01920239873",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://sokrio.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -1986,6 +3768,52 @@
       "bn": {
         "name": "SOLshare",
         "description": "পিয়ার-টু-পিয়ার সৌরবিদ্যুৎ ও বিকেন্দ্রীকৃত বিদ্যুৎ ব্যবস্থার সফটওয়্যার ও হার্ডওয়্যার।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Energy trading, charging & rooftop solar",
+              "bn": "বিদ্যুৎ কেনাবেচা, চার্জিং ও ছাদে সৌরবিদ্যুৎ"
+            },
+            "body": {
+              "en": "SOLshare works across distributed solar energy and electric mobility. SOLbazaar supports local energy exchange, while its mobility work covers smart batteries and charging. SOLroof offers commercial and industrial rooftop-solar installation and advice, with operating-expense and capital-expense models described separately on its product page.",
+              "bn": "সৌরবিদ্যুৎ উৎপাদন, স্থানীয়ভাবে বিদ্যুৎ কেনাবেচা ও বৈদ্যুতিক যানের চার্জিং নিয়ে SOLshare-এর আলাদা কাজ আছে। SOLbazaar-এ স্থানীয় বিদ্যুৎ বিনিময়ের ব্যবস্থা, আর যানবাহনের জন্য স্মার্ট ব্যাটারি ও চার্জিং নিয়ে কাজ করে। SOLroof-এর মাধ্যমে ব্যবসা ও কারখানার ছাদে সৌরবিদ্যুৎ বসানো এবং পরামর্শ নেওয়া যায়। এর খরচ চালানোর ও স্থাপনায় বিনিয়োগের মডেলগুলো প্রোডাক্টের পাতায় আলাদা করে দেওয়া আছে।"
+            },
+            "sources": [
+              {
+                "title": "Energy trading, charging & rooftop solar",
+                "url": "https://solshare.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              },
+              {
+                "title": "SOLroof - commercial and industrial rooftop services",
+                "url": "https://solshare.com/solar-rooftop/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "LM Tower, 2nd Floor, Ka/87, Joar Shahara Bazar Road, Vatara, Dhaka 1229, Bangladesh.",
+            "bn": "এলএম টাওয়ার, দ্বিতীয় তলা, ক/৮৭, জোয়ার সাহারা বাজার রোড, ভাটারা, ঢাকা ১২২৯, বাংলাদেশ।"
+          },
+          "email": null,
+          "phone": "+8801708458769",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://solshare.com/contact-us/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -2022,6 +3850,43 @@
         "name": "TallyKhata",
         "description": "ছোট ব্যবসায়ীদের ডিজিটাল হিসাবের খাতা, পেমেন্ট ও আর্থিক টুল।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Bookkeeping & payments",
+              "bn": "দোকানের হিসাব ও পেমেন্ট"
+            },
+            "body": {
+              "en": "TallyKhata provides digital records for small merchants, including sales, purchases, expenses, stock and customer or supplier dues. Its Bangla interface supports keeping everyday business records with backup. TallyPay is presented separately as a wallet and payment service, with QR payments, adding or withdrawing money and mobile recharge.",
+              "bn": "দোকানে কত বিক্রি হলো, কী কেনা হলো, খরচ কত আর কার কাছে বাকি আছে, এসব লিখে রাখা যায় TallyKhata-তে। বাংলায় হিসাব রাখার সঙ্গে মজুত দেখা ও তথ্যের ব্যাকআপের সুবিধাও আছে। TallyPay আলাদা ওয়ালেট ও পেমেন্ট সেবা হিসেবে দেখানো হয়েছে। সেখানে QR পেমেন্ট, টাকা যোগ করা বা তোলা এবং মোবাইল রিচার্জের সুবিধার কথা আছে।"
+            },
+            "sources": [
+              {
+                "title": "Bookkeeping & payments",
+                "url": "https://www.tallykhata.com/en/home-eng/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.tallykhata.com/en/home-eng/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -2052,6 +3917,46 @@
       "bn": {
         "name": "Tiger New Energy",
         "description": "বৈদ্যুতিক তিন চাকার যানের ব্যাটারি বদল প্রযুক্তি ও জ্বালানি সেবা।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Battery service & swapping",
+              "bn": "ব্যাটারি ব্যবহার ও বদলে নেওয়া"
+            },
+            "body": {
+              "en": "Tiger New Energy offers lithium-battery service and swapping infrastructure for electric vehicles. Its published model includes daily subscriptions and swap stations, alongside motorcycle batteries. An app provides battery and station information, connecting the physical battery service with a digital account.",
+              "bn": "বৈদ্যুতিক যানে ব্যবহার করার লিথিয়াম ব্যাটারি ও চার্জ শেষ হলে বদলে নেওয়ার স্টেশন নিয়ে কাজ করে Tiger New Energy। তাদের সেবার বর্ণনায় দৈনিক সাবস্ক্রিপশন ও মোটরসাইকেলের ব্যাটারিও আছে। অ্যাপে ব্যাটারি ও স্টেশনের তথ্য দেখে নেওয়া যায়, ফলে ব্যাটারি ব্যবহারের কাজের সঙ্গে ডিজিটাল অ্যাকাউন্টও যুক্ত থাকে।"
+            },
+            "sources": [
+              {
+                "title": "Battery service & swapping",
+                "url": "https://www.tigernewenergy.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Bangladesh: 46 Gulshan Avenue, Dhaka 1212. Singapore: 20A Tanjong Pagar Road, Singapore 088443.",
+            "bn": "বাংলাদেশ: ৪৬ গুলশান অ্যাভিনিউ, ঢাকা ১২১২। সিঙ্গাপুর: ২০এ তানজং পাগার রোড, সিঙ্গাপুর ০৮৮৪৪৩।"
+          },
+          "email": "contact@tigernewenergy.com",
+          "phone": "09606990120",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.tigernewenergy.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -2084,6 +3989,43 @@
         "name": "Tipsoi (Inovace Technologies)",
         "description": "কর্মীদের হাজিরা, শিফট, ছুটি, বেতন ও অফিসে প্রবেশ নিয়ন্ত্রণের জন্য বায়োমেট্রিক ডিভাইস ও ক্লাউড সফটওয়্যার।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Devices & workplace software",
+              "bn": "যন্ত্র ও কর্মীদের কাজের সফটওয়্যার"
+            },
+            "body": {
+              "en": "Tipsoi combines biometric devices with cloud software for attendance, shifts, leave and payroll. Its workplace products also cover visitor management, parking and access control. Device records feed workplace reporting and administrative workflows; security or compliance claims need their own verification.",
+              "bn": "আঙুলের ছাপ বা অন্য বায়োমেট্রিক যন্ত্রের তথ্য নিয়ে কর্মীদের উপস্থিতি, শিফট, ছুটি ও বেতনের হিসাব রাখার ক্লাউড সফটওয়্যার দেয় Tipsoi। অফিসে অতিথি আসা, পার্কিং ও প্রবেশের অনুমতি সামলানোর প্রোডাক্টও আছে। যন্ত্রে জমা হওয়া তথ্য থেকে রিপোর্ট ও প্রশাসনিক কাজ করা যায়।"
+            },
+            "sources": [
+              {
+                "title": "Devices & workplace software",
+                "url": "https://tipsoi.ai/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://tipsoi.ai/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -2113,6 +4055,43 @@
       "bn": {
         "name": "Truck Lagbe",
         "description": "ট্রাক বুকিং ও বহর ব্যবস্থাপনার ডিজিটাল মার্কেটপ্লেস ও পরিচালন টুল।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Truck booking & business logistics",
+              "bn": "ট্রাক বুকিং ও ব্যবসার পণ্য পরিবহন"
+            },
+            "body": {
+              "en": "Truck Lagbe lets customers specify pickup, destination, truck type, timing and goods, then select a vendor through its booking marketplace. It lists day hire, round trips, multiple stops, shifting and corporate logistics. Its transport-management system is a separate business tool from an individual truck booking.",
+              "bn": "কোথা থেকে কোথায় মাল যাবে, কী ধরনের ট্রাক লাগবে, সময় ও মালামালের তথ্য দিয়ে Truck Lagbe-তে বুকিং শুরু করা যায়। এরপর মার্কেটপ্লেসে ভাড়া ও সেবাদাতা মিলিয়ে বেছে নেওয়া হয়। দিনের জন্য ভাড়া, যাওয়া-আসা, একাধিক জায়গায় থামা, বাসা বদল ও প্রতিষ্ঠানের পণ্য পরিবহনের সেবা আছে। একটি ট্রাক বুক করার বাইরে ব্যবসার পরিবহন সামলানোর আলাদা সফটওয়্যারও দেয়।"
+            },
+            "sources": [
+              {
+                "title": "Truck booking & business logistics",
+                "url": "https://trucklagbe.com/en/home/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": "customercare@trucklagbe.com",
+          "phone": "+8809638000245",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://trucklagbe.com/en/home/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -2150,6 +4129,43 @@
         "name": "weDevs",
         "description": "অনলাইন মার্কেটপ্লেস চালানো, ওয়েবসাইট পরিচালনা ও ব্যবসার দৈনন্দিন কাজের সফটওয়্যার।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Software for marketplaces & business operations",
+              "bn": "মার্কেটপ্লেস ও ব্যবসার সফটওয়্যার"
+            },
+            "body": {
+              "en": "weDevs develops software products for online businesses and website operators. Its portfolio includes Dokan for marketplaces, WP User Frontend for frontend publishing, WP Project Manager for projects and WP ERP for business administration. It also lists Appsero for software-product management, FlyWP for hosting operations and InboxWP for email delivery.",
+              "bn": "অনলাইন ব্যবসা ও ওয়েবসাইট চালানোর কয়েকটি আলাদা সফটওয়্যার বানায় weDevs। মার্কেটপ্লেসের জন্য Dokan, ওয়েবসাইটের সামনের দিক থেকে লেখা জমা দেওয়ার জন্য WP User Frontend, কাজের অগ্রগতি রাখার জন্য WP Project Manager এবং ব্যবসার প্রশাসনিক কাজের জন্য WP ERP আছে। সফটওয়্যার প্রোডাক্ট সামলাতে Appsero, হোস্টিংয়ের কাজে FlyWP ও ইমেইল পাঠাতে InboxWP-ও পাওয়া যায়।"
+            },
+            "sources": [
+              {
+                "title": "Software for marketplaces & business operations",
+                "url": "https://wedevs.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://wedevs.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -2180,6 +4196,46 @@
       "bn": {
         "name": "WeGro",
         "description": "কৃষকের অর্থায়ন, ডেটা, সার-বীজ, ইনস্যুরেন্স ও বাজার সংযোগকে এক সূত্রে বাঁধে।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Farmer services & market access",
+              "bn": "কৃষকের সেবা ও বাজারে বিক্রি"
+            },
+            "body": {
+              "en": "WeGro combines farmer finance through banks and crowdfunding channels with agricultural inputs, market access and farming technology. It lists seeds, biofertilisers and crop-care products alongside climate-smart practices. Its market service connects production with buyers; participation should not be read as a guaranteed return or guaranteed sale.",
+              "bn": "কৃষকের অর্থায়ন, বীজ ও অন্যান্য উপকরণ পাওয়া এবং উৎপাদিত পণ্য বিক্রির বাজার নিয়ে একসঙ্গে কাজ করে WeGro। ব্যাংক ও ক্রাউডফান্ডিংয়ের মাধ্যমে অর্থায়নের কথা তাদের সাইটে আছে। বীজ, জৈবসার ও ফসলের যত্নের পণ্যের পাশাপাশি জলবায়ুর ঝুঁকি মাথায় রেখে চাষের প্রযুক্তিও দেয়। ক্রেতার সঙ্গে যোগাযোগের সুযোগকে নিশ্চিত বিক্রি বা নিশ্চিত লাভ ধরে নেওয়া যাবে না।"
+            },
+            "sources": [
+              {
+                "title": "Farmer services & market access",
+                "url": "https://www.wegro.global/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Bangladesh: House 42, Road 1, Block A, Niketon, Gulshan, Dhaka. Singapore: 160 Robinson Road, #14-04, Singapore 068914.",
+            "bn": "বাংলাদেশ: বাড়ি ৪২, রোড ১, ব্লক এ, নিকেতন, গুলশান, ঢাকা। সিঙ্গাপুর: ১৬০ রবিনসন রোড, #১৪-০৪, সিঙ্গাপুর ০৬৮৯১৪।"
+          },
+          "email": "info@wegro.global",
+          "phone": "+8801322891563",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.wegro.global/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": [
         {
@@ -2214,6 +4270,49 @@
         "name": "WPDeveloper (Startise)",
         "description": "ওয়েবসাইট বানানো, কনটেন্ট ব্যবস্থাপনা ও কাস্টমার সাপোর্টের জন্য WordPress টুল।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "WordPress products & group context",
+              "bn": "ওয়ার্ডপ্রেস প্রোডাক্ট ও মূল প্রতিষ্ঠান"
+            },
+            "body": {
+              "en": "WPDeveloper is part of Startise, which identifies it as a WordPress product company. Its product range includes Essential Addons for Elementor, Essential Blocks for the WordPress editor, BetterDocs for knowledge bases and FAQs, EmbedPress for embedded media, BetterLinks for link management and SchedulePress for editorial scheduling.",
+              "bn": "Startise-এর অধীনে WPDeveloper ওয়ার্ডপ্রেসের প্রোডাক্ট বানায়। Elementor-এ ওয়েবসাইট সাজাতে Essential Addons, ওয়ার্ডপ্রেস এডিটরের জন্য Essential Blocks, সাহায্যের লেখা ও সাধারণ প্রশ্নের উত্তর রাখতে BetterDocs পাওয়া যায়। মিডিয়া বসাতে EmbedPress, লিংক সামলাতে BetterLinks আর লেখা প্রকাশের সময় ঠিক করতে SchedulePress-ও আছে।"
+            },
+            "sources": [
+              {
+                "title": "WordPress products & group context",
+                "url": "https://startise.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              },
+              {
+                "title": "Startise group and brands",
+                "url": "https://startise.com/about/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://startise.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -2245,6 +4344,46 @@
         "name": "Zatiq",
         "description": "ছোট ব্যবসাকে অনলাইন শপ, বিক্রির হিসাব, কাস্টমার ও পেমেন্ট ব্যবস্থাপনা এবং অর্থায়নের সুবিধা দেয়।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Online-store operations",
+              "bn": "অনলাইন দোকানের কাজ"
+            },
+            "body": {
+              "en": "ZatiqEasy lets merchants create an online storefront and manage products, orders, inventory, payments and delivery workflows. Merchants can use a hosted store address or a custom domain and work through its merchant app. Zatiq also links to learning resources through Zatiq Academy.",
+              "bn": "ZatiqEasy-তে পণ্যের তথ্য দিয়ে অনলাইন দোকান খুলে অর্ডার, মজুত, পেমেন্ট ও ডেলিভারির কাজ সামলানো যায়। দোকানের জন্য তাদের দেওয়া ঠিকানা ব্যবহার করা বা নিজের ডোমেইন যুক্ত করার সুযোগ আছে। মার্চেন্ট অ্যাপ থেকেও কাজ করা যায়, আর শেখার উপকরণের জন্য Zatiq Academy-এর লিংক দেওয়া আছে।"
+            },
+            "sources": [
+              {
+                "title": "Online-store operations",
+                "url": "https://zatiqeasy.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "111 Somerset Road, #08-10A, 111 Somerset, Singapore 238164.",
+            "bn": "১১১ সমারসেট রোড, #০৮-১০এ, ১১১ সমারসেট, সিঙ্গাপুর ২৩৮১৬৪।"
+          },
+          "email": "info@zatiq.com",
+          "phone": "+8801969909069",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://zatiqeasy.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": [
         {
           "kind": "startup-50",
@@ -2274,6 +4413,46 @@
         "name": "Bangladesh Women Investors Network",
         "description": "নারী অ্যাঞ্জেল ইনভেস্টরদের একত্র করা এবং প্রি-সিড ও সিড রাউন্ডে জেন্ডার-লেন্স দৃষ্টিকোণ থেকে বিনিয়োগ করাই BAN-এর এই সহযোগী চ্যাপ্টারের মূল কাজ। নারী-নেতৃত্বাধীন ও নারীদের লক্ষ্য করে গড়ে ওঠা উদ্যোগে মূলধন, মেন্টরিং ও ইনভেস্টর নেটওয়ার্ক বাড়ানোই এর লক্ষ্য।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Women angel investors & founder support",
+              "bn": "নারী অ্যাঞ্জেল ইনভেস্টর ও ফাউন্ডারদের সহায়তা"
+            },
+            "body": {
+              "en": "BWIN is Bangladesh Angels Network’s women-led sister chapter. It offers investor learning on diligence, valuation and risk, peer learning and access to selected opportunities. Members make their own investment decisions rather than contributing to a pooled BWIN fund. Mentoring founders is another way members can participate.",
+              "bn": "Bangladesh Angels Network-এর নারী নেতৃত্বাধীন শাখা BWIN-এ বিনিয়োগ যাচাই, ভ্যালুয়েশন ও ঝুঁকি নিয়ে শেখা এবং অন্য বিনিয়োগকারীদের সঙ্গে অভিজ্ঞতা মেলানোর সুযোগ আছে। বাছাই করা উদ্যোগের সঙ্গে যোগাযোগও হয়। সদস্যরা নিজেরাই বিনিয়োগের সিদ্ধান্ত নেন, BWIN-এর এক তহবিলে সবাই টাকা জমা দেন না। ফাউন্ডারদের মেন্টর হিসেবেও সদস্যরা যুক্ত হতে পারেন।"
+            },
+            "sources": [
+              {
+                "title": "Women angel investors & founder support",
+                "url": "https://bdangels.co/bwin",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Contact through Bangladesh Angels Network: Level 3, House 27, Road 12, Niketon, Gulshan 1, Dhaka 1212.",
+            "bn": "Bangladesh Angels Network-এর মাধ্যমে যোগাযোগ: লেভেল ৩, বাড়ি ২৭, রোড ১২, নিকেতন, গুলশান ১, ঢাকা ১২১২।"
+          },
+          "email": "hello@bdangels.co",
+          "phone": "+8801724937741",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://bdangels.co/bwin",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": []
     },
     {
@@ -2297,6 +4476,108 @@
       "bn": {
         "name": "Startup Bangladesh Limited",
         "description": "তথ্য ও যোগাযোগ প্রযুক্তি বিভাগের মালিকানাধীন এই সরকারি ভেঞ্চার ক্যাপিটাল কোম্পানিটি বাংলাদেশে নিবন্ধিত স্টার্টআপ ও ইমপ্যাক্ট উদ্যোগে ইকুইটি বা কোয়াসি-ইকুইটির মাধ্যমে বিনিয়োগ করে। আবেদনকারী প্রতিষ্ঠানের একটি তৈরি এমভিপি (MVP) এবং কাস্টমার বা আয় বৃদ্ধির বাস্তব প্রমাণ থাকতে হয়। এটি প্রাতিষ্ঠানিক সুশাসন ও পরিচালন সহায়তার পাশাপাশি অন্যান্য ইনভেস্টরের সাথে যৌথ বিনিয়োগও করে থাকে।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "mandate",
+            "title": {
+              "en": "Who backs the organization",
+              "bn": "প্রতিষ্ঠানটির পেছনে কারা আছে"
+            },
+            "body": {
+              "en": "Startup Bangladesh is the government-sponsored venture capital organization under the ICT Division. It describes a mandate covering direct startup investment, co-investment and fund-of-funds activity, alongside non-financial support. These are different routes: a startup seeking investment and a fund manager seeking backing use different application processes.",
+              "bn": "আইসিটি বিভাগের অধীনে সরকারি অর্থায়নে গড়ে ওঠা ভেঞ্চার ক্যাপিটাল প্রতিষ্ঠান Startup Bangladesh। সরাসরি স্টার্টআপে বিনিয়োগ, অন্য বিনিয়োগকারীদের সঙ্গে যৌথ বিনিয়োগ, অন্য ফান্ডে অর্থ দেওয়া এবং অর্থের বাইরেও সহায়তা তাদের কাজের মধ্যে আছে। স্টার্টআপের বিনিয়োগ চাওয়া আর ফান্ড ম্যানেজারের নিজের ফান্ডের জন্য অর্থ চাওয়ার আবেদনপদ্ধতি আলাদা।"
+            },
+            "sources": [
+              {
+                "title": "Startup Bangladesh - organization and mandate",
+                "url": "https://www.startupbangladesh.vc/about/about-who-we-are/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          },
+          {
+            "id": "application",
+            "title": {
+              "en": "Preparing an investment application",
+              "bn": "বিনিয়োগের আবেদনের প্রস্তুতি"
+            },
+            "body": {
+              "en": "The startup application asks for founder and team details, business stage, revenue or GMV, company formation, previous investment and a pitch-deck link. Gather these before opening the form. Submitting an application starts a review; it is not an offer of funding.",
+              "bn": "আবেদন ফর্মে ফাউন্ডার ও টিমের তথ্য, ব্যবসার স্টেজ, আয় বা GMV, কোম্পানি গঠনের তথ্য, আগের বিনিয়োগ এবং পিচ ডেকের লিংক চাওয়া হয়। ফর্ম খোলার আগে এগুলো গুছিয়ে রাখুন। আবেদন জমা দিলে পর্যালোচনা শুরু হয়, বিনিয়োগের নিশ্চয়তা পাওয়া যায় না।"
+            },
+            "sources": [
+              {
+                "title": "Startup Bangladesh - investment application",
+                "url": "https://www.startupbangladesh.vc/contact/apply-for-investment/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": [
+              {
+                "label": {
+                  "en": "Startup investment application",
+                  "bn": "স্টার্টআপের বিনিয়োগ আবেদন"
+                },
+                "url": "https://www.startupbangladesh.vc/contact/apply-for-investment/"
+              }
+            ]
+          },
+          {
+            "id": "enquiries",
+            "title": {
+              "en": "Investment enquiries",
+              "bn": "বিনিয়োগ নিয়ে যোগাযোগ"
+            },
+            "body": {
+              "en": "The current contact page lists investment@startupbangladesh.gov.bd for investment enquiries and an office at ICT Tower in Agargaon. Use that page for current contact details: older official FAQ material still displays a different email domain.",
+              "bn": "বর্তমান যোগাযোগের পেজে বিনিয়োগসংক্রান্ত প্রশ্নের জন্য investment@startupbangladesh.gov.bd দেওয়া আছে। অফিস আগারগাঁওয়ের আইসিটি টাওয়ারে। যোগাযোগের সর্বশেষ তথ্য এই পেজ থেকেই দেখে নিন। পুরোনো অফিসিয়াল প্রশ্নোত্তরে এখনো ভিন্ন ডোমেইনের ইমেইল দেখা যায়।"
+            },
+            "sources": [
+              {
+                "title": "Startup Bangladesh - current contact information",
+                "url": "https://www.startupbangladesh.vc/contact/contact-info/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              },
+              {
+                "title": "Startup Bangladesh - FAQ with older contact domain",
+                "url": "https://www.startupbangladesh.vc/contact/faqs/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": [
+              {
+                "label": {
+                  "en": "Current contact details",
+                  "bn": "বর্তমান যোগাযোগের তথ্য"
+                },
+                "url": "https://www.startupbangladesh.vc/contact/contact-info/"
+              }
+            ]
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "ICT Tower, Level 14, Plot E-14/X, Agargaon, Dhaka 1207.",
+            "bn": "আইসিটি টাওয়ার, লেভেল ১৪, প্লট ই-১৪/এক্স, আগারগাঁও, ঢাকা ১২০৭।"
+          },
+          "email": "investment@startupbangladesh.gov.bd",
+          "phone": "+880255006433",
+          "sources": [
+            {
+              "title": "Startup Bangladesh - current contact information",
+              "url": "https://www.startupbangladesh.vc/contact/contact-info/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": []
     },
@@ -2322,6 +4603,55 @@
         "name": "Anchorless Bangladesh",
         "description": "বাংলাদেশ-কেন্দ্রিক এই প্রারম্ভিক পর্যায়ের ফান্ডটি মূলত সিড রাউন্ডে বিনিয়োগ করে, সাথে বাছাইকৃত কিছু প্রি-সিড ও পোস্ট-সিড ডিলেও অংশ নেয়। যেসব কোম্পানির প্রযুক্তি বা ডেটায় শক্ত অবস্থান, স্কেল করার মতো মডেল, আন্তর্জাতিক বাজারে বিস্তারের সুযোগ এবং পরবর্তী রাউন্ডে ফান্ডিং ও এক্সিটের পরিষ্কার রূপরেখা রয়েছে, তারা সেগুলোতে গুরুত্ব দেয়।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Founder access & fund team",
+              "bn": "ফাউন্ডারদের যোগাযোগ ও ফান্ডের টিম"
+            },
+            "body": {
+              "en": "Anchorless Bangladesh focuses on businesses using technology or data to scale, with potential to expand internationally. Its published investment approach is primarily seed, with selective pre-seed and post-seed participation. Founders can access an investment-application route through its website.",
+              "bn": "প্রযুক্তি বা ডেটা কাজে লাগিয়ে বড় হতে এবং দেশের বাইরের বাজারে যেতে পারে, এমন ব্যবসায় আগ্রহী Anchorless Bangladesh। মূলত সিড পর্যায়ে বিনিয়োগ করে, বাছাই করা প্রি-সিড ও পরবর্তী পর্যায়ের উদ্যোগেও অংশ নেয়। বিনিয়োগের আবেদন করার লিংক তাদের ওয়েবসাইটে পাওয়া যায়।"
+            },
+            "sources": [
+              {
+                "title": "Founder access & fund team",
+                "url": "https://www.anchorless.vc/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              },
+              {
+                "title": "Fund team and portfolio founders",
+                "url": "https://www.anchorless.vc/people",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              },
+              {
+                "title": "Anchorless investment approach and portfolio",
+                "url": "https://www.anchorless.vc/portfolio",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.anchorless.vc/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": []
     },
     {
@@ -2345,6 +4675,43 @@
       "bn": {
         "name": "Bangladesh Startup Investment Company PLC (BSIC)",
         "description": "বাংলাদেশের ৩৯টি বাণিজ্যিক ব্যাংকের অর্থায়নে গঠিত একটি স্থায়ী ভেঞ্চার ক্যাপিটাল প্রতিষ্ঠান। এদের ৩৫ মিলিয়ন ডলারের ONKUR ফান্ডটি কোনো নির্ভরযোগ্য বৈশ্বিক বা আঞ্চলিক লিড ইনভেস্টরের পাশাপাশি সম্ভাবনাময় বাংলাদেশি স্টার্টআপে যৌথ বিনিয়োগ (co-invest) করার জন্য তৈরি।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Governance & co-investment process",
+              "bn": "বিনিয়োগের সিদ্ধান্ত ও যৌথ বিনিয়োগ"
+            },
+            "body": {
+              "en": "BSIC describes an independent investment committee and a process covering sourcing, diligence, approval and portfolio monitoring. Its published co-investment route begins with a founder securing an institutional lead investor, followed by BSIC assessment and joint diligence. The process describes a route to consideration, not automatic matching capital or a funding commitment to every applicant.",
+              "bn": "বিনিয়োগের প্রস্তাব খোঁজা, যাচাই, অনুমোদন ও পরে পোর্টফোলিওর খোঁজ রাখার ধাপগুলো BSIC-এর সাইটে দেওয়া আছে। সিদ্ধান্তের জন্য স্বাধীন ইনভেস্টমেন্ট কমিটির কথাও বলা হয়েছে। প্রকাশিত যৌথ বিনিয়োগের পদ্ধতিতে আগে ফাউন্ডারকে একটি প্রাতিষ্ঠানিক লিড ইনভেস্টর পেতে হয়। এরপর BSIC-এর মূল্যায়ন ও যৌথ যাচাইয়ের ধাপ আসে। আবেদন করলেই সমপরিমাণ অর্থ মিলবে, এমন নিশ্চয়তা এই প্রক্রিয়া থেকে ধরে নেওয়া যায় না।"
+            },
+            "sources": [
+              {
+                "title": "Governance & co-investment process",
+                "url": "https://www.bsic.vc/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.bsic.vc/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": []
     },
@@ -2370,6 +4737,46 @@
         "name": "Dekko ISHO Venture Capital (DIVC)",
         "description": "Dekko ISHO Group-এর সমর্থনে পরিচালিত এই ভেঞ্চার ইনভেস্টর ফাউন্ডারদের প্রয়োজনকে অগ্রাধিকার দেয়। মূলধনের পাশাপাশি স্ট্র্যাটেজি, অপারেশন, আইনি কাজ, নিয়োগ, ব্র্যান্ডিং ও গ্রোথে হাতে-কলমে সহায়তা করে।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Support beyond capital",
+              "bn": "বিনিয়োগের বাইরেও সহায়তা"
+            },
+            "body": {
+              "en": "DIVC describes operational support alongside early-stage capital: legal matters, hiring, technology, branding, marketing and growth. Founders can submit a pitch through its website. Support is described across idea validation, initial products and expansion; the published offer does not mean every service is included in every investment.",
+              "bn": "আইডিয়া যাচাই, প্রথম প্রোডাক্ট বানানো বা নতুন বাজারে যাওয়ার সময় বিনিয়োগের পাশাপাশি কাজের সহায়তাও দেয় বলে DIVC জানিয়েছে। এর মধ্যে আইনগত কাজ, নিয়োগ, প্রযুক্তি, ব্র্যান্ডিং, মার্কেটিং ও ব্যবসা বাড়ানোর সহায়তা আছে। ওয়েবসাইটে পিচ জমা দেওয়া যায়। তবে কোন উদ্যোগ কোন সহায়তা পাবে, সেটা আলাদা করে মিলিয়ে নিতে হবে।"
+            },
+            "sources": [
+              {
+                "title": "Support beyond capital",
+                "url": "https://www.di.vc/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Forum West Tower, Level 19, 187–188/B Bir Uttam Shawkat Sarak, Tejgaon, Dhaka 1208, Bangladesh.",
+            "bn": "ফোরাম ওয়েস্ট টাওয়ার, লেভেল ১৯, ১৮৭–১৮৮/বি বীর উত্তম শওকত সড়ক, তেজগাঁও, ঢাকা ১২০৮, বাংলাদেশ।"
+          },
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.di.vc/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": []
     },
     {
@@ -2393,6 +4800,46 @@
       "bn": {
         "name": "Bangladesh Venture Capital Limited (BVCL)",
         "description": "বাংলাদেশের একটি ভেঞ্চার-ক্যাপিটাল আর অল্টারনেটিভ-ইনভেস্টমেন্ট কোম্পানি। এরা স্টার্টআপ আর গ্রোথ-স্টেজ কোম্পানিগুলোতে মূলধনের পাশাপাশি মেন্টরশিপ, ইন্ডাস্ট্রি নেটওয়ার্ক আর স্ট্র্যাটেজিক সাপোর্ট দেয়।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Published support & contact location",
+              "bn": "প্রকাশিত সহায়তা ও যোগাযোগের ঠিকানা"
+            },
+            "body": {
+              "en": "BVCL’s current website describes capital, mentoring, industry introductions and strategic guidance for startups and growth-stage businesses. It publishes a Dhaka contact address, but the reviewed page does not identify a current investment team, a named portfolio or a detailed application process.",
+              "bn": "স্টার্টআপ ও বড় হতে থাকা ব্যবসার জন্য মূলধন, মেন্টরিং, খাতের মানুষের সঙ্গে পরিচয় এবং কৌশলগত পরামর্শের কথা BVCL-এর বর্তমান সাইটে আছে। যোগাযোগের জন্য ঢাকার ঠিকানাও দেওয়া হয়েছে। তবে দেখা পাতায় বর্তমান ইনভেস্টমেন্ট টিম, নামসহ পোর্টফোলিও বা আবেদনের বিস্তারিত পদ্ধতি পাওয়া যায়নি।"
+            },
+            "sources": [
+              {
+                "title": "Published support & contact location",
+                "url": "https://venture.com.bd/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "101 Sukrabad, Mirpur Road, Dhanmondi, Dhaka 1207, Bangladesh.",
+            "bn": "১০১ শুক্রাবাদ, মিরপুর রোড, ধানমন্ডি, ঢাকা ১২০৭, বাংলাদেশ।"
+          },
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://venture.com.bd/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": []
     },
@@ -2418,6 +4865,46 @@
         "name": "YY Ventures",
         "description": "বাংলাদেশে কার্বন নিঃসরণ কমানো, দারিদ্র্য দূর করা ও বেকারত্ব দূর করতে কাজ করা প্রাথমিক পর্যায়ের সামাজিক ব্যবসাগুলোতে বিনিয়োগ ও সার্বিক সহায়তা দেয় YY Ventures। মূলধনের পাশাপাশি পার্টনারশিপ, কাস্টমার তৈরি এবং পরবর্তী রাউন্ডের ইনভেস্টর পেতে এরা নিবিড়ভাবে কাজ করে।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Incubation & advisory services",
+              "bn": "ইনকিউবেশন ও পরামর্শসেবা"
+            },
+            "body": {
+              "en": "YY Ventures supports early-stage social businesses with training, tailored consultation, coworking, business services and access to investors. It also advises foundations, impact funds, companies and development or government agencies on social-business programmes, including accelerator design, innovation challenges and venture building.",
+              "bn": "শুরুর পর্যায়ের সামাজিক ব্যবসাকে প্রশিক্ষণ, প্রয়োজনমতো পরামর্শ, একসঙ্গে কাজের জায়গা ও বিনিয়োগকারীদের সঙ্গে যোগাযোগের সহায়তা দেয় YY Ventures। ফাউন্ডেশন, ইমপ্যাক্ট ফান্ড, কোম্পানি, উন্নয়ন সংস্থা ও সরকারি সংস্থাও সামাজিক ব্যবসার প্রোগ্রাম তৈরিতে তাদের পরামর্শ নিতে পারে। অ্যাক্সেলারেটর সাজানো, নতুন সমাধানের প্রতিযোগিতা চালানো ও উদ্যোগ গড়ে তোলার কাজও এর মধ্যে আছে।"
+            },
+            "sources": [
+              {
+                "title": "Incubation & advisory services",
+                "url": "https://yy.ventures/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "9th Floor, Grameen Telecom Bhaban, Mirpur 1, Dhaka 1216, Bangladesh.",
+            "bn": "নবম তলা, গ্রামীণ টেলিকম ভবন, মিরপুর ১, ঢাকা ১২১৬, বাংলাদেশ।"
+          },
+          "email": null,
+          "phone": "+8801329744860",
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://yy.ventures/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": []
     },
     {
@@ -2441,6 +4928,43 @@
       "bn": {
         "name": "Accelerating Asia Ventures",
         "description": "সিঙ্গাপুর-ভিত্তিক এই ভিসি অ্যাক্সিলারেটর দক্ষিণ ও দক্ষিণ-পূর্ব এশিয়ার উচ্চ সম্ভাবনাময় প্রি-সিরিজ এ প্রযুক্তি স্টার্টআপে বিনিয়োগ করে। বিনিয়োগের শর্ত হিসেবে ১০০ দিনের অ্যাক্সিলারেটর প্রোগ্রামে অংশ নিতে হয়। অংশগ্রহণকারী কোম্পানিকে ৩৫,০০০ ডলার প্রোগ্রাম ফি এবং ৩% ইকুইটি দিতে হয় (যা তাদের পোস্ট-মানি SAFE বিনিয়োগ চুক্তির বাইরে পৃথক শর্ত)।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Accelerator & founder support",
+              "bn": "অ্যাক্সেলারেটর ও ফাউন্ডারদের সহায়তা"
+            },
+            "body": {
+              "en": "Accelerating Asia combines early-stage investment with an accelerator for startups in South and Southeast Asia. Its published offer emphasises hands-on work with founders alongside capital and access to its network. The official portfolio highlights include Aunkur (iPAGE) and Inovace Technologies, the company behind Tipsoi.",
+              "bn": "দক্ষিণ ও দক্ষিণ-পূর্ব এশিয়ার শুরুর পর্যায়ের স্টার্টআপে বিনিয়োগের সঙ্গে অ্যাক্সেলারেটর চালায় Accelerating Asia। মূলধনের পাশাপাশি ফাউন্ডারদের সঙ্গে সরাসরি কাজ ও নিজেদের নেটওয়ার্কে যোগাযোগের সহায়তার কথা জানিয়েছে। তাদের প্রকাশিত পোর্টফোলিওতে Aunkur বা iPAGE এবং Tipsoi-এর প্রতিষ্ঠান Inovace Technologies-ও দেখা যায়।"
+            },
+            "sources": [
+              {
+                "title": "Accelerator & founder support",
+                "url": "https://www.acceleratingasia.com/",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": "team@acceleratingasia.com",
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.acceleratingasia.com/",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": []
     },
@@ -2468,6 +4992,46 @@
         "name": "IDLC Venture Capital",
         "description": "বাংলাদেশের আর্লি স্টেজ প্রযুক্তিনির্ভর কোম্পানিতে ইনভেস্ট করে। পুরোনো পোর্টফোলিও থেকে ধারণা নিতে পারেন, তবে এখন এখানে ফান্ডিংয়ের আবেদন করা যাচ্ছে না। প্রতিষ্ঠানটি ২০২৭ সালে আরেকটি ফান্ড চালুর পরিকল্পনা জানিয়েছে। সেটা পরিকল্পনা, আবেদন শুরুর ঘোষণা নয়।"
       },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Application status",
+              "bn": "আবেদনের বর্তমান অবস্থা"
+            },
+            "body": {
+              "en": "On 21 September 2026, IDLC Venture Capital’s application page said applications were closed and Fund I was exhausted, with no current investing. It described a plan for a second fund in 2027. That is a stated plan, not an open application window or a confirmed future launch.",
+              "bn": "২০২৬ সালের ২১ সেপ্টেম্বর দেখা আবেদন পাতায় IDLC Venture Capital জানিয়েছে, আবেদন বন্ধ এবং প্রথম ফান্ডের অর্থ বরাদ্দ শেষ হওয়ায় তারা এখন নতুন বিনিয়োগ করছে না। ২০২৭ সালে দ্বিতীয় ফান্ড চালুর পরিকল্পনার কথা আছে। এটাকে এখন আবেদন নেওয়া হচ্ছে বা ভবিষ্যতের ফান্ড চালু নিশ্চিত, এমন তথ্য হিসেবে ধরা যাবে না।"
+            },
+            "sources": [
+              {
+                "title": "Application status",
+                "url": "https://www.idlcvc.com/coming-soon-03",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": {
+            "en": "Symphony, 4th Floor, Road 142, Gulshan South Avenue, Bir Uttam Mir Shawkat Sarak, Dhaka 1212.",
+            "bn": "সিম্ফনি, চতুর্থ তলা, রোড ১৪২, গুলশান সাউথ অ্যাভিনিউ, বীর উত্তম মীর শওকত সড়ক, ঢাকা ১২১২।"
+          },
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.idlcvc.com/coming-soon-03",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
+      },
       "references": []
     },
     {
@@ -2493,6 +5057,43 @@
       "bn": {
         "name": "SILQ",
         "description": "২০২৫ সালে ShopUp ও Sary মিলে গড়ে ওঠা গ্রুপ। উপসাগরীয় অঞ্চল ও বাংলাদেশের কমার্স কার্যক্রম এই গ্রুপের অধীনে যুক্ত হয়েছে।"
+      },
+      "profile": {
+        "sections": [
+          {
+            "id": "services",
+            "title": {
+              "en": "Group structure & operations",
+              "bn": "গ্রুপ ও তার কার্যক্রম"
+            },
+            "body": {
+              "en": "ShopUp’s official history says ShopUp and Gulf B2B marketplace Sary combined in April 2025 to form SILQ. Its group leadership is presented separately from ShopUp’s Bangladesh management. In Bangladesh, the listed products remain Mokam for commerce and REDX for logistics; a group role should not be confused with a country-company role.",
+              "bn": "ShopUp-এর প্রকাশিত ইতিহাস অনুযায়ী, ২০২৫ সালের এপ্রিলে ShopUp ও উপসাগরীয় অঞ্চলের বিটুবি মার্কেটপ্লেস Sary মিলে SILQ গঠন করে। গ্রুপের নেতৃত্ব ও বাংলাদেশের ShopUp পরিচালনার দায়িত্ব আলাদা করে দেখানো আছে। বাংলাদেশে পণ্য কেনাবেচার Mokam ও লজিস্টিকসের REDX-এর লিংকও দেওয়া আছে। তাই গ্রুপের পদকে বাংলাদেশের কোম্পানির পদ বলে ধরে নেওয়া ঠিক হবে না।"
+            },
+            "sources": [
+              {
+                "title": "Group structure & operations",
+                "url": "https://www.shopup.org/about",
+                "publishedOn": null,
+                "checkedAt": "2026-09-21"
+              }
+            ],
+            "links": []
+          }
+        ],
+        "contact": {
+          "address": null,
+          "email": null,
+          "phone": null,
+          "sources": [
+            {
+              "title": "Official contact information",
+              "url": "https://www.shopup.org/about",
+              "publishedOn": null,
+              "checkedAt": "2026-09-21"
+            }
+          ]
+        }
       },
       "references": []
     }
@@ -2617,6 +5218,681 @@
         ],
         "avatarPath": null,
         "confirmedAt": "2026-09-20"
+      },
+      {
+        "id": "person_a5fef05b5581c36340785c36",
+        "slug": "fahim-ahmed",
+        "displayName": "Fahim Ahmed",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Official source biography",
+            "url": "https://pathao.com/blog/press/pathao-commerce/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_83c8f1f7f70594b39b47d9c9",
+        "slug": "asikul-alam-khan",
+        "displayName": "Asikul Alam Khan",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Official source biography",
+            "url": "https://priyoshop.com/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_313b770c649e5479ef35b173",
+        "slug": "dipty-mandal",
+        "displayName": "Dipty Mandal",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Official source biography",
+            "url": "https://priyoshop.com/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_dcdf83dabeb754ff395f05fe",
+        "slug": "mizanur-rahman-dorik",
+        "displayName": "Mizanur Rahman",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Official source biography",
+            "url": "https://dorik.com/author/mizan"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_6b3210363e5191ea9c2f8d57",
+        "slug": "fahad-ifaz",
+        "displayName": "Fahad Ifaz",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Official source biography",
+            "url": "https://www.ifarmer.asia/leadership"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_6bac799a927322cd6645e27c",
+        "slug": "jamil-m-akbar",
+        "displayName": "Jamil M Akbar",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Official source biography",
+            "url": "https://www.ifarmer.asia/leadership"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_a297f1fd9cefc587a33550da",
+        "slug": "nurul-hai",
+        "displayName": "Nurul Hai",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Official source biography",
+            "url": "https://www.startupbangladesh.vc/about/about-people/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_c23ddcb5d10f4a7f8a5fbea2",
+        "slug": "shameran-abed",
+        "displayName": "Shameran Abed",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.bkash.com/en/about"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_875f1cb68738491697d4a328",
+        "slug": "shahir-chowdhury",
+        "displayName": "Shahir Chowdhury",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://shikho.com/en/about-us"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_203b73c1e1f04b54873e67c7",
+        "slug": "diptha-saha",
+        "displayName": "Diptha Saha",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.anchorless.vc/people"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_8cdedded0753408b9398dd6f",
+        "slug": "qazi-bouland",
+        "displayName": "Qazi Bouland",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.anchorless.vc/people"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_3404207560564d4c9763268f",
+        "slug": "rameez-hoque",
+        "displayName": "Rameez Hoque",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.anchorless.vc/people"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_c28b3ba5081c46fbbf16850e",
+        "slug": "sayem-faruk",
+        "displayName": "Sayem Faruk",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://airwork.ai/about"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_9885b9e9520048f8a751c7a0",
+        "slug": "tamal-saha",
+        "displayName": "Tamal Saha",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://appscode.com/blog/authors/tamal-saha/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_ad4e0a5a69d944ec98b9d3a9",
+        "slug": "mashrur-h-shurid",
+        "displayName": "Mashrur H. Shurid",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://aunkur.ai/about"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_7fc72711f1b94d2eb07fde57",
+        "slug": "rezwanul-haque-jami",
+        "displayName": "Rezwanul Haque Jami",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://digibox.com.bd/founders/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_3962f873c6854047b5b7625e",
+        "slug": "morshedul-alam-chaklader",
+        "displayName": "Morshedul Alam Chaklader",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://digibox.com.bd/founders/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_65bc4eba586d4010ae9aef0b",
+        "slug": "aziz-arman",
+        "displayName": "Aziz Arman",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://jatri.co/about-us"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_30f52859755b4c549dde5bd1",
+        "slug": "zahin-khandoker",
+        "displayName": "Zahin Khandoker",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://jatri.co/about-us"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_fe8b2004b260446ca1534132",
+        "slug": "md-zia-uddin",
+        "displayName": "MD Zia Uddin",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://jatri.co/about-us"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_0775b1bfce9647ab9dad45f1",
+        "slug": "ridwan-hafiz",
+        "displayName": "Ridwan Hafiz",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://gozayaan.com/talent"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_09c8980318564078b84446c3",
+        "slug": "rajib-das",
+        "displayName": "Rajib Das",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.anchorless.vc/people"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_47864eafe67646079d2407de",
+        "slug": "yanur-islam-piash",
+        "displayName": "Yanur Islam Piash",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://monsha.ai/author/yanur-islam-piash"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_ee7a7ea9b5564bd1a14099c8",
+        "slug": "shourov-barua",
+        "displayName": "Shourov Barua",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://business.ostad.app/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_152e929ebbf349e08cba0cce",
+        "slug": "fahim-siddique-ahmed",
+        "displayName": "Fahim Siddique Ahmed",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://business.ostad.app/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_db2a3dce45b44c7792c9bf05",
+        "slug": "arefeen-raafi-ahmed",
+        "displayName": "Arefeen Raafi Ahmed",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://pulsetechltd.com/about/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_9ddb529a4e2b4a89a4c9a0c3",
+        "slug": "kazi-ashikur-rasul",
+        "displayName": "Kazi Ashikur Rasul",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://pulsetechltd.com/about/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_c0d9fd8c2aa44512bfbe29f4",
+        "slug": "daniyal-baig",
+        "displayName": "Daniyal Baig",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.anchorless.vc/people"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_91114464d5ed46178ae378df",
+        "slug": "shuvo-rahman",
+        "displayName": "Shuvo Rahman",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.anchorless.vc/people"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_9cea0d437c964efb97b1a8d4",
+        "slug": "sebastian-groh",
+        "displayName": "Sebastian Groh",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://solshare.com/team/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_24e83c77361f498ba2690731",
+        "slug": "aziza-sultana-mukti",
+        "displayName": "Aziza Sultana Mukti",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://solshare.com/team/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_77799373a47e4b338dd50025",
+        "slug": "nicole-mao",
+        "displayName": "Nicole Mao",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.tigernewenergy.com/about-us"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_05abfa3762bc4a16a1ad895b",
+        "slug": "yiwei-zhu",
+        "displayName": "Yiwei Zhu",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.tigernewenergy.com/about-us"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_f4f3bcd92d084e1f9f6bd1ed",
+        "slug": "tareq-hasan",
+        "displayName": "Tareq Hasan",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://wedevs.com/about/team/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_9ff8dae2f66a4195ad744e32",
+        "slug": "nizam-uddin",
+        "displayName": "Nizam Uddin",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://wedevs.com/about/team/"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_caf0b65532aa4e5f95db5ba7",
+        "slug": "md-mahmudur-rahman",
+        "displayName": "Md Mahmudur Rahman",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.wegro.global/who-we-are"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_132c778eb7d84a3f90a84f11",
+        "slug": "md-alvi-rahman",
+        "displayName": "Md. Alvi Rahman",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.wegro.global/who-we-are"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_e2e0dea6f7e04fc588add219",
+        "slug": "rahat-ahmed",
+        "displayName": "Rahat Ahmed",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.anchorless.vc/people"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_ceb10587cf524936aad3d210",
+        "slug": "dan-mcmurtrie",
+        "displayName": "Dan McMurtrie",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.anchorless.vc/people"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_2fc040db138643e1a6e6ab7f",
+        "slug": "peter-findley",
+        "displayName": "Peter Findley",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.anchorless.vc/people"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_fa413a33a9db40ceb569eae2",
+        "slug": "mustafizur-rahman-khan",
+        "displayName": "Mustafizur Rahman Khan",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.idlcvc.com/team"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_105ff69f794e43c5a280a53c",
+        "slug": "samad-nasrulah-miraly",
+        "displayName": "Samad Nasrulah Miraly",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.idlcvc.com/team"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_4ff552fa66a34e6894ea5b8f",
+        "slug": "syed-javed-noor",
+        "displayName": "Syed Javed Noor",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.idlcvc.com/team"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_40926914cd43483ea46baa7e",
+        "slug": "sujayath-ali",
+        "displayName": "Sujayath Ali",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.shopup.org/about"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
+      },
+      {
+        "id": "person_74ac5898ed3543f7a79e362f",
+        "slug": "navaneetha-krishnan",
+        "displayName": "Navaneetha Krishnan",
+        "nameBn": null,
+        "aliases": [],
+        "links": [
+          {
+            "label": "Public professional role source",
+            "url": "https://www.shopup.org/about"
+          }
+        ],
+        "avatarPath": null,
+        "confirmedAt": "2026-09-21"
       }
     ],
     "references": [
@@ -3053,6 +6329,996 @@
           "en": "Co-founder & CEO, ShopUp (Bangladesh)",
           "bn": "সহপ্রতিষ্ঠাতা ও CEO, ShopUp (বাংলাদেশ)"
         }
+      },
+      {
+        "id": "affiliation_fahim-ahmed",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-10",
+        "sources": [
+          {
+            "title": "Pathao Commerce launch",
+            "url": "https://pathao.com/blog/press/pathao-commerce/",
+            "publishedOn": "2026-09-10",
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_a5fef05b5581c36340785c36",
+        "organizationId": "org_pathao",
+        "role": "executive",
+        "title": {
+          "en": "CEO",
+          "bn": "CEO"
+        }
+      },
+      {
+        "id": "affiliation_asikul-alam-khan",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "PriyoShop - retail services, founders and offices",
+            "url": "https://priyoshop.com/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_83c8f1f7f70594b39b47d9c9",
+        "organizationId": "org_priyoshop",
+        "role": "founder",
+        "title": {
+          "en": "Founder & CEO",
+          "bn": "ফাউন্ডার ও CEO"
+        }
+      },
+      {
+        "id": "affiliation_dipty-mandal",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "PriyoShop - retail services, founders and offices",
+            "url": "https://priyoshop.com/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_313b770c649e5479ef35b173",
+        "organizationId": "org_priyoshop",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & CMO",
+          "bn": "সহপ্রতিষ্ঠাতা ও CMO"
+        }
+      },
+      {
+        "id": "affiliation_mizanur-rahman-dorik",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Mizanur Rahman - official Dorik biography",
+            "url": "https://dorik.com/author/mizan",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_dcdf83dabeb754ff395f05fe",
+        "organizationId": "org_dorik",
+        "role": "founder",
+        "title": {
+          "en": "Founder & CEO",
+          "bn": "ফাউন্ডার ও CEO"
+        }
+      },
+      {
+        "id": "affiliation_fahad-ifaz",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "iFarmer - official leadership",
+            "url": "https://www.ifarmer.asia/leadership",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_6b3210363e5191ea9c2f8d57",
+        "organizationId": "org_ifarmer",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & CEO",
+          "bn": "সহপ্রতিষ্ঠাতা ও CEO"
+        }
+      },
+      {
+        "id": "affiliation_jamil-m-akbar",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "iFarmer - official leadership",
+            "url": "https://www.ifarmer.asia/leadership",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_6bac799a927322cd6645e27c",
+        "organizationId": "org_ifarmer",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & COO",
+          "bn": "সহপ্রতিষ্ঠাতা ও COO"
+        }
+      },
+      {
+        "id": "affiliation_nurul-hai",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Startup Bangladesh - official leadership",
+            "url": "https://www.startupbangladesh.vc/about/about-people/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_a297f1fd9cefc587a33550da",
+        "organizationId": "org_startup-bangladesh-limited",
+        "role": "executive",
+        "title": {
+          "en": "Managing Director & CEO",
+          "bn": "ব্যবস্থাপনা পরিচালক ও CEO"
+        }
+      },
+      {
+        "id": "affiliation_97b3578a538541899c2b218c",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.bkash.com/en/about",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_c23ddcb5d10f4a7f8a5fbea2",
+        "organizationId": "org_bkash",
+        "role": "board-member",
+        "title": {
+          "en": "Chairman",
+          "bn": "চেয়ারম্যান"
+        }
+      },
+      {
+        "id": "affiliation_1bcd6e64813c41f8b1c1603d",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://shikho.com/en/about-us",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_875f1cb68738491697d4a328",
+        "organizationId": "org_shikho",
+        "role": "founder",
+        "title": {
+          "en": "Founder & CEO",
+          "bn": "ফাউন্ডার ও CEO"
+        }
+      },
+      {
+        "id": "affiliation_06f63c894852412189011d7c",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.anchorless.vc/people",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_203b73c1e1f04b54873e67c7",
+        "organizationId": "org_agroshift",
+        "role": "executive",
+        "title": {
+          "en": "COO",
+          "bn": "COO"
+        }
+      },
+      {
+        "id": "affiliation_86d0ffbd98f54a3b83bc21d6",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.anchorless.vc/people",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_8cdedded0753408b9398dd6f",
+        "organizationId": "org_agroshift",
+        "role": "executive",
+        "title": {
+          "en": "CEO",
+          "bn": "CEO"
+        }
+      },
+      {
+        "id": "affiliation_53909348487441889fb77534",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.anchorless.vc/people",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_3404207560564d4c9763268f",
+        "organizationId": "org_agroshift",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder",
+          "bn": "সহপ্রতিষ্ঠাতা"
+        }
+      },
+      {
+        "id": "affiliation_3116a48a8a4044fb82f15529",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://airwork.ai/about",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_c28b3ba5081c46fbbf16850e",
+        "organizationId": "org_airwork",
+        "role": "founder",
+        "title": {
+          "en": "Founder & CEO",
+          "bn": "ফাউন্ডার ও সিইও"
+        }
+      },
+      {
+        "id": "affiliation_524c124b715c487585e6f7ab",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://appscode.com/blog/authors/tamal-saha/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_9885b9e9520048f8a751c7a0",
+        "organizationId": "org_appscode",
+        "role": "founder",
+        "title": {
+          "en": "Founder & CEO",
+          "bn": "ফাউন্ডার ও সিইও"
+        }
+      },
+      {
+        "id": "affiliation_268890bb97f3439f9971b252",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://aunkur.ai/about",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_ad4e0a5a69d944ec98b9d3a9",
+        "organizationId": "org_aunkur",
+        "role": "executive",
+        "title": {
+          "en": "President & CEO",
+          "bn": "প্রেসিডেন্ট ও CEO"
+        }
+      },
+      {
+        "id": "affiliation_33d35cb31c314557ad7cfae8",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://digibox.com.bd/founders/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_7fc72711f1b94d2eb07fde57",
+        "organizationId": "org_digibox",
+        "role": "founder",
+        "title": {
+          "en": "Founder & CEO",
+          "bn": "ফাউন্ডার ও CEO"
+        }
+      },
+      {
+        "id": "affiliation_05cbcf0b567a4cc78d1335c1",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://digibox.com.bd/founders/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_3962f873c6854047b5b7625e",
+        "organizationId": "org_digibox",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & Chairman",
+          "bn": "সহ-প্রতিষ্ঠাতা ও চেয়ারম্যান"
+        }
+      },
+      {
+        "id": "affiliation_a1a6ada3430840128bf1816b",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://jatri.co/about-us",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_65bc4eba586d4010ae9aef0b",
+        "organizationId": "org_jatri",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & CEO",
+          "bn": "সহপ্রতিষ্ঠাতা ও CEO"
+        }
+      },
+      {
+        "id": "affiliation_18bacd9fd143463a86277b37",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://jatri.co/about-us",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_30f52859755b4c549dde5bd1",
+        "organizationId": "org_jatri",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & CCO",
+          "bn": "সহপ্রতিষ্ঠাতা ও CCO"
+        }
+      },
+      {
+        "id": "affiliation_4ce63cdf6e4b476fad9c71d1",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://jatri.co/about-us",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_fe8b2004b260446ca1534132",
+        "organizationId": "org_jatri",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & CBO",
+          "bn": "সহপ্রতিষ্ঠাতা ও CBO"
+        }
+      },
+      {
+        "id": "affiliation_a952932d2e404f18a5b8330a",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://gozayaan.com/talent",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_0775b1bfce9647ab9dad45f1",
+        "organizationId": "org_gozayaan",
+        "role": "founder",
+        "title": {
+          "en": "Founder & CEO",
+          "bn": "ফাউন্ডার ও CEO"
+        }
+      },
+      {
+        "id": "affiliation_99eedecb6d61426882c77508",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.anchorless.vc/people",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_09c8980318564078b84446c3",
+        "organizationId": "org_loop-freight",
+        "role": "executive",
+        "title": {
+          "en": "CEO",
+          "bn": "সিইও"
+        }
+      },
+      {
+        "id": "affiliation_c0381ac79adb4e08af13508c",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://monsha.ai/author/yanur-islam-piash",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_47864eafe67646079d2407de",
+        "organizationId": "org_monsha",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & CEO",
+          "bn": "সহপ্রতিষ্ঠাতা ও সিইও"
+        }
+      },
+      {
+        "id": "affiliation_69cb21eeddd842bb89cac602",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://business.ostad.app/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_ee7a7ea9b5564bd1a14099c8",
+        "organizationId": "org_ostad",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & COO",
+          "bn": "সহপ্রতিষ্ঠাতা ও COO"
+        }
+      },
+      {
+        "id": "affiliation_8764cd93d2ec4440afdfc30b",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://business.ostad.app/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_152e929ebbf349e08cba0cce",
+        "organizationId": "org_ostad",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & Head of Business",
+          "bn": "সহপ্রতিষ্ঠাতা ও হেড অব বিজনেস"
+        }
+      },
+      {
+        "id": "affiliation_cfe207c7665048cc80ea8411",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://pulsetechltd.com/about/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_db2a3dce45b44c7792c9bf05",
+        "organizationId": "org_pulsetech",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & Managing Director",
+          "bn": "সহপ্রতিষ্ঠাতা ও ম্যানেজিং ডিরেক্টর"
+        }
+      },
+      {
+        "id": "affiliation_bede6017acc64a4784a1d01c",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://pulsetechltd.com/about/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_9ddb529a4e2b4a89a4c9a0c3",
+        "organizationId": "org_pulsetech",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & CEO",
+          "bn": "সহপ্রতিষ্ঠাতা ও সিইও"
+        }
+      },
+      {
+        "id": "affiliation_ea0705110abd44f09d8a82db",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.anchorless.vc/people",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_c0d9fd8c2aa44512bfbe29f4",
+        "organizationId": "org_revora",
+        "role": "executive",
+        "title": {
+          "en": "COO",
+          "bn": "সিওও"
+        }
+      },
+      {
+        "id": "affiliation_8dc85991e5ee413aa1adffc1",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.anchorless.vc/people",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_91114464d5ed46178ae378df",
+        "organizationId": "org_revora",
+        "role": "executive",
+        "title": {
+          "en": "CEO",
+          "bn": "সিইও"
+        }
+      },
+      {
+        "id": "affiliation_e9aa0542bb99447b8e32494b",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://solshare.com/team/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_9cea0d437c964efb97b1a8d4",
+        "organizationId": "org_solshare",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & CEO",
+          "bn": "সহপ্রতিষ্ঠাতা ও CEO"
+        }
+      },
+      {
+        "id": "affiliation_fe7fe241689d468f8d0ede1b",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://solshare.com/team/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_24e83c77361f498ba2690731",
+        "organizationId": "org_solshare",
+        "role": "executive",
+        "title": {
+          "en": "Deputy CEO",
+          "bn": "ডেপুটি CEO"
+        }
+      },
+      {
+        "id": "affiliation_eb4ac3db60224cc49ff78806",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.tigernewenergy.com/about-us",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_77799373a47e4b338dd50025",
+        "organizationId": "org_tiger-new-energy",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder",
+          "bn": "সহপ্রতিষ্ঠাতা"
+        }
+      },
+      {
+        "id": "affiliation_a433244640b84fe99b24d11d",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.tigernewenergy.com/about-us",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_05abfa3762bc4a16a1ad895b",
+        "organizationId": "org_tiger-new-energy",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder",
+          "bn": "সহপ্রতিষ্ঠাতা"
+        }
+      },
+      {
+        "id": "affiliation_1121950b68c24c529084a9e2",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://wedevs.com/about/team/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_f4f3bcd92d084e1f9f6bd1ed",
+        "organizationId": "org_wedevs",
+        "role": "founder",
+        "title": {
+          "en": "Founder & CTO",
+          "bn": "ফাউন্ডার ও CTO"
+        }
+      },
+      {
+        "id": "affiliation_279e1d8bf3604019957b93cb",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://wedevs.com/about/team/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_9ff8dae2f66a4195ad744e32",
+        "organizationId": "org_wedevs",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & CEO",
+          "bn": "সহপ্রতিষ্ঠাতা ও CEO"
+        }
+      },
+      {
+        "id": "affiliation_d6bd8ecb6b4243248da711db",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.wegro.global/who-we-are",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_caf0b65532aa4e5f95db5ba7",
+        "organizationId": "org_wegro",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & CEO",
+          "bn": "সহপ্রতিষ্ঠাতা ও CEO"
+        }
+      },
+      {
+        "id": "affiliation_462c6705fad446b09e62533a",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.wegro.global/who-we-are",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_132c778eb7d84a3f90a84f11",
+        "organizationId": "org_wegro",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & CAO",
+          "bn": "সহপ্রতিষ্ঠাতা ও CAO"
+        }
+      },
+      {
+        "id": "affiliation_df8edba61c9e4e1bb9f3ae15",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.anchorless.vc/people",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_e2e0dea6f7e04fc588add219",
+        "organizationId": "org_anchorless-bangladesh",
+        "role": "founder",
+        "title": {
+          "en": "Founder & Managing Partner",
+          "bn": "ফাউন্ডার ও ম্যানেজিং পার্টনার"
+        }
+      },
+      {
+        "id": "affiliation_dab7e7f17e714aa4a98e095f",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.anchorless.vc/people",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_ceb10587cf524936aad3d210",
+        "organizationId": "org_anchorless-bangladesh",
+        "role": "partner",
+        "title": {
+          "en": "General Partner",
+          "bn": "জেনারেল পার্টনার"
+        }
+      },
+      {
+        "id": "affiliation_92766182ea7e412e85d76621",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.anchorless.vc/people",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_2fc040db138643e1a6e6ab7f",
+        "organizationId": "org_anchorless-bangladesh",
+        "role": "partner",
+        "title": {
+          "en": "General Partner",
+          "bn": "জেনারেল পার্টনার"
+        }
+      },
+      {
+        "id": "affiliation_5d749f6bee274dbeb2aafc59",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.idlcvc.com/team",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_fa413a33a9db40ceb569eae2",
+        "organizationId": "org_idlc-venture-capital",
+        "role": "partner",
+        "title": {
+          "en": "Partner",
+          "bn": "পার্টনার"
+        }
+      },
+      {
+        "id": "affiliation_c26801b76bb949fcb5d1b78f",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.idlcvc.com/team",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_105ff69f794e43c5a280a53c",
+        "organizationId": "org_idlc-venture-capital",
+        "role": "partner",
+        "title": {
+          "en": "Partner",
+          "bn": "পার্টনার"
+        }
+      },
+      {
+        "id": "affiliation_d09c84fc916942e288c1fb7f",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.idlcvc.com/team",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_4ff552fa66a34e6894ea5b8f",
+        "organizationId": "org_idlc-venture-capital",
+        "role": "partner",
+        "title": {
+          "en": "Partner",
+          "bn": "পার্টনার"
+        }
+      },
+      {
+        "id": "affiliation_df59efc6ee0c422b987baa6a",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.shopup.org/about",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_40926914cd43483ea46baa7e",
+        "organizationId": "org_silq",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & Group COO, SILQ",
+          "bn": "সহপ্রতিষ্ঠাতা ও গ্রুপ সিওও, SILQ"
+        }
+      },
+      {
+        "id": "affiliation_48015ba7402a41009bc10fc3",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Public professional role",
+            "url": "https://www.shopup.org/about",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "personId": "person_74ac5898ed3543f7a79e362f",
+        "organizationId": "org_silq",
+        "role": "cofounder",
+        "title": {
+          "en": "Co-founder & Group CTO, SILQ",
+          "bn": "সহপ্রতিষ্ঠাতা ও গ্রুপ সিটিও, SILQ"
+        }
       }
     ],
     "organizationRelationships": [
@@ -3126,6 +7392,240 @@
         "reviewedAt": "2026-09-20",
         "subjectId": "org_bangladesh-angels-network",
         "objectId": "org_shuttle",
+        "kind": "portfolio-mention"
+      },
+      {
+        "id": "portfolio_sbl_pathao",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Startup Bangladesh - published portfolio",
+            "url": "https://www.startupbangladesh.vc/portfolio-2/portfolio/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "subjectId": "org_startup-bangladesh-limited",
+        "objectId": "org_pathao",
+        "kind": "portfolio-mention"
+      },
+      {
+        "id": "portfolio_sbl_ifarmer",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Startup Bangladesh - published portfolio",
+            "url": "https://www.startupbangladesh.vc/portfolio-2/portfolio/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "subjectId": "org_startup-bangladesh-limited",
+        "objectId": "org_ifarmer",
+        "kind": "portfolio-mention"
+      },
+      {
+        "id": "catalogue-portfolio_83eacf3f5cef485597151448",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Published portfolio",
+            "url": "https://www.idlcvc.com/thesis",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "subjectId": "org_idlc-venture-capital",
+        "objectId": "org_arogga",
+        "kind": "portfolio-mention"
+      },
+      {
+        "id": "catalogue-portfolio_9389a6d7c60a45ebb27512ad",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Published portfolio",
+            "url": "https://www.idlcvc.com/thesis",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "subjectId": "org_idlc-venture-capital",
+        "objectId": "org_barikoi",
+        "kind": "portfolio-mention"
+      },
+      {
+        "id": "catalogue-portfolio_6571521a3e504a118cabf32d",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Published portfolio",
+            "url": "https://www.idlcvc.com/thesis",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "subjectId": "org_idlc-venture-capital",
+        "objectId": "org_ifarmer",
+        "kind": "portfolio-mention"
+      },
+      {
+        "id": "catalogue-portfolio_530e7079e3444c05b280ff7a",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Published portfolio",
+            "url": "https://www.idlcvc.com/thesis",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "subjectId": "org_idlc-venture-capital",
+        "objectId": "org_truck-lagbe",
+        "kind": "portfolio-mention"
+      },
+      {
+        "id": "catalogue-portfolio_76c8827c813f4110814af1db",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Published portfolio",
+            "url": "https://www.acceleratingasia.com/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "subjectId": "org_accelerating-asia-ventures",
+        "objectId": "org_aunkur",
+        "kind": "portfolio-mention"
+      },
+      {
+        "id": "catalogue-portfolio_6617ab29d87c4a1e8e94917e",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Published portfolio",
+            "url": "https://www.acceleratingasia.com/",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "subjectId": "org_accelerating-asia-ventures",
+        "objectId": "org_tipsoi",
+        "kind": "portfolio-mention"
+      },
+      {
+        "id": "catalogue-portfolio_66593563713c481a96868666",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Published portfolio",
+            "url": "https://www.anchorless.vc/portfolio",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "subjectId": "org_anchorless-bangladesh",
+        "objectId": "org_agroshift",
+        "kind": "portfolio-mention"
+      },
+      {
+        "id": "catalogue-portfolio_f55fcbabce0a4ce69d5690dd",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Published portfolio",
+            "url": "https://www.anchorless.vc/portfolio",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "subjectId": "org_anchorless-bangladesh",
+        "objectId": "org_loop-freight",
+        "kind": "portfolio-mention"
+      },
+      {
+        "id": "catalogue-portfolio_d802283025c44931be6964b6",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Published portfolio",
+            "url": "https://www.anchorless.vc/portfolio",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "subjectId": "org_anchorless-bangladesh",
+        "objectId": "org_pathao",
+        "kind": "portfolio-mention"
+      },
+      {
+        "id": "catalogue-portfolio_5956f1c5a5de4078852e859e",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Published portfolio",
+            "url": "https://www.anchorless.vc/portfolio",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "subjectId": "org_anchorless-bangladesh",
+        "objectId": "org_revora",
+        "kind": "portfolio-mention"
+      },
+      {
+        "id": "catalogue-portfolio_d15c298d58d34e3c8ab065b7",
+        "startedOn": null,
+        "endedOn": null,
+        "asOf": "2026-09-21",
+        "sources": [
+          {
+            "title": "Published portfolio",
+            "url": "https://www.anchorless.vc/portfolio",
+            "publishedOn": null,
+            "checkedAt": "2026-09-21"
+          }
+        ],
+        "reviewedAt": "2026-09-21",
+        "subjectId": "org_anchorless-bangladesh",
+        "objectId": "org_shikho",
         "kind": "portfolio-mention"
       }
     ]
