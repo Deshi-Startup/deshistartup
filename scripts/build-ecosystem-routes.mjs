@@ -43,15 +43,38 @@ const ideaSearchCopy = {
     bn: ['সোলার প্যানেল পরিষ্কার: বাংলাদেশে ব্যবসার আইডিয়া', 'ছাদের সোলার প্যানেল পরিষ্কার ও মেরামতের ব্যবসার আইডিয়া দেখুন। কাদের সার্ভিস দেবেন, আয় কীভাবে হবে আর ছোট করে কীভাবে পরীক্ষা করবেন, জানুন।']
   }
 }
+// These profile snippets describe the published record without turning the
+// company directory into a second case-study or investor-comparison page.
+const companySearchDescriptions = {
+  barikoi: {
+    en: 'Barikoi makes maps and location tools for Bangladesh. Explore what the company offers and check the sources behind its profile.',
+    bn: 'Barikoi বাংলাদেশের জন্য ম্যাপ ও লোকেশন টুল বানায়। কোম্পানিটির কাজ আর তথ্যের সোর্স দেখে নিন।'
+  },
+  ostad: {
+    bn: 'Ostad লাইভ ক্লাসে পেশাগত ও প্রযুক্তিগত দক্ষতা শেখায়। কোম্পানিটির কাজ আর তথ্যের সোর্স দেখে নিন।'
+  },
+  tallykhata: {
+    bn: 'TallyKhata ছোট দোকানদারদের হিসাব, পেমেন্ট ও আর্থিক কাজের টুল দেয়। কোম্পানিটির কাজ আর তথ্যের সোর্স দেখে নিন।'
+  },
+  'bangladesh-women-investors-network': {
+    en: 'Bangladesh Women Investors Network brings women angel investors together and works to improve funding and mentoring for women-led startups.'
+  },
+  'bangladesh-startup-investment-company-plc-bsic': {
+    en: 'Backed by 39 Bangladeshi banks, BSIC has an ONKUR fund designed to co-invest in local startups alongside a lead investor.'
+  },
+  'idlc-venture-capital': {
+    bn: 'IDLC Venture Capital বাংলাদেশে প্রযুক্তিনির্ভর স্টার্টআপে বিনিয়োগ করে। এখন আবেদন নেওয়া হচ্ছে না। ২০২৭ সালে নতুন ফান্ড চালুর পরিকল্পনা আছে, তবে আবেদন খোলেনি।'
+  }
+}
 const routes = [
   { route: 'startup-ideas', component: 'Ideas', seo: { en: 'Startup and New Business Ideas in Bangladesh', bn: 'বাংলাদেশে স্টার্টআপ ও নতুন ব্যবসার আইডিয়া' }, en: ['Startup ideas for Bangladesh', 'Explore startup and new business ideas for Bangladesh. See who each idea helps, ways to earn, and a small test to try before you build.'], bn: ['বাংলাদেশের জন্য স্টার্টআপ আইডিয়া', 'বাংলাদেশের জন্য স্টার্টআপ আইডিয়া খুঁজে নিন। কাদের কাজে লাগবে, আয়ের উপায় কী আর ছোট করে কীভাবে পরীক্ষা করবেন, জেনে নিন।'] },
-  { route: 'companies', component: 'Companies', en: ['Companies in Bangladesh’s startup ecosystem', 'Explore companies and investors in Bangladesh. Discover products, people, funding context, case studies and research sources.'], bn: ['বাংলাদেশের স্টার্টআপ ও বিনিয়োগকারী', 'বাংলাদেশের কোম্পানি ও বিনিয়োগকারীদের কাজ, প্রোডাক্ট, মানুষ, অর্থায়ন ও কেস স্টাডি সম্পর্কে জানুন।'] },
+  { route: 'companies', component: 'Companies', seo: { en: 'Startup Companies and Investors in Bangladesh', bn: 'বাংলাদেশের স্টার্টআপ কোম্পানি ও বিনিয়োগকারী' }, en: ['Companies in Bangladesh’s startup ecosystem', 'Explore companies and investors in Bangladesh. Discover products, people, funding context, case studies and research sources.'], bn: ['বাংলাদেশের স্টার্টআপ ও বিনিয়োগকারী', 'বাংলাদেশের কোম্পানি ও বিনিয়োগকারীদের কাজ, প্রোডাক্ট, মানুষ, অর্থায়ন ও কেস স্টাডি সম্পর্কে জানুন।'] },
   { route: 'startup-ideas/add-company', component: 'ContributeConnection', en: ['Add a company working on a problem', 'Choose an existing company or suggest a new one. Add its work and a public source for review.'], bn: ['সমস্যা নিয়ে কাজ করা কোম্পানির তথ্য দিন', 'কোম্পানি বেছে নিন বা নতুন তথ্য দিন। প্রকাশের আগে যাচাই করা হবে।'] },
   { route: 'startup-ideas/review', component: 'ConnectionReview', en: ['Review submissions', 'Private review queue for Deshi Startup reviewers.'], bn: ['জমা দেওয়া তথ্য পর্যালোচনা', 'Deshi Startup-এর পর্যালোচকদের জন্য জমা দেওয়া তথ্য।'] },
   { route: 'startup-ideas/submissions', component: 'IdeaSubmissions', en: ['Your submitted ideas', 'View your private idea submissions and reviewer feedback.'], bn: ['আপনার জমা দেওয়া আইডিয়া', 'জমা দেওয়া আইডিয়ার অবস্থা ও পর্যালোচকের মন্তব্য দেখুন।'] },
   { route: 'startup-ideas/add', component: 'ContributeIdea', en: ['Add a startup idea', 'Share a startup idea for Bangladesh. Describe what you would build and who it would help.'], bn: ['স্টার্টআপ আইডিয়া দিন', 'বাংলাদেশের জন্য আপনার স্টার্টআপ আইডিয়া জানান। কী বানাতে চান আর কাদের কাজে লাগবে, লিখুন।'] },
   ...data.approaches.map(p => ({ route: `startup-ideas/${ideaSlug(p.id)}`, id: p.id, component: 'IdeaDetail', seo: { en: ideaSearchCopy[p.id]?.en[0], bn: ideaSearchCopy[p.id]?.bn[0] }, en: [p.en.title, ideaSearchCopy[p.id]?.en[1] || p.en.summary], bn: [p.bn.title, ideaSearchCopy[p.id]?.bn[1] || p.bn.summary] })),
-  ...data.organizations.map(o => ({ route: `companies/${o.slug}`, id: o.id, component: 'CompanyProfile', en: [`${o.en.name} company profile`, profileDescription(o.en.description)], bn: [`${o.bn.name} সম্পর্কে`, profileDescription(o.bn.description)] }))
+  ...data.organizations.map(o => ({ route: `companies/${o.slug}`, id: o.id, component: 'CompanyProfile', en: [`${o.en.name} company profile`, companySearchDescriptions[o.slug]?.en || profileDescription(o.en.description)], bn: [`${o.bn.name} সম্পর্কে`, companySearchDescriptions[o.slug]?.bn || profileDescription(o.bn.description)] }))
 ]
 if (new Set(routes.map(r => r.route)).size !== routes.length) throw new Error('Duplicate ecosystem route')
 const generatedMark = '{/* Generated from the approved ecosystem snapshot by scripts/build-ecosystem-routes.mjs. */}'
