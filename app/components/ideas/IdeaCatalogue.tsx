@@ -7,6 +7,7 @@ import { useIdeaVotes } from './useIdeaVotes'
 import { VoteButton } from './VoteIdea'
 import IdeaShell from './IdeaShell'
 import IdeaIcon from './IdeaIcon'
+import { submissionPath } from '../../lib/submission-status'
 
 export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas: IdeaSummary[] }) {
   const en = locale === 'en'
@@ -60,13 +61,13 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
       <h1>{en ? <>Problems worth <span>solving.</span></> : <>কোন সমস্যা নিয়ে <span>কাজ করবেন?</span></>}</h1>
       <div className="ideas-catalogue-invitation">
         <p className="ideas-lead">{en ? 'Explore practical startup business ideas for Bangladesh. Find who they could help, ways to earn, and a small first test.' : 'বাংলাদেশের জন্য স্টার্টআপ আইডিয়া খুঁজে নিন। কাদের কাজে লাগবে, আয়ের উপায় কী আর ছোট করে কীভাবে পরীক্ষা করবেন, জেনে নিন।'}</p>
-        <a className="ideas-button" href={ideaPath(locale, 'add')}><IdeaIcon name="plus" />{en ? 'Suggest an idea' : 'আইডিয়া দিন'}</a>
+        <div className="ideas-catalogue-links"><a className="ideas-button" href={ideaPath(locale, 'add')}><IdeaIcon name="plus" />{en ? 'Suggest an idea' : 'আইডিয়া দিন'}</a><a className="ideas-text-button" href={submissionPath(locale)}>{en ? 'Your submissions' : 'জমা দেওয়া আইডিয়া'}</a></div>
       </div>
     </header>
     <div className="ideas-filters ideas-catalogue-filters" role="search" aria-label={en ? 'Filter ideas' : 'আইডিয়া বাছাই করুন'}>
       <label className="ideas-search"><span className="ideas-sr-only">{en ? 'Search ideas' : 'আইডিয়া খুঁজুন'}</span><IdeaIcon name="search" /><input ref={searchRef} type="search" maxLength={120} value={filters.q} placeholder={en ? 'Search ideas…' : 'আইডিয়া খুঁজুন…'} onChange={event => setFilters(current => ({ ...current, q: event.target.value }))} /></label>
-      <label className="ideas-select"><span className="ideas-sr-only">{en ? 'Sector' : 'খাত'}</span><select value={filters.sector} onChange={event => update({ ...filters, sector: event.target.value })}><option value="">{en ? 'All sectors' : 'সব খাত'}</option>{sectorOptions.map(([value, label]) => <option key={value} value={value}>{label[locale]}</option>)}</select></label>
-      <label className="ideas-select"><span className="ideas-sr-only">{en ? 'Location' : 'জায়গা'}</span><select value={filters.place} onChange={event => update({ ...filters, place: event.target.value })}><option value="">{en ? 'All locations' : 'সব জায়গা'}</option>{placeOptions.map(([value, label]) => <option key={value} value={value}>{label[locale]}</option>)}</select></label>
+      <label className="ideas-select"><span className="ideas-sr-only">{en ? 'Sector' : 'খাত'}</span><select value={filters.sector} onChange={event => update({ ...filters, sector: event.target.value })}><option value="">{en ? 'All sectors' : 'সব খাত'}</option>{sectorOptions.map(([value, label]) => <option key={value} value={value}>{label[locale]}</option>)}</select><IdeaIcon name="chevron" /></label>
+      <label className="ideas-select"><span className="ideas-sr-only">{en ? 'Location' : 'জায়গা'}</span><select value={filters.place} onChange={event => update({ ...filters, place: event.target.value })}><option value="">{en ? 'All locations' : 'সব জায়গা'}</option>{placeOptions.map(([value, label]) => <option key={value} value={value}>{label[locale]}</option>)}</select><IdeaIcon name="chevron" /></label>
     </div>
     <div className="ideas-kinds" role="group" aria-label={en ? 'Idea type' : 'আইডিয়ার ধরন'}>
       {typeOptions.map(option => <button key={option.value} type="button" aria-pressed={filters.kind === option.value} onClick={() => update({ ...filters, kind: option.value })}>{option.label[locale]}</button>)}
@@ -77,7 +78,7 @@ export default function IdeaCatalogue({ locale, ideas }: { locale: Locale; ideas
           <option value="recommended">{en ? 'Recommended' : 'আমাদের বাছাই'}</option>
           {(hasVotes || filters.sort === 'votes') && <option value="votes">{en ? 'Most upvoted' : 'বেশি ভোট'}</option>}
           <option value="newest">{en ? 'Newest' : 'নতুন আগে'}</option>
-        </select></label>
+        </select><IdeaIcon name="chevron" /></label>
         <button className="ideas-saved-filter" type="button" aria-pressed={filters.saved} disabled={!ready} onClick={() => update({ ...filters, saved: !filters.saved })}><IdeaIcon name="bookmark" filled={filters.saved} />{en ? 'Saved' : 'সেভ করা'}{ready && savedCount > 0 && <span>{number(savedCount, locale)}</span>}</button>
       </div>
     </div>

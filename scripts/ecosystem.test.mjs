@@ -50,7 +50,7 @@ test('release marker pins exact data and all editorial references resolve', () =
   }
 })
 test('transactional forms stay out of search while public profiles remain indexable', () => {
-  for (const slug of ['startup-ideas/review', 'startup-ideas/add-company', 'startup-ideas/add']) assert.equal(isNoindexPage({ slug, stub: false }), true)
+  for (const slug of ['startup-ideas/review', 'startup-ideas/add-company', 'startup-ideas/add', 'startup-ideas/submissions']) assert.equal(isNoindexPage({ slug, stub: false }), true)
   for (const slug of ['startup-ideas', 'companies/pathao', 'startup-ideas/courier-settlement']) assert.equal(isNoindexPage({ slug, stub: false }), false)
 })
 

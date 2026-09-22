@@ -7,7 +7,7 @@ export interface SubmissionRow {
 }
 export class EcosystemConflict extends Error {}
 
-export async function createSubmission(db: D1Database, owner: string, key: string, hash: string, payload: ConnectionProposal | IdeaProposal, now: string) {
+export async function createSubmission(db: D1Database, owner: string, key: string, hash: string, payload: ConnectionProposal | IdeaProposal, now: string, email?: string) {
   const previous = await db.prepare('SELECT * FROM submissions WHERE owner_hash = ? AND idempotency_key = ?').bind(owner, key).first<SubmissionRow>()
   if (previous) {
     if (previous.payload_hash !== hash) throw new EcosystemConflict('idempotency_conflict')
@@ -19,8 +19,12 @@ export async function createSubmission(db: D1Database, owner: string, key: strin
   }
   const id = `submission_${crypto.randomUUID()}`
   // The unique key handles two retries that both passed the first lookup.
-  await db.prepare('INSERT INTO submissions (id, owner_hash, idempotency_key, payload_hash, payload_json, created_at) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(owner_hash, idempotency_key) DO NOTHING')
-    .bind(id, owner, key, hash, JSON.stringify(payload), now).run()
+  const statements = [db.prepare('INSERT INTO submissions (id, owner_hash, idempotency_key, payload_hash, payload_json, created_at) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(owner_hash, idempotency_key) DO NOTHING')
+    .bind(id, owner, key, hash, JSON.stringify(payload), now),
+    db.prepare("INSERT INTO submission_notifications (submission_id, kind, available_at) SELECT id, 'editorial', ? FROM submissions WHERE id = ?").bind(now, id)]
+  // Only the address from the verified Google token is accepted, never a form field.
+  if ('kind' in payload && email) statements.push(db.prepare('INSERT INTO submission_contacts (submission_id, email) SELECT id, ? FROM submissions WHERE id = ?').bind(email, id))
+  await db.batch(statements)
   const stored = await db.prepare('SELECT id, status, payload_hash FROM submissions WHERE owner_hash = ? AND idempotency_key = ?').bind(owner, key).first<SubmissionRow>()
   if (!stored || stored.payload_hash !== hash) throw new EcosystemConflict('idempotency_conflict')
   return { id: stored.id, status: stored.status, created: stored.id === id }
@@ -59,6 +63,7 @@ export async function decideSubmission(db: D1Database, id: string, reviewer: str
   statements.push(
     db.prepare('UPDATE submissions SET status = ?, revision = revision + 1, decided_at = ?, decision_note = ? WHERE id = ?').bind(decision.decision, now, decision.note, id),
     db.prepare('INSERT INTO review_events (id, submission_id, reviewer_hash, decision, note, created_at) VALUES (?, ?, ?, ?, ?, ?)').bind(`review_${crypto.randomUUID()}`, id, reviewer, decision.decision, decision.note, now),
+    db.prepare("INSERT INTO submission_notifications (submission_id, kind, available_at) SELECT submission_id, 'decision', ? FROM submission_contacts WHERE submission_id = ?").bind(now, id),
     db.prepare('DELETE FROM mutation_guards WHERE id IN (?, ?, ?)').bind(guard, `${guard}:problem`, `${guard}:organizations`)
   )
   try { await db.batch(statements) }

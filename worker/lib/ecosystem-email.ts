@@ -1,40 +1,95 @@
 import type { ConnectionProposal, IdeaProposal } from '../../app/lib/ecosystem-types.ts'
+import { submissionPath } from '../../app/lib/submission-status.ts'
+import { ideaSlug } from '../../app/lib/idea-routes.mjs'
 import { logError } from './logging.ts'
 
-const REVIEW_URL = 'https://deshistartup.com/en/startup-ideas/review'
-
+type EmailEnvironment = Pick<CloudflareEnv, 'CONTACT_EMAIL' | 'CONTACT_INBOX'> & { IDEA_DECISION_EMAILS?: string }
+export const decisionEmailsEnabled = (env: EmailEnvironment) => env.IDEA_DECISION_EMAILS === 'true' && !!env.CONTACT_EMAIL
+const origin = 'https://deshistartup.com'
+const cleanTitle = (value: string) => value.replace(/[\u0000-\u001f\u007f\u2028\u2029]/g, ' ').trim().slice(0, 160)
 function escapeHtml(value: string): string {
   return value.replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]!)
 }
+function send(env: EmailEnvironment, to: string, subject: string, paragraphs: string[], url: string, label: string) {
+  if (!env.CONTACT_EMAIL || !to) throw new Error('email_configuration_unavailable')
+  return env.CONTACT_EMAIL.send({
+    from: { name: 'Deshi Startup', email: 'contact@deshistartup.com' }, to,
+    replyTo: 'hello@deshistartup.com', subject,
+    text: `${paragraphs.join('\n\n')}\n\n${label}: ${url}`,
+    html: `${paragraphs.map(p => `<p style="white-space:pre-wrap">${escapeHtml(p)}</p>`).join('')}<p><a href="${escapeHtml(url)}">${escapeHtml(label)}</a></p>`
+  })
+}
+export async function notifyEditorial(env: EmailEnvironment, db: D1Database, id: string, proposal: ConnectionProposal | IdeaProposal) {
+  const idea = 'kind' in proposal
+  const company = !idea && !proposal.organization
+    ? await db.prepare("SELECT name FROM organization_text WHERE organization_id = ? AND locale = 'en'").bind(proposal.organizationId).first<{ name: string }>() : null
+  const title = cleanTitle(idea ? proposal.title : proposal.organization?.name || company?.name || 'Company')
+  return send(env, env.CONTACT_INBOX, `[Deshi Startup] New ${idea ? 'idea' : 'company submission'}: ${title}`,
+    [`A new ${idea ? 'idea' : 'company submission'} is waiting for review.`, title],
+    `${origin}/en/startup-ideas/review?submission=${encodeURIComponent(id)}`, 'Review submission')
+}
+interface Notification {
+  submission_id: string; kind: 'editorial' | 'decision' | 'published'; attempts: number;
+  payload_json: string; status: string; decision_note: string | null; email: string | null; approach_id: string | null; published: number
+}
+async function sendNotification(env: EmailEnvironment, db: D1Database, row: Notification) {
+  const p: IdeaProposal = JSON.parse(row.payload_json)
+  if (row.kind === 'editorial') return notifyEditorial(env, db, row.submission_id, p)
+  // A queued publication notice may outlive a rollback. Keep the job recoverable
+  // through the reviewer retry action, but never send a link that is no longer live.
+  if (row.kind === 'published' && !row.published) throw Object.assign(new Error('publication_unavailable'), { code: 'publication_unavailable' })
+  if (!decisionEmailsEnabled(env) || !row.email) throw new Error('email_configuration_unavailable')
+  const en = p.locale === 'en', published = row.kind === 'published', accepted = row.status === 'approved'
+  const status = published ? (en ? 'Your idea is published' : 'আপনার আইডিয়া প্রকাশিত হয়েছে') : accepted
+    ? (en ? 'Your idea was accepted for editing' : 'আপনার আইডিয়া সম্পাদনার জন্য গ্রহণ করেছি')
+    : (en ? 'An update on your idea' : 'আপনার আইডিয়া নিয়ে আমাদের সিদ্ধান্ত')
+  const explanation = published ? (en ? 'Your idea is now in the collection.' : 'আইডিয়াটি এখন তালিকায় আছে।') : accepted
+    ? (en ? 'Accepted ideas are edited in English and Bangla before publication.' : 'প্রকাশের আগে গ্রহণ করা আইডিয়া বাংলা ও ইংরেজিতে সম্পাদনা করা হয়।')
+    : (en ? 'We haven’t accepted this idea for the collection. Here is the reviewer’s note.' : 'আইডিয়াটি এবার তালিকায় নিচ্ছি না। পর্যালোচকের মন্তব্য নিচে দেওয়া আছে।')
+  const url = published && row.approach_id ? `${origin}${en ? '/en' : ''}/startup-ideas/${ideaSlug(row.approach_id)}` : `${origin}${submissionPath(p.locale, row.submission_id)}`
+  return send(env, row.email, `[Deshi Startup] ${status}: ${cleanTitle(p.title)}`,
+    [status, cleanTitle(p.title), explanation, ...(!published && row.decision_note ? [row.decision_note] : [])], url,
+    published ? (en ? 'View idea' : 'আইডিয়া দেখুন') : (en ? 'View your submission' : 'জমা দেওয়া আইডিয়া দেখুন'))
+}
 
-/** Alert only after saving a new submission. Mail failure must never lose the work. */
-export async function notifyEditorial(
-  env: Pick<CloudflareEnv, 'CONTACT_EMAIL' | 'CONTACT_INBOX'>,
-  db: D1Database,
-  id: string,
-  proposal: ConnectionProposal | IdeaProposal
-): Promise<void> {
-  try {
-    if (!env.CONTACT_EMAIL || !env.CONTACT_INBOX) throw new Error('email_configuration_unavailable')
-    const idea = 'kind' in proposal
-    const company = !idea && !proposal.organization
-      ? await db.prepare("SELECT name FROM organization_text WHERE organization_id = ? AND locale = 'en'").bind(proposal.organizationId).first<{ name: string }>()
-      : null
-    const title = (idea ? proposal.title : proposal.organization?.name || company?.name || 'Company')
-      .replace(/[\u0000-\u001f\u007f\u2028\u2029]/g, ' ').trim().slice(0, 160)
-    const subject = `[Deshi Startup] New ${idea ? 'idea' : 'company submission'}: ${title}`
-    const message = `A new ${idea ? 'idea' : 'company submission'} is waiting for review.`
-    await env.CONTACT_EMAIL.send({
-      from: { name: 'Deshi Startup', email: 'contact@deshistartup.com' },
-      // Send to the verified destination behind hello@, as the contact form does.
-      // The public alias itself is not a verified Email Routing destination.
-      to: env.CONTACT_INBOX,
-      subject,
-      text: `${message}\n\n${title}\n\nReview submissions: ${REVIEW_URL}\n\nReference: ${id}`,
-      html: `<p>${message}</p><p><strong>${escapeHtml(title)}</strong></p><p><a href="${REVIEW_URL}">Review submissions</a></p><p>Reference: ${escapeHtml(id)}</p>`
-    })
-  } catch {
-    // Provider errors can contain addresses or message text. Log only the internal ID.
-    logError('ecosystem', 'editorial_alert_failed', undefined, { submissionId: id })
+// Bounded D1 outbox: commits with the submission/decision, then delivers outside the response.
+// A lease prevents concurrent workers from sending the same event. A crash after provider acceptance
+// can still duplicate an email; provider acceptance is not proof of inbox delivery.
+export async function deliverNotifications(env: EmailEnvironment & { ECOSYSTEM_DB?: D1Database }, at = new Date().toISOString(), id?: string) {
+  const db = env.ECOSYSTEM_DB
+  if (!db) return
+  const rows = await db.prepare(`SELECT submission_id, kind FROM submission_notifications
+    WHERE state IN ('pending','sending') AND available_at <= ? ${id ? 'AND submission_id = ?' : ''}
+    ORDER BY available_at LIMIT 20`).bind(...(id ? [at, id] : [at])).all<{ submission_id: string; kind: string }>()
+  for (const event of rows.results) {
+    const lease = crypto.randomUUID()
+    const expires = new Date(Date.parse(at) + 5 * 60_000).toISOString()
+    const claim = await db.prepare(`UPDATE submission_notifications SET state = 'sending', attempts = attempts + 1, lease = ?, available_at = ?
+      WHERE submission_id = ? AND kind = ? AND state IN ('pending','sending') AND available_at <= ? RETURNING attempts`).bind(lease, expires, event.submission_id, event.kind, at).first<{ attempts: number }>()
+    if (!claim) continue
+    if (claim.attempts > 5) {
+      await db.prepare("UPDATE submission_notifications SET state = 'failed', lease = NULL, error_code = 'retry_limit' WHERE submission_id = ? AND kind = ? AND lease = ?").bind(event.submission_id, event.kind, lease).run()
+      continue
+    }
+    try {
+      const row = await db.prepare(`SELECT s.payload_json, s.status, s.decision_note, c.email, l.approach_id,
+        EXISTS (SELECT 1 FROM publication p JOIN releases r ON r.id = p.release_id,
+          json_each(r.snapshot_json, '$.approaches') j WHERE json_extract(j.value, '$.id') = l.approach_id) AS published
+        FROM submissions s LEFT JOIN submission_contacts c ON c.submission_id = s.id
+        LEFT JOIN idea_submission_links l ON l.submission_id = s.id WHERE s.id = ?`).bind(event.submission_id).first<Omit<Notification, 'submission_id' | 'kind' | 'attempts'>>()
+      if (!row) throw new Error('submission_unavailable')
+      await sendNotification(env, db, { ...row, ...event, kind: event.kind as Notification['kind'], attempts: claim.attempts })
+      await db.prepare("UPDATE submission_notifications SET state = 'sent', sent_at = ?, lease = NULL, error_code = NULL WHERE submission_id = ? AND kind = ? AND lease = ?")
+        .bind(at, event.submission_id, event.kind, lease).run()
+    } catch (error) {
+      const rawCode = typeof error === 'object' && error && 'code' in error ? String(error.code) : ''
+      const code = ['E_SENDER_NOT_VERIFIED','E_RECIPIENT_NOT_ALLOWED','E_RECIPIENT_SUPPRESSED','E_SENDER_DOMAIN_NOT_AVAILABLE','E_VALIDATION_ERROR','E_DAILY_LIMIT_EXCEEDED','E_RATE_LIMIT_EXCEEDED','publication_unavailable'].includes(rawCode) ? rawCode : 'email_send_failed'
+      const permanent = ['E_SENDER_NOT_VERIFIED','E_RECIPIENT_NOT_ALLOWED','E_RECIPIENT_SUPPRESSED','E_SENDER_DOMAIN_NOT_AVAILABLE','E_VALIDATION_ERROR','publication_unavailable'].includes(code)
+      const failed = permanent || claim.attempts >= 5
+      const due = new Date(Date.parse(at) + [1, 5, 30, 120, 720][Math.min(claim.attempts - 1, 4)] * 60_000).toISOString()
+      await db.prepare('UPDATE submission_notifications SET state = ?, available_at = ?, lease = NULL, error_code = ? WHERE submission_id = ? AND kind = ? AND lease = ?')
+        .bind(failed ? 'failed' : 'pending', due, code, event.submission_id, event.kind, lease).run()
+      logError('ecosystem', 'notification_failed', undefined, { submissionId: event.submission_id, kind: event.kind, code })
+    }
   }
 }

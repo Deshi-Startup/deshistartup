@@ -4,7 +4,7 @@ import fs from 'node:fs'
 import { createRequire } from 'node:module'
 import { unstable_splitSqlQuery } from 'wrangler'
 import { createEcosystemHandler } from './ecosystem.ts'
-import { notifyEditorial } from '../lib/ecosystem-email.ts'
+import { notifyEditorial, deliverNotifications } from '../lib/ecosystem-email.ts'
 import { parseDecision, parseProposal, parseIdeaProposal, parseIdeaDecision } from '../../app/lib/ecosystem-input.ts'
 import { readEcosystemSnapshot, snapshotRowsSql } from '../../scripts/lib/ecosystem-snapshot.mjs'
 
@@ -50,7 +50,7 @@ test('editorial alerts have a fixed destination, safe copy and a trusted review 
   assert.doesNotMatch(alert.html, /<img/)
   assert.match(alert.html, /&lt;img/)
   assert.match(alert.text, /https:\/\/deshistartup\.com\/en\/startup-ideas\/review/)
-  assert.match(alert.html, /href="https:\/\/deshistartup\.com\/en\/startup-ideas\/review"/)
+  assert.match(alert.html, /href="https:\/\/deshistartup\.com\/en\/startup-ideas\/review\?submission=submission_test"/)
   assert.doesNotMatch(alert.text, /Small factory owners|equipment repairs/)
   await notifyEditorial(env, null, 'submission_company', proposal({ organizationId: '', organization: { name: 'New Company', website: 'https://example.com', description: 'Company details', role: 'startup' } }))
   assert.match(sent[1].subject, /New company submission: New Company/)
@@ -325,7 +325,7 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
     const result = await response.json()
     assert.deepEqual(Object.keys(result).sort(), ['id', 'status'])
     assert.equal((await db.prepare('SELECT status FROM submissions WHERE id = ?').bind(result.id).first()).status, 'pending')
-    assert.deepEqual(errors, [{ level: 'error', scope: 'ecosystem', message: 'editorial_alert_failed', submissionId: result.id }])
+    assert.deepEqual(errors, [{ level: 'error', scope: 'ecosystem', message: 'notification_failed', submissionId: result.id, kind: 'editorial', code: 'email_send_failed' }])
   })
   await t.test('background mail does not delay the submission response', async t => {
     let finish
@@ -342,4 +342,152 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
     finish()
     await Promise.all(pending)
   })
+  await t.test('review history and direct links remain private after a decision', async () => {
+    const own = (await (await call('submissions?kind=idea', 'idea-author')).json()).submissions.find(s => s.status === 'approved')
+    const accepted = await (await call('review?status=approved', 'reviewer')).json()
+    assert.ok(accepted.submissions.some(s => s.id === own.id && s.decision_note))
+    assert.equal((await call('review?status=approved', 'idea-author')).status, 403)
+    const direct = await (await call(`review?submission=${own.id}`, 'reviewer')).json()
+    assert.equal(direct.selected.id, own.id)
+    const privateResponse = await call(`submissions?kind=idea&submission=${own.id}`, 'stranger')
+    assert.equal((await privateResponse.json()).selected, null)
+    assert.match(privateResponse.headers.get('Cache-Control'), /no-store/)
+    assert.doesNotMatch(JSON.stringify(direct), /owner_hash|idempotency_key|payload_hash|@example.com/)
+  })
+  await t.test('idea history paginates without losing equal-time submissions', async () => {
+    for (let i = 0; i < 33; i++) await call('submissions', 'history-author', idea({ title: `History idea ${i}` }), `history-submission-${String(i).padStart(3, '0')}`)
+    const first = await (await call('submissions?kind=idea', 'history-author')).json()
+    assert.equal(first.submissions.length, 30)
+    assert.ok(first.nextCursor)
+    const second = await (await call(`submissions?kind=idea&before=${encodeURIComponent(first.nextCursor)}`, 'history-author')).json()
+    assert.equal(second.submissions.length, 3)
+    assert.equal(new Set([...first.submissions, ...second.submissions].map(s => s.id)).size, 33)
+    assert.equal(second.nextCursor, null)
+  })
+  await t.test('decision emails use only verified account contacts and safe localized copy', async t => {
+    env.IDEA_DECISION_EMAILS = 'true'
+    t.after(() => { delete env.IDEA_DECISION_EMAILS })
+    const result = await (await call('submissions', 'email-author', idea({ locale: 'bn', email: 'attacker@example.com', title: '<script>idea</script>' }), 'decision-contact-001')).json()
+    const contact = await db.prepare('SELECT email FROM submission_contacts WHERE submission_id = ?').bind(result.id).first()
+    assert.equal(contact.email, 'email-author@example.com')
+    const before = sent.length
+    const responses = await Promise.all([1, 2].map(() => call(`review/${result.id}`, 'reviewer', ideaDecision({ decision: 'rejected', note: '<script>Reviewer note</script>' }))))
+    assert.deepEqual(responses.map(r => r.status).sort(), [200,409])
+    assert.equal(sent.length, before + 1)
+    const mail = sent.at(-1)
+    assert.equal(mail.to, 'email-author@example.com')
+    assert.match(mail.text, /গ্রহণ|সিদ্ধান্ত/)
+    assert.match(mail.text, new RegExp('startup-ideas/submissions\\?submission=' + result.id))
+    assert.doesNotMatch(mail.html, /<script>/)
+    const own = await (await call(`submissions?kind=idea&submission=${result.id}`, 'email-author')).json()
+    assert.equal(own.selected.status, 'rejected')
+    assert.doesNotMatch(JSON.stringify(own), /email-author@example.com|attacker@example.com/)
+    assert.doesNotMatch(JSON.stringify(await snapshot()), /email-author@example.com|Reviewer note|submission_notifications|submission_contacts/)
+  })
+  await t.test('delivery capability controls the promise and private contact collection', async () => {
+    assert.equal((await (await call('status')).json()).decisionEmails, false)
+    const result = await (await call('submissions', 'no-email-author', idea(), 'no-email-contact-001')).json()
+    assert.equal(await db.prepare('SELECT email FROM submission_contacts WHERE submission_id = ?').bind(result.id).first(), null)
+  })
+  await t.test('failed alerts retry durably with one concurrent dispatcher', async t => {
+    const original = env.CONTACT_EMAIL
+    t.after(() => { env.CONTACT_EMAIL = original })
+    env.CONTACT_EMAIL = { send: async () => { throw new Error('provider private error') } }
+    const result = await (await call('submissions', 'retry-author', idea(), 'durable-retry-00001')).json()
+    let job = await db.prepare('SELECT * FROM submission_notifications WHERE submission_id = ?').bind(result.id).first()
+    assert.equal(job.state, 'pending'); assert.equal(job.attempts, 1)
+    env.CONTACT_EMAIL = original
+    const before = sent.length
+    await Promise.all([deliverNotifications(env, job.available_at, result.id), deliverNotifications(env, job.available_at, result.id)])
+    assert.equal(sent.length, before + 1)
+    job = await db.prepare('SELECT * FROM submission_notifications WHERE submission_id = ?').bind(result.id).first()
+    assert.equal(job.state, 'sent'); assert.equal(job.attempts, 2)
+  })
+  await t.test('permanent email errors stop automatically and retry requires review access', async t => {
+    const original = env.CONTACT_EMAIL
+    t.after(() => { env.CONTACT_EMAIL = original })
+    env.CONTACT_EMAIL = { send: async () => { throw Object.assign(new Error('private address'), { code: 'E_RECIPIENT_NOT_ALLOWED' }) } }
+    const result = await (await call('submissions', 'permanent-email-author', idea(), 'permanent-email-001')).json()
+    assert.equal((await db.prepare('SELECT state FROM submission_notifications WHERE submission_id = ?').bind(result.id).first()).state, 'failed')
+    assert.equal((await call(`review/${result.id}/retry-email`, 'permanent-email-author', {})).status, 403)
+    env.CONTACT_EMAIL = original
+    const before = sent.length
+    assert.equal((await call(`review/${result.id}/retry-email`, 'reviewer', {})).status, 200)
+    assert.equal(sent.length, before + 1)
+    await call(`review/${result.id}/retry-email`, 'reviewer', {})
+    assert.equal(sent.length, before + 1, 'already-sent messages cannot be resent with the retry action')
+  })
+  await t.test('publication links require an accepted idea and an actually published record', async t => {
+    env.IDEA_DECISION_EMAILS = 'true'
+    t.after(() => { delete env.IDEA_DECISION_EMAILS })
+    const result = await (await call('submissions', 'publication-author', idea(), 'publication-link-001')).json()
+    const link = (revision, ideaId = 'solar-upkeep') => ({ revision, ideaId })
+    assert.equal((await call(`review/${result.id}/publication`, 'reviewer', link(1))).status, 409)
+    await call(`review/${result.id}`, 'reviewer', ideaDecision())
+    assert.equal((await call(`review/${result.id}/publication`, 'publication-author', link(2))).status, 403)
+    assert.equal((await call(`review/${result.id}/publication`, 'reviewer', link(2, 'not-published'))).status, 409)
+    const before = await snapshot(), emailsBefore = sent.length
+    const response = await call(`review/${result.id}/publication`, 'reviewer', link(2))
+    assert.equal(response.status, 200)
+    assert.equal(sent.length, emailsBefore + 1)
+    assert.match(sent.at(-1).text, /https:\/\/deshistartup.com\/en\/startup-ideas\/solar-upkeep/)
+    assert.equal((await call(`review/${result.id}/publication`, 'reviewer', link(2))).status, 409)
+    const own = await (await call(`submissions?kind=idea&submission=${result.id}`, 'publication-author')).json()
+    assert.equal(own.selected.published, 1)
+    assert.equal(own.selected.idea_id, 'solar-upkeep')
+    assert.deepEqual(await snapshot(), before, 'private workflow linkage must not change public data')
+  })
+
+  await t.test('publication mail stops after rollback and can be retried after the idea returns', async t => {
+    const originalEmail = env.CONTACT_EMAIL
+    const release = await db.prepare('SELECT r.id, r.snapshot_json FROM publication p JOIN releases r ON r.id = p.release_id').first()
+    env.IDEA_DECISION_EMAILS = 'true'
+    t.after(async () => {
+      env.CONTACT_EMAIL = originalEmail
+      delete env.IDEA_DECISION_EMAILS
+      await db.prepare('UPDATE publication SET release_id = ? WHERE singleton = 1').bind(release.id).run()
+    })
+    const errors = []
+    t.mock.method(console, 'error', entry => errors.push(JSON.parse(entry)))
+    const result = await (await call('submissions', 'rollback-author', idea(), 'publication-rollback-001')).json()
+    await call(`review/${result.id}`, 'reviewer', ideaDecision())
+    env.CONTACT_EMAIL = { send: async () => { throw new Error('Temporary provider failure') } }
+    assert.equal((await call(`review/${result.id}/publication`, 'reviewer', { revision: 2, ideaId: 'solar-upkeep' })).status, 200)
+    const job = await db.prepare("SELECT * FROM submission_notifications WHERE submission_id = ? AND kind = 'published'").bind(result.id).first()
+    assert.equal(job.state, 'pending')
+
+    const rolledBack = JSON.parse(release.snapshot_json)
+    rolledBack.approaches = rolledBack.approaches.filter(row => row.id !== 'solar-upkeep')
+    await db.prepare('INSERT INTO releases (id, snapshot_json, digest, created_at) VALUES (?, ?, ?, ?)').bind('publication-rollback', JSON.stringify(rolledBack), 'test-rollback', now).run()
+    await db.prepare('UPDATE publication SET release_id = ? WHERE singleton = 1').bind('publication-rollback').run()
+    env.CONTACT_EMAIL = originalEmail
+    const sentBefore = sent.length
+    await deliverNotifications(env, job.available_at, result.id)
+    const stopped = await db.prepare("SELECT * FROM submission_notifications WHERE submission_id = ? AND kind = 'published'").bind(result.id).first()
+    assert.equal(sent.length, sentBefore, 'a rolled-back idea must never be announced as currently published')
+    assert.equal(stopped.state, 'failed')
+    assert.equal(stopped.error_code, 'publication_unavailable')
+    assert.equal(stopped.sent_at, null)
+    assert.equal(stopped.lease, null)
+    assert.deepEqual(errors.at(-1), { level: 'error', scope: 'ecosystem', message: 'notification_failed', submissionId: result.id, kind: 'published', code: 'publication_unavailable' })
+    await deliverNotifications(env, stopped.available_at, result.id)
+    assert.equal(sent.length, sentBefore, 'stopped publication notices need a reviewer retry')
+
+    await db.prepare('UPDATE publication SET release_id = ? WHERE singleton = 1').bind(release.id).run()
+    assert.equal((await call(`review/${result.id}/retry-email`, 'reviewer', {})).status, 200)
+    assert.equal(sent.length, sentBefore + 1)
+    assert.match(sent.at(-1).text, /https:\/\/deshistartup.com\/en\/startup-ideas\/solar-upkeep/)
+    const delivered = await db.prepare("SELECT state, error_code FROM submission_notifications WHERE submission_id = ? AND kind = 'published'").bind(result.id).first()
+    assert.deepEqual(delivered, { state: 'sent', error_code: null })
+  })
+
+  await t.test('expired dispatch leases stop at the bounded attempt limit', async () => {
+    const result = await (await call('submissions', 'lease-author', idea(), 'expired-lease-00001')).json()
+    await db.prepare("UPDATE submission_notifications SET state = 'sending', attempts = 5, available_at = ?, lease = 'expired', sent_at = NULL WHERE submission_id = ?").bind(now, result.id).run()
+    const before = sent.length
+    await deliverNotifications(env, now, result.id)
+    assert.equal(sent.length, before)
+    assert.equal((await db.prepare('SELECT state FROM submission_notifications WHERE submission_id = ?').bind(result.id).first()).state, 'failed')
+  })
+
 })

@@ -10,13 +10,16 @@ companies have independent profiles shared across Deshi Startup. See `companies.
   and idea-type filters, plus a saved-only filter. Filters and sort use shareable URLs.
 - `/startup-ideas/<slug>`: one idea, who it helps, how it works, a possible revenue
   model and numbered first steps. Relevant guides and alternative ideas for the
-  same problem offer a next step. Upvote, Save and Share sit above the brief. Research expands below. Related companies appear as small
+  same problem offer a next step. Upvote, Save and Share follow the title and summary.
+  On mobile, the revenue model follows the explanation before the first test.
+  Research expands below. Related companies appear as small
   logo/name links; their profiles explain the specific work and source.
 - `/companies/<slug>`: shared profiles linked from ideas, DS50 and case studies.
   The gallery index is directly reachable; a sidebar entry is deferred.
 - `/startup-ideas/add-company`: suggest an existing or new company and its work.
   Google sign-in is required to submit; review precedes publication.
-- `/startup-ideas/review`: private reviewer queue.
+- `/startup-ideas/review`: private reviewer queue and decision history.
+- `/startup-ideas/submissions`: private idea history and reviewer feedback for the submitter.
 - `/startup-ideas/add`: a three-field idea form, optional supporting details,
   browser draft recovery and download. Google sign-in submits it privately to D1
   for review. All forms are noindex.
@@ -116,7 +119,7 @@ accepted proposal still needs researched, bilingual editorial preparation before
 can become a public idea through the existing release process; acceptance does not
 create or publish a catalogue record. This first version has no automatic publishing
 or idea editor. The owner-scoped API exposes submission status and review notes; the
-form confirms receipt without adding an account dashboard.
+form confirms receipt and links to the private submission history.
 
 Manage reviewer access in Cloudflare: **Workers & Pages → deshistartup → Settings →
 Variables and Secrets → CONTRIBUTION_REVIEWER_EMAILS**. This is a **Text** runtime
@@ -127,18 +130,41 @@ setting on deployment. The local `.env.local` value is only a development copy.
 Google token verification and reviewer matching still apply; a missing or empty
 list grants nobody reviewer access.
 
-Each new idea or company submission sends an editorial alert to the verified
-destination behind `hello@deshistartup.com`, using the existing `CONTACT_INBOX`
-secret and `CONTACT_EMAIL` binding. Sending to that verified destination works on
-the free plan; the public routing alias itself is not a verified destination.
-The sender is `contact@deshistartup.com`. The email contains the title or company name, a reference
-ID and a link to the private review queue. It includes no Google identity or full
-submission text. Retried requests for the same submission do not send another alert.
-Sending runs after the database write, in the Worker's background execution context.
-Email is best effort: a failed send logs `editorial_alert_failed` with the submission
-ID, while the submission remains available in the queue. There is no automatic mail
-retry or alert backfill. Local development uses Wrangler's simulated email binding;
-no new credentials, database migration or mail provider are needed.
+Each new idea or company submission creates a private email job in the same D1
+transaction. The existing `CONTACT_EMAIL` binding sends an editorial alert to
+`CONTACT_INBOX`, with a link to the specific submission. Use the verified destination
+behind hello@; the routing alias is not itself a verified destination.
+
+`/startup-ideas/submissions` is the sign-in-only idea history. Reviewers have Awaiting
+review, Accepted and Declined views with cursor-paginated history. Selecting a record
+keeps the loaded list and pagination position. Unsaved review fields survive switching
+between records in the same tab; they are not stored after a full page reload. The
+account control lets a reader or reviewer switch Google accounts without clearing
+their browser. Notes are messages
+to the submitter, not internal-only comments. Acceptance starts editorial preparation.
+After the bilingual idea ships, a reviewer links it to its published record. This
+private relationship verifies the actual publication snapshot and never changes it.
+Publication emails check that snapshot again before delivery. If a release is rolled
+back, the email is held and the history shows “Currently unpublished”; a reviewer
+can retry delivery after the idea is restored.
+
+`IDEA_DECISION_EMAILS=true` enables decision and publication emails using the verified
+Google address captured at submission. Enable only after Email Sending onboarding and
+a controlled delivery test. The default is off; the form then promises status tracking
+only. The presence of a binding does not establish Email Sending availability. Existing
+submissions without contacts remain in history; never guess or backfill addresses.
+
+Migration `0018_submission_followup.sql` adds private contacts, publication links and
+an email outbox. Apply it before deploying the updated Worker. Existing submissions do not receive
+retroactive alerts. The outbox dispatches promptly through `waitUntil`; a 15-minute
+Worker schedule retries at most 20 due messages per run, up to five attempts per event.
+Leases prevent concurrent dispatch. A crash after provider acceptance but before saving
+success can duplicate mail; acceptance is not proof of inbox delivery. Failed messages
+show a reviewer retry action. Correct permanent provider configuration errors first.
+Provider exception text and recipient addresses are never logged or publicly exported.
+
+Local tests use simulated delivery and isolated D1. Never enable remote sending for
+test fixtures. No GitHub issues are created for private submissions.
 
 ## Run locally
 

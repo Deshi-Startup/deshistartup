@@ -52,32 +52,34 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
   const siblings = ecosystem.approaches.filter(other => other.problemId === problem.id && other.id !== idea.id)
   return <IdeaShell locale={locale}>
     <article className="ideas-detail">
-      <div className="ideas-detail-toolbar"><a className="ideas-back" href={ideaPath(locale)}><IdeaIcon name="back" />{en ? 'All ideas' : 'সব আইডিয়া'}</a><div className="ideas-detail-actions"><VoteIdea id={idea.id} title={a.title} locale={locale} /><SaveIdea id={idea.id} locale={locale} ideas={savedIdeas} /><ShareIdea locale={locale} title={a.title} customer={p.customer} /></div></div>
+      <a className="ideas-back" href={ideaPath(locale)}><IdeaIcon name="back" />{en ? 'All ideas' : 'সব আইডিয়া'}</a>
       <header className="ideas-detail-heading">
-        <p className="ideas-eyebrow">{sectors[problem.sector as Sector]?.[locale] || problem.sector}<span aria-hidden="true"> · </span>{kindLabel(idea.kind, locale)}<span aria-hidden="true"> · </span>{placeNames}{a.editorialNote && <span className="ideas-pick">{en ? 'Editor’s pick' : 'আমাদের বাছাই'}</span>}</p>
         <h1>{a.title}</h1><p className="ideas-lead">{a.summary}</p>
-        <p className="ideas-detail-for"><span>{forLabel(locale)}</span>{p.customer}</p>
+        <div className="ideas-detail-actions"><VoteIdea id={idea.id} title={a.title} locale={locale} /><SaveIdea id={idea.id} locale={locale} ideas={savedIdeas} /><ShareIdea locale={locale} title={a.title} customer={p.customer} /></div>
+        <dl className="ideas-detail-meta">
+          <div><dt>{en ? 'Sector' : 'খাত'}</dt><dd>{sectors[problem.sector as Sector]?.[locale] || problem.sector}</dd></div>
+          <div><dt>{en ? 'Model' : 'ধরন'}</dt><dd>{kindLabel(idea.kind, locale)}</dd></div>
+          <div><dt>{en ? 'Location' : 'জায়গা'}</dt><dd>{placeNames}</dd></div>
+          <div className="ideas-detail-customer"><dt>{forLabel(locale).replace(/[:：]$/, '')}</dt><dd>{p.customer}</dd></div>
+        </dl>
       </header>
       <div className="ideas-detail-grid">
-        <div className="ideas-detail-body">
-          <section id="how-it-works"><h2>{en ? 'How it works' : 'যেভাবে কাজ করবে'}</h2><p>{a.description}</p></section>
-          <section className="ideas-first-step" id="first-test"><h2>{en ? 'Try this first' : 'আগে এভাবে পরীক্ষা করুন'}</h2>
+        <section className="ideas-explanation" id="how-it-works"><h2>{en ? 'How it works' : 'যেভাবে কাজ করবে'}</h2><p>{a.description}</p></section>
+        <section className="ideas-earn" id="business-model"><h2>{en ? 'Ways to earn' : 'আয়ের উপায়'}</h2><p>{a.businessModel}</p></section>
+        <section className="ideas-first-step" id="first-test"><h2>{en ? 'Try this first' : 'আগে এভাবে পরীক্ষা করুন'}</h2>
             <ol>{a.steps.map((step, index) => <li key={index}>{step}</li>)}</ol>
             <p className="ideas-signal"><strong>{en ? 'Look for: ' : 'যে ফল খুঁজবেন: '}</strong>{a.signal}</p>
             <IdeaActions id={idea.id} locale={locale} brief={brief} prompt={prompt} />
-          </section>
-          {guides.length > 0 && <section className="ideas-guides">
+        </section>
+        {guides.length > 0 && <section className="ideas-guides">
             <h2>{en ? 'Guides for this idea' : 'এই আইডিয়ার জন্য গাইড'}</h2>
             <ul>{guides.map(guide => <li key={guide.route}><a href={guide.route}>{guide.title}<IdeaIcon name="arrow" /></a></li>)}</ul>
-          </section>}
-        </div>
-        <aside className="ideas-facts">
-          <section id="business-model"><h2>{en ? 'Ways to earn' : 'আয়ের উপায়'}</h2><p>{a.businessModel}</p></section>
-          <section className="ideas-companies-small">
+        </section>}
+
+        <section className="ideas-companies-small">
             {companies.length > 0 && <><h2>{en ? 'Related companies' : 'একই সমস্যা নিয়ে কাজ করা কোম্পানি'}</h2><div className="ideas-company-links">{companies.map(({ company, connection }) => <a href={companyPath(locale, company.slug)} key={connection.id}><CompanyMark company={company} locale={locale} /><span>{company[locale].name}</span></a>)}</div></>}
             <a className="ideas-inline-link" href={`${ideaPath(locale, 'add-company')}?problem=${encodeURIComponent(problem.id)}`}>{en ? 'Working on this?' : 'এ নিয়ে কাজ করছেন?'}<IdeaIcon name="plus" /></a>
-          </section>
-        </aside>
+        </section>
       </div>
       {siblings.length > 0 && <section className="ideas-related">
         <h2>{en ? 'Another way to solve this' : 'একই সমস্যার আরেক সমাধান'}</h2>

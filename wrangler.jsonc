@@ -79,6 +79,7 @@
   // The reviewer email list is managed as Text in the dashboard, not in Git.
   // Preserve it on deploy; do not add an empty override under vars.
   "keep_vars": true,
+  "triggers": { "crons": ["*/15 * * * *"] },
   // CONTACT_INBOX is a runtime secret containing one verified destination.
   // The request cannot set a recipient; worker/api/contact.ts always uses that
   // secret, while this public binding declaration contains no private address.
