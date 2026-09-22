@@ -2,6 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import { createRequire } from 'node:module'
+import { load } from 'cheerio'
 import { unstable_splitSqlQuery } from 'wrangler'
 import { createEcosystemHandler } from './ecosystem.ts'
 import { notifyEditorial, deliverNotifications } from '../lib/ecosystem-email.ts'
@@ -367,18 +368,21 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
   await t.test('decision emails use only verified account contacts and safe localized copy', async t => {
     env.IDEA_DECISION_EMAILS = 'true'
     t.after(() => { delete env.IDEA_DECISION_EMAILS })
-    const result = await (await call('submissions', 'email-author', idea({ locale: 'bn', email: 'attacker@example.com', title: '<script>idea</script>' }), 'decision-contact-001')).json()
+    const result = await (await call('submissions', 'email-author', idea({ locale: 'bn', email: 'attacker@example.com', title: '<SCRIPT>idea</SCRIPT>' }), 'decision-contact-001')).json()
     const contact = await db.prepare('SELECT email FROM submission_contacts WHERE submission_id = ?').bind(result.id).first()
     assert.equal(contact.email, 'email-author@example.com')
     const before = sent.length
-    const responses = await Promise.all([1, 2].map(() => call(`review/${result.id}`, 'reviewer', ideaDecision({ decision: 'rejected', note: '<script>Reviewer note</script>' }))))
+    const responses = await Promise.all([1, 2].map(() => call(`review/${result.id}`, 'reviewer', ideaDecision({ decision: 'rejected', note: '<ScRiPt>Reviewer note</ScRiPt>' }))))
     assert.deepEqual(responses.map(r => r.status).sort(), [200,409])
     assert.equal(sent.length, before + 1)
     const mail = sent.at(-1)
     assert.equal(mail.to, 'email-author@example.com')
     assert.match(mail.text, /গ্রহণ|সিদ্ধান্ত/)
     assert.match(mail.text, new RegExp('startup-ideas/submissions\\?submission=' + result.id))
-    assert.doesNotMatch(mail.html, /<script>/)
+    const html = load(mail.html)
+    assert.equal(html('script').length, 0)
+    assert.ok(html('body').text().includes('<SCRIPT>idea</SCRIPT>'))
+    assert.ok(html('body').text().includes('<ScRiPt>Reviewer note</ScRiPt>'))
     const own = await (await call(`submissions?kind=idea&submission=${result.id}`, 'email-author')).json()
     assert.equal(own.selected.status, 'rejected')
     assert.doesNotMatch(JSON.stringify(own), /email-author@example.com|attacker@example.com/)
