@@ -207,9 +207,9 @@ restore/migration rehearsal. Post-migration integrity checks passed; existing
 submissions, review records and the publication pointer were preserved. Migration
 `0017` belongs to a separate, unreleased idea-content draft. Migration
 `0019_regional_app_recovery.sql` was applied remotely on 23 September 2026; it
-adds a researched idea without changing private submissions, existing public records
-or the publication pointer. Its prepared snapshot still requires the matching
-deployment and publication-pointer update.
+adds a researched idea without changing private submissions or existing public
+records. The matching snapshot was deployed and its publication pointer advanced
+after live verification.
 Future environments must apply all pending migrations before preparing a release.
 See [`shared-identity.md`](./shared-identity.md) for the import and identity
 publication boundaries. These database steps do not deploy the Worker or publish
