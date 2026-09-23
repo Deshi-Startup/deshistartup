@@ -358,7 +358,8 @@ spellings against the built Worker, private API boundaries, fresh migrations, an
 remote SQL export restored to a fresh local D1 database. The restored integrity checks,
 record counts and frozen release digest matched.
 
-One real Google-account submission, review and vote/unvote cycle is still required before
-launch. Backend tests use isolated identities, never a production auth bypass. After
-deployment, confirm the live release marker before advancing the publication pointer. Product
-scope and research are recorded in [`plan/startup-ideas-direction.md`](../plan/startup-ideas-direction.md).
+Backend tests use isolated identities, never a production auth bypass. Check the
+live status endpoint and bilingual edit form after deployment; real contributor
+edits go through the ordinary reviewer queue. Confirm the live release marker
+before advancing a publication pointer. Product scope and research are recorded
+in [`plan/startup-ideas-direction.md`](../plan/startup-ideas-direction.md).

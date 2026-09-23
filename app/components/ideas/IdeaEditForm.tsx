@@ -10,12 +10,12 @@ import SubmissionAccount from './SubmissionAccount'
 import type { IdeaEditEntryProps } from './IdeaEditEntry'
 
 type Entry = { field: IdeaEditField; value: string }
-type Draft = { entries: Entry[]; note: string; sourceUrl: string }
+type Draft = { entries: Entry[]; values: Partial<Record<IdeaEditField, string>>; note: string; sourceUrl: string }
 export default function IdeaEditForm({ locale, ideaId, title, releaseId, initial, onClose }: IdeaEditEntryProps & { onClose: () => void }) {
   const t = (en: string, bn: string) => locale === 'en' ? en : bn
   const draftKey = `deshi-startup:idea-edit:v1:${ideaId}:${locale}`
   const retryKey = `${draftKey}:retry`
-  const [draft, setDraft] = useState<Draft>({ entries: [{ field: 'summary', value: initial.summary }], note: '', sourceUrl: '' })
+  const [draft, setDraft] = useState<Draft>({ entries: [{ field: 'summary', value: initial.summary }], values: {}, note: '', sourceUrl: '' })
   const [ready, setReady] = useState(false)
   const [available, setAvailable] = useState<boolean | null>(null)
   const [storageError, setStorageError] = useState(false)
@@ -37,7 +37,8 @@ export default function IdeaEditForm({ locale, ideaId, title, releaseId, initial
       if (saved && Array.isArray(saved.entries)) {
         const entries = saved.entries.filter((entry: Entry) => ideaEditFields.includes(entry?.field) && typeof entry.value === 'string').slice(0, ideaEditFields.length)
         if (entries.length && new Set(entries.map((entry: Entry) => entry.field)).size === entries.length) {
-          setDraft({ entries, note: typeof saved.note === 'string' ? saved.note : '', sourceUrl: typeof saved.sourceUrl === 'string' ? saved.sourceUrl : '' })
+          const values = Object.fromEntries(ideaEditFields.filter(field => typeof saved.values?.[field] === 'string').map(field => [field, saved.values[field]])) as Draft['values']
+          setDraft({ entries, values, note: typeof saved.note === 'string' ? saved.note : '', sourceUrl: typeof saved.sourceUrl === 'string' ? saved.sourceUrl : '' })
         }
       }
     } catch { setStorageError(true) }
@@ -97,18 +98,26 @@ export default function IdeaEditForm({ locale, ideaId, title, releaseId, initial
     } catch (cause) { setError(cause instanceof Error && cause.name === 'Error' ? cause.message : ecosystemError(503, locale)) }
     finally { sending.current = false; setBusy(false) }
   }
-  const setEntry = (index: number, entry: Entry) => update({ ...draft, entries: draft.entries.map((current, i) => i === index ? entry : current) })
+  const setEntry = (index: number, entry: Entry) => update({ ...draft, values: { ...draft.values, [entry.field]: entry.value }, entries: draft.entries.map((current, i) => i === index ? entry : current) })
+  const changeField = (index: number, field: IdeaEditField) => {
+    const current = draft.entries[index]
+    update({ ...draft, values: { ...draft.values, [current.field]: current.value }, entries: draft.entries.map((entry, i) => i === index ? { field, value: draft.values[field] ?? initial[field] } : entry) })
+  }
+  const removeEntry = (index: number) => {
+    update({ ...draft, entries: draft.entries.filter((_, i) => i !== index) })
+    requestAnimationFrame(() => document.getElementById(`idea-edit-field-${Math.max(0, index - 1)}`)?.focus())
+  }
   const addEntry = () => {
     const field = ideaEditFields.find(candidate => !draft.entries.some(entry => entry.field === candidate))
-    if (field) update({ ...draft, entries: [...draft.entries, { field, value: initial[field] }] })
+    if (field) update({ ...draft, entries: [...draft.entries, { field, value: draft.values[field] ?? initial[field] }] })
   }
   return <div className="idea-edit-form" id="edit-idea">
     {submitted ? <div className="submission-confirmation"><h2 ref={heading} tabIndex={-1}>{t('Changes submitted.', 'বদলগুলো জমা হয়েছে।')}</h2><p>{t('Our editors will review them. You can follow the decision in Your submissions.', 'সম্পাদকীয় দল বদলগুলো দেখে নেবে। সিদ্ধান্ত জানতে জমা দেওয়া আইডিয়ার পাতায় যান।')}</p><a className="ideas-button" href={submissionPath(locale, submitted)}>{t('View submission', 'জমা দেওয়া তথ্য দেখুন')}</a></div> : <>
       <div className="idea-edit-heading"><div><h2 ref={heading} tabIndex={-1}>{t('Edit this idea', 'আইডিয়াটি এডিট করুন')}</h2><p>{t('Suggest a correction or add information.', 'ভুল ঠিক করুন বা নতুন তথ্য যোগ করুন।')}</p></div><button type="button" className="ideas-text-button" onClick={onClose}>{t('Close', 'বন্ধ করুন')}</button></div>
       <form className="ideas-draft-form" onSubmit={submit}><fieldset disabled={!ready || busy}><legend className="sr-only">{title}</legend>
         {draft.entries.map((entry, index) => <div className="idea-edit-part" key={index}>
-          <div className="idea-edit-part-head"><label htmlFor={`idea-edit-field-${index}`}>{t('Part to edit', 'যে অংশ এডিট করবেন')}</label>{draft.entries.length > 1 && <button type="button" className="ideas-text-button" onClick={() => update({ ...draft, entries: draft.entries.filter((_, i) => i !== index) })}>{t('Remove', 'বাদ দিন')}</button>}</div>
-          <select id={`idea-edit-field-${index}`} value={entry.field} onChange={event => { const field = event.target.value as IdeaEditField; setEntry(index, { field, value: initial[field] }) }}>
+          <div className="idea-edit-part-head"><label htmlFor={`idea-edit-field-${index}`}>{t('Part to edit', 'যে অংশ এডিট করবেন')}</label>{draft.entries.length > 1 && <button type="button" className="ideas-text-button" onClick={() => removeEntry(index)}>{t('Remove', 'বাদ দিন')}</button>}</div>
+          <select id={`idea-edit-field-${index}`} value={entry.field} onChange={event => changeField(index, event.target.value as IdeaEditField)}>
             {ideaEditFields.filter(field => field === entry.field || !draft.entries.some(other => other.field === field)).map(field => <option key={field} value={field}>{ideaEditLabels[field][locale]}</option>)}
           </select>
           <label htmlFor={`idea-edit-value-${index}`}>{t('Your version', 'আপনার লেখা')}</label>
