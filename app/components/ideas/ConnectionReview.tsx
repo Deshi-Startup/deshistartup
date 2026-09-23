@@ -126,14 +126,19 @@ export default function ConnectionReview({ locale }: { locale: Locale }) {
       if (!response.ok) {
         if (response.status === 401) session.expire()
         if (response.status === 403) { setAuthorizedToken(''); setQueue([]); setSelected(null) }
-        throw new Error(ecosystemError(response.status, locale))
+        const code = (await response.json().catch(() => null))?.error
+        throw new Error(path === '/publication-edit' && code === 'release_not_live'
+          ? t('This update is not in the live release yet.', 'বদলটি এখনো প্রকাশিত সংস্করণে নেই।')
+          : path === '/publication-edit' && code === 'publication_content_unchanged'
+            ? t('The live idea has not changed since this edit was submitted.', 'এই বদল জমার পর প্রকাশিত আইডিয়ায় কোনো পরিবর্তন হয়নি।')
+            : ecosystemError(response.status, locale))
       }
       const next = { id, status }
       const refreshed = await load(status === view.status ? 'record' : 'reset', next)
       if (!refreshed) return
       if (status !== view.status) choose(id, status)
       if (!path) { setNotes(previous => { const next = { ...previous }; delete next[id]; return next }); companyDrafts.current.delete(id) }
-      setMessage(path === '/publication' ? t('Published idea linked.', 'প্রকাশিত আইডিয়ার লিংক যোগ হয়েছে।') : path === '/retry-email' ? t('Email retry requested.', 'ইমেইল আবার পাঠানোর অনুরোধ করা হয়েছে।') : t('Decision saved.', 'সিদ্ধান্ত সেভ হয়েছে।'))
+      setMessage(path === '/publication' ? t('Published idea linked.', 'প্রকাশিত আইডিয়ার লিংক যোগ হয়েছে।') : path === '/publication-edit' ? t('Update marked published.', 'বদল প্রকাশিত হিসেবে চিহ্নিত হয়েছে।') : path === '/retry-email' ? t('Email retry requested.', 'ইমেইল আবার পাঠানোর অনুরোধ করা হয়েছে।') : t('Decision saved.', 'সিদ্ধান্ত সেভ হয়েছে।'))
     } catch (cause) { if (request === sequence.current) setError(cause instanceof Error && cause.name === 'Error' ? cause.message : ecosystemError(503, locale)) }
     finally { if (request === sequence.current) setBusy(false) }
   }
@@ -164,7 +169,9 @@ export default function ConnectionReview({ locale }: { locale: Locale }) {
             <div className="submission-note"><h3>{t('Reviewer’s note', 'পর্যালোচকের মন্তব্য')}</h3><p>{item.decision_note}</p></div>
             {item.published && item.idea_id ? <a className="ideas-inline-link" href={ideaPath(locale, ideaSlug(item.idea_id))}>{t('View published idea', 'প্রকাশিত আইডিয়া দেখুন')}<IdeaIcon name="arrow" /></a>
               : item.idea_id ? <p className="ideas-field-help">{t('The linked idea is currently unpublished.', 'লিংক করা আইডিয়াটি এখন প্রকাশিত নেই।')}</p>
-              : item.status === 'approved' && 'kind' in item.payload && <PublicationLink key={item.id} locale={locale} ideas={ideas} busy={busy} onLink={ideaId => mutate('/publication', { ideaId, revision: item.revision })} />}
+              : item.status === 'approved' && 'kind' in item.payload && (item.payload.kind === 'idea-edit'
+                ? <div className="idea-edit-publication"><p className="ideas-field-help">{t('After the reviewed change is live in both languages, mark this update published.', 'যাচাই করা বদল বাংলা ও ইংরেজিতে প্রকাশের পর এটি প্রকাশিত হিসেবে চিহ্নিত করুন।')}</p><button className="ideas-text-button" disabled={busy} onClick={() => mutate('/publication-edit', { revision: item.revision })}>{t('Mark update published', 'বদল প্রকাশিত হিসেবে চিহ্নিত করুন')}</button></div>
+                : <PublicationLink key={item.id} locale={locale} ideas={ideas} busy={busy} onLink={ideaId => mutate('/publication', { ideaId, revision: item.revision })} />)}
             <details className="submission-original"><summary>{t('Original submission', 'জমা দেওয়া মূল তথ্য')}<IdeaIcon name="chevron" /></summary>
               {'kind' in item.payload ? <IdeaSubmissionContent idea={item.payload} locale={locale} showTitle={false} /> : <div className="review-submitted"><p>{item.payload.work}</p><a href={item.payload.evidenceUrl}>{t('Submitted source', 'জমা দেওয়া সোর্স')}</a></div>}
             </details>

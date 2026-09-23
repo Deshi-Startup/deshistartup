@@ -1,14 +1,20 @@
-import type { Locale, IdeaProposal, ConnectionProposal } from './ecosystem-types'
+import type { Locale, IdeaProposal, IdeaEditProposal, ConnectionProposal } from './ecosystem-types'
 
 export interface Submission {
   id: string; revision: number; status: 'pending' | 'approved' | 'rejected';
   created_at: string; decided_at: string | null; decision_note: string | null;
-  payload: IdeaProposal | ConnectionProposal; published: number;
+  payload: IdeaProposal | IdeaEditProposal | ConnectionProposal; published: number;
   idea_id: string | null;
   notifications?: { kind: string; state: string }[];
 }
 export function submissionStatus(item: Pick<Submission, 'status' | 'published' | 'payload'> & { idea_id?: string | null }, locale: Locale): string {
   const en = locale === 'en'
+  if ('kind' in item.payload && item.payload.kind === 'idea-edit') {
+    if (item.published) return en ? 'Update published' : 'বদল প্রকাশিত'
+    if (item.idea_id) return en ? 'Update currently unpublished' : 'বদল এখন প্রকাশিত নেই'
+    if (item.status === 'approved') return en ? 'Accepted' : 'গৃহীত'
+    return item.status === 'rejected' ? (en ? 'Declined' : 'গ্রহণ করা হয়নি') : (en ? 'Awaiting review' : 'পর্যালোচনার অপেক্ষায়')
+  }
   if (item.published) return en ? 'Published' : 'প্রকাশিত'
   if (item.idea_id) return en ? 'Currently unpublished' : 'এখন প্রকাশিত নেই'
   if (item.status === 'approved') return 'kind' in item.payload

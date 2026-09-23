@@ -6,7 +6,8 @@ import { load } from 'cheerio'
 import { unstable_splitSqlQuery } from 'wrangler'
 import { createEcosystemHandler } from './ecosystem.ts'
 import { notifyEditorial, deliverNotifications } from '../lib/ecosystem-email.ts'
-import { parseDecision, parseProposal, parseIdeaProposal, parseIdeaDecision } from '../../app/lib/ecosystem-input.ts'
+import { parseDecision, parseProposal, parseIdeaProposal, parseIdeaEditProposal, parseIdeaDecision } from '../../app/lib/ecosystem-input.ts'
+import publicSnapshot from '../../data/ecosystem/public.json' with { type: 'json' }
 import { readEcosystemSnapshot, snapshotRowsSql } from '../../scripts/lib/ecosystem-snapshot.mjs'
 
 // Use the emulator version owned by Wrangler, including its v5 option adapter.
@@ -37,6 +38,24 @@ test('idea intake requires useful bounded copy and ignores untrusted workflow fi
   assert.equal(parseProposal(idea()), null)
   assert.equal(parseIdeaDecision(ideaDecision({ note: '' })), null)
   assert.equal(parseIdeaDecision(ideaDecision({ revision: 0 })), null)
+})
+
+test('idea edits use the published text as their trusted before state', () => {
+  const target = publicSnapshot.approaches.find(row => row.id === 'harvest-cooling')
+  const edit = (changes = {}) => ({ version: 1, kind: 'idea-edit', locale: 'en', ideaId: target.id,
+    baseReleaseId: publicSnapshot.releaseId, edits: { summary: 'A revised summary that a reader can propose.' },
+    note: 'The first test should be clearer.', sourceUrl: 'https://example.com/research', ...changes })
+  const parsed = parseIdeaEditProposal(edit(), publicSnapshot)
+  assert.equal(parsed.title, target.en.title)
+  assert.equal(parsed.changes[0].before, target.en.summary)
+  assert.equal(parsed.changes[0].after, 'A revised summary that a reader can propose.')
+  assert.equal(parseIdeaEditProposal(edit({ baseReleaseId: 'old-release' }), publicSnapshot), null)
+  assert.equal(parseIdeaEditProposal(edit({ ideaId: 'unpublished' }), publicSnapshot), null)
+  assert.equal(parseIdeaEditProposal(edit({ edits: { summary: '   ' } }), publicSnapshot), null)
+  assert.equal(parseIdeaEditProposal(edit({ edits: { unknownField: 'Injected' } }), publicSnapshot), null)
+  assert.equal(parseIdeaEditProposal(edit({ sourceUrl: 'javascript:alert(1)' }), publicSnapshot), null)
+  assert.equal(parseIdeaEditProposal(edit({ edits: {}, note: '', sourceUrl: '' }), publicSnapshot), null)
+  assert.equal(parseIdeaEditProposal(edit({ edits: {}, note: 'An additional source to check.', sourceUrl: '' }), publicSnapshot)?.changes.length, 0)
 })
 
 test('editorial alerts have a fixed destination, safe copy and a trusted review link', async () => {
@@ -440,6 +459,57 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
     assert.equal(own.selected.published, 1)
     assert.equal(own.selected.idea_id, 'solar-upkeep')
     assert.deepEqual(await snapshot(), before, 'private workflow linkage must not change public data')
+  })
+
+  await t.test('idea edits are private until reviewed and linked to a matching deployed release', async () => {
+    const target = publicSnapshot.approaches.find(row => row.id === 'harvest-cooling')
+    const edit = { version: 1, kind: 'idea-edit', locale: 'en', ideaId: target.id,
+      baseReleaseId: publicSnapshot.releaseId, edits: { summary: 'A clearer first test for harvest cooling.' },
+      note: 'Please check this wording against the cited source.', sourceUrl: 'https://example.com/research' }
+    const oldSnapshot = await snapshot()
+    await db.prepare('INSERT INTO releases (id, snapshot_json, digest, created_at) VALUES (?, ?, ?, ?)').bind(publicSnapshot.releaseId, JSON.stringify(publicSnapshot), 'base-for-edit', now).run()
+    await db.prepare('UPDATE publication SET release_id = ? WHERE singleton = 1').bind(publicSnapshot.releaseId).run()
+    const alertCount = sent.length
+    assert.equal((await call('submissions', 'edit-author', { ...edit, baseReleaseId: 'stale' }, 'idea-edit-stale-01')).status, 409)
+    assert.equal((await call('submissions', 'edit-author', { ...edit, edits: { summary: ' ' } }, 'idea-edit-invalid-01')).status, 400)
+    const submittedEdit = await (await call('submissions', 'edit-author', edit, 'idea-edit-valid-01')).json()
+    assert.equal(sent.length, alertCount + 1)
+    assert.match(sent.at(-1).subject, /New idea edit/)
+    assert.doesNotMatch(sent.at(-1).text, /cited source|clearer first test/)
+    const own = (await (await call('submissions?kind=idea', 'edit-author')).json()).submissions.find(row => row.id === submittedEdit.id)
+    assert.equal(own.payload.kind, 'idea-edit')
+    assert.equal(own.payload.changes[0].before, target.en.summary)
+    assert.equal(own.published, 0)
+    assert.deepEqual(await snapshot(), oldSnapshot)
+    assert.equal((await call(`review/${submittedEdit.id}/publication-edit`, 'reviewer', { revision: 1 })).status, 409)
+    assert.equal((await call(`review/${submittedEdit.id}`, 'edit-author', ideaDecision())).status, 403)
+    assert.equal((await call(`review/${submittedEdit.id}`, 'reviewer', ideaDecision())).status, 200)
+    const beforeRelease = await call(`review/${submittedEdit.id}/publication-edit`, 'reviewer', { revision: 2 })
+    assert.equal(beforeRelease.status, 409, 'the old deployed release cannot be marked as the update')
+    assert.equal((await beforeRelease.json()).error, 'release_not_live')
+    const updatedSnapshot = structuredClone(oldSnapshot)
+    updatedSnapshot.approaches.find(row => row.id === target.id).en.summary = 'A clearer first test for harvest cooling.'
+    const newer = new Date(Date.parse(now) + 60_000).toISOString()
+    await db.prepare('INSERT INTO releases (id, snapshot_json, digest, created_at) VALUES (?, ?, ?, ?)').bind('idea-edit-published-test', JSON.stringify(updatedSnapshot), 'edit-test', newer).run()
+    await db.prepare('UPDATE publication SET release_id = ? WHERE singleton = 1').bind('idea-edit-published-test').run()
+    const wrongDeployment = await call(`review/${submittedEdit.id}/publication-edit`, 'reviewer', { revision: 2 })
+    assert.equal(wrongDeployment.status, 409, 'the Worker must also carry the matching static release')
+    assert.equal((await wrongDeployment.json()).error, 'release_not_live')
+    const deployed = createEcosystemHandler({ authenticate: async request => {
+      const role = request.headers.get('Authorization')
+      return role ? { sub: role, email: `${role}@example.com`, name: role, picture: '' } : null
+    }, admit: async () => true, now: () => newer, deployedReleaseId: 'idea-edit-published-test' })
+    const linkRequest = () => deployed(new Request(`https://example.com/api/ecosystem/review/${submittedEdit.id}/publication-edit`, {
+      method: 'POST', headers: { Authorization: 'reviewer', 'Content-Type': 'application/json' }, body: JSON.stringify({ revision: 2 })
+    }), env)
+    assert.equal((await linkRequest()).status, 200)
+    assert.equal((await linkRequest()).status, 409)
+    const linked = await (await call(`submissions?kind=idea&submission=${submittedEdit.id}`, 'edit-author')).json()
+    assert.equal(linked.selected.published, 1)
+    assert.equal(linked.selected.idea_id, target.id)
+    await db.prepare('UPDATE publication SET release_id = ? WHERE singleton = 1').bind('before').run()
+    assert.equal((await (await call(`submissions?kind=idea&submission=${submittedEdit.id}`, 'edit-author')).json()).selected.published, 0)
+    await db.prepare('UPDATE publication SET release_id = ? WHERE singleton = 1').bind('idea-edit-published-test').run()
   })
 
   await t.test('publication mail stops after rollback and can be retried after the idea returns', async t => {

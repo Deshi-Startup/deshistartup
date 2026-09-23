@@ -102,6 +102,13 @@ Google sign-in sends a private proposal to the existing D1 review queue. Accepte
 proposals need editorial preparation before publication. This keeps submission
 useful without introducing a separate account dashboard or publishing system.
 
+On an existing idea, **Edit this idea** opens a prefilled, section-based draft.
+Readers can correct wording or add useful information and sources without learning
+the underlying problem/idea model. The existing private queue shows editors the
+before/after text; accepted changes go through bilingual editorial review and the
+normal D1 release. Keep the reading page quiet and do not turn this into comments
+or direct, unreviewed publishing.
+
 ## Learn before expanding
 
 Try the collection with a small group of prospective founders, including people

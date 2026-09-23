@@ -14,6 +14,7 @@ companies have independent profiles shared across Deshi Startup. See `companies.
   On mobile, the revenue model follows the explanation before the first test.
   Research expands below. Related companies appear as small
   logo/name links; their profiles explain the specific work and source.
+  **Edit this idea** opens a prefilled editor for a focused, reviewed change.
 - `/companies/<slug>`: shared profiles linked from ideas, DS50 and case studies.
   The gallery index is directly reachable; a sidebar entry is deferred.
 - `/startup-ideas/add-company`: suggest an existing or new company and its work.
@@ -118,9 +119,30 @@ a description and the intended user are required. Nothing becomes public on subm
 The reviewer queue accepts a proposal for editing or declines it with a note. An
 accepted proposal still needs researched, bilingual editorial preparation before it
 can become a public idea through the existing release process; acceptance does not
-create or publish a catalogue record. This first version has no automatic publishing
-or idea editor. The owner-scoped API exposes submission status and review notes; the
+create or publish a catalogue record. This first version has no automatic publishing.
+The owner-scoped API exposes submission status and review notes; the
 form confirms receipt and links to the private submission history.
+
+An existing idea can be improved from its detail page. The reader chooses one or
+more visible sections, edits prefilled text, and may add context or a public source.
+The browser keeps an unfinished draft locally. Google sign-in submits only changed
+sections as a private `kind: "idea-edit"` proposal; the Worker supplies each
+section's original text from the deployed public snapshot, so a client cannot
+forge the before/after comparison. A stale page must be refreshed before submitting.
+This editor does not open the generated MDX wrapper or change D1 directly.
+
+Idea edits share the existing editorial alert, private submission history and
+reviewer queue. Reviewers see the original and proposed copy side by side and
+accept for editing or decline with a note. Acceptance does not publish anything.
+An editor checks the evidence, the affected idea and any shared problem fields,
+then prepares the English and Bangla update through a forward D1 migration and
+normal frozen release. After the matching build is deployed and its release pointer
+is live, the reviewer marks the update published. The server verifies that the
+active release matches the deployed marker, is newer than the submitted base,
+contains the idea and changed its idea/problem content. This records the link in
+`idea_edit_publications`, without putting private notes in the public snapshot.
+Rollback removes the current-published indicator. Decision/publication email still
+depends on `IDEA_DECISION_EMAILS`; private history works without it.
 
 Manage reviewer access in Cloudflare: **Workers & Pages → deshistartup → Settings →
 Variables and Secrets → CONTRIBUTION_REVIEWER_EMAILS**. This is a **Text** runtime
@@ -131,7 +153,7 @@ setting on deployment. The local `.env.local` value is only a development copy.
 Google token verification and reviewer matching still apply; a missing or empty
 list grants nobody reviewer access.
 
-Each new idea or company submission creates a private email job in the same D1
+Each new idea, idea edit or company submission creates a private email job in the same D1
 transaction. The existing `CONTACT_EMAIL` binding sends an editorial alert to
 `CONTACT_INBOX`, with a link to the specific submission. Use the verified destination
 behind hello@; the routing alias is not itself a verified destination.

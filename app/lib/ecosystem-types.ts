@@ -1,5 +1,6 @@
 import type { CompanyProfileContent } from './company-profile-types'
 import type { PublicIdentities } from './shared-identity'
+import type { IdeaEditField } from './idea-edit'
 export type Locale = 'en' | 'bn'
 export type Localized<T> = Record<Locale, T>
 export type OrganizationRole = 'startup' | 'investor' | 'accelerator' | 'incubator' | 'community'
@@ -53,6 +54,11 @@ export interface IdeaProposal {
   version: 1; kind: 'idea'; locale: Locale;
   title: string; solution: string; customer: string; problem: string;
   place: string; evidence: string; test: string
+}
+export interface IdeaEditProposal {
+  version: 1; kind: 'idea-edit'; locale: Locale; ideaId: string; problemId: string;
+  baseReleaseId: string; title: string; note: string; sourceUrl: string;
+  changes: { field: IdeaEditField; before: string; after: string }[]
 }
 export interface IdeaDecision {
   revision: number; decision: 'approved' | 'rejected'; note: string
