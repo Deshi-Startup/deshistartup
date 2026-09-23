@@ -489,12 +489,14 @@
 .ideas-shell .submission-record-body { padding-bottom: 1.5rem; }
 .ideas-shell .submission-note { margin-block: 1.5rem; padding: 1rem 1.25rem; background: var(--green-ground); border-radius: 4px; }
 .ideas-shell .submission-note h3 { font-size: .8125rem; color: var(--green-deep); margin-bottom: .5rem; letter-spacing: 0; }
+.ideas-shell .submission-note h3:not(:first-child) { margin-top: 1rem; }
 .ideas-shell .submission-note p, .ideas-shell .review-submitted p { white-space: pre-wrap; overflow-wrap: anywhere; }
 .ideas-shell .submission-record-body .submission-note { margin-top: 0; }
 .ideas-shell .submission-record-body .review-submitted { margin-bottom: 0; padding-top: 1rem; padding-bottom: 0; border: 0; }
 .ideas-shell .review-submitted > h3 { margin-top: 1.25rem; font-size: .875rem; letter-spacing: 0; }
 .ideas-shell .review-submitted > p { margin-top: .5rem; }
 .ideas-shell .review-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+.ideas-shell .review-layout[hidden] { display: none; }
 .ideas-shell .review-layout:not(.has-selection) { max-width: 47rem; }
 .ideas-shell .review-layout.has-selection { grid-template-columns: 16rem minmax(0, 1fr); }
 .ideas-shell .review-list-item { position: relative; width: 100%; display: block; padding: 1.25rem 2.25rem 1.25rem 0; border: 0; border-bottom: 1px solid var(--line-soft); background: transparent; text-align: start; color: var(--ink); font-size: 1rem; font-weight: 500; overflow-wrap: anywhere; }

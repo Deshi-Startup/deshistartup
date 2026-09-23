@@ -6,6 +6,7 @@ import type { SubmissionRow } from './ecosystem-store.ts'
 // Read only explicit public-to-the-owner fields. Contacts, request keys and hashes stay private.
 const fields = `s.id, s.status, s.revision, s.created_at, s.decided_at, s.decision_note, s.payload_json,
   COALESCE(l.approach_id, e.approach_id) AS idea_id,
+  c.note AS editorial_close_note, c.closed_at AS editorial_closed_at,
   CASE WHEN e.approach_id IS NOT NULL THEN EXISTS (
     SELECT 1 FROM publication p JOIN releases current_release ON current_release.id = p.release_id
     JOIN releases linked_release ON linked_release.id = e.release_id,
@@ -20,8 +21,8 @@ const fields = `s.id, s.status, s.revision, s.created_at, s.decided_at, s.decisi
       SELECT json_extract(j.value, '$.id') FROM publication p JOIN releases r ON r.id = p.release_id,
       json_each(r.snapshot_json, '$.connections') j)
   ) END AS published`
-const from = 'FROM submissions s LEFT JOIN idea_submission_links l ON l.submission_id = s.id LEFT JOIN idea_edit_publications e ON e.submission_id = s.id'
-type Row = SubmissionRow & { idea_id: string | null; published: number }
+const from = 'FROM submissions s LEFT JOIN idea_submission_links l ON l.submission_id = s.id LEFT JOIN idea_edit_publications e ON e.submission_id = s.id LEFT JOIN idea_editorial_closures c ON c.submission_id = s.id'
+type Row = SubmissionRow & { idea_id: string | null; published: number; editorial_close_note: string | null; editorial_closed_at: string | null }
 const shape = ({ payload_json, ...row }: Row) => ({ ...row, payload: JSON.parse(payload_json) })
 
 export async function submissionHistory(db: D1Database, params: URLSearchParams, owner: string | null) {
@@ -78,6 +79,7 @@ export async function linkPublishedIdea(db: D1Database, id: string, ideaId: stri
         SELECT 1 FROM submissions s, publication p JOIN releases r ON r.id = p.release_id, json_each(r.snapshot_json, '$.approaches') j
         WHERE s.id = ? AND s.status = 'approved' AND s.revision = ? AND json_extract(s.payload_json, '$.kind') = 'idea'
         AND json_extract(j.value, '$.id') = ? AND NOT EXISTS (SELECT 1 FROM idea_submission_links WHERE submission_id = s.id)
+        AND NOT EXISTS (SELECT 1 FROM idea_editorial_closures WHERE submission_id = s.id)
       ) THEN 1 ELSE 0 END)`).bind(guard, id, revision, ideaId),
       db.prepare('INSERT INTO idea_submission_links (submission_id, approach_id, reviewer_hash, linked_at) VALUES (?, ?, ?, ?)').bind(id, ideaId, reviewer, now),
       db.prepare('UPDATE submissions SET revision = revision + 1 WHERE id = ?').bind(id),
@@ -136,4 +138,26 @@ export async function linkPublishedIdeaEdit(db: D1Database, id: string, revision
     throw error
   }
   return { id, ideaId: proposal.ideaId }
+}
+
+export async function closeAcceptedIdea(db: D1Database, id: string, revision: number, note: string, reviewer: string, now: string) {
+  const guard = crypto.randomUUID()
+  try {
+    await db.batch([
+      db.prepare(`INSERT INTO mutation_guards (id, valid) VALUES (?, CASE WHEN EXISTS (
+        SELECT 1 FROM submissions s WHERE s.id = ? AND s.status = 'approved' AND s.revision = ?
+        AND json_extract(s.payload_json, '$.kind') = 'idea'
+        AND NOT EXISTS (SELECT 1 FROM idea_submission_links WHERE submission_id = s.id)
+        AND NOT EXISTS (SELECT 1 FROM idea_editorial_closures WHERE submission_id = s.id)
+      ) THEN 1 ELSE 0 END)`).bind(guard, id, revision),
+      db.prepare('INSERT INTO idea_editorial_closures (submission_id, note, reviewer_hash, closed_at) VALUES (?, ?, ?, ?)').bind(id, note, reviewer, now),
+      db.prepare('UPDATE submissions SET revision = revision + 1 WHERE id = ?').bind(id),
+      db.prepare("INSERT INTO submission_notifications (submission_id, kind, available_at) SELECT submission_id, 'closed', ? FROM submission_contacts WHERE submission_id = ?").bind(now, id),
+      db.prepare('DELETE FROM mutation_guards WHERE id = ?').bind(guard)
+    ])
+  } catch (error) {
+    if (/constraint|foreign key|unique/i.test(String(error))) throw new EcosystemConflict('editorial_close_conflict')
+    throw error
+  }
+  return { id, closed: true }
 }

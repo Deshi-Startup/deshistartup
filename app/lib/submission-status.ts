@@ -5,9 +5,10 @@ export interface Submission {
   created_at: string; decided_at: string | null; decision_note: string | null;
   payload: IdeaProposal | IdeaEditProposal | ConnectionProposal; published: number;
   idea_id: string | null;
+  editorial_close_note: string | null; editorial_closed_at: string | null;
   notifications?: { kind: string; state: string }[];
 }
-export function submissionStatus(item: Pick<Submission, 'status' | 'published' | 'payload'> & { idea_id?: string | null }, locale: Locale): string {
+export function submissionStatus(item: Pick<Submission, 'status' | 'published' | 'payload'> & { idea_id?: string | null; editorial_closed_at?: string | null }, locale: Locale): string {
   const en = locale === 'en'
   if ('kind' in item.payload && item.payload.kind === 'idea-edit') {
     if (item.published) return en ? 'Update published' : 'বদল প্রকাশিত'
@@ -17,6 +18,7 @@ export function submissionStatus(item: Pick<Submission, 'status' | 'published' |
   }
   if (item.published) return en ? 'Published' : 'প্রকাশিত'
   if (item.idea_id) return en ? 'Currently unpublished' : 'এখন প্রকাশিত নেই'
+  if (item.editorial_closed_at) return en ? 'Not publishing' : 'প্রকাশ করা হচ্ছে না'
   if (item.status === 'approved') return 'kind' in item.payload
     ? (en ? 'Accepted for editing' : 'সম্পাদনার জন্য গৃহীত')
     : (en ? 'Approved, awaiting publication' : 'অনুমোদিত, প্রকাশের অপেক্ষায়')

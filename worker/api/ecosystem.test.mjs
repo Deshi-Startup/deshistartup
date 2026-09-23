@@ -84,9 +84,18 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
   // Read the directory so a new migration is exercised without editing this list.
   const migrations = fs.readdirSync(new URL('../migrations/ecosystem/', import.meta.url)).filter(name => name.endsWith('.sql')).sort()
   for (const file of migrations) {
+    if (file === '0021_idea_editorial_closures.sql') {
+      await db.prepare('INSERT INTO submissions (id, owner_hash, idempotency_key, payload_hash, payload_json, created_at) VALUES (?, ?, ?, ?, ?, ?)')
+        .bind('migration-preserve', 'migration-owner', 'migration-key', 'migration-hash', JSON.stringify(idea()), now).run()
+      await db.prepare("INSERT INTO submission_notifications (submission_id, kind, state, attempts, available_at, error_code) VALUES (?, 'decision', 'failed', 2, ?, 'email_send_failed')")
+        .bind('migration-preserve', now).run()
+    }
     const sql = fs.readFileSync(new URL(`../migrations/ecosystem/${file}`, import.meta.url), 'utf8')
     await db.batch(unstable_splitSqlQuery(sql).map(statement => db.prepare(statement)))
   }
+  assert.deepEqual(await db.prepare('SELECT kind, state, attempts, error_code FROM submission_notifications WHERE submission_id = ?').bind('migration-preserve').first(),
+    { kind: 'decision', state: 'failed', attempts: 2, error_code: 'email_send_failed' })
+  await db.prepare('DELETE FROM submissions WHERE id = ?').bind('migration-preserve').run()
   const sent = []
   const env = { ECOSYSTEM_DB: db, CONTRIBUTION_REVIEWER_EMAILS: 'reviewer@example.com', CONTACT_INBOX: 'verified-editorial@example.com', CONTACT_EMAIL: { send: async message => { sent.push(message) } } }
   const handler = createEcosystemHandler({
@@ -323,6 +332,44 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
     assert.equal(own.revision, 2)
     assert.equal(own.decision_note, ideaDecision().note)
     assert.equal(own.published, 0)
+  })
+  await t.test('accepted ideas can be closed with a private explanation instead of lingering forever', async t => {
+    env.IDEA_DECISION_EMAILS = 'true'
+    t.after(() => { delete env.IDEA_DECISION_EMAILS })
+    const before = await snapshot()
+    const submission = await (await call('submissions', 'closed-idea-author', idea(), 'closed-idea-000001')).json()
+    const path = `review/${submission.id}/close`
+    const closure = { revision: 2, note: 'Our research did not find a gap beyond services already available.' }
+    const company = await (await call('submissions', 'closed-company-author', proposal(), 'closed-company-0001')).json()
+    assert.equal((await call(`review/${company.id}/close`, 'reviewer', { ...closure, revision: 1 })).status, 409)
+    assert.equal((await call(path, 'reviewer', { ...closure, revision: 1 })).status, 409)
+    assert.equal((await call(path, 'closed-idea-author', closure)).status, 403)
+    await call(`review/${submission.id}`, 'reviewer', ideaDecision())
+    assert.equal((await call(path, 'reviewer', { ...closure, note: 'Too short' })).status, 400)
+    const emailsBefore = sent.length
+    const replies = await Promise.all([call(path, 'reviewer', closure), call(path, 'reviewer', closure)])
+    assert.deepEqual(replies.map(r => r.status).sort(), [200, 409])
+    assert.equal(sent.length, emailsBefore + 1)
+    assert.equal(sent.at(-1).to, 'closed-idea-author@example.com')
+    assert.match(sent.at(-1).text, /We won’t publish your idea/)
+    assert.match(sent.at(-1).text, /Our research did not find a gap/)
+    const own = await (await call(`submissions?kind=idea&submission=${submission.id}`, 'closed-idea-author')).json()
+    assert.equal(own.selected.status, 'approved')
+    assert.equal(own.selected.editorial_close_note, closure.note)
+    assert.equal(own.selected.editorial_closed_at, now)
+    assert.equal(own.selected.revision, 3)
+    assert.equal((await (await call(`submissions?kind=idea&submission=${submission.id}`, 'other')).json()).selected, null)
+    assert.equal((await call(`review/${submission.id}/publication`, 'reviewer', { revision: 3, ideaId: 'solar-upkeep' })).status, 409)
+    assert.equal((await db.prepare('SELECT COUNT(*) AS n FROM idea_submission_links WHERE submission_id = ?').bind(submission.id).first()).n, 0)
+    assert.equal((await db.prepare('SELECT COUNT(*) AS n FROM mutation_guards').first()).n, 0)
+    delete env.IDEA_DECISION_EMAILS
+    const quiet = await (await call('submissions', 'quiet-idea-author', idea(), 'closed-idea-000002')).json()
+    await call(`review/${quiet.id}`, 'reviewer', ideaDecision())
+    const quietEmails = sent.length
+    assert.equal((await call(`review/${quiet.id}/close`, 'reviewer', closure)).status, 200)
+    assert.equal(sent.length, quietEmails)
+    assert.equal((await (await call(`submissions?kind=idea&submission=${quiet.id}`, 'quiet-idea-author')).json()).selected.editorial_close_note, closure.note)
+    assert.deepEqual(await snapshot(), before)
   })
   await t.test('idea decisions cannot bypass company review requirements', async () => {
     const pendingCompany = await (await call('submissions', 'contributor', proposal(), 'company-kind-000001')).json()

@@ -30,8 +30,8 @@ export async function notifyEditorial(env: EmailEnvironment, db: D1Database, id:
     `${origin}/en/startup-ideas/review?submission=${encodeURIComponent(id)}`, 'Review submission')
 }
 interface Notification {
-  submission_id: string; kind: 'editorial' | 'decision' | 'published'; attempts: number;
-  payload_json: string; status: string; decision_note: string | null; email: string | null; approach_id: string | null; published: number
+  submission_id: string; kind: 'editorial' | 'decision' | 'published' | 'closed'; attempts: number;
+  payload_json: string; status: string; decision_note: string | null; editorial_close_note: string | null; email: string | null; approach_id: string | null; published: number
 }
 async function sendNotification(env: EmailEnvironment, db: D1Database, row: Notification) {
   const p: IdeaProposal | IdeaEditProposal = JSON.parse(row.payload_json)
@@ -40,25 +40,27 @@ async function sendNotification(env: EmailEnvironment, db: D1Database, row: Noti
   // through the reviewer retry action, but never send a link that is no longer live.
   if (row.kind === 'published' && !row.published) throw Object.assign(new Error('publication_unavailable'), { code: 'publication_unavailable' })
   if (!decisionEmailsEnabled(env) || !row.email) throw new Error('email_configuration_unavailable')
-  const en = p.locale === 'en', published = row.kind === 'published', accepted = row.status === 'approved'
+  const en = p.locale === 'en', published = row.kind === 'published', closed = row.kind === 'closed', accepted = row.status === 'approved'
   const update = p.kind === 'idea-edit'
   const status = update
     ? published ? (en ? 'Your idea edit is published' : 'আইডিয়ার বদল প্রকাশিত হয়েছে')
       : accepted ? (en ? 'Your idea edit was accepted' : 'আইডিয়ার বদল গ্রহণ করা হয়েছে')
         : (en ? 'An update on your idea edit' : 'আইডিয়ার বদল নিয়ে আমাদের সিদ্ধান্ত')
-    : published ? (en ? 'Your idea is published' : 'আপনার আইডিয়া প্রকাশিত হয়েছে') : accepted
+    : published ? (en ? 'Your idea is published' : 'আপনার আইডিয়া প্রকাশিত হয়েছে') : closed
+      ? (en ? 'We won’t publish your idea' : 'আপনার আইডিয়াটি প্রকাশ করব না') : accepted
       ? (en ? 'Your idea was accepted for editing' : 'আপনার আইডিয়া সম্পাদনার জন্য গ্রহণ করেছি')
       : (en ? 'An update on your idea' : 'আপনার আইডিয়া নিয়ে আমাদের সিদ্ধান্ত')
   const explanation = update
     ? published ? (en ? 'The reviewed update is now on the idea page.' : 'যাচাই করা বদলটি এখন আইডিয়ার পাতায় আছে।')
       : accepted ? (en ? 'Our editors will prepare the update in English and Bangla before publication.' : 'প্রকাশের আগে সম্পাদকীয় দল বদলটি বাংলা ও ইংরেজিতে গুছিয়ে নেবে।')
         : (en ? 'We did not accept this edit. Here is the reviewer’s note.' : 'বদলটি আমরা নিচ্ছি না। নিচে পর্যালোচকের মন্তব্য আছে।')
-    : published ? (en ? 'Your idea is now in the collection.' : 'আইডিয়াটি এখন তালিকায় আছে।') : accepted
+    : published ? (en ? 'Your idea is now in the collection.' : 'আইডিয়াটি এখন তালিকায় আছে।') : closed
+      ? (en ? 'After further research, we’ve decided not to publish it. Here’s why.' : 'আরও খোঁজ নিয়ে আমরা আইডিয়াটি প্রকাশ না করার সিদ্ধান্ত নিয়েছি। কারণটি নিচে লিখেছি।') : accepted
       ? (en ? 'Accepted ideas are edited in English and Bangla before publication.' : 'প্রকাশের আগে গ্রহণ করা আইডিয়া বাংলা ও ইংরেজিতে সম্পাদনা করা হয়।')
       : (en ? 'We haven’t accepted this idea for the collection. Here is the reviewer’s note.' : 'আইডিয়াটি এবার তালিকায় নিচ্ছি না। পর্যালোচকের মন্তব্য নিচে দেওয়া আছে।')
   const url = published && row.approach_id ? `${origin}${en ? '/en' : ''}/startup-ideas/${ideaSlug(row.approach_id)}` : `${origin}${submissionPath(p.locale, row.submission_id)}`
   return send(env, row.email, `[Deshi Startup] ${status}: ${cleanTitle(p.title)}`,
-    [status, cleanTitle(p.title), explanation, ...(!published && row.decision_note ? [row.decision_note] : [])], url,
+    [status, cleanTitle(p.title), explanation, ...(closed && row.editorial_close_note ? [row.editorial_close_note] : !published && row.decision_note ? [row.decision_note] : [])], url,
     published ? (en ? 'View idea' : 'আইডিয়া দেখুন') : (en ? 'View your submission' : 'জমা দেওয়া আইডিয়া দেখুন'))
 }
 
@@ -82,7 +84,7 @@ export async function deliverNotifications(env: EmailEnvironment & { ECOSYSTEM_D
       continue
     }
     try {
-      const row = await db.prepare(`SELECT s.payload_json, s.status, s.decision_note, c.email, COALESCE(l.approach_id, e.approach_id) AS approach_id,
+      const row = await db.prepare(`SELECT s.payload_json, s.status, s.decision_note, x.note AS editorial_close_note, c.email, COALESCE(l.approach_id, e.approach_id) AS approach_id,
         CASE WHEN e.submission_id IS NOT NULL THEN EXISTS (
           SELECT 1 FROM publication p JOIN releases r ON r.id = p.release_id
           JOIN releases linked ON linked.id = e.release_id, json_each(r.snapshot_json, '$.approaches') j
@@ -91,7 +93,8 @@ export async function deliverNotifications(env: EmailEnvironment & { ECOSYSTEM_D
           json_each(r.snapshot_json, '$.approaches') j WHERE json_extract(j.value, '$.id') = l.approach_id) END AS published
         FROM submissions s LEFT JOIN submission_contacts c ON c.submission_id = s.id
         LEFT JOIN idea_submission_links l ON l.submission_id = s.id
-        LEFT JOIN idea_edit_publications e ON e.submission_id = s.id WHERE s.id = ?`).bind(event.submission_id).first<Omit<Notification, 'submission_id' | 'kind' | 'attempts'>>()
+        LEFT JOIN idea_edit_publications e ON e.submission_id = s.id
+        LEFT JOIN idea_editorial_closures x ON x.submission_id = s.id WHERE s.id = ?`).bind(event.submission_id).first<Omit<Notification, 'submission_id' | 'kind' | 'attempts'>>()
       if (!row) throw new Error('submission_unavailable')
       await sendNotification(env, db, { ...row, ...event, kind: event.kind as Notification['kind'], attempts: claim.attempts })
       await db.prepare("UPDATE submission_notifications SET state = 'sent', sent_at = ?, lease = NULL, error_code = NULL WHERE submission_id = ? AND kind = ? AND lease = ?")

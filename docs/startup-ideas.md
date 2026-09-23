@@ -165,13 +165,17 @@ between records in the same tab; they are not stored after a full page reload. T
 account control lets a reader or reviewer switch Google accounts without clearing
 their browser. Notes are messages
 to the submitter, not internal-only comments. Acceptance starts editorial preparation.
+If research changes the decision, a reviewer can close an accepted idea with a
+reason. The submitter sees that private update, and the idea cannot be linked to a
+public page. Migration `0021_idea_editorial_closures.sql` stores this outcome.
+When decision emails are enabled, closure also queues an email.
 After the bilingual idea ships, a reviewer links it to its published record. This
 private relationship verifies the actual publication snapshot and never changes it.
 Publication emails check that snapshot again before delivery. If a release is rolled
 back, the email is held and the history shows “Currently unpublished”; a reviewer
 can retry delivery after the idea is restored.
 
-`IDEA_DECISION_EMAILS=true` enables decision and publication emails using the verified
+`IDEA_DECISION_EMAILS=true` enables decision, closure and publication emails using the verified
 Google address captured at submission. Enable only after Email Sending onboarding and
 a controlled delivery test. The default is off; the form then promises status tracking
 only. The presence of a binding does not establish Email Sending availability. Existing
@@ -188,6 +192,16 @@ Provider exception text and recipient addresses are never logged or publicly exp
 
 Local tests use simulated delivery and isolated D1. Never enable remote sending for
 test fixtures. No GitHub issues are created for private submissions.
+
+### Editorial routine
+
+The editorial team checks Awaiting review and Accepted weekly. Accept an idea for
+editing or decline it with a useful note; there is no promised response time.
+For each accepted idea, check the customer, existing providers, evidence and a
+small first test. Prepare a short English brief and Bangla edition for a second
+editor to check. Publish through the normal D1 release, then link the live page
+from Accepted. If it does not hold up, close it with a reason for the submitter.
+Keep private proposals in D1; use a GitHub PR for publishable content and code.
 
 ## Run locally
 
@@ -231,7 +245,10 @@ submissions, review records and the publication pointer were preserved. Migratio
 `0019_regional_app_recovery.sql` was applied remotely on 23 September 2026; it
 adds a researched idea without changing private submissions or existing public
 records. The matching snapshot was deployed and its publication pointer advanced
-after live verification.
+after live verification. Migration `0020_idea_edit_publications.sql` was applied
+on 23 September before the idea-page editing release. The unreleased solar idea
+draft uses an older migration number and must be renumbered and reviewed before
+it can be prepared from production.
 Future environments must apply all pending migrations before preparing a release.
 See [`shared-identity.md`](./shared-identity.md) for the import and identity
 publication boundaries. These database steps do not deploy the Worker or publish
