@@ -17,6 +17,8 @@ export interface ApproachCopy {
 }
 export interface Approach extends Localized<ApproachCopy> {
   id: string; problemId: string; kind: ApproachKind; position: number;
+  /** Names approved by submitters for a small public credit on this idea. */
+  suggestedBy?: string[];
   /** The date this idea entered the public collection, as YYYY-MM-DD. */
   addedAt: string;
   /** Manual slugs whose written guides support this idea's first test, in step order. */
@@ -53,7 +55,9 @@ export interface ReviewDecision {
 export interface IdeaProposal {
   version: 1; kind: 'idea'; locale: Locale;
   title: string; solution: string; customer: string; problem: string;
-  place: string; evidence: string; test: string
+  place: string; evidence: string; test: string;
+  /** Present only when the submitter asks for public credit if published. */
+  creditName?: string
 }
 export interface IdeaEditProposal {
   version: 1; kind: 'idea-edit'; locale: Locale; ideaId: string; problemId: string;

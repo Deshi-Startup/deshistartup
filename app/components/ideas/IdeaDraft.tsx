@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { DRAFT_KEY, draftLimits, draftMarkdown, emptyDraft, ideaPath, parseDraft, type IdeaDraft as Draft } from './model'
-import { parseIdeaProposal } from '../../lib/ecosystem-input'
+import { parseIdeaProposal, validCreditName } from '../../lib/ecosystem-input'
 import { ecosystemError, useEcosystemSession } from './useEcosystemSession'
 import { downloadText } from './download'
 import type { Locale } from './types'
@@ -37,21 +37,22 @@ export default function IdeaDraft({ locale }: { locale: Locale }) {
     setReady(true)
     fetch('/api/ecosystem/status', { signal: AbortSignal.timeout(12_000) }).then(r => r.json()).then(data => { setAvailable(data.available === true); setDecisionEmails(data.decisionEmails === true) }).catch(() => setAvailable(false))
   }, [])
-  const edit = (key: keyof Draft, value: string) => {
-    const next = { ...draft, [key]: value }
+  const edit = <K extends keyof Draft,>(key: K, value: Draft[K]) => {
+    const next = { ...draft, [key]: value, ...(key === 'creditRequested' && value === false ? { creditName: '' } : {}) }
     setDraft(next); setMessage(''); setError('')
     try { localStorage.setItem(DRAFT_KEY, JSON.stringify(next)); setStorageError(false) }
     catch { setStorageError(true) }
   }
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault(); setError(''); setMessage('')
-    const payload = parseIdeaProposal({ version: 1, kind: 'idea', locale, ...draft })
+    if (draft.creditRequested && !validCreditName(draft.creditName)) { setError(t('Add the name to show beside your idea, or turn off public credit.', 'আইডিয়ার পাশে যে নাম দেখাতে চান, সেটি লিখুন। নাম দেখাতে না চাইলে টিক তুলে দিন।')); return }
+    const payload = parseIdeaProposal({ version: 1, kind: 'idea', locale, ...draft, creditName: draft.creditRequested ? draft.creditName : '' })
     if (!payload) { setError(t('Add a title, who it helps and a short description of your idea.', 'আইডিয়ার নাম, কাদের কাজে লাগবে ও ছোট একটি বিবরণ লিখুন।')); return }
     if (!session.auth) { resumeSubmit.current = true; session.signIn(); return }
     void send(session.auth)
   }
   async function send(auth: AuthState) {
-    const payload = parseIdeaProposal({ version: 1, kind: 'idea', locale, ...draft })
+    const payload = parseIdeaProposal({ version: 1, kind: 'idea', locale, ...draft, creditName: draft.creditRequested ? draft.creditName : '' })
     if (!payload || sending.current) return
     sending.current = true
     const json = JSON.stringify(payload)
@@ -104,9 +105,13 @@ export default function IdeaDraft({ locale }: { locale: Locale }) {
           <label htmlFor="draft-test">{t('What could you try first?', 'আগে কী পরীক্ষা করতে পারেন?')}</label>
           <textarea id="draft-test" value={draft.test} rows={3} maxLength={draftLimits.test} onChange={event => edit('test', event.target.value)} />
         </details>
+        <div className="ideas-credit-choice">
+          <label htmlFor="draft-credit"><input id="draft-credit" type="checkbox" checked={draft.creditRequested} onChange={event => edit('creditRequested', event.target.checked)} />{t('Credit me if this idea is published', 'প্রকাশ হলে আমার নাম দেখান')}</label>
+          {draft.creditRequested && <><label htmlFor="draft-credit-name">{t('Name to show', 'যে নাম দেখাতে চান')}</label><input id="draft-credit-name" value={draft.creditName} required minLength={2} maxLength={draftLimits.creditName} autoComplete="name" onChange={event => edit('creditName', event.target.value)} /><p className="ideas-field-help">{t('We’ll show this name on the idea page only if the idea is published.', 'আইডিয়াটি প্রকাশ হলেই শুধু পাতায় এই নাম দেখাব।')}</p></>}
+        </div>
         <div className="ideas-draft-bottom"><button type="submit" className="ideas-button" disabled={available !== true}>{busy ? t('Submitting…', 'জমা হচ্ছে…') : session.auth ? t('Submit idea', 'আইডিয়া জমা দিন') : t('Sign in to submit', 'জমা দিতে সাইন ইন করুন')}</button><button type="button" className="ideas-text-button" onClick={download}>{t('Download draft', 'খসড়া ডাউনলোড করুন')}</button></div>
       </fieldset>
-      <p className="ideas-action-status">{decisionEmails ? t('We’ll email you the review decision. Your idea stays private until publication.', 'পর্যালোচনার সিদ্ধান্ত ইমেইলে জানাব। প্রকাশের আগে আইডিয়াটি অন্যরা দেখতে পাবেন না।') : t('Track the review and read feedback in Your submissions.', 'আপনার জমা দেওয়া আইডিয়ার পাতায় পর্যালোচনার অবস্থা ও মন্তব্য দেখতে পারবেন।')}</p>
+      <p className="ideas-action-status">{decisionEmails ? t('We’ll save your Google account email privately and send you the review decision. Your idea stays private until publication.', 'গুগল অ্যাকাউন্টের ইমেইল ঠিকানা আমরা প্রাইভেটভাবে রাখব। পর্যালোচনার সিদ্ধান্ত ইমেইলে জানাব। প্রকাশের আগে আইডিয়াটি অন্যরা দেখতে পাবেন না।') : t('We’ll save your Google account email privately for follow-up. Track the review in Your submissions.', 'পরে যোগাযোগের জন্য গুগল অ্যাকাউন্টের ইমেইল ঠিকানা আমরা প্রাইভেটভাবে রাখব। জমা দেওয়া আইডিয়ার পাতায় পর্যালোচনার অবস্থা দেখতে পারবেন।')}</p>
       {storageError && <p role="alert" className="ideas-error">{t('Your browser could not save this draft. Download a copy before leaving.', 'ব্রাউজারে খসড়া সেভ হয়নি। পাতা ছাড়ার আগে কপি ডাউনলোড করুন।')}</p>}
       {available === false && <p className="ideas-error" role="status">{t('Submissions are unavailable right now. Your draft stays here.', 'এখন আইডিয়া জমা নেওয়া যাচ্ছে না। খসড়া এখানেই থাকবে।')}</p>}
       {error && <p role="alert" className="ideas-error">{error}</p>}

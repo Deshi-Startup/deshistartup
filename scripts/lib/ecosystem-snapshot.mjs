@@ -4,12 +4,15 @@ import { identityColumns, identityWhere, identitySnapshot, validateIdentities } 
 
 export const snapshotDigest = snapshot => createHash('sha256').update(JSON.stringify(snapshot)).digest('hex')
 const parsed = value => JSON.parse(value)
+const validPublicName = name => typeof name === 'string' && name.trim() === name &&
+  name.length >= 2 && name.length <= 80 && /\p{L}/u.test(name) &&
+  !/[\u0000-\u001f\u007f\u200e\u200f\u202a-\u202e\u2066-\u2069<>@]/u.test(name) && !/:\/\//.test(name)
 // One SELECT gives the publisher a consistent view even while a reviewer writes.
 // Explicit columns also keep private submission data out of release artifacts.
 export const publicColumns = {
   problems: 'id slug sector places_json sources_json',
   problem_text: 'problem_id locale title summary customer context unknown',
-  approaches: 'id problem_id kind position added_at guides_json',
+  approaches: 'id problem_id kind position added_at guides_json suggested_by_json',
   approach_text: 'approach_id locale title summary description business_model steps_json signal prototype editorial_note',
   organizations: 'id slug website logo_path roles_json aliases_json sources_json source_date origin',
   organization_text: 'organization_id locale name description',
@@ -42,8 +45,12 @@ export async function readEcosystemSnapshot(query, releaseId, createdAt) {
     version: 1, releaseId, createdAt,
     problems: problems.map(p => ({ id: p.id, slug: p.slug, sector: p.sector, places: parsed(p.places_json), sources: parsed(p.sources_json),
       ...localized(problemText, 'problem_id', p.id, t => ({ title: t.title, summary: t.summary, customer: t.customer, context: t.context, unknown: t.unknown })) })),
-    approaches: approaches.map(a => ({ id: a.id, problemId: a.problem_id, kind: a.kind, position: a.position, addedAt: a.added_at, guides: parsed(a.guides_json),
-      ...localized(approachText, 'approach_id', a.id, t => ({ title: t.title, summary: t.summary, description: t.description, businessModel: t.business_model, steps: parsed(t.steps_json), signal: t.signal, prototype: t.prototype, editorialNote: t.editorial_note })) })),
+    approaches: approaches.map(a => {
+      const suggestedBy = parsed(a.suggested_by_json)
+      return { id: a.id, problemId: a.problem_id, kind: a.kind, position: a.position, addedAt: a.added_at, guides: parsed(a.guides_json),
+        ...(suggestedBy.length ? { suggestedBy } : {}),
+        ...localized(approachText, 'approach_id', a.id, t => ({ title: t.title, summary: t.summary, description: t.description, businessModel: t.business_model, steps: parsed(t.steps_json), signal: t.signal, prototype: t.prototype, editorialNote: t.editorial_note })) }
+    }),
     organizations: organizations.map(o => ({ id: o.id, slug: o.slug, website: o.website, logoPath: o.logo_path, roles: parsed(o.roles_json), aliases: parsed(o.aliases_json), sourceUrls: parsed(o.sources_json), sourceDate: o.source_date, origin: o.origin,
       ...localized(organizationText, 'organization_id', o.id, t => ({ name: t.name, description: t.description })),
       ...(values[tables.indexOf('organization_profiles')]?.find(p => p.organization_id === o.id) ? { profile: publicCompanyProfile(parsed(values[tables.indexOf('organization_profiles')].find(p => p.organization_id === o.id).profile_json)) } : {}),
@@ -90,6 +97,7 @@ export function validateEcosystemSnapshot(snapshot) {
       // Keep editorial dates available without adding freshness claims to the UI.
       if (kind === 'approaches' && !/^\d{4}-\d{2}-\d{2}$/.test(row.addedAt || '')) throw new Error(`Missing added date: ${row.id}`)
       if (kind === 'approaches' && (!Array.isArray(row.guides) || row.guides.length > 5 || new Set(row.guides).size !== row.guides.length || row.guides.some(g => !/^[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)*$/.test(g)))) throw new Error(`Invalid guide links: ${row.id}`)
+      if (kind === 'approaches' && row.suggestedBy !== undefined && (!Array.isArray(row.suggestedBy) || !row.suggestedBy.length || row.suggestedBy.length > 5 || new Set(row.suggestedBy).size !== row.suggestedBy.length || row.suggestedBy.some(name => !validPublicName(name)))) throw new Error(`Invalid idea credit: ${row.id}`)
       if (kind === 'connections' && (!safeUrl(row.evidenceUrl) || !row.en.trim() || !row.bn.trim())) throw new Error('Invalid connection evidence')
     }
   }

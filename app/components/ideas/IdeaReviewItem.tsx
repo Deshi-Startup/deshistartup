@@ -50,6 +50,7 @@ export function IdeaSubmissionContent({ idea, locale, showTitle = true }: { idea
       {idea.place && <><h3 lang={locale}>{t('Location', 'জায়গা')}</h3><p>{idea.place}</p></>}
       {idea.evidence && <><h3 lang={locale}>{t('Research or links', 'গবেষণা বা লিংক')}</h3><p>{idea.evidence}</p></>}
       {idea.test && <><h3 lang={locale}>{t('First test', 'প্রথম পরীক্ষা')}</h3><p>{idea.test}</p></>}
+      {idea.creditName && <p lang={locale}>{t('Public credit requested:', 'প্রকাশ হলে নাম দিতে বলেছেন:')} <span lang={idea.locale}>{idea.creditName}</span></p>}
     </div>
   )
 }

@@ -162,6 +162,7 @@ export default function ConnectionReview({ locale }: { locale: Locale }) {
         <button className="ideas-text-button review-back" disabled={busy} onClick={() => choose('')}><IdeaIcon name="back" />{t('Back to list', 'তালিকায় ফিরুন')}</button>
         <h2 id="review-record-title" ref={heading} tabIndex={-1} className="review-record-title" lang={item.payload.locale}>{title(item)}</h2>
         <p className="submission-status">{submissionStatus(item, locale)}<span aria-hidden="true"> · </span><time dateTime={item.created_at}>{submissionDate(item.created_at, locale)}</time></p>
+        {item.contactEmail && <p className="review-contact">{t('Contact:', 'যোগাযোগ:')} <a href={`mailto:${item.contactEmail}`}>{item.contactEmail}</a></p>}
         {item.status === 'pending' ? 'kind' in item.payload
           ? <IdeaReviewItem key={item.id} locale={locale} item={{ ...item, payload: item.payload }} note={notes[item.id] || ''} onNote={note => setNotes(previous => ({ ...previous, [item.id]: note }))} busy={busy} onDecision={decision => void mutate('', decision, decision.decision)} />
           : <ReviewItem key={item.id} locale={locale} item={item as PendingConnection} drafts={companyDrafts.current} companies={companies} organizationVersion={organizationVersion} busy={busy} onDecision={decision => void mutate('', decision, decision.decision)} />

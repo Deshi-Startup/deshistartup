@@ -6,6 +6,9 @@ const stages = ['research', 'prototype', 'live']
 const record = (value: unknown): value is Record<string, unknown> => !!value && typeof value === 'object' && !Array.isArray(value)
 const text = (value: unknown, max: number, min = 1): value is string => typeof value === 'string' && value.trim().length >= min && value.length <= max
 export const validEntityId = (value: unknown): value is string => typeof value === 'string' && /^[a-z0-9][a-z0-9_-]{0,95}$/.test(value)
+export const validCreditName = (value: unknown): value is string => typeof value === 'string' &&
+  value.length <= 80 && value.trim().length >= 2 && /\p{L}/u.test(value) &&
+  !/[\u0000-\u001f\u007f\u200e\u200f\u202a-\u202e\u2066-\u2069<>@]/u.test(value) && !/:\/\//.test(value)
 export function publicUrl(value: unknown): value is string {
   if (!text(value, 500)) return false
   try {
@@ -36,10 +39,12 @@ export function parseProposal(value: unknown): ConnectionProposal | null {
 export function parseIdeaProposal(value: unknown): IdeaProposal | null {
   if (!record(value) || value.kind !== 'idea' || value.version !== 1 || !['en', 'bn'].includes(String(value.locale)) ||
     !text(value.title, 100) || !text(value.solution, 2000, 20) || !text(value.customer, 240) ||
-    !text(value.problem, 2000, 0) || !text(value.place, 120, 0) || !text(value.evidence, 2000, 0) || !text(value.test, 1000, 0)) return null
+    !text(value.problem, 2000, 0) || !text(value.place, 120, 0) || !text(value.evidence, 2000, 0) || !text(value.test, 1000, 0) ||
+    (value.creditName !== undefined && value.creditName !== '' && !validCreditName(value.creditName))) return null
   return { version: 1, kind: 'idea', locale: value.locale as IdeaProposal['locale'], title: value.title.trim(),
     solution: value.solution.trim(), customer: value.customer.trim(), problem: value.problem.trim(),
-    place: value.place.trim(), evidence: value.evidence.trim(), test: value.test.trim() }
+    place: value.place.trim(), evidence: value.evidence.trim(), test: value.test.trim(),
+    ...(value.creditName ? { creditName: (value.creditName as string).trim() } : {}) }
 }
 export function parseIdeaEditProposal(value: unknown, snapshot: EcosystemSnapshot): IdeaEditProposal | null {
   if (!record(value) || value.kind !== 'idea-edit' || value.version !== 1 ||

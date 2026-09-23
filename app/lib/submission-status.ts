@@ -6,6 +6,8 @@ export interface Submission {
   payload: IdeaProposal | IdeaEditProposal | ConnectionProposal; published: number;
   idea_id: string | null;
   editorial_close_note: string | null; editorial_closed_at: string | null;
+  /** Only returned by the allowlisted reviewer API. */
+  contactEmail?: string;
   notifications?: { kind: string; state: string }[];
 }
 export function submissionStatus(item: Pick<Submission, 'status' | 'published' | 'payload'> & { idea_id?: string | null; editorial_closed_at?: string | null }, locale: Locale): string {

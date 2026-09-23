@@ -96,6 +96,8 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
 
       <IdeaEditEntry locale={locale} ideaId={idea.id} title={a.title} releaseId={ecosystem.releaseId} initial={ideaEditValues(idea, problem, locale)} />
 
+      {idea.suggestedBy?.length ? <p className="ideas-public-credit">{en ? 'Suggested by' : 'আইডিয়াটি দিয়েছেন'} <span>{idea.suggestedBy.join(', ')}</span></p> : null}
+
     </article>
   </IdeaShell>
 }

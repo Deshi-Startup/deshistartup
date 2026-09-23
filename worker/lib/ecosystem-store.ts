@@ -30,7 +30,7 @@ export async function createSubmission(db: D1Database, owner: string, key: strin
   return { id: stored.id, status: stored.status, created: stored.id === id }
 }
 
-export async function decideSubmission(db: D1Database, id: string, reviewer: string, decision: ReviewDecision | IdeaDecision, now: string) {
+export async function decideSubmission(db: D1Database, id: string, reviewer: string, decision: ReviewDecision | IdeaDecision, now: string, sendDecisionEmail = false) {
   const row = await db.prepare('SELECT * FROM submissions WHERE id = ?').bind(id).first<SubmissionRow>()
   if (!row) throw new EcosystemConflict('submission_not_found')
   if (row.status !== 'pending' || row.revision !== decision.revision) throw new EcosystemConflict('stale_decision')
@@ -62,8 +62,10 @@ export async function decideSubmission(db: D1Database, id: string, reviewer: str
   }
   statements.push(
     db.prepare('UPDATE submissions SET status = ?, revision = revision + 1, decided_at = ?, decision_note = ? WHERE id = ?').bind(decision.decision, now, decision.note, id),
-    db.prepare('INSERT INTO review_events (id, submission_id, reviewer_hash, decision, note, created_at) VALUES (?, ?, ?, ?, ?, ?)').bind(`review_${crypto.randomUUID()}`, id, reviewer, decision.decision, decision.note, now),
-    db.prepare("INSERT INTO submission_notifications (submission_id, kind, available_at) SELECT submission_id, 'decision', ? FROM submission_contacts WHERE submission_id = ?").bind(now, id),
+    db.prepare('INSERT INTO review_events (id, submission_id, reviewer_hash, decision, note, created_at) VALUES (?, ?, ?, ?, ?, ?)').bind(`review_${crypto.randomUUID()}`, id, reviewer, decision.decision, decision.note, now)
+  )
+  if (sendDecisionEmail) statements.push(db.prepare("INSERT INTO submission_notifications (submission_id, kind, available_at) SELECT submission_id, 'decision', ? FROM submission_contacts WHERE submission_id = ?").bind(now, id))
+  statements.push(
     db.prepare('DELETE FROM mutation_guards WHERE id IN (?, ?, ?)').bind(guard, `${guard}:problem`, `${guard}:organizations`)
   )
   try { await db.batch(statements) }
