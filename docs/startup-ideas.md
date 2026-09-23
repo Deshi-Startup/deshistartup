@@ -6,7 +6,7 @@ companies have independent profiles shared across Deshi Startup. See `companies.
 
 ## Routes and data
 
-- `/startup-ideas` and `/en/startup-ideas`: seven researched ideas, search, sector/location
+- `/startup-ideas` and `/en/startup-ideas`: eight researched ideas, search, sector/location
   and idea-type filters, plus a saved-only filter. Filters and sort use shareable URLs.
 - `/startup-ideas/<slug>`: one idea, who it helps, how it works, a possible revenue
   model and numbered first steps. Relevant guides and alternative ideas for the
@@ -93,9 +93,9 @@ Migration `0011` creates this table and the initial editorial selections.
 ## Seed standard
 
 The collection covers crop cooling, drinking-water maintenance, clinic follow-up,
-workplace heat, textile recycling, rooftop-solar upkeep and tested recovery for
-business apps. Each brief
-names a customer, a possible payer, a small test and the result worth looking for.
+workplace heat, textile recycling, rooftop-solar upkeep, inverter support and tested
+recovery for business apps. Each brief names a customer, a possible payer, a
+small test and the result worth looking for.
 Primary sources establish the problem; pricing, demand and proposed business models
 remain hypotheses to test. Existing work is acknowledged. Sector importance alone
 is not enough to qualify an idea.
@@ -246,9 +246,11 @@ submissions, review records and the publication pointer were preserved. Migratio
 adds a researched idea without changing private submissions or existing public
 records. The matching snapshot was deployed and its publication pointer advanced
 after live verification. Migration `0020_idea_edit_publications.sql` was applied
-on 23 September before the idea-page editing release. The unreleased solar idea
-draft uses an older migration number and must be renumbered and reviewed before
-it can be prepared from production.
+on 23 September before the idea-page editing release. Migration `0021` added
+editorial closure for accepted submissions. Migration `0022` adds the solar
+inverter-service idea; `0023` updates the published app-recovery idea in plainer
+English and Bangla. Apply both forward migrations before preparing their public
+release.
 Future environments must apply all pending migrations before preparing a release.
 See [`shared-identity.md`](./shared-identity.md) for the import and identity
 publication boundaries. These database steps do not deploy the Worker or publish
