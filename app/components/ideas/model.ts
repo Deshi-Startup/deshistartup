@@ -7,7 +7,8 @@ export const sectors: Record<Sector, Record<Locale, string>> = {
   manufacturing: { en: 'Manufacturing', bn: 'উৎপাদন' },
   health: { en: 'Healthcare', bn: 'স্বাস্থ্যসেবা' },
   water: { en: 'Water', bn: 'পানি' },
-  energy: { en: 'Energy', bn: 'জ্বালানি' }
+  energy: { en: 'Energy', bn: 'জ্বালানি' },
+  technology: { en: 'Technology', bn: 'প্রযুক্তি' }
 }
 export const places: Record<Place, Record<Locale, string>> = {
   anywhere: { en: 'Across Bangladesh', bn: 'সারা বাংলাদেশ' },

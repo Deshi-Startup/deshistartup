@@ -6,7 +6,7 @@ companies have independent profiles shared across Deshi Startup. See `companies.
 
 ## Routes and data
 
-- `/startup-ideas` and `/en/startup-ideas`: six researched ideas, search, sector/location
+- `/startup-ideas` and `/en/startup-ideas`: seven researched ideas, search, sector/location
   and idea-type filters, plus a saved-only filter. Filters and sort use shareable URLs.
 - `/startup-ideas/<slug>`: one idea, who it helps, how it works, a possible revenue
   model and numbered first steps. Relevant guides and alternative ideas for the
@@ -91,8 +91,9 @@ Migration `0011` creates this table and the initial editorial selections.
 
 ## Seed standard
 
-The first collection covers crop cooling, drinking-water maintenance, clinic
-follow-up, workplace heat, textile recycling and rooftop-solar upkeep. Each brief
+The collection covers crop cooling, drinking-water maintenance, clinic follow-up,
+workplace heat, textile recycling, rooftop-solar upkeep and tested recovery for
+business apps. Each brief
 names a customer, a possible payer, a small test and the result worth looking for.
 Primary sources establish the problem; pricing, demand and proposed business models
 remain hypotheses to test. Existing work is acknowledged. Sector importance alone
@@ -204,7 +205,11 @@ Production migrations through `0014` were applied on 20 September 2026; `0015`,
 `0016` and `0018` followed on 23 September after a private backup and isolated
 restore/migration rehearsal. Post-migration integrity checks passed; existing
 submissions, review records and the publication pointer were preserved. Migration
-`0017` belongs to a separate, unreleased idea-content draft.
+`0017` belongs to a separate, unreleased idea-content draft. Migration
+`0019_regional_app_recovery.sql` was applied remotely on 23 September 2026; it
+adds a researched idea without changing private submissions, existing public records
+or the publication pointer. Its prepared snapshot still requires the matching
+deployment and publication-pointer update.
 Future environments must apply all pending migrations before preparing a release.
 See [`shared-identity.md`](./shared-identity.md) for the import and identity
 publication boundaries. These database steps do not deploy the Worker or publish
