@@ -116,6 +116,14 @@ do not edit a published snapshot or rewrite an applied migration.
 
 Idea proposals reuse the private submissions table with `kind: "idea"`. Only a name,
 a description and the intended user are required. Nothing becomes public on submit.
+The form also offers optional public credit. If selected, the submitter enters the exact
+name they want shown; this choice stays in the private proposal until an editor
+publishes a researched idea. A credited idea uses a small “Suggested by” line on its
+detail page. Do not add a name to `approaches.suggested_by_json` without the matching
+submitter request, and do not treat suggestion credit as authorship, ownership or
+endorsement. Multiple materially used submissions can each receive credit. If the
+submitter opted out, leave the array empty. Idea credit does not automatically create
+a contributor profile or leaderboard entry.
 The reviewer queue accepts a proposal for editing or declines it with a note. An
 accepted proposal still needs researched, bilingual editorial preparation before it
 can become a public idea through the existing release process; acceptance does not
@@ -175,10 +183,13 @@ Publication emails check that snapshot again before delivery. If a release is ro
 back, the email is held and the history shows “Currently unpublished”; a reviewer
 can retry delivery after the idea is restored.
 
-`IDEA_DECISION_EMAILS=true` enables decision, closure and publication emails using the verified
-Google address captured at submission. Enable only after Email Sending onboarding and
-a controlled delivery test. The default is off; the form then promises status tracking
-only. The presence of a binding does not establish Email Sending availability. Existing
+The verified Google address is saved privately for new idea and idea-edit submissions,
+whether or not automated email is enabled. Only allowlisted reviewers can see it in the
+review queue for direct follow-up; it is never in the public release or contributor
+credit. `IDEA_DECISION_EMAILS=true` additionally enables decision, closure and publication
+emails. Enable only after Email Sending onboarding and a controlled delivery test.
+The default is off; no decision or publication email job is queued while it is off.
+The presence of a binding does not establish Email Sending availability. Existing
 submissions without contacts remain in history; never guess or backfill addresses.
 
 Migration `0018_submission_followup.sql` adds private contacts, publication links and
@@ -189,6 +200,12 @@ Leases prevent concurrent dispatch. A crash after provider acceptance but before
 success can duplicate mail; acceptance is not proof of inbox delivery. Failed messages
 show a reviewer retry action. Correct permanent provider configuration errors first.
 Provider exception text and recipient addresses are never logged or publicly exported.
+
+Migration `0024_idea_credit.sql` adds the public `suggested_by_json` field to ideas.
+It was applied to production D1 on 24 September 2026. Apply it in other environments
+before preparing a snapshot with the updated exporter. Existing ideas have
+no named credit. The first submitted ideas published before private contact collection
+cannot be credited by guessing who submitted them; verify a claim before adding a name.
 
 Local tests use simulated delivery and isolated D1. Never enable remote sending for
 test fixtures. No GitHub issues are created for private submissions.

@@ -3,7 +3,7 @@ import { ideaSlug } from '../../app/lib/idea-routes.mjs'
 import { EcosystemConflict } from './ecosystem-store.ts'
 import type { SubmissionRow } from './ecosystem-store.ts'
 
-// Read only explicit public-to-the-owner fields. Contacts, request keys and hashes stay private.
+// Owner history excludes contacts; only the allowlisted reviewer endpoint reads them.
 const fields = `s.id, s.status, s.revision, s.created_at, s.decided_at, s.decision_note, s.payload_json,
   COALESCE(l.approach_id, e.approach_id) AS idea_id,
   c.note AS editorial_close_note, c.closed_at AS editorial_closed_at,
@@ -22,10 +22,12 @@ const fields = `s.id, s.status, s.revision, s.created_at, s.decided_at, s.decisi
       json_each(r.snapshot_json, '$.connections') j)
   ) END AS published`
 const from = 'FROM submissions s LEFT JOIN idea_submission_links l ON l.submission_id = s.id LEFT JOIN idea_edit_publications e ON e.submission_id = s.id LEFT JOIN idea_editorial_closures c ON c.submission_id = s.id'
-type Row = SubmissionRow & { idea_id: string | null; published: number; editorial_close_note: string | null; editorial_closed_at: string | null }
-const shape = ({ payload_json, ...row }: Row) => ({ ...row, payload: JSON.parse(payload_json) })
+type Row = SubmissionRow & { idea_id: string | null; published: number; editorial_close_note: string | null; editorial_closed_at: string | null; contact_email?: string | null }
+const shape = ({ payload_json, contact_email, ...row }: Row) => ({ ...row, payload: JSON.parse(payload_json), ...(contact_email ? { contactEmail: contact_email } : {}) })
 
 export async function submissionHistory(db: D1Database, params: URLSearchParams, owner: string | null) {
+  const columns = owner ? fields : `${fields}, sc.email AS contact_email`
+  const source = owner ? from : `${from} LEFT JOIN submission_contacts sc ON sc.submission_id = s.id`
   const status = params.get('status') || 'pending'
   if (!owner && !['pending', 'approved', 'rejected'].includes(status)) throw new EcosystemConflict('invalid_filter')
   const ideaHistory = params.get('kind') === 'idea'
@@ -39,13 +41,13 @@ export async function submissionHistory(db: D1Database, params: URLSearchParams,
     if (extra || !/^\d{4}-\d{2}-\d{2}T[\d:.]+Z$/.test(date || '') || !validEntityId(id || '')) throw new EcosystemConflict('invalid_cursor')
     conditions.push('(s.created_at < ? OR (s.created_at = ? AND s.id < ?))'); binds.push(date, date, id)
   }
-  const rows = await db.prepare(`SELECT ${fields} ${from} WHERE ${conditions.join(' AND ')} ORDER BY s.created_at DESC, s.id DESC LIMIT 31`).bind(...binds).all<Row>()
+  const rows = await db.prepare(`SELECT ${columns} ${source} WHERE ${conditions.join(' AND ')} ORDER BY s.created_at DESC, s.id DESC LIMIT 31`).bind(...binds).all<Row>()
   const page = rows.results.slice(0, 30)
   const selectedId = params.get('submission')
   let selected: Row | null = null
   if (selectedId) {
     if (!validEntityId(selectedId)) throw new EcosystemConflict('invalid_submission_id')
-    selected = await db.prepare(`SELECT ${fields} ${from} WHERE s.id = ? ${owner ? 'AND s.owner_hash = ?' : ''}`).bind(...(owner ? [selectedId, owner] : [selectedId])).first<Row>()
+    selected = await db.prepare(`SELECT ${columns} ${source} WHERE s.id = ? ${owner ? 'AND s.owner_hash = ?' : ''}`).bind(...(owner ? [selectedId, owner] : [selectedId])).first<Row>()
     if (owner && selected) {
       const kind = JSON.parse(selected.payload_json).kind
       if (ideaHistory ? !['idea', 'idea-edit'].includes(kind) : !!kind) selected = null
@@ -71,7 +73,7 @@ export async function publishedIdeas(db: D1Database, locale = 'en') {
   return rows.results.map(row => ({ ...row, slug: ideaSlug(row.id) }))
 }
 
-export async function linkPublishedIdea(db: D1Database, id: string, ideaId: string, revision: number, reviewer: string, now: string) {
+export async function linkPublishedIdea(db: D1Database, id: string, ideaId: string, revision: number, reviewer: string, now: string, sendDecisionEmail = false) {
   const guard = crypto.randomUUID()
   try {
     await db.batch([
@@ -83,7 +85,7 @@ export async function linkPublishedIdea(db: D1Database, id: string, ideaId: stri
       ) THEN 1 ELSE 0 END)`).bind(guard, id, revision, ideaId),
       db.prepare('INSERT INTO idea_submission_links (submission_id, approach_id, reviewer_hash, linked_at) VALUES (?, ?, ?, ?)').bind(id, ideaId, reviewer, now),
       db.prepare('UPDATE submissions SET revision = revision + 1 WHERE id = ?').bind(id),
-      db.prepare("INSERT INTO submission_notifications (submission_id, kind, available_at) SELECT submission_id, 'published', ? FROM submission_contacts WHERE submission_id = ?").bind(now, id),
+      ...(sendDecisionEmail ? [db.prepare("INSERT INTO submission_notifications (submission_id, kind, available_at) SELECT submission_id, 'published', ? FROM submission_contacts WHERE submission_id = ?").bind(now, id)] : []),
       db.prepare('DELETE FROM mutation_guards WHERE id = ?').bind(guard)
     ])
   } catch (error) {
@@ -93,7 +95,7 @@ export async function linkPublishedIdea(db: D1Database, id: string, ideaId: stri
   return { id, ideaId }
 }
 
-export async function linkPublishedIdeaEdit(db: D1Database, id: string, revision: number, reviewer: string, now: string, deployedReleaseId: string) {
+export async function linkPublishedIdeaEdit(db: D1Database, id: string, revision: number, reviewer: string, now: string, deployedReleaseId: string, sendDecisionEmail = false) {
   const row = await db.prepare(`SELECT s.payload_json, current_release.id AS current_id,
     current_release.created_at AS current_created, current_release.snapshot_json AS current_json,
     base_release.created_at AS base_created, base_release.snapshot_json AS base_json
@@ -130,7 +132,7 @@ export async function linkPublishedIdeaEdit(db: D1Database, id: string, revision
       ) THEN 1 ELSE 0 END)`).bind(guard, id, revision, deployedReleaseId, proposal.ideaId),
       db.prepare('INSERT INTO idea_edit_publications (submission_id, approach_id, release_id, reviewer_hash, linked_at) SELECT ?, ?, release_id, ?, ? FROM publication WHERE singleton = 1').bind(id, proposal.ideaId, reviewer, now),
       db.prepare('UPDATE submissions SET revision = revision + 1 WHERE id = ?').bind(id),
-      db.prepare("INSERT INTO submission_notifications (submission_id, kind, available_at) SELECT submission_id, 'published', ? FROM submission_contacts WHERE submission_id = ?").bind(now, id),
+      ...(sendDecisionEmail ? [db.prepare("INSERT INTO submission_notifications (submission_id, kind, available_at) SELECT submission_id, 'published', ? FROM submission_contacts WHERE submission_id = ?").bind(now, id)] : []),
       db.prepare('DELETE FROM mutation_guards WHERE id = ?').bind(guard)
     ])
   } catch (error) {
@@ -140,7 +142,7 @@ export async function linkPublishedIdeaEdit(db: D1Database, id: string, revision
   return { id, ideaId: proposal.ideaId }
 }
 
-export async function closeAcceptedIdea(db: D1Database, id: string, revision: number, note: string, reviewer: string, now: string) {
+export async function closeAcceptedIdea(db: D1Database, id: string, revision: number, note: string, reviewer: string, now: string, sendDecisionEmail = false) {
   const guard = crypto.randomUUID()
   try {
     await db.batch([
@@ -152,7 +154,7 @@ export async function closeAcceptedIdea(db: D1Database, id: string, revision: nu
       ) THEN 1 ELSE 0 END)`).bind(guard, id, revision),
       db.prepare('INSERT INTO idea_editorial_closures (submission_id, note, reviewer_hash, closed_at) VALUES (?, ?, ?, ?)').bind(id, note, reviewer, now),
       db.prepare('UPDATE submissions SET revision = revision + 1 WHERE id = ?').bind(id),
-      db.prepare("INSERT INTO submission_notifications (submission_id, kind, available_at) SELECT submission_id, 'closed', ? FROM submission_contacts WHERE submission_id = ?").bind(now, id),
+      ...(sendDecisionEmail ? [db.prepare("INSERT INTO submission_notifications (submission_id, kind, available_at) SELECT submission_id, 'closed', ? FROM submission_contacts WHERE submission_id = ?").bind(now, id)] : []),
       db.prepare('DELETE FROM mutation_guards WHERE id = ?').bind(guard)
     ])
   } catch (error) {

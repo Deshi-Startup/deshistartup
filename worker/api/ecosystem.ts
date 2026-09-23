@@ -90,7 +90,7 @@ export function createEcosystemHandler({ authenticate = requireUser, admit = adm
           if (!body.ok) return json({ error: body.error }, body.error === 'body_too_large' ? 413 : 400)
           const value = body.value as { ideaId?: unknown; revision?: unknown } | null
           if (!value || typeof value.ideaId !== 'string' || !validEntityId(value.ideaId) || typeof value.revision !== 'number' || !Number.isSafeInteger(value.revision) || value.revision < 1) return json({ error: 'invalid_publication_link' }, 400)
-          const result = await linkPublishedIdea(db, action[1], value.ideaId, value.revision, owner, now())
+          const result = await linkPublishedIdea(db, action[1], value.ideaId, value.revision, owner, now(), decisionEmailsEnabled(env))
           await notify(action[1])
           return json(result)
         }
@@ -99,7 +99,7 @@ export function createEcosystemHandler({ authenticate = requireUser, admit = adm
           if (!body.ok) return json({ error: body.error }, body.error === 'body_too_large' ? 413 : 400)
           const revision = (body.value as { revision?: unknown } | null)?.revision
           if (!Number.isSafeInteger(revision) || Number(revision) < 1) return json({ error: 'invalid_publication_link' }, 400)
-          const result = await linkPublishedIdeaEdit(db, action[1], Number(revision), owner, now(), deployedReleaseId)
+          const result = await linkPublishedIdeaEdit(db, action[1], Number(revision), owner, now(), deployedReleaseId, decisionEmailsEnabled(env))
           await notify(action[1])
           return json(result)
         }
@@ -108,7 +108,7 @@ export function createEcosystemHandler({ authenticate = requireUser, admit = adm
           if (!body.ok) return json({ error: body.error }, body.error === 'body_too_large' ? 413 : 400)
           const value = body.value as { revision?: unknown; note?: unknown } | null
           if (!value || !Number.isSafeInteger(value.revision) || Number(value.revision) < 1 || typeof value.note !== 'string' || value.note.trim().length < 10 || value.note.trim().length > 1000) return json({ error: 'invalid_editorial_close' }, 400)
-          const result = await closeAcceptedIdea(db, action[1], Number(value.revision), value.note.trim(), owner, now())
+          const result = await closeAcceptedIdea(db, action[1], Number(value.revision), value.note.trim(), owner, now(), decisionEmailsEnabled(env))
           await notify(action[1])
           return json(result)
         }
@@ -138,14 +138,14 @@ export function createEcosystemHandler({ authenticate = requireUser, admit = adm
         if (!row) return json({ error: 'submission_not_found' }, 409)
         const decision = JSON.parse(row.payload_json).kind ? parseIdeaDecision(body.value) : parseDecision(body.value)
         if (!decision) return json({ error: 'invalid_decision' }, 400)
-        const result = await decideSubmission(db, reviewId, owner, decision, now())
+        const result = await decideSubmission(db, reviewId, owner, decision, now(), decisionEmailsEnabled(env))
         await notify(reviewId)
         return json(result, 200)
       }
       const proposal = (editSnapshot && parseIdeaEditProposal(body.value, editSnapshot)) || parseIdeaProposal(body.value) || parseProposal(body.value)
       const key = request.headers.get('Idempotency-Key') || ''
       if (!proposal || !/^[a-zA-Z0-9_-]{16,80}$/.test(key)) return json({ error: 'invalid_submission' }, 400)
-      const { created: _created, ...submission } = await createSubmission(db, owner, key, await sha256Hex(JSON.stringify(proposal)), proposal, now(), decisionEmailsEnabled(env) ? user.email : undefined)
+      const { created: _created, ...submission } = await createSubmission(db, owner, key, await sha256Hex(JSON.stringify(proposal)), proposal, now(), user.email)
       // Retries can also pick up an unsent outbox entry; the lease suppresses concurrent sends.
       await notify(submission.id)
       return json(submission, 201)

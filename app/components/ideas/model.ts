@@ -106,21 +106,22 @@ export function readSaved(storage: Pick<Storage, 'getItem' | 'setItem'>, ideas: 
   storage.setItem(SAVED_KEY, JSON.stringify(migrated))
   return migrated
 }
-export interface IdeaDraft { title: string; solution: string; customer: string; problem: string; place: string; evidence: string; test: string }
-export const emptyDraft: IdeaDraft = { title: '', solution: '', customer: '', problem: '', place: '', evidence: '', test: '' }
-export const draftLimits: Record<keyof IdeaDraft, number> = { title: 100, solution: 2000, customer: 240, problem: 2000, place: 120, evidence: 2000, test: 1000 }
+export interface IdeaDraft { title: string; solution: string; customer: string; problem: string; place: string; evidence: string; test: string; creditRequested: boolean; creditName: string }
+export const emptyDraft: IdeaDraft = { title: '', solution: '', customer: '', problem: '', place: '', evidence: '', test: '', creditRequested: false, creditName: '' }
+export const draftLimits: Record<Exclude<keyof IdeaDraft, 'creditRequested'>, number> = { title: 100, solution: 2000, customer: 240, problem: 2000, place: 120, evidence: 2000, test: 1000, creditName: 80 }
 export function parseDraft(raw: string | null): IdeaDraft {
   try {
     const value = JSON.parse(raw || '{}')
     if (!value || typeof value !== 'object') return { ...emptyDraft }
-    return Object.fromEntries(Object.entries(draftLimits).map(([key, limit]) => [key, typeof value[key] === 'string' ? value[key].slice(0, limit) : ''])) as unknown as IdeaDraft
+    const fields = Object.fromEntries(Object.entries(draftLimits).map(([key, limit]) => [key, typeof value[key] === 'string' ? value[key].slice(0, limit) : '']))
+    return { ...fields, creditRequested: value.creditRequested === true, creditName: value.creditRequested === true ? fields.creditName : '' } as IdeaDraft
   } catch { return { ...emptyDraft } }
 }
 export function draftMarkdown(draft: IdeaDraft, locale: Locale) {
   const en = locale === 'en'
-  const heading: Record<keyof IdeaDraft, string> = en
+  const heading: Record<Exclude<keyof IdeaDraft, 'creditRequested' | 'creditName'>, string> = en
     ? { title: 'Idea', solution: 'The idea', customer: 'Who it helps', problem: 'The problem', place: 'Suggested pilot location', evidence: 'Evidence and sources', test: 'First test' }
     : { title: 'আইডিয়া', solution: 'যা বানাতে চান', customer: 'কাদের কাজে লাগবে', problem: 'সমস্যা', place: 'কোথায় পরীক্ষা করবেন', evidence: 'তথ্য ও সোর্স', test: 'প্রথম পরীক্ষা' }
   return `# ${draft.title || heading.title}\n\n${en ? 'Private draft · Not submitted or validated.' : 'নিজের খসড়া। জমা দেওয়া বা যাচাই করা হয়নি।'}\n\n` +
-    (Object.keys(heading) as (keyof IdeaDraft)[]).filter(key => key !== 'title' && draft[key].trim()).map(key => `## ${heading[key]}\n\n${draft[key].trim()}`).join('\n\n') + '\n'
+    (Object.keys(heading) as (keyof typeof heading)[]).filter(key => key !== 'title' && draft[key].trim()).map(key => `## ${heading[key]}\n\n${draft[key].trim()}`).join('\n\n') + '\n'
 }

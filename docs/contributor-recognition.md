@@ -4,6 +4,10 @@ Deshi Startup publishes an evidence-backed record of work that has passed review
 for attribution and discoverability; it is not a credential, endorsement, expert directory, or
 measure of impact.
 
+The optional “Suggested by” line on a published startup idea is a lighter form of
+provenance, described in [startup-ideas.md](startup-ideas.md). It does not create a
+contributor profile or ledger event automatically.
+
 ## Counting rule
 
 One accepted event counts once for every credited person. An event is one reviewed bundle that

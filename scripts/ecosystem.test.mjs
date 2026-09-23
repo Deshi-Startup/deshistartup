@@ -33,6 +33,15 @@ test('editorial picks need matching bilingual reasons and voting allows only shi
   const ids = JSON.parse(fs.readFileSync(new URL('../app/generated/idea-ids.json', import.meta.url), 'utf8'))
   assert.deepEqual(ids, snapshot.approaches.map(idea => idea.id))
 })
+test('public idea credit contains only short display names', () => {
+  const credited = structuredClone(snapshot)
+  credited.approaches[0].suggestedBy = ['Farhana Rahman', 'নুসরাত জাহান']
+  assert.equal(validateEcosystemSnapshot(credited), credited)
+  for (const names of [['person@example.com'], ['<script>'], ['One', 'One'], []]) {
+    credited.approaches[0].suggestedBy = names
+    assert.throws(() => validateEcosystemSnapshot(credited), /idea credit/)
+  }
+})
 test('release marker pins exact data and all editorial references resolve', () => {
   const marker = JSON.parse(fs.readFileSync(new URL('../public/ecosystem-release.json', import.meta.url), 'utf8'))
   assert.equal(marker.digest, snapshotDigest(snapshot))

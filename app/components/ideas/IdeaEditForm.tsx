@@ -129,7 +129,7 @@ export default function IdeaEditForm({ locale, ideaId, title, releaseId, initial
         <label htmlFor="idea-edit-source">{t('Source link (optional)', 'সোর্সের লিংক (ইচ্ছা হলে)')}</label><input id="idea-edit-source" type="url" maxLength={500} value={draft.sourceUrl} onChange={event => update({ ...draft, sourceUrl: event.target.value })} />
         <div className="ideas-draft-bottom"><button type="submit" className="ideas-button" disabled={available !== true}>{busy ? t('Submitting…', 'জমা হচ্ছে…') : session.auth ? t('Submit changes', 'বদলগুলো জমা দিন') : t('Sign in to submit', 'জমা দিতে সাইন ইন করুন')}</button><button type="button" className="ideas-text-button" onClick={onClose}>{t('Keep draft and close', 'খসড়া রেখে বন্ধ করুন')}</button></div>
       </fieldset>
-      <p className="ideas-action-status">{t('Changes are reviewed before they appear on the site.', 'পর্যালোচনার পরই বদলগুলো সাইটে দেখা যাবে।')}</p>
+      <p className="ideas-action-status">{t('We save your Google account email privately for follow-up. Changes are reviewed before they appear on the site.', 'পরে যোগাযোগের জন্য গুগল অ্যাকাউন্টের ইমেইল ঠিকানা আমরা প্রাইভেটভাবে রাখব। পর্যালোচনার পরই বদলগুলো সাইটে দেখা যাবে।')}</p>
       {storageError && <p role="alert" className="ideas-error">{t('Your browser could not save this draft. Copy your changes before leaving.', 'ব্রাউজারে খসড়া সেভ হয়নি। পাতা ছাড়ার আগে বদলগুলো কপি করুন।')}</p>}
       {available === false && <p role="status" className="ideas-error">{t('Submissions are unavailable right now. Your draft stays here.', 'এখন জমা নেওয়া যাচ্ছে না। খসড়া এখানেই থাকবে।')}</p>}
       {error && <p role="alert" className="ideas-error">{error}</p>}</form>

@@ -34,6 +34,9 @@ test('idea intake requires useful bounded copy and ignores untrusted workflow fi
     assert.equal(parseIdeaProposal(idea(changes)), null)
   }
   assert.deepEqual(parseIdeaProposal(idea({ status: 'approved', owner_hash: 'forged', title: '  An idea for testing  ' })), idea())
+  assert.equal(parseIdeaProposal(idea({ creditName: '  Farhana Rahman  ' }))?.creditName, 'Farhana Rahman')
+  assert.equal(parseIdeaProposal(idea({ creditName: 'নুসরাত জাহান' }))?.creditName, 'নুসরাত জাহান')
+  for (const creditName of ['a', 'a@b.com', 'https://example.com', '<script>', 'A\nB']) assert.equal(parseIdeaProposal(idea({ creditName })), null)
   assert.equal(parseProposal(proposal({ kind: 'idea' })), null)
   assert.equal(parseProposal(idea()), null)
   assert.equal(parseIdeaDecision(ideaDecision({ note: '' })), null)
@@ -112,6 +115,13 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
     return readEcosystemSnapshot(sql => rows[sql.match(/FROM (\w+)/)[1]], 'release-test', now)
   }
   const initial = await snapshot()
+  await t.test('only editor-approved names enter a public idea snapshot', async () => {
+    await db.prepare("UPDATE approaches SET suggested_by_json = ? WHERE id = 'harvest-cooling'").bind(JSON.stringify(['Farhana Rahman', 'নুসরাত জাহান'])).run()
+    const credited = (await snapshot()).approaches.find(row => row.id === 'harvest-cooling')
+    assert.deepEqual(credited.suggestedBy, ['Farhana Rahman', 'নুসরাত জাহান'])
+    await db.prepare("UPDATE approaches SET suggested_by_json = '[]' WHERE id = 'harvest-cooling'").run()
+    assert.deepEqual(await snapshot(), initial)
+  })
   await t.test('public vote caching shares one release key and never caches private reads', async () => {
     const entries = new Map()
     let reads = 0
@@ -419,7 +429,9 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
     const privateResponse = await call(`submissions?kind=idea&submission=${own.id}`, 'stranger')
     assert.equal((await privateResponse.json()).selected, null)
     assert.match(privateResponse.headers.get('Cache-Control'), /no-store/)
-    assert.doesNotMatch(JSON.stringify(direct), /owner_hash|idempotency_key|payload_hash|@example.com/)
+    assert.equal(direct.selected.contactEmail, 'idea-author@example.com')
+    assert.doesNotMatch(JSON.stringify(direct), /owner_hash|idempotency_key|payload_hash/)
+    assert.doesNotMatch(JSON.stringify(await (await call(`submissions?kind=idea&submission=${own.id}`, 'idea-author')).json()), /@example.com/)
   })
   await t.test('idea history paginates without losing equal-time submissions', async () => {
     for (let i = 0; i < 33; i++) await call('submissions', 'history-author', idea({ title: `History idea ${i}` }), `history-submission-${String(i).padStart(3, '0')}`)
@@ -454,10 +466,12 @@ test('D1 submission, review and public snapshot boundaries', { timeout: 90_000 }
     assert.doesNotMatch(JSON.stringify(own), /email-author@example.com|attacker@example.com/)
     assert.doesNotMatch(JSON.stringify(await snapshot()), /email-author@example.com|Reviewer note|submission_notifications|submission_contacts/)
   })
-  await t.test('delivery capability controls the promise and private contact collection', async () => {
+  await t.test('contact stays private while disabled decision email queues stay empty', async () => {
     assert.equal((await (await call('status')).json()).decisionEmails, false)
     const result = await (await call('submissions', 'no-email-author', idea(), 'no-email-contact-001')).json()
-    assert.equal(await db.prepare('SELECT email FROM submission_contacts WHERE submission_id = ?').bind(result.id).first(), null)
+    assert.equal((await db.prepare('SELECT email FROM submission_contacts WHERE submission_id = ?').bind(result.id).first()).email, 'no-email-author@example.com')
+    assert.equal((await call(`review/${result.id}`, 'reviewer', ideaDecision({ decision: 'rejected' }))).status, 200)
+    assert.equal(await db.prepare("SELECT kind FROM submission_notifications WHERE submission_id = ? AND kind = 'decision'").bind(result.id).first(), null)
   })
   await t.test('failed alerts retry durably with one concurrent dispatcher', async t => {
     const original = env.CONTACT_EMAIL
