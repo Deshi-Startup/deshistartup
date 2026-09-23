@@ -22,6 +22,10 @@ const ideaSearchCopy = {
     en: ['Data Center Recovery: A Startup Idea for Bangladesh', 'Explore a managed recovery idea for Bangladesh apps. Start with existing data centers, test a second site and consider modular facilities only after demand is proven.'],
     bn: ['ডেটা সেন্টার বন্ধ হলে অ্যাপ চালুর সেবা: ব্যবসার আইডিয়া', 'বাংলাদেশে অ্যাপ চালু রাখার বিকল্প কেন্দ্রের আইডিয়া দেখুন। চালু কেন্দ্র ভাড়া নিয়ে পরীক্ষা করুন, তারপর নতুন কেন্দ্রের খরচ ভাবুন।']
   },
+  'solar-inverter-repair': {
+    en: ['Solar Inverter Repair: A Startup Idea for Bangladesh', 'Explore a rooftop solar inverter service idea for Bangladesh. Diagnose faults, check warranties and test paid demand with installers.'],
+    bn: ['সোলার ইনভার্টার মেরামত: বাংলাদেশে ব্যবসার আইডিয়া', 'ছাদের সোলার ইনভার্টারের ত্রুটি সারানোর আইডিয়া দেখুন। ইনস্টলারের সঙ্গে কাজ নিয়ে খরচ ও চাহিদা যাচাই করুন।']
+  },
   'garment-offcuts-approach': {
     en: ['Garment Waste Recycling: A Startup Idea for Bangladesh', 'Explore a garment waste recycling business idea in Bangladesh. Connect factories with recyclers, plan how to earn, and test one small batch.'],
     bn: ['ঝুট কাপড় রিসাইক্লিং: বাংলাদেশে ব্যবসার আইডিয়া', 'কারখানার ঝুট কাপড় রিসাইক্লিং মিলে বিক্রির ব্যবসার আইডিয়া দেখুন। কাদের সঙ্গে কাজ করবেন, আয় কীভাবে হবে আর ছোট করে কীভাবে পরীক্ষা করবেন, জানুন।']
