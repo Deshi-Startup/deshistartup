@@ -19,8 +19,12 @@ const profileDescription = text => text.length > 250 ? text.split(/(?<=[.!?।])
 // Keep the business-idea intent clear: these pages do not sell the services.
 const ideaSearchCopy = {
   'modular-data-centers': {
-    en: ['Data Center Recovery: A Startup Idea for Bangladesh', 'Explore a managed recovery idea for Bangladesh apps. Start with existing data centers, test a second site and consider modular facilities only after demand is proven.'],
-    bn: ['ডেটা সেন্টার বন্ধ হলে অ্যাপ চালুর সেবা: ব্যবসার আইডিয়া', 'বাংলাদেশে অ্যাপ চালু রাখার বিকল্প কেন্দ্রের আইডিয়া দেখুন। চালু কেন্দ্র ভাড়া নিয়ে পরীক্ষা করুন, তারপর নতুন কেন্দ্রের খরচ ভাবুন।']
+    en: ['App Backup Service: A Startup Idea for Bangladesh', 'Help software companies restart an app when its main server fails. Start with rented space and test the backup before building a new data center.'],
+    bn: ['সার্ভার বন্ধ হলে অ্যাপ ফের চালুর সেবা: ব্যবসার আইডিয়া', 'মূল সার্ভার বন্ধ হলে অ্যাপ অন্য জায়গায় চালুর ব্যবস্থা করুন। আগে ভাড়া করা জায়গায় পরীক্ষা করুন, তারপর নতুন কেন্দ্রের কথা ভাবুন।']
+  },
+  'solar-inverter-repair': {
+    en: ['Solar Inverter Repair: A Startup Idea for Bangladesh', 'Help rooftop solar installers find inverter faults and arrange safe repairs. Test whether they will pay for outside help.'],
+    bn: ['সোলার ইনভার্টার মেরামত: বাংলাদেশে ব্যবসার আইডিয়া', 'ইনস্টলারকে ছাদের সোলার ইনভার্টারের সমস্যা খুঁজতে সাহায্য করুন। কাজের ফি পাওয়া যায় কি না, পরীক্ষা করুন।']
   },
   'garment-offcuts-approach': {
     en: ['Garment Waste Recycling: A Startup Idea for Bangladesh', 'Explore a garment waste recycling business idea in Bangladesh. Connect factories with recyclers, plan how to earn, and test one small batch.'],

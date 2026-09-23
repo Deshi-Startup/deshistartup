@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "releaseId": "release_b00d9cdc-3c72-4a9a-9e40-cf8acf856340",
-  "createdAt": "2026-09-23T11:21:45.140Z",
+  "releaseId": "release_02409b95-cf9f-4b0c-a577-9708e16b7132",
+  "createdAt": "2026-09-23T20:29:41.009Z",
   "problems": [
     {
       "id": "garment-offcuts",
@@ -175,21 +175,49 @@
           "date": "18 August 2025",
           "en": "IEEFA identifies maintenance, soiling and monitoring gaps in Bangladesh’s rooftop-solar rollout. It recommends provision for long-term upkeep. This is a service opportunity to test, not a forecast of recoverable energy at a given site.",
           "bn": "IEEFA বাংলাদেশের ছাদের সৌরবিদ্যুৎ ব্যবস্থায় রক্ষণাবেক্ষণ, ময়লা জমা ও পর্যবেক্ষণের ঘাটতি তুলেছে। দীর্ঘমেয়াদি দেখভালের ব্যবস্থা রাখার পরামর্শ দিয়েছে। কোনো স্থাপনায় কত বিদ্যুৎ বাড়বে, তা আলাদা করে মাপতে হবে।"
+        },
+        {
+          "title": "CPD · Rooftop solar programme briefing",
+          "url": "https://cpd.org.bd/resources/2025/07/CPD_Briefing_on_National_Rooftop_Project.pdf",
+          "date": "July 2025",
+          "en": "CPD reports missed upkeep and early equipment failures in some older Dhaka rooftop systems. It does not show whether businesses would pay for a new inverter service.",
+          "bn": "ঢাকার পুরোনো কিছু ছাদসোলার সিস্টেমে ঠিকমতো দেখভাল না করা আর যন্ত্র নষ্ট হওয়ার কথা CPD লিখেছে। নতুন ইনভার্টার সার্ভিসের জন্য কেউ ফি দেবেন কি না, তা এই রিপোর্টে জানা যায় না।"
+        },
+        {
+          "title": "SREDA · Approved three-phase inverters",
+          "url": "https://nsrra.sreda.gov.bd/solar/nem/gti3ph/index.php",
+          "date": "Checked 23 September 2026",
+          "en": "SREDA lists inverter models approved for net metering. A replacement must also meet the rules for the site and power company.",
+          "bn": "নেট মিটারিংয়ের জন্য কোন ইনভার্টার মডেল অনুমোদিত, তা SREDA-র তালিকায় আছে। বদলানোর আগে ভবনের ব্যবস্থা আর বিদ্যুৎ কোম্পানির নিয়মও মিলিয়ে নিতে হবে।"
+        },
+        {
+          "title": "SREDA · Net Metering Guidelines 2025",
+          "url": "https://solar.sreda.gov.bd/doc/Net%20Metering%20Guidelines-2025.pdf",
+          "date": "2025",
+          "en": "These rules cover solar inverters connected to the power grid. Check any replacement with the installer and power company.",
+          "bn": "বিদ্যুতের গ্রিডে যুক্ত সোলার ইনভার্টারের নিয়ম এখানে আছে। বদলানোর আগে ইনস্টলার আর বিদ্যুৎ কোম্পানির সঙ্গে মিলিয়ে নিন।"
+        },
+        {
+          "title": "SEDCOL · Solar operations and maintenance",
+          "url": "https://www.solarland.com.bd/capabilities/om/",
+          "date": "Checked 23 September 2026",
+          "en": "SEDCOL says it checks inverters and fixes solar system faults. This is the company’s own description, not proof of its market share or service quality.",
+          "bn": "SEDCOL বলছে, তারা ইনভার্টার পরীক্ষা করে আর সোলারের সমস্যা ঠিক করে। এটা কোম্পানির নিজের কথা। তাদের সেবার মান বা বাজারে কতটা কাজ করছে, তা এখানে যাচাই করা যায় না।"
         }
       ],
       "en": {
-        "title": "Rooftop solar panels lose power when dust and soot pile up",
-        "summary": "Factory owners invest in rooftop solar, but power drops quickly if no one cleans or inspects the panels.",
-        "customer": "Factory owners, commercial building managers, and solar installers.",
-        "context": "IEEFA’s 2025 Bangladesh rooftop solar analysis identifies maintenance gaps and dust buildup as risks to electricity output. Grid outages can also reduce generation. A service should find the cause of low output before promising savings from cleaning.",
-        "unknown": "Does regular panel washing save enough money on the main power bill to easily cover your service fee? Can your cleaning crew move safely across slippery, sloped tin factory roofs?"
+        "title": "Rooftop solar systems need reliable care",
+        "summary": "Dirty panels or broken equipment can cut the power a solar system makes. Someone needs to find the cause and fix it.",
+        "customer": "Owners of commercial rooftop solar systems and the companies that install them.",
+        "context": "IEEFA points to problems with solar upkeep. CPD describes missed checks and early inverter failures in some older Dhaka systems. This does not prove people will pay for a new repair service. Some firms already offer upkeep. Low power can also be caused by dirty panels, a power cut or faulty wiring.",
+        "unknown": "When an installer or warranty team is slow to help, who would pay someone else to find the fault? Would that fee cover parts, travel and follow-up visits?"
       },
       "bn": {
-        "title": "ধুলোবালি জমে ছাদের সোলার প্যানেলের বিদ্যুৎ উৎপাদন কমে যায়",
-        "summary": "কারখানার মালিকরা সোলার বসান ঠিকই, কিন্তু নিয়মিত পরিষ্কার না করায় বিদ্যুৎ উৎপাদন দ্রুত কমতে থাকে।",
-        "customer": "কারখানার মালিক, বড় ভবনের ম্যানেজার ও সোলার ইনস্টলেশন কোম্পানি।",
-        "context": "IEEFA-এর ২০২৫ সালের বাংলাদেশবিষয়ক বিশ্লেষণে সোলারের নিয়মিত রক্ষণাবেক্ষণের ঘাটতি ও ধুলো জমে উৎপাদন কমার ঝুঁকি এসেছে। গ্রিডের বিদ্যুৎ বন্ধ থাকলেও উৎপাদন কমতে পারে। তাই পরিষ্কার করে কতটা সাশ্রয় হবে বলার আগে বিদ্যুৎ কম হওয়ার কারণ খুঁজে নিতে হবে।",
-        "unknown": "নিয়মিত প্যানেল পরিষ্কার করলে যে বিদ্যুৎ সাশ্রয় হয়, তা দিয়ে কি এই সার্ভিসের খরচ উঠে আসবে? ঢালু ও পিচ্ছিল টিনের ছাদে কর্মীরা নিরাপদে কাজ করতে পারবেন কি?"
+        "title": "ছাদের সোলার নিয়মিত দেখভাল করা দরকার",
+        "summary": "প্যানেলে ময়লা জমলে বা যন্ত্র নষ্ট হলে সোলার থেকে কম বিদ্যুৎ পাওয়া যায়। কী সমস্যা হয়েছে, সেটা বুঝে ঠিক করার লোক দরকার।",
+        "customer": "বাণিজ্যিক ভবনের সোলারের মালিক আর যেসব কোম্পানি সেগুলো বসিয়েছে।",
+        "context": "সোলার দেখভালে সমস্যা হতে পারে বলে IEEFA জানিয়েছে। CPD-ও ঢাকার পুরোনো কিছু সোলার সিস্টেমে পরীক্ষা বাদ পড়া আর ইনভার্টার নষ্ট হওয়ার কথা লিখেছে। তবে নতুন সার্ভিসের জন্য কেউ ফি দেবেন কি না, তা জানা যায় না। কিছু কোম্পানি আগে থেকেই এই কাজ করে। বিদ্যুৎ কম পেলেই ইনভার্টার নষ্ট ধরে নেবেন না। প্যানেলে ময়লা, বিদ্যুৎ চলে যাওয়া বা তারের সমস্যাও থাকতে পারে।",
+        "unknown": "ইনস্টলার বা ওয়ারেন্টির সেবা পেতে দেরি হলে অন্য কাউকে দিয়ে সমস্যা খোঁজানোর ফি কে দেবেন? পার্টস, যাতায়াত আর আবার যাওয়ার খরচ কি সেই আয় থেকে উঠবে?"
       }
     },
     {
@@ -204,44 +232,44 @@
           "title": "BCC · National Data Center portfolio",
           "url": "https://ndc.bcc.gov.bd/wp-content/uploads/2023/07/NDC-Portfolio-v5.1.2.pdf",
           "date": "2023 portfolio, checked 23 September 2026",
-          "en": "BCC describes disaster-recovery capacity at Jashore for its government cloud. This establishes an existing Bangladesh example, not a gap in private-sector supply.",
-          "bn": "BCC তাদের সরকারি ক্লাউডের জন্য যশোরে বিকল্প কেন্দ্রের কথা জানিয়েছে। দেশে এমন ব্যবস্থার উদাহরণ এটি; বেসরকারি বাজারে ঘাটতির প্রমাণ নয়।"
+          "en": "BCC describes a backup site in Jashore for its government cloud. This shows such a site exists in Bangladesh, not that private companies need another one.",
+          "bn": "BCC বলছে, তাদের সরকারি ক্লাউডের জন্য যশোরে বিকল্প কেন্দ্র আছে। দেশে এমন কেন্দ্র আছে, এটুকু বোঝা যায়। বেসরকারি কোম্পানির জন্য আরও কেন্দ্র দরকার কি না, তা জানা যায় না।"
         },
         {
           "title": "BCC · National Data Center service terms",
           "url": "https://ndc.bcc.gov.bd/wp-content/uploads/2025/02/0.-Combined_Frame-Agreement-for-NDC-ServicesModified-V6_VPS-03.12.2024-1.pdf",
           "date": "2024 service terms, checked 23 September 2026",
-          "en": "BCC says recovery-time and data-loss targets depend on application design and should be tested in a drill. Its terms apply to its own customers.",
-          "bn": "কত সময়ে সেবা ফিরবে আর কতটা ডেটা হারাতে পারে, তা অ্যাপের নকশার ওপর নির্ভর করে বলে BCC জানিয়েছে। মহড়া দিয়ে যাচাই করার কথাও আছে। এসব তাদের গ্রাহকদের সেবার শর্ত।"
+          "en": "BCC says teams should set a goal for how fast an app must return and how much data they can afford to lose, then test it. These are BCC’s terms for its own customers.",
+          "bn": "অ্যাপ কত তাড়াতাড়ি ফের চালু করতে হবে আর কতটা ডেটা হারানো চলবে, তা আগে ঠিক করে পরীক্ষা করতে বলে BCC। এগুলো তাদের নিজের কাস্টমারদের জন্য শর্ত।"
         },
         {
           "title": "CoLoCity · Shared rack colocation",
           "url": "https://colocity.com.bd/shared-rack/",
           "date": "Checked 23 September 2026",
-          "en": "The provider advertises rack space, redundant power, network options and support. Compare an actual quote and site terms; the page does not establish a managed app-recovery service.",
-          "bn": "প্রতিষ্ঠানটি সার্ভার রাখার জায়গা, বিদ্যুতের বিকল্প ব্যবস্থা, নেটওয়ার্ক ও সাপোর্ট দেওয়ার কথা জানিয়েছে। বাস্তব খরচ ও শর্ত জানতে প্রস্তাব নিতে হবে। অ্যাপ ফের চালুর পুরো সেবা আছে কি না, এই পেজে স্পষ্ট নয়।"
+          "en": "CoLoCity says it rents server space with backup power, network choices and support. Get a real price and check its terms. The page does not say it will restart an app for you.",
+          "bn": "CoLoCity বলছে, তারা সার্ভার রাখার জায়গা, বিকল্প বিদ্যুৎ, নেটওয়ার্ক আর সাপোর্ট দেয়। আসল দাম ও শর্ত জেনে নিন। অ্যাপ ফের চালু করে দেওয়ার সেবা আছে কি না, এই পেজে বলা নেই।"
         },
         {
           "title": "Bangladesh Bank · ICT security guideline for regulated finance",
           "url": "https://www.bb.org.bd/aboutus/regulationguideline/brpd/jun192023_ictsecurityv4.pdf",
           "date": "2023 guideline, checked 23 September 2026",
-          "en": "Regulated financial organizations must plan and test geographically separate disaster recovery; approvals apply to their sites. These requirements do not automatically apply to every software customer.",
-          "bn": "বাংলাদেশ ব্যাংকের আওতাধীন আর্থিক প্রতিষ্ঠানকে আলাদা জায়গায় বিকল্প কেন্দ্র রাখা ও পরীক্ষা করতে হয়; কেন্দ্রের জন্য অনুমোদনের শর্তও আছে। সব সফটওয়্যার কোম্পানির ওপর একই নিয়ম প্রযোজ্য ধরে নেওয়া যাবে না।"
+          "en": "Bangladesh Bank requires some financial firms to plan and test recovery at a separate site. This rule does not apply to every software company.",
+          "bn": "বাংলাদেশ ব্যাংকের নিয়মে কিছু আর্থিক প্রতিষ্ঠানকে আলাদা জায়গায় অ্যাপ চালুর ব্যবস্থা রাখতে ও পরীক্ষা করতে হয়। সব সফটওয়্যার কোম্পানির জন্য এই নিয়ম নয়।"
         }
       ],
       "en": {
-        "title": "Business apps need a tested way to recover after a hosting failure",
-        "summary": "A second server helps only if an app can actually restart there in time.",
-        "customer": "Bangladeshi software companies running business-critical apps for customers.",
-        "context": "Bangladesh already has local data-center and disaster-recovery capacity. BCC describes a recovery site in Jashore; private operators advertise colocation. A founder could test whether software teams need help setting up, monitoring and rehearsing recovery across separate sites, rather than selling another empty rack.",
-        "unknown": "Which app owners lack a recovery plan they have tested? What recovery time and data loss can they accept, what do existing providers offer, and will a managed service cover capacity, network, security and support costs?"
+        "title": "Important apps need a backup plan when their main site fails",
+        "summary": "A second server helps only if the app can actually start there when it is needed.",
+        "customer": "Software companies in Bangladesh that run important apps for their customers.",
+        "context": "Bangladesh already has data centers. BCC describes a backup site in Jashore for its government cloud, and private companies rent out server space. The idea is to help software teams set up and test another place to run an app. We do not yet know which teams would pay for that help.",
+        "unknown": "Which teams have not tested their backup plan? How fast must their app be back, how much data could they lose, and would their fee cover the servers, internet, security and support?"
       },
       "bn": {
-        "title": "সার্ভার বন্ধ হলে অ্যাপ চালুর বিকল্প ব্যবস্থা আগে থেকে পরীক্ষা করা দরকার",
-        "summary": "অন্য জায়গায় সার্ভার থাকলেই হবে না। প্রয়োজনের সময় সেখানে অ্যাপ চালু করা যায় কি না, তা পরীক্ষা করতে হবে।",
-        "customer": "বাংলাদেশে গ্রাহকদের গুরুত্বপূর্ণ অ্যাপ চালায় এমন সফটওয়্যার কোম্পানি।",
-        "context": "দেশে ডেটা সেন্টার ও বিকল্প কেন্দ্র আগেই আছে। BCC যশোরে তাদের বিকল্প কেন্দ্রের কথা জানিয়েছে, আর বেসরকারি প্রতিষ্ঠানগুলো সার্ভার রাখার জায়গা দিচ্ছে। নতুন র‌্যাক ভাড়া দেওয়ার বদলে আলাদা দুই জায়গায় অ্যাপ চালুর ব্যবস্থা করে, তা নিয়মিত পরীক্ষা ও দেখভালের সেবা কার দরকার, সেটাই খুঁজে দেখতে হবে।",
-        "unknown": "কার অ্যাপ বন্ধ হলে বড় সমস্যা হয়, আর তারা এখন কত সময়ে ফের চালু করতে পারে? চালু সেবাদাতারা কী দিচ্ছে? জায়গা, সংযোগ, নিরাপত্তা ও সাপোর্টের পুরো খরচ রেখেও গ্রাহকের দেওয়া দামে কাজটি পোষাবে কি?"
+        "title": "মূল সার্ভার বন্ধ হলে জরুরি অ্যাপ চালুর বিকল্প দরকার",
+        "summary": "আরেকটি সার্ভার থাকলেই হবে না। দরকারের সময় সেখানে অ্যাপ চালু করা যায় কি না, আগে পরীক্ষা করতে হবে।",
+        "customer": "বাংলাদেশে কাস্টমারদের জরুরি অ্যাপ চালায় এমন সফটওয়্যার কোম্পানি।",
+        "context": "দেশে ডেটা সেন্টার আগেই আছে। BCC বলছে, তাদের সরকারি ক্লাউডের জন্য যশোরে বিকল্প কেন্দ্র আছে। বেসরকারি কোম্পানিও সার্ভার রাখার জায়গা ভাড়া দেয়। নতুন কেন্দ্র বানানোর বদলে সফটওয়্যার কোম্পানিকে অন্য জায়গায় অ্যাপ চালুর ব্যবস্থা করে দিতে পারেন। আগে পরীক্ষা করে দেখুন, এই সাহায্যের জন্য কে ফি দেবেন।",
+        "unknown": "কোন কোম্পানি তাদের বিকল্প ব্যবস্থা পরীক্ষা করেনি? অ্যাপ কত তাড়াতাড়ি ফের চালু করতে হবে, কতটা ডেটা হারানো চলবে, আর পাওয়া ফি দিয়ে সার্ভার, ইন্টারনেট, নিরাপত্তা ও সাপোর্টের খরচ উঠবে কি?"
       }
     }
   ],
@@ -498,31 +526,71 @@
         "metrics/unit-economics"
       ],
       "en": {
-        "title": "Keep Bangladesh apps running when a data center fails",
-        "summary": "Set up and test a second hosting site for software companies, using existing data centers before considering small modular facilities.",
-        "description": "A backup copy is useful only if an app can be restored when its main site fails. Help software teams agree how quickly they need to recover and how much data they can lose, then set up a second site and rehearse the switch. Start with capacity rented from separate providers. Build a small modular site later only if recurring customer demand and site economics justify it.",
-        "businessModel": "Charge for setup and a monthly service covering monitoring, recovery drills and support. Show hosting and network costs separately; agree recovery targets before quoting a price.",
+        "title": "Help apps come back after a server failure",
+        "summary": "Help software companies set up a backup place for an app and test that it works.",
+        "description": "Saving a copy of an app’s data does not mean the app will start when its main site fails. Help a software company set up a second place to run an important app. Practice switching to it before there is a real outage. Rent space from existing data centers first. Only think about building a small center if customers keep paying and the costs make sense.",
+        "businessModel": "Charge once to set up the backup, then a monthly fee to check it and offer support. Show server and internet costs separately. Agree on how fast the app must be back before setting a price.",
         "steps": [
-          "Ask five software companies about one important app each: where it runs, how backups work, the last recovery test, acceptable downtime and who would pay to improve it. Compare the services they can already buy.",
-          "Get written terms from providers in separate locations. Check power, network paths, security, access and support. Run a small paid pilot with a non-sensitive test environment and an agreed recovery target.",
-          "Rehearse a site failure. Measure time to restore, data lost, staff hours and the full monthly cost. Seek repeat contracts before pricing any new modular facility; check permissions and site risks before committing capital."
+          "Talk to five software companies. Ask about one important app: where it runs, how they back it up, when they last tested it, how long it can be down and who would pay for help. Check what they can already buy.",
+          "Get written prices and terms from providers in different places. Check power, internet, security, access and support. Run a small paid test with sample data and an agreed time to get the app running again.",
+          "With the test app, pretend the main site has failed. Measure how long the app takes to return, how much data is lost, staff time and monthly costs. Look at building a small center only after repeat paid work; check permits and site risks before spending money."
         ],
-        "signal": "A paying customer renews after a recovery drill meets its agreed target, and the fee covers both sites and hands-on support.",
-        "prototype": "Make a one-page recovery plan and drill log for a sample app: the primary and backup sites, last backup, recovery target, actual result, support time and monthly cost. Use test data, not a production system.",
+        "signal": "A customer pays again after a test meets the agreed recovery time, and the fee covers both sites and support.",
+        "prototype": "Make a one-page plan and test log for a sample app. Note the main and backup sites, last backup, target time, actual time, staff time and monthly cost. Use sample data, not a live customer app.",
         "editorialNote": ""
       },
       "bn": {
-        "title": "ডেটা সেন্টার বন্ধ হলেও অ্যাপ চালু রাখার সেবা দিন",
-        "summary": "সফটওয়্যার কোম্পানির অ্যাপ চালানোর জন্য আরেকটি কেন্দ্র প্রস্তুত রাখুন ও পরীক্ষা করুন। শুরুতে চালু কেন্দ্রের জায়গা ভাড়া নিন।",
-        "description": "এক জায়গায় অ্যাপ বন্ধ হলে অন্য জায়গায় তা কত দ্রুত চালু হবে? সফটওয়্যার কোম্পানির সঙ্গে আগে সেই সময় আর কতটা ডেটা হারানো চলবে, ঠিক করে নিন। তারপর আলাদা কেন্দ্রে বিকল্প ব্যবস্থা করে মহড়া দিন। শুরুতে চালু দুই সেবাদাতার জায়গা ভাড়া নিতে পারেন। নিয়মিত গ্রাহক ও খরচের হিসাব মিললে তবেই ছোট মডিউলার কেন্দ্র বসানোর কথা ভাবুন।",
-        "businessModel": "ব্যবস্থা বসানোর জন্য এককালীন ফি, দেখভাল ও মহড়ার জন্য মাসিক ফি নিতে পারেন। কেন্দ্রের ভাড়া ও সংযোগের খরচ আলাদা করে দেখান। কত সময়ে সেবা ফেরানোর দায়িত্ব নেবেন, দাম ঠিক করার আগেই গ্রাহকের সঙ্গে তা মিলিয়ে নিন।",
+        "title": "সার্ভার বন্ধ হলে অ্যাপ ফের চালুর সেবা দিন",
+        "summary": "সফটওয়্যার কোম্পানির অ্যাপ অন্য জায়গায় চালুর ব্যবস্থা করুন। দরকারের আগেই পরীক্ষা করে দেখুন, তা কাজ করে কি না।",
+        "description": "অ্যাপের ডেটার কপি রাখলেই মূল সার্ভার বন্ধ হওয়ার পর অ্যাপ চালু হবে, এমন নয়। সফটওয়্যার কোম্পানিকে অন্য জায়গায় গুরুত্বপূর্ণ অ্যাপ চালুর ব্যবস্থা করতে সাহায্য করুন। মূল সার্ভার বন্ধ হলে সেখানে অ্যাপ চালু করা যায় কি না, আগেই পরীক্ষা করুন। শুরুতে চালু ডেটা সেন্টার থেকে জায়গা ভাড়া নিন। নিয়মিত ফি দেওয়া কাস্টমার না পেলে আর খরচ না উঠলে নিজের ছোট কেন্দ্র বানাবেন না।",
+        "businessModel": "বিকল্প ব্যবস্থা বসানোর জন্য একবার ফি নিন। এরপর পরীক্ষা আর সাপোর্টের জন্য মাসিক ফি নিতে পারেন। সার্ভার ভাড়া আর ইন্টারনেটের খরচ আলাদা দেখান। কত সময়ের মধ্যে অ্যাপ ফের চালু করবেন, দাম বলার আগেই তা ঠিক করুন।",
         "steps": [
-          "পাঁচটি সফটওয়্যার কোম্পানির কাছে একটি করে গুরুত্বপূর্ণ অ্যাপের কথা শুনুন। এখন কোথায় চলে, ব্যাকআপ আছে কি না, শেষ কবে তা পরীক্ষা হয়েছে আর কতক্ষণ বন্ধ থাকলে সমস্যা, জেনে নিন। ভালো বিকল্পের জন্য কে টাকা দেবেন, সেটাও বুঝে নিন।",
-          "আলাদা জায়গার সেবাদাতাদের কাছ থেকে খরচ ও শর্ত লিখিত নিন। বিদ্যুৎ, নেটওয়ার্ক, নিরাপত্তা, যাতায়াত ও সাপোর্ট মিলিয়ে দেখুন। গ্রাহকের সঙ্গে সময় ঠিক করে ফি নিয়ে পরীক্ষামূলক কাজ করুন; সংবেদনশীল তথ্য ব্যবহার করবেন না।",
-          "মূল কেন্দ্র বন্ধ হওয়ার মহড়া দিয়ে দেখুন, অ্যাপ ফের চালু হতে কত সময় লাগে, কতটা ডেটা হারায় আর পুরো মাসের খরচ কত। নিয়মিত চুক্তি পাওয়ার পরই নতুন মডিউলার কেন্দ্রের হিসাব করুন। যন্ত্র কেনার আগে অনুমতি ও জায়গার ঝুঁকিও দেখুন।"
+          "পাঁচটি সফটওয়্যার কোম্পানির সঙ্গে কথা বলুন। একটি গুরুত্বপূর্ণ অ্যাপ কোথায় চলে, ডেটার কপি কীভাবে রাখে, শেষ কবে অ্যাপ ফের চালু করে দেখেছে আর কতক্ষণ বন্ধ থাকলে সমস্যা, জেনে নিন। এই সেবার ফি কে দেবেন আর এখন কী বিকল্প আছে, সেটাও দেখুন।",
+          "আলাদা জায়গার সেবাদাতাদের কাছ থেকে লিখিত দাম আর শর্ত নিন। বিদ্যুৎ, ইন্টারনেট, নিরাপত্তা, জায়গায় ঢোকার সুযোগ আর সাপোর্ট দেখুন। নমুনা ডেটা দিয়ে ছোট একটি পরীক্ষামূলক কাজ করুন, ফি নিয়েই। অ্যাপ কত সময়ে চালু করবেন, আগে ঠিক করুন।",
+          "নমুনা অ্যাপে মূল সার্ভার বন্ধ ধরে পরীক্ষা করুন। অ্যাপ চালু হতে কত সময় লাগে, কতটা ডেটা হারায়, কর্মীদের কত সময় যায় আর মাসে কত খরচ হয়, লিখে রাখুন। বারবার ফি দিয়ে কাজ পাওয়া গেলে তবেই ছোট কেন্দ্র বানানোর হিসাব করুন। টাকা খরচের আগে অনুমতি আর জায়গার ঝুঁকি দেখুন।"
         ],
-        "signal": "মহড়ায় ঠিক করা সময়ের মধ্যে অ্যাপ চালু হচ্ছে, গ্রাহক আবার ফি দিচ্ছেন, আর সেই আয় দিয়ে দুই কেন্দ্র ও সাপোর্টের খরচ উঠছে।",
-        "prototype": "নমুনা অ্যাপের জন্য এক পাতার পরিকল্পনা ও মহড়ার খাতা বানান। মূল ও বিকল্প কেন্দ্র, শেষ ব্যাকআপ, কত সময়ে ফের চালুর কথা, বাস্তবে কত সময় লেগেছে, সাপোর্ট ও মাসিক খরচ লিখে রাখুন। আসল গ্রাহকের তথ্য ব্যবহার করবেন না।",
+        "signal": "পরীক্ষায় ঠিক করা সময়ের মধ্যে অ্যাপ চালু হচ্ছে, কাস্টমার আবার ফি দিচ্ছেন, আর সেই টাকা দিয়ে দুই জায়গা ও সাপোর্টের খরচ উঠছে।",
+        "prototype": "নমুনা অ্যাপের জন্য এক পাতার পরিকল্পনা আর পরীক্ষার খাতা বানান। মূল ও বিকল্প জায়গা, শেষ ব্যাকআপ, কত সময়ে অ্যাপ ফেরার কথা, আসলে কত সময় লেগেছে, কর্মীদের সময় আর মাসিক খরচ লিখুন। আসল কাস্টমারের ডেটা ব্যবহার করবেন না।",
+        "editorialNote": ""
+      }
+    },
+    {
+      "id": "solar-inverter-repair",
+      "problemId": "solar-maintenance",
+      "kind": "service",
+      "position": 1,
+      "addedAt": "2026-09-23",
+      "guides": [
+        "validation/customer-interviews",
+        "validation/demand-without-building",
+        "metrics/unit-economics"
+      ],
+      "en": {
+        "title": "Help fix rooftop solar inverter faults",
+        "summary": "Help installers find inverter faults, then arrange an approved repair or replacement when needed.",
+        "description": "An inverter turns power from solar panels into the kind a building can use. Work with rooftop solar installers in one area. When a customer reports a problem, a qualified technician checks if the inverter is really the cause. Check its model and warranty before working with the installer or maker on a repair or replacement. Some solar firms already do this. Find out if they need extra help before building a business around it.",
+        "businessModel": "Before a visit, agree whether the installer or building owner pays to find the fault. Price repair or replacement separately. Offer regular support only if repeat jobs pay enough.",
+        "steps": [
+          "Talk to five solar installers about recent inverter problems. Ask what went wrong, how long help took, who paid and how it ended. Would they send this work to someone else?",
+          "Offer a paid fault check with a qualified solar technician. Follow site safety and warranty rules. Arrange repairs through the installer or a service team approved by the maker. Check the rules for connecting solar to the power grid before replacing an inverter.",
+          "Track five paid jobs from the first call to the fix. Count technician time, parts, travel and return visits. Ask whether installers would send more jobs at a price that covers all of this."
+        ],
+        "signal": "Installers keep sending paid jobs, and the fees cover the full cost of each job.",
+        "prototype": "Make a simple job sheet for the inverter model, reported problem, warranty, technician time, parts, price and result. Try it with sample cases. Do not connect it to live electrical equipment.",
+        "editorialNote": ""
+      },
+      "bn": {
+        "title": "ছাদের সোলার ইনভার্টার ঠিক করার সেবা দিন",
+        "summary": "ইনস্টলারকে ইনভার্টারের সমস্যা খুঁজতে সাহায্য করুন। দরকার হলে নিয়ম মেনে মেরামত বা বদলের ব্যবস্থা করুন।",
+        "description": "প্যানেল থেকে পাওয়া বিদ্যুৎ যেন ভবনে ব্যবহার করা যায়, ইনভার্টার সেই কাজ করে। শুরুতে এক এলাকার সোলার বসানো কোম্পানিগুলোর সঙ্গে কাজ করুন। কোনো সমস্যা হলে দক্ষ টেকনিশিয়ান দেখে নেবেন, দোষটা সত্যিই ইনভার্টারের কি না। এরপর মডেল আর ওয়ারেন্টি দেখে ইনস্টলার বা যন্ত্রটি বানানো কোম্পানির সঙ্গে ঠিক করুন কী করতে হবে। কিছু সোলার কোম্পানি আগেই এই কাজ করে। তাদের বাড়তি সাহায্য দরকার কি না, আগে জেনে নিন।",
+        "businessModel": "কাজে যাওয়ার আগে ঠিক করুন, সমস্যা খোঁজার ফি ইনস্টলার দেবেন, নাকি ভবনের মালিক। মেরামত বা যন্ত্র বদলের দাম আলাদা করে বলুন। বারবার কাজ পেলে আর খরচ উঠলে তবেই নিয়মিত সাপোর্টের কথা ভাবুন।",
+        "steps": [
+          "পাঁচটি সোলার বসানো কোম্পানির সঙ্গে কথা বলুন। সাম্প্রতিক ইনভার্টার সমস্যায় কী হয়েছিল, সাহায্য পেতে কত সময় লেগেছিল, কে টাকা দিয়েছেন আর শেষে কী হয়েছে, জেনে নিন। এমন কাজ তাঁরা বাইরে কাউকে দেবেন কি না, সেটাও জিজ্ঞেস করুন।",
+          "দক্ষ সোলার টেকনিশিয়ানকে সঙ্গে নিয়ে ফি দিয়ে সমস্যা পরীক্ষা করার প্রস্তাব দিন। ভবনের নিরাপত্তা আর ওয়ারেন্টির নিয়ম মেনে চলুন। ইনস্টলার বা যন্ত্র প্রস্তুতকারকের অনুমোদিত সার্ভিস টিমের মাধ্যমেই মেরামত করান। ইনভার্টার বদলালে গ্রিডে যুক্ত সোলারের বর্তমান নিয়ম দেখে নিন।",
+          "ফি নিয়েছেন এমন পাঁচটি কাজের প্রথম ফোন থেকে সমাধান পর্যন্ত সময় আর খরচ লিখে রাখুন। টেকনিশিয়ান, পার্টস, যাতায়াত আর আবার যাওয়ার খরচও ধরুন। এই দামে আরও কাজ পাওয়া যাবে কি না, ইনস্টলারদের জিজ্ঞেস করুন।"
+        ],
+        "signal": "ইনস্টলাররা আবার কাজ পাঠাচ্ছেন, আর প্রতিটি কাজের আয় থেকে পুরো খরচ উঠে আসছে।",
+        "prototype": "ইনভার্টারের মডেল, সমস্যা, ওয়ারেন্টি, টেকনিশিয়ানের সময়, পার্টস, দাম আর ফল লেখার সহজ খাতা বানান। নমুনা তথ্য দিয়ে পরীক্ষা করুন। চালু বৈদ্যুতিক যন্ত্রের সঙ্গে যুক্ত করবেন না।",
         "editorialNote": ""
       }
     }
