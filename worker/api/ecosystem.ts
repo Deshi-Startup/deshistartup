@@ -6,7 +6,7 @@ import { parseDecision, parseProposal, parseIdeaProposal, parseIdeaEditProposal,
 import { createSubmission, decideSubmission, EcosystemConflict } from '../lib/ecosystem-store.ts'
 import { logError } from '../lib/logging.ts'
 import { deliverNotifications, decisionEmailsEnabled } from '../lib/ecosystem-email.ts'
-import { submissionHistory, publishedIdeas, linkPublishedIdea, linkPublishedIdeaEdit } from '../lib/submission-history.ts'
+import { submissionHistory, publishedIdeas, linkPublishedIdea, linkPublishedIdeaEdit, closeAcceptedIdea } from '../lib/submission-history.ts'
 import { myVotes, setIdeaVote, voteCounts } from '../lib/idea-votes.ts'
 import release from '../../public/ecosystem-release.json' with { type: 'json' }
 import type { EcosystemSnapshot } from '../../app/lib/ecosystem-types.ts'
@@ -75,7 +75,7 @@ export function createEcosystemHandler({ authenticate = requireUser, admit = adm
         const organizations = await db.prepare("SELECT o.id, o.slug, o.website, t.name, MAX(o.rowid) OVER () AS version FROM organizations o JOIN organization_text t ON t.organization_id = o.id AND t.locale = 'en' ORDER BY t.name LIMIT 1000").all<{ id: string; slug: string; website: string; name: string; version: number }>()
         return json({ ...history, organizations: organizations.results.map(({ version, ...company }) => company), organizationVersion: organizations.results[0]?.version ?? 0, publishedIdeas: await publishedIdeas(db, new URL(request.url).searchParams.get('locale') || 'en') })
       }
-      const action = path.match(/^\/api\/ecosystem\/review\/([^/]+)\/(publication|publication-edit|retry-email)$/)
+      const action = path.match(/^\/api\/ecosystem\/review\/([^/]+)\/(publication|publication-edit|close|retry-email)$/)
       if (action) {
         if (!reviewer) return json({ error: 'forbidden' }, 403)
         if (request.method !== 'POST') {
@@ -100,6 +100,15 @@ export function createEcosystemHandler({ authenticate = requireUser, admit = adm
           const revision = (body.value as { revision?: unknown } | null)?.revision
           if (!Number.isSafeInteger(revision) || Number(revision) < 1) return json({ error: 'invalid_publication_link' }, 400)
           const result = await linkPublishedIdeaEdit(db, action[1], Number(revision), owner, now(), deployedReleaseId)
+          await notify(action[1])
+          return json(result)
+        }
+        if (action[2] === 'close') {
+          const body = await readBoundedJson(request, 2048)
+          if (!body.ok) return json({ error: body.error }, body.error === 'body_too_large' ? 413 : 400)
+          const value = body.value as { revision?: unknown; note?: unknown } | null
+          if (!value || !Number.isSafeInteger(value.revision) || Number(value.revision) < 1 || typeof value.note !== 'string' || value.note.trim().length < 10 || value.note.trim().length > 1000) return json({ error: 'invalid_editorial_close' }, 400)
+          const result = await closeAcceptedIdea(db, action[1], Number(value.revision), value.note.trim(), owner, now())
           await notify(action[1])
           return json(result)
         }

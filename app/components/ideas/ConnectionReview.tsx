@@ -138,7 +138,7 @@ export default function ConnectionReview({ locale }: { locale: Locale }) {
       if (!refreshed) return
       if (status !== view.status) choose(id, status)
       if (!path) { setNotes(previous => { const next = { ...previous }; delete next[id]; return next }); companyDrafts.current.delete(id) }
-      setMessage(path === '/publication' ? t('Published idea linked.', 'প্রকাশিত আইডিয়ার লিংক যোগ হয়েছে।') : path === '/publication-edit' ? t('Update marked published.', 'বদল প্রকাশিত হিসেবে চিহ্নিত হয়েছে।') : path === '/retry-email' ? t('Email retry requested.', 'ইমেইল আবার পাঠানোর অনুরোধ করা হয়েছে।') : t('Decision saved.', 'সিদ্ধান্ত সেভ হয়েছে।'))
+      setMessage(path === '/publication' ? t('Published idea linked.', 'প্রকাশিত আইডিয়ার লিংক যোগ হয়েছে।') : path === '/publication-edit' ? t('Update marked published.', 'বদল প্রকাশিত হিসেবে চিহ্নিত হয়েছে।') : path === '/close' ? t('Editorial review closed.', 'আইডিয়াটির কাজ এখানে শেষ।') : path === '/retry-email' ? t('Email retry requested.', 'ইমেইল আবার পাঠানোর অনুরোধ করা হয়েছে।') : t('Decision saved.', 'সিদ্ধান্ত সেভ হয়েছে।'))
     } catch (cause) { if (request === sequence.current) setError(cause instanceof Error && cause.name === 'Error' ? cause.message : ecosystemError(503, locale)) }
     finally { if (request === sequence.current) setBusy(false) }
   }
@@ -155,7 +155,7 @@ export default function ConnectionReview({ locale }: { locale: Locale }) {
     <div hidden={!authorized} aria-busy={busy} className={`review-layout${item ? ' has-selection' : ''}`}>
       <nav ref={list} className="review-list" aria-label={t('Submissions', 'জমা দেওয়া তথ্য')}>
         {!queue.length && !busy && !error && <p className="submission-empty">{view.status === 'pending' ? t('You’re all caught up. New submissions will appear here.', 'সব তথ্য দেখা হয়েছে। নতুন কিছু জমা পড়লে এখানে দেখাবে।') : t('No submissions here yet.', 'এখানে এখনো কিছু নেই।')}</p>}
-        {visibleQueue.map(row => <button key={row.id} data-submission={row.id} className="review-list-item" aria-current={row.id === item?.id ? 'true' : undefined} onClick={() => choose(row.id)} disabled={busy}><span lang={row.payload.locale}>{title(row)}</span><small>{submissionDate(row.created_at, locale)}{row.published ? t(' · Published', ' · প্রকাশিত') : ''}</small><IdeaIcon name="arrow" /></button>)}
+        {visibleQueue.map(row => <button key={row.id} data-submission={row.id} className="review-list-item" aria-current={row.id === item?.id ? 'true' : undefined} onClick={() => choose(row.id)} disabled={busy}><span lang={row.payload.locale}>{title(row)}</span><small>{submissionDate(row.created_at, locale)}{row.published ? t(' · Published', ' · প্রকাশিত') : row.editorial_closed_at ? t(' · Not publishing', ' · প্রকাশ হচ্ছে না') : ''}</small><IdeaIcon name="arrow" /></button>)}
         {cursor && <button className="ideas-text-button" disabled={busy} onClick={() => load('more')}>{t('Load earlier submissions', 'আগের তথ্য দেখুন')}</button>}
       </nav>
       {item && <section className="review-record" aria-labelledby="review-record-title">
@@ -166,12 +166,15 @@ export default function ConnectionReview({ locale }: { locale: Locale }) {
           ? <IdeaReviewItem key={item.id} locale={locale} item={{ ...item, payload: item.payload }} note={notes[item.id] || ''} onNote={note => setNotes(previous => ({ ...previous, [item.id]: note }))} busy={busy} onDecision={decision => void mutate('', decision, decision.decision)} />
           : <ReviewItem key={item.id} locale={locale} item={item as PendingConnection} drafts={companyDrafts.current} companies={companies} organizationVersion={organizationVersion} busy={busy} onDecision={decision => void mutate('', decision, decision.decision)} />
           : <>
-            <div className="submission-note"><h3>{t('Reviewer’s note', 'পর্যালোচকের মন্তব্য')}</h3><p>{item.decision_note}</p></div>
+            <div className="submission-note">
+              {item.editorial_close_note && <><h3>{t('Editorial update', 'সম্পাদনা দলের বার্তা')}</h3><p>{item.editorial_close_note}</p></>}
+              <h3>{t('Reviewer’s note', 'পর্যালোচকের মন্তব্য')}</h3><p>{item.decision_note}</p>
+            </div>
             {item.published && item.idea_id ? <a className="ideas-inline-link" href={ideaPath(locale, ideaSlug(item.idea_id))}>{t('View published idea', 'প্রকাশিত আইডিয়া দেখুন')}<IdeaIcon name="arrow" /></a>
               : item.idea_id ? <p className="ideas-field-help">{t('The linked idea is currently unpublished.', 'লিংক করা আইডিয়াটি এখন প্রকাশিত নেই।')}</p>
-              : item.status === 'approved' && 'kind' in item.payload && (item.payload.kind === 'idea-edit'
+              : item.status === 'approved' && !item.editorial_closed_at && 'kind' in item.payload && (item.payload.kind === 'idea-edit'
                 ? <div className="idea-edit-publication"><p className="ideas-field-help">{t('After the reviewed change is live in both languages, mark this update published.', 'যাচাই করা বদল বাংলা ও ইংরেজিতে প্রকাশের পর এটি প্রকাশিত হিসেবে চিহ্নিত করুন।')}</p><button className="ideas-text-button" disabled={busy} onClick={() => mutate('/publication-edit', { revision: item.revision })}>{t('Mark update published', 'বদল প্রকাশিত হিসেবে চিহ্নিত করুন')}</button></div>
-                : <PublicationLink key={item.id} locale={locale} ideas={ideas} busy={busy} onLink={ideaId => mutate('/publication', { ideaId, revision: item.revision })} />)}
+                : <><PublicationLink key={item.id} locale={locale} ideas={ideas} busy={busy} onLink={ideaId => mutate('/publication', { ideaId, revision: item.revision })} /><EditorialClose key={`${item.id}:close`} locale={locale} busy={busy} onClose={note => mutate('/close', { note, revision: item.revision })} /></>)}
             <details className="submission-original"><summary>{t('Original submission', 'জমা দেওয়া মূল তথ্য')}<IdeaIcon name="chevron" /></summary>
               {'kind' in item.payload ? <IdeaSubmissionContent idea={item.payload} locale={locale} showTitle={false} /> : <div className="review-submitted"><p>{item.payload.work}</p><a href={item.payload.evidenceUrl}>{t('Submitted source', 'জমা দেওয়া সোর্স')}</a></div>}
             </details>
@@ -181,6 +184,14 @@ export default function ConnectionReview({ locale }: { locale: Locale }) {
     </div>
     {session.dialog}
   </div></IdeaShell>
+}
+function EditorialClose({ locale, busy, onClose }: { locale: Locale; busy: boolean; onClose: (note: string) => void }) {
+  const [note, setNote] = useState('')
+  const en = locale === 'en'
+  return <details className="submission-publication"><summary>{en ? 'Close without publishing' : 'প্রকাশ না করে কাজ শেষ করুন'}<IdeaIcon name="chevron" /></summary>
+    <p className="ideas-field-help">{en ? 'If research changes our decision, explain it to the submitter. They’ll see this message in Your submissions.' : 'গবেষণার পর সিদ্ধান্ত বদলালে কারণটি লিখুন। যিনি আইডিয়া দিয়েছেন, তিনি বার্তাটি দেখতে পাবেন।'}</p>
+    <form className="ideas-draft-form" onSubmit={event => { event.preventDefault(); onClose(note) }}><label htmlFor="editorial-close-note">{en ? 'Message to the submitter' : 'যিনি আইডিয়া দিয়েছেন, তাঁর জন্য বার্তা'}</label><textarea id="editorial-close-note" required minLength={10} maxLength={1000} rows={3} value={note} onChange={event => setNote(event.target.value)} disabled={busy} /><button className="ideas-button ideas-button-secondary" disabled={busy || note.trim().length < 10}>{en ? 'Close idea' : 'কাজ শেষ করুন'}</button></form>
+  </details>
 }
 function PublicationLink({ locale, ideas, busy, onLink }: { locale: Locale; ideas: { id: string; title: string }[]; busy: boolean; onLink: (id: string) => void }) {
   const [id, setId] = useState('')
