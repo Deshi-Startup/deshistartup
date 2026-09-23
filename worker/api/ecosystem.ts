@@ -2,13 +2,14 @@ import { requireUser, type GoogleUser } from '../lib/google-token.ts'
 import { contributorHash, getContributionBindings, isReviewer, moderationFor, sha256Hex } from '../lib/contribution-guard.ts'
 import { authenticatedJson as json } from '../lib/http.ts'
 import { readBoundedJson } from '../lib/request-body.ts'
-import { parseDecision, parseProposal, parseIdeaProposal, parseIdeaDecision, validEntityId } from '../../app/lib/ecosystem-input.ts'
+import { parseDecision, parseProposal, parseIdeaProposal, parseIdeaEditProposal, parseIdeaDecision, validEntityId } from '../../app/lib/ecosystem-input.ts'
 import { createSubmission, decideSubmission, EcosystemConflict } from '../lib/ecosystem-store.ts'
 import { logError } from '../lib/logging.ts'
 import { deliverNotifications, decisionEmailsEnabled } from '../lib/ecosystem-email.ts'
-import { submissionHistory, publishedIdeas, linkPublishedIdea } from '../lib/submission-history.ts'
+import { submissionHistory, publishedIdeas, linkPublishedIdea, linkPublishedIdeaEdit } from '../lib/submission-history.ts'
 import { myVotes, setIdeaVote, voteCounts } from '../lib/idea-votes.ts'
 import release from '../../public/ecosystem-release.json' with { type: 'json' }
+import type { EcosystemSnapshot } from '../../app/lib/ecosystem-types.ts'
 
 type Environment = CloudflareEnv & { ECOSYSTEM_DB?: D1Database; IDEA_DECISION_EMAILS?: string }
 async function admitted(env: Environment, user: GoogleUser, voting = false) {
@@ -23,8 +24,9 @@ interface Dependencies {
   admit?: typeof admitted
   now?: () => string
   cache?: Cache
+  deployedReleaseId?: string
 }
-export function createEcosystemHandler({ authenticate = requireUser, admit = admitted, now = () => new Date().toISOString(), cache }: Dependencies = {}) {
+export function createEcosystemHandler({ authenticate = requireUser, admit = admitted, now = () => new Date().toISOString(), cache, deployedReleaseId = release.releaseId }: Dependencies = {}) {
   return async function ecosystem(request: Request, env: Environment, context?: Pick<ExecutionContext, 'waitUntil'>): Promise<Response> {
     const path = new URL(request.url).pathname.replace(/\/+$/, '')
     if (path === '/api/ecosystem/status' && request.method === 'GET') return json({ available: !!env.ECOSYSTEM_DB, decisionEmails: decisionEmailsEnabled(env) }, 200)
@@ -73,7 +75,7 @@ export function createEcosystemHandler({ authenticate = requireUser, admit = adm
         const organizations = await db.prepare("SELECT o.id, o.slug, o.website, t.name, MAX(o.rowid) OVER () AS version FROM organizations o JOIN organization_text t ON t.organization_id = o.id AND t.locale = 'en' ORDER BY t.name LIMIT 1000").all<{ id: string; slug: string; website: string; name: string; version: number }>()
         return json({ ...history, organizations: organizations.results.map(({ version, ...company }) => company), organizationVersion: organizations.results[0]?.version ?? 0, publishedIdeas: await publishedIdeas(db, new URL(request.url).searchParams.get('locale') || 'en') })
       }
-      const action = path.match(/^\/api\/ecosystem\/review\/([^/]+)\/(publication|retry-email)$/)
+      const action = path.match(/^\/api\/ecosystem\/review\/([^/]+)\/(publication|publication-edit|retry-email)$/)
       if (action) {
         if (!reviewer) return json({ error: 'forbidden' }, 403)
         if (request.method !== 'POST') {
@@ -92,6 +94,15 @@ export function createEcosystemHandler({ authenticate = requireUser, admit = adm
           await notify(action[1])
           return json(result)
         }
+        if (action[2] === 'publication-edit') {
+          const body = await readBoundedJson(request, 512)
+          if (!body.ok) return json({ error: body.error }, body.error === 'body_too_large' ? 413 : 400)
+          const revision = (body.value as { revision?: unknown } | null)?.revision
+          if (!Number.isSafeInteger(revision) || Number(revision) < 1) return json({ error: 'invalid_publication_link' }, 400)
+          const result = await linkPublishedIdeaEdit(db, action[1], Number(revision), owner, now(), deployedReleaseId)
+          await notify(action[1])
+          return json(result)
+        }
         await db.prepare("UPDATE submission_notifications SET state = 'pending', attempts = 0, available_at = ?, error_code = NULL WHERE submission_id = ? AND state = 'failed'").bind(now(), action[1]).run()
         await notify(action[1])
         return json({ ok: true })
@@ -107,16 +118,22 @@ export function createEcosystemHandler({ authenticate = requireUser, admit = adm
       if (!(await admit(env, user))) return json({ error: 'rate_limited' }, 429)
       const body = await readBoundedJson(request, 24_000)
       if (!body.ok) return json({ error: body.error }, body.error === 'body_too_large' ? 413 : 400)
+      let editSnapshot: EcosystemSnapshot | null = null
+      if (!reviewId && (body.value as { kind?: unknown } | null)?.kind === 'idea-edit') {
+        const frozen = await db.prepare('SELECT r.id, r.snapshot_json FROM publication p JOIN releases r ON r.id = p.release_id WHERE p.singleton = 1').first<{ id: string; snapshot_json: string }>()
+        if (!frozen || frozen.id !== deployedReleaseId || (body.value as { baseReleaseId?: unknown }).baseReleaseId !== frozen.id) return json({ error: 'stale_idea' }, 409)
+        editSnapshot = JSON.parse(frozen.snapshot_json) as EcosystemSnapshot
+      }
       if (reviewId) {
         const row = await db.prepare('SELECT payload_json FROM submissions WHERE id = ?').bind(reviewId).first<{ payload_json: string }>()
         if (!row) return json({ error: 'submission_not_found' }, 409)
-        const decision = JSON.parse(row.payload_json).kind === 'idea' ? parseIdeaDecision(body.value) : parseDecision(body.value)
+        const decision = JSON.parse(row.payload_json).kind ? parseIdeaDecision(body.value) : parseDecision(body.value)
         if (!decision) return json({ error: 'invalid_decision' }, 400)
         const result = await decideSubmission(db, reviewId, owner, decision, now())
         await notify(reviewId)
         return json(result, 200)
       }
-      const proposal = parseIdeaProposal(body.value) || parseProposal(body.value)
+      const proposal = (editSnapshot && parseIdeaEditProposal(body.value, editSnapshot)) || parseIdeaProposal(body.value) || parseProposal(body.value)
       const key = request.headers.get('Idempotency-Key') || ''
       if (!proposal || !/^[a-zA-Z0-9_-]{16,80}$/.test(key)) return json({ error: 'invalid_submission' }, 400)
       const { created: _created, ...submission } = await createSubmission(db, owner, key, await sha256Hex(JSON.stringify(proposal)), proposal, now(), decisionEmailsEnabled(env) ? user.email : undefined)

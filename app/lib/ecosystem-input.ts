@@ -1,4 +1,5 @@
-import type { ConnectionProposal, ReviewDecision, IdeaProposal, IdeaDecision } from './ecosystem-types.ts'
+import type { ConnectionProposal, ReviewDecision, IdeaProposal, IdeaDecision, IdeaEditProposal, EcosystemSnapshot } from './ecosystem-types.ts'
+import { ideaEditFields, ideaEditValue, validIdeaEditValue, type IdeaEditField } from './idea-edit.ts'
 
 const roles = ['startup', 'investor', 'accelerator', 'incubator', 'community']
 const stages = ['research', 'prototype', 'live']
@@ -39,6 +40,31 @@ export function parseIdeaProposal(value: unknown): IdeaProposal | null {
   return { version: 1, kind: 'idea', locale: value.locale as IdeaProposal['locale'], title: value.title.trim(),
     solution: value.solution.trim(), customer: value.customer.trim(), problem: value.problem.trim(),
     place: value.place.trim(), evidence: value.evidence.trim(), test: value.test.trim() }
+}
+export function parseIdeaEditProposal(value: unknown, snapshot: EcosystemSnapshot): IdeaEditProposal | null {
+  if (!record(value) || value.kind !== 'idea-edit' || value.version !== 1 ||
+    !['en', 'bn'].includes(String(value.locale)) || !validEntityId(value.ideaId) ||
+    value.baseReleaseId !== snapshot.releaseId || !record(value.edits) ||
+    !text(value.note, 1000, 0) || !text(value.sourceUrl, 500, 0) ||
+    (value.sourceUrl && !publicUrl(value.sourceUrl))) return null
+  const idea = snapshot.approaches.find(row => row.id === value.ideaId)
+  const problem = snapshot.problems.find(row => row.id === idea?.problemId)
+  if (!idea || !problem) return null
+  const keys = Object.keys(value.edits)
+  if (keys.some(key => !ideaEditFields.includes(key as IdeaEditField))) return null
+  const locale = value.locale as 'en' | 'bn'
+  const changes: IdeaEditProposal['changes'] = []
+  for (const field of ideaEditFields) {
+    const after = value.edits[field]
+    if (after === undefined) continue
+    if (typeof after !== 'string' || !validIdeaEditValue(field, after)) return null
+    const before = ideaEditValue(idea, problem, locale, field)
+    if (after.trim() !== before.trim()) changes.push({ field, before, after: after.trim() })
+  }
+  if (!changes.length && !value.note.trim() && !value.sourceUrl.trim()) return null
+  return { version: 1, kind: 'idea-edit', locale, ideaId: idea.id, problemId: problem.id,
+    baseReleaseId: snapshot.releaseId, title: idea[locale].title,
+    note: value.note.trim(), sourceUrl: value.sourceUrl.trim(), changes }
 }
 export function parseIdeaDecision(value: unknown): IdeaDecision | null {
   if (!record(value) || !Number.isSafeInteger(value.revision) || Number(value.revision) < 1 ||

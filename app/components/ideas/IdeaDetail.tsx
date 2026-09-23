@@ -13,6 +13,8 @@ import SaveIdea from './SaveIdea'
 import VoteIdea from './VoteIdea'
 import ShareIdea from './ShareIdea'
 import IdeaActions from './IdeaActions'
+import IdeaEditEntry from './IdeaEditEntry'
+import { ideaEditValues } from '../../lib/idea-edit'
 
 function materials(problem: Problem, idea: Approach, locale: Locale) {
   const en = locale === 'en'
@@ -91,6 +93,8 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
           {problem.sources.length > 0 && <ol className="ideas-sources">{problem.sources.map(source => <li key={source.url}><div><a href={source.url}>{source.title}<IdeaIcon name="external" /></a><span className="ideas-source-date">{source.date} · {domain(source.url)}</span><p>{source[locale]}</p></div></li>)}</ol>}
         </div>
       </details>
+
+      <IdeaEditEntry locale={locale} ideaId={idea.id} title={a.title} releaseId={ecosystem.releaseId} initial={ideaEditValues(idea, problem, locale)} />
 
     </article>
   </IdeaShell>

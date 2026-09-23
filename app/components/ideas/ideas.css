@@ -339,6 +339,25 @@
 .ideas-shell .ideas-research-body h2:not(:first-child) { margin-top: 1.5rem; }
 .ideas-shell .ideas-research-body > .ideas-source-date { margin-top: 1rem; }
 .ideas-shell .ideas-research-body .ideas-sources { margin-top: 1.5rem; }
+.ideas-shell .idea-edit-entry { max-width: 47rem; margin-top: 1rem; }
+.ideas-shell .idea-edit-form { margin-top: 1rem; padding-top: 1.75rem; border-top: 1px solid var(--line-soft); }
+.ideas-shell .idea-edit-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; }
+.ideas-shell .idea-edit-heading h2 { font-size: 1.5rem; font-weight: 500; }
+.ideas-shell .idea-edit-heading p { margin-top: .45rem; color: var(--muted); font-size: .9375rem; }
+.ideas-shell .idea-edit-form .ideas-draft-form { margin-top: 1.5rem; }
+.ideas-shell .idea-edit-part + .idea-edit-part { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--line-soft); }
+.ideas-shell .idea-edit-part-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; }
+.ideas-shell .idea-edit-part-head label { margin-bottom: .5rem; }
+.ideas-shell .idea-edit-part > label { margin-top: 1.25rem; }
+.ideas-shell .idea-edit-add { margin-top: 1rem; }
+.ideas-shell .idea-edit-comparison section { margin-top: 1.5rem; }
+.ideas-shell .idea-edit-comparison section > h3 { margin: 0 0 .5rem; font-size: .9375rem; font-weight: var(--w-strong); }
+.ideas-shell .idea-edit-diff { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.ideas-shell .idea-edit-diff > div { min-width: 0; padding: .8rem 1rem; border: 1px solid var(--line-soft); border-radius: 4px; }
+.ideas-shell .idea-edit-diff small { color: var(--muted); font-size: .75rem; }
+.ideas-shell .idea-edit-diff p { margin-top: .4rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+.ideas-shell .idea-edit-publication { margin-top: 1.5rem; }
+@media (max-width: 600px) { .ideas-shell .idea-edit-diff { grid-template-columns: minmax(0, 1fr); } }
 .ideas-shell[lang="bn"] .ideas-first-step li::before { content: counter(steps, bengali); }
 .ideas-shell[lang="bn"] .ideas-detail-heading h1 { line-height: 1.4; letter-spacing: 0; }
 .ideas-shell .ideas-draft-column { max-width: 47rem; }

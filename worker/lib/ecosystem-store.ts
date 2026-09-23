@@ -1,4 +1,4 @@
-import type { ConnectionProposal, ReviewDecision, IdeaProposal, IdeaDecision } from '../../app/lib/ecosystem-types.ts'
+import type { ConnectionProposal, ReviewDecision, IdeaProposal, IdeaEditProposal, IdeaDecision } from '../../app/lib/ecosystem-types.ts'
 
 export interface SubmissionRow {
   id: string; owner_hash: string; payload_json: string; payload_hash: string;
@@ -7,7 +7,7 @@ export interface SubmissionRow {
 }
 export class EcosystemConflict extends Error {}
 
-export async function createSubmission(db: D1Database, owner: string, key: string, hash: string, payload: ConnectionProposal | IdeaProposal, now: string, email?: string) {
+export async function createSubmission(db: D1Database, owner: string, key: string, hash: string, payload: ConnectionProposal | IdeaProposal | IdeaEditProposal, now: string, email?: string) {
   const previous = await db.prepare('SELECT * FROM submissions WHERE owner_hash = ? AND idempotency_key = ?').bind(owner, key).first<SubmissionRow>()
   if (previous) {
     if (previous.payload_hash !== hash) throw new EcosystemConflict('idempotency_conflict')
@@ -34,8 +34,8 @@ export async function decideSubmission(db: D1Database, id: string, reviewer: str
   const row = await db.prepare('SELECT * FROM submissions WHERE id = ?').bind(id).first<SubmissionRow>()
   if (!row) throw new EcosystemConflict('submission_not_found')
   if (row.status !== 'pending' || row.revision !== decision.revision) throw new EcosystemConflict('stale_decision')
-  const proposal: ConnectionProposal | IdeaProposal = JSON.parse(row.payload_json)
-  const idea = 'kind' in proposal && proposal.kind === 'idea'
+  const proposal: ConnectionProposal | IdeaProposal | IdeaEditProposal = JSON.parse(row.payload_json)
+  const idea = 'kind' in proposal
   if (!idea && !('organizationId' in decision)) throw new EcosystemConflict('invalid_decision')
   if (!idea && decision.decision === 'approved' && !('organizationId' in decision && decision.organizationId) && !('organization' in proposal && proposal.organization)) throw new EcosystemConflict('organization_required')
   const guard = crypto.randomUUID()
