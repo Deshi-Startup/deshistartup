@@ -49,6 +49,130 @@ const ideaSearchCopy = {
   'solar-upkeep': {
     en: ['Solar Panel Cleaning: A Startup Idea for Bangladesh', 'Explore a solar panel cleaning and maintenance business idea in Bangladesh. See who could pay, what trained technicians do, and how to test the service.'],
     bn: ['সোলার প্যানেল পরিষ্কার: বাংলাদেশে ব্যবসার আইডিয়া', 'ছাদের সোলার প্যানেল পরিষ্কার ও মেরামতের ব্যবসার আইডিয়া দেখুন। কাদের সার্ভিস দেবেন, আয় কীভাবে হবে আর ছোট করে কীভাবে পরীক্ষা করবেন, জানুন।']
+  },
+  'supplier-evidence': {
+    en: ["Garment Supplier Records: A Software Startup Idea", "Explore a startup idea for garment factories in Bangladesh: match supplier records to buyer requests, find missing documents, and test a paid service."],
+    bn: ["গার্মেন্টসের সাপ্লায়ার রেকর্ড গুছানো: স্টার্টআপ আইডিয়া", "বায়ারের চাহিদামতো গার্মেন্টসের কাগজপত্র গুছিয়ে দেওয়ার ব্যবসার আইডিয়া দেখুন। কী তথ্য নেই, তা খুঁজে দিয়ে ছোট করে পেইড সার্ভিস পরীক্ষা করুন।"]
+  },
+  'compressed-air': {
+    en: ["Compressed Air Leak Detection: A Business Idea", "Explore a factory air-leak detection business in Bangladesh. Work with trained technicians, test one factory, and plan repeat checks and repair fees."],
+    bn: ["কারখানার কমপ্রেসড এয়ার লিক খোঁজা: ব্যবসার আইডিয়া", "কারখানার বাতাসের লাইনে লিক খোঁজা ও মেরামতের ব্যবসার আইডিয়া দেখুন। দক্ষ টেকনিশিয়ান নিয়ে একটি কারখানায় কাজ পরীক্ষা করুন, খরচ আর ফি মিলিয়ে নিন।"]
+  },
+  'etp-operations': {
+    en: ["Factory ETP Maintenance: A Business Idea", "Explore a service for factory wastewater treatment plants in Bangladesh. See who could pay for maintenance, lab tests, and support for plant operators."],
+    bn: ["কারখানার ETP দেখভাল: বাংলাদেশে ব্যবসার আইডিয়া", "কারখানার বর্জ্যপানি শোধনের প্ল্যান্ট দেখভালের ব্যবসার আইডিয়া দেখুন। মেরামত, ল্যাব টেস্ট আর অপারেটরকে সহায়তার জন্য কারা টাকা দেবেন, বুঝে নিন।"]
+  },
+  'verified-spares': {
+    en: ["Factory Spare Parts Supply: A Business Idea", "Explore a startup idea for locally made factory spare parts. Start with one safe, repeat part, check its quality, and test paid orders before expanding."],
+    bn: ["কারখানার স্পেয়ার পার্টস সরবরাহ: ব্যবসার আইডিয়া", "স্থানীয় ওয়ার্কশপে কারখানার পার্টস বানিয়ে দেওয়ার ব্যবসার আইডিয়া দেখুন। নিরাপত্তার ঝুঁকি কম এমন একটি পার্টস দিয়ে শুরু করে মান আর পেইড অর্ডার যাচাই করুন।"]
+  },
+  'food-sample-runs': {
+    en: ["Food Lab Sample Collection: A Business Idea", "Explore a food-testing support business in Bangladesh. Collect samples for suitable labs, track each handover, and test a route with paying customers."],
+    bn: ["খাবারের নমুনা ল্যাবে পৌঁছানো: ব্যবসার আইডিয়া", "খাদ্য ব্যবসার নমুনা উপযুক্ত ল্যাবে পৌঁছে দেওয়ার ব্যবসার আইডিয়া দেখুন। প্রতিবার কার হাতে নমুনা গেল, তা লিখে রাখুন আর একটি রুটে টাকা নিয়ে কাজটি পরীক্ষা করুন।"]
+  },
+  'export-document-check': {
+    en: ["Export Document Checking: A Startup Idea", "Explore an export paperwork checking service in Bangladesh. Find mismatched shipment details, plan a fee, and test the work before building software."],
+    bn: ["রপ্তানির কাগজপত্র যাচাই: স্টার্টআপ আইডিয়া", "রপ্তানির চালানে তথ্যের গরমিল খুঁজে দেওয়ার ব্যবসার আইডিয়া দেখুন। সফটওয়্যার বানানোর আগে একজন অভিজ্ঞ লোক নিয়ে কাজ আর ফি পরীক্ষা করুন।"]
+  },
+  'aquaculture-diagnostics': {
+    en: ["Fish Disease Testing Support: A Business Idea", "Explore a sample collection service for fish farms in Bangladesh. Work with a suitable lab and fish-health specialist, and test one paid collection route."],
+    bn: ["মাছের রোগ পরীক্ষায় সহায়তা: ব্যবসার আইডিয়া", "মাছের খামারের নমুনা ল্যাবে নেওয়ার ব্যবসার আইডিয়া দেখুন। বিশেষজ্ঞ ও উপযুক্ত ল্যাবের সঙ্গে কাজ করে একটি রুটে টাকা নিয়ে নমুনা সংগ্রহের কাজ পরীক্ষা করুন।"]
+  },
+  'recycled-resin-quality': {
+    en: ["Recycled Plastic Supply: A Business Idea", "Explore a recycled plastic supply business in Bangladesh. Match batches to a buyer's needs, check quality, and test orders before investing in a plant."],
+    bn: ["রিসাইকেল করা প্লাস্টিক সরবরাহ: ব্যবসার আইডিয়া", "বায়ারের চাহিদামতো রিসাইকেল করা প্লাস্টিক সরবরাহের ব্যবসার আইডিয়া দেখুন। নিজের প্ল্যান্ট করার আগে ব্যাচের মান আর পেইড অর্ডার পরীক্ষা করুন।"]
+  },
+  'bangla-order-intake': {
+    en: ["Bangla Voice Order Software: A Startup Idea", "Explore software that turns Bangla dealer messages into draft orders. See how staff can check the details and how to test the idea with a distributor."],
+    bn: ["বাংলা ভয়েস মেসেজ থেকে অর্ডার: সফটওয়্যার আইডিয়া", "ডিলারের বাংলা মেসেজ থেকে খসড়া অর্ডার তৈরির সফটওয়্যার আইডিয়া দেখুন। কর্মীরা তথ্য মিলিয়ে নেবেন। একজন ডিস্ট্রিবিউটরের সঙ্গে পরীক্ষা করে শুরু করুন।"]
+  },
+  'chip-verification': {
+    en: ["Chip Design Verification: A Startup Idea", "Explore a chip design testing business based in Bangladesh. Start with an experienced team, one test plan, and a small paid project for a chip company."],
+    bn: ["চিপের ডিজাইন পরীক্ষা: বাংলাদেশে স্টার্টআপ আইডিয়া", "বাংলাদেশ থেকে চিপের ডিজাইন পরীক্ষার ব্যবসার আইডিয়া দেখুন। অভিজ্ঞ টিম, পরিষ্কার টেস্ট প্ল্যান আর একটি ছোট পেইড প্রজেক্ট দিয়ে শুরু করার উপায় জানুন।"]
+  },
+  'technician-proof-of-skill': {
+    en: ["Technician Skills Testing: A Business Idea", "Explore a technician hiring and skills-testing business in Bangladesh. Match practical tests to real jobs, work with trained assessors, and test employer demand."],
+    bn: ["টেকনিশিয়ানের কাজের দক্ষতা পরীক্ষা: ব্যবসার আইডিয়া", "হাতে-কলমে পরীক্ষা নিয়ে টেকনিশিয়ান নিয়োগে সাহায্যের ব্যবসার আইডিয়া দেখুন। আসল চাকরির কাজের সঙ্গে পরীক্ষা মিলিয়ে নিয়োগদাতার চাহিদা যাচাই করুন।"]
+  },
+  'shared-childcare': {
+    en: ["Shared Workplace Daycare: A Business Idea", "Explore shared daycare for nearby employers in Bangladesh. Work with an existing centre, check child safety, and test whether employers will reserve places."],
+    bn: ["কয়েকটি অফিসের জন্য শেয়ার করা ডে-কেয়ার: ব্যবসার আইডিয়া", "কাছের অফিসগুলোর জন্য ডে-কেয়ারের ব্যবস্থা করার ব্যবসার আইডিয়া দেখুন। চালু কেন্দ্রের সঙ্গে কাজ করে শিশুর নিরাপত্তা আর অফিসের পেইড চাহিদা যাচাই করুন।"]
+  },
+  'bangla-speech-infrastructure': {
+    en: ["Bangla Speech-to-Text Software: A Startup Idea", "Explore a Bangla speech-to-text startup for local calls and accents. Test real recordings with permission, check errors, and plan how to charge software teams."],
+    bn: ["বাংলা কথা লেখায় আনার সফটওয়্যার: স্টার্টআপ আইডিয়া", "বাংলাদেশের উচ্চারণ বোঝে এমন স্পিচ-টু-টেক্সট সফটওয়্যার আইডিয়া দেখুন। অনুমতি নিয়ে কলের রেকর্ড পরীক্ষা করুন, ভুল খুঁজুন আর আয়ের উপায় ঠিক করুন।"]
+  },
+  'code-change-verification': {
+    en: ["AI Code Testing: A Startup Idea", "Explore a software testing startup based in Bangladesh. Check whether AI-written changes fix a bug, catch new failures, and test a service developers will pay for."],
+    bn: ["এআইয়ের লেখা কোড পরীক্ষা: সফটওয়্যার স্টার্টআপ আইডিয়া", "এআইয়ের লেখা কোডে বাগ ঠিক হয়েছে কি না, তা পরীক্ষার স্টার্টআপ আইডিয়া দেখুন। নতুন ভুল ধরুন আর ডেভেলপাররা এই সার্ভিসের জন্য টাকা দেবেন কি না যাচাই করুন।"]
+  },
+  'merchant-settlement-reconciliation': {
+    en: ["Payment Reconciliation Software: A Startup Idea", "Explore software that matches sales to bank, wallet, and courier payments in Bangladesh. Help sellers spot missing money and test a monthly service."],
+    bn: ["বিক্রির সঙ্গে পেমেন্ট মেলানোর সফটওয়্যার: স্টার্টআপ আইডিয়া", "ব্যাংক, ওয়ালেট আর কুরিয়ারের টাকার সঙ্গে বিক্রির হিসাব মেলানোর সফটওয়্যার আইডিয়া দেখুন। বাকি টাকা খুঁজে দেওয়ার মাসিক সার্ভিস পরীক্ষা করুন।"]
+  },
+  'bank-cross-border-connectors': {
+    en: ["Bank Payment Integration Software: A Startup Idea", "Explore software for banks and approved overseas payment partners. Match records and flag gaps while the bank keeps control of approvals and money movement."],
+    bn: ["ব্যাংকের বিদেশি পেমেন্ট সংযোগ: সফটওয়্যার আইডিয়া", "ব্যাংক আর অনুমোদিত বিদেশি পেমেন্ট পার্টনারের হিসাব মেলানোর সফটওয়্যার আইডিয়া দেখুন। অনুমোদন আর টাকা পাঠানোর নিয়ন্ত্রণ ব্যাংকের হাতেই থাকবে।"]
+  },
+  'invoice-finance-evidence': {
+    en: ["Invoice Finance Checks: A Software Startup Idea", "Explore software that helps lenders check export invoices, shipping proof, and payments. Test with a licensed lender that keeps control of credit decisions."],
+    bn: ["ঋণদাতার জন্য রপ্তানির ইনভয়েস যাচাই: সফটওয়্যার আইডিয়া", "ইনভয়েস, মাল পাঠানোর প্রমাণ আর পেমেন্ট যাচাইয়ে ঋণদাতাকে সাহায্যের সফটওয়্যার আইডিয়া দেখুন। ঋণ দেওয়ার সিদ্ধান্ত লাইসেন্সধারী ঋণদাতাই নেবেন।"]
+  },
+  'adaptive-bangla-learning': {
+    en: ["Bangla Maths Learning App: A Startup Idea", "Explore a Bangla maths learning app for children in Bangladesh. Give practice at the right level, support teachers, and test learning gains in a school pilot."],
+    bn: ["বাংলায় অঙ্ক শেখার অ্যাপ: স্টার্টআপ আইডিয়া", "শিশুর শেখার লেভেল অনুযায়ী বাংলায় অঙ্ক অনুশীলনের অ্যাপ আইডিয়া দেখুন। শিক্ষককে সঙ্গে রেখে স্কুলে পরীক্ষা করুন, শেখায় কতটা সাহায্য হচ্ছে মিলিয়ে নিন।"]
+  },
+  'bangla-assessment-feedback': {
+    en: ["Bangla Classwork Feedback: An Edtech Startup Idea", "Explore software that turns photos of Bangla classwork into draft feedback. Teachers check every suggestion. Test accuracy and time saved before expanding."],
+    bn: ["বাংলা ক্লাসওয়ার্কে ফিডব্যাক: এডটেক স্টার্টআপ আইডিয়া", "খাতার ছবি থেকে খসড়া ফিডব্যাক দেওয়ার সফটওয়্যার আইডিয়া দেখুন। শিক্ষক প্রতিটি পরামর্শ মিলিয়ে নেবেন। আগে ভুলের হার আর সময় বাঁচছে কি না পরীক্ষা করুন।"]
+  },
+  'fish-farm-autopilot': {
+    en: ["Fish Farm Water Monitoring: A Startup Idea", "Explore a fish-farm monitoring business in Bangladesh. Test water sensors and useful alerts with a farm specialist before adding equipment controls."],
+    bn: ["মাছের খামারের পানি নজরে রাখা: স্টার্টআপ আইডিয়া", "মাছের খামারে পানির অবস্থা আর সতর্কতা জানানোর ব্যবসার আইডিয়া দেখুন। যন্ত্রের নিয়ন্ত্রণ যোগ করার আগে বিশেষজ্ঞ নিয়ে সেন্সর ও সতর্কতা পরীক্ষা করুন।"]
+  },
+  'crop-loss-data': {
+    en: ["Crop Damage Data for Insurers: A Startup Idea", "Explore a crop-damage data startup in Bangladesh. Compare satellite images with field checks and help licensed insurers review affected farms."],
+    bn: ["বীমার জন্য ফসলের ক্ষতির তথ্য: স্টার্টআপ আইডিয়া", "বীমা কোম্পানিকে ফসলের ক্ষতি যাচাইয়ে সাহায্যের স্টার্টআপ আইডিয়া দেখুন। স্যাটেলাইটের ছবি মাঠের তথ্যের সঙ্গে মিলিয়ে দিন, সিদ্ধান্ত কোম্পানিই নেবে।"]
+  },
+  'direct-export-operations': {
+    en: ["Export Order Fulfilment: A Business Idea", "Explore a service that helps Bangladeshi brands deliver overseas orders. Check shipping, payment, and return rules, then test one product and destination."],
+    bn: ["দেশি ব্র্যান্ডের বিদেশি অর্ডার পৌঁছানো: ব্যবসার আইডিয়া", "দেশি ব্র্যান্ডের বিদেশি অর্ডার সামলানোর ব্যবসার আইডিয়া দেখুন। পণ্য পাঠানো, টাকা পাওয়া আর রিটার্নের নিয়ম মিলিয়ে একটি পণ্য ও দেশ দিয়ে পরীক্ষা করুন।"]
+  },
+  'forwarder-shipment-control': {
+    en: ["Freight Forwarding Software: A Startup Idea", "Explore software for freight-forwarding teams in Bangladesh. Keep shipment documents, deadlines, and customer updates together, and test one repeat workflow."],
+    bn: ["ফ্রেইট ফরওয়ার্ডিং সফটওয়্যার: স্টার্টআপ আইডিয়া", "ফ্রেইট টিমের চালান, কাগজপত্র, শেষ সময় আর কাস্টমার আপডেট একসঙ্গে রাখার সফটওয়্যার আইডিয়া দেখুন। নিয়মিত হয় এমন একটি কাজ দিয়ে পরীক্ষা করুন।"]
+  },
+  'shared-parcel-returns': {
+    en: ["Parcel Pickup and Returns: A Startup Idea", "Explore shared parcel pickup and return points at local shops in Bangladesh. Test a courier route, track handovers, and plan fees with shops and merchants."],
+    bn: ["দোকানে পার্সেল নেওয়া ও রিটার্ন: স্টার্টআপ আইডিয়া", "কাছের দোকানে পার্সেল নেওয়া ও ফেরত দেওয়ার ব্যবসার আইডিয়া দেখুন। একটি কুরিয়ার রুটে পরীক্ষা করুন আর দোকান ও বিক্রেতার সঙ্গে ফি ঠিক করুন।"]
+  },
+  'pooled-employee-transport': {
+    en: ["Shared Employee Transport: A Business Idea", "Explore shared staff transport for nearby employers in Bangladesh. Test one route, agree pickup times and backup vehicles, and check costs per reserved seat."],
+    bn: ["অফিসে একসঙ্গে যাতায়াতের সার্ভিস: ব্যবসার আইডিয়া", "কাছের অফিসগুলোর কর্মীদের একসঙ্গে যাতায়াতের ব্যবসার আইডিয়া দেখুন। একটি রুটে সময়, বিকল্প গাড়ি আর বুক করা সিটের খরচ মিলিয়ে পরীক্ষা করুন।"]
+  },
+  'tour-operator-software': {
+    en: ["Tour Operator Booking Software: A Startup Idea", "Explore booking software for tour operators in Bangladesh. Keep seats, rooms, guides, and payments in step, then test one trip format with a paying operator."],
+    bn: ["ট্যুর অপারেটরের বুকিং সফটওয়্যার: স্টার্টআপ আইডিয়া", "ট্যুরের সিট, রুম, গাইড আর পেমেন্টের হিসাব একসঙ্গে রাখার সফটওয়্যার আইডিয়া দেখুন। টাকা দিতে রাজি এমন একজন অপারেটরের সঙ্গে এক ধরনের ট্রিপে পরীক্ষা করুন।"]
+  },
+  'solar-irrigation-control': {
+    en: ["Solar Irrigation Software: A Startup Idea", "Explore software for solar irrigation operators in Bangladesh. Plan pump schedules, record water requests and payments, and test the service at one pump."],
+    bn: ["সোলার সেচের সফটওয়্যার: স্টার্টআপ আইডিয়া", "সোলার সেচের সময়, পানির অনুরোধ আর পেমেন্ট গুছিয়ে রাখার সফটওয়্যার আইডিয়া দেখুন। একটি পাম্পে অপারেটর ও কৃষকদের সঙ্গে সার্ভিস পরীক্ষা করুন।"]
+  },
+  'fleet-depot-electrification': {
+    en: ["EV Fleet and Depot Charging: A Business Idea", "Explore a business helping fleets use electric vehicles in Bangladesh. Test one regular route with charging, maintenance, and backup plans before expanding."],
+    bn: ["বৈদ্যুতিক গাড়ি আর গ্যারেজে চার্জিং: ব্যবসার আইডিয়া", "নিয়মিত রুটে বৈদ্যুতিক গাড়ি চালাতে সাহায্যের ব্যবসার আইডিয়া দেখুন। একটি গাড়ি দিয়ে চার্জিং, মেরামত আর বিকল্প গাড়ির ব্যবস্থা পরীক্ষা করুন।"]
+  },
+  'distributed-energy-orchestration': {
+    en: ["Solar and Battery Management: A Startup Idea", "Explore software that helps buildings use solar power and batteries in Bangladesh. Test a schedule at one site and measure savings after service costs."],
+    bn: ["সোলার আর ব্যাটারি চালানোর সফটওয়্যার: স্টার্টআপ আইডিয়া", "ভবনে সোলার ও ব্যাটারি একসঙ্গে চালানোর সফটওয়্যার আইডিয়া দেখুন। একটি জায়গায় সময়সূচি পরীক্ষা করুন, সার্ভিসের খরচ বাদ দিয়ে সাশ্রয় হিসাব করুন।"]
+  },
+  'underwater-inspection-robotics': {
+    en: ["Underwater Robot Inspections: A Business Idea", "Explore an underwater inspection business in Bangladesh. Work with a survey team and robot supplier, test one civilian job, and check that the report is useful."],
+    bn: ["রোবট দিয়ে পানির নিচে পরীক্ষা: ব্যবসার আইডিয়া", "পানির নিচের কাঠামো রোবট দিয়ে পরীক্ষার ব্যবসার আইডিয়া দেখুন। জরিপ টিম ও রোবট সরবরাহকারীর সঙ্গে একটি বেসামরিক কাজে পরীক্ষা করে রিপোর্টের উপযোগিতা দেখুন।"]
+  },
+  'shared-farm-robotics': {
+    en: ["Farm Robot Services: A Startup Idea", "Explore a shared farm-robot service in Bangladesh. Start with one crop and task, arrange trained operators, and test whether fees cover the full season's costs."],
+    bn: ["খামারে রোবট দিয়ে কাজ করানোর সার্ভিস: স্টার্টআপ আইডিয়া", "কয়েকটি খামারে রোবট দিয়ে কাজ করে দেওয়ার ব্যবসার আইডিয়া দেখুন। একটি ফসল ও কাজ বেছে দক্ষ অপারেটর নিন, পুরো মৌসুমের খরচের সঙ্গে ফি মিলিয়ে নিন।"]
   }
 }
 // These profile snippets describe the published record without turning the
