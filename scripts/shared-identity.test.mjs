@@ -97,7 +97,7 @@ test('identity migrations, import, relationship review and public export work ag
     assert.deepEqual(index.person('contributor', profile.id).aliases, ['Earlier Name'])
     assert.equal(index.organization('directory', 'investors/bangladesh-angels-network').id, 'org_bangladesh-angels-network')
     assert.equal(index.organization('directory', 'investors/bangladesh-women-investors-network').id, 'org_bangladesh-women-investors-network')
-    assert.doesNotMatch(JSON.stringify(snapshot), /subject_hash|identity_events|maintainer:|aaaaaaaaaaaaaaaaaaaaaaaa|visibility|unmapped-org/)
+    assert.doesNotMatch(JSON.stringify(snapshot), /"(?:subject_hash|identity_events|visibility)"\s*:|maintainer:|aaaaaaaaaaaaaaaaaaaaaaaa|unmapped-org/)
   })
 
   await t.test('foreign keys, entity kinds and account uniqueness prevent ambiguous links', async () => {

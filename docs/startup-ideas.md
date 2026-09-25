@@ -6,7 +6,7 @@ companies have independent profiles shared across Deshi Startup. See `companies.
 
 ## Routes and data
 
-- `/startup-ideas` and `/en/startup-ideas`: eight researched ideas, search, sector/location
+- `/startup-ideas` and `/en/startup-ideas`: researched ideas, search, sector/location
   and idea-type filters, plus a saved-only filter. Filters and sort use shareable URLs.
 - `/startup-ideas/<slug>`: one idea, who it helps, how it works, a possible revenue
   model and numbered first steps. Relevant guides and alternative ideas for the
@@ -92,9 +92,8 @@ Migration `0011` creates this table and the initial editorial selections.
 
 ## Seed standard
 
-The collection covers crop cooling, drinking-water maintenance, clinic follow-up,
-workplace heat, textile recycling, rooftop-solar upkeep, inverter support and tested
-recovery for business apps. Each brief names a customer, a possible payer, a
+The collection spans software, finance, learning, farming, trade, logistics,
+energy and other local opportunities. Each brief names a customer, a possible payer, a
 small test and the result worth looking for.
 Primary sources establish the problem; pricing, demand and proposed business models
 remain hypotheses to test. Existing work is acknowledged. Sector importance alone
