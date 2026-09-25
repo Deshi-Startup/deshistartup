@@ -120,6 +120,12 @@
 .ideas-shell .ideas-clear + .ideas-saved-filter { margin-left: 0; }
 .ideas-shell .ideas-browser-note { font-size: .8rem; color: var(--muted, #54595d); margin-top: .8rem; }
 .ideas-shell .ideas-row { position: relative; display: grid; grid-template-columns: 9.5rem minmax(0, 1fr) auto; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--line-soft); align-items: start; isolation: isolate; }
+/* Keep the full catalogue searchable while deferring text layout for rows
+   below the screen. Remember measured heights as the reader scrolls. */
+.ideas-shell .ideas-row { content-visibility: auto; contain-intrinsic-block-size: auto 160px; }
+/* Focus rings and the hover background extend beyond a row's paint box. */
+.ideas-shell .ideas-row:is(:hover, :focus-within),
+.ideas-shell:has(:target) .ideas-row { content-visibility: visible; contain-intrinsic-block-size: none; }
 .ideas-shell .ideas-row::before { content: ''; position: absolute; inset: 0 -1rem; z-index: -1; background: var(--green-ground); opacity: 0; transition: opacity .16s ease; }
 .ideas-shell .ideas-row-sector { padding-top: .3rem; color: var(--green-deep); font-size: .8125rem; font-weight: 500; }
 .ideas-shell .ideas-row-copy { min-width: 0; }
@@ -223,6 +229,7 @@
   .ideas-shell .ideas-result-count { font-size: .75rem; }
   .ideas-shell .ideas-results-toolbar .ideas-clear { margin-left: 0; font-size: .75rem; }
   .ideas-shell .ideas-row { grid-template-columns: minmax(0, 1fr) auto; gap: .75rem 1rem; padding-block: 1.5rem; }
+  .ideas-shell .ideas-row { contain-intrinsic-block-size: auto 220px; }
   .ideas-shell .ideas-row-sector { grid-column: 1; padding: 0; font-size: .75rem; }
   .ideas-shell .ideas-row-copy { grid-column: 1 / -1; }
   .ideas-shell .ideas-row-copy h3 { font-size: 1.4rem; max-width: 32rem; }
@@ -241,6 +248,9 @@
   .ideas-shell .ideas-select select { font-size: 16px; padding-right: 2.75rem; }
 }
 @media (prefers-reduced-motion: reduce) { .ideas-shell *, .ideas-shell *::before, .ideas-shell *::after { transition: none !important; scroll-behavior: auto !important; } }
+@media print {
+  .ideas-shell .ideas-row { content-visibility: visible; contain-intrinsic-block-size: none; }
+}
 
 /* Drafts and reviewed submissions use the same quiet, single-column form rhythm. */
 .ideas-shell :is(.connection-form, .review-form, .connection-history) { max-width: 47rem; }
