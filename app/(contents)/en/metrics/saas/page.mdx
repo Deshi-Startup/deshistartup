@@ -1,17 +1,18 @@
 ---
 title: "SaaS Metrics"
-description: "Measure subscription health through MRR, ARR, NRR and the Rule of 40. Follow a worked taka-priced SaaS example and see how the same metrics differ for an export-oriented software business."
+seoTitle: "Monthly Recurring Revenue (MRR), ARR and NRR for SaaS"
+description: "Learn to calculate monthly recurring revenue (MRR), ARR and net revenue retention (NRR) with a simple taka example. See what each number can and cannot tell you."
 ---
 
 # SaaS Metrics
 
-> **In short:** In a subscription business, matching one customer's CAC against their LTV isn't enough – you also need to measure which way the whole business is moving, month to month. MRR tells you how much locked-in revenue you have this month, ARR blows that number up to a yearly scale, and the one that matters most, NRR, tells you whether your existing customers are quietly growing the business or quietly leaking it. These three numbers, plus a quick Rule of 40 check, are enough to read your business's real health twice a year.
+> **In short:** If customers pay your software business each month, track three numbers. MRR is the monthly value of active subscriptions. ARR puts that monthly rate on a yearly scale. NRR shows whether the same customers pay more or less over time. These are useful planning numbers, not cash already in the bank.
 
 Sumaiya's software business already has its single-customer maths worked out on the [CAC, LTV, Retention, Churn, Payback](/en/metrics/cac-ltv-churn) page: a customer pays 500 taka a month, leaving 100 taka of contribution; CAC runs 500 taka; a customer stays 10 months on average, so LTV comes to 1,000 taka; and LTV-to-CAC sits at 2:1. That's the maths of one customer. This page is about the whole business – many customers together – and how to measure which direction it's moving, month over month.
 
-## MRR: this month's locked-in revenue
+## MRR: monthly recurring revenue
 
-Say Sumaiya's software has 100 active customers right now, each paying 500 taka a month. Then **MRR (monthly recurring revenue)** – the month's locked-in revenue – comes to 100 × 500 = 50,000 taka.
+Say Sumaiya's software has 100 active customers right now, each paying 500 taka a month. Then **MRR (monthly recurring revenue)** comes to 100 × 500 = 50,000 taka. It measures the monthly value of those active subscriptions, not cash already collected.[^stripe-mrr]
 
 MRR isn't a month's total sales; it's a snapshot on a given date. A one-time setup fee or a one-off consultation doesn't count toward it, since there's no guarantee that money repeats next month – MRR only counts revenue expected to recur.
 
@@ -19,7 +20,7 @@ For you this means the month's bank statement can't tell you if the business is 
 
 ## ARR: seeing the year-scale number
 
-Multiply MRR by 12 and you get **ARR (annual recurring revenue)** – the year's locked-in revenue. Sumaiya's 50,000 taka of MRR means an ARR of 600,000 taka.
+Multiply MRR by 12 and you get **ARR (annual recurring revenue)**. Sumaiya's 50,000 taka of MRR means an ARR of 600,000 taka at today's rate. It is not a promise that every customer will stay all year.[^stripe-arr]
 
 ARR earns its keep when talking to an investor, negotiating an annual contract, or planning the year ahead – it's the number everyone grasps instantly. But for day-to-day decisions, like which channel is working this month or where customers are slipping away, MRR is the real number. ARR is only a projection, resting on the assumption that today's MRR holds steady for the next 12 months, and young businesses tend to have higher churn, so a big ARR figure can be falsely reassuring. ARR is the number you show an investor; MRR is the number you decide with.
 
@@ -41,9 +42,9 @@ This single number gets misunderstood more than any other, and investors weigh i
 | Churned entirely | 5 | 2,500 | 0 |
 | **Total** | **100** | **50,000** | **51,000** |
 
-**The maths:** NRR = this month's revenue ÷ last month's revenue × 100 = 51,000 ÷ 50,000 × 100 = 102%.
+**The maths:** NRR = this month's recurring revenue from the same customers ÷ last month's recurring revenue from those customers × 100 = 51,000 ÷ 50,000 × 100 = 102%.[^chartmogul-nrr]
 
-Notice that 5 customers left entirely and 10 cut back, yet NRR still lands above 100 – the 25 who upgraded more than covered that loss and then some. Without adding a single new customer, Sumaiya's revenue from this exact cohort grew. That's exactly why NRR above 100 percent matters: it proves the business can grow without new sales, and any new customer on top is pure upside.
+Notice that 5 customers left entirely and 10 cut back, yet NRR still lands above 100 – the 25 who upgraded more than covered that loss and then some. Without adding a single new customer, Sumaiya's revenue from this exact cohort grew. NRR above 100 percent shows that existing customers now pay more as a group. It does not show whether the business makes a profit. New customers may add revenue, but bringing them in costs money too.
 
 Now picture the reverse: only 5 upgrade instead of 25, and 15 leave instead of 5. The number falls below 100, meaning the business isn't even holding onto existing customers – the foundation itself is leaking. Plugging that leak comes before spending a single taka on new customers.
 
@@ -77,6 +78,12 @@ The ITES tax exemption on export earnings, and the EXP form rules that go with i
 Rule of thumb: **check NRR before you spend on new customers. If existing customers are quietly slipping away, pouring money into ads is like pouring water into a leaking bucket.**
 
 ## Relevant Sources
+
+[^stripe-mrr]: [Stripe – What is monthly recurring revenue?](https://stripe.com/resources/more/what-is-monthly-recurring-revenue), updated May 2026.
+
+[^stripe-arr]: [Stripe – What is ARR and how do you calculate it?](https://stripe.com/resources/more/what-is-arr-and-how-do-you-calculate-it), updated January 2024.
+
+[^chartmogul-nrr]: [ChartMogul – Net Revenue Retention](https://chartmogul.com/saas-metrics/nrr/), updated September 2026.
 
 [^bb-repatriation]: [Bangladesh Bank](https://www.bb.org.bd), rules on foreign exchange and repatriating export earnings, accessed August 2026.
 
