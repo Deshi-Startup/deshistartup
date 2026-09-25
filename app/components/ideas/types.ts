@@ -1,5 +1,5 @@
 export type Locale = 'en' | 'bn'
-export type Sector = 'commerce' | 'circular' | 'agriculture' | 'manufacturing' | 'health' | 'water' | 'energy' | 'technology'
+export type Sector = 'commerce' | 'circular' | 'agriculture' | 'manufacturing' | 'health' | 'water' | 'energy' | 'technology' | 'finance' | 'education' | 'logistics' | 'work' | 'travel'
 export type Place = 'anywhere' | 'dhaka' | 'gazipur' | 'bogura' | 'chattogram' | 'khulna' | 'rajshahi'
 export interface IdeaSummary {
   id: string
