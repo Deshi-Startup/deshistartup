@@ -1,8 +1,8 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
-const { approaches: ideas } = JSON.parse(fs.readFileSync(new URL('../../../data/ecosystem/public.json', import.meta.url), 'utf8'))
-import { defaultFilters, draftLimits, draftMarkdown, emptyDraft, filterQuery, ideaPath, ideaSlug, matchingIdeas, parseDraft, parseFilters, parseSaved, readSaved, SAVED_KEY, LEGACY_SAVED_KEY, sortIdeas } from './model.ts'
+const { problems, approaches: ideas } = JSON.parse(fs.readFileSync(new URL('../../../data/ecosystem/public.json', import.meta.url), 'utf8'))
+import { defaultFilters, draftLimits, draftMarkdown, emptyDraft, filterQuery, ideaPath, ideaSlug, matchingIdeas, parseDraft, parseFilters, parseSaved, readSaved, SAVED_KEY, LEGACY_SAVED_KEY, places, sectors, sortIdeas } from './model.ts'
 import { guidePage } from '../../lib/guide-index.mjs'
 import { pageChromePolicy } from '../../lib/page-chrome.ts'
 import { sourceSupportsInlineEdit } from '../../lib/inline-edit-policy.mjs'
@@ -161,12 +161,19 @@ test('draft recovery preserves authored text, limits size and rejects unexpected
 
 test('every idea has a generated bilingual route and uses the idea editor', () => {
   for (const idea of ideas) {
+    const problem = problems.find(p => p.id === idea.problemId)
+    assert.ok(Object.hasOwn(sectors, problem.sector))
+    assert.ok(problem.places.every(place => Object.hasOwn(places, place)))
     for (const locale of ['bn', 'en']) {
       const route = ideaPath(locale, ideaSlug(idea.id))
       const file = `app/(contents)/${locale === 'en' ? 'en' : '(bn)'}/startup-ideas/${ideaSlug(idea.id)}/page.mdx`
       assert.ok(fs.readFileSync(file, 'utf8').includes(`id="${idea.id}"`))
       assert.deepEqual(pageChromePolicy(route), { showDiscussionAction: false, showPageActions: false, showEditAction: false })
       assert.equal(sourceSupportsInlineEdit({ slug: route.replace(/^\/en\//, '/').slice(1) }), false)
+    }
+    for (const source of problem.sources) {
+      assert.equal(new URL(source.url).protocol, 'https:')
+      assert.ok(source.en && source.bn && source.date)
     }
   }
   assert.equal(pageChromePolicy('/en/ideas/customer-research').showEditAction, true, 'existing guide section stays editable')
