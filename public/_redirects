@@ -77,6 +77,16 @@
 /phase-one/importexport-registration-basics /trade/import-export-registration 301
 /en/phase-one/importexport-registration-basics /en/trade/import-export-registration 301
 
+# More retired guide links mapped to their completed July migration destinations.
+/phase-one/using-bbs-btrc-world-bank-and-datareportal-for-market-research /ideas/using-market-data 301
+/en/phase-one/using-bbs-btrc-world-bank-and-datareportal-for-market-research /en/ideas/using-market-data 301
+/phase-one/basics-of-starting-a-foreign-owned-company-in-bangladesh /registration/foreign-owned-company 301
+/en/phase-one/basics-of-starting-a-foreign-owned-company-in-bangladesh /en/registration/foreign-owned-company 301
+/phase-one/bkash-merchant-account-vs-personal-account /payments/bkash-merchant 301
+/en/phase-one/bkash-merchant-account-vs-personal-account /en/payments/bkash-merchant 301
+/phase-two/quality-control-checklist-for-first-production-run /manufacturing/quality-control 301
+/en/phase-two/quality-control-checklist-for-first-production-run /en/manufacturing/quality-control 301
+
 # Conventional favicon requests and the previous public brand-mark URL.
 /favicon.ico /favicon-32.png 301
 /deshi-mark.svg /deshi-mark.webp 301
