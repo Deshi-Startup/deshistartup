@@ -24,6 +24,17 @@ process-and-fees page, and the hub `/start-here`.
   `lint:routes` enforces it. Every new topic exists in `plan/content-backlog.csv` first — the
   `Path` column owns the URL.
 
+When reviewing an existing translation or recovering an unfinished batch, preserve good phrasing
+and correct specific gaps or factual drift. Do not start over merely to change the voice. Aim for
+plain eighth-grade English and sixth- to eighth-grade Bangla, with unfamiliar terms explained
+through the work they do. These are writing targets, not scores a linter can certify. Simplifying
+must not add numbers, promises or certainty absent from the evidence.
+
+For structured idea briefs, save complete bilingual records with stable IDs in small batches.
+Check field coverage and meaning before combining them. Apply reviewed copy through the
+[D1 release pipeline](../docs/startup-ideas.md), never by editing generated pages or snapshots.
+Retire temporary drafts only after their useful work is preserved and checked.
+
 ## Pipeline for a new guide
 
 1. **Claim the topic.** Pick the route from `plan/content-backlog.csv`; note the claim on its
