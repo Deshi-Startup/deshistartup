@@ -1,15 +1,90 @@
 ---
-title: "International Payment, Card, and Payment Link Constraints"
-description: "International Payment, Card, and Payment Link Constraints – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "Take International Payments from Bangladesh"
+description: "Choose a way to take a foreign customer's card payment, payment link or bank transfer. Check where the money settles and what your bank needs."
+verified: 2026-09-23
 ---
 
-# International Payment, Card, and Payment Link Constraints
+# Take International Payments from Bangladesh
 
-<StubNotice path="payments/international-payments" locale="en" />
+> **In short:** First decide how your foreign customer wants to pay: bank transfer, card checkout or payment link. Then ask your Bangladesh bank and payment provider whether your business can use that route and where the money will land. A card payment and a foreign-currency balance are not the same as export earnings reaching your bank.[^bb-export]
+
+This guide is for a Bangladesh-based startup selling to customers abroad. It helps you choose a way to collect payment, not a way to send money abroad. If you export goods, your shipping and customs steps also matter. If you sell a service over the internet, you still need to bring the earnings home and keep records.[^bb-export]
+
+## Pick the way your customer will pay
+
+| Situation | Start here | Check before you promise it |
+|---|---|---|
+| A company abroad will pay your invoice | Ask your bank about an inward bank transfer | Which invoice, contract and payment-purpose details it needs; the receiving charges and exchange rate |
+| A customer wants to pay by card, but you do not need a website checkout | Ask a Bangladesh gateway about a payment link | Whether foreign cards are enabled for **your** business, and the currency the customer sees and your bank receives |
+| Many customers need to pay inside your website or app | Ask a gateway and its settlement bank about card checkout | Which countries, cards and products it accepts for your account; recurring payments, refunds and disputes |
+| You need to pay a foreign supplier | Talk to your bank's foreign-exchange desk about an outward payment | Which expense is allowed, which account or card can pay it, and what documents the bank needs |
+
+A **payment link** is a checkout page you send by email or message. It can spare you building a checkout. A **gateway** handles the card payment and sends the proceeds on to a bank. An **authorised dealer bank**, often called an **AD bank**, is a bank allowed to handle foreign exchange. Ask its foreign-exchange desk about the route you plan to use.
+
+## A payment link is an option, not automatic approval
+
+SSLCOMMERZ says its payment links can take multi-currency payments and send money to a bank account. aamarPay describes links and says it accepts local and international payments. PortPos says it can process international cards and offers SendBill links.[^provider-links] Those are provider descriptions. They do not mean every foreign card, business type or currency will be switched on for you.
+
+Send each shortlisted provider the same small brief: what you sell, where your business is registered, where buyers live, your expected order size, and whether you need one-off links or repeat billing. Ask for written answers to these questions:
+
+1. Can **my business and product** take payments from these buyer countries and cards? Is this already enabled or does it need another approval?
+2. What currency will the buyer see? What currency reaches my Bangladesh bank account? Which exchange rate and charges apply?
+3. What documents and bank account do I need? Can I use a link without a website? If I need subscriptions, are repeat charges available for my account?
+4. When will the money reach my bank? What happens to a failed payment, refund or card dispute? What reports show the original order, fees and final bank credit?
+
+Use the [merchant-account document checklist](/en/payments/merchant-account) when you gather papers. For provider links and domestic fees, see the [gateway directory](/en/directory/payment-gateways) and [gateway comparison](/en/payments/gateway-comparison). Ask for a fresh quote for foreign cards; a domestic card rate is not enough.
+
+## Match the payment to the bank record
+
+Bangladesh Bank's July 2026 export circular allows several ways for export money to arrive, including bank transfers, bank-supported online card sales and approved online payment providers. The route depends on what you sell and the bank's arrangement. For web sales by registered IT or software firms, the circular lets AD banks act as acquiring banks under a merchant agreement. It also sets a specific online-payment-provider route for non-physical service exports of no more than **USD 10,000 per transaction**. That ceiling belongs to that route; it is not a limit on every export or every card payment.[^bb-export]
+
+For that online-provider route, the provider and AD bank must have an arrangement. Receipts move from the provider's temporary account into the bank's collection account and then to the exporter. Do not treat the temporary account like a savings account abroad.[^bb-export]
+
+Suppose your Dhaka startup sells design work to a Singapore company for **USD 500**. The buyer offers either a bank transfer or a card. Before sending a link, show the contract and invoice to your AD bank. Ask which route it can record as service-export income and which proof it will give you when the money arrives. Then compare the bank transfer with a provider's written card quote. The USD 500 is only a made-up example; it says nothing about current fees or exchange rates.
+
+Keep the contract, invoice, order or delivery record, provider transaction ID, fee report and bank credit together. Match the amount the buyer paid with the amount you received and the fees between them. Ask your bank for the export proceeds realisation certificate, often called a **PRC**, if your records or an incentive application need one. The [export-earnings guide](/en/trade/export-proceeds) explains the deadline, goods-versus-services paperwork and permitted foreign-currency retention in detail.[^bb-export]
+
+## Do not confuse buyer country, currency and merchant country
+
+Stripe's current supported-country list does not include Bangladesh for direct Stripe Payments merchant accounts. Its list of currencies that customers can pay in does not change where your business must be eligible to open the merchant account.[^stripe-global] Do not promise Stripe checkout just because a foreign buyer has a card. Nor does having a foreign company or account, by itself, settle Bangladesh's export-proceeds rules for a Bangladesh-based operation. Ask the bank and qualified advisers about your actual company and transactions.
+
+The same distinction applies to a local gateway: “international cards” on a marketing page means the provider offers that feature. It does not establish your account's approval, the buyer's card acceptance, the price the buyer sees, or whether the payout stays in foreign currency. Get those details in writing.[^provider-links]
+
+## Paying a foreign bill is a separate task
+
+Receiving an export payment does not give you free use of a foreign wallet to pay overseas bills. Ask your AD bank about the specific payment you need to make. For eligible exporters, Bangladesh Bank allows certain business expenses from an **Exporters' Retention Quota (ERQ) account**—the part of export earnings the bank may keep in foreign currency after the earnings reach Bangladesh. Its circular gives examples such as domain, hosting and server fees for IT and software exporters. The bank checks the purpose and documents.[^bb-export]
+
+Bangladesh Bank also published a bank-linked digital payment framework in July 2026. It allows banks to work with approved cross-border providers for specified outward payments. The facility depends on a bank's arrangement and the permitted purpose; it is not a blanket right to fund any foreign wallet or pay any supplier from it.[^bb-digital]
+
+## Copy this before you contact a provider and bank
+
+```text
+What we sell and where buyers are: ___
+Business name, structure and Bangladesh bank: ___
+One-off invoice, payment link or website checkout: ___
+Expected amount and payment frequency: ___
+Buyer currency / bank settlement currency: ___ / ___
+Foreign-card approval and restricted products: ___
+All quoted fees, exchange rate and payout time: ___
+Refund, dispute and reporting process: ___
+Bank's required contract, invoice and purpose records: ___
+Quote date, contact name and written confirmation: ___
+```
+
+Before you go live, make a genuine small sale that fits your provider's rules. Check the buyer receipt, provider report and bank credit. Do not use a test to get around a transaction limit. If the three amounts do not match, ask the provider and bank to explain the fees and conversion before taking more orders.
+
+## Checklist
+
+- [ ] I know whether this is an inbound customer payment or an outbound supplier bill.
+- [ ] My bank confirmed a route for the type of goods or service I sell.
+- [ ] My provider confirmed foreign-card or link access for **my account**, not only on its website.
+- [ ] I have the buyer currency, bank settlement currency, full fee quote and payout timing in writing.
+- [ ] I can match each order, invoice, provider report and bank credit.
+- [ ] I have checked the export deadline and papers that apply to my sale in the [export-earnings guide](/en/trade/export-proceeds).
 
 ## Relevant Sources
 
-- [Bangladesh Bank](https://www.bb.org.bd)
-- [Prothom Alo Business](https://www.prothomalo.com/business)
-- [RJSC](https://roc.gov.bd)
-- [TechCrunch Bangladesh](https://techcrunch.com/tag/bangladesh/)
+[^bb-export]: [Bangladesh Bank, FEPD-1 Circular No. 26, 30 July 2026](https://www.bb.org.bd/mediaroom/circulars/fepd/jul302026fepd-126e.pdf), especially Part-A paragraphs 8–9, Part-H paragraphs 4–5, Part-I paragraphs 1–3, Part-K, and Part-O. Checked 23 September 2026 against the [Bangladesh Bank circular list](https://www.bb.org.bd/en/index.php/mediaroom/circular). Account eligibility, documents and later amendments should be confirmed with the AD bank.
+[^bb-digital]: [Bangladesh Bank, FEPD-1 Circular No. 25, 29 July 2026](https://www.bb.org.bd/mediaroom/circulars/fepd/jul292026fepd-125e.pdf), bank-intermediated cross-border digital payment framework, especially paragraphs 2–7. Checked 23 September 2026.
+[^provider-links]: Provider descriptions checked 23 September 2026: [SSLCOMMERZ payment links](https://sslcommerz.com/payment-links/), [aamarPay payment links](https://www.aamarpay.com/index.php/payment-links), and [PortPos business tools](https://portpos.com/business) and [card support](https://support.portpos.com/support/solutions/articles/150000079275/). These describe offered features, not approval or terms for a particular merchant.
+[^stripe-global]: [Stripe global availability](https://stripe.com/global), [supported presentment currencies](https://docs.stripe.com/currencies), and [requirements for opening an account in another country](https://support.stripe.com/questions/requirements-to-open-a-stripe-account-in-another-country), checked 23 September 2026.
