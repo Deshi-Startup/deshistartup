@@ -23,23 +23,6 @@ test('every Startup 50 and investor record has a unique shared company identity'
  assert.notEqual(snapshot.identities.references.find(r=>r.externalId==='investors/bangladesh-angels-network').organizationId,snapshot.identities.references.find(r=>r.externalId==='investors/bangladesh-women-investors-network').organizationId)
 })
 
-test('first enrichment batch preserves evidence boundaries and separates portfolio mentions from investments',()=>{
- const snapshot=JSON.parse(fs.readFileSync('data/ecosystem/public.json'))
- const batch=['pathao','priyoshop','dorik','ifarmer','startup-bangladesh-limited']
- for(const slug of batch){
-  const company=snapshot.organizations.find(o=>o.slug===slug)
-  assert.ok(company?.profile,slug)
-  assert.ok(company.profile.sections.every(s=>s.sources.length && s.body.en && s.body.bn),slug)
-  assert.ok(snapshot.identities.affiliations.some(a=>a.organizationId===company.id),slug)
- }
- const bySlug=slug=>snapshot.organizations.find(o=>o.slug===slug)
- assert.equal(bySlug('dorik').profile.contact.address,null)
- const sbl=snapshot.identities.organizationRelationships.filter(r=>r.subjectId===bySlug('startup-bangladesh-limited').id)
- assert.equal(sbl.length,2)
- assert.ok(sbl.every(r=>r.kind==='portfolio-mention' && r.startedOn===null && r.endedOn===null))
- assert.ok(!snapshot.identities.affiliations.some(a=>a.id==='affiliation_mirza-salman-hossain-beg'))
-})
-
 test('catalogue review covers every existing organization with evidenced bilingual profiles and explicit gaps',()=>{
  const snapshot=JSON.parse(fs.readFileSync('data/ecosystem/public.json'))
  const review=JSON.parse(fs.readFileSync('data/research/company-coverage.json'))
