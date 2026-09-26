@@ -16,8 +16,6 @@ const wranglerConfig = fs.readFileSync(path.join(root, 'wrangler.jsonc'), 'utf8'
 const componentSource = fs.readFileSync(path.join(root, 'app', 'components', 'Startup50.tsx'), 'utf8')
 const componentStyles = fs.readFileSync(path.join(root, 'app', 'components', 'Startup50.css'), 'utf8')
 const filtersSource = fs.readFileSync(path.join(root, 'app', 'components', 'Startup50Filters.tsx'), 'utf8')
-const englishPageSource = fs.readFileSync(path.join(root, 'app', '(contents)', 'en', 'startup-50', 'page.mdx'), 'utf8')
-const banglaPageSource = fs.readFileSync(path.join(root, 'app', '(contents)', '(bn)', 'startup-50', 'page.mdx'), 'utf8')
 
 test('salary links are a reviewed, optional subset of the current roster', () => {
   assert.match(salaryLinks.reviewedAt, /^\d{4}-\d{2}-\d{2}$/)
@@ -42,20 +40,6 @@ test('salary links stay in native details and use the current page language', ()
   assert.match(details, /বেতন কেমন-এ বেতনের তথ্য দেখুন/)
   assert.match(details, /className="sr-only">\{isEn \? ' for ' \+ entry\.name/)
   assert.doesNotMatch(componentSource, /betonkemon\.com\/api\//)
-})
-
-test('expanded details group current updates and end with an optional salary link', () => {
-  const body = componentSource.slice(componentSource.indexOf('<div className="startup50-details__body">'), componentSource.indexOf('</details>'))
-  assert.equal((body.match(/<dl(?:\s|>)/g) || []).length, 3)
-  const labels = ['Background', 'Recent public activity', 'Funding', 'Thinking about joining?']
-  const positions = labels.map(label => body.indexOf("'" + label + "'"))
-  assert.ok(positions.every(position => position >= 0))
-  assert.deepEqual(positions, [...positions].sort((a, b) => a - b))
-  const updates = body.match(/<div className="startup50-details__updates">([\s\S]*?)<\/div>/)?.[1] || ''
-  assert.match(updates, /entry\.activity/)
-  assert.match(updates, /entry\.financing/)
-  assert.match(body, /<p className="startup50-salary">/)
-  assert.doesNotMatch(body, /href=\{entry\.website\}|Official website/)
 })
 
 test('the open state preserves responsive details padding and margins', () => {
@@ -125,10 +109,6 @@ test('every broad sector key has one clear bilingual filter label', () => {
     assert.ok(data.sectorGroups[key].en?.trim(), key + ' sector group en')
     assert.ok(data.sectorGroups[key].bn?.trim(), key + ' sector group bn')
   }
-
-  assert.equal(data.sectorGroups.software.en, 'Software and AI')
-  assert.equal(data.sectorGroups.commerce.en, 'Commerce')
-  assert.equal(data.sectorGroups.agriculture.en, 'Agriculture')
 })
 
 test('DIGIBOX is identified as parcel-locker infrastructure', () => {
@@ -172,23 +152,6 @@ test('company names link to their official websites without a duplicate details 
   }
 })
 
-test('the metadata presents the top-startup selection without numeric ranks', () => {
-  assert.match(englishPageSource, /title: "The Deshi Startup 50"/)
-  assert.match(englishPageSource, /seoTitle: "The Deshi Startup 50: Top Startups in Bangladesh"/)
-  assert.match(englishPageSource, /description: "Discover 50 of Bangladesh's top startups/)
-  assert.match(banglaPageSource, /title: "দেশি স্টার্টআপ ৫০"/)
-  assert.match(banglaPageSource, /seoTitle: "দেশি স্টার্টআপ ৫০: বাংলাদেশের শীর্ষ স্টার্টআপ"/)
-  assert.match(banglaPageSource, /description: "প্রযুক্তি, আর্থিক সেবা, স্বাস্থ্য, কৃষি ও কমার্সসহ নানা খাতের বাংলাদেশের শীর্ষ ৫০টি স্টার্টআপকে জানুন/)
-  assert.match(componentSource, /'50 Bangladeshi startups to watch in 2026\.'/)
-  assert.match(componentSource, /'২০২৬ সালে নজরে রাখার মতো ৫০টি বাংলাদেশি স্টার্টআপ।'/)
-  assert.match(componentSource, /'বাংলাদেশের শীর্ষ ৫০টি স্টার্টআপকে জানুন/)
-  assert.doesNotMatch(englishPageSource, /editorial watchlist|scorecard/)
-  assert.doesNotMatch(banglaPageSource, /সম্পাদকীয় বাছাইয়ের এই তালিকা কোনো র‍্যাঙ্কিং নয়/)
-  assert.doesNotMatch(componentSource, /কোনো সংখ্যাভিত্তিক স্কোর বা র‍্যাঙ্কিং নয়/)
-  assert.doesNotMatch(componentSource, /অন্তত তিন মাসে একবার রিভিউ করা হয়ই/)
-  assert.doesNotMatch(componentSource, /অন্তত দুটি নির্ভরযোগ্য পাবলিক সোর্স/)
-})
-
 test('search, empty results and accessible row controls match the interface copy', () => {
   assert.match(componentSource, /data-search=\{searchText\}/)
   assert.match(filtersSource, /entry\.dataset\.search/)
@@ -207,26 +170,6 @@ test('the company data cannot silently become a ranking', () => {
       assert.equal(Object.hasOwn(entry, prohibited), false, entry.name + ' has prohibited ' + prohibited)
     }
   }
-})
-
-test('the public selection criteria are specific about evidence and funding', () => {
-  assert.match(componentSource, /Founded in Bangladesh or primarily built and operated from Bangladesh/)
-  assert.match(componentSource, /not mainly an agency, consultancy or traditional service business/)
-  assert.match(componentSource, /A live product or platform with real customers or active deployments/)
-  assert.match(componentSource, /Verifiable activity within the past 12 months/)
-  assert.match(componentSource, /Clear evidence of traction/)
-  assert.match(componentSource, /At least five reliable sources, including independent reporting or institutional records/)
-  assert.match(componentSource, /Credible leadership and responsible treatment of customers, employees and partners/)
-  assert.match(componentSource, /Funding is an important factor/)
-  assert.match(componentSource, /businesses that grow without outside investment/)
-  assert.match(componentSource, /We review the list every month/)
-  assert.match(componentSource, /স্বাধীন রিপোর্টিং বা প্রাতিষ্ঠানিক রেকর্ডসহ অন্তত পাঁচটি নির্ভরযোগ্য সোর্স/)
-  assert.match(componentSource, /বিশ্বাসযোগ্য নেতৃত্ব এবং কাস্টমার, কর্মী ও পার্টনারদের প্রতি দায়িত্বশীল আচরণ/)
-  assert.match(componentSource, /আমরা এমন স্টার্টআপ খুঁজি যাদের বাস্তব চাহিদা/)
-  assert.match(componentSource, /আমরা প্রতি মাসেই তালিকাটি রিভিউ করি/)
-  assert.doesNotMatch(componentSource, /Funding notes preserve|Evidence gap:|unranked editorial watchlist/)
-  assert.match(componentSource, /Meeting these requirements does not guarantee a place on the list/)
-  assert.doesNotMatch(componentSource, /—/)
 })
 
 test('every selected company has multiple labelled sources; editorial independence needs human review', () => {

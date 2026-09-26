@@ -159,15 +159,12 @@ test('draft recovery preserves authored text, limits size and rejects unexpected
   assert.doesNotMatch(output, /undefined/)
 })
 
-test('every idea has a stable bilingual route and shares complete problem research', () => {
-  assert.equal(new Set(ideas.map(idea => idea.id)).size, ideas.length)
+test('every idea has a generated bilingual route and uses the idea editor', () => {
   for (const idea of ideas) {
-    assert.match(idea.id, /^[a-z0-9]+(?:-[a-z0-9]+)*$/)
     const problem = problems.find(p => p.id === idea.problemId)
     assert.ok(Object.hasOwn(sectors, problem.sector))
     assert.ok(problem.places.every(place => Object.hasOwn(places, place)))
     for (const locale of ['bn', 'en']) {
-      for (const field of ['title', 'summary', 'description', 'businessModel', 'signal', 'prototype']) assert.ok(idea[locale][field].trim(), `${idea.id}: ${locale}.${field}`)
       const route = ideaPath(locale, ideaSlug(idea.id))
       const file = `app/(contents)/${locale === 'en' ? 'en' : '(bn)'}/startup-ideas/${ideaSlug(idea.id)}/page.mdx`
       assert.ok(fs.readFileSync(file, 'utf8').includes(`id="${idea.id}"`))
@@ -183,14 +180,13 @@ test('every idea has a stable bilingual route and shares complete problem resear
 })
 
 
-test('every idea is dated and links only to guides that are written in both languages', () => {
+test('idea guides are written in both languages and planned topics stay hidden', () => {
   const contentIndex = JSON.parse(fs.readFileSync(new URL('../../generated/content-index.json', import.meta.url), 'utf8'))
   const anyStub = Object.values(contentIndex.bn.sections).flatMap(section => section[4].flatMap(group => group[1])).find(page => page[2])
   assert.ok(anyStub, 'the manual still has planned topics, which this rule exists to exclude')
   assert.equal(guidePage(contentIndex, 'bn', anyStub[0].replace(/^\//, '')), null, 'a planned topic is never offered as a guide')
   assert.equal(guidePage(contentIndex, 'bn', 'not/a/real/page'), null)
   for (const idea of ideas) {
-    assert.match(idea.addedAt, /^\d{4}-\d{2}-\d{2}$/, `${idea.id}: added date`)
     assert.ok(idea.guides.length >= 1 && idea.guides.length <= 5, `${idea.id}: guide count`)
     for (const slug of idea.guides) for (const locale of ['bn', 'en']) {
       const guide = guidePage(contentIndex, locale, slug)

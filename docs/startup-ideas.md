@@ -11,7 +11,8 @@ companies have independent profiles shared across Deshi Startup. See `companies.
 - `/startup-ideas/<slug>`: one idea, who it helps, how it works, a possible revenue
   model and numbered first steps. Relevant guides and alternative ideas for the
   same problem offer a next step. Upvote, Save and Share follow the title and summary.
-  On mobile, the revenue model follows the explanation before the first test.
+  The detail page uses a single reading column, with the revenue model following
+  the explanation before the first test. Long titles use the available column width.
   Research expands below. Related companies appear as small
   logo/name links; their profiles explain the specific work and source.
   **Edit this idea** opens a prefilled editor for a focused, reviewed change.
