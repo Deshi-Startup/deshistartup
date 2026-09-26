@@ -104,6 +104,13 @@ the relevant step, and keep deeper questions and source notes in the disclosure.
 Prefer one grounded source to a long reading list. Avoid fabricated market sizes,
 funding interest, traction or financial forecasts.
 
+When polishing a bilingual batch, preserve good draft phrasing and check meaning separately
+from fluency. Keep stable IDs, sources, credits and publication dates. Save complete records
+before combining batches; a colon inside a prototype description must not truncate the field.
+English simplifications need the same fact check as new copy. Apply approved wording with a
+forward text migration, then prepare and inspect both languages through the release pipeline.
+Remove temporary working files only after the reviewed copy is preserved and verified.
+
 Migration `0008` retires earlier preview problems with `active = 0`, preserving
 records, submissions and frozen releases. Exports include only active problems and
 their ideas and connections. Company identities remain available. New connections
@@ -253,21 +260,10 @@ marker cannot advance the pointer. Frozen releases remain in the selected D1 dat
 account. The primary is in APAC; read replication is disabled. There is no replica
 consistency/session machinery to maintain. Local development uses a different config
 and database identity. Normal builds read the committed public snapshot, not D1.
-Production migrations through `0014` were applied on 20 September 2026; `0015`,
-`0016` and `0018` followed on 23 September after a private backup and isolated
-restore/migration rehearsal. Post-migration integrity checks passed; existing
-submissions, review records and the publication pointer were preserved. Migration
-`0017` belongs to a separate, unreleased idea-content draft. Migration
-`0019_regional_app_recovery.sql` was applied remotely on 23 September 2026; it
-adds a researched idea without changing private submissions or existing public
-records. The matching snapshot was deployed and its publication pointer advanced
-after live verification. Migration `0020_idea_edit_publications.sql` was applied
-on 23 September before the idea-page editing release. Migration `0021` added
-editorial closure for accepted submissions. Migration `0022` adds the solar
-inverter-service idea; `0023` updates the published app-recovery idea in plainer
-English and Bangla. Apply both forward migrations before preparing their public
-release.
-Future environments must apply all pending migrations before preparing a release.
+Before preparing a release, check the target database's migration history and apply
+the reviewed pending migrations. The database history owns applied status; Git
+contains the forward migration files. Back up production first and rehearse the
+update in isolation, checking that private records and the publication pointer stay intact.
 See [`shared-identity.md`](./shared-identity.md) for the import and identity
 publication boundaries. These database steps do not deploy the Worker or publish
 the prepared snapshot.
