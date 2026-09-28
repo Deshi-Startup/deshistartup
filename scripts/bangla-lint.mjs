@@ -67,7 +67,11 @@ const BANNED = [
   ['SSLCommerz', 'কোম্পানির নিজের বানান "SSLCOMMERZ" লিখুন'],
   ['প্রাথমিক বিষয়াবলী', '"প্রাথমিক ধারণা" বা বিষয়টির সরাসরি নাম লিখুন'],
   ['সোর্সবের', '"উৎসবের" লিখুন'],
-]
+].map(([needle, fix]) => [
+  needle, fix,
+  // Match word starts, not a suffix inside valid words such as প্রশিক্ষিত.
+  new RegExp(`(?<![\\p{L}\\p{M}])${needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'u'),
+])
 
 // Soft: officialese that almost always wants the everyday word.
 const OFFICIALESE = [
@@ -300,8 +304,8 @@ function lintFile(file) {
 
     if (!hasBangla) return
 
-    for (const [needle, fix] of BANNED) {
-      if (line.includes(needle)) hard.push([no, `"${needle}" — ${fix}`])
+    for (const [needle, fix, pattern] of BANNED) {
+      if (pattern.test(line)) hard.push([no, `"${needle}" — ${fix}`])
     }
     for (const [needle, fix] of OFFICIALESE) {
       if (line.includes(needle)) soft.push([no, `"${needle.trim()}" → ${fix}`])
