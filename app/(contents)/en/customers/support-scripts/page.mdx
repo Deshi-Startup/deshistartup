@@ -13,107 +13,114 @@ Use these when your startup handles support by WhatsApp, Facebook Messenger, pho
 
 Replace every bracket with verified facts. Never guess a delivery date or blame a third party without checking the system first.
 
-### 1. Courier delay or rider marked "unreachable" falsely
+### 1. Courier delay or a disputed "unreachable" status
 
-In Bangladesh, delivery riders facing tight routes often mark orders as "Customer phone switched off" or "Address not found" to close their daily quota. The customer is usually waiting at home with cash, furious.
+The tracking page says the customer could not be reached, but they say nobody called. Check the order details and ask the courier to investigate. The status alone does not tell you why delivery failed.
 
 ```text
-Thanks for alerting us, [Customer Name]. I am very sorry about this frustration.
+Thanks for telling us, [Customer Name]. I am sorry your order has not arrived.
 
-I see that order [Order ID / Consignment ID] was marked as unreachable by
-the courier hub today. I have flagged this directly with the [Courier Name]
-local hub supervisor to put an immediate hold on any return (RTO).
+The tracking page for [Order ID / Consignment ID] says [exact status]. You have
+told us [customer's account of what happened]. I have asked [Courier Name] to
+check this and to pause the return while we confirm the next step.
 
-Your delivery has been rescheduled for priority delivery tomorrow between
-[Time window, e.g., 10 AM and 2 PM]. Our operations team will call you
-tomorrow morning at [Phone number] before the rider departs.
+The courier has [confirmed the hold / not yet confirmed the hold].
+I will update you by [day and time], even if we are still waiting for a reply.
 
-If you do not receive a call by [Time], please message me directly here.
+Once the courier confirms a delivery window, I will check whether it works for you.
 ```
 
 ### 2. Damaged or wrong item at the doorstep (COD rider waiting)
 
-The customer opened the flyer in front of the rider; the size or color is wrong, or the product is damaged. The rider is demanding full COD cash before leaving.
+First check the merchant's return policy and the courier's inspection rules. For example, Pathao's policy has a separate rule for closed-box deliveries: checking the item needs the merchant's permission through the delivery agent.[^pathao-product-check] Do not tell every customer to open a parcel, refuse payment or hand it back without confirming the process for that order.
 
 ```text
-Please do not worry, [Customer Name]. You do not need to pay the rider if the
-parcel is incorrect or visibly damaged.
+I am sorry there is a problem with order [Order ID], [Customer Name].
 
-Please ask the delivery rider to record the parcel as "Damaged / Mismatched on
-delivery" on their device and hand the parcel back to them. If practical, please
-take one photo of the item inside the open flyer and share it with us here.
+Please tell us what is wrong. If the parcel is already open, a photo of the item
+and packaging will help. Please keep your address and phone number out of the photo.
 
-We will dispatch your correct replacement order [New Reference] today at zero
-additional delivery charge. Your new tracking ID will be sent by [Time].
+I am checking the return process with [Courier Name] now. I will confirm whether
+the rider can take it back and what you need to do about payment.
+I will update you by [time].
+
+[Only after the return or replacement is approved:]
+We have approved [return / replacement] under [policy that applies to this order].
+The next step is [confirmed action]. Your delivery charge will be [confirmed amount].
+We will send [tracking details / a progress update] by [day and time].
 ```
 
 ### 3. bKash / Nagad TrxID mismatch or "Send Money" instead of Payment
 
-The customer transferred money via personal bKash/Nagad ("Send Money" or cash-in at an agent) instead of using your checkout gateway, or typed the wrong 10-character Transaction ID (TrxID).
+The payment did not match the order. Ask for the transaction reference exactly as shown in the app or SMS, without assuming a fixed length. Check your own payment records before marking the order as paid; a screenshot alone is not confirmation.
 
 ```text
-We have not been able to automatically match your payment to order [Order ID].
+We have not yet matched your payment to order [Order ID].
 
-To reconcile this manually, please share the following details:
-1. Sender bKash/Nagad wallet number (last 4 digits): [e.g., 017XXXX1234]
-2. Receiver wallet number you sent money to:
-3. Exact amount sent: [BDT Amount]
-4. The 10-character Transaction ID (TrxID) from your SMS:
+Please share these details so we can check:
+1. Payment service and type: [e.g., bKash Payment or Nagad Send Money]
+2. Last 4 digits of the sender's number: [e.g., 1234]
+3. Receiver name or number shown in the transaction:
+4. Amount, date and time of payment:
+5. Transaction reference (TrxID), exactly as shown in your app or SMS:
 
-IMPORTANT: Never share your bKash/Nagad PIN, one-time password (OTP), or account password.
+Never share your PIN, one-time password (OTP), or account password.
 
-We will check our merchant statement and confirm your order within [30 minutes / Time].
+We will check our payment records and update you by [day and time].
+If we find the payment, we will confirm it against your order.
 ```
 
-### 4. Refund timeline: MFS payout vs Payment Gateway / Card
+Ask only for details needed to trace the payment, through your private support channel. bKash warns customers never to share their PIN or security codes.[^bkash-security]
 
-Customers expect instant bKash refunds. When payment was made through an online gateway (such as SSLCOMMERZ, Shurjopay or a credit card), settlement reversal takes multiple banking days.
+### 4. Refund status and expected timing
+
+Keep three steps separate: your team approves the refund, the provider receives the request, and the money is returned. For example, SSLCOMMERZ records a refund request separately from its completed status.[^sslcommerz-refunds] Use the provider's current estimate for the specific payment. If you do not have one, say so.
 
 ```text
-Your refund of BDT [Amount] for order [Order ID] has been approved.
+Here is the current refund status for order [Order ID]:
 
-Because your original payment was made via [Card / Payment Gateway / bKash Direct]:
-- Method: [Original payment method]
-- Reference ID: [Gateway Refund Reference]
-- Expected turnaround: [For MFS: within 4 to 24 hours / For Debit or Credit cards:
-  5 to 10 working days, depending on your issuing bank's settlement cycle].
+- Amount: BDT [Amount]
+- Status: [Approved by our team / Request submitted to provider / Provider reports refunded]
+- Refund method: [Confirmed method]
+- Provider reference: [Reference, if the provider has issued one]
+- Expected timing: [Provider's current estimate for this payment, checked on date / Not yet confirmed]
 
-We have already submitted the reversal instruction from our end. If the balance
-does not reflect in your account by [Date], please send us a message with this
-reference ID, and we will follow up with the gateway directly.
+My next update will be by [day and time]. If the expected date passes without the
+money arriving, I will follow up with [provider] using the refund reference.
 ```
 
-### 5. Order cancellation request (Before vs After Consignment Generation)
+Do not say the money has reached the customer just because your team approved the request. For more on checking payment records, see the [payment reconciliation guide](/en/payments/reconciliation).
 
-A customer changes their mind or ordered by mistake. Handling this before the courier picks up prevents an unnecessary return delivery fee (RTO charge).
+### 5. Order cancellation request (before or after courier handover)
+
+Check whether the warehouse can stop dispatch. A cancellation request does not prove that a parcel has stopped moving. Confirm any charge or refund against the order and the policy that applies.
 
 ```text
-[If before courier dispatch:]
-Your cancellation request for order [Order ID] is confirmed. No parcel will be
-dispatched, and you have not been charged. If you placed an advance payment,
-your refund of BDT [Amount] will be disbursed via [bKash/Nagad] by [Time today].
+[Before courier handover, once the warehouse confirms dispatch has stopped:]
+Your order [Order ID] is cancelled, and the warehouse has confirmed it will not
+be sent. Your payment status is [no payment received / amount paid].
+[If a refund applies, include its confirmed amount, method and current status
+using Script 4.]
 
-[If after courier handover:]
-Your parcel [Consignment ID] has already been collected by [Courier Name] and is
-in transit. Because it is already on the road, please inform the rider when they
-call that you requested cancellation. We will recall the parcel directly from the hub.
+[After courier handover:]
+[Courier Name] has already collected parcel [Consignment ID]. We have requested
+a return, but the courier has not yet confirmed it. I will update you by [day
+and time] with the confirmed next step and any charge or refund that applies.
 ```
 
 ### 6. B2B / SaaS service outage or sync failure
 
-A retail POS, inventory system or B2B API is failing during active business hours. The customer is losing sales.
+A retail POS, inventory system or B2B API is failing during active business hours. The customer is losing sales. Share only a workaround your team has checked for this incident.
 
 ```text
-We are actively investigating an issue affecting [specific feature, e.g., POS sync /
-invoice generation] on [Product Name].
+We are investigating a problem with [specific feature] on [Product Name].
 
-What we know: Our engineering team identified [short non-technical cause, e.g., a database
-connection delay] at [Time].
-Current impact: [What works vs what is paused].
-Safe workaround: [e.g., If your app supports local offline mode, sales cached on your device will auto-sync once connection restores. If you issue manual paper receipts, our support team will help you bulk-reconcile and log them once the system is live].
+What we know: [Confirmed facts, or say the cause is still being checked].
+Current impact: [What works and what is paused].
+Safe workaround: [Tested steps and their limits / No safe workaround confirmed yet].
 
-Our next status update will be posted here by [Time, within 30–45 minutes].
-We understand your shop operations depend on this and are treating it as priority one.
+Our next update will be posted here by [day and time]. We will also explain
+how to check any missing or duplicate records once the service is restored.
 ```
 
 ### 7. You need time to investigate an operational issue
@@ -146,7 +153,7 @@ Owner (one specific teammate):
 Promise given to customer (action & deadline):
 Current state: Open / Escalated to Hub / Awaiting Bank / Resolved
 Final resolution & date:
-Root cause (Wrong address / Rider fake return / MFS sync lag / Packing defect):
+Confirmed cause (or "Not yet known") and supporting record:
 ```
 
 Keep personal data restricted to team members directly handling fulfillment and support. Never ask for or store passwords, PINs or bank OTPs.
@@ -158,29 +165,33 @@ You control when you send a message, but you cannot control how long a courier t
 Give an update time you can guarantee: "I will update you by 3:30 PM today." When 3:30 PM arrives, message the customer even if the courier has not replied:
 > "We followed up with the Tejgaon hub manager at 3:15 PM; they are still locating the bag. My next check-in with you is at 5:00 PM."
 
-Predictable communication prevents customers from posting angry scam warnings on Facebook community groups.
+Regular updates help customers know what is happening and when they will hear from you again.
 
 ## Worked example: an Agrabad COD delivery breakdown
 
-Imagine an online footwear brand based in Mirpur, Dhaka. A customer in Agrabad, Chattogram orders shoes worth BDT 2,400 on Cash on Delivery. The scenario below illustrates an operational crisis resolution.
+This is a fictional example. An online footwear brand in Mirpur, Dhaka receives an order for shoes worth BDT 2,400 from a customer in Agrabad, Chattogram. The customer wants to pay on delivery.
 
-On Thursday afternoon, the customer sends a furious WhatsApp voice message:
-> "I took half-day off work to receive the shoes. Nobody called me, but your tracking says 'Delivery attempted, customer phone switched off'! Cancel my order immediately, you guys are scammers!"
+On Thursday afternoon, the customer sends a WhatsApp message:
+> "I took time off to receive the shoes. Nobody called me, but your tracking says my phone was switched off. Please cancel the order."
 
-### Step 1: Immediate verification and containment (10 minutes)
-The support lead opens the courier merchant dashboard (Steadfast/Pathao). The tracking indeed shows "Customer Unreachable / Phone Off."
-The support lead checks the customer's phone number on Truecaller and checks recent outbound logs: no call was made by the rider. The rider ran out of daylight in Agrabad and closed the batch with an RTO status code.
+### Step 1: Check the records without guessing the cause
 
-### Step 2: Clear, de-escalating customer response
-The support lead sends Script 1 on WhatsApp:
-> "I apologize for this frustration, [Customer Name]. I just checked our system. The rider did not call you; the local Agrabad hub made an administrative error when closing their afternoon route. I have personally contacted the Agrabad hub supervisor and put a strict hold on your parcel (Consignment #CN-88219). Your shoes will NOT be returned to Dhaka.
->
-> I have scheduled priority delivery for tomorrow morning between 10:30 AM and 1:00 PM. The hub supervisor has assigned a senior rider. I will track this personally and call you at 10:00 AM before the rider sets out."
+The support lead checks the order number, saved phone number and courier tracking. The tracking says "Customer Unreachable", which differs from the customer's account. A caller-ID app cannot prove whether the rider called. Any call log the team is allowed to access may also be incomplete.
 
-### Step 3: Operational follow-through
-The founder calls the courier relationship manager with the Consignment ID, warning them that repeated fake RTOs from the Agrabad branch will result in shifting shipping volume to a competitor. On Friday at 11:30 AM, the rider calls the customer, the shoes are inspected, and BDT 2,400 is collected.
+The lead asks the courier hub to investigate and stop the return if possible. They record this as a request, not a confirmed hold.
 
-The case is logged under root cause: "Courier fake RTO / Agrabad hub." The support script converted a potential brand crisis and a lost BDT 140 round-trip delivery fee into a loyal customer.
+### Step 2: Give a clear next update
+
+The support lead replies:
+> "I am sorry your delivery did not arrive. I can see the status you mentioned, but I have not confirmed why it was added. I have asked the Agrabad hub to check. I will update you by 5:00 PM today about your cancellation request, even if the hub has not replied."
+
+At 5:00 PM, the lead sends the update. If the customer is still open to delivery, the lead first gets an available slot from the hub, then checks whether the customer wants it. They do not quietly replace a cancellation request with another delivery attempt.
+
+### Step 3: Confirm the outcome before closing the case
+
+In this example, the customer agrees to the hub's next available delivery slot. After the parcel arrives and payment is confirmed, the lead records the outcome. The cause of the first failed attempt stays "Not yet known" unless the courier provides evidence.
+
+If the customer still wants to cancel, the lead follows Script 5 instead. The useful habit is the same: keep the customer informed and record only what has been confirmed.
 
 ## Review repeated problems each week
 
@@ -194,13 +205,19 @@ Fix the root operational defect so you do not have to write the same support scr
 ## Before using the scripts
 
 - [ ] All team members know never to ask for bKash/Nagad PINs or bank OTPs.
-- [ ] Support staff have direct access to courier merchant dashboards and consignment IDs.
+- [ ] The case owner can check the needed courier and payment records through authorized access.
 - [ ] Emergency escalation contacts for key courier hub supervisors are saved.
 - [ ] Every open case has a single named owner and a promised follow-up timestamp.
-- [ ] Refund turnaround times accurately reflect payment gateway vs MFS realities.
+- [ ] Refund status and any timing estimate have been checked for the specific payment.
 
 Start by customizing the courier delay and bKash TrxID scripts. Use the [founder role matrix](/en/cofounders/role-matrix) to establish who can authorize goodwill replacements or immediate courier recalls.
 
 ## Relevant Sources
 
 [^gozayaan-support]: [Future Startup — A Conversation with Marc Thiry, Director, Operations, GoZayaan](https://futurestartup.com/2025/10/02/a-conversation-with-marc-thiry-director-operations-gozayaan/), 2 October 2025. Covers customer explanations, human-driven support, and cross-functional operational ownership. Accessed 7 September 2026.
+
+[^pathao-product-check]: [Pathao — Product Check & Return Policy](https://help.pathao.com/product-check-and-return-policy/), updated 17 November 2024. Explains inspection, returns and closed-box delivery conditions. Accessed 29 September 2026.
+
+[^sslcommerz-refunds]: [SSLCOMMERZ — Refund initiation and status](https://developer.sslcommerz.com/doc/v4/). Distinguishes a refund request from the provider's completed refund status. Accessed 29 September 2026.
+
+[^bkash-security]: [bKash — Security Tips](https://www.bkash.com/en/page/security-tips). Covers PIN and security-code privacy. Accessed 29 September 2026.
