@@ -1,12 +1,139 @@
 ---
-title: "Building a No-Code MVP: When Is It Enough"
-description: "Building a No-Code MVP: When Is It Enough – this topic is on the Deshi Startup list, but the guide has not been written yet. You can help write it."
+title: "Build a No-Code MVP with a Form and a Private Work Log"
+description: "Test one small service with Google Forms and Sheets. Keep requests private, confirm work by hand, and check what happens when a request changes or fails."
+verified: 2026-10-01
 ---
 
-# Building a No-Code MVP: When Is It Enough
+# Build a No-Code MVP with a Form and a Private Work Log
 
-<StubNotice path="product/no-code-mvp" locale="en" />
+> **In short:** Use a form to receive requests and a private sheet to manage the work. Tell customers what your team does by hand. Test with made-up data first, and never treat a submitted form as a confirmed booking or a payment.
+
+Use this guide when you know which small service you want to test, but do not yet need a full app. You will prepare a request form, a work log and a set of checks before inviting customers.
+
+**No-code** means setting up existing tools without writing application code. An **MVP**, or minimum viable product, is an early version that helps test an important customer assumption with limited effort.[^ries-mvp] The test here asks whether people want a result you can deliver by hand. It does not prove that future software will work, or that the service will be profitable.
+
+This setup suits a low-risk request-and-reply service. Do not use this starter recipe for medical records, identity documents, passwords, payment-card details or work that needs strict customer-by-customer access controls. Get suitable technical and professional help for those cases.
+
+## Start with one request and one result
+
+Imagine a startup in Rajshahi testing a weekly stock-count summary for small shops. A shop owner asks for a sample using made-up stock numbers. A team member prepares the sample and sends it back. No real customer or sales records are needed for this first test.
+
+The sequence is:
+
+1. The shop owner submits a request. It is marked **New**.
+2. The team checks the request, agrees the scope and time, and marks it **Confirmed**.
+3. The team makes the sample and marks it **Sent**.
+4. The owner checks it. The team records **Accepted**, **Changes needed** or **Cancelled**.
+
+These are your team's labels, not automatic Google Forms features. A person must update them. The form handles the first step; the team owns everything after that.
+
+Before building, write down the question you want this test to answer. For example: “Will shop owners use the sample to spot an item they need to count again?” Asking for a sample is weaker evidence than using it. For help choosing another test, see [seven MVP shapes](/en/validation/mvp-examples).
+
+## Make the request form
+
+Open [Google Forms](https://forms.google.com), choose a blank form and give it a clear name. Google supports sending the answers to a linked Sheet.[^forms-start]
+
+For the imaginary stock-summary service, prepare these fields:
+
+| Field | What the customer enters |
+|---|---|
+| Name or shop nickname | A name the team can recognise |
+| Contact method | One way to reply, such as an email address |
+| Sample type | One of the sample reports you can actually make |
+| Question to answer | An optional short note, with no private records |
+
+Ask for only what you need to do the test. Avoid file uploads at this stage. Tell people who will read the answers, why you need them, when you will remove test records, and how to contact you. Choose a time to remove the records that you can follow; this guide does not set a legal rule for keeping records.
+
+Write a response promise the team can meet. For this example, say: “We will reply by the end of the next working day to agree a time. Your request does not book a slot.” That is a sample promise, not a recommended deadline for every business.
+
+## Keep answers private
+
+Google has separate controls for people filling in a form and people editing it. Keep **View results summary** off: turning it on can expose full-text answers to responders. **Limit to 1 response** requires a Google sign-in; decide whether that fits your test.[^forms-share]
+
+In the form's **Responses** area, link a new response spreadsheet. Check who can edit both files. Later permission changes do not automatically stay in step, so remove a departing teammate from the form and the sheet separately.[^forms-sheet]
+
+Do not send customers the spreadsheet or editor link. Share only the responder link after checking access. An open request form does not need an open answer sheet.
+
+## Create a separate work log
+
+Keep the original response tab as the record of what people sent. In a separate private tab, give each request a short ID and record the work. For a tiny trial, copy the needed details by hand and check them against the original response.
+
+The example below has two requests. All details are fictional.
+
+| Request | Work status | Next action |
+|---|---|---|
+| SAMPLE-01 | Confirmed | Send the stock-count sample at the agreed time |
+| SAMPLE-02 | Changes needed | Ask which sample format the owner needs |
+
+Neither row proves that money arrived. If you later charge for the service, keep the agreed price, amount received, payment reference and any refund owed in separate fields. Confirm money in the payment provider's record, not from a customer's screenshot alone.
+
+Copy this blank record once per request:
+
+```text
+Request ID:
+Original response date and contact:
+Work agreed, including what is excluded:
+Person responsible:
+Work status:
+Promised reply or delivery time:
+Next action and date:
+Result sent and customer response:
+Price agreed / money received / refund owed, if applicable:
+Time spent and direct cash cost:
+```
+
+Keep contact details out of public progress reports. Share a customer's result only with the intended recipient. A sheet containing everyone’s requests is not a customer portal.
+
+## Try to break it before a customer does
+
+Publish the form to the intended responder audience and test the responder link, not the editor preview alone.[^forms-share] Use invented names and a test address you control. Do not send test messages to real customers.
+
+Check these cases on a phone and from an account without editor access:
+
+| Test | What you need to see |
+|---|---|
+| Submit one request | One response appears; the team can find and handle it |
+| Submit the same request twice | The team recognises the duplicate and confirms only one job |
+| Ask for a time you cannot offer | The reply offers a new time; the form has not promised a booking |
+| Change or cancel a request | The work log changes, and the team stops the old action |
+| Open the answer-sheet link as a customer | Customer access is denied |
+| Stop accepting requests | A clear closed message appears; existing promises remain in the log |
+
+Fix any failed check before taking real requests. A form response limit is not a safe booking limit: Google notes that simultaneous submissions can exceed it.[^forms-manage] Check capacity yourself before confirming work.
+
+Google's **Responses** menu offers CSV download, a plain file of the answers. Download a test copy and reopen it to check Bangla text and contact fields. When ending the trial, use the published form's response controls to stop new submissions.[^forms-manage] Also save the separate work log; the form export does not contain the notes you added there.
+
+## Budget time as well as money
+
+Check the current limits and charges for your account before choosing tools. Include mobile data, any paid account, delivery costs and team time. Avoid buying add-ons until a specific missing step justifies them.
+
+For a planning example, suppose the team can give the trial 120 minutes a day. Reserve 30 minutes for replies and corrections. If each sample takes 15 minutes, planned capacity is:
+
+**(120 − 30) ÷ 15 = 6 samples a day.**
+
+These are invented inputs, not a productivity benchmark. Measure the full job. At 25 minutes per sample, the same 90 minutes allows only 3 complete samples, with 15 minutes left. Keep more room when requests vary. Do not promise six just because the form can collect six.
+
+## Decide what to build next
+
+Keep this setup while the team can deliver safely and the records stay clear. Consider a different tool or custom software when you need customer logins, reliable booking limits, permissions for each customer, or repeated hand-copying causes errors.
+
+Use the trial log to name the problem first. “We copied the wrong report to two requests” is a useful problem to fix. “We need an app” is not yet a specification.
+
+Before inviting customers, check:
+
+- [ ] The form says what is available and what happens after submission.
+- [ ] Responders cannot see other people's answers or the work log.
+- [ ] A named person checks new requests and confirms capacity.
+- [ ] Duplicate, change, cancellation and closed-form tests pass.
+- [ ] The test export opens correctly, and the work log is saved separately.
+- [ ] The team knows the time and cash limit for the trial.
+
+Run one small trial, record what people actually use, and compare it with the question you wrote at the start. Use the [experiment planner](/en/validation/mvp-experiment-planner) to record the decision to continue, change or stop.
 
 ## Relevant Sources
 
-- [BASIS](https://www.basis.org.bd)
+[^ries-mvp]: [Eric Ries — Minimum Viable Product: a guide](https://www.startuplessonslearned.com/2009/08/minimum-viable-product-guide.html). Original explanation of learning with limited effort; published 3 August 2009, checked 1 October 2026.
+[^forms-start]: [Google — How to use Google Forms](https://support.google.com/docs/answer/6281888?hl=en). Creating a form and connecting responses; checked 1 October 2026.
+[^forms-share]: [Google — Publish and share your form with responders](https://support.google.com/docs/answer/2839588?hl=en). Responder access, sign-in and result-summary settings; checked 1 October 2026.
+[^forms-sheet]: [Google — Choose where to save form responses](https://support.google.com/docs/answer/2917686?hl=en). Linked sheets and separate access permissions; checked 1 October 2026.
+[^forms-manage]: [Google — View and manage form responses](https://support.google.com/docs/answer/139706?hl=en). CSV export, closing responses and the simultaneous-response limit; checked 1 October 2026.
