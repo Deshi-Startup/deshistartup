@@ -293,8 +293,8 @@
       "bn": "ধরুন, একটি ক্যাম্পেইনে কাস্টমার আনার সব খরচ মিলিয়ে ১০,০০০ টাকা লেগেছে। সেখান থেকে ৫০ জন নতুন পেইং কাস্টমার এলে CAC হবে ২০০ টাকা। ৫০টি অ্যাপ ডাউনলোড হলে সেই হিসাব হবে ডাউনলোডপ্রতি খরচ, CAC নয়।"
     },
     "watchOut": {
-      "en": "If it costs you 500 Taka to get a customer, but they only buy 300 Taka worth of products from you before leaving, your business is bleeding cash. Always make sure your customer's lifetime value is significantly higher than what you spent to acquire them.",
-      "bn": "একজন কাস্টমারকে জোগাড় করতে যদি আপনার ৫০০ টাকা খরচ হয়, কিন্তু সে মাত্র ৩০০ টাকার জিনিস কিনে চলে যায়, তবে আপনার ব্যবসা লোকসানে পড়বে। সবসময় খেয়াল রাখবেন কাস্টমার যেন আপনাকে আপনার খরচের চেয়ে অনেক বেশি লাভ এনে দেয়।"
+      "en": "Compare CAC with the contribution a customer leaves after service costs, not sales revenue alone. Count each cost once and allow for fixed costs and the time it takes to recover acquisition spending.",
+      "bn": "কাস্টমারকে সেবা দেওয়ার খরচ বাদে যে কন্ট্রিবিউশন থাকে, তার সাথে CAC মেলান। শুধু বিক্রির টাকা দেখবেন না। প্রতিটি খরচ একবার ধরুন। বাঁধা খরচ আর কাস্টমার আনার খরচ উঠতে কত সময় লাগে, সেটাও দেখুন।"
     },
     "guide": "/metrics/cac-ltv-churn",
     "see": [
@@ -357,16 +357,16 @@
     "bn": "চার্ন",
     "group": "growth",
     "def": {
-      "en": "The rate at which customers stop using your product or service.",
-      "bn": "কাস্টমাররা আপনার সার্ভিস ব্যবহার করা বা প্রোডাক্ট কেনা ছেড়ে দিলে তাকে চার্ন বলে।"
+      "en": "Customer churn rate is the share of a starting customer group that leaves during a chosen period. Divide customers lost from that group by its starting size, then multiply by 100.",
+      "bn": "কাস্টমার চার্ন রেট মানে শুরুর একটি দলের কত শতাংশ নির্দিষ্ট সময়ে চলে গেলেন। ওই দল থেকে চলে যাওয়া কাস্টমারের সংখ্যাকে শুরুর সংখ্যা দিয়ে ভাগ করে ১০০ দিয়ে গুণ করুন।"
     },
     "example": {
-      "en": "Think of a popular local bakery. If they get 50 new customers a month but 40 old ones stop coming because the bread went stale, that's high churn. It's like a leaky bucket–no matter how much water you pour in, it never gets full if the hole is too big.",
-      "bn": "ধরুন পাড়ার একটা জনপ্রিয় বেকারির কথা। মাসে যদি ৫০ জন নতুন কাস্টমার আসে কিন্তু পাউরুটির মান খারাপ হওয়ায় ৪০ জন পুরোনো কাস্টমার আসা বন্ধ করে দেয়, সেটাই চার্ন। এটা অনেকটা ফুটো বালতির মতো– যতই পানি ঢালেন না কেন, ফুটো বড় থাকলে বালতি কখনোই ভরবে না।"
+      "en": "Say 15 of the 100 customers paying at the start of a month leave by the end. Monthly customer churn is 15%. Adding 50 new customers does not change that loss from the original group.",
+      "bn": "ধরুন, মাসের শুরুতে থাকা ১০০ জন পেইং কাস্টমারের মধ্যে শেষে ১৫ জন চলে গেছেন। মাসিক কাস্টমার চার্ন হলো ১৫%। আরও ৫০ জন নতুন কাস্টমার এলেও শুরুর দল থেকে হারানো এই সংখ্যা বদলাবে না।"
     },
     "watchOut": {
-      "en": "Many founders make the mistake of pouring money into Facebook ads to mask their high churn rate. But if you don't fix the core reason customers are leaving, those marketing dollars are completely wasted. Fix the leaky bucket before adding more water.",
-      "bn": "অনেক ফাউন্ডার চার্ন রেট ঢাকার জন্য ফেসবুক অ্যাডে দেদারসে টাকা ঢালেন। কিন্তু কাস্টমাররা কেন চলে যাচ্ছে তার মূল কারণটা বের না করলে সেই মার্কেটিংয়ের পুরো টাকাটাই জলে যাবে। তাই নতুন কাস্টমার আনার আগে প্রোডাক্টের সমস্যাটা ঠিক করা জরুরি।"
+      "en": "Customer churn and revenue churn are different measures. Keep the period and starting group clear, then investigate why people left. A growing total customer count can still hide losses from earlier groups.",
+      "bn": "কাস্টমার চার্ন আর রেভিনিউ চার্ন আলাদা হিসাব। সময় ও শুরুর দল স্পষ্ট রাখুন। তারপর মানুষ কেন চলে গেলেন, খুঁজে দেখুন। মোট কাস্টমার বাড়লেও পুরোনো দল থেকে কতজন চলে যাচ্ছেন, তা চাপা পড়তে পারে।"
     },
     "guide": "/metrics/cac-ltv-churn",
     "see": [
@@ -1230,16 +1230,16 @@
     "group": "growth",
     "starter": true,
     "def": {
-      "en": "The total profit a single customer brings to your business over the entire time they buy from you.",
-      "bn": "একজন কাস্টমার আপনার সাথে যতদিন আছেন, সেই পুরো সময়ে তার কাছ থেকে আপনার মোট যে লাভ হয়।"
+      "en": "The value a customer is expected to bring over the whole relationship. In this guide, LTV means contribution after direct service costs and before acquisition costs. It is not net profit.",
+      "bn": "একজন কাস্টমার পুরো সময় ধরে ব্যবসায় যে মূল্য যোগ করবেন বলে ধরে নেওয়া হয়। এই গাইডে LTV মানে সেবার সরাসরি খরচ বাদে কন্ট্রিবিউশন, তবে কাস্টমার আনার খরচ বাদ দেওয়ার আগে। এটা নিট লাভ নয়।"
     },
     "example": {
-      "en": "If a user orders groceries from Chaldal every month for two years, their total profit to the company over those 24 months is their LTV. A healthy LTV is usually at least three times the amount it cost to get that customer.",
-      "bn": "চালডাল থেকে একজন কাস্টমার যদি দুই বছর ধরে প্রতি মাসে বাজার করেন, তবে এই ২৪ মাসে তার কাছ থেকে আসা মোট লাভটাই হলো তার এলটিভি। একজন কাস্টমার আনতে আপনার যা খরচ হয়েছে, তার কাছ থেকে অন্তত তিনগুণ লাভ আসলে সেটাকে খুব ভালো ধরা হয়।"
+      "en": "Say a software customer leaves Tk 100 a month after service costs and is expected to pay for 10 months. Estimated LTV is Tk 1,000. If CAC is Tk 500, another Tk 500 remains toward fixed costs and profit.",
+      "bn": "ধরুন, সফটওয়্যারের একজন কাস্টমার সেবার খরচ বাদে মাসে ১০০ টাকা রেখে যান। তিনি ১০ মাস টাকা দেবেন ধরে নিলে আনুমানিক LTV হবে ১,০০০ টাকা। CAC ৫০০ টাকা হলে বাঁধা খরচ ও লাভের জন্য আরও ৫০০ টাকা থাকে।"
     },
     "watchOut": {
-      "en": "Don't just look at their first purchase and think you're making money. Think about how much they will buy over the years to truly understand if your marketing costs make sense!",
-      "bn": "শুধু প্রথম বিক্রির লাভটা হিসাব করে বসে থাকবেন না। কাস্টমার সামনের দিনগুলোতে আরও কতবার কিনবে সেটা হিসেব করলেই বুঝবেন আপনার মার্কেটিংয়ের খরচটা ঠিক আছে কি না!"
+      "en": "Write down whether customer lifetime is observed or assumed. A short sales history does not prove years of future buying. Check the cost basis before comparing LTV figures; a 3:1 ratio alone does not prove a business is profitable.",
+      "bn": "কাস্টমার কত দিন থাকেন, তা আসল ফল থেকে পেয়েছেন নাকি ধরে নিয়েছেন, লিখে রাখুন। অল্প দিনের বিক্রি দিয়ে বহু বছরের কেনাকাটা প্রমাণ হয় না। LTV তুলনা করার আগে কোন খরচ ধরা আছে দেখুন। শুধু ৩:১ অনুপাত দিয়ে ব্যবসা লাভে আছে বলা যায় না।"
     },
     "guide": "/metrics/cac-ltv-churn",
     "see": [
@@ -1694,12 +1694,12 @@
     "bn": "রিটেনশন",
     "group": "growth",
     "def": {
-      "en": "Your ability to keep your customers around over time.",
-      "bn": "কাস্টমার ধরে রাখার ক্ষমতা। অর্থাৎ, আজ যারা আপনার প্রোডাক্ট নিল, তাদের কতজন সামনের মাসেও আপনার সাথেই আছে।"
+      "en": "Customer retention rate is the share of a starting customer group that stays through a chosen period. Define what counts as staying, such as keeping a paid subscription active.",
+      "bn": "রিটেনশন রেট মানে শুরুর একটি কাস্টমার দলের কত শতাংশ নির্দিষ্ট সময় শেষে রয়ে গেলেন। থাকা বলতে কী বোঝাচ্ছেন, আগে ঠিক করুন। যেমন পেইড সাবস্ক্রিপশন চালু রাখা।"
     },
     "watchOut": {
-      "en": "Keeping an existing customer happy is way cheaper than constantly chasing new ones. Many startups focus so much on celebrating new signups that they completely ignore the massive number of users quietly deleting their app out of frustration.",
-      "bn": "নতুন কাস্টমার খোঁজার চেয়ে পুরোনো কাস্টমারদের ধরে রাখা অনেক বেশি সহজ ও সস্তা। অনেক স্টার্টআপ নতুন ইউজার আসার খুশিতে এতই মেতে থাকে যে, তাদের অ্যাপ বিরক্ত হয়ে কত মানুষ ডিলিট করে দিচ্ছে সেদিকে খেয়ালই রাখে না।"
+      "en": "Use the same starting group, period and activity rule when comparing retention. App installs and paid renewals measure different things. A discount may keep a customer while reducing what the business earns.",
+      "bn": "রিটেনশন তুলনা করার সময় শুরুর দল, সময় আর সক্রিয় থাকার নিয়ম একই রাখুন। অ্যাপ ইনস্টল আর টাকা দিয়ে সাবস্ক্রিপশন রিনিউ করা এক জিনিস মাপে না। ছাড় দিয়ে কাস্টমার ধরে রাখলেও ব্যবসার আয় কমতে পারে।"
     },
     "guide": "/metrics/cac-ltv-churn",
     "see": [
@@ -1708,8 +1708,8 @@
       "repeat-rate"
     ],
     "example": {
-      "en": "If 100 people use your app today, how many are still using it next month? For a streaming app like Chorki, retention means a user not only pays for the first month to watch one movie, but keeps renewing their subscription month after month.",
-      "bn": "এ মাসে ১০০ জন অ্যাপ ইনস্টল করলে, আগামী মাসে কতজন অ্যাপটি ব্যবহার করছে সেটাই রিটেনশন। চরকির মতো স্ট্রিমিং অ্যাপের জন্য রিটেনশন হলো, একজন ইউজার শুধু একটা সিনেমা দেখার জন্য প্রথম মাসে সাবস্ক্রাইব করেই না থেমে, প্রতি মাসেই যেন রিনিউ করে।"
+      "en": "Say a service starts the month with 100 paying customers. Of those same people, 85 are still paying at the end. Customer retention is 85%. New customers added during the month are counted separately.",
+      "bn": "ধরুন, মাসের শুরুতে একটি সেবার ১০০ জন পেইং কাস্টমার ছিলেন। তাঁদের মধ্যে মাস শেষেও টাকা দিচ্ছেন ৮৫ জন। রিটেনশন হলো ৮৫%। মাসের মাঝখানে আসা নতুন কাস্টমারদের আলাদা গুনবেন।"
     }
   },
   "revenue": {

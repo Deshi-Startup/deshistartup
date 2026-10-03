@@ -37,6 +37,7 @@ import {
   pageDocumentTitle
 } from '../app/seo.config.mjs'
 import { resolveBuildOutput } from './build-output.mjs'
+import { visibleLinkedCollectionItems } from './visible-collection-items.mjs'
 import {
   eventsForLocale,
   fillPageByline,
@@ -358,7 +359,11 @@ function childrenFor(page) {
   )
 }
 
-function visibleCollectionItemsFor($, page) {
+function visibleCollectionItemsFor($, page, basePath = '') {
+  if (page.slug === 'sitemap' || page.slug === 'companies') {
+    return visibleLinkedCollectionItems($, page, { basePath })
+  }
+
   if (page.slug === 'startup-ideas') {
     return $('.ideas-row h3 a[href]').map((index, element) => ({
       '@type': 'ListItem',
@@ -491,7 +496,8 @@ function schemaFor(page, wordCount, visibleCollectionItems = [], contributionEve
 
   if (!isUtility && page.published) pageNode.datePublished = page.publishedAt || page.published
   if (!isUtility && page.date) pageNode.dateModified = page.modifiedAt || page.date
-  const collectionItems = visibleCollectionItems.length > 0
+  const usesRenderedList = page.slug === 'sitemap' || page.slug === 'companies'
+  const collectionItems = usesRenderedList || visibleCollectionItems.length > 0
     ? visibleCollectionItems
     : children.map((child, index) => ({
         '@type': 'ListItem',
@@ -765,7 +771,7 @@ for (const page of pages) {
   const schema = schemaFor(
     page,
     wordCount,
-    visibleCollectionItemsFor($, page),
+    visibleCollectionItemsFor($, page, buildBasePath),
     pageContributionEvents
   )
   if (schema) tags.push(`<script type="application/ld+json" data-deshi-schema>${jsonLd(schema)}</script>`)

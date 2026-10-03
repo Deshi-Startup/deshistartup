@@ -1,66 +1,94 @@
 ---
 title: "CAC, LTV, Retention, Churn, Payback"
-description: "Calculate LTV, CAC, the LTV:CAC ratio and payback from a worked subscription example. Learn how retention and monthly churn compound, then apply the same four inputs to your own business."
+seoTitle: "Customer Acquisition Cost (CAC), LTV and Churn Explained"
+description: "Calculate customer acquisition cost, lifetime value, payback and churn with a simple worksheet and a taka example. Check the numbers before you spend."
 ---
 
 # CAC, LTV, Retention, Churn, Payback
 
-> **In short:** In a buy-again business (subscriptions, coaching, salon memberships), you have to measure profit and loss per customer, not per order. Contribution margin times average customer lifespan gives you LTV, and an LTV:CAC ratio below roughly 3:1 is generally considered weak. CAC payback tells you when that cost comes back; retention and churn tell you how long a customer actually sticks around. Today's job: plug in your own four numbers, see where your ratio lands, and know which lever to pull if it's short.
+> **In short:** Before you spend more to win customers, work out what they leave after the cost of serving them, how much they cost to acquire, and when that cost comes back. Use the worksheet below to calculate CAC, LTV, payback and churn. Keep real results separate from guesses about future purchases; one good-looking ratio does not prove that the business makes a profit.
 
-The [Unit Economics](/en/metrics/unit-economics) guide showed that for a sell-once business, the maths of one order is enough. But in a business where a customer buys again and again, subscription software, a coaching centre's monthly fee, a salon membership, the per-order number hides the real picture. Investors look at these businesses differently too, because when demand keeps coming back, one customer can hand you profit many times over, not just once.[^lightcastle-recurring-demand] LTV is exactly that "many times over" folded into a single number. This page works through CAC, LTV, their ratio, payback, and retention and churn, step by step, using Sumaiya's software business as the running example.
+This page is for a business where customers buy again, such as subscription software or monthly coaching. It follows Sumaiya's fictional software business from the [Unit Economics](/en/metrics/unit-economics) guide. You do not need to read that page first: all the inputs are below. For a single sale, per-order costs may be enough; repeat buying also needs a view of the whole customer relationship.
+
+## What is customer acquisition cost (CAC)?
+
+**<Term name="cac">Customer acquisition cost (CAC)</Term>** is the average amount you spend to win one new paying customer. For a chosen period:
+
+> **CAC = spending to acquire customers ÷ new paying customers acquired**
+
+Include the sales and marketing costs used to win those customers: ads, content, sales tools, commissions, and the relevant share of team pay. Write down what you include. If you leave out the founder's unpaid time, show that separately rather than treating the work as free. This is different from ad spend alone.[^skok-metrics]
+
+Say Sumaiya spends **10,000 taka** on acquisition in one month and wins **20 new paying customers**. Her CAC is **10,000 ÷ 20 = 500 taka**. This is an invented teaching example, not a market benchmark.
+
+Count each new paying customer once. Repeat orders, app downloads and free sign-ups are not new paying customers. If none arrived, CAC cannot be calculated by division; record the spend and zero new customers rather than reporting a CAC of zero.
+
+Match the time window and costs to the customers you count. A sale closed this month may come from work done months earlier. If that happens often, follow those leads over a longer period and label the timing gap. Do not present a single month's ratio as a precise cost for every customer.
 
 ## Getting LTV out of Sumaiya's numbers
 
-[Unit Economics](/en/metrics/unit-economics) worked out Sumaiya's numbers this way: her customer pays 500 taka a month in subscription fees, and after direct service costs her contribution margin is 100 taka a month. Winning one customer costs 500 taka of CAC, and a customer stays 10 months on average. Every other number on this page comes out of these four; there's no need to rebuild contribution margin from scratch.
+In this example, a customer pays **500 taka a month**. After the direct costs of serving that customer, **100 taka** remains each month. That amount is **contribution**. It has not yet covered acquisition spending, fixed costs such as office rent, or tax. Include costs of keeping the customer, such as ongoing offers or support, in the service costs where they apply.
 
-**LTV (lifetime value)** is the total contribution one customer leaves behind across the whole relationship. The maths is simple: monthly contribution times how many months they stay.
+**<Term name="ltv">LTV (lifetime value)</Term>** here means the contribution a customer is expected to leave over the whole relationship, **before CAC**. Other reports may use revenue instead, so check the definition before comparing figures.
 
-For Sumaiya that's 100 taka times 10 months, which is 1,000 taka. So one customer leaves her 1,000 taka of contribution over the full relationship, for a cost of only 500 taka to win them.
+For a simple model with steady monthly contribution:
+
+> **Estimated LTV = monthly contribution per customer × average paying lifetime in months**
+
+Assume Sumaiya's customers stay **10 months** on average. Her estimated LTV is **100 × 10 = 1,000 taka**. Deduct CAC once: **1,000 − 500 = 500 taka** remains toward fixed costs and profit. That is not 500 taka of net profit.
+
+The ten-month lifetime is an assumption in this example. In your own sheet, use what older customer groups have actually done, and mark any forecast clearly. Two months of sales do not prove ten months of lifetime. When prices, service costs or repeat buying change, use the amounts for each period instead of stretching one month's result across the whole future.[^skok-definitions]
 
 ## The LTV:CAC ratio, and three ways to move it
 
-Put 1,000 taka of LTV next to 500 taka of CAC and the ratio is 2:1. That's not a losing number, but the common view among founders and investors is that this ratio needs to sit at roughly 3:1 or better before a business is really built to scale. Sumaiya's 2:1 sits below that line. Her current model leaves contribution after acquisition cost, but fixed costs may still make the business unprofitable, and she's getting back less relative to what she spends winning each new customer.
+The **LTV:CAC ratio** is LTV divided by CAC. Sumaiya's **1,000 ÷ 500 = 2**, written **2:1**. The model leaves contribution after acquisition cost, but it does not show whether that covers the rest of the business.
 
-There are really only three ways to move the ratio: the two halves of LTV, margin and lifespan, and CAC itself. Move any one of the three and the ratio shifts:
+You may hear **3:1** as a target. It is a rule of thumb for subscription software businesses, often called SaaS, not a pass-or-fail test for every startup. The source's guideline has its own margin and LTV assumptions. Check which costs are included before comparing it with your contribution-based figure.[^skok-definitions] A high ratio built on an untested lifetime can still be misleading.
 
-| Lever | What changes | New maths | New ratio |
-|---|---|---|---|
-| Raise price or margin | Monthly contribution goes from 100 to 150 taka, via a price rise or lower costs | 150 × 10 months = 1,500 taka LTV | 1,500:500 = 3:1 |
-| Extend retention | Average lifespan goes from 10 to 15 months, via better onboarding and regular check-ins | 100 × 15 months = 1,500 taka LTV | 1,500:500 = 3:1 |
-| Cut CAC | Cost to win a customer drops from 500 to 333 taka, via a cheaper channel | LTV stays at 1,000 taka | 1,000:333 ≈ 3:1 |
+There are three inputs to this simple model: contribution, lifetime and CAC. The table changes just one at a time, leaving the other two unchanged. These are possible calculations, not promised results:
 
-Any one of these three gets Sumaiya to 3:1 on its own. In practice it's easier to lean on all three a little rather than one a lot: nudge the price up slightly, put some work into retention, lean on referrals instead of ads. Do all three together and the ratio clears 3:1 just as well.
+| Change in the example | New LTV | New ratio |
+|---|---|---|
+| Monthly contribution rises from 100 to 150 taka | 150 × 10 = 1,500 taka | 1,500 ÷ 500 = 3:1 |
+| Average paying lifetime rises from 10 to 15 months | 100 × 15 = 1,500 taka | 1,500 ÷ 500 = 3:1 |
+| CAC falls from 500 to 333 taka | Still 1,000 taka | 1,000 ÷ 333 ≈ 3:1 |
+
+Each change improves the model if the other inputs hold. In practice, raising prices may affect retention, and a cheaper channel may bring different customers. Test one useful change, then recalculate all three inputs. Do not assume they improve together.
 
 ## What CAC payback actually tells you about cash risk
 
-Payback is CAC divided by monthly contribution. For Sumaiya that's 500 divided by 100, which is 5 months. Past that point, the money spent winning one customer has come back; the remaining 5 months, on average, contribute another 500 taka toward fixed costs and profit. This is not net profit.
+**CAC payback** is the time it takes for customer contribution to cover acquisition cost. With steady monthly contribution:
 
-That number isn't just tidy on paper, it's a real cash-risk signal. Say Sumaiya wants to win 20 new customers this month. That's 20 times 500, or 10,000 taka, spent upfront, while this batch brings back only 20 times 100, or 2,000 taka, each month.
+> **Estimated payback in months = CAC ÷ monthly contribution per customer**
 
-| Month | Contribution collected | Position against the 10,000 taka spent |
-|---|---|---|
-| 1 | 2,000 | -8,000 |
-| 2 | 4,000 | -6,000 |
-| 3 | 6,000 | -4,000 |
-| 4 | 8,000 | -2,000 |
+For Sumaiya, **500 ÷ 100 = 5 months**. This estimate assumes the customer keeps paying and contribution stays at 100 taka. With zero or negative contribution, this model cannot recover a positive CAC. With changing contribution or customers leaving, follow the actual amounts over time.
+
+Say Sumaiya pays **20 × 500 = 10,000 taka** upfront to acquire 20 customers. To show the timing, assume all 20 start together, stay for at least five months and pay on time. After their direct service costs are paid, they leave **20 × 100 = 2,000 taka** in cash each month. No new customers or other business costs are included in this table.
+
+| Month | Contribution collected so far, taka | Amount still to recover, taka |
+|---|---:|---:|
+| 1 | 2,000 | 8,000 |
+| 2 | 4,000 | 6,000 |
+| 3 | 6,000 | 4,000 |
+| 4 | 8,000 | 2,000 |
 | 5 | 10,000 | 0 |
 
-That means Sumaiya has to carry the 10,000 taka spent on these 20 customers out of her own pocket or savings for those 5 months. Add another 20 new customers next month and the outlay stacks up again, while the money coming back always lags behind. The longer the payback period, the bigger the cash cushion you need while growing. So before you decide how fast to grow, check whether you actually have enough in hand to carry that many months of CAC.
+Sumaiya needs the 10,000 taka upfront; the unrecovered amount falls each month. The table does not say she needs the full 10,000 untouched for five months. Rent, salaries, tax, late payments and another round of acquisition can create further cash needs. Before growing, put those dates and amounts in a [cash calendar](/en/metrics/cashflow-vs-profit). A contribution-based payback estimate is not a bank-balance forecast.
 
-## Breaking down retention and churn
+## How to calculate retention rate and churn rate
 
-Behind Sumaiya's "stays 10 months on average" is a hidden monthly rate at which some customers drop off. That rate is **retention** and **churn**.
+**<Term name="retention">Retention rate</Term>** is the share of a starting customer group that stays through a chosen period. **<Term name="churn">Customer churn rate</Term>** is the share of that same group that leaves. Decide what counts as staying: for example, keeping a paid subscription active. Use the same rule at both ends of the period.
 
-In plain terms: retention is what percentage of one month's customers are still there the next month. Churn is the flip side, what percentage left.
+For a separate fictional example, an online coaching platform starts a month with **100 paying students**. Of those same students, **85** still have an active subscription at the end and **15** have left.
 
-For a local example distinct from Sumaiya's single-customer case, say an online coaching platform had 100 paying students at the start of a month. By month's end, 85 kept their subscription going and 15 dropped out.
+- **Customer churn rate = 15 lost ÷ 100 at the start × 100 = 15%.**
+- **Customer retention rate = 85 remaining ÷ 100 at the start × 100 = 85%.**
 
-The maths: churn rate equals customers lost divided by customers at the start, so 15 divided by 100 is 15 percent. Retention rate is the rest, 85 divided by 100, or 85 percent. The two always add up to 100 percent.
+These two add up to 100% because they use the same group, period and definition. New students who joined during the month do not go into either count. Revenue churn and contract renewal rates use different measures or groups; do not mix them with this calculation.[^skok-definitions]
 
-This is exactly where most founders get fooled. A 15 percent churn rate sounds small, just 15 people a month. But if that rate holds steady month after month, the losses don't add, they compound:
+What happens if 15% of the remaining group leaves each month? With no new or returning students added, the model is **100 × 0.85 raised to the number of months**. The counts below are rounded to whole students:
 
-| Month | Students remaining |
-|---|---|
+| Month | Students remaining from the original group |
+|---|---:|
 | 0 | 100 |
 | 1 | 85 |
 | 2 | 72 |
@@ -68,26 +96,62 @@ This is exactly where most founders get fooled. A 15 percent churn rate sounds s
 | 4 | 52 |
 | 5 | 44 |
 
-By month five, more than half the original cohort is gone, even though every single month the number looked like "just 15 percent." What to do: track each month's churn separately, and follow the same cohort across several months rather than eyeballing one month at a time. The full detail on how to build that cohort table, and where it tells a misleading story in Bangladesh specifically, is in the [Cohort Retention](/en/metrics/cohort-retention) guide.
+By month five, the model has about 44 of the original 100 students left. It loses 15% of the remaining group each month, not 15 students every month. Your real rate may change. Track actual customer groups over time with the [Cohort Retention](/en/metrics/cohort-retention) guide; do not use this separate coaching example to infer Sumaiya's customer lifetime.
 
-## What actually brings churn down
+## What to try when customers leave
 
-The cheapest way to cut churn isn't winning new customers, it's keeping the ones you have. An interview-based look at Bangladeshi founders found a pattern worth noting: discounts win customers fast, but it's product or service quality that keeps them around longer.[^future-startup-quality-retention] The same logic applies to Sumaiya. Spending time on onboarding instead of more ad budget, responding fast when a new customer hits a snag in month one, and checking once a month whether the software is actually pulling its weight for them, that's the real work of cutting churn. As the table above shows, even a few extra months of retention move the LTV:CAC ratio directly.
+Start by asking why they left and looking at what happened before they stopped paying. Sumaiya could test clearer first-use help, faster support for a repeated problem, or a check-in to see whether the software solves the customer's task. Pick the action that matches the problem rather than offering a discount to everyone.
+
+Future Startup's 2021 review of founder interviews highlighted product and service quality as a retention theme.[^future-startup-quality-retention] That is useful experience to learn from, not proof that one change will work for your business. Compare the next customer group's behavior and the extra cost of the change before deciding whether it helped.
+
+## Copy this into your own sheet
+
+Use a notebook or spreadsheet; no paid tool is needed. Put real results and assumptions in separate fields. For Sumaiya, the key question is whether the assumed ten-month lifetime holds before she spends on another batch of customers.
+
+```text
+Period and customer group:
+Acquisition costs included / excluded:
+Total acquisition spend: Tk ____
+Distinct new paying customers: ____
+CAC = spend / new paying customers: Tk ____
+
+Revenue per customer per month: Tk ____
+Direct service and retention costs per customer per month: Tk ____
+Contribution before CAC = revenue - those costs: Tk ____
+Average paying lifetime: ____ months
+Lifetime evidence: observed ____ / assumed ____
+Estimated LTV = monthly contribution x months: Tk ____
+LTV:CAC = LTV / CAC: ____
+Estimated payback = CAC / monthly contribution: ____ months
+
+Customers active at the start: ____
+Of that same group, active at the end: ____ / left: ____
+Retention = remaining / starting group x 100: ____%
+Churn = left / starting group x 100: ____%
+
+What if lifetime is shorter or a payment arrives late?
+One change to test:
+Next review date:
+```
+
+Leave a result unavailable when its denominator is zero or its input is unknown. Do not quietly replace it with zero. For an uneven buying pattern, total the customer's contribution across actual purchases instead of assuming a monthly subscription. This simple worksheet does not account for the changing value of money over time.
 
 ## Checklist
 
-- Worked out LTV like Sumaiya did, from my own contribution margin, CAC, and average customer lifespan
-- Worked out the LTV:CAC ratio and checked whether it's near 3:1
-- If the ratio is short, decided which of the three levers (price/margin, retention, CAC) to pull
-- Worked out CAC payback and know how many months of spend I have to carry out of my own cash
-- Worked out monthly churn and retention rates and compounded them a few months out
-- Added the Cohort Retention guide to my reading list for a deeper cohort table
+- [ ] Counted new paying customers separately from repeat orders and free sign-ups
+- [ ] Listed acquisition costs and any gap between spending and the sale
+- [ ] Kept contribution, CAC and net profit separate, without counting a cost twice
+- [ ] Marked customer lifetime as observed or assumed
+- [ ] Checked actual payment dates as well as estimated payback
+- [ ] Used the same starting group and period for retention and churn
+- [ ] Chosen one change to test and a date to review it
 
-Rule of thumb: **if LTV isn't at least three times CAC, fix retention or cut CAC before you push harder on growth.**
+Before increasing spend, make sure you can explain which numbers are measured, which are guesses, and how you will pay the bills while waiting for acquisition cost to come back.
 
 ## Relevant Sources
 
-[^lightcastle-recurring-demand]: [LightCastle Partners, "A Billion Dollars Over a Decade: How Startup Capital Took Shape in Bangladesh"](https://lightcastlepartners.com/insights/2026/02/startup-ecosystem-bangladesh-early-bets-to-scale/).
+[^skok-metrics]: [David Skok, SaaS Metrics 2.0](https://www.forentrepreneurs.com/saas-metrics-2/). Explains acquisition costs, customer value and payback in a SaaS setting. Read 3 October 2026. The taka examples and worksheet above are fictional teaching models, not figures from this source.
 
-[^future-startup-quality-retention]: [Future Startup, "10 Growth Strategies That Have Worked For Bangladeshi Startups"](https://futurestartup.com/2021/04/20/10-growth-strategies-that-have-worked-for-bangladeshi-startups/).
+[^skok-definitions]: [David Skok, SaaS Metrics 2.0: Detailed Definitions](https://www.forentrepreneurs.com/saas-metrics-2-definitions/). Gives the assumptions behind simple LTV and the SaaS 3:1 guideline, and distinguishes customer churn from revenue churn and renewal rates. Read 3 October 2026; these are model definitions, not a current Bangladesh benchmark study.
 
+[^future-startup-quality-retention]: [Future Startup, 10 Growth Strategies That Have Worked For Bangladeshi Startups](https://futurestartup.com/2021/04/20/10-growth-strategies-that-have-worked-for-bangladeshi-startups/), 20 April 2021. Interview-based observations, not a controlled test. Read 3 October 2026.

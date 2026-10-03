@@ -33,6 +33,7 @@ import {
 } from '../app/lib/page-social-image.mjs'
 import { eventsForLocale } from './postbuild-contributors.mjs'
 import { inspectRenderedContent } from './rendered-content-audit.mjs'
+import { visibleLinkedCollectionItems } from './visible-collection-items.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const { htmlDir: outDir, staticDir } = resolveBuildOutput(root)
@@ -131,6 +132,9 @@ for (const page of pages) {
   const robots = $('meta[name="robots"]').attr('content') || ''
   const alternates = $('link[rel="alternate"][hreflang]')
   const schemaScripts = $('script[data-deshi-schema][type="application/ld+json"]')
+  if (page.slug === 'companies' && /(?:\\"|")logoPath(?:\\"|")\s*:/.test(html)) {
+    record(errors, `${page.route}: unused logical logo paths leak into the company client payload`)
+  }
   const contributorProfile = isContributorProfile(page)
     ? contributorProfileById.get(page.profileId) || null
     : null
@@ -472,6 +476,17 @@ for (const page of pages) {
               item.name !== $(links[index]).text().trim() ||
               item.url !== canonicalUrl($(links[index]).attr('href')))) {
           record(errors, `${page.route}: idea ItemList must match visible links in display order`)
+        }
+      }
+      if (page.slug === 'sitemap' || page.slug === 'companies') {
+        const buildPrefix = html.match(/(?:src|href)="([^"]*\/_next\/)/)?.[1]
+        const basePath = buildPrefix?.startsWith('/') ? buildPrefix.slice(0, buildPrefix.indexOf('/_next/')) : ''
+        const expectedItems = visibleLinkedCollectionItems($, page, { basePath })
+        const items = collection?.mainEntity?.itemListElement
+        if (!expectedItems.length || collection?.mainEntity?.['@type'] !== 'ItemList' ||
+            collection.mainEntity.numberOfItems !== expectedItems.length ||
+            JSON.stringify(items) !== JSON.stringify(expectedItems)) {
+          record(errors, `${page.route}: CollectionPage ItemList must match visible names, URLs and display order`)
         }
       }
       if (collection && (page.slug === 'contributors' || page.slug.startsWith('directory/'))) {
