@@ -125,6 +125,15 @@
     "remote": true,
     "uploadedAt": "2026-09-14T17:14:46.744Z"
   },
+  "/media/og/bn/case-studies/chaldal.png": {
+    "key": "og/bn/case-studies/chaldal.2cebc6bbaa4d.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 43203,
+    "sha": "2cebc6bbaa4d",
+    "remote": true,
+    "uploadedAt": "2026-10-03T07:19:59.393Z"
+  },
   "/media/og/bn/case-studies/dorik.png": {
     "key": "og/bn/case-studies/dorik.3ad4fe9fb9f9.png",
     "w": 1200,
@@ -232,6 +241,15 @@
     "sha": "86fb92eaa9fe",
     "remote": true,
     "uploadedAt": "2026-09-14T17:14:19.172Z"
+  },
+  "/media/og/en/case-studies/chaldal.png": {
+    "key": "og/en/case-studies/chaldal.f68c7680f778.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 41866,
+    "sha": "f68c7680f778",
+    "remote": true,
+    "uploadedAt": "2026-10-03T07:19:57.961Z"
   },
   "/media/og/en/case-studies/dorik.png": {
     "key": "og/en/case-studies/dorik.d7d0f61cd144.png",

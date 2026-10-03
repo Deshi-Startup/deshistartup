@@ -20,6 +20,10 @@ const companies = {
     theme: 'bkash',
     sector: { en: 'Mobile financial services & fintech', bn: 'মোবাইল আর্থিক সেবা ও ফিনটেক' }
   },
+  chaldal: {
+    theme: 'chaldal',
+    sector: { en: 'Online grocery', bn: 'অনলাইন গ্রোসারি' }
+  },
   ifarmer: {
     theme: 'ifarmer',
     sector: { en: 'Agriculture', bn: 'কৃষি' }

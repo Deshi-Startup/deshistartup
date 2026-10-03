@@ -147,5 +147,16 @@
         "src": "/media/og/en/case-studies/truck-lagbe.png"
       }
     }
+  },
+  "case-studies/chaldal": {
+    "template": "case-study",
+    "locales": {
+      "bn": {
+        "src": "/media/og/bn/case-studies/chaldal.png"
+      },
+      "en": {
+        "src": "/media/og/en/case-studies/chaldal.png"
+      }
+    }
   }
 }
