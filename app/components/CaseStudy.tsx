@@ -8,6 +8,10 @@ import './CaseStudy.css'
 export type CaseLocale = 'bn' | 'en'
 
 const companies = {
+  shebaxyz: {
+    theme: 'sheba',
+    sector: { en: 'Home services', bn: 'বাসার সেবা' }
+  },
   '10-minute-school': {
     theme: 'school',
     sector: { en: 'Education', bn: 'শিক্ষা' }

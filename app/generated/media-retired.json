@@ -444,5 +444,13 @@
     "retiredAt": "2026-09-16T15:03:13.938Z",
     "reason": "superseded",
     "replacementKey": "startup-50/bongo.9d542eecde9f.webp"
+  },
+  {
+    "logicalPath": "/media/og/bn/case-studies/shebaxyz.png",
+    "key": "og/bn/case-studies/shebaxyz.ab04824ea9b7.png",
+    "bytes": 35532,
+    "retiredAt": "2026-10-04T10:03:57.529Z",
+    "reason": "superseded",
+    "replacementKey": "og/bn/case-studies/shebaxyz.59c80cec1dbe.png"
   }
 ]

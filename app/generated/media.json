@@ -26,6 +26,15 @@
     "remote": true,
     "uploadedAt": "2026-09-10T12:30:23.026Z"
   },
+  "/media/case-studies/logos/shebaxyz.webp": {
+    "key": "case-studies/logos/shebaxyz.65e93d969aad.webp",
+    "w": 400,
+    "h": 112,
+    "bytes": 3848,
+    "sha": "65e93d969aad",
+    "remote": true,
+    "uploadedAt": "2026-10-04T08:40:56.954Z"
+  },
   "/media/case-studies/logos/shohoz.webp": {
     "key": "case-studies/logos/shohoz.5cbb762a5ec7.webp",
     "w": 170,
@@ -161,6 +170,15 @@
     "remote": true,
     "uploadedAt": "2026-09-14T17:14:54.313Z"
   },
+  "/media/og/bn/case-studies/shebaxyz.png": {
+    "key": "og/bn/case-studies/shebaxyz.59c80cec1dbe.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 40827,
+    "sha": "59c80cec1dbe",
+    "remote": true,
+    "uploadedAt": "2026-10-04T10:03:57.529Z"
+  },
   "/media/og/bn/case-studies/shikho.png": {
     "key": "og/bn/case-studies/shikho.f33fe80cf404.png",
     "w": 1200,
@@ -277,6 +295,15 @@
     "sha": "a43cb6d1c43c",
     "remote": true,
     "uploadedAt": "2026-09-14T17:14:25.828Z"
+  },
+  "/media/og/en/case-studies/shebaxyz.png": {
+    "key": "og/en/case-studies/shebaxyz.32faef2d5842.png",
+    "w": 1200,
+    "h": 630,
+    "bytes": 39304,
+    "sha": "32faef2d5842",
+    "remote": true,
+    "uploadedAt": "2026-10-04T08:42:53.075Z"
   },
   "/media/og/en/case-studies/shikho.png": {
     "key": "og/en/case-studies/shikho.e16e20f8dcbc.png",

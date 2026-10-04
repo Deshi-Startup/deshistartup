@@ -229,7 +229,7 @@
     },
     "summary": {
       "en": "Direct sourcing, pharmacist review and the cost of dependable delivery.",
-      "bn": "প্রেসক্রিপশন যাচাই, লাইসেন্স করা সাপ্লাই চেইন আর স্বাস্থ্যসেবায় রোগীদের ভরসা তৈরির গল্প।"
+      "bn": "ওষুধ কোম্পানি থেকে কেনা, ফার্মাসিস্ট দিয়ে যাচাই আর ডেলিভারির খরচের হিসাব।"
     }
   },
   "ifarmer": {
@@ -293,6 +293,28 @@
     "summary": {
       "en": "Factory pickup points, grouped demand and the trade-offs behind a cheaper delivery.",
       "bn": "ফ্যাক্টরি পিকআপ পয়েন্ট, সবার চাহিদা এক করা আর কম খরচে ডেলিভারির পেছনের সুবিধা-অসুবিধার হিসাব।"
+    }
+  },
+  "shebaxyz": {
+    "theme": "sheba",
+    "name": "Sheba.xyz",
+    "sector": {
+      "en": "Home services",
+      "bn": "বাসার সেবা"
+    },
+    "title": {
+      "en": [
+        "Service promises.",
+        "Repeated cash trouble."
+      ],
+      "bn": [
+        "ভালো সার্ভিসের প্রতিশ্রুতি,",
+        "টাকার টান পড়েছে বারবার।"
+      ]
+    },
+    "summary": {
+      "en": "How a local service test grew into a wider business with repeated funding trouble.",
+      "bn": "বাসার কাজ দিয়ে শুরু, নতুন অ্যাপ যোগ করা আর বারবার টাকার সংকটে পড়ার গল্প।"
     }
   }
 }

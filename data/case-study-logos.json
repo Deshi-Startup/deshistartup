@@ -29,6 +29,14 @@
       "src": "/media/case-studies/logos/shohoz.webp",
       "source": "https://www.shohoz.com/assets/img/shohoz_logo_new.png?v=1.0.4",
       "sourceKind": "official-site header logo"
+    },
+    {
+      "slug": "shebaxyz",
+      "name": "Sheba.xyz",
+      "src": "/media/case-studies/logos/shebaxyz.webp",
+      "source": "https://cdn.sheba.xyz/sheba_xyz/svg/WebsiteLogo.svg",
+      "sourceKind": "official-site header logo",
+      "reviewedAt": "2026-10-04"
     }
   ]
 }

@@ -43,5 +43,8 @@
   },
   "agroshift": {
     "svg": "<svg viewBox=\"0 0 330 200\" fill=\"none\" focusable=\"false\"><path d=\"M67 45h63v110H67m63-55h68\" stroke=\"#d7e5b0\" stroke-width=\"2\"></path><g><rect x=\"30\" y=\"30\" width=\"42\" height=\"30\" rx=\"3\" fill=\"#fff7e7\"></rect><path d=\"M40 41h22m-22 8h14\" stroke=\"#294c39\" stroke-width=\"2\"></path></g><g><rect x=\"30\" y=\"85\" width=\"42\" height=\"30\" rx=\"3\" fill=\"#fff7e7\"></rect><path d=\"M40 96h22m-22 8h14\" stroke=\"#294c39\" stroke-width=\"2\"></path></g><g><rect x=\"30\" y=\"140\" width=\"42\" height=\"30\" rx=\"3\" fill=\"#fff7e7\"></rect><path d=\"M40 151h22m-22 8h14\" stroke=\"#294c39\" stroke-width=\"2\"></path></g><rect x=\"198\" y=\"55\" width=\"95\" height=\"90\" rx=\"4\" fill=\"#d7e5b0\"></rect><path d=\"M211 72h69m-69 16h69m-69 16h69m-69 16h45\" stroke=\"#294c39\" stroke-width=\"2\"></path><path d=\"m182 93 8 7-8 7\" stroke=\"#d7e5b0\" stroke-width=\"2\"></path></svg>"
+  },
+  "sheba": {
+    "svg": "<svg viewBox=\"0 0 330 200\" fill=\"none\" focusable=\"false\"><path d=\"m27 83 64-50 64 50\" stroke=\"#514858\" stroke-width=\"3\"></path><path d=\"M43 73v91h96V73\" fill=\"#fffafc\" stroke=\"#514858\" stroke-width=\"2\"></path><path d=\"M78 164v-51h27v51\" stroke=\"#514858\" stroke-width=\"2\"></path><path d=\"M166 101h28m-7-7 7 7-7 7\" stroke=\"#ad2f71\" stroke-width=\"3\"></path><rect x=\"208\" y=\"36\" width=\"91\" height=\"128\" rx=\"4\" fill=\"#fffafc\" stroke=\"#514858\" stroke-width=\"2\"></rect><path d=\"M225 62h57m-57 23h57m-57 23h57M225 138h24\" stroke=\"#514858\" stroke-width=\"2\"></path><circle cx=\"273\" cy=\"138\" r=\"12\" stroke=\"#ad2f71\" stroke-width=\"2\"></circle><path d=\"M27 181h272\" stroke=\"#cec4d1\" stroke-width=\"2\"></path></svg>"
   }
 }
