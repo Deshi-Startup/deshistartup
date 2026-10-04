@@ -294,5 +294,27 @@
       "en": "Factory pickup points, grouped demand and the trade-offs behind a cheaper delivery.",
       "bn": "ফ্যাক্টরি পিকআপ পয়েন্ট, সবার চাহিদা এক করা আর কম খরচে ডেলিভারির পেছনের সুবিধা-অসুবিধার হিসাব।"
     }
+  },
+  "shebaxyz": {
+    "theme": "sheba",
+    "name": "Sheba.xyz",
+    "sector": {
+      "en": "Home services",
+      "bn": "বাসার সেবা"
+    },
+    "title": {
+      "en": [
+        "Service promises.",
+        "Repeated cash trouble."
+      ],
+      "bn": [
+        "সেবার প্রতিশ্রুতি",
+        "বারবার টাকার টান"
+      ]
+    },
+    "summary": {
+      "en": "How a local service test grew into a wider business with repeated funding trouble.",
+      "bn": "এক এলাকায় সেবা দেওয়ার পরীক্ষা থেকে ব্যবসা বড় হয়েছিল। তবে বারবার টাকার সংকটও এসেছে।"
+    }
   }
 }

@@ -158,5 +158,16 @@
         "src": "/media/og/en/case-studies/chaldal.png"
       }
     }
+  },
+  "case-studies/shebaxyz": {
+    "template": "case-study",
+    "locales": {
+      "bn": {
+        "src": "/media/og/bn/case-studies/shebaxyz.png"
+      },
+      "en": {
+        "src": "/media/og/en/case-studies/shebaxyz.png"
+      }
+    }
   }
 }
