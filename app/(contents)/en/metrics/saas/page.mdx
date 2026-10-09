@@ -18,6 +18,31 @@ MRR isn't a month's total sales; it's a snapshot on a given date. A one-time set
 
 For you this means the month's bank statement can't tell you if the business is growing or shrinking, since old dues, refunds, and one-off sales are all mixed in. Counting active customers on the 1st of every month and logging MRR shows the real momentum instead.
 
+### Annual plans and mixed prices
+
+A yearly subscription still adds a monthly amount to MRR. Divide its recurring price by the number of months it covers. For example, a 6,000 taka annual plan adds 6,000 ÷ 12 = 500 taka to MRR while that subscription is active. Receiving the whole payment at once does not make it all MRR in that month.[^chartmogul-mrr]
+
+Here is a separate, fictional version of Sumaiya's business. Of her 100 active customers, 80 pay monthly and 20 have annual plans. The example excludes setup fees, taxes and usage charges.
+
+| Plan | Active customers | Monthly value per customer | MRR |
+|---|---:|---:|---:|
+| 500 taka each month | 80 | 500 taka | 40,000 taka |
+| 6,000 taka for 12 months | 20 | 500 taka | 10,000 taka |
+| **Total** | **100** | — | **50,000 taka** |
+
+Different prices need separate rows. Work out each plan's monthly value, multiply it by its active subscriptions, then add the results. Keep every row in the same currency.
+
+For your own calculation, copy this tab-separated block into cell **A1** of a spreadsheet. Replace the zero placeholders with your current subscription counts and recurring prices. Use **1** month for a monthly price and **12** for an annual price.
+
+```text
+Plan	Active subscriptions	Recurring price	Months covered	MRR
+Monthly	0	0	1	=IF(D2>0,B2*C2/D2,"")
+Annual	0	0	12	=IF(D3>0,B3*C3/D3,"")
+Total				=SUM(E2:E3)
+```
+
+For another price or subscription period, insert a row above Total. Copy the MRR formula into it and check that the total includes every plan. A blank MRR result means the months covered need checking; it is not a measured zero. Finish all the inputs before using the total.
+
 ## ARR: seeing the year-scale number
 
 Multiply MRR by 12 and you get **ARR (annual recurring revenue)**. Sumaiya's 50,000 taka of MRR means an ARR of 600,000 taka at today's rate. It is not a promise that every customer will stay all year.[^stripe-arr]
@@ -90,3 +115,5 @@ Rule of thumb: **check NRR before you spend on new customers. If existing custom
 [^basis-trade-body]: [BASIS](https://basis.org.bd), the national trade body for Bangladesh's software and ITES industry, founded 1998.
 
 [^lightcastle-scope]: [LightCastle Partners – Bangladesh Startup Ecosystem Dashboard](https://lightcastlepartners.com/bangladesh-startup-ecosystem-dashboard/), primarily a funding and investment dashboard, accessed August 2026.
+
+[^chartmogul-mrr]: [ChartMogul – Monthly Recurring Revenue](https://chartmogul.com/saas-metrics/mrr/), checked 9 October 2026.

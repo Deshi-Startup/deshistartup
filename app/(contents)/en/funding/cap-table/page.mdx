@@ -8,6 +8,26 @@ verified: 2026-08-09
 
 > **In short:** A <Term name="cap-table">Cap Table</Term> (Capitalization Table) is a master spreadsheet that breaks down exactly who owns what in your startup. It tracks how many shares each person holds, what they paid, and how ownership gets diluted over time as you raise more funds.
 
+## Copy a starter cap table into a spreadsheet
+
+Use this worksheet for a simple company with one share class, meaning its shares carry the same rights. Issued shares are shares the company has already assigned to holders. The worksheet separates them from shares covered by options and the unused option reserve. An option is a right to buy a share later; this simple model assumes one share per option. The last column includes all of these in the fully diluted total.[^carta-cap-table]
+
+Paste the tab-separated block into cell A1 of an empty spreadsheet. Format column E as a percentage. Replace the zeros with your own share counts. Keep the sheet private because it contains ownership details.
+
+```text
+Holder	Issued shares	Options / reserve	Fully diluted shares	Fully diluted share
+Founder 1	0	0	=B2+C2	=IF($D$5=0,"",D2/$D$5)
+Founder 2	0	0	=B3+C3	=IF($D$5=0,"",D3/$D$5)
+Unused option pool	0	0	=B4+C4	=IF($D$5=0,"",D4/$D$5)
+Total	=SUM(B2:B4)	=SUM(C2:C4)	=SUM(D2:D4)	=IF(D5=0,"",SUM(E2:E4))
+```
+
+Say each founder has 50,000 issued shares, and you reserve 10,000 options. Enter 50,000 in B2 and B3, and 10,000 in C4. The fully diluted total is 1,10,000. Each founder's share of that total is 50,000 ÷ 1,10,000 = **45.45%**, and the unused pool is **9.09%**. The pool is not a shareholder, and those options are not issued shares.
+
+For another holder, insert a row above Total and copy a holder row's D and E formulas into it. Check the formulas use that holder's row and the updated Total row, and that every total includes all holders. When you grant an option from the unused pool, move that count to the holder's row rather than counting it twice. Keep issued shares in column B and unexercised options or the unused reserve in column C. Once an option is exercised and the share is issued, move that count from C to B.
+
+Before using the result, check the total is 100% and the issued counts match your company records. Keep share classes, grant dates, prices, vesting dates (when someone earns shares or options) and supporting documents in separate records. This starter does not calculate shares from a SAFE or convertible note. These are funding agreements that may turn into shares later. It also does not split voting rights or sale proceeds. Ask your company lawyer to check the full model before a funding round.
+
 ## Why Is a Cap Table Essential?
 
 At inception, equity ownership appears simple—such as two co-founders splitting ownership 50-50. However, as investors enter, Employee Stock Option Pools (ESOP) are carved out, or [SAFE notes](/en/funding/safe-convertible-notes) convert, the equity equation rapidly becomes complex.[^shoumik-cap-table]
@@ -91,3 +111,5 @@ Keep the cap table, register of members, share certificates, corporate approvals
 [^companies-act-cap-table]: [Companies Act, 1994](https://bdlaws.minlaw.gov.bd/act-print-788.html), sections 31–34, 45, and 151 — share certificates and the register of members as prima facie evidence, the company's duty to keep that register, and the 60-day return-of-allotment deadline. Accessed 20 August 2026.
 
 [^rjsc-director-filings]: [RJSC return-filing guidance](https://app.roc.gov.bd/Guidlines/faq.html) and the official [Form XV](https://app1.roc.gov.bd/psp/rf_form_xv_inp), [Form IX](https://app.roc.gov.bd/Guidlines/Download/FORM%20IX.htm), [Form X](https://app.roc.gov.bd/Guidlines/Download/FORM%20X.htm), and [Form XII](https://app.roc.gov.bd/Guidlines/Download/FORM%20XII.htm). Accessed 20 August 2026.
+
+[^carta-cap-table]: [Carta – What is a cap table?](https://carta.com/uk/en/learn/startups/equity-management/cap-table/), issued and fully diluted shares, option pools and ownership records. Accessed 9 October 2026.
