@@ -29,14 +29,21 @@ export function partitionSources(sources: EvidenceSource[]) {
   }
 }
 
+function bulletLines(block: string) {
+  return block.split('\n').map(line => line.replace(/^[-•]\s*/, '').trim()).filter(Boolean)
+}
+
 export function splitSizeNote(text: string) {
   const en = '\n\nAssumptions\n'
   const bn = '\n\nঅনুমান\n'
   const marker = text.includes(en) ? en : text.includes(bn) ? bn : null
   if (!marker) return null
-  const [equationBlock, assumptionBlock] = text.split(marker)
+  const [equationBlock, rest] = text.split(marker)
+  const sourceMark = rest.includes('\n\nSources\n') ? '\n\nSources\n' : rest.includes('\n\nউৎস\n') ? '\n\nউৎস\n' : ''
+  const [assumptionBlock, sourceBlock] = sourceMark ? rest.split(sourceMark) : [rest, '']
   return {
     equations: equationBlock.split('\n').map(line => line.trim()).filter(Boolean),
-    assumptions: assumptionBlock.split('\n').map(line => line.replace(/^[-•]\s*/, '').trim()).filter(Boolean)
+    assumptions: bulletLines(assumptionBlock),
+    sources: bulletLines(sourceBlock)
   }
 }

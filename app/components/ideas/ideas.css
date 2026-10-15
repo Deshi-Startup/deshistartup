@@ -80,6 +80,7 @@
 .ideas-shell .ideas-sources .ideas-size-eq:first-child { margin-top: 0; }
 .ideas-shell .ideas-sources .ideas-size-label { color: var(--ink, #202122); font-size: .875rem; font-weight: var(--w-strong, 600); margin-top: .85rem; }
 .ideas-shell .ideas-sources .ideas-size-note ul { margin-top: .4rem; padding-inline-start: 1.15rem; display: grid; gap: .35rem; color: var(--muted, #54595d); font-size: .875rem; }
+.ideas-shell .ideas-sources .ideas-size-note ul a { font-size: .8125rem; font-weight: 500; color: var(--green-deep, #065f46); word-break: break-all; }
 .ideas-shell .ideas-research-body .ideas-sources + h2 { margin-top: 1.75rem; }
 .ideas-shell .ideas-research-body h2 + .ideas-sources { margin-top: .35rem; }
 /* Catalogue */

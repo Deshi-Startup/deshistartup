@@ -20,21 +20,35 @@ function sourceLines(sources: EvidenceSource[], locale: Locale) {
   return sources.map(source => {
     const parsed = splitSizeNote(source[locale])
     const body = parsed
-      ? [parsed.equations.join('\n'), locale === 'en' ? 'Assumptions' : 'অনুমান', ...parsed.assumptions.map(item => `- ${item}`)].join('\n').replace(/\n/g, '\n  ')
+      ? [
+          parsed.equations.join('\n'),
+          locale === 'en' ? 'Assumptions' : 'অনুমান',
+          ...parsed.assumptions.map(item => `- ${item}`),
+          ...(parsed.sources.length ? [locale === 'en' ? 'Sources' : 'উৎস', ...parsed.sources.map(item => `- ${item}`)] : [])
+        ].join('\n').replace(/\n/g, '\n  ')
       : source[locale]
     return `- [${source.title}](${source.url}) · ${source.date}\n  ${body}`
   }).join('\n')
 }
 
+function SizeBullet({ item }: { item: string }) {
+  const match = item.match(/^(.*?)\s+(https:\/\/\S+)$/)
+  if (!match) return <li>{item}</li>
+  return <li>{match[1]} <a href={match[2]}>{match[2].replace(/^https:\/\//, '')}</a></li>
+}
+
 function SourceNote({ text, locale }: { text: string; locale: Locale }) {
   const parsed = splitSizeNote(text)
   if (!parsed) return <p>{text}</p>
-  return <div className="ideas-size-note">{parsed.equations.map(line => <p className="ideas-size-eq" key={line}>{line}</p>)}<p className="ideas-size-label">{locale === 'en' ? 'Assumptions' : 'অনুমান'}</p><ul>{parsed.assumptions.map(item => <li key={item}>{item}</li>)}</ul></div>
+  return <div className="ideas-size-note">{parsed.equations.map(line => <p className="ideas-size-eq" key={line}>{line}</p>)}<p className="ideas-size-label">{locale === 'en' ? 'Assumptions' : 'অনুমান'}</p><ul>{parsed.assumptions.map(item => <li key={item}>{item}</li>)}</ul>{parsed.sources.length > 0 && <><p className="ideas-size-label">{locale === 'en' ? 'Sources' : 'উৎস'}</p><ul>{parsed.sources.map(item => <SizeBullet key={item} item={item} />)}</ul></>}</div>
 }
 
 function SourceList({ sources, locale }: { sources: EvidenceSource[]; locale: Locale }) {
   if (!sources.length) return null
-  return <ol className="ideas-sources">{sources.map(source => <li key={source.url}><div><a href={source.url}>{source.title}<IdeaIcon name="external" /></a><span className="ideas-source-date">{source.date} · {domain(source.url)}</span><SourceNote text={source[locale]} locale={locale} /></div></li>)}</ol>
+  return <ol className="ideas-sources">{sources.map(source => {
+    const sized = splitSizeNote(source[locale])
+    return <li key={source.url}><div><a href={source.url}>{source.title}<IdeaIcon name="external" /></a><span className="ideas-source-date">{sized ? source.date : `${source.date} · ${domain(source.url)}`}</span><SourceNote text={source[locale]} locale={locale} /></div></li>
+  })}</ol>
 }
 
 function materials(problem: Problem, idea: Approach, locale: Locale) {

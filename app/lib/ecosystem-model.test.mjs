@@ -28,13 +28,15 @@ test('older cards without section still render when no labelled groups exist', (
 })
 
 test('size notes split into equations then assumption bullets', () => {
-  const parsed = splitSizeNote('1 × 2 = 2\n3 × 4 = 12\n\nAssumptions\n- FX is 120\n- Mixed grade')
+  const parsed = splitSizeNote('1 × 2 = 2\n3 × 4 = 12\n\nAssumptions\n- Mixed grade\n\nSources\n- SWITCH2CE, 2023')
   assert.deepEqual(parsed, {
     equations: ['1 × 2 = 2', '3 × 4 = 12'],
-    assumptions: ['FX is 120', 'Mixed grade']
+    assumptions: ['Mixed grade'],
+    sources: ['SWITCH2CE, 2023']
   })
-  const bangla = splitSizeNote('1 × 2 = 2\n\nঅনুমান\n- ১২০ টাকায় এক ডলার')
+  const bangla = splitSizeNote('1 × 2 = 2\n\nঅনুমান\n- মিশ্র গ্রেড\n\nউৎস\n- বিবিএস ইয়ারবুক ২০২৪')
   assert.deepEqual(bangla.equations, ['1 × 2 = 2'])
-  assert.deepEqual(bangla.assumptions, ['১২০ টাকায় এক ডলার'])
+  assert.deepEqual(bangla.assumptions, ['মিশ্র গ্রেড'])
+  assert.deepEqual(bangla.sources, ['বিবিএস ইয়ারবুক ২০২৪'])
   assert.equal(splitSizeNote('A paragraph with no split.'), null)
 })

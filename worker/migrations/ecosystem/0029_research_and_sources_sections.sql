@@ -6,41 +6,59 @@ PRAGMA foreign_keys = ON;
 
 UPDATE problems SET sources_json = (SELECT json_group_array(CASE WHEN json_extract(value, '$.url') = 'https://idcol.org/idcol_new/public/renewable/solar-irrigation-program' THEN json_set(value, '$.en', 'IDCOL describes solar irrigation sold as a service. The same programme page lists 1,523 pumps in operation. That is installed pumps, not software seats.', '$.bn', 'IDCOL সেবা হিসেবে সোলার সেচ দেওয়ার মডেল বর্ণনা করেছে। একই পাতায় চালু পাম্প ১,৫২৩টি। এটি বসানো পাম্প, সফটওয়্যার সিট নয়।') ELSE value END) FROM json_each(problems.sources_json)), revision = revision + 1 WHERE id = 'solar-irrigation-control-problem';
 
-UPDATE problems SET sources_json = (SELECT json_group_array(CASE WHEN json_extract(value, '$.url') = 'https://moncho.ai/sectors/circular-economy-textiles/landscapes/ce-textiles-collection-reverse-logistics' THEN json_set(value, '$.title', 'Working range for mixed cutting scrap (draft)', '$.date', '2023 volume, 2024 bands', '$.en', '312,000 t × 1,000 kg/t × 24 Tk/kg ÷ 120 Tk/$ = $62.4 million
+UPDATE problems SET sources_json = (SELECT json_group_array(CASE WHEN json_extract(value, '$.url') = 'https://moncho.ai/sectors/circular-economy-textiles/landscapes/ce-textiles-collection-reverse-logistics' THEN json_set(value, '$.title', 'Working range for mixed cutting scrap (draft)', '$.date', 'SWITCH2CE 2023 · GIZ STILE 2024', '$.en', '312,000 t × 1,000 kg/t × 24 Tk/kg ÷ 120 Tk/$ = $62.4 million
 312,000 t × 1,000 kg/t × 40 Tk/kg ÷ 120 Tk/$ = $104 million
 
 Assumptions
 - All 312,000 tonnes of 2023 production-step waste sells at mill gate
 - Price is GIZ STILE mixed-grade bands, not sorted white
-- FX is 120 taka per dollar
-- Not proof recyclers will buy', '$.bn', '312,000 t × 1,000 kg/t × 24 Tk/kg ÷ 120 Tk/$ = $62.4 million
+- Not proof recyclers will buy
+
+Sources
+- 312,000 t production-step waste: SWITCH2CE citing Reverse Resources, 2023. https://switch2ce.org/news/bangladesh-textile-waste-sankey-diagram-2023
+- 24 and 40 Tk/kg mill-gate: GIZ STILE, 2024. https://commonobjective-uploads.storage.googleapis.com/resources/articles/STUDY-Internal-STILE-Jhut-Sector-Project-FINAL-PDF-74c.pdf
+- 120 Tk/dollar: working FX for this draft, not a Bangladesh Bank rate', '$.bn', '312,000 t × 1,000 kg/t × 24 Tk/kg ÷ 120 Tk/$ = $62.4 million
 312,000 t × 1,000 kg/t × 40 Tk/kg ÷ 120 Tk/$ = $104 million
 
 অনুমান
 - ২০২৩ সালের উৎপাদন ধাপের ৩ লাখ ১২ হাজার টন সব মিলগেটে বিক্রি হয়
 - দাম STILE-এর মিশ্র গ্রেড, বাছাই করা সাদা কাপড় নয়
-- ১২০ টাকায় এক ডলার
-- রিসাইক্লার যে কিনবে তার প্রমাণ নয়', '$.section', 'size') ELSE value END) FROM json_each(problems.sources_json)), revision = revision + 1 WHERE id = 'garment-offcuts' AND EXISTS (SELECT 1 FROM json_each(sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/circular-economy-textiles/landscapes/ce-textiles-collection-reverse-logistics');
+- রিসাইক্লার যে কিনবে তার প্রমাণ নয়
 
-UPDATE problems SET sources_json = (SELECT json_group_array(CASE WHEN json_extract(value, '$.url') = 'https://moncho.ai/sectors/warehousing-and-storage/landscapes/cold-chain-infrastructure' THEN json_set(value, '$.title', 'Working range for mixed-vegetable storage (draft)', '$.date', '2023-24 volume, potato tariff analog', '$.en', '3,408,000 t × 25% × 1,000 kg/t × 6.75 Tk/kg ÷ 120 Tk/$ = $47.9 million
+উৎস
+- উৎপাদন ধাপের ৩ লাখ ১২ হাজার টন: SWITCH2CE, Reverse Resources, ২০২৩। https://switch2ce.org/news/bangladesh-textile-waste-sankey-diagram-2023
+- কেজিতে ২৪ ও ৪০ টাকা: জিআইজেড STILE, ২০২৪। https://commonobjective-uploads.storage.googleapis.com/resources/articles/STUDY-Internal-STILE-Jhut-Sector-Project-FINAL-PDF-74c.pdf
+- ১২০ টাকায় এক ডলার: এই খসড়ার কাজ চালানোর রেট, বাংলাদেশ ব্যাংকের রেট নয়', '$.section', 'size') ELSE value END) FROM json_each(problems.sources_json)), revision = revision + 1 WHERE id = 'garment-offcuts' AND EXISTS (SELECT 1 FROM json_each(sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/circular-economy-textiles/landscapes/ce-textiles-collection-reverse-logistics');
+
+UPDATE problems SET sources_json = (SELECT json_group_array(CASE WHEN json_extract(value, '$.url') = 'https://moncho.ai/sectors/warehousing-and-storage/landscapes/cold-chain-infrastructure' THEN json_set(value, '$.title', 'Working range for mixed-vegetable storage (draft)', '$.date', 'BBS Yearbook 2024 · DAM potato ceiling', '$.en', '3,408,000 t × 25% × 1,000 kg/t × 6.75 Tk/kg ÷ 120 Tk/$ = $47.9 million
 
 Assumptions
-- Non-potato vegetables = 14,009,000 t minus 10,601,000 t potato (BBS 2023-24)
+- Non-potato vegetables = 14,009,000 t minus 10,601,000 t potato
 - One quarter of that volume is stored
 - Price analog is the DAM potato ceiling of 6.75 taka per kg
-- FX is 120 taka per dollar
 - Not crate-rental demand in Rajshahi and Bogura
-- Occupancy is unknown', '$.bn', '3,408,000 t × 25% × 1,000 kg/t × 6.75 Tk/kg ÷ 120 Tk/$ = $47.9 million
+- Occupancy is unknown
+
+Sources
+- 14,009,000 t vegetables and 10,601,000 t potato: BBS Yearbook 2024 Table 4.40. https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb
+- 25 percent stored share: assumption, not a BBS table
+- 6.75 Tk/kg: DAM potato rent ceiling, March 2025. No stable DAM page
+- 120 Tk/dollar: working FX for this draft', '$.bn', '3,408,000 t × 25% × 1,000 kg/t × 6.75 Tk/kg ÷ 120 Tk/$ = $47.9 million
 
 অনুমান
-- আলু বাদ দিয়ে সবজি = ১ কোটি ৪০ লাখ ৯ হাজার টন থেকে আলু ১ কোটি ৬ লাখ ১ হাজার টন বাদ (বিবিএস ২০২৩-২৪)
+- আলু বাদ দিয়ে সবজি = ১ কোটি ৪০ লাখ ৯ হাজার টন থেকে আলু ১ কোটি ৬ লাখ ১ হাজার টন বাদ
 - সেই পরিমাণের এক চতুর্থাংশ রাখা হয়
 - দামের তুলনা আলুর DAM সিলিং কেজিতে ৬.৭৫ টাকা
-- ১২০ টাকায় এক ডলার
 - রাজশাহী ও বগুড়ার ক্রেট ভাড়ার চাহিদা নয়
-- কতটা জায়গা ভরে সেটা জানা নেই', '$.section', 'size') ELSE value END) FROM json_each(problems.sources_json)), revision = revision + 1 WHERE id = 'produce-cold-chain' AND EXISTS (SELECT 1 FROM json_each(sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/warehousing-and-storage/landscapes/cold-chain-infrastructure');
+- কতটা জায়গা ভরে সেটা জানা নেই
 
-UPDATE problems SET sources_json = (SELECT json_group_array(CASE WHEN json_extract(value, '$.url') = 'https://moncho.ai/sectors/healthcare/landscapes/primary-community-care-providers' THEN json_set(value, '$.title', 'Working ceiling for private-clinic software (draft)', '$.date', '2024 census, vendor lists as analog', '$.en', '2,898 clinics × 700 Tk/month × 12 ÷ 120 Tk/$ = $202,860
+উৎস
+- সবজি ১ কোটি ৪০ লাখ ৯ হাজার টন ও আলু ১ কোটি ৬ লাখ ১ হাজার টন: বিবিএস ইয়ারবুক ২০২৪, সারণি ৪.৪০। https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb
+- ২৫ শতাংশ রাখা: অনুমান, বিবিএস সারণি নয়
+- কেজিতে ৬.৭৫ টাকা: DAM আলুর ভাড়া সিলিং, মার্চ ২০২৫। স্থায়ী DAM পাতা নেই
+- ১২০ টাকায় এক ডলার: এই খসড়ার কাজ চালানোর রেট', '$.section', 'size') ELSE value END) FROM json_each(problems.sources_json)), revision = revision + 1 WHERE id = 'produce-cold-chain' AND EXISTS (SELECT 1 FROM json_each(sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/warehousing-and-storage/landscapes/cold-chain-infrastructure');
+
+UPDATE problems SET sources_json = (SELECT json_group_array(CASE WHEN json_extract(value, '$.url') = 'https://moncho.ai/sectors/healthcare/landscapes/primary-community-care-providers' THEN json_set(value, '$.title', 'Working ceiling for private-clinic software (draft)', '$.date', 'BBS Yearbook 2024 · ChamberBD list', '$.en', '2,898 clinics × 700 Tk/month × 12 ÷ 120 Tk/$ = $202,860
 2,898 clinics × 10,000 Tk/month × 12 ÷ 120 Tk/$ = $2.90 million
 
 Assumptions
@@ -49,8 +67,13 @@ Assumptions
 - High price is a hospital-management list of 10,000 taka per month
 - ChamberBD is a full clinic plan, not reminder-only
 - Community clinics are out
-- FX is 120 taka per dollar
-- Attach is unknown, so this is a ceiling, not demand', '$.bn', '2,898 clinics × 700 Tk/month × 12 ÷ 120 Tk/$ = $202,860
+- Attach is unknown, so this is a ceiling, not demand
+
+Sources
+- 2,898 private hospitals and clinics: BBS Yearbook 2024 Table 13.01. https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb
+- 700 Tk/month: ChamberBD Standard list. https://clinic.chamberbd.com/pricing
+- 10,000 Tk/month: Software Agency BD hospital management list. https://softwareagencybd.com/products/hospital-management
+- 120 Tk/dollar: working FX for this draft', '$.bn', '2,898 clinics × 700 Tk/month × 12 ÷ 120 Tk/$ = $202,860
 2,898 clinics × 10,000 Tk/month × 12 ÷ 120 Tk/$ = $2.90 million
 
 অনুমান
@@ -59,46 +82,69 @@ Assumptions
 - উচ্চ দাম হাসপাতাল ম্যানেজমেন্ট তালিকায় মাসে ১০,০০০ টাকা
 - ChamberBD পুরো ক্লিনিক প্ল্যান, শুধু রিমাইন্ডার নয়
 - কমিউনিটি ক্লিনিক বাদ
-- ১২০ টাকায় এক ডলার
-- কতজন কিনবে জানা নেই, তাই এটি সিলিং, চাহিদা নয়', '$.section', 'size') ELSE value END) FROM json_each(problems.sources_json)), revision = revision + 1 WHERE id = 'missed-follow-up' AND EXISTS (SELECT 1 FROM json_each(sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/healthcare/landscapes/primary-community-care-providers');
+- কতজন কিনবে জানা নেই, তাই এটি সিলিং, চাহিদা নয়
 
-UPDATE problems SET sources_json = (SELECT json_group_array(CASE WHEN json_extract(value, '$.url') = 'https://moncho.ai/sectors/fisheries' THEN json_set(value, '$.title', 'Working range for intensive-pond water kits (draft)', '$.date', '2023-24 intensive ponds, shop kits as analog', '$.en', '(612,660 + 83,787) ponds × 1,950 Tk ÷ 120 Tk/$ = $11.3 million
+উৎস
+- ২,৮৯৮টি বেসরকারি হাসপাতাল ও ক্লিনিক: বিবিএস ইয়ারবুক ২০২৪, সারণি ১৩.০১। https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb
+- মাসে ৭০০ টাকা: ChamberBD স্ট্যান্ডার্ড তালিকা। https://clinic.chamberbd.com/pricing
+- মাসে ১০,০০০ টাকা: Software Agency BD হাসপাতাল ম্যানেজমেন্ট তালিকা। https://softwareagencybd.com/products/hospital-management
+- ১২০ টাকায় এক ডলার: এই খসড়ার কাজ চালানোর রেট', '$.section', 'size') ELSE value END) FROM json_each(problems.sources_json)), revision = revision + 1 WHERE id = 'missed-follow-up' AND EXISTS (SELECT 1 FROM json_each(sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/healthcare/landscapes/primary-community-care-providers');
+
+UPDATE problems SET sources_json = (SELECT json_group_array(CASE WHEN json_extract(value, '$.url') = 'https://moncho.ai/sectors/fisheries' THEN json_set(value, '$.title', 'Working range for intensive-pond water kits (draft)', '$.date', 'BBS Yearbook 2024 · shop kit lists', '$.en', '(612,660 + 83,787) ponds × 1,950 Tk ÷ 120 Tk/$ = $11.3 million
 (612,660 + 83,787) ponds × 3,990 Tk ÷ 120 Tk/$ = $23.2 million
 
 Assumptions
-- Only intensive 612,660 plus highly intensive 83,787 ponds (BBS Table 4.57)
+- Only intensive 612,660 plus highly intensive 83,787 ponds
 - One shop water-test kit per pond per year
 - Low price BIOZYM 1,950 taka, high price Keen 3,990 taka
 - Shop kits, not PCR lab tests
 - Village ponds are out
-- FX is 120 taka per dollar', '$.bn', '(612,660 + 83,787) ponds × 1,950 Tk ÷ 120 Tk/$ = $11.3 million
+
+Sources
+- 612,660 intensive and 83,787 highly intensive ponds: BBS Yearbook 2024 Table 4.57. https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb
+- 1,950 Tk: BIOZYM shop list, fetched 27 Sep 2026
+- 3,990 Tk: Keen shop list. https://tmonline24.com/product/415
+- 120 Tk/dollar: working FX for this draft', '$.bn', '(612,660 + 83,787) ponds × 1,950 Tk ÷ 120 Tk/$ = $11.3 million
 (612,660 + 83,787) ponds × 3,990 Tk ÷ 120 Tk/$ = $23.2 million
 
 অনুমান
-- শুধু নিবিড় ৬,১২,৬৬০ ও অতি নিবিড় ৮৩,৭৮৭ পুকুর (ইয়ারবুক সারণি ৪.৫৭)
+- শুধু নিবিড় ৬,১২,৬৬০ ও অতি নিবিড় ৮৩,৭৮৭ পুকুর
 - প্রতি পুকুরে বছরে একটি দোকানের পানি পরীক্ষার কিট
 - নিম্ন দাম BIOZYM ১,৯৫০ টাকা, উচ্চ দাম Keen ৩,৯৯০ টাকা
 - দোকানের কিট, পিসিআর ল্যাব নয়
 - গ্রামের পুকুর বাদ
-- ১২০ টাকায় এক ডলার', '$.section', 'size') ELSE value END) FROM json_each(problems.sources_json)), revision = revision + 1 WHERE id = 'aquaculture-diagnostics-problem' AND EXISTS (SELECT 1 FROM json_each(sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/fisheries');
 
-UPDATE problems SET sources_json = (SELECT json_group_array(CASE WHEN json_extract(value, '$.url') = 'https://moncho.ai/sectors/fisheries' THEN json_set(value, '$.title', 'Working figure for intensive-pond handheld meters (draft)', '$.date', '2023-24 intensive ponds, handheld analog', '$.en', '(612,660 + 83,787) ponds × 9,000 Tk ÷ 120 Tk/$ = $52.2 million
+উৎস
+- নিবিড় ৬,১২,৬৬০ ও অতি নিবিড় ৮৩,৭৮৭ পুকুর: বিবিএস ইয়ারবুক ২০২৪, সারণি ৪.৫৭। https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb
+- ১,৯৫০ টাকা: BIOZYM দোকানের তালিকা, ২৭ সেপ্টেম্বর ২০২৬
+- ৩,৯৯০ টাকা: Keen দোকানের তালিকা। https://tmonline24.com/product/415
+- ১২০ টাকায় এক ডলার: এই খসড়ার কাজ চালানোর রেট', '$.section', 'size') ELSE value END) FROM json_each(problems.sources_json)), revision = revision + 1 WHERE id = 'aquaculture-diagnostics-problem' AND EXISTS (SELECT 1 FROM json_each(sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/fisheries');
+
+UPDATE problems SET sources_json = (SELECT json_group_array(CASE WHEN json_extract(value, '$.url') = 'https://moncho.ai/sectors/fisheries' THEN json_set(value, '$.title', 'Working figure for intensive-pond handheld meters (draft)', '$.date', 'BBS Yearbook 2024 · Astzbd list', '$.en', '(612,660 + 83,787) ponds × 9,000 Tk ÷ 120 Tk/$ = $52.2 million
 
 Assumptions
 - Same intensive and highly intensive ponds as the kit card
 - One handheld dissolved-oxygen meter at 9,000 taka
 - That meter is not an aerator-control kit
 - Village ponds are out
-- FX is 120 taka per dollar', '$.bn', '(612,660 + 83,787) ponds × 9,000 Tk ÷ 120 Tk/$ = $52.2 million
+
+Sources
+- 612,660 intensive and 83,787 highly intensive ponds: BBS Yearbook 2024 Table 4.57. https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb
+- 9,000 Tk handheld meter: Astzbd DO9100. https://astzbd.com/product/do9100-dissolved-oxygen-meter-bangladesh/
+- 120 Tk/dollar: working FX for this draft', '$.bn', '(612,660 + 83,787) ponds × 9,000 Tk ÷ 120 Tk/$ = $52.2 million
 
 অনুমান
 - কিট কার্ডের মতোই নিবিড় ও অতি নিবিড় পুকুর
 - প্রতিটিতে একটি হাতে ধরা অক্সিজেন মিটার, দাম ৯,০০০ টাকা
 - এটি অটোপাইলট কিট নয়
 - গ্রামের পুকুর বাদ
-- ১২০ টাকায় এক ডলার', '$.section', 'size') ELSE value END) FROM json_each(problems.sources_json)), revision = revision + 1 WHERE id = 'fish-farm-autopilot-problem' AND EXISTS (SELECT 1 FROM json_each(sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/fisheries');
 
-UPDATE problems SET sources_json = (SELECT json_group_array(CASE WHEN json_extract(value, '$.url') = 'https://moncho.ai/sectors/financial-services' THEN json_set(value, '$.title', 'Working range for merchant recon software (draft)', '$.date', 'Feb 2025 regular merchants, India analog', '$.en', '363,000 × 5% × 3,332 INR/month × 12 ÷ 83 INR/$ = $8.7 million
+উৎস
+- নিবিড় ৬,১২,৬৬০ ও অতি নিবিড় ৮৩,৭৮৭ পুকুর: বিবিএস ইয়ারবুক ২০২৪, সারণি ৪.৫৭। https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb
+- ৯,০০০ টাকার হাতে ধরা মিটার: Astzbd DO9100। https://astzbd.com/product/do9100-dissolved-oxygen-meter-bangladesh/
+- ১২০ টাকায় এক ডলার: এই খসড়ার কাজ চালানোর রেট', '$.section', 'size') ELSE value END) FROM json_each(problems.sources_json)), revision = revision + 1 WHERE id = 'fish-farm-autopilot-problem' AND EXISTS (SELECT 1 FROM json_each(sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/fisheries');
+
+UPDATE problems SET sources_json = (SELECT json_group_array(CASE WHEN json_extract(value, '$.url') = 'https://moncho.ai/sectors/financial-services' THEN json_set(value, '$.title', 'Working range for merchant recon software (draft)', '$.date', 'Bangladesh Bank Feb 2025 · ReconPe analog', '$.en', '363,000 × 5% × 3,332 INR/month × 12 ÷ 83 INR/$ = $8.7 million
 363,000 × 3,332 INR/month × 12 ÷ 83 INR/$ = $175 million
 
 Assumptions
@@ -106,7 +152,11 @@ Assumptions
 - Working case is 5 percent of 363,000 regular MFS merchants
 - Ceiling is every regular merchant
 - PRA accounts and payment-gateway take-rate are out
-- FX is 83 rupees per dollar', '$.bn', '363,000 × 5% × 3,332 INR/month × 12 ÷ 83 INR/$ = $8.7 million
+
+Sources
+- 363,000 regular MFS merchants: Bangladesh Bank, February 2025. https://www.bb.org.bd/en/index.php/financialactivity/mfsdata
+- 3,332 INR/month: ReconPe Starter, India analog. https://reconpe.com/pricing/
+- 83 INR/dollar: working FX for this draft', '$.bn', '363,000 × 5% × 3,332 INR/month × 12 ÷ 83 INR/$ = $8.7 million
 363,000 × 3,332 INR/month × 12 ÷ 83 INR/$ = $175 million
 
 অনুমান
@@ -114,23 +164,35 @@ Assumptions
 - কাজ চালানোর হিসাব নিয়মিত এমএফএস মার্চেন্ট ৩ লাখ ৬৩ হাজারের ৫ শতাংশ
 - সিলিং সব নিয়মিত মার্চেন্ট
 - পিআরএ হিসাব ও গেটওয়ের কমিশন বাদ
-- ৮৩ রুপিতে এক ডলার', '$.section', 'size') ELSE value END) FROM json_each(problems.sources_json)), revision = revision + 1 WHERE id = 'merchant-settlement-reconciliation-problem' AND EXISTS (SELECT 1 FROM json_each(sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/financial-services');
 
-UPDATE problems SET sources_json = (SELECT json_group_array(CASE WHEN json_extract(value, '$.url') = 'https://moncho.ai/sectors/energy/landscapes/wm-solar-powered-pumping-mini-grid-water' THEN json_set(value, '$.title', 'Working figure for pump control kits (draft)', '$.date', 'IDCOL pumps, India analog kit', '$.en', '1,523 pumps × 2,200 INR ÷ 83 INR/$ = $40,369
+উৎস
+- নিয়মিত এমএফএস মার্চেন্ট ৩ লাখ ৬৩ হাজার: বাংলাদেশ ব্যাংক, ফেব্রুয়ারি ২০২৫। https://www.bb.org.bd/en/index.php/financialactivity/mfsdata
+- মাসে ৩,৩৩২ রুপি: ReconPe স্টার্টার, ভারতের তুলনা। https://reconpe.com/pricing/
+- ৮৩ রুপিতে এক ডলার: এই খসড়ার কাজ চালানোর রেট', '$.section', 'size') ELSE value END) FROM json_each(problems.sources_json)), revision = revision + 1 WHERE id = 'merchant-settlement-reconciliation-problem' AND EXISTS (SELECT 1 FROM json_each(sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/financial-services');
+
+UPDATE problems SET sources_json = (SELECT json_group_array(CASE WHEN json_extract(value, '$.url') = 'https://moncho.ai/sectors/energy/landscapes/wm-solar-powered-pumping-mini-grid-water' THEN json_set(value, '$.title', 'Working figure for pump control kits (draft)', '$.date', 'IDCOL · IndiaMART analog', '$.en', '1,523 pumps × 2,200 INR ÷ 83 INR/$ = $40,369
 
 Assumptions
 - Each of IDCOL 1,523 operating pumps buys one kit
 - Price analog is 2,200 rupees
-- FX is 83 rupees per dollar
 - That kit is not IDCOL software sold as a service
-- IDCOL already runs the pumps', '$.bn', '1,523 pumps × 2,200 INR ÷ 83 INR/$ = $40,369
+- IDCOL already runs the pumps
+
+Sources
+- 1,523 pumps: IDCOL solar irrigation programme. https://idcol.org/idcol_new/public/renewable/solar-irrigation-program
+- 2,200 INR kit: IndiaMART analog RMS. https://www.indiamart.com/proddetail/iot-based-solar-pump-rms-4g-2g-as-per-mnre-guideline-and-all-features-covered-as-per-eesl-25140841097.html
+- 83 INR/dollar: working FX for this draft', '$.bn', '1,523 pumps × 2,200 INR ÷ 83 INR/$ = $40,369
 
 অনুমান
 - IDCOL-এর চালু ১,৫২৩টি পাম্পের প্রতিটিতে একটি কিট
 - দামের তুলনা ২,২০০ রুপি
-- ৮৩ রুপিতে এক ডলার
 - এটি IDCOL-এর সফটওয়্যার সেবা নয়
-- পাম্পগুলো ইতিমধ্যে IDCOL চালায়', '$.section', 'size') ELSE value END) FROM json_each(problems.sources_json)), revision = revision + 1 WHERE id = 'solar-irrigation-control-problem' AND EXISTS (SELECT 1 FROM json_each(sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/energy/landscapes/wm-solar-powered-pumping-mini-grid-water');
+- পাম্পগুলো ইতিমধ্যে IDCOL চালায়
+
+উৎস
+- ১,৫২৩টি পাম্প: IDCOL সোলার সেচ কর্মসূচি। https://idcol.org/idcol_new/public/renewable/solar-irrigation-program
+- ২,২০০ রুপির কিট: IndiaMART তুলনা। https://www.indiamart.com/proddetail/iot-based-solar-pump-rms-4g-2g-as-per-mnre-guideline-and-all-features-covered-as-per-eesl-25140841097.html
+- ৮৩ রুপিতে এক ডলার: এই খসড়ার কাজ চালানোর রেট', '$.section', 'size') ELSE value END) FROM json_each(problems.sources_json)), revision = revision + 1 WHERE id = 'solar-irrigation-control-problem' AND EXISTS (SELECT 1 FROM json_each(sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/energy/landscapes/wm-solar-powered-pumping-mini-grid-water');
 
 UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Moncho · K-12 education","url":"https://moncho.ai/sectors/k12-education","date":"15 October 2026","en":"Moncho''s k-12 education map shows neighbouring products and firms in this industry. It is a map, not proof this idea will sell.","bn":"Moncho এর K-12 education ম্যাপে এই খাতের পাশের পণ্য ও প্রতিষ্ঠান দেখা যায়।","section":"maps"}')), revision = revision + 1
 WHERE id = 'adaptive-bangla-learning-problem' AND NOT EXISTS (SELECT 1 FROM json_each(problems.sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/k12-education');
@@ -141,7 +203,7 @@ WHERE id = 'aquaculture-diagnostics-problem' AND NOT EXISTS (SELECT 1 FROM json_
 UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Moncho · Aquaculture production","url":"https://moncho.ai/sectors/fisheries/landscapes/fisheries-aquaculture-production","date":"15 October 2026","en":"Moncho''s aquaculture production map sits inside fisheries. It shows neighbouring products and firms. It is a map of the industry, not proof this idea will sell.","bn":"Moncho এর Aquaculture production ম্যাপ Fisheries খাতের ভিতরে। পাশের পণ্য ও প্রতিষ্ঠান দেখা যায়।","section":"maps"}')), revision = revision + 1
 WHERE id = 'aquaculture-diagnostics-problem' AND NOT EXISTS (SELECT 1 FROM json_each(problems.sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/fisheries/landscapes/fisheries-aquaculture-production');
 
-UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Working range for intensive-pond water kits (draft)","url":"https://moncho.ai/sectors/fisheries","date":"2023-24 intensive ponds, shop kits as analog","en":"(612,660 + 83,787) ponds × 1,950 Tk ÷ 120 Tk/$ = $11.3 million\n(612,660 + 83,787) ponds × 3,990 Tk ÷ 120 Tk/$ = $23.2 million\n\nAssumptions\n- Only intensive 612,660 plus highly intensive 83,787 ponds (BBS Table 4.57)\n- One shop water-test kit per pond per year\n- Low price BIOZYM 1,950 taka, high price Keen 3,990 taka\n- Shop kits, not PCR lab tests\n- Village ponds are out\n- FX is 120 taka per dollar","bn":"(612,660 + 83,787) ponds × 1,950 Tk ÷ 120 Tk/$ = $11.3 million\n(612,660 + 83,787) ponds × 3,990 Tk ÷ 120 Tk/$ = $23.2 million\n\nঅনুমান\n- শুধু নিবিড় ৬,১২,৬৬০ ও অতি নিবিড় ৮৩,৭৮৭ পুকুর (ইয়ারবুক সারণি ৪.৫৭)\n- প্রতি পুকুরে বছরে একটি দোকানের পানি পরীক্ষার কিট\n- নিম্ন দাম BIOZYM ১,৯৫০ টাকা, উচ্চ দাম Keen ৩,৯৯০ টাকা\n- দোকানের কিট, পিসিআর ল্যাব নয়\n- গ্রামের পুকুর বাদ\n- ১২০ টাকায় এক ডলার","section":"size"}')), revision = revision + 1
+UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Working range for intensive-pond water kits (draft)","url":"https://moncho.ai/sectors/fisheries","date":"BBS Yearbook 2024 · shop kit lists","en":"(612,660 + 83,787) ponds × 1,950 Tk ÷ 120 Tk/$ = $11.3 million\n(612,660 + 83,787) ponds × 3,990 Tk ÷ 120 Tk/$ = $23.2 million\n\nAssumptions\n- Only intensive 612,660 plus highly intensive 83,787 ponds\n- One shop water-test kit per pond per year\n- Low price BIOZYM 1,950 taka, high price Keen 3,990 taka\n- Shop kits, not PCR lab tests\n- Village ponds are out\n\nSources\n- 612,660 intensive and 83,787 highly intensive ponds: BBS Yearbook 2024 Table 4.57. https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb\n- 1,950 Tk: BIOZYM shop list, fetched 27 Sep 2026\n- 3,990 Tk: Keen shop list. https://tmonline24.com/product/415\n- 120 Tk/dollar: working FX for this draft","bn":"(612,660 + 83,787) ponds × 1,950 Tk ÷ 120 Tk/$ = $11.3 million\n(612,660 + 83,787) ponds × 3,990 Tk ÷ 120 Tk/$ = $23.2 million\n\nঅনুমান\n- শুধু নিবিড় ৬,১২,৬৬০ ও অতি নিবিড় ৮৩,৭৮৭ পুকুর\n- প্রতি পুকুরে বছরে একটি দোকানের পানি পরীক্ষার কিট\n- নিম্ন দাম BIOZYM ১,৯৫০ টাকা, উচ্চ দাম Keen ৩,৯৯০ টাকা\n- দোকানের কিট, পিসিআর ল্যাব নয়\n- গ্রামের পুকুর বাদ\n\nউৎস\n- নিবিড় ৬,১২,৬৬০ ও অতি নিবিড় ৮৩,৭৮৭ পুকুর: বিবিএস ইয়ারবুক ২০২৪, সারণি ৪.৫৭। https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb\n- ১,৯৫০ টাকা: BIOZYM দোকানের তালিকা, ২৭ সেপ্টেম্বর ২০২৬\n- ৩,৯৯০ টাকা: Keen দোকানের তালিকা। https://tmonline24.com/product/415\n- ১২০ টাকায় এক ডলার: এই খসড়ার কাজ চালানোর রেট","section":"size"}')), revision = revision + 1
 WHERE id = 'aquaculture-diagnostics-problem' AND NOT EXISTS (SELECT 1 FROM json_each(problems.sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/fisheries');
 
 UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Moncho · K-12 education","url":"https://moncho.ai/sectors/k12-education","date":"15 October 2026","en":"Moncho''s k-12 education map shows neighbouring products and firms in this industry. It is a map, not proof this idea will sell.","bn":"Moncho এর K-12 education ম্যাপে এই খাতের পাশের পণ্য ও প্রতিষ্ঠান দেখা যায়।","section":"maps"}')), revision = revision + 1
@@ -189,7 +251,7 @@ WHERE id = 'fish-farm-autopilot-problem' AND NOT EXISTS (SELECT 1 FROM json_each
 UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Moncho · Aquaculture production","url":"https://moncho.ai/sectors/fisheries/landscapes/fisheries-aquaculture-production","date":"15 October 2026","en":"Moncho''s aquaculture production map sits inside fisheries. It shows neighbouring products and firms. It is a map of the industry, not proof this idea will sell.","bn":"Moncho এর Aquaculture production ম্যাপ Fisheries খাতের ভিতরে। পাশের পণ্য ও প্রতিষ্ঠান দেখা যায়।","section":"maps"}')), revision = revision + 1
 WHERE id = 'fish-farm-autopilot-problem' AND NOT EXISTS (SELECT 1 FROM json_each(problems.sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/fisheries/landscapes/fisheries-aquaculture-production');
 
-UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Working figure for intensive-pond handheld meters (draft)","url":"https://moncho.ai/sectors/fisheries","date":"2023-24 intensive ponds, handheld analog","en":"(612,660 + 83,787) ponds × 9,000 Tk ÷ 120 Tk/$ = $52.2 million\n\nAssumptions\n- Same intensive and highly intensive ponds as the kit card\n- One handheld dissolved-oxygen meter at 9,000 taka\n- That meter is not an aerator-control kit\n- Village ponds are out\n- FX is 120 taka per dollar","bn":"(612,660 + 83,787) ponds × 9,000 Tk ÷ 120 Tk/$ = $52.2 million\n\nঅনুমান\n- কিট কার্ডের মতোই নিবিড় ও অতি নিবিড় পুকুর\n- প্রতিটিতে একটি হাতে ধরা অক্সিজেন মিটার, দাম ৯,০০০ টাকা\n- এটি অটোপাইলট কিট নয়\n- গ্রামের পুকুর বাদ\n- ১২০ টাকায় এক ডলার","section":"size"}')), revision = revision + 1
+UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Working figure for intensive-pond handheld meters (draft)","url":"https://moncho.ai/sectors/fisheries","date":"BBS Yearbook 2024 · Astzbd list","en":"(612,660 + 83,787) ponds × 9,000 Tk ÷ 120 Tk/$ = $52.2 million\n\nAssumptions\n- Same intensive and highly intensive ponds as the kit card\n- One handheld dissolved-oxygen meter at 9,000 taka\n- That meter is not an aerator-control kit\n- Village ponds are out\n\nSources\n- 612,660 intensive and 83,787 highly intensive ponds: BBS Yearbook 2024 Table 4.57. https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb\n- 9,000 Tk handheld meter: Astzbd DO9100. https://astzbd.com/product/do9100-dissolved-oxygen-meter-bangladesh/\n- 120 Tk/dollar: working FX for this draft","bn":"(612,660 + 83,787) ponds × 9,000 Tk ÷ 120 Tk/$ = $52.2 million\n\nঅনুমান\n- কিট কার্ডের মতোই নিবিড় ও অতি নিবিড় পুকুর\n- প্রতিটিতে একটি হাতে ধরা অক্সিজেন মিটার, দাম ৯,০০০ টাকা\n- এটি অটোপাইলট কিট নয়\n- গ্রামের পুকুর বাদ\n\nউৎস\n- নিবিড় ৬,১২,৬৬০ ও অতি নিবিড় ৮৩,৭৮৭ পুকুর: বিবিএস ইয়ারবুক ২০২৪, সারণি ৪.৫৭। https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb\n- ৯,০০০ টাকার হাতে ধরা মিটার: Astzbd DO9100। https://astzbd.com/product/do9100-dissolved-oxygen-meter-bangladesh/\n- ১২০ টাকায় এক ডলার: এই খসড়ার কাজ চালানোর রেট","section":"size"}')), revision = revision + 1
 WHERE id = 'fish-farm-autopilot-problem' AND NOT EXISTS (SELECT 1 FROM json_each(problems.sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/fisheries');
 
 UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Moncho · Transportation","url":"https://moncho.ai/sectors/transportation","date":"15 October 2026","en":"Moncho''s transportation map shows neighbouring products and firms in this industry. It is a map, not proof this idea will sell.","bn":"Moncho এর Transportation ম্যাপে এই খাতের পাশের পণ্য ও প্রতিষ্ঠান দেখা যায়।","section":"maps"}')), revision = revision + 1
@@ -210,7 +272,7 @@ WHERE id = 'garment-offcuts' AND NOT EXISTS (SELECT 1 FROM json_each(problems.so
 UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Moncho · Circular economy textiles","url":"https://moncho.ai/sectors/circular-economy-textiles","date":"15 October 2026","en":"Moncho''s circular economy textiles map shows neighbouring products and firms in this industry. It is a map, not proof this idea will sell.","bn":"Moncho এর Circular economy textiles ম্যাপে এই খাতের পাশের পণ্য ও প্রতিষ্ঠান দেখা যায়।","section":"maps"}')), revision = revision + 1
 WHERE id = 'garment-offcuts' AND NOT EXISTS (SELECT 1 FROM json_each(problems.sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/circular-economy-textiles');
 
-UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Working range for mixed cutting scrap (draft)","url":"https://moncho.ai/sectors/circular-economy-textiles/landscapes/ce-textiles-collection-reverse-logistics","date":"2023 volume, 2024 bands","en":"312,000 t × 1,000 kg/t × 24 Tk/kg ÷ 120 Tk/$ = $62.4 million\n312,000 t × 1,000 kg/t × 40 Tk/kg ÷ 120 Tk/$ = $104 million\n\nAssumptions\n- All 312,000 tonnes of 2023 production-step waste sells at mill gate\n- Price is GIZ STILE mixed-grade bands, not sorted white\n- FX is 120 taka per dollar\n- Not proof recyclers will buy","bn":"312,000 t × 1,000 kg/t × 24 Tk/kg ÷ 120 Tk/$ = $62.4 million\n312,000 t × 1,000 kg/t × 40 Tk/kg ÷ 120 Tk/$ = $104 million\n\nঅনুমান\n- ২০২৩ সালের উৎপাদন ধাপের ৩ লাখ ১২ হাজার টন সব মিলগেটে বিক্রি হয়\n- দাম STILE-এর মিশ্র গ্রেড, বাছাই করা সাদা কাপড় নয়\n- ১২০ টাকায় এক ডলার\n- রিসাইক্লার যে কিনবে তার প্রমাণ নয়","section":"size"}')), revision = revision + 1
+UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Working range for mixed cutting scrap (draft)","url":"https://moncho.ai/sectors/circular-economy-textiles/landscapes/ce-textiles-collection-reverse-logistics","date":"SWITCH2CE 2023 · GIZ STILE 2024","en":"312,000 t × 1,000 kg/t × 24 Tk/kg ÷ 120 Tk/$ = $62.4 million\n312,000 t × 1,000 kg/t × 40 Tk/kg ÷ 120 Tk/$ = $104 million\n\nAssumptions\n- All 312,000 tonnes of 2023 production-step waste sells at mill gate\n- Price is GIZ STILE mixed-grade bands, not sorted white\n- Not proof recyclers will buy\n\nSources\n- 312,000 t production-step waste: SWITCH2CE citing Reverse Resources, 2023. https://switch2ce.org/news/bangladesh-textile-waste-sankey-diagram-2023\n- 24 and 40 Tk/kg mill-gate: GIZ STILE, 2024. https://commonobjective-uploads.storage.googleapis.com/resources/articles/STUDY-Internal-STILE-Jhut-Sector-Project-FINAL-PDF-74c.pdf\n- 120 Tk/dollar: working FX for this draft, not a Bangladesh Bank rate","bn":"312,000 t × 1,000 kg/t × 24 Tk/kg ÷ 120 Tk/$ = $62.4 million\n312,000 t × 1,000 kg/t × 40 Tk/kg ÷ 120 Tk/$ = $104 million\n\nঅনুমান\n- ২০২৩ সালের উৎপাদন ধাপের ৩ লাখ ১২ হাজার টন সব মিলগেটে বিক্রি হয়\n- দাম STILE-এর মিশ্র গ্রেড, বাছাই করা সাদা কাপড় নয়\n- রিসাইক্লার যে কিনবে তার প্রমাণ নয়\n\nউৎস\n- উৎপাদন ধাপের ৩ লাখ ১২ হাজার টন: SWITCH2CE, Reverse Resources, ২০২৩। https://switch2ce.org/news/bangladesh-textile-waste-sankey-diagram-2023\n- কেজিতে ২৪ ও ৪০ টাকা: জিআইজেড STILE, ২০২৪। https://commonobjective-uploads.storage.googleapis.com/resources/articles/STUDY-Internal-STILE-Jhut-Sector-Project-FINAL-PDF-74c.pdf\n- ১২০ টাকায় এক ডলার: এই খসড়ার কাজ চালানোর রেট, বাংলাদেশ ব্যাংকের রেট নয়","section":"size"}')), revision = revision + 1
 WHERE id = 'garment-offcuts' AND NOT EXISTS (SELECT 1 FROM json_each(problems.sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/circular-economy-textiles/landscapes/ce-textiles-collection-reverse-logistics');
 
 UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Moncho · Cross-border payments","url":"https://moncho.ai/sectors/financial-services/landscapes/cross-border-payments-trade-finance-landscape","date":"15 October 2026","en":"Moncho''s cross-border payments map sits inside financial services. It shows neighbouring products and firms. It is a map of the industry, not proof this idea will sell.","bn":"Moncho এর Cross-border payments ম্যাপ Financial services খাতের ভিতরে। পাশের পণ্য ও প্রতিষ্ঠান দেখা যায়।","section":"maps"}')), revision = revision + 1
@@ -222,7 +284,7 @@ WHERE id = 'merchant-settlement-reconciliation-problem' AND NOT EXISTS (SELECT 1
 UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Moncho · B2B payments","url":"https://moncho.ai/sectors/financial-services/landscapes/b2b-payments-marketplaces-procurement-finance-landscape","date":"15 October 2026","en":"Moncho''s b2b payments map sits inside financial services. It shows neighbouring products and firms. It is a map of the industry, not proof this idea will sell.","bn":"Moncho এর B2B payments ম্যাপ Financial services খাতের ভিতরে। পাশের পণ্য ও প্রতিষ্ঠান দেখা যায়।","section":"maps"}')), revision = revision + 1
 WHERE id = 'merchant-settlement-reconciliation-problem' AND NOT EXISTS (SELECT 1 FROM json_each(problems.sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/financial-services/landscapes/b2b-payments-marketplaces-procurement-finance-landscape');
 
-UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Working range for merchant recon software (draft)","url":"https://moncho.ai/sectors/financial-services","date":"Feb 2025 regular merchants, India analog","en":"363,000 × 5% × 3,332 INR/month × 12 ÷ 83 INR/$ = $8.7 million\n363,000 × 3,332 INR/month × 12 ÷ 83 INR/$ = $175 million\n\nAssumptions\n- No published Bangladesh recon-software price, so an India analog is used\n- Working case is 5 percent of 363,000 regular MFS merchants\n- Ceiling is every regular merchant\n- PRA accounts and payment-gateway take-rate are out\n- FX is 83 rupees per dollar","bn":"363,000 × 5% × 3,332 INR/month × 12 ÷ 83 INR/$ = $8.7 million\n363,000 × 3,332 INR/month × 12 ÷ 83 INR/$ = $175 million\n\nঅনুমান\n- বাংলাদেশে রিকন সফটওয়্যারের দাম প্রকাশিত নেই, তাই ভারতের তুলনা ব্যবহার\n- কাজ চালানোর হিসাব নিয়মিত এমএফএস মার্চেন্ট ৩ লাখ ৬৩ হাজারের ৫ শতাংশ\n- সিলিং সব নিয়মিত মার্চেন্ট\n- পিআরএ হিসাব ও গেটওয়ের কমিশন বাদ\n- ৮৩ রুপিতে এক ডলার","section":"size"}')), revision = revision + 1
+UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Working range for merchant recon software (draft)","url":"https://moncho.ai/sectors/financial-services","date":"Bangladesh Bank Feb 2025 · ReconPe analog","en":"363,000 × 5% × 3,332 INR/month × 12 ÷ 83 INR/$ = $8.7 million\n363,000 × 3,332 INR/month × 12 ÷ 83 INR/$ = $175 million\n\nAssumptions\n- No published Bangladesh recon-software price, so an India analog is used\n- Working case is 5 percent of 363,000 regular MFS merchants\n- Ceiling is every regular merchant\n- PRA accounts and payment-gateway take-rate are out\n\nSources\n- 363,000 regular MFS merchants: Bangladesh Bank, February 2025. https://www.bb.org.bd/en/index.php/financialactivity/mfsdata\n- 3,332 INR/month: ReconPe Starter, India analog. https://reconpe.com/pricing/\n- 83 INR/dollar: working FX for this draft","bn":"363,000 × 5% × 3,332 INR/month × 12 ÷ 83 INR/$ = $8.7 million\n363,000 × 3,332 INR/month × 12 ÷ 83 INR/$ = $175 million\n\nঅনুমান\n- বাংলাদেশে রিকন সফটওয়্যারের দাম প্রকাশিত নেই, তাই ভারতের তুলনা ব্যবহার\n- কাজ চালানোর হিসাব নিয়মিত এমএফএস মার্চেন্ট ৩ লাখ ৬৩ হাজারের ৫ শতাংশ\n- সিলিং সব নিয়মিত মার্চেন্ট\n- পিআরএ হিসাব ও গেটওয়ের কমিশন বাদ\n\nউৎস\n- নিয়মিত এমএফএস মার্চেন্ট ৩ লাখ ৬৩ হাজার: বাংলাদেশ ব্যাংক, ফেব্রুয়ারি ২০২৫। https://www.bb.org.bd/en/index.php/financialactivity/mfsdata\n- মাসে ৩,৩৩২ রুপি: ReconPe স্টার্টার, ভারতের তুলনা। https://reconpe.com/pricing/\n- ৮৩ রুপিতে এক ডলার: এই খসড়ার কাজ চালানোর রেট","section":"size"}')), revision = revision + 1
 WHERE id = 'merchant-settlement-reconciliation-problem' AND NOT EXISTS (SELECT 1 FROM json_each(problems.sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/financial-services');
 
 UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"BBS Statistical Yearbook 2024 · private hospitals and community clinics","url":"https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb","date":"2024","en":"Yearbook 2024 Table 13.01 records 2,898 DGHS-registered private hospitals and clinics. Table 13.12 records 14,360 community clinics in 2024. That is a facility count, not proof clinics will pay for reminder software.","bn":"ইয়ারবুক ২০২৪, সারণি ১৩.০১-এ ডিজিএইচএস-নিবন্ধিত বেসরকারি হাসপাতাল ও ক্লিনিক ২,৮৯৮টি। সারণি ১৩.১২-এ ২০২৪ সালে কমিউনিটি ক্লিনিক ১৪,৩৬০টি। এটি প্রতিষ্ঠানের গণনা, ক্লিনিক যে রিমাইন্ডার সফটওয়্যার কিনবে তার প্রমাণ নয়।","section":"facts"}')), revision = revision + 1
@@ -231,7 +293,7 @@ WHERE id = 'missed-follow-up' AND NOT EXISTS (SELECT 1 FROM json_each(problems.s
 UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Moncho · Healthcare","url":"https://moncho.ai/sectors/healthcare","date":"15 October 2026","en":"Moncho''s healthcare map shows neighbouring products and firms in this industry. It is a map, not proof this idea will sell.","bn":"Moncho এর Healthcare ম্যাপে এই খাতের পাশের পণ্য ও প্রতিষ্ঠান দেখা যায়।","section":"maps"}')), revision = revision + 1
 WHERE id = 'missed-follow-up' AND NOT EXISTS (SELECT 1 FROM json_each(problems.sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/healthcare');
 
-UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Working ceiling for private-clinic software (draft)","url":"https://moncho.ai/sectors/healthcare/landscapes/primary-community-care-providers","date":"2024 census, vendor lists as analog","en":"2,898 clinics × 700 Tk/month × 12 ÷ 120 Tk/$ = $202,860\n2,898 clinics × 10,000 Tk/month × 12 ÷ 120 Tk/$ = $2.90 million\n\nAssumptions\n- Every one of 2,898 registered private hospitals and clinics pays every month\n- Low price is ChamberBD Standard 700 taka per month\n- High price is a hospital-management list of 10,000 taka per month\n- ChamberBD is a full clinic plan, not reminder-only\n- Community clinics are out\n- FX is 120 taka per dollar\n- Attach is unknown, so this is a ceiling, not demand","bn":"2,898 clinics × 700 Tk/month × 12 ÷ 120 Tk/$ = $202,860\n2,898 clinics × 10,000 Tk/month × 12 ÷ 120 Tk/$ = $2.90 million\n\nঅনুমান\n- নিবন্ধিত ২,৮৯৮টি বেসরকারি হাসপাতাল ও ক্লিনিক প্রতি মাসেই দেয়\n- নিম্ন দাম ChamberBD স্ট্যান্ডার্ড মাসে ৭০০ টাকা\n- উচ্চ দাম হাসপাতাল ম্যানেজমেন্ট তালিকায় মাসে ১০,০০০ টাকা\n- ChamberBD পুরো ক্লিনিক প্ল্যান, শুধু রিমাইন্ডার নয়\n- কমিউনিটি ক্লিনিক বাদ\n- ১২০ টাকায় এক ডলার\n- কতজন কিনবে জানা নেই, তাই এটি সিলিং, চাহিদা নয়","section":"size"}')), revision = revision + 1
+UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Working ceiling for private-clinic software (draft)","url":"https://moncho.ai/sectors/healthcare/landscapes/primary-community-care-providers","date":"BBS Yearbook 2024 · ChamberBD list","en":"2,898 clinics × 700 Tk/month × 12 ÷ 120 Tk/$ = $202,860\n2,898 clinics × 10,000 Tk/month × 12 ÷ 120 Tk/$ = $2.90 million\n\nAssumptions\n- Every one of 2,898 registered private hospitals and clinics pays every month\n- Low price is ChamberBD Standard 700 taka per month\n- High price is a hospital-management list of 10,000 taka per month\n- ChamberBD is a full clinic plan, not reminder-only\n- Community clinics are out\n- Attach is unknown, so this is a ceiling, not demand\n\nSources\n- 2,898 private hospitals and clinics: BBS Yearbook 2024 Table 13.01. https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb\n- 700 Tk/month: ChamberBD Standard list. https://clinic.chamberbd.com/pricing\n- 10,000 Tk/month: Software Agency BD hospital management list. https://softwareagencybd.com/products/hospital-management\n- 120 Tk/dollar: working FX for this draft","bn":"2,898 clinics × 700 Tk/month × 12 ÷ 120 Tk/$ = $202,860\n2,898 clinics × 10,000 Tk/month × 12 ÷ 120 Tk/$ = $2.90 million\n\nঅনুমান\n- নিবন্ধিত ২,৮৯৮টি বেসরকারি হাসপাতাল ও ক্লিনিক প্রতি মাসেই দেয়\n- নিম্ন দাম ChamberBD স্ট্যান্ডার্ড মাসে ৭০০ টাকা\n- উচ্চ দাম হাসপাতাল ম্যানেজমেন্ট তালিকায় মাসে ১০,০০০ টাকা\n- ChamberBD পুরো ক্লিনিক প্ল্যান, শুধু রিমাইন্ডার নয়\n- কমিউনিটি ক্লিনিক বাদ\n- কতজন কিনবে জানা নেই, তাই এটি সিলিং, চাহিদা নয়\n\nউৎস\n- ২,৮৯৮টি বেসরকারি হাসপাতাল ও ক্লিনিক: বিবিএস ইয়ারবুক ২০২৪, সারণি ১৩.০১। https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb\n- মাসে ৭০০ টাকা: ChamberBD স্ট্যান্ডার্ড তালিকা। https://clinic.chamberbd.com/pricing\n- মাসে ১০,০০০ টাকা: Software Agency BD হাসপাতাল ম্যানেজমেন্ট তালিকা। https://softwareagencybd.com/products/hospital-management\n- ১২০ টাকায় এক ডলার: এই খসড়ার কাজ চালানোর রেট","section":"size"}')), revision = revision + 1
 WHERE id = 'missed-follow-up' AND NOT EXISTS (SELECT 1 FROM json_each(problems.sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/healthcare/landscapes/primary-community-care-providers');
 
 UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Moncho · Transportation","url":"https://moncho.ai/sectors/transportation","date":"15 October 2026","en":"Moncho''s transportation map shows neighbouring products and firms in this industry. It is a map, not proof this idea will sell.","bn":"Moncho এর Transportation ম্যাপে এই খাতের পাশের পণ্য ও প্রতিষ্ঠান দেখা যায়।","section":"maps"}')), revision = revision + 1
@@ -243,7 +305,7 @@ WHERE id = 'produce-cold-chain' AND NOT EXISTS (SELECT 1 FROM json_each(problems
 UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Moncho · Warehousing and storage","url":"https://moncho.ai/sectors/warehousing-and-storage","date":"15 October 2026","en":"Moncho''s warehousing and storage map shows neighbouring products and firms in this industry. It is a map, not proof this idea will sell.","bn":"Moncho এর Warehousing and storage ম্যাপে এই খাতের পাশের পণ্য ও প্রতিষ্ঠান দেখা যায়।","section":"maps"}')), revision = revision + 1
 WHERE id = 'produce-cold-chain' AND NOT EXISTS (SELECT 1 FROM json_each(problems.sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/warehousing-and-storage');
 
-UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Working range for mixed-vegetable storage (draft)","url":"https://moncho.ai/sectors/warehousing-and-storage/landscapes/cold-chain-infrastructure","date":"2023-24 volume, potato tariff analog","en":"3,408,000 t × 25% × 1,000 kg/t × 6.75 Tk/kg ÷ 120 Tk/$ = $47.9 million\n\nAssumptions\n- Non-potato vegetables = 14,009,000 t minus 10,601,000 t potato (BBS 2023-24)\n- One quarter of that volume is stored\n- Price analog is the DAM potato ceiling of 6.75 taka per kg\n- FX is 120 taka per dollar\n- Not crate-rental demand in Rajshahi and Bogura\n- Occupancy is unknown","bn":"3,408,000 t × 25% × 1,000 kg/t × 6.75 Tk/kg ÷ 120 Tk/$ = $47.9 million\n\nঅনুমান\n- আলু বাদ দিয়ে সবজি = ১ কোটি ৪০ লাখ ৯ হাজার টন থেকে আলু ১ কোটি ৬ লাখ ১ হাজার টন বাদ (বিবিএস ২০২৩-২৪)\n- সেই পরিমাণের এক চতুর্থাংশ রাখা হয়\n- দামের তুলনা আলুর DAM সিলিং কেজিতে ৬.৭৫ টাকা\n- ১২০ টাকায় এক ডলার\n- রাজশাহী ও বগুড়ার ক্রেট ভাড়ার চাহিদা নয়\n- কতটা জায়গা ভরে সেটা জানা নেই","section":"size"}')), revision = revision + 1
+UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Working range for mixed-vegetable storage (draft)","url":"https://moncho.ai/sectors/warehousing-and-storage/landscapes/cold-chain-infrastructure","date":"BBS Yearbook 2024 · DAM potato ceiling","en":"3,408,000 t × 25% × 1,000 kg/t × 6.75 Tk/kg ÷ 120 Tk/$ = $47.9 million\n\nAssumptions\n- Non-potato vegetables = 14,009,000 t minus 10,601,000 t potato\n- One quarter of that volume is stored\n- Price analog is the DAM potato ceiling of 6.75 taka per kg\n- Not crate-rental demand in Rajshahi and Bogura\n- Occupancy is unknown\n\nSources\n- 14,009,000 t vegetables and 10,601,000 t potato: BBS Yearbook 2024 Table 4.40. https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb\n- 25 percent stored share: assumption, not a BBS table\n- 6.75 Tk/kg: DAM potato rent ceiling, March 2025. No stable DAM page\n- 120 Tk/dollar: working FX for this draft","bn":"3,408,000 t × 25% × 1,000 kg/t × 6.75 Tk/kg ÷ 120 Tk/$ = $47.9 million\n\nঅনুমান\n- আলু বাদ দিয়ে সবজি = ১ কোটি ৪০ লাখ ৯ হাজার টন থেকে আলু ১ কোটি ৬ লাখ ১ হাজার টন বাদ\n- সেই পরিমাণের এক চতুর্থাংশ রাখা হয়\n- দামের তুলনা আলুর DAM সিলিং কেজিতে ৬.৭৫ টাকা\n- রাজশাহী ও বগুড়ার ক্রেট ভাড়ার চাহিদা নয়\n- কতটা জায়গা ভরে সেটা জানা নেই\n\nউৎস\n- সবজি ১ কোটি ৪০ লাখ ৯ হাজার টন ও আলু ১ কোটি ৬ লাখ ১ হাজার টন: বিবিএস ইয়ারবুক ২০২৪, সারণি ৪.৪০। https://bbs.gov.bd/site/page/29855dc7-2a78-4cf2-b12c-507b0c65e3fb\n- ২৫ শতাংশ রাখা: অনুমান, বিবিএস সারণি নয়\n- কেজিতে ৬.৭৫ টাকা: DAM আলুর ভাড়া সিলিং, মার্চ ২০২৫। স্থায়ী DAM পাতা নেই\n- ১২০ টাকায় এক ডলার: এই খসড়ার কাজ চালানোর রেট","section":"size"}')), revision = revision + 1
 WHERE id = 'produce-cold-chain' AND NOT EXISTS (SELECT 1 FROM json_each(problems.sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/warehousing-and-storage/landscapes/cold-chain-infrastructure');
 
 UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Moncho · Plastics","url":"https://moncho.ai/sectors/plastics-and-polymer-precursors","date":"15 October 2026","en":"Moncho''s plastics map shows neighbouring products and firms in this industry. It is a map, not proof this idea will sell.","bn":"Moncho এর Plastics ম্যাপে এই খাতের পাশের পণ্য ও প্রতিষ্ঠান দেখা যায়।","section":"maps"}')), revision = revision + 1
@@ -267,7 +329,7 @@ WHERE id = 'shared-parcel-returns-problem' AND NOT EXISTS (SELECT 1 FROM json_ea
 UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Moncho · Energy","url":"https://moncho.ai/sectors/energy","date":"15 October 2026","en":"Moncho''s energy map shows neighbouring products and firms in this industry. It is a map, not proof this idea will sell.","bn":"Moncho এর Energy ম্যাপে এই খাতের পাশের পণ্য ও প্রতিষ্ঠান দেখা যায়।","section":"maps"}')), revision = revision + 1
 WHERE id = 'solar-irrigation-control-problem' AND NOT EXISTS (SELECT 1 FROM json_each(problems.sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/energy');
 
-UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Working figure for pump control kits (draft)","url":"https://moncho.ai/sectors/energy/landscapes/wm-solar-powered-pumping-mini-grid-water","date":"IDCOL pumps, India analog kit","en":"1,523 pumps × 2,200 INR ÷ 83 INR/$ = $40,369\n\nAssumptions\n- Each of IDCOL 1,523 operating pumps buys one kit\n- Price analog is 2,200 rupees\n- FX is 83 rupees per dollar\n- That kit is not IDCOL software sold as a service\n- IDCOL already runs the pumps","bn":"1,523 pumps × 2,200 INR ÷ 83 INR/$ = $40,369\n\nঅনুমান\n- IDCOL-এর চালু ১,৫২৩টি পাম্পের প্রতিটিতে একটি কিট\n- দামের তুলনা ২,২০০ রুপি\n- ৮৩ রুপিতে এক ডলার\n- এটি IDCOL-এর সফটওয়্যার সেবা নয়\n- পাম্পগুলো ইতিমধ্যে IDCOL চালায়","section":"size"}')), revision = revision + 1
+UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"Working figure for pump control kits (draft)","url":"https://moncho.ai/sectors/energy/landscapes/wm-solar-powered-pumping-mini-grid-water","date":"IDCOL · IndiaMART analog","en":"1,523 pumps × 2,200 INR ÷ 83 INR/$ = $40,369\n\nAssumptions\n- Each of IDCOL 1,523 operating pumps buys one kit\n- Price analog is 2,200 rupees\n- That kit is not IDCOL software sold as a service\n- IDCOL already runs the pumps\n\nSources\n- 1,523 pumps: IDCOL solar irrigation programme. https://idcol.org/idcol_new/public/renewable/solar-irrigation-program\n- 2,200 INR kit: IndiaMART analog RMS. https://www.indiamart.com/proddetail/iot-based-solar-pump-rms-4g-2g-as-per-mnre-guideline-and-all-features-covered-as-per-eesl-25140841097.html\n- 83 INR/dollar: working FX for this draft","bn":"1,523 pumps × 2,200 INR ÷ 83 INR/$ = $40,369\n\nঅনুমান\n- IDCOL-এর চালু ১,৫২৩টি পাম্পের প্রতিটিতে একটি কিট\n- দামের তুলনা ২,২০০ রুপি\n- এটি IDCOL-এর সফটওয়্যার সেবা নয়\n- পাম্পগুলো ইতিমধ্যে IDCOL চালায়\n\nউৎস\n- ১,৫২৩টি পাম্প: IDCOL সোলার সেচ কর্মসূচি। https://idcol.org/idcol_new/public/renewable/solar-irrigation-program\n- ২,২০০ রুপির কিট: IndiaMART তুলনা। https://www.indiamart.com/proddetail/iot-based-solar-pump-rms-4g-2g-as-per-mnre-guideline-and-all-features-covered-as-per-eesl-25140841097.html\n- ৮৩ রুপিতে এক ডলার: এই খসড়ার কাজ চালানোর রেট","section":"size"}')), revision = revision + 1
 WHERE id = 'solar-irrigation-control-problem' AND NOT EXISTS (SELECT 1 FROM json_each(problems.sources_json) WHERE json_extract(value, '$.url') = 'https://moncho.ai/sectors/energy/landscapes/wm-solar-powered-pumping-mini-grid-water');
 
 UPDATE problems SET sources_json = json_insert(sources_json, '$[#]', json('{"title":"SREDA · net-metered rooftop systems","url":"https://nsrra.sreda.gov.bd/solar/nem/nemstatistics.php","date":"2023","en":"SREDA''s net-metering statistics page lists 1,941 net-metered systems and 84.592 MWp of capacity in 2023. That is rooftop stock, not a cleaning or inverter-repair contract count.","bn":"এসআরইডিএ-র নেট মিটারিং পরিসংখ্যানে ২০২৩ সালে নেট মিটারযুক্ত সিস্টেম ১,৯৪১টি আর ক্ষমতা ৮৪.৫৯২ মেগাওয়াট পিক। এটি ছাদের সোলারের মজুদ, পরিষ্কার বা ইনভার্টার মেরামতের চুক্তির গণনা নয়।","section":"facts"}')), revision = revision + 1
