@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { ecosystem, companyPath } from '../../lib/ecosystem'
-import { domain, partitionSources, splitSizeNote } from '../../lib/ecosystem-model'
+import { domain, parseSourceLine, partitionSources, splitSizeNote } from '../../lib/ecosystem-model'
 import type { Approach, EvidenceSource, Problem } from '../../lib/ecosystem-types'
 import type { Locale, Place, Sector } from './types'
 import { forLabel, ideaPath, ideaSlug, kindLabel, places, sectors } from './model'
@@ -21,33 +21,42 @@ function sourceLines(sources: EvidenceSource[], locale: Locale) {
     const parsed = splitSizeNote(source[locale])
     const body = parsed
       ? [
-          parsed.equations.join('\n'),
+          ...parsed.results.map(row => `${row.value}${row.caption ? ` · ${row.caption}` : ''}`),
+          ...parsed.factors.map(row => `${row.value} ${row.metric}`),
           locale === 'en' ? 'Assumptions' : 'অনুমান',
           ...parsed.assumptions.map(item => `- ${item}`),
-          ...(parsed.sources.length ? [locale === 'en' ? 'Sources' : 'উৎস', ...parsed.sources.map(item => `- ${item}`)] : [])
+          ...(parsed.sources.length ? [locale === 'en' ? 'Sources' : 'উৎস', ...parsed.sources.map(item => {
+            const line = parseSourceLine(item)
+            return line.url ? `- [${line.label}](${line.url})` : `- ${line.label}`
+          })] : [])
         ].join('\n').replace(/\n/g, '\n  ')
       : source[locale]
-    return `- [${source.title}](${source.url}) · ${source.date}\n  ${body}`
+    return parsed
+      ? `- ${locale === 'en' ? 'Market size' : 'বাজারের আকার'}\n  ${body}`
+      : `- [${source.title}](${source.url}) · ${source.date}\n  ${body}`
   }).join('\n')
 }
 
-function SizeBullet({ item }: { item: string }) {
-  const match = item.match(/^(.*?)\s+(https:\/\/\S+)$/)
-  if (!match) return <li>{item}</li>
-  return <li>{match[1]} <a href={match[2]}>{match[2].replace(/^https:\/\//, '')}</a></li>
-}
-
-function SourceNote({ text, locale }: { text: string; locale: Locale }) {
+function SizeCard({ text, locale }: { text: string; locale: Locale }) {
   const parsed = splitSizeNote(text)
   if (!parsed) return <p>{text}</p>
-  return <div className="ideas-size-note">{parsed.equations.map(line => <p className="ideas-size-eq" key={line}>{line}</p>)}<p className="ideas-size-label">{locale === 'en' ? 'Assumptions' : 'অনুমান'}</p><ul>{parsed.assumptions.map(item => <li key={item}>{item}</li>)}</ul>{parsed.sources.length > 0 && <><p className="ideas-size-label">{locale === 'en' ? 'Sources' : 'উৎস'}</p><ul>{parsed.sources.map(item => <SizeBullet key={item} item={item} />)}</ul></>}</div>
+  return <div className="ideas-size-note">
+    <div className="ideas-size-results">{parsed.results.map(row => <div className="ideas-size-result" key={row.value}><p className="ideas-size-result-value">{row.value}</p>{row.caption ? <p className="ideas-size-result-metric">{row.caption}</p> : null}</div>)}</div>
+    {parsed.factors.length > 0 && <div className="ideas-size-factors">{parsed.factors.map(row => <div className="ideas-size-factor" key={`${row.value}-${row.metric}`}><p className="ideas-size-factor-value">{row.value}</p><p className="ideas-size-factor-metric">{row.metric}</p></div>)}</div>}
+    <p className="ideas-size-label">{locale === 'en' ? 'Assumptions' : 'অনুমান'}</p>
+    <ul>{parsed.assumptions.map(item => <li key={item}>{item}</li>)}</ul>
+    {parsed.sources.length > 0 && <><p className="ideas-size-label">{locale === 'en' ? 'Sources' : 'উৎস'}</p><ul>{parsed.sources.map(item => {
+      const line = parseSourceLine(item)
+      return <li key={item}>{line.url ? <a href={line.url}>{line.label}</a> : line.label}</li>
+    })}</ul></>}
+  </div>
 }
 
 function SourceList({ sources, locale }: { sources: EvidenceSource[]; locale: Locale }) {
   if (!sources.length) return null
   return <ol className="ideas-sources">{sources.map(source => {
     const sized = splitSizeNote(source[locale])
-    return <li key={source.url}><div><a href={source.url}>{source.title}<IdeaIcon name="external" /></a><span className="ideas-source-date">{sized ? source.date : `${source.date} · ${domain(source.url)}`}</span><SourceNote text={source[locale]} locale={locale} /></div></li>
+    return <li key={source.url} className={sized ? 'ideas-source-size' : undefined}><div>{sized ? <SizeCard text={source[locale]} locale={locale} /> : <><a href={source.url}>{source.title}<IdeaIcon name="external" /></a><span className="ideas-source-date">{`${source.date} · ${domain(source.url)}`}</span><p>{source[locale]}</p></>}</div></li>
   })}</ol>
 }
 
