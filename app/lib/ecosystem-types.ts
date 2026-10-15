@@ -6,7 +6,12 @@ export type Localized<T> = Record<Locale, T>
 export type OrganizationRole = 'startup' | 'investor' | 'accelerator' | 'incubator' | 'community'
 export type ApproachKind = 'software' | 'service' | 'marketplace' | 'workflow'
 export type WorkStage = 'research' | 'prototype' | 'live'
-export interface EvidenceSource { title: string; url: string; date: string; en: string; bn: string }
+export type SourceSection = 'facts' | 'maps' | 'size'
+export interface EvidenceSource {
+  title: string; url: string; date: string; en: string; bn: string
+  /** Optional grouping inside Research & sources. Absent on older notes. */
+  section?: SourceSection
+}
 export interface ProblemCopy { title: string; summary: string; customer: string; context: string; unknown: string }
 export interface Problem extends Localized<ProblemCopy> {
   id: string; slug: string; sector: string; places: string[]; sources: EvidenceSource[]

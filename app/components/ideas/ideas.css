@@ -75,6 +75,8 @@
 .ideas-shell .ideas-sources a svg { margin-left: .4rem; }
 .ideas-shell .ideas-source-date { display: block; color: var(--muted, #54595d); font-size: .75rem; margin-top: .35rem; }
 .ideas-shell .ideas-sources p { max-width: 51rem; color: var(--muted, #54595d); font-size: .875rem; margin-top: .65rem; }
+.ideas-shell .ideas-research-body .ideas-sources + h2 { margin-top: 1.75rem; }
+.ideas-shell .ideas-research-body h2 + .ideas-sources { margin-top: .35rem; }
 /* Catalogue */
 .ideas-shell .ideas-catalogue-intro { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-bottom: 2.5rem; }
 .ideas-shell .ideas-catalogue-intro > a { flex-shrink: 0; }
