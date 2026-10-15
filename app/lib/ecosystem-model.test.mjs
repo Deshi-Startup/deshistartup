@@ -29,11 +29,11 @@ test('older cards without section still render when no labelled groups exist', (
 
 test('size notes split into big results, small metrics, then assumptions and linked sources', () => {
   const parsed = splitSizeNote(
-    '$62.4 million\nWorking · 24 taka per kilogram of fabric offcuts\n\n$104 million\nCeiling · 40 taka per kilogram of factory local sale\n\nWhat went into it\n312,000 tonnes\ncutting-floor waste\n1,000 kilograms\nin each tonne\n120 taka\nper US dollar\n\nAssumptions\n- Mixed grade\n\nSources\n- SWITCH2CE citing Reverse Resources, 2023 https://switch2ce.org/news/bangladesh-textile-waste-sankey-diagram-2023'
+    '$62.4 million\nAt 24 taka per kilogram of fabric offcuts\n\n$104 million\nAt 40 taka per kilogram of factory local sale\n\nWhat went into it\n312,000 tonnes\ncutting-floor waste\n1,000 kilograms\nin each tonne\n120 taka\nper US dollar\n\nAssumptions\n- Mixed grade\n\nSources\n- SWITCH2CE citing Reverse Resources, 2023 https://switch2ce.org/news/bangladesh-textile-waste-sankey-diagram-2023'
   )
   assert.deepEqual(parsed.results, [
-    { value: '$62.4 million', caption: 'Working · 24 taka per kilogram of fabric offcuts' },
-    { value: '$104 million', caption: 'Ceiling · 40 taka per kilogram of factory local sale' }
+    { value: '$62.4 million', caption: 'At 24 taka per kilogram of fabric offcuts' },
+    { value: '$104 million', caption: 'At 40 taka per kilogram of factory local sale' }
   ])
   assert.deepEqual(parsed.factors, [
     { value: '312,000 tonnes', metric: 'cutting-floor waste' },
