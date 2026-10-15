@@ -28,3 +28,15 @@ export function partitionSources(sources: EvidenceSource[]) {
     size: sources.filter(source => source.section === 'size')
   }
 }
+
+export function splitSizeNote(text: string) {
+  const en = '\n\nAssumptions\n'
+  const bn = '\n\nঅনুমান\n'
+  const marker = text.includes(en) ? en : text.includes(bn) ? bn : null
+  if (!marker) return null
+  const [equationBlock, assumptionBlock] = text.split(marker)
+  return {
+    equations: equationBlock.split('\n').map(line => line.trim()).filter(Boolean),
+    assumptions: assumptionBlock.split('\n').map(line => line.replace(/^[-•]\s*/, '').trim()).filter(Boolean)
+  }
+}

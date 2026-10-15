@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { ecosystem, companyPath } from '../../lib/ecosystem'
-import { domain, partitionSources } from '../../lib/ecosystem-model'
+import { domain, partitionSources, splitSizeNote } from '../../lib/ecosystem-model'
 import type { Approach, EvidenceSource, Problem } from '../../lib/ecosystem-types'
 import type { Locale, Place, Sector } from './types'
 import { forLabel, ideaPath, ideaSlug, kindLabel, places, sectors } from './model'
@@ -17,12 +17,24 @@ import IdeaEditEntry from './IdeaEditEntry'
 import { ideaEditValues } from '../../lib/idea-edit'
 
 function sourceLines(sources: EvidenceSource[], locale: Locale) {
-  return sources.map(source => `- [${source.title}](${source.url}) · ${source.date}\n  ${source[locale]}`).join('\n')
+  return sources.map(source => {
+    const parsed = splitSizeNote(source[locale])
+    const body = parsed
+      ? [parsed.equations.join('\n'), locale === 'en' ? 'Assumptions' : 'অনুমান', ...parsed.assumptions.map(item => `- ${item}`)].join('\n').replace(/\n/g, '\n  ')
+      : source[locale]
+    return `- [${source.title}](${source.url}) · ${source.date}\n  ${body}`
+  }).join('\n')
+}
+
+function SourceNote({ text, locale }: { text: string; locale: Locale }) {
+  const parsed = splitSizeNote(text)
+  if (!parsed) return <p>{text}</p>
+  return <div className="ideas-size-note">{parsed.equations.map(line => <p className="ideas-size-eq" key={line}>{line}</p>)}<p className="ideas-size-label">{locale === 'en' ? 'Assumptions' : 'অনুমান'}</p><ul>{parsed.assumptions.map(item => <li key={item}>{item}</li>)}</ul></div>
 }
 
 function SourceList({ sources, locale }: { sources: EvidenceSource[]; locale: Locale }) {
   if (!sources.length) return null
-  return <ol className="ideas-sources">{sources.map(source => <li key={source.url}><div><a href={source.url}>{source.title}<IdeaIcon name="external" /></a><span className="ideas-source-date">{source.date} · {domain(source.url)}</span><p>{source[locale]}</p></div></li>)}</ol>
+  return <ol className="ideas-sources">{sources.map(source => <li key={source.url}><div><a href={source.url}>{source.title}<IdeaIcon name="external" /></a><span className="ideas-source-date">{source.date} · {domain(source.url)}</span><SourceNote text={source[locale]} locale={locale} /></div></li>)}</ol>
 }
 
 function materials(problem: Problem, idea: Approach, locale: Locale) {

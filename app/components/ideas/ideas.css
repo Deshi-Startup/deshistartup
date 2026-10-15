@@ -75,6 +75,11 @@
 .ideas-shell .ideas-sources a svg { margin-left: .4rem; }
 .ideas-shell .ideas-source-date { display: block; color: var(--muted, #54595d); font-size: .75rem; margin-top: .35rem; }
 .ideas-shell .ideas-sources p { max-width: 51rem; color: var(--muted, #54595d); font-size: .875rem; margin-top: .65rem; }
+.ideas-shell .ideas-size-note { max-width: 51rem; margin-top: .65rem; }
+.ideas-shell .ideas-sources .ideas-size-eq { color: var(--ink, #202122); font-size: .9375rem; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; margin-top: .35rem; }
+.ideas-shell .ideas-sources .ideas-size-eq:first-child { margin-top: 0; }
+.ideas-shell .ideas-sources .ideas-size-label { color: var(--ink, #202122); font-size: .875rem; font-weight: var(--w-strong, 600); margin-top: .85rem; }
+.ideas-shell .ideas-sources .ideas-size-note ul { margin-top: .4rem; padding-inline-start: 1.15rem; display: grid; gap: .35rem; color: var(--muted, #54595d); font-size: .875rem; }
 .ideas-shell .ideas-research-body .ideas-sources + h2 { margin-top: 1.75rem; }
 .ideas-shell .ideas-research-body h2 + .ideas-sources { margin-top: .35rem; }
 /* Catalogue */
