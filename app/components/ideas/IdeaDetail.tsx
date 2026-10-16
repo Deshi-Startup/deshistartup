@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { ecosystem, companyPath } from '../../lib/ecosystem'
-import { domain } from '../../lib/ecosystem-model'
-import type { Approach, Problem } from '../../lib/ecosystem-types'
+import { domain, parseSourceLine, partitionSources, sourceLines, sourceMetadata, splitSizeNote } from '../../lib/ecosystem-model'
+import type { Approach, EvidenceSource, Problem } from '../../lib/ecosystem-types'
 import type { Locale, Place, Sector } from './types'
 import { forLabel, ideaPath, ideaSlug, kindLabel, places, sectors } from './model'
 import { guidePage } from '../../lib/guide-index.mjs'
@@ -16,10 +16,44 @@ import IdeaActions from './IdeaActions'
 import IdeaEditEntry from './IdeaEditEntry'
 import { ideaEditValues } from '../../lib/idea-edit'
 
+function SizeCard({ text, locale }: { text: string; locale: Locale }) {
+  const parsed = splitSizeNote(text)
+  if (!parsed) return <p>{text}</p>
+  return <div className="ideas-size-note">
+    <div className="ideas-size-results">{parsed.results.map(row => <div className="ideas-size-result" key={row.value}><p className="ideas-size-result-value">{row.value}</p>{row.caption ? <p className="ideas-size-result-metric">{row.caption}</p> : null}</div>)}</div>
+    {parsed.factors.length > 0 && <div className="ideas-size-factors">{parsed.factors.map(row => <div className="ideas-size-factor" key={`${row.value}-${row.metric}`}><p className="ideas-size-factor-value">{row.value}</p><p className="ideas-size-factor-metric">{row.metric}</p></div>)}</div>}
+    <p className="ideas-size-label">{locale === 'en' ? 'Assumptions' : 'অনুমান'}</p>
+    <ul>{parsed.assumptions.map(item => <li key={item}>{item}</li>)}</ul>
+    {parsed.sources.length > 0 && <><p className="ideas-size-label">{locale === 'en' ? 'Sources' : 'উৎস'}</p><ul>{parsed.sources.map(item => {
+      const line = parseSourceLine(item)
+      return <li key={item}>{line.url ? <a href={line.url}>{line.label}</a> : line.label}</li>
+    })}</ul></>}
+  </div>
+}
+
+function SourceList({ sources, locale }: { sources: EvidenceSource[]; locale: Locale }) {
+  if (!sources.length) return null
+  return <ol className="ideas-sources">{sources.map(source => {
+    const sized = splitSizeNote(source[locale])
+    const { title, date } = sourceMetadata(source, locale)
+    return <li key={source.url} className={sized ? 'ideas-source-size' : undefined}><div>{sized ? <>
+      <h3 className="ideas-size-title">{title}</h3>
+      <span className="ideas-source-date">{date}</span>
+      <SizeCard text={source[locale]} locale={locale} />
+    </> : <><a href={source.url}>{title}<IdeaIcon name="external" /></a><span className="ideas-source-date">{`${date} · ${domain(source.url)}`}</span><p>{source[locale]}</p></>}</div></li>
+  })}</ol>
+}
+
 function materials(problem: Problem, idea: Approach, locale: Locale) {
   const en = locale === 'en'
   const p = problem[locale], a = idea[locale]
-  const sources = problem.sources.map(source => `- [${source.title}](${source.url}) · ${source.date}\n  ${source[locale]}`).join('\n')
+  const groups = partitionSources(problem.sources)
+  const sourceBlocks = [
+    groups.other.length ? ['## ' + (en ? 'Sources' : 'সোর্স'), sourceLines(groups.other, locale)] : [],
+    groups.facts.length ? ['## ' + (en ? 'Market facts' : 'বাজারের তথ্য'), sourceLines(groups.facts, locale)] : [],
+    groups.maps.length ? ['## ' + (en ? 'Market maps' : 'বাজারের ম্যাপ'), sourceLines(groups.maps, locale)] : [],
+    groups.size.length ? ['## ' + (en ? 'Market size' : 'বাজারের আকার'), sourceLines(groups.size, locale)] : []
+  ].flat()
   const brief = [
     `# ${a.title}`, a.summary,
     `## ${en ? 'Who it helps' : 'কাদের কাজে লাগবে'}`, p.customer,
@@ -30,7 +64,7 @@ function materials(problem: Problem, idea: Approach, locale: Locale) {
     `${en ? 'Look for: ' : 'যে ফল খুঁজবেন: '}${a.signal}`,
     `## ${en ? 'The problem' : 'সমস্যাটি'}`, p.context,
     `## ${en ? 'What to find out' : 'যা জেনে নেওয়া দরকার'}`, p.unknown,
-    ...(sources ? [`## ${en ? 'Sources' : 'সোর্স'}`, sources] : [])
+    ...sourceBlocks
   ].join('\n\n') + '\n'
   const prompt = `${en ? 'Help me build a small prototype to test this startup idea in Bangladesh.' : 'বাংলাদেশে এই স্টার্টআপ আইডিয়া পরীক্ষা করতে ছোট একটি প্রোটোটাইপ বানাতে সাহায্য করুন।'}\n\n${brief}\n${a.prototype}\n\n${en ? 'Use clearly labelled synthetic data. Do not invent demand, market size, partnerships, integrations or results. Include mobile, keyboard, empty and error states. State which assumption this prototype can test.' : 'নমুনা ডেটা স্পষ্ট করে চিহ্নিত করুন। চাহিদা, বাজারের আকার, পার্টনারশিপ, বাইরের সিস্টেমের সংযোগ বা ফলাফল বানিয়ে লিখবেন না। মোবাইল ও কিবোর্ডে ব্যবহার, খালি অবস্থা ও ভুলের বার্তা রাখুন। কোন ধারণাটি পরীক্ষা করা যাবে, বুঝিয়ে দিন।'}\n`
 
@@ -52,6 +86,7 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
   const placeNames = problem.places.map(place => places[place as Place]?.[locale] || place).join(' · ')
   const guides = idea.guides.map(slug => guidePage(contentIndex, locale, slug)).filter(guide => guide !== null).slice(0, 3)
   const siblings = ecosystem.approaches.filter(other => other.problemId === problem.id && other.id !== idea.id)
+  const groups = partitionSources(problem.sources)
   return <IdeaShell locale={locale}>
     <article className="ideas-detail">
       <a className="ideas-back" href={ideaPath(locale)}><IdeaIcon name="back" />{en ? 'All ideas' : 'সব আইডিয়া'}</a>
@@ -90,7 +125,10 @@ export default function IdeaDetail({ locale, id }: { locale: Locale; id: string 
       <details className="ideas-research" id="sources"><summary>{en ? 'Research & sources' : 'গবেষণা ও সোর্স'}<span className="ideas-disclosure-icon" aria-hidden="true" /></summary>
         <div className="ideas-research-body">{a.editorialNote && <><h2>{en ? 'Why we picked it' : 'কেন বেছে নিয়েছি'}</h2><p>{a.editorialNote}</p></>}<h2>{en ? 'The problem' : 'সমস্যাটি'}</h2><p>{p.context}</p>
           <h2>{en ? 'What to find out' : 'যা জেনে নেওয়া দরকার'}</h2><p>{p.unknown}</p>
-          {problem.sources.length > 0 && <ol className="ideas-sources">{problem.sources.map(source => <li key={source.url}><div><a href={source.url}>{source.title}<IdeaIcon name="external" /></a><span className="ideas-source-date">{source.date} · {domain(source.url)}</span><p>{source[locale]}</p></div></li>)}</ol>}
+          <SourceList sources={groups.other} locale={locale} />
+          {groups.facts.length > 0 && <><h2>{en ? 'Market facts' : 'বাজারের তথ্য'}</h2><SourceList sources={groups.facts} locale={locale} /></>}
+          {groups.maps.length > 0 && <><h2>{en ? 'Market maps' : 'বাজারের ম্যাপ'}</h2><SourceList sources={groups.maps} locale={locale} /></>}
+          {groups.size.length > 0 && <><h2>{en ? 'Market size' : 'বাজারের আকার'}</h2><SourceList sources={groups.size} locale={locale} /></>}
         </div>
       </details>
 
