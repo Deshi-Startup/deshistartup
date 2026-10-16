@@ -29,6 +29,35 @@ export function partitionSources(sources: EvidenceSource[]) {
   }
 }
 
+export function sourceMetadata(source: EvidenceSource, locale: Locale) {
+  return {
+    title: locale === 'bn' ? source.titleBn || source.title : source.title,
+    date: locale === 'bn' ? source.dateBn || source.date : source.date
+  }
+}
+
+export function sourceLines(sources: EvidenceSource[], locale: Locale) {
+  return sources.map(source => {
+    const { title, date } = sourceMetadata(source, locale)
+    const parsed = splitSizeNote(source[locale])
+    const body = parsed
+      ? [
+          ...parsed.results.map(row => `${row.value}${row.caption ? ` · ${row.caption}` : ''}`),
+          ...parsed.factors.map(row => `${row.value} ${row.metric}`),
+          locale === 'en' ? 'Assumptions' : 'অনুমান',
+          ...parsed.assumptions.map(item => `- ${item}`),
+          ...(parsed.sources.length ? [locale === 'en' ? 'Sources' : 'উৎস', ...parsed.sources.map(item => {
+            const line = parseSourceLine(item)
+            return line.url ? `- [${line.label}](${line.url})` : `- ${line.label}`
+          })] : [])
+        ].join('\n').replace(/\n/g, '\n  ')
+      : source[locale]
+    return parsed
+      ? `- ${title} · ${date}\n  ${body}`
+      : `- [${title}](${source.url}) · ${date}\n  ${body}`
+  }).join('\n')
+}
+
 function bulletLines(block: string) {
   return block.split('\n').map(line => line.replace(/^[-•]\s*/, '').trim()).filter(Boolean)
 }

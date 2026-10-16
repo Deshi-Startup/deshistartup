@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { ecosystem, companyPath } from '../../lib/ecosystem'
-import { domain, parseSourceLine, partitionSources, splitSizeNote } from '../../lib/ecosystem-model'
+import { domain, parseSourceLine, partitionSources, sourceLines, sourceMetadata, splitSizeNote } from '../../lib/ecosystem-model'
 import type { Approach, EvidenceSource, Problem } from '../../lib/ecosystem-types'
 import type { Locale, Place, Sector } from './types'
 import { forLabel, ideaPath, ideaSlug, kindLabel, places, sectors } from './model'
@@ -15,27 +15,6 @@ import ShareIdea from './ShareIdea'
 import IdeaActions from './IdeaActions'
 import IdeaEditEntry from './IdeaEditEntry'
 import { ideaEditValues } from '../../lib/idea-edit'
-
-function sourceLines(sources: EvidenceSource[], locale: Locale) {
-  return sources.map(source => {
-    const parsed = splitSizeNote(source[locale])
-    const body = parsed
-      ? [
-          ...parsed.results.map(row => `${row.value}${row.caption ? ` · ${row.caption}` : ''}`),
-          ...parsed.factors.map(row => `${row.value} ${row.metric}`),
-          locale === 'en' ? 'Assumptions' : 'অনুমান',
-          ...parsed.assumptions.map(item => `- ${item}`),
-          ...(parsed.sources.length ? [locale === 'en' ? 'Sources' : 'উৎস', ...parsed.sources.map(item => {
-            const line = parseSourceLine(item)
-            return line.url ? `- [${line.label}](${line.url})` : `- ${line.label}`
-          })] : [])
-        ].join('\n').replace(/\n/g, '\n  ')
-      : source[locale]
-    return parsed
-      ? `- ${locale === 'en' ? 'Market size' : 'বাজারের আকার'}\n  ${body}`
-      : `- [${source.title}](${source.url}) · ${source.date}\n  ${body}`
-  }).join('\n')
-}
 
 function SizeCard({ text, locale }: { text: string; locale: Locale }) {
   const parsed = splitSizeNote(text)
@@ -56,7 +35,12 @@ function SourceList({ sources, locale }: { sources: EvidenceSource[]; locale: Lo
   if (!sources.length) return null
   return <ol className="ideas-sources">{sources.map(source => {
     const sized = splitSizeNote(source[locale])
-    return <li key={source.url} className={sized ? 'ideas-source-size' : undefined}><div>{sized ? <SizeCard text={source[locale]} locale={locale} /> : <><a href={source.url}>{source.title}<IdeaIcon name="external" /></a><span className="ideas-source-date">{`${source.date} · ${domain(source.url)}`}</span><p>{source[locale]}</p></>}</div></li>
+    const { title, date } = sourceMetadata(source, locale)
+    return <li key={source.url} className={sized ? 'ideas-source-size' : undefined}><div>{sized ? <>
+      <h3 className="ideas-size-title">{title}</h3>
+      <span className="ideas-source-date">{date}</span>
+      <SizeCard text={source[locale]} locale={locale} />
+    </> : <><a href={source.url}>{title}<IdeaIcon name="external" /></a><span className="ideas-source-date">{`${date} · ${domain(source.url)}`}</span><p>{source[locale]}</p></>}</div></li>
   })}</ol>
 }
 

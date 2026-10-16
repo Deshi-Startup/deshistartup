@@ -9,6 +9,7 @@ export type WorkStage = 'research' | 'prototype' | 'live'
 export type SourceSection = 'facts' | 'maps' | 'size'
 export interface EvidenceSource {
   title: string; url: string; date: string; en: string; bn: string
+  titleBn?: string; dateBn?: string
   /** Optional grouping inside Research & sources. Absent on older notes. */
   section?: SourceSection
 }

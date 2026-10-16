@@ -69,13 +69,14 @@
 .ideas-shell .ideas-source-meta a { color: var(--green-deep, #065f46); display: inline-flex; align-items: center; gap: .35rem; min-height: 32px; font-weight: var(--w-strong, 600); }
 .ideas-shell .ideas-source-meta svg, .ideas-shell .ideas-sources svg, .ideas-shell .ideas-profile-sources svg { width: 14px; height: 14px; }
 .ideas-shell .ideas-sources { display: grid; gap: 1.2rem; list-style: none; counter-reset: sources; padding: 0; }
-.ideas-shell .ideas-sources li { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); gap: .75rem; counter-increment: sources; margin: 0; padding: 1.2rem 0 0; border-top: 1px solid var(--line-soft, #eaecf0); }
-.ideas-shell .ideas-sources li::before { content: counter(sources, decimal-leading-zero); color: var(--muted, #54595d); font-size: .75rem; padding-top: .2rem; }
+.ideas-shell .ideas-sources > li { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); gap: .75rem; counter-increment: sources; margin: 0; padding: 1.2rem 0 0; border-top: 1px solid var(--line-soft, #eaecf0); }
+.ideas-shell .ideas-sources > li::before { content: counter(sources, decimal-leading-zero); color: var(--muted, #54595d); font-size: .75rem; padding-top: .2rem; }
 .ideas-shell .ideas-sources a { display: inline; font-size: .9375rem; font-weight: var(--w-strong, 600); }
 .ideas-shell .ideas-sources a svg { margin-left: .4rem; }
 .ideas-shell .ideas-source-date { display: block; color: var(--muted, #54595d); font-size: .75rem; margin-top: .35rem; }
-.ideas-shell .ideas-sources p { max-width: 51rem; color: var(--muted, #54595d); font-size: .875rem; margin-top: .65rem; }
-.ideas-shell .ideas-size-note { max-width: 51rem; margin-top: .15rem; }
+.ideas-shell .ideas-sources > li > div > p { max-width: 51rem; color: var(--muted, #54595d); font-size: .875rem; margin-top: .65rem; }
+.ideas-shell .ideas-size-title { font-size: .9375rem; font-weight: var(--w-strong, 600); letter-spacing: 0; text-wrap: wrap; }
+.ideas-shell .ideas-size-note { max-width: 51rem; margin-top: .85rem; }
 .ideas-shell .ideas-sources li.ideas-source-size::before { content: none; }
 .ideas-shell .ideas-sources li.ideas-source-size { grid-template-columns: minmax(0, 1fr); }
 .ideas-shell .ideas-size-results, .ideas-shell .ideas-size-factors { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .9rem 1.25rem; }
@@ -85,7 +86,7 @@
 .ideas-shell .ideas-size-factor-value { margin: 0; color: var(--ink, #202122); font-size: 1.0625rem; font-weight: var(--w-strong, 600); line-height: 1.25; font-variant-numeric: tabular-nums; }
 .ideas-shell .ideas-size-factor-metric { margin: .15rem 0 0; color: var(--muted, #54595d); font-size: .75rem; line-height: 1.4; }
 .ideas-shell .ideas-sources .ideas-size-label { color: var(--ink, #202122); font-size: .8125rem; font-weight: var(--w-strong, 600); margin-top: 1rem; }
-.ideas-shell .ideas-sources .ideas-size-note ul { margin-top: .35rem; padding-inline-start: 1.15rem; display: grid; gap: .3rem; color: var(--muted, #54595d); font-size: .875rem; }
+.ideas-shell .ideas-sources .ideas-size-note ul { margin-top: .35rem; padding-inline-start: 1.15rem; display: grid; gap: .3rem; color: var(--muted, #54595d); font-size: .875rem; list-style: disc; }
 .ideas-shell .ideas-sources .ideas-size-note ul a { font-size: .875rem; font-weight: 500; color: var(--green-deep, #065f46); word-break: normal; }
 @media (max-width: 640px) {
   .ideas-shell .ideas-size-results, .ideas-shell .ideas-size-factors { grid-template-columns: 1fr; }
@@ -218,7 +219,7 @@
 .ideas-shell[lang="bn"] { --ideas-reading: 1.8; }
 .ideas-shell[lang="bn"] :is(h1, h2, h3, h4) { letter-spacing: 0; line-height: 1.45; }
 .ideas-shell[lang="bn"] .ideas-eyebrow { letter-spacing: 0; font-size: .8125rem; }
-.ideas-shell[lang="bn"] .ideas-sources li::before { content: counter(sources, bengali); }
+.ideas-shell[lang="bn"] .ideas-sources > li:not(.ideas-source-size)::before { content: counter(sources, bengali); }
 @media (max-width: 900px) {
   .ideas-shell .ideas-save-control { padding-top: 0; max-width: none; }
   .ideas-shell .ideas-filters:not(.ideas-catalogue-filters) { grid-template-columns: 1fr 1fr; }
