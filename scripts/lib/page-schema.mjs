@@ -8,8 +8,9 @@ const COLLECTION_SLUGS = new Set([
 ])
 
 export function schemaPageType(page, hasChildren = false) {
-  if (page.kind === 'contributor-profile' || page.slug.startsWith('companies/')) return 'ProfilePage'
-  if (page.slug === 'about') return 'AboutPage'
+  if (page.kind === 'contributor-profile') return 'ProfilePage'
+  // Directory subjects are independent companies, not affiliated site creators.
+  if (page.slug === 'about' || page.slug.startsWith('companies/')) return 'AboutPage'
   if (COLLECTION_SLUGS.has(page.slug) || page.slug.startsWith('directory/') || hasChildren) {
     return 'CollectionPage'
   }

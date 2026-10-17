@@ -118,6 +118,9 @@ when an advisory `robots.txt` rule is not enough.
   fragments. Collection lists, including Startup 50 and section hubs, use the rendered names,
   links and display order; they do not infer entries from the route registry. The production
   audit checks these contracts along with graph references and language identity.
+- Independent company directory entries use `AboutPage` with their `Organization` details.
+  Reserve `ProfilePage` for affiliated site contributors, following Google's
+  [profile-page guidelines](https://developers.google.com/search/docs/appearance/structured-data/profile-page#guidelines).
 - The shared social card is `public/og-default.png` (1200×630). Replace it only with another
   crawlable image of the same dimensions and update `app/seo.config.mjs` if the path changes.
 

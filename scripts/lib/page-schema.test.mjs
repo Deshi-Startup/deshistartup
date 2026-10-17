@@ -11,10 +11,18 @@ test('lookup, directory and utility pages do not impersonate authored guides', (
   assert.equal(schemaPageType({ slug: 'start-here/glossary' }), 'CollectionPage')
   assert.equal(schemaPageType({ slug: 'guides' }), 'CollectionPage')
   assert.equal(schemaPageType({ slug: 'directory/investors' }), 'CollectionPage')
-  assert.equal(schemaPageType({ slug: 'companies/pathao' }), 'ProfilePage')
   const guide = { slug: 'funding/cap-table', guide: true }
   assert.equal(isArticleSchemaPage(guide, schemaPageType(guide)), true)
   assert.equal(isArticleSchemaPage({ slug: 'startup-50', guide: true }, 'CollectionPage'), false)
+})
+
+test('independent company entries are about pages while contributor profiles retain ProfilePage', () => {
+  for (const locale of ['en', 'bn']) {
+    const company = { slug: 'companies/pathao', locale, guide: false }
+    assert.equal(schemaPageType(company), 'AboutPage')
+    assert.equal(isArticleSchemaPage(company, schemaPageType(company)), false)
+    assert.equal(schemaPageType({ slug: 'contributors/author', locale, kind: 'contributor-profile' }), 'ProfilePage')
+  }
 })
 
 test('hub lists follow visible localized order and omit planned, hidden, absent and other-locale pages', () => {
