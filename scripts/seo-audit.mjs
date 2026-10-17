@@ -34,6 +34,13 @@ import {
 import { eventsForLocale } from './postbuild-contributors.mjs'
 import { inspectRenderedContent } from './rendered-content-audit.mjs'
 import { visibleLinkedCollectionItems } from './visible-collection-items.mjs'
+import {
+  isArticleSchemaPage,
+  schemaPageType,
+  visibleCollectionItemsFor,
+  visibleDefinedTermsFor
+} from './lib/page-schema.mjs'
+import { inspectSchemaGraph } from './lib/schema-graph-audit.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const { htmlDir: outDir, staticDir } = resolveBuildOutput(root)
@@ -53,6 +60,9 @@ for (const event of contributorView.events) {
 }
 const pageByLocaleSlug = new Map(pages.map((page) => [`${page.locale}:${page.slug}`, page]))
 const indexable = pages.filter((page) => !isNoindexPage(page))
+const pageByRoute = new Map(pages.map((page) => [page.route, page]))
+const collectionParents = new Set(indexable.filter((page) => page.slug.includes('/'))
+  .map((page) => `${page.locale}:${page.slug.split('/')[0]}`))
 const indexableRoutes = new Set(indexable.map((page) => page.route))
 const allRoutes = new Set(pages.map((page) => page.route))
 const inbound = new Map(indexable.map((page) => [page.route, 0]))
@@ -132,6 +142,9 @@ for (const page of pages) {
   const robots = $('meta[name="robots"]').attr('content') || ''
   const alternates = $('link[rel="alternate"][hreflang]')
   const schemaScripts = $('script[data-deshi-schema][type="application/ld+json"]')
+  if ($('script[type="application/ld+json"]').length !== schemaScripts.length) {
+    record(errors, `${page.route}: unexpected JSON-LD outside the shared schema graph`)
+  }
   if (page.slug === 'companies' && /(?:\\"|")logoPath(?:\\"|")\s*:/.test(html)) {
     record(errors, `${page.route}: unused logical logo paths leak into the company client payload`)
   }
@@ -345,6 +358,18 @@ for (const page of pages) {
   if (!isNoindexPage(page) && schemaScripts.length === 1) {
     try {
       const schema = JSON.parse(schemaScripts.first().text())
+      const buildPrefix = html.match(/(?:src|href)="([^"]*\/_next\/)/)?.[1]
+      const basePath = buildPrefix?.startsWith('/') ? buildPrefix.slice(0, buildPrefix.indexOf('/_next/')) : ''
+      const pageType = schemaPageType(page, !page.slug.includes('/') && collectionParents.has(`${page.locale}:${page.slug}`))
+      const articleExpected = isArticleSchemaPage(page, pageType)
+      for (const issue of inspectSchemaGraph(schema, {
+        page, pageType, articleExpected,
+        visibleItems: visibleCollectionItemsFor($, page, pageByRoute, basePath),
+        definedTerms: visibleDefinedTermsFor($, page)
+      })) record(errors, `${page.route}: ${issue}`)
+      if ($('meta[property="og:type"]').attr('content') !== (isContributorProfile(page) ? 'profile' : articleExpected ? 'article' : 'website')) {
+        record(errors, `${page.route}: Open Graph type disagrees with its schema page role`)
+      }
       const graph = Array.isArray(schema['@graph']) ? schema['@graph'] : []
       const pageNode = graph.find((node) => node['@id'] === `${canonicalUrl(page.route)}#webpage`)
       if (pageNode?.name !== expectedTitle || pageNode?.description?.trim() !== expectedDescription) {

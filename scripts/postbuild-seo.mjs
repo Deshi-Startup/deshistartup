@@ -37,7 +37,12 @@ import {
   pageDocumentTitle
 } from '../app/seo.config.mjs'
 import { resolveBuildOutput } from './build-output.mjs'
-import { visibleLinkedCollectionItems } from './visible-collection-items.mjs'
+import {
+  isArticleSchemaPage,
+  schemaPageType,
+  visibleCollectionItemsFor,
+  visibleDefinedTermsFor
+} from './lib/page-schema.mjs'
 import {
   eventsForLocale,
   fillPageByline,
@@ -359,58 +364,7 @@ function childrenFor(page) {
   )
 }
 
-function visibleCollectionItemsFor($, page, basePath = '') {
-  if (page.slug === 'sitemap' || page.slug === 'companies') {
-    return visibleLinkedCollectionItems($, page, { basePath })
-  }
-
-  if (page.slug === 'startup-ideas') {
-    return $('.ideas-row h3 a[href]').map((index, element) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: $(element).text().trim(),
-      url: canonicalUrl($(element).attr('href'))
-    })).get()
-  }
-
-  if (page.slug === 'contributors') {
-    return $('.contributor-list--ranked .contributor-row')
-      .map((index, element) => {
-        const row = $(element)
-        const identity = row.find('.contributor-row__identity strong').first()
-        const name = identity.text().trim()
-        if (!name) return null
-        const profileSlug = row.attr('data-contributor-profile')
-        const profilePath = contributorProfilePath(profileSlug, page.locale)
-        const item = { '@type': 'Person', name }
-        if (profilePath) item.url = canonicalUrl(profilePath)
-        return { '@type': 'ListItem', position: index + 1, item }
-      })
-      .get()
-      .filter(Boolean)
-  }
-
-  if (page.slug.startsWith('directory/')) {
-    return $('.directory-card')
-      .map((index, element) => {
-        const card = $(element)
-        const name = card.find('h2').first().text().trim()
-        if (!name) return null
-        const sourceUrl = card.find('.directory-card__source a[href]').first().attr('href')
-        const description = card.find('.directory-card__note').first().text().trim()
-        const item = { '@type': 'Thing', name }
-        if (sourceUrl) item.url = sourceUrl
-        if (description) item.description = description
-        return { '@type': 'ListItem', position: index + 1, item }
-      })
-      .get()
-      .filter(Boolean)
-  }
-
-  return []
-}
-
-function schemaFor(page, wordCount, visibleCollectionItems = [], contributionEvents = []) {
+function schemaFor(page, wordCount, visibleCollectionItems = [], contributionEvents = [], definedTerms = []) {
   if (isNoindexPage(page)) return null
 
   const isEn = page.locale === 'en'
@@ -418,31 +372,13 @@ function schemaFor(page, wordCount, visibleCollectionItems = [], contributionEve
   const url = canonicalUrl(page.route)
   const description = page.description || DEFAULT_DESCRIPTIONS[page.locale]
   const children = childrenFor(page)
-  const isHome = page.slug === ''
-  const isAbout = page.slug === 'about'
   const company = page.slug.startsWith('companies/') ? ecosystemData.organizations.find(o => o.slug === page.slug.slice('companies/'.length)) : null
   const isProfile = isContributorProfile(page)
   const contributorProfile = contributorProfileForPage(page)
-  const isCollection =
-    page.slug === 'sitemap' ||
-    page.slug === 'contributors' ||
-    page.slug === 'startup-50' ||
-    page.slug === 'directory' ||
-    page.slug.startsWith('directory/') ||
-    children.length > 0
-  // /contribute and /contact invite an action rather than teaching something,
-  // so neither is an Article: they carry no publication date a reader should
-  // weigh, and marking them up as one would put a stale "last updated" beside
-  // an address that has not changed.
+  const pageType = schemaPageType(page, children.length > 0)
+  const isCollection = pageType === 'CollectionPage'
   const isUtility = isUtilityPage(page)
-  const isArticle = !isHome && !isAbout && !isCollection && !isUtility && !isProfile && !company
-  const pageType = (isProfile || company)
-    ? 'ProfilePage'
-    : isAbout
-      ? 'AboutPage'
-      : isCollection
-        ? 'CollectionPage'
-        : 'WebPage'
+  const isArticle = isArticleSchemaPage(page, pageType)
   const pageName = pageDocumentTitle(page)
 
   const organizationNode = {
@@ -496,25 +432,26 @@ function schemaFor(page, wordCount, visibleCollectionItems = [], contributionEve
 
   if (!isUtility && page.published) pageNode.datePublished = page.publishedAt || page.published
   if (!isUtility && page.date) pageNode.dateModified = page.modifiedAt || page.date
-  const usesRenderedList = page.slug === 'sitemap' || page.slug === 'companies'
-  const collectionItems = usesRenderedList || visibleCollectionItems.length > 0
-    ? visibleCollectionItems
-    : children.map((child, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: child.fullTitle,
-        url: canonicalUrl(child.route)
-      }))
-  if (isCollection && collectionItems.length > 0) {
+  if (isCollection && visibleCollectionItems.length > 0) {
     pageNode.mainEntity = {
       '@type': 'ItemList',
-      numberOfItems: collectionItems.length,
-      itemListElement: collectionItems
+      numberOfItems: visibleCollectionItems.length,
+      itemListElement: visibleCollectionItems
     }
   }
   const graph = [organizationNode, websiteNode]
 
   graph.push(pageNode)
+  if (definedTerms.length > 0) {
+    const termSet = {
+      '@type': 'DefinedTermSet', '@id': `${url}#glossary`,
+      url, name: page.fullTitle, description, inLanguage: locale,
+      mainEntityOfPage: { '@id': pageNode['@id'] },
+      hasDefinedTerm: definedTerms
+    }
+    pageNode.mainEntity = { '@id': termSet['@id'] }
+    graph.push(termSet)
+  }
   if (company) {
     const companyNode = { '@type': 'Organization', '@id': `${url}#company`, name: company[page.locale].name, url: company.website, description: company[page.locale].description, mainEntityOfPage: { '@id': pageNode['@id'] } }
     pageNode.mainEntity = { '@id': companyNode['@id'] }
@@ -643,22 +580,10 @@ for (const page of pages) {
   const pairedPage = isEn ? pairedBn : pairedEn
   const hasIndexablePair = !isNoindexPage(page) && pairedBn && pairedEn && !isNoindexPage(pairedBn) && !isNoindexPage(pairedEn)
   const pageChildren = childrenFor(page)
-  const isCollectionPage =
-    page.slug === 'sitemap' ||
-    page.slug === 'contributors' ||
-    page.slug === 'startup-50' ||
-    page.slug === 'directory' ||
-    page.slug.startsWith('directory/') ||
-    pageChildren.length > 0
+  const pageType = schemaPageType(page, pageChildren.length > 0)
   const ogType = isContributorProfile(page)
     ? 'profile'
-    : isNoindexPage(page) ||
-      page.slug === '' ||
-      isCollectionPage ||
-      page.slug === 'about' ||
-      isUtilityPage(page)
-      ? 'website'
-      : 'article'
+    : !isNoindexPage(page) && isArticleSchemaPage(page, pageType) ? 'article' : 'website'
   // The manifest classifies authored MDX before build output loses its source
   // components. Do not infer a guide from SEO type or the number of written
   // children: both misclassify empty section hubs and lookup pages.
@@ -771,8 +696,9 @@ for (const page of pages) {
   const schema = schemaFor(
     page,
     wordCount,
-    visibleCollectionItemsFor($, page, buildBasePath),
-    pageContributionEvents
+    visibleCollectionItemsFor($, page, pageByRoute, buildBasePath),
+    pageContributionEvents,
+    visibleDefinedTermsFor($, page)
   )
   if (schema) tags.push(`<script type="application/ld+json" data-deshi-schema>${jsonLd(schema)}</script>`)
   tags.push('<!-- deshi-seo:end -->')
