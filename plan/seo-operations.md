@@ -112,6 +112,12 @@ when an advisory `robots.txt` rule is not enough.
   Structured data describes content; it is never added only to chase a rich result.
   Google stopped displaying FAQ rich results on May 7, 2026; adding FAQ markup is not a
   Google rich-result growth tactic.
+- Article markup follows the manifest's authored-guide classification. Lookup, policy and
+  utility pages do not become articles simply because they have no child routes. The glossary
+  uses a `DefinedTermSet` with the displayed definitions and their existing locale-specific
+  fragments. Collection lists, including Startup 50 and section hubs, use the rendered names,
+  links and display order; they do not infer entries from the route registry. The production
+  audit checks these contracts along with graph references and language identity.
 - The shared social card is `public/og-default.png` (1200×630). Replace it only with another
   crawlable image of the same dimensions and update `app/seo.config.mjs` if the path changes.
 
