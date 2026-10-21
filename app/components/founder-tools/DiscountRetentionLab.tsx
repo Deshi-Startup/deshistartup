@@ -1,0 +1,22 @@
+'use client'
+import {useState} from 'react'
+import {discountComparison} from '../../lib/founder-tools.mjs'
+import {Workshop,Numeric,Results,Download,ErrorMessage,words,number,valuesOf,type Locale} from './Workshop'
+const defaults={customers:'100',price:'1000',cost:'700',acquisition:'100',discount:'200',repeatDiscount:'0',repeatOrders:'1.5',promoRate:'40',controlRate:'30'}
+export default function DiscountRetentionLab({locale='en'}:{locale?:Locale}){
+ const t=words(locale),[inputs,setInputs]=useState(defaults)
+ const n=valuesOf(inputs), r=discountComparison(n), money=(v:number)=>`${number(v,locale)} ${t('BDT','টাকা')}`
+ const fields:[keyof typeof defaults,string,number?,boolean?,number?][]=[
+ ['customers',t('Customers in each cohort','প্রতি দলে কাস্টমার')],['price',t('List price per order (BDT)','প্রতি অর্ডারের মূল দাম (টাকা)')],
+ ['cost',t('Variable cost per order (BDT)','প্রতি অর্ডারের সরাসরি খরচ (টাকা)')],['acquisition',t('Acquisition cost per customer, excluding discount (BDT)','ছাড় বাদে প্রতি নতুন কাস্টমার পেতে খরচ (টাকা)')],
+ ['discount',t('First-order promotion discount (BDT)','প্রথম অর্ডারে ছাড় (টাকা)'),Number.isFinite(n.price)?n.price:0,true],
+ ['repeatDiscount',t('Discount on every repeat order (BDT)','প্রতিটি পরের অর্ডারে ছাড় (টাকা)'),Number.isFinite(n.price)?n.price:0],
+ ['repeatOrders',t('Orders per returning customer in the window','এই সময়ের মধ্যে ফিরে আসা কাস্টমারের গড় পরের অর্ডার'),undefined,false,.1],
+ ['promoRate',t('Promotion cohort returning (%)','ছাড় পাওয়া দলের ফিরে আসার হার (%)'),100,true],['controlRate',t('Comparison cohort returning (%)','তুলনার দলের ফিরে আসার হার (%)'),100,true]]
+ const rows:[string,string][]=r?[[t('First order: promotion / comparison','প্রথম অর্ডার: ছাড়ের দল / তুলনার দল'),`${money(r.firstPromo)} / ${money(r.firstControl)}`],[t('Repeat-order contribution','পরের প্রতিটি অর্ডারে কন্ট্রিবিউশন'),money(r.repeatMargin)],[t('Contribution per acquired customer: promotion','প্রতি নতুন কাস্টমারের কন্ট্রিবিউশন: ছাড়ের দল'),money(r.promo)],[t('Contribution per acquired customer: comparison','প্রতি নতুন কাস্টমারের কন্ট্রিবিউশন: তুলনার দল'),money(r.control)],[t('Total contribution: promotion / comparison','মোট কন্ট্রিবিউশন: ছাড়ের দল / তুলনার দল'),`${money(r.promoTotal)} / ${money(r.controlTotal)}`]]:[]
+ const verdict=r?(r.requiredRate===null?t('Repeat orders add no positive contribution at these inputs. There is no useful repeat-rate hurdle.','এই হিসাবে পরের অর্ডার থেকে বাড়তি কন্ট্রিবিউশন আসছে না। ফিরে আসার হার বাড়িয়ে লাভ হবে, এমন সীমা দেখানো যায় না।'):r.requiredRate>100?t('Even 100% returning would not match the comparison cohort under these assumptions.','এই ধারণাগুলো ঠিক থাকলে সবাই ফিরে এলেও তুলনার দলের সমান কন্ট্রিবিউশন হবে না।'):`${t('Promotion cohort needs a returning rate of','তুলনার দলের সমান হতে ছাড়ের দলের ফিরে আসার হার লাগবে')} ${number(r.requiredRate,locale)}%.`):''
+ return <Workshop title={t('Does the discount pay back?','ছাড়ের খরচ কি উঠে আসছে?')} locale={locale}>
+ <div className="founder-lab__grid">{fields.map(([key,label,max,slider,step])=><Numeric key={key} label={label} value={inputs[key]} max={max} slider={slider} step={step} onChange={v=>setInputs({...inputs,[key]:v})}/>)}</div>
+ {r?<><Results rows={rows} locale={locale}/><p className="founder-lab__verdict" role="status">{verdict}</p><p>{t('Scenario arithmetic, not causal uplift or a forecast. Both cohorts share price, costs and repeat-order frequency here. Use complete equal-length windows; contribution is before fixed costs.','এটি সম্ভাব্য পরিস্থিতির হিসাব। ছাড়ের কারণে ফল বদলেছে, এমন প্রমাণ বা পূর্বাভাস নয়। দুই দলের দাম, খরচ ও পরের অর্ডারের গড় সংখ্যা এখানে একই। সবার জন্য সমান ও সম্পূর্ণ সময় নিন। স্থায়ী খরচ এখনো বাদ যায়নি।')}</p><Download locale={locale} name="discount-retention" text={`# ${t('Promotion worksheet','ছাড়ের হিসাব')}\n\n${fields.map(([k,label])=>`${label}: ${inputs[k]}`).join('\n')}\n\n${rows.map(([k,v])=>`${k}: ${v}`).join('\n')}\n\n${verdict}\n\n${t('Observation window / acquisition dates:\nData source:\nConfounders (channel, season, product):\nDecision and next test:\nThese are scenario results, not causal effects.','পর্যবেক্ষণের সময় / প্রথম কেনার তারিখ:\nতথ্যের উৎস:\nঅন্য পার্থক্য (চ্যানেল, মৌসুম, পণ্য):\nসিদ্ধান্ত ও পরের টেস্ট:\nএটি পরিস্থিতির হিসাব, কারণের প্রমাণ নয়।')}`}/></>:<ErrorMessage locale={locale}/>}
+ </Workshop>
+}

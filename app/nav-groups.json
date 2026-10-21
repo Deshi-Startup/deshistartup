@@ -259,7 +259,7 @@
    "en": "Product & Technology",
    "slugs": [
     "building-basics",
-    "no-code-mvp",
+    "no-code-mvp", "ai-feature-evaluation",
     "tech-stack",
     "bangla-ux",
     "bangla-ux-writing",
@@ -455,9 +455,9 @@
    "bn": "মেট্রিক্স ও ড্যাশবোর্ড",
    "en": "Metrics & Dashboards",
    "slugs": [
-    "metrics-101",
+    "metrics-101", "startup-analytics",
     "cac-ltv-churn",
-    "cohort-retention",
+    "cohort-retention", "discount-retention",
     "unit-economics",
     "e-commerce",
     "marketplace",
