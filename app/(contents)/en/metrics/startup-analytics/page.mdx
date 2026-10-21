@@ -1,0 +1,121 @@
+---
+title: "Your First 30 Days of Startup Analytics"
+description: "Build a small measurement plan, define useful events, check your data and run a weekly review. Includes a four-week roadmap and downloadable plan."
+---
+
+import AnalyticsPlanBuilder from '@/app/components/founder-tools/AnalyticsPlanBuilder'
+
+# Your First 30 Days of Startup Analytics
+
+> **In short:** Pick one customer action that represents useful work. Define exactly when it happens, collect only the information needed to check it, and reconcile the records before building a dashboard. End the month with a decision and an owner, not a larger pile of charts.
+
+Use this guide when your first customers are trying a product or a service you run by hand. You need access to the people delivering the work and its source records. A private spreadsheet is enough for a manual trial; a software product will also need someone who can add and test events. If you have no customers yet, define the plan now and test it with clearly labelled test accounts.
+
+**Analytics** means using recorded activity to answer a question. An **event** is a record of something that happened, such as a stock check being completed. A **property** adds context to that record, such as the product version. A **tracking plan** tells the team what each event means and why it exists. Twilio's implementation guidance recommends agreeing that plan and consistent names before expanding collection.[^tracking-plan]
+
+The four-week schedule below is a suggested work plan, not a promise that integration takes thirty days. Reserve a short working session for definitions, time with the operator or developer for implementation, and a weekly review. Staff time is the main initial cost; paid analytics software is optional.
+
+## Start with a decision the numbers could change
+
+Imagine Rupa in Rajshahi testing a stock-check service for shops. Her question is: “Can a new shop complete a useful stock check within seven days of its first invitation?” A login is not the useful action. A finished check that the shop owner accepts is.
+
+Write the metric before choosing software:
+
+```text
+Decision: improve setup or invite another small group?
+Eligible group: shops receiving their first valid invitation this week.
+Success: a stock check completed and accepted within seven days of invitation.
+Numerator: distinct eligible shops that achieved that success.
+Denominator: all eligible invited shops whose seven-day window has ended.
+Exclusions: documented test accounts and duplicate invitations only.
+Owner: Rupa. Review: each Monday, using only mature windows.
+```
+
+Do not exclude shops merely because they did not open the invitation. That would make setup appear easier. If an invitation was invalid, record the exclusion and reason. A shop receiving the invitation yesterday cannot yet be counted as a seven-day failure.
+
+## Week 1: name the work and its source
+
+Use an internal shop ID rather than the owner's phone number in analysis. Keep any operational contact list separate with limited access. An internal ID can still identify a customer when joined to other records; it is not automatically anonymous.
+
+For Rupa, these events describe different steps. The firing rule says exactly what must happen before a row is written.
+
+| Event | Record it when | Required context |
+|---|---|---|
+| `Shop Invited` | The first valid invitation is sent | shop ID, invitation ID, time, source |
+| `Stock Check Started` | A new check is created | shop ID, check ID, time, version |
+| `Stock Check Completed` | The required stock rows pass validation and are saved | shop ID, check ID, time, version |
+| `Stock Check Accepted` | The shop confirms the result is usable | shop ID, check ID, time, confirmation source |
+
+Completion and acceptance answer different questions. Keep both so a saved but unusable report cannot masquerade as value. Give each event a stable event ID; retrying delivery of the same event should not create another business action.
+
+For each event, add an owner, property types, allowed values and a test case to your plan. Record timestamps in one documented format with timezone information. Keep the actual action time separate from the time the record reached your analytics system. Choose one reporting timezone, such as Asia/Dhaka, and use it consistently at day boundaries.
+
+## Week 2: implement and deliberately test failures
+
+A manual service can record events in a restricted log. Software can emit them from the system that confirms the action. A button click alone does not confirm that a save or payment succeeded. This guide defines the measurement contract; the developer should choose the implementation for your stack.
+
+Run these checks with made-up accounts before counting real customers:
+
+1. Complete one normal stock check. Confirm each expected event and ID appears.
+2. Retry sending the completion record. Confirm the same check is counted once.
+3. Abandon a check. It must not become a completed or accepted check.
+4. Submit a record without a shop ID. Quarantine or reject it and alert the owner.
+5. Complete an action across midnight. Confirm it lands in the intended reporting day.
+6. Label staff/demo accounts so they stay out of the customer metric.
+
+Keep an issue log with the observed record, expected record and person fixing it. Do not put customer names, message bodies or phone numbers into that log when an internal ID and redacted example will do. Decide access and deletion rules before expanding collection.
+
+## Week 3: reconcile the source and inspect a cohort
+
+A **cohort** is a defined group of customers sharing a starting event or time. For Rupa, it is the twenty shops first invited in one week, after every shop's seven-day window has ended. The following counts are invented teaching data from that same group.
+
+| Step within seven days | Distinct shops | Share of invited shops |
+|---|---:|---:|
+| Invited | 20 | 100% |
+| Started a stock check | 14 | 70% |
+| Completed a stock check | 10 | 50% |
+| Accepted a stock check | 8 | 40% |
+
+Eight divided by twenty gives 40% accepted, not eight divided by ten. The second ratio would answer a different question: acceptance among completers. Keep the denominator beside every rate.
+
+<DataBars max={20} unit=" shops" data={[{label:"Invited",value:20},{label:"Started",value:14},{label:"Completed",value:10},{label:"Accepted",value:8}]} />
+
+Six invited shops never started. Four starters did not finish, and two completers did not accept. These are places to investigate, not evidence of why people stopped. Ask a few shops what happened and inspect the relevant workflow.
+
+Compare the ten recorded completions with the operational source. If the source has twelve, investigate missing events or different definitions before presenting the funnel as reliable. Record late arrivals and corrections so last week's report does not silently change.
+
+## Week 4: write the decision, not just the rate
+
+Rupa learns from follow-up that some invited shops could not open the setup link. She fixes that problem and runs a separately labelled next cohort. The first cohort's 40% is a baseline, not a universal target or proof that the next group will behave the same way.
+
+This schedule connects each week to a deliverable:
+
+<Timeline ticks={["Week 1","Week 2","Week 3","Week 4"]} rows={[{label:"Define",spans:[{start:0,end:1,label:"Week 1: signed-off event plan"}]},{label:"Test",spans:[{start:1,end:2,label:"Week 2: checked test records"}]},{label:"Reconcile",spans:[{start:2,end:3,label:"Week 3: source-matched cohort"}]},{label:"Decide",spans:[{start:3,end:4,label:"Week 4: action and owner"}]}]} />
+
+If data collection is still broken in week three, repair it before making a product decision. The calendar is a planning aid, not a reason to claim certainty.
+
+## Build your own plan
+
+Use the editor to assemble a plain-text plan you can share with your team. The download opens in any text editor. It does not install tracking or validate your event implementation.
+
+<AnalyticsPlanBuilder locale="en" />
+
+Without the editor, copy these fields into a private document:
+
+```text
+Question and decision:
+Useful action / eligible population / observation window:
+Metric numerator / denominator / exclusions:
+Event name | exact trigger | IDs | properties and types | source | owner
+Test case | expected record | actual record | fix owner
+Reporting timezone / late-arrival policy:
+Weekly result | numerator / denominator | data caveat
+Decision | next action | owner | next review date
+Access / retention / deletion rules:
+```
+
+You are ready for the next group when one person can reproduce the metric from source records, another can explain its limits, and both know which action follows. Then use the [founder dashboard](/en/metrics/founder-dashboard) for monthly financial review and the [cohort guide](/en/metrics/cohort-retention) for repeat behaviour.
+
+## Relevant Sources
+
+[^tracking-plan]: [Twilio Segment, Getting Started Guide: tracking plans and event naming](https://www.twilio.com/docs/segment/getting-started/implementation-guide), checked 21 October 2026. The worksheet, schedule and shop example here are original teaching material; using Segment is not required.

@@ -4,6 +4,8 @@ description: "Assumption, metric, thresholds, how many people, how many days, an
 verified: 2026-07-30
 ---
 
+import ExperimentDecisionLab from '@/app/components/founder-tools/ExperimentDecisionLab'
+
 # The Experiment Plan: One Page to Fill In First
 
 > **Key Takeaway:** An experiment does not fail, an experiment without a plan is simply meaningless. Set the thresholds after the result arrives and any result can be turned into a good one, which is the most familiar trap there is. So fill in a few fields on one page before you start. Which assumption I am testing, what I will measure, at what number I proceed, at what number I stop, how many people the offer reaches, how many days it runs, and who does it. The page takes fifteen minutes, and it settles whether the experiment will hand you a decision or merely keep you busy.
@@ -103,6 +105,33 @@ Wording can change how people understand and respond to an offer, just as price 
 For a small team, start with one experiment to keep execution manageable. Parallel tests can be interpretable if assignment, exposure and outcomes are designed to avoid interference; overlapping uncontrolled changes are the problem.
 
 For example, If two experiments run on entirely separate groups and answer separate questions, they can run side by side. An advance test with shopkeepers on one side, a sign-up test with suppliers on the other. The people are different, so the results can be read separately.
+
+## When should you stop, change or continue?
+
+Keep the original plan beside the results. “Inconclusive” is a valid outcome: an unfinished observation window, incomplete reach or broken measurement is not evidence that customers rejected the offer. A breached safety, service or spending limit can require pausing immediately, regardless of the headline result.
+
+For the pharmacy example, keep the planned 24 owners, stop at one or fewer advances, and proceed at six or more. “Proceed” means the next bounded test, not building the whole product. The thresholds were illustrative choices made before results, not statistical significance cutoffs.
+
+This decision table assumes the original offer and measurement rule stayed unchanged:
+
+| Result | Decision | What to record |
+|---|---|---|
+| 6 advances from 24; full window; guardrails met | Proceed to a limited next test | Remaining payment, delivery and renewal still need evidence |
+| 4 advances from 24; full window; guardrails met | Review and change one assumption | Repeated objections and the next offer version |
+| 1 advance from 24; full window; guardrails met | Stop this version | Why the offer failed this rule; no claim that the entire market is absent |
+| Only 12 reached, or observation/data incomplete | Inconclusive | Missing evidence and whether continuing is feasible within the original cap |
+
+The middle band is not permission to tweak the result until it passes. Write what changed, why, and the next test's rules. If a guardrail fails, pause first and investigate even if six people paid.
+
+<ExperimentDecisionLab locale="en" />
+
+Download the record and add the assumption, offer version, date the thresholds were agreed, recruitment method and evidence links. The checker applies your rules; it does not judge whether those rules are sensible or the sample is representative.
+
+### A complete decision record
+
+For an illustrative result of four advances, record: “Four of 24 owners sent an advance during the full window. Costs stayed below the cap. We will inspect the reasons for non-payment, change one evidenced assumption and run a separately labelled test. We have not validated full-price payment or renewal.” Add an owner and review date.
+
+Do not repeatedly inspect a running test and stop on the first favourable fluctuation unless the design allowed that decision. Counts from a small convenience sample describe those participants. For an expensive rollout or a causal claim, get help designing the sample, comparison and analysis before collecting data.
 
 ## Common Mistakes
 
