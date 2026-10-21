@@ -1,5 +1,5 @@
 'use client'
-import { useId, type ReactNode } from 'react'
+import { useEffect, useId, useState, type ReactNode } from 'react'
 import './Workshop.css'
 export type Locale = 'en' | 'bn'
 export const words = (locale: Locale) => (en: string, bn: string) => locale === 'en' ? en : bn
@@ -7,11 +7,16 @@ export const number = (n: number, locale: Locale) => new Intl.NumberFormat(local
 export const valuesOf = (values: Record<string, string>) => Object.fromEntries(Object.entries(values).map(([k,v]) => [k, v.trim() === '' ? NaN : Number(v)]))
 export function Workshop({ title, locale, children }: { title: string; locale: Locale; children: ReactNode }) {
  const t=words(locale)
+ const [interactive, setInteractive] = useState(false)
+ useEffect(() => setInteractive(true), [])
  return <section className="founder-lab" aria-label={title} lang={locale} data-pagefind-ignore>
   <p className="founder-lab__eyebrow">{t('WORK IT OUT','নিজের হিসাব করুন')}</p><h3>{title}</h3>
   <p className="founder-lab__notice">{t('Illustrative defaults. Inputs stay in this page and are not saved or sent by this tool. Download your work before leaving.','শুরুর সংখ্যাগুলো শেখানোর উদাহরণ। এই টুল আপনার তথ্য সেভ করে না বা কোথাও পাঠায় না। পাতা বন্ধ করার আগে কাজটি ডাউনলোড করুন।')}</p>
   <noscript><p>{t('Editing needs JavaScript. The example, formulas and blank worksheets in the article remain usable.','ঘরগুলো বদলাতে জাভাস্ক্রিপ্ট লাগবে। লেখার উদাহরণ, সূত্র ও ফাঁকা ছক ব্যবহার করতে পারবেন।')}</p></noscript>
-  {children}
+  <fieldset className="founder-lab__controls" disabled={!interactive}>
+   <legend className="founder-lab__legend">{title}</legend>
+   {children}
+  </fieldset>
  </section>
 }
 export function Numeric({ label, value, onChange, max, step=1, slider=false, hint }: {label:string;value:string;onChange:(v:string)=>void;max?:number;step?:number;slider?:boolean;hint?:string}) {

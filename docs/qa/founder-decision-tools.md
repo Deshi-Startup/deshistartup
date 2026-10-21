@@ -20,7 +20,7 @@ All numbers are explicitly synthetic teaching inputs, not Bangladesh market benc
 - Zero successful AI tasks has undefined cost per success, not zero; zero paid B2B accounts has no usable contact forecast.
 - Discount outputs are contribution before fixed costs, for a fixed complete window; comparison is not causal uplift. Repeat frequency means additional orders among returners.
 - Experiment guardrail failure pauses the test; incomplete observations cannot produce proceed/stop conclusions from the primary count.
-- No chart-only information. Defaults server-render, result tables and prose remain; interactive changes require JavaScript.
+- No chart-only information. Defaults server-render, result tables and prose remain; inputs are disabled until hydration so no-JavaScript readers cannot edit values beside stale results. Interactive changes require JavaScript.
 - Page-specific imports preserve code splitting. Shared styles use existing theme tokens, keyboard focus, accessible labels and responsive grids.
 
 ## Required human QA before merge
@@ -31,3 +31,10 @@ All numbers are explicitly synthetic teaching inputs, not Bangladesh market benc
 - Review every model assumption and verify that users understand scenario results versus evidence.
 
 Automated and browser verification results belong in the PR description. A green build is not a substitute for the human reality gate in EDITORIAL.md.
+
+## Follow-up hardening
+
+- Reject missing required numeric inputs explicitly, overflow in the full-repeat contribution denominator, and B2B forecasts outside JavaScript's safe integer range. These must not display a plausible result.
+- Require actual booleans for experiment completion and guardrail gates; strings such as `"false"` cannot qualify as completed observation.
+- Keep static example results and worksheet downloads available without JavaScript, with calculator inputs disabled until hydration.
+- Browser installation was retried but the Chromium download failed. Interactive browser and human cold-reader checks remain outstanding; neither is claimed as passed.

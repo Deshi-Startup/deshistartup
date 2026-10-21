@@ -44,3 +44,18 @@ test('B2B forecast is undefined with no paid evidence and validates nested cohor
  assert.equal(b2bPipeline([50,30,20,12,10,11],10),null)
  assert.equal(b2bPipeline([50,30,20,12,10,8],0),null)
 })
+
+test('extreme inputs do not produce a false zero-percent hurdle or imprecise contact count', () => {
+ assert.equal(discountComparison({...promotion,customers:1,price:1e308,cost:0,acquisition:0,discount:0,repeatOrders:2,promoRate:0,controlRate:0}),null)
+ assert.equal(b2bPipeline([Number.MAX_SAFE_INTEGER,1,1,1,1,1],2),null)
+})
+test('missing model inputs and non-boolean experiment gates are rejected', () => {
+ for(const key of Object.keys(promotion)) {
+  const input={...promotion};delete input[key];assert.equal(discountComparison(input),null,key)
+ }
+ for(const key of Object.keys(ai)) {
+  const input={...ai};delete input[key];assert.equal(aiTaskCost(input),null,key)
+ }
+ assert.equal(experimentDecision({...trial,complete:'false'}),null)
+ assert.equal(experimentDecision({...trial,guardrail:undefined}),null)
+})
