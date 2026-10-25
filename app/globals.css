@@ -2342,7 +2342,10 @@ a.is-stub-link:hover {
     padding: 10px 18px 0;
   }
 
-  .article-lede { gap: 12px; }
+  .article-lede {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
   .breadcrumbs li:not(:last-child) { display: none; }
   .breadcrumbs li + li::before { display: none; }
   .breadcrumb-back { display: block; }

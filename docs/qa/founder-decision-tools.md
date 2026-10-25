@@ -24,6 +24,7 @@ All numbers are explicitly synthetic teaching inputs, not Bangladesh market benc
 - No chart-only information. Defaults server-render, result tables and prose remain; inputs are disabled until hydration so no-JavaScript readers cannot edit values beside stale results. Interactive changes require JavaScript.
 - Page-specific imports preserve code splitting. Shared styles use existing theme tokens, keyboard focus, accessible labels, responsive grids and slider targets at least 44 px high.
 - The MVP planner's article tables use labelled, keyboard-focusable TableScroll containers so enlarged text cannot widen the whole page. The contribution editor protects the wrapper tags while table cells remain editable.
+- The shared mobile page-options and contents controls wrap when enlarged text cannot fit on one row.
 - Numeric tools explain the required 0–9 digits and decimal point before the inputs. Bangla results use Bangla numerals; editable number fields follow the browser's numeric-input format.
 
 ## Language review and field testing
