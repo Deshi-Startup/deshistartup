@@ -1,6 +1,6 @@
 # Founder decision tools: editorial briefs and QA
 
-Scope: three new bilingual guides and additive improvements to two existing guides. Existing contributor prose is preserved. Proposed for QA, not certified as cold-reader tested.
+Scope: three new bilingual guides and additive improvements to two existing guides. Existing contributor prose is preserved. Not certified as cold-reader tested.
 
 | Route | Reader question / starting knowledge | Single job and output | Dangerous misunderstanding | Visual and evidence brief |
 |---|---|---|---|---|
@@ -24,15 +24,20 @@ All numbers are explicitly synthetic teaching inputs, not Bangladesh market benc
 - No chart-only information. Defaults server-render, result tables and prose remain; inputs are disabled until hydration so no-JavaScript readers cannot edit values beside stale results. Interactive changes require JavaScript.
 - Page-specific imports preserve code splitting. Shared styles use existing theme tokens, keyboard focus, accessible labels, responsive grids and slider targets at least 44 px high.
 - The MVP planner's article tables use labelled, keyboard-focusable TableScroll containers so enlarged text cannot widen the whole page. The contribution editor protects the wrapper tags while table cells remain editable.
+- Numeric tools explain the required 0–9 digits and decimal point before the inputs. Bangla results use Bangla numerals; editable number fields follow the browser's numeric-input format.
 
-## Required human QA before merge
+## Language review and field testing
 
-- Have target founders use each tool on an ordinary phone (320/360 px); record misunderstandings, time to first useful action and their resulting decision.
-- Native Bangla editorial review, particularly technical terms and numeric-input expectations. The original draft followed STYLE.md; follow-up corrections also use translate-bangla-guide/deshi-bangla. An agent language review does not complete native-reader QA.
-- Check keyboard/range controls, screen-reader verdicts, enlarged text, dark mode, downloads, and no-JavaScript reading.
-- Review every model assumption and verify that users understand scenario results versus evidence.
+The 25 October 2026 agent review used `deshi-bangla` and `translate-bangla-guide` across all five guides, their UI and worksheet copy, the synthetic Bangla cases, and the added cross-links. Meaning, terminology, sentence structure, read-aloud and sibling-summary passes preserve the English conditions, numbers and sources. Corrections distinguish speech recognition from identifying a voice, held-out examples from customer groups, and delivery capacity from assigning work. Numeric-entry instructions and worksheet labels are explicit. This is a skill-based editorial pass, not a native-human or target-reader pass.
 
-Automated and browser verification results belong in the PR description. A green build is not a substitute for the human reality gate in EDITORIAL.md.
+Field checks remain follow-up work for this maintainer-authorized release:
+
+- Have target founders use each tool on an ordinary phone (320/360 px); record misunderstandings, dangerous mistakes, time to first useful action and their resulting decision.
+- Ask a native Bangla reader to check the terms and numeric-input instructions in context.
+- Check actual screen-reader announcements and physical-phone enlarged-text/appearance behavior. Record desktop download/open testing separately from phone testing.
+- Verify that readers understand every model assumption and distinguish scenario results from evidence.
+
+Automated and browser verification results belong in the PR description. These do not establish the human reality gate in EDITORIAL.md, which remains unverified.
 
 ## Follow-up hardening
 
