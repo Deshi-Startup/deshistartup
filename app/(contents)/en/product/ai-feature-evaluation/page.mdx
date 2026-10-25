@@ -1,0 +1,123 @@
+---
+title: "Before Adding AI: Test Accuracy, Cost and Failure Handling"
+description: "Evaluate a narrow AI feature with synthetic Bangla order examples, an acceptance rubric, failure drills and an interactive cost-per-successful-task worksheet."
+---
+
+import AiEvaluationLab from '@/app/components/founder-tools/AiEvaluationLab'
+
+# Before Adding AI: Test Accuracy, Cost and Failure Handling
+
+> **In short:** Define the exact job, write down what a correct result looks like, and test on examples that were not used to tune the feature. Count serious failures separately and include retries and human review in the cost. Keep the feature in a limited, supervised trial until the whole workflow passes your requirements.
+
+Use this guide when you are considering one bounded AI task, such as turning an order message into a draft for a person to check. It does not validate medical, credit, legal or other high-stakes decisions. You will prepare a small evaluation set, a scoring rule and a cost worksheet before paying for a larger integration.
+
+An **evaluation** is a repeatable test of a system against stated requirements. A **rubric** says how each result will be scored. A **baseline** is the current way of doing the same job, such as a person reading a message. NIST's AI Risk Management Framework treats testing, measurement and continuing risk management as part of the system lifecycle.[^nist-ai-rmf]
+
+Budget a preparation session to label cases, a separate scoring session, and an owner who can review failures. The time depends on task difficulty. The numerical costs in this guide are invented BDT teaching inputs, not model prices or staffing benchmarks.
+
+## Start with a draft order, not an autonomous purchase
+
+Imagine a Chattogram distributor receiving Bangla and mixed-language shop messages. The proposed feature extracts product, quantity and unit into a draft. A person confirms the draft before any order is placed. It must ask for clarification when product or unit is ambiguous and must leave missing prices unknown.
+
+Write the contract before trying prompts:
+
+```text
+Input: one message about one order request.
+Output: draft line items plus CREATE_DRAFT, CLARIFY, CANCEL_REQUEST or NO_ORDER.
+Success for clear requests: every requested product, quantity and unit is correct.
+Ambiguity: ask a specific clarification; do not invent a pack size or price.
+Cancellation: flag for a person; do not create a new order.
+Authority: draft only. No payment, stock reservation or external message is sent.
+```
+
+These action labels are our teaching schema, not a provider API. A draft that changes ten kilograms to ten sacks is a serious error even if its spelling looks perfect.
+
+## Build a labelled starter set
+
+A **label** is the expected answer written before inspecting the model output. Use invented messages initially; do not upload private customer conversations merely to make a demo realistic. If you later use permissioned real examples, restrict access, remove unnecessary personal data and check the provider's current retention and training settings.
+
+These cases show what the system must distinguish:
+
+| Synthetic input | Expected behaviour | What to watch |
+|---|---|---|
+| “চাল ১০ কেজি দিন” | Draft rice, 10, kg | Quantity and unit are both required |
+| “চিনি ২টা দিন” | Ask what unit “২টা” means | Do not guess packet size |
+| “oil 5 litre, sugar 3 kg” | Draft two correct line items | Mixed-language/product parsing |
+| “আগের অর্ডার বাতিল করুন” | Flag a cancellation request | Do not create an order |
+| “চাল ১০ না, ১২ কেজি দিন” | Draft rice, 12, kg | The correction overrides the earlier number |
+| “দাম কত?” | No order; ask which product if needed | A question is not a purchase |
+
+The downloadable set includes twelve cases, expected actions and line items. It is a starter checklist, not representative validation data or proof that an AI product is ready.
+
+[Download the synthetic evaluation set (.json)](/worksheets/ai-order-evaluation.json)
+
+Add cases from the actual workflow: misspellings, missing units, multiple items, cancellation, corrections and instructions embedded in untrusted messages. Treat message text as data; it cannot grant permission to skip review or take external action. If the feature accepts audio, test the complete audio-to-draft workflow too. Perfect typed examples cannot validate speech recognition.
+
+Keep development examples separate from a held-out set that you do not use to tune prompts. Record dataset, model, prompt, configuration and rubric versions. Have a second person check unclear labels before scoring.
+
+## Score more than one headline percentage
+
+Run the same cases through the baseline and the candidate feature. Compare complete outputs, not whether they sound plausible. A person should score the rubric; model self-confidence is not a substitute.
+
+Record each case like this:
+
+```text
+Case ID / slice (Bangla, mixed, ambiguity, correction, cancellation):
+Expected action and fields:
+Actual action and fields:
+Rubric pass? Why?
+Serious error? What consequence?
+Human review or correction needed? Minutes?
+Useful task completed after review?
+Latency / retries / all call cost:
+Model / prompt / rubric / dataset version:
+```
+
+A correct request for clarification can pass the safety rubric without completing an order. Keep **rubric pass rate**, **autonomous completion**, **completion after review** and **safe referral** separate. For example, nine correct outputs in ten tested cases describes those cases; it does not establish 90% reliability in production. A small set with no severe failures also does not prove such failures cannot occur.
+
+Before running the test, set task-specific acceptance conditions: acceptable error types, review capacity, maximum delay and total cost. A high average score must not cancel out a wrong-unit order that your workflow cannot safely catch.
+
+## Count the human work in the price
+
+Suppose the supervised workflow attempts 100 tasks. A person checks all 100, including the ten that still fail, and confirms every draft before an order is placed. After those checks, 90 tasks have a correctly completed business result. Quick confirmations and any corrections together take an average of two minutes per task. For the example, reviewer time is valued at BDT 300 per hour, all model calls including retries cost BDT 100, and allocated other costs are BDT 50.
+
+The cost calculation is:
+
+| Cost component | Working | BDT |
+|---|---|---:|
+| All model calls, including failed attempts | Recorded batch total | 100 |
+| Human checks and corrections, including failures | 100 × 2 ÷ 60 × 300 | 1,000 |
+| Other allocated costs | Recorded batch allocation | 50 |
+| Total | 100 + 1,000 + 50 | 1,150 |
+| Per successful task, rounded | 1,150 ÷ 90 | 12.78 |
+
+The result is about BDT 12.78 per successful task, not BDT 1 based only on model calls divided by attempts. Count every required confirmation and correction, plus the cost of unsuccessful tasks, in the numerator. If no tasks succeed, cost per success is undefined; reporting zero would hide failure.
+
+## Change the review workload and inspect the result
+
+The tool holds no provider prices. Enter your own measured totals in one currency. Count each task checked by a person once, including quick draft confirmations and failed attempts that need review. Include all checking and correction time in the average, and allocate hosting or other batch costs without counting them twice.
+
+<AiEvaluationLab locale="en" />
+
+The cost bars share a zero baseline and the table contains the same figures. Move the successful-task slider while holding the batch cost fixed to see why failures raise cost per useful result. This is a scenario, not a prediction of model performance. Compare it with the baseline's cost, quality and turnaround time; cheaper but unusable output is not a saving.
+
+## Rehearse failure before a limited release
+
+Test a provider timeout, malformed output, a repeated message and a model response that invents a price. The workflow should preserve the original request, show a clear pending/error state, and route the task to a person. Retrying the same request must not create a second order. Never turn an error into a success banner just because the API returned text.
+
+Start with a bounded supervised trial and explicit rollback conditions. Record the proportion reviewed, serious errors, waiting time and cost. Re-run the evaluation after a model, prompt, extraction schema or workflow change. Keep a person responsible for deciding whether new failures require stopping the trial.
+
+You are ready for that trial when:
+
+- The task, authority boundary and acceptance rubric are written.
+- A held-out set includes the difficult cases relevant to the actual users.
+- Failures and safe referrals are scored separately from completed tasks.
+- Cost includes failed attempts, retries and review time.
+- Timeout, duplicate and invalid-output drills have a working fallback.
+- Someone owns the review queue and rollback decision.
+
+For a manual first version, see [No-Code MVP](/en/product/no-code-mvp). Use the [experiment planner](/en/validation/mvp-experiment-planner) to define the trial's limits and the [analytics plan](/en/metrics/startup-analytics) to document its events.
+
+## Relevant Sources
+
+[^nist-ai-rmf]: [NIST, AI Risk Management Framework 1.0: Core](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/), checked 21 October 2026. This voluntary framework informs evaluation and monitoring; the order schema, examples and cost worksheet are original teaching material and do not constitute certification.

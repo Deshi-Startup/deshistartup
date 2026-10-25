@@ -1,0 +1,99 @@
+---
+title: "Discounts Bring Orders: Do Customers Come Back?"
+description: "Compare promotion cohorts over equal observation windows, separate repeat customers from repeat orders, and calculate contribution after discounts with an interactive worksheet."
+---
+
+import DiscountRetentionLab from '@/app/components/founder-tools/DiscountRetentionLab'
+
+# Discounts Bring Orders: Do Customers Come Back?
+
+> **In short:** A busy promotion can buy first orders without earning back its cost. Compare customers over the same time since their first fulfilled purchase, count repeat purchases with and without further discounts, and calculate contribution after all direct costs. A higher repeat rate alone does not establish a better promotion.
+
+Use this when you have identifiable customers, fulfilled orders and actual promotion costs. You will leave with a cohort comparison and a decision about the next test. If you only have campaign clicks or order requests, first match them to fulfilment, payments, cancellations and refunds.
+
+A **cohort** is a defined group of customers, such as people whose first fulfilled purchase used a particular offer. **Contribution** is sales after discounts minus the direct costs you assign to serving and acquiring those customers. It still has to cover fixed costs. **Incrementality** asks what happened because of an offer compared with what would have happened without it. An observational cohort table cannot answer that causal question by itself.
+
+## Prepare a customer-level worksheet
+
+Imagine a Dhaka household-goods startup comparing two first-purchase groups. One used a BDT 200 introductory discount; the other did not. All figures below are invented teaching inputs, not market benchmarks.
+
+Choose a fixed window, for example thirty days after each customer's first fulfilled order. Include only customers whose entire window has elapsed as of your reporting date. Keep those still waiting in a separate “not yet mature” group. Do not compare a thirty-day promotion group with a seven-day comparison group.
+
+For each acquired customer, record this information:
+
+```text
+Internal customer ID | first fulfilled order date | first offer / channel
+Observation end date | window complete?
+First-order net sales | first-order direct cost | acquisition cost excluding discount
+Additional fulfilled orders | repeat net sales | repeat direct cost
+Repeat orders using another discount | refunds / return costs
+Contribution in window | data limitations
+```
+
+Use a stable internal customer ID and document account merges or shared accounts. Count **returning customers** once even if they order repeatedly. Count **additional orders** separately. A refunded first order and an entirely failed delivery require an explicit treatment; do not quietly drop their campaign costs. Reconcile the customer sheet back to the full campaign ledger.
+
+## Higher retention can still leave less money
+
+In this simplified example, every order has a BDT 1,000 list price and BDT 700 direct cost. Acquiring a new customer costs BDT 100, excluding the introductory discount. Each returning customer places an average of 1.5 additional orders inside the window, with no further discount. These shared assumptions make the mechanics visible; your actual groups may differ.
+
+The comparison is:
+
+| Thirty-day measure | Introductory discount | No introductory discount |
+|---|---:|---:|
+| Acquired customers | 100 | 100 |
+| Returning customers | 40 | 30 |
+| Returning rate | 40% | 30% |
+| Additional orders | 60 | 45 |
+| First-order contribution per acquired customer | BDT 0 | BDT 200 |
+| Repeat contribution per acquired customer | BDT 180 | BDT 135 |
+| Total contribution per acquired customer | BDT 180 | BDT 335 |
+
+The promoted group returns more often, but contributes BDT 155 less per acquired customer. That is BDT 15,500 less across a hundred customers. This is a comparison under the stated assumptions, not an estimate of the discount's causal effect.
+
+<DataBars max={100} unit="% returning" data={[{label:"Introductory discount",value:40},{label:"No introductory discount",value:30}]} />
+
+The retention bars show one part of the answer. The table's contribution rows show why a ten-percentage-point retention advantage does not automatically cover the discount.
+
+## Show the calculation before changing the offer
+
+For a promoted customer's first order:
+
+**1,000 − 200 discount − 700 direct cost − 100 acquisition = BDT 0.**
+
+For repeat orders, each order contributes **1,000 − 700 = BDT 300**. Forty percent return and each returner places 1.5 additional orders: **0.40 × 1.5 × 300 = BDT 180** per acquired customer. Total contribution is therefore **0 + 180 = BDT 180**.
+
+Without the introductory discount, the first order contributes **1,000 − 700 − 100 = BDT 200**. Repeat contribution is **0.30 × 1.5 × 300 = BDT 135**. Total: **200 + 135 = BDT 335**.
+
+To match BDT 335 with a first-order contribution of zero, the promoted group needs **335 ÷ (1.5 × 300) = 74.44%** returning, holding every other assumption constant. This hurdle is arithmetic, not a recommended retention target. If each repeat order loses money, more repeats can deepen the loss.
+
+## Try your own assumptions
+
+Use the sliders to see how the introductory discount and returning rate interact. Here, cost per order must include the direct costs you want to allocate: goods, fulfilment, packaging, payment fees and a documented allocation of return/refund losses. Do not subtract the same loss twice. Acquisition cost excludes the discount because the model already deducts it from revenue.
+
+<DiscountRetentionLab locale="en" />
+
+This teaching model assumes the same list price, unit costs, acquisition cost and repeat-order frequency for both groups. For a real campaign, sum each group's actual net sales and costs in the worksheet; do not force unequal baskets or delivery costs into shared averages. Repeat behaviour beyond the window is excluded. The result is not lifetime value or cash in the bank.
+
+## Separate “returned” from “returned without another offer”
+
+Split each group's additional orders by whether they required another discount. If returning customers only buy with a second subsidy, measure that subsidy before calling them profitable repeat customers. Also inspect product mix, delivery experience, source channel and season: a festival acquisition group may behave differently from ordinary-week customers.
+
+The no-discount group may have had stronger intent before the campaign. To estimate the offer's effect, plan a fair experiment in advance where eligible units are randomly assigned to comparable conditions, with an appropriate sample size and observation period. Random assignment is a foundation of randomized experimental design.[^randomized-design] Keep an offer-exposure analysis as well as a purchaser-cohort analysis: restricting attention to people who purchased can hide the offer's effect on acquisition itself. Get statistical help before making a large spending decision from a small test.
+
+## Turn the result into a bounded next test
+
+In the worked example, investigate whether a smaller introductory discount retains enough contribution while still producing paid, fulfilled purchases. Set a spending cap, define the observation window and record refund/service guardrails before launching. You might decide to stop, narrow the audience or change the offer; the table does not choose automatically.
+
+Before approving another promotion, check that:
+
+- Each cohort has a complete equal-length window and documented starting event.
+- Returning customers and additional orders are separate counts.
+- Discounts, direct costs, acquisition and failed-order losses are reconciled without duplication.
+- The comparison's channel, season and product differences are visible.
+- The next decision states its evidence limits, owner and review date.
+
+For deeper definitions, use [cohort retention](/en/metrics/cohort-retention), [unit economics](/en/metrics/unit-economics) and the [experiment decision record](/en/validation/mvp-experiment-planner).
+
+## Relevant Sources
+
+[^randomized-design]: [NIST/SEMATECH, Completely randomized designs](https://www.itl.nist.gov/div898/handbook/pri/section3/pri331.htm), checked 21 October 2026. Supports the experimental-design distinction; the cohort figures and worksheet are original illustrative arithmetic.

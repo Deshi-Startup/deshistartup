@@ -4,6 +4,9 @@ description: "Assumption, metric, thresholds, how many people, how many days, an
 verified: 2026-07-30
 ---
 
+import ExperimentDecisionLab from '@/app/components/founder-tools/ExperimentDecisionLab'
+import TableScroll from '@/app/components/founder-tools/TableScroll'
+
 # The Experiment Plan: One Page to Fill In First
 
 > **Key Takeaway:** An experiment does not fail, an experiment without a plan is simply meaningless. Set the thresholds after the result arrives and any result can be turned into a good one, which is the most familiar trap there is. So fill in a few fields on one page before you start. Which assumption I am testing, what I will measure, at what number I proceed, at what number I stop, how many people the offer reaches, how many days it runs, and who does it. The page takes fifteen minutes, and it settles whether the experiment will hand you a decision or merely keep you busy.
@@ -50,12 +53,16 @@ Reason:
 
 Small samples can be described with counts and percentages, but estimates are uncertain. A convenience sample of twenty people does not represent the whole market, regardless of how precisely you calculate its rate.
 
+<TableScroll label="Small sample results">
+
 | What you got | What can be said | What cannot |
 |---|---|---|
 | 0 of 20 paid | No payments in this sample; investigate offer, group and delivery | "There is no market" |
 | 3 of 20 paid | Observed conversion is 15% (3/20); check repeatability | "The market converts at 15%" |
 | 12 of 20 paid | Promising in this sample; check delivery costs and repeatability | "More than half the market will buy" |
 | 2 of 5 paid | Observed conversion is 40% (2/5), with high uncertainty | A reliable population estimate |
+
+</TableScroll>
 
 Always show the numerator, denominator, recruitment method and offer terms alongside a rate. “Two of eight sent an advance (25%)” describes the observations; it does not establish that 25% of the target market will buy.
 
@@ -88,6 +95,8 @@ These thresholds are illustrative decision rules, not statistical proof. A Tk 30
 
 Splitting the week like this keeps the work from stalling.
 
+<TableScroll label="Weekly experiment schedule">
+
 | Day | Work |
 |---|---|
 | Mon | Fill the page, write out the words of the offer |
@@ -95,6 +104,8 @@ Splitting the week like this keeps the work from stalling.
 | Thu | Look at what you are hearing, record feedback; keep the offer consistent or label a separate version |
 | Sat and Sun | Reach the other half |
 | Mon | Write the result, fill in the decision box |
+
+</TableScroll>
 
 Wording can change how people understand and respond to an offer, just as price can. Keep the offer consistent within a comparison. If a correction is necessary, label the new version and report the groups separately; do not pool them as one unchanged experiment.
 
@@ -104,7 +115,40 @@ For a small team, start with one experiment to keep execution manageable. Parall
 
 For example, If two experiments run on entirely separate groups and answer separate questions, they can run side by side. An advance test with shopkeepers on one side, a sign-up test with suppliers on the other. The people are different, so the results can be read separately.
 
+## When should you stop, change or continue?
+
+Keep the original plan beside the results. “Inconclusive” is a valid outcome: an unfinished observation window, incomplete reach or broken measurement is not evidence that customers rejected the offer. A breached safety, service or spending limit can require pausing immediately, regardless of the headline result.
+
+For the pharmacy example, keep the planned 24 owners, stop at one or fewer advances, and proceed at six or more. “Proceed” means the next bounded test, not building the whole product. The thresholds were illustrative choices made before results, not statistical significance cutoffs.
+
+This decision table assumes the original offer and measurement rule stayed unchanged:
+
+<TableScroll label="Experiment decisions">
+
+| Result | Decision | What to record |
+|---|---|---|
+| 6 advances from 24; full window; guardrails met | Proceed to a limited next test | Remaining payment, delivery and renewal still need evidence |
+| 4 advances from 24; full window; guardrails met | Review and change one assumption | Repeated objections and the next offer version |
+| 1 advance from 24; full window; guardrails met | Stop this version | Why the offer failed this rule; no claim that the entire market is absent |
+| Only 12 reached, or observation/data incomplete | Inconclusive | Missing evidence and whether continuing is feasible within the original cap |
+
+</TableScroll>
+
+The middle band is not permission to tweak the result until it passes. Write what changed, why, and the next test's rules. If a guardrail fails, pause first and investigate even if six people paid.
+
+<ExperimentDecisionLab locale="en" />
+
+Download the record and add the assumption, offer version, date the thresholds were agreed, recruitment method and evidence links. The checker applies your rules; it does not judge whether those rules are sensible or the sample is representative.
+
+### A complete decision record
+
+For an illustrative result of four advances, record: “Four of 24 owners sent an advance during the full window. Costs stayed below the cap. We will inspect the reasons for non-payment, change one evidenced assumption and run a separately labelled test. We have not validated full-price payment or renewal.” Add an owner and review date.
+
+Do not repeatedly inspect a running test and stop on the first favourable fluctuation unless the design allowed that decision. Counts from a small convenience sample describe those participants. For an expensive rollout or a causal claim, get help designing the sample, comparison and analysis before collecting data.
+
 ## Common Mistakes
+
+<TableScroll label="Common experiment mistakes">
 
 | Mistake | What follows |
 |---|---|
@@ -115,6 +159,8 @@ For example, If two experiments run on entirely separate groups and answer separ
 | Changing the price mid-way | The two halves stop being comparable |
 | Percentages off small numbers | False confidence, caught in the deck |
 | No end date | The experiment becomes a project and the decision slips |
+
+</TableScroll>
 
 ## Checklist
 
