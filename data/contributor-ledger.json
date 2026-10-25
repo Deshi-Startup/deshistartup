@@ -561,6 +561,64 @@
           ]
         }
       ]
+    },
+    {
+      "id": "github-pr-140",
+      "acceptedAt": "2026-10-16",
+      "sourceType": "github-pr",
+      "sourceRef": 140,
+      "locales": [
+        "bn",
+        "en"
+      ],
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/140",
+      "summary": {
+        "bn": "বাজারের তথ্য, ম্যাপ ও আকারের হিসাব রিসার্চ ও সোর্স অংশে যোগ করা",
+        "en": "Added market facts, maps and size estimates under Research & sources"
+      },
+      "targetPaths": [],
+      "credits": [
+        {
+          "mode": "anonymous",
+          "roles": [
+            "researcher",
+            "product"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "github-pr-145",
+      "acceptedAt": "2026-10-25",
+      "sourceType": "github-pr",
+      "sourceRef": 145,
+      "locales": [
+        "bn",
+        "en"
+      ],
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/145",
+      "summary": {
+        "bn": "তিনটি গাইড বাংলায় ও ইংরেজিতে লেখা, আরও দুটি গাইডে উদাহরণ যোগ করা এবং হিসাব ও সিদ্ধান্ত নেওয়ার টুল তৈরি করা",
+        "en": "Authored and translated three guides, expanded two guides and built interactive decision tools"
+      },
+      "targetPaths": [
+        "/metrics/startup-analytics",
+        "/metrics/discount-retention",
+        "/b2b/sme-sales",
+        "/validation/mvp-experiment-planner",
+        "/product/ai-feature-evaluation"
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "sajid-hasan-sifat",
+          "roles": [
+            "author",
+            "translator",
+            "product"
+          ]
+        }
+      ]
     }
   ]
 }
