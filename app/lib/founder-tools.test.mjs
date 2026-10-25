@@ -12,15 +12,28 @@ test('more repeats can deepen a loss and no profitable repeat hurdle is invented
  const x={...promotion,repeatDiscount:400}
  assert.ok(discountComparison({...x,promoRate:80}).promo<discountComparison(x).promo)
  assert.equal(discountComparison(x).requiredRate,null)
- assert.equal(discountComparison({...promotion,repeatOrders:0}).requiredRate,null)
+ assert.equal(discountComparison({...promotion,repeatOrders:0,promoRate:0,controlRate:0}).requiredRate,null)
  assert.ok(discountComparison({...promotion,discount:900}).requiredRate>100)
 })
 test('promotion input validation rejects impossible amounts, missing values and overflow', () => {
  for(const x of [{customers:0},{customers:1.5},{discount:1001},{promoRate:101},{price:NaN},{cost:-1},{customers:Infinity},{repeatOrders:1e308}]) assert.equal(discountComparison({...promotion,...x}),null)
 })
-const ai={tasks:100,successful:90,reviewed:30,minutes:2,hourly:300,inference:100,overhead:50}
+test('returning purchasers need at least one additional order each', () => {
+ for (const repeatOrders of [0,0.1,0.9]) {
+  for (const rates of [{promoRate:40,controlRate:30},{promoRate:40,controlRate:0},{promoRate:0,controlRate:30}]) {
+   assert.equal(discountComparison({...promotion,...rates,repeatOrders}),null)
+  }
+ }
+ assert.equal(discountComparison({...promotion,repeatOrders:0.1,promoRate:0,controlRate:0}),null)
+ const noReturners=discountComparison({...promotion,repeatOrders:0,promoRate:0,controlRate:0})
+ assert.equal(noReturners.promo,noReturners.firstPromo)
+ assert.equal(noReturners.control,noReturners.firstControl)
+ assert.ok(discountComparison({...promotion,repeatOrders:1}))
+ assert.ok(discountComparison({...promotion,repeatOrders:1.5}))
+})
+const ai={tasks:100,successful:90,reviewed:100,minutes:2,hourly:300,inference:100,overhead:50}
 test('AI cost includes failures, retries and human work in numerator',()=>{
- const r=aiTaskCost(ai);assert.equal(r.humanCost,300);assert.equal(r.total,450);assert.equal(r.perSuccess,5)
+ const r=aiTaskCost(ai);assert.equal(r.humanCost,1000);assert.equal(r.total,1150);assert.equal(r.perSuccess,1150/90)
  assert.equal(aiTaskCost({...ai,successful:0}).perSuccess,null)
  assert.equal(aiTaskCost({...ai,reviewed:101}),null)
  assert.equal(aiTaskCost({...ai,successful:101}),null)

@@ -79,23 +79,23 @@ Before running the test, set task-specific acceptance conditions: acceptable err
 
 ## Count the human work in the price
 
-Suppose the supervised workflow attempts 100 tasks. After human review, 90 have a correctly completed business result. Thirty tasks need two minutes of review each. For the example, reviewer time is valued at BDT 300 per hour, all model calls including retries cost BDT 100, and allocated other costs are BDT 50.
+Suppose the supervised workflow attempts 100 tasks. A person checks all 100, including the ten that still fail, and confirms every draft before an order is placed. After those checks, 90 tasks have a correctly completed business result. Quick confirmations and any corrections together take an average of two minutes per task. For the example, reviewer time is valued at BDT 300 per hour, all model calls including retries cost BDT 100, and allocated other costs are BDT 50.
 
 The cost calculation is:
 
 | Cost component | Working | BDT |
 |---|---|---:|
 | All model calls, including failed attempts | Recorded batch total | 100 |
-| Human review | 30 × 2 ÷ 60 × 300 | 300 |
+| Human checks and corrections, including failures | 100 × 2 ÷ 60 × 300 | 1,000 |
 | Other allocated costs | Recorded batch allocation | 50 |
-| Total | 100 + 300 + 50 | 450 |
-| Per successful task | 450 ÷ 90 | 5 |
+| Total | 100 + 1,000 + 50 | 1,150 |
+| Per successful task, rounded | 1,150 ÷ 90 | 12.78 |
 
-The result is BDT 5 per successful task, not BDT 1 based only on model calls divided by attempts. Count the cost of unsuccessful tasks in the numerator. If no tasks succeed, cost per success is undefined; reporting zero would hide failure.
+The result is about BDT 12.78 per successful task, not BDT 1 based only on model calls divided by attempts. Count every required confirmation and correction, plus the cost of unsuccessful tasks, in the numerator. If no tasks succeed, cost per success is undefined; reporting zero would hide failure.
 
 ## Change the review workload and inspect the result
 
-The tool holds no provider prices. Enter your own measured totals in one currency. Include all review and correction time in the average, and allocate hosting or other batch costs without counting them twice.
+The tool holds no provider prices. Enter your own measured totals in one currency. Count each task checked by a person once, including quick draft confirmations and failed attempts that need review. Include all checking and correction time in the average, and allocate hosting or other batch costs without counting them twice.
 
 <AiEvaluationLab locale="en" />
 

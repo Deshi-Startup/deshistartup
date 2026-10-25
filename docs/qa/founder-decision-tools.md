@@ -18,15 +18,16 @@ All numbers are explicitly synthetic teaching inputs, not Bangladesh market benc
 - Download plain UTF-8 Markdown; evaluation dataset is synthetic JSON. No spreadsheet formula execution.
 - Invalid, blank, non-finite, negative, impossible nested counts and out-of-range percentages must not yield plausible results.
 - Zero successful AI tasks has undefined cost per success, not zero; zero paid B2B accounts has no usable contact forecast.
-- Discount outputs are contribution before fixed costs, for a fixed complete window; comparison is not causal uplift. Repeat frequency means additional orders among returners.
+- Discount outputs are contribution before fixed costs, for a fixed complete window; comparison is not causal uplift. Repeat frequency means additional fulfilled orders among returners, so it is at least one. Zero is accepted only when both returning rates are zero.
+- AI cost includes every required human confirmation, check and correction, including work on failed attempts. The supervised example checks all 100 tasks and completes 90: human cost BDT 1,000, total BDT 1,150, and cost per success approximately BDT 12.78. Count checked tasks once and include all checking/correction time in the average.
 - Experiment guardrail failure pauses the test; incomplete observations cannot produce proceed/stop conclusions from the primary count.
 - No chart-only information. Defaults server-render, result tables and prose remain; inputs are disabled until hydration so no-JavaScript readers cannot edit values beside stale results. Interactive changes require JavaScript.
-- Page-specific imports preserve code splitting. Shared styles use existing theme tokens, keyboard focus, accessible labels and responsive grids.
+- Page-specific imports preserve code splitting. Shared styles use existing theme tokens, keyboard focus, accessible labels, responsive grids and slider targets at least 44 px high.
 
 ## Required human QA before merge
 
 - Have target founders use each tool on an ordinary phone (320/360 px); record misunderstandings, time to first useful action and their resulting decision.
-- Native Bangla editorial review, particularly technical terms and numeric-input expectations. The named translate-bangla-guide/deshi-bangla skills were not available in this environment; translation follows checked-in STYLE.md and preserves examples/citations.
+- Native Bangla editorial review, particularly technical terms and numeric-input expectations. The original draft followed STYLE.md; follow-up corrections also use translate-bangla-guide/deshi-bangla. An agent language review does not complete native-reader QA.
 - Check keyboard/range controls, screen-reader verdicts, enlarged text, dark mode, downloads, and no-JavaScript reading.
 - Review every model assumption and verify that users understand scenario results versus evidence.
 
@@ -37,4 +38,3 @@ Automated and browser verification results belong in the PR description. A green
 - Reject missing required numeric inputs explicitly, overflow in the full-repeat contribution denominator, and B2B forecasts outside JavaScript's safe integer range. These must not display a plausible result.
 - Require actual booleans for experiment completion and guardrail gates; strings such as `"false"` cannot qualify as completed observation.
 - Keep static example results and worksheet downloads available without JavaScript, with calculator inputs disabled until hydration.
-- Browser installation was retried but the Chromium download failed. Interactive browser and human cold-reader checks remain outstanding; neither is claimed as passed.

@@ -19,12 +19,12 @@ export function Workshop({ title, locale, children }: { title: string; locale: L
   </fieldset>
  </section>
 }
-export function Numeric({ label, value, onChange, max, step=1, slider=false, hint }: {label:string;value:string;onChange:(v:string)=>void;max?:number;step?:number;slider?:boolean;hint?:string}) {
+export function Numeric({ label, value, onChange, min=0, max, step=1, slider=false, hint }: {label:string;value:string;onChange:(v:string)=>void;min?:number;max?:number;step?:number;slider?:boolean;hint?:string}) {
  const id=useId()
  const safeMax=typeof max === 'number' && Number.isFinite(max) && max >= 0 ? max : undefined
  return <div className="founder-lab__field"><label htmlFor={id}>{label}</label>
- <input id={id} type="number" inputMode="decimal" min="0" max={safeMax} step={step} value={value} onChange={e=>onChange(e.target.value)} aria-describedby={hint ? `${id}-hint` : undefined}/>
- {slider && <input type="range" min="0" max={safeMax ?? 100} step={step} value={Number.isFinite(Number(value)) ? Math.min(safeMax ?? 100,Math.max(0,Number(value))) : 0} onChange={e=>onChange(e.target.value)} aria-label={label} />}
+ <input id={id} type="number" inputMode="decimal" min={min} max={safeMax} step={step} value={value} onChange={e=>onChange(e.target.value)} aria-describedby={hint ? `${id}-hint` : undefined}/>
+ {slider && <input type="range" min={min} max={safeMax ?? 100} step={step} value={Number.isFinite(Number(value)) ? Math.min(safeMax ?? 100,Math.max(min,Number(value))) : min} onChange={e=>onChange(e.target.value)} aria-label={label} />}
  {hint && <small id={`${id}-hint`}>{hint}</small>}</div>
 }
 export function Results({ rows, locale }: {rows: [string,string][];locale:Locale}) {

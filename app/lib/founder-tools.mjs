@@ -9,6 +9,9 @@ export function discountComparison(x) {
   if (!finite(customers, price, cost, acquisition, discount, repeatDiscount, repeatOrders, promoRate, controlRate) || !positiveCount(customers) ||
       [price, cost, acquisition, discount, repeatDiscount, repeatOrders].some(n => n < 0) ||
       discount > price || repeatDiscount > price || !rate(promoRate) || !rate(controlRate)) return null
+  // A returning purchaser has completed at least one additional order.
+  // Zero additional orders is meaningful only when neither cohort has returners.
+  if (repeatOrders < 1 && !(repeatOrders === 0 && promoRate === 0 && controlRate === 0)) return null
   const repeatMargin = price - repeatDiscount - cost
   const firstPromo = price - discount - cost - acquisition
   const firstControl = price - cost - acquisition
