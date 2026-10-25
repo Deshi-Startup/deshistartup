@@ -23,6 +23,7 @@ All numbers are explicitly synthetic teaching inputs, not Bangladesh market benc
 - Experiment guardrail failure pauses the test; incomplete observations cannot produce proceed/stop conclusions from the primary count.
 - No chart-only information. Defaults server-render, result tables and prose remain; inputs are disabled until hydration so no-JavaScript readers cannot edit values beside stale results. Interactive changes require JavaScript.
 - Page-specific imports preserve code splitting. Shared styles use existing theme tokens, keyboard focus, accessible labels, responsive grids and slider targets at least 44 px high.
+- The MVP planner's article tables use labelled, keyboard-focusable TableScroll containers so enlarged text cannot widen the whole page. The contribution editor protects the wrapper tags while table cells remain editable.
 
 ## Required human QA before merge
 

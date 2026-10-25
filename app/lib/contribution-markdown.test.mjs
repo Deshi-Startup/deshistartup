@@ -66,6 +66,18 @@ test('case-study markup is protected while its prose and citations stay editable
   assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace('date="2015"', 'date="2016"'))), false)
 })
 
+test('scrolling-table markup stays protected while table cells remain editable', () => {
+  const source = '<TableScroll label="Weekly experiment schedule">\n\n| Day | Work |\n|---|---|\n| Mon | Plan |\n\n</TableScroll>'
+  const encoded = encodeLockedMdx(source)
+  assert.equal((encoded.match(/```deshi-locked-mdx/g) || []).length, 2)
+  assert.equal(decodeLockedMdx(encoded), source)
+  const edited = decodeLockedMdx(encoded.replace('| Mon | Plan |', '| Mon | Review |'))
+  assert.match(edited, /\| Mon \| Review \|/)
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited)), true)
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace('</TableScroll>', ''))), false)
+  assert.equal(sameLockedMdx(lockedMdxBlocks(source), lockedMdxBlocks(edited.replace('Weekly experiment schedule', 'Changed layout label'))), false)
+})
+
 test('paired component examples and unrelated locked fences are not decoded as markup', () => {
   const example = '```mdx\n<CaseTimeline>\n\nAn example.\n\n</CaseTimeline>\n```'
   assert.equal(encodeLockedMdx(example), example)
