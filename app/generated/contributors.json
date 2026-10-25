@@ -1,19 +1,19 @@
 {
   "schemaVersion": 3,
   "repository": "Deshi-Startup/deshistartup",
-  "refreshedAt": "2026-09-11T11:24:31.221Z",
+  "refreshedAt": "2026-10-25T22:25:44.024Z",
   "totals": {
     "contributors": 5,
-    "acceptedEvents": 17,
-    "pagesImproved": 40,
+    "acceptedEvents": 19,
+    "pagesImproved": 45,
     "roleCategories": {
-      "author": 13,
+      "author": 14,
       "editor": 3,
-      "translator": 3,
-      "researcher": 3,
+      "translator": 4,
+      "researcher": 4,
       "operational-insight": 0,
       "reviewer": 0,
-      "product": 2
+      "product": 4
     }
   },
   "unattributedCount": 0,
@@ -784,6 +784,99 @@
           "review": null
         }
       ]
+    },
+    {
+      "id": "github-pr-140",
+      "acceptedAt": "2026-10-16",
+      "sourceType": "github-pr",
+      "attribution": null,
+      "locales": [
+        "bn",
+        "en"
+      ],
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/140",
+      "summary": {
+        "bn": "বাজারের তথ্য, ম্যাপ ও আকারের হিসাব রিসার্চ ও সোর্স অংশে যোগ করা",
+        "en": "Added market facts, maps and size estimates under Research & sources"
+      },
+      "targets": [],
+      "credits": [
+        {
+          "mode": "anonymous",
+          "profileId": null,
+          "organizationId": null,
+          "roles": [
+            "researcher",
+            "product"
+          ],
+          "review": null
+        }
+      ]
+    },
+    {
+      "id": "github-pr-145",
+      "acceptedAt": "2026-10-25",
+      "sourceType": "github-pr",
+      "attribution": null,
+      "locales": [
+        "bn",
+        "en"
+      ],
+      "evidenceUrl": "https://github.com/Deshi-Startup/deshistartup/pull/145",
+      "summary": {
+        "bn": "তিনটি গাইড বাংলায় ও ইংরেজিতে লেখা, আরও দুটি গাইডে উদাহরণ যোগ করা এবং হিসাব ও সিদ্ধান্ত নেওয়ার টুল তৈরি করা",
+        "en": "Authored and translated three guides, expanded two guides and built interactive decision tools"
+      },
+      "targets": [
+        {
+          "path": "/metrics/startup-analytics",
+          "title": {
+            "bn": "স্টার্টআপ অ্যানালিটিক্স: প্রথম ৩০ দিনে কী মাপবেন",
+            "en": "Your First 30 Days of Startup Analytics"
+          }
+        },
+        {
+          "path": "/metrics/discount-retention",
+          "title": {
+            "bn": "ছাড়ে অর্ডার আসে, কাস্টমার কি আবার কেনেন?",
+            "en": "Discounts Bring Orders: Do Customers Come Back?"
+          }
+        },
+        {
+          "path": "/b2b/sme-sales",
+          "title": {
+            "bn": "ছোট ব্যবসায়ীদের কাছে বিক্রি: প্রথম ভিজিট থেকে পেইড ইউজ পর্যন্ত",
+            "en": "Selling to Small Businesses: From First Visit to Paid Use"
+          }
+        },
+        {
+          "path": "/validation/mvp-experiment-planner",
+          "title": {
+            "bn": "এক্সপেরিমেন্ট প্ল্যান: কাজ শুরুর আগে এক পাতার হিসাব",
+            "en": "The Experiment Plan: One Page to Fill In First"
+          }
+        },
+        {
+          "path": "/product/ai-feature-evaluation",
+          "title": {
+            "bn": "AI যোগ করার আগে: নির্ভুলতা, খরচ ও ব্যর্থ হলে কী করবেন",
+            "en": "Before Adding AI: Test Accuracy, Cost and Failure Handling"
+          }
+        }
+      ],
+      "credits": [
+        {
+          "mode": "person",
+          "profileId": "sajid-hasan-sifat",
+          "organizationId": null,
+          "roles": [
+            "author",
+            "translator",
+            "product"
+          ],
+          "review": null
+        }
+      ]
     }
   ],
   "rankedProfiles": [
@@ -833,17 +926,17 @@
         }
       ],
       "avatarUrl": "/media/contributors/sajid-hasan-sifat.webp",
-      "acceptedEventCount": 3,
-      "lastAcceptedAt": "2026-09-11",
+      "acceptedEventCount": 4,
+      "lastAcceptedAt": "2026-10-25",
       "contributorSince": "2026-09-10",
       "roleCategories": {
-        "author": 2,
+        "author": 3,
         "editor": 1,
-        "translator": 3,
+        "translator": 4,
         "researcher": 3,
         "operational-insight": 0,
         "reviewer": 0,
-        "product": 0
+        "product": 1
       },
       "rank": 2
     },

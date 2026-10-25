@@ -454,6 +454,11 @@
   white-space: nowrap;
 }
 
+/* Enlarged text can make a count wider than the profile's text column. */
+:where(.scope) :global(.contributor-profile__standing .contributor-figure) {
+  white-space: normal;
+}
+
 :where(.scope) :global(.contributor-profile__roles) {
   color: var(--muted);
   font-size: 0.82rem;

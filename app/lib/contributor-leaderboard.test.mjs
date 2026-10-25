@@ -79,21 +79,21 @@ test('prepares empty, one-person, two-person and 250-person snapshots', () => {
   }
 })
 
-test('prepares the committed five-person, seventeen-event baseline', () => {
+test('prepares the committed five-person, nineteen-event baseline', () => {
   const current = JSON.parse(fs.readFileSync(new URL('../generated/contributors.json', import.meta.url), 'utf8'))
   const view = prepareContributorSnapshot(current)
   assert.deepEqual(view.totals, {
     contributors: 5,
-    acceptedEvents: 17,
-    pagesImproved: 40,
+    acceptedEvents: 19,
+    pagesImproved: 45,
     roleCategories: {
-      author: 13,
+      author: 14,
       editor: 3,
-      translator: 3,
-      researcher: 3,
+      translator: 4,
+      researcher: 4,
       'operational-insight': 0,
       reviewer: 0,
-      product: 2
+      product: 4
     }
   })
   assert.deepEqual(view.rankedProfiles.map((entry) => entry.displayName), [

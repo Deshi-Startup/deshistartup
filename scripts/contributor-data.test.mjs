@@ -1067,7 +1067,7 @@ test('public snapshot validation rejects a profile value that would be silently 
   )
 })
 
-test('the authored current ledger reconciles to five contributors and seventeen community events', async () => {
+test('the authored current ledger reconciles to five contributors and nineteen accepted events', async () => {
   const [currentLedger, currentPolicy, catalog] = await Promise.all([
     fs.readFile(path.join(root, 'data', 'contributor-ledger.json'), 'utf8').then(JSON.parse),
     fs.readFile(path.join(root, 'data', 'contributors-policy.json'), 'utf8').then(JSON.parse),
@@ -1094,7 +1094,9 @@ test('the authored current ledger reconciles to five contributors and seventeen 
     pull(92, 'shamirislam', { merged_at: '2026-08-25T15:23:42Z' }),
     pull(105, 'sajidhasan054', { merged_at: '2026-09-10T23:18:44Z' }),
     pull(106, 'sajidhasan054', { merged_at: '2026-09-10T23:55:08Z' }),
-    pull(107, 'sajidhasan054', { merged_at: '2026-09-11T10:59:43Z' })
+    pull(107, 'sajidhasan054', { merged_at: '2026-09-11T10:59:43Z' }),
+    pull(140, 'shmukit', { merged_at: '2026-10-16T19:26:41Z' }),
+    pull(145, 'sajidhasan054', { merged_at: '2026-10-25T22:20:15Z' })
   ]
   const contributorMedia = {
     '/media/contributors/shoumik-shahriar.webp': {
@@ -1129,24 +1131,33 @@ test('the authored current ledger reconciles to five contributors and seventeen 
     })
   })
   assert.equal(snapshot.totals.contributors, 5)
-  assert.equal(snapshot.totals.acceptedEvents, 17)
-  assert.equal(snapshot.totals.pagesImproved, 40)
+  assert.equal(snapshot.totals.acceptedEvents, 19)
+  assert.equal(snapshot.totals.pagesImproved, 45)
+  assert.equal(snapshot.unattributedCount, 0)
+  assert.deepEqual(snapshot.events.find((event) => event.id === 'github-pr-140').credits, [{
+    mode: 'anonymous', profileId: null, organizationId: null,
+    roles: ['researcher', 'product'], review: null
+  }])
+  assert.ok(!snapshot.rankedProfiles.some((profile) => profile.githubLogin === 'shmukit'))
+  const founderTools = snapshot.events.find((event) => event.id === 'github-pr-145')
+  assert.equal(founderTools.targets.length, 5)
+  assert.equal(founderTools.credits[0].profileId, 'sajid-hasan-sifat')
   const muhaimin = snapshot.rankedProfiles.find((profile) => profile.id === 'muhaiminul-islam-khan')
   const niloy = snapshot.rankedProfiles.find((profile) => profile.id === 'niloy-biswas')
   const shoumik = snapshot.rankedProfiles.find((profile) => profile.id === 'shoumik-shahriar')
   const uttam = snapshot.rankedProfiles.find((profile) => profile.id === 'uttam-deb')
   const sajid = snapshot.rankedProfiles.find((profile) => profile.id === 'sajid-hasan-sifat')
   assert.equal(sajid.avatarUrl, '/media/contributors/sajid-hasan-sifat.webp')
-  assert.equal(sajid.acceptedEventCount, 3)
+  assert.equal(sajid.acceptedEventCount, 4)
   assert.equal(sajid.rank, 2)
   assert.deepEqual(sajid.roleCategories, {
-    author: 2,
+    author: 3,
     editor: 1,
-    translator: 3,
+    translator: 4,
     researcher: 3,
     'operational-insight': 0,
     reviewer: 0,
-    product: 0
+    product: 1
   })
   assert.equal(muhaimin.avatarUrl, 'https://avatars.githubusercontent.com/u/57?v=4&s=160')
   assert.equal(muhaimin.acceptedEventCount, 2)
