@@ -169,5 +169,16 @@
         "src": "/media/og/en/case-studies/shebaxyz.png"
       }
     }
+  },
+  "case-studies/shohoz": {
+    "template": "case-study",
+    "locales": {
+      "bn": {
+        "src": "/media/og/bn/case-studies/shohoz.png"
+      },
+      "en": {
+        "src": "/media/og/en/case-studies/shohoz.png"
+      }
+    }
   }
 }
