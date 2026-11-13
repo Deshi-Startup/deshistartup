@@ -59,6 +59,10 @@ const companies = {
   agroshift: {
     theme: 'agroshift',
     sector: { en: 'Agriculture', bn: 'কৃষি' }
+  },
+  shohoz: {
+    theme: 'shohoz',
+    sector: { en: 'Travel & ticketing', bn: 'ভ্রমণ ও টিকিট' }
   }
 } as const
 
