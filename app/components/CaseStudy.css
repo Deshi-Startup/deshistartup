@@ -11,6 +11,7 @@
 .case-theme--arogga { --case-ground: #13554c; --case-ink: #fff7ef; --case-soft: #c3eee0; }
 .case-theme--solshare { --case-ground: #213b43; --case-ink: #fff7e7; --case-soft: #f1d594; }
 .case-theme--agroshift { --case-ground: #294c39; --case-ink: #fff7e7; --case-soft: #d7e5b0; }
+.case-theme--shohoz { --case-ground: #254b3c; --case-ink: #f2f2d8; --case-soft: #c5dcac; }
 
 .case-logo {
   display: inline-flex;

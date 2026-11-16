@@ -1,16 +1,225 @@
 ---
 title: "Shohoz"
-description: "Shohoz – this case study is planned for Deshi Startup, but it has not been written yet."
+seoTitle: "Shohoz Case Study: Ticketing, the Super-App Bet and Running Railway Sales"
+description: "How Shohoz digitised bus ticket counters, spent its funding on ride-hailing and food, retreated after Covid and took on Bangladesh Railway's ticketing - with the scrutiny that came with it."
+verified: 2026-10-31
 ---
+
+import { CaseCompany, CaseTimeline, CaseMilestone, CaseExchange } from '../../../../components/CaseStudy'
 
 # Shohoz
 
-<StubNotice path="case-studies/shohoz" locale="en" />
+<CaseCompany slug="shohoz" locale="en" />
+
+> **In short:** Shohoz started in 2014 by putting long-distance bus operators' ticket counters on software and selling their seats online.[^fs-story] Ticketing gave it a trusted brand but a modest business, so in 2018 it raised US$15 million and moved into ride-hailing and food delivery to become an "everything necessary" app.[^fs-platform][^ds-15m] The Covid suspension of ride-sharing ended that bet, and by October 2021 Shohoz had closed its truck service and cut its ride and food teams.[^tbs-layoffs][^dt-truck] It then won Bangladesh Railway's ticketing contract, where every server failure and black-market ticket became a national news story.[^bdnews-launch][^tbs-arrest] Shohoz shows what a ticketing moat protects, what it does not pay for, and what changes when a startup runs a public service.
+
+A bus ticket in Bangladesh used to mean a trip to the operator's counter, or a phone call to someone who knew the counter master. The seat list lived in a register or on the operator's own computer. Selling that seat online meant persuading the operator to put every seat into a shared system, keep it up to date and accept money that did not arrive as cash in the counter drawer.
+
+Shohoz built that system first. The harder questions came later: what to build on top of a ticketing brand, when to stop, and how to run ticketing for a state railway whose passengers blame the vendor for every sold-out train.
+
+## At a glance
+
+| Item | Detail |
+|---|---|
+| Founder | Maliha M Quadir, previously at Morgan Stanley, Standard Chartered, Nokia and Vistaprint.[^fs-story][^fs-dossier] |
+| Start | Work began in January 2014; the service soft-launched at the end of 2014.[^fs-story] |
+| First wedge | Ticketing software and online sales for long-distance bus operators.[^fs-story] |
+| Expansion | Ride-hailing (2018), food delivery (October 2018), truck booking (2019) and health (May 2020).[^fs-platform][^fs-dossier][^tbs-layoffs] |
+| Capital milestones | A US$15 million pre-Series B in 2018 led by Golden Gate Ventures; an undisclosed 2019 round led by Vostok New Ventures.[^ds-15m][^fs-2019-round] |
+| Railway contract | A five-year ticketing contract with Bangladesh Railway, signed in February 2022 by a Shohoz-led joint venture.[^tbs-contract][^ds-jv] |
+
+## Turning points
+
+<CaseTimeline>
+<CaseMilestone date="2014" title="Put bus counters on software" href="#the-first-customer-was-the-bus-operator">
+
+Maliha M Quadir raises an angel round, moves back to Dhaka and starts building ticketing for bus operators. Four operators join in the first year.[^fs-story]
+
+</CaseMilestone>
+<CaseMilestone date="December 2017" title="Announce ride-hailing to protect ticketing" href="#why-ticketing-led-to-ride-hailing">
+
+Shohoz opens driver registration for Shohoz Rides. An analyst argues that ride-hailing apps could otherwise reach Shohoz's customers first.[^fs-moat]
+
+</CaseMilestone>
+<CaseMilestone date="2018" title="Raise US$15 million for the platform bet" href="#the-super-app-bet">
+
+Ride-hailing launches formally in March and food delivery in October. Golden Gate Ventures leads a US$15 million round aimed at customer acquisition.[^fs-platform][^ds-15m][^fs-dossier]
+
+</CaseMilestone>
+<CaseMilestone date="2020-21" title="Lose ride-hailing, then cut back" href="#covid-ended-the-ride-hailing-bet">
+
+Motorcycle ride-sharing is suspended during the Covid lockdown and Shohoz never restarts it. In October 2021 it closes truck booking and cuts its ride and food teams.[^tbs-layoffs][^dt-truck]
+
+</CaseMilestone>
+<CaseMilestone date="March 2022" title="Take over Bangladesh Railway ticketing" href="#winning-the-railway-contract">
+
+A Shohoz-led joint venture replaces the previous vendor at a reported Tk0.25 per ticket. The first day of online sales runs into outages.[^tbs-contract][^bdnews-launch]
+
+</CaseMilestone>
+<CaseMilestone date="October 2026" title="The railway prepares a fresh tender" href="#where-shohoz-stands-now">
+
+With the contract due to expire in February 2027, the railway tells a parliamentary committee it will invite a new tender.[^tbs-tender-2026]
+
+</CaseMilestone>
+</CaseTimeline>
+
+## The first customer was the bus operator
+
+Maliha studied economics and computer science at Smith College, worked in investment banking, completed an MBA at Harvard and spent several years in Singapore with Standard Chartered, Nokia and Vistaprint. Toward the end of 2013 she raised a small angel round from her Harvard network and moved back to Bangladesh. Work started in January 2014 with about six people around her dining table.[^fs-story]
+
+She wanted a product for ordinary people and chose transport. "We want to serve the masses. That's why we started with the bus ticket," she said in 2018.[^fs-platform]
+
+The passenger was the visible customer, but the operator came first. A seat cannot be sold online unless the operator puts it in the system. Shohoz signed four operators in its first year and about 70 large bus and ferry operators within three years.[^fs-story] Maliha described the sales cycle as long and built on relationships. Operators also had to move from a cash-first business toward cashless sales, and some counter staff had to learn to use computers.[^fs-story]
+
+Shohoz handled the variety by keeping one core product and customising the rest. Maliha estimated that about 80% of what operators needed was common and about 20% was specific, mainly for the larger operators.[^fs-story] By late 2018 its software ran at more than 500 counters across the country.[^fs-story]
+
+For a founder, the lesson is about the order of work. The online booking page was the smaller job. The bigger one was becoming the system the operator used to run its counters, because that is what made its seats available to sell online.
+
+## One seat, two places to sell it
+
+Selling another company's inventory creates a problem that a booking page cannot solve. When an operator cancelled a trip, or a counter resold a seat without updating the software, the passenger who had paid online arrived to find no seat. Maliha said in 2018 that almost all the complaints she received came from cases like this, and that customers blamed Shohoz rather than the operator.[^fs-story]
+
+<CaseExchange
+  title="Shohoz sold the seat online, but the operator still controlled it"
+  company="shohoz"
+  lanes={[
+    { label: 'The counter updates the shared system', stops: [
+      { title: 'Counter sells seat B4', detail: 'Staff record the sale in the operator software.' },
+      { title: 'Seat B4 disappears online', detail: 'The online buyer can only choose seats still free.' },
+      { title: 'One passenger, one seat', detail: 'Both channels see the same seat list.' },
+    ] },
+    { label: 'The counter sells outside the system', stops: [
+      { title: 'Counter sells seat B4 by hand', detail: 'The sale never reaches the software.' },
+      { title: 'Seat B4 is still free online', detail: 'A passenger pays for it through Shohoz.' },
+      { title: 'Two passengers, one seat', detail: 'The online passenger is turned away.', note: 'The operator caused the clash, but the customer blames Shohoz.' },
+    ] },
+  ]}
+>
+
+A simplified illustration of the problem Maliha described in 2018, not a record of a particular trip.[^fs-story] The seat number is illustrative.
+
+</CaseExchange>
+
+The same tension returned at the railway. In a July 2022 consumer complaint, Shohoz's lawyer said that one of the four seats the complainant had tried to book was sold at a railway counter, and that "if a ticket is sold from the counter, Shohoz has nothing to do with it."[^fe-fine] The consumer rights directorate still fined Shohoz.[^fe-fine]
+
+A marketplace that does not control its supply still owns the customer's experience. Before you sell a partner's inventory, decide how you will detect offline sales, what you will refund and how quickly, and how the passenger will know whose mistake it was.
+
+## Why ticketing led to ride-hailing
+
+For its first three years Shohoz sold only tickets: bus, launch, movie and event.[^fs-platform] By 2018 it was selling a couple of thousand tickets a day, mostly through organic growth with little promotion.[^fs-story]
+
+Ticketing built a brand, but it was a modest business. When Shohoz announced Shohoz Rides in December 2017, Future Startup argued that the move was defensive. Ride-hailing apps were building daily relationships with Dhaka commuters and could add ticketing themselves. In that view, entering ride-hailing protected Shohoz's ticketing <Term name="moat">moat</Term> more than it opened a profitable new market.[^fs-moat]
+
+Maliha had watched ride-hailing for three years before entering it. She met the road transport regulator BRTA repeatedly in 2014 and 2015, but waited because there was no ride-hailing guideline.[^fs-story][^fs-platform] She later regretted the wait. Her advice: "Don't wait for regulation to change."[^fs-story]
+
+## The super-app bet
+
+Shohoz ran a ride-hailing beta in January 2018 and launched formally in Dhaka that March.[^fs-platform] In September 2018 Golden Gate Ventures led a US$15 million round, with Linear VC, 500 Startups and Koh Boon Hwee also investing.[^ds-15m][^fs-2019-round] Shohoz said the money would go into acquiring and keeping ride-sharing customers and into other on-demand services.[^ds-15m] Food delivery launched in October 2018.[^fs-dossier]
+
+The ambition was broad. "Shohoz is not anything transportation, Shohoz is anything and everything necessary," Maliha said.[^fs-platform] In March 2019 Vostok New Ventures led a further round of undisclosed size, joined by Partech Ventures, Heritas Venture Funds, Cypress Capital, Tekton Ventures and Golden Gate Ventures.[^fs-2019-round]
+
+By mid-2019 Shohoz reported 6.5 crore transactions, 1.5 crore users and over 50 lakh app downloads. These are company claims, and the article did not define "users."[^fs-five] It described itself as second in Dhaka's bike-hailing market and noted that ride-hailing was a cash-burning business driven by promo codes.[^fs-five]
+
+Our reading is that this was the weakness. Promotions bought rides, but riders and drivers could switch to whichever app offered the better discount that week. Ticketing customers, by contrast, came back because the operators they travelled with were on Shohoz. The new businesses needed far more cash per customer than the business that had built the brand.
+
+[Pathao faced the same pressure from the other direction](/en/case-studies/pathao#constraints-mistakes-and-the-turnaround): it spread across many services before cutting back to the ones that paid. Compare how each company decided which services to keep.
+
+## Covid ended the ride-hailing bet
+
+Motorcycle ride-sharing was suspended during the 2020 Covid lockdown. Shohoz kept its service off to comply with the government order, then did not restart it because, Maliha said, the industry had suffered heavy damage.[^tbs-layoffs] In May 2021 she said the ride-sharing sector had "totally collapsed."[^dt-truck]
+
+Shohoz launched Shohoz Health in May 2020, offering video consultations and medicine delivery, and Shohoz Learn in June 2021.[^fs-dossier][^tbs-layoffs]
+
+In October 2021 it closed its truck-booking service, launched in 2019, calling it "non-core" and not aligned with its consumer businesses.[^dt-truck] Former employees said about 50 staff, most of them in food delivery, would leave at the end of that month. Maliha said the real number was much smaller and described the exits as routine turnover. The company said its board was reviewing its strategic vision across current and future services.[^tbs-layoffs] Ticketing remained its core business.[^tbs-layoffs]
+
+The reported layoff figures and the company's account differ. What both sources agree on is the direction: Shohoz stopped funding the services that depended on promotions and returned to ticketing.
+
+## Winning the railway contract
+
+Bangladesh Railway's online ticketing was run by another vendor, CNS.[^dt-cptu] The railway floated a tender for a new system in January 2020.[^ds-jv] A joint venture of Shohoz, Synesis and Vincen bid Tk0.25 per ticket.[^dt-cptu]
+
+The award was contested. In January 2021 a review panel of the Central Procurement Technical Unit recommended scrapping the tender. It said the joint venture did not meet the requirement of having issued 5 million tickets in a single year, and that its bid had been lowered by deducting projected advertising income, against the tender terms.[^dt-cptu] The joint venture replied that the tender had invited other revenue sources such as advertising, and that it issued close to 20 million tickets a year.[^dt-cptu]
+
+The contract was signed on 15 February 2022.[^tbs-contract][^ds-jv] It ran for five years. Shohoz would use the railway's existing server for the first 18 months, after which the system could be replaced.[^tbs-contract] The railway said Shohoz would receive Tk0.25 per ticket against the previous vendor's Tk2.99, while passengers kept paying the same Tk20 online charge.[^tbs-contract] The consortium was also to design and roll out a new integrated ticketing system within 18 months.[^ds-jv]
+
+Online sales paused from 21 to 25 March 2022 for the handover.[^tbs-contract]
+
+## Running a public service
+
+On 26 March 2022, the first day of online sales, passengers could not get one-time passwords or load the website. The joint venture said it had been hit by a cyberattack. Railway officials said they had not been told of any attack and blamed demand: nearly 200,000 people had tried to buy tickets at once.[^bdnews-launch]
+
+In April 2022 the Rapid Action Battalion arrested a man it described as a Shohoz system engineer, alleging he had resold thousands of Eid tickets each season on the black market for six years. Shohoz said he was station support staff, hired four weeks earlier because he had already worked at the railway for six years, and that it fired him immediately.[^tbs-arrest]
+
+In July 2022 the Directorate of National Consumers Right Protection fined Shohoz Tk2 lakh after a Dhaka University student complained that he had paid for tickets he never received.[^fe-fine] Shohoz said unpaid bookings are released after 15 minutes and that his money was refunded.[^fe-fine] It challenged the fine in the High Court.[^tbs-fine-writ]
+
+The volume was real. By August 2022 Shohoz said it had issued about one crore tickets in four months, including more than 16 lakh during the two Eids, with more than 14 lakh registered online users.[^ds-1cr] But in October 2022 The Business Standard reported that the railway still had no IT department or server of its own and that a black market for tickets persisted.[^tbs-digital]
+
+A consumer app can apologise for an outage. A public-service vendor is answering to ministers, procurement reviewers, courts, consumer regulators and passengers who cannot travel home for Eid. Every failure gets reported, and the vendor is often blamed for problems it shares with the client.
+
+## Business model
+
+Shohoz did not disclose its ticketing revenue or commission rates. Its founder confirmed that the food business earned a commission on sales.[^fs-platform] The railway contract paid a reported Tk0.25 per ticket, with the joint venture's bid also counting on advertising revenue.[^tbs-contract][^dt-cptu]
+
+## Where Shohoz stands now
+
+On 26 October 2026 Bangladesh Railway told the parliamentary standing committee on railways that it was preparing a fresh tender for its online ticketing vendor, ahead of the Shohoz contract's expiry in February 2027.[^tbs-tender-2026] Whether Shohoz bids again, and whether it keeps the work, is not yet known.
+
+## What to copy
+
+- **Start with the supplier's system, not the buyer's checkout.** Shohoz's ticketing worked because operators ran their counters on its software.
+- **Build one core product and customise the edges.** An 80/20 split let Shohoz serve large operators without writing a separate product for each.
+- **Close what does not fit, and say why.** Calling the truck service non-core gave staff, investors and customers a clear reason.
+- **Price public contracts against the work, not only against the rival bid.** Tk0.25 per ticket won the tender but carried the full public scrutiny of the railway's busiest days.
+
+## What not to copy
+
+- **Do not enter a promotion-led market to defend a moat.** Ride-hailing needed far more cash than ticketing and could be switched off by a single government order.
+- **Do not wait indefinitely for regulation.** Maliha's own lesson was that waiting for the regulator cost Shohoz time.
+- **Do not take customer blame for supply you cannot see.** Agree with partners in advance how offline sales, cancellations and refunds will be detected and handled.
+- **Do not treat a public handover as a soft launch.** Nearly 200,000 people tried to buy railway tickets at once on the first day; there was no quiet period to learn in.
+
+## Still unknown
+
+Shohoz's revenue, profitability, ticketing commission rates and the size of its 2019 round have not been published. It is unclear whether the integrated railway ticketing system promised within 18 months was delivered as planned, and whether Shohoz's health and learning services still operate. Reports also disagree on the contract date: most give 15 February 2022, but one 2022 report gives 15 February 2021 and an end date in 2026.[^tbs-digital] Company user and transaction figures are self-reported.
 
 ## Relevant Sources
 
-- [Shohoz](https://www.shohoz.com)
-- [Future Startup](https://futurestartup.com)
-- [The Daily Star – Tech & Startup](https://www.thedailystar.net/tech-startup)
-- [The Business Standard](https://www.tbsnews.net)
-- [LightCastle Partners – Insights](https://lightcastlepartners.com/insights)
+Sources checked on 31 October 2026. Start with the two 2018 Future Startup interviews for the founder's account, then read the railway coverage for the public-service period.
+
+[^fs-story]: [The fascinating story of Shohoz: an interview with Maliha M Quadir - Future Startup, 17 December 2018](https://futurestartup.com/2018/12/17/shohoz-story-maliha-m-quadir/).
+
+[^fs-platform]: [Shohoz, ride-hailing and the ambition of building a platform for everything necessary (part 2) - Future Startup, 27 December 2018](https://futurestartup.com/2018/12/27/maliha-m-quadir-founder-and-md-shohoz-part-2/).
+
+[^fs-moat]: [Shohoz makes a necessary move and Shohoz's search for moat - Future Startup, 20 December 2017](https://futurestartup.com/2017/12/20/shohoz-makes-a-necessary-move).
+
+[^ds-15m]: [Singapore firm invests $15m in Shohoz - The Daily Star, 26 September 2018](https://www.thedailystar.net/business/news/singapore-firm-invests-15m-shohoz-1639360).
+
+[^fs-2019-round]: [Shohoz raises new funding to become Bangladesh's super app - Future Startup, 14 March 2019](https://futurestartup.com/2019/03/14/shohoz-raises-new-funding-to-become-bangladeshs-super-app/).
+
+[^fs-five]: [Shohoz turns five - Future Startup, 21 July 2019](https://futurestartup.com/2019/07/21/shohoz-turns-five/).
+
+[^fs-dossier]: [The Future Startup dossier: Shohoz - Future Startup, 21 March 2021](https://futurestartup.com/2021/03/21/the-future-startup-dossier-shohoz/).
+
+[^tbs-layoffs]: [Shohoz 'laying off' ride-sharing, food delivery teams - The Business Standard, 17 October 2021](https://www.tbsnews.net/node/316870).
+
+[^dt-truck]: [Shohoz Truck shuts down, Ride and Food could be next - Dhaka Tribune, 17 October 2021](https://www.dhakatribune.com/business/315656/shohoz-truck-shuts-down-ride-and-food-could-be).
+
+[^dt-cptu]: [Railway's online ticketing tender under scanner - Dhaka Tribune, 19 January 2021](https://www.dhakatribune.com/bangladesh/236172/railway-s-online-ticketing-tender-under-scanner).
+
+[^ds-jv]: [Shohoz to lead joint venture designing integrated ticketing system for Bangladesh Railway - The Daily Star, 15 February 2022](https://www.thedailystar.net/tech-startup/news/bangladesh-railway-get-new-integrated-ticketing-system-2962826).
+
+[^tbs-contract]: [Railway ticket management goes to Shohoz - The Business Standard, 14 March 2022](https://www.tbsnews.net/bangladesh/railway-ticket-management-goes-shohozcom-384738).
+
+[^bdnews-launch]: [First day of new online train ticket system, run by Shohoz, runs into glitches - bdnews24.com, 26 March 2022](https://bdnews24.com/bangladesh/first-day-of-new-online-train-ticket-system-run-by-shohoz-runs-into-glitches).
+
+[^tbs-arrest]: [Shohoz system engineer arrested for e-ticketing scam - The Business Standard, 28 April 2022](https://www.tbsnews.net/node/411274).
+
+[^fe-fine]: [Shohoz fined Tk 200,000 over cancelled train tickets - The Financial Express, 20 July 2022](https://old.thefinancialexpress.com.bd/national/shohoz-fined-tk-200000-over-cancelled-train-tickets-1658314093).
+
+[^tbs-fine-writ]: [Shohoz.com files writ challenging DNCRP fine - The Business Standard, 26 July 2022](https://www.tbsnews.net/node/465582).
+
+[^ds-1cr]: [BR ticketing partner Shohoz say they sold 1cr train tickets in 4 months - The Daily Star, 18 August 2022](https://www.thedailystar.net/news/bangladesh/transport/news/br-ticketing-partner-shohoz-say-they-sold-1cr-train-tickets-4-months-3098001).
+
+[^tbs-digital]: [Bangladesh Railway's digital ambitions remain elusive - The Business Standard, 20 October 2022](https://www.tbsnews.net/bangladesh/bangladesh-railways-digital-ambitions-remain-elusive-516922).
+
+[^tbs-tender-2026]: [Railway to invite fresh online ticketing tender by Feb - The Business Standard, 26 October 2026](https://www.tbsnews.net/bangladesh/transport/railway-invite-fresh-online-ticketing-tender-feb-1583811).
